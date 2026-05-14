@@ -1,0 +1,6 @@
+git add .
+git commit -m "..."
+git push
+
+#ewentualnie gdyby była niezgodność to rebase
+git pull origin main --rebase
