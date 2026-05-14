@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta sigma</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#f0f2f5;
+}
+
+/* =========================
+   DISCORD BANNER
+========================= */
+
+.discord-banner{
+    background:linear-gradient(90deg,#5865F2,#404EED);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:10px 15px;
+    font-weight:500;
+    font-size:14px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.discord-icon{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+}
+
+/* =========================
+   NAV
+========================= */
+
+nav{
+    background:#1f2a36;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    padding:15px;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:white;
+    transform:scale(1.08);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero-bg{
+    background:
+    radial-gradient(circle at top,#e8ecff,#f0f2f5 60%);
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-section{
+    display:flex;
+    justify-content:center;
+    margin:30px 20px;
+}
+
+.countdown-card{
+    background:white;
+    border-radius:18px;
+    padding:25px 40px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    text-align:center;
+    max-width:900px;
+    width:100%;
+}
+
+.countdown-card h3{
+    margin-bottom:15px;
+}
+
+#countdown{
+    font-size:20px;
+    font-weight:600;
+    color:#1f2a36;
+}
+
+#countdown span{
+    font-size:28px;
+    color:#404EED;
+    margin:0 5px;
+}
+
+/* =========================
+   COURSE INFO
+========================= */
+
+.course-info{
+    padding:0 20px;
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.course-info h2{
+    margin-bottom:0;
+    font-size:28px;
+}
+
+.course-info p{
+    font-size:16px;
+    line-height:1.7;
+    color:#444;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta-card{
+    max-width:900px;
+    margin:20px auto;
+    background:linear-gradient(90deg,#404EED,#5865F2);
+    color:white;
+    font-weight:600;
+    border-radius:18px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.1);
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.cta-card:hover{
+    transform:translateY(-3px);
+}
+
+/* =========================
+   FLIP CONTROLS
+========================= */
+
+.flip-controls{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:25px 0;
+}
+
+.flip-controls button{
+    padding:18px 28px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#1f2a36;
+    color:white;
+    transition:0.3s;
+    font-size:15px;
+}
+
+.flip-controls button:hover{
+    transform:scale(1.05);
+}
+
+/* =========================
+   FLIPBOOK
+========================= */
+
+.flip-section{
+    padding:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+.book-wrapper{
+    width:1080px;
+    height:1080px;
+    margin:0 auto;
+    background:#d9d9d9;
+    border-radius:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.18);
+    padding:18px;
+    position:relative;
+    overflow:hidden;
+}
+
+.book{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.page{
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.page img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+/* =========================
+   SLIDER
+========================= */
+
+.slider-container{
+    position:absolute;
+    left:50%;
+    bottom:22px;
+    transform:translateX(-50%);
+    width:75%;
+    background:rgba(255,255,255,0.92);
+    padding:14px 18px;
+    border-radius:16px;
+    backdrop-filter:blur(6px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.12);
+}
+
+.slider-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+}
+
+.counter{
+    font-weight:600;
+    color:#333;
+    font-size:15px;
+}
+
+.slider-label{
+    font-size:14px;
+    color:#555;
+}
+
+.page-slider{
+    width:100%;
+    cursor:pointer;
+}
+
+/* =========================
+   HARMONOGRAM
+========================= */
+
+.harmonogram-box{
+    width:1080px;
+    height:1080px;
+    margin:0 auto;
+    background:#d9d9d9;
+    border-radius:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.18);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    padding:18px;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline-section{
+    padding:50px 20px 70px;
+}
+
+.timeline{
+    position:relative;
+    width:900px;
+    max-width:100%;
+    margin:0 auto;
+    padding:1em 0;
+    list-style:none;
+}
+
+.timeline:before{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    width:6px;
+    height:100%;
+    margin-left:-3px;
+    background:
+    linear-gradient(
+        to bottom,
+        rgba(64,78,237,0),
+        #404EED 10%,
+        #5865F2 90%,
+        rgba(64,78,237,0)
+    );
+    border-radius:10px;
+}
+
+.timeline li{
+    padding:1.5em 0;
+}
+
+.timeline li::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.direction-l,
+.direction-r{
+    position:relative;
+    width:calc(50% - 40px);
+}
+
+.direction-l{
+    float:left;
+    text-align:right;
+}
+
+.direction-r{
+    float:right;
+}
+
+.flag-wrapper{
+    position:relative;
+    display:inline-block;
+}
+
+.flag{
+    position:relative;
+    display:inline-block;
+    background:white;
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:600;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.25s;
+}
+
+.time-wrapper{
+    display:block;
+    margin-top:10px;
+}
+
+.time{
+    display:inline-block;
+    padding:6px 12px;
+    background:#eef1ff;
+    color:#404EED;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.desc{
+    margin-top:15px;
+    padding:18px;
+    background:white;
+    border-radius:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    line-height:1.7;
+    color:#444;
+    transition:0.25s;
+}
+
+.desc:hover,
+.flag:hover{
+    transform:translateY(-4px);
+}
+
+.direction-l .flag:before,
+.direction-r .flag:before{
+    content:'';
+    position:absolute;
+    top:50%;
+    width:16px;
+    height:16px;
+    background:white;
+    border:4px solid #5865F2;
+    border-radius:50%;
+    margin-top:-12px;
+    z-index:10;
+}
+
+.direction-l .flag:before{
+    right:-51px;
+}
+
+.direction-r .flag:before{
+    left:-51px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#1f2a36;
+    color:#aaa;
+    text-align:center;
+    padding:15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:1150px){
+
+.book-wrapper,
+.harmonogram-box{
+    width:100%;
+    height:700px;
+}
+
+}
+
+@media screen and (max-width:768px){
+
+.timeline:before{
+    left:20px;
+}
+
+.direction-l,
+.direction-r{
+    width:100%;
+    float:none;
+    text-align:left;
+    padding-left:50px;
+}
+
+.direction-l .flag:before,
+.direction-r .flag:before{
+    left:-38px;
+}
+
+.desc{
+    margin-right:0;
+}
+
+.book-wrapper,
+.harmonogram-box{
+    height:520px;
+}
+
+.slider-container{
+    width:90%;
+}
+
+}
+/* =========================
+   ENROLLMENT CARD (NOWE)
+========================= */
+
+.enrollment-card{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    padding:35px;
+    margin:20px auto;
+    max-width:900px;
+
+    border-radius:24px;
+    background:linear-gradient(135deg,#5865F2,#404EED);
+    color:white !important;
+
+    text-decoration:none;
+
+    box-shadow:0 20px 40px rgba(88,101,242,0.28);
+
+    transition:0.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.enrollment-card:hover{
+    transform:translateY(-8px) scale(1.01);
+    box-shadow:0 30px 60px rgba(88,101,242,0.4);
+}
+
+.enrollment-glow{
+    position:absolute;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    top:-120px;
+    right:-100px;
+    filter:blur(10px);
+}
+
+.enrollment-content{
+    position:relative;
+    z-index:2;
+}
+
+.enrollment-badge{
+    display:inline-block;
+    background:white;
+    color:#404EED;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.enrollment-content h2{
+    margin:10px 0;
+    font-size:34px;
+}
+
+.enrollment-content p{
+    margin:0;
+    font-size:17px;
+    opacity:0.92;
+}
+
+@media (max-width:600px){
+
+nav{
+    flex-direction:column;
+    gap:10px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Strona główna</a>
+    <a href="zapisy.html">Zapisy 2026/27</a>
+    <a href="zadania.html">Strefa ucznia</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<div class="discord-banner">
+    <img class="discord-icon" src="img/discord.gif" alt="Discord">
+    <span>
+        Zajęcia odbywają się online na platformie
+        <b>Discord</b>
+    </span>
+</div>
+
+<div class="hero-bg">
+<section class="course-info">
+
+    <h2>Przygotowanie do egzaminu ósmoklasisty</h2>
+
+    <p>
+        Kurs obejmuje <b>30 tematycznych lekcji</b>.
+        Następnie przygotowania prowadzone są na arkuszach egzaminacyjnych CKE.
+        Uczeń jest objęty opieką aż do dnia egzaminu.
+    </p>
+
+</section>
+<section class="countdown-section">
+
+    <div class="countdown-card">
+
+        <h3>
+            Do egzaminu ósmoklasisty z matematyki zostało:
+        </h3>
+
+        <div id="countdown">
+
+            <span id="days">0</span> dni
+            <span id="hours">0</span> godzin
+            <span id="minutes">0</span> minut
+            <span id="seconds">0</span> sekund
+
+        </div>
+
+    </div>
+
+</section>
+<a href="zapisy.html" class="card enrollment-card">
+
+    <div class="enrollment-glow"></div>
+
+
+
+    <div class="enrollment-content">
+
+        <div class="enrollment-badge">
+            ZAPISY OTWARTE
+        </div>
+
+        <h2>
+            Zapisy na rok szkolny 2026/27
+        </h2>
+
+        <p>
+            Rezerwacja miejsc na zajęcia indywidualne online.
+            Liczba miejsc jest ograniczona.
+        </p>
+
+    </div>
+
+</a>
+
+
+
+
+<section class="course-info">
+
+    <h2>Materiały</h2>
+
+    <p>
+        Uczniowie otrzymują także
+        <b>karty wzorów i twierdzeń</b>
+        oraz ćwiczą na arkuszach CKE.
+    </p>
+
+</section>
+
+<div class="flip-controls">
+
+    <button onclick="showBook('kurs')">
+        📘 Kurs
+    </button>
+
+    <button onclick="showBook('wzory')">
+        📗 Karty wzorów
+    </button>
+
+</div>
+
+<!-- =========================
+     FLIPBOOK KURS
+========================= -->
+
+<section id="flip-kurs" class="flip-section hidden">
+
+    <div class="book-wrapper">
+
+        <div class="book" id="book-kurs"></div>
+
+        <div class="slider-container">
+
+            <div class="slider-top">
+
+                <div class="slider-label">
+                    Numer strony
+                </div>
+
+                <div class="counter" id="counter-kurs"></div>
+
+            </div>
+
+            <input
+                type="range"
+                min="1"
+                max="6"
+                value="1"
+                class="page-slider"
+                id="slider-kurs"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FLIPBOOK WZORY
+========================= -->
+
+<section id="flip-wzory" class="flip-section hidden">
+
+    <div class="book-wrapper">
+
+        <div class="book" id="book-wzory"></div>
+
+        <div class="slider-container">
+
+            <div class="slider-top">
+
+                <div class="slider-label">
+                    Numer strony
+                </div>
+
+                <div class="counter" id="counter-wzory"></div>
+
+            </div>
+
+            <input
+                type="range"
+                min="1"
+                max="8"
+                value="1"
+                class="page-slider"
+                id="slider-wzory"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     HARMONOGRAM
+========================= -->
+
+<section id="flip-harmonogram" class="flip-section hidden">
+
+    <div class="harmonogram-box">
+
+        <img
+            src="flipbook_harmonogram/harmonogram.png"
+            style="width:100%; height:100%; object-fit:contain;"
+        >
+
+    </div>
+
+</section>
+
+<!-- =========================
+     TIMELINE
+========================= -->
+
+<section class="timeline-section">
+
+<ul class="timeline">
+
+    <li>
+        <div class="direction-r">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 1–5
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Potęgi, pierwiastki, logarytmy i zadania dowodowe z podzielności
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                Celem tej części kursu jest opanowanie działań na liczbach
+                oraz zrozumienie zasad podzielności oraz podzielności z resztą.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-l">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 6–10
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Algebra, równania, nierówności i dowody w algebrze
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                W tej części uczymy się rozwiązywać równania i nierówności
+                z naciskiem na typy równań najczęściej występujących na maturze.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-r">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 11–15
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Funkcje i ciągi
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                Opanujemy zagadnienia związane z funkcją liniową,
+                kwadratową, wielomianową i wymierną wraz z przykładami
+                pracy na funkcjach nietypowych.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-l">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 16–20
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Trygonometria i planimetria
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                W tej części kursu rozpoczynamy przygodę z geometrią
+                i metodami dowodzenia twierdzeń.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-r">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 21–26
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Geometria przestrzenna i analityczna
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                Geometria płaska, przestrzenna i analityczna
+                wraz z metodami rozwiązywania typowych zadań maturalnych.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-l">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 27–36
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Arkusze CKE
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                Rozwiązywanie pełnych arkuszy,
+                strategie egzaminacyjne i powtórki.
+            </div>
+
+        </div>
+    </li>
+
+</ul>
+
+</section>
+
+<footer>
+    © 2026 Karol Musioł Delta sigma
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+
+<script>
+
+function createFlipbook(
+    bookId,
+    folder,
+    pagesCount,
+    counterId,
+    sliderId
+){
+
+    const book = document.getElementById(bookId);
+    const counter = document.getElementById(counterId);
+    const slider = document.getElementById(sliderId);
+
+    if(book.dataset.loaded) return;
+
+    for(let i = 1; i <= pagesCount; i++){
+
+        const page = document.createElement("div");
+        page.className = "page";
+
+        const img = document.createElement("img");
+        img.src = `${folder}/page${i}.png`;
+
+        page.appendChild(img);
+        book.appendChild(page);
+    }
+
+    const flip = new St.PageFlip(book,{
+
+        width:420,
+        height:600,
+        size:"stretch",
+        showCover:false,
+        maxShadowOpacity:0.5,
+        useMouseEvents:true
+
+    });
+
+    flip.loadFromHTML(
+        book.querySelectorAll(".page")
+    );
+
+    function updateUI(){
+
+        const index =
+            flip.getCurrentPageIndex() + 2;
+
+        counter.innerText =
+            `${index} / ${pagesCount}`;
+
+        slider.value = index;
+    }
+
+    flip.on("flip",updateUI);
+
+    slider.addEventListener("input",()=>{
+
+        flip.flip(Number(slider.value)-1);
+
+    });
+
+    updateUI();
+
+    book.dataset.loaded = "true";
+}
+
+let flipWzoryLoaded = false;
+let flipKursLoaded = false;
+
+function showBook(type){
+
+    document
+        .getElementById("flip-kurs")
+        .classList.add("hidden");
+
+    document
+        .getElementById("flip-wzory")
+        .classList.add("hidden");
+
+    document
+        .getElementById("flip-harmonogram")
+        .classList.add("hidden");
+
+    if(type === "kurs"){
+
+        document
+            .getElementById("flip-kurs")
+            .classList.remove("hidden");
+
+        if(!flipKursLoaded){
+
+            createFlipbook(
+                "book-kurs",
+                "flipbook_kurs",
+                6,
+                "counter-kurs",
+                "slider-kurs"
+            );
+
+            flipKursLoaded = true;
+        }
+    }
+
+    if(type === "wzory"){
+
+        document
+            .getElementById("flip-wzory")
+            .classList.remove("hidden");
+
+        if(!flipWzoryLoaded){
+
+            createFlipbook(
+                "book-wzory",
+                "flipbook_wzory",
+                8,
+                "counter-wzory",
+                "slider-wzory"
+            );
+
+            flipWzoryLoaded = true;
+        }
+    }
+
+    if(type === "harmonogram"){
+
+        document
+            .getElementById("flip-harmonogram")
+            .classList.remove("hidden");
+    }
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+const examDate =
+    new Date(
+        "May 5, 2027 09:00:00"
+    ).getTime();
+
+function updateCountdown(){
+
+    const now = new Date().getTime();
+
+    const diff = examDate - now;
+
+    if(diff <= 0){
+
+        document
+            .getElementById("countdown")
+            .innerHTML =
+            "Powodzenia na egzaminie! 🎓";
+
+        return;
+    }
+
+    const days =
+        Math.floor(
+            diff / (1000*60*60*24)
+        );
+
+    const hours =
+        Math.floor(
+            (diff / (1000*60*60)) % 24
+        );
+
+    const minutes =
+        Math.floor(
+            (diff / (1000*60)) % 60
+        );
+
+    const seconds =
+        Math.floor(
+            (diff / 1000) % 60
+        );
+
+    document.getElementById("days")
+        .innerText = days;
+
+    document.getElementById("hours")
+        .innerText = hours;
+
+    document.getElementById("minutes")
+        .innerText = minutes;
+
+    document.getElementById("seconds")
+        .innerText = seconds;
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+</script>
+
+</body>
+</html>
