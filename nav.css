@@ -17,3 +17,14 @@
     color:white;
     transform:scale(1.1);
 }
+
+nav{
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 600px){
+    nav{
+        flex-direction: column;
+    }
+}
