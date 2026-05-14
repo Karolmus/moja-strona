@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Zadania</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
 
 <style>
 * { box-sizing: border-box; }
@@ -12,18 +14,7 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: #f0f2f5;
-    zoom: 1.3;
 }
-
-nav {
-    background: #1f2a36;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px;
-}
-
-nav a { color:#ddd; text-decoration:none; }
 
 .container {
     max-width: 900px;
@@ -74,7 +65,6 @@ nav a { color:#ddd; text-decoration:none; }
     margin-bottom:10px;
 }
 
-/* 🔥 GRADIENTY PRZYWRÓCONE */
 .meta-podstawowa { background: linear-gradient(90deg, #d5b8ea, #ffffff); }
 .meta-rozszerzona { background: linear-gradient(90deg, #d5b8ea, #ffffff); }
 .meta-osmoklasista { background: linear-gradient(90deg, #b2d699, #ffffff); }
@@ -105,13 +95,10 @@ nav a { color:#ddd; text-decoration:none; }
 /* IMAGE */
 .task-image {
     width:100%;
+    height:auto;
     max-height:450px;
     object-fit:contain;
-    margin:15px 0;
-    border:2px solid #111;
-    border-radius:12px;
-    padding:10px;
-    transition:0.3s;
+    display:block;
 }
 
 .task-image.fade-out {
@@ -206,88 +193,98 @@ footer {
 
 <body>
 
-<nav>
-    <a href="index.html">Strona główna</a>
-    <a href="zapisy.html">Zapisy 2026/27</a>
-    <a href="zadania.html">Strefa ucznia</a>
-    <a href="kontakt.html">Kontakt</a>
-</nav>
+<div id="nav"></div>
 
 <div class="container">
 
-<div class="level-selector">
-<button class="level-btn active" onclick="setLevel(this,'matura_podstawowa')">Podstawowa</button>
-<button class="level-btn" onclick="setLevel(this,'matura_rozszerzona')">Rozszerzona</button>
-<button class="level-btn" onclick="setLevel(this,'egzamin_osmoklasisty')">Ósmoklasista</button>
-</div>
+    <div class="level-selector">
+        <button class="level-btn active" onclick="setLevel(this,'matura_podstawowa')">Podstawowa</button>
+        <button class="level-btn" onclick="setLevel(this,'matura_rozszerzona')">Rozszerzona</button>
+        <button class="level-btn" onclick="setLevel(this,'egzamin_osmoklasisty')">Ósmoklasista</button>
+    </div>
 
-<div class="task-card">
+    <div class="task-card">
 
-<div class="progress-grid" id="progress"></div>
+        <div class="progress-grid" id="progress"></div>
 
-<div class="timer" id="timer">⏱ 00:00</div>
+        <div class="timer" id="timer">⏱ 00:00</div>
 
-<div class="meta-box meta-podstawowa" id="metaBox"></div>
+        <div class="meta-box meta-podstawowa" id="metaBox"></div>
 
-<img id="taskImage" class="task-image">
+        <img id="taskImage" class="task-image">
 
-<div class="buttons">
-<button class="random-btn" onclick="drawTask()">Losuj</button>
-<button class="hint-btn" onclick="showHint()">Wskazówka</button>
-<button class="answer-btn" onclick="showAnswer()">Odpowiedź</button>
-</div>
+        <div class="buttons">
+            <button class="hint-btn" onclick="showHint()">Wskazówka</button>
 
-<div class="mcq" id="mcq"></div>
+            <button class="random-btn" onclick="prevTask()">◀ Poprzednie</button>
+            <button class="random-btn" onclick="nextTask()">Kolejne ▶</button>
 
-<div class="result-buttons" id="resultButtons">
-    <button class="good" onclick="finish('good')">✔ Dobrze</button>
-    <button class="bad" onclick="finish('bad')">✖ Źle</button>
-</div>
+            <button class="answer-btn" onclick="showAnswer()">Odpowiedź</button>
+        </div>
 
-<div id="answer" class="box"></div>
+        <div class="mcq" id="mcq"></div>
 
-</div>
+        <div class="result-buttons" id="resultButtons">
+            <button class="good" onclick="finish('good')">✔ Dobrze</button>
+            <button class="bad" onclick="finish('bad')">✖ Źle</button>
+        </div>
+
+        <div id="answer" class="box"></div>
+
+    </div>
 </div>
 
 <footer>© 2026 Delta sigma</footer>
 
 <script>
-
 let tasks = [];
 let selectedLevel = "matura_podstawowa";
 let currentTask = null;
 let hintUsed = false;
 let seconds = 0;
+let currentIndex = 0;
 
-/* TIMER */
 setInterval(()=>{
-seconds++;
-document.getElementById("timer").innerText =
-`⏱ ${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;
+    seconds++;
+    document.getElementById("timer").innerText =
+    `⏱ ${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;
 },1000);
 
-/* LOAD */
 fetch("zadania/lista.json")
 .then(r=>r.json())
 .then(d=>{
-tasks=d;
-drawTask();
+    tasks=d;
+    drawTask();
 });
 
-/* LEVEL FILTER */
 function pool(){
-return tasks.filter(t=>t.level===selectedLevel);
+    return tasks.filter(t=>t.level===selectedLevel);
 }
 
-/* LEVEL */
-function setLevel(btn,level){
-selectedLevel=level;
-document.querySelectorAll(".level-btn").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-drawTask();
+function setLevel(btn, level){
+    selectedLevel = level;
+
+    document.querySelectorAll(".level-btn")
+        .forEach(b => b.classList.remove("active"));
+
+    btn.classList.add("active");
+
+    const meta = document.getElementById("metaBox");
+
+    meta.classList.remove(
+        "meta-podstawowa",
+        "meta-rozszerzona",
+        "meta-osmoklasista",
+        "meta-all"
+    );
+
+    if(level === "matura_podstawowa") meta.classList.add("meta-podstawowa");
+    if(level === "matura_rozszerzona") meta.classList.add("meta-rozszerzona");
+    if(level === "egzamin_osmoklasisty") meta.classList.add("meta-osmoklasista");
+
+    drawTask();
 }
 
-/* PARSE FIXED */
 function parseFile(file){
 const p=file.replace(".png","").split("_");
 
@@ -301,28 +298,27 @@ s:"sierpień"
 return `Zadanie ${p[0]} • ${p[1]} • ${monthMap[p[4]]||p[4]} • CKE`;
 }
 
-/* STARS */
 function stars(n){
 return "★".repeat(n)+"☆".repeat(5-n);
 }
 
-/* DRAW */
-function drawTask(){
+function drawTask(index = currentIndex){
 
-const p=pool();
-if(!p.length)return;
+const p = pool();
+if(!p.length) return;
 
-currentTask=p[Math.floor(Math.random()*p.length)];
+currentIndex = index;
+currentTask = p[currentIndex];
 
-const img=document.getElementById("taskImage");
+const img = document.getElementById("taskImage");
 img.classList.add("fade-out");
 
 setTimeout(()=>{
 
-img.src="zadania/"+currentTask.file;
+img.src = "zadania/" + currentTask.file;
 img.classList.remove("fade-out");
 
-document.getElementById("metaBox").innerHTML=
+document.getElementById("metaBox").innerHTML =
 `<div class="meta-section">${parseFile(currentTask.file)}</div>
 <div class="meta-divider"></div>
 <div class="meta-right">
@@ -332,16 +328,13 @@ document.getElementById("metaBox").innerHTML=
 </div>`;
 
 setupMCQ();
-
-document.getElementById("answer").style.display="none";
-hintUsed=false;
+document.getElementById("answer").style.display = "none";
+hintUsed = false;
 
 },200);
 }
 
-/* MCQ */
 function setupMCQ(){
-
 const mcq=document.getElementById("mcq");
 mcq.innerHTML="";
 
@@ -362,9 +355,7 @@ document.getElementById("resultButtons").classList.add("active");
 }
 }
 
-/* CHOOSE */
 function choose(opt,btn){
-
 const correct=currentTask.answer;
 
 if(opt===correct){
@@ -378,37 +369,37 @@ if(b.innerText===correct)b.style.background="#b8e6c1";
 }
 }
 
-/* FINISH (progress + hint logic) */
 function finish(type){
-
 const tile=document.createElement("div");
 tile.classList.add("tile");
 
-if(hintUsed && type==="good"){
-tile.classList.add("medium");
-}else if(type==="good"){
-tile.classList.add("good");
-}else{
-tile.classList.add("bad");
-}
+if(hintUsed && type==="good") tile.classList.add("medium");
+else if(type==="good") tile.classList.add("good");
+else tile.classList.add("bad");
 
 document.getElementById("progress").appendChild(tile);
 drawTask();
 }
 
-/* HINT */
 function showHint(){
 hintUsed=true;
 document.getElementById("answer").style.display="block";
 document.getElementById("answer").innerText=currentTask.hint||"";
 }
 
-/* ANSWER */
 function showAnswer(){
 document.getElementById("answer").style.display="block";
 document.getElementById("answer").innerText=currentTask.answer||"";
 }
 
+</script>
+
+<script>
+fetch("nav.html")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("nav").innerHTML = data;
+    });
 </script>
 
 </body>

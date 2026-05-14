@@ -122,29 +122,29 @@ table{
 }
 
 th, td{
-    padding:14px;
+    padding:4px;
     text-align:center;
-    border-radius:12px;
-    font-size:14px;
+    border-radius:20px;
+    font-size:12px;
     min-width:120px;
     color:#fff;
 }
 
 th{
-    background:#2c3e50;
+    background:#000000;
 }
 
 .time{
-    background:#34495e;
+    background:#000000;
     font-weight:600;
 }
 
 .free{
-    background:#2ecc71;
+    background:#51cb7a;
 }
 
 .busy{
-    background:#e74c3c;
+    background:#ff9186;
 }
 
 /* INFO */
@@ -153,7 +153,240 @@ th{
     margin-bottom:20px;
     color:#555;
 }
+/* =========================
+   ABOUT
+========================= */
 
+.about{
+    padding:70px 20px;
+    max-width:1400px;
+    margin:0 auto;
+}
+
+.about-container{
+    display:grid;
+    grid-template-columns:520px 1fr;
+    gap:40px;
+    align-items:stretch;
+}
+
+/* =========================
+   SLIDER
+========================= */
+
+.slider{
+    position:relative;
+    height:100%;
+    min-height:520px;
+
+    overflow:hidden;
+    border-radius:24px;
+
+    background:#e9edf3;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.12);
+
+    border:1px solid rgba(0,0,0,0.05);
+}
+
+.slider img{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0;
+    transition:opacity 1.2s ease;
+}
+
+.slider img.active{
+    opacity:1;
+}
+
+/* =========================
+   ABOUT TEXT
+========================= */
+
+.about-text-wrapper{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.about h2{
+    margin:0 0 20px;
+    font-size:42px;
+    line-height:1.1;
+    color:#1f2a36;
+}
+
+.about-text{
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    text-align:left;
+    line-height:1.9;
+
+    color:#333;
+
+    background:rgba(255,255,255,0.82);
+
+    backdrop-filter:blur(14px);
+
+    padding:42px;
+
+    border-radius:24px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.08);
+
+    border:1px solid rgba(0,0,0,0.05);
+
+    position:relative;
+    overflow:hidden;
+
+    font-size:16px;
+}
+
+.about-text::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5865F2,
+            #404EED
+        );
+}
+
+/* =========================
+   REVIEWS
+========================= */
+
+.reviews{
+    padding:70px 20px;
+    background:#fff;
+}
+
+.reviews h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:34px;
+}
+
+.reviews-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+    gap:24px;
+
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.review-card{
+    background:#f8fafc;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+}
+
+.review-card:hover{
+    transform:translateY(-6px);
+}
+
+.stars{
+    color:#f5c518;
+    font-size:20px;
+    margin-bottom:12px;
+}
+
+.review-text{
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:12px;
+}
+
+.review-meta{
+    font-size:13px;
+    color:#666;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:1100px){
+
+    .about-container{
+        grid-template-columns:1fr;
+    }
+
+    .slider{
+        min-height:500px;
+    }
+
+}
+
+@media (max-width:700px){
+
+    .about{
+        padding:50px 16px;
+    }
+
+    .slider{
+        min-height:380px;
+        border-radius:18px;
+    }
+
+    .about h2{
+        font-size:32px;
+        text-align:center;
+    }
+
+    .about-text{
+        padding:28px;
+        font-size:15px;
+        line-height:1.8;
+        border-radius:18px;
+    }
+
+    .reviews h2{
+        font-size:28px;
+    }
+
+}
+
+@media (max-width:600px){
+
+    nav{
+        flex-direction:column;
+        gap:10px;
+    }
+
+}
 footer{
     text-align:center;
     padding:20px;
@@ -169,13 +402,12 @@ footer{
 <nav>
     <a href="index.html">Strona główna</a>
     <a href="zapisy.html">Zapisy 2026/27</a>
-    <a href="terminy.html">Wolne terminy</a>
-    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="zadania.html">Strefa ucznia</a>
     <a href="kontakt.html">Kontakt</a>
 </nav>
 
 <div class="discord-banner">
-    <img class="discord-icon" src="discord.gif" alt="Discord">
+    <img class="discord-icon" src="img/discord.gif" alt="Discord">
     <span>Zajęcia odbywają się online na platformie <b>Discord</b></span>
 </div>
 
@@ -183,8 +415,14 @@ footer{
 
     <h1>Wolne terminy zajęć</h1>
 
+
+
+    <div class="table-wrapper">
+        <table id="schedule"></table>
+    </div>
+ 
     <div class="info">
-        W celu umówienia terminu spotkań proszę o kontakt telefoniczny lub wiadomość sms
+        W celu umówienia terminu zajęć proszę o kontakt telefoniczny lub wiadomość sms
     </div>
 
     <!-- CTA -->
@@ -202,12 +440,122 @@ footer{
         <span>Zadzwoń: 514 681 958</span>
 
     </a>
+</div>
+<section class="about">
 
-    <div class="table-wrapper">
-        <table id="schedule"></table>
+    <div class="about-container">
+
+        <div class="slider" id="photo-slider">
+            <img src="img/me3.png" class="active">
+            <img src="img/me1.jpeg">
+        </div>
+
+        <div class="about-text-wrapper">
+
+            <h2>O mnie</h2>
+
+            <div class="about-text">
+
+                Nazywam się Karol Musioł i od 2019 roku prowadzę korepetycje z matematyki i chemii we Wrocławiu oraz przez internet.
+
+                Specjalizuję się w przygotowaniu do egzaminu ósmoklasisty, matury podstawowej i rozszerzonej.
+
+                W mojej pracy skupiam się na wyjaśnieniu schematów i metod umożliwiających osiągnięcie wysokich wyników.
+
+                Moja filozofia opiera się na budowaniu sieci wiedzy — czyli łączenia faktów z różnych dziedzin w spójną całość.
+
+                Jestem absolwentem Politechniki Wrocławskiej (mgr inż.), laureatem Diamentowego Indeksu AGH oraz autorem publikacji i współautorem patentu.
+
+                Obszar moich zainteresowań obejmuje programowanie z naciskiem na wykorzystanie narzędzi komputerowych w edukacji.
+
+                W swojej pracy ponad wszystko przekładam skuteczność.
+
+                Moi podopieczni regularnie uzyskują maksymalną liczbę punktów z egzaminów państwowych.
+
+            </div>
+
+        </div>
+
     </div>
 
-</div>
+</section>
+
+<section class="reviews">
+
+    <h2>Opinie z serwisu e-korepetycje</h2>
+
+    <div class="reviews-grid">
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">
+                Bardzo dobre podejście, jasno wszystko wytłumaczone.
+                Polecam każdemu!
+            </div>
+            <div class="review-meta">
+                Łukasz • 26.06.2021
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">
+                Serdecznie polecam.
+                Tłumaczy w jasny, zrozumiały sposób.
+            </div>
+            <div class="review-meta">
+                Sylwia Tomaszek • 16.01.2021
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">
+                Karol zasługuje na celującą ocenę.
+                Cierpliwy i bardzo kompetentny.
+            </div>
+            <div class="review-meta">
+                Ola R. • 10.11.2022
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Karol Musioł Delta sigma
+</footer>
+
+<script>
+
+function startSlider(selector){
+
+    const elements =
+        document.querySelectorAll(selector);
+
+    let index = 0;
+
+    setInterval(() => {
+
+        elements[index]
+            .classList
+            .remove("active");
+
+        index =
+            (index + 1) % elements.length;
+
+        elements[index]
+            .classList
+            .add("active");
+
+    }, 10000);
+
+}
+
+startSlider("#photo-slider img");
+
+</script>
 
 <footer>
     © 2026 Delta Sigma
