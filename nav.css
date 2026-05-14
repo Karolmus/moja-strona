@@ -1,0 +1,19 @@
+.main-nav{
+    background:#1f2a36;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    padding:15px;
+}
+
+.main-nav a{
+    color:#ddd;
+    text-decoration:none;
+    transition:0.3s;
+    font-family:'Poppins', sans-serif;
+}
+
+.main-nav a:hover{
+    color:white;
+    transform:scale(1.1);
+}

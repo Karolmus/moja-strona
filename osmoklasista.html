@@ -7,7 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-
+<link rel="stylesheet" href="nav.css">
 <style>
 
 *{
@@ -46,28 +46,6 @@ body{
     object-fit:contain;
 }
 
-/* =========================
-   NAV
-========================= */
-
-nav{
-    background:#1f2a36;
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    padding:15px;
-}
-
-nav a{
-    color:#ddd;
-    text-decoration:none;
-    transition:0.3s;
-}
-
-nav a:hover{
-    color:white;
-    transform:scale(1.08);
-}
 
 /* =========================
    HERO
@@ -559,13 +537,8 @@ nav{
 
 <body>
 
-<nav>
-    <a href="index.html">Strona główna</a>
-    <a href="zapisy.html">Zapisy 2026/27</a>
-    <a href="zadania.html">Strefa ucznia</a>
-    <a href="kontakt.html">Kontakt</a>
-</nav>
 
+<div id="nav"></div>
 <div class="discord-banner">
     <img class="discord-icon" src="img/discord.gif" alt="Discord">
     <span>
@@ -763,13 +736,13 @@ nav{
             <div class="flag-wrapper">
 
                 <span class="flag">
-                    Tygodnie 1–5
+                    Tygodnie 1–7
                 </span>
 
                 <span class="time-wrapper">
 
                     <span class="time">
-                        Potęgi, pierwiastki, logarytmy i zadania dowodowe z podzielności
+                        Fundamenty matematyki i algebra
                     </span>
 
                 </span>
@@ -777,8 +750,10 @@ nav{
             </div>
 
             <div class="desc">
-                Celem tej części kursu jest opanowanie działań na liczbach
-                oraz zrozumienie zasad podzielności oraz podzielności z resztą.
+                Powtórzenie materiału z klas I–VII,
+                procenty, działania na liczbach,
+                potęgi, pierwiastki oraz
+                wyrażenia algebraiczne i równania.
             </div>
 
         </div>
@@ -790,13 +765,13 @@ nav{
             <div class="flag-wrapper">
 
                 <span class="flag">
-                    Tygodnie 6–10
+                    Tydzień 8
                 </span>
 
                 <span class="time-wrapper">
 
                     <span class="time">
-                        Algebra, równania, nierówności i dowody w algebrze
+                        Test powtórzeniowy
                     </span>
 
                 </span>
@@ -804,8 +779,8 @@ nav{
             </div>
 
             <div class="desc">
-                W tej części uczymy się rozwiązywać równania i nierówności
-                z naciskiem na typy równań najczęściej występujących na maturze.
+                Sprawdzenie wiedzy z lekcji 1–6
+                oraz analiza najczęściej popełnianych błędów.
             </div>
 
         </div>
@@ -817,13 +792,13 @@ nav{
             <div class="flag-wrapper">
 
                 <span class="flag">
-                    Tygodnie 11–15
+                    Tygodnie 9–13
                 </span>
 
                 <span class="time-wrapper">
 
                     <span class="time">
-                        Funkcje i ciągi
+                        Zadania tekstowe i geometria analityczna
                     </span>
 
                 </span>
@@ -831,9 +806,10 @@ nav{
             </div>
 
             <div class="desc">
-                Opanujemy zagadnienia związane z funkcją liniową,
-                kwadratową, wielomianową i wymierną wraz z przykładami
-                pracy na funkcjach nietypowych.
+                Czas i odległość, prędkość,
+                pola figur, skala mapy,
+                jednostki powierzchni oraz
+                układ współrzędnych.
             </div>
 
         </div>
@@ -845,13 +821,13 @@ nav{
             <div class="flag-wrapper">
 
                 <span class="flag">
-                    Tygodnie 16–20
+                    Tygodnie 14–15
                 </span>
 
                 <span class="time-wrapper">
 
                     <span class="time">
-                        Trygonometria i planimetria
+                        Powtórka i egzamin próbny
                     </span>
 
                 </span>
@@ -859,8 +835,9 @@ nav{
             </div>
 
             <div class="desc">
-                W tej części kursu rozpoczynamy przygodę z geometrią
-                i metodami dowodzenia twierdzeń.
+                Test z lekcji 7–11 oraz
+                pierwszy egzamin ósmoklasisty
+                obejmujący cały dotychczasowy materiał.
             </div>
 
         </div>
@@ -872,13 +849,13 @@ nav{
             <div class="flag-wrapper">
 
                 <span class="flag">
-                    Tygodnie 21–26
+                    Tygodnie 16–19
                 </span>
 
                 <span class="time-wrapper">
 
                     <span class="time">
-                        Geometria przestrzenna i analityczna
+                        Geometria płaska
                     </span>
 
                 </span>
@@ -886,8 +863,9 @@ nav{
             </div>
 
             <div class="desc">
-                Geometria płaska, przestrzenna i analityczna
-                wraz z metodami rozwiązywania typowych zadań maturalnych.
+                Kąty, trójkąty,
+                czworokąty oraz wielokąty
+                wraz z typowymi zadaniami egzaminacyjnymi.
             </div>
 
         </div>
@@ -899,13 +877,13 @@ nav{
             <div class="flag-wrapper">
 
                 <span class="flag">
-                    Tygodnie 27–36
+                    Tydzień 20
                 </span>
 
                 <span class="time-wrapper">
 
                     <span class="time">
-                        Arkusze CKE
+                        Test powtórzeniowy
                     </span>
 
                 </span>
@@ -913,15 +891,94 @@ nav{
             </div>
 
             <div class="desc">
-                Rozwiązywanie pełnych arkuszy,
-                strategie egzaminacyjne i powtórki.
+                Utrwalenie materiału z geometrii
+                oraz przygotowanie do działów przestrzennych.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-r">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 21–25
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Geometria przestrzenna i logika
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                Graniastosłupy, ostrosłupy,
+                kombinatoryka, prawdopodobieństwo
+                oraz logika i dowodzenie
+                w algebrze i geometrii.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-l">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    Tygodnie 27–37
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Próbne egzaminy ósmoklasisty
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="desc">
+                Seria 10 pełnych egzaminów próbnych,
+                analiza rozwiązań,
+                strategie egzaminacyjne
+                oraz próba generalna przed egzaminem.
+            </div>
+
+        </div>
+    </li>
+
+    <li>
+        <div class="direction-r">
+
+            <div class="flag-wrapper">
+
+                <span class="flag">
+                    11.05.2027
+                </span>
+
+                <span class="time-wrapper">
+
+                    <span class="time">
+                        Egzamin ósmoklasisty na 100%
+                    </span>
+
+                </span>
+
             </div>
 
         </div>
     </li>
 
 </ul>
-
 </section>
 
 <footer>
@@ -1125,6 +1182,12 @@ setInterval(updateCountdown,1000);
 updateCountdown();
 
 </script>
-
+<script>
+fetch("nav.html")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("nav").innerHTML = data;
+    });
+</script>
 </body>
 </html>
