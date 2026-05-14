@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Delta Sigma – Terminy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    margin:0;
+    background:#f4f6f9;
+    color:#2c3e50;
+}
+
+/* NAV */
+nav {
+    background: #1f2a36;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* DISCORD */
+.discord-banner {
+   background: linear-gradient(90deg, #5865F2, #404EED);
+   color: white;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   padding: 10px 15px;
+   font-weight: 500;
+   font-size: 14px;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.discord-icon {
+   width: 22px;
+   height: 22px;
+   object-fit: contain;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1200px;
+    margin:40px auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* CTA */
+.cta-card {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    background: linear-gradient(90deg, #404EED, #5865F2);
+    color:white;
+    text-decoration:none;
+
+    padding:18px 22px;
+    border-radius:16px;
+
+    font-weight:600;
+    font-size:16px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition:0.3s;
+
+    margin: 0 auto 30px;
+    max-width: 500px;
+}
+
+.cta-card:hover {
+    transform: translateY(-2px);
+}
+
+.cta-icon svg{
+    width:22px;
+    height:22px;
+    fill:white;
+}
+
+/* TABLE */
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:8px;
+}
+
+th, td{
+    padding:14px;
+    text-align:center;
+    border-radius:12px;
+    font-size:14px;
+    min-width:120px;
+    color:#fff;
+}
+
+th{
+    background:#2c3e50;
+}
+
+.time{
+    background:#34495e;
+    font-weight:600;
+}
+
+.free{
+    background:#2ecc71;
+}
+
+.busy{
+    background:#e74c3c;
+}
+
+/* INFO */
+.info{
+    text-align:center;
+    margin-bottom:20px;
+    color:#555;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+    margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Strona główna</a>
+    <a href="zapisy.html">Zapisy 2026/27</a>
+    <a href="terminy.html">Wolne terminy</a>
+    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<div class="discord-banner">
+    <img class="discord-icon" src="discord.gif" alt="Discord">
+    <span>Zajęcia odbywają się online na platformie <b>Discord</b></span>
+</div>
+
+<div class="container">
+
+    <h1>Wolne terminy zajęć</h1>
+
+    <div class="info">
+        W celu umówienia terminu spotkań proszę o kontakt telefoniczny lub wiadomość sms
+    </div>
+
+    <!-- CTA -->
+    <a class="cta-card" href="tel:514681958">
+
+        <span class="cta-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
+                11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
+                17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
+                11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+            </svg>
+        </span>
+
+        <span>Zadzwoń: 514 681 958</span>
+
+    </a>
+
+    <div class="table-wrapper">
+        <table id="schedule"></table>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Delta Sigma
+</footer>
+
+<script>
+
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSxNVJJM5pZVmVLJzDV-O9FCdWj1DaA1JGeKVvlIuwVSdi9rtGsvUfbJR66tHpSbMsqueDkooTyyvXN/pub?gid=0&single=true&output=csv";
+
+let data = [];
+
+fetch(SHEET_URL)
+.then(r => r.text())
+.then(csv => {
+
+    data = csv.trim().split("\n").map(row =>
+        row.split(",").map(cell =>
+            cell.replace(/\r/g,'').trim()
+        )
+    );
+
+    render();
+});
+
+function render(){
+
+    const table = document.getElementById('schedule');
+    table.innerHTML = '';
+
+    data.forEach((row, i) => {
+
+        const tr = document.createElement('tr');
+
+        row.forEach((cell, j) => {
+
+            const el = document.createElement(i === 0 ? 'th' : 'td');
+
+            if(i === 0){
+                el.innerText = cell;
+            }
+            else if(j === 0){
+                el.innerText = cell;
+                el.classList.add('time');
+            }
+            else{
+                if(!cell){
+                    el.classList.add('free');
+                    el.innerText = 'Wolne';
+                } else {
+                    el.classList.add('busy');
+                    el.innerText = cell;
+                }
+            }
+
+            tr.appendChild(el);
+        });
+
+        table.appendChild(tr);
+    });
+}
+
+</script>
+
+</body>
+</html>
