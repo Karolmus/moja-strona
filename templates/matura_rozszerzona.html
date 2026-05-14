@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Delta sigma</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f0f2f5;
+}
+
+/* DISCORD BANNER */
+.discord-banner {
+    background: linear-gradient(90deg, #5865F2, #404EED);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 15px;
+    font-weight: 500;
+    font-size: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.discord-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* NAV */
+nav {
+    background: #1f2a36;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* COURSE INFO */
+.course-info {
+    padding: 0px 20px 0px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.course-info h2 {
+    margin-bottom: 0px;
+    font-size: 28px;
+}
+
+.course-info p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* CTA */
+.cta-card {
+    max-width: 900px;
+    margin: 20px auto;
+    background: linear-gradient(90deg, #404EED, #5865F2);
+    color: white;
+    font-weight: 600;
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta-card:hover {
+    transform: translateY(-2px);
+}
+
+/* FLIP CONTROLS */
+.flip-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.flip-controls button {
+    padding: 20px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #1f2a36; 
+    color: white;
+    transition: 0.3s;
+}
+
+.flip-controls button:hover {
+    transform: scale(1.05);
+}
+
+/* FLIPBOOK */
+.flip-section {
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.book {
+    width: 900px;
+    height: 900px;
+    background: lightgrey;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    padding: 10px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.page {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* COUNTER */
+.counter {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+    width: 100%;
+    max-width: 900px;
+    height: 6px;
+    background: #ddd;
+    border-radius: 10px;
+    margin: 10px auto 0;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: #1f2a36;
+    transition: width 0.3s ease;
+}
+
+/* HARMONOGRAM */
+.harmonogram-box {
+    width: 900px;
+    height: 900px;
+    margin: 0 auto;
+    background: lightgrey;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.card.horizontal {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    height: 200px;
+    justify-content: flex-start;
+    display: flex;
+    gap: 20px;
+}
+
+.card.horizontal img:not(.card-icon) {
+    display: none;
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-left: 15px;
+}
+    
+.card {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.card-bar {
+    height: 14px;
+}
+    
+<style id="freq-style">
+.frequency-section {
+    max-width: 1700px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.frequency-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.frequency-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    max-width: 440px;
+}
+
+.frequency-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.frequency-bar {
+    height: 14px;
+}
+
+.frequency-card.one .frequency-bar { background: #8eb5de; }
+.frequency-card.two .frequency-bar { background: #b8d49c; }
+
+.frequency-content {
+    padding: 15px;
+}
+.timeline {
+    max-width: 1600px;
+    margin: 40px auto;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: stretch; /* 🔥 TO ROBI RÓWNE WYSOKOŚCI */
+}
+
+/* usuwasz pionową linię */
+.timeline::before {
+    display: none;
+}
+
+.timeline-item {
+    margin: 0;
+    display: flex; /* 🔥 ważne */
+}
+
+.timeline-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center;
+    transition: all 0.25s ease;
+
+}
+.timeline-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* usuwasz kropki */
+.timeline-item::before {
+    display: none;
+}
+
+/* nagłówki */
+.timeline-card h3 {
+    margin: 0 0 5px;
+}
+
+.timeline-card span {
+    font-size: 13px;
+    color: #666;
+}
+.bar {
+height: 6px;
+border-radius: 10px;
+margin-bottom: 10px;
+}
+
+.bar.a { background: #b8d49c; }
+.bar.b { background: #d6b8ea; }
+.bar.c { background: #8eb5de; }
+.bar.d { background: #f0c987; }
+.bar.e { background: #a0a0a0; }
+
+.countdown-section {
+    display: flex;
+    justify-content: center;
+    margin: 30px 20px;
+}
+
+.countdown-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+}
+
+.countdown-card h3 {
+    margin-bottom: 15px;
+}
+
+.hero-bg {
+    background: radial-gradient(circle at top, #e8ecff, #f0f2f5 60%);
+}
+#countdown {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2a36;
+}
+
+#countdown span {
+    font-size: 28px;
+    color: #404EED;
+    margin: 0 5px;
+}
+@media (max-width: 300px) {
+    .frequency-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* FOOTER */
+footer {
+    background: #1f2a36;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .book,
+    .harmonogram-box {
+        width: 100%;
+        height: 450px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="homepage.html">Strona główna</a>
+    <a href="zapisy.html">Zapisy 2026/27</a>
+    <a href="terminy.html">Wolne terminy</a>
+    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<div class="discord-banner">
+    <img class="discord-icon" src="discord.gif" alt="Discord">
+    <span>Zajęcia odbywają się online na platformie <b>Discord</b></span>
+</div>
+
+<div class="hero-bg">
+    
+<section class="countdown-section">
+    <div class="countdown-card">
+        <h3>Do egzaminu maturalnego z matematyki rozszerzonej zostało:</h3>
+        <div id="countdown">
+            <span id="days">0</span> dni 
+            <span id="hours">0</span> godzin 
+            <span id="minutes">0</span> minut 
+            <span id="seconds">0</span> sekund
+        </div>
+    </div>
+</section>
+
+<section class="course-info">
+    <h2>Przygotowanie do matury rozszerzonej</h2>
+
+    <p>
+        Kurs obejmuje <b>30 tematycznych lekcji</b>. Następnie przygotowania prowadzone są na arkuszach egzaminacyjnych CKE z poprzednich lat. Uczeń jest objęty opieką aż do dnia egzaminu.
+Współpraca odbywa się zgodnie z poniższym schematem    </p>
+</section>
+<!-- 🔥 TIMELINE -->
+<section class="timeline">
+
+    <div class="timeline-item">
+        <div class="timeline-card">
+            <div class="bar a"></div>
+            <h3>Tygodnie 1–5</h3>
+            <span>Algebra i arytmetyka</span>
+            <p>Podstawy działań, wyrażenia algebraiczne, procenty, równania.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-card">
+            <div class="bar b"></div>
+            <h3>Tygodnie 6–10</h3>
+            <span>Wstęp do geometrii + prędkość</span>
+            <p>Podstawowe pojęcia geometryczne oraz zadania tekstowe z prędkości.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-card">
+            <div class="bar c"></div>
+            <h3>Tygodnie 11–15</h3>
+            <span>Geometria płaska</span>
+            <p>Trójkąty, kąty, pola figur, twierdzenia.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-card">
+            <div class="bar d"></div>
+            <h3>Tygodnie 16–20</h3>
+            <span>Stereometria + zagadnienia uzupełniające</span>
+            <p>Bryły, objętości oraz trudniejsze typy zadań egzaminacyjnych.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-card">
+            <div class="bar e"></div>
+            <h3>Tygodnie 21–36</h3>
+            <span>Praca z arkuszami CKE</span>
+            <p>Pełne arkusze egzaminacyjne, strategie rozwiązywania, powtórki.</p>
+        </div>
+    </div>
+</section>
+
+<!--
+<section class="frequency-section">
+
+    <div class="frequency-grid">
+
+        <div class="frequency-card one">
+            <div class="frequency-bar"></div>
+            <div class="frequency-content">
+                <h3>2 lekcje w tygodniu</h3>
+                <p>Optymalne tempo pracy i najlepsze efekty nawet wśród uczniów z zaległościami.</p>
+            </div>
+        </div>
+
+        <div class="frequency-card two">
+            <div class="frequency-bar"></div>
+            <div class="frequency-content">
+                <h3>1 lekcja w tygodniu</h3>
+                <p>Odpowiednie tempo dla osób biegłych. Wymaga większego nakładu pracy w domu.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+-->
+    
+<section class="course-info">
+    <h2>Materiały</h2>
+
+    <p>
+        Uczniowie otrzymują także <b>karty wzorów i twierdzeń</b> oraz ćwiczą arkuszach Centralnej Komisji Egzaminacyjnej.
+    </p>
+</section>
+
+<div class="flip-controls">
+    <button onclick="showBook('kurs')">📘 Kurs</button>
+    <button onclick="showBook('wzory')">📗 Karty wzorów</button>
+    <button onclick="showBook('harmonogram')">📅 Harmonogram</button>
+</div>
+
+
+<section id="flip-kurs" class="flip-section hidden">
+    <div class="book" id="book-kurs"></div>
+    <div class="counter" id="counter-kurs"></div>
+    <div class="progress-bar">
+        <div class="progress" id="progress-kurs"></div>
+    </div>
+</section>
+
+<section id="flip-wzory" class="flip-section hidden">
+    <div class="book" id="book-wzory"></div>
+    <div class="counter" id="counter-wzory"></div>
+    <div class="progress-bar">
+        <div class="progress" id="progress-wzory"></div>
+    </div>
+</section>
+
+<section id="flip-harmonogram" class="flip-section hidden">
+    <div class="harmonogram-box">
+        <img src="flipbook_harmonogram/harmonogram.png"
+             style="width:100%; height:100%; object-fit:contain;">
+    </div>
+</section>
+
+<a href="tel:514681958" class="cta-card">
+    <div>📞</div>
+    <div>
+        <strong>Zadzwoń lub napisz: 514 681 958</strong><br>
+    </div>
+</a>
+    
+<footer>
+    © 2026 Karol Musioł Delta sigma
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+
+<script>
+function createFlipbook(bookId, folder, pagesCount, counterId, progressId) {
+    const book = document.getElementById(bookId);
+    const counter = document.getElementById(counterId);
+    const progress = document.getElementById(progressId);
+
+    // zabezpieczenie przed wielokrotnym tworzeniem
+    if (book.dataset.loaded) return;
+
+    for (let i = 1; i <= pagesCount; i++) {
+        const page = document.createElement("div");
+        page.className = "page";
+
+        const img = document.createElement("img");
+        img.src = `${folder}/page${i}.png`;
+
+        page.appendChild(img);
+        book.appendChild(page);
+    }
+
+    const flip = new St.PageFlip(book, {
+        width: 350,
+        height: 500,
+        size: "stretch",
+        showCover: false,
+        maxShadowOpacity: 0.5,
+        useMouseEvents: true
+    });
+
+    flip.loadFromHTML(book.querySelectorAll(".page"));
+
+    function updateUI() {
+        const index = flip.getCurrentPageIndex() + 2;
+        counter.innerText = `${index} / ${pagesCount}`;
+        progress.style.width = (index / pagesCount) * 100 + "%";
+    }
+
+    flip.on("flip", updateUI);
+    updateUI();
+
+    book.dataset.loaded = "true";
+}
+
+let flipWzoryLoaded = false;
+let flipKursLoaded = false;
+
+function showBook(type) {
+    document.getElementById("flip-kurs").classList.add("hidden");
+    document.getElementById("flip-wzory").classList.add("hidden");
+    document.getElementById("flip-harmonogram").classList.add("hidden");
+
+    if (type === "kurs") {
+        document.getElementById("flip-kurs").classList.remove("hidden");
+
+        if (!flipKursLoaded) {
+            createFlipbook("book-kurs", "flipbook_kurs", 6, "counter-kurs", "progress-kurs");
+            flipKursLoaded = true;
+        }
+    }
+
+    if (type === "wzory") {
+        document.getElementById("flip-wzory").classList.remove("hidden");
+
+        if (!flipWzoryLoaded) {
+            createFlipbook("book-wzory", "flipbook_wzory", 8, "counter-wzory", "progress-wzory");
+            flipWzoryLoaded = true;
+        }
+    }
+
+    if (type === "harmonogram") {
+        document.getElementById("flip-harmonogram").classList.remove("hidden");
+    }
+}
+const examDate = new Date("May 11, 2026 09:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = examDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "Powodzenia na egzaminie! 🎓";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>

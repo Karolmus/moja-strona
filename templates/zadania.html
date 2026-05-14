@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Zadania</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f0f2f5;
+    zoom: 1.3;
+}
+
+nav {
+    background: #1f2a36;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+}
+
+nav a { color:#ddd; text-decoration:none; }
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* LEVEL */
+.level-selector {
+    display: flex;
+    gap: 6px;
+    background: #e9ecef;
+    padding: 6px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.level-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.level-btn.active {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* CARD */
+.task-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* META */
+.meta-box {
+    display:flex;
+    align-items:center;
+    border:2px solid #111;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:10px;
+}
+
+/* 🔥 GRADIENTY PRZYWRÓCONE */
+.meta-podstawowa { background: linear-gradient(90deg, #d5b8ea, #ffffff); }
+.meta-rozszerzona { background: linear-gradient(90deg, #d5b8ea, #ffffff); }
+.meta-osmoklasista { background: linear-gradient(90deg, #b2d699, #ffffff); }
+.meta-all { background: linear-gradient(90deg, #e0e0e0, #ffffff); }
+
+.meta-section { padding:10px 14px; font-size:13px; font-weight:600; }
+
+.meta-divider {
+    width:1px;
+    background:rgba(0,0,0,0.2);
+}
+
+.meta-right {
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+}
+
+/* TIMER */
+.timer {
+    border:2px solid #111;
+    border-radius:12px;
+    padding:10px 14px;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+/* IMAGE */
+.task-image {
+    width:100%;
+    max-height:450px;
+    object-fit:contain;
+    margin:15px 0;
+    border:2px solid #111;
+    border-radius:12px;
+    padding:10px;
+    transition:0.3s;
+}
+
+.task-image.fade-out {
+    opacity:0;
+    transform:translateY(30px);
+}
+
+/* BUTTONS */
+.buttons {
+    display:flex;
+    gap:10px;
+    margin:15px 0;
+}
+
+button {
+    border:none;
+    padding:10px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.random-btn { background:#2c3e50; color:#fff; }
+.hint-btn { background:#8eb5de; color:#fff; }
+.answer-btn { background:#b8d49c; }
+
+/* MCQ */
+.mcq {
+    display:none;
+    gap:10px;
+    margin:10px 0;
+}
+
+.mcq.active { display:flex; }
+
+.mcq button {
+    flex:1;
+    padding:12px;
+    border-radius:10px;
+    background:#eee;
+}
+
+/* RESULT BUTTONS */
+.result-buttons {
+    display:none;
+    justify-content:center;
+    gap:10px;
+    margin-top:10px;
+}
+
+.result-buttons.active { display:flex; }
+
+.good { background:#b8e6c1; }
+.bad { background:#f5b7b1; }
+
+/* PROGRESS */
+.progress-grid {
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:10px;
+}
+
+.tile {
+    width:22px;
+    height:22px;
+    border-radius:4px;
+    background:#ddd;
+}
+
+.tile.good { background:#b8e6c1; }
+.tile.medium { background:#f9e79f; }
+.tile.bad { background:#f5b7b1; }
+
+.box {
+    display:none;
+    margin-top:10px;
+    padding:15px;
+    background:#f7f7f7;
+    border-radius:10px;
+}
+
+footer {
+    text-align:center;
+    padding:15px;
+    background:#1f2a36;
+    color:#aaa;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="homepage.html">Strona główna</a>
+<a href="kalkulatory.html">Kalkulatory</a>
+<a href="kontakt.html">Kontakt</a>
+</nav>
+
+<div class="container">
+
+<div class="level-selector">
+<button class="level-btn active" onclick="setLevel(this,'matura_podstawowa')">Podstawowa</button>
+<button class="level-btn" onclick="setLevel(this,'matura_rozszerzona')">Rozszerzona</button>
+<button class="level-btn" onclick="setLevel(this,'egzamin_osmoklasisty')">Ósmoklasista</button>
+</div>
+
+<div class="task-card">
+
+<div class="progress-grid" id="progress"></div>
+
+<div class="timer" id="timer">⏱ 00:00</div>
+
+<div class="meta-box meta-podstawowa" id="metaBox"></div>
+
+<img id="taskImage" class="task-image">
+
+<div class="buttons">
+<button class="random-btn" onclick="drawTask()">Losuj</button>
+<button class="hint-btn" onclick="showHint()">Wskazówka</button>
+<button class="answer-btn" onclick="showAnswer()">Odpowiedź</button>
+</div>
+
+<div class="mcq" id="mcq"></div>
+
+<div class="result-buttons" id="resultButtons">
+    <button class="good" onclick="finish('good')">✔ Dobrze</button>
+    <button class="bad" onclick="finish('bad')">✖ Źle</button>
+</div>
+
+<div id="answer" class="box"></div>
+
+</div>
+</div>
+
+<footer>© 2026 Delta sigma</footer>
+
+<script>
+
+let tasks = [];
+let selectedLevel = "matura_podstawowa";
+let currentTask = null;
+let hintUsed = false;
+let seconds = 0;
+
+/* TIMER */
+setInterval(()=>{
+seconds++;
+document.getElementById("timer").innerText =
+`⏱ ${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;
+},1000);
+
+/* LOAD */
+fetch("zadania/lista.json")
+.then(r=>r.json())
+.then(d=>{
+tasks=d;
+drawTask();
+});
+
+/* LEVEL FILTER */
+function pool(){
+return tasks.filter(t=>t.level===selectedLevel);
+}
+
+/* LEVEL */
+function setLevel(btn,level){
+selectedLevel=level;
+document.querySelectorAll(".level-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+drawTask();
+}
+
+/* PARSE FIXED */
+function parseFile(file){
+const p=file.replace(".png","").split("_");
+
+const monthMap={
+m:"maj",
+c:"czerwiec",
+pr:"próbna",
+s:"sierpień"
+};
+
+return `Zadanie ${p[0]} • ${p[1]} • ${monthMap[p[4]]||p[4]} • CKE`;
+}
+
+/* STARS */
+function stars(n){
+return "★".repeat(n)+"☆".repeat(5-n);
+}
+
+/* DRAW */
+function drawTask(){
+
+const p=pool();
+if(!p.length)return;
+
+currentTask=p[Math.floor(Math.random()*p.length)];
+
+const img=document.getElementById("taskImage");
+img.classList.add("fade-out");
+
+setTimeout(()=>{
+
+img.src="zadania/"+currentTask.file;
+img.classList.remove("fade-out");
+
+document.getElementById("metaBox").innerHTML=
+`<div class="meta-section">${parseFile(currentTask.file)}</div>
+<div class="meta-divider"></div>
+<div class="meta-right">
+<div class="meta-section">${currentTask.topic}</div>
+<div class="meta-divider"></div>
+<div class="meta-section">${stars(currentTask.difficulty)}</div>
+</div>`;
+
+setupMCQ();
+
+document.getElementById("answer").style.display="none";
+hintUsed=false;
+
+},200);
+}
+
+/* MCQ */
+function setupMCQ(){
+
+const mcq=document.getElementById("mcq");
+mcq.innerHTML="";
+
+if(currentTask.answer && currentTask.answer.length===1){
+
+mcq.classList.add("active");
+
+["A","B","C","D"].forEach(o=>{
+const b=document.createElement("button");
+b.innerText=o;
+b.onclick=()=>choose(o,b);
+mcq.appendChild(b);
+});
+
+}else{
+mcq.classList.remove("active");
+document.getElementById("resultButtons").classList.add("active");
+}
+}
+
+/* CHOOSE */
+function choose(opt,btn){
+
+const correct=currentTask.answer;
+
+if(opt===correct){
+btn.style.background="#b8e6c1";
+setTimeout(drawTask,500);
+}else{
+btn.style.background="#f5b7b1";
+document.querySelectorAll("#mcq button").forEach(b=>{
+if(b.innerText===correct)b.style.background="#b8e6c1";
+});
+}
+}
+
+/* FINISH (progress + hint logic) */
+function finish(type){
+
+const tile=document.createElement("div");
+tile.classList.add("tile");
+
+if(hintUsed && type==="good"){
+tile.classList.add("medium");
+}else if(type==="good"){
+tile.classList.add("good");
+}else{
+tile.classList.add("bad");
+}
+
+document.getElementById("progress").appendChild(tile);
+drawTask();
+}
+
+/* HINT */
+function showHint(){
+hintUsed=true;
+document.getElementById("answer").style.display="block";
+document.getElementById("answer").innerText=currentTask.hint||"";
+}
+
+/* ANSWER */
+function showAnswer(){
+document.getElementById("answer").style.display="block";
+document.getElementById("answer").innerText=currentTask.answer||"";
+}
+
+</script>
+
+</body>
+</html>

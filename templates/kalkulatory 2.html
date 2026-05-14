@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Kalkulatory matematyczne</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f0f2f5;
+}
+
+/* NAV */
+nav {
+    background: #1f2a36;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* HEADER (zmniejszony) */
+header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 12px 20px; /* było 30px */
+    text-align: center;
+    font-size: 18px;    /* było 26px */
+    font-weight: 300;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* MAIN */
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* CARD STYLE */
+.calculator {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.calculator:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.calculator h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* INPUTS */
+input {
+    margin: 6px;
+    padding: 10px;
+    width: 90px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* BUTTON */
+button {
+    margin-top: 12px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #1f2a36;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #2c3e50;
+}
+
+/* RESULT */
+.result {
+    margin-top: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* FOOTER */
+footer {
+    background: #1f2a36;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="homepage.html">Strona główna</a>
+    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<header>
+    <h1>Kalkulatory</h1>
+</header>
+
+<main>
+
+<div class="calculator">
+    <h2>Bernoulli</h2>
+    p: <input id="p">
+    n: <input id="n">
+    k_values (np. 1,2,3): <input id="k">
+    <br>
+    <button onclick="bernoulli()">Oblicz</button>
+    <div class="result" id="res1"></div>
+</div>
+
+<div class="calculator">
+    <h2>Poly Solve</h2>
+    C (np. 1,2,3): <input id="C">
+    <br>
+    <button onclick="poly()">Oblicz</button>
+    <div class="result" id="res2"></div>
+</div>
+
+<div class="calculator">
+    <h2>Styczna</h2>
+    xa: <input id="xa">
+    ya: <input id="ya">
+    xs: <input id="xs">
+    ys: <input id="ys">
+    r: <input id="r">
+    <br>
+    <button onclick="styczna()">Oblicz</button>
+    <div class="result" id="res3"></div>
+</div>
+
+<div class="calculator">
+    <h2>Prosta i okrąg</h2>
+    A: <input id="A">
+    B: <input id="B">
+    C: <input id="C2">
+    p: <input id="p2">
+    q: <input id="q2">
+    r: <input id="r2">
+    <br>
+    <button onclick="lineCircle()">Oblicz</button>
+    <div class="result" id="res4"></div>
+</div>
+
+<div class="calculator">
+    <h2>Dwa okręgi</h2>
+    a: <input id="a">
+    b: <input id="b">
+    c: <input id="c">
+    p: <input id="p3">
+    q: <input id="q3">
+    r: <input id="r3">
+    <br>
+    <button onclick="circles()">Oblicz</button>
+    <div class="result" id="res5"></div>
+</div>
+
+</main>
+
+<footer>
+    © 2026 Karol Musioł Delta sigma
+</footer>
+
+<script>
+function bernoulli() {
+    document.getElementById("res1").innerText = "Tutaj wynik z Python";
+}
+
+function poly() {
+    document.getElementById("res2").innerText = "Tutaj wynik z Python";
+}
+
+function styczna() {
+    document.getElementById("res3").innerText = "Tutaj wynik z Python";
+}
+
+function lineCircle() {
+    document.getElementById("res4").innerText = "Tutaj wynik z Python";
+}
+
+function circles() {
+    document.getElementById("res5").innerText = "Tutaj wynik z Python";
+}
+</script>
+
+</body>
+</html>

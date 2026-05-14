@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+<!-- MathJax -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    background: #f4f6fb;
+    color: #111;
+}
+
+/* NAV */
+nav {
+    background: #111827;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 16px;
+}
+
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+/* LAYOUT */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+/* INPUTS */
+label {
+    font-size: 13px;
+    color: #64748b;
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #fafafa;
+    margin-top: 5px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: white;
+}
+
+/* BUTTON */
+button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #1f2937;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #111827;
+}
+
+/* RESULT */
+.result {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    min-height: 40px;
+}</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="homepage.html">Strona główna</a>
+    <a href="zapisy.html">Zapisy 2026/27</a>
+    <a href="terminy.html">Wolne terminy</a>
+    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<section class="hero">
+<h1>Matematyczne Kalkulatory</h1>
+</section>
+
+<div class="container">
+<div class="grid">
+
+<!-- BERNOULLI -->
+<div class="card">
+<h3>Bernoulli</h3>
+
+<label>p</label>
+<input id="p">
+
+<label>n</label>
+<input id="n">
+
+<label>k (np. 1,2,3)</label>
+<input id="k">
+
+<button onclick="calcBernoulli()">Oblicz</button>
+<div id="res1" class="result"></div>
+</div>
+
+<!-- POLY -->
+<div class="card">
+<h3>Wielomian</h3>
+
+<label>współczynniki</label>
+<input id="coeffs">
+
+<button onclick="calcPoly()">Oblicz</button>
+<div id="res2" class="result"></div>    
+</div>
+
+<!-- STYCZNA -->
+<div class="card">
+<h3>Styczna</h3>
+
+<label>xa, ya</label>
+<input id="xa"><input id="ya">
+
+<label>xs, ys</label>
+<input id="xs"><input id="ys">
+
+<label>r</label>
+<input id="r">
+
+<button onclick="calcStyczna()">Oblicz</button>
+<div id="res_styczna" class="result"></div>
+</div>
+
+<!-- LINE CIRCLE -->
+<div class="card">
+<h3>Prosta i okrąg</h3>
+
+<input id="A"><input id="B"><input id="C">
+<input id="p1"><input id="q1"><input id="r1">
+
+<button onclick="calcLineCircle()">Oblicz</button>
+<div id="res_line" class="result"></div>
+</div>
+
+<!-- TWO CIRCLES -->
+<div class="card">
+<h3>Dwa okręgi</h3>
+
+<input id="a"><input id="b"><input id="c">
+<input id="p2"><input id="q2"><input id="r2">
+
+<button onclick="calcTwoCircles()">Oblicz</button>
+<div id="res_circles" class="result"></div>
+</div>
+
+<!-- ANGLE -->
+<div class="card">
+<h3>Kąt</h3>
+
+<input id="a1"><input id="a2">
+
+<button onclick="calcAngle()">Oblicz</button>
+<div id="res_angle" class="result"></div>
+</div>
+
+</div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
