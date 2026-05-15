@@ -5,7 +5,8 @@
 <title>Kontakt – Delta sigma</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="baner.css">
 <style>
 * { box-sizing: border-box; }
 
@@ -15,25 +16,6 @@ body {
     background: #f0f2f5;
 }
 
-/* NAV */
-nav {
-    background: #1f2a36;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px;
-}
-
-nav a {
-    color: #ddd;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: white;
-    transform: scale(1.1);
-}
 
 /* HERO */
 .hero {
@@ -178,12 +160,8 @@ footer {
 
 <body>
 
-<nav>
-    <a href="index.html">Strona główna</a>
-    <a href="kalkulatory.html">Kalkulatory</a>
-    <a href="kontakt.html">Kontakt</a>
-</nav>
-
+<div id="nav"></div>
+<div id="baner"></div>
 <div class="container">
 
 <div class="grid">
@@ -194,18 +172,8 @@ footer {
     <h2>Dane kontaktowe</h2>
 
     <div class="contact-item">
-        <strong>📞 Telefon</strong>
+        <strong>Telefon</strong>
         514 681 958
-    </div>
-
-    <div class="contact-item">
-        <strong>✉️ Email</strong>
-        kontakt@deltasigma.pl
-    </div>
-
-    <div class="contact-item">
-        <strong>📍 Lokalizacja</strong>
-        Wrocław + zajęcia online
     </div>
     
     <div class="contact-item">
@@ -227,23 +195,7 @@ footer {
 
 </div>
 
-<!-- PRAWA: FORMULARZ -->
-<div class="card">
 
-    <h2>Napisz wiadomość</h2>
-
-    <form onsubmit="sendMsg(event)">
-        <input type="text" placeholder="Imię" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Treść wiadomości..." required></textarea>
-        <button type="submit">Wyślij</button>
-    </form>
-
-    <div id="status" style="margin-top:10px;"></div>
-
-</div>
-
-</div>
 
 <!-- MAPA -->
 <div class="map">
@@ -265,6 +217,19 @@ function sendMsg(e){
     document.getElementById("status").innerText = "✔ Wiadomość wysłana (demo)";
 }
 </script>
-
+<script>
+fetch("nav.html")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("nav").innerHTML = data;
+    });
+</script>
+<script>
+fetch("baner.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("baner").innerHTML = html;
+    });
+</script>
 </body>
 </html>
