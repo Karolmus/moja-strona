@@ -84,7 +84,90 @@ h1{
 .cta-card:hover {
     transform: translateY(-2px);
 }
+        main{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
 
+        .card{
+            display:flex;
+            flex-direction:column;
+            background:white;
+            border-radius:16px;
+            overflow:hidden;
+            text-decoration:none;
+            color:black;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+            box-shadow:0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .card-bar{
+            height:15px;
+        }
+
+        .card.a .card-bar{
+            background:#b8d49c;
+        }
+
+        .card.b .card-bar{
+            background:#d6b8ea;
+        }
+
+        .card.c .card-bar{
+            background:#d6b8ea;
+        }
+
+        .card.d .card-bar{
+            background:#8eb5de;
+        }
+
+        .card img{
+            width:100%;
+            height:130px;
+            object-fit:contain;
+            background:white;
+        }
+
+        .card-content{
+            padding:15px;
+        }
+
+        .card-content h3{
+            margin:0 0 8px;
+            font-size:18px;
+        }
+
+        .card-content p{
+            margin:0;
+            font-size:13px;
+            color:#666;
+        }
+
+        .price-bar{
+            margin-top:auto;
+            padding:10px;
+            text-align:center;
+            font-size:14px;
+            background:#f7f7f7;
+            border-top:1px solid #eee;
+        }
+
+
+.card-icon{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    margin-left:15px;
+}
 .cta-icon svg{
     width:22px;
     height:22px;
@@ -316,6 +399,7 @@ th{
     color:#666;
 }
 
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -360,7 +444,24 @@ th{
     }
 
 }
+@media (max-width: 900px){
+    main{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 1100px){
 
+    .about-container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .slider{
+        width: 100%;
+        min-height: 300px;
+    }
+}
 footer{
     text-align:center;
     padding:20px;
@@ -407,7 +508,52 @@ footer{
         <span>Zadzwoń: 514 681 958</span>
 
     </a>
+
 </div>
+
+<main>
+        <a href="d.html" class="card d">
+        <div class="card-bar"></div>
+        <img src="img/d.png">
+        <div class="card-content">
+            <h3>Na bieżąco</h3>
+            <p>Przygotowanie do sprawdzianów, kartkówek oraz kolokwiów</p>
+        </div>
+        <div class="price-bar"><b>85 zł / 55 min</b></div>
+    </a>
+
+    <a href="osmoklasista.html" class="card a">
+        <div class="card-bar"></div>
+        <img src="img/a.png">
+        <div class="card-content">
+            <h3>Egzamin ósmoklasisty</h3>
+            <p>Zgodnie z wytycznymi CKE</p>
+        </div>
+        <div class="price-bar"><b>90 zł / 55 min</b></div>
+    </a>
+
+    <a href="matura_podstawowa.html" class="card b">
+        <div class="card-bar"></div>
+        <img src="img/b.png">
+        <div class="card-content">
+            <h3>Matura podstawowa</h3>
+            <p>Zgodnie z wytycznymi CKE</p>
+        </div>
+        <div class="price-bar"><b>100 zł / 55 min</b></div>
+    </a>
+
+    <a href="matura_rozszerzona.html" class="card c">
+        <div class="card-bar"></div>
+        <img src="img/c.png">
+        <div class="card-content">
+            <h3>Matura rozszerzona</h3>
+            <p>Zgodnie z wytycznymi CKE</p>
+        </div>
+        <div class="price-bar"><b>110 zł / 55 min</b></div>
+    </a>
+
+</main>
+
 <section class="about">
 
     <div class="about-container">
