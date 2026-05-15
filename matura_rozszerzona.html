@@ -91,7 +91,32 @@ body{
     color:#404EED;
     margin:0 5px;
 }
+#countdown{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    font-size:20px;
+    font-weight:600;
+    color:#1f2a36;
+}
 
+.time-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-width:70px;
+}
+
+.time-box span{
+    font-size:28px;
+    color:#404EED;
+}
+
+.time-box small{
+    font-size:13px;
+    color:#666;
+}
 /* =========================
    COURSE INFO
 ========================= */
@@ -494,14 +519,27 @@ footer{
             Do egzaminu maturalnego z matematyki rozszerzonej zostało:
         </h3>
 
-        <div id="countdown">
-
-            <span id="days">0</span> dni
-            <span id="hours">0</span> godzin
-            <span id="minutes">0</span> minut
-            <span id="seconds">0</span> sekund
-
+            <div id="countdown">
+        <div class="time-box">
+            <span id="days">0</span>
+            <small>dni</small>
         </div>
+
+        <div class="time-box">
+            <span id="hours">0</span>
+            <small>godzin</small>
+        </div>
+
+        <div class="time-box">
+            <span id="minutes">0</span>
+            <small>minut</small>
+        </div>
+
+        <div class="time-box">
+            <span id="seconds">0</span>
+            <small>sekund</small>
+        </div>
+    </div>
 
     </div>
 
