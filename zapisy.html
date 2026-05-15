@@ -103,11 +103,12 @@ table{
 }
 
 th, td{
-    padding:4px;
+    padding:1px;
     text-align:center;
-    border-radius:20px;
+    border-radius:5px;
     font-size:12px;
-    min-width:120px;
+    min-width:20px;
+    max-width: 20px;
     color:#fff;
 }
 
@@ -360,8 +361,6 @@ th{
 
 }
 
-
-}
 footer{
     text-align:center;
     padding:20px;
@@ -383,7 +382,7 @@ footer{
 
 <div class="container">
 
-    <h1>Wolne terminy zajęć</h1>
+    <h1>Dostępne terminy</h1>
 
     <div class="table-wrapper">
         <table id="schedule"></table>
@@ -572,10 +571,10 @@ function render(){
             else{
                 if(!cell){
                     el.classList.add('free');
-                    el.innerText = 'Wolne';
+                    el.innerText = 'wolny';
                 } else {
                     el.classList.add('busy');
-                    el.innerText = cell;
+                    el.innerText = '';
                 }
             }
 
