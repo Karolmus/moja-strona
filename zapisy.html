@@ -7,7 +7,7 @@
 <title>Delta Sigma – Terminy</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="nav.css">
 <style>
 
 *{
@@ -21,25 +21,6 @@ body{
     color:#2c3e50;
 }
 
-/* NAV */
-nav {
-    background: #1f2a36;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px;
-}
-
-nav a {
-    color: #ddd;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: white;
-    transform: scale(1.1);
-}
 
 /* DISCORD */
 .discord-banner {
@@ -144,7 +125,7 @@ th{
 }
 
 .busy{
-    background:#ff9186;
+    background:#9a9a9a;
 }
 
 /* INFO */
@@ -379,12 +360,6 @@ th{
 
 }
 
-@media (max-width:600px){
-
-    nav{
-        flex-direction:column;
-        gap:10px;
-    }
 
 }
 footer{
@@ -399,12 +374,7 @@ footer{
 
 <body>
 
-<nav>
-    <a href="index.html">Strona główna</a>
-    <a href="zapisy.html">Zapisy 2026/27</a>
-    <a href="zadania.html">Strefa ucznia</a>
-    <a href="kontakt.html">Kontakt</a>
-</nav>
+<div id="nav"></div>
 
 <div class="discord-banner">
     <img class="discord-icon" src="img/discord.gif" alt="Discord">
@@ -414,8 +384,6 @@ footer{
 <div class="container">
 
     <h1>Wolne terminy zajęć</h1>
-
-
 
     <div class="table-wrapper">
         <table id="schedule"></table>
@@ -619,6 +587,12 @@ function render(){
 }
 
 </script>
-
+<script>
+fetch("nav.html")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("nav").innerHTML = data;
+    });
+</script>
 </body>
 </html>
