@@ -7,8 +7,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/logo.ico">
+
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="baner.css">
+
     <style>
 
         *{
@@ -21,19 +23,28 @@
             background:#f0f2f5;
         }
 
+        /* =========================
+           DISCORD BANNER
+        ========================= */
+
         .discord-banner{
             background:linear-gradient(90deg,#5865F2,#404EED);
             color:white;
+
             display:flex;
             align-items:center;
             justify-content:center;
             gap:10px;
+
             padding:10px 15px;
+
             font-weight:500;
             font-size:14px;
+
             position:sticky;
             top:0;
             z-index:1000;
+
             box-shadow:0 4px 12px rgba(0,0,0,0.15);
         }
 
@@ -43,31 +54,37 @@
             object-fit:contain;
         }
 
- 
+        /* =========================
+           MAIN CARDS
+        ========================= */
 
         main{
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 20px;
-            max-width: 1500px;
-            margin: 0 auto;
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+
+            gap:20px;
+
+            padding:20px;
+
+            max-width:1500px;
+            margin:0 auto;
         }
 
-        .card {
-            display: flex;
-            flex-direction: column;
+        .card{
+            display:flex;
+            flex-direction:column;
 
-            background: white;
-            color: black;
+            background:white;
+            color:black;
 
-            border-radius: 16px;
-            overflow: hidden;
+            border-radius:16px;
+            overflow:hidden;
 
-            text-decoration: none;
+            text-decoration:none;
 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: 0.3s;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+            transition:0.3s;
         }
 
         .card:hover{
@@ -98,7 +115,9 @@
         .card img{
             width:100%;
             height:130px;
+
             object-fit:contain;
+
             background:white;
         }
 
@@ -119,21 +138,33 @@
 
         .price-bar{
             margin-top:auto;
+
             padding:10px;
+
             text-align:center;
             font-size:14px;
+
             background:#f7f7f7;
+
             border-top:1px solid #eee;
         }
 
+        /* =========================
+           HORIZONTAL CARD
+        ========================= */
+
         .card.horizontal{
             grid-column:1 / -1;
-            flex-direction:row;
-            align-items:center;
-            height:200px;
-            justify-content:flex-start;
+
             display:flex;
+            flex-direction:row;
+
+            align-items:center;
+            justify-content:flex-start;
+
             gap:20px;
+
+            height:200px;
         }
 
         .card.horizontal img:not(.card-icon){
@@ -143,213 +174,243 @@
         .card-icon{
             width:80px;
             height:80px;
+
             object-fit:contain;
+
             margin-left:15px;
         }
 
+        /* =========================
+           ABOUT
+        ========================= */
 
+        .about{
+            padding:70px 20px;
 
-/* =========================
-   ABOUT
-========================= */
+            max-width:1400px;
+            margin:0 auto;
+        }
 
-.about{
-    padding:70px 20px;
-    max-width:1400px;
-    margin:0 auto;
-}
+        .about-title{
+            margin:0 0 25px;
 
-.about-container{
-    display:grid;
-    grid-template-columns:800px 2fr;
-    gap:40px;
-    align-items:stretch;
-}
+            font-size:42px;
+            line-height:1.1;
 
-/* =========================
-   SLIDER
-========================= */
+            color:#1f2a36;
+        }
 
-.slider{
-    position:relative;
-    height:100%;
-    min-height:520px;
+        .about-container{
+            display:grid;
+            grid-template-columns:800px 2fr;
 
-    overflow:hidden;
-    border-radius:24px;
+            gap:40px;
 
-    background:#e9edf3;
+            align-items:stretch;
+        }
 
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.12);
+        /* =========================
+           SLIDER
+        ========================= */
 
-    border:1px solid rgba(0,0,0,0.05);
-}
+        .slider{
+            position:relative;
 
-.slider img{
-    position:absolute;
-    inset:0;
+            height:100%;
+            min-height:520px;
 
-    width:100%;
-    height:100%;
+            overflow:hidden;
 
-    object-fit:cover;
+            border-radius:24px;
 
-    opacity:0;
-    transition:opacity 1.2s ease;
-}
+            background:#e9edf3;
 
-.slider img.active{
-    opacity:1;
-}
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.12);
 
-/* =========================
-   ABOUT TEXT
-========================= */
+            border:1px solid rgba(0,0,0,0.05);
+        }
 
-.about-text-wrapper{
-    display:flex;
-    flex-direction:column;
-    height:100%;
-}
+        .slider img{
+            position:absolute;
+            inset:0;
 
-.about h2{
-    margin:0 0 20px;
-    font-size:42px;
-    line-height:1.1;
-    color:#1f2a36;
-}
+            width:100%;
+            height:100%;
 
-.about-text{
-    flex:1;
+            object-fit:cover;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+            opacity:0;
 
-    text-align:left;
-    line-height:1.9;
+            transition:opacity 1.2s ease;
+        }
 
-    color:#333;
+        .slider img.active{
+            opacity:1;
+        }
 
-    background:rgba(255,255,255,0.82);
+        /* =========================
+           ABOUT TEXT
+        ========================= */
 
-    backdrop-filter:blur(14px);
+        .about-text-wrapper{
+            display:flex;
+            flex-direction:column;
 
-    padding:42px;
+            height:100%;
+        }
 
-    border-radius:24px;
+        .about-text{
+            flex:1;
 
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.08);
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
 
-    border:1px solid rgba(0,0,0,0.05);
+            text-align:left;
+            line-height:1.9;
 
-    position:relative;
-    overflow:hidden;
+            color:#333;
 
-    font-size:16px;
-}
+            background:rgba(255,255,255,0.82);
 
-.about-text::before{
-    content:"";
+            backdrop-filter:blur(14px);
 
-    position:absolute;
+            padding:42px;
 
-    top:0;
-    left:0;
+            border-radius:24px;
 
-    width:100%;
-    height:5px;
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.08);
 
-    background:
-        linear-gradient(
-            90deg,
-            #5865F2,
-            #404EED
-        );
-}
+            border:1px solid rgba(0,0,0,0.05);
 
-/* =========================
-   REVIEWS
-========================= */
+            position:relative;
+            overflow:hidden;
 
-.reviews{
-    padding:70px 20px;
-    background:#fff;
-}
+            font-size:16px;
+        }
 
-.reviews h2{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:34px;
-}
+        .about-text::before{
+            content:"";
 
-.reviews-grid{
-    display:grid;
-    grid-template-columns:
-        repeat(auto-fit,minmax(280px,1fr));
+            position:absolute;
 
-    gap:24px;
+            top:0;
+            left:0;
 
-    max-width:1200px;
-    margin:0 auto;
-}
+            width:100%;
+            height:5px;
 
-.review-card{
-    background:#f8fafc;
+            background:
+                linear-gradient(
+                    90deg,
+                    #5865F2,
+                    #404EED
+                );
+        }
 
-    border-radius:20px;
+        /* =========================
+           REVIEWS
+        ========================= */
 
-    padding:24px;
+        .reviews{
+            padding:70px 20px;
+            background:#fff;
+        }
 
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.08);
+        .reviews h2{
+            text-align:center;
+            margin-bottom:40px;
+            font-size:34px;
+        }
 
-    transition:0.3s;
-}
+        .reviews-grid{
+            display:grid;
 
-.review-card:hover{
-    transform:translateY(-6px);
-}
+            grid-template-columns:
+                repeat(auto-fit,minmax(280px,1fr));
 
-.stars{
-    color:#f5c518;
-    font-size:20px;
-    margin-bottom:12px;
-}
+            gap:24px;
 
-.review-text{
-    font-size:15px;
-    line-height:1.7;
-    margin-bottom:12px;
-}
+            max-width:1200px;
+            margin:0 auto;
+        }
 
-.review-meta{
-    font-size:13px;
-    color:#666;
-}
+        .review-card{
+            background:#f8fafc;
 
+            border-radius:20px;
 
+            padding:24px;
 
-@media (max-width: 900px){
-    main{
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (max-width: 1100px){
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
 
-    .about-container{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+            transition:0.3s;
+        }
 
-    .slider{
-        width: 100%;
-        min-height: 300px;
-    }
-}
+        .review-card:hover{
+            transform:translateY(-6px);
+        }
+
+        .stars{
+            color:#f5c518;
+            font-size:20px;
+            margin-bottom:12px;
+        }
+
+        .review-text{
+            font-size:15px;
+            line-height:1.7;
+            margin-bottom:12px;
+        }
+
+        .review-meta{
+            font-size:13px;
+            color:#666;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer{
+            text-align:center;
+            padding:30px 20px;
+            color:#666;
+            font-size:14px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width:900px){
+
+            main{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+        }
+
+        @media (max-width:1100px){
+
+            .about-container{
+                display:flex;
+                flex-direction:column;
+
+                gap:20px;
+            }
+
+            .slider{
+                width:100%;
+                min-height:300px;
+            }
+
+        }
+        @media (max-width: 600px){
+
 
     </style>
 </head>
@@ -359,10 +420,13 @@
 <div id="nav"></div>
 
 <div class="discord-banner">
+
     <img class="discord-icon" src="img/discord.gif" alt="Discord">
+
     <span>
         Zajęcia odbywają się online na platformie <b>Discord</b>
     </span>
+
 </div>
 
 <div id="baner"></div>
@@ -370,72 +434,110 @@
 <main>
 
     <a href="na_biezaco.html" class="card d">
+
         <div class="card-bar"></div>
+
         <img src="img/d.png">
+
         <div class="card-content">
             <h3>Na bieżąco</h3>
-            <p>Przygotowanie do sprawdzianów, kartkówek oraz kolokwiów</p>
+
+            <p>
+                Przygotowanie do sprawdzianów,
+                kartkówek oraz kolokwiów
+            </p>
         </div>
-        <div class="price-bar">85 zł / 55 min</div>
+
+        <div class="price-bar">
+            85 zł / 55 min
+        </div>
+
     </a>
 
     <a href="osmoklasista.html" class="card a">
+
         <div class="card-bar"></div>
+
         <img src="img/a.png">
+
         <div class="card-content">
             <h3>Egzamin ósmoklasisty</h3>
             <p>Zgodnie z wytycznymi CKE</p>
         </div>
-        <div class="price-bar">90 zł / 55 min</div>
+
+        <div class="price-bar">
+            90 zł / 55 min
+        </div>
+
     </a>
 
     <a href="matura_podstawowa.html" class="card b">
+
         <div class="card-bar"></div>
+
         <img src="img/b.png">
+
         <div class="card-content">
             <h3>Matura podstawowa</h3>
             <p>Zgodnie z wytycznymi CKE</p>
         </div>
-        <div class="price-bar">100 zł / 55 min</div>
+
+        <div class="price-bar">
+            100 zł / 55 min
+        </div>
+
     </a>
 
     <a href="matura_rozszerzona.html" class="card c">
+
         <div class="card-bar"></div>
+
         <img src="img/c.png">
+
         <div class="card-content">
             <h3>Matura rozszerzona</h3>
             <p>Zgodnie z wytycznymi CKE</p>
         </div>
-        <div class="price-bar">110 zł / 55 min</div>
+
+        <div class="price-bar">
+            110 zł / 55 min
+        </div>
+
     </a>
 
     <a href="zadania.html" class="card horizontal">
+
         <div class="card-bar"></div>
 
         <img src="img/notebook.png" class="card-icon">
 
         <div class="card-content">
             <h3>Strefa ucznia</h3>
+
             <p>
-                Ćwicz ze wskazówkami i monitoruj swoje postępy
+                Ćwicz ze wskazówkami
+                i monitoruj swoje postępy
             </p>
         </div>
+
     </a>
 
 </main>
 
 <section class="about">
 
+    <h2 class="about-title">O mnie</h2>
+
     <div class="about-container">
 
         <div class="slider" id="photo-slider">
+
             <img src="img/me3.png" class="active">
             <img src="img/me1.jpeg">
+
         </div>
 
         <div class="about-text-wrapper">
-
-            <h2>O mnie</h2>
 
             <div class="about-text">
 
@@ -470,36 +572,51 @@
     <div class="reviews-grid">
 
         <div class="review-card">
+
             <div class="stars">★★★★★</div>
+
             <div class="review-text">
-                Bardzo dobre podejście, jasno wszystko wytłumaczone.
+                Bardzo dobre podejście,
+                jasno wszystko wytłumaczone.
                 Polecam każdemu!
             </div>
+
             <div class="review-meta">
                 Łukasz • 26.06.2021
             </div>
+
         </div>
 
         <div class="review-card">
+
             <div class="stars">★★★★★</div>
+
             <div class="review-text">
                 Serdecznie polecam.
-                Tłumaczy w jasny, zrozumiały sposób.
+                Tłumaczy w jasny,
+                zrozumiały sposób.
             </div>
+
             <div class="review-meta">
                 Sylwia Tomaszek • 16.01.2021
             </div>
+
         </div>
 
         <div class="review-card">
+
             <div class="stars">★★★★★</div>
+
             <div class="review-text">
-                Karol zasługuje na celującą ocenę.
+                Karol zasługuje na
+                celującą ocenę.
                 Cierpliwy i bardzo kompetentny.
             </div>
+
             <div class="review-meta">
                 Ola R. • 10.11.2022
             </div>
+
         </div>
 
     </div>
@@ -539,19 +656,26 @@ function startSlider(selector){
 startSlider("#photo-slider img");
 
 </script>
+
 <script>
+
 fetch("nav.html")
     .then(res => res.text())
     .then(data => {
         document.getElementById("nav").innerHTML = data;
     });
+
 </script>
+
 <script>
+
 fetch("baner.html")
     .then(res => res.text())
     .then(html => {
         document.getElementById("baner").innerHTML = html;
     });
+
 </script>
+
 </body>
 </html>
