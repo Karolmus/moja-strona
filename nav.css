@@ -10,7 +10,7 @@
     gap: 24px;
     padding: 14px 20px;
 
-    background: rgba(31, 42, 54, 0.85);
+    background: rgba(4, 6, 8, 0.85);
     backdrop-filter: blur(12px);
 
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -19,7 +19,7 @@
 .main-nav a{
     position: relative;
 
-    color: #cfd6dd;
+    color: #ffffff;
     text-decoration: none;
 
     font-family: 'Poppins', sans-serif;
