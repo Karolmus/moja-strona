@@ -4,7 +4,7 @@
     gap: 30px;
 
     padding: 35px;
-    margin:30px 20px;
+    margin: 30px auto; /* <- TO FIX */
     max-width: 900px;
 
     border-radius: 24px;
@@ -20,8 +20,8 @@
 
     position: relative;
     overflow: hidden;
-    flex-direction: column;
 
+    flex-direction: column;
 }
 
 /* hover efekt */
