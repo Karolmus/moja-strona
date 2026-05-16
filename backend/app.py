@@ -5,11 +5,16 @@ from flask import Flask, jsonify, request
 
 from calculators.solver import (
     bernoulli,
+    bernoulli_plot,
     line_and_circle,
+    line_and_circle_plot,
     lines_angle,
+    lines_angle_plot,
     poly_solve,
     styczna,
+    styczna_plot,
     two_circles,
+    two_circles_plot,
 )
 
 app = Flask(__name__)
@@ -57,9 +62,13 @@ def health():
 def api_bernoulli():
     def handler():
         data = payload()
-        result = bernoulli(data["p"], int(data["n"]), data["k"])
+        n = int(data["n"])
+        result = bernoulli(data["p"], n, data["k"])
 
-        return jsonify(str(result))
+        return jsonify({
+            "result": sp.latex(result),
+            "plot": bernoulli_plot(data["p"], n, data["k"]),
+        })
 
     return safe(handler)
 
@@ -68,11 +77,14 @@ def api_bernoulli():
 def api_poly():
     def handler():
         data = payload()
-        sol, fac = poly_solve(data["coeffs"])
+        sol, fac, expanded, plot = poly_solve(data["coeffs"])
 
         return jsonify({
             "sol": [sp.latex(s) for s in sol],
             "fac": sp.latex(fac),
+            "factored": sp.latex(fac),
+            "general": sp.latex(expanded),
+            "plot": plot,
         })
 
     return safe(handler)
@@ -84,7 +96,10 @@ def api_styczna():
         data = payload()
         result = styczna(data["xa"], data["ya"], data["xs"], data["ys"], data["r"])
 
-        return jsonify([sp.latex(item) for item in result])
+        return jsonify({
+            "result": [sp.latex(item) for item in result],
+            "plot": styczna_plot(data["xa"], data["ya"], data["xs"], data["ys"], data["r"], result),
+        })
 
     return safe(handler)
 
@@ -95,7 +110,10 @@ def api_line_circle():
         data = payload()
         result = line_and_circle(data["A"], data["B"], data["C"], data["p"], data["q"], data["r"])
 
-        return jsonify([sp.latex(item) for item in result])
+        return jsonify({
+            "result": [sp.latex(item) for item in result],
+            "plot": line_and_circle_plot(data["A"], data["B"], data["C"], data["p"], data["q"], data["r"], result),
+        })
 
     return safe(handler)
 
@@ -106,7 +124,10 @@ def api_two_circles():
         data = payload()
         result = two_circles(data["a"], data["b"], data["c"], data["p"], data["q"], data["r"])
 
-        return jsonify([sp.latex(item) for item in result])
+        return jsonify({
+            "result": [sp.latex(item) for item in result],
+            "plot": two_circles_plot(data["a"], data["b"], data["c"], data["p"], data["q"], data["r"], result),
+        })
 
     return safe(handler)
 
@@ -115,8 +136,12 @@ def api_two_circles():
 def api_angle():
     def handler():
         data = payload()
+        result = lines_angle(data["a1"], data["a2"])
 
-        return jsonify(lines_angle(data["a1"], data["a2"]))
+        return jsonify({
+            "result": result,
+            "plot": lines_angle_plot(data["a1"], data["a2"]),
+        })
 
     return safe(handler)
 

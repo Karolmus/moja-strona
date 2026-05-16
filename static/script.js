@@ -22,9 +22,15 @@ async function post(path, data){
     return result;
 }
 
-function renderMath(){
+function renderMath(target){
     if(window.MathJax){
-        MathJax.typeset();
+        const elements = target ? [target] : undefined;
+
+        if(MathJax.typesetPromise){
+            MathJax.typesetPromise(elements);
+        } else {
+            MathJax.typeset(elements);
+        }
     }
 }
 
@@ -44,6 +50,66 @@ function readNumberList(id){
         .filter(value => !Number.isNaN(value));
 }
 
+function renderPlot(plot){
+    if(!plot){
+        return "";
+    }
+
+    return `
+        <div class="plot-card">
+            <div class="plot-title">Wykres</div>
+            ${plot}
+        </div>
+    `;
+}
+
+function renderFormulaList(items, emptyText = "Brak rozwiązań w liczbach rzeczywistych."){
+    if(!Array.isArray(items) || items.length === 0){
+        return emptyText;
+    }
+
+    return items.map(item => `\\(${item}\\)`).join("<br>");
+}
+
+function formatPolynomialLatex(coeffs){
+    const values = [...coeffs];
+
+    while(values.length > 1 && values[0] === 0){
+        values.shift();
+    }
+
+    const degree = values.length - 1;
+    const terms = [];
+
+    values.forEach((coefficient, index) => {
+        if(coefficient === 0){
+            return;
+        }
+
+        const exponent = degree - index;
+        const sign = coefficient < 0 ? "-" : "+";
+        const absoluteValue = Math.abs(coefficient);
+        const coefficientText = absoluteValue === 1 && exponent > 0 ? "" : String(absoluteValue);
+        const variableText = exponent === 0 ? "" : exponent === 1 ? "x" : `x^{${exponent}}`;
+
+        terms.push({sign, body: `${coefficientText}${variableText}`});
+    });
+
+    if(terms.length === 0){
+        return "0";
+    }
+
+    return terms
+        .map((term, index) => {
+            if(index === 0){
+                return term.sign === "-" ? `-${term.body}` : term.body;
+            }
+
+            return ` ${term.sign} ${term.body}`;
+        })
+        .join("");
+}
+
 /* ===== BERNOULLI ===== */
 async function calcBernoulli(){
     try {
@@ -53,8 +119,16 @@ async function calcBernoulli(){
             k: readNumberList("k")
         });
 
-        res1.innerHTML = `\\(${d}\\)`;
-        renderMath();
+        const result = typeof d === "object" && d !== null ? d.result : d;
+
+        res1.innerHTML = `
+            <div class="result-block">
+                <b>Wynik:</b><br>
+                \\(${result}\\)
+            </div>
+            ${renderPlot(d?.plot)}
+        `;
+        renderMath(res1);
     } catch(error) {
         showError(res1, error);
     }
@@ -63,21 +137,31 @@ async function calcBernoulli(){
 /* ===== POLY ===== */
 async function calcPoly(){
     try {
+        const coeffs = readNumberList("coeffs");
         const d = await post("/api/poly", {
-            coeffs: readNumberList("coeffs")
+            coeffs
         });
 
-        let html = "<b>Rozwiązania:</b><br>";
+        const zeros = renderFormulaList(d.sol, "Brak miejsc zerowych w liczbach rzeczywistych.");
+        const general = d.general || d.expanded || formatPolynomialLatex(coeffs);
+        const factored = d.factored || d.fac || general;
 
-        d.sol.forEach(s => {
-            html += `\\(${s}\\)<br>`;
-        });
-
-        html += "<br><b>Postać:</b><br>";
-        html += `\\(${d.fac}\\)`;
+        const html = `
+            <div class="result-block">
+                <b>Miejsca zerowe:</b><br>
+                ${zeros}
+                <br><br>
+                <b>Postać ogólna:</b><br>
+                \\(f(x)=${general}\\)
+                <br><br>
+                <b>Postać iloczynowa:</b><br>
+                \\(f(x)=${factored}\\)
+            </div>
+            ${renderPlot(d.plot)}
+        `;
 
         res2.innerHTML = html;
-        renderMath();
+        renderMath(res2);
     } catch(error) {
         showError(res2, error);
     }
@@ -94,8 +178,16 @@ async function calcStyczna(){
             r: readNumber("r")
         });
 
-        res_styczna.innerHTML = d.map(item => `\\(${item}\\)`).join("<br>");
-        renderMath();
+        const result = Array.isArray(d) ? d : d.result;
+
+        res_styczna.innerHTML = `
+            <div class="result-block">
+                <b>Równania stycznych:</b><br>
+                ${renderFormulaList(result)}
+            </div>
+            ${renderPlot(d?.plot)}
+        `;
+        renderMath(res_styczna);
     } catch(error) {
         showError(res_styczna, error);
     }
@@ -113,8 +205,16 @@ async function calcLineCircle(){
             r: readNumber("r1")
         });
 
-        res_line.innerHTML = d.map(x => `\\(${x}\\)`).join("<br>");
-        renderMath();
+        const result = Array.isArray(d) ? d : d.result;
+
+        res_line.innerHTML = `
+            <div class="result-block">
+                <b>Punkty przecięcia:</b><br>
+                ${renderFormulaList(result)}
+            </div>
+            ${renderPlot(d?.plot)}
+        `;
+        renderMath(res_line);
     } catch(error) {
         showError(res_line, error);
     }
@@ -132,8 +232,16 @@ async function calcTwoCircles(){
             r: readNumber("r2")
         });
 
-        res_circles.innerHTML = d.map(x => `\\(${x}\\)`).join("<br>");
-        renderMath();
+        const result = Array.isArray(d) ? d : d.result;
+
+        res_circles.innerHTML = `
+            <div class="result-block">
+                <b>Punkty przecięcia:</b><br>
+                ${renderFormulaList(result)}
+            </div>
+            ${renderPlot(d?.plot)}
+        `;
+        renderMath(res_circles);
     } catch(error) {
         showError(res_circles, error);
     }
@@ -147,8 +255,16 @@ async function calcAngle(){
             a2: readNumber("a2")
         });
 
-        res_angle.innerHTML = `\\(${d}^\\circ\\)`;
-        renderMath();
+        const result = typeof d === "object" && d !== null ? d.result : d;
+
+        res_angle.innerHTML = `
+            <div class="result-block">
+                <b>Kąt:</b><br>
+                \\(${result}^\\circ\\)
+            </div>
+            ${renderPlot(d?.plot)}
+        `;
+        renderMath(res_angle);
     } catch(error) {
         showError(res_angle, error);
     }
