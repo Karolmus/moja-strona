@@ -163,16 +163,11 @@ body {
     font-weight: 600;
 }
 
-.meta-divider {
-    width: 1px;
-    background: rgba(0,0,0,0.2);
-    align-self: stretch;
-}
-
 .meta-right {
     margin-left: auto;
     display: flex;
     align-items: center;
+    gap: 6px;
 }
 
 .task-image {
@@ -377,7 +372,7 @@ footer {
 @media(max-width: 760px) {
     .container {
         margin: 24px auto;
-        padding: 14px;
+        padding: 5px;
     }
 
     .task-card {
@@ -390,21 +385,31 @@ footer {
 
     .task-actions {
         grid-template-columns: 1fr;
+        justify-items: center;
     }
 
     .action-group.tools,
     .action-group.navigation,
     .action-group.check {
-        justify-content: stretch;
+        justify-content: center;
     }
 
     .action-group {
-        display: grid;
-        grid-template-columns: 1fr;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .action-group.result-buttons {
+        display: none;
+    }
+
+    .action-group.result-buttons.active {
+        display: flex;
     }
 
     .action-btn {
-        width: 100%;
+        min-width: min(160px, 100%);
     }
 
     .mcq {
@@ -420,11 +425,6 @@ footer {
         margin-left: 0;
         flex-direction: column;
         align-items: stretch;
-    }
-
-    .meta-divider {
-        width: 100%;
-        height: 1px;
     }
 
     .task-counter {
@@ -619,14 +619,10 @@ function drawTask(index = currentIndex){
             ${parseFile(currentTask.file)}
         </div>
 
-        <div class="meta-divider"></div>
-
         <div class="meta-right">
             <div class="meta-section">
                 ${currentTask.topic}
             </div>
-
-            <div class="meta-divider"></div>
 
             <div class="meta-section">
                 ${stars(currentTask.difficulty)}
