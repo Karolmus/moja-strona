@@ -2,224 +2,390 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulatory</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
 
-<!-- MathJax -->
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<style>* {
+<style>
+:root {
+    --page-bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+    --line: #d9e1ea;
+    --line-dark: #111827;
+    --text: #1f2a36;
+    --muted: #64748b;
+    --navy: #263545;
+    --navy-hover: #1c2834;
+    --blue-soft: #e8f1fb;
+    --blue-text: #24527a;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: 'Inter', 'Poppins', sans-serif;
-    background: #f4f6fb;
-    color: #111;
+    font-family: 'Poppins', sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
 }
 
-/* NAV */
-nav {
-    background: #111827;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 16px;
-}
-
-nav a {
-    color: #cbd5e1;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-nav a:hover {
-    color: white;
-}
-
-/* HERO */
-.hero {
-    background: linear-gradient(135deg, #1e293b, #334155);
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-/* LAYOUT */
 .container {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
-.grid {
+.page-header {
+    margin-bottom: 16px;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.calculator-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
 }
 
-/* CARD */
-.card {
-    background: white;
-    border-radius: 18px;
-    padding: 22px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    transition: 0.25s;
+.calculator-card {
+    display: grid;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--shadow);
 }
 
-.card:hover {
-    transform: translateY(-6px);
+.calculator-card h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.25;
 }
 
-/* INPUTS */
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.input-grid.single {
+    grid-template-columns: 1fr;
+}
+
+.field {
+    display: grid;
+    gap: 5px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
 label {
-    font-size: 13px;
-    color: #64748b;
-    display: block;
-    margin-top: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
 }
 
 input {
     width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    background: #fafafa;
-    margin-top: 5px;
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 11px;
+    background: white;
+    color: var(--text);
+    font: inherit;
 }
 
 input:focus {
-    outline: none;
-    border-color: #2563eb;
-    background: white;
+    outline: 3px solid rgba(88, 101, 242, 0.18);
+    outline-offset: 1px;
+    border-color: #b8d3ee;
 }
 
-/* BUTTON */
-button {
-    margin-top: 12px;
+.calc-btn {
     width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    background: #1f2937;
+    min-height: 42px;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    background: var(--navy);
     color: white;
-    font-weight: 600;
     cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
-button:hover {
-    background: #111827;
+.calc-btn:hover {
+    background: var(--navy-hover);
+    border-color: var(--navy-hover);
+    transform: translateY(-1px);
 }
 
-/* RESULT */
+.calc-btn:focus-visible {
+    outline: 3px solid rgba(88, 101, 242, 0.25);
+    outline-offset: 2px;
+}
+
 .result {
-    margin-top: 15px;
+    min-height: 48px;
+    border: 1px solid var(--line);
+    border-left: 4px solid #8eb5de;
+    border-radius: 8px;
+    padding: 12px;
+    background: var(--surface-soft);
+    color: var(--text);
+    overflow-x: auto;
+}
+
+footer {
+    text-align: center;
     padding: 15px;
-    border-radius: 12px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    min-height: 40px;
-}</style>
+    background: #1f2a36;
+    color: #aaa;
+    margin-top: 40px;
+}
+
+@media(max-width: 760px) {
+    .container {
+        margin: 24px auto;
+        padding: 5px;
+    }
+
+    .page-header {
+        margin-bottom: 12px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .calculator-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .calculator-card {
+        padding: 16px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<nav>
-    <a href="index.html">Strona główna</a>
-    <a href="zapisy.html">Zapisy 2026/27</a>
-    <a href="terminy.html">Wolne terminy</a>
-    <a href="kalkulatory.html">Kalkulatory</a>
-    <a href="kontakt.html">Kontakt</a>
-</nav>
+<div id="nav"></div>
 
-<section class="hero">
-<h1>Matematyczne Kalkulatory</h1>
-</section>
+<main class="container">
+    <div class="page-header">
+        <h1 class="page-title">Kalkulatory</h1>
+    </div>
 
-<div class="container">
-<div class="grid">
+    <div class="calculator-grid">
 
-<!-- BERNOULLI -->
-<div class="card">
-<h3>Bernoulli</h3>
+        <section class="calculator-card">
+            <h2>Bernoulli</h2>
 
-<label>p</label>
-<input id="p">
+            <div class="input-grid">
+                <div class="field">
+                    <label for="p">p</label>
+                    <input id="p" inputmode="decimal">
+                </div>
 
-<label>n</label>
-<input id="n">
+                <div class="field">
+                    <label for="n">n</label>
+                    <input id="n" inputmode="numeric">
+                </div>
 
-<label>k (np. 1,2,3)</label>
-<input id="k">
+                <div class="field full">
+                    <label for="k">k</label>
+                    <input id="k" placeholder="1,2,3">
+                </div>
+            </div>
 
-<button onclick="calcBernoulli()">Oblicz</button>
-<div id="res1" class="result"></div>
-</div>
+            <button class="calc-btn" onclick="calcBernoulli()">Oblicz</button>
+            <div id="res1" class="result"></div>
+        </section>
 
-<!-- POLY -->
-<div class="card">
-<h3>Wielomian</h3>
+        <section class="calculator-card">
+            <h2>Wielomian</h2>
 
-<label>współczynniki</label>
-<input id="coeffs">
+            <div class="input-grid single">
+                <div class="field">
+                    <label for="coeffs">Współczynniki</label>
+                    <input id="coeffs" placeholder="1,0,-1">
+                </div>
+            </div>
 
-<button onclick="calcPoly()">Oblicz</button>
-<div id="res2" class="result"></div>    
-</div>
+            <button class="calc-btn" onclick="calcPoly()">Oblicz</button>
+            <div id="res2" class="result"></div>
+        </section>
 
-<!-- STYCZNA -->
-<div class="card">
-<h3>Styczna</h3>
+        <section class="calculator-card">
+            <h2>Styczna</h2>
 
-<label>xa, ya</label>
-<input id="xa"><input id="ya">
+            <div class="input-grid">
+                <div class="field">
+                    <label for="xa">xA</label>
+                    <input id="xa" inputmode="decimal">
+                </div>
 
-<label>xs, ys</label>
-<input id="xs"><input id="ys">
+                <div class="field">
+                    <label for="ya">yA</label>
+                    <input id="ya" inputmode="decimal">
+                </div>
 
-<label>r</label>
-<input id="r">
+                <div class="field">
+                    <label for="xs">xS</label>
+                    <input id="xs" inputmode="decimal">
+                </div>
 
-<button onclick="calcStyczna()">Oblicz</button>
-<div id="res_styczna" class="result"></div>
-</div>
+                <div class="field">
+                    <label for="ys">yS</label>
+                    <input id="ys" inputmode="decimal">
+                </div>
 
-<!-- LINE CIRCLE -->
-<div class="card">
-<h3>Prosta i okrąg</h3>
+                <div class="field full">
+                    <label for="r">r</label>
+                    <input id="r" inputmode="decimal">
+                </div>
+            </div>
 
-<input id="A"><input id="B"><input id="C">
-<input id="p1"><input id="q1"><input id="r1">
+            <button class="calc-btn" onclick="calcStyczna()">Oblicz</button>
+            <div id="res_styczna" class="result"></div>
+        </section>
 
-<button onclick="calcLineCircle()">Oblicz</button>
-<div id="res_line" class="result"></div>
-</div>
+        <section class="calculator-card">
+            <h2>Prosta i okrąg</h2>
 
-<!-- TWO CIRCLES -->
-<div class="card">
-<h3>Dwa okręgi</h3>
+            <div class="input-grid">
+                <div class="field">
+                    <label for="A">A</label>
+                    <input id="A" inputmode="decimal">
+                </div>
 
-<input id="a"><input id="b"><input id="c">
-<input id="p2"><input id="q2"><input id="r2">
+                <div class="field">
+                    <label for="B">B</label>
+                    <input id="B" inputmode="decimal">
+                </div>
 
-<button onclick="calcTwoCircles()">Oblicz</button>
-<div id="res_circles" class="result"></div>
-</div>
+                <div class="field">
+                    <label for="C">C</label>
+                    <input id="C" inputmode="decimal">
+                </div>
 
-<!-- ANGLE -->
-<div class="card">
-<h3>Kąt</h3>
+                <div class="field">
+                    <label for="p1">p</label>
+                    <input id="p1" inputmode="decimal">
+                </div>
 
-<input id="a1"><input id="a2">
+                <div class="field">
+                    <label for="q1">q</label>
+                    <input id="q1" inputmode="decimal">
+                </div>
 
-<button onclick="calcAngle()">Oblicz</button>
-<div id="res_angle" class="result"></div>
-</div>
+                <div class="field">
+                    <label for="r1">r</label>
+                    <input id="r1" inputmode="decimal">
+                </div>
+            </div>
 
-</div>
-</div>
+            <button class="calc-btn" onclick="calcLineCircle()">Oblicz</button>
+            <div id="res_line" class="result"></div>
+        </section>
+
+        <section class="calculator-card">
+            <h2>Dwa okręgi</h2>
+
+            <div class="input-grid">
+                <div class="field">
+                    <label for="a">a1</label>
+                    <input id="a" inputmode="decimal">
+                </div>
+
+                <div class="field">
+                    <label for="b">b1</label>
+                    <input id="b" inputmode="decimal">
+                </div>
+
+                <div class="field">
+                    <label for="c">r1</label>
+                    <input id="c" inputmode="decimal">
+                </div>
+
+                <div class="field">
+                    <label for="p2">a2</label>
+                    <input id="p2" inputmode="decimal">
+                </div>
+
+                <div class="field">
+                    <label for="q2">b2</label>
+                    <input id="q2" inputmode="decimal">
+                </div>
+
+                <div class="field">
+                    <label for="r2">r2</label>
+                    <input id="r2" inputmode="decimal">
+                </div>
+            </div>
+
+            <button class="calc-btn" onclick="calcTwoCircles()">Oblicz</button>
+            <div id="res_circles" class="result"></div>
+        </section>
+
+        <section class="calculator-card">
+            <h2>Kąt</h2>
+
+            <div class="input-grid">
+                <div class="field">
+                    <label for="a1">a1</label>
+                    <input id="a1" inputmode="decimal">
+                </div>
+
+                <div class="field">
+                    <label for="a2">a2</label>
+                    <input id="a2" inputmode="decimal">
+                </div>
+            </div>
+
+            <button class="calc-btn" onclick="calcAngle()">Oblicz</button>
+            <div id="res_angle" class="result"></div>
+        </section>
+
+    </div>
+</main>
+
+<footer>© 2026 Delta sigma</footer>
 
 <script src="static/script.js"></script>
+<script>
+fetch("nav.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("nav").innerHTML = data;
+});
+</script>
+
 </body>
 </html>

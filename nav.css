@@ -44,10 +44,10 @@
 }
 
 /* MOBILE */
-@media (max-width: 300px){
+@media (max-width: 760px){
     .main-nav{
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
         padding: 12px;
     }
 
