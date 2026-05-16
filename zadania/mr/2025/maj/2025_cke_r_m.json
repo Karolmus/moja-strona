@@ -1,0 +1,18 @@
+[
+  {
+    "file": "5_2025_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "algebra",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz miejsca zerowe wyrażeń pod wartością bezwzględną i zbadaj trzy przypadki.",
+    "answer": "x ∈ (-∞, -10) ∪ (-2/3, +∞)"
+  },
+  {
+    "file": "1_2025_cke_r_m.png",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz jakie wyrażenie powstaje gdy t=2 i N=15625.",
+    "answer": "wzrost o 25%"
+  }
+ ]
