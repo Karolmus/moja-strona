@@ -23,6 +23,8 @@
     --blue-text: #24527a;
     --green-soft: #e8f5e7;
     --green-text: #2f6b36;
+    --red-soft: #fdecea;
+    --red-text: #8b2119;
     --success: rgba(0, 160, 44, 0.82);
     --warning: rgba(238, 194, 55, 0.9);
     --danger: rgba(220, 52, 42, 0.86);
@@ -285,6 +287,10 @@ body {
     max-height: 450px;
     object-fit: contain;
     display: block;
+    padding: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 8px;
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.25s ease, transform 0.25s ease;
@@ -413,15 +419,25 @@ button {
 }
 
 .action-btn.success {
-    background: var(--success);
-    color: white;
-    border-color: transparent;
+    background: var(--green-soft);
+    color: var(--green-text);
+    border-color: #cce5c9;
 }
 
 .action-btn.danger {
-    background: var(--danger);
-    color: white;
-    border-color: transparent;
+    background: var(--red-soft);
+    color: var(--red-text);
+    border-color: #efc6c2;
+}
+
+.action-btn.success:hover {
+    background: #dff0dd;
+    border-color: #b8d9b4;
+}
+
+.action-btn.danger:hover {
+    background: #f9ddd9;
+    border-color: #e8b5af;
 }
 
 .result-buttons {
@@ -548,6 +564,10 @@ footer {
 
     .task-image-stack {
         gap: 10px;
+    }
+
+    .task-image {
+        padding: 6px;
     }
 
     .context-image {
@@ -738,6 +758,7 @@ function loadTaskSource(source){
             ...task,
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
+            tags: Array.isArray(task.tags) ? task.tags : [],
             sourceId: sourceMeta.id,
             sourceLabel: sourceMeta.label,
             sourceDetail: sourceMeta.detail
@@ -1139,7 +1160,6 @@ function setupMCQ(){
         });
     } else {
         mcq.classList.remove("active");
-        resultButtons.classList.add("active");
     }
 }
 
@@ -1198,7 +1218,7 @@ function addProgress(type){
 }
 
 function finish(type){
-    if(type === "good" && (hintUsed || answerShown)){
+    if(type === "good" && hintUsed){
         addProgress("medium");
     } else {
         addProgress(type);
@@ -1221,6 +1241,10 @@ function showAnswer(){
     answerShown = true;
 
     showMessage(formatAnswer(currentTask.answer) || "Brak odpowiedzi.");
+
+    if(!isClosedTask(currentTask)){
+        document.getElementById("resultButtons").classList.add("active");
+    }
 }
 
 function showMessage(text){
