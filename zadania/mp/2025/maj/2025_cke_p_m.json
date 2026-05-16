@@ -1,17 +1,464 @@
 [
-   {
+  {
     "file": "1_2025_cke_p_m.png",
-    "difficulty": 2,
-    "topic": "arytmetyka",
+    "difficulty": 1,
+    "topic": "pierwiastki",
     "level": "matura_podstawowa",
-    "hint": "Wartość wyrażenia pod wartością bezwzględną zmienia znak gdy jest ujemne.",
-    "answer": "C"
+    "hint": "Uprość pierwiastki: √32 = 4√2, a potem podnieś różnicę do kwadratu.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "potęgi",
+    "level": "matura_podstawowa",
+    "hint": "Wyłącz wspólny czynnik 5^12 i skorzystaj z praw działań na potęgach.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "logarytmy",
+    "level": "matura_podstawowa",
+    "hint": "Użyj wzorów na logarytm ilorazu i logarytm potęgi.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
   },
   {
     "file": "4_2025_cke_p_m.png",
     "difficulty": 1,
+    "topic": "algebra",
+    "level": "matura_podstawowa",
+    "hint": "Rozwiń oba kwadraty ze wzorów skróconego mnożenia i zredukuj wyrazy podobne.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "podzielność",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz nieparzystą liczbę naturalną jako n = 2l + 1 i przekształć wyrażenie do postaci wielokrotności 4.",
+    "answer": "Należy wykazać podzielność przez 4, np. dla n = 2l + 1 otrzymać 3n² + 2n + 7 = 4(3l² + 4l + 3)."
+  },
+  {
+    "file": "6_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "nierówności",
+    "level": "matura_podstawowa",
+    "hint": "Rozwiąż nierówność liniową i porównaj wynik z zaznaczeniami na osiach.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj z zasady iloczynu równego zeru i pamiętaj, że x² + 25 nie ma miejsc zerowych w liczbach rzeczywistych.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "wyrażenia wymierne",
+    "level": "matura_podstawowa",
+    "hint": "Rozłóż mianownik na kwadrat dwumianu i skróć wspólne czynniki, pamiętając o założeniach.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "układy równań",
+    "level": "matura_podstawowa",
+    "hint": "Oznacz kwotę zespołu A przez x, zespołu B przez y i zapisz układ z sumą budżetu oraz wykorzystaną kwotą.",
+    "answer": "735 000 zł"
+  },
+  {
+    "file": "10_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "nierówność kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Przenieś wszystko na jedną stronę, oblicz miejsca zerowe trójmianu i odczytaj, gdzie parabola jest poniżej osi.",
+    "answer": "x ∈ (1/3, 3/2)"
+  },
+  {
+    "file": "11_2025_cke_p_m.png",
+    "difficulty": 4,
     "topic": "funkcje",
     "level": "matura_podstawowa",
-    "hint": "Zastosuj wzór na różnicę logarytmów.",
-    "answer": "A"
-  }]
+    "hint": "Odczytuj przedziały bezpośrednio z definicji funkcji i z wykresu; zwróć uwagę na końce domknięte i otwarte.",
+    "answer": "1. Dziedzina: [−4, 4).\n2. Zbiór wartości: (−3, 3].\n3. Argumenty, dla których f przyjmuje wartości dodatnie: [−4, 3).\n4. Rozwiązania równania f(x) = 3: [−2, 2]."
+  },
+  {
+    "file": "12.1_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Użyj postaci kanonicznej z wierzchołkiem (3, 6), czyli f(x)=a(x−3)²+6, a potem podstaw punkt (0, 3).",
+    "answer": "f(x) = −1/3 · (x − 3)² + 6",
+    "contextFile": "12_2025_cke_p_m.png"
+  },
+  {
+    "file": "12.2_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Oś symetrii paraboli przechodzi przez jej wierzchołek.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "12_2025_cke_p_m.png"
+  },
+  {
+    "file": "12.3_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Przesunięcie wykresu o 3 jednostki w dół sprawia, że miejsca zerowe funkcji g odpowiadają punktom wykresu f o wartości 3.",
+    "answer": "6",
+    "contextFile": "12_2025_cke_p_m.png"
+  },
+  {
+    "file": "13_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja liniowa",
+    "level": "matura_podstawowa",
+    "hint": "Funkcja liniowa nie ma miejsca zerowego wtedy, gdy jest stała i różna od zera, czyli współczynnik przy x wynosi 0.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14.1_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Oblicz kolejne wyrazy z definicji rekurencyjnej: a₂ z a₁, a potem a₃ z a₂.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "14_2025_cke_p_m.png"
+  },
+  {
+    "file": "14.2_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Porównaj kolejne różnice oraz kolejne ilorazy wyrazów ciągu.",
+    "answer": "FF",
+    "type": "closed",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "contextFile": "14_2025_cke_p_m.png"
+  },
+  {
+    "file": "15_2025_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Dla ciągu arytmetycznego środkowy wyraz jest średnią sąsiednich; potem sprawdź warunek malejącości.",
+    "answer": "m = 5/2"
+  },
+  {
+    "file": "16_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "ciąg geometryczny",
+    "level": "matura_podstawowa",
+    "hint": "Najpierw wyznacz iloraz q = a₂/a₁, a potem oblicz a₄.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "17_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz tg α jako sin α / cos α i wykorzystaj sin²α + cos²α = 1.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "18.1_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Wyznacz potrzebne długości w trójkącie prostokątnym i użyj definicji tangensa.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "18_2025_cke_p_m.png"
+  },
+  {
+    "file": "18.2_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Wyznacz przeciwprostokątną w odpowiednim trójkącie i użyj definicji sinusa.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "18_2025_cke_p_m.png"
+  },
+  {
+    "file": "19_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "okręgi",
+    "level": "matura_podstawowa",
+    "hint": "Kąt środkowy oparty na tym samym łuku jest dwa razy większy od kąta wpisanego.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "20_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "podobieństwo",
+    "level": "matura_podstawowa",
+    "hint": "Ustal odpowiadające sobie boki w podobnych trójkątach i zapisz proporcję.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "21_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "geometria",
+    "level": "matura_podstawowa",
+    "hint": "Do sprawdzenia boków użyj twierdzenia cosinusów, a do pola wzoru z sinusem kąta między bokami.",
+    "answer": "FP",
+    "type": "closed",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ]
+  },
+  {
+    "file": "22_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "geometria analityczna",
+    "level": "matura_podstawowa",
+    "hint": "Punkt S jest środkiem kwadratu, więc odcinek AS jest połową przekątnej.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "23_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "proste",
+    "level": "matura_podstawowa",
+    "hint": "Dwie proste są równoległe, gdy mają równe współczynniki kierunkowe.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "24_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "okrąg",
+    "level": "matura_podstawowa",
+    "hint": "Promień okręgu to odległość środka S od punktu P=(0,0); w równaniu okręgu występuje r².",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "25_2025_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "stereometria",
+    "level": "matura_podstawowa",
+    "hint": "Rozważ przekrój osiowy stożka. Połowa kąta rozwarcia ma 60°, a tworząca jest przeciwprostokątną trójkąta prostokątnego.",
+    "answer": "V = 64π"
+  },
+  {
+    "file": "26_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "stereometria",
+    "level": "matura_podstawowa",
+    "hint": "Z objętości sześcianu wyznacz krawędź, a potem użyj wzoru na przekątną sześcianu a√3.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "27_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "kombinatoryka",
+    "level": "matura_podstawowa",
+    "hint": "Rozpatrz pozycję cyfry 0 i pamiętaj, że liczba ma być trzycyfrowa oraz nieparzysta.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "28_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "prawdopodobieństwo",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz wyniki dwóch rzutów, których suma wynosi 11, i porównaj z liczbą wszystkich 36 wyników.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "29_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "statystyka",
+    "level": "matura_podstawowa",
+    "hint": "Suma wszystkich siedmiu liczb to 7 razy średnia arytmetyczna.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "30_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "statystyka",
+    "level": "matura_podstawowa",
+    "hint": "Do mediany uporządkuj 24 wyniki i sprawdź 12. oraz 13. wartość; dominanta to najczęstsza ocena.",
+    "answer": "1. Mediana: 4,5.\n2. Dominanta: 6."
+  },
+  {
+    "file": "31_2025_cke_p_m.png",
+    "difficulty": 4,
+    "topic": "optymalizacja",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz trzecią krawędź jako 11 − x, utwórz wzór na pole całkowite i znajdź wierzchołek paraboli.",
+    "answer": "P(x) = −2x² + 22x + 88, D = (0, 11), największe pole dla x = 11/2."
+  }
+]
