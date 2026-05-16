@@ -135,6 +135,14 @@ function formatPolynomialLatex(coeffs){
         .join("");
 }
 
+function formatDecimalOutput(value){
+    if(value === undefined || value === null || value === ""){
+        return "";
+    }
+
+    return String(value).replace(".", ",");
+}
+
 /* ===== BERNOULLI ===== */
 async function calcBernoulli(){
     try {
@@ -145,11 +153,13 @@ async function calcBernoulli(){
         });
 
         const result = typeof d === "object" && d !== null ? d.result : d;
+        const rounded = typeof d === "object" && d !== null ? formatDecimalOutput(d.rounded) : "";
 
         res1.innerHTML = `
             <div class="result-block">
-                <b>Wynik:</b><br>
+                <b>Pełny wynik:</b><br>
                 \\(${result}\\)
+                ${rounded ? `<br><br><b>Zaokrąglenie:</b><br>${rounded}` : ""}
             </div>
             ${renderPlot(d?.plot)}
         `;

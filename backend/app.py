@@ -1,4 +1,5 @@
 import os
+from decimal import Decimal, ROUND_HALF_UP
 
 import sympy as sp
 from flask import Flask, jsonify, request
@@ -64,9 +65,11 @@ def api_bernoulli():
         data = payload()
         n = int(data["n"])
         result = bernoulli(data["p"], n, data["k"])
+        rounded_result = Decimal(str(sp.N(result, 20))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
         return jsonify({
             "result": sp.latex(result),
+            "rounded": str(rounded_result),
             "plot": bernoulli_plot(data["p"], n, data["k"]),
         })
 
