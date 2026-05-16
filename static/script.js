@@ -38,15 +38,40 @@ function showError(target, error){
     target.innerText = error.message || "Nie udało się obliczyć wyniku.";
 }
 
+function parseUserNumber(value){
+    const normalized = String(value)
+        .trim()
+        .replace(/\s+/g, "")
+        .replace(",", ".");
+
+    if(normalized === ""){
+        return 0;
+    }
+
+    return Number(normalized);
+}
+
 function readNumber(id){
-    return Number(document.getElementById(id).value);
+    return parseUserNumber(document.getElementById(id).value);
 }
 
 function readNumberList(id){
-    return document.getElementById(id)
-        .value
-        .split(",")
-        .map(value => Number(value.trim()))
+    const rawValue = document.getElementById(id).value.trim();
+
+    if(rawValue === ""){
+        return [];
+    }
+
+    const commaCount = (rawValue.match(/,/g) || []).length;
+    const hasStrongSeparators = /[;\n]/.test(rawValue) || /\s/.test(rawValue);
+    const values = hasStrongSeparators
+        ? rawValue.replace(/,\s+/g, ";").split(/[;\s]+/)
+        : rawValue.includes(".") || commaCount > 1
+            ? rawValue.split(",")
+            : [rawValue];
+
+    return values
+        .map(value => parseUserNumber(value))
         .filter(value => !Number.isNaN(value));
 }
 
