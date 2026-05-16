@@ -41,9 +41,47 @@ body {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1180px;
     margin: 40px auto;
     padding: 20px;
+}
+
+.tasks-layout {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.task-sidebar {
+    position: sticky;
+    top: 16px;
+    display: grid;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+    box-shadow: var(--shadow);
+}
+
+.side-section {
+    display: grid;
+    gap: 8px;
+}
+
+.sidebar-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    align-items: start;
+}
+
+.side-title {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .level-selector {
@@ -56,8 +94,14 @@ body {
     border: 1px solid var(--line);
 }
 
+.sidebar-levels {
+    margin-bottom: 0;
+    flex-direction: column;
+}
+
 .level-btn {
     flex: 1;
+    min-width: 0;
     border: none;
     background: transparent;
     color: var(--muted);
@@ -65,6 +109,8 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -77,6 +123,64 @@ body {
     background: white;
     color: var(--text);
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.source-list,
+.mode-toggle {
+    display: grid;
+    gap: 6px;
+}
+
+.source-btn,
+.mode-btn {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: white;
+    color: var(--text);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.source-btn {
+    display: grid;
+    gap: 3px;
+    padding: 10px 11px;
+    text-align: left;
+}
+
+.source-btn small {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.mode-btn {
+    min-height: 40px;
+    padding: 9px 11px;
+}
+
+.source-btn:hover,
+.mode-btn:hover {
+    background: #f3f6fa;
+    border-color: #b9c6d4;
+}
+
+.source-btn.active,
+.mode-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.16);
+}
+
+.source-btn.active small {
+    color: rgba(255,255,255,0.76);
 }
 
 .task-card {
@@ -170,6 +274,11 @@ body {
     gap: 6px;
 }
 
+.task-image-stack {
+    display: grid;
+    gap: 12px;
+}
+
 .task-image {
     width: 100%;
     height: auto;
@@ -179,6 +288,14 @@ body {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.task-image.hidden {
+    display: none;
+}
+
+.context-image {
+    max-height: 360px;
 }
 
 .task-image.fade-out {
@@ -247,7 +364,9 @@ button {
 
 .action-btn:focus-visible,
 .choice-btn:focus-visible,
-.level-btn:focus-visible {
+.level-btn:focus-visible,
+.source-btn:focus-visible,
+.mode-btn:focus-visible {
     outline: 3px solid rgba(88, 101, 242, 0.25);
     outline-offset: 2px;
 }
@@ -330,6 +449,8 @@ button {
     color: var(--text);
     border-color: var(--line);
     font-size: 16px;
+    line-height: 1.2;
+    white-space: normal;
 }
 
 .choice-btn:hover {
@@ -379,6 +500,15 @@ footer {
         padding: 16px;
     }
 
+    .tasks-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .task-sidebar {
+        position: static;
+        padding: 12px;
+    }
+
     .level-selector {
         flex-direction: column;
     }
@@ -416,15 +546,47 @@ footer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .task-image-stack {
+        gap: 10px;
+    }
+
+    .context-image {
+        max-height: 340px;
+    }
+
     .meta-box {
         flex-direction: column;
         align-items: stretch;
+        margin-bottom: 8px;
+    }
+
+    .meta-section {
+        padding: 6px 10px;
+        font-size: 12px;
+        line-height: 1.2;
     }
 
     .meta-right {
         margin-left: 0;
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+
+    .meta-right .meta-section {
+        padding-top: 4px;
+    }
+
+    .meta-right .meta-section:first-child {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .meta-right .meta-section:last-child {
+        flex: 0 0 auto;
+        white-space: nowrap;
     }
 
     .task-counter {
@@ -440,48 +602,73 @@ footer {
 
 <div class="container">
 
-    <div class="level-selector">
-        <button class="level-btn active" onclick="setLevel(this,'matura_podstawowa')">Podstawowa</button>
-        <button class="level-btn" onclick="setLevel(this,'matura_rozszerzona')">Rozszerzona</button>
-        <button class="level-btn" onclick="setLevel(this,'egzamin_osmoklasisty')">Ósmoklasista</button>
-    </div>
-
-    <div class="task-card">
-
-        <div class="progress-grid" id="progress"></div>
-
-        <div class="top-row">
-            <div class="timer" id="timer">Czas 00:00</div>
-            <div class="task-counter" id="taskCounter">0 / 0</div>
-        </div>
-
-        <div class="meta-box meta-podstawowa" id="metaBox"></div>
-
-        <img id="taskImage" class="task-image" src="" alt="zadanie">
-
-        <div class="interaction-panel">
-            <div class="task-actions">
-                <div class="action-group tools">
-                    <button class="action-btn tool" onclick="showHint()">Wskazówka</button>
-                    <button class="action-btn answer" onclick="showAnswer()">Odpowiedź</button>
+    <div class="tasks-layout">
+        <aside class="task-sidebar" aria-label="Ustawienia zadań">
+            <div class="sidebar-controls">
+                <div class="side-section">
+                    <div class="side-title">Poziom</div>
+                    <div class="level-selector sidebar-levels">
+                        <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
+                        <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
+                        <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
+                    </div>
                 </div>
 
-                <div class="action-group navigation">
-                    <button class="action-btn nav" onclick="prevTask()">← Poprzednie</button>
-                    <button class="action-btn nav" onclick="nextTask()">Kolejne →</button>
-                </div>
-
-                <div class="action-group check result-buttons" id="resultButtons">
-                    <button class="action-btn success" onclick="finish('good')">✓ Dobrze</button>
-                    <button class="action-btn danger" onclick="finish('bad')">× Źle</button>
+                <div class="side-section">
+                    <div class="side-title">Tryb</div>
+                    <div class="mode-toggle">
+                        <button class="mode-btn active" data-mode="ordered" onclick="setMode(this,'ordered')">Po kolei</button>
+                        <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="mcq" id="mcq"></div>
+            <div class="side-section">
+                <div class="side-title">Zestaw</div>
+                <div class="source-list" id="sourceList"></div>
+            </div>
+        </aside>
 
-            <div id="answer" class="box"></div>
+        <div class="task-card">
+
+            <div class="progress-grid" id="progress"></div>
+
+            <div class="top-row">
+                <div class="timer" id="timer">Czas 00:00</div>
+                <div class="task-counter" id="taskCounter">0 / 0</div>
+            </div>
+
+            <div class="meta-box meta-podstawowa" id="metaBox"></div>
+
+            <div class="task-image-stack">
+                <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania">
+                <img id="taskImage" class="task-image" src="" alt="zadanie">
+            </div>
+
+            <div class="interaction-panel">
+                <div class="task-actions">
+                    <div class="action-group tools">
+                        <button class="action-btn tool" onclick="showHint()">Wskazówka</button>
+                        <button class="action-btn answer" onclick="showAnswer()">Odpowiedź</button>
+                    </div>
+
+                    <div class="action-group navigation">
+                        <button class="action-btn nav" onclick="prevTask()">← Poprzednie</button>
+                        <button class="action-btn nav" onclick="nextTask()">Kolejne →</button>
+                    </div>
+
+                    <div class="action-group check result-buttons" id="resultButtons">
+                        <button class="action-btn success" onclick="finish('good')">✓ Dobrze</button>
+                        <button class="action-btn danger" onclick="finish('bad')">× Źle</button>
+                    </div>
+                </div>
+
+                <div class="mcq" id="mcq"></div>
+
+                <div id="answer" class="box"></div>
+            </div>
+
         </div>
-
     </div>
 </div>
 
@@ -495,6 +682,10 @@ let hintUsed = false;
 let answerShown = false;
 let seconds = 0;
 let currentIndex = 0;
+let selectedSource = "all";
+let taskMode = "ordered";
+let randomHistory = [];
+let randomHistoryIndex = -1;
 
 const TASK_SOURCES = [
     "zadania/mp/2025/maj/2025_cke_p_m.json",
@@ -502,23 +693,39 @@ const TASK_SOURCES = [
     "zadania/eo/2025/maj/2025_cke_o_m.json"
 ];
 
+const SOURCE_TYPE_LABELS = {
+    mp: "Matura podstawowa",
+    mr: "Matura rozszerzona",
+    eo: "Egzamin Ósmoklasisty"
+};
+
+const MONTH_LABELS = {
+    maj: "maj"
+};
+
 setInterval(() => {
     seconds++;
+    updateTimer();
+}, 1000);
 
+function updateTimer(){
     document.getElementById("timer").innerText =
         `Czas ${String(Math.floor(seconds / 60)).padStart(2,'0')}:${String(seconds % 60).padStart(2,'0')}`;
-}, 1000);
+}
 
 Promise.all(TASK_SOURCES.map(loadTaskSource))
 .then(groups => {
     tasks = groups.flat();
-    drawTask();
+    renderSourceSelector();
+    drawTask(getInitialIndex());
 })
 .catch(() => {
     showMessage("Nie udało się wczytać zadań. Odśwież stronę albo spróbuj później.");
 });
 
 function loadTaskSource(source){
+    const sourceMeta = getSourceMeta(source);
+
     return fetch(source)
     .then(r => {
         if(!r.ok) throw new Error("Nie udało się wczytać listy zadań.");
@@ -529,24 +736,93 @@ function loadTaskSource(source){
 
         return items.map(task => ({
             ...task,
-            path: basePath + task.file
+            path: basePath + task.file,
+            contextPath: task.contextFile ? basePath + task.contextFile : null,
+            sourceId: sourceMeta.id,
+            sourceLabel: sourceMeta.label,
+            sourceDetail: sourceMeta.detail
         }));
     });
 }
 
+function getSourceMeta(source){
+    const parts = source.split("/");
+    const type = parts[1];
+    const year = parts[2];
+    const month = parts[3];
+    const label = SOURCE_TYPE_LABELS[type] || "Zestaw";
+    const detail = `${year} / ${MONTH_LABELS[month] || month} / CKE`;
+
+    return {
+        id: source,
+        label,
+        detail
+    };
+}
+
 function pool(){
-    return tasks.filter(t => t.level === selectedLevel);
+    return tasks.filter(t =>
+        t.level === selectedLevel &&
+        (selectedSource === "all" || t.sourceId === selectedSource)
+    );
 }
 
 function setLevel(btn, level){
     selectedLevel = level;
-    currentIndex = 0;
 
+    const selectedSourceTask = tasks.find(t => t.sourceId === selectedSource);
+
+    if(selectedSourceTask && selectedSourceTask.level !== selectedLevel){
+        selectedSource = "all";
+    }
+
+    updateLevelButtons();
+    updateMetaTheme();
+    resetSession();
+    renderSourceSelector();
+    drawTask(getInitialIndex());
+}
+
+function setSource(sourceId){
+    selectedSource = sourceId;
+
+    if(sourceId !== "all"){
+        const sourceTask = tasks.find(t => t.sourceId === sourceId);
+
+        if(sourceTask){
+            selectedLevel = sourceTask.level;
+        }
+    }
+
+    updateLevelButtons();
+    updateMetaTheme();
+    resetSession();
+    renderSourceSelector();
+    drawTask(getInitialIndex());
+}
+
+function setMode(btn, mode){
+    taskMode = mode;
+    updateModeButtons();
+    resetSession();
+    drawTask(getInitialIndex());
+}
+
+function updateLevelButtons(){
     document.querySelectorAll(".level-btn")
-        .forEach(b => b.classList.remove("active"));
+        .forEach(b => {
+            b.classList.toggle("active", b.dataset.level === selectedLevel);
+        });
+}
 
-    btn.classList.add("active");
+function updateModeButtons(){
+    document.querySelectorAll(".mode-btn")
+        .forEach(b => {
+            b.classList.toggle("active", b.dataset.mode === taskMode);
+        });
+}
 
+function updateMetaTheme(){
     const meta = document.getElementById("metaBox");
 
     meta.classList.remove(
@@ -556,16 +832,105 @@ function setLevel(btn, level){
         "meta-all"
     );
 
-    if(level === "matura_podstawowa")
+    if(selectedLevel === "matura_podstawowa")
         meta.classList.add("meta-podstawowa");
 
-    if(level === "matura_rozszerzona")
+    if(selectedLevel === "matura_rozszerzona")
         meta.classList.add("meta-rozszerzona");
 
-    if(level === "egzamin_osmoklasisty")
+    if(selectedLevel === "egzamin_osmoklasisty")
         meta.classList.add("meta-osmoklasista");
+}
 
-    drawTask();
+function renderSourceSelector(){
+    const list = document.getElementById("sourceList");
+
+    if(!list) return;
+
+    list.innerHTML = "";
+
+    addSourceButton(
+        list,
+        "all",
+        "Wszystkie zestawy",
+        `${tasks.filter(t => t.level === selectedLevel).length} zadań`,
+        selectedSource === "all"
+    );
+
+    TASK_SOURCES
+        .map(getSourceMeta)
+        .forEach(source => {
+            const count = tasks.filter(t =>
+                t.sourceId === source.id &&
+                t.level === selectedLevel
+            ).length;
+
+            if(!count) return;
+
+            addSourceButton(
+                list,
+                source.id,
+                source.label,
+                `${source.detail} • ${count} zadań`,
+                selectedSource === source.id
+            );
+        });
+}
+
+function addSourceButton(list, sourceId, label, detail, active){
+    const button = document.createElement("button");
+    const name = document.createElement("span");
+    const meta = document.createElement("small");
+
+    button.type = "button";
+    button.className = active ? "source-btn active" : "source-btn";
+    button.onclick = () => setSource(sourceId);
+
+    name.innerText = label;
+    meta.innerText = detail;
+
+    button.appendChild(name);
+    button.appendChild(meta);
+    list.appendChild(button);
+}
+
+function resetSession(){
+    currentIndex = 0;
+    randomHistory = [];
+    randomHistoryIndex = -1;
+    seconds = 0;
+    updateTimer();
+    document.getElementById("progress").innerHTML = "";
+}
+
+function getInitialIndex(){
+    const p = pool();
+
+    if(!p.length) return 0;
+    if(taskMode === "random") return randomIndex(p.length, -1);
+
+    return 0;
+}
+
+function randomIndex(length, current){
+    if(length <= 1) return 0;
+
+    let index = current;
+
+    while(index === current){
+        index = Math.floor(Math.random() * length);
+    }
+
+    return index;
+}
+
+function rememberRandomIndex(index){
+    if(taskMode !== "random") return;
+    if(randomHistory[randomHistoryIndex] === index) return;
+
+    randomHistory = randomHistory.slice(0, randomHistoryIndex + 1);
+    randomHistory.push(index);
+    randomHistoryIndex = randomHistory.length - 1;
 }
 
 function parseFile(file){
@@ -588,22 +953,48 @@ function stars(n){
 function isClosedTask(task){
     if(task.type === "closed" && Array.isArray(task.options)) return true;
 
-    return ["A", "B", "C", "D"].includes(task.answer);
+    return ["A", "B", "C", "D", "P", "F", "PP", "PF", "FP", "FF"].includes(task.answer);
 }
 
 function getOptions(task){
     if(Array.isArray(task.options)) return task.options;
 
+    if(["P", "F"].includes(task.answer)) return ["P", "F"];
+    if(["PP", "PF", "FP", "FF"].includes(task.answer)) return ["PP", "PF", "FP", "FF"];
+
     return ["A", "B", "C", "D"];
 }
 
-function drawTask(index = currentIndex){
+function formatOption(option){
+    const labels = {
+        P: "Prawda",
+        F: "Fałsz",
+        PP: "Prawda / Prawda",
+        PF: "Prawda / Fałsz",
+        FP: "Fałsz / Prawda",
+        FF: "Fałsz / Fałsz"
+    };
+
+    return labels[option] || option;
+}
+
+function formatAnswer(answer){
+    const formatted = formatOption(answer);
+
+    if(formatted === answer) return answer;
+
+    return `${answer} - ${formatted}`;
+}
+
+function drawTask(index = currentIndex, trackHistory = true){
     const p = pool();
 
     if(!p.length){
         currentTask = null;
         document.getElementById("taskCounter").innerText = "0 / 0";
         document.getElementById("taskImage").src = "";
+        document.getElementById("contextImage").src = "";
+        document.getElementById("contextImage").classList.add("hidden");
         document.getElementById("metaBox").innerHTML = "";
         document.getElementById("mcq").classList.remove("active");
         document.getElementById("resultButtons").classList.remove("active");
@@ -617,14 +1008,33 @@ function drawTask(index = currentIndex){
     currentIndex = index;
     currentTask = p[currentIndex];
 
+    if(trackHistory){
+        rememberRandomIndex(currentIndex);
+    }
+
     const img = document.getElementById("taskImage");
+    const contextImg = document.getElementById("contextImage");
 
     img.classList.add("fade-out");
+    contextImg.classList.add("fade-out");
 
     setTimeout(() => {
         img.onerror = () => {
             showMessage("Nie udało się wczytać obrazka zadania.");
         };
+
+        contextImg.onerror = () => {
+            contextImg.classList.add("hidden");
+            showMessage("Nie udało się wczytać informacji do zadania.");
+        };
+
+        if(currentTask.contextPath){
+            contextImg.src = currentTask.contextPath;
+            contextImg.classList.remove("hidden");
+        } else {
+            contextImg.removeAttribute("src");
+            contextImg.classList.add("hidden");
+        }
 
         img.src = currentTask.path;
 
@@ -649,6 +1059,7 @@ function drawTask(index = currentIndex){
         `;
 
         img.classList.remove("fade-out");
+        contextImg.classList.remove("fade-out");
 
         setupMCQ();
         hideMessage();
@@ -663,6 +1074,17 @@ function nextTask(){
 
     if(!p.length) return;
 
+    if(taskMode === "random"){
+        if(randomHistoryIndex < randomHistory.length - 1){
+            randomHistoryIndex++;
+            drawTask(randomHistory[randomHistoryIndex], false);
+            return;
+        }
+
+        drawTask(randomIndex(p.length, currentIndex));
+        return;
+    }
+
     currentIndex++;
 
     if(currentIndex >= p.length){
@@ -676,6 +1098,15 @@ function prevTask(){
     const p = pool();
 
     if(!p.length) return;
+
+    if(taskMode === "random"){
+        if(randomHistoryIndex > 0){
+            randomHistoryIndex--;
+            drawTask(randomHistory[randomHistoryIndex], false);
+        }
+
+        return;
+    }
 
     currentIndex--;
 
@@ -700,7 +1131,8 @@ function setupMCQ(){
             const b = document.createElement("button");
 
             b.className = "choice-btn";
-            b.innerText = option;
+            b.dataset.value = option;
+            b.innerText = formatOption(option);
             b.onclick = () => choose(option, b);
 
             mcq.appendChild(b);
@@ -746,7 +1178,7 @@ function disableMCQ(){
 function revealCorrectAnswer(correct){
     document.querySelectorAll("#mcq button")
         .forEach(b => {
-            if(b.innerText === correct){
+            if(b.dataset.value === correct){
                 b.classList.add("correct");
             }
         });
@@ -788,7 +1220,7 @@ function showAnswer(){
 
     answerShown = true;
 
-    showMessage(currentTask.answer || "Brak odpowiedzi.");
+    showMessage(formatAnswer(currentTask.answer) || "Brak odpowiedzi.");
 }
 
 function showMessage(text){
