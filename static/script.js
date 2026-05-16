@@ -1,88 +1,155 @@
-async function post(url,data){
-    let r = await fetch(url,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(data)
+const LOCAL_API_URL = "http://127.0.0.1:5000";
+const RENDER_API_URL = "https://deltasigma-calculators.onrender.com";
+
+const API_BASE_URL = (
+    window.CALCULATORS_API_URL ||
+    (["localhost", "127.0.0.1"].includes(window.location.hostname) ? LOCAL_API_URL : RENDER_API_URL)
+).replace(/\/$/, "");
+
+async function post(path, data){
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
     });
-    return await r.json();
+
+    const result = await response.json().catch(() => null);
+
+    if(!response.ok || result?.error){
+        throw new Error(result?.error || "Nie udało się połączyć z kalkulatorem.");
+    }
+
+    return result;
+}
+
+function renderMath(){
+    if(window.MathJax){
+        MathJax.typeset();
+    }
+}
+
+function showError(target, error){
+    target.innerText = error.message || "Nie udało się obliczyć wyniku.";
+}
+
+function readNumber(id){
+    return Number(document.getElementById(id).value);
+}
+
+function readNumberList(id){
+    return document.getElementById(id)
+        .value
+        .split(",")
+        .map(value => Number(value.trim()))
+        .filter(value => !Number.isNaN(value));
 }
 
 /* ===== BERNOULLI ===== */
 async function calcBernoulli(){
-    let d = await post("/api/bernoulli",{
-        p:+p.value,
-        n:+n.value,
-        k:k.value.split(",").map(Number)
-    });
+    try {
+        const d = await post("/api/bernoulli", {
+            p: readNumber("p"),
+            n: readNumber("n"),
+            k: readNumberList("k")
+        });
 
-    res1.innerHTML = `\\(${d}\\)`;
-    MathJax.typeset();
+        res1.innerHTML = `\\(${d}\\)`;
+        renderMath();
+    } catch(error) {
+        showError(res1, error);
+    }
 }
 
 /* ===== POLY ===== */
 async function calcPoly(){
-    let d = await post("/api/poly",{
-        coeffs:coeffs.value.split(",").map(Number)
-    });
+    try {
+        const d = await post("/api/poly", {
+            coeffs: readNumberList("coeffs")
+        });
 
-    let html = "<b>Rozwiązania:</b><br>";
+        let html = "<b>Rozwiązania:</b><br>";
 
-    d.sol.forEach(s=>{
-        html += `\\(${s}\\)<br>`;
-    });
+        d.sol.forEach(s => {
+            html += `\\(${s}\\)<br>`;
+        });
 
-    html += "<br><b>Postać:</b><br>";
-    html += `\\(${d.fac}\\)`;
+        html += "<br><b>Postać:</b><br>";
+        html += `\\(${d.fac}\\)`;
 
-    res2.innerHTML = html;
-    MathJax.typeset();
+        res2.innerHTML = html;
+        renderMath();
+    } catch(error) {
+        showError(res2, error);
+    }
 }
 
 /* ===== STYCZNA ===== */
 async function calcStyczna(){
-    let d = await post("/api/styczna",{
-        xa:+xa.value,
-        ya:+ya.value,
-        xs:+xs.value,
-        ys:+ys.value,
-        r:+r.value
-    });
+    try {
+        const d = await post("/api/styczna", {
+            xa: readNumber("xa"),
+            ya: readNumber("ya"),
+            xs: readNumber("xs"),
+            ys: readNumber("ys"),
+            r: readNumber("r")
+        });
 
-    res_styczna.innerHTML =
-        `\\(${d[0]}\\)<br>\\(${d[1]}\\)`;
-
-    MathJax.typeset();
+        res_styczna.innerHTML = d.map(item => `\\(${item}\\)`).join("<br>");
+        renderMath();
+    } catch(error) {
+        showError(res_styczna, error);
+    }
 }
 
 /* ===== LINE CIRCLE ===== */
 async function calcLineCircle(){
-    let d = await post("/api/line_circle",{
-        A:+A.value,B:+B.value,C:+C.value,
-        p:+p1.value,q:+q1.value,r:+r1.value
-    });
+    try {
+        const d = await post("/api/line_circle", {
+            A: readNumber("A"),
+            B: readNumber("B"),
+            C: readNumber("C"),
+            p: readNumber("p1"),
+            q: readNumber("q1"),
+            r: readNumber("r1")
+        });
 
-    res_line.innerHTML = d.map(x=>`\\(${x}\\)`).join("<br>");
-    MathJax.typeset();
+        res_line.innerHTML = d.map(x => `\\(${x}\\)`).join("<br>");
+        renderMath();
+    } catch(error) {
+        showError(res_line, error);
+    }
 }
 
 /* ===== TWO CIRCLES ===== */
 async function calcTwoCircles(){
-    let d = await post("/api/two_circles",{
-        a:+a.value,b:+b.value,c:+c.value,
-        p:+p2.value,q:+q2.value,r:+r2.value
-    });
+    try {
+        const d = await post("/api/two_circles", {
+            a: readNumber("a"),
+            b: readNumber("b"),
+            c: readNumber("c"),
+            p: readNumber("p2"),
+            q: readNumber("q2"),
+            r: readNumber("r2")
+        });
 
-    res_circles.innerHTML = d.map(x=>`\\(${x}\\)`).join("<br>");
-    MathJax.typeset();
+        res_circles.innerHTML = d.map(x => `\\(${x}\\)`).join("<br>");
+        renderMath();
+    } catch(error) {
+        showError(res_circles, error);
+    }
 }
 
 /* ===== ANGLE ===== */
 async function calcAngle(){
-    let d = await post("/api/angle",{
-        a1:+a1.value,
-        a2:+a2.value
-    });
+    try {
+        const d = await post("/api/angle", {
+            a1: readNumber("a1"),
+            a2: readNumber("a2")
+        });
 
-    res_angle.innerHTML = `\\(${d}^\\circ\\)`;
-    MathJax.typeset();
+        res_angle.innerHTML = `\\(${d}^\\circ\\)`;
+        renderMath();
+    } catch(error) {
+        showError(res_angle, error);
+    }
 }
