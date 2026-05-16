@@ -496,6 +496,12 @@ let answerShown = false;
 let seconds = 0;
 let currentIndex = 0;
 
+const TASK_SOURCES = [
+    "zadania/mp/2025/maj/2025_cke_p_m.json",
+    "zadania/mr/2025/maj/2025_cke_r_m.json",
+    "zadania/eo/2025/maj/2025_cke_o_m.json"
+];
+
 setInterval(() => {
     seconds++;
 
@@ -503,18 +509,30 @@ setInterval(() => {
         `Czas ${String(Math.floor(seconds / 60)).padStart(2,'0')}:${String(seconds % 60).padStart(2,'0')}`;
 }, 1000);
 
-fetch("zadania/lista.json")
-.then(r => {
-    if(!r.ok) throw new Error("Nie udało się wczytać listy zadań.");
-    return r.json();
-})
-.then(d => {
-    tasks = d;
+Promise.all(TASK_SOURCES.map(loadTaskSource))
+.then(groups => {
+    tasks = groups.flat();
     drawTask();
 })
 .catch(() => {
     showMessage("Nie udało się wczytać zadań. Odśwież stronę albo spróbuj później.");
 });
+
+function loadTaskSource(source){
+    return fetch(source)
+    .then(r => {
+        if(!r.ok) throw new Error("Nie udało się wczytać listy zadań.");
+        return r.json();
+    })
+    .then(items => {
+        const basePath = source.slice(0, source.lastIndexOf("/") + 1);
+
+        return items.map(task => ({
+            ...task,
+            path: basePath + task.file
+        }));
+    });
+}
 
 function pool(){
     return tasks.filter(t => t.level === selectedLevel);
@@ -608,7 +626,7 @@ function drawTask(index = currentIndex){
             showMessage("Nie udało się wczytać obrazka zadania.");
         };
 
-        img.src = "zadania/" + currentTask.file;
+        img.src = currentTask.path;
 
         document.getElementById("taskCounter").innerText =
             `${currentIndex + 1} / ${p.length}`;

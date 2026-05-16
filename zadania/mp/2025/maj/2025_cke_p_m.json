@@ -1,0 +1,17 @@
+[
+   {
+    "file": "1_2025_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "arytmetyka",
+    "level": "matura_podstawowa",
+    "hint": "Wartość wyrażenia pod wartością bezwzględną zmienia znak gdy jest ujemne.",
+    "answer": "C"
+  },
+  {
+    "file": "4_2025_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Zastosuj wzór na różnicę logarytmów.",
+    "answer": "A"
+  }]
