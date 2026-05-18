@@ -55,6 +55,15 @@ def db_bool(value):
     return 1 if bool(value) else 0
 
 
+def duration_seconds(value):
+    try:
+        seconds = int(value or 0)
+    except (TypeError, ValueError):
+        seconds = 0
+
+    return max(0, min(seconds, 4 * 60 * 60))
+
+
 def get_db():
     if "db" not in g:
         if database_engine() == "postgres":
@@ -134,6 +143,7 @@ def init_auth_db():
                 hint_used BOOLEAN NOT NULL DEFAULT FALSE,
                 answer_shown BOOLEAN NOT NULL DEFAULT FALSE,
                 task_mode TEXT,
+                duration_seconds INTEGER NOT NULL DEFAULT 0,
                 created_at TEXT NOT NULL
             )
             """,
@@ -144,6 +154,10 @@ def init_auth_db():
             """
             CREATE INDEX IF NOT EXISTS idx_task_progress_task_id
                 ON task_progress(task_id)
+            """,
+            """
+            ALTER TABLE task_progress
+                ADD COLUMN IF NOT EXISTS duration_seconds INTEGER NOT NULL DEFAULT 0
             """,
         ]
 
@@ -177,6 +191,7 @@ def init_auth_db():
             hint_used INTEGER NOT NULL DEFAULT 0,
             answer_shown INTEGER NOT NULL DEFAULT 0,
             task_mode TEXT,
+            duration_seconds INTEGER NOT NULL DEFAULT 0,
             created_at TEXT NOT NULL,
             FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
         );
@@ -188,6 +203,14 @@ def init_auth_db():
             ON task_progress(task_id);
         """
         )
+
+        columns = {
+            row["name"]
+            for row in db.execute("PRAGMA table_info(task_progress)").fetchall()
+        }
+
+        if "duration_seconds" not in columns:
+            db.execute("ALTER TABLE task_progress ADD COLUMN duration_seconds INTEGER NOT NULL DEFAULT 0")
 
     db.commit()
 
@@ -315,6 +338,7 @@ def list_students():
             COALESCE(SUM(CASE WHEN p.result = 'good' THEN 1 ELSE 0 END), 0) AS good_count,
             COALESCE(SUM(CASE WHEN p.result = 'medium' THEN 1 ELSE 0 END), 0) AS medium_count,
             COALESCE(SUM(CASE WHEN p.result = 'bad' THEN 1 ELSE 0 END), 0) AS bad_count,
+            COALESCE(SUM(COALESCE(p.duration_seconds, 0)), 0) AS total_duration_seconds,
             MAX(p.created_at) AS last_activity_at
         FROM users u
         LEFT JOIN task_progress p ON p.user_id = u.id
@@ -330,6 +354,7 @@ def list_students():
         student = dict(row)
         student["is_active"] = bool(student["is_active"])
         student["accuracy"] = round((student["good_count"] / student["attempts"]) * 100, 1) if student["attempts"] else 0
+        student["average_duration_seconds"] = round(student["total_duration_seconds"] / student["attempts"]) if student["attempts"] else 0
         students.append(student)
 
     return students
@@ -426,6 +451,7 @@ def record_progress(user_id, data):
         db_bool(data.get("hint_used")),
         db_bool(data.get("answer_shown")),
         data.get("task_mode"),
+        duration_seconds(data.get("duration_seconds")),
         created_at,
     )
 
@@ -445,9 +471,10 @@ def record_progress(user_id, data):
                     hint_used,
                     answer_shown,
                     task_mode,
+                    duration_seconds,
                     created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 RETURNING *
                 """
             ),
@@ -469,9 +496,10 @@ def record_progress(user_id, data):
                 hint_used,
                 answer_shown,
                 task_mode,
+                duration_seconds,
                 created_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             values,
         )
