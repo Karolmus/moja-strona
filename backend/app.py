@@ -4,6 +4,7 @@ from functools import wraps
 
 import sympy as sp
 from flask import Flask, jsonify, request, session
+from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from werkzeug.security import check_password_hash
 
 from auth_storage import (
@@ -43,6 +44,7 @@ app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE=os.environ.get("SESSION_COOKIE_SAMESITE", "Lax"),
     SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "false").lower() == "true",
+    AUTH_TOKEN_MAX_AGE=int(os.environ.get("AUTH_TOKEN_MAX_AGE", str(60 * 60 * 24 * 30))),
 )
 register_auth_db(app)
 
@@ -97,7 +99,7 @@ def add_cors_headers(response):
         response.headers["Access-Control-Allow-Credentials"] = "true"
         response.headers.add("Vary", "Origin")
 
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, OPTIONS"
 
     return response
@@ -109,6 +111,43 @@ def payload():
 
 def api_error(message, status=400):
     return jsonify({"error": message}), status
+
+
+def auth_serializer():
+    return URLSafeTimedSerializer(app.config["SECRET_KEY"], salt="delta-sigma-auth")
+
+
+def create_auth_token(user):
+    return auth_serializer().dumps({
+        "user_id": user["id"],
+        "role": user["role"],
+    })
+
+
+def bearer_token():
+    header = request.headers.get("Authorization", "")
+
+    if not header.lower().startswith("bearer "):
+        return None
+
+    return header.split(" ", 1)[1].strip()
+
+
+def user_from_token(token):
+    if not token:
+        return None
+
+    try:
+        data = auth_serializer().loads(token, max_age=app.config["AUTH_TOKEN_MAX_AGE"])
+    except (BadSignature, SignatureExpired):
+        return None
+
+    user_id = data.get("user_id")
+
+    if not user_id:
+        return None
+
+    return get_user_by_id(user_id)
 
 
 def safe(handler):
@@ -127,10 +166,10 @@ def safe(handler):
 def current_user():
     user_id = session.get("user_id")
 
-    if not user_id:
-        return None
+    if user_id:
+        return get_user_by_id(user_id)
 
-    return get_user_by_id(user_id)
+    return user_from_token(bearer_token())
 
 
 def require_auth(handler):
@@ -210,6 +249,7 @@ def api_login():
 
         return jsonify({
             "user": public_user(refreshed_user),
+            "token": create_auth_token(refreshed_user),
         })
 
     return safe(handler)
