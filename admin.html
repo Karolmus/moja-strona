@@ -200,22 +200,24 @@ select:focus {
 }
 
 .table-wrap {
-    overflow-x: auto;
+    overflow: visible;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 980px;
+    table-layout: fixed;
+    min-width: 0;
 }
 
 th,
 td {
     border-bottom: 1px solid var(--line);
-    padding: 10px 8px;
+    padding: 9px 6px;
     text-align: left;
     vertical-align: middle;
-    font-size: 13px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
 }
 
 th {
@@ -225,9 +227,41 @@ th {
 }
 
 .index-cell {
-    width: 42px;
+    width: 38px;
     color: var(--muted);
     font-weight: 600;
+}
+
+.col-index {
+    width: 5%;
+}
+
+.col-student {
+    width: 12%;
+}
+
+.col-login {
+    width: 21%;
+}
+
+.col-level {
+    width: 13%;
+}
+
+.col-status {
+    width: 10%;
+}
+
+.col-progress {
+    width: 13%;
+}
+
+.col-activity {
+    width: 12%;
+}
+
+.col-actions {
+    width: 14%;
 }
 
 .badge {
@@ -250,15 +284,18 @@ th {
 }
 
 .actions {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
-    flex-wrap: wrap;
 }
 
 .actions .btn {
-    min-height: 34px;
-    padding: 6px 9px;
-    font-size: 12px;
+    width: 100%;
+    min-height: 32px;
+    padding: 5px 6px;
+    font-size: 11px;
+    line-height: 1.15;
+    white-space: normal;
 }
 
 .login-details {
@@ -280,7 +317,7 @@ th {
 
 .login-line strong {
     color: var(--text);
-    font-size: 12px;
+    font-size: 11px;
     overflow-wrap: anywhere;
 }
 
@@ -551,6 +588,16 @@ footer {
             <h2>Uczniowie i postępy</h2>
             <div class="table-wrap">
                 <table>
+                    <colgroup>
+                        <col class="col-index">
+                        <col class="col-student">
+                        <col class="col-login">
+                        <col class="col-level">
+                        <col class="col-status">
+                        <col class="col-progress">
+                        <col class="col-activity">
+                        <col class="col-actions">
+                    </colgroup>
                     <thead>
                         <tr>
                             <th>Nr</th>
