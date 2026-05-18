@@ -199,31 +199,6 @@ select:focus {
     overflow-wrap: anywhere;
 }
 
-.summary-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-}
-
-.summary-card {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface);
-    padding: 12px;
-}
-
-.summary-card strong {
-    display: block;
-    font-size: 22px;
-    line-height: 1.1;
-}
-
-.summary-card span {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 600;
-}
-
 .table-wrap {
     overflow-x: auto;
 }
@@ -231,7 +206,7 @@ select:focus {
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 940px;
+    min-width: 980px;
 }
 
 th,
@@ -246,6 +221,12 @@ td {
 th {
     color: var(--muted);
     font-size: 12px;
+    font-weight: 600;
+}
+
+.index-cell {
+    width: 42px;
+    color: var(--muted);
     font-weight: 600;
 }
 
@@ -485,10 +466,6 @@ footer {
     .admin-layout {
         grid-template-columns: 1fr;
     }
-
-    .summary-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 @media(max-width: 760px) {
@@ -525,17 +502,6 @@ footer {
         </div>
         <button class="btn secondary" type="button" id="logoutBtn">Wyloguj</button>
     </header>
-
-    <section class="summary-grid" aria-label="Podsumowanie uczniów">
-        <div class="summary-card">
-            <strong id="studentCount">0</strong>
-            <span>uczniów</span>
-        </div>
-        <div class="summary-card">
-            <strong id="activeCount">0</strong>
-            <span>aktywnych</span>
-        </div>
-    </section>
 
     <div class="admin-layout">
         <form class="panel" id="studentForm">
@@ -587,6 +553,7 @@ footer {
                 <table>
                     <thead>
                         <tr>
+                            <th>Nr</th>
                             <th>Uczeń</th>
                             <th>Dane logowania</th>
                             <th>Poziom</th>
@@ -749,13 +716,6 @@ function resultLabel(result){
     return labels[result] || result;
 }
 
-function renderSummary(){
-    const activeStudents = students.filter(student => student.is_active);
-
-    document.getElementById("studentCount").innerText = students.length;
-    document.getElementById("activeCount").innerText = activeStudents.length;
-}
-
 function button(label, className, onClick){
     const element = document.createElement("button");
 
@@ -829,16 +789,16 @@ function renderStudents(){
         const row = document.createElement("tr");
         const cell = document.createElement("td");
 
-        cell.colSpan = 7;
+        cell.colSpan = 8;
         cell.innerText = "Brak uczniów.";
         row.appendChild(cell);
         studentTable.appendChild(row);
-        renderSummary();
         return;
     }
 
-    students.forEach(student => {
+    students.forEach((student, index) => {
         const row = document.createElement("tr");
+        const indexCell = document.createElement("td");
         const userCell = document.createElement("td");
         const credentialsCell = buildCredentialsCell(student);
         const levelCell = document.createElement("td");
@@ -849,6 +809,8 @@ function renderStudents(){
         const statusBadge = document.createElement("span");
         const actions = document.createElement("div");
 
+        indexCell.className = "index-cell";
+        indexCell.innerText = String(index + 1);
         userCell.innerText = student.display_name;
         levelCell.innerText = levelLabels[student.level] || student.level || "-";
         progressCell.innerText = `${student.attempts || 0} prób • ${student.accuracy || 0}% dobrze`;
@@ -869,6 +831,7 @@ function renderStudents(){
         actions.appendChild(button("Usuń", "btn danger", () => deleteStudent(student)));
         actionsCell.appendChild(actions);
 
+        row.appendChild(indexCell);
         row.appendChild(userCell);
         row.appendChild(credentialsCell);
         row.appendChild(levelCell);
@@ -879,7 +842,6 @@ function renderStudents(){
         studentTable.appendChild(row);
     });
 
-    renderSummary();
 }
 
 async function loadStudents(){
