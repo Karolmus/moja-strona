@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logowanie</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
+
+<style>
+:root {
+    --page-bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+    --line: #d9e1ea;
+    --line-dark: #111827;
+    --text: #1f2a36;
+    --muted: #64748b;
+    --navy: #263545;
+    --navy-hover: #1c2834;
+    --blue-soft: #e8f1fb;
+    --blue-text: #24527a;
+    --danger-soft: #fdecea;
+    --danger-text: #8b2119;
+    --success-soft: #e8f5e7;
+    --success-text: #2f6b36;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
+}
+
+.login-page {
+    max-width: 1180px;
+    min-height: calc(100vh - 120px);
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: grid;
+    place-items: center;
+}
+
+.login-shell {
+    width: min(100%, 460px);
+    display: grid;
+    gap: 18px;
+}
+
+.login-header {
+    display: grid;
+    gap: 8px;
+    text-align: center;
+}
+
+.login-header h1 {
+    margin: 0;
+    font-size: 30px;
+    line-height: 1.15;
+}
+
+.login-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.login-card {
+    display: grid;
+    gap: 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid #8eb5de;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+}
+
+label,
+.checkbox-label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.field input[type="email"],
+.password-row input {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+}
+
+.password-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+}
+
+.field input:focus {
+    outline: 3px solid rgba(88, 101, 242, 0.18);
+    outline-offset: 1px;
+    border-color: #b8d3ee;
+}
+
+.field input[aria-invalid="true"] {
+    border-color: #d56b61;
+}
+
+.toggle-password {
+    min-width: 82px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.toggle-password:hover {
+    background: #eef3f8;
+}
+
+.field-error {
+    min-height: 16px;
+    color: var(--danger-text);
+    font-size: 12px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--navy);
+}
+
+.forgot-link {
+    color: var(--blue-text);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    background: var(--navy);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: var(--navy-hover);
+    border-color: var(--navy-hover);
+    transform: translateY(-1px);
+}
+
+.submit-btn:focus-visible,
+.toggle-password:focus-visible,
+.forgot-link:focus-visible {
+    outline: 3px solid rgba(88, 101, 242, 0.25);
+    outline-offset: 2px;
+}
+
+.status-box {
+    display: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.status-box.error {
+    display: block;
+    background: var(--danger-soft);
+    color: var(--danger-text);
+    border-color: #f3b7b0;
+}
+
+.status-box.success {
+    display: block;
+    background: var(--success-soft);
+    color: var(--success-text);
+    border-color: #bbdfb8;
+}
+
+.login-note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #1f2a36;
+    color: #aaa;
+}
+
+@media(max-width: 760px) {
+    .login-page {
+        min-height: auto;
+        padding: 28px 5px;
+    }
+
+    .login-card {
+        padding: 18px;
+    }
+
+    .login-header h1 {
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="main-nav" aria-label="Główna nawigacja">
+    <a href="index.html">Strona główna</a>
+    <a href="zapisy.html">Zapisy 2026/27</a>
+    <a href="zadania.html">Strefa ucznia</a>
+    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<main class="login-page">
+    <div class="login-shell">
+        <header class="login-header">
+            <h1>Logowanie</h1>
+            <p>Zaloguj się do strefy ucznia Delta Sigma.</p>
+        </header>
+
+        <form class="login-card" id="loginForm" action="/login" method="post" novalidate>
+            <div class="field">
+                <label for="email">Adres e-mail</label>
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    inputmode="email"
+                    autocomplete="username"
+                    maxlength="254"
+                    required
+                    aria-describedby="emailError"
+                >
+                <div class="field-error" id="emailError" aria-live="polite"></div>
+            </div>
+
+            <div class="field">
+                <label for="password">Hasło</label>
+                <div class="password-row">
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        minlength="8"
+                        maxlength="128"
+                        required
+                        aria-describedby="passwordError"
+                    >
+                    <button class="toggle-password" id="togglePassword" type="button" aria-pressed="false">
+                        Pokaż
+                    </button>
+                </div>
+                <div class="field-error" id="passwordError" aria-live="polite"></div>
+            </div>
+
+            <div class="form-row">
+                <label class="checkbox checkbox-label" for="remember">
+                    <input id="remember" name="remember" type="checkbox" autocomplete="off">
+                    Zapamiętaj mnie
+                </label>
+
+                <a class="forgot-link" href="mailto:kontakt@deltasigma.pl?subject=Reset%20has%C5%82a">
+                    Nie pamiętam hasła
+                </a>
+            </div>
+
+            <button class="submit-btn" type="submit">Zaloguj</button>
+
+            <div class="status-box" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <p class="login-note">
+            Dostęp do kont uczniów wymaga aktywnego konta utworzonego przez Delta Sigma.
+        </p>
+    </div>
+</main>
+
+<footer>© 2026 Delta sigma</footer>
+
+<script src="static/auth.js"></script>
+<script>
+const form = document.getElementById("loginForm");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const emailError = document.getElementById("emailError");
+const passwordError = document.getElementById("passwordError");
+const formStatus = document.getElementById("formStatus");
+const togglePassword = document.getElementById("togglePassword");
+
+function setFieldError(field, target, message){
+    field.setAttribute("aria-invalid", message ? "true" : "false");
+    target.innerText = message;
+}
+
+function showStatus(message, type){
+    formStatus.className = `status-box ${type}`;
+    formStatus.innerText = message;
+}
+
+function validateLoginForm(){
+    let valid = true;
+
+    setFieldError(email, emailError, "");
+    setFieldError(password, passwordError, "");
+    formStatus.className = "status-box";
+    formStatus.innerText = "";
+
+    if(!email.value.trim()){
+        setFieldError(email, emailError, "Podaj adres e-mail.");
+        valid = false;
+    } else if(!email.validity.valid){
+        setFieldError(email, emailError, "Podaj poprawny adres e-mail.");
+        valid = false;
+    }
+
+    if(!password.value){
+        setFieldError(password, passwordError, "Podaj hasło.");
+        valid = false;
+    } else if(password.value.length < 8){
+        setFieldError(password, passwordError, "Hasło musi mieć co najmniej 8 znaków.");
+        valid = false;
+    }
+
+    return valid;
+}
+
+togglePassword.addEventListener("click", () => {
+    const visible = password.type === "text";
+
+    password.type = visible ? "password" : "text";
+    togglePassword.innerText = visible ? "Pokaż" : "Ukryj";
+    togglePassword.setAttribute("aria-pressed", String(!visible));
+});
+
+form.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if(!validateLoginForm()){
+        showStatus("Sprawdź dane w formularzu.", "error");
+        return;
+    }
+
+    try {
+        const result = await apiFetch("/api/auth/login", {
+            method: "POST",
+            body: JSON.stringify({
+                email: email.value.trim(),
+                password: password.value,
+                remember: document.getElementById("remember").checked
+            })
+        });
+
+        showStatus("Zalogowano poprawnie. Przekierowuję...", "success");
+
+        window.location.href = result.user.role === "admin" ? "admin.html" : "zadania.html";
+    } catch(error) {
+        showStatus(error.message || "Nie udało się zalogować.", "error");
+    }
+});
+</script>
+
+</body>
+</html>

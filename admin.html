@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Admina</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
+
+<style>
+:root {
+    --page-bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+    --line: #d9e1ea;
+    --line-dark: #111827;
+    --text: #1f2a36;
+    --muted: #64748b;
+    --navy: #263545;
+    --navy-hover: #1c2834;
+    --blue-soft: #e8f1fb;
+    --blue-text: #24527a;
+    --green-soft: #e8f5e7;
+    --green-text: #2f6b36;
+    --red-soft: #fdecea;
+    --red-text: #8b2119;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1180px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.admin-email {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-layout {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.panel {
+    display: grid;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+.panel h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.field {
+    display: grid;
+    gap: 5px;
+}
+
+label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 11px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+}
+
+input:focus,
+select:focus {
+    outline: 3px solid rgba(88, 101, 242, 0.18);
+    outline-offset: 1px;
+    border-color: #b8d3ee;
+}
+
+.btn {
+    min-height: 40px;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    background: var(--navy);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    padding: 9px 12px;
+}
+
+.btn:hover {
+    background: var(--navy-hover);
+    border-color: var(--navy-hover);
+}
+
+.btn.secondary {
+    background: white;
+    border-color: var(--line);
+    color: var(--text);
+}
+
+.btn.danger {
+    background: var(--red-soft);
+    border-color: #f3b7b0;
+    color: var(--red-text);
+}
+
+.status-box {
+    display: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.status-box.active {
+    display: block;
+    border: 1px solid var(--line);
+    background: var(--surface-soft);
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.summary-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    padding: 12px;
+}
+
+.summary-card strong {
+    display: block;
+    font-size: 22px;
+    line-height: 1.1;
+}
+
+.summary-card span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+th,
+td {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 8px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 13px;
+}
+
+th {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge.active {
+    background: var(--green-soft);
+    color: var(--green-text);
+}
+
+.badge.inactive {
+    background: var(--red-soft);
+    color: var(--red-text);
+}
+
+.actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.actions .btn {
+    min-height: 34px;
+    padding: 6px 9px;
+    font-size: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #1f2a36;
+    color: #aaa;
+    margin-top: 40px;
+}
+
+@media(max-width: 900px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media(max-width: 760px) {
+    .container {
+        margin: 24px auto;
+        padding: 5px;
+    }
+
+    .page-header h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="main-nav" aria-label="Główna nawigacja">
+    <a href="index.html">Strona główna</a>
+    <a href="zadania.html">Strefa ucznia</a>
+    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="login.html">Logowanie</a>
+</nav>
+
+<main class="container">
+    <header class="page-header">
+        <div>
+            <h1>Panel Admina</h1>
+            <div class="admin-email" id="adminEmail">Sprawdzam sesję...</div>
+        </div>
+        <button class="btn secondary" type="button" id="logoutBtn">Wyloguj</button>
+    </header>
+
+    <section class="summary-grid" aria-label="Podsumowanie uczniów">
+        <div class="summary-card">
+            <strong id="studentCount">0</strong>
+            <span>uczniów</span>
+        </div>
+        <div class="summary-card">
+            <strong id="activeCount">0</strong>
+            <span>aktywnych</span>
+        </div>
+        <div class="summary-card">
+            <strong id="attemptCount">0</strong>
+            <span>prób</span>
+        </div>
+        <div class="summary-card">
+            <strong id="avgAccuracy">0%</strong>
+            <span>średnia skuteczność</span>
+        </div>
+    </section>
+
+    <div class="admin-layout">
+        <form class="panel" id="studentForm">
+            <h2>Dodaj ucznia</h2>
+
+            <div class="field">
+                <label for="displayName">Imię i nazwisko</label>
+                <input id="displayName" name="display_name" required maxlength="120">
+            </div>
+
+            <div class="field">
+                <label for="studentEmail">E-mail / login</label>
+                <input id="studentEmail" name="email" type="email" required maxlength="254" autocomplete="off">
+            </div>
+
+            <div class="field">
+                <label for="studentLevel">Poziom</label>
+                <select id="studentLevel" name="level">
+                    <option value="matura_podstawowa">Matura podstawowa</option>
+                    <option value="matura_rozszerzona">Matura rozszerzona</option>
+                    <option value="egzamin_osmoklasisty">Egzamin Ósmoklasisty</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="studentPassword">Hasło startowe</label>
+                <input id="studentPassword" name="password" minlength="8" maxlength="128" autocomplete="new-password" placeholder="Puste = wygeneruj automatycznie">
+            </div>
+
+            <button class="btn" type="submit">Utwórz konto</button>
+            <div class="status-box" id="adminStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <section class="panel">
+            <h2>Uczniowie i postępy</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Uczeń</th>
+                            <th>Poziom</th>
+                            <th>Status</th>
+                            <th>Postęp</th>
+                            <th>Ostatnia aktywność</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>© 2026 Delta sigma</footer>
+
+<script src="static/auth.js"></script>
+<script>
+const levelLabels = {
+    matura_podstawowa: "Matura podstawowa",
+    matura_rozszerzona: "Matura rozszerzona",
+    egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
+};
+
+const adminEmail = document.getElementById("adminEmail");
+const studentForm = document.getElementById("studentForm");
+const studentTable = document.getElementById("studentTable");
+const adminStatus = document.getElementById("adminStatus");
+
+let students = [];
+
+function showStatus(message){
+    adminStatus.classList.add("active");
+    adminStatus.innerText = message;
+}
+
+function formatDate(value){
+    if(!value) return "brak";
+
+    return new Date(value).toLocaleString("pl-PL", {
+        dateStyle: "short",
+        timeStyle: "short"
+    });
+}
+
+function renderSummary(){
+    const activeStudents = students.filter(student => student.is_active);
+    const attempts = students.reduce((sum, student) => sum + Number(student.attempts || 0), 0);
+    const accuracyBase = students.filter(student => Number(student.attempts || 0) > 0);
+    const accuracy = accuracyBase.length
+        ? Math.round(accuracyBase.reduce((sum, student) => sum + Number(student.accuracy || 0), 0) / accuracyBase.length)
+        : 0;
+
+    document.getElementById("studentCount").innerText = students.length;
+    document.getElementById("activeCount").innerText = activeStudents.length;
+    document.getElementById("attemptCount").innerText = attempts;
+    document.getElementById("avgAccuracy").innerText = `${accuracy}%`;
+}
+
+function button(label, className, onClick){
+    const element = document.createElement("button");
+
+    element.type = "button";
+    element.className = className;
+    element.innerText = label;
+    element.addEventListener("click", onClick);
+
+    return element;
+}
+
+function renderStudents(){
+    studentTable.innerHTML = "";
+
+    if(!students.length){
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        cell.colSpan = 6;
+        cell.innerText = "Brak uczniów.";
+        row.appendChild(cell);
+        studentTable.appendChild(row);
+        renderSummary();
+        return;
+    }
+
+    students.forEach(student => {
+        const row = document.createElement("tr");
+        const userCell = document.createElement("td");
+        const levelCell = document.createElement("td");
+        const statusCell = document.createElement("td");
+        const progressCell = document.createElement("td");
+        const activityCell = document.createElement("td");
+        const actionsCell = document.createElement("td");
+        const statusBadge = document.createElement("span");
+        const actions = document.createElement("div");
+
+        userCell.innerText = `${student.display_name}\n${student.email}`;
+        levelCell.innerText = levelLabels[student.level] || student.level || "-";
+        progressCell.innerText = `${student.attempts || 0} prób • ${student.accuracy || 0}% dobrze`;
+        activityCell.innerText = formatDate(student.last_activity_at || student.last_login_at);
+
+        statusBadge.className = student.is_active ? "badge active" : "badge inactive";
+        statusBadge.innerText = student.is_active ? "Aktywny" : "Zablokowany";
+        statusCell.appendChild(statusBadge);
+
+        actions.className = "actions";
+        actions.appendChild(button(
+            student.is_active ? "Zablokuj" : "Aktywuj",
+            student.is_active ? "btn danger" : "btn secondary",
+            () => toggleStudent(student)
+        ));
+        actions.appendChild(button("Reset hasła", "btn secondary", () => resetPassword(student)));
+        actions.appendChild(button("Postępy", "btn secondary", () => showProgress(student)));
+        actionsCell.appendChild(actions);
+
+        row.appendChild(userCell);
+        row.appendChild(levelCell);
+        row.appendChild(statusCell);
+        row.appendChild(progressCell);
+        row.appendChild(activityCell);
+        row.appendChild(actionsCell);
+        studentTable.appendChild(row);
+    });
+
+    renderSummary();
+}
+
+async function loadStudents(){
+    const data = await apiFetch("/api/admin/students");
+
+    students = data.students;
+    renderStudents();
+}
+
+async function toggleStudent(student){
+    await apiFetch(`/api/admin/students/${student.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+            is_active: !student.is_active
+        })
+    });
+
+    await loadStudents();
+}
+
+async function resetPassword(student){
+    const data = await apiFetch(`/api/admin/students/${student.id}/password`, {
+        method: "POST",
+        body: JSON.stringify({})
+    });
+
+    showStatus(`Nowe hasło dla ${student.display_name}: ${data.temporary_password}`);
+}
+
+async function showProgress(student){
+    const data = await apiFetch(`/api/admin/students/${student.id}/progress`);
+    const progress = data.progress.slice(0, 10);
+
+    if(!progress.length){
+        showStatus(`${student.display_name}: brak zapisanych prób.`);
+        return;
+    }
+
+    showStatus(progress.map(item =>
+        `${formatDate(item.created_at)} • ${item.file || item.task_id} • ${item.result}`
+    ).join("\n"));
+}
+
+studentForm.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const formData = new FormData(studentForm);
+    const payload = {
+        display_name: formData.get("display_name"),
+        email: formData.get("email"),
+        level: formData.get("level"),
+        password: formData.get("password")
+    };
+
+    try {
+        const data = await apiFetch("/api/admin/students", {
+            method: "POST",
+            body: JSON.stringify(payload)
+        });
+
+        studentForm.reset();
+        showStatus(`Utworzono konto: ${data.student.email}\nHasło startowe: ${data.temporary_password}`);
+        await loadStudents();
+    } catch(error) {
+        showStatus(error.message || "Nie udało się utworzyć ucznia.");
+    }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await apiFetch("/api/auth/logout", { method: "POST" });
+    window.location.href = "login.html";
+});
+
+async function boot(){
+    try {
+        const session = await apiFetch("/api/auth/me");
+
+        if(!session.authenticated || session.user.role !== "admin"){
+            window.location.href = "login.html";
+            return;
+        }
+
+        adminEmail.innerText = session.user.email;
+        await loadStudents();
+    } catch(error) {
+        window.location.href = "login.html";
+    }
+}
+
+boot();
+</script>
+
+</body>
+</html>
