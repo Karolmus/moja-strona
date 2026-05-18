@@ -394,6 +394,22 @@ def reset_user_password(user_id, password):
     )
 
 
+def delete_student(user_id):
+    existing = row_to_dict(
+        execute("SELECT * FROM users WHERE id = ? AND role = 'student'", (user_id,)).fetchone()
+    )
+
+    if not existing:
+        return None
+
+    db = get_db()
+    db.execute(prepare_sql("DELETE FROM task_progress WHERE user_id = ?"), (user_id,))
+    db.execute(prepare_sql("DELETE FROM users WHERE id = ? AND role = 'student'"), (user_id,))
+    db.commit()
+
+    return existing
+
+
 def record_progress(user_id, data):
     created_at = now_iso()
     db = get_db()

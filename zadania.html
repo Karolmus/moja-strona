@@ -128,13 +128,15 @@ body {
 }
 
 .source-list,
-.mode-toggle {
+.mode-toggle,
+.category-toggle {
     display: grid;
     gap: 6px;
 }
 
 .source-btn,
-.mode-btn {
+.mode-btn,
+.category-btn {
     width: 100%;
     border: 1px solid var(--line);
     background: white;
@@ -162,19 +164,22 @@ body {
     font-weight: 400;
 }
 
-.mode-btn {
+.mode-btn,
+.category-btn {
     min-height: 40px;
     padding: 9px 11px;
 }
 
 .source-btn:hover,
-.mode-btn:hover {
+.mode-btn:hover,
+.category-btn:hover {
     background: #f3f6fa;
     border-color: #b9c6d4;
 }
 
 .source-btn.active,
-.mode-btn.active {
+.mode-btn.active,
+.category-btn.active {
     background: var(--navy);
     border-color: var(--navy);
     color: white;
@@ -372,7 +377,8 @@ button {
 .choice-btn:focus-visible,
 .level-btn:focus-visible,
 .source-btn:focus-visible,
-.mode-btn:focus-visible {
+.mode-btn:focus-visible,
+.category-btn:focus-visible {
     outline: 3px solid rgba(88, 101, 242, 0.25);
     outline-offset: 2px;
 }
@@ -624,6 +630,14 @@ footer {
 
     <div class="tasks-layout">
         <aside class="task-sidebar" aria-label="Ustawienia zadań">
+            <div class="side-section">
+                <div class="side-title">Materiał</div>
+                <div class="category-toggle">
+                    <button class="category-btn" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
+                    <button class="category-btn active" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
+                </div>
+            </div>
+
             <div class="sidebar-controls">
                 <div class="side-section">
                     <div class="side-title">Poziom</div>
@@ -704,20 +718,53 @@ let answerShown = false;
 let seconds = 0;
 let currentIndex = 0;
 let selectedSource = "all";
+let selectedCategory = "egzaminy";
 let taskMode = "ordered";
 let randomHistory = [];
 let randomHistoryIndex = -1;
 
 const TASK_SOURCES = [
-    "zadania/mp/2025/maj/2025_cke_p_m.json",
-    "zadania/mr/2025/maj/2025_cke_r_m.json",
-    "zadania/eo/2025/maj/2025_cke_o_m.json"
+    { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy" },
+    {
+        path: "zadania/kurs/mp/zadania_kurs_mp.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Kurs",
+        detail: "Matura podstawowa"
+    },
+    {
+        path: "zadania/kurs/mr/zadania_kurs_mr.json",
+        category: "kurs",
+        level: "matura_rozszerzona",
+        label: "Kurs",
+        detail: "Matura rozszerzona"
+    },
+    {
+        path: "zadania/kurs/eo/zadania_kurs_eo.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Kurs",
+        detail: "Egzamin Ósmoklasisty"
+    }
 ];
 
 const SOURCE_TYPE_LABELS = {
     mp: "Matura podstawowa",
     mr: "Matura rozszerzona",
     eo: "Egzamin Ósmoklasisty"
+};
+
+const SOURCE_LEVELS = {
+    mp: "matura_podstawowa",
+    mr: "matura_rozszerzona",
+    eo: "egzamin_osmoklasisty"
+};
+
+const CATEGORY_LABELS = {
+    kurs: "Kurs",
+    egzaminy: "Egzaminy"
 };
 
 const MONTH_LABELS = {
@@ -737,6 +784,7 @@ function updateTimer(){
 Promise.all(TASK_SOURCES.map(loadTaskSource))
 .then(groups => {
     tasks = groups.flat();
+    updateCategoryButtons();
     renderSourceSelector();
     drawTask(getInitialIndex());
 })
@@ -744,8 +792,9 @@ Promise.all(TASK_SOURCES.map(loadTaskSource))
     showMessage("Nie udało się wczytać zadań. Odśwież stronę albo spróbuj później.");
 });
 
-function loadTaskSource(source){
-    const sourceMeta = getSourceMeta(source);
+function loadTaskSource(sourceConfig){
+    const sourceMeta = getSourceMeta(sourceConfig);
+    const source = sourceMeta.path;
 
     return fetch(source)
     .then(r => {
@@ -760,6 +809,8 @@ function loadTaskSource(source){
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
             tags: Array.isArray(task.tags) ? task.tags : [],
+            category: sourceMeta.category,
+            level: task.level || sourceMeta.level,
             sourceId: sourceMeta.id,
             sourceLabel: sourceMeta.label,
             sourceDetail: sourceMeta.detail
@@ -767,16 +818,22 @@ function loadTaskSource(source){
     });
 }
 
-function getSourceMeta(source){
+function getSourceMeta(sourceConfig){
+    const source = typeof sourceConfig === "string" ? sourceConfig : sourceConfig.path;
     const parts = source.split("/");
-    const type = parts[1];
+    const category = typeof sourceConfig === "string" ? "egzaminy" : sourceConfig.category || "egzaminy";
+    const isCourse = category === "kurs";
+    const type = isCourse ? parts[2] : parts[1];
     const year = parts[2];
     const month = parts[3];
-    const label = SOURCE_TYPE_LABELS[type] || "Zestaw";
-    const detail = `${year} / ${MONTH_LABELS[month] || month} / CKE`;
+    const label = sourceConfig.label || SOURCE_TYPE_LABELS[type] || "Zestaw";
+    const detail = sourceConfig.detail || `${year} / ${MONTH_LABELS[month] || month} / CKE`;
 
     return {
         id: source,
+        path: source,
+        category,
+        level: sourceConfig.level || SOURCE_LEVELS[type],
         label,
         detail
     };
@@ -784,17 +841,32 @@ function getSourceMeta(source){
 
 function pool(){
     return tasks.filter(t =>
+        t.category === selectedCategory &&
         t.level === selectedLevel &&
         (selectedSource === "all" || t.sourceId === selectedSource)
     );
 }
 
+function getSourceMetaById(sourceId){
+    return TASK_SOURCES.map(getSourceMeta).find(source => source.id === sourceId);
+}
+
+function setCategory(btn, category){
+    selectedCategory = category;
+    selectedSource = "all";
+
+    updateCategoryButtons();
+    resetSession();
+    renderSourceSelector();
+    drawTask(getInitialIndex());
+}
+
 function setLevel(btn, level){
     selectedLevel = level;
 
-    const selectedSourceTask = tasks.find(t => t.sourceId === selectedSource);
+    const selectedSourceMeta = getSourceMetaById(selectedSource);
 
-    if(selectedSourceTask && selectedSourceTask.level !== selectedLevel){
+    if(selectedSourceMeta && selectedSourceMeta.level !== selectedLevel){
         selectedSource = "all";
     }
 
@@ -809,13 +881,15 @@ function setSource(sourceId){
     selectedSource = sourceId;
 
     if(sourceId !== "all"){
-        const sourceTask = tasks.find(t => t.sourceId === sourceId);
+        const sourceMeta = getSourceMetaById(sourceId);
 
-        if(sourceTask){
-            selectedLevel = sourceTask.level;
+        if(sourceMeta){
+            selectedLevel = sourceMeta.level || selectedLevel;
+            selectedCategory = sourceMeta.category || selectedCategory;
         }
     }
 
+    updateCategoryButtons();
     updateLevelButtons();
     updateMetaTheme();
     resetSession();
@@ -841,6 +915,13 @@ function updateModeButtons(){
     document.querySelectorAll(".mode-btn")
         .forEach(b => {
             b.classList.toggle("active", b.dataset.mode === taskMode);
+        });
+}
+
+function updateCategoryButtons(){
+    document.querySelectorAll(".category-btn")
+        .forEach(b => {
+            b.classList.toggle("active", b.dataset.category === selectedCategory);
         });
 }
 
@@ -874,20 +955,25 @@ function renderSourceSelector(){
     addSourceButton(
         list,
         "all",
-        "Wszystkie zestawy",
-        `${tasks.filter(t => t.level === selectedLevel).length} zadań`,
+        selectedCategory === "kurs" ? "Cały kurs" : "Wszystkie arkusze",
+        `${tasks.filter(t => t.category === selectedCategory && t.level === selectedLevel).length} zadań`,
         selectedSource === "all"
     );
 
     TASK_SOURCES
         .map(getSourceMeta)
+        .filter(source =>
+            source.category === selectedCategory &&
+            source.level === selectedLevel
+        )
         .forEach(source => {
             const count = tasks.filter(t =>
                 t.sourceId === source.id &&
+                t.category === selectedCategory &&
                 t.level === selectedLevel
             ).length;
 
-            if(!count) return;
+            if(!count && selectedCategory !== "kurs") return;
 
             addSourceButton(
                 list,
@@ -968,6 +1054,10 @@ function parseFile(file){
     return `Zadanie ${p[0]} • ${p[1]} • ${monthMap[p[4]] || p[4]} • CKE`;
 }
 
+function taskLabel(task){
+    return task.title || parseFile(task.file);
+}
+
 function stars(n){
     return "★".repeat(n) + "☆".repeat(5 - n);
 }
@@ -1020,7 +1110,7 @@ function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("metaBox").innerHTML = "";
         document.getElementById("mcq").classList.remove("active");
         document.getElementById("resultButtons").classList.remove("active");
-        showMessage("Brak zadań dla wybranego poziomu.");
+        showMessage(`Brak zadań w części ${CATEGORY_LABELS[selectedCategory].toLowerCase()} dla wybranego poziomu.`);
         return;
     }
 
@@ -1066,7 +1156,7 @@ function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("metaBox").innerHTML =
         `
         <div class="meta-section">
-            ${parseFile(currentTask.file)}
+            ${taskLabel(currentTask)}
         </div>
 
         <div class="meta-right">
@@ -1261,6 +1351,7 @@ async function saveProgress(type){
                 result: type,
                 hint_used: hintUsed,
                 answer_shown: answerShown,
+                source_category: currentTask.category,
                 task_mode: taskMode
             })
         });
