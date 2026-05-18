@@ -1,9 +1,27 @@
 import os
 from decimal import Decimal, ROUND_HALF_UP
+from functools import wraps
 
 import sympy as sp
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
+from werkzeug.security import check_password_hash
 
+from auth_storage import (
+    INTEGRITY_ERRORS,
+    create_user,
+    generate_temporary_password,
+    get_user_by_email,
+    get_user_by_id,
+    init_auth_db,
+    list_students,
+    progress_for_user,
+    public_user,
+    record_progress,
+    register_auth_db,
+    reset_user_password,
+    touch_last_login,
+    update_student,
+)
 from calculators.solver import (
     bernoulli,
     bernoulli_plot,
@@ -19,13 +37,46 @@ from calculators.solver import (
 )
 
 app = Flask(__name__)
+app.config.update(
+    SECRET_KEY=os.environ.get("SECRET_KEY", "dev-only-change-before-render"),
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE=os.environ.get("SESSION_COOKIE_SAMESITE", "Lax"),
+    SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "false").lower() == "true",
+)
+register_auth_db(app)
+
+with app.app_context():
+    init_auth_db()
+
+
+def allowed_origins():
+    configured = os.environ.get(
+        "ALLOWED_ORIGINS",
+        ",".join([
+            "http://127.0.0.1:8000",
+            "http://localhost:8000",
+            "http://127.0.0.1:5000",
+            "http://localhost:5000",
+            "https://deltasigma.pl",
+            "https://www.deltasigma.pl",
+            "https://karolmusiol.github.io",
+        ]),
+    )
+
+    return {origin.strip() for origin in configured.split(",") if origin.strip()}
 
 
 @app.after_request
 def add_cors_headers(response):
-    response.headers["Access-Control-Allow-Origin"] = "*"
+    origin = request.headers.get("Origin")
+
+    if origin in allowed_origins():
+        response.headers["Access-Control-Allow-Origin"] = origin
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+        response.headers.add("Vary", "Origin")
+
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, OPTIONS"
 
     return response
 
@@ -43,10 +94,64 @@ def safe(handler):
         return handler()
     except KeyError as exc:
         return api_error(f"Brakuje pola: {exc.args[0]}")
+    except INTEGRITY_ERRORS:
+        return api_error("Taki użytkownik już istnieje.")
     except (TypeError, ValueError):
         return api_error("Nieprawidłowe dane wejściowe.")
     except Exception as exc:
-        return api_error(f"Nie udało się obliczyć wyniku: {exc}", 500)
+        return api_error(f"Nie udało się obsłużyć żądania: {exc}", 500)
+
+
+def current_user():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return None
+
+    return get_user_by_id(user_id)
+
+
+def require_auth(handler):
+    @wraps(handler)
+    def wrapper(*args, **kwargs):
+        user = current_user()
+
+        if not user:
+            return api_error("Musisz się zalogować.", 401)
+
+        if not user["is_active"]:
+            session.clear()
+            return api_error("Konto jest nieaktywne.", 403)
+
+        return handler(user, *args, **kwargs)
+
+    return wrapper
+
+
+def require_admin(handler):
+    @wraps(handler)
+    @require_auth
+    def wrapper(user, *args, **kwargs):
+        if user["role"] != "admin":
+            return api_error("Brak uprawnień administratora.", 403)
+
+        return handler(user, *args, **kwargs)
+
+    return wrapper
+
+
+def validate_password(password):
+    if len(password or "") < 8:
+        raise ValueError("Hasło musi mieć co najmniej 8 znaków.")
+
+
+def student_payload(user):
+    item = public_user(user)
+
+    if item:
+        item["role"] = "student"
+
+    return item
 
 
 @app.get("/")
@@ -57,6 +162,166 @@ def root():
 @app.get("/api/health")
 def health():
     return jsonify({"status": "ok"})
+
+
+@app.post("/api/auth/login")
+def api_login():
+    def handler():
+        data = payload()
+        email = data["email"]
+        password = data["password"]
+        user = get_user_by_email(email)
+
+        if not user or not check_password_hash(user["password_hash"], password):
+            return api_error("Nieprawidłowy e-mail albo hasło.", 401)
+
+        if not user["is_active"]:
+            return api_error("Konto jest nieaktywne.", 403)
+
+        session.clear()
+        session["user_id"] = user["id"]
+        session["role"] = user["role"]
+        session.permanent = bool(data.get("remember"))
+        touch_last_login(user["id"])
+
+        refreshed_user = get_user_by_id(user["id"])
+
+        return jsonify({
+            "user": public_user(refreshed_user),
+        })
+
+    return safe(handler)
+
+
+@app.post("/api/auth/logout")
+def api_logout():
+    session.clear()
+
+    return jsonify({"ok": True})
+
+
+@app.get("/api/auth/me")
+def api_me():
+    user = current_user()
+
+    if not user or not user["is_active"]:
+        return jsonify({"authenticated": False})
+
+    return jsonify({
+        "authenticated": True,
+        "user": public_user(user),
+    })
+
+
+@app.get("/api/admin/students")
+@require_admin
+def api_admin_students(_admin):
+    return jsonify({
+        "students": list_students(),
+    })
+
+
+@app.post("/api/admin/students")
+@require_admin
+def api_admin_create_student(_admin):
+    def handler():
+        data = payload()
+        password = data.get("password") or generate_temporary_password()
+
+        validate_password(password)
+
+        student = create_user(
+            email=data["email"],
+            display_name=data["display_name"],
+            password=password,
+            role="student",
+            level=data.get("level") or "matura_podstawowa",
+            is_active=data.get("is_active", True),
+        )
+
+        return jsonify({
+            "student": student_payload(student),
+            "temporary_password": password,
+        }), 201
+
+    return safe(handler)
+
+
+@app.patch("/api/admin/students/<int:user_id>")
+@require_admin
+def api_admin_update_student(_admin, user_id):
+    def handler():
+        student = update_student(user_id, payload())
+
+        if not student:
+            return api_error("Nie znaleziono ucznia.", 404)
+
+        return jsonify({
+            "student": student_payload(student),
+        })
+
+    return safe(handler)
+
+
+@app.post("/api/admin/students/<int:user_id>/password")
+@require_admin
+def api_admin_reset_student_password(_admin, user_id):
+    def handler():
+        data = payload()
+        password = data.get("password") or generate_temporary_password()
+
+        validate_password(password)
+        student = reset_user_password(user_id, password)
+
+        if not student:
+            return api_error("Nie znaleziono ucznia.", 404)
+
+        return jsonify({
+            "student": student_payload(student),
+            "temporary_password": password,
+        })
+
+    return safe(handler)
+
+
+@app.get("/api/admin/students/<int:user_id>/progress")
+@require_admin
+def api_admin_student_progress(_admin, user_id):
+    student = get_user_by_id(user_id)
+
+    if not student or student["role"] != "student":
+        return api_error("Nie znaleziono ucznia.", 404)
+
+    return jsonify({
+        "student": student_payload(student),
+        "progress": progress_for_user(user_id),
+    })
+
+
+@app.post("/api/progress")
+@require_auth
+def api_save_progress(user):
+    def handler():
+        data = payload()
+
+        if data["result"] not in {"good", "medium", "bad"}:
+            return api_error("Nieprawidłowy wynik zadania.")
+
+        progress = record_progress(user["id"], data)
+
+        return jsonify({
+            "progress": progress,
+        }), 201
+
+    return safe(handler)
+
+
+@app.get("/api/progress/me")
+@require_auth
+def api_my_progress(user):
+    return jsonify({
+        "progress": progress_for_user(user["id"]),
+    })
 
 
 @app.post("/api/bernoulli")

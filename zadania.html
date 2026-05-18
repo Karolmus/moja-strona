@@ -694,6 +694,7 @@ footer {
 
 <footer>© 2026 Delta sigma</footer>
 
+<script src="static/auth.js"></script>
 <script>
 let tasks = [];
 let selectedLevel = "matura_podstawowa";
@@ -1138,6 +1139,31 @@ function prevTask(){
     drawTask(currentIndex);
 }
 
+function shouldIgnoreKeyboardNavigation(event){
+    if(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return true;
+
+    const target = event.target;
+    const tagName = target?.tagName?.toLowerCase();
+
+    return target?.isContentEditable || ["input", "textarea", "select"].includes(tagName);
+}
+
+function handleKeyboardNavigation(event){
+    if(shouldIgnoreKeyboardNavigation(event)) return;
+
+    if(event.key === "ArrowRight"){
+        event.preventDefault();
+        nextTask();
+    }
+
+    if(event.key === "ArrowLeft"){
+        event.preventDefault();
+        prevTask();
+    }
+}
+
+document.addEventListener("keydown", handleKeyboardNavigation);
+
 function setupMCQ(){
     const mcq = document.getElementById("mcq");
     const resultButtons = document.getElementById("resultButtons");
@@ -1215,6 +1241,34 @@ function addProgress(type){
 
     document.getElementById("progress")
         .appendChild(tile);
+
+    saveProgress(type);
+}
+
+async function saveProgress(type){
+    if(!currentTask || !window.apiFetch) return;
+
+    try {
+        await apiFetch("/api/progress", {
+            method: "POST",
+            body: JSON.stringify({
+                task_id: `${currentTask.sourceId}:${currentTask.file}`,
+                source_id: currentTask.sourceId,
+                file: currentTask.file,
+                level: currentTask.level,
+                topic: currentTask.topic,
+                difficulty: currentTask.difficulty,
+                result: type,
+                hint_used: hintUsed,
+                answer_shown: answerShown,
+                task_mode: taskMode
+            })
+        });
+    } catch(error) {
+        if(error.status !== 401){
+            console.warn("Nie udało się zapisać postępu.", error);
+        }
+    }
 }
 
 function finish(type){
