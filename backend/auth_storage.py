@@ -487,7 +487,7 @@ def record_progress(user_id, data):
     return progress
 
 
-def progress_for_user(user_id, limit=200):
+def progress_for_user(user_id, limit=2000):
     return [
         dict(row)
         for row in execute(

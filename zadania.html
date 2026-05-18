@@ -72,6 +72,66 @@ body {
     gap: 8px;
 }
 
+.student-progress-panel {
+    display: grid;
+    gap: 10px;
+}
+
+.learning-progress {
+    display: grid;
+    gap: 7px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+}
+
+.learning-progress-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.learning-progress-head span {
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.learning-progress-head strong {
+    font-size: 13px;
+    color: var(--text);
+    text-align: right;
+}
+
+.learning-progress-track {
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.learning-progress-fill {
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6aa84f, #8fcf74);
+    transition: width 0.25s ease;
+}
+
+.learning-progress-fill.exam {
+    background: linear-gradient(90deg, #24527a, #5d8fbd);
+}
+
+.learning-progress-detail {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+}
+
 .sidebar-controls {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -129,14 +189,16 @@ body {
 
 .source-list,
 .mode-toggle,
-.category-toggle {
+.category-toggle,
+.section-toggle {
     display: grid;
     gap: 6px;
 }
 
 .source-btn,
 .mode-btn,
-.category-btn {
+.category-btn,
+.section-btn {
     width: 100%;
     border: 1px solid var(--line);
     background: white;
@@ -165,21 +227,24 @@ body {
 }
 
 .mode-btn,
-.category-btn {
+.category-btn,
+.section-btn {
     min-height: 40px;
     padding: 9px 11px;
 }
 
 .source-btn:hover,
 .mode-btn:hover,
-.category-btn:hover {
+.category-btn:hover,
+.section-btn:hover {
     background: #f3f6fa;
     border-color: #b9c6d4;
 }
 
 .source-btn.active,
 .mode-btn.active,
-.category-btn.active {
+.category-btn.active,
+.section-btn.active {
     background: var(--navy);
     border-color: var(--navy);
     color: white;
@@ -378,7 +443,8 @@ button {
 .level-btn:focus-visible,
 .source-btn:focus-visible,
 .mode-btn:focus-visible,
-.category-btn:focus-visible {
+.category-btn:focus-visible,
+.section-btn:focus-visible {
     outline: 3px solid rgba(88, 101, 242, 0.25);
     outline-offset: 2px;
 }
@@ -492,6 +558,35 @@ button {
     color: #8b2119;
 }
 
+.choice-btn.selected {
+    background: #e8f1fb;
+    border-color: #8eb5de;
+    color: var(--blue-text);
+}
+
+.mcq.true-false {
+    grid-template-columns: 1fr;
+}
+
+.tf-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(80px, 120px));
+    gap: 8px;
+    align-items: stretch;
+}
+
+.tf-label {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 9px 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--muted);
+    font-weight: 600;
+}
+
 .box {
     display: none;
     margin-top: 12px;
@@ -568,6 +663,17 @@ footer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .tf-row {
+        grid-template-columns: minmax(0, 1fr) repeat(2, minmax(56px, 72px));
+        gap: 6px;
+    }
+
+    .tf-label {
+        min-height: 42px;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
     .task-image-stack {
         gap: 10px;
     }
@@ -631,10 +737,37 @@ footer {
     <div class="tasks-layout">
         <aside class="task-sidebar" aria-label="Ustawienia zadań">
             <div class="side-section">
+                <div class="side-title">Postęp ucznia</div>
+                <div class="student-progress-panel" aria-live="polite">
+                    <div class="learning-progress">
+                        <div class="learning-progress-head">
+                            <span>Kurs</span>
+                            <strong id="courseProgressLabel">0 / 20 lekcji</strong>
+                        </div>
+                        <div class="learning-progress-track">
+                            <span class="learning-progress-fill" id="courseProgressFill"></span>
+                        </div>
+                        <div class="learning-progress-detail" id="courseProgressDetail">Wczytywanie postępu...</div>
+                    </div>
+
+                    <div class="learning-progress">
+                        <div class="learning-progress-head">
+                            <span>Egzaminy</span>
+                            <strong id="examProgressLabel">0 / 20 arkuszy</strong>
+                        </div>
+                        <div class="learning-progress-track">
+                            <span class="learning-progress-fill exam" id="examProgressFill"></span>
+                        </div>
+                        <div class="learning-progress-detail" id="examProgressDetail">Wczytywanie postępu...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-section">
                 <div class="side-title">Materiał</div>
                 <div class="category-toggle">
-                    <button class="category-btn" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
-                    <button class="category-btn active" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
+                    <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
+                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
                 </div>
             </div>
 
@@ -642,9 +775,9 @@ footer {
                 <div class="side-section">
                     <div class="side-title">Poziom</div>
                     <div class="level-selector sidebar-levels">
-                        <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
+                        <button class="level-btn" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
                         <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
-                        <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
+                        <button class="level-btn active" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
                     </div>
                 </div>
 
@@ -658,8 +791,13 @@ footer {
             </div>
 
             <div class="side-section">
-                <div class="side-title">Zestaw</div>
+                <div class="side-title" id="sourceTitle">Lekcja</div>
                 <div class="source-list" id="sourceList"></div>
+            </div>
+
+            <div class="side-section" id="coursePartSection">
+                <div class="side-title">Część lekcji</div>
+                <div class="section-toggle" id="coursePartList"></div>
             </div>
         </aside>
 
@@ -672,7 +810,7 @@ footer {
                 <div class="task-counter" id="taskCounter">0 / 0</div>
             </div>
 
-            <div class="meta-box meta-podstawowa" id="metaBox"></div>
+            <div class="meta-box meta-osmoklasista" id="metaBox"></div>
 
             <div class="task-image-stack">
                 <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania">
@@ -711,17 +849,33 @@ footer {
 <script src="static/auth.js?v=20260518-token"></script>
 <script>
 let tasks = [];
-let selectedLevel = "matura_podstawowa";
+let selectedLevel = "egzamin_osmoklasisty";
 let currentTask = null;
 let hintUsed = false;
 let answerShown = false;
 let seconds = 0;
 let currentIndex = 0;
 let selectedSource = "all";
-let selectedCategory = "egzaminy";
+let selectedCategory = "kurs";
+let selectedCoursePart = "zadania";
 let taskMode = "ordered";
 let randomHistory = [];
 let randomHistoryIndex = -1;
+let multiSelection = new Set();
+let trueFalseSelection = [];
+let savedProgress = [];
+
+const COURSE_TARGETS = {
+    matura_podstawowa: 20,
+    matura_rozszerzona: 20,
+    egzamin_osmoklasisty: 20
+};
+
+const EXAM_TARGETS = {
+    matura_podstawowa: 20,
+    matura_rozszerzona: 20,
+    egzamin_osmoklasisty: 20
+};
 
 const TASK_SOURCES = [
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
@@ -774,6 +928,11 @@ const CATEGORY_LABELS = {
     egzaminy: "Egzaminy"
 };
 
+const COURSE_PART_LABELS = {
+    zadania: "Zadania",
+    praca_domowa: "Praca domowa"
+};
+
 const MONTH_LABELS = {
     maj: "maj"
 };
@@ -791,8 +950,14 @@ function updateTimer(){
 Promise.all(TASK_SOURCES.map(loadTaskSource))
 .then(groups => {
     tasks = groups.flat();
+    ensureSelectedSource();
     updateCategoryButtons();
+    updateLevelButtons();
+    updateMetaTheme();
     renderSourceSelector();
+    renderCoursePartSelector();
+    renderLearningProgress();
+    loadStudentProgress();
     drawTask(getInitialIndex());
 })
 .catch(() => {
@@ -817,6 +982,7 @@ function loadTaskSource(sourceConfig){
             contextPath: task.contextFile ? basePath + task.contextFile : null,
             tags: Array.isArray(task.tags) ? task.tags : [],
             category: sourceMeta.category,
+            coursePart: task.coursePart || task.section || "zadania",
             level: task.level || sourceMeta.level,
             sourceId: sourceMeta.id,
             sourceLabel: sourceMeta.label,
@@ -850,7 +1016,11 @@ function pool(){
     return tasks.filter(t =>
         t.category === selectedCategory &&
         t.level === selectedLevel &&
-        (selectedSource === "all" || t.sourceId === selectedSource)
+        (selectedSource === "all" || t.sourceId === selectedSource) &&
+        (
+            selectedCategory !== "kurs" ||
+            t.coursePart === selectedCoursePart
+        )
     );
 }
 
@@ -858,13 +1028,46 @@ function getSourceMetaById(sourceId){
     return TASK_SOURCES.map(getSourceMeta).find(source => source.id === sourceId);
 }
 
+function getAvailableSources(){
+    return TASK_SOURCES
+        .map(getSourceMeta)
+        .filter(source =>
+            source.category === selectedCategory &&
+            source.level === selectedLevel &&
+            tasks.some(t =>
+                t.sourceId === source.id &&
+                t.category === selectedCategory &&
+                t.level === selectedLevel
+            )
+        );
+}
+
+function ensureSelectedSource(){
+    const availableSources = getAvailableSources();
+
+    if(selectedCategory === "kurs"){
+        if(!availableSources.some(source => source.id === selectedSource)){
+            selectedSource = availableSources[0]?.id || "all";
+        }
+
+        return;
+    }
+
+    if(selectedSource !== "all" && !availableSources.some(source => source.id === selectedSource)){
+        selectedSource = "all";
+    }
+}
+
 function setCategory(btn, category){
     selectedCategory = category;
     selectedSource = "all";
 
+    ensureSelectedSource();
     updateCategoryButtons();
     resetSession();
     renderSourceSelector();
+    renderCoursePartSelector();
+    renderLearningProgress();
     drawTask(getInitialIndex());
 }
 
@@ -877,10 +1080,13 @@ function setLevel(btn, level){
         selectedSource = "all";
     }
 
+    ensureSelectedSource();
     updateLevelButtons();
     updateMetaTheme();
     resetSession();
     renderSourceSelector();
+    renderCoursePartSelector();
+    renderLearningProgress();
     drawTask(getInitialIndex());
 }
 
@@ -901,6 +1107,8 @@ function setSource(sourceId){
     updateMetaTheme();
     resetSession();
     renderSourceSelector();
+    renderCoursePartSelector();
+    renderLearningProgress();
     drawTask(getInitialIndex());
 }
 
@@ -908,6 +1116,14 @@ function setMode(btn, mode){
     taskMode = mode;
     updateModeButtons();
     resetSession();
+    drawTask(getInitialIndex());
+}
+
+function setCoursePart(part){
+    selectedCoursePart = part;
+
+    resetSession();
+    renderCoursePartSelector();
     drawTask(getInitialIndex());
 }
 
@@ -954,42 +1170,48 @@ function updateMetaTheme(){
 
 function renderSourceSelector(){
     const list = document.getElementById("sourceList");
+    const title = document.getElementById("sourceTitle");
 
     if(!list) return;
 
     list.innerHTML = "";
 
-    addSourceButton(
-        list,
-        "all",
-        selectedCategory === "kurs" ? "Cały kurs" : "Wszystkie arkusze",
-        `${tasks.filter(t => t.category === selectedCategory && t.level === selectedLevel).length} zadań`,
-        selectedSource === "all"
-    );
+    if(title){
+        title.innerText = selectedCategory === "kurs" ? "Lekcja" : "Zestaw";
+    }
 
-    TASK_SOURCES
-        .map(getSourceMeta)
-        .filter(source =>
-            source.category === selectedCategory &&
-            source.level === selectedLevel
-        )
-        .forEach(source => {
-            const count = tasks.filter(t =>
-                t.sourceId === source.id &&
-                t.category === selectedCategory &&
-                t.level === selectedLevel
-            ).length;
+    if(selectedCategory !== "kurs"){
+        addSourceButton(
+            list,
+            "all",
+            "Wszystkie arkusze",
+            `${tasks.filter(t => t.category === selectedCategory && t.level === selectedLevel).length} zadań`,
+            selectedSource === "all"
+        );
+    }
 
-            if(!count) return;
+    const availableSources = getAvailableSources();
 
-            addSourceButton(
-                list,
-                source.id,
-                source.label,
-                `${source.detail} • ${count} zadań`,
-                selectedSource === source.id
-            );
-        });
+    if(selectedCategory === "kurs" && !availableSources.length){
+        addSourceButton(list, "all", "Brak lekcji", "Dodaj zadania dla tego poziomu", true);
+        return;
+    }
+
+    availableSources.forEach(source => {
+        const count = tasks.filter(t =>
+            t.sourceId === source.id &&
+            t.category === selectedCategory &&
+            t.level === selectedLevel
+        ).length;
+
+        addSourceButton(
+            list,
+            source.id,
+            source.label,
+            `${source.detail} • ${count} zadań`,
+            selectedSource === source.id
+        );
+    });
 }
 
 function addSourceButton(list, sourceId, label, detail, active){
@@ -1007,6 +1229,200 @@ function addSourceButton(list, sourceId, label, detail, active){
     button.appendChild(name);
     button.appendChild(meta);
     list.appendChild(button);
+}
+
+function renderCoursePartSelector(){
+    const section = document.getElementById("coursePartSection");
+    const list = document.getElementById("coursePartList");
+
+    if(!section || !list) return;
+
+    section.style.display = selectedCategory === "kurs" ? "grid" : "none";
+    list.innerHTML = "";
+
+    if(selectedCategory !== "kurs") return;
+
+    Object.entries(COURSE_PART_LABELS).forEach(([part, label]) => {
+        const count = tasks.filter(t =>
+            t.category === "kurs" &&
+            t.level === selectedLevel &&
+            t.coursePart === part &&
+            (selectedSource === "all" || t.sourceId === selectedSource)
+        ).length;
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = selectedCoursePart === part ? "section-btn active" : "section-btn";
+        button.innerText = `${label} (${count})`;
+        button.onclick = () => setCoursePart(part);
+
+        list.appendChild(button);
+    });
+}
+
+async function loadStudentProgress(){
+    if(!window.apiFetch){
+        renderLearningProgress("Postęp będzie widoczny po zalogowaniu.");
+        return;
+    }
+
+    try {
+        const data = await apiFetch("/api/progress/me");
+
+        savedProgress = Array.isArray(data.progress) ? data.progress : [];
+        renderLearningProgress();
+    } catch(error) {
+        savedProgress = [];
+        renderLearningProgress("Nie udało się wczytać postępu.");
+    }
+}
+
+function getProgressSourceId(item){
+    if(item.source_id) return item.source_id;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(0, splitIndex) : "";
+}
+
+function getProgressFile(item){
+    if(item.file) return item.file;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(splitIndex + 1) : "";
+}
+
+function progressTaskKey(item){
+    const sourceId = getProgressSourceId(item);
+    const file = getProgressFile(item);
+
+    if(!sourceId || !file) return "";
+
+    return `${sourceId}:${file}`;
+}
+
+function getTaskSources(category, level){
+    const sourceMap = new Map();
+
+    tasks
+        .filter(task => task.category === category && task.level === level)
+        .forEach(task => {
+            if(!sourceMap.has(task.sourceId)){
+                sourceMap.set(task.sourceId, {
+                    id: task.sourceId,
+                    label: task.sourceLabel,
+                    detail: task.sourceDetail,
+                    files: new Set()
+                });
+            }
+
+            sourceMap.get(task.sourceId).files.add(task.file);
+        });
+
+    return [...sourceMap.values()]
+        .map(source => ({
+            ...source,
+            totalTasks: source.files.size
+        }))
+        .filter(source => source.totalTasks > 0);
+}
+
+function calculateProgressStats(category, target){
+    const attemptedTasks = new Set(
+        savedProgress
+            .map(progressTaskKey)
+            .filter(Boolean)
+    );
+    const sources = getTaskSources(category, selectedLevel);
+
+    let completed = 0;
+    let started = 0;
+    let attempted = 0;
+    let total = 0;
+    let visualUnits = 0;
+
+    sources.forEach(source => {
+        const attemptedInSource = [...source.files]
+            .filter(file => attemptedTasks.has(`${source.id}:${file}`))
+            .length;
+
+        total += source.totalTasks;
+        attempted += attemptedInSource;
+
+        if(attemptedInSource > 0) started++;
+
+        if(attemptedInSource >= source.totalTasks){
+            completed++;
+            visualUnits++;
+        } else if(source.totalTasks){
+            visualUnits += attemptedInSource / source.totalTasks;
+        }
+    });
+
+    return {
+        target,
+        completed,
+        started,
+        attempted,
+        total,
+        available: sources.length,
+        percent: Math.min(100, Math.round((visualUnits / target) * 1000) / 10)
+    };
+}
+
+function updateProgressBar({ labelId, fillId, detailId, label, unit, stats, emptyText, unavailableText }){
+    const labelElement = document.getElementById(labelId);
+    const fillElement = document.getElementById(fillId);
+    const detailElement = document.getElementById(detailId);
+
+    if(!labelElement || !fillElement || !detailElement) return;
+
+    labelElement.innerText = `${stats.completed} / ${stats.target} ${unit}`;
+    fillElement.style.width = `${stats.percent}%`;
+
+    if(unavailableText){
+        detailElement.innerText = unavailableText;
+        return;
+    }
+
+    if(!stats.available){
+        detailElement.innerText = emptyText;
+        return;
+    }
+
+    detailElement.innerText =
+        `${label}: dostępne ${stats.available}, rozpoczęte ${stats.started}, zadania ${stats.attempted}/${stats.total}`;
+}
+
+function renderLearningProgress(unavailableText = ""){
+    const courseStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20);
+    const examStats = calculateProgressStats("egzaminy", EXAM_TARGETS[selectedLevel] || 20);
+
+    updateProgressBar({
+        labelId: "courseProgressLabel",
+        fillId: "courseProgressFill",
+        detailId: "courseProgressDetail",
+        label: "Lekcje",
+        unit: "lekcji",
+        stats: courseStats,
+        emptyText: "Brak dodanych lekcji dla tego poziomu.",
+        unavailableText
+    });
+
+    updateProgressBar({
+        labelId: "examProgressLabel",
+        fillId: "examProgressFill",
+        detailId: "examProgressDetail",
+        label: "Arkusze",
+        unit: "arkuszy",
+        stats: examStats,
+        emptyText: "Brak dodanych arkuszy dla tego poziomu.",
+        unavailableText
+    });
 }
 
 function resetSession(){
@@ -1070,7 +1486,9 @@ function stars(n){
 }
 
 function isClosedTask(task){
+    if(["closed", "multi", "true_false"].includes(task.type)) return true;
     if(task.type === "closed" && Array.isArray(task.options)) return true;
+    if(Array.isArray(task.answer) && task.answer.length) return true;
 
     return ["A", "B", "C", "D", "P", "F", "PP", "PF", "FP", "FF"].includes(task.answer);
 }
@@ -1084,7 +1502,24 @@ function getOptions(task){
     return ["A", "B", "C", "D"];
 }
 
-function formatOption(option){
+function usesTrueFalseLabels(task){
+    if(!task) return false;
+    if(task.type === "true_false") return true;
+    if(task.type === "multi") return false;
+
+    const options = Array.isArray(task.options) ? task.options : [];
+
+    if(options.length > 0)
+        return options.every(option => ["P", "F", "PP", "PF", "FP", "FF"].includes(option));
+
+    return ["P", "F", "PP", "PF", "FP", "FF"].includes(task.answer);
+}
+
+function formatOption(option, task = null){
+    if(!usesTrueFalseLabels(task) && ["P", "F"].includes(option)){
+        return option;
+    }
+
     const labels = {
         P: "Prawda",
         F: "Fałsz",
@@ -1097,12 +1532,24 @@ function formatOption(option){
     return labels[option] || option;
 }
 
-function formatAnswer(answer){
-    const formatted = formatOption(answer);
+function formatAnswer(answer, task = null){
+    if(Array.isArray(answer)){
+        return answer.map(item => formatOption(item, task)).join(", ");
+    }
+
+    const formatted = formatOption(answer, task);
 
     if(formatted === answer) return answer;
 
     return `${answer} - ${formatted}`;
+}
+
+function getCorrectAnswers(task){
+    if(Array.isArray(task.answer)) return task.answer.map(String);
+    if(typeof task.answer === "string" && task.answer.includes(","))
+        return task.answer.split(",").map(item => item.trim()).filter(Boolean);
+
+    return [String(task.answer)];
 }
 
 function drawTask(index = currentIndex, trackHistory = true){
@@ -1115,7 +1562,7 @@ function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("contextImage").src = "";
         document.getElementById("contextImage").classList.add("hidden");
         document.getElementById("metaBox").innerHTML = "";
-        document.getElementById("mcq").classList.remove("active");
+        document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
         showMessage(`Brak zadań w części ${CATEGORY_LABELS[selectedCategory].toLowerCase()} dla wybranego poziomu.`);
         return;
@@ -1266,17 +1713,25 @@ function setupMCQ(){
     const resultButtons = document.getElementById("resultButtons");
 
     mcq.innerHTML = "";
+    mcq.className = "mcq";
     resultButtons.classList.remove("active");
+    multiSelection = new Set();
+    trueFalseSelection = [];
 
     if(isClosedTask(currentTask)){
         mcq.classList.add("active");
+
+        if(currentTask.type === "true_false"){
+            setupTrueFalseTask(mcq);
+            return;
+        }
 
         getOptions(currentTask).forEach(option => {
             const b = document.createElement("button");
 
             b.className = "choice-btn";
             b.dataset.value = option;
-            b.innerText = formatOption(option);
+            b.innerText = formatOption(option, currentTask);
             b.onclick = () => choose(option, b);
 
             mcq.appendChild(b);
@@ -1286,8 +1741,48 @@ function setupMCQ(){
     }
 }
 
+function setupTrueFalseTask(mcq){
+    const correctAnswers = getCorrectAnswers(currentTask);
+    const labels = currentTask.statements?.length
+        ? currentTask.statements
+        : correctAnswers.map((_, index) => `Stwierdzenie ${index + 1}`);
+
+    mcq.classList.add("true-false");
+    trueFalseSelection = new Array(correctAnswers.length).fill(null);
+
+    correctAnswers.forEach((_, index) => {
+        const row = document.createElement("div");
+        const label = document.createElement("div");
+
+        row.className = "tf-row";
+        label.className = "tf-label";
+        label.innerText = labels[index] || `Stwierdzenie ${index + 1}`;
+
+        row.appendChild(label);
+
+        ["P", "F"].forEach(option => {
+            const button = document.createElement("button");
+
+            button.className = "choice-btn";
+            button.dataset.index = String(index);
+            button.dataset.value = option;
+            button.innerText = formatOption(option, currentTask);
+            button.onclick = () => chooseTrueFalse(index, option, button);
+
+            row.appendChild(button);
+        });
+
+        mcq.appendChild(row);
+    });
+}
+
 function choose(opt, btn){
-    const correct = currentTask.answer;
+    if(currentTask.type === "multi"){
+        chooseMulti(opt, btn);
+        return;
+    }
+
+    const correct = String(currentTask.answer);
 
     disableMCQ();
 
@@ -1303,12 +1798,76 @@ function choose(opt, btn){
     }
 
     btn.classList.add("wrong");
-    revealCorrectAnswer(correct);
+    revealCorrectAnswer([correct]);
     addProgress("bad");
 
     setTimeout(() => {
         nextTask();
     }, 1200);
+}
+
+function chooseMulti(opt, btn){
+    const correctAnswers = getCorrectAnswers(currentTask);
+
+    if(multiSelection.has(opt)){
+        multiSelection.delete(opt);
+        btn.classList.remove("selected");
+        return;
+    }
+
+    if(!correctAnswers.includes(opt)){
+        disableMCQ();
+        btn.classList.add("wrong");
+        revealCorrectAnswer(correctAnswers);
+        addProgress("bad");
+
+        setTimeout(() => {
+            nextTask();
+        }, 1200);
+
+        return;
+    }
+
+    multiSelection.add(opt);
+    btn.classList.add("selected");
+
+    if(multiSelection.size === correctAnswers.length){
+        disableMCQ();
+        revealCorrectAnswer(correctAnswers);
+        addProgress(hintUsed || answerShown ? "medium" : "good");
+
+        setTimeout(() => {
+            nextTask();
+        }, 850);
+    }
+}
+
+function chooseTrueFalse(index, opt, btn){
+    const row = btn.closest(".tf-row");
+
+    row?.querySelectorAll(".choice-btn")
+        .forEach(button => {
+            button.classList.remove("selected");
+        });
+
+    btn.classList.add("selected");
+    trueFalseSelection[index] = opt;
+
+    if(trueFalseSelection.some(answer => !answer)) return;
+
+    const correctAnswers = getCorrectAnswers(currentTask);
+    const isCorrect = correctAnswers.every((answer, answerIndex) =>
+        trueFalseSelection[answerIndex] === answer
+    );
+
+    disableMCQ();
+    revealTrueFalseAnswers(correctAnswers);
+
+    addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
+
+    setTimeout(() => {
+        nextTask();
+    }, isCorrect ? 850 : 1400);
 }
 
 function disableMCQ(){
@@ -1318,12 +1877,25 @@ function disableMCQ(){
         });
 }
 
-function revealCorrectAnswer(correct){
+function revealCorrectAnswer(correctAnswers){
     document.querySelectorAll("#mcq button")
         .forEach(b => {
-            if(b.dataset.value === correct){
+            if(correctAnswers.includes(b.dataset.value)){
                 b.classList.add("correct");
             }
+        });
+}
+
+function revealTrueFalseAnswers(correctAnswers){
+    document.querySelectorAll("#mcq button")
+        .forEach(button => {
+            const index = Number(button.dataset.index);
+            const value = button.dataset.value;
+            const wasSelected = trueFalseSelection[index] === value;
+            const isCorrect = correctAnswers[index] === value;
+
+            if(isCorrect) button.classList.add("correct");
+            if(wasSelected && !isCorrect) button.classList.add("wrong");
         });
 }
 
@@ -1346,7 +1918,7 @@ async function saveProgress(type){
     if(!currentTask || !window.apiFetch) return;
 
     try {
-        await apiFetch("/api/progress", {
+        const data = await apiFetch("/api/progress", {
             method: "POST",
             body: JSON.stringify({
                 task_id: `${currentTask.sourceId}:${currentTask.file}`,
@@ -1362,6 +1934,11 @@ async function saveProgress(type){
                 task_mode: taskMode
             })
         });
+
+        if(data?.progress){
+            savedProgress.unshift(data.progress);
+            renderLearningProgress();
+        }
     } catch(error) {
         if(error.status !== 401){
             console.warn("Nie udało się zapisać postępu.", error);
@@ -1392,7 +1969,7 @@ function showAnswer(){
 
     answerShown = true;
 
-    showMessage(formatAnswer(currentTask.answer) || "Brak odpowiedzi.");
+    showMessage(formatAnswer(currentTask.answer, currentTask) || "Brak odpowiedzi.");
 
     if(!isClosedTask(currentTask)){
         document.getElementById("resultButtons").classList.add("active");
