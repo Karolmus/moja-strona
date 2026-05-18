@@ -255,6 +255,40 @@ def ensure_admin_user(email, password):
     ), True
 
 
+def sync_admin_user(email, password=None):
+    existing = get_user_by_email(email)
+
+    if not existing:
+        return ensure_admin_user(email, password or generate_temporary_password())
+
+    assignments = [
+        "display_name = ?",
+        "role = ?",
+        "level = ?",
+        "is_active = ?",
+    ]
+    values = [
+        existing.get("display_name") or "Administrator",
+        "admin",
+        None,
+        db_bool(True),
+    ]
+
+    if password:
+        assignments.append("password_hash = ?")
+        values.append(generate_password_hash(password))
+
+    values.append(existing["id"])
+    db = get_db()
+    db.execute(
+        prepare_sql(f"UPDATE users SET {', '.join(assignments)} WHERE id = ?"),
+        values,
+    )
+    db.commit()
+
+    return get_user_by_id(existing["id"]), False
+
+
 def touch_last_login(user_id):
     db = get_db()
 
