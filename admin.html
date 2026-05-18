@@ -162,6 +162,43 @@ select:focus {
     background: var(--surface-soft);
 }
 
+.credentials-box {
+    display: none;
+    gap: 10px;
+    border: 1px solid #cce5c9;
+    border-radius: 8px;
+    background: var(--green-soft);
+    padding: 12px;
+}
+
+.credentials-box.active {
+    display: grid;
+}
+
+.credentials-box h3 {
+    margin: 0;
+    color: var(--green-text);
+    font-size: 14px;
+}
+
+.credential-row {
+    display: grid;
+    gap: 3px;
+}
+
+.credential-row span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.credential-row strong {
+    color: var(--text);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
 .summary-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -493,6 +530,18 @@ footer {
             </div>
 
             <button class="btn" type="submit">Dodaj ucznia</button>
+            <div class="credentials-box" id="credentialsBox" aria-live="polite">
+                <h3 id="credentialsTitle">Dane logowania ucznia</h3>
+                <div class="credential-row">
+                    <span>Login</span>
+                    <strong id="credentialsLogin"></strong>
+                </div>
+                <div class="credential-row">
+                    <span>Hasło</span>
+                    <strong id="credentialsPassword"></strong>
+                </div>
+                <button class="btn secondary" type="button" id="copyCredentialsBtn">Kopiuj dane</button>
+            </div>
             <div class="status-box" id="adminStatus" role="status" aria-live="polite"></div>
         </form>
 
@@ -551,12 +600,38 @@ const progressDetail = document.getElementById("progressDetail");
 const progressTitle = document.getElementById("progressTitle");
 const activityChart = document.getElementById("activityChart");
 const recentProgress = document.getElementById("recentProgress");
+const credentialsBox = document.getElementById("credentialsBox");
+const credentialsTitle = document.getElementById("credentialsTitle");
+const credentialsLogin = document.getElementById("credentialsLogin");
+const credentialsPassword = document.getElementById("credentialsPassword");
+const copyCredentialsBtn = document.getElementById("copyCredentialsBtn");
 
 let students = [];
+let lastCredentialsText = "";
 
 function showStatus(message){
     adminStatus.classList.add("active");
     adminStatus.innerText = message;
+}
+
+function showCredentials(title, student, password){
+    lastCredentialsText = `Login: ${student.email}\nHasło: ${password}`;
+
+    credentialsTitle.innerText = title;
+    credentialsLogin.innerText = student.email;
+    credentialsPassword.innerText = password;
+    credentialsBox.classList.add("active");
+}
+
+async function copyLastCredentials(){
+    if(!lastCredentialsText) return;
+
+    try {
+        await navigator.clipboard.writeText(lastCredentialsText);
+        showStatus("Skopiowano dane logowania ucznia.");
+    } catch(error) {
+        showStatus(lastCredentialsText);
+    }
 }
 
 function formatDate(value){
@@ -701,6 +776,7 @@ async function resetPassword(student){
         body: JSON.stringify({})
     });
 
+    showCredentials("Nowe hasło ucznia", data.student, data.temporary_password);
     showStatus(`Nowe hasło dla ${student.display_name}: ${data.temporary_password}`);
 }
 
@@ -856,12 +932,15 @@ studentForm.addEventListener("submit", async event => {
         });
 
         studentForm.reset();
-        showStatus(`Utworzono konto: ${data.student.email}\nHasło startowe: ${data.temporary_password}`);
+        showCredentials("Utworzono konto ucznia", data.student, data.temporary_password);
+        showStatus("Konto ucznia zostało utworzone. Dane logowania są widoczne powyżej.");
         await loadStudents();
     } catch(error) {
         showStatus(error.message || "Nie udało się utworzyć ucznia.");
     }
 });
+
+copyCredentialsBtn.addEventListener("click", copyLastCredentials);
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     try {
