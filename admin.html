@@ -201,7 +201,7 @@ select:focus {
 
 .summary-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
 }
 
@@ -231,7 +231,7 @@ select:focus {
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 760px;
+    min-width: 940px;
 }
 
 th,
@@ -278,6 +278,50 @@ th {
     min-height: 34px;
     padding: 6px 9px;
     font-size: 12px;
+}
+
+.login-details {
+    display: grid;
+    gap: 5px;
+}
+
+.login-line {
+    display: grid;
+    gap: 2px;
+}
+
+.login-line span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.login-line strong {
+    color: var(--text);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.login-line strong.missing {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.mini-link {
+    justify-self: start;
+    border: 0;
+    background: transparent;
+    color: var(--blue-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0;
+}
+
+.mini-link:hover {
+    text-decoration: underline;
 }
 
 .progress-detail {
@@ -491,14 +535,6 @@ footer {
             <strong id="activeCount">0</strong>
             <span>aktywnych</span>
         </div>
-        <div class="summary-card">
-            <strong id="attemptCount">0</strong>
-            <span>prób</span>
-        </div>
-        <div class="summary-card">
-            <strong id="avgAccuracy">0%</strong>
-            <span>średnia skuteczność</span>
-        </div>
     </section>
 
     <div class="admin-layout">
@@ -552,6 +588,7 @@ footer {
                     <thead>
                         <tr>
                             <th>Uczeń</th>
+                            <th>Dane logowania</th>
                             <th>Poziom</th>
                             <th>Status</th>
                             <th>Postęp</th>
@@ -608,6 +645,7 @@ const copyCredentialsBtn = document.getElementById("copyCredentialsBtn");
 
 let students = [];
 let lastCredentialsText = "";
+const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
 
 function showStatus(message){
     adminStatus.classList.add("active");
@@ -621,6 +659,48 @@ function showCredentials(title, student, password){
     credentialsLogin.innerText = student.email;
     credentialsPassword.innerText = password;
     credentialsBox.classList.add("active");
+}
+
+function loadIssuedCredentials(){
+    try {
+        return JSON.parse(window.localStorage.getItem(ISSUED_CREDENTIALS_KEY)) || {};
+    } catch(error) {
+        return {};
+    }
+}
+
+function saveIssuedCredentials(credentials){
+    window.localStorage.setItem(ISSUED_CREDENTIALS_KEY, JSON.stringify(credentials));
+}
+
+function rememberIssuedPassword(student, password){
+    if(!student?.id || !password) return;
+
+    const credentials = loadIssuedCredentials();
+
+    credentials[String(student.id)] = {
+        email: student.email,
+        password
+    };
+
+    saveIssuedCredentials(credentials);
+}
+
+function forgetIssuedPassword(studentId){
+    const credentials = loadIssuedCredentials();
+
+    delete credentials[String(studentId)];
+    saveIssuedCredentials(credentials);
+}
+
+function getIssuedPassword(student){
+    const item = loadIssuedCredentials()[String(student.id)];
+
+    if(!item || item.email !== student.email){
+        return "";
+    }
+
+    return item.password || "";
 }
 
 async function copyLastCredentials(){
@@ -671,16 +751,9 @@ function resultLabel(result){
 
 function renderSummary(){
     const activeStudents = students.filter(student => student.is_active);
-    const attempts = students.reduce((sum, student) => sum + Number(student.attempts || 0), 0);
-    const accuracyBase = students.filter(student => Number(student.attempts || 0) > 0);
-    const accuracy = accuracyBase.length
-        ? Math.round(accuracyBase.reduce((sum, student) => sum + Number(student.accuracy || 0), 0) / accuracyBase.length)
-        : 0;
 
     document.getElementById("studentCount").innerText = students.length;
     document.getElementById("activeCount").innerText = activeStudents.length;
-    document.getElementById("attemptCount").innerText = attempts;
-    document.getElementById("avgAccuracy").innerText = `${accuracy}%`;
 }
 
 function button(label, className, onClick){
@@ -694,6 +767,61 @@ function button(label, className, onClick){
     return element;
 }
 
+async function copyStudentCredentials(student){
+    const password = getIssuedPassword(student);
+    const text = password
+        ? `Login: ${student.email}\nHasło: ${password}`
+        : `Login: ${student.email}\nHasło: zresetuj hasło, aby wydać nowe`;
+
+    try {
+        await navigator.clipboard.writeText(text);
+        showStatus("Skopiowano dane logowania ucznia.");
+    } catch(error) {
+        showStatus(text);
+    }
+}
+
+function buildCredentialsCell(student){
+    const cell = document.createElement("td");
+    const wrap = document.createElement("div");
+    const loginLine = document.createElement("div");
+    const loginLabel = document.createElement("span");
+    const loginValue = document.createElement("strong");
+    const passwordLine = document.createElement("div");
+    const passwordLabel = document.createElement("span");
+    const passwordValue = document.createElement("strong");
+    const copyButton = document.createElement("button");
+    const issuedPassword = getIssuedPassword(student);
+
+    wrap.className = "login-details";
+    loginLine.className = "login-line";
+    passwordLine.className = "login-line";
+    copyButton.type = "button";
+    copyButton.className = "mini-link";
+    copyButton.innerText = "Kopiuj dane";
+    copyButton.addEventListener("click", () => copyStudentCredentials(student));
+
+    loginLabel.innerText = "Login";
+    loginValue.innerText = student.email;
+    passwordLabel.innerText = "Hasło";
+    passwordValue.innerText = issuedPassword || "Resetuj, aby wydać nowe";
+
+    if(!issuedPassword){
+        passwordValue.className = "missing";
+    }
+
+    loginLine.appendChild(loginLabel);
+    loginLine.appendChild(loginValue);
+    passwordLine.appendChild(passwordLabel);
+    passwordLine.appendChild(passwordValue);
+    wrap.appendChild(loginLine);
+    wrap.appendChild(passwordLine);
+    wrap.appendChild(copyButton);
+    cell.appendChild(wrap);
+
+    return cell;
+}
+
 function renderStudents(){
     studentTable.innerHTML = "";
 
@@ -701,7 +829,7 @@ function renderStudents(){
         const row = document.createElement("tr");
         const cell = document.createElement("td");
 
-        cell.colSpan = 6;
+        cell.colSpan = 7;
         cell.innerText = "Brak uczniów.";
         row.appendChild(cell);
         studentTable.appendChild(row);
@@ -712,6 +840,7 @@ function renderStudents(){
     students.forEach(student => {
         const row = document.createElement("tr");
         const userCell = document.createElement("td");
+        const credentialsCell = buildCredentialsCell(student);
         const levelCell = document.createElement("td");
         const statusCell = document.createElement("td");
         const progressCell = document.createElement("td");
@@ -720,7 +849,7 @@ function renderStudents(){
         const statusBadge = document.createElement("span");
         const actions = document.createElement("div");
 
-        userCell.innerText = `${student.display_name}\n${student.email}`;
+        userCell.innerText = student.display_name;
         levelCell.innerText = levelLabels[student.level] || student.level || "-";
         progressCell.innerText = `${student.attempts || 0} prób • ${student.accuracy || 0}% dobrze`;
         activityCell.innerText = formatDate(student.last_activity_at || student.last_login_at);
@@ -741,6 +870,7 @@ function renderStudents(){
         actionsCell.appendChild(actions);
 
         row.appendChild(userCell);
+        row.appendChild(credentialsCell);
         row.appendChild(levelCell);
         row.appendChild(statusCell);
         row.appendChild(progressCell);
@@ -776,8 +906,10 @@ async function resetPassword(student){
         body: JSON.stringify({})
     });
 
+    rememberIssuedPassword(data.student, data.temporary_password);
     showCredentials("Nowe hasło ucznia", data.student, data.temporary_password);
     showStatus(`Nowe hasło dla ${student.display_name}: ${data.temporary_password}`);
+    await loadStudents();
 }
 
 async function deleteStudent(student){
@@ -791,6 +923,7 @@ async function deleteStudent(student){
         method: "DELETE"
     });
 
+    forgetIssuedPassword(student.id);
     showStatus(`Usunięto ucznia: ${student.display_name}`);
     await loadStudents();
 }
@@ -932,6 +1065,7 @@ studentForm.addEventListener("submit", async event => {
         });
 
         studentForm.reset();
+        rememberIssuedPassword(data.student, data.temporary_password);
         showCredentials("Utworzono konto ucznia", data.student, data.temporary_password);
         showStatus("Konto ucznia zostało utworzone. Dane logowania są widoczne powyżej.");
         await loadStudents();
