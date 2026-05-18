@@ -366,7 +366,7 @@ footer {
 
 <footer>© 2026 Delta sigma</footer>
 
-<script src="static/auth.js"></script>
+<script src="static/auth.js?v=20260518-token"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -547,7 +547,11 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
     try {
         await apiFetch("/api/auth/logout", { method: "POST" });
     } finally {
-        clearAuthToken();
+        if(window.clearAuthToken){
+            window.clearAuthToken();
+        } else {
+            window.localStorage.removeItem("deltaSigmaAuthToken");
+        }
     }
 
     window.location.href = "login.html";

@@ -340,7 +340,7 @@ footer {
 
 <footer>© 2026 Delta sigma</footer>
 
-<script src="static/auth.js"></script>
+<script src="static/auth.js?v=20260518-token"></script>
 <script>
 const form = document.getElementById("loginForm");
 const email = document.getElementById("email");
@@ -358,6 +358,17 @@ function setFieldError(field, target, message){
 function showStatus(message, type){
     formStatus.className = `status-box ${type}`;
     formStatus.innerText = message;
+}
+
+function persistAuthToken(token){
+    if(window.saveAuthToken){
+        window.saveAuthToken(token);
+        return;
+    }
+
+    if(token){
+        window.localStorage.setItem("deltaSigmaAuthToken", token);
+    }
 }
 
 function validateLoginForm(){
@@ -413,7 +424,7 @@ form.addEventListener("submit", async event => {
             })
         });
 
-        saveAuthToken(result.token);
+        persistAuthToken(result.token);
         showStatus("Zalogowano poprawnie. Przekierowuję...", "success");
 
         window.location.href = result.user.role === "admin" ? "admin.html" : "zadania.html";
