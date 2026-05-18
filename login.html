@@ -413,6 +413,7 @@ form.addEventListener("submit", async event => {
             })
         });
 
+        saveAuthToken(result.token);
         showStatus("Zalogowano poprawnie. Przekierowuję...", "success");
 
         window.location.href = result.user.role === "admin" ? "admin.html" : "zadania.html";

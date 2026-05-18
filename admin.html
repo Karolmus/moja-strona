@@ -544,7 +544,12 @@ studentForm.addEventListener("submit", async event => {
 });
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
-    await apiFetch("/api/auth/logout", { method: "POST" });
+    try {
+        await apiFetch("/api/auth/logout", { method: "POST" });
+    } finally {
+        clearAuthToken();
+    }
+
     window.location.href = "login.html";
 });
 
