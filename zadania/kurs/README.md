@@ -14,3 +14,6 @@ Foldery poziomow:
 - `mr` - matura rozszerzona,
 - `eo` - egzamin osmoklasisty.
 
+Lekcje kursowe najlepiej trzymac w osobnych podfolderach poziomu, np.
+`eo/lekcja_2/`. Wtedy kazda lekcja moze miec wlasny plik JSON, PDF z materialem
+zrodlowym oraz obrazy zadan.

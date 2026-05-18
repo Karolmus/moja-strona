@@ -1,0 +1,312 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 2 - zadanie 1",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Przepisz podane liczby i porownaj je z liczba 4.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 2 - zadanie 2",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonaj dzialania na ulamkach krok po kroku, pilnujac znakow.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 2 - zadanie 3",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj rowne odleglosci na osi liczbowej.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "os liczbowa"]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 2 - zadanie 4",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz wszystkie mozliwe liczby trzycyfrowe i sprawdz oba zdania osobno.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "prawda falsz"]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 2 - zadanie 5",
+    "difficulty": 2,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamien informacje z tresci na czesci calej szklanki.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "ulamki"]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 2 - zadanie 6",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oblicz wartosci po obu stronach porownania i sprawdz kazde zdanie osobno.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "prawda falsz"]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 2 - zadanie 7",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Najpierw wykonaj dzialania w nawiasach, potem porownaj otrzymane liczby.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 2 - zadanie 8",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Przypomnij sobie kolejnosc wykonywania dzialan.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 2 - zadanie 9",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oblicz wartosc wyrazenia dla kazdej podanej informacji oddzielnie.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 2 - zadanie 10",
+    "difficulty": 2,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Szukaj dwoch odpowiedzi i sprawdz kazda z nich rachunkowo.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "zadanie wielokrotnego wyboru"]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 2 - zadanie 11",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porownaj liczby po sprowadzeniu ich do wygodnej postaci.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 2 - zadanie 12",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprawdz cechy podzielnosci i kazde stwierdzenie ocen oddzielnie.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "podzielnosc", "prawda falsz"]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 2 - zadanie 13",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonaj dzialania w najprostszej kolejnosci i sprawdz, ktore odpowiedzi pasuja.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 2 - zadanie 14",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Odczytaj zaleznosci z tresci i podstaw je do obliczen.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 2 - zadanie 15",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprawdz podane warunki po kolei, zamiast liczyc wszystko naraz.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 2 - zadanie 16",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamien dane na liczby i policz wartosc wyrazenia krok po kroku.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "17.png",
+    "title": "Lekcja 2 - zadanie 17",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Najpierw ustal, czego dotyczy pytanie, potem wykonaj jedno uporzadkowane obliczenie.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach"]
+  },
+  {
+    "file": "18.png",
+    "title": "Lekcja 2 - zadanie 18",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Skorzystaj z cech podzielnosci i ocen kazde stwierdzenie osobno.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "podzielnosc", "prawda falsz"]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 2 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonaj dzialania po kolei, zapisujac wynik kazdego etapu.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa"]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 2 - praca domowa 2",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porownaj ulamki lub liczby po sprowadzeniu ich do wygodnej postaci.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa"]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 2 - praca domowa 3",
+    "difficulty": 2,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane z tresci w postaci jednego dzialania lub kilku prostych krokow.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa"]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 2 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprawdz kazda odpowiedz, wykonujac wymagane dzialanie.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa"]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 2 - praca domowa 5",
+    "difficulty": 2,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal wartosci liczb I-VI, a potem porownaj je z trescia kazdego zdania.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "prawda falsz"]
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 2 - praca domowa 6",
+    "difficulty": 2,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Najpierw oblicz liczbe bananow Oli i Antka, potem policz sume oraz srednia.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "srednia"]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 2 - praca domowa 7",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprawdz cechy podzielnosci podanej liczby i dopasuj uzasadnienie.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "podzielnosc"]
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 2 - praca domowa 8",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Dla kazdego dzielnika sprawdz reszte z dzielenia i wybierz najmniejsza.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "dzielenie z reszta"]
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 2 - praca domowa 9",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Znajdz liczbe lezaca dokladnie w polowie odcinka na osi liczbowej.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "os liczbowa", "prawda falsz"]
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 2 - praca domowa 10",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprawdz podzielnosc liczby 9660 przez kazda z podanych liczb.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "podzielnosc"]
+  },
+  {
+    "file": "zd11.png",
+    "title": "Lekcja 2 - praca domowa 11",
+    "difficulty": 2,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Dodaj wszystkie podane kilometry i podziel sume przez liczbe dni.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "srednia"]
+  },
+  {
+    "file": "zd12.png",
+    "title": "Lekcja 2 - praca domowa 12",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamien zapisy rzymskie na liczby arabskie i sprawdz, ktory rok nie jest przestepny.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "liczby rzymskie"]
+  },
+  {
+    "file": "zd13.png",
+    "title": "Lekcja 2 - praca domowa 13",
+    "difficulty": 1,
+    "topic": "dzialania na liczbach",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamien liczby rzymskie na arabskie albo porownuj je od lewej strony.",
+    "answer": "Zadanie wprowadzone jako otwarte. Po sprawdzeniu wyniku oznacz je jako dobrze albo zle.",
+    "tags": ["kurs", "lekcja 2", "dzialania na liczbach", "praca domowa", "liczby rzymskie"]
+  }
+]

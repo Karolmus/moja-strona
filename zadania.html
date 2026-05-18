@@ -747,6 +747,13 @@ const TASK_SOURCES = [
         level: "egzamin_osmoklasisty",
         label: "Kurs",
         detail: "Egzamin Ósmoklasisty"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_2/lekcja_2_dzialania_na_liczbach.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 2",
+        detail: "Działania na liczbach"
     }
 ];
 
@@ -973,7 +980,7 @@ function renderSourceSelector(){
                 t.level === selectedLevel
             ).length;
 
-            if(!count && selectedCategory !== "kurs") return;
+            if(!count) return;
 
             addSourceButton(
                 list,
