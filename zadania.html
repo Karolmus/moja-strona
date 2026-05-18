@@ -855,6 +855,7 @@ let hintUsed = false;
 let answerShown = false;
 let seconds = 0;
 let currentIndex = 0;
+let currentTaskStartedAt = 0;
 let selectedSource = "all";
 let selectedCategory = "kurs";
 let selectedCoursePart = "zadania";
@@ -1305,11 +1306,15 @@ function progressTaskKey(item){
     return `${sourceId}:${file}`;
 }
 
-function getTaskSources(category, level){
+function getTaskSources(category, level, options = {}){
     const sourceMap = new Map();
 
     tasks
-        .filter(task => task.category === category && task.level === level)
+        .filter(task =>
+            task.category === category &&
+            task.level === level &&
+            (!options.coursePart || task.coursePart === options.coursePart)
+        )
         .forEach(task => {
             if(!sourceMap.has(task.sourceId)){
                 sourceMap.set(task.sourceId, {
@@ -1331,13 +1336,13 @@ function getTaskSources(category, level){
         .filter(source => source.totalTasks > 0);
 }
 
-function calculateProgressStats(category, target){
+function calculateProgressStats(category, target, options = {}){
     const attemptedTasks = new Set(
         savedProgress
             .map(progressTaskKey)
             .filter(Boolean)
     );
-    const sources = getTaskSources(category, selectedLevel);
+    const sources = getTaskSources(category, selectedLevel, options);
 
     let completed = 0;
     let started = 0;
@@ -1399,17 +1404,19 @@ function updateProgressBar({ labelId, fillId, detailId, label, unit, stats, empt
 }
 
 function renderLearningProgress(unavailableText = ""){
-    const courseStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20);
+    const courseStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
+        coursePart: "praca_domowa"
+    });
     const examStats = calculateProgressStats("egzaminy", EXAM_TARGETS[selectedLevel] || 20);
 
     updateProgressBar({
         labelId: "courseProgressLabel",
         fillId: "courseProgressFill",
         detailId: "courseProgressDetail",
-        label: "Lekcje",
+        label: "Prace domowe",
         unit: "lekcji",
         stats: courseStats,
-        emptyText: "Brak dodanych lekcji dla tego poziomu.",
+        emptyText: "Brak dodanych prac domowych dla tego poziomu.",
         unavailableText
     });
 
@@ -1632,6 +1639,7 @@ function drawTask(index = currentIndex, trackHistory = true){
 
         hintUsed = false;
         answerShown = false;
+        currentTaskStartedAt = Date.now();
     }, 200);
 }
 
@@ -1931,7 +1939,8 @@ async function saveProgress(type){
                 hint_used: hintUsed,
                 answer_shown: answerShown,
                 source_category: currentTask.category,
-                task_mode: taskMode
+                task_mode: taskMode,
+                duration_seconds: getCurrentTaskDurationSeconds()
             })
         });
 
@@ -1944,6 +1953,14 @@ async function saveProgress(type){
             console.warn("Nie udało się zapisać postępu.", error);
         }
     }
+}
+
+function getCurrentTaskDurationSeconds(){
+    if(!currentTaskStartedAt) return 0;
+
+    const duration = Math.round((Date.now() - currentTaskStartedAt) / 1000);
+
+    return Math.max(1, Math.min(duration, 4 * 60 * 60));
 }
 
 function finish(type){

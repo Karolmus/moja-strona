@@ -241,23 +241,23 @@ th {
 }
 
 .col-login {
-    width: 23%;
+    width: 20%;
 }
 
 .col-level {
-    width: 12%;
+    width: 11%;
 }
 
 .col-status {
-    width: 10%;
+    width: 8%;
 }
 
 .col-progress {
-    width: 12%;
+    width: 19%;
 }
 
 .col-activity {
-    width: 11%;
+    width: 10%;
 }
 
 .col-actions {
@@ -342,6 +342,75 @@ th {
     text-decoration: underline;
 }
 
+.progress-cell {
+    display: grid;
+    gap: 7px;
+}
+
+.progress-mini-row {
+    display: grid;
+    gap: 4px;
+}
+
+.progress-mini-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.progress-mini-track {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.progress-mini-fill {
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6aa84f, #8fcf74);
+}
+
+.progress-mini-fill.exam {
+    background: linear-gradient(90deg, #24527a, #5d8fbd);
+}
+
+.progress-text,
+.work-time {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+.pace-badge {
+    display: inline-flex;
+    width: fit-content;
+    border-radius: 999px;
+    padding: 3px 7px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.pace-badge.ok {
+    background: var(--green-soft);
+    color: var(--green-text);
+}
+
+.pace-badge.watch {
+    background: #fff4cf;
+    color: #765a12;
+}
+
+.pace-badge.missing {
+    background: var(--red-soft);
+    color: var(--red-text);
+}
+
 .progress-detail {
     display: none;
     gap: 14px;
@@ -375,6 +444,34 @@ th {
     color: var(--muted);
     font-size: 12px;
     font-weight: 600;
+}
+
+.work-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.work-summary-item {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    background: var(--surface-soft);
+}
+
+.work-summary-item span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.work-summary-item strong {
+    display: block;
+    margin-top: 3px;
+    color: var(--text);
+    font-size: 15px;
 }
 
 .legend-item {
@@ -518,6 +615,10 @@ footer {
     .recent-row {
         grid-template-columns: 1fr;
     }
+
+    .work-summary {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -626,6 +727,7 @@ footer {
                     <span class="legend-item"><span class="legend-dot bad"></span>Źle</span>
                 </div>
 
+                <div class="work-summary" id="workSummary"></div>
                 <div class="activity-chart" id="activityChart"></div>
                 <div class="recent-progress" id="recentProgress"></div>
             </div>
@@ -643,12 +745,35 @@ const levelLabels = {
     egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
 };
 
+const ADMIN_TASK_SOURCES = [
+    { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa", label: "Matura podstawowa", detail: "2025 / maj / CKE" },
+    { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona", label: "Matura rozszerzona", detail: "2025 / maj / CKE" },
+    { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty", label: "Egzamin Ósmoklasisty", detail: "2025 / maj / CKE" },
+    { path: "zadania/kurs/mp/zadania_kurs_mp.json", category: "kurs", level: "matura_podstawowa", label: "Kurs", detail: "Matura podstawowa" },
+    { path: "zadania/kurs/mr/zadania_kurs_mr.json", category: "kurs", level: "matura_rozszerzona", label: "Kurs", detail: "Matura rozszerzona" },
+    { path: "zadania/kurs/eo/zadania_kurs_eo.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Kurs", detail: "Egzamin Ósmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_2/lekcja_2_dzialania_na_liczbach.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 2", detail: "Działania na liczbach" }
+];
+
+const COURSE_TARGETS = {
+    matura_podstawowa: 20,
+    matura_rozszerzona: 20,
+    egzamin_osmoklasisty: 20
+};
+
+const EXAM_TARGETS = {
+    matura_podstawowa: 20,
+    matura_rozszerzona: 20,
+    egzamin_osmoklasisty: 20
+};
+
 const adminEmail = document.getElementById("adminEmail");
 const studentForm = document.getElementById("studentForm");
 const studentTable = document.getElementById("studentTable");
 const adminStatus = document.getElementById("adminStatus");
 const progressDetail = document.getElementById("progressDetail");
 const progressTitle = document.getElementById("progressTitle");
+const workSummary = document.getElementById("workSummary");
 const activityChart = document.getElementById("activityChart");
 const recentProgress = document.getElementById("recentProgress");
 const credentialsBox = document.getElementById("credentialsBox");
@@ -659,6 +784,8 @@ const copyCredentialsBtn = document.getElementById("copyCredentialsBtn");
 
 let students = [];
 let lastCredentialsText = "";
+let adminTaskCatalog = [];
+let studentProgressCache = new Map();
 const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
 
 function showStatus(message){
@@ -763,6 +890,161 @@ function resultLabel(result){
     return labels[result] || result;
 }
 
+function formatDuration(seconds){
+    const value = Math.max(0, Number(seconds) || 0);
+    const hours = Math.floor(value / 3600);
+    const minutes = Math.floor((value % 3600) / 60);
+    const rest = value % 60;
+
+    if(hours) return `${hours} h ${minutes} min`;
+    if(minutes) return `${minutes} min ${rest} s`;
+
+    return `${rest} s`;
+}
+
+function progressSourceId(item){
+    if(item.source_id) return item.source_id;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(0, splitIndex) : "";
+}
+
+function progressFile(item){
+    if(item.file) return item.file;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(splitIndex + 1) : "";
+}
+
+function progressTaskKey(item){
+    const sourceId = progressSourceId(item);
+    const file = progressFile(item);
+
+    if(!sourceId || !file) return "";
+
+    return `${sourceId}:${file}`;
+}
+
+async function loadAdminTaskCatalog(){
+    const groups = await Promise.all(
+        ADMIN_TASK_SOURCES.map(async source => {
+            try {
+                const response = await fetch(source.path);
+
+                if(!response.ok) return [];
+
+                const items = await response.json();
+
+                return items.map(task => ({
+                    ...task,
+                    category: source.category,
+                    level: task.level || source.level,
+                    coursePart: task.coursePart || task.section || "zadania",
+                    sourceId: source.path,
+                    sourceLabel: source.label,
+                    sourceDetail: source.detail
+                }));
+            } catch(error) {
+                return [];
+            }
+        })
+    );
+
+    adminTaskCatalog = groups.flat();
+}
+
+function getCatalogSources(category, level, options = {}){
+    const sourceMap = new Map();
+
+    adminTaskCatalog
+        .filter(task =>
+            task.category === category &&
+            task.level === level &&
+            (!options.coursePart || task.coursePart === options.coursePart)
+        )
+        .forEach(task => {
+            if(!sourceMap.has(task.sourceId)){
+                sourceMap.set(task.sourceId, {
+                    id: task.sourceId,
+                    files: new Set()
+                });
+            }
+
+            sourceMap.get(task.sourceId).files.add(task.file);
+        });
+
+    return [...sourceMap.values()]
+        .map(source => ({
+            ...source,
+            totalTasks: source.files.size
+        }))
+        .filter(source => source.totalTasks > 0);
+}
+
+function calculateStudentProgressStats(progress, level, category, target, options = {}){
+    const attemptedTasks = new Set(
+        progress
+            .map(progressTaskKey)
+            .filter(Boolean)
+    );
+    const sources = getCatalogSources(category, level, options);
+
+    let completed = 0;
+    let started = 0;
+    let attempted = 0;
+    let total = 0;
+    let visualUnits = 0;
+
+    sources.forEach(source => {
+        const attemptedInSource = [...source.files]
+            .filter(file => attemptedTasks.has(`${source.id}:${file}`))
+            .length;
+
+        total += source.totalTasks;
+        attempted += attemptedInSource;
+
+        if(attemptedInSource > 0) started++;
+
+        if(attemptedInSource >= source.totalTasks){
+            completed++;
+            visualUnits++;
+        } else if(source.totalTasks){
+            visualUnits += attemptedInSource / source.totalTasks;
+        }
+    });
+
+    return {
+        target,
+        completed,
+        started,
+        attempted,
+        total,
+        available: sources.length,
+        percent: Math.min(100, Math.round((visualUnits / target) * 1000) / 10)
+    };
+}
+
+function sumDuration(progress){
+    return progress.reduce((total, item) => total + (Number(item.duration_seconds) || 0), 0);
+}
+
+function paceState(attempts, totalDuration){
+    if(!attempts) return { className: "ok", label: "brak prób" };
+    if(!totalDuration) return { className: "missing", label: "czas od kolejnych prób" };
+
+    const average = totalDuration / attempts;
+
+    if(attempts >= 5 && average < 10){
+        return { className: "watch", label: "podejrzanie szybko" };
+    }
+
+    return { className: "ok", label: "tempo OK" };
+}
+
 function button(label, className, onClick){
     const element = document.createElement("button");
 
@@ -829,6 +1111,76 @@ function buildCredentialsCell(student){
     return cell;
 }
 
+function miniProgress(label, value, total, percent, className = ""){
+    const row = document.createElement("div");
+    const head = document.createElement("div");
+    const name = document.createElement("span");
+    const count = document.createElement("span");
+    const track = document.createElement("div");
+    const fill = document.createElement("span");
+
+    row.className = "progress-mini-row";
+    head.className = "progress-mini-head";
+    track.className = "progress-mini-track";
+    fill.className = className ? `progress-mini-fill ${className}` : "progress-mini-fill";
+
+    name.innerText = label;
+    count.innerText = `${value}/${total}`;
+    fill.style.width = `${percent}%`;
+
+    head.appendChild(name);
+    head.appendChild(count);
+    track.appendChild(fill);
+    row.appendChild(head);
+    row.appendChild(track);
+
+    return row;
+}
+
+function buildProgressCell(student){
+    const cell = document.createElement("td");
+    const wrap = document.createElement("div");
+    const progress = studentProgressCache.get(student.id) || [];
+    const totalDuration = progress.length ? sumDuration(progress) : Number(student.total_duration_seconds) || 0;
+    const attempts = progress.length || Number(student.attempts) || 0;
+    const averageDuration = attempts ? Math.round(totalDuration / attempts) : 0;
+    const pace = paceState(attempts, totalDuration);
+    const courseStats = calculateStudentProgressStats(
+        progress,
+        student.level,
+        "kurs",
+        COURSE_TARGETS[student.level] || 20,
+        { coursePart: "praca_domowa" }
+    );
+    const examStats = calculateStudentProgressStats(
+        progress,
+        student.level,
+        "egzaminy",
+        EXAM_TARGETS[student.level] || 20
+    );
+    const text = document.createElement("div");
+    const time = document.createElement("div");
+    const badge = document.createElement("span");
+
+    wrap.className = "progress-cell";
+    text.className = "progress-text";
+    time.className = "work-time";
+    badge.className = `pace-badge ${pace.className}`;
+
+    text.innerText = `${student.attempts || 0} prób • ${student.accuracy || 0}% dobrze`;
+    time.innerText = `Czas: ${formatDuration(totalDuration)} • śr. ${formatDuration(averageDuration)}`;
+    badge.innerText = pace.label;
+
+    wrap.appendChild(miniProgress("Kurs", courseStats.completed, courseStats.target, courseStats.percent));
+    wrap.appendChild(miniProgress("Egzaminy", examStats.completed, examStats.target, examStats.percent, "exam"));
+    wrap.appendChild(text);
+    wrap.appendChild(time);
+    wrap.appendChild(badge);
+    cell.appendChild(wrap);
+
+    return cell;
+}
+
 function renderStudents(){
     studentTable.innerHTML = "";
 
@@ -850,7 +1202,7 @@ function renderStudents(){
         const credentialsCell = buildCredentialsCell(student);
         const levelCell = document.createElement("td");
         const statusCell = document.createElement("td");
-        const progressCell = document.createElement("td");
+        const progressCell = buildProgressCell(student);
         const activityCell = document.createElement("td");
         const actionsCell = document.createElement("td");
         const statusBadge = document.createElement("span");
@@ -860,7 +1212,6 @@ function renderStudents(){
         indexCell.innerText = String(index + 1);
         userCell.innerText = student.display_name;
         levelCell.innerText = levelLabels[student.level] || student.level || "-";
-        progressCell.innerText = `${student.attempts || 0} prób • ${student.accuracy || 0}% dobrze`;
         activityCell.innerText = formatDate(student.last_activity_at || student.last_login_at);
 
         statusBadge.className = student.is_active ? "badge active" : "badge inactive";
@@ -896,6 +1247,24 @@ async function loadStudents(){
 
     students = data.students;
     renderStudents();
+    await loadStudentProgressSummaries();
+    renderStudents();
+}
+
+async function loadStudentProgressSummaries(){
+    const pairs = await Promise.all(
+        students.map(async student => {
+            try {
+                const data = await apiFetch(`/api/admin/students/${student.id}/progress`);
+
+                return [student.id, Array.isArray(data.progress) ? data.progress : []];
+            } catch(error) {
+                return [student.id, []];
+            }
+        })
+    );
+
+    studentProgressCache = new Map(pairs);
 }
 
 async function toggleStudent(student){
@@ -1013,6 +1382,34 @@ function renderActivityChart(progress){
     });
 }
 
+function renderWorkSummary(progress){
+    const attempts = progress.length;
+    const totalDuration = sumDuration(progress);
+    const averageDuration = attempts ? Math.round(totalDuration / attempts) : 0;
+    const pace = paceState(attempts, totalDuration);
+    const items = [
+        ["Łączny czas", formatDuration(totalDuration)],
+        ["Średnio na próbę", formatDuration(averageDuration)],
+        ["Kontrola tempa", pace.label]
+    ];
+
+    workSummary.innerHTML = "";
+
+    items.forEach(([label, value]) => {
+        const box = document.createElement("div");
+        const title = document.createElement("span");
+        const content = document.createElement("strong");
+
+        box.className = "work-summary-item";
+        title.innerText = label;
+        content.innerText = value;
+
+        box.appendChild(title);
+        box.appendChild(content);
+        workSummary.appendChild(box);
+    });
+}
+
 function renderRecentProgress(progress){
     recentProgress.innerHTML = "";
 
@@ -1026,7 +1423,7 @@ function renderRecentProgress(progress){
         date.innerText = formatDate(item.created_at);
         task.innerText = item.file || item.task_id;
         result.className = `result-pill ${item.result}`;
-        result.innerText = resultLabel(item.result);
+        result.innerText = `${resultLabel(item.result)} • ${formatDuration(item.duration_seconds || 0)}`;
 
         row.appendChild(date);
         row.appendChild(task);
@@ -1041,6 +1438,9 @@ async function showProgress(student){
 
     progressTitle.innerText = `Postępy: ${student.display_name}`;
     progressDetail.classList.add("active");
+    studentProgressCache.set(student.id, progress);
+    renderStudents();
+    renderWorkSummary(progress);
     renderActivityChart(progress);
     renderRecentProgress(progress);
 
@@ -1109,6 +1509,7 @@ async function boot(){
         }
 
         adminEmail.innerText = session.user.email;
+        await loadAdminTaskCatalog();
         await loadStudents();
     } catch(error) {
         window.location.href = "login.html";
