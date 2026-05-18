@@ -19,6 +19,7 @@ from auth_storage import (
     record_progress,
     register_auth_db,
     reset_user_password,
+    sync_admin_user,
     touch_last_login,
     update_student,
 )
@@ -45,8 +46,29 @@ app.config.update(
 )
 register_auth_db(app)
 
-with app.app_context():
+
+def bootstrap_auth_db():
     init_auth_db()
+
+    admin_email = os.environ.get("ADMIN_EMAIL")
+    admin_password = os.environ.get("ADMIN_PASSWORD")
+
+    if not admin_email:
+        return
+
+    user, created = sync_admin_user(admin_email, admin_password)
+
+    print("Baza danych jest gotowa.")
+    print(f"Admin: {user['email']}")
+
+    if created:
+        print("Konto admina zostało utworzone.")
+    elif admin_password:
+        print("Hasło admina zostało zsynchronizowane ze zmienną ADMIN_PASSWORD.")
+
+
+with app.app_context():
+    bootstrap_auth_db()
 
 
 def allowed_origins():
