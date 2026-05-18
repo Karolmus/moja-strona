@@ -10,6 +10,7 @@ from werkzeug.security import check_password_hash
 from auth_storage import (
     INTEGRITY_ERRORS,
     create_user,
+    delete_student,
     generate_temporary_password,
     get_user_by_email,
     get_user_by_id,
@@ -100,7 +101,7 @@ def add_cors_headers(response):
         response.headers.add("Vary", "Origin")
 
     response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, OPTIONS"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, DELETE, OPTIONS"
 
     return response
 
@@ -164,12 +165,17 @@ def safe(handler):
 
 
 def current_user():
+    token_user = user_from_token(bearer_token())
+
+    if token_user:
+        return token_user
+
     user_id = session.get("user_id")
 
     if user_id:
         return get_user_by_id(user_id)
 
-    return user_from_token(bearer_token())
+    return None
 
 
 def require_auth(handler):
@@ -323,6 +329,19 @@ def api_admin_update_student(_admin, user_id):
         })
 
     return safe(handler)
+
+
+@app.delete("/api/admin/students/<int:user_id>")
+@require_admin
+def api_admin_delete_student(_admin, user_id):
+    deleted = delete_student(user_id)
+
+    if not deleted:
+        return api_error("Nie znaleziono ucznia.", 404)
+
+    return jsonify({
+        "deleted": student_payload(deleted),
+    })
 
 
 @app.post("/api/admin/students/<int:user_id>/password")

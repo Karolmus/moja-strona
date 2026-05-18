@@ -243,6 +243,155 @@ th {
     font-size: 12px;
 }
 
+.progress-detail {
+    display: none;
+    gap: 14px;
+    border-top: 1px solid var(--line);
+    margin-top: 8px;
+    padding-top: 14px;
+}
+
+.progress-detail.active {
+    display: grid;
+}
+
+.progress-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.progress-heading h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.legend-dot.good,
+.bar-segment.good {
+    background: #57a663;
+}
+
+.legend-dot.medium,
+.bar-segment.medium {
+    background: #e3bd41;
+}
+
+.legend-dot.bad,
+.bar-segment.bad {
+    background: #d95b50;
+}
+
+.activity-chart {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(54px, 1fr);
+    align-items: end;
+    gap: 10px;
+    min-height: 210px;
+    overflow-x: auto;
+    padding: 10px 2px 4px;
+}
+
+.day-column {
+    display: grid;
+    justify-items: center;
+    align-items: end;
+    gap: 6px;
+    min-width: 54px;
+}
+
+.stacked-bar {
+    width: 32px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 7px 7px 4px 4px;
+    background: #eef2f7;
+}
+
+.bar-segment {
+    width: 100%;
+    min-height: 2px;
+}
+
+.day-total {
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.day-label {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.15;
+    text-align: center;
+}
+
+.recent-progress {
+    display: grid;
+    gap: 6px;
+    max-height: 240px;
+    overflow: auto;
+}
+
+.recent-row {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.result-pill {
+    border-radius: 999px;
+    padding: 3px 7px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.result-pill.good {
+    background: var(--green-soft);
+    color: var(--green-text);
+}
+
+.result-pill.medium {
+    background: #fff4cf;
+    color: #765a12;
+}
+
+.result-pill.bad {
+    background: var(--red-soft);
+    color: var(--red-text);
+}
+
 footer {
     text-align: center;
     padding: 15px;
@@ -269,6 +418,10 @@ footer {
 
     .page-header h1 {
         font-size: 24px;
+    }
+
+    .recent-row {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -339,7 +492,7 @@ footer {
                 <input id="studentPassword" name="password" minlength="8" maxlength="128" autocomplete="new-password" placeholder="Puste = wygeneruj automatycznie">
             </div>
 
-            <button class="btn" type="submit">Utwórz konto</button>
+            <button class="btn" type="submit">Dodaj ucznia</button>
             <div class="status-box" id="adminStatus" role="status" aria-live="polite"></div>
         </form>
 
@@ -360,6 +513,22 @@ footer {
                     <tbody id="studentTable"></tbody>
                 </table>
             </div>
+
+            <div class="progress-detail" id="progressDetail" aria-live="polite">
+                <div class="progress-heading">
+                    <h3 id="progressTitle">Postępy ucznia</h3>
+                    <button class="btn secondary" type="button" id="closeProgressBtn">Zamknij</button>
+                </div>
+
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="legend-dot good"></span>Dobrze</span>
+                    <span class="legend-item"><span class="legend-dot medium"></span>Z pomocą</span>
+                    <span class="legend-item"><span class="legend-dot bad"></span>Źle</span>
+                </div>
+
+                <div class="activity-chart" id="activityChart"></div>
+                <div class="recent-progress" id="recentProgress"></div>
+            </div>
         </section>
     </div>
 </main>
@@ -378,6 +547,10 @@ const adminEmail = document.getElementById("adminEmail");
 const studentForm = document.getElementById("studentForm");
 const studentTable = document.getElementById("studentTable");
 const adminStatus = document.getElementById("adminStatus");
+const progressDetail = document.getElementById("progressDetail");
+const progressTitle = document.getElementById("progressTitle");
+const activityChart = document.getElementById("activityChart");
+const recentProgress = document.getElementById("recentProgress");
 
 let students = [];
 
@@ -393,6 +566,32 @@ function formatDate(value){
         dateStyle: "short",
         timeStyle: "short"
     });
+}
+
+function formatShortDate(value){
+    return new Date(value).toLocaleDateString("pl-PL", {
+        day: "2-digit",
+        month: "2-digit"
+    });
+}
+
+function dayKey(value){
+    const date = new Date(value);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+function resultLabel(result){
+    const labels = {
+        good: "Dobrze",
+        medium: "Z pomocą",
+        bad: "Źle"
+    };
+
+    return labels[result] || result;
 }
 
 function renderSummary(){
@@ -463,6 +662,7 @@ function renderStudents(){
         ));
         actions.appendChild(button("Reset hasła", "btn secondary", () => resetPassword(student)));
         actions.appendChild(button("Postępy", "btn secondary", () => showProgress(student)));
+        actions.appendChild(button("Usuń", "btn danger", () => deleteStudent(student)));
         actionsCell.appendChild(actions);
 
         row.appendChild(userCell);
@@ -504,19 +704,139 @@ async function resetPassword(student){
     showStatus(`Nowe hasło dla ${student.display_name}: ${data.temporary_password}`);
 }
 
+async function deleteStudent(student){
+    const confirmed = window.confirm(`Usunąć ucznia ${student.display_name}?\n\nTa operacja usunie też zapisane postępy i nie da się jej cofnąć.`);
+
+    if(!confirmed){
+        return;
+    }
+
+    await apiFetch(`/api/admin/students/${student.id}`, {
+        method: "DELETE"
+    });
+
+    showStatus(`Usunięto ucznia: ${student.display_name}`);
+    await loadStudents();
+}
+
+function groupProgressByDay(progress){
+    const days = new Map();
+
+    progress.forEach(item => {
+        const key = dayKey(item.created_at);
+
+        if(!days.has(key)){
+            days.set(key, {
+                key,
+                date: item.created_at,
+                good: 0,
+                medium: 0,
+                bad: 0,
+                total: 0
+            });
+        }
+
+        const day = days.get(key);
+        const result = ["good", "medium", "bad"].includes(item.result) ? item.result : "bad";
+
+        day[result]++;
+        day.total++;
+    });
+
+    return [...days.values()].sort((a, b) => a.key.localeCompare(b.key));
+}
+
+function renderActivityChart(progress){
+    const days = groupProgressByDay(progress).slice(-21);
+    const maxTotal = Math.max(1, ...days.map(day => day.total));
+
+    activityChart.innerHTML = "";
+
+    if(!days.length){
+        const empty = document.createElement("div");
+
+        empty.className = "day-label";
+        empty.innerText = "Brak zapisanych prób.";
+        activityChart.appendChild(empty);
+        return;
+    }
+
+    days.forEach(day => {
+        const column = document.createElement("div");
+        const total = document.createElement("div");
+        const bar = document.createElement("div");
+        const label = document.createElement("div");
+
+        column.className = "day-column";
+        total.className = "day-total";
+        bar.className = "stacked-bar";
+        label.className = "day-label";
+
+        total.innerText = day.total;
+        bar.style.height = `${Math.max(24, Math.round((day.total / maxTotal) * 150))}px`;
+        label.innerText = formatShortDate(day.date);
+        bar.title = `${formatDate(day.date)}: ${day.total} prób`;
+
+        ["good", "medium", "bad"].forEach(result => {
+            if(!day[result]) return;
+
+            const segment = document.createElement("div");
+
+            segment.className = `bar-segment ${result}`;
+            segment.style.height = `${(day[result] / day.total) * 100}%`;
+            segment.title = `${resultLabel(result)}: ${day[result]}`;
+            bar.appendChild(segment);
+        });
+
+        column.appendChild(total);
+        column.appendChild(bar);
+        column.appendChild(label);
+        activityChart.appendChild(column);
+    });
+}
+
+function renderRecentProgress(progress){
+    recentProgress.innerHTML = "";
+
+    progress.slice(0, 12).forEach(item => {
+        const row = document.createElement("div");
+        const date = document.createElement("span");
+        const task = document.createElement("span");
+        const result = document.createElement("span");
+
+        row.className = "recent-row";
+        date.innerText = formatDate(item.created_at);
+        task.innerText = item.file || item.task_id;
+        result.className = `result-pill ${item.result}`;
+        result.innerText = resultLabel(item.result);
+
+        row.appendChild(date);
+        row.appendChild(task);
+        row.appendChild(result);
+        recentProgress.appendChild(row);
+    });
+}
+
 async function showProgress(student){
     const data = await apiFetch(`/api/admin/students/${student.id}/progress`);
-    const progress = data.progress.slice(0, 10);
+    const progress = data.progress;
+
+    progressTitle.innerText = `Postępy: ${student.display_name}`;
+    progressDetail.classList.add("active");
+    renderActivityChart(progress);
+    renderRecentProgress(progress);
 
     if(!progress.length){
         showStatus(`${student.display_name}: brak zapisanych prób.`);
         return;
     }
 
-    showStatus(progress.map(item =>
-        `${formatDate(item.created_at)} • ${item.file || item.task_id} • ${item.result}`
-    ).join("\n"));
+    showStatus(`Wczytano ${progress.length} zapisanych prób ucznia ${student.display_name}.`);
 }
+
+document.getElementById("closeProgressBtn").addEventListener("click", () => {
+    progressDetail.classList.remove("active");
+});
 
 studentForm.addEventListener("submit", async event => {
     event.preventDefault();
