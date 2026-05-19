@@ -426,12 +426,6 @@ body.focus-mode .action-group.check {
     color: white;
 }
 
-.task-counter.homework {
-    background: #d99595;
-    border-color: #c67e7e;
-    color: white;
-}
-
 .meta-right {
     margin-left: auto;
     display: flex;
@@ -1600,7 +1594,11 @@ function renderLearningProgress(unavailableText = ""){
     const courseStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
         coursePart: "praca_domowa"
     });
-    const examStats = calculateProgressStats("egzaminy", EXAM_TARGETS[selectedLevel] || 20);
+    const availableExamTasks = tasks.filter(task =>
+        task.category === "egzaminy" &&
+        task.level === selectedLevel
+    ).length;
+    const examStats = calculateProgressStats("egzaminy", Math.max(1, availableExamTasks));
 
     updateProgressBar({
         labelId: "courseProgressLabel",
@@ -1617,8 +1615,8 @@ function renderLearningProgress(unavailableText = ""){
         labelId: "examProgressLabel",
         fillId: "examProgressFill",
         detailId: "examProgressDetail",
-        label: "Arkusze",
-        unit: "arkuszy",
+        label: "Zadania egzaminacyjne",
+        unit: "zadań",
         stats: examStats,
         emptyText: "Brak dodanych arkuszy dla tego poziomu.",
         unavailableText
@@ -1758,7 +1756,6 @@ function drawTask(index = currentIndex, trackHistory = true){
     if(!p.length){
         currentTask = null;
         document.getElementById("taskCounter").innerText = "0 / 0";
-        document.getElementById("taskCounter").classList.remove("homework");
         document.getElementById("taskImage").src = "";
         document.getElementById("contextImage").src = "";
         document.getElementById("contextImage").classList.add("hidden");
@@ -1811,7 +1808,6 @@ function drawTask(index = currentIndex, trackHistory = true){
         const isHomework = currentTask.coursePart === "praca_domowa";
 
         taskCounter.innerText = `${currentIndex + 1} / ${p.length}`;
-        taskCounter.classList.toggle("homework", isHomework);
         metaBox.classList.toggle("meta-homework", isHomework);
 
         metaBox.innerHTML =
