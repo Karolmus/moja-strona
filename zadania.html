@@ -276,9 +276,9 @@ body {
 
 .focus-toggle {
     position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 30;
+    right: 16px;
+    top: 82px;
+    z-index: 100;
     min-height: 42px;
     border: 1px solid var(--navy);
     border-radius: 999px;
@@ -412,6 +412,10 @@ body.focus-mode .action-group.check {
     background: linear-gradient(90deg, #b2d699, #ffffff);
 }
 
+.meta-homework {
+    background: linear-gradient(90deg, #d99595 0%, #e7b4b4 36%, #ffffff 100%);
+}
+
 .meta-section {
     padding: 10px 14px;
     font-size: 13px;
@@ -419,7 +423,6 @@ body.focus-mode .action-group.check {
 }
 
 .meta-section.task-title.homework {
-    background: #d99595;
     color: white;
 }
 
@@ -861,6 +864,22 @@ footer {
             </div>
 
             <div class="side-section">
+                <div class="side-title">Materiał</div>
+                <div class="category-toggle">
+                    <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
+                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
+                </div>
+            </div>
+
+            <div class="side-section" id="modeSection" style="display:none">
+                <div class="side-title">Tryb</div>
+                <div class="mode-toggle">
+                    <button class="mode-btn active" data-mode="ordered" onclick="setMode(this,'ordered')">Po kolei</button>
+                    <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
+                </div>
+            </div>
+
+            <div class="side-section">
                 <div class="side-title" id="sourceTitle">Numer lekcji</div>
                 <div class="source-list" id="sourceList"></div>
             </div>
@@ -1054,6 +1073,7 @@ async function bootStudentPanel(){
         ensureSelectedSource();
         updateCategoryButtons();
         updateLevelButtons();
+        updateModeButtons();
         updateMetaTheme();
         renderSourceSelector();
         renderCoursePartSelector();
@@ -1297,6 +1317,8 @@ function updateLevelButtons(){
 }
 
 function updateModeButtons(){
+    updateModeSection();
+
     document.querySelectorAll(".mode-btn")
         .forEach(b => {
             b.disabled = selectedCategory === "kurs" && b.dataset.mode === "random";
@@ -1318,6 +1340,7 @@ function updateMetaTheme(){
         "meta-podstawowa",
         "meta-rozszerzona",
         "meta-osmoklasista",
+        "meta-homework",
         "meta-all"
     );
 
@@ -1375,6 +1398,14 @@ function renderSourceSelector(){
             selectedSource === source.id
         );
     });
+}
+
+function updateModeSection(){
+    const section = document.getElementById("modeSection");
+
+    if(!section) return;
+
+    section.style.display = selectedCategory === "egzaminy" ? "grid" : "none";
 }
 
 function addSourceButton(list, sourceId, label, detail, active){
@@ -1732,6 +1763,7 @@ function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("contextImage").src = "";
         document.getElementById("contextImage").classList.add("hidden");
         document.getElementById("metaBox").innerHTML = "";
+        document.getElementById("metaBox").classList.remove("meta-homework");
         document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
         showMessage(`Brak zadań w części ${CATEGORY_LABELS[selectedCategory].toLowerCase()} dla wybranego poziomu.`);
@@ -1775,12 +1807,14 @@ function drawTask(index = currentIndex, trackHistory = true){
         img.src = currentTask.path;
 
         const taskCounter = document.getElementById("taskCounter");
+        const metaBox = document.getElementById("metaBox");
         const isHomework = currentTask.coursePart === "praca_domowa";
 
         taskCounter.innerText = `${currentIndex + 1} / ${p.length}`;
         taskCounter.classList.toggle("homework", isHomework);
+        metaBox.classList.toggle("meta-homework", isHomework);
 
-        document.getElementById("metaBox").innerHTML =
+        metaBox.innerHTML =
         `
         <div class="meta-section task-title ${isHomework ? "homework" : ""}">
             ${taskLabel(currentTask)}
