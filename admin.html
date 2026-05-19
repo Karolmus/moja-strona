@@ -41,8 +41,8 @@ body {
 
 .container {
     max-width: 1480px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 28px auto;
+    padding: 16px;
 }
 
 .page-header {
@@ -68,18 +68,18 @@ body {
 
 .admin-layout {
     display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
-    gap: 16px;
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 14px;
     align-items: start;
 }
 
 .panel {
     display: grid;
-    gap: 14px;
+    gap: 10px;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 18px;
+    padding: 14px;
     box-shadow: var(--shadow);
 }
 
@@ -91,7 +91,7 @@ body {
 
 .field {
     display: grid;
-    gap: 5px;
+    gap: 4px;
 }
 
 label {
@@ -122,11 +122,11 @@ select:focus,
 
 .level-cards {
     display: grid;
-    gap: 7px;
+    gap: 5px;
 }
 
 .level-card {
-    min-height: 38px;
+    min-height: 34px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
@@ -135,7 +135,7 @@ select:focus,
     font: inherit;
     font-size: 13px;
     font-weight: 600;
-    padding: 8px 10px;
+    padding: 6px 10px;
     text-align: left;
     transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
@@ -147,7 +147,7 @@ select:focus,
 }
 
 .btn {
-    min-height: 40px;
+    min-height: 34px;
     border: 1px solid var(--navy);
     border-radius: 8px;
     background: var(--navy);
@@ -155,7 +155,7 @@ select:focus,
     cursor: pointer;
     font: inherit;
     font-weight: 600;
-    padding: 9px 12px;
+    padding: 7px 11px;
 }
 
 .btn:hover {
@@ -178,7 +178,7 @@ select:focus,
 .status-box {
     display: none;
     border-radius: 8px;
-    padding: 12px;
+    padding: 10px;
     font-size: 13px;
     line-height: 1.45;
 }
@@ -191,11 +191,11 @@ select:focus,
 
 .credentials-box {
     display: none;
-    gap: 10px;
+    gap: 8px;
     border: 1px solid #cce5c9;
     border-radius: 8px;
     background: var(--green-soft);
-    padding: 12px;
+    padding: 10px;
 }
 
 .credentials-box.active {
@@ -240,7 +240,7 @@ table {
 th,
 td {
     border-bottom: 1px solid var(--line);
-    padding: 10px 8px;
+    padding: 7px 7px;
     text-align: left;
     vertical-align: middle;
     font-size: 13px;
@@ -260,39 +260,39 @@ th {
 }
 
 .col-index {
-    width: 4%;
+    width: 3%;
 }
 
 .col-student {
-    width: 12%;
+    width: 10%;
 }
 
 .col-login {
-    width: 20%;
-}
-
-.col-level {
-    width: 11%;
-}
-
-.col-status {
-    width: 8%;
-}
-
-.col-progress {
     width: 18%;
 }
 
 .col-created {
-    width: 9%;
+    width: 8%;
+}
+
+.col-level {
+    width: 10%;
+}
+
+.col-status {
+    width: 7%;
+}
+
+.col-progress {
+    width: 16%;
 }
 
 .col-activity {
-    width: 9%;
+    width: 8%;
 }
 
 .col-actions {
-    width: 17%;
+    width: 20%;
 }
 
 .badge {
@@ -316,16 +316,16 @@ th {
 
 .actions {
     display: grid;
-    gap: 8px;
+    gap: 6px;
 }
 
 .actions .btn {
     width: 100%;
-    min-height: 32px;
-    padding: 6px 8px;
-    font-size: 12px;
+    min-height: 30px;
+    padding: 5px 8px;
+    font-size: 11px;
     line-height: 1.15;
-    white-space: normal;
+    white-space: nowrap;
 }
 
 .action-primary {
@@ -339,7 +339,7 @@ th {
     border: 1px solid #f3d2ce;
     border-radius: 8px;
     background: #fff7f6;
-    padding: 8px;
+    padding: 6px;
 }
 
 .action-danger-group .btn:last-child {
@@ -801,10 +801,10 @@ footer {
                         <col class="col-index">
                         <col class="col-student">
                         <col class="col-login">
+                        <col class="col-created">
                         <col class="col-level">
                         <col class="col-status">
                         <col class="col-progress">
-                        <col class="col-created">
                         <col class="col-activity">
                         <col class="col-actions">
                     </colgroup>
@@ -813,10 +813,10 @@ footer {
                             <th>Nr</th>
                             <th>Uczeń</th>
                             <th>Dane logowania</th>
+                            <th>Dodano</th>
                             <th>Poziom</th>
                             <th>Status</th>
                             <th>Postęp</th>
-                            <th>Dodano</th>
                             <th>Ostatnia aktywność</th>
                             <th>Akcje</th>
                         </tr>
@@ -900,6 +900,7 @@ let students = [];
 let lastCredentialsText = "";
 let adminTaskCatalog = [];
 let studentProgressCache = new Map();
+let activeProgressStudentId = null;
 const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
 
 function showStatus(message){
@@ -1389,10 +1390,10 @@ function renderStudents(){
         row.appendChild(indexCell);
         row.appendChild(userCell);
         row.appendChild(credentialsCell);
+        row.appendChild(createdCell);
         row.appendChild(levelCell);
         row.appendChild(statusCell);
         row.appendChild(progressCell);
-        row.appendChild(createdCell);
         row.appendChild(activityCell);
         row.appendChild(actionsCell);
         studentTable.appendChild(row);
@@ -1676,6 +1677,13 @@ function renderRecentProgress(progress){
 }
 
 async function showProgress(student){
+    if(activeProgressStudentId === student.id && progressDetail.classList.contains("active")){
+        progressDetail.classList.remove("active");
+        activeProgressStudentId = null;
+        showStatus(`Schowano postępy ucznia ${student.display_name}.`);
+        return;
+    }
+
     const [data, reviewItems] = await Promise.all([
         apiFetch(`/api/admin/students/${student.id}/progress`),
         loadReviewTasks(student)
@@ -1684,6 +1692,7 @@ async function showProgress(student){
 
     progressTitle.innerText = `Postępy: ${student.display_name}`;
     progressDetail.classList.add("active");
+    activeProgressStudentId = student.id;
     studentProgressCache.set(student.id, progress);
     renderStudents();
     renderWorkSummary(progress);
@@ -1701,6 +1710,7 @@ async function showProgress(student){
 
 document.getElementById("closeProgressBtn").addEventListener("click", () => {
     progressDetail.classList.remove("active");
+    activeProgressStudentId = null;
 });
 
 levelCards.forEach(card => {

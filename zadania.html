@@ -841,6 +841,14 @@ footer {
     <div class="tasks-layout">
         <aside class="task-sidebar" aria-label="Ustawienia zadań">
             <div class="side-section">
+                <div class="side-title">Poziom</div>
+                <div class="level-selector sidebar-levels" id="guestLevelSection">
+                    <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
+                    <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
+                </div>
+            </div>
+
+            <div class="side-section" id="progressSection">
                 <div class="side-title">Postęp ucznia</div>
                 <div class="student-progress-panel" aria-live="polite">
                     <div class="learning-progress">
@@ -867,12 +875,12 @@ footer {
                 </div>
             </div>
 
-            <div class="side-section">
+            <div class="side-section" id="assignedCourseSection">
                 <div class="side-title">Przypisany kurs</div>
                 <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
             </div>
 
-            <div class="side-section">
+            <div class="side-section" id="categorySection">
                 <div class="side-title">Materiał</div>
                 <div class="category-toggle">
                     <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
@@ -920,7 +928,7 @@ footer {
                     <div class="action-group tools">
                         <button class="action-btn tool" id="hintButton" onclick="showHint()">Wskazówka</button>
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
-                        <button class="action-btn review" id="reviewButton" onclick="markForReview()">Do omówienia</button>
+                        <button class="action-btn review" id="reviewButton" onclick="markForReview()" hidden>Do omówienia</button>
                     </div>
 
                     <div class="action-group navigation">
@@ -966,6 +974,7 @@ let trueFalseSelection = [];
 let savedProgress = [];
 let focusMode = false;
 let currentTaskAnswered = false;
+let isLoggedInStudent = false;
 
 const COURSE_TARGETS = {
     matura_podstawowa: 20,
@@ -1083,11 +1092,29 @@ async function bootStudentPanel(){
     try {
         await loadAssignedCourse();
 
-        const groups = await Promise.all(TASK_SOURCES.map(loadTaskSource));
+        const activeSources = isLoggedInStudent
+            ? TASK_SOURCES
+            : TASK_SOURCES.filter(source => {
+                const meta = getSourceMeta(source);
+
+                return meta.category === "egzaminy" &&
+                    ["matura_podstawowa", "matura_rozszerzona"].includes(meta.level);
+            });
+
+        const groups = await Promise.all(activeSources.map(loadTaskSource));
 
         tasks = groups.flat();
-        selectedCategory = "kurs";
-        taskMode = "ordered";
+
+        if(isLoggedInStudent){
+            selectedCategory = "kurs";
+            taskMode = "ordered";
+        } else {
+            selectedLevel = "matura_podstawowa";
+            selectedCategory = "egzaminy";
+            taskMode = "ordered";
+        }
+
+        updateAccessModeUI();
         ensureSelectedSource();
         updateCategoryButtons();
         updateLevelButtons();
@@ -1096,7 +1123,11 @@ async function bootStudentPanel(){
         renderSourceSelector();
         renderCoursePartSelector();
         renderLearningProgress();
-        loadStudentProgress();
+
+        if(isLoggedInStudent){
+            loadStudentProgress();
+        }
+
         drawTask(getInitialIndex());
     } catch(error) {
         if(error.redirecting) return;
@@ -1107,6 +1138,7 @@ async function bootStudentPanel(){
 
 async function loadAssignedCourse(){
     if(!window.apiFetch){
+        isLoggedInStudent = false;
         setTimerVisible(true);
         updateAssignedCourseName();
         return;
@@ -1116,12 +1148,13 @@ async function loadAssignedCourse(){
         const session = await apiFetch("/api/auth/me");
 
         if(!session.authenticated){
-            const error = new Error("Brak aktywnej sesji.");
-
-            error.redirecting = true;
-            window.location.href = "login.html";
-            throw error;
+            isLoggedInStudent = false;
+            setTimerVisible(true);
+            updateAssignedCourseName();
+            return;
         }
+
+        isLoggedInStudent = true;
 
         if(session.user?.level){
             selectedLevel = session.user.level;
@@ -1135,13 +1168,49 @@ async function loadAssignedCourse(){
         if(error.redirecting) throw error;
 
         if(error.status === 401){
-            error.redirecting = true;
-            window.location.href = "login.html";
-            throw error;
+            isLoggedInStudent = false;
+            setTimerVisible(true);
+            updateAssignedCourseName();
+            return;
         }
 
+        isLoggedInStudent = false;
         setTimerVisible(true);
         updateAssignedCourseName();
+    }
+}
+
+function setPanelSectionVisible(id, isVisible){
+    const section = document.getElementById(id);
+
+    if(section){
+        section.style.display = isVisible ? "grid" : "none";
+    }
+}
+
+function updateAccessModeUI(){
+    document.body.classList.toggle("guest-exam-mode", !isLoggedInStudent);
+    setTimerVisible(!isLoggedInStudent);
+    setPanelSectionVisible("progressSection", isLoggedInStudent);
+    setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
+    setPanelSectionVisible("categorySection", isLoggedInStudent);
+
+    const levelSection = document.getElementById("guestLevelSection")?.closest(".side-section");
+
+    if(levelSection){
+        levelSection.style.display = isLoggedInStudent ? "none" : "grid";
+    }
+
+    const reviewButton = document.getElementById("reviewButton");
+
+    if(reviewButton){
+        reviewButton.hidden = !isLoggedInStudent;
+    }
+
+    const focusButton = document.getElementById("focusToggle");
+
+    if(focusButton){
+        focusButton.hidden = !isLoggedInStudent;
     }
 }
 
@@ -1233,6 +1302,14 @@ function ensureSelectedSource(){
     const availableSources = getAvailableSources();
 
     if(selectedCategory === "kurs"){
+        if(!availableSources.some(source => source.id === selectedSource)){
+            selectedSource = availableSources[0]?.id || "all";
+        }
+
+        return;
+    }
+
+    if(!isLoggedInStudent){
         if(!availableSources.some(source => source.id === selectedSource)){
             selectedSource = availableSources[0]?.id || "all";
         }
@@ -1384,10 +1461,10 @@ function renderSourceSelector(){
     list.innerHTML = "";
 
     if(title){
-        title.innerText = selectedCategory === "kurs" ? "Numer lekcji" : "Zestaw";
+        title.innerText = selectedCategory === "kurs" ? "Numer lekcji" : "Arkusz";
     }
 
-    if(selectedCategory !== "kurs"){
+    if(selectedCategory !== "kurs" && isLoggedInStudent){
         addSourceButton(
             list,
             "all",
@@ -1401,6 +1478,11 @@ function renderSourceSelector(){
 
     if(selectedCategory === "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak lekcji", "Dodaj zadania dla tego poziomu", true);
+        return;
+    }
+
+    if(selectedCategory !== "kurs" && !availableSources.length){
+        addSourceButton(list, "all", "Brak arkuszy", "Dodaj arkusz dla tego poziomu", true);
         return;
     }
 
@@ -1983,6 +2065,7 @@ function isCourseTask(task = currentTask){
 function updateAnswerTools(){
     const answerButton = document.getElementById("answerButton");
     const resultButtons = document.getElementById("resultButtons");
+    const reviewButton = document.getElementById("reviewButton");
 
     if(!currentTask || !answerButton || !resultButtons) return;
 
@@ -1990,6 +2073,10 @@ function updateAnswerTools(){
     const isClosed = isClosedTask(currentTask);
 
     answerButton.hidden = isCourse && isClosed;
+
+    if(reviewButton){
+        reviewButton.hidden = !isLoggedInStudent;
+    }
 
     if(!isClosed && answerShown){
         resultButtons.classList.add("active");
@@ -2209,6 +2296,7 @@ function addProgress(type){
 }
 
 async function saveProgress(type){
+    if(!isLoggedInStudent) return;
     if(!currentTask || !window.apiFetch) return;
 
     try {
@@ -2310,6 +2398,7 @@ function resetReviewButton(){
 }
 
 async function markForReview(){
+    if(!isLoggedInStudent) return;
     if(!currentTask || !window.apiFetch) return;
 
     const reviewButton = document.getElementById("reviewButton");
