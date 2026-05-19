@@ -1250,6 +1250,10 @@ function updateAccessModeUI(){
     setPanelSectionVisible("categorySection", isLoggedInStudent);
     updateLoginStatus();
 
+    if(window.updateAuthNav){
+        window.updateAuthNav(isLoggedInStudent ? loggedUser : null);
+    }
+
     const levelSection = document.getElementById("guestLevelSection")?.closest(".side-section");
 
     if(levelSection){
@@ -1281,19 +1285,16 @@ function updateLoginStatus(){
 }
 
 async function logoutStudent(){
-    try {
-        if(window.apiFetch){
-            await apiFetch("/api/auth/logout", { method: "POST" });
-        }
-    } catch(error) {
-        console.warn("Nie udało się zamknąć sesji na serwerze.", error);
-    } finally {
-        if(window.clearAuthToken){
-            window.clearAuthToken();
-        }
-
-        window.location.href = "login.html";
+    if(window.logoutCurrentUser){
+        await window.logoutCurrentUser();
+        return;
     }
+
+    if(window.clearAuthToken){
+        window.clearAuthToken();
+    }
+
+    window.location.href = "login.html";
 }
 
 function updateAssignedCourseName(user = null){
@@ -2552,6 +2553,10 @@ fetch("nav.html")
 .then(res => res.text())
 .then(data => {
     document.getElementById("nav").innerHTML = data;
+
+    if(window.updateAuthNav){
+        window.updateAuthNav(isLoggedInStudent ? loggedUser : null);
+    }
 });
 </script>
 
