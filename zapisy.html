@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="img/logo.webp">
+<link rel="shortcut icon" type="image/webp" href="img/logo.webp">
+<link rel="apple-touch-icon" href="img/logo.webp">
 
 <title>Delta Sigma – Terminy</title>
 
@@ -19,6 +22,11 @@ body{
     margin:0;
     background:#f4f6f9;
     color:#2c3e50;
+}
+
+:root{
+    --content-width:1500px;
+    --content-padding:20px;
 }
 
 
@@ -47,9 +55,9 @@ body{
 
 /* CONTAINER */
 .container{
-    max-width:1200px;
+    max-width:var(--content-width);
     margin:40px auto;
-    padding:20px;
+    padding:var(--content-padding);
 }
 
 h1{
@@ -88,8 +96,8 @@ h1{
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            padding: 20px;
-            max-width: 1500px;
+            padding: var(--content-padding);
+            max-width: var(--content-width);
             margin: 0 auto;
         }
 
@@ -218,13 +226,69 @@ th{
     margin-bottom:20px;
     color:#555;
 }
+
+/* =========================
+   TOOLS
+========================= */
+
+.tools-section{
+    margin:0 auto 8px;
+}
+
+.tools-panel{
+    background:white;
+    border-radius:16px;
+    padding:26px;
+    box-shadow:0 10px 28px rgba(0,0,0,0.08);
+    border:1px solid rgba(0,0,0,0.05);
+}
+
+.tools-panel h2{
+    margin:0 0 10px;
+    color:#1f2a36;
+    font-size:28px;
+}
+
+.tools-intro{
+    margin:0 0 20px;
+    color:#555;
+    line-height:1.7;
+    max-width:900px;
+}
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.tool-card{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:18px;
+}
+
+.tool-card h3{
+    margin:0 0 8px;
+    color:#1f2a36;
+    font-size:17px;
+}
+
+.tool-card p{
+    margin:0;
+    color:#555;
+    line-height:1.55;
+    font-size:14px;
+}
+
 /* =========================
    ABOUT
 ========================= */
 
 .about{
     padding:70px 20px;
-    max-width:1400px;
+    max-width:var(--content-width);
     margin:0 auto;
 }
 
@@ -439,6 +503,14 @@ th{
         border-radius:18px;
     }
 
+    .tools-panel{
+        padding:22px;
+    }
+
+    .tools-grid{
+        grid-template-columns:1fr;
+    }
+
     .reviews h2{
         font-size:28px;
     }
@@ -447,6 +519,16 @@ th{
 @media (max-width: 900px){
     main{
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tools-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:700px){
+    .tools-grid{
+        grid-template-columns:1fr;
     }
 }
 @media (max-width: 1100px){
@@ -508,6 +590,38 @@ footer{
         <span>Zadzwoń: 514 681 958</span>
 
     </a>
+
+    <section class="tools-section" aria-labelledby="tools-title">
+        <div class="tools-panel">
+            <h2 id="tools-title">Narzędzia wykorzystywane na zajęciach</h2>
+            <p class="tools-intro">
+                Zajęcia prowadzę z użyciem narzędzi, które pozwalają uczniowi nie tylko oglądać rozwiązanie,
+                ale też aktywnie pisać, sprawdzać pomysły i widzieć matematykę w dynamiczny sposób.
+            </p>
+
+            <div class="tools-grid">
+                <article class="tool-card">
+                    <h3>Desmos</h3>
+                    <p>Do szybkiej wizualizacji funkcji, wykresów i zależności między wzorem a obrazem.</p>
+                </article>
+
+                <article class="tool-card">
+                    <h3>GeoGebra</h3>
+                    <p>Do geometrii, konstrukcji i zadań, w których warto zobaczyć ruch punktów lub figur.</p>
+                </article>
+
+                <article class="tool-card">
+                    <h3>Symbolab</h3>
+                    <p>Do kontroli rachunków, porównywania metod i omawiania kolejnych kroków obliczeń.</p>
+                </article>
+
+                <article class="tool-card">
+                    <h3>Interaktywna tablica</h3>
+                    <p>Uczeń może pisać po tablicy w czasie lekcji, więc praca przypomina wspólne rozwiązywanie przy kartce.</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
 </div>
 
@@ -639,6 +753,7 @@ footer{
 <footer>
     © 2026 Karol Musioł Delta sigma
 </footer>
+<div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script>
 
@@ -735,5 +850,6 @@ fetch("nav.html")
         document.getElementById("nav").innerHTML = data;
     });
 </script>
+<script src="static/auth.js?v=20260518-token"></script>
 </body>
 </html>
