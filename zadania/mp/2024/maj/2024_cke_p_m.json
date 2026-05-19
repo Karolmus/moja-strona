@@ -1,0 +1,629 @@
+[
+  {
+    "file": "1_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "wartość bezwzględna",
+    "hint": "Rozwiąż nierówność |x - 1| ≥ 3 jako x - 1 ≥ 3 lub x - 1 ≤ -3, a potem porównaj wynik z rysunkami.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wartość bezwzględna",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "2_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "potęgi",
+    "hint": "Zapisz 81 jako potęgę liczby 3, a 1/16 jako potęgę liczby 2 lub 4. Skorzystaj z praw działań na potęgach.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "potęgi",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "3_2024_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "podzielność",
+    "hint": "Rozwiń kwadraty (n + 1)² oraz (n + 2)², a potem wyłącz wielokrotność liczby 3.",
+    "answer": "n² + (n + 1)² + (n + 2)² = 3(n² + 2n + 1) + 2, więc reszta z dzielenia przez 3 wynosi 2.",
+    "tags": [
+      "podzielność",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "4_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "logarytmy",
+    "hint": "Zamień √3 na 3^(1/2), a 9 na 3². Szukasz wykładnika, do którego trzeba podnieść √3, aby otrzymać 9.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "logarytmy",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "5_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "wzory skróconego mnożenia",
+    "hint": "Rozwiń oba kwadraty albo użyj wzoru (u + v)² - (u - v)² = 4uv.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wzory skróconego mnożenia",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "6_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "nierówności",
+    "hint": "Przenieś wyrazy z x na jedną stronę i pamiętaj o zmianie znaku nierówności przy mnożeniu lub dzieleniu przez liczbę ujemną.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "nierówności",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "7_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "równania wymierne",
+    "hint": "Ułamek jest równy 0 wtedy, gdy licznik jest równy 0, a mianownik nie jest równy 0.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "równania wymierne",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "8_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "wielomiany",
+    "hint": "W pierwszym zdaniu wyłącz wspólny czynnik przed nawias. W drugim sprawdź, czy W(-1) = 0.",
+    "answer": "PF",
+    "type": "closed",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "wielomiany",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "9_2024_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "równania wielomianowe",
+    "hint": "Pogrupuj wyrazy: x²(x - 2) - 3(x - 2), a potem skorzystaj z zasady iloczynu równego zeru.",
+    "answer": "x ∈ {−√3, √3, 2}",
+    "tags": [
+      "równania wielomianowe",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "10_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "układy równań",
+    "hint": "Zapisz sumę posadzonych drzew oraz zależność między liczbą drzew po usunięciu uschniętych drzew.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "układy równań",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "11_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "układy równań",
+    "hint": "Rozpoznaj po wykresie, czy proste się przecinają, są równoległe, czy pokrywają się.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "układy równań",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "12_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja liniowa",
+    "hint": "Miejsce zerowe funkcji liniowej spełnia równanie f(x)=0. Podstaw kolejne przedziały lub oblicz miejsce zerowe ze wzoru.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcja liniowa",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "13_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja liniowa",
+    "hint": "Proste równoległe mają ten sam współczynnik kierunkowy. Porównaj współczynniki a oraz m.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcja liniowa",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "14.1_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja kwadratowa",
+    "hint": "Odczytaj z wykresu, dla jakich argumentów parabola leży na lub nad osią x.",
+    "answer": "[−2, 4]",
+    "contextFile": "14_2024_cke_p_m.png",
+    "tags": [
+      "funkcja kwadratowa",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "14.2_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja kwadratowa",
+    "hint": "Postać kanoniczna funkcji kwadratowej wykorzystuje współrzędne wierzchołka paraboli.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "14_2024_cke_p_m.png",
+    "tags": [
+      "funkcja kwadratowa",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "14.3_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "funkcja kwadratowa",
+    "hint": "Miejsca zerowe po przesunięciu wykresu odczytaj z nowego położenia paraboli względem osi x.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "14_2024_cke_p_m.png",
+    "tags": [
+      "funkcja kwadratowa",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "14.4_2024_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "przekształcenia wykresów",
+    "hint": "Porównaj każdy wykres z wykresem y=f(x). Zwróć uwagę na odbicie względem osi oraz przesunięcie.",
+    "answer": [
+      "A",
+      "E"
+    ],
+    "type": "multi",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "contextFile": "14_2024_cke_p_m.png",
+    "tags": [
+      "przekształcenia wykresów",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "15_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "ciągi",
+    "hint": "Podstaw kolejne wartości n do wzoru ogólnego ciągu i porównaj otrzymane wyrazy.",
+    "answer": "PF",
+    "type": "closed",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "ciągi",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "16_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "ciąg geometryczny",
+    "hint": "Sprawdź, czy iloraz kolejnych wyrazów ciągu jest stały, a potem wykorzystaj warunek na ciąg geometryczny.",
+    "answer": "B2",
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "tags": [
+      "ciąg geometryczny",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "17_2024_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "ciąg arytmetyczny",
+    "hint": "Zapisz trzeci wyraz jako a₃ = a₁ + 2r oraz sumę piętnastu początkowych wyrazów ciągu.",
+    "answer": "r = −2",
+    "tags": [
+      "ciąg arytmetyczny",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "18_2024_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "hint": "Skorzystaj z zależności sin²α + cos²α = 1 oraz tg α = sin α / cos α.",
+    "answer": [
+      "B",
+      "F"
+    ],
+    "type": "multi",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "tags": [
+      "trygonometria",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "19_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "trygonometria",
+    "hint": "Z podanej wartości cosinusa wyznacz sinus z jedynki trygonometrycznej, a potem oblicz tangens.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "trygonometria",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "20_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "geometria",
+    "hint": "Skorzystaj z twierdzenia o dwusiecznej kąta w trójkącie.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "geometria",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "21_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "trygonometria",
+    "hint": "Pole równoległoboku możesz obliczyć ze wzoru a·b·sin α. Do długości boków użyj zależności trygonometrycznych.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "trygonometria",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "22_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "okręgi",
+    "hint": "Kąt wpisany oparty na tym samym łuku ma miarę równą połowie kąta środkowego.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "okręgi",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "23_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "proste",
+    "hint": "Proste prostopadłe mają współczynniki kierunkowe, których iloczyn jest równy -1.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "proste",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "24_2024_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "hint": "Wykorzystaj fakt, że punkt przecięcia przekątnych równoległoboku jest środkiem każdej przekątnej.",
+    "answer": "|BC| = √52 = 2√13",
+    "tags": [
+      "geometria analityczna",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "25.1_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "stereometria",
+    "hint": "Pole powierzchni bocznej graniastosłupa to suma pól ścian bocznych. Użyj danych z rysunku.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "25_2024_cke_p_m.png",
+    "tags": [
+      "stereometria",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "25.2_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "stereometria",
+    "hint": "Kąt między prostą a płaszczyzną rozpoznaj jako kąt między prostą i jej rzutem na tę płaszczyznę.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "25_2024_cke_p_m.png",
+    "tags": [
+      "stereometria",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "26_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "stereometria",
+    "hint": "Dla brył podobnych stosunek pól powierzchni jest kwadratem skali podobieństwa.",
+    "answer": "4",
+    "tags": [
+      "stereometria",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "27_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "kombinatoryka",
+    "hint": "Zastosuj regułę mnożenia: najpierw wybór cyfr, potem ich kolejność.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "kombinatoryka",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "28_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "statystyka",
+    "hint": "Niech szukana średnia będzie oznaczona przez x. Użyj wzoru na średnią wszystkich sześciu liczb.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "statystyka",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "29_2024_cke_p_m.png",
+    "difficulty": 1,
+    "topic": "statystyka",
+    "hint": "Mediana sześciu liczb to średnia arytmetyczna trzeciej i czwartej wartości po uporządkowaniu danych.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "statystyka",
+      "zadanie zamknięte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "30_2024_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "prawdopodobieństwo",
+    "hint": "Wypisz pary wyników losowania lub policz osobno przypadki, gdy obie liczby są parzyste albo obie nieparzyste.",
+    "answer": "P(A) = 13/25",
+    "tags": [
+      "prawdopodobieństwo",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  },
+  {
+    "file": "31_2024_cke_p_m.png",
+    "difficulty": 4,
+    "topic": "optymalizacja",
+    "hint": "Zapisz zależność 4x + 6y = 36, a następnie wyraź pole wybiegów jako funkcję jednej zmiennej.",
+    "answer": "x = 4,5 m, y = 3 m",
+    "tags": [
+      "optymalizacja",
+      "zadanie otwarte"
+    ],
+    "level": "matura_podstawowa"
+  }
+]
