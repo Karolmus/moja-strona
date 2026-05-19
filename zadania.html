@@ -392,28 +392,68 @@ body.focus-mode .task-card {
 .progress-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
     margin-bottom: 12px;
-    min-height: 22px;
+    min-height: 0;
 }
 
 .tile {
-    width: 22px;
-    height: 22px;
-    border-radius: 4px;
+    min-width: 24px;
+    width: auto;
+    height: 24px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
     background: #d8dee6;
+    color: var(--muted);
+    cursor: default;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.tile.nav-tile {
+    background: white;
+    cursor: pointer;
+}
+
+.tile.nav-tile:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+    transform: translateY(-1px);
+}
+
+.tile.active {
+    border-color: var(--line-dark);
+    color: var(--text);
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08);
 }
 
 .tile.good {
     background: var(--success);
+    border-color: rgba(0, 120, 36, 0.35);
+    color: white;
 }
 
 .tile.medium {
     background: var(--warning);
+    border-color: rgba(183, 138, 0, 0.35);
+    color: #2f2600;
 }
 
 .tile.bad {
     background: var(--danger);
+    border-color: rgba(160, 24, 18, 0.35);
+    color: white;
 }
 
 .top-row {
@@ -492,8 +532,7 @@ body.focus-mode .task-card {
 .task-image {
     width: 100%;
     height: auto;
-    max-height: 450px;
-    object-fit: contain;
+    max-height: none;
     display: block;
     padding: 10px;
     background: white;
@@ -509,7 +548,7 @@ body.focus-mode .task-card {
 }
 
 .context-image {
-    max-height: 360px;
+    max-height: none;
 }
 
 .task-image.fade-out {
@@ -859,7 +898,7 @@ footer {
     }
 
     .context-image {
-        max-height: 340px;
+        max-height: none;
     }
 
     .meta-box {
@@ -1062,6 +1101,11 @@ let isLoggedInStudent = false;
 let loggedUser = null;
 let tagSearchTerm = "";
 let selectedTags = new Set();
+let sessionResults = new Map();
+let drawTaskRequestId = 0;
+let isTaskLoading = false;
+
+const IMAGE_FADE_MS = 220;
 
 const COURSE_TARGETS = {
     matura_podstawowa: 20,
@@ -1819,9 +1863,11 @@ async function loadStudentProgress(){
 
         savedProgress = Array.isArray(data.progress) ? data.progress : [];
         renderLearningProgress();
+        renderTaskNavigator();
     } catch(error) {
         savedProgress = [];
         renderLearningProgress("Nie udało się wczytać postępu.");
+        renderTaskNavigator();
     }
 }
 
@@ -1986,9 +2032,76 @@ function resetSession(){
     currentIndex = 0;
     randomHistory = [];
     randomHistoryIndex = -1;
+    sessionResults = new Map();
     seconds = 0;
     updateTimer();
     document.getElementById("progress").innerHTML = "";
+}
+
+function getTaskKey(task){
+    if(!task?.sourceId || !task?.file) return "";
+
+    return `${task.sourceId}:${task.file}`;
+}
+
+function getSavedResult(task){
+    const key = getTaskKey(task);
+
+    if(!key) return "";
+
+    if(sessionResults.has(key)) return sessionResults.get(key);
+
+    const saved = savedProgress.find(item => progressTaskKey(item) === key);
+
+    return saved?.result || "";
+}
+
+function shouldShowTaskNavigator(items = pool()){
+    return selectedCategory === "egzaminy" &&
+        selectedSource !== "all" &&
+        items.length > 0;
+}
+
+function taskNumberLabel(task){
+    return String(task?.file || "")
+        .replace(".png", "")
+        .split("_")[0] || "?";
+}
+
+function resultLabel(result){
+    const labels = {
+        good: "dobrze",
+        medium: "z pomocą",
+        bad: "źle"
+    };
+
+    return labels[result] || "nierozwiązane";
+}
+
+function renderTaskNavigator(items = pool()){
+    const progress = document.getElementById("progress");
+
+    if(!progress) return;
+
+    progress.innerHTML = "";
+
+    if(!shouldShowTaskNavigator(items)) return;
+
+    items.forEach((task, index) => {
+        const button = document.createElement("button");
+        const result = getSavedResult(task);
+
+        button.type = "button";
+        button.className = "tile nav-tile";
+        button.innerText = taskNumberLabel(task);
+        button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
+        button.onclick = () => drawTask(index);
+
+        if(result) button.classList.add(result);
+        if(index === currentIndex) button.classList.add("active");
+
+        progress.appendChild(button);
+    });
 }
 
 function getInitialIndex(){
@@ -2109,12 +2222,91 @@ function getCorrectAnswers(task){
     return [String(task.answer)];
 }
 
-function drawTask(index = currentIndex, trackHistory = true){
+function wait(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function preloadImage(src){
+    if(!src) return Promise.resolve(null);
+
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+
+        image.onload = async () => {
+            try {
+                if(image.decode) await image.decode();
+            } catch(error) {
+                // Samo onload oznacza, że obraz jest dostępny; decode bywa kapryśne w Safari.
+            }
+
+            resolve(src);
+        };
+
+        image.onerror = () => reject(new Error(`Nie udało się wczytać obrazka: ${src}`));
+        image.src = src;
+    });
+}
+
+function setTaskLoading(loading){
+    isTaskLoading = loading;
+
+    document.querySelectorAll(
+        "#hintButton, #answerButton, #reviewButton, #resultButtons button, #mcq button"
+    ).forEach(button => {
+        button.disabled = loading;
+    });
+}
+
+function clearTaskInteraction(){
+    const mcq = document.getElementById("mcq");
+    const resultButtons = document.getElementById("resultButtons");
+
+    if(mcq){
+        mcq.innerHTML = "";
+        mcq.className = "mcq";
+    }
+
+    if(resultButtons){
+        resultButtons.classList.remove("active");
+    }
+
+    hideMessage();
+}
+
+function updateTaskDetails(task, total){
+    const taskCounter = document.getElementById("taskCounter");
+    const metaBox = document.getElementById("metaBox");
+    const isHomework = task.coursePart === "praca_domowa";
+
+    taskCounter.innerText = `${currentIndex + 1} / ${total}`;
+    metaBox.classList.toggle("meta-homework", isHomework);
+
+    metaBox.innerHTML =
+    `
+    <div class="meta-section task-title ${isHomework ? "homework" : ""}">
+        ${taskLabel(task)}
+    </div>
+
+    <div class="meta-right">
+        <div class="meta-section">
+            ${task.topic}
+        </div>
+
+        <div class="meta-section">
+            ${stars(task.difficulty)}
+        </div>
+    </div>
+    `;
+}
+
+async function drawTask(index = currentIndex, trackHistory = true){
     const p = pool();
 
     if(!p.length){
+        drawTaskRequestId++;
         currentTask = null;
         document.getElementById("taskCounter").innerText = "0 / 0";
+        renderTaskNavigator([]);
         document.getElementById("taskImage").src = "";
         document.getElementById("contextImage").src = "";
         document.getElementById("contextImage").classList.add("hidden");
@@ -2134,74 +2326,87 @@ function drawTask(index = currentIndex, trackHistory = true){
 
     currentIndex = index;
     currentTask = p[currentIndex];
+    renderTaskNavigator(p);
+    currentTaskAnswered = true;
+    setTaskLoading(true);
+    clearTaskInteraction();
 
     if(trackHistory){
         rememberRandomIndex(currentIndex);
     }
 
+    const requestId = ++drawTaskRequestId;
+    const taskToRender = currentTask;
     const img = document.getElementById("taskImage");
     const contextImg = document.getElementById("contextImage");
+    const loadMessages = [];
 
-    img.classList.add("fade-out");
-    contextImg.classList.add("fade-out");
+    const [taskPath, contextPath] = await Promise.all([
+        preloadImage(taskToRender.path)
+            .catch(error => {
+                loadMessages.push("Nie udało się wczytać obrazka zadania.");
+                return null;
+            }),
+        taskToRender.contextPath
+            ? preloadImage(taskToRender.contextPath)
+                .catch(error => {
+                    loadMessages.push("Nie udało się wczytać informacji do zadania.");
+                    return null;
+                })
+            : Promise.resolve(null)
+    ]);
 
-    setTimeout(() => {
-        img.onerror = () => {
-            showMessage("Nie udało się wczytać obrazka zadania.");
-        };
+    if(requestId !== drawTaskRequestId || currentTask !== taskToRender) return;
 
-        contextImg.onerror = () => {
-            contextImg.classList.add("hidden");
-            showMessage("Nie udało się wczytać informacji do zadania.");
-        };
+    const hasVisibleImage = img.getAttribute("src") ||
+        !contextImg.classList.contains("hidden");
 
-        if(currentTask.contextPath){
-            contextImg.src = currentTask.contextPath;
-            contextImg.classList.remove("hidden");
-        } else {
-            contextImg.removeAttribute("src");
-            contextImg.classList.add("hidden");
-        }
+    if(hasVisibleImage){
+        img.classList.add("fade-out");
+        contextImg.classList.add("fade-out");
+        await wait(IMAGE_FADE_MS);
+    }
 
-        img.src = currentTask.path;
+    if(requestId !== drawTaskRequestId || currentTask !== taskToRender) return;
 
-        const taskCounter = document.getElementById("taskCounter");
-        const metaBox = document.getElementById("metaBox");
-        const isHomework = currentTask.coursePart === "praca_domowa";
+    if(contextPath){
+        contextImg.src = contextPath;
+        contextImg.classList.remove("hidden");
+    } else {
+        contextImg.removeAttribute("src");
+        contextImg.classList.add("hidden");
+    }
 
-        taskCounter.innerText = `${currentIndex + 1} / ${p.length}`;
-        metaBox.classList.toggle("meta-homework", isHomework);
+    if(taskPath){
+        img.src = taskPath;
+    } else {
+        img.removeAttribute("src");
+    }
 
-        metaBox.innerHTML =
-        `
-        <div class="meta-section task-title ${isHomework ? "homework" : ""}">
-            ${taskLabel(currentTask)}
-        </div>
+    updateTaskDetails(taskToRender, p.length);
 
-        <div class="meta-right">
-            <div class="meta-section">
-                ${currentTask.topic}
-            </div>
-
-            <div class="meta-section">
-                ${stars(currentTask.difficulty)}
-            </div>
-        </div>
-        `;
+    requestAnimationFrame(() => {
+        if(requestId !== drawTaskRequestId || currentTask !== taskToRender) return;
 
         img.classList.remove("fade-out");
         contextImg.classList.remove("fade-out");
+    });
 
-        hintUsed = false;
-        answerShown = false;
-        currentTaskAnswered = false;
-        currentTaskStartedAt = Date.now();
+    hintUsed = false;
+    answerShown = false;
+    currentTaskAnswered = false;
+    currentTaskStartedAt = Date.now();
 
-        resetReviewButton();
-        setupMCQ();
-        updateAnswerTools();
+    resetReviewButton();
+    setupMCQ();
+    updateAnswerTools();
+    setTaskLoading(false);
+
+    if(loadMessages.length){
+        showMessage(loadMessages.join(" "));
+    } else {
         hideMessage();
-    }, 200);
+    }
 }
 
 function nextTask(){
@@ -2533,6 +2738,18 @@ function addProgress(type){
     if(currentTaskAnswered) return;
 
     currentTaskAnswered = true;
+
+    const key = getTaskKey(currentTask);
+
+    if(key){
+        sessionResults.set(key, type);
+    }
+
+    if(shouldShowTaskNavigator()){
+        renderTaskNavigator();
+        saveProgress(type);
+        return;
+    }
 
     const tile = document.createElement("div");
 
