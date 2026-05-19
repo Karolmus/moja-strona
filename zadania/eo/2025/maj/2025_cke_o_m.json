@@ -1,26 +1,385 @@
 [
   {
-    "file": "2_2025_cke_o_m.png",
-    "difficulty": 2,
-    "topic": "arytmetyka",
-    "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź wyrażenie w nawiasie do wspólnego mianownika.",
-    "answer": "C",
+    "file": "1_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "diagramy i procenty",
+    "hint": "Odczytaj z diagramu kwoty dla stycznia, lutego, marca i kwietnia. Porównaj je z ceną deskorolki oraz z kwotą styczniową.",
+    "answer": "BD",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
     "tags": [
-      "arytmetyka",
+      "diagramy",
+      "procenty",
       "zadanie zamknięte"
-    ]
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "2_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "ułamki",
+    "hint": "Zamień liczbę mieszaną na ułamek niewłaściwy i wykonaj działania zgodnie z kolejnością.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "ułamki",
+      "działania na liczbach",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
   },
   {
     "file": "3_2025_cke_o_m.png",
     "difficulty": 1,
-    "topic": "arytmetyka",
-    "level": "egzamin_osmoklasisty",
-    "hint": "Wykonaj dzielenie z resztą.",
+    "topic": "dzielenie z resztą",
+    "hint": "Podziel każdą z podanych liczb przez 7 i sprawdź, która daje resztę 1.",
     "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
     "tags": [
-      "arytmetyka",
+      "dzielenie z resztą",
+      "liczby naturalne",
       "zadanie zamknięte"
-    ]
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "4_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "średnia arytmetyczna",
+    "hint": "Zamień średnie na sumy liczb: suma a, b, c, d to 4 · 9, a suma e i f to 2 · 6.",
+    "answer": "BC",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "średnia arytmetyczna",
+      "statystyka",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "5_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "przekształcanie wzorów",
+    "hint": "Z równania L = 2a + 2b + c przenieś 2b i c na drugą stronę, a potem podziel przez 2.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "przekształcanie wzorów",
+      "wyrażenia algebraiczne",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "6_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Oznacz liczbę piłek fioletowych przez x. Ustal kolejno liczbę białych i czarnych piłek.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wyrażenia algebraiczne",
+      "zadanie tekstowe",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "7_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "hint": "Oblicz osobno wartości K i L. Uważaj na kolejność działań oraz pierwiastki z ułamków.",
+    "answer": "FF",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "pierwiastki",
+      "działania na liczbach",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "8_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "potęgi",
+    "hint": "Zapisz dzielenie potęg o tej samej podstawie jako odejmowanie wykładników.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "potęgi",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "9_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "prędkość droga czas",
+    "hint": "Skorzystaj ze wzoru czas = droga / prędkość. Zwróć uwagę na jednostki.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prędkość",
+      "jednostki",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "10_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "prawdopodobieństwo",
+    "hint": "Policz, ile losów nie wygrywa, a następnie podziel tę liczbę przez liczbę wszystkich losów.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prawdopodobieństwo",
+      "ułamki",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "11_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "trójkąt prostokątny",
+    "hint": "Wyznacz długość BC z twierdzenia Pitagorasa w trójkącie DBC, a potem porównaj pola trójkątów.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "twierdzenie Pitagorasa",
+      "pola figur",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "12_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "oś liczbowa",
+    "hint": "Odcinek AC jest podzielony na 6 równych części. Najpierw ustal długość jednej części.",
+    "answer": "FP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "oś liczbowa",
+      "liczby całkowite",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "13_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "obwód figur",
+    "hint": "Oblicz brakujące długości boków z trójkąta 6-8-10 i własności kwadratu oraz rombu.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "obwód",
+      "wielokąty",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "14_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "układ współrzędnych",
+    "hint": "W równoległoboku przeciwległe wierzchołki przesuwają się o ten sam wektor.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "układ współrzędnych",
+      "równoległobok",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "15_2025_cke_o_m.png",
+    "difficulty": 1,
+    "topic": "prostopadłościan",
+    "hint": "Skorzystaj ze wzoru na pole powierzchni całkowitej prostopadłościanu: 2(ab + ac + bc).",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prostopadłościan",
+      "pole powierzchni",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "16_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "ułamki",
+    "hint": "Odejmij od 7/15 ułamki 1/5 i 1/6, sprowadzając je do wspólnego mianownika.",
+    "answer": "Trzeci składnik sumy to 1/10.",
+    "tags": [
+      "ułamki",
+      "działania na ułamkach",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "17_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "równania",
+    "hint": "Oznacz liczbę plakatów Basi przez b. Wtedy Andrzej ma b + 28, a Marek ma b/3.",
+    "answer": "Basia ma 42 plakaty, Marek ma 14 plakatów, a Andrzej ma 70 plakatów.",
+    "tags": [
+      "równania",
+      "zadania tekstowe",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "18_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "kąty w figurach",
+    "hint": "Najpierw oblicz trzeci kąt trójkąta EBC. Potem użyj własności kątów przy prostych równoległych.",
+    "answer": "∠DAB = 75°, ∠BCD = 132°, ∠CDA = 105°.",
+    "tags": [
+      "kąty",
+      "trapez",
+      "równoległobok",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "19_2025_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "skala i pola",
+    "hint": "Oblicz rzeczywisty bok małej tablicy ze skali 1:20, a potem porównaj pola obu tablic.",
+    "answer": "Pole dużej tablicy jest 6 razy większe od pola małej tablicy.",
+    "tags": [
+      "skala",
+      "pola figur",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "20_2025_cke_o_m.png",
+    "difficulty": 3,
+    "topic": "pole czworokąta",
+    "hint": "Kwadrat ma bok 15 cm. Wyznacz położenie punktów E i F, a pole czworokąta policz jako sumę albo różnicę pól prostszych figur.",
+    "answer": "Pole czworokąta AECF jest równe 105 cm².",
+    "tags": [
+      "pola figur",
+      "kwadrat",
+      "czworokąt",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty"
+  },
+  {
+    "file": "21_2025_cke_o_m.png",
+    "difficulty": 3,
+    "topic": "ostrosłup",
+    "hint": "Najpierw wyznacz krawędź podstawy z pola ściany bocznej. Potem oblicz krawędź boczną z twierdzenia Pitagorasa.",
+    "answer": "Suma długości wszystkich krawędzi ostrosłupa wynosi 132 cm.",
+    "tags": [
+      "ostrosłup",
+      "twierdzenie Pitagorasa",
+      "bryły",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty"
   }
 ]
