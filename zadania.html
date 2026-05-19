@@ -367,6 +367,7 @@ body.focus-mode {
 body.focus-mode #nav,
 body.focus-mode footer,
 body.focus-mode .footer-contact,
+body.focus-mode .source-attribution,
 body.focus-mode .task-sidebar {
     display: none;
 }
@@ -454,6 +455,37 @@ body.focus-mode .task-card {
     background: var(--danger);
     border-color: rgba(160, 24, 18, 0.35);
     color: white;
+}
+
+.tile.nav-tile.active.nav-theme-podstawowa,
+.tile.nav-tile.active.nav-theme-rozszerzona {
+    background: linear-gradient(90deg, #d5b8ea, #ffffff);
+    border-color: #9b75b5;
+    color: var(--text);
+}
+
+.tile.nav-tile.active.nav-theme-osmoklasista {
+    background: linear-gradient(90deg, #b2d699, #ffffff);
+    border-color: #7dab62;
+    color: var(--text);
+}
+
+.tile.nav-tile.active.nav-theme-homework {
+    background: linear-gradient(90deg, #d99595 0%, #e7b4b4 55%, #ffffff 100%);
+    border-color: #bf7474;
+    color: var(--text);
+}
+
+.tile.nav-tile.active.good {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--success);
+}
+
+.tile.nav-tile.active.medium {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--warning);
+}
+
+.tile.nav-tile.active.bad {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--danger);
 }
 
 .top-row {
@@ -729,6 +761,15 @@ button {
     display: grid;
 }
 
+.mcq.six-options {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.mcq.six-options .choice-btn {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
 .choice-btn {
     min-height: 48px;
     background: white;
@@ -883,6 +924,17 @@ footer {
 
     .mcq {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mcq.six-options {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .mcq.six-options .choice-btn {
+        min-height: 42px;
+        padding: 8px 4px;
+        font-size: 15px;
     }
 
     .tf-row {
@@ -1078,6 +1130,12 @@ footer {
 
         </div>
     </div>
+</div>
+
+<div class="source-attribution">
+    Część materiałów egzaminacyjnych prezentowanych w serwisie pochodzi z Centralnej Komisji Egzaminacyjnej:
+    <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
+    Delta Sigma nie jest oficjalnym serwisem CKE.
 </div>
 
 <footer>© 2026 Delta sigma</footer>
@@ -2085,6 +2143,18 @@ function resultLabel(result){
     return labels[result] || "nierozwiązane";
 }
 
+function taskThemeClass(task){
+    if(task.coursePart === "praca_domowa") return "nav-theme-homework";
+
+    const classes = {
+        matura_podstawowa: "nav-theme-podstawowa",
+        matura_rozszerzona: "nav-theme-rozszerzona",
+        egzamin_osmoklasisty: "nav-theme-osmoklasista"
+    };
+
+    return classes[task.level] || "";
+}
+
 function renderTaskNavigator(items = pool()){
     const progress = document.getElementById("progress");
 
@@ -2097,9 +2167,11 @@ function renderTaskNavigator(items = pool()){
     items.forEach((task, index) => {
         const button = document.createElement("button");
         const result = getSavedResult(task);
+        const themeClass = taskThemeClass(task);
 
         button.type = "button";
         button.className = "tile nav-tile";
+        if(themeClass) button.classList.add(themeClass);
         button.innerText = taskNumberLabel(task);
         button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
         button.onclick = () => drawTask(index);
@@ -2508,7 +2580,13 @@ function setupMCQ(){
             return;
         }
 
-        getOptions(currentTask).forEach(option => {
+        const options = getOptions(currentTask);
+
+        if(options.length === 6){
+            mcq.classList.add("six-options");
+        }
+
+        options.forEach(option => {
             const b = document.createElement("button");
 
             b.className = "choice-btn";
