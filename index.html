@@ -145,10 +145,76 @@
 
             text-align:center;
             font-size:14px;
+            font-weight:700;
 
             background:#f7f7f7;
 
             border-top:1px solid #eee;
+        }
+
+        .home-hero-row{
+            max-width:1500px;
+            margin:30px auto;
+            padding:0 20px;
+            display:grid;
+            grid-template-columns:minmax(0,2fr) minmax(260px,420px);
+            gap:20px;
+            align-items:stretch;
+        }
+
+        .home-hero-row #baner{
+            min-width:0;
+        }
+
+        .home-hero-row .enrollment-card{
+            width:100%;
+            height:100%;
+            min-height:220px;
+            margin:0;
+        }
+
+        .delta-brand-card{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            min-height:220px;
+            padding:28px;
+            border-radius:24px;
+            background:#fff;
+            color:#1f2a36;
+            text-decoration:none;
+            box-shadow:0 15px 40px rgba(0,0,0,0.12);
+            border:1px solid rgba(0,0,0,0.06);
+            text-align:center;
+            transition:transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .delta-brand-card:hover{
+            transform:translateY(-6px);
+            box-shadow:0 22px 46px rgba(0,0,0,0.16);
+        }
+
+        .delta-brand-logo{
+            width:126px;
+            height:126px;
+            object-fit:contain;
+        }
+
+        .delta-brand-title{
+            margin:0;
+            font-size:26px;
+            line-height:1.1;
+            font-weight:700;
+        }
+
+        .delta-brand-subtitle{
+            margin:0;
+            color:#5865F2;
+            font-size:16px;
+            font-weight:600;
+            line-height:1.35;
         }
 
         /* =========================
@@ -412,7 +478,32 @@
 
         }
         @media (max-width: 600px){
+            .home-hero-row{
+                grid-template-columns:1fr;
+                margin:20px auto;
+                padding:0 12px;
+                gap:12px;
+            }
 
+            .home-hero-row .enrollment-card,
+            .delta-brand-card{
+                min-height:190px;
+                border-radius:18px;
+            }
+
+            .delta-brand-card{
+                padding:22px;
+            }
+
+            .delta-brand-logo{
+                width:98px;
+                height:98px;
+            }
+
+            .delta-brand-title{
+                font-size:22px;
+            }
+        }
 
     </style>
 </head>
@@ -431,7 +522,15 @@
 
 </div>
 
-<div id="baner"></div>
+<section class="home-hero-row" aria-label="Oferta i zapisy">
+    <div id="baner"></div>
+
+    <a href="zapisy.html" class="delta-brand-card" aria-label="Delta Sigma - korepetycje z matematyki">
+        <img class="delta-brand-logo" src="img/logo.webp" alt="Delta Sigma">
+        <h2 class="delta-brand-title">Delta Sigma</h2>
+        <p class="delta-brand-subtitle">Korepetycje z matematyki</p>
+    </a>
+</section>
 
 <main>
 

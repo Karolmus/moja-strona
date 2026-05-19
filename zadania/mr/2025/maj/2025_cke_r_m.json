@@ -5,7 +5,11 @@
     "topic": "algebra",
     "level": "matura_rozszerzona",
     "hint": "Wyznacz miejsca zerowe wyrażeń pod wartością bezwzględną i zbadaj trzy przypadki.",
-    "answer": "x ∈ (-∞, -10) ∪ (-2/3, +∞)"
+    "answer": "x ∈ (-∞, -10) ∪ (-2/3, +∞)",
+    "tags": [
+      "algebra",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "1_2025_cke_r_m.png",
@@ -13,6 +17,10 @@
     "topic": "funkcje",
     "level": "matura_rozszerzona",
     "hint": "Zapisz jakie wyrażenie powstaje gdy t=2 i N=15625.",
-    "answer": "wzrost o 25%"
+    "answer": "wzrost o 25%",
+    "tags": [
+      "funkcje",
+      "zadanie otwarte"
+    ]
   }
- ]
+]

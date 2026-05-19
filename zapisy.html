@@ -56,7 +56,7 @@ body{
 /* CONTAINER */
 .container{
     max-width:var(--content-width);
-    margin:40px auto;
+    margin:20px auto;
     padding:var(--content-padding);
 }
 
@@ -85,7 +85,7 @@ h1{
     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     transition:0.3s;
 
-    margin: 0 auto 30px;
+    margin: 0 auto 15px;
     max-width: 500px;
 }
 
@@ -96,7 +96,7 @@ h1{
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            padding: var(--content-padding);
+            padding: 10px var(--content-padding) var(--content-padding);
             max-width: var(--content-width);
             margin: 0 auto;
         }
@@ -164,10 +164,16 @@ h1{
             margin-top:auto;
             padding:10px;
             text-align:center;
-            font-size:14px;
-            background:#f7f7f7;
-            border-top:1px solid #eee;
-        }
+	    font-size:14px;
+	    background:#f7f7f7;
+	    border-top:1px solid #eee;
+	}
+
+	main + .tools-section{
+	    max-width:var(--content-width);
+	    margin:20px auto 0;
+	    padding:var(--content-padding);
+	}
 
 
 .card-icon{
@@ -182,43 +188,55 @@ h1{
     fill:white;
 }
 
-/* TABLE */
-.table-wrapper{
-    overflow-x:auto;
-}
+	/* TABLE */
+	.table-wrapper{
+	    overflow-x:auto;
+	    background:white;
+	    border:1px solid rgba(0,0,0,0.05);
+	    border-radius:16px;
+	    padding:18px;
+	    box-shadow:0 10px 28px rgba(0,0,0,0.08);
+	    margin-bottom:18px;
+	}
 
-table{
-    width:100%;
-    border-collapse:separate;
-    border-spacing:8px;
-}
+	table{
+	    width:100%;
+	    border-collapse:separate;
+	    border-spacing:7px;
+	    min-width:760px;
+	}
 
-th, td{
-    padding:1px;
-    text-align:center;
-    border-radius:5px;
-    font-size:12px;
-    min-width:20px;
-    max-width: 20px;
-    color:#fff;
-}
+	th, td{
+	    height:17px;
+	    padding:3px 8px;
+	    text-align:center;
+	    border-radius:9px;
+	    font-size:12px;
+	    min-width:48px;
+	    color:#fff;
+	    font-weight:600;
+	}
 
-th{
-    background:#000000;
-}
+	th{
+	    background:#263545;
+	}
 
-.time{
-    background:#000000;
-    font-weight:600;
-}
+	.time{
+	    background:#1f2a36;
+	    font-weight:600;
+	}
 
-.free{
-    background:#51cb7a;
-}
+	.free{
+	    background:#e8f5e7;
+	    color:#2f6b36;
+	    border:1px solid #cce5c9;
+	}
 
-.busy{
-    background:#9a9a9a;
-}
+	.busy{
+	    background:#e2e8f0;
+	    color:#64748b;
+	    border:1px solid #d5dee8;
+	}
 
 /* INFO */
 .info{
@@ -269,6 +287,17 @@ th{
     padding:18px;
 }
 
+.tool-logo{
+    display:flex;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.tool-logo strong{
+    color:#1f2a36;
+    font-size:17px;
+}
+
 .tool-card h3{
     margin:0 0 8px;
     color:#1f2a36;
@@ -280,6 +309,21 @@ th{
     color:#555;
     line-height:1.55;
     font-size:14px;
+}
+
+.tools-note{
+    margin-top:18px;
+    padding:16px 18px;
+    border-radius:14px;
+    background:#edf4fb;
+    border:1px solid #d6e5f2;
+    color:#24527a;
+    line-height:1.65;
+    font-size:14px;
+}
+
+.tools-note strong{
+    color:#1f2a36;
 }
 
 /* =========================
@@ -570,7 +614,7 @@ footer{
     <div class="table-wrapper">
         <table id="schedule"></table>
     </div>
- 
+
     <div class="info">
         W celu umówienia terminu zajęć proszę o kontakt telefoniczny lub wiadomość SMS
     </div>
@@ -591,41 +635,9 @@ footer{
 
     </a>
 
-    <section class="tools-section" aria-labelledby="tools-title">
-        <div class="tools-panel">
-            <h2 id="tools-title">Narzędzia wykorzystywane na zajęciach</h2>
-            <p class="tools-intro">
-                Zajęcia prowadzę z użyciem narzędzi, które pozwalają uczniowi nie tylko oglądać rozwiązanie,
-                ale też aktywnie pisać, sprawdzać pomysły i widzieć matematykę w dynamiczny sposób.
-            </p>
+	</div>
 
-            <div class="tools-grid">
-                <article class="tool-card">
-                    <h3>Desmos</h3>
-                    <p>Do szybkiej wizualizacji funkcji, wykresów i zależności między wzorem a obrazem.</p>
-                </article>
-
-                <article class="tool-card">
-                    <h3>GeoGebra</h3>
-                    <p>Do geometrii, konstrukcji i zadań, w których warto zobaczyć ruch punktów lub figur.</p>
-                </article>
-
-                <article class="tool-card">
-                    <h3>Symbolab</h3>
-                    <p>Do kontroli rachunków, porównywania metod i omawiania kolejnych kroków obliczeń.</p>
-                </article>
-
-                <article class="tool-card">
-                    <h3>Interaktywna tablica</h3>
-                    <p>Uczeń może pisać po tablicy w czasie lekcji, więc praca przypomina wspólne rozwiązywanie przy kartce.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-</div>
-
-<main>
+	<main>
         <a href="na_biezaco.html" class="card d">
         <div class="card-bar"></div>
         <img src="img/d.png">
@@ -664,11 +676,55 @@ footer{
             <p>Zgodnie z wytycznymi CKE</p>
         </div>
         <div class="price-bar"><b>110 zł / 55 min</b></div>
-    </a>
+	    </a>
 
-</main>
+	</main>
 
-<section class="about">
+	<section class="tools-section" aria-labelledby="tools-title">
+	    <div class="tools-panel">
+	        <h2 id="tools-title">Narzędzia wykorzystywane na zajęciach</h2>
+	        <p class="tools-intro">
+	            Zajęcia prowadzę z użyciem narzędzi, które pozwalają uczniowi nie tylko oglądać rozwiązanie,
+	            ale też aktywnie pisać, sprawdzać pomysły i widzieć matematykę w dynamiczny sposób.
+	        </p>
+
+		        <div class="tools-grid">
+		            <article class="tool-card">
+		                <div class="tool-logo" aria-label="Desmos">
+		                    <strong>Desmos</strong>
+		                </div>
+		                <p>Narzędzie do badania funkcji</p>
+		            </article>
+
+		            <article class="tool-card">
+		                <div class="tool-logo" aria-label="GeoGebra">
+		                    <strong>GeoGebra</strong>
+		                </div>
+		                <p>Narzędzie do badania i budowania figur płaskich i przestrzennych</p>
+		            </article>
+
+		            <article class="tool-card">
+		                <div class="tool-logo" aria-label="Symbolab">
+		                    <strong>Symbolab</strong>
+		                </div>
+		                <p>Narzędzie do sprawdzania rachunków oraz obliczeń symbolicznych</p>
+		            </article>
+
+		            <article class="tool-card">
+		                <div class="tool-logo" aria-label="iDroo">
+		                    <strong>iDroo</strong>
+		                </div>
+		                <p>Interaktywna tablica, na której w czasie rzeczywistym może pisać również uczeń</p>
+	            </article>
+	        </div>
+
+	        <div class="tools-note">
+	            <strong>Do samej matury</strong> uczeń ma dostęp do indywidualnej strefy ucznia na której rozwiązując zadania realizuje kurs, a ja monitoruje jego postępy.
+	        </div>
+	    </div>
+	</section>
+
+	<section class="about">
 
     <div class="about-container">
 

@@ -269,6 +269,67 @@ body {
     color: rgba(255,255,255,0.76);
 }
 
+.tag-search-input {
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    padding: 9px 11px;
+}
+
+.tag-search-input::placeholder {
+    color: #94a3b8;
+}
+
+.tag-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.tag-chip,
+.clear-tags-btn {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 5px 8px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tag-chip:hover,
+.clear-tags-btn:hover {
+    background: #f3f6fa;
+    border-color: #b9c6d4;
+}
+
+.tag-chip.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+}
+
+.tag-helper {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.clear-tags-btn {
+    justify-self: start;
+    color: var(--blue-text);
+    border-color: #cfe0f2;
+}
+
 .task-card {
     background: var(--surface);
     border-radius: 8px;
@@ -521,7 +582,10 @@ button {
 .source-btn:focus-visible,
 .mode-btn:focus-visible,
 .category-btn:focus-visible,
-.section-btn:focus-visible {
+.section-btn:focus-visible,
+.tag-chip:focus-visible,
+.clear-tags-btn:focus-visible,
+.tag-search-input:focus-visible {
     outline: 3px solid rgba(88, 101, 242, 0.25);
     outline-offset: 2px;
 }
@@ -714,6 +778,30 @@ footer {
         padding: 12px;
     }
 
+    .focus-toggle {
+        position: static;
+        display: block;
+        width: calc(100% - 10px);
+        margin: 8px auto 10px;
+        border-radius: 8px;
+    }
+
+    body.focus-mode .focus-toggle {
+        position: sticky;
+        top: 5px;
+        width: calc(100% - 10px);
+        margin: 5px auto 8px;
+    }
+
+    body.focus-mode .container {
+        margin: 0 auto;
+        padding: 5px;
+    }
+
+    body.focus-mode .task-card {
+        padding: 12px;
+    }
+
     .level-selector {
         flex-direction: column;
     }
@@ -833,6 +921,14 @@ footer {
                     <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
                     <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
                 </div>
+            </div>
+
+            <div class="side-section" id="tagSearchSection">
+                <div class="side-title">Tagi</div>
+                <input class="tag-search-input" id="tagSearchInput" type="search" placeholder="Szukaj tagu, np. funkcje" oninput="setTagSearch(this.value)">
+                <div class="tag-chip-list" id="tagChipList"></div>
+                <button class="clear-tags-btn" id="clearTagsButton" type="button" onclick="clearTagFilters()" hidden>Wyczyść tagi</button>
+                <div class="tag-helper" id="tagHelper">Wybierz tag albo wpisz fragment nazwy.</div>
             </div>
 
             <div class="side-section" id="progressSection">
@@ -964,6 +1060,8 @@ let focusMode = false;
 let currentTaskAnswered = false;
 let isLoggedInStudent = false;
 let loggedUser = null;
+let tagSearchTerm = "";
+let selectedTags = new Set();
 
 const COURSE_TARGETS = {
     matura_podstawowa: 20,
@@ -1111,6 +1209,7 @@ async function bootStudentPanel(){
         updateMetaTheme();
         renderSourceSelector();
         renderCoursePartSelector();
+        renderTagSearch();
         renderLearningProgress();
 
         if(isLoggedInStudent){
@@ -1188,6 +1287,7 @@ function updateAccessModeUI(){
     setPanelSectionVisible("progressSection", isLoggedInStudent);
     setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
     setPanelSectionVisible("categorySection", isLoggedInStudent);
+    setPanelSectionVisible("tagSearchSection", !isLoggedInStudent);
 
     if(window.updateAuthNav){
         window.updateAuthNav(isLoggedInStudent ? loggedUser : null);
@@ -1208,7 +1308,7 @@ function updateAccessModeUI(){
     const focusButton = document.getElementById("focusToggle");
 
     if(focusButton){
-        focusButton.hidden = !isLoggedInStudent;
+        focusButton.hidden = false;
     }
 }
 
@@ -1234,7 +1334,7 @@ function loadTaskSource(sourceConfig){
             ...task,
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
-            tags: Array.isArray(task.tags) ? task.tags : [],
+            tags: normalizeTaskTags(task),
             category: sourceMeta.category,
             coursePart: task.coursePart || task.section || "zadania",
             level: task.level || sourceMeta.level,
@@ -1266,11 +1366,158 @@ function getSourceMeta(sourceConfig){
     };
 }
 
+function normalizeTag(tag){
+    return String(tag || "")
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLocaleLowerCase("pl-PL");
+}
+
+function normalizeTaskTags(task){
+    const explicitTags = Array.isArray(task.tags) ? task.tags : [];
+    const fallbackTags = explicitTags.length ? [] : [task.topic];
+    const unique = new Map();
+
+    [...explicitTags, ...fallbackTags]
+        .map(tag => String(tag || "").trim())
+        .filter(Boolean)
+        .forEach(tag => {
+            unique.set(normalizeTag(tag), tag);
+        });
+
+    return [...unique.values()];
+}
+
+function taskMatchesTagFilters(task){
+    if(isLoggedInStudent || selectedCategory !== "egzaminy") return true;
+
+    const tags = (task.tags || []).map(normalizeTag).filter(Boolean);
+    const term = normalizeTag(tagSearchTerm);
+    const activeTags = [...selectedTags];
+
+    if(activeTags.length && !activeTags.every(tag => tags.includes(tag))) return false;
+    if(term && !tags.some(tag => tag.includes(term))) return false;
+
+    return true;
+}
+
+function getTagBaseTasks(){
+    return tasks.filter(task =>
+        task.category === "egzaminy" &&
+        task.level === selectedLevel &&
+        (selectedSource === "all" || task.sourceId === selectedSource)
+    );
+}
+
+function getAvailableTags(){
+    const map = new Map();
+
+    getTagBaseTasks().forEach(task => {
+        (task.tags || []).forEach(tag => {
+            const key = normalizeTag(tag);
+
+            if(key && !map.has(key)){
+                map.set(key, tag);
+            }
+        });
+    });
+
+    return [...map.entries()]
+        .map(([key, label]) => ({ key, label }))
+        .sort((a, b) => a.label.localeCompare(b.label, "pl"));
+}
+
+function pruneSelectedTags(availableTags){
+    const availableKeys = new Set(availableTags.map(tag => tag.key));
+
+    selectedTags.forEach(tag => {
+        if(!availableKeys.has(tag)){
+            selectedTags.delete(tag);
+        }
+    });
+}
+
+function renderTagSearch(){
+    const section = document.getElementById("tagSearchSection");
+    const input = document.getElementById("tagSearchInput");
+    const list = document.getElementById("tagChipList");
+    const clearButton = document.getElementById("clearTagsButton");
+    const helper = document.getElementById("tagHelper");
+
+    if(!section || !input || !list || !clearButton || !helper) return;
+
+    const shouldShow = !isLoggedInStudent && selectedCategory === "egzaminy";
+
+    section.style.display = shouldShow ? "grid" : "none";
+
+    if(!shouldShow) return;
+
+    input.value = tagSearchTerm;
+    list.innerHTML = "";
+
+    const availableTags = getAvailableTags();
+    pruneSelectedTags(availableTags);
+
+    const term = normalizeTag(tagSearchTerm);
+    const visibleTags = availableTags
+        .filter(tag => !term || tag.key.includes(term))
+        .slice(0, 18);
+
+    if(!availableTags.length){
+        helper.innerText = "Wybrany arkusz nie ma jeszcze tagów w pliku JSON.";
+    } else if(!visibleTags.length){
+        helper.innerText = "Nie ma tagu pasującego do wpisanego tekstu.";
+    } else {
+        helper.innerText = "Wybierz tag albo wpisz fragment nazwy.";
+    }
+
+    visibleTags.forEach(tag => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = selectedTags.has(tag.key) ? "tag-chip active" : "tag-chip";
+        button.innerText = tag.label;
+        button.onclick = () => toggleTagFilter(tag.key);
+
+        list.appendChild(button);
+    });
+
+    clearButton.hidden = !selectedTags.size && !tagSearchTerm;
+}
+
+function setTagSearch(value){
+    tagSearchTerm = value;
+    resetSession();
+    renderTagSearch();
+    drawTask(getInitialIndex());
+}
+
+function toggleTagFilter(tag){
+    if(selectedTags.has(tag)){
+        selectedTags.delete(tag);
+    } else {
+        selectedTags.add(tag);
+    }
+
+    resetSession();
+    renderTagSearch();
+    drawTask(getInitialIndex());
+}
+
+function clearTagFilters(){
+    tagSearchTerm = "";
+    selectedTags.clear();
+    resetSession();
+    renderTagSearch();
+    drawTask(getInitialIndex());
+}
+
 function pool(){
     return tasks.filter(t =>
         t.category === selectedCategory &&
         t.level === selectedLevel &&
         (selectedSource === "all" || t.sourceId === selectedSource) &&
+        taskMatchesTagFilters(t) &&
         (
             selectedCategory !== "kurs" ||
             t.coursePart === selectedCoursePart
@@ -1334,6 +1581,7 @@ function setCategory(btn, category){
     resetSession();
     renderSourceSelector();
     renderCoursePartSelector();
+    renderTagSearch();
     renderLearningProgress();
     drawTask(getInitialIndex());
 }
@@ -1353,6 +1601,7 @@ function setLevel(btn, level){
     resetSession();
     renderSourceSelector();
     renderCoursePartSelector();
+    renderTagSearch();
     renderLearningProgress();
     drawTask(getInitialIndex());
 }
@@ -1380,6 +1629,7 @@ function setSource(sourceId){
     resetSession();
     renderSourceSelector();
     renderCoursePartSelector();
+    renderTagSearch();
     renderLearningProgress();
     drawTask(getInitialIndex());
 }
@@ -1402,6 +1652,7 @@ function setCoursePart(part){
 
     resetSession();
     renderCoursePartSelector();
+    renderTagSearch();
     drawTask(getInitialIndex());
 }
 
@@ -1870,7 +2121,10 @@ function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("metaBox").classList.remove("meta-homework");
         document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
-        showMessage(`Brak zadań w części ${CATEGORY_LABELS[selectedCategory].toLowerCase()} dla wybranego poziomu.`);
+        const tagSuffix = !isLoggedInStudent && (selectedTags.size || tagSearchTerm)
+            ? " i wybranych tagów"
+            : "";
+        showMessage(`Brak zadań w części ${CATEGORY_LABELS[selectedCategory].toLowerCase()} dla wybranego poziomu${tagSuffix}.`);
         return;
     }
 

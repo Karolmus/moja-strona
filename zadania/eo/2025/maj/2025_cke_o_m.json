@@ -1,11 +1,15 @@
- [
+[
   {
     "file": "2_2025_cke_o_m.png",
     "difficulty": 2,
     "topic": "arytmetyka",
     "level": "egzamin_osmoklasisty",
     "hint": "Sprowadź wyrażenie w nawiasie do wspólnego mianownika.",
-    "answer": "C"
+    "answer": "C",
+    "tags": [
+      "arytmetyka",
+      "zadanie zamknięte"
+    ]
   },
   {
     "file": "3_2025_cke_o_m.png",
@@ -13,6 +17,10 @@
     "topic": "arytmetyka",
     "level": "egzamin_osmoklasisty",
     "hint": "Wykonaj dzielenie z resztą.",
-    "answer": "B"
+    "answer": "B",
+    "tags": [
+      "arytmetyka",
+      "zadanie zamknięte"
+    ]
   }
 ]
