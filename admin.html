@@ -103,20 +103,47 @@ label {
 input,
 select {
     width: 100%;
-    min-height: 42px;
+    min-height: 36px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 9px 11px;
+    padding: 7px 10px;
     background: white;
     color: var(--text);
     font: inherit;
 }
 
 input:focus,
-select:focus {
+select:focus,
+.level-card:focus-visible {
     outline: 3px solid rgba(88, 101, 242, 0.18);
     outline-offset: 1px;
     border-color: #b8d3ee;
+}
+
+.level-cards {
+    display: grid;
+    gap: 7px;
+}
+
+.level-card {
+    min-height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.level-card.active {
+    border-color: #b8d3ee;
+    background: var(--blue-soft);
+    color: var(--blue-text);
 }
 
 .btn {
@@ -207,7 +234,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
-    min-width: 900px;
+    min-width: 980px;
 }
 
 th,
@@ -253,15 +280,19 @@ th {
 }
 
 .col-progress {
-    width: 19%;
+    width: 18%;
+}
+
+.col-created {
+    width: 9%;
 }
 
 .col-activity {
-    width: 10%;
+    width: 9%;
 }
 
 .col-actions {
-    width: 16%;
+    width: 17%;
 }
 
 .badge {
@@ -285,8 +316,7 @@ th {
 
 .actions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
+    gap: 8px;
 }
 
 .actions .btn {
@@ -296,6 +326,24 @@ th {
     font-size: 12px;
     line-height: 1.15;
     white-space: normal;
+}
+
+.action-primary {
+    display: grid;
+}
+
+.action-danger-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    border: 1px solid #f3d2ce;
+    border-radius: 8px;
+    background: #fff7f6;
+    padding: 8px;
+}
+
+.action-danger-group .btn:last-child {
+    grid-column: 1 / -1;
 }
 
 .login-details {
@@ -411,6 +459,16 @@ th {
     color: var(--red-text);
 }
 
+.review-count {
+    width: fit-content;
+    border-radius: 999px;
+    background: #fff4cf;
+    color: #765a12;
+    padding: 3px 7px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
 .progress-detail {
     display: none;
     gap: 14px;
@@ -472,6 +530,51 @@ th {
     margin-top: 3px;
     color: var(--text);
     font-size: 15px;
+}
+
+.review-tasks {
+    display: grid;
+    gap: 8px;
+}
+
+.review-tasks h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.review-empty {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    padding: 10px;
+    font-size: 12px;
+}
+
+.review-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid #edd88c;
+    border-radius: 8px;
+    background: #fffaf0;
+    padding: 10px;
+}
+
+.review-main {
+    display: grid;
+    gap: 3px;
+}
+
+.review-main strong {
+    font-size: 13px;
+}
+
+.review-meta {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
 }
 
 .legend-item {
@@ -619,6 +722,10 @@ footer {
     .work-summary {
         grid-template-columns: 1fr;
     }
+
+    .review-item {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -656,12 +763,13 @@ footer {
             </div>
 
             <div class="field">
-                <label for="studentLevel">Poziom</label>
-                <select id="studentLevel" name="level">
-                    <option value="matura_podstawowa">Matura podstawowa</option>
-                    <option value="matura_rozszerzona">Matura rozszerzona</option>
-                    <option value="egzamin_osmoklasisty">Egzamin Ósmoklasisty</option>
-                </select>
+                <label>Poziom</label>
+                <input type="hidden" id="studentLevel" name="level" value="matura_podstawowa">
+                <div class="level-cards" aria-label="Poziom ucznia">
+                    <button class="level-card active" type="button" data-level="matura_podstawowa">Matura podstawowa</button>
+                    <button class="level-card" type="button" data-level="matura_rozszerzona">Matura rozszerzona</button>
+                    <button class="level-card" type="button" data-level="egzamin_osmoklasisty">Egzamin Ósmoklasisty</button>
+                </div>
             </div>
 
             <div class="field">
@@ -696,6 +804,7 @@ footer {
                         <col class="col-level">
                         <col class="col-status">
                         <col class="col-progress">
+                        <col class="col-created">
                         <col class="col-activity">
                         <col class="col-actions">
                     </colgroup>
@@ -707,6 +816,7 @@ footer {
                             <th>Poziom</th>
                             <th>Status</th>
                             <th>Postęp</th>
+                            <th>Dodano</th>
                             <th>Ostatnia aktywność</th>
                             <th>Akcje</th>
                         </tr>
@@ -728,6 +838,7 @@ footer {
                 </div>
 
                 <div class="work-summary" id="workSummary"></div>
+                <div class="review-tasks" id="reviewTasks"></div>
                 <div class="activity-chart" id="activityChart"></div>
                 <div class="recent-progress" id="recentProgress"></div>
             </div>
@@ -774,6 +885,7 @@ const adminStatus = document.getElementById("adminStatus");
 const progressDetail = document.getElementById("progressDetail");
 const progressTitle = document.getElementById("progressTitle");
 const workSummary = document.getElementById("workSummary");
+const reviewTasks = document.getElementById("reviewTasks");
 const activityChart = document.getElementById("activityChart");
 const recentProgress = document.getElementById("recentProgress");
 const credentialsBox = document.getElementById("credentialsBox");
@@ -781,6 +893,8 @@ const credentialsTitle = document.getElementById("credentialsTitle");
 const credentialsLogin = document.getElementById("credentialsLogin");
 const credentialsPassword = document.getElementById("credentialsPassword");
 const copyCredentialsBtn = document.getElementById("copyCredentialsBtn");
+const studentLevelInput = document.getElementById("studentLevel");
+const levelCards = document.querySelectorAll(".level-card");
 
 let students = [];
 let lastCredentialsText = "";
@@ -868,6 +982,16 @@ function formatShortDate(value){
     return new Date(value).toLocaleDateString("pl-PL", {
         day: "2-digit",
         month: "2-digit"
+    });
+}
+
+function formatDateOnly(value){
+    if(!value) return "brak";
+
+    return new Date(value).toLocaleDateString("pl-PL", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
     });
 }
 
@@ -1056,6 +1180,20 @@ function button(label, className, onClick){
     return element;
 }
 
+function setStudentLevel(level){
+    studentLevelInput.value = level;
+
+    levelCards.forEach(card => {
+        card.classList.toggle("active", card.dataset.level === level);
+    });
+}
+
+function confirmStudentAction(action, student, details = ""){
+    const suffix = details ? `\n\n${details}` : "";
+
+    return window.confirm(`Czy na pewno chcesz ${action} ucznia ${student.display_name}?${suffix}`);
+}
+
 async function copyStudentCredentials(student){
     const password = getIssuedPassword(student);
     const text = password
@@ -1161,6 +1299,7 @@ function buildProgressCell(student){
     const text = document.createElement("div");
     const time = document.createElement("div");
     const badge = document.createElement("span");
+    const reviewCount = Number(student.review_count) || 0;
 
     wrap.className = "progress-cell";
     text.className = "progress-text";
@@ -1176,6 +1315,15 @@ function buildProgressCell(student){
     wrap.appendChild(text);
     wrap.appendChild(time);
     wrap.appendChild(badge);
+
+    if(reviewCount){
+        const reviewBadge = document.createElement("span");
+
+        reviewBadge.className = "review-count";
+        reviewBadge.innerText = `Do omówienia: ${reviewCount}`;
+        wrap.appendChild(reviewBadge);
+    }
+
     cell.appendChild(wrap);
 
     return cell;
@@ -1188,7 +1336,7 @@ function renderStudents(){
         const row = document.createElement("tr");
         const cell = document.createElement("td");
 
-        cell.colSpan = 8;
+        cell.colSpan = 9;
         cell.innerText = "Brak uczniów.";
         row.appendChild(cell);
         studentTable.appendChild(row);
@@ -1203,15 +1351,19 @@ function renderStudents(){
         const levelCell = document.createElement("td");
         const statusCell = document.createElement("td");
         const progressCell = buildProgressCell(student);
+        const createdCell = document.createElement("td");
         const activityCell = document.createElement("td");
         const actionsCell = document.createElement("td");
         const statusBadge = document.createElement("span");
         const actions = document.createElement("div");
+        const primaryActions = document.createElement("div");
+        const dangerActions = document.createElement("div");
 
         indexCell.className = "index-cell";
         indexCell.innerText = String(index + 1);
         userCell.innerText = student.display_name;
         levelCell.innerText = levelLabels[student.level] || student.level || "-";
+        createdCell.innerText = formatDateOnly(student.created_at);
         activityCell.innerText = formatDate(student.last_activity_at || student.last_login_at);
 
         statusBadge.className = student.is_active ? "badge active" : "badge inactive";
@@ -1219,14 +1371,19 @@ function renderStudents(){
         statusCell.appendChild(statusBadge);
 
         actions.className = "actions";
-        actions.appendChild(button(
+        primaryActions.className = "action-primary";
+        dangerActions.className = "action-danger-group";
+
+        primaryActions.appendChild(button("Postępy", "btn secondary", () => showProgress(student)));
+        dangerActions.appendChild(button(
             student.is_active ? "Zablokuj" : "Aktywuj",
             student.is_active ? "btn danger" : "btn secondary",
             () => toggleStudent(student)
         ));
-        actions.appendChild(button("Reset hasła", "btn secondary", () => resetPassword(student)));
-        actions.appendChild(button("Postępy", "btn secondary", () => showProgress(student)));
-        actions.appendChild(button("Usuń", "btn danger", () => deleteStudent(student)));
+        dangerActions.appendChild(button("Reset hasła", "btn secondary", () => resetPassword(student)));
+        dangerActions.appendChild(button("Usuń", "btn danger", () => deleteStudent(student)));
+        actions.appendChild(primaryActions);
+        actions.appendChild(dangerActions);
         actionsCell.appendChild(actions);
 
         row.appendChild(indexCell);
@@ -1235,6 +1392,7 @@ function renderStudents(){
         row.appendChild(levelCell);
         row.appendChild(statusCell);
         row.appendChild(progressCell);
+        row.appendChild(createdCell);
         row.appendChild(activityCell);
         row.appendChild(actionsCell);
         studentTable.appendChild(row);
@@ -1268,6 +1426,12 @@ async function loadStudentProgressSummaries(){
 }
 
 async function toggleStudent(student){
+    const action = student.is_active ? "zablokować" : "aktywować";
+
+    if(!confirmStudentAction(action, student)){
+        return;
+    }
+
     await apiFetch(`/api/admin/students/${student.id}`, {
         method: "PATCH",
         body: JSON.stringify({
@@ -1279,6 +1443,10 @@ async function toggleStudent(student){
 }
 
 async function resetPassword(student){
+    if(!confirmStudentAction("zresetować hasło", student, "Poprzednie hasło przestanie działać.")){
+        return;
+    }
+
     const data = await apiFetch(`/api/admin/students/${student.id}/password`, {
         method: "POST",
         body: JSON.stringify({})
@@ -1291,9 +1459,7 @@ async function resetPassword(student){
 }
 
 async function deleteStudent(student){
-    const confirmed = window.confirm(`Usunąć ucznia ${student.display_name}?\n\nTa operacja usunie też zapisane postępy i nie da się jej cofnąć.`);
-
-    if(!confirmed){
+    if(!confirmStudentAction("usunąć", student, "Ta operacja usunie też zapisane postępy i nie da się jej cofnąć.")){
         return;
     }
 
@@ -1410,6 +1576,83 @@ function renderWorkSummary(progress){
     });
 }
 
+function reviewTaskTitle(item){
+    return item.title || item.file || item.task_id || "Zadanie";
+}
+
+function reviewTaskMeta(item){
+    const parts = [];
+
+    if(item.topic) parts.push(item.topic);
+    if(item.course_part === "praca_domowa") parts.push("praca domowa");
+    if(item.level) parts.push(levelLabels[item.level] || item.level);
+
+    return parts.join(" • ");
+}
+
+function renderReviewTasks(items, student){
+    reviewTasks.innerHTML = "";
+
+    const heading = document.createElement("h4");
+    heading.innerText = "Zadania do omówienia";
+    reviewTasks.appendChild(heading);
+
+    if(!items.length){
+        const empty = document.createElement("div");
+
+        empty.className = "review-empty";
+        empty.innerText = "Brak zadań oczekujących na omówienie.";
+        reviewTasks.appendChild(empty);
+        return;
+    }
+
+    items.forEach(item => {
+        const row = document.createElement("div");
+        const main = document.createElement("div");
+        const title = document.createElement("strong");
+        const meta = document.createElement("div");
+        const date = document.createElement("div");
+        const action = button("Odznacz", "btn secondary", () => resolveReviewTask(item, student));
+
+        row.className = "review-item";
+        main.className = "review-main";
+        meta.className = "review-meta";
+        date.className = "review-meta";
+
+        title.innerText = reviewTaskTitle(item);
+        meta.innerText = reviewTaskMeta(item) || item.file || "";
+        date.innerText = `Dodano: ${formatDate(item.created_at)}`;
+
+        main.appendChild(title);
+        main.appendChild(meta);
+        main.appendChild(date);
+        row.appendChild(main);
+        row.appendChild(action);
+        reviewTasks.appendChild(row);
+    });
+}
+
+async function loadReviewTasks(student){
+    const data = await apiFetch(`/api/admin/students/${student.id}/review-tasks`);
+
+    return Array.isArray(data.review_tasks) ? data.review_tasks : [];
+}
+
+async function resolveReviewTask(item, student){
+    await apiFetch(`/api/admin/review-tasks/${item.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+            is_resolved: true
+        })
+    });
+
+    const items = await loadReviewTasks(student);
+
+    renderReviewTasks(items, student);
+    showStatus(`Odznaczono: ${reviewTaskTitle(item)}.`);
+    await loadStudents();
+}
+
 function renderRecentProgress(progress){
     recentProgress.innerHTML = "";
 
@@ -1433,7 +1676,10 @@ function renderRecentProgress(progress){
 }
 
 async function showProgress(student){
-    const data = await apiFetch(`/api/admin/students/${student.id}/progress`);
+    const [data, reviewItems] = await Promise.all([
+        apiFetch(`/api/admin/students/${student.id}/progress`),
+        loadReviewTasks(student)
+    ]);
     const progress = data.progress;
 
     progressTitle.innerText = `Postępy: ${student.display_name}`;
@@ -1441,20 +1687,29 @@ async function showProgress(student){
     studentProgressCache.set(student.id, progress);
     renderStudents();
     renderWorkSummary(progress);
+    renderReviewTasks(reviewItems, student);
     renderActivityChart(progress);
     renderRecentProgress(progress);
 
-    if(!progress.length){
-        showStatus(`${student.display_name}: brak zapisanych prób.`);
+    if(!progress.length && !reviewItems.length){
+        showStatus(`${student.display_name}: brak zapisanych prób i zadań do omówienia.`);
         return;
     }
 
-    showStatus(`Wczytano ${progress.length} zapisanych prób ucznia ${student.display_name}.`);
+    showStatus(`Wczytano dane ucznia ${student.display_name}: ${progress.length} prób, ${reviewItems.length} do omówienia.`);
 }
 
 document.getElementById("closeProgressBtn").addEventListener("click", () => {
     progressDetail.classList.remove("active");
 });
+
+levelCards.forEach(card => {
+    card.addEventListener("click", () => {
+        setStudentLevel(card.dataset.level);
+    });
+});
+
+setStudentLevel(studentLevelInput.value);
 
 studentForm.addEventListener("submit", async event => {
     event.preventDefault();
@@ -1474,6 +1729,7 @@ studentForm.addEventListener("submit", async event => {
         });
 
         studentForm.reset();
+        setStudentLevel("matura_podstawowa");
         rememberIssuedPassword(data.student, data.temporary_password);
         showCredentials("Utworzono konto ucznia", data.student, data.temporary_password);
         showStatus("Konto ucznia zostało utworzone. Dane logowania są widoczne powyżej.");

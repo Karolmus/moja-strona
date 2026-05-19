@@ -386,6 +386,10 @@ body.focus-mode .action-group.check {
     background: white;
 }
 
+.timer.hidden {
+    display: none;
+}
+
 .task-counter {
     margin-left: auto;
     color: var(--muted);
@@ -563,6 +567,17 @@ button {
 .action-btn.answer:hover {
     background: var(--green-soft);
     border-color: #b8d9b4;
+}
+
+.action-btn.review {
+    background: white;
+    color: #765a12;
+    border-color: #edd88c;
+}
+
+.action-btn.review:hover {
+    background: #fff4cf;
+    border-color: #e3bd41;
 }
 
 .action-btn.nav {
@@ -889,7 +904,7 @@ footer {
             <div class="progress-grid" id="progress"></div>
 
             <div class="top-row">
-                <div class="timer" id="timer">Czas 00:00</div>
+                <div class="timer hidden" id="timer">Czas 00:00</div>
                 <div class="task-counter" id="taskCounter">0 / 0</div>
             </div>
 
@@ -905,6 +920,7 @@ footer {
                     <div class="action-group tools">
                         <button class="action-btn tool" id="hintButton" onclick="showHint()">Wskazówka</button>
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
+                        <button class="action-btn review" id="reviewButton" onclick="markForReview()">Do omówienia</button>
                     </div>
 
                     <div class="action-group navigation">
@@ -1041,6 +1057,14 @@ function updateTimer(){
         `Czas ${String(Math.floor(seconds / 60)).padStart(2,'0')}:${String(seconds % 60).padStart(2,'0')}`;
 }
 
+function setTimerVisible(isVisible){
+    const timer = document.getElementById("timer");
+
+    if(timer){
+        timer.classList.toggle("hidden", !isVisible);
+    }
+}
+
 function toggleFocusMode(){
     focusMode = !focusMode;
 
@@ -1083,6 +1107,7 @@ async function bootStudentPanel(){
 
 async function loadAssignedCourse(){
     if(!window.apiFetch){
+        setTimerVisible(true);
         updateAssignedCourseName();
         return;
     }
@@ -1104,6 +1129,7 @@ async function loadAssignedCourse(){
 
         selectedCategory = "kurs";
         taskMode = "ordered";
+        setTimerVisible(false);
         updateAssignedCourseName(session.user);
     } catch(error) {
         if(error.redirecting) throw error;
@@ -1114,6 +1140,7 @@ async function loadAssignedCourse(){
             throw error;
         }
 
+        setTimerVisible(true);
         updateAssignedCourseName();
     }
 }
@@ -1830,14 +1857,15 @@ function drawTask(index = currentIndex, trackHistory = true){
         img.classList.remove("fade-out");
         contextImg.classList.remove("fade-out");
 
-        setupMCQ();
-        updateAnswerTools();
-        hideMessage();
-
         hintUsed = false;
         answerShown = false;
         currentTaskAnswered = false;
         currentTaskStartedAt = Date.now();
+
+        resetReviewButton();
+        setupMCQ();
+        updateAnswerTools();
+        hideMessage();
     }, 200);
 }
 
@@ -1961,11 +1989,11 @@ function updateAnswerTools(){
     const isCourse = isCourseTask();
     const isClosed = isClosedTask(currentTask);
 
-    answerButton.hidden = isCourse;
+    answerButton.hidden = isCourse && isClosed;
 
-    if(isCourse && !isClosed){
+    if(!isClosed && answerShown){
         resultButtons.classList.add("active");
-    } else if(!answerShown){
+    } else {
         resultButtons.classList.remove("active");
     }
 }
@@ -2258,7 +2286,7 @@ function showHint(){
 function showAnswer(){
     if(!currentTask) return;
 
-    if(isCourseTask()){
+    if(isCourseTask() && isClosedTask(currentTask)){
         showMessage("Najpierw podaj odpowiedź. Jeśli będzie błędna, pokażę poprawną odpowiedź ze wskazówką.");
         return;
     }
@@ -2269,6 +2297,56 @@ function showAnswer(){
 
     if(!isClosedTask(currentTask)){
         document.getElementById("resultButtons").classList.add("active");
+    }
+}
+
+function resetReviewButton(){
+    const reviewButton = document.getElementById("reviewButton");
+
+    if(!reviewButton) return;
+
+    reviewButton.disabled = false;
+    reviewButton.innerText = "Do omówienia";
+}
+
+async function markForReview(){
+    if(!currentTask || !window.apiFetch) return;
+
+    const reviewButton = document.getElementById("reviewButton");
+
+    if(reviewButton){
+        reviewButton.disabled = true;
+    }
+
+    try {
+        const data = await apiFetch("/api/review-tasks", {
+            method: "POST",
+            body: JSON.stringify({
+                task_id: `${currentTask.sourceId}:${currentTask.file}`,
+                source_id: currentTask.sourceId,
+                file: currentTask.file,
+                level: currentTask.level,
+                topic: currentTask.topic,
+                difficulty: currentTask.difficulty,
+                title: taskLabel(currentTask),
+                course_part: currentTask.coursePart || selectedCoursePart
+            })
+        });
+
+        if(reviewButton){
+            reviewButton.innerText = data?.created ? "Dodano do omówienia" : "Już na liście";
+        }
+
+        showMessage(data?.created
+            ? "Dodałem to zadanie do listy do omówienia."
+            : "To zadanie już czeka na omówienie.");
+    } catch(error) {
+        if(reviewButton){
+            reviewButton.disabled = false;
+            reviewButton.innerText = "Do omówienia";
+        }
+
+        showMessage("Nie udało się dodać zadania do omówienia. Spróbuj jeszcze raz.");
     }
 }
 

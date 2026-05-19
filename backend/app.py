@@ -16,14 +16,17 @@ from auth_storage import (
     get_user_by_id,
     init_auth_db,
     list_students,
+    mark_task_for_review,
     progress_for_user,
     public_user,
     record_progress,
     register_auth_db,
+    review_tasks_for_user,
     reset_user_password,
     sync_admin_user,
     touch_last_login,
     update_student,
+    update_review_task_resolution,
 )
 from calculators.solver import (
     bernoulli,
@@ -379,6 +382,38 @@ def api_admin_student_progress(_admin, user_id):
     })
 
 
+@app.get("/api/admin/students/<int:user_id>/review-tasks")
+@require_admin
+def api_admin_student_review_tasks(_admin, user_id):
+    student = get_user_by_id(user_id)
+
+    if not student or student["role"] != "student":
+        return api_error("Nie znaleziono ucznia.", 404)
+
+    return jsonify({
+        "student": student_payload(student),
+        "review_tasks": review_tasks_for_user(user_id),
+    })
+
+
+@app.patch("/api/admin/review-tasks/<int:item_id>")
+@require_admin
+def api_admin_update_review_task(_admin, item_id):
+    def handler():
+        data = payload()
+        is_resolved = data.get("is_resolved", True)
+        item = update_review_task_resolution(item_id, is_resolved)
+
+        if not item:
+            return api_error("Nie znaleziono zadania do omówienia.", 404)
+
+        return jsonify({
+            "review_task": item,
+        })
+
+    return safe(handler)
+
+
 @app.post("/api/progress")
 @require_auth
 def api_save_progress(user):
@@ -393,6 +428,21 @@ def api_save_progress(user):
         return jsonify({
             "progress": progress,
         }), 201
+
+    return safe(handler)
+
+
+@app.post("/api/review-tasks")
+@require_auth
+def api_mark_review_task(user):
+    def handler():
+        data = payload()
+        item, created = mark_task_for_review(user["id"], data)
+
+        return jsonify({
+            "review_task": item,
+            "created": created,
+        }), 201 if created else 200
 
     return safe(handler)
 
