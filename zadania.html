@@ -83,6 +83,44 @@ body {
     line-height: 1.35;
 }
 
+.login-status-card {
+    display: grid;
+    gap: 8px;
+    border: 1px solid #cce5c9;
+    border-radius: 8px;
+    background: var(--green-soft);
+    padding: 10px;
+}
+
+.login-status-card strong {
+    color: var(--green-text);
+    font-size: 13px;
+}
+
+.login-status-card span {
+    color: var(--text);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.logout-btn {
+    min-height: 34px;
+    border: 1px solid #cce5c9;
+    border-radius: 8px;
+    background: white;
+    color: var(--green-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 10px;
+}
+
+.logout-btn:hover {
+    background: #f4fbf3;
+    border-color: #b8d9b4;
+}
+
 .student-progress-panel {
     display: grid;
     gap: 10px;
@@ -880,6 +918,15 @@ footer {
                 <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
             </div>
 
+            <div class="side-section" id="loginStatusSection">
+                <div class="side-title">Sesja</div>
+                <div class="login-status-card">
+                    <strong>Jesteś zalogowany</strong>
+                    <span id="loggedUserInfo">Wczytywanie danych...</span>
+                    <button class="logout-btn" type="button" onclick="logoutStudent()">Wyloguj</button>
+                </div>
+            </div>
+
             <div class="side-section" id="categorySection">
                 <div class="side-title">Materiał</div>
                 <div class="category-toggle">
@@ -975,6 +1022,7 @@ let savedProgress = [];
 let focusMode = false;
 let currentTaskAnswered = false;
 let isLoggedInStudent = false;
+let loggedUser = null;
 
 const COURSE_TARGETS = {
     matura_podstawowa: 20,
@@ -1139,6 +1187,7 @@ async function bootStudentPanel(){
 async function loadAssignedCourse(){
     if(!window.apiFetch){
         isLoggedInStudent = false;
+        loggedUser = null;
         setTimerVisible(true);
         updateAssignedCourseName();
         return;
@@ -1149,12 +1198,14 @@ async function loadAssignedCourse(){
 
         if(!session.authenticated){
             isLoggedInStudent = false;
+            loggedUser = null;
             setTimerVisible(true);
             updateAssignedCourseName();
             return;
         }
 
         isLoggedInStudent = true;
+        loggedUser = session.user || null;
 
         if(session.user?.level){
             selectedLevel = session.user.level;
@@ -1169,12 +1220,14 @@ async function loadAssignedCourse(){
 
         if(error.status === 401){
             isLoggedInStudent = false;
+            loggedUser = null;
             setTimerVisible(true);
             updateAssignedCourseName();
             return;
         }
 
         isLoggedInStudent = false;
+        loggedUser = null;
         setTimerVisible(true);
         updateAssignedCourseName();
     }
@@ -1193,7 +1246,9 @@ function updateAccessModeUI(){
     setTimerVisible(!isLoggedInStudent);
     setPanelSectionVisible("progressSection", isLoggedInStudent);
     setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
+    setPanelSectionVisible("loginStatusSection", isLoggedInStudent);
     setPanelSectionVisible("categorySection", isLoggedInStudent);
+    updateLoginStatus();
 
     const levelSection = document.getElementById("guestLevelSection")?.closest(".side-section");
 
@@ -1211,6 +1266,33 @@ function updateAccessModeUI(){
 
     if(focusButton){
         focusButton.hidden = !isLoggedInStudent;
+    }
+}
+
+function updateLoginStatus(){
+    const info = document.getElementById("loggedUserInfo");
+
+    if(!info) return;
+
+    const name = loggedUser?.display_name || loggedUser?.email || "Uczeń";
+    const email = loggedUser?.email && loggedUser.email !== name ? ` (${loggedUser.email})` : "";
+
+    info.innerText = `${name}${email}`;
+}
+
+async function logoutStudent(){
+    try {
+        if(window.apiFetch){
+            await apiFetch("/api/auth/logout", { method: "POST" });
+        }
+    } catch(error) {
+        console.warn("Nie udało się zamknąć sesji na serwerze.", error);
+    } finally {
+        if(window.clearAuthToken){
+            window.clearAuthToken();
+        }
+
+        window.location.href = "login.html";
     }
 }
 
