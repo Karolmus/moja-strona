@@ -12,6 +12,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "pierwiastki",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -27,6 +31,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "potęgi",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -42,6 +50,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "logarytmy",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -57,6 +69,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "algebra",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -65,7 +81,11 @@
     "topic": "podzielność",
     "level": "matura_podstawowa",
     "hint": "Zapisz nieparzystą liczbę naturalną jako n = 2l + 1 i przekształć wyrażenie do postaci wielokrotności 4.",
-    "answer": "Należy wykazać podzielność przez 4, np. dla n = 2l + 1 otrzymać 3n² + 2n + 7 = 4(3l² + 4l + 3)."
+    "answer": "Należy wykazać podzielność przez 4, np. dla n = 2l + 1 otrzymać 3n² + 2n + 7 = 4(3l² + 4l + 3).",
+    "tags": [
+      "podzielność",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "6_2025_cke_p_m.png",
@@ -80,6 +100,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "nierówności",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -95,6 +119,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "równania",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -110,6 +138,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "wyrażenia wymierne",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -118,7 +150,11 @@
     "topic": "układy równań",
     "level": "matura_podstawowa",
     "hint": "Oznacz kwotę zespołu A przez x, zespołu B przez y i zapisz układ z sumą budżetu oraz wykorzystaną kwotą.",
-    "answer": "735 000 zł"
+    "answer": "735 000 zł",
+    "tags": [
+      "układy równań",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "10_2025_cke_p_m.png",
@@ -126,7 +162,11 @@
     "topic": "nierówność kwadratowa",
     "level": "matura_podstawowa",
     "hint": "Przenieś wszystko na jedną stronę, oblicz miejsca zerowe trójmianu i odczytaj, gdzie parabola jest poniżej osi.",
-    "answer": "x ∈ (1/3, 3/2)"
+    "answer": "x ∈ (1/3, 3/2)",
+    "tags": [
+      "nierówność kwadratowa",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "11_2025_cke_p_m.png",
@@ -134,7 +174,11 @@
     "topic": "funkcje",
     "level": "matura_podstawowa",
     "hint": "Odczytuj przedziały bezpośrednio z definicji funkcji i z wykresu; zwróć uwagę na końce domknięte i otwarte.",
-    "answer": "1. Dziedzina: [−4, 4).\n2. Zbiór wartości: (−3, 3].\n3. Argumenty, dla których f przyjmuje wartości dodatnie: [−4, 3).\n4. Rozwiązania równania f(x) = 3: [−2, 2]."
+    "answer": "1. Dziedzina: [−4, 4).\n2. Zbiór wartości: (−3, 3].\n3. Argumenty, dla których f przyjmuje wartości dodatnie: [−4, 3).\n4. Rozwiązania równania f(x) = 3: [−2, 2].",
+    "tags": [
+      "funkcje",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "12.1_2025_cke_p_m.png",
@@ -143,7 +187,11 @@
     "level": "matura_podstawowa",
     "hint": "Użyj postaci kanonicznej z wierzchołkiem (3, 6), czyli f(x)=a(x−3)²+6, a potem podstaw punkt (0, 3).",
     "answer": "f(x) = −1/3 · (x − 3)² + 6",
-    "contextFile": "12_2025_cke_p_m.png"
+    "contextFile": "12_2025_cke_p_m.png",
+    "tags": [
+      "funkcja kwadratowa",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "12.2_2025_cke_p_m.png",
@@ -159,7 +207,11 @@
       "C",
       "D"
     ],
-    "contextFile": "12_2025_cke_p_m.png"
+    "contextFile": "12_2025_cke_p_m.png",
+    "tags": [
+      "funkcja kwadratowa",
+      "zadanie zamknięte"
+    ]
   },
   {
     "file": "12.3_2025_cke_p_m.png",
@@ -168,7 +220,11 @@
     "level": "matura_podstawowa",
     "hint": "Przesunięcie wykresu o 3 jednostki w dół sprawia, że miejsca zerowe funkcji g odpowiadają punktom wykresu f o wartości 3.",
     "answer": "6",
-    "contextFile": "12_2025_cke_p_m.png"
+    "contextFile": "12_2025_cke_p_m.png",
+    "tags": [
+      "funkcja kwadratowa",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "13_2025_cke_p_m.png",
@@ -183,6 +239,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "funkcja liniowa",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -199,7 +259,11 @@
       "C",
       "D"
     ],
-    "contextFile": "14_2025_cke_p_m.png"
+    "contextFile": "14_2025_cke_p_m.png",
+    "tags": [
+      "ciągi",
+      "zadanie zamknięte"
+    ]
   },
   {
     "file": "14.2_2025_cke_p_m.png",
@@ -215,7 +279,11 @@
       "FP",
       "FF"
     ],
-    "contextFile": "14_2025_cke_p_m.png"
+    "contextFile": "14_2025_cke_p_m.png",
+    "tags": [
+      "ciągi",
+      "zadanie zamknięte"
+    ]
   },
   {
     "file": "15_2025_cke_p_m.png",
@@ -223,7 +291,11 @@
     "topic": "ciągi",
     "level": "matura_podstawowa",
     "hint": "Dla ciągu arytmetycznego środkowy wyraz jest średnią sąsiednich; potem sprawdź warunek malejącości.",
-    "answer": "m = 5/2"
+    "answer": "m = 5/2",
+    "tags": [
+      "ciągi",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "16_2025_cke_p_m.png",
@@ -238,6 +310,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "ciąg geometryczny",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -253,6 +329,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "trygonometria",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -269,7 +349,11 @@
       "C",
       "D"
     ],
-    "contextFile": "18_2025_cke_p_m.png"
+    "contextFile": "18_2025_cke_p_m.png",
+    "tags": [
+      "trygonometria",
+      "zadanie zamknięte"
+    ]
   },
   {
     "file": "18.2_2025_cke_p_m.png",
@@ -285,7 +369,11 @@
       "C",
       "D"
     ],
-    "contextFile": "18_2025_cke_p_m.png"
+    "contextFile": "18_2025_cke_p_m.png",
+    "tags": [
+      "trygonometria",
+      "zadanie zamknięte"
+    ]
   },
   {
     "file": "19_2025_cke_p_m.png",
@@ -300,6 +388,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "okręgi",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -315,6 +407,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "podobieństwo",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -330,6 +426,10 @@
       "PF",
       "FP",
       "FF"
+    ],
+    "tags": [
+      "geometria",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -345,6 +445,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "geometria analityczna",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -360,6 +464,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "proste",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -375,6 +483,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "okrąg",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -383,7 +495,11 @@
     "topic": "stereometria",
     "level": "matura_podstawowa",
     "hint": "Rozważ przekrój osiowy stożka. Połowa kąta rozwarcia ma 60°, a tworząca jest przeciwprostokątną trójkąta prostokątnego.",
-    "answer": "V = 64π"
+    "answer": "V = 64π",
+    "tags": [
+      "stereometria",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "26_2025_cke_p_m.png",
@@ -398,6 +514,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "stereometria",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -413,6 +533,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "kombinatoryka",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -428,6 +552,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "prawdopodobieństwo",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -443,6 +571,10 @@
       "B",
       "C",
       "D"
+    ],
+    "tags": [
+      "statystyka",
+      "zadanie zamknięte"
     ]
   },
   {
@@ -451,7 +583,11 @@
     "topic": "statystyka",
     "level": "matura_podstawowa",
     "hint": "Do mediany uporządkuj 24 wyniki i sprawdź 12. oraz 13. wartość; dominanta to najczęstsza ocena.",
-    "answer": "1. Mediana: 4,5.\n2. Dominanta: 6."
+    "answer": "1. Mediana: 4,5.\n2. Dominanta: 6.",
+    "tags": [
+      "statystyka",
+      "zadanie otwarte"
+    ]
   },
   {
     "file": "31_2025_cke_p_m.png",
@@ -459,6 +595,10 @@
     "topic": "optymalizacja",
     "level": "matura_podstawowa",
     "hint": "Zapisz trzecią krawędź jako 11 − x, utwórz wzór na pole całkowite i znajdź wierzchołek paraboli.",
-    "answer": "P(x) = −2x² + 22x + 88, D = (0, 11), największe pole dla x = 11/2."
+    "answer": "P(x) = −2x² + 22x + 88, D = (0, 11), największe pole dla x = 11/2.",
+    "tags": [
+      "optymalizacja",
+      "zadanie otwarte"
+    ]
   }
 ]
