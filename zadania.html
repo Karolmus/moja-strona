@@ -72,6 +72,17 @@ body {
     gap: 8px;
 }
 
+.assigned-course-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 10px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
 .student-progress-panel {
     display: grid;
     gap: 10px;
@@ -263,6 +274,74 @@ body {
     border: 1px solid var(--line);
 }
 
+.focus-toggle {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 30;
+    min-height: 42px;
+    border: 1px solid var(--navy);
+    border-radius: 999px;
+    background: var(--navy);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    padding: 9px 14px;
+    box-shadow: var(--shadow);
+}
+
+.focus-toggle:hover {
+    background: var(--navy-hover);
+    border-color: var(--navy-hover);
+}
+
+body.focus-mode {
+    background: white;
+}
+
+body.focus-mode #nav,
+body.focus-mode footer,
+body.focus-mode .task-sidebar,
+body.focus-mode .progress-grid,
+body.focus-mode .top-row,
+body.focus-mode .meta-box,
+body.focus-mode .action-group.tools {
+    display: none;
+}
+
+body.focus-mode .container {
+    max-width: 980px;
+    margin: 10px auto;
+    padding: 5px;
+}
+
+body.focus-mode .tasks-layout {
+    display: block;
+}
+
+body.focus-mode .task-card {
+    border: 0;
+    box-shadow: none;
+    padding: 8px;
+}
+
+body.focus-mode .interaction-panel {
+    border-color: transparent;
+    background: white;
+    padding: 10px 0 0;
+}
+
+body.focus-mode .task-actions {
+    display: flex;
+    justify-content: center;
+}
+
+body.focus-mode .action-group.navigation,
+body.focus-mode .action-group.check {
+    justify-content: center;
+}
+
 .progress-grid {
     display: flex;
     flex-wrap: wrap;
@@ -337,6 +416,17 @@ body {
     padding: 10px 14px;
     font-size: 13px;
     font-weight: 600;
+}
+
+.meta-section.task-title.homework {
+    background: #d99595;
+    color: white;
+}
+
+.task-counter.homework {
+    background: #d99595;
+    border-color: #c67e7e;
+    color: white;
 }
 
 .meta-right {
@@ -732,6 +822,8 @@ footer {
 
 <div id="nav"></div>
 
+<button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()">Tryb skupienia</button>
+
 <div class="container">
 
     <div class="tasks-layout">
@@ -764,39 +856,17 @@ footer {
             </div>
 
             <div class="side-section">
-                <div class="side-title">Materiał</div>
-                <div class="category-toggle">
-                    <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
-                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
-                </div>
-            </div>
-
-            <div class="sidebar-controls">
-                <div class="side-section">
-                    <div class="side-title">Poziom</div>
-                    <div class="level-selector sidebar-levels">
-                        <button class="level-btn" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
-                        <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
-                        <button class="level-btn active" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
-                    </div>
-                </div>
-
-                <div class="side-section">
-                    <div class="side-title">Tryb</div>
-                    <div class="mode-toggle">
-                        <button class="mode-btn active" data-mode="ordered" onclick="setMode(this,'ordered')">Po kolei</button>
-                        <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
-                    </div>
-                </div>
+                <div class="side-title">Przypisany kurs</div>
+                <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
             </div>
 
             <div class="side-section">
-                <div class="side-title" id="sourceTitle">Lekcja</div>
+                <div class="side-title" id="sourceTitle">Numer lekcji</div>
                 <div class="source-list" id="sourceList"></div>
             </div>
 
             <div class="side-section" id="coursePartSection">
-                <div class="side-title">Część lekcji</div>
+                <div class="side-title">Zakres</div>
                 <div class="section-toggle" id="coursePartList"></div>
             </div>
         </aside>
@@ -820,8 +890,8 @@ footer {
             <div class="interaction-panel">
                 <div class="task-actions">
                     <div class="action-group tools">
-                        <button class="action-btn tool" onclick="showHint()">Wskazówka</button>
-                        <button class="action-btn answer" onclick="showAnswer()">Odpowiedź</button>
+                        <button class="action-btn tool" id="hintButton" onclick="showHint()">Wskazówka</button>
+                        <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                     </div>
 
                     <div class="action-group navigation">
@@ -865,6 +935,8 @@ let randomHistoryIndex = -1;
 let multiSelection = new Set();
 let trueFalseSelection = [];
 let savedProgress = [];
+let focusMode = false;
+let currentTaskAnswered = false;
 
 const COURSE_TARGETS = {
     matura_podstawowa: 20,
@@ -929,8 +1001,14 @@ const CATEGORY_LABELS = {
     egzaminy: "Egzaminy"
 };
 
+const LEVEL_LABELS = {
+    matura_podstawowa: "Matura podstawowa",
+    matura_rozszerzona: "Matura rozszerzona",
+    egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
+};
+
 const COURSE_PART_LABELS = {
-    zadania: "Zadania",
+    zadania: "Kurs",
     praca_domowa: "Praca domowa"
 };
 
@@ -943,27 +1021,94 @@ setInterval(() => {
     updateTimer();
 }, 1000);
 
+const assignedCourseName = document.getElementById("assignedCourseName");
+
 function updateTimer(){
     document.getElementById("timer").innerText =
         `Czas ${String(Math.floor(seconds / 60)).padStart(2,'0')}:${String(seconds % 60).padStart(2,'0')}`;
 }
 
-Promise.all(TASK_SOURCES.map(loadTaskSource))
-.then(groups => {
-    tasks = groups.flat();
-    ensureSelectedSource();
-    updateCategoryButtons();
-    updateLevelButtons();
-    updateMetaTheme();
-    renderSourceSelector();
-    renderCoursePartSelector();
-    renderLearningProgress();
-    loadStudentProgress();
-    drawTask(getInitialIndex());
-})
-.catch(() => {
-    showMessage("Nie udało się wczytać zadań. Odśwież stronę albo spróbuj później.");
-});
+function toggleFocusMode(){
+    focusMode = !focusMode;
+
+    document.body.classList.toggle("focus-mode", focusMode);
+
+    const button = document.getElementById("focusToggle");
+
+    if(button){
+        button.innerText = focusMode ? "Wyjdź ze skupienia" : "Tryb skupienia";
+    }
+}
+
+bootStudentPanel();
+
+async function bootStudentPanel(){
+    try {
+        await loadAssignedCourse();
+
+        const groups = await Promise.all(TASK_SOURCES.map(loadTaskSource));
+
+        tasks = groups.flat();
+        selectedCategory = "kurs";
+        taskMode = "ordered";
+        ensureSelectedSource();
+        updateCategoryButtons();
+        updateLevelButtons();
+        updateMetaTheme();
+        renderSourceSelector();
+        renderCoursePartSelector();
+        renderLearningProgress();
+        loadStudentProgress();
+        drawTask(getInitialIndex());
+    } catch(error) {
+        if(error.redirecting) return;
+
+        showMessage("Nie udało się wczytać kursu. Odśwież stronę albo spróbuj później.");
+    }
+}
+
+async function loadAssignedCourse(){
+    if(!window.apiFetch){
+        updateAssignedCourseName();
+        return;
+    }
+
+    try {
+        const session = await apiFetch("/api/auth/me");
+
+        if(!session.authenticated){
+            const error = new Error("Brak aktywnej sesji.");
+
+            error.redirecting = true;
+            window.location.href = "login.html";
+            throw error;
+        }
+
+        if(session.user?.level){
+            selectedLevel = session.user.level;
+        }
+
+        selectedCategory = "kurs";
+        taskMode = "ordered";
+        updateAssignedCourseName(session.user);
+    } catch(error) {
+        if(error.redirecting) throw error;
+
+        if(error.status === 401){
+            error.redirecting = true;
+            window.location.href = "login.html";
+            throw error;
+        }
+
+        updateAssignedCourseName();
+    }
+}
+
+function updateAssignedCourseName(user = null){
+    if(!assignedCourseName) return;
+
+    assignedCourseName.innerText = LEVEL_LABELS[selectedLevel] || user?.level || "Kurs ucznia";
+}
 
 function loadTaskSource(sourceConfig){
     const sourceMeta = getSourceMeta(sourceConfig);
@@ -1063,8 +1208,13 @@ function setCategory(btn, category){
     selectedCategory = category;
     selectedSource = "all";
 
+    if(selectedCategory === "kurs"){
+        taskMode = "ordered";
+    }
+
     ensureSelectedSource();
     updateCategoryButtons();
+    updateModeButtons();
     resetSession();
     renderSourceSelector();
     renderCoursePartSelector();
@@ -1103,8 +1253,13 @@ function setSource(sourceId){
         }
     }
 
+    if(selectedCategory === "kurs"){
+        taskMode = "ordered";
+    }
+
     updateCategoryButtons();
     updateLevelButtons();
+    updateModeButtons();
     updateMetaTheme();
     resetSession();
     renderSourceSelector();
@@ -1114,6 +1269,12 @@ function setSource(sourceId){
 }
 
 function setMode(btn, mode){
+    if(selectedCategory === "kurs" && mode === "random"){
+        taskMode = "ordered";
+        updateModeButtons();
+        return;
+    }
+
     taskMode = mode;
     updateModeButtons();
     resetSession();
@@ -1138,6 +1299,7 @@ function updateLevelButtons(){
 function updateModeButtons(){
     document.querySelectorAll(".mode-btn")
         .forEach(b => {
+            b.disabled = selectedCategory === "kurs" && b.dataset.mode === "random";
             b.classList.toggle("active", b.dataset.mode === taskMode);
         });
 }
@@ -1178,7 +1340,7 @@ function renderSourceSelector(){
     list.innerHTML = "";
 
     if(title){
-        title.innerText = selectedCategory === "kurs" ? "Lekcja" : "Zestaw";
+        title.innerText = selectedCategory === "kurs" ? "Numer lekcji" : "Zestaw";
     }
 
     if(selectedCategory !== "kurs"){
@@ -1565,6 +1727,7 @@ function drawTask(index = currentIndex, trackHistory = true){
     if(!p.length){
         currentTask = null;
         document.getElementById("taskCounter").innerText = "0 / 0";
+        document.getElementById("taskCounter").classList.remove("homework");
         document.getElementById("taskImage").src = "";
         document.getElementById("contextImage").src = "";
         document.getElementById("contextImage").classList.add("hidden");
@@ -1611,12 +1774,15 @@ function drawTask(index = currentIndex, trackHistory = true){
 
         img.src = currentTask.path;
 
-        document.getElementById("taskCounter").innerText =
-            `${currentIndex + 1} / ${p.length}`;
+        const taskCounter = document.getElementById("taskCounter");
+        const isHomework = currentTask.coursePart === "praca_domowa";
+
+        taskCounter.innerText = `${currentIndex + 1} / ${p.length}`;
+        taskCounter.classList.toggle("homework", isHomework);
 
         document.getElementById("metaBox").innerHTML =
         `
-        <div class="meta-section">
+        <div class="meta-section task-title ${isHomework ? "homework" : ""}">
             ${taskLabel(currentTask)}
         </div>
 
@@ -1635,10 +1801,12 @@ function drawTask(index = currentIndex, trackHistory = true){
         contextImg.classList.remove("fade-out");
 
         setupMCQ();
+        updateAnswerTools();
         hideMessage();
 
         hintUsed = false;
         answerShown = false;
+        currentTaskAnswered = false;
         currentTaskStartedAt = Date.now();
     }, 200);
 }
@@ -1723,6 +1891,7 @@ function setupMCQ(){
     mcq.innerHTML = "";
     mcq.className = "mcq";
     resultButtons.classList.remove("active");
+    setResultButtonsEnabled(true);
     multiSelection = new Set();
     trueFalseSelection = [];
 
@@ -1747,6 +1916,35 @@ function setupMCQ(){
     } else {
         mcq.classList.remove("active");
     }
+}
+
+function isCourseTask(task = currentTask){
+    return task?.category === "kurs";
+}
+
+function updateAnswerTools(){
+    const answerButton = document.getElementById("answerButton");
+    const resultButtons = document.getElementById("resultButtons");
+
+    if(!currentTask || !answerButton || !resultButtons) return;
+
+    const isCourse = isCourseTask();
+    const isClosed = isClosedTask(currentTask);
+
+    answerButton.hidden = isCourse;
+
+    if(isCourse && !isClosed){
+        resultButtons.classList.add("active");
+    } else if(!answerShown){
+        resultButtons.classList.remove("active");
+    }
+}
+
+function setResultButtonsEnabled(enabled){
+    document.querySelectorAll("#resultButtons button")
+        .forEach(button => {
+            button.disabled = !enabled;
+        });
 }
 
 function setupTrueFalseTask(mcq){
@@ -1785,6 +1983,8 @@ function setupTrueFalseTask(mcq){
 }
 
 function choose(opt, btn){
+    if(currentTaskAnswered) return;
+
     if(currentTask.type === "multi"){
         chooseMulti(opt, btn);
         return;
@@ -1807,6 +2007,13 @@ function choose(opt, btn){
 
     btn.classList.add("wrong");
     revealCorrectAnswer([correct]);
+
+    if(isCourseTask()){
+        showCorrection([correct]);
+        addProgress("bad");
+        return;
+    }
+
     addProgress("bad");
 
     setTimeout(() => {
@@ -1815,6 +2022,8 @@ function choose(opt, btn){
 }
 
 function chooseMulti(opt, btn){
+    if(currentTaskAnswered) return;
+
     const correctAnswers = getCorrectAnswers(currentTask);
 
     if(multiSelection.has(opt)){
@@ -1827,6 +2036,13 @@ function chooseMulti(opt, btn){
         disableMCQ();
         btn.classList.add("wrong");
         revealCorrectAnswer(correctAnswers);
+
+        if(isCourseTask()){
+            showCorrection(correctAnswers);
+            addProgress("bad");
+            return;
+        }
+
         addProgress("bad");
 
         setTimeout(() => {
@@ -1851,6 +2067,8 @@ function chooseMulti(opt, btn){
 }
 
 function chooseTrueFalse(index, opt, btn){
+    if(currentTaskAnswered) return;
+
     const row = btn.closest(".tf-row");
 
     row?.querySelectorAll(".choice-btn")
@@ -1870,6 +2088,12 @@ function chooseTrueFalse(index, opt, btn){
 
     disableMCQ();
     revealTrueFalseAnswers(correctAnswers);
+
+    if(!isCorrect && isCourseTask()){
+        showCorrection(correctAnswers);
+        addProgress("bad");
+        return;
+    }
 
     addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
 
@@ -1908,6 +2132,10 @@ function revealTrueFalseAnswers(correctAnswers){
 }
 
 function addProgress(type){
+    if(currentTaskAnswered) return;
+
+    currentTaskAnswered = true;
+
     const tile = document.createElement("div");
 
     tile.classList.add("tile", type);
@@ -1964,6 +2192,22 @@ function getCurrentTaskDurationSeconds(){
 }
 
 function finish(type){
+    if(currentTaskAnswered) return;
+
+    if(isCourseTask()){
+        if(type === "bad"){
+            showCorrection();
+            setResultButtonsEnabled(false);
+            addProgress("bad");
+            return;
+        }
+
+        setResultButtonsEnabled(false);
+        addProgress(hintUsed ? "medium" : "good");
+        nextTask();
+        return;
+    }
+
     if(type === "good" && hintUsed){
         addProgress("medium");
     } else {
@@ -1984,6 +2228,11 @@ function showHint(){
 function showAnswer(){
     if(!currentTask) return;
 
+    if(isCourseTask()){
+        showMessage("Najpierw podaj odpowiedź. Jeśli będzie błędna, pokażę poprawną odpowiedź ze wskazówką.");
+        return;
+    }
+
     answerShown = true;
 
     showMessage(formatAnswer(currentTask.answer, currentTask) || "Brak odpowiedzi.");
@@ -1991,6 +2240,17 @@ function showAnswer(){
     if(!isClosedTask(currentTask)){
         document.getElementById("resultButtons").classList.add("active");
     }
+}
+
+function showCorrection(correctAnswers = null){
+    answerShown = true;
+
+    const correct = correctAnswers
+        ? correctAnswers.map(answer => formatOption(answer, currentTask)).join(", ")
+        : formatAnswer(currentTask.answer, currentTask);
+    const hint = currentTask.hint || "Wróć do treści zadania i sprawdź, który warunek nie został spełniony.";
+
+    showMessage(`Poprawna odpowiedź: ${correct}\n\nWskazówka: ${hint}`);
 }
 
 function showMessage(text){
