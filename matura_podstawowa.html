@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="img/logo.webp">
+<link rel="shortcut icon" type="image/webp" href="img/logo.webp">
+<link rel="apple-touch-icon" href="img/logo.webp">
 <title>Delta sigma</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -255,26 +258,45 @@ body{
 }
 
 .slider-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:8px;
+    display:none;
 }
 
-.counter{
-    font-weight:600;
-    color:#333;
-    font-size:15px;
-}
-
+.counter,
 .slider-label{
-    font-size:14px;
-    color:#555;
+    display:none;
 }
 
 .page-slider{
+    --progress: 0%;
     width:100%;
+    height:10px;
+    border-radius:999px;
+    appearance:none;
+    -webkit-appearance:none;
     cursor:pointer;
+    outline:none;
+    background:linear-gradient(90deg,#5865F2 var(--progress),#e2e8f0 var(--progress));
+    transition:background 0.12s ease;
+}
+
+.page-slider::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    appearance:none;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#ffffff;
+    border:2px solid #5865F2;
+    box-shadow:0 2px 8px rgba(0,0,0,0.22);
+}
+
+.page-slider::-moz-range-thumb{
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#ffffff;
+    border:2px solid #5865F2;
+    box-shadow:0 2px 8px rgba(0,0,0,0.22);
 }
 
 /* =========================
@@ -603,7 +625,7 @@ footer{
             <div class="slider-top">
 
                 <div class="slider-label">
-                    Numer strony
+                    Postęp
                 </div>
 
                 <div class="counter" id="counter-kurs"></div>
@@ -616,6 +638,7 @@ footer{
                 max="6"
                 value="1"
                 class="page-slider"
+                aria-label="Postęp przeglądania"
                 id="slider-kurs"
             >
 
@@ -640,7 +663,7 @@ footer{
             <div class="slider-top">
 
                 <div class="slider-label">
-                    Numer strony
+                    Postęp
                 </div>
 
                 <div class="counter" id="counter-wzory"></div>
@@ -653,6 +676,7 @@ footer{
                 max="8"
                 value="1"
                 class="page-slider"
+                aria-label="Postęp przeglądania"
                 id="slider-wzory"
             >
 
@@ -877,6 +901,7 @@ footer{
 <footer>
     © 2026 Karol Musioł Delta sigma
 </footer>
+<div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
 
@@ -923,21 +948,31 @@ function createFlipbook(
         book.querySelectorAll(".page")
     );
 
+    function updateSliderProgress(){
+
+        const max = Math.max(1, pagesCount - 1);
+        const value = Math.max(1, Math.min(pagesCount, Number(slider.value) || 1));
+        const progress = pagesCount <= 1 ? 100 : ((value - 1) / max) * 100;
+
+        slider.style.setProperty("--progress", `${progress}%`);
+    }
+
     function updateUI(){
 
-        const index =
-            flip.getCurrentPageIndex() + 2;
-
-        counter.innerText =
-            `${index} / ${pagesCount}`;
+        const index = Math.min(
+            pagesCount,
+            Math.max(1, flip.getCurrentPageIndex() + 1)
+        );
 
         slider.value = index;
+        updateSliderProgress();
     }
 
     flip.on("flip",updateUI);
 
     slider.addEventListener("input",()=>{
 
+        updateSliderProgress();
         flip.flip(Number(slider.value)-1);
 
     });
@@ -1089,5 +1124,6 @@ fetch("baner.html")
         document.getElementById("baner").innerHTML = html;
     });
 </script>
+<script src="static/auth.js?v=20260518-token"></script>
 </body>
 </html>

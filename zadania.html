@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="img/logo.webp">
+<link rel="shortcut icon" type="image/webp" href="img/logo.webp">
+<link rel="apple-touch-icon" href="img/logo.webp">
 <title>Zadania</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -81,44 +84,6 @@ body {
     font-size: 13px;
     font-weight: 600;
     line-height: 1.35;
-}
-
-.login-status-card {
-    display: grid;
-    gap: 8px;
-    border: 1px solid #cce5c9;
-    border-radius: 8px;
-    background: var(--green-soft);
-    padding: 10px;
-}
-
-.login-status-card strong {
-    color: var(--green-text);
-    font-size: 13px;
-}
-
-.login-status-card span {
-    color: var(--text);
-    font-size: 12px;
-    overflow-wrap: anywhere;
-}
-
-.logout-btn {
-    min-height: 34px;
-    border: 1px solid #cce5c9;
-    border-radius: 8px;
-    background: white;
-    color: var(--green-text);
-    cursor: pointer;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 7px 10px;
-}
-
-.logout-btn:hover {
-    background: #f4fbf3;
-    border-color: #b8d9b4;
 }
 
 .student-progress-panel {
@@ -340,18 +305,19 @@ body.focus-mode {
 
 body.focus-mode #nav,
 body.focus-mode footer,
-body.focus-mode .task-sidebar,
-body.focus-mode .progress-grid,
-body.focus-mode .top-row,
-body.focus-mode .meta-box,
-body.focus-mode .action-group.tools {
+body.focus-mode .footer-contact,
+body.focus-mode .task-sidebar {
     display: none;
 }
 
 body.focus-mode .container {
-    max-width: 980px;
+    max-width: 1240px;
     margin: 10px auto;
-    padding: 5px;
+    padding: 10px;
+}
+
+body.focus-mode .focus-toggle {
+    top: 16px;
 }
 
 body.focus-mode .tasks-layout {
@@ -359,25 +325,7 @@ body.focus-mode .tasks-layout {
 }
 
 body.focus-mode .task-card {
-    border: 0;
-    box-shadow: none;
-    padding: 8px;
-}
-
-body.focus-mode .interaction-panel {
-    border-color: transparent;
-    background: white;
-    padding: 10px 0 0;
-}
-
-body.focus-mode .task-actions {
-    display: flex;
-    justify-content: center;
-}
-
-body.focus-mode .action-group.navigation,
-body.focus-mode .action-group.check {
-    justify-content: center;
+    padding: 24px;
 }
 
 .progress-grid {
@@ -883,6 +831,7 @@ footer {
                 <div class="level-selector sidebar-levels" id="guestLevelSection">
                     <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
                     <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
+                    <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
                 </div>
             </div>
 
@@ -916,15 +865,6 @@ footer {
             <div class="side-section" id="assignedCourseSection">
                 <div class="side-title">Przypisany kurs</div>
                 <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
-            </div>
-
-            <div class="side-section" id="loginStatusSection">
-                <div class="side-title">Sesja</div>
-                <div class="login-status-card">
-                    <strong>Jesteś zalogowany</strong>
-                    <span id="loggedUserInfo">Wczytywanie danych...</span>
-                    <button class="logout-btn" type="button" onclick="logoutStudent()">Wyloguj</button>
-                </div>
             </div>
 
             <div class="side-section" id="categorySection">
@@ -999,6 +939,7 @@ footer {
 </div>
 
 <footer>© 2026 Delta sigma</footer>
+<div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script src="static/auth.js?v=20260518-token"></script>
 <script>
@@ -1146,7 +1087,7 @@ async function bootStudentPanel(){
                 const meta = getSourceMeta(source);
 
                 return meta.category === "egzaminy" &&
-                    ["matura_podstawowa", "matura_rozszerzona"].includes(meta.level);
+                    ["matura_podstawowa", "matura_rozszerzona", "egzamin_osmoklasisty"].includes(meta.level);
             });
 
         const groups = await Promise.all(activeSources.map(loadTaskSource));
@@ -1246,9 +1187,7 @@ function updateAccessModeUI(){
     setTimerVisible(!isLoggedInStudent);
     setPanelSectionVisible("progressSection", isLoggedInStudent);
     setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
-    setPanelSectionVisible("loginStatusSection", isLoggedInStudent);
     setPanelSectionVisible("categorySection", isLoggedInStudent);
-    updateLoginStatus();
 
     if(window.updateAuthNav){
         window.updateAuthNav(isLoggedInStudent ? loggedUser : null);
@@ -1271,30 +1210,6 @@ function updateAccessModeUI(){
     if(focusButton){
         focusButton.hidden = !isLoggedInStudent;
     }
-}
-
-function updateLoginStatus(){
-    const info = document.getElementById("loggedUserInfo");
-
-    if(!info) return;
-
-    const name = loggedUser?.display_name || loggedUser?.email || "Uczeń";
-    const email = loggedUser?.email && loggedUser.email !== name ? ` (${loggedUser.email})` : "";
-
-    info.innerText = `${name}${email}`;
-}
-
-async function logoutStudent(){
-    if(window.logoutCurrentUser){
-        await window.logoutCurrentUser();
-        return;
-    }
-
-    if(window.clearAuthToken){
-        window.clearAuthToken();
-    }
-
-    window.location.href = "login.html";
 }
 
 function updateAssignedCourseName(user = null){

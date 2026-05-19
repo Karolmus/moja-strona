@@ -61,6 +61,31 @@
         }
     };
 
+    window.refreshAuthNav = async function(){
+        const token = window.getAuthToken();
+
+        if(!token){
+            window.updateAuthNav(null);
+            return null;
+        }
+
+        try {
+            const session = await window.apiFetch("/api/auth/me");
+            const user = session.authenticated ? session.user : null;
+
+            if(!user){
+                window.clearAuthToken();
+            }
+
+            window.updateAuthNav(user);
+            return user;
+        } catch(error) {
+            window.clearAuthToken();
+            window.updateAuthNav(null);
+            return null;
+        }
+    };
+
     window.apiFetch = async function(path, options = {}){
         const token = window.getAuthToken();
         const headers = {
@@ -87,4 +112,27 @@
 
         return result;
     };
+
+    function bootAuthNav(){
+        window.updateAuthNav(null);
+        window.refreshAuthNav();
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", bootAuthNav);
+    } else {
+        bootAuthNav();
+    }
+
+    new MutationObserver(() => {
+        const nav = document.querySelector(".main-nav");
+
+        if(nav && !nav.dataset.authReady){
+            nav.dataset.authReady = "true";
+            window.refreshAuthNav();
+        }
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
 })();
