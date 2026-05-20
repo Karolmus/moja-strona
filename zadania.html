@@ -556,6 +556,42 @@ body.focus-mode .task-card {
     color: white;
 }
 
+.difficulty-stars {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: help;
+}
+
+.difficulty-stars[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 8px);
+    z-index: 12;
+    width: max-content;
+    max-width: min(280px, 70vw);
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #1f2a36;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.18);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.difficulty-stars[data-tooltip]:hover::after,
+.difficulty-stars[data-tooltip]:focus-visible::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .meta-right {
     margin-left: auto;
     display: flex;
@@ -708,6 +744,17 @@ button {
     border-color: #e3bd41;
 }
 
+.action-btn.solution {
+    background: white;
+    color: var(--navy);
+    border-color: #cbd5e1;
+}
+
+.action-btn.solution:hover {
+    background: #eef2f7;
+    border-color: #aebdcc;
+}
+
 .action-btn.nav {
     background: var(--navy);
     color: white;
@@ -836,6 +883,50 @@ button {
     border-radius: 8px;
     white-space: pre-line;
     color: var(--text);
+}
+
+.solution-box {
+    margin-top: 12px;
+    padding: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.solution-box[hidden] {
+    display: none;
+}
+
+.solution-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.solution-tab {
+    min-height: 34px;
+    padding: 7px 11px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.solution-tab.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+}
+
+.solution-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
 }
 
 footer {
@@ -1109,6 +1200,7 @@ footer {
                     <div class="action-group tools">
                         <button class="action-btn tool" id="hintButton" onclick="showHint()">Wskazówka</button>
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
+                        <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn review" id="reviewButton" onclick="markForReview()" hidden>Do omówienia</button>
                     </div>
 
@@ -1126,6 +1218,11 @@ footer {
                 <div class="mcq" id="mcq"></div>
 
                 <div id="answer" class="box"></div>
+
+                <div class="solution-box" id="solutionBox" hidden>
+                    <div class="solution-switcher" id="solutionSwitcher"></div>
+                    <img class="solution-image" id="solutionImage" alt="rozwiązanie zadania">
+                </div>
             </div>
 
         </div>
@@ -1169,6 +1266,7 @@ let selectedTags = new Set();
 let sessionResults = new Map();
 let drawTaskRequestId = 0;
 let isTaskLoading = false;
+let selectedSolutionIndex = 0;
 
 const IMAGE_FADE_MS = 220;
 
@@ -1444,6 +1542,7 @@ function loadTaskSource(sourceConfig){
             ...task,
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
+            solutions: normalizeTaskSolutions(task, basePath),
             tags: normalizeTaskTags(task),
             category: sourceMeta.category,
             coursePart: task.coursePart || task.section || "zadania",
@@ -1453,6 +1552,30 @@ function loadTaskSource(sourceConfig){
             sourceDetail: sourceMeta.detail
         }));
     });
+}
+
+function normalizeTaskSolutions(task, basePath){
+    if(!Array.isArray(task.solutions)) return [];
+
+    return task.solutions
+        .map((solution, index) => {
+            if(typeof solution === "string"){
+                return {
+                    label: String.fromCharCode(65 + index),
+                    file: solution,
+                    path: basePath + solution
+                };
+            }
+
+            if(!solution?.file) return null;
+
+            return {
+                ...solution,
+                label: solution.label || String.fromCharCode(65 + index),
+                path: basePath + solution.file
+            };
+        })
+        .filter(Boolean);
 }
 
 function getSourceMeta(sourceConfig){
@@ -2252,6 +2375,23 @@ function taskDifficulty(task){
     return difficultyFromCompletionPercent(task?.completionPercent) || task?.difficulty || 1;
 }
 
+function completionTooltip(task){
+    const percent = Number(task?.completionPercent);
+
+    if(!Number.isFinite(percent)) return "";
+
+    return `To zadanie w pełni poprawnie wykonało ${percent}% uczniów.`;
+}
+
+function difficultyStarsMarkup(task){
+    const tooltip = completionTooltip(task);
+    const attributes = tooltip
+        ? ` data-tooltip="${tooltip}" tabindex="0" aria-label="${tooltip}"`
+        : "";
+
+    return `<span class="difficulty-stars"${attributes}>${stars(taskDifficulty(task))}</span>`;
+}
+
 function isClosedTask(task){
     if(["closed", "multi", "true_false"].includes(task.type)) return true;
     if(task.type === "closed" && Array.isArray(task.options)) return true;
@@ -2348,7 +2488,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #reviewButton, #resultButtons button, #mcq button"
+        "#hintButton, #answerButton, #solutionButton, #reviewButton, #resultButtons button, #mcq button, #solutionSwitcher button"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -2357,6 +2497,9 @@ function setTaskLoading(loading){
 function clearTaskInteraction(){
     const mcq = document.getElementById("mcq");
     const resultButtons = document.getElementById("resultButtons");
+    const solutionBox = document.getElementById("solutionBox");
+    const solutionSwitcher = document.getElementById("solutionSwitcher");
+    const solutionImage = document.getElementById("solutionImage");
 
     if(mcq){
         mcq.innerHTML = "";
@@ -2367,6 +2510,19 @@ function clearTaskInteraction(){
         resultButtons.classList.remove("active");
     }
 
+    if(solutionBox){
+        solutionBox.hidden = true;
+    }
+
+    if(solutionSwitcher){
+        solutionSwitcher.innerHTML = "";
+    }
+
+    if(solutionImage){
+        solutionImage.removeAttribute("src");
+    }
+
+    selectedSolutionIndex = 0;
     hideMessage();
 }
 
@@ -2390,7 +2546,7 @@ function updateTaskDetails(task, total){
         </div>
 
         <div class="meta-section">
-            ${stars(taskDifficulty(task))}
+            ${difficultyStarsMarkup(task)}
         </div>
     </div>
     `;
@@ -2623,10 +2779,15 @@ function isCourseTask(task = currentTask){
     return task?.category === "kurs";
 }
 
+function hasTaskSolutions(task = currentTask){
+    return Array.isArray(task?.solutions) && task.solutions.length > 0;
+}
+
 function updateAnswerTools(){
     const answerButton = document.getElementById("answerButton");
     const resultButtons = document.getElementById("resultButtons");
     const reviewButton = document.getElementById("reviewButton");
+    const solutionButton = document.getElementById("solutionButton");
 
     if(!currentTask || !answerButton || !resultButtons) return;
 
@@ -2634,6 +2795,10 @@ function updateAnswerTools(){
     const isClosed = isClosedTask(currentTask);
 
     answerButton.hidden = isCourse && isClosed;
+
+    if(solutionButton){
+        solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
+    }
 
     if(reviewButton){
         reviewButton.hidden = !isLoggedInStudent;
@@ -2959,6 +3124,42 @@ function showAnswer(){
     if(!isClosedTask(currentTask)){
         document.getElementById("resultButtons").classList.add("active");
     }
+}
+
+function showSolution(index = selectedSolutionIndex){
+    if(!currentTask || !hasTaskSolutions(currentTask)) return;
+    if(isClosedTask(currentTask)) return;
+
+    const solutions = currentTask.solutions;
+    const safeIndex = Math.min(Math.max(Number(index) || 0, 0), solutions.length - 1);
+    const solution = solutions[safeIndex];
+    const box = document.getElementById("solutionBox");
+    const switcher = document.getElementById("solutionSwitcher");
+    const image = document.getElementById("solutionImage");
+
+    if(!box || !switcher || !image || !solution) return;
+
+    selectedSolutionIndex = safeIndex;
+    answerShown = true;
+    box.hidden = false;
+    image.src = solution.path;
+    image.alt = `Rozwiązanie ${solution.label} zadania ${taskLabel(currentTask)}`;
+    switcher.innerHTML = "";
+
+    if(solutions.length > 1){
+        solutions.forEach((item, itemIndex) => {
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.className = itemIndex === safeIndex ? "solution-tab active" : "solution-tab";
+            button.innerText = `Sposób ${item.label}`;
+            button.onclick = () => showSolution(itemIndex);
+
+            switcher.appendChild(button);
+        });
+    }
+
+    updateAnswerTools();
 }
 
 function resetReviewButton(){

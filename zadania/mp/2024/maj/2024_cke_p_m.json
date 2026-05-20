@@ -50,7 +50,17 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 56
+    "completionPercent": 56,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "3_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "3_s_b.png"
+      }
+    ]
   },
   {
     "file": "4_2024_cke_p_m.png",
@@ -163,7 +173,17 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 79
+    "completionPercent": 79,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "9_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "9_s_b.png"
+      }
+    ]
   },
   {
     "file": "10_2024_cke_p_m.png",
@@ -380,7 +400,29 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 40
+    "completionPercent": 40,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "17_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "17_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "17_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "17_s_d.png"
+      },
+      {
+        "label": "E",
+        "file": "17_s_e.png"
+      }
+    ]
   },
   {
     "file": "18_2024_cke_p_m.png",
@@ -518,7 +560,21 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 41
+    "completionPercent": 41,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "24_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "24_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "24_s_c.png"
+      }
+    ]
   },
   {
     "file": "25.1_2024_cke_p_m.png",
@@ -646,7 +702,21 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 64
+    "completionPercent": 64,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "30_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "30_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "30_s_c.png"
+      }
+    ]
   },
   {
     "file": "31_2024_cke_p_m.png",
@@ -659,6 +729,32 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 35
+    "completionPercent": 35,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "31_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "31_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "31_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "31_s_d.png"
+      },
+      {
+        "label": "E",
+        "file": "31_s_e.png"
+      },
+      {
+        "label": "F",
+        "file": "31_s_f.png"
+      }
+    ]
   }
 ]
