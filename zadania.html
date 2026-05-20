@@ -2400,6 +2400,24 @@ function isClosedTask(task){
     return ["A", "B", "C", "D", "P", "F", "PP", "PF", "FP", "FF"].includes(task.answer);
 }
 
+function isTrueFalseSequenceTask(task){
+    if(!task) return false;
+    if(task.type === "true_false") return true;
+    if(task.type === "multi") return false;
+
+    const answer = Array.isArray(task.answer)
+        ? task.answer.map(String).join("")
+        : String(task.answer || "");
+
+    if(!/^[PF]+$/.test(answer)) return false;
+
+    const options = Array.isArray(task.options) ? task.options.map(String) : [];
+
+    if(!options.length) return answer.length > 1;
+
+    return options.every(option => /^[PF]+$/.test(option));
+}
+
 function getOptions(task){
     if(Array.isArray(task.options)) return task.options;
 
@@ -2440,6 +2458,12 @@ function formatOption(option, task = null){
 }
 
 function formatAnswer(answer, task = null){
+    if(isTrueFalseSequenceTask(task)){
+        return getCorrectAnswers(task)
+            .map((item, index) => `Stwierdzenie ${index + 1}: ${formatOption(item, task)}`)
+            .join("\n");
+    }
+
     if(Array.isArray(answer)){
         return answer.map(item => formatOption(item, task)).join(", ");
     }
@@ -2452,6 +2476,10 @@ function formatAnswer(answer, task = null){
 }
 
 function getCorrectAnswers(task){
+    if(isTrueFalseSequenceTask(task) && typeof task.answer === "string"){
+        return task.answer.split("");
+    }
+
     if(Array.isArray(task.answer)) return task.answer.map(String);
     if(typeof task.answer === "string" && task.answer.includes(","))
         return task.answer.split(",").map(item => item.trim()).filter(Boolean);
@@ -2749,7 +2777,7 @@ function setupMCQ(){
     if(isClosedTask(currentTask)){
         mcq.classList.add("active");
 
-        if(currentTask.type === "true_false"){
+        if(isTrueFalseSequenceTask(currentTask)){
             setupTrueFalseTask(mcq);
             return;
         }
