@@ -1,0 +1,72 @@
+[
+  {
+    "number": "1",
+    "completionPercent": 48,
+    "difficulty": 3
+  },
+  {
+    "number": "2",
+    "completionPercent": 31,
+    "difficulty": 4
+  },
+  {
+    "number": "3",
+    "completionPercent": 47,
+    "difficulty": 3
+  },
+  {
+    "number": "4",
+    "completionPercent": 50,
+    "difficulty": 3
+  },
+  {
+    "number": "5",
+    "completionPercent": 62,
+    "difficulty": 2
+  },
+  {
+    "number": "6",
+    "completionPercent": 18,
+    "difficulty": 5
+  },
+  {
+    "number": "7",
+    "completionPercent": 42,
+    "difficulty": 3
+  },
+  {
+    "number": "8",
+    "completionPercent": 15,
+    "difficulty": 5
+  },
+  {
+    "number": "9",
+    "completionPercent": 18,
+    "difficulty": 5
+  },
+  {
+    "number": "10",
+    "completionPercent": 29,
+    "difficulty": 4
+  },
+  {
+    "number": "11",
+    "completionPercent": 18,
+    "difficulty": 5
+  },
+  {
+    "number": "12",
+    "completionPercent": 41,
+    "difficulty": 3
+  },
+  {
+    "number": "13.1",
+    "completionPercent": 47,
+    "difficulty": 3
+  },
+  {
+    "number": "13.2",
+    "completionPercent": 24,
+    "difficulty": 4
+  }
+]
