@@ -1,7 +1,7 @@
 [
   {
     "file": "1_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "pierwiastki",
     "level": "matura_podstawowa",
     "hint": "Uprość pierwiastki: √32 = 4√2, a potem podnieś różnicę do kwadratu.",
@@ -16,11 +16,12 @@
     "tags": [
       "pierwiastki",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 67
   },
   {
     "file": "2_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wyłącz wspólny czynnik 5^12 i skorzystaj z praw działań na potęgach.",
@@ -35,11 +36,12 @@
     "tags": [
       "potęgi",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 63
   },
   {
     "file": "3_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "logarytmy",
     "level": "matura_podstawowa",
     "hint": "Użyj wzorów na logarytm ilorazu i logarytm potęgi.",
@@ -54,11 +56,12 @@
     "tags": [
       "logarytmy",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 78
   },
   {
     "file": "4_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "algebra",
     "level": "matura_podstawowa",
     "hint": "Rozwiń oba kwadraty ze wzorów skróconego mnożenia i zredukuj wyrazy podobne.",
@@ -73,11 +76,12 @@
     "tags": [
       "algebra",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 72
   },
   {
     "file": "5_2025_cke_p_m.png",
-    "difficulty": 2,
+    "difficulty": 4,
     "topic": "podzielność",
     "level": "matura_podstawowa",
     "hint": "Zapisz nieparzystą liczbę naturalną jako n = 2l + 1 i przekształć wyrażenie do postaci wielokrotności 4.",
@@ -85,11 +89,12 @@
     "tags": [
       "podzielność",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 32
   },
   {
     "file": "6_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "nierówności",
     "level": "matura_podstawowa",
     "hint": "Rozwiąż nierówność liniową i porównaj wynik z zaznaczeniami na osiach.",
@@ -104,11 +109,12 @@
     "tags": [
       "nierówności",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 73
   },
   {
     "file": "7_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "równania",
     "level": "matura_podstawowa",
     "hint": "Skorzystaj z zasady iloczynu równego zeru i pamiętaj, że x² + 25 nie ma miejsc zerowych w liczbach rzeczywistych.",
@@ -123,11 +129,12 @@
     "tags": [
       "równania",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 62
   },
   {
     "file": "8_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "wyrażenia wymierne",
     "level": "matura_podstawowa",
     "hint": "Rozłóż mianownik na kwadrat dwumianu i skróć wspólne czynniki, pamiętając o założeniach.",
@@ -142,11 +149,12 @@
     "tags": [
       "wyrażenia wymierne",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 60
   },
   {
     "file": "9_2025_cke_p_m.png",
-    "difficulty": 2,
+    "difficulty": 4,
     "topic": "układy równań",
     "level": "matura_podstawowa",
     "hint": "Oznacz kwotę zespołu A przez x, zespołu B przez y i zapisz układ z sumą budżetu oraz wykorzystaną kwotą.",
@@ -154,7 +162,8 @@
     "tags": [
       "układy równań",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 30
   },
   {
     "file": "10_2025_cke_p_m.png",
@@ -166,11 +175,12 @@
     "tags": [
       "nierówność kwadratowa",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 68
   },
   {
     "file": "11_2025_cke_p_m.png",
-    "difficulty": 4,
+    "difficulty": 2,
     "topic": "funkcje",
     "level": "matura_podstawowa",
     "hint": "Odczytuj przedziały bezpośrednio z definicji funkcji i z wykresu; zwróć uwagę na końce domknięte i otwarte.",
@@ -178,7 +188,8 @@
     "tags": [
       "funkcje",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 67
   },
   {
     "file": "12.1_2025_cke_p_m.png",
@@ -191,7 +202,8 @@
     "tags": [
       "funkcja kwadratowa",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 62
   },
   {
     "file": "12.2_2025_cke_p_m.png",
@@ -211,11 +223,12 @@
     "tags": [
       "funkcja kwadratowa",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 84
   },
   {
     "file": "12.3_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 3,
     "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
     "hint": "Przesunięcie wykresu o 3 jednostki w dół sprawia, że miejsca zerowe funkcji g odpowiadają punktom wykresu f o wartości 3.",
@@ -224,11 +237,12 @@
     "tags": [
       "funkcja kwadratowa",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 47
   },
   {
     "file": "13_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "funkcja liniowa",
     "level": "matura_podstawowa",
     "hint": "Funkcja liniowa nie ma miejsca zerowego wtedy, gdy jest stała i różna od zera, czyli współczynnik przy x wynosi 0.",
@@ -243,11 +257,12 @@
     "tags": [
       "funkcja liniowa",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 72
   },
   {
     "file": "14.1_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "ciągi",
     "level": "matura_podstawowa",
     "hint": "Oblicz kolejne wyrazy z definicji rekurencyjnej: a₂ z a₁, a potem a₃ z a₂.",
@@ -263,11 +278,12 @@
     "tags": [
       "ciągi",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 75
   },
   {
     "file": "14.2_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 3,
     "topic": "ciągi",
     "level": "matura_podstawowa",
     "hint": "Porównaj kolejne różnice oraz kolejne ilorazy wyrazów ciągu.",
@@ -283,7 +299,8 @@
     "tags": [
       "ciągi",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 47
   },
   {
     "file": "15_2025_cke_p_m.png",
@@ -295,11 +312,12 @@
     "tags": [
       "ciągi",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 49
   },
   {
     "file": "16_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "ciąg geometryczny",
     "level": "matura_podstawowa",
     "hint": "Najpierw wyznacz iloraz q = a₂/a₁, a potem oblicz a₄.",
@@ -314,11 +332,12 @@
     "tags": [
       "ciąg geometryczny",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 78
   },
   {
     "file": "17_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "trygonometria",
     "level": "matura_podstawowa",
     "hint": "Zapisz tg α jako sin α / cos α i wykorzystaj sin²α + cos²α = 1.",
@@ -333,7 +352,8 @@
     "tags": [
       "trygonometria",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 70
   },
   {
     "file": "18.1_2025_cke_p_m.png",
@@ -353,11 +373,12 @@
     "tags": [
       "trygonometria",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 81
   },
   {
     "file": "18.2_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 3,
     "topic": "trygonometria",
     "level": "matura_podstawowa",
     "hint": "Wyznacz przeciwprostokątną w odpowiednim trójkącie i użyj definicji sinusa.",
@@ -373,7 +394,8 @@
     "tags": [
       "trygonometria",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 59
   },
   {
     "file": "19_2025_cke_p_m.png",
@@ -392,11 +414,12 @@
     "tags": [
       "okręgi",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 81
   },
   {
     "file": "20_2025_cke_p_m.png",
-    "difficulty": 2,
+    "difficulty": 3,
     "topic": "podobieństwo",
     "level": "matura_podstawowa",
     "hint": "Ustal odpowiadające sobie boki w podobnych trójkątach i zapisz proporcję.",
@@ -411,11 +434,12 @@
     "tags": [
       "podobieństwo",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 53
   },
   {
     "file": "21_2025_cke_p_m.png",
-    "difficulty": 2,
+    "difficulty": 3,
     "topic": "geometria",
     "level": "matura_podstawowa",
     "hint": "Do sprawdzenia boków użyj twierdzenia cosinusów, a do pola wzoru z sinusem kąta między bokami.",
@@ -430,11 +454,12 @@
     "tags": [
       "geometria",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 51
   },
   {
     "file": "22_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "geometria analityczna",
     "level": "matura_podstawowa",
     "hint": "Punkt S jest środkiem kwadratu, więc odcinek AS jest połową przekątnej.",
@@ -449,11 +474,12 @@
     "tags": [
       "geometria analityczna",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 70
   },
   {
     "file": "23_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "proste",
     "level": "matura_podstawowa",
     "hint": "Dwie proste są równoległe, gdy mają równe współczynniki kierunkowe.",
@@ -468,11 +494,12 @@
     "tags": [
       "proste",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 79
   },
   {
     "file": "24_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "okrąg",
     "level": "matura_podstawowa",
     "hint": "Promień okręgu to odległość środka S od punktu P=(0,0); w równaniu okręgu występuje r².",
@@ -487,7 +514,8 @@
     "tags": [
       "okrąg",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 61
   },
   {
     "file": "25_2025_cke_p_m.png",
@@ -499,11 +527,12 @@
     "tags": [
       "stereometria",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 49
   },
   {
     "file": "26_2025_cke_p_m.png",
-    "difficulty": 1,
+    "difficulty": 2,
     "topic": "stereometria",
     "level": "matura_podstawowa",
     "hint": "Z objętości sześcianu wyznacz krawędź, a potem użyj wzoru na przekątną sześcianu a√3.",
@@ -518,7 +547,8 @@
     "tags": [
       "stereometria",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 64
   },
   {
     "file": "27_2025_cke_p_m.png",
@@ -537,7 +567,8 @@
     "tags": [
       "kombinatoryka",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 71
   },
   {
     "file": "28_2025_cke_p_m.png",
@@ -556,7 +587,8 @@
     "tags": [
       "prawdopodobieństwo",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 85
   },
   {
     "file": "29_2025_cke_p_m.png",
@@ -575,7 +607,8 @@
     "tags": [
       "statystyka",
       "zadanie zamknięte"
-    ]
+    ],
+    "completionPercent": 91
   },
   {
     "file": "30_2025_cke_p_m.png",
@@ -587,7 +620,8 @@
     "tags": [
       "statystyka",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 70
   },
   {
     "file": "31_2025_cke_p_m.png",
@@ -599,6 +633,7 @@
     "tags": [
       "optymalizacja",
       "zadanie otwarte"
-    ]
+    ],
+    "completionPercent": 38
   }
 ]

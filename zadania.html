@@ -2231,7 +2231,25 @@ function taskLabel(task){
 }
 
 function stars(n){
-    return "★".repeat(n) + "☆".repeat(5 - n);
+    const level = Math.min(5, Math.max(1, Number(n) || 1));
+
+    return "★".repeat(level) + "☆".repeat(5 - level);
+}
+
+function difficultyFromCompletionPercent(percent){
+    const value = Number(percent);
+
+    if(!Number.isFinite(value)) return null;
+    if(value >= 80) return 1;
+    if(value >= 60) return 2;
+    if(value >= 40) return 3;
+    if(value >= 20) return 4;
+
+    return 5;
+}
+
+function taskDifficulty(task){
+    return difficultyFromCompletionPercent(task?.completionPercent) || task?.difficulty || 1;
 }
 
 function isClosedTask(task){
@@ -2372,7 +2390,7 @@ function updateTaskDetails(task, total){
         </div>
 
         <div class="meta-section">
-            ${stars(task.difficulty)}
+            ${stars(taskDifficulty(task))}
         </div>
     </div>
     `;
@@ -2863,7 +2881,7 @@ async function saveProgress(type){
                 file: currentTask.file,
                 level: currentTask.level,
                 topic: currentTask.topic,
-                difficulty: currentTask.difficulty,
+                difficulty: taskDifficulty(currentTask),
                 result: type,
                 hint_used: hintUsed,
                 answer_shown: answerShown,
@@ -2971,7 +2989,7 @@ async function markForReview(){
                 file: currentTask.file,
                 level: currentTask.level,
                 topic: currentTask.topic,
-                difficulty: currentTask.difficulty,
+                difficulty: taskDifficulty(currentTask),
                 title: taskLabel(currentTask),
                 course_part: currentTask.coursePart || selectedCoursePart
             })
