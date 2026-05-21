@@ -301,6 +301,31 @@ body {
     font-size: 12px;
 }
 
+.course-part-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.course-part-panel .tile {
+    min-width: 34px;
+    height: 26px;
+    padding: 0 7px;
+}
+
+.course-part-panel .lesson-core-tile {
+    min-width: 52px;
+}
+
+.course-part-panel .empty-mini-tile {
+    min-height: 26px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
 .source-btn:hover,
 .mode-btn:hover,
 .category-btn:hover,
@@ -1292,8 +1317,8 @@ footer {
             </div>
 
             <div class="side-section" id="coursePartSection">
-                <div class="side-title">Zakres</div>
-                <div class="section-toggle" id="coursePartList"></div>
+                <div class="side-title">Zadania lekcji</div>
+                <div class="course-part-panel" id="coursePartList"></div>
             </div>
         </aside>
 
@@ -1590,11 +1615,6 @@ const LEVEL_LABELS = {
     matura_podstawowa: "Matura podstawowa",
     matura_rozszerzona: "Matura rozszerzona",
     egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
-};
-
-const COURSE_PART_LABELS = {
-    zadania: "Kurs",
-    praca_domowa: "Praca domowa"
 };
 
 const MONTH_LABELS = {
@@ -2053,6 +2073,15 @@ function ensureSelectedSource(){
     }
 }
 
+function ensureSelectedCoursePart(){
+    if(selectedCategory !== "kurs") return;
+    if(getCoursePartTasks(selectedCoursePart).length) return;
+
+    selectedCoursePart = getCoursePartTasks("zadania").length
+        ? "zadania"
+        : "praca_domowa";
+}
+
 function setCategory(btn, category){
     selectedCategory = category;
     selectedSource = "all";
@@ -2062,6 +2091,7 @@ function setCategory(btn, category){
     }
 
     ensureSelectedSource();
+    ensureSelectedCoursePart();
     updateCategoryButtons();
     updateModeButtons();
     resetSession();
@@ -2082,6 +2112,7 @@ function setLevel(btn, level){
     }
 
     ensureSelectedSource();
+    ensureSelectedCoursePart();
     updateLevelButtons();
     updateMetaTheme();
     resetSession();
@@ -2108,6 +2139,7 @@ function setSource(sourceId){
         taskMode = "ordered";
     }
 
+    ensureSelectedCoursePart();
     updateCategoryButtons();
     updateLevelButtons();
     updateModeButtons();
@@ -2134,12 +2166,7 @@ function setMode(btn, mode){
 }
 
 function setCoursePart(part){
-    selectedCoursePart = part;
-
-    resetSession();
-    renderCoursePartSelector();
-    renderTagSearch();
-    drawTask(getInitialIndex());
+    selectCoursePartTask(part);
 }
 
 function updateLevelButtons(){
@@ -2273,6 +2300,37 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     list.appendChild(button);
 }
 
+function getCoursePartTasks(part){
+    return tasks.filter(task =>
+        task.category === "kurs" &&
+        task.level === selectedLevel &&
+        task.sourceId === selectedSource &&
+        task.coursePart === part &&
+        taskMatchesTagFilters(task)
+    );
+}
+
+function homeworkTileLabel(task){
+    const number = taskNumberLabel(task).replace(/^zd/i, "");
+
+    return `PD${number || "?"}`;
+}
+
+function selectCoursePartTask(part, file = ""){
+    selectedCoursePart = part;
+
+    resetSession();
+    renderTagSearch();
+
+    const items = pool();
+    const index = file
+        ? items.findIndex(task => task.file === file)
+        : 0;
+
+    drawTask(Math.max(0, index));
+    renderCoursePartSelector();
+}
+
 function renderCoursePartSelector(){
     const section = document.getElementById("coursePartSection");
     const list = document.getElementById("coursePartList");
@@ -2284,20 +2342,46 @@ function renderCoursePartSelector(){
 
     if(selectedCategory !== "kurs") return;
 
-    Object.entries(COURSE_PART_LABELS).forEach(([part, label]) => {
-        const count = tasks.filter(t =>
-            t.category === "kurs" &&
-            t.level === selectedLevel &&
-            t.coursePart === part &&
-            (selectedSource === "all" || t.sourceId === selectedSource)
-        ).length;
+    const lessonTasks = getCoursePartTasks("zadania");
+    const homeworkTasks = getCoursePartTasks("praca_domowa");
+    const lessonButton = document.createElement("button");
 
+    lessonButton.type = "button";
+    lessonButton.className = "tile nav-tile lesson-core-tile";
+    lessonButton.innerText = "Kurs";
+    lessonButton.title = `Zadania z lekcji • ${lessonTasks.length} zadań`;
+    lessonButton.onclick = () => selectCoursePartTask("zadania");
+
+    if(selectedCoursePart === "zadania") lessonButton.classList.add("active");
+    list.appendChild(lessonButton);
+
+    if(!homeworkTasks.length){
+        const empty = document.createElement("span");
+
+        empty.className = "empty-mini-tile";
+        empty.innerText = "Brak PD";
+        list.appendChild(empty);
+        return;
+    }
+
+    homeworkTasks.forEach(task => {
         const button = document.createElement("button");
+        const result = getSavedResult(task);
 
         button.type = "button";
-        button.className = selectedCoursePart === part ? "section-btn active" : "section-btn";
-        button.innerText = `${label} (${count})`;
-        button.onclick = () => setCoursePart(part);
+        button.className = "tile nav-tile nav-theme-homework";
+        button.innerText = homeworkTileLabel(task);
+        button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
+        button.onclick = () => selectCoursePartTask("praca_domowa", task.file);
+
+        if(result) button.classList.add(result);
+        if(
+            selectedCoursePart === "praca_domowa" &&
+            currentTask?.sourceId === task.sourceId &&
+            currentTask?.file === task.file
+        ){
+            button.classList.add("active");
+        }
 
         list.appendChild(button);
     });
@@ -2871,6 +2955,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
     currentIndex = index;
     currentTask = p[currentIndex];
     renderTaskNavigator(p);
+    renderCoursePartSelector();
     currentTaskAnswered = true;
     setTaskLoading(true);
     clearTaskInteraction();
