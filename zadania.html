@@ -452,6 +452,20 @@ body.focus-mode .task-card {
     min-height: 0;
 }
 
+.nav-section-label {
+    flex: 0 0 100%;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.nav-section-label:first-child {
+    margin-top: 0;
+}
+
 .tile {
     min-width: 24px;
     width: auto;
@@ -524,6 +538,36 @@ body.focus-mode .task-card {
     color: var(--text);
 }
 
+.tile.nav-tile.nav-theme-course,
+.tile.nav-tile.nav-theme-course.good,
+.tile.nav-tile.nav-theme-course.medium,
+.tile.nav-tile.nav-theme-course.bad {
+    background: #edf7e8;
+    border-color: #b2d699;
+    color: #2f562c;
+}
+
+.tile.nav-tile.nav-theme-course.good {
+    box-shadow: inset 0 -3px 0 var(--success);
+}
+
+.tile.nav-tile.nav-theme-course.medium {
+    box-shadow: inset 0 -3px 0 var(--warning);
+}
+
+.tile.nav-tile.nav-theme-course.bad {
+    box-shadow: inset 0 -3px 0 var(--danger);
+}
+
+.tile.nav-tile.active.nav-theme-course,
+.tile.nav-tile.active.nav-theme-course.good,
+.tile.nav-tile.active.nav-theme-course.medium,
+.tile.nav-tile.active.nav-theme-course.bad {
+    background: linear-gradient(90deg, #b2d699 0%, #dcedd2 55%, #ffffff 100%);
+    border-color: #7dab62;
+    color: var(--text);
+}
+
 .tile.nav-tile.active.nav-theme-homework {
     background: linear-gradient(90deg, #d99595 0%, #e7b4b4 55%, #ffffff 100%);
     border-color: #bf7474;
@@ -581,6 +625,18 @@ body.focus-mode .task-card {
 }
 
 .tile.nav-tile.active.nav-theme-homework.bad {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--danger);
+}
+
+.tile.nav-tile.active.nav-theme-course.good {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--success);
+}
+
+.tile.nav-tile.active.nav-theme-course.medium {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--warning);
+}
+
+.tile.nav-tile.active.nav-theme-course.bad {
     box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--danger);
 }
 
@@ -1344,7 +1400,7 @@ footer {
 </div>
 
 <div class="source-attribution">
-    Tam gdzie to wskazano zadania pochodzą z Centralnej Komisji Egzaminacyjnej:
+    Część zadań pochodzi z
     <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
 </div>
 
@@ -2530,6 +2586,7 @@ function resultLabel(result){
 
 function taskThemeClass(task){
     if(task.coursePart === "praca_domowa") return "nav-theme-homework";
+    if(task.category === "kurs") return "nav-theme-course";
 
     const classes = {
         matura_podstawowa: "nav-theme-podstawowa",
@@ -2562,6 +2619,17 @@ function openNavigatorTask(task, index){
     drawTask(index);
 }
 
+function addNavigatorSectionLabel(progress, section){
+    const label = document.createElement("span");
+
+    label.className = "nav-section-label";
+    label.innerText = section === "homework"
+        ? "2. Zadanie domowe"
+        : "1. Część główna";
+
+    progress.appendChild(label);
+}
+
 function renderTaskNavigator(items = pool()){
     const progress = document.getElementById("progress");
 
@@ -2572,10 +2640,18 @@ function renderTaskNavigator(items = pool()){
 
     if(!shouldShowTaskNavigator(items)) return;
 
+    let currentSection = "";
+
     items.forEach((task, index) => {
         const button = document.createElement("button");
         const result = getSavedResult(task);
         const themeClass = taskThemeClass(task);
+        const section = task.coursePart === "praca_domowa" ? "homework" : "main";
+
+        if(selectedCategory === "kurs" && section !== currentSection){
+            addNavigatorSectionLabel(progress, section);
+            currentSection = section;
+        }
 
         button.type = "button";
         button.className = "tile nav-tile";
