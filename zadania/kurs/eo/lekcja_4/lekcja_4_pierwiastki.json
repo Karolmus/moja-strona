@@ -1,0 +1,495 @@
+[
+  {
+    "difficulty": 1,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "1.png",
+    "title": "Lekcja 4 - zadanie 1",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Porownaj wartosci, podnoszac dodatnie strony nierownosci do odpowiedniej potegi.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "porownywanie liczb"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "2.png",
+    "title": "Lekcja 4 - zadanie 2",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Pierwiastek kwadratowy z liczby ujemnej nie jest liczba rzeczywista, ale pierwiastek trzeciego stopnia z liczby ujemnej istnieje.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "liczby rzeczywiste"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "3.png",
+    "title": "Lekcja 4 - zadanie 3",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Oszacuj pierwiastki: sqrt(15) jest miedzy 3 i 4, a sqrt(150) miedzy 12 i 13.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "szacowanie"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "4.png",
+    "title": "Lekcja 4 - zadanie 4",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Sprowadz pierwiastki do najprostszej postaci, a w drugim stwierdzeniu skorzystaj z mnozenia pod jednym pierwiastkiem.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "5.png",
+    "title": "Lekcja 4 - zadanie 5",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Pieciokrotne dodanie sqrt(2) to 5sqrt(2), czyli sqrt(50).",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "dodawanie pierwiastkow"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "6.png",
+    "title": "Lekcja 4 - zadanie 6",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Wylacz czynniki przed pierwiastek i pamietaj, ze suma liczby niewymiernej oraz wymiernej jest niewymierna.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "7.png",
+    "title": "Lekcja 4 - zadanie 7",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Pierwszy ulamek jest dodatni i mniejszy od 1. W drugim porownaj kwadraty obu dodatnich liczb.",
+    "answer": [
+      "P",
+      "F"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "prawda falsz",
+      "porownywanie liczb"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "8.png",
+    "title": "Lekcja 4 - zadanie 8",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Przybliz wartosci: 3, cbrt(30), 3sqrt(3), sqrt(30), a potem ustaw je rosnaco.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "porzadkowanie liczb"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "9.png",
+    "title": "Lekcja 4 - zadanie 9",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Warunek 8 < sqrt(n) < 9 oznacza 64 < n < 81. Wypisz liczby dwucyfrowe, w ktorych cyfra jednosci jest o 2 wieksza od cyfry dziesiatek.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "szacowanie",
+      "liczby dwucyfrowe"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "10.png",
+    "title": "Lekcja 4 - zadanie 10",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Uprosc kazda liczbe osobno. Pierwiastki z ulamkow bedacych kwadratami oraz pierwiastki trzeciego stopnia z szescianow daja liczby wymierne.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "liczby wymierne"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "11.png",
+    "title": "Lekcja 4 - zadanie 11",
+    "hint": "Oszacuj przyblizenia liczb: sqrt(13), 1 + sqrt(3) oraz 2 + sqrt(10), a potem dopasuj je do polozenia na osi.",
+    "answer": "a = II, b = I, c = III",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "os liczbowa",
+      "szacowanie"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "12.png",
+    "title": "Lekcja 4 - zadanie 12",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Rozloz 54 jako 27 razy 2 oraz 16 jako 8 razy 2, a potem wylacz czynniki przed pierwiastek trzeciego stopnia.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "pierwiastek trzeciego stopnia"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "13.png",
+    "title": "Lekcja 4 - zadanie 13",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Uzyj wzoru (a + b)^2 = a^2 + 2ab + b^2 dla a = sqrt(2) i b = 2sqrt(3).",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "pierwiastki",
+      "wzory skroconego mnozenia"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd1.png",
+    "title": "Lekcja 4 - praca domowa 1",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Najpierw wymnoz sqrt(6) przez nawias. Iloczyn sqrt(6) i sqrt(150) to sqrt(900).",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "mnozenie pierwiastkow"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd2.png",
+    "title": "Lekcja 4 - praca domowa 2",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "hint": "Kazda nierownosc sprawdz osobno. Dla liczb dodatnich mozesz porownac kwadraty.",
+    "answer": "AD",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "porownywanie liczb"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd3.png",
+    "title": "Lekcja 4 - praca domowa 3",
+    "hint": "Rozwin oba kwadraty ze wzoru (a + b)^2, a potem odejmij wyrazenia podobne.",
+    "answer": "-15",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "wzory skroconego mnozenia"
+    ]
+  },
+  {
+    "difficulty": 3,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd4.png",
+    "title": "Lekcja 4 - praca domowa 4",
+    "type": "multi",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "hint": "Zamien kazdy przedzial pierwiastkowy na przyblizony przedzial liczbowy i policz liczby naturalne, ktore do niego naleza.",
+    "answer": [
+      "B",
+      "D",
+      "E"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "wybor wielokrotny",
+      "szacowanie"
+    ]
+  },
+  {
+    "difficulty": 3,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd5.png",
+    "title": "Lekcja 4 - praca domowa 5",
+    "hint": "Pierwszy ulamek podnies do trzeciej potegi, pamietajac ze (cbrt(10))^3 = 10. W drugim skladniku najpierw podnies pierwiastek do kwadratu.",
+    "answer": "(sqrt(2) - 21) / 5",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "potegi pierwiastkow"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd6.png",
+    "title": "Lekcja 4 - praca domowa 6",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Najpierw uprosc sqrt(24) = 2sqrt(6), a potem podnies 3sqrt(6) do kwadratu.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "wzory skroconego mnozenia"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd7.png",
+    "title": "Lekcja 4 - praca domowa 7",
+    "hint": "Oszacuj kazda liczbe: jedna jest ujemna duza co do wartosci, jedna rowna -3, jedna rowna 4, a jedna dodatnia okolo 6,7.",
+    "answer": "II, III, IV, I",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "porzadkowanie liczb"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd8.png",
+    "title": "Lekcja 4 - praca domowa 8",
+    "hint": "W kazdym wierszu uprosc pierwiastki albo porownaj przyblizenia. Wstaw kolejno znaki miedzy lewa i prawa strona.",
+    "answer": "=, <, <, <",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "porownywanie wyrazen"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd9.png",
+    "title": "Lekcja 4 - praca domowa 9",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Uprosc kazda odpowiedz. Tylko jedna z nich zostawia skladnik niewymierny.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 4",
+      "praca domowa",
+      "pierwiastki",
+      "liczby calkowite"
+    ]
+  }
+]

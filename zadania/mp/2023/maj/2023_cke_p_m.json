@@ -1,0 +1,750 @@
+[
+  {
+    "file": "1_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "wartosc bezwzgledna",
+    "level": "matura_podstawowa",
+    "hint": "Odczytaj srodek i promien przedzialu zaznaczonego na osi liczbowej.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wartosc bezwzgledna",
+      "zadanie zamkniete",
+      "przedzialy"
+    ]
+  },
+  {
+    "file": "2_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Zamien pierwiastek trzeciego stopnia na potege i uprosc iloczyn.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "pierwiastki",
+      "zadanie zamkniete",
+      "potegi"
+    ]
+  },
+  {
+    "file": "3_2023_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "podzielnosc",
+    "level": "matura_podstawowa",
+    "hint": "Przeksztalc (2n + 1)^2 - 1 do postaci iloczynu i wykorzystaj fakt, ze iloczyn dwoch kolejnych liczb naturalnych jest parzysty.",
+    "answer": "(2n + 1)^2 - 1 = 4n(n + 1), a n(n + 1) jest parzyste, wiec liczba jest podzielna przez 8.",
+    "tags": [
+      "podzielnosc",
+      "zadanie otwarte"
+    ],
+    "solutions": [
+      {
+        "label": "A",
+        "file": "3_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "3_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "3_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "3_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "3_z.png"
+  },
+  {
+    "file": "4_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "logarytmy",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz 27 i 3 jako potegi liczby 9 albo uzyj definicji logarytmu.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "logarytmy",
+      "zadanie zamkniete",
+      "logarytmy"
+    ]
+  },
+  {
+    "file": "5_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "wzory skroconego mnozenia",
+    "level": "matura_podstawowa",
+    "hint": "Rozwin oba kwadraty i zredukuj wyrazy podobne.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wzory skroconego mnozenia",
+      "zadanie zamkniete",
+      "algebra"
+    ]
+  },
+  {
+    "file": "6_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "nierownosci liniowe",
+    "level": "matura_podstawowa",
+    "hint": "Pomnoz nierownosc przez 3 i rozwiaz ja krok po kroku, pamietajac o znaku nierownosci.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "nierownosci liniowe",
+      "zadanie zamkniete",
+      "nierownosci"
+    ]
+  },
+  {
+    "file": "7_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "rownania wielomianowe",
+    "level": "matura_podstawowa",
+    "hint": "Iloczyn jest rowny zero, gdy przynajmniej jeden czynnik jest rowny zero.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "rownania wielomianowe",
+      "zadanie zamkniete",
+      "rownania"
+    ]
+  },
+  {
+    "file": "8_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "rownania wymierne",
+    "level": "matura_podstawowa",
+    "hint": "Najpierw wyznacz dziedzine. Licznik i mianownik zeruja sie dla tych samych wartosci, wiec sprawdz, czy zostaje jakiekolwiek rozwiazanie.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "rownania wymierne",
+      "zadanie zamkniete",
+      "dziedzina"
+    ]
+  },
+  {
+    "file": "9_2023_cke_p_m.png",
+    "difficulty": 4,
+    "topic": "rownania wielomianowe",
+    "level": "matura_podstawowa",
+    "hint": "Pogrupuj skladniki albo znajdz pierwiastek wielomianu, a potem rozloz wielomian na czynniki.",
+    "answer": "x = -2, x = 2/3, x = 2",
+    "tags": [
+      "rownania wielomianowe",
+      "zadanie otwarte"
+    ],
+    "solutions": [
+      {
+        "label": "A",
+        "file": "9_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "9_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "9_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "9_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "9_z.png"
+  },
+  {
+    "file": "10_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "uklady rownan",
+    "level": "matura_podstawowa",
+    "hint": "Odczytaj z wykresu punkty przeciecia z osiami i wspolczynniki kierunkowe prostych.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "uklady rownan",
+      "zadanie zamkniete",
+      "funkcja liniowa",
+      "uklady rownan"
+    ]
+  },
+  {
+    "file": "11_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "uklady rownan",
+    "level": "matura_podstawowa",
+    "hint": "Obwod prostokata daje rownanie 2a + 2b = 30, a roznica bokow rownanie a - b = 5.",
+    "answer": [
+      "C",
+      "E"
+    ],
+    "type": "multi",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "tags": [
+      "uklady rownan",
+      "wybor wielokrotny"
+    ]
+  },
+  {
+    "file": "12.1_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Dziedzina to wszystkie wartosci x, dla ktorych istnieje punkt wykresu.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcje",
+      "odczytywanie z wykresu",
+      "zadanie zamkniete"
+    ],
+    "contextFile": "12_2023_cke_p_m.png"
+  },
+  {
+    "file": "12.2_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Ogranicz odczyt do przedzialu [-4, 1] i znajdz najwyzej polozony punkt wykresu.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcje",
+      "odczytywanie z wykresu",
+      "zadanie zamkniete"
+    ],
+    "contextFile": "12_2023_cke_p_m.png"
+  },
+  {
+    "file": "12.3_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Wybierz ten fragment wykresu, na ktorym wraz ze wzrostem x wartosci funkcji maleja.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcje",
+      "monotonicznosc",
+      "zadanie zamkniete"
+    ],
+    "contextFile": "12_2023_cke_p_m.png"
+  },
+  {
+    "file": "13_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "funkcja liniowa",
+    "level": "matura_podstawowa",
+    "hint": "Z wykresu odczytaj znak wspolczynnika kierunkowego oraz miejsce przeciecia z osia y.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcja liniowa",
+      "zadanie zamkniete",
+      "wykres funkcji"
+    ]
+  },
+  {
+    "file": "14_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Pierwsza wspolrzedna wierzcholka jest srednia arytmetyczna miejsc zerowych.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcja kwadratowa",
+      "zadanie zamkniete",
+      "miejsca zerowe"
+    ]
+  },
+  {
+    "file": "15_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "ciagi",
+    "level": "matura_podstawowa",
+    "hint": "Podstaw n = 4 do wzoru ogolnego ciagu.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "ciagi",
+      "zadanie zamkniete",
+      "ciagi"
+    ]
+  },
+  {
+    "file": "16_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "ciag geometryczny",
+    "level": "matura_podstawowa",
+    "hint": "W ciagu geometrycznym iloraz kolejnych wyrazow jest staly.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "ciag geometryczny",
+      "zadanie zamkniete",
+      "ciagi"
+    ]
+  },
+  {
+    "file": "17_2023_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "ciag arytmetyczny",
+    "level": "matura_podstawowa",
+    "hint": "Raty tworza ciag arytmetyczny o roznicy -30. Uzyj wzoru na sume 18 poczatkowych wyrazow.",
+    "answer": "Pierwsza rata byla rowna 750 zl.",
+    "tags": [
+      "ciag arytmetyczny",
+      "zadanie otwarte"
+    ],
+    "solutions": [
+      {
+        "label": "A",
+        "file": "17_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "17_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "17_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "17_s_d.png"
+      },
+      {
+        "label": "E",
+        "file": "17_s_e.png"
+      },
+      {
+        "label": "F",
+        "file": "17_s_f.png"
+      }
+    ],
+    "gradingCriteriaFile": "17_z.png"
+  },
+  {
+    "file": "18_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Dla punktu P = (-3, 1) tangens kata w ukladzie wspolrzednych to y/x.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "trygonometria",
+      "zadanie zamkniete",
+      "tangens"
+    ]
+  },
+  {
+    "file": "19_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Wylacz sin^2(alpha) przed nawias i uzyj jedynki trygonometrycznej.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "trygonometria",
+      "zadanie zamkniete",
+      "jedynka trygonometryczna"
+    ]
+  },
+  {
+    "file": "20_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "romb",
+    "level": "matura_podstawowa",
+    "hint": "Pole rombu mozna zapisac jako a^2 sin(alpha) oraz jako polowe iloczynu przekatnych.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "romb",
+      "zadanie zamkniete",
+      "geometria"
+    ]
+  },
+  {
+    "file": "21_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "katy w okregu",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj z zaleznosci katow przy promieniach oraz kata wpisanego opartego na tym samym luku.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "katy w okregu",
+      "zadanie zamkniete",
+      "okrag"
+    ]
+  },
+  {
+    "file": "22_2023_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "podobienstwo trojkatow",
+    "level": "matura_podstawowa",
+    "hint": "Najpierw oblicz przeciwprostokatna trojkata o bokach 5 i 12, potem wyznacz skale podobienstwa.",
+    "answer": "Pole trojkata T2 wynosi 120.",
+    "tags": [
+      "podobienstwo trojkatow",
+      "zadanie otwarte"
+    ],
+    "solutions": [
+      {
+        "label": "A",
+        "file": "22_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "22_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "22_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "22_z.png"
+  },
+  {
+    "file": "23_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "proste",
+    "level": "matura_podstawowa",
+    "hint": "Porownaj iloczyn wspolczynnikow kierunkowych prostych i rozwiaz uklad rownan, aby znalezc punkt przeciecia.",
+    "answer": "A2",
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "tags": [
+      "proste",
+      "uklad wspolrzednych",
+      "zadanie zamkniete"
+    ]
+  },
+  {
+    "file": "24_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "prosta rownolegla",
+    "level": "matura_podstawowa",
+    "hint": "Proste rownolegle maja ten sam wspolczynnik kierunkowy. Podstaw punkt P do rownania, aby znalezc b.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prosta rownolegla",
+      "zadanie zamkniete",
+      "funkcja liniowa"
+    ]
+  },
+  {
+    "file": "25_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "graniastoslupy",
+    "level": "matura_podstawowa",
+    "hint": "W przekroju przekatna graniastoslupa tworzy z przekatna podstawy kat alpha.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "graniastoslupy",
+      "zadanie zamkniete",
+      "geometria przestrzenna"
+    ]
+  },
+  {
+    "file": "26_2023_cke_p_m.png",
+    "difficulty": 4,
+    "topic": "ostroslupy",
+    "level": "matura_podstawowa",
+    "hint": "Z trojkata prostokatnego w przekroju wyznacz wysokosc ostroslupa i polowe przekatnej podstawy, a potem oblicz objetosc i pole.",
+    "answer": "V = 108, Pc = 108 + 72sqrt(3)",
+    "tags": [
+      "ostroslupy",
+      "zadanie otwarte",
+      "geometria przestrzenna"
+    ],
+    "solutions": [
+      {
+        "label": "A",
+        "file": "26_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "26_z.png"
+  },
+  {
+    "file": "27_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "ostroslupy",
+    "level": "matura_podstawowa",
+    "hint": "Dla ostroslupa o podstawie n-kata liczba wierzcholkow to n + 1, a liczba krawedzi to 2n.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "ostroslupy",
+      "zadanie zamkniete",
+      "geometria przestrzenna"
+    ]
+  },
+  {
+    "file": "28_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "kombinatoryka",
+    "level": "matura_podstawowa",
+    "hint": "Pierwsza cyfra nie moze byc zerem, a kazda z pozostalych czterech pozycji ma trzy mozliwosci.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "kombinatoryka",
+      "zadanie zamkniete",
+      "zliczanie"
+    ]
+  },
+  {
+    "file": "29_2023_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "statystyka",
+    "level": "matura_podstawowa",
+    "hint": "Z diagramu odczytaj liczebnosci, uporzadkuj ceny do mediany i oblicz srednia wazona.",
+    "answer": "29.1 C, 29.2 A",
+    "tags": [
+      "statystyka",
+      "mediana",
+      "srednia arytmetyczna"
+    ]
+  },
+  {
+    "file": "30_2023_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "prawdopodobienstwo",
+    "level": "matura_podstawowa",
+    "hint": "Policz wszystkie pary uporzadkowane oraz te, w ktorych iloczyn jest podzielny przez 15.",
+    "answer": "P(A) = 6/64 = 3/32",
+    "tags": [
+      "prawdopodobienstwo",
+      "zadanie otwarte"
+    ],
+    "solutions": [
+      {
+        "label": "A",
+        "file": "30_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "30_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "30_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "30_z.png"
+  },
+  {
+    "file": "31.1_2023_cke_p_m.png",
+    "difficulty": 2,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Pierwsze zdanie dotyczy sumy wartosci funkcji, a nie jednej wartosci. W drugim podstaw n = 3.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "tags": [
+      "funkcja kwadratowa",
+      "prawda falsz"
+    ],
+    "contextFile": "31_2023_cke_p_m.png"
+  },
+  {
+    "file": "31.2_2023_cke_p_m.png",
+    "difficulty": 3,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Wyznacz wierzcholek paraboli opisanej wzorem L(n).",
+    "answer": "Najwiecej klientow obsluzono 11. dnia; bylo ich 400.",
+    "tags": [
+      "funkcja kwadratowa",
+      "optymalizacja",
+      "zadanie otwarte"
+    ],
+    "contextFile": "31_2023_cke_p_m.png",
+    "solutions": [
+      {
+        "label": "A",
+        "file": "31.2_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "31.2_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "31.2_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "31.2_z.png"
+  }
+]

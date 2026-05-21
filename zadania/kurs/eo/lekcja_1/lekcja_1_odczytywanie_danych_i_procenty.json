@@ -1,0 +1,548 @@
+[
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "1.png",
+    "title": "Lekcja 1 - zadanie 1",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "hint": "W 200 g produktu jest dwa razy wiecej bialka niz w 100 g. Stosunek tluszczu do soli oblicz z danych dla 100 g.",
+    "answer": "AD",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "tabela",
+      "proporcje"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "2.png",
+    "title": "Lekcja 1 - zadanie 2",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Dodaj minuty od poniedzialku do czwartku. Potem porownaj sobote z piatkiem: 30 min to 60% z 50 min.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "czas",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "3.png",
+    "title": "Lekcja 1 - zadanie 3",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "40 gofrow to 5 razy wiecej niz 8, a 72 gofry to 9 razy wiecej niz 8.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "proporcje",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "4.png",
+    "title": "Lekcja 1 - zadanie 4",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Zsumuj sprzedaz z trzech dni. W drugim zdaniu porownaj 45 z 60.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "ulamki",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "5.png",
+    "title": "Lekcja 1 - zadanie 5",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Skoro 5% to 4 osoby, to 100% to 80 osob. Potem porownaj 40% i 15% z tej liczby.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "diagram kolowy",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "6.png",
+    "title": "Lekcja 1 - zadanie 6",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Najpierw policz wszystkie osoby z wykresu. Zima to 7 osob, lato to 12 osob.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "ulamki",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "7.png",
+    "title": "Lekcja 1 - zadanie 7",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Zsumuj medale zlote i wszystkie medale. Srednia liczbe zlotych medali policz z czterech igrzysk.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "srednia",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "8.png",
+    "title": "Lekcja 1 - zadanie 8",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Szesciu niezdecydowanych to 4% ankietowanych. Technikum i szkola branzowa daja razem 40%.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "diagram kolowy",
+      "wnioskowanie"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "9.png",
+    "title": "Lekcja 1 - zadanie 9",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Skoro 20% to 16 uczniow, to cala ankieta obejmuje 80 uczniow. Kot to 25% tej liczby.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "diagram kolowy"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "10.png",
+    "title": "Lekcja 1 - zadanie 10",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "hint": "Dodaj wszystkie etapy trasy. Poniedzialek i wtorek to 53 km, a sroda to 21 km z calej trasy.",
+    "answer": "AD",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "tabela",
+      "ulamki"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "11.png",
+    "title": "Lekcja 1 - zadanie 11",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Sok pomidorowy to brakujace 12,5%. Skoro 12,5% to 15 kartonow, oblicz 100%.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "diagram kolowy",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd1.png",
+    "title": "Lekcja 1 - praca domowa 1",
+    "hint": "Chlopcy to 45% klasy, dziewczynki 55%. Siatkowke lubi 1/3 chlopcow i 8/11 dziewczynek.",
+    "answer": "a = 15%, b = 30%, c = 40%, d = 15%",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "diagram kolowy",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd2.1.png",
+    "contextFile": "zd2_info.png",
+    "title": "Lekcja 1 - praca domowa 2.1",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Dla kazdego sera policz: ubytek masy / masa poczatkowa.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "tabela",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd2.2.png",
+    "contextFile": "zd2_info.png",
+    "title": "Lekcja 1 - praca domowa 2.2",
+    "hint": "Porownaj procentowe ubytki: A: 1,3/5,5, B: 0,6/4,6, C: 0,2/3,8, D: 1,7/4,2.",
+    "answer": "D, A, B, C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "tabela",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd3.png",
+    "title": "Lekcja 1 - praca domowa 3",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Dodaj sprzedaz od poniedzialku do czwartku i porownaj z piatkiem. 30% z 2500 to 750.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "prawda falsz",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd4.1.png",
+    "title": "Lekcja 1 - praca domowa 4.1",
+    "hint": "Czas oblicz ze wzoru: czas = droga / predkosc. Dla roweru podstaw 1500 km i 40 km/h.",
+    "answer": "37,5 h, czyli 37 h 30 min",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "predkosc",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 3,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd4.2.png",
+    "contextFile": "zd4.1.png",
+    "title": "Lekcja 1 - praca domowa 4.2",
+    "hint": "Rozbij 1500 km na procenty trasy i dla kazdego srodka transportu policz czas osobno.",
+    "answer": "38,25 h, czyli 38 h 15 min",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "predkosc",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd5.1.png",
+    "contextFile": "zd5_info.png",
+    "title": "Lekcja 1 - praca domowa 5.1",
+    "hint": "Policz 60%, 24% i 16% z 500 butelek.",
+    "answer": "Woda: 300, sok pomaranczowy: 80, sok jablkowy: 120",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "diagram kolowy",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd5.2.png",
+    "contextFile": "zd5_info.png",
+    "title": "Lekcja 1 - praca domowa 5.2",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Woda kosztuje 1,5 zl, sok jablkowy 3 zl, a sok pomaranczowy 3,45 zl. Pomnoz ceny przez liczbe butelek.",
+    "answer": [
+      "F",
+      "F"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "diagram kolowy",
+      "prawda falsz",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd6.1.png",
+    "contextFile": "zd6_info.png",
+    "title": "Lekcja 1 - praca domowa 6.1",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Dodaj godziny dla kazdej aplikacji ze wszystkich dni tygodnia.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "suma",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd6.2.png",
+    "contextFile": "zd6_info.png",
+    "title": "Lekcja 1 - praca domowa 6.2",
+    "hint": "Dodaj caly czas na social mediach i podziel przez czas, w ktorym Marek nie spi: 7 dni po 16 godzin.",
+    "answer": "44,5 h z 112 h, czyli okolo 39,7% (w przyblizeniu 40%)",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "wykres slupkowy",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd7.1.png",
+    "contextFile": "zd7_info.png",
+    "title": "Lekcja 1 - praca domowa 7.1",
+    "hint": "Zapisz rownanie (3 + 4 + 4 + 3 + x + x) / 6 = 4, a potem wyznacz x.",
+    "answer": "Chemia: 5, informatyka: 5",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "srednia",
+      "rownanie",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd7.2.png",
+    "contextFile": "zd7_info.png",
+    "title": "Lekcja 1 - praca domowa 7.2",
+    "hint": "Przy sredniej 4 suma szesciu ocen wynosi 24. Piatka z fizyki zamiast trojki zwieksza sume ocen o 2.",
+    "answer": "26/6 = 4,33...",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "srednia",
+      "praca domowa"
+    ]
+  }
+]

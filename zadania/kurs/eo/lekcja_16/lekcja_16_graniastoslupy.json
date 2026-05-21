@@ -1,0 +1,613 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 16 - zadanie 1",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 16 - zadanie 2",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 16 - zadanie 3",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 16 - zadanie 4",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Łączna powierzchnia całkowita powstałych brył wynosi 124 dm².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 16 - zadanie 5",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Pole powierzchni całkowitej nowej bryły wynosi 800 + 250√2 cm².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 16 - zadanie 6",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 16 - zadanie 7",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": [
+      "P",
+      "F"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Aby całkowicie wypełnić wodą sześcienny basen o krawędzi 3 m, należy 2700 razy wlać zawartość wiadra 10-litrowego.",
+      "Basen o głębokości 4 m i objętości 6000 hl ma powierzchnię wody większą niż 1000 m²."
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 16 - zadanie 8",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Przecięcie graniastosłupa płaszczyzną przechodzącą przez jego wnętrze zwiększa łączną powierzchnię całkowitą powstałych brył.",
+      "W każdym graniastosłupie liczba ścian bocznych jest trzykrotnie mniejsza od liczby wszystkich krawędzi."
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 16 - zadanie 9",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 16 - zadanie 10",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Jedyny przypadek spełniający warunki to podstawa 6 cm × 6 cm i wysokość 8 cm. Pole całkowite wynosi 264 cm², a objętość 288 cm³.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 16 - zadanie 11.1",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 16 - zadanie 11.2",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 16 - zadanie praktyczne 12.1",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Dla prostopadłościanu o wymiarach a, b, c: V = abc oraz Pc = 2(ab + ac + bc). Oblicz osobno dla obiektu 1 i 2.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "contextFile": "13.png"
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 16 - zadanie praktyczne 12.2",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Porównanie objętości: oblicz iloraz V2/V1 albo V1/V2, zależnie od tego, który obiekt ma większą objętość.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "contextFile": "13.png"
+  },
+  {
+    "file": "17.png",
+    "title": "Lekcja 16 - zadanie praktyczne 12.3",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Porównanie pól całkowitych: oblicz iloraz Pc2/Pc1 albo Pc1/Pc2, zależnie od tego, który obiekt ma większe pole.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ],
+    "contextFile": "13.png"
+  },
+  {
+    "file": "18.png",
+    "title": "Lekcja 16 - zadanie 13",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Przekątna sześcianu ma długość 15 m.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "19.png",
+    "title": "Lekcja 16 - zadanie 14",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Objętość graniastosłupa wynosi 54√3.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "20.png",
+    "title": "Lekcja 16 - zadanie 15",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Pole całkowite wynosi (12 + 3√3) · (64/(3√3))^(2/3).",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "21.png",
+    "title": "Lekcja 16 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 16 - praca domowa 2.1",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Pole powierzchni całkowitej wynosi 768 m².",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "22.png"
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 16 - praca domowa 2.2",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Objętość wynosi 1152 m³.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "22.png"
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 16 - praca domowa 2.3",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Najkrótsza przekątna ściany bocznej ma długość 10 m.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "22.png"
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 16 - praca domowa 2.4",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Przekątna bryły ma długość 26 m.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "22.png"
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 16 - praca domowa 3.1",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Pole powierzchni całkowitej wynosi 54 cm².",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "zd5.png"
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 16 - praca domowa 3.2",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Objętość wynosi 27 cm³.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "zd5.png"
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 16 - praca domowa 3.3",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Przekątna ściany bocznej ma długość 3√2 cm.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "zd5.png"
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 16 - praca domowa 3.4",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Przekątna sześcianu ma długość 3√3 cm.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ],
+    "contextFile": "zd5.png"
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 16 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Objętość sześcianu wynosi 27 m³.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd11.png",
+    "title": "Lekcja 16 - praca domowa 5",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Możliwe trójki krawędzi to (1,2,7), (1,3,6), (1,4,5), (2,3,5). Suma objętości: 14 + 18 + 20 + 30 = 82.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd12.png",
+    "title": "Lekcja 16 - praca domowa 6",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Bryła ma 22 wierzchołki.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd13.png",
+    "title": "Lekcja 16 - praca domowa 7",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Pole powierzchni całkowitej wynosi 50√3.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd14.png",
+    "title": "Lekcja 16 - praca domowa 8",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Pole powierzchni całkowitej wynosi 12√3, a objętość 27/4.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd15.png",
+    "title": "Lekcja 16 - praca domowa 9",
+    "difficulty": 1,
+    "topic": "graniastoslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "answer": "Krótsza przekątna ma długość 4, a dłuższa przekątna ma długość 2√5.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 16",
+      "graniastoslupy",
+      "praca domowa"
+    ]
+  }
+]
