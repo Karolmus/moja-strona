@@ -209,6 +209,23 @@ body {
     gap: 6px;
 }
 
+.source-list {
+    max-height: 238px;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.source-list.course-source-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    max-height: 224px;
+}
+
+.source-list.exam-source-list {
+    gap: 5px;
+    max-height: 220px;
+}
+
 .source-btn,
 .mode-btn,
 .category-btn,
@@ -234,10 +251,36 @@ body {
     text-align: left;
 }
 
+.course-source-list .source-btn {
+    min-height: 40px;
+    align-content: center;
+    gap: 1px;
+    padding: 6px 6px;
+    text-align: center;
+}
+
+.exam-source-list .source-btn {
+    gap: 1px;
+    padding: 8px 10px;
+}
+
+.course-source-list .source-btn span {
+    font-size: 12px;
+    line-height: 1.15;
+}
+
 .source-btn small {
     color: var(--muted);
     font-size: 11px;
     font-weight: 400;
+}
+
+.course-source-list .source-btn small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+    line-height: 1.1;
 }
 
 .mode-btn,
@@ -245,6 +288,17 @@ body {
 .section-btn {
     min-height: 40px;
     padding: 9px 11px;
+}
+
+.section-toggle {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.section-btn {
+    min-height: 34px;
+    padding: 7px 8px;
+    font-size: 12px;
 }
 
 .source-btn:hover,
@@ -485,6 +539,48 @@ body.focus-mode .task-card {
 }
 
 .tile.nav-tile.active.bad {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--danger);
+}
+
+.tile.nav-tile.nav-theme-homework,
+.tile.nav-tile.nav-theme-homework.good,
+.tile.nav-tile.nav-theme-homework.medium,
+.tile.nav-tile.nav-theme-homework.bad {
+    background: #f5dddd;
+    border-color: #d99595;
+    color: #6f3030;
+}
+
+.tile.nav-tile.nav-theme-homework.good {
+    box-shadow: inset 0 -3px 0 var(--success);
+}
+
+.tile.nav-tile.nav-theme-homework.medium {
+    box-shadow: inset 0 -3px 0 var(--warning);
+}
+
+.tile.nav-tile.nav-theme-homework.bad {
+    box-shadow: inset 0 -3px 0 var(--danger);
+}
+
+.tile.nav-tile.active.nav-theme-homework,
+.tile.nav-tile.active.nav-theme-homework.good,
+.tile.nav-tile.active.nav-theme-homework.medium,
+.tile.nav-tile.active.nav-theme-homework.bad {
+    background: linear-gradient(90deg, #d99595 0%, #e7b4b4 55%, #ffffff 100%);
+    border-color: #bf7474;
+    color: var(--text);
+}
+
+.tile.nav-tile.active.nav-theme-homework.good {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--success);
+}
+
+.tile.nav-tile.active.nav-theme-homework.medium {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--warning);
+}
+
+.tile.nav-tile.active.nav-theme-homework.bad {
     box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 -3px 0 var(--danger);
 }
 
@@ -954,6 +1050,28 @@ footer {
     .task-sidebar {
         position: static;
         padding: 12px;
+    }
+
+    .source-list {
+        max-height: 178px;
+    }
+
+    .source-list.course-source-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        max-height: 150px;
+    }
+
+    .course-source-list .source-btn {
+        min-height: 36px;
+        padding: 5px 4px;
+    }
+
+    .course-source-list .source-btn span {
+        font-size: 11px;
+    }
+
+    .course-source-list .source-btn small {
+        display: none;
     }
 
     .focus-toggle {
@@ -2076,6 +2194,8 @@ function renderSourceSelector(){
     if(!list) return;
 
     list.innerHTML = "";
+    list.classList.toggle("course-source-list", selectedCategory === "kurs");
+    list.classList.toggle("exam-source-list", selectedCategory !== "kurs");
 
     if(title){
         title.innerText = selectedCategory === "kurs" ? "Numer lekcji" : "Arkusz";
@@ -2109,13 +2229,20 @@ function renderSourceSelector(){
             t.category === selectedCategory &&
             t.level === selectedLevel
         ).length;
+        const detail = selectedCategory === "kurs"
+            ? `${count} zadań`
+            : `${source.detail} • ${count} zadań`;
+        const titleDetail = selectedCategory === "kurs" && source.detail
+            ? `${source.detail} • ${count} zadań`
+            : detail;
 
         addSourceButton(
             list,
             source.id,
             source.label,
-            `${source.detail} • ${count} zadań`,
-            selectedSource === source.id
+            detail,
+            selectedSource === source.id,
+            titleDetail
         );
     });
 }
@@ -2128,13 +2255,14 @@ function updateModeSection(){
     section.style.display = selectedCategory === "egzaminy" ? "grid" : "none";
 }
 
-function addSourceButton(list, sourceId, label, detail, active){
+function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail){
     const button = document.createElement("button");
     const name = document.createElement("span");
     const meta = document.createElement("small");
 
     button.type = "button";
     button.className = active ? "source-btn active" : "source-btn";
+    button.title = titleDetail ? `${label} • ${titleDetail}` : label;
     button.onclick = () => setSource(sourceId);
 
     name.innerText = label;
@@ -2380,7 +2508,7 @@ function getSavedResult(task){
 }
 
 function shouldShowTaskNavigator(items = pool()){
-    return selectedCategory === "egzaminy" &&
+    return ["egzaminy", "kurs"].includes(selectedCategory) &&
         selectedSource !== "all" &&
         items.length > 0;
 }
@@ -2823,6 +2951,8 @@ async function drawTask(index = currentIndex, trackHistory = true){
     } else {
         hideMessage();
     }
+
+    applyCourseAnswerLock();
 }
 
 function nextTask(){
@@ -2942,6 +3072,16 @@ function isCourseTask(task = currentTask){
     return task?.category === "kurs";
 }
 
+function getLockedCourseResult(task = currentTask){
+    if(!isCourseTask(task)) return "";
+
+    return getSavedResult(task);
+}
+
+function isCourseTaskLocked(task = currentTask){
+    return Boolean(getLockedCourseResult(task));
+}
+
 function hasTaskSolutions(task = currentTask){
     return Array.isArray(task?.solutions) && task.solutions.length > 0;
 }
@@ -2980,6 +3120,10 @@ function updateAnswerTools(){
         resultButtons.classList.add("active");
     } else {
         resultButtons.classList.remove("active");
+    }
+
+    if(isCourseTaskLocked()){
+        setResultButtonsEnabled(false);
     }
 }
 
@@ -3023,6 +3167,28 @@ function setupTrueFalseTask(mcq){
 
         mcq.appendChild(row);
     });
+}
+
+function applyCourseAnswerLock(){
+    const lockedResult = getLockedCourseResult();
+
+    if(!lockedResult) return;
+
+    currentTaskAnswered = true;
+    disableMCQ();
+    setResultButtonsEnabled(false);
+
+    if(isClosedTask(currentTask)){
+        const correctAnswers = getCorrectAnswers(currentTask);
+
+        if(isTrueFalseSequenceTask(currentTask)){
+            revealTrueFalseAnswers(correctAnswers);
+        } else {
+            revealCorrectAnswer(correctAnswers);
+        }
+    }
+
+    showMessage(`To zadanie ma już zapisany wynik: ${resultLabel(lockedResult)}. Nie można zmienić odpowiedzi.`);
 }
 
 function choose(opt, btn){

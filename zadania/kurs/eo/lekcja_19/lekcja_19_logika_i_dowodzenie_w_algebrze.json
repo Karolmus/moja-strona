@@ -277,8 +277,8 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w algebrze",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
-    "answer": "Treść zawiera błąd: para a=0 i b=0 nie spełnia równania, bo 0 + 0√5 ≠ √10. W liczbach naturalnych nie ma rozwiązania tego równania.",
+    "hint": "Porównaj część wymierną i współczynnik przy √5 po obu stronach równania.",
+    "answer": "Równanie spełniają liczby naturalne a = 2 i b = 1, ponieważ 2 + 1√5 = √5 + 2.",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",

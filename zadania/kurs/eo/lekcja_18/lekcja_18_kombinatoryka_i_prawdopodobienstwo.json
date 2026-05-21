@@ -505,8 +505,8 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobienstwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
-    "answer": "Jeśli pytanie oznacza osoby, które nie lubią ani biegania, ani pływania, odpowiedź wynosi 9. Jeśli chodzi o osoby, które nie lubią jednocześnie obu tych aktywności jako pary, odpowiedź wynosi 26.",
+    "hint": "Najpierw oblicz liczbę osób lubiących jazdę na rowerze i pływanie z zasady włączeń i wyłączeń, a potem policz część „tylko rower”.",
+    "answer": "9 osób nie lubi ani biegać, ani pływać.",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
