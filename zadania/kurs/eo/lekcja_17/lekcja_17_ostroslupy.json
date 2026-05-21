@@ -308,8 +308,8 @@
     "difficulty": 1,
     "topic": "ostroslupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
-    "answer": "Dane w treści są sprzeczne: wysokość ostrosłupa nie może być 5 razy dłuższa od krawędzi bocznej. Jeśli poprawny stosunek miał brzmieć krawędź boczna : wysokość = 5:1, wtedy V = 6√3 cm³ oraz Pc = 18√3 + 9√14 cm².",
+    "hint": "Wysokość podstawy dotyczy trójkąta równobocznego, a stosunek 1:5 dotyczy wysokości całego ostrosłupa i krawędzi bocznej.",
+    "answer": "Objętość wynosi 6√3 cm³, a pole powierzchni całkowitej wynosi 18√3 + 9√14 cm².",
     "coursePart": "zadania",
     "tags": [
       "kurs",
