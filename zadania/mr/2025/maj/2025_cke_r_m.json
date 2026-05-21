@@ -144,11 +144,11 @@
   {
     "file": "11_2025_cke_r_m.png",
     "difficulty": 3,
-    "topic": "funkcja kwadratowa z parametrem",
+    "topic": "funkcja kwadratówa z parametrem",
     "hint": "Połącz warunki: dwa różne miejsca zerowe, ten sam znak pierwiastków z wzorów Viète’a oraz nierówność dla (x1 - x2)².",
     "answer": "m ∈ (-8, -3) ∪ (1, 3/2].",
     "tags": [
-      "funkcja kwadratowa",
+      "funkcja kwadratówa",
       "parametr",
       "wzory Viète'a",
       "zadanie otwarte"
@@ -161,7 +161,7 @@
     "contextFile": "12_2025_cke_r_m.png",
     "difficulty": 4,
     "topic": "stożek",
-    "hint": "W przekroju osiowym stożka zapisz zależność między promieniem, wysokością i odległością środka podstawy od tworzącej.",
+    "hint": "W przekroju osiowym stożka zapisz zależność między promieńiem, wysokością i odległością środka podstawy od tworzącej.",
     "answer": "Należy wykazać, że V(h) = (π/3) · 25h³/(h² - 25) dla h ∈ (5, +∞).",
     "tags": [
       "stereometria",
@@ -178,7 +178,7 @@
     "difficulty": 3,
     "topic": "optymalizacja",
     "hint": "Zbadaj pochodną funkcji V(h) z podpunktu 12.1 i sprawdź, dla jakiej wysokości funkcja osiąga minimum.",
-    "answer": "Najmniejsza objętość jest dla h = 5√3 i wynosi 125√3π/2.",
+    "answer": "Najmniejszą objętość jest dla h = 5√3 i wynosi 125√3π/2.",
     "tags": [
       "optymalizacja",
       "pochodna",
