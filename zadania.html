@@ -2320,7 +2320,7 @@ function getCoursePartTasks(part){
 function homeworkTileLabel(task){
     const number = taskNumberLabel(task).replace(/^zd/i, "");
 
-    return `PD${number || "?"}`;
+    return number || "?";
 }
 
 function getCourseNavigatorItems(){
