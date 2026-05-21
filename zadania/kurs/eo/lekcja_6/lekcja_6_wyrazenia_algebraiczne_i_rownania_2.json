@@ -3,7 +3,7 @@
     "file": "1.png",
     "title": "Lekcja 6 - zadanie 1",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Rozwiń nawiasy i zredukuj wyrazy podobne.",
     "answer": "A",
@@ -11,9 +11,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -28,7 +28,7 @@
     "file": "2.png",
     "title": "Lekcja 6 - zadanie 2",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Wyłącz przed nawias największy wspólny czynnik: 3ab^2.",
     "answer": "C",
@@ -36,9 +36,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -52,7 +52,7 @@
     "file": "3.png",
     "title": "Lekcja 6 - zadanie 3",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Pomnóż równanie przez 6 i przenieś wyrazy z x na jedną stronę.",
     "answer": "B",
@@ -60,9 +60,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -76,7 +76,7 @@
     "file": "4.png",
     "title": "Lekcja 6 - zadanie 4",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Po dosadzeniu piwonii jest p + 6, a po przymrozku zostaje 2/3 tej liczby. Winogron jest 4w - 3.",
     "answer": "(2/3)(p + 6) + 4w - 3, czyli po uproszczeniu: (2/3)p + 4w + 1",
@@ -84,7 +84,7 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania"
     ]
   },
@@ -92,7 +92,7 @@
     "file": "5.png",
     "title": "Lekcja 6 - zadanie 5",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Zapisz liczbę pozostałych podręczników i zbiorów po każdym z dwóch dni.",
     "answer": "B",
@@ -100,9 +100,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -116,7 +116,7 @@
     "file": "6.png",
     "title": "Lekcja 6 - zadanie 6",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Pierwsze równanie po pomnożeniu przez 2 daje sprzeczność. Drugie ma rozwiązanie 11/5.",
     "answer": [
@@ -127,9 +127,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "prawda falsz"
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
@@ -141,7 +141,7 @@
     "file": "7.png",
     "title": "Lekcja 6 - zadanie 7",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Użyj wzoru (a + c)(a - c) = a^2 - c^2.",
     "answer": [
@@ -152,9 +152,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "prawda falsz"
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
@@ -166,7 +166,7 @@
     "file": "8.png",
     "title": "Lekcja 6 - zadanie 8",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Dla dodatnich liczb a < b < c największe jest 2b + 2c, potem a + 2b + c, potem 3b.",
     "answer": "D",
@@ -174,9 +174,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -190,7 +190,7 @@
     "file": "9.png",
     "title": "Lekcja 6 - zadanie 9",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Jeśli cyfra dziesiątek to d, to cyfra jedności to d + 4. Dopuszczalne są d = 1, 2, 3, 4, 5.",
     "answer": "15, 26, 37, 48, 59",
@@ -198,7 +198,7 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania"
     ]
   },
@@ -206,7 +206,7 @@
     "file": "10.png",
     "title": "Lekcja 6 - zadanie 10.1",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Równanie x^2 = 25 ma dwa całkowite rozwiązania: -5 i 5.",
     "answer": "C",
@@ -214,9 +214,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -230,7 +230,7 @@
     "file": "11.png",
     "title": "Lekcja 6 - zadanie 10.2",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Kwadrat liczby całkowitej nie może być ujemny.",
     "answer": "A",
@@ -238,9 +238,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -254,7 +254,7 @@
     "file": "12.png",
     "title": "Lekcja 6 - zadanie 10.3",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Równanie x^2 = 0 ma jedno rozwiązanie: 0.",
     "answer": "B",
@@ -262,9 +262,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -278,7 +278,7 @@
     "file": "13.png",
     "title": "Lekcja 6 - zadanie 11",
     "difficulty": 1,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Ułóż układ równań: 50u + 4n = 870 oraz 80u + 8n = 1440.",
     "answer": "Cena biletu normalnego była 2 razy wyższa od ceny biletu ulgowego.",
@@ -286,15 +286,15 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
+      "wyrażenia algebraiczne i równania",
       "zadania"
     ]
   },
   {
     "file": "zd1.png",
-    "title": "Lekcja 6 - praca domowa 1",
+    "title": "Lekcja 6 - Zadanie domowe 1",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Kwadrat sumy to x^2 + 2xy + y^2.",
     "answer": [
@@ -305,9 +305,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "prawda falsz"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
@@ -317,9 +317,9 @@
   },
   {
     "file": "zd2.png",
-    "title": "Lekcja 6 - praca domowa 2",
+    "title": "Lekcja 6 - Zadanie domowe 2",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Rozwiń x(1 - x), potem odejmij 2(x - 7/2).",
     "answer": "D",
@@ -327,9 +327,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "zadanie zamkniete"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -341,9 +341,9 @@
   },
   {
     "file": "zd3.png",
-    "title": "Lekcja 6 - praca domowa 3",
+    "title": "Lekcja 6 - Zadanie domowe 3",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Po rozwinięciu nawiasów dostaniesz równanie liniowe z rozwiązaniem -5/2.",
     "answer": "C",
@@ -351,9 +351,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "zadanie zamkniete"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -365,9 +365,9 @@
   },
   {
     "file": "zd4.png",
-    "title": "Lekcja 6 - praca domowa 4",
+    "title": "Lekcja 6 - Zadanie domowe 4",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Pierwsze zdanie jest prawdziwe, bo 2ab > 0. Drugie nie zawsze, np. gdy a jest dużo większe od b.",
     "answer": [
@@ -378,21 +378,21 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "prawda falsz"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
       "(a + b)^2 > a^2 + b^2",
-      "Średnia arytmetyczna z liczb a i b jest mniejsza od sumy, lecz większa od różnicy a - b"
+      "Średnia arytmetyczna z liczb a i b jest mniejszą od sumy, lecz większa od różnicy a - b"
     ]
   },
   {
     "file": "zd5.png",
-    "title": "Lekcja 6 - praca domowa 5",
+    "title": "Lekcja 6 - Zadanie domowe 5",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Zostaje połowa książek, 2/5 zeszytów oraz z - 5 gier.",
     "answer": "D",
@@ -400,9 +400,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "zadanie zamkniete"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -414,9 +414,9 @@
   },
   {
     "file": "zd6.png",
-    "title": "Lekcja 6 - praca domowa 6",
+    "title": "Lekcja 6 - Zadanie domowe 6",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Dla liczby ujemnej porządek potęg zależy od wartości bezwzględnej liczby a.",
     "answer": "D",
@@ -424,9 +424,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "zadanie zamkniete"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -438,9 +438,9 @@
   },
   {
     "file": "zd7.png",
-    "title": "Lekcja 6 - praca domowa 7",
+    "title": "Lekcja 6 - Zadanie domowe 7",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Najpierw jest 3V/4. Po zużyciu 1/3 zostaje V/2, a po zużyciu 40% z tego zostaje 60%, czyli 3V/10.",
     "answer": "3V/10",
@@ -448,15 +448,15 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd8.png",
-    "title": "Lekcja 6 - praca domowa 8",
+    "title": "Lekcja 6 - Zadanie domowe 8",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Najpierw powstaje 3x - 3. Powiększenie o 40% oznacza pomnożenie przez 1,4.",
     "answer": "C",
@@ -464,9 +464,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "zadanie zamkniete"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -478,9 +478,9 @@
   },
   {
     "file": "zd9.png",
-    "title": "Lekcja 6 - praca domowa 9",
+    "title": "Lekcja 6 - Zadanie domowe 9",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "W obu składnikach można wyłączyć wspólny czynnik a^3b^3.",
     "answer": "A1",
@@ -488,9 +488,9 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa",
-      "zadanie zamkniete"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -504,9 +504,9 @@
   },
   {
     "file": "zd10.png",
-    "title": "Lekcja 6 - praca domowa 10",
+    "title": "Lekcja 6 - Zadanie domowe 10",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Po uproszczeniu obie strony równania są identyczne.",
     "answer": "Równanie ma nieskończenie wiele rozwiązań.",
@@ -514,15 +514,15 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd11.png",
-    "title": "Lekcja 6 - praca domowa 11",
+    "title": "Lekcja 6 - Zadanie domowe 11",
     "difficulty": 2,
-    "topic": "wyrazenia algebraiczne i rownania",
+    "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Pomnóż równanie przez 18, aby pozbyć się mianowników.",
     "answer": "x = 75/11 = 6,(81), więc rozwiązaniem jest ułamek okresowy.",
@@ -530,8 +530,8 @@
     "tags": [
       "kurs",
       "lekcja 6",
-      "wyrazenia algebraiczne i rownania",
-      "praca domowa"
+      "wyrażenia algebraiczne i równania",
+      "Zadanie domowe"
     ]
   }
 ]

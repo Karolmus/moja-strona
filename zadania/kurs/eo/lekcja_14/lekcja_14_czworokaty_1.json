@@ -3,7 +3,7 @@
     "file": "1.png",
     "title": "Lekcja 14 - zadanie 1",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "C",
@@ -11,7 +11,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ],
     "type": "closed",
@@ -26,7 +26,7 @@
     "file": "2.png",
     "title": "Lekcja 14 - zadanie 2",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": [
@@ -37,7 +37,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ],
     "type": "true_false"
@@ -46,7 +46,7 @@
     "file": "4.png",
     "title": "Lekcja 14 - zadanie 3.1",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Obwód wynosi 6x.",
@@ -54,7 +54,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ],
     "contextFile": "3.png"
@@ -63,7 +63,7 @@
     "file": "5.png",
     "title": "Lekcja 14 - zadanie 3.2",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Pole wynosi 2x².",
@@ -71,7 +71,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ],
     "contextFile": "3.png"
@@ -80,7 +80,7 @@
     "file": "6.png",
     "title": "Lekcja 14 - zadanie 3.3",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Przekątna ma długość x√5.",
@@ -88,7 +88,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ],
     "contextFile": "3.png"
@@ -97,7 +97,7 @@
     "file": "7.png",
     "title": "Lekcja 14 - zadanie 4",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Obwód prostokąta wynosi 18 + 18√3 m.",
@@ -105,7 +105,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ]
   },
@@ -113,7 +113,7 @@
     "file": "8.png",
     "title": "Lekcja 14 - zadanie 5",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Skala podobieństwa mniejszego kwadratu do większego wynosi 5:7; odwrotnie 7:5.",
@@ -121,7 +121,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ]
   },
@@ -129,7 +129,7 @@
     "file": "9.png",
     "title": "Lekcja 14 - zadanie 6",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": [
@@ -140,7 +140,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ],
     "type": "true_false"
@@ -149,7 +149,7 @@
     "file": "10.png",
     "title": "Lekcja 14 - zadanie 7",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Suma pól trójkątów T1 i T2 stanowi 13% pola prostokąta.",
@@ -157,7 +157,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ]
   },
@@ -165,7 +165,7 @@
     "file": "11.png",
     "title": "Lekcja 14 - zadanie 8",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Pole rombu wynosi 32√3 dm², a wysokość 4√3 dm.",
@@ -173,7 +173,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ]
   },
@@ -181,7 +181,7 @@
     "file": "12.png",
     "title": "Lekcja 14 - zadanie 9",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Wysokości mają długości 14 i 8.",
@@ -189,7 +189,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ]
   },
@@ -197,7 +197,7 @@
     "file": "13.png",
     "title": "Lekcja 14 - zadanie 10",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Druga przekątna powinna mieć długość 10√3/3 dm.",
@@ -205,7 +205,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ]
   },
@@ -213,7 +213,7 @@
     "file": "14.png",
     "title": "Lekcja 14 - zadanie 11",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Suma kątów wynosi 360°, bo po poprowadzeniu przekątnej czworokąt można podzielić na dwa trójkąty, a każdy z nich ma sumę kątów 180°.",
@@ -221,7 +221,7 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ]
   },
@@ -229,7 +229,7 @@
     "file": "15.png",
     "title": "Lekcja 14 - zadanie 12",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": [
@@ -242,16 +242,16 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
+      "czworokąty",
       "zadania"
     ],
     "type": "true_false"
   },
   {
     "file": "zd1.png",
-    "title": "Lekcja 14 - praca domowa 1",
+    "title": "Lekcja 14 - Zadanie domowe 1",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "D",
@@ -259,8 +259,8 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
-      "praca domowa"
+      "czworokąty",
+      "Zadanie domowe"
     ],
     "type": "closed",
     "options": [
@@ -272,9 +272,9 @@
   },
   {
     "file": "zd2.png",
-    "title": "Lekcja 14 - praca domowa 2",
+    "title": "Lekcja 14 - Zadanie domowe 2",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": [
@@ -285,16 +285,16 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
-      "praca domowa"
+      "czworokąty",
+      "Zadanie domowe"
     ],
     "type": "true_false"
   },
   {
     "file": "zd3.png",
-    "title": "Lekcja 14 - praca domowa 3",
+    "title": "Lekcja 14 - Zadanie domowe 3",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "C",
@@ -302,8 +302,8 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
-      "praca domowa"
+      "czworokąty",
+      "Zadanie domowe"
     ],
     "type": "closed",
     "options": [
@@ -315,9 +315,9 @@
   },
   {
     "file": "zd4.png",
-    "title": "Lekcja 14 - praca domowa 4",
+    "title": "Lekcja 14 - Zadanie domowe 4",
     "difficulty": 1,
-    "topic": "czworokaty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
     "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
     "answer": "Obwód całej figury wynosi 120 dm, a pole powierzchni całej figury wynosi 288 dm².",
@@ -325,8 +325,8 @@
     "tags": [
       "kurs",
       "lekcja 14",
-      "czworokaty",
-      "praca domowa"
+      "czworokąty",
+      "Zadanie domowe"
     ]
   }
 ]

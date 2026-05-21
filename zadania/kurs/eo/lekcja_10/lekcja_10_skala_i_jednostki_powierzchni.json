@@ -13,7 +13,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -37,7 +37,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -61,7 +61,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -85,7 +85,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -109,7 +109,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -133,7 +133,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -173,7 +173,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -197,7 +197,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -221,7 +221,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -245,7 +245,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -285,7 +285,7 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -329,7 +329,7 @@
   },
   {
     "file": "zd1.png",
-    "title": "Lekcja 10 - praca domowa 1",
+    "title": "Lekcja 10 - Zadanie domowe 1",
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
@@ -340,8 +340,8 @@
       "kurs",
       "lekcja 10",
       "skala i jednostki powierzchni",
-      "praca domowa",
-      "zadanie zamkniete"
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -353,7 +353,7 @@
   },
   {
     "file": "zd2.png",
-    "title": "Lekcja 10 - praca domowa 2.1",
+    "title": "Lekcja 10 - Zadanie domowe 2.1",
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
@@ -364,8 +364,8 @@
       "kurs",
       "lekcja 10",
       "skala i jednostki powierzchni",
-      "praca domowa",
-      "zadanie zamkniete"
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -377,7 +377,7 @@
   },
   {
     "file": "zd3.png",
-    "title": "Lekcja 10 - praca domowa 2.2",
+    "title": "Lekcja 10 - Zadanie domowe 2.2",
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
@@ -388,12 +388,12 @@
       "kurs",
       "lekcja 10",
       "skala i jednostki powierzchni",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd4.png",
-    "title": "Lekcja 10 - praca domowa 3",
+    "title": "Lekcja 10 - Zadanie domowe 3",
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
@@ -404,8 +404,8 @@
       "kurs",
       "lekcja 10",
       "skala i jednostki powierzchni",
-      "praca domowa",
-      "zadanie zamkniete"
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -417,7 +417,7 @@
   },
   {
     "file": "zd5.png",
-    "title": "Lekcja 10 - praca domowa 4",
+    "title": "Lekcja 10 - Zadanie domowe 4",
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
@@ -428,8 +428,8 @@
       "kurs",
       "lekcja 10",
       "skala i jednostki powierzchni",
-      "praca domowa",
-      "zadanie zamkniete"
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [

@@ -3,7 +3,7 @@
     "file": "1.png",
     "title": "Lekcja 7 - zadanie 1.1",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "40 milionów kroków po 1 metr to 40 milionów metrów, czyli 40 000 km.",
     "answer": "C",
@@ -11,9 +11,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -27,7 +27,7 @@
     "file": "2.png",
     "title": "Lekcja 7 - zadanie 1.2",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "5 · 10^-2 km to 50 m. Podziel długość przewodu przez odległość między atomami: 50 : 10^-11.",
     "answer": "5 · 10^12 atomów",
@@ -35,7 +35,7 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania"
     ]
   },
@@ -43,7 +43,7 @@
     "file": "3.png",
     "title": "Lekcja 7 - zadanie 2",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Metry zamieniamy na milimetry, mnożąc przez 1000.",
     "answer": "B",
@@ -51,9 +51,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -67,7 +67,7 @@
     "file": "4.png",
     "title": "Lekcja 7 - zadanie 3",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Pomnóż 32 przez 2,54 cm, a potem zamień centymetry na metry.",
     "answer": "0,8128 m",
@@ -75,7 +75,7 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania"
     ]
   },
@@ -83,7 +83,7 @@
     "file": "5.png",
     "title": "Lekcja 7 - zadanie 4",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "21 dni to 504 godziny, a 12 minut to 0,2 godziny.",
     "answer": "510,2 godziny",
@@ -91,7 +91,7 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania"
     ]
   },
@@ -99,7 +99,7 @@
     "file": "6.png",
     "title": "Lekcja 7 - zadanie 5",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Cztery dni ze średnią 160 km dają łącznie 640 km.",
     "answer": "150 km",
@@ -107,7 +107,7 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania"
     ]
   },
@@ -115,7 +115,7 @@
     "file": "7.png",
     "title": "Lekcja 7 - zadanie 6",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Sprawdzaj osobno lata przestępne, zamianę minut na godziny oraz liczbę dni między datami.",
     "answer": [
@@ -135,9 +135,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania",
-      "prawda falsz"
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
@@ -158,7 +158,7 @@
     "file": "8.png",
     "title": "Lekcja 7 - zadanie 7",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Policz dni od 6 stycznia do 27 marca 2032 roku. Rok 2032 jest przestępny.",
     "answer": "B",
@@ -166,9 +166,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -182,7 +182,7 @@
     "file": "9.png",
     "title": "Lekcja 7 - zadanie 8",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Zamień wszystkie długości na metry.",
     "answer": "D",
@@ -190,9 +190,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -206,7 +206,7 @@
     "file": "10.png",
     "title": "Lekcja 7 - zadanie 9",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Jeśli 24/9 km to 1/3 całego dystansu, to cały dystans jest trzy razy większy.",
     "answer": "8000 m",
@@ -214,7 +214,7 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania"
     ]
   },
@@ -222,7 +222,7 @@
     "file": "11.png",
     "title": "Lekcja 7 - zadanie 10",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Przypomnij sobie znaczenie podstawowych przedrostków jednostek.",
     "answer": "Kilo = 1000, centy = 0,01, decy = 0,1, mili = 0,001, deka = 10, hekto = 100",
@@ -230,7 +230,7 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania"
     ]
   },
@@ -238,7 +238,7 @@
     "file": "12.png",
     "title": "Lekcja 7 - zadanie 11",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Od 1991 do 2025 jest 35 lat, z czego 9 było przestępnych.",
     "answer": "A",
@@ -246,9 +246,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -262,7 +262,7 @@
     "file": "13.png",
     "title": "Lekcja 7 - zadanie 12",
     "difficulty": 1,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Rok 2026 nie jest przestępny, więc następny 1 stycznia wypada dzień tygodnia później.",
     "answer": "D",
@@ -270,9 +270,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
+      "czas i odległość",
       "zadania",
-      "zadanie zamkniete"
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -284,9 +284,9 @@
   },
   {
     "file": "zd1.png",
-    "title": "Lekcja 7 - praca domowa 1",
+    "title": "Lekcja 7 - Zadanie domowe 1",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Pamiętaj, że rok 2000 był przestępny.",
     "answer": [
@@ -297,9 +297,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa",
-      "prawda falsz"
+      "czas i odległość",
+      "Zadanie domowe",
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
@@ -309,9 +309,9 @@
   },
   {
     "file": "zd2.png",
-    "title": "Lekcja 7 - praca domowa 2",
+    "title": "Lekcja 7 - Zadanie domowe 2",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "5,6 godziny zamień na sekundy i dodaj kwadrans, czyli 900 sekund.",
     "answer": "B",
@@ -319,9 +319,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa",
-      "zadanie zamkniete"
+      "czas i odległość",
+      "Zadanie domowe",
+      "zadanie zamknięte"
     ],
     "type": "closed",
     "options": [
@@ -333,9 +333,9 @@
   },
   {
     "file": "zd3.png",
-    "title": "Lekcja 7 - praca domowa 3",
+    "title": "Lekcja 7 - Zadanie domowe 3",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Pomnóż 2,71 przez 3600.",
     "answer": "9756 sekund; wynik jest liczbą całkowitą.",
@@ -343,15 +343,15 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa"
+      "czas i odległość",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd4.png",
-    "title": "Lekcja 7 - praca domowa 4",
+    "title": "Lekcja 7 - Zadanie domowe 4",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "366 dni to 52 tygodnie i 2 dni. Od 21 maja do 13 września mija 115 dni, czyli 3 dni ponad pełne tygodnie.",
     "answer": [
@@ -362,9 +362,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa",
-      "prawda falsz"
+      "czas i odległość",
+      "Zadanie domowe",
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
@@ -374,9 +374,9 @@
   },
   {
     "file": "zd5.png",
-    "title": "Lekcja 7 - praca domowa 5",
+    "title": "Lekcja 7 - Zadanie domowe 5",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Rok nieprzestępny ma 365 dni, a po przejściu z 5.10 na 14.10 pominięto 8 dni.",
     "answer": "51 tygodni",
@@ -384,15 +384,15 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa"
+      "czas i odległość",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd6.png",
-    "title": "Lekcja 7 - praca domowa 6",
+    "title": "Lekcja 7 - Zadanie domowe 6",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Policz różnicę między datami 1.09.1939 i 9.05.1945.",
     "answer": "2077 dni",
@@ -400,15 +400,15 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa"
+      "czas i odległość",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd7.png",
-    "title": "Lekcja 7 - praca domowa 7",
+    "title": "Lekcja 7 - Zadanie domowe 7",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "Zamień decymetry i milimetry na metry albo kilometry.",
     "answer": [
@@ -419,9 +419,9 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa",
-      "prawda falsz"
+      "czas i odległość",
+      "Zadanie domowe",
+      "prawda/fałsz"
     ],
     "type": "true_false",
     "statements": [
@@ -431,9 +431,9 @@
   },
   {
     "file": "zd8.png",
-    "title": "Lekcja 7 - praca domowa 8",
+    "title": "Lekcja 7 - Zadanie domowe 8",
     "difficulty": 2,
-    "topic": "czas i odleglosc",
+    "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
     "hint": "800 km to 800 000 m. Jedna cegła ma 0,2 m szerokości, więc w jednym rzędzie mieści się 4 000 000 cegieł. Pomnóż przez 70 rzędów.",
     "answer": "280 000 000 cegieł",
@@ -441,8 +441,8 @@
     "tags": [
       "kurs",
       "lekcja 7",
-      "czas i odleglosc",
-      "praca domowa"
+      "czas i odległość",
+      "Zadanie domowe"
     ]
   }
 ]

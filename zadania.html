@@ -76,6 +76,26 @@ body {
     gap: 8px;
 }
 
+.task-brand-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 100%);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    text-decoration: none;
+}
+
+.task-brand-logo {
+    width: 92px;
+    max-width: 58%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.92;
+}
+
 .assigned-course-card {
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -1007,6 +1027,58 @@ button {
     grid-template-columns: 1fr;
 }
 
+.mcq.input-task {
+    grid-template-columns: 1fr;
+}
+
+.input-answer-form {
+    display: grid;
+    gap: 10px;
+}
+
+.input-answer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.input-answer-field {
+    display: grid;
+    gap: 5px;
+}
+
+.input-answer-field label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.input-answer-field input {
+    width: 100%;
+    min-height: 46px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 11px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+}
+
+.input-answer-field input.correct {
+    background: #dff3e4;
+    border-color: var(--success);
+}
+
+.input-answer-field input.wrong {
+    background: #fde5e2;
+    border-color: var(--danger);
+}
+
+.input-check-btn {
+    justify-self: start;
+}
+
 .tf-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr) repeat(2, minmax(80px, 120px));
@@ -1208,6 +1280,11 @@ footer {
         gap: 6px;
     }
 
+    .input-answer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
     .tf-label {
         min-height: 42px;
         padding: 8px 10px;
@@ -1278,6 +1355,10 @@ footer {
 
     <div class="tasks-layout">
         <aside class="task-sidebar" aria-label="Ustawienia zadań">
+            <a class="task-brand-card" href="index.html" aria-label="Delta Sigma">
+                <img class="task-brand-logo" src="img/logo3.png" alt="Delta Sigma">
+            </a>
+
             <div class="side-section">
                 <div class="side-title">Poziom</div>
                 <div class="level-selector sidebar-levels" id="guestLevelSection">
@@ -1902,6 +1983,9 @@ function getSourceMeta(sourceConfig){
 function normalizeTag(tag){
     return String(tag || "")
         .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[łŁ]/g, "l")
         .replace(/\s+/g, " ")
         .toLocaleLowerCase("pl-PL");
 }
@@ -2712,7 +2796,10 @@ function parseFile(file){
 }
 
 function taskLabel(task){
-    return task.title || parseFile(task.file);
+    return (task.title || parseFile(task.file))
+        .replace(/praca domowa/gi, match => match[0] === match[0].toUpperCase()
+            ? "Zadanie domowe"
+            : "zadanie domowe");
 }
 
 function stars(n){
@@ -2755,11 +2842,20 @@ function difficultyStarsMarkup(task){
 }
 
 function isClosedTask(task){
+    if(isInputTask(task)) return false;
     if(["closed", "multi", "true_false"].includes(task.type)) return true;
     if(task.type === "closed" && Array.isArray(task.options)) return true;
     if(Array.isArray(task.answer) && task.answer.length) return true;
 
     return ["A", "B", "C", "D", "P", "F", "PP", "PF", "FP", "FF"].includes(task.answer);
+}
+
+function isInputTask(task){
+    return ["input", "fill", "short_answer", "numeric"].includes(task?.type);
+}
+
+function requiresSubmittedAnswer(task){
+    return isClosedTask(task) || isInputTask(task);
 }
 
 function isTrueFalseSequenceTask(task){
@@ -2849,6 +2945,55 @@ function getCorrectAnswers(task){
     return [String(task.answer)];
 }
 
+function getInputFields(task){
+    if(Array.isArray(task.inputs) && task.inputs.length){
+        return task.inputs.map((input, index) => ({
+            label: input.label || `Odpowiedź ${index + 1}`,
+            answers: Array.isArray(input.answers)
+                ? input.answers
+                : [input.answer ?? ""]
+        }));
+    }
+
+    const answers = Array.isArray(task.acceptedAnswers)
+        ? task.acceptedAnswers
+        : [task.answer ?? ""];
+
+    return [{ label: "Odpowiedź", answers }];
+}
+
+function normalizeTypedAnswer(value){
+    return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/,/g, ".")
+        .replace(/%/g, "");
+}
+
+function isTypedAnswerCorrect(value, answers){
+    const normalized = normalizeTypedAnswer(value);
+
+    return answers.some(answer => {
+        const expected = normalizeTypedAnswer(answer);
+
+        if(expected === normalized) return true;
+
+        const expectedNumber = Number(expected);
+        const typedNumber = Number(normalized);
+
+        return Number.isFinite(expectedNumber)
+            && Number.isFinite(typedNumber)
+            && Math.abs(expectedNumber - typedNumber) < 0.0000001;
+    });
+}
+
+function formatInputAnswer(task){
+    return getInputFields(task)
+        .map(field => `${field.label} = ${field.answers[0]}`)
+        .join(", ");
+}
+
 function wait(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -2878,7 +3023,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #solutionSwitcher button"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #solutionSwitcher button"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -3162,6 +3307,9 @@ function setupMCQ(){
 
             mcq.appendChild(b);
         });
+    } else if(isInputTask(currentTask)){
+        mcq.classList.add("active", "input-task");
+        setupInputTask(mcq);
     } else {
         mcq.classList.remove("active");
     }
@@ -3200,8 +3348,9 @@ function updateAnswerTools(){
 
     const isCourse = isCourseTask();
     const isClosed = isClosedTask(currentTask);
+    const isSubmitted = requiresSubmittedAnswer(currentTask);
 
-    answerButton.hidden = isCourse && isClosed;
+    answerButton.hidden = isCourse && isSubmitted;
 
     if(solutionButton){
         solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
@@ -3268,6 +3417,50 @@ function setupTrueFalseTask(mcq){
     });
 }
 
+function setupInputTask(mcq){
+    const form = document.createElement("form");
+    const grid = document.createElement("div");
+
+    form.className = "input-answer-form";
+    grid.className = "input-answer-grid";
+
+    getInputFields(currentTask).forEach((field, index) => {
+        const wrapper = document.createElement("div");
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        const inputId = `input-answer-${index}`;
+
+        wrapper.className = "input-answer-field";
+        label.htmlFor = inputId;
+        label.innerText = field.label;
+        input.id = inputId;
+        input.type = "text";
+        input.inputMode = "decimal";
+        input.autocomplete = "off";
+        input.dataset.index = String(index);
+        input.placeholder = "Wpisz odpowiedź";
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        grid.appendChild(wrapper);
+    });
+
+    const button = document.createElement("button");
+
+    button.type = "submit";
+    button.className = "action-btn answer input-check-btn";
+    button.innerText = "Sprawdź";
+
+    form.appendChild(grid);
+    form.appendChild(button);
+    form.onsubmit = event => {
+        event.preventDefault();
+        checkInputAnswer(form);
+    };
+
+    mcq.appendChild(form);
+}
+
 function applyCourseAnswerLock(){
     const lockedResult = getLockedCourseResult();
 
@@ -3287,7 +3480,11 @@ function applyCourseAnswerLock(){
         }
     }
 
-    showMessage(`To zadanie ma już zapisany wynik: ${resultLabel(lockedResult)}. Nie można zmienić odpowiedzi.`);
+    if(isInputTask(currentTask)){
+        revealInputAnswers();
+    }
+
+    showMessage("W trybie kursu nie można poprawiać odpowiedzi po jej zapisaniu.");
 }
 
 function choose(opt, btn){
@@ -3411,7 +3608,7 @@ function chooseTrueFalse(index, opt, btn){
 }
 
 function disableMCQ(){
-    document.querySelectorAll("#mcq button")
+    document.querySelectorAll("#mcq button, #mcq input")
         .forEach(b => {
             b.disabled = true;
         });
@@ -3437,6 +3634,68 @@ function revealTrueFalseAnswers(correctAnswers){
             if(isCorrect) button.classList.add("correct");
             if(wasSelected && !isCorrect) button.classList.add("wrong");
         });
+}
+
+function revealInputAnswers(){
+    const fields = getInputFields(currentTask);
+
+    document.querySelectorAll("#mcq input")
+        .forEach(input => {
+            const index = Number(input.dataset.index);
+            const expected = fields[index]?.answers?.[0] || "";
+
+            input.value = expected;
+            input.classList.add("correct");
+            input.disabled = true;
+        });
+
+    document.querySelectorAll("#mcq button")
+        .forEach(button => {
+            button.disabled = true;
+        });
+}
+
+function checkInputAnswer(form){
+    if(currentTaskAnswered) return;
+
+    const fields = getInputFields(currentTask);
+    const inputs = [...form.querySelectorAll("input")];
+    let isCorrect = true;
+
+    inputs.forEach(input => {
+        const index = Number(input.dataset.index);
+        const field = fields[index];
+        const fieldCorrect = field && isTypedAnswerCorrect(input.value, field.answers);
+
+        input.classList.toggle("correct", Boolean(fieldCorrect));
+        input.classList.toggle("wrong", !fieldCorrect);
+
+        if(!fieldCorrect) isCorrect = false;
+    });
+
+    disableMCQ();
+
+    if(isCorrect){
+        addProgress(hintUsed || answerShown ? "medium" : "good");
+
+        setTimeout(() => {
+            nextTask();
+        }, 850);
+
+        return;
+    }
+
+    if(isCourseTask()){
+        showCorrection(getInputFields(currentTask).map(field => field.answers[0]));
+        addProgress("bad");
+        return;
+    }
+
+    addProgress("bad");
+
+    setTimeout(() => {
+        nextTask();
+    }, 1400);
 }
 
 function addProgress(type){
@@ -3549,14 +3808,18 @@ function showHint(){
 function showAnswer(){
     if(!currentTask) return;
 
-    if(isCourseTask() && isClosedTask(currentTask)){
+    if(isCourseTask() && requiresSubmittedAnswer(currentTask)){
         showMessage("Najpierw podaj odpowiedź. Jeśli będzie błędna, pokażę poprawną odpowiedź ze wskazówką.");
         return;
     }
 
     answerShown = true;
 
-    showMessage(formatAnswer(currentTask.answer, currentTask) || "Brak odpowiedzi.");
+    showMessage(
+        isInputTask(currentTask)
+            ? formatInputAnswer(currentTask)
+            : formatAnswer(currentTask.answer, currentTask) || "Brak odpowiedzi."
+    );
 
     if(!isClosedTask(currentTask)){
         document.getElementById("resultButtons").classList.add("active");
@@ -3679,9 +3942,16 @@ async function markForReview(){
 function showCorrection(correctAnswers = null){
     answerShown = true;
 
-    const correct = correctAnswers
-        ? correctAnswers.map(answer => formatOption(answer, currentTask)).join(", ")
-        : formatAnswer(currentTask.answer, currentTask);
+    let correct;
+
+    if(isInputTask(currentTask)){
+        correct = formatInputAnswer(currentTask);
+    } else if(correctAnswers){
+        correct = correctAnswers.map(answer => formatOption(answer, currentTask)).join(", ");
+    } else {
+        correct = formatAnswer(currentTask.answer, currentTask);
+    }
+
     const hint = currentTask.hint || "Wróć do treści zadania i sprawdź, który warunek nie został spełniony.";
 
     showMessage(`Poprawna odpowiedź: ${correct}\n\nWskazówka: ${hint}`);

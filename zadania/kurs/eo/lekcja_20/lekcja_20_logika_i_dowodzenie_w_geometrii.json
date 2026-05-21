@@ -103,7 +103,7 @@
   },
   {
     "file": "zd1.png",
-    "title": "Lekcja 20 - praca domowa 1",
+    "title": "Lekcja 20 - Zadanie domowe 1",
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
@@ -115,12 +115,12 @@
       "lekcja 20",
       "dowodzenie",
       "geometria",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd2.png",
-    "title": "Lekcja 20 - praca domowa 2",
+    "title": "Lekcja 20 - Zadanie domowe 2",
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
@@ -132,12 +132,12 @@
       "lekcja 20",
       "dowodzenie",
       "geometria",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd3.png",
-    "title": "Lekcja 20 - praca domowa 3",
+    "title": "Lekcja 20 - Zadanie domowe 3",
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
@@ -149,12 +149,12 @@
       "lekcja 20",
       "dowodzenie",
       "geometria",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd4.png",
-    "title": "Lekcja 20 - praca domowa 4",
+    "title": "Lekcja 20 - Zadanie domowe 4",
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
@@ -166,12 +166,12 @@
       "lekcja 20",
       "dowodzenie",
       "geometria",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd5.png",
-    "title": "Lekcja 20 - praca domowa 5",
+    "title": "Lekcja 20 - Zadanie domowe 5",
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
@@ -183,12 +183,12 @@
       "lekcja 20",
       "dowodzenie",
       "geometria",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd6.png",
-    "title": "Lekcja 20 - praca domowa 6",
+    "title": "Lekcja 20 - Zadanie domowe 6",
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
@@ -200,12 +200,12 @@
       "lekcja 20",
       "dowodzenie",
       "geometria",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd7.png",
-    "title": "Lekcja 20 - praca domowa 7",
+    "title": "Lekcja 20 - Zadanie domowe 7",
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
@@ -217,7 +217,7 @@
       "lekcja 20",
       "dowodzenie",
       "geometria",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   }
 ]

@@ -194,12 +194,12 @@
   {
     "file": "10_2025_cke_p_m.png",
     "difficulty": 2,
-    "topic": "nierówność kwadratowa",
+    "topic": "nierówność kwadratówa",
     "level": "matura_podstawowa",
     "hint": "Przenieś wszystko na jedną stronę, oblicz miejsca zerowe trójmianu i odczytaj, gdzie parabola jest poniżej osi.",
     "answer": "x ∈ (1/3, 3/2)",
     "tags": [
-      "nierówność kwadratowa",
+      "nierówność kwadratówa",
       "zadanie otwarte"
     ],
     "completionPercent": 68,
@@ -228,13 +228,13 @@
   {
     "file": "12.1_2025_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratowa",
+    "topic": "funkcja kwadratówa",
     "level": "matura_podstawowa",
     "hint": "Użyj postaci kanonicznej z wierzchołkiem (3, 6), czyli f(x)=a(x−3)²+6, a potem podstaw punkt (0, 3).",
     "answer": "f(x) = −1/3 · (x − 3)² + 6",
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja kwadratowa",
+      "funkcja kwadratówa",
       "zadanie otwarte"
     ],
     "completionPercent": 62,
@@ -253,7 +253,7 @@
   {
     "file": "12.2_2025_cke_p_m.png",
     "difficulty": 1,
-    "topic": "funkcja kwadratowa",
+    "topic": "funkcja kwadratówa",
     "level": "matura_podstawowa",
     "hint": "Oś symetrii paraboli przechodzi przez jej wierzchołek.",
     "answer": "A",
@@ -266,7 +266,7 @@
     ],
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja kwadratowa",
+      "funkcja kwadratówa",
       "zadanie zamknięte"
     ],
     "completionPercent": 84
@@ -274,13 +274,13 @@
   {
     "file": "12.3_2025_cke_p_m.png",
     "difficulty": 3,
-    "topic": "funkcja kwadratowa",
+    "topic": "funkcja kwadratówa",
     "level": "matura_podstawowa",
     "hint": "Przesunięcie wykresu o 3 jednostki w dół sprawia, że miejsca zerowe funkcji g odpowiadają punktom wykresu f o wartości 3.",
     "answer": "6",
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja kwadratowa",
+      "funkcja kwadratówa",
       "zadanie otwarte"
     ],
     "completionPercent": 47

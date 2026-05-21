@@ -270,12 +270,12 @@
   {
     "file": "14.1_2024_cke_p_m.png",
     "difficulty": 3,
-    "topic": "funkcja kwadratowa",
+    "topic": "funkcja kwadratówa",
     "hint": "Odczytaj z wykresu, dla jakich argumentów parabola leży na lub nad osią x.",
     "answer": "[−2, 4]",
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja kwadratowa",
+      "funkcja kwadratówa",
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
@@ -284,8 +284,8 @@
   {
     "file": "14.2_2024_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratowa",
-    "hint": "Postać kanoniczna funkcji kwadratowej wykorzystuje współrzędne wierzchołka paraboli.",
+    "topic": "funkcja kwadratówa",
+    "hint": "Postać kanoniczna funkcji kwadratówej wykorzystuje współrzędne wierzchołka paraboli.",
     "answer": "B",
     "type": "closed",
     "options": [
@@ -296,7 +296,7 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja kwadratowa",
+      "funkcja kwadratówa",
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
@@ -305,7 +305,7 @@
   {
     "file": "14.3_2024_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratowa",
+    "topic": "funkcja kwadratówa",
     "hint": "Miejsca zerowe po przesunięciu wykresu odczytaj z nowego położenia paraboli względem osi x.",
     "answer": "A",
     "type": "closed",
@@ -317,7 +317,7 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja kwadratowa",
+      "funkcja kwadratówa",
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",

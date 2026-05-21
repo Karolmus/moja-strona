@@ -3,7 +3,7 @@
     "file": "1.png",
     "title": "Lekcja 2 - zadanie 1",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -12,20 +12,20 @@
       "C",
       "D"
     ],
-    "hint": "Porownaj kazda liczbe z 4, najlepiej zamieniajac 4 na ulamek o tym samym mianowniku.",
+    "hint": "Porównaj każdą liczbę z 4, najlepiej zamieniając 4 na ułamek o tym samym mianowniku.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach"
+      "działania na liczbach"
     ]
   },
   {
     "file": "2.png",
     "title": "Lekcja 2 - zadanie 2",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -34,20 +34,20 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw policz nawias, potem pomnoz przez 1/3 i odejmij od 2/3.",
+    "hint": "Najpierw policz nawias, potem pomnóż przez 1/3 i odejmij od 2/3.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach"
+      "działania na liczbach"
     ]
   },
   {
     "file": "3.png",
     "title": "Lekcja 2 - zadanie 3",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -56,13 +56,13 @@
       "C",
       "D"
     ],
-    "hint": "Odleglosc od -11 do -32 wynosi 21. Szukana liczba lezy o 21 jednostek po drugiej stronie liczby -11.",
+    "hint": "Odległość od -11 do -32 wynosi 21. Szukana liczba leży o 21 jednostek po drugiej stronie liczby -11.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "os liczbowa"
     ]
   },
@@ -70,14 +70,14 @@
     "file": "4.png",
     "title": "Lekcja 2 - zadanie 4",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "true_false",
     "statements": [
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Wypisz liczby trzycyfrowe, ktore nie zaczynaja sie od zera, a potem porownaj najwieksza i najmniejsza.",
+    "hint": "Wypisz liczby trzycyfrowe, które nie zaczynaja sie od zera, a potem porównaj największa i najmniejszą.",
     "answer": [
       "F",
       "P"
@@ -86,22 +86,22 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "prawda falsz"
+      "działania na liczbach",
+      "prawda/fałsz"
     ]
   },
   {
     "file": "5.png",
     "title": "Lekcja 2 - zadanie 6",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "true_false",
     "statements": [
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Oblicz oba wyrazenia z pierwszego zdania, a w drugim wykonaj dwa mnozenia i odejmowanie.",
+    "hint": "Oblicz oba wyrażenia z pierwszego zdania, a w drugim wykonaj dwa mnożenia i odejmowanie.",
     "answer": [
       "P",
       "P"
@@ -110,15 +110,15 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "prawda falsz"
+      "działania na liczbach",
+      "prawda/fałsz"
     ]
   },
   {
     "file": "6.png",
     "title": "Lekcja 2 - zadanie 5",
     "difficulty": 2,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "hint": "Po wypiciu zostaje 1/3 pelnej szklanki. Odejmij to od 9/10.",
     "answer": "17/30",
@@ -126,15 +126,15 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "ulamki"
+      "działania na liczbach",
+      "ułamki"
     ]
   },
   {
     "file": "7.png",
     "title": "Lekcja 2 - zadanie 7",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -143,21 +143,21 @@
       "C",
       "D"
     ],
-    "hint": "Sprawdz cechy podzielnosci liczby 2340 przez 3, 5, 6 i 7.",
+    "hint": "Sprawdź cechy podzielności liczby 2340 przez 3, 5, 6 i 7.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "podzielnosc"
+      "działania na liczbach",
+      "podzielność"
     ]
   },
   {
     "file": "8.png",
     "title": "Lekcja 2 - zadanie 8",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -172,15 +172,15 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "srednia"
+      "działania na liczbach",
+      "średnia"
     ]
   },
   {
     "file": "9.png",
     "title": "Lekcja 2 - zadanie 9",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -189,20 +189,20 @@
       "C",
       "D"
     ],
-    "hint": "Znajdz najblizsze liczbie 16 liczby spelniajace oba warunki reszty z dzielenia.",
+    "hint": "Znajdź najbliższe liczbie 16 liczby spełniające oba warunki reszty z dzielenia.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach"
+      "działania na liczbach"
     ]
   },
   {
     "file": "10.png",
     "title": "Lekcja 2 - zadanie 10",
     "difficulty": 2,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "multi",
     "options": [
@@ -213,7 +213,7 @@
       "E",
       "F"
     ],
-    "hint": "Sprawdz cechy podzielnosci liczby 1962. W tym zadaniu trzeba zaznaczyc dwie odpowiedzi.",
+    "hint": "Sprawdź cechy podzielności liczby 1962. W tym zadaniu trzeba zaznaczyc dwie odpowiedzi.",
     "answer": [
       "C",
       "F"
@@ -222,16 +222,16 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "wybor wielokrotny",
-      "podzielnosc"
+      "podzielność"
     ]
   },
   {
     "file": "11.png",
     "title": "Lekcja 2 - zadanie 11",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -240,21 +240,21 @@
       "C",
       "D"
     ],
-    "hint": "Dla kazdej trojki sprawdz, czy suma kwadratow dwoch mniejszych liczb daje kwadrat najwiekszej.",
+    "hint": "Dla każdej trójki sprawdź, czy suma kwadratów dwóch mniejszych liczb daje kwadrat największej.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "trojki pitagorejskie"
+      "działania na liczbach",
+      "trójki pitagorejskie"
     ]
   },
   {
     "file": "12.png",
     "title": "Lekcja 2 - zadanie 12",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -265,14 +265,14 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdz podzielnosc przez 4 i 6, a potem dobierz uzasadnienie.",
+    "hint": "Sprawdź podzielność przez 4 i 6, a potem dobierz uzasadnienie.",
     "answer": "B3",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "podzielnosc",
+      "działania na liczbach",
+      "podzielność",
       "uzasadnienie"
     ]
   },
@@ -280,7 +280,7 @@
     "file": "13.png",
     "title": "Lekcja 2 - zadanie 13",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -297,8 +297,8 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "podzielnosc",
+      "działania na liczbach",
+      "podzielność",
       "uzasadnienie"
     ]
   },
@@ -306,7 +306,7 @@
     "file": "14.png",
     "title": "Lekcja 2 - zadanie 14",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -317,13 +317,13 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdz, czy 30 dzieli obie liczby i czy ilorazy 7 oraz 6 nie maja wspolnego dzielnika wiekszego od 1.",
+    "hint": "Sprawdź, czy 30 dzieli obie liczby i czy ilorazy 7 oraz 6 nie maja wspolnego dzielnika wiekszego od 1.",
     "answer": "A2",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "nwd",
       "nww",
       "uzasadnienie"
@@ -333,7 +333,7 @@
     "file": "15.png",
     "title": "Lekcja 2 - zadanie 15",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -342,21 +342,21 @@
       "C",
       "D"
     ],
-    "hint": "Policz srednia wazona ocen: suma iloczynow ocen i liczebnosci podzielona przez liczbe ocen.",
+    "hint": "Policz średnia wazona ocen: suma iloczynow ocen i liczebności podzielona przez liczbę ocen.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "srednia"
+      "działania na liczbach",
+      "średnia"
     ]
   },
   {
     "file": "16.png",
     "title": "Lekcja 2 - zadanie 16",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -365,13 +365,13 @@
       "C",
       "D"
     ],
-    "hint": "Zaokraglij liczbe 61,302 do dziesiatek, a potem dodaj cyfry otrzymanej liczby.",
+    "hint": "Zaokrąglij liczbę 61,302 do dziesiątek, a potem dodaj cyfry otrzymanej liczby.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "zaokraglanie"
     ]
   },
@@ -379,7 +379,7 @@
     "file": "17.png",
     "title": "Lekcja 2 - zadanie 17",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -388,13 +388,13 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw wykonaj odejmowanie 5,6329 - 3,0152, a potem zaokraglij wynik do czesci dziesietnych.",
+    "hint": "Najpierw wykonaj odejmowanie 5,6329 - 3,0152, a potem zaokraglij wynik do części dziesietnych.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "zaokraglanie"
     ]
   },
@@ -402,7 +402,7 @@
     "file": "18.png",
     "title": "Lekcja 2 - zadanie 18",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -411,28 +411,28 @@
       "C",
       "D"
     ],
-    "hint": "Zamien liczby rzymskie na arabskie: LXXII i XLIX.",
+    "hint": "Zamień liczby rzymskie na arabskie: LXXII i XLIX.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "liczby rzymskie"
     ]
   },
   {
     "file": "zd1.png",
-    "title": "Lekcja 2 - praca domowa 1",
+    "title": "Lekcja 2 - Zadanie domowe 1",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "true_false",
     "statements": [
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Wypisz wszystkie poprawne liczby trzycyfrowe i policz ich srednia.",
+    "hint": "Wypisz wszystkie poprawne liczby trzycyfrowe i policz ich średnia.",
     "answer": [
       "P",
       "P"
@@ -441,32 +441,32 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "prawda falsz",
-      "praca domowa"
+      "działania na liczbach",
+      "prawda/fałsz",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd2.png",
-    "title": "Lekcja 2 - praca domowa 2",
+    "title": "Lekcja 2 - Zadanie domowe 2",
     "difficulty": 2,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz wartosc kazdego wyrazenia osobno, a potem ustaw wyniki malejaco.",
+    "hint": "Oblicz wartość każdego wyrażenia osobno, a potem ustaw wyniki malejąco.",
     "answer": "b > a > c > d",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "praca domowa"
+      "działania na liczbach",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd3.png",
-    "title": "Lekcja 2 - praca domowa 3",
+    "title": "Lekcja 2 - Zadanie domowe 3",
     "difficulty": 2,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "multi",
     "options": [
@@ -479,7 +479,7 @@
       "b) C",
       "b) D"
     ],
-    "hint": "Podpunkt a) potraktuj jako dzialanie na potegach liczby 1/4. W podpunkcie b) policz NWW i NWD.",
+    "hint": "Podpunkt a) potraktuj jako działanie na potęgach liczby 1/4. W podpunkcie b) policz NWW i NWD.",
     "answer": [
       "a) A",
       "b) D"
@@ -488,16 +488,16 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "wybor wielokrotny",
-      "praca domowa"
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd4.png",
-    "title": "Lekcja 2 - praca domowa 4",
+    "title": "Lekcja 2 - Zadanie domowe 4",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -506,21 +506,21 @@
       "C",
       "D"
     ],
-    "hint": "Przy zaokraglaniu do czesci dziesietnych patrzysz na cyfre setnych.",
+    "hint": "Przy zaokraglaniu do części dziesietnych patrzysz na cyfre setnych.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "praca domowa"
+      "działania na liczbach",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd5.png",
-    "title": "Lekcja 2 - praca domowa 5",
+    "title": "Lekcja 2 - Zadanie domowe 5",
     "difficulty": 2,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "true_false",
     "statements": [
@@ -529,7 +529,7 @@
       "Stwierdzenie 3",
       "Stwierdzenie 4"
     ],
-    "hint": "Najpierw oblicz wartosci wyrazen I-VI, dopiero potem oceniaj zdania.",
+    "hint": "Najpierw oblicz wartości wyrażeń I-VI, dopiero potem oceniaj zdania.",
     "answer": [
       "P",
       "F",
@@ -540,32 +540,32 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "prawda falsz",
-      "praca domowa"
+      "działania na liczbach",
+      "prawda/fałsz",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd6.png",
-    "title": "Lekcja 2 - praca domowa 6",
+    "title": "Lekcja 2 - Zadanie domowe 6",
     "difficulty": 2,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ola ma 4 banany, Antek ma 8 bananow. Do sredniej uwzglednij Kube, Ole i Antka.",
+    "hint": "Ola ma 4 banany, Antek ma 8 bananow. Do średniej uwzglednij Kube, Ole i Antka.",
     "answer": "a) 12, b) 8",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "praca domowa"
+      "działania na liczbach",
+      "Zadanie domowe"
     ]
   },
   {
     "file": "zd7.png",
-    "title": "Lekcja 2 - praca domowa 7",
+    "title": "Lekcja 2 - Zadanie domowe 7",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -576,22 +576,22 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdz sume cyfr liczby 38754 oraz dwie ostatnie cyfry.",
+    "hint": "Sprawdź sumę cyfr liczby 38754 oraz dwie ostatnie cyfry.",
     "answer": "A3",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "podzielnosc",
+      "działania na liczbach",
+      "podzielność",
       "uzasadnienie"
     ]
   },
   {
     "file": "zd8.png",
-    "title": "Lekcja 2 - praca domowa 8",
+    "title": "Lekcja 2 - Zadanie domowe 8",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -600,28 +600,28 @@
       "C",
       "D"
     ],
-    "hint": "Policz reszte z dzielenia liczby 2679 przez kazda z podanych liczb.",
+    "hint": "Policz reszte z dzielenia liczby 2679 przez każda z podanych liczb.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "dzielenie z reszta"
     ]
   },
   {
     "file": "zd9.png",
-    "title": "Lekcja 2 - praca domowa 9",
+    "title": "Lekcja 2 - Zadanie domowe 9",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "true_false",
     "statements": [
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Znajdz srodek odcinka od -10 do 8 i policz odleglosc od koncow odcinka.",
+    "hint": "Znajdź środek odcinka od -10 do 8 i policz odległość od końców odcinka.",
     "answer": [
       "P",
       "P"
@@ -630,16 +630,16 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "prawda falsz",
+      "działania na liczbach",
+      "prawda/fałsz",
       "os liczbowa"
     ]
   },
   {
     "file": "zd10.png",
-    "title": "Lekcja 2 - praca domowa 10",
+    "title": "Lekcja 2 - Zadanie domowe 10",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -648,21 +648,21 @@
       "C",
       "D"
     ],
-    "hint": "Sprawdz podzielnosc liczby 9660 przez 5, 8, 3 i 6.",
+    "hint": "Sprawdź podzielność liczby 9660 przez 5, 8, 3 i 6.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "podzielnosc"
+      "działania na liczbach",
+      "podzielność"
     ]
   },
   {
     "file": "zd11.png",
-    "title": "Lekcja 2 - praca domowa 11",
+    "title": "Lekcja 2 - Zadanie domowe 11",
     "difficulty": 2,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "hint": "Dodaj kilometry z pieciu dni i podziel przez 5.",
     "answer": "68,8",
@@ -670,15 +670,15 @@
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
-      "srednia"
+      "działania na liczbach",
+      "średnia"
     ]
   },
   {
     "file": "zd12.png",
-    "title": "Lekcja 2 - praca domowa 12",
+    "title": "Lekcja 2 - Zadanie domowe 12",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -687,21 +687,21 @@
       "C",
       "D"
     ],
-    "hint": "Zamien zapisy rzymskie na lata i sprawdz zasady roku przestepnego.",
+    "hint": "Zamień zapisy rzymskie na lata i sprawdź zasady roku przestepnego.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "liczby rzymskie"
     ]
   },
   {
     "file": "zd13.png",
-    "title": "Lekcja 2 - praca domowa 13",
+    "title": "Lekcja 2 - Zadanie domowe 13",
     "difficulty": 1,
-    "topic": "dzialania na liczbach",
+    "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
     "type": "closed",
     "options": [
@@ -710,13 +710,13 @@
       "C",
       "D"
     ],
-    "hint": "Zamien liczby rzymskie na arabskie albo porownuj je od lewej strony.",
+    "hint": "Zamień liczby rzymskie na arabskie albo porównuj je od lewej strony.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 2",
-      "dzialania na liczbach",
+      "działania na liczbach",
       "liczby rzymskie"
     ]
   }
