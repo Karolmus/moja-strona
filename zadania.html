@@ -301,31 +301,6 @@ body {
     font-size: 12px;
 }
 
-.course-part-panel {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-.course-part-panel .tile {
-    min-width: 34px;
-    height: 26px;
-    padding: 0 7px;
-}
-
-.course-part-panel .lesson-core-tile {
-    min-width: 52px;
-}
-
-.course-part-panel .empty-mini-tile {
-    min-height: 26px;
-    display: inline-flex;
-    align-items: center;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 600;
-}
-
 .source-btn:hover,
 .mode-btn:hover,
 .category-btn:hover,
@@ -1315,11 +1290,6 @@ footer {
                 <div class="side-title" id="sourceTitle">Numer lekcji</div>
                 <div class="source-list" id="sourceList"></div>
             </div>
-
-            <div class="side-section" id="coursePartSection">
-                <div class="side-title">Zadania lekcji</div>
-                <div class="course-part-panel" id="coursePartList"></div>
-            </div>
         </aside>
 
         <div class="task-card">
@@ -1688,7 +1658,7 @@ async function bootStudentPanel(){
         updateModeButtons();
         updateMetaTheme();
         renderSourceSelector();
-        renderCoursePartSelector();
+        refreshTaskNavigator();
         renderTagSearch();
         renderLearningProgress();
 
@@ -2052,24 +2022,13 @@ function getAvailableSources(){
 function ensureSelectedSource(){
     const availableSources = getAvailableSources();
 
-    if(selectedCategory === "kurs"){
-        if(!availableSources.some(source => source.id === selectedSource)){
-            selectedSource = availableSources[0]?.id || "all";
-        }
-
-        return;
-    }
-
-    if(!isLoggedInStudent){
-        if(!availableSources.some(source => source.id === selectedSource)){
-            selectedSource = availableSources[0]?.id || "all";
-        }
-
-        return;
-    }
-
-    if(selectedSource !== "all" && !availableSources.some(source => source.id === selectedSource)){
+    if(!availableSources.length){
         selectedSource = "all";
+        return;
+    }
+
+    if(!availableSources.some(source => source.id === selectedSource)){
+        selectedSource = availableSources[0].id;
     }
 }
 
@@ -2088,6 +2047,7 @@ function setCategory(btn, category){
 
     if(selectedCategory === "kurs"){
         taskMode = "ordered";
+        selectedCoursePart = "zadania";
     }
 
     ensureSelectedSource();
@@ -2096,7 +2056,7 @@ function setCategory(btn, category){
     updateModeButtons();
     resetSession();
     renderSourceSelector();
-    renderCoursePartSelector();
+    refreshTaskNavigator();
     renderTagSearch();
     renderLearningProgress();
     drawTask(getInitialIndex());
@@ -2117,7 +2077,7 @@ function setLevel(btn, level){
     updateMetaTheme();
     resetSession();
     renderSourceSelector();
-    renderCoursePartSelector();
+    refreshTaskNavigator();
     renderTagSearch();
     renderLearningProgress();
     drawTask(getInitialIndex());
@@ -2137,6 +2097,7 @@ function setSource(sourceId){
 
     if(selectedCategory === "kurs"){
         taskMode = "ordered";
+        selectedCoursePart = "zadania";
     }
 
     ensureSelectedCoursePart();
@@ -2146,7 +2107,7 @@ function setSource(sourceId){
     updateMetaTheme();
     resetSession();
     renderSourceSelector();
-    renderCoursePartSelector();
+    refreshTaskNavigator();
     renderTagSearch();
     renderLearningProgress();
     drawTask(getInitialIndex());
@@ -2228,16 +2189,6 @@ function renderSourceSelector(){
         title.innerText = selectedCategory === "kurs" ? "Numer lekcji" : "Arkusz";
     }
 
-    if(selectedCategory !== "kurs" && isLoggedInStudent){
-        addSourceButton(
-            list,
-            "all",
-            "Wszystkie arkusze",
-            `${tasks.filter(t => t.category === selectedCategory && t.level === selectedLevel).length} zadań`,
-            selectedSource === "all"
-        );
-    }
-
     const availableSources = getAvailableSources();
 
     if(selectedCategory === "kurs" && !availableSources.length){
@@ -2316,6 +2267,17 @@ function homeworkTileLabel(task){
     return `PD${number || "?"}`;
 }
 
+function getCourseNavigatorItems(){
+    if(selectedSource === "all") return [];
+
+    return tasks.filter(task =>
+        task.category === "kurs" &&
+        task.level === selectedLevel &&
+        task.sourceId === selectedSource &&
+        taskMatchesTagFilters(task)
+    );
+}
+
 function selectCoursePartTask(part, file = ""){
     selectedCoursePart = part;
 
@@ -2328,63 +2290,10 @@ function selectCoursePartTask(part, file = ""){
         : 0;
 
     drawTask(Math.max(0, index));
-    renderCoursePartSelector();
 }
 
-function renderCoursePartSelector(){
-    const section = document.getElementById("coursePartSection");
-    const list = document.getElementById("coursePartList");
-
-    if(!section || !list) return;
-
-    section.style.display = selectedCategory === "kurs" ? "grid" : "none";
-    list.innerHTML = "";
-
-    if(selectedCategory !== "kurs") return;
-
-    const lessonTasks = getCoursePartTasks("zadania");
-    const homeworkTasks = getCoursePartTasks("praca_domowa");
-    const lessonButton = document.createElement("button");
-
-    lessonButton.type = "button";
-    lessonButton.className = "tile nav-tile lesson-core-tile";
-    lessonButton.innerText = "Kurs";
-    lessonButton.title = `Zadania z lekcji • ${lessonTasks.length} zadań`;
-    lessonButton.onclick = () => selectCoursePartTask("zadania");
-
-    if(selectedCoursePart === "zadania") lessonButton.classList.add("active");
-    list.appendChild(lessonButton);
-
-    if(!homeworkTasks.length){
-        const empty = document.createElement("span");
-
-        empty.className = "empty-mini-tile";
-        empty.innerText = "Brak PD";
-        list.appendChild(empty);
-        return;
-    }
-
-    homeworkTasks.forEach(task => {
-        const button = document.createElement("button");
-        const result = getSavedResult(task);
-
-        button.type = "button";
-        button.className = "tile nav-tile nav-theme-homework";
-        button.innerText = homeworkTileLabel(task);
-        button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
-        button.onclick = () => selectCoursePartTask("praca_domowa", task.file);
-
-        if(result) button.classList.add(result);
-        if(
-            selectedCoursePart === "praca_domowa" &&
-            currentTask?.sourceId === task.sourceId &&
-            currentTask?.file === task.file
-        ){
-            button.classList.add("active");
-        }
-
-        list.appendChild(button);
-    });
+function refreshTaskNavigator(){
+    renderTaskNavigator();
 }
 
 async function loadStudentProgress(){
@@ -2591,7 +2500,13 @@ function getSavedResult(task){
     return saved?.result || "";
 }
 
-function shouldShowTaskNavigator(items = pool()){
+function taskNavigatorItems(items = pool()){
+    return selectedCategory === "kurs"
+        ? getCourseNavigatorItems()
+        : items;
+}
+
+function shouldShowTaskNavigator(items = taskNavigatorItems()){
     return ["egzaminy", "kurs"].includes(selectedCategory) &&
         selectedSource !== "all" &&
         items.length > 0;
@@ -2625,12 +2540,35 @@ function taskThemeClass(task){
     return classes[task.level] || "";
 }
 
+function navigatorTaskLabel(task){
+    return task.coursePart === "praca_domowa"
+        ? homeworkTileLabel(task)
+        : taskNumberLabel(task);
+}
+
+function isActiveNavigatorTask(task, index){
+    if(selectedCategory !== "kurs") return index === currentIndex;
+
+    return currentTask?.sourceId === task.sourceId &&
+        currentTask?.file === task.file;
+}
+
+function openNavigatorTask(task, index){
+    if(selectedCategory === "kurs"){
+        selectCoursePartTask(task.coursePart || "zadania", task.file);
+        return;
+    }
+
+    drawTask(index);
+}
+
 function renderTaskNavigator(items = pool()){
     const progress = document.getElementById("progress");
 
     if(!progress) return;
 
     progress.innerHTML = "";
+    items = taskNavigatorItems(items);
 
     if(!shouldShowTaskNavigator(items)) return;
 
@@ -2642,12 +2580,12 @@ function renderTaskNavigator(items = pool()){
         button.type = "button";
         button.className = "tile nav-tile";
         if(themeClass) button.classList.add(themeClass);
-        button.innerText = taskNumberLabel(task);
+        button.innerText = navigatorTaskLabel(task);
         button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
-        button.onclick = () => drawTask(index);
+        button.onclick = () => openNavigatorTask(task, index);
 
         if(result) button.classList.add(result);
-        if(index === currentIndex) button.classList.add("active");
+        if(isActiveNavigatorTask(task, index)) button.classList.add("active");
 
         progress.appendChild(button);
     });
@@ -2955,7 +2893,6 @@ async function drawTask(index = currentIndex, trackHistory = true){
     currentIndex = index;
     currentTask = p[currentIndex];
     renderTaskNavigator(p);
-    renderCoursePartSelector();
     currentTaskAnswered = true;
     setTaskLoading(true);
     clearTaskInteraction();
