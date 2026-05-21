@@ -1,0 +1,301 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 11 - zadanie 1",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "W drugiej ćwiartce x jest ujemny, a y dodatni.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 11 - zadanie 2",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzoru na środek odcinka: średnia współrzędnych x i średnia współrzędnych y.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 11 - zadanie 3",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porównaj kwadraty długości odcinków, bez wyciągania pierwiastków.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 11 - zadanie 4",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Przekątne równoległoboku przecinają się w swoich środkach.",
+    "answer": "(4, 11/2), czyli (4, 5,5)",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 11 - zadanie 5.1",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Odczytaj współrzędne A, B, C z rysunku, policz środki AB i BC, a potem środek między tymi punktami.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "contextFile": "5.png"
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 11 - zadanie 5.2",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Punkty mają współrzędne A=(-4,1), B=(4,-4), C=(6,2). Pole można policzyć z wyznacznika albo wzoru shoelace.",
+    "answer": "29",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "contextFile": "5.png"
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 11 - zadanie 5.3",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Przy trzech danych wierzchołkach równoległoboku każdy z nich może być wierzchołkiem wspólnym dwóch boków.",
+    "answer": "Można zaproponować 3 różne punkty D: (-6, -5), (-2, 7), (14, -3).",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "contextFile": "5.png"
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 11 - zadanie 6",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porównaj kwadraty długości boków: AB² = 85, BC² = 85, AC² = 242.",
+    "answer": "B3",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 11 - zadanie 7",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Odcinek AC jest przekątną kwadratu. Jej długość to 7√2, więc bok ma 7.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 11 - zadanie 8",
+    "difficulty": 1,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Skoro S jest środkiem odcinka, to współrzędne punktu B spełniają B = 2S - A.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 11 - praca domowa 1",
+    "difficulty": 2,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pierwszy środek ma drugą współrzędną 1/2. Drugi odcinek ma długość 5.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "praca domowa"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Środek odcinka AB ma obie współrzędne całkowite",
+      "Odcinek CD ma całkowitą długość"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 11 - praca domowa 2",
+    "difficulty": 2,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porównaj kwadraty długości boków: AB²=50, AC²=52, BC²=41.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 11 - praca domowa 3",
+    "difficulty": 2,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Aby środek odcinka był początkiem układu, punkt B musi mieć współrzędne przeciwne do A.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 11 - praca domowa 4",
+    "difficulty": 2,
+    "topic": "uklad wspolrzednych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wektor od A do B to (16,12), więc jedna czwarta tego wektora to (4,3).",
+    "answer": "(6, 20), (10, 23), (14, 26)",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 11",
+      "uklad wspolrzednych",
+      "praca domowa"
+    ]
+  }
+]

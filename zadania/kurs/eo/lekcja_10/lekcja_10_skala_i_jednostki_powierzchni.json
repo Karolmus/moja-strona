@@ -1,0 +1,442 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 10 - zadanie 1.1",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "120 cm na mapie w skali 1:1000 to 120000 cm, czyli 1,2 km.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 10 - zadanie 1.2",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "15 km to 1 500 000 cm. Podziel przez 5 cm na mapie.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 10 - zadanie 2",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "8 cm i 12 cm w skali 1:15000 odpowiadają 1,2 km i 1,8 km.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 10 - zadanie 3",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Skala 1:20000 jest liniowo 5 razy większa od 1:100000, więc pole na mapie jest 25 razy większe.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 10 - zadanie 4.1",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "40 cm · 8 = 320 cm = 3,2 m.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 10 - zadanie 4.2",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porównaj skale liniowe 1:5 i 1:3. Pole zmienia się jak kwadrat skali.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 10 - zadanie 4.3",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porównaj długość modelu 25 cm z długością rzeczywistą 425 cm.",
+    "answer": "Skala 1:17",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 10 - zadanie 5",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "17 ha to 170000 m². Przy skali 1:10000 pole dzielimy przez 10000².",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 10 - zadanie 6",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Bok ogrodu w rzeczywistości ma 45 m, więc pole to 2025 m². Podziel przez 12 m²/min.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 10 - zadanie 7",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "4/9 cm/s na minimapie w skali 1:50000 daje 800 km/h w rzeczywistości.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 10 - zadanie 8",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pan Marek przejechał 600 km, co na ekranie odpowiada 6 cm.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 10 - zadanie 9",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pole rzeczywiste to 450 · 20² cm² = 18 m². Jeśli długość jest dwa razy większa od szerokości, to 2x² = 18.",
+    "answer": "Pokój ma wymiary 3 m × 6 m.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 10 - zadanie 10",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "0,004 mm to 0,0004 cm. Porównaj 8 cm z 0,0004 cm.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 10 - zadanie 11",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Skala 3:2 oznacza, że figura jest 3/2 razy wyższa od rzeczywistej osoby.",
+    "answer": "1,70 m",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 10 - zadanie praktyczne 11",
+    "difficulty": 1,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Odczytaj skalę mapy i pomnóż zmierzoną odległość przez skalę.",
+    "answer": "Odpowiedź zależy od wybranej mapy. Rzeczywista odległość to odległość na mapie pomnożona przez mianownik skali.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 10 - praca domowa 1",
+    "difficulty": 2,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "72 cm² w skali 1:50000 odpowiada 18 km², czyli 1800 ha.",
+    "answer": "A",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "praca domowa",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 10 - praca domowa 2.1",
+    "difficulty": 2,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "32 cm · 800 = 25600 cm = 256 m.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "praca domowa",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 10 - praca domowa 2.2",
+    "difficulty": 2,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "37,95 cm · 2 000 000 = 75 900 000 cm = 759 km.",
+    "answer": "759 km",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 10 - praca domowa 3",
+    "difficulty": 2,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "129 arów to 12900 m². W skali 1:5000 pole dzielimy przez 5000².",
+    "answer": "A",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "praca domowa",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 10 - praca domowa 4",
+    "difficulty": 2,
+    "topic": "skala i jednostki powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pokój ma rzeczywiste wymiary 7,5 m i 10 m, czyli pole 75 m². Podziel przez 8 m²/h.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 10",
+      "skala i jednostki powierzchni",
+      "praca domowa",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  }
+]

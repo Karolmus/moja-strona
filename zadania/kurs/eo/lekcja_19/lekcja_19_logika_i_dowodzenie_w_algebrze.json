@@ -1,0 +1,325 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 19 - zadanie 1",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "16^9 = 2^36, a 12^10 = 2^20·3^10. Wystarczy porównać 2^16 = 65536 oraz 3^10 = 59049, więc 16^9 > 12^10.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 19 - zadanie 2",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "1400 = 2^3·5^2·7. Liczba dzielników naturalnych wynosi (3+1)(2+1)(1+1)=24.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 19 - zadanie 3",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Pierwsza liczba to 10d+j, druga to 10j. Suma wynosi 10d+11j, więc jej kwadrat to (10d+11j)^2 = 100d² + 220dj + 121j².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 19 - zadanie 4.1",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Z równania y = ax + b odejmujemy b: y - b = ax. Ponieważ a ≠ 0, dzielimy przez a i otrzymujemy x = (y-b)/a.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 19 - zadanie 4.2",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Z równania y = a(x-p)^2 + q otrzymujemy (y-q)/a = (x-p)^2. Gdy (y-q)/a > 0, mamy x-p = ±√((y-q)/a), czyli x1 = p + √((y-q)/a), x2 = p - √((y-q)/a).",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 19 - zadanie 5",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Dodaj sumę S = 1+2+...+n do tej samej sumy zapisanej od końca. Otrzymujemy 2S = n(n+1), więc S = n(n+1)/2.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 19 - zadanie 6",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Liczba kończy się na 52, więc jest podzielna przez 4. Suma cyfr bez x i y wynosi 29. Po dodaniu x,y ∈ {1,7} dostajemy 31, 37 albo 43, czyli nigdy wielokrotność 3. Liczba nie jest więc podzielna przez 12.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 19 - zadanie 7",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "1/27 = 0,(037). Okres ma cyfry 0, 3, 7, a ich suma wynosi 10.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 19 - zadanie 8",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Ze zwracaniem są n³ wyniki, bez zwracania n(n-1)(n-2). Różnica wynosi n³ - n(n-1)(n-2) = 3n² - 2n.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 19 - zadanie 9",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Liczba dająca resztę 2 przy dzieleniu przez 5 kończy się cyfrą 2 albo 7. Ponieważ przy dzieleniu przez 2 daje resztę 1, jest nieparzysta, więc musi kończyć się cyfrą 7.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 19 - zadanie 10",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Najmniejsze iloczyny trzech różnych liczb pierwszych to: 2·3·5=30, 2·3·7=42, 2·3·11=66, 2·5·7=70. Zatem czwartą najmniejszą liczbą idealną jest 70.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 19 - zadanie 11",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Czterocyfrowych liczb jest 9000, z czego 3000 jest podzielnych przez 3, więc niepodzielnych przez 3 jest 6000. Pięciocyfrowe wielokrotności 15 to liczby od 10005 do 99990, jest ich 6000.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "zadania"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 19 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "6^14 = (6²)^7 = 36^7, a 35^7 < 36^7, więc 6^14 > 35^7.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 19 - praca domowa 2",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Liczba 6,7(89) jest wymierna, bo każdy ułamek dziesiętny okresowy można zapisać jako iloraz liczb całkowitych.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 19 - praca domowa 3",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Przykłady: 17 i 87. Obie liczby kończą się cyfrą 7, a przy dzieleniu przez 7 dają resztę 3.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 19 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "0,708(3)=17/24 oraz 0,791(6)=19/24, więc ich iloraz wynosi 17/19. Liczby 17 i 19 są pierwsze.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 19 - praca domowa 5",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Treść zawiera błąd: para a=0 i b=0 nie spełnia równania, bo 0 + 0√5 ≠ √10. W liczbach naturalnych nie ma rozwiązania tego równania.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 19 - praca domowa 6",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Najmniejsza n-cyfrowa liczba kapryśna ma same cyfry 2, a największa same cyfry 7. Ich różnica ma same cyfry 5, więc także jest liczbą kapryśną.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 19 - praca domowa 7",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w algebrze",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz dane algebraicznie i doprowadź wyrażenie do postaci, z której jasno wynika teza.",
+    "answer": "Ponieważ √5 - 2 > 0 oraz y² ≥ 0 i x² ≥ 0, oba składniki (√5 - 2)y² oraz 5x² są nieujemne. Ich suma też jest nieujemna.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 19",
+      "dowodzenie",
+      "algebra",
+      "praca domowa"
+    ]
+  }
+]

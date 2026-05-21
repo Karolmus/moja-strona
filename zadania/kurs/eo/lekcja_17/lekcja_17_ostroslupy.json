@@ -1,0 +1,431 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 17 - zadanie 1",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 17 - zadanie 2",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 17 - zadanie 3",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 17 - zadanie 4",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Możliwe objętości to 16 cm³ albo 48 cm³.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 17 - zadanie 5",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 17 - zadanie 6",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": [
+      "P",
+      "F",
+      "P",
+      "F"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Graniastosłup o tej samej wysokości i podstawie ma trzykrotnie większą objętość od ostrosłupa.",
+      "W najmniejszym prostopadłościennym pudełku zawsze dokładnie 2/3 objętości musi pozostać puste.",
+      "W każdym ostrosłupie suma liczby ścian i wierzchołków jest o 2 większa od liczby krawędzi.",
+      "Dla tego samego wielokąta w podstawie liczba krawędzi ostrosłupa stanowi 3/2 liczby krawędzi graniastosłupa."
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 17 - zadanie 7",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 17 - zadanie 8",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 17 - zadanie 9",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Suma długości wszystkich krawędzi wynosi 1,6 + 0,8√2 m.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "contextFile": "9_rysunek.png"
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 17 - zadanie 10",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Wysokości wynoszą: do podstawy 9, do ścian bocznych 4,5; 6; 3.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 17 - zadanie 11",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Poprawna siatka: kwadrat jako podstawa i cztery przystające trójkąty boczne, z wierzchołkiem W przy wierzchołkach trójkątów.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 17 - zadanie 12",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Objętość piramidy Cheopsa wynosi 2 531 250 m³.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 17 - zadanie 13",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Pozostałe krawędzie boczne mają długości: 6 cm, 2√13 cm, 2√13 cm, 2√21 cm, 2√21 cm.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 17 - zadanie 14",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Poprawna siatka: prostokąt jako podstawa oraz cztery trójkąty boczne, z jedną krawędzią boczną prostopadłą do podstawy jako wysokością ostrosłupa.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 17 - zadanie 15",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": [
+      "P",
+      "F"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ],
+    "type": "true_false",
+    "statements": [
+      "W ostrosłupie prawidłowym wszystkie ściany boczne są trójkątami przystającymi.",
+      "W ostrosłupie prawidłowym wszystkie krawędzie ostrosłupa są równej długości."
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 17 - zadanie 16",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Dane w treści są sprzeczne: wysokość ostrosłupa nie może być 5 razy dłuższa od krawędzi bocznej. Jeśli poprawny stosunek miał brzmieć krawędź boczna : wysokość = 5:1, wtedy V = 6√3 cm³ oraz Pc = 18√3 + 9√14 cm².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "zadania"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 17 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 17 - praca domowa 2",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "D",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 17 - praca domowa 3",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 17 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "praca domowa"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Ostrosłup o podstawie pięciokąta ma dwa razy mniej krawędzi niż ostrosłup o podstawie czworokąta ma wierzchołków.",
+      "Suma wszystkich ścian, krawędzi i wierzchołków zwiększa się o 4 przy każdym zwiększeniu liczby wierzchołków podstawy o 1."
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 17 - praca domowa 5",
+    "difficulty": 1,
+    "topic": "ostroslupy",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "answer": "Objętość wynosi 12√13, a pole jednej ściany bocznej wynosi 3√22.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 17",
+      "ostroslupy",
+      "praca domowa"
+    ],
+    "contextFile": "12_rysunek.png"
+  }
+]

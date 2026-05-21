@@ -1,0 +1,637 @@
+[
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "1.png",
+    "title": "Lekcja 3 - zadanie 1",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Porownaj kazda liczbe z 10^100. Przy mnozeniu poteg o tej samej podstawie dodajesz wykladniki, a przy potedze potegi mnozysz wykladniki.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "porownywanie poteg"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "2.png",
+    "title": "Lekcja 3 - zadanie 2",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Zamien 9 i 27 na potegi liczby 3, a potem wykonaj dzialania na wykladnikach.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "dzialania na potegach"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "3.png",
+    "title": "Lekcja 3 - zadanie 3",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Licznik 2^7 razy 5^7 zapisz jako 10^7, a potem podziel przez 10^5.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "dzialania na potegach"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "4.png",
+    "title": "Lekcja 3 - zadanie 4",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "W pierwszym zdaniu porownaj 11^12 z 11^12. W drugim uprosc ulamek, pamietajac o potedze iloczynu.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "prawda falsz",
+      "wyrazenia algebraiczne"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "5.png",
+    "title": "Lekcja 3 - zadanie 5",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Zlicz, ile razy dodano 5^3. Sume jednakowych skladnikow zamien na mnozenie.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "suma poteg"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "6.png",
+    "title": "Lekcja 3 - zadanie 6",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Nieparzysty wykladnik przy liczbie ujemnej daje wynik ujemny. Pamietaj tez, ze liczba niezerowa do potegi zerowej jest rowna 1.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "prawda falsz",
+      "liczby ujemne"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "7.png",
+    "title": "Lekcja 3 - zadanie 7",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Rozloz liczby na czynniki pierwsze albo wypisz dzielniki wspolne.",
+    "answer": [
+      "P",
+      "F"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "prawda falsz",
+      "nwd"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "8.png",
+    "title": "Lekcja 3 - zadanie 8",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Zwroc uwage na znak liczby z nieparzystym wykladnikiem. Potem porownaj 1/2, 1, 5^10 i 5^12.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "porownywanie poteg",
+      "kolejnosc rosnaca"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "9.png",
+    "title": "Lekcja 3 - zadanie 9",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Zamien wszystkie skladniki na potegi liczby 2. Dzielenie oznacza odejmowanie wykladnikow.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "dzialania na potegach",
+      "ulamki"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "10.png",
+    "title": "Lekcja 3 - zadanie 10",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Rozloz 15 i 18 na czynniki pierwsze, a do NWW wez najwyzsze potegi wszystkich czynnikow.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "nww"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "11.png",
+    "title": "Lekcja 3 - zadanie 11",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Ustal znak iloczynu, a potem zapisz 4 jako 2^2 i polacz czynniki 2 oraz 5 w potegi liczby 10.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "dzialania na potegach"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "12.png",
+    "title": "Lekcja 3 - zadanie 12",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Dla podstawy 1/5 wiekszy wykladnik daje mniejsza liczbe. W drugim zdaniu porownaj (-3)^10 z 9^5.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "prawda falsz",
+      "nierownosci"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "13.png",
+    "title": "Lekcja 3 - zadanie 13",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Przesun przecinek tak, aby przed przecinkiem zostala jedna cyfra rozna od zera.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "notacja wykladnicza"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "14.png",
+    "title": "Lekcja 3 - zadanie 14",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Dla liczby mniejszej od 1 wykladnik przy 10 bedzie ujemny. Przesuwasz przecinek o 6 miejsc.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "notacja wykladnicza"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd1.png",
+    "title": "Lekcja 3 - praca domowa 1",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Sprawdz parzystosc wykladnika i pamietaj, ze minus przed potega nie jest tym samym co nawias.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "prawda falsz",
+      "liczby ujemne",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd2.png",
+    "title": "Lekcja 3 - praca domowa 2",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Zamien 32 i 4 na potegi liczby 2, uprosc ulamek i dopiero potem dodaj 2^17.",
+    "answer": "A",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "dzialania na potegach",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd3.png",
+    "title": "Lekcja 3 - praca domowa 3",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Ustal znak wyniku oraz sprawdz, czy po skroceniu zostaje liczba calkowita.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "dzialania na potegach",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd4.png",
+    "title": "Lekcja 3 - praca domowa 4",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "W pierwszym zdaniu porownaj znak obu liczb. W drugim zapisz 125 jako 5^3.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "prawda falsz",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd5.png",
+    "title": "Lekcja 3 - praca domowa 5",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Do NWD bierz tylko wspolne czynniki w najmniejszych wykladnikach.",
+    "answer": "A",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "nwd",
+      "rozklad na czynniki",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd6.png",
+    "title": "Lekcja 3 - praca domowa 6",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Zapisz 35^6 jako 5^6 razy 7^6 i skroc z mianownikiem.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "dzialania na potegach",
+      "ulamki",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd7.png",
+    "title": "Lekcja 3 - praca domowa 7",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Oblicz osobno NWD(14,70) oraz NWW(12,9), a potem policz odleglosc na osi.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "nwd",
+      "nww",
+      "os liczbowa",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd8.png",
+    "title": "Lekcja 3 - praca domowa 8",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Oblicz x, y oraz z osobno: NWW(18,10), NWD(150,380), NWD(812,444).",
+    "answer": "D",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "nwd",
+      "nww",
+      "kolejnosc rosnaca",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd9.png",
+    "title": "Lekcja 3 - praca domowa 9",
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "hint": "Sprawdz, czy liczba ma czynniki potrzebne do podzielnosci przez 75 oraz przez 10^5.",
+    "answer": "A2",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "podzielnosc",
+      "uzasadnienie",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd10.png",
+    "title": "Lekcja 3 - praca domowa 10",
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "hint": "Pomnozenie przez 2,1 przesuwa przecinek, ale jedna cyfra trafia przed zera.",
+    "answer": "B1",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "notacja wykladnicza",
+      "uzasadnienie",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd11.png",
+    "title": "Lekcja 3 - praca domowa 11",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Zapisz 7,3 razy 10^11 jako 0,73 razy 10^12 i dodaj wspolne potegi dziesiatki.",
+    "answer": "D",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "notacja wykladnicza",
+      "praca domowa"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "potegi",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd12.png",
+    "title": "Lekcja 3 - praca domowa 12",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Sprowadz oba skladniki do potegi 10^-6 albo 10^-5, a potem odejmij wspolczynniki.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 3",
+      "potegi",
+      "notacja wykladnicza",
+      "praca domowa"
+    ]
+  }
+]

@@ -1,0 +1,443 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 13 - zadanie 1.1",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Nie. Suma dwóch krótszych boków jest równa trzeciemu bokowi: 7 + 14 = 21, więc taki trójkąt byłby zdegenerowany.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 13 - zadanie 1.2",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Tak. Każda suma dwóch boków jest większa od trzeciego boku, np. 7 + 11 > 13.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 13 - zadanie 1.3",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Tak. Boki 8, 15 i 17 spełniają twierdzenie Pitagorasa: 8² + 15² = 17².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 13 - zadanie 2",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Najpierw oblicz pole trójkąta 13-14-15, a potem użyj wzoru P = a·h/2 dla kolejnych boków.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 13 - zadanie 3",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Duży trójkąt jest równoramienny. Oblicz kąt przy prawej podstawie dużego trójkąta, a potem kąt przy podstawie trójkąta z odcinkiem wewnętrznym.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 13 - zadanie 4",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Obwód wynosi 6 + 2√3 cm.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 13 - zadanie 5",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zewnętrzny trójkąt jest trójkątem 30°-60°-90°, a wewnętrzny 45°-45°-90°.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 13 - zadanie 6",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "h = 3√2/20 dm.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 13 - zadanie 7",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Pole trójkąta wynosi 25√3/2 cm².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 13 - zadanie 8",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wysokość trójkąta równobocznego ma długość a√3/2, czyli jest krótsza od boku a.",
+    "answer": "B3",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 13 - zadanie 9",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Pole wynosi 84 cm².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 13 - zadanie 10.1",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Pole wynosi 75√3/2.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ],
+    "contextFile": "12.png"
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 13 - zadanie 10.2",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Krótsza przekątna ma długość 12.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ],
+    "contextFile": "12.png"
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 13 - zadanie 11",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "a = 7.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 13 - zadanie 12",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Wysokość wynosi 40√3 cm, a obwód 240 cm.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "17.png",
+    "title": "Lekcja 13 - zadanie 13",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Pole wynosi 60.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "18.png",
+    "title": "Lekcja 13 - zadanie 14",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pozostałe dwa kąty muszą razem mieć 85°, bo jeden kąt ma 95°.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "19.png",
+    "title": "Lekcja 13 - zadanie 15",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "x = 24 m.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "20.png",
+    "title": "Lekcja 13 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Obwód wynosi 15 + 5√3.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 13 - praca domowa 2",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Nie jest możliwe. Suma kątów daje 3α + 194° = 180°, czyli α = -14/3°, a kąt nie może mieć ujemnej miary.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 13 - praca domowa 3",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Nie jest możliwe. Dwa krótsze boki mają 3/4 cm i 6/7 cm, a ich suma 45/28 cm jest mniejsza niż 5/2 cm.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 13 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Pole trójkąta T1 wynosi 25(1 + √3)/2 cm².",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 13 - praca domowa 6.1",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Obwód trójkąta wynosi 30.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "praca domowa"
+    ],
+    "contextFile": "zd4.png"
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 13 - praca domowa 6.2",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "m = 4, n = 3.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "praca domowa"
+    ],
+    "contextFile": "zd4.png"
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 13 - praca domowa 7",
+    "difficulty": 1,
+    "topic": "trojkaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "answer": "Pole wynosi 84.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 13",
+      "trojkaty",
+      "praca domowa"
+    ]
+  }
+]

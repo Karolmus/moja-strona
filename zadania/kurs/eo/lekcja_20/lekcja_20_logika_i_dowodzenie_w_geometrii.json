@@ -1,0 +1,223 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 20 - zadanie 1",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Pole trójkąta prostokątnego można zapisać jako ab/2 oraz jako ch_c/2. Po porównaniu pól: ab/2 = ch_c/2, więc h_c = ab/c.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "zadania"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 20 - zadanie 2",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "W n-kącie jest n(n-3)/2 przekątnych. Gdy n jest parzyste, najdłuższe przekątne łączą przeciwległe wierzchołki i jest ich n/2. Krótszych przekątnych jest więc n(n-3)/2 - n/2 = n(n-4)/2.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "zadania"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 20 - zadanie 3",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Z h_c = ab/c mamy 1/h_c² = c²/(a²b²). Ponieważ c² = a² + b², to 1/h_c² = (a²+b²)/(a²b²) = 1/a² + 1/b².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "zadania"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 20 - zadanie 4",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "W trójkącie równobocznym wysokości są jednocześnie medianami. Punkt przecięcia median dzieli każdą medianę w stosunku 2:1, licząc od wierzchołka, więc tak samo dzieli wysokości.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "zadania"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 20 - zadanie 5",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "To twierdzenie o przecinających się cięciwach. Przekątne AC i BD są cięciwami okręgu i przecinają się w P, więc |AP|·|CP| = |BP|·|DP|.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "zadania"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 20 - zadanie 6",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Jeżeli prostopadłościany są podobne w skali k, to ich odpowiednie krawędzie są w stosunku k. Objętość jest iloczynem trzech wymiarów, więc stosunek objętości wynosi k·k·k = k³.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "zadania"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 20 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Z podobieństwa trójkątów powstałych po opuszczeniu wysokości na przeciwprostokątną wynika h_c/k = l/h_c, czyli h_c² = kl, więc h_c = √kl.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 20 - praca domowa 2",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "W trapezie prostokątnym przyjmij wysokość d. Dłuższa przekątna spełnia e² = a² + d², a krótsza f² = b² + d². Zatem e² + b² = a² + d² + b² = a² + f².",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 20 - praca domowa 3",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Dla dowolnego trójkąta P = r·s, gdzie s jest połową obwodu. W trójkącie równoramiennym s = (a+2c)/2 = c + 0,5a, więc r = P/(c + 0,5a).",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 20 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "W czworokącie wpisanym w okrąg suma kątów przeciwległych wynosi 180°. W rombie kąty przeciwległe są równe, więc musiałyby mieć po 90°. Romb z kątem ostrym nie spełnia tego warunku, więc nie można opisać na nim okręgu.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 20 - praca domowa 5",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Dla każdej dodatniej liczby naturalnej n trójka (3n, 4n, 5n) spełnia równanie: (3n)² + (4n)² = 9n² + 16n² = 25n² = (5n)². Takich trójek jest nieskończenie wiele.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 20 - praca domowa 6",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Niech γ będzie kątem naprzeciw boku c. W trójkącie ostrokątnym cos γ > 0, więc z twierdzenia cosinusów c² = a² + b² - 2ab cos γ < a² + b².",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 20 - praca domowa 7",
+    "difficulty": 1,
+    "topic": "logika i dowodzenie w geometrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Oprzyj dowód na znanym twierdzeniu geometrycznym: polu trójkąta, podobieństwie, twierdzeniu Pitagorasa, twierdzeniu o cięciwach albo wzorze na objętość.",
+    "answer": "Niech γ będzie kątem rozwartym naprzeciw boku c. Wtedy cos γ < 0, więc z twierdzenia cosinusów c² = a² + b² - 2ab cos γ > a² + b².",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 20",
+      "dowodzenie",
+      "geometria",
+      "praca domowa"
+    ]
+  }
+]

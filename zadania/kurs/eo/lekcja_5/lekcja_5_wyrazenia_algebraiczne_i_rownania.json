@@ -1,0 +1,525 @@
+[
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "1.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.1",
+    "hint": "Rozwin prawa strone, przenies wyrazy z x na jedna strone, a liczby na druga.",
+    "answer": "x = -5",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "cwiczenie wstepne"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "2.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.2",
+    "hint": "Przenies -x i 1,2x na jedna strone rownania, a liczby na druga.",
+    "answer": "x = 9/22",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "liczby dziesietne"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "3.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.3",
+    "hint": "Pomnoz rownanie przez 3, zeby pozbyc sie ulamkow, a potem zbierz wyrazy podobne.",
+    "answer": "x = -8/7",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "ulamki"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "4.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.4",
+    "hint": "Po obu stronach jest x^2, wiec mozna je odjac. Zostanie rownanie liniowe.",
+    "answer": "x = -1",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "wyrazy podobne"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "5.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.5",
+    "hint": "Rozwin prawa strone. Wyrazy z x sie zredukuja, wiec sprawdz, czy pozostaje zdanie prawdziwe czy falszywe.",
+    "answer": "brak rozwiazan",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "rownanie sprzeczne"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "6.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.6",
+    "hint": "Rozwin prawa strone. Jezeli po uproszczeniu obie strony sa identyczne, rownanie ma nieskonczenie wiele rozwiazan.",
+    "answer": "nieskonczenie wiele rozwiazan",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "rownanie nieoznaczone"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "7.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.7",
+    "hint": "Pomnoz rownanie przez 2 i rozwiaz otrzymane rownanie liniowe.",
+    "answer": "a = -5",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "ulamki"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "8.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.8",
+    "hint": "Zapisz zdanie jako rownanie: x = 2/9 x + 3. Potem przenies wyrazy z x na jedna strone.",
+    "answer": "x = 27/7",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "zadanie tekstowe"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "9.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.9",
+    "hint": "Zapisz 80% jako 0,8 i uloz rownanie x = 0,8 * (1/8 x + 2).",
+    "answer": "sqrt(x) = 4/3",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "procenty",
+      "pierwiastki"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "10.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.10",
+    "hint": "Sformulowanie \"jest o 2 wieksza\" oznacza, ze do mniejszej wartosci dodajesz 2. Rozwin kwadrat dwumianu.",
+    "answer": "x = -1/2",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "wzory skroconego mnozenia"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "11.png",
+    "title": "Lekcja 5 - cwiczenie wstepne 1.11",
+    "hint": "Niech x oznacza mase ananasa. Rownanie ma postac x = 7/10 + 7/10 x.",
+    "answer": "7/3 kg",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "zadanie tekstowe"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "12.png",
+    "title": "Lekcja 5 - zadanie 1.1",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Rownanie oznaczone ma dokladnie jedno rozwiazanie.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "typy rownan"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "13.png",
+    "title": "Lekcja 5 - zadanie 1.2",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Rownanie sprzeczne po uproszczeniu daje zdanie falszywe, na przyklad 6 = 5.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "typy rownan"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "14.png",
+    "title": "Lekcja 5 - zadanie 2",
+    "hint": "Podwyzka o 17% daje 1,17d, a dwie trzecie wyjsciowej ceny wedki to 2/3w.",
+    "answer": "1,17d + 2/3w",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "wyrazenia algebraiczne",
+      "procenty"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "15.png",
+    "title": "Lekcja 5 - zadanie 3",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2",
+      "Stwierdzenie 3",
+      "Stwierdzenie 4"
+    ],
+    "hint": "Kazde rownanie uprosc osobno i sprawdz, czy ma jedno rozwiazanie, brak rozwiazan czy nieskonczenie wiele rozwiazan.",
+    "answer": [
+      "P",
+      "P",
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "prawda falsz",
+      "typy rownan"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "16.png",
+    "title": "Lekcja 5 - zadanie 4",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "hint": "Podstaw x = 0 do pierwszego rownania, a drugie uprosc po obu stronach.",
+    "answer": [
+      "P",
+      "F"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "prawda falsz"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "17.png",
+    "title": "Lekcja 5 - zadanie 5",
+    "hint": "Oznacz szukana liczbe jako x. Uloz rownanie z tresci zadania i rozwiaz je krok po kroku.",
+    "answer": "58",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "rownania",
+      "zadanie tekstowe"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd1.png",
+    "title": "Lekcja 5 - praca domowa 1",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2",
+      "Stwierdzenie 3",
+      "Stwierdzenie 4",
+      "Stwierdzenie 5",
+      "Stwierdzenie 6",
+      "Stwierdzenie 7"
+    ],
+    "hint": "Kazde rownanie uprosc osobno. Rownanie oznaczone ma jedno rozwiazanie, nieoznaczone jest tozsamoscia, a sprzeczne daje falsz.",
+    "answer": [
+      "P",
+      "P",
+      "F",
+      "P",
+      "P",
+      "P",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania",
+      "prawda falsz",
+      "typy rownan"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd2.png",
+    "title": "Lekcja 5 - praca domowa 2",
+    "hint": "Rozwin nawiasy, zbierz wyrazy podobne i rozwiaz rownanie liniowe.",
+    "answer": "x = 2",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd3.png",
+    "title": "Lekcja 5 - praca domowa 3",
+    "hint": "Najpierw pozbadz sie nawiasow, a potem przenies wyrazy z x na jedna strone.",
+    "answer": "x = -12",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd4.png",
+    "title": "Lekcja 5 - praca domowa 4",
+    "hint": "Pomnoz rownanie przez wspolny mianownik, zeby uniknac ulamkow.",
+    "answer": "x = 1/3",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania",
+      "ulamki"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd5.png",
+    "title": "Lekcja 5 - praca domowa 5",
+    "hint": "Rozwin obie strony i zredukuj wyrazy podobne.",
+    "answer": "x = -2",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd6.png",
+    "title": "Lekcja 5 - praca domowa 6",
+    "hint": "Rozwin nawiasy, przenies x na jedna strone, liczby na druga.",
+    "answer": "x = -7",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd7.png",
+    "title": "Lekcja 5 - praca domowa 7",
+    "hint": "Po uproszczeniu powinno zostac proste rownanie liniowe.",
+    "answer": "x = -2",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd8.png",
+    "title": "Lekcja 5 - praca domowa 8",
+    "hint": "Sprawdz, czy po uproszczeniu lewa i prawa strona sa takie same.",
+    "answer": "nieskonczenie wiele rozwiazan",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania",
+      "rownanie nieoznaczone"
+    ]
+  },
+  {
+    "difficulty": 1,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd9.png",
+    "title": "Lekcja 5 - praca domowa 9",
+    "hint": "Po uproszczeniu powinno wyjsc zdanie falszywe, czyli rownanie sprzeczne.",
+    "answer": "brak rozwiazan",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "rownania",
+      "rownanie sprzeczne"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd10.png",
+    "title": "Lekcja 5 - praca domowa 10",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Najpierw pomnoz (1 + a)(1 - a), a potem wynik przez (2 + a).",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "wyrazenia algebraiczne",
+      "mnozenie nawiasow"
+    ]
+  },
+  {
+    "difficulty": 2,
+    "topic": "wyrazenia algebraiczne i rownania",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd11.png",
+    "title": "Lekcja 5 - praca domowa 11",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "hint": "Dodaj miejsca z trzech sektorow: a miejsc w pierwszym oraz po 3 rzedy z b i c miejscami w kolejnych sektorach.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 5",
+      "praca domowa",
+      "wyrazenia algebraiczne",
+      "zadanie tekstowe"
+    ]
+  }
+]

@@ -1201,6 +1201,7 @@ footer {
                         <button class="action-btn tool" id="hintButton" onclick="showHint()">Wskazówka</button>
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
+                        <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
                         <button class="action-btn review" id="reviewButton" onclick="markForReview()" hidden>Do omówienia</button>
                     </div>
 
@@ -1230,9 +1231,8 @@ footer {
 </div>
 
 <div class="source-attribution">
-    Część materiałów egzaminacyjnych prezentowanych w serwisie pochodzi z Centralnej Komisji Egzaminacyjnej:
+    Tam gdzie to wskazano zadania pochodzą z Centralnej Komisji Egzaminacyjnej:
     <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
-    Delta Sigma nie jest oficjalnym serwisem CKE.
 </div>
 
 <footer>© 2026 Delta sigma</footer>
@@ -1283,6 +1283,7 @@ const EXAM_TARGETS = {
 };
 
 const TASK_SOURCES = [
+    { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy" },
@@ -1309,11 +1310,144 @@ const TASK_SOURCES = [
         detail: "Egzamin Ósmoklasisty"
     },
     {
+        path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 1",
+        detail: "Odczytywanie danych i procenty"
+    },
+    {
         path: "zadania/kurs/eo/lekcja_2/lekcja_2_dzialania_na_liczbach.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
         label: "Lekcja 2",
         detail: "Działania na liczbach"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_3/lekcja_3_potegi.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 3",
+        detail: "Potęgi"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_4/lekcja_4_pierwiastki.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 4",
+        detail: "Pierwiastki"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 5",
+        detail: "Wyrażenia algebraiczne i równania"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 6",
+        detail: "Wyrażenia algebraiczne i równania II"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 7",
+        detail: "Czas i odległość"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_8/lekcja_8_predkosc.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 8",
+        detail: "Prędkość"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_9/lekcja_9_pola_powierzchni_trojkatow_i_czworokatow.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 9",
+        detail: "Pola powierzchni trójkątów i czworokątów"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_10/lekcja_10_skala_i_jednostki_powierzchni.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 10",
+        detail: "Skala mapy i jednostki powierzchni"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_11/lekcja_11_uklad_wspolrzednych.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 11",
+        detail: "Kartezjański układ współrzędnych"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_12/lekcja_12_katy_przystawanie_podobienstwo.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 12",
+        detail: "Kąty, przystawanie i podobieństwo figur"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_13/lekcja_13_trojkaty.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 13",
+        detail: "Trójkąty"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_14/lekcja_14_czworokaty_1.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 14",
+        detail: "Czworokąty I"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_15/lekcja_15_czworokaty_2_i_wielokaty.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 15",
+        detail: "Czworokąty II i wielokąty"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_16/lekcja_16_graniastoslupy.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 16",
+        detail: "Graniastosłupy"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_17/lekcja_17_ostroslupy.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 17",
+        detail: "Ostrosłupy"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_18/lekcja_18_kombinatoryka_i_prawdopodobienstwo.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 18",
+        detail: "Kombinatoryka i prawdopodobieństwo"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_19/lekcja_19_logika_i_dowodzenie_w_algebrze.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 19",
+        detail: "Logika i dowodzenie w algebrze"
+    },
+    {
+        path: "zadania/kurs/eo/lekcja_20/lekcja_20_logika_i_dowodzenie_w_geometrii.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Lekcja 20",
+        detail: "Logika i dowodzenie w geometrii"
     }
 ];
 
@@ -1543,6 +1677,7 @@ function loadTaskSource(sourceConfig){
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
             solutions: normalizeTaskSolutions(task, basePath),
+            gradingCriteriaPath: task.gradingCriteriaFile ? basePath + task.gradingCriteriaFile : null,
             tags: normalizeTaskTags(task),
             category: sourceMeta.category,
             coursePart: task.coursePart || task.section || "zadania",
@@ -2516,7 +2651,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #reviewButton, #resultButtons button, #mcq button, #solutionSwitcher button"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #solutionSwitcher button"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -2811,11 +2946,16 @@ function hasTaskSolutions(task = currentTask){
     return Array.isArray(task?.solutions) && task.solutions.length > 0;
 }
 
+function hasGradingCriteria(task = currentTask){
+    return Boolean(task?.gradingCriteriaPath);
+}
+
 function updateAnswerTools(){
     const answerButton = document.getElementById("answerButton");
     const resultButtons = document.getElementById("resultButtons");
     const reviewButton = document.getElementById("reviewButton");
     const solutionButton = document.getElementById("solutionButton");
+    const gradingButton = document.getElementById("gradingButton");
 
     if(!currentTask || !answerButton || !resultButtons) return;
 
@@ -2826,6 +2966,10 @@ function updateAnswerTools(){
 
     if(solutionButton){
         solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
+    }
+
+    if(gradingButton){
+        gradingButton.hidden = isClosed || !hasGradingCriteria(currentTask);
     }
 
     if(reviewButton){
@@ -3186,6 +3330,32 @@ function showSolution(index = selectedSolutionIndex){
             switcher.appendChild(button);
         });
     }
+
+    updateAnswerTools();
+}
+
+function showGradingCriteria(){
+    if(!currentTask || !hasGradingCriteria(currentTask)) return;
+    if(isClosedTask(currentTask)) return;
+
+    const box = document.getElementById("solutionBox");
+    const switcher = document.getElementById("solutionSwitcher");
+    const image = document.getElementById("solutionImage");
+
+    if(!box || !switcher || !image) return;
+
+    answerShown = true;
+    box.hidden = false;
+    switcher.innerHTML = "";
+    image.src = currentTask.gradingCriteriaPath;
+    image.alt = `Zasady oceniania zadania ${taskLabel(currentTask)}`;
+
+    const label = document.createElement("span");
+
+    label.className = "solution-tab active";
+    label.setAttribute("aria-disabled", "true");
+    label.innerText = "Zasady oceniania";
+    switcher.appendChild(label);
 
     updateAnswerTools();
 }

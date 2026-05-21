@@ -1,0 +1,500 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 9 - zadanie 1.1",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pole kwadratu to bok do kwadratu.",
+    "answer": "9 cm²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 9 - zadanie 1.2",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Z obwodu 16 cm wyznacz bok 4 cm, a potem policz pole.",
+    "answer": "16 cm²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 9 - zadanie 1.3",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Jeśli pole to 12 m², bok ma długość √12 = 2√3 m.",
+    "answer": "8√3 m",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 9 - zadanie 2",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "200 cm · 60 cm = 12000 cm² = 1,2 m².",
+    "answer": "1,2 m²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 9 - zadanie 3",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "12 mm to 1,2 cm. Użyj wzoru P = a · h / 2.",
+    "answer": "1,8 cm²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 9 - zadanie 4",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "800 mm to 80 cm. Pole wynosi 80 · 16 / 2 = 640 cm² = 6,4 dm².",
+    "answer": "6,4 dm²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 9 - zadanie 5",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pole rombu z przekątnych to d1 · d2 / 2.",
+    "answer": "1 m²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 9 - zadanie 6.1",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wysokość jest o 2 cm krótsza od podstawy, czyli ma 8 cm.",
+    "answer": "80 cm²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 9 - zadanie 6.2",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pole jest takie samo: 80 cm². Druga podstawa ma 20 cm, więc wysokość to 4 cm.",
+    "answer": "4 cm",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 9 - zadanie 7.1",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "1 m² = 10 000 cm².",
+    "answer": "200 000 cm²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 9 - zadanie 7.2",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "1 cm² = 100 mm².",
+    "answer": "500 mm²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 9 - zadanie 7.3",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "15 000 dm² = 150 m², a 1 km² = 1 000 000 m².",
+    "answer": "0,00015 km²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 9 - zadanie 7.4",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "1 hektar = 100 arów.",
+    "answer": "564 ary",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 9 - zadanie 7.5",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "100 arów to 1 hektar.",
+    "answer": "12,9 hektara",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 9 - zadanie 7.6",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "1 km² = 100 hektarów.",
+    "answer": "0,11 km²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 9 - zadanie 7.7",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "1 hektar = 10 000 m².",
+    "answer": "0,012 hektara",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "17.png",
+    "title": "Lekcja 9 - zadanie 8",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Po opuszczeniu wysokości powstaje trójkąt prostokątny 3-4-5, więc wysokość trapezu to 3.",
+    "answer": "42",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "19.png",
+    "title": "Lekcja 9 - zadanie 9.1",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Nowe działki mają wymiary 20 × 15 oraz 15 × 15. Policz ich przekątne z twierdzenia Pitagorasa.",
+    "answer": "25 - 15√2 m, czyli około 3,79 m",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ],
+    "contextFile": "18.png"
+  },
+  {
+    "file": "20.png",
+    "title": "Lekcja 9 - zadanie 9.2",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pola nowych działek to 300 m² i 225 m².",
+    "answer": "4 : 3",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ],
+    "contextFile": "18.png"
+  },
+  {
+    "file": "21.png",
+    "title": "Lekcja 9 - zadanie praktyczne 10",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zmierz długość i szerokość blatu, zamień obie wartości na metry i pomnóż.",
+    "answer": "Odpowiedź zależy od wykonanego pomiaru. Pole blatu to długość · szerokość po zamianie jednostek na metry.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "22.png",
+    "title": "Lekcja 9 - zadanie 10.1",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pole działki wynosi 130 · 25 = 3250 m², a 1 ar = 100 m².",
+    "answer": "32,5 ara",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "23.png",
+    "title": "Lekcja 9 - zadanie 10.2",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamień centymetry na metry i użyj wzoru na pole trapezu.",
+    "answer": "24,5 m²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "24.png",
+    "title": "Lekcja 9 - zadanie 11",
+    "difficulty": 1,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Od pola całego trójkąta odejmij pole trójkątnej grządki.",
+    "answer": "12,5 m²",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "zadania"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 9 - praca domowa 1.1",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Kwadrat o obwodzie 20 cm ma bok 5 cm. Dwa takie kwadraty tworzą prostokąt 10 cm × 5 cm.",
+    "answer": "50 cm²",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 9 - praca domowa 1.2",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Kwadrat ma pole 10000 cm², a prostokąt 99 · 101 = 9999 cm².",
+    "answer": "Większą powierzchnię ma kwadrat o boku 100 cm.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 9 - praca domowa 1.3",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Jeśli boki to x i 3x, to 3x² = 12, więc x = 2.",
+    "answer": "16 m",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 9 - praca domowa 1.4",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Podstawa jest równa wysokości, więc h² = 200.",
+    "answer": "10√2 cm",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 9 - praca domowa 2",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamień 4√5 mm na 0,4√5 cm i policz pole trójkąta.",
+    "answer": "0,01 dm²",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 9 - praca domowa 3",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "7 ha = 700 a, 4000 m² = 40 a, razem z 15 a daje 755 a.",
+    "answer": "755 arów",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 9 - praca domowa 4",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pole trapezu to ((3x + 5x) / 2) · 3x = 12x² = 432.",
+    "answer": "Podstawy mają długości 18 m i 30 m.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 9 - praca domowa 5",
+    "difficulty": 2,
+    "topic": "pola powierzchni",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź pola do metrów kwadratowych: 200 m², 126 m², 118 m².",
+    "answer": "Ogród III, Ogród I, Ogród II",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 9",
+      "pola powierzchni",
+      "praca domowa"
+    ]
+  }
+]

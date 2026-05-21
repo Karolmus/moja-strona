@@ -1,0 +1,519 @@
+[
+  {
+    "file": "2.png",
+    "title": "Lekcja 18 - zadanie 1.1",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "contextFile": "1.png",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 18 - zadanie 1.2",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "contextFile": "1.png",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 18 - zadanie 2",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 18 - zadanie 3",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 18 - zadanie 4",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 18 - zadanie 5",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 18 - zadanie 6",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Prawdopodobieństwo wylosowania czterech reszek jest większe od prawdopodobieństwa wylosowania czterech orłów.",
+      "Prawdopodobieństwo wylosowania co najmniej dwóch reszek jest takie samo jak prawdopodobieństwo wylosowania co najwyżej dwóch orłów."
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 18 - zadanie 7",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 18 - zadanie 8",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 18 - zadanie 9",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 18 - zadanie 10",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 0, bo suma nie może być jednocześnie większa niż 8 i mniejsza niż 4.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 18 - zadanie 11",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 5/16.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 18 - zadanie 12",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 5/16.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 18 - zadanie 13",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "W pudełku jest 12 kul czarnych.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 18 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 11/32.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 18 - praca domowa 2",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "n = 40.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 18 - praca domowa 3",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 2/39.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 18 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 15%.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 18 - praca domowa 5.1",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 1/256.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ],
+    "contextFile": "zd4.png"
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 18 - praca domowa 5.2",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 27/256.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ],
+    "contextFile": "zd4.png"
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 18 - praca domowa 6",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 1/4.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 18 - praca domowa 7",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Prawdopodobieństwo wynosi 11/18.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 18 - praca domowa 8",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Można utworzyć 1200 menu.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 18 - praca domowa 9",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Można wybrać 600 uporządkowanych dwójek.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd11.png",
+    "title": "Lekcja 18 - praca domowa 10",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Można wybrać 171 par osób.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd12.png",
+    "title": "Lekcja 18 - praca domowa 11",
+    "difficulty": 1,
+    "topic": "kombinatoryka i prawdopodobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "answer": "Jeśli pytanie oznacza osoby, które nie lubią ani biegania, ani pływania, odpowiedź wynosi 9. Jeśli chodzi o osoby, które nie lubią jednocześnie obu tych aktywności jako pary, odpowiedź wynosi 26.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 18",
+      "kombinatoryka",
+      "prawdopodobienstwo",
+      "praca domowa"
+    ]
+  }
+]

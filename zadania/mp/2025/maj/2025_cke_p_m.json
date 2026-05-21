@@ -90,7 +90,26 @@
       "podzielność",
       "zadanie otwarte"
     ],
-    "completionPercent": 32
+    "completionPercent": 32,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "5_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "5_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "5_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "5_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "5_z.png"
   },
   {
     "file": "6_2025_cke_p_m.png",
@@ -163,7 +182,14 @@
       "układy równań",
       "zadanie otwarte"
     ],
-    "completionPercent": 30
+    "completionPercent": 30,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "9_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "9_z.png"
   },
   {
     "file": "10_2025_cke_p_m.png",
@@ -176,7 +202,14 @@
       "nierówność kwadratowa",
       "zadanie otwarte"
     ],
-    "completionPercent": 68
+    "completionPercent": 68,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "10_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "10_z.png"
   },
   {
     "file": "11_2025_cke_p_m.png",
@@ -189,7 +222,8 @@
       "funkcje",
       "zadanie otwarte"
     ],
-    "completionPercent": 67
+    "completionPercent": 67,
+    "gradingCriteriaFile": "11_z.png"
   },
   {
     "file": "12.1_2025_cke_p_m.png",
@@ -203,7 +237,18 @@
       "funkcja kwadratowa",
       "zadanie otwarte"
     ],
-    "completionPercent": 62
+    "completionPercent": 62,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "12.1_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "12.1_s_b.png"
+      }
+    ],
+    "gradingCriteriaFile": "12.1_z.png"
   },
   {
     "file": "12.2_2025_cke_p_m.png",
@@ -313,7 +358,26 @@
       "ciągi",
       "zadanie otwarte"
     ],
-    "completionPercent": 49
+    "completionPercent": 49,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "15_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "15_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "15_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "15_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "15_z.png"
   },
   {
     "file": "16_2025_cke_p_m.png",
@@ -528,7 +592,22 @@
       "stereometria",
       "zadanie otwarte"
     ],
-    "completionPercent": 49
+    "completionPercent": 49,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "25_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "25_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "25_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "25_z.png"
   },
   {
     "file": "26_2025_cke_p_m.png",
@@ -621,7 +700,8 @@
       "statystyka",
       "zadanie otwarte"
     ],
-    "completionPercent": 70
+    "completionPercent": 70,
+    "gradingCriteriaFile": "30_z.png"
   },
   {
     "file": "31_2025_cke_p_m.png",
@@ -634,6 +714,13 @@
       "optymalizacja",
       "zadanie otwarte"
     ],
-    "completionPercent": 38
+    "completionPercent": 38,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "31_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "31_z.png"
   }
 ]

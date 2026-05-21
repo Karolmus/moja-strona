@@ -1,0 +1,439 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 12 - zadanie 1.1",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Kąt odpowiadający kątowi 25° ma 25°, a α jest do niego przyległy.",
+    "answer": "155°",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 12 - zadanie 1.2",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Dwie pary są wewnętrzne i dwie pary zewnętrzne.",
+    "answer": "4 pary",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 12 - zadanie 2",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Suma kątów wokół punktu to 360°: γ + 75° + 3γ + 125° = 360°.",
+    "answer": "40°",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 12 - zadanie 3",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Najpierw z trójkąta wewnątrz figury dostajemy kąt 60°, więc α + 60° + α + 10° = 180°.",
+    "answer": "Kąty wewnętrzne trapezu: 90°, 90°, 100°, 80°",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 12 - zadanie 4.1",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Kąt przy prostej m wewnątrz trójkąta ma 55°, a kąt między m i n ma 60°.",
+    "answer": "β = 65°",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ],
+    "contextFile": "5.png"
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 12 - zadanie 4.2",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wysokość dzieli kąt 65° na kąty 35° i 30°.",
+    "answer": "7 : 6",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ],
+    "contextFile": "5.png"
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 12 - zadanie 5",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wystarczy znaleźć kontrprzykład: dwa kąty ostre, których suma nie jest ani ostra, ani rozwarta.",
+    "answer": "Nie. Suma dwóch kątów ostrych może być kątem prostym, np. 45° + 45° = 90°.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 12 - zadanie 6",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Kąty przyległe sumują się do 180°, więc mogą być równe tylko wtedy, gdy oba mają po 90°.",
+    "answer": "A2",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 12 - zadanie 7",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Suma kątów zewnętrznych trójkąta wynosi 360°, a nie 180°.",
+    "answer": "B2",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 12 - zadanie 8",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ponieważ 9α + 15α + 12α = 180°, więc α = 5°. Kąt 9α ma 45°, czyli oba trójkąty mają boki x, y i kąt 45° między nimi.",
+    "answer": "Trójkąty są przystające z cechy bok-kąt-bok.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 12 - zadanie 9",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Boki 6 i 8 odpowiadają bokom 15 i 20, więc skala to 2,5. Bok x odpowiada bokowi 10.",
+    "answer": "Skala podobieństwa większego trójkąta do mniejszego wynosi 2,5, a x = 4.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 12 - zadanie 10",
+    "difficulty": 1,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Boki trójkąta T1 są dwa razy dłuższe od odpowiednich boków trójkąta T2.",
+    "answer": "Trójkąty są podobne; skala trójkąta T1 względem T2 wynosi 2.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "zadania"
+    ]
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 12 - praca domowa 1.1",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Na rysunku kąty α i 1/2α są dopełniające do 180°.",
+    "answer": "α = 120°",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "contextFile": "13.png"
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 12 - praca domowa 1.2",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wystarczy wskazać, że obie pary przeciwległych boków są równoległe.",
+    "answer": "Powstaje czworokąt, którego przeciwległe boki leżą na parach prostych równoległych, więc są równoległe. Taki czworokąt jest równoległobokiem.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "contextFile": "13.png"
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 12 - praca domowa 2",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Po jednej stronie prostej k mamy 7/4δ + 5/4δ = 180°, więc δ = 60°. Po drugiej stronie δ + 75° + 3/2σ = 180°.",
+    "answer": "δ = 60°, σ = 30°",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 12 - praca domowa 3",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "W trójkącie prostokątnym γ = 90° oraz α + β = γ, więc α + 2β - γ = β, czyli kąt ostry.",
+    "answer": "A2",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 12 - praca domowa 4",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pierwszy trójkąt ma kąty 45°, 45°, 90°. Drugi ma dwa równe boki x i kąt prosty między nimi, więc też ma kąty 45°, 45°, 90°.",
+    "answer": "Trójkąty są podobne z cechy kąt-kąt.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 12 - praca domowa 5",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pierwsze trójkąty nie mają wszystkich boków w tym samym stosunku. Obwody figur podobnych zmieniają się w tej samej skali co boki.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Trójkąt o bokach 2, 3 i 4 cm jest podobny do trójkąta o bokach 15, 9 i 6 m",
+      "Obwody trójkątów podobnych w skali podobieństwa k pozostają w stosunku k"
+    ]
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 12 - praca domowa 6.1",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "W pierwszej parze skala wynosi 2, więc x = 10. W drugiej parze przyprostokątne muszą mieć stosunek 3:2, więc x = 15.",
+    "answer": "AD",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 12 - praca domowa 6.2",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "W pierwszej parze α = 70°. W drugiej parze podobieństwo zachodzi dla α = 10°.",
+    "answer": "BD",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 12 - praca domowa 7",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Z równania 5/4γ + γ = 180° dostajemy γ = 80°. Prosta n jest dwusieczną kąta ostrego 80°, więc ostry kąt z prostą k ma 40°, a β = 140°.",
+    "answer": "β = 140°",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "contextFile": "zd8.png"
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 12 - praca domowa 8",
+    "difficulty": 2,
+    "topic": "katy przystawanie podobienstwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Kąt naprzemianległy do kąta przyległego względem α ma miarę 180° - α, więc nie zawsze jest rozwarty.",
+    "answer": "B1",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 12",
+      "katy",
+      "podobienstwo",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  }
+]

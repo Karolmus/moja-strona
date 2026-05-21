@@ -869,13 +869,34 @@ const levelLabels = {
 };
 
 const ADMIN_TASK_SOURCES = [
+    { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa", label: "Matura podstawowa", detail: "2023 / maj / CKE" },
+    { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa", label: "Matura podstawowa", detail: "2024 / maj / CKE" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa", label: "Matura podstawowa", detail: "2025 / maj / CKE" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona", label: "Matura rozszerzona", detail: "2025 / maj / CKE" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty", label: "Egzamin Ósmoklasisty", detail: "2025 / maj / CKE" },
     { path: "zadania/kurs/mp/zadania_kurs_mp.json", category: "kurs", level: "matura_podstawowa", label: "Kurs", detail: "Matura podstawowa" },
     { path: "zadania/kurs/mr/zadania_kurs_mr.json", category: "kurs", level: "matura_rozszerzona", label: "Kurs", detail: "Matura rozszerzona" },
     { path: "zadania/kurs/eo/zadania_kurs_eo.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Kurs", detail: "Egzamin Ósmoklasisty" },
-    { path: "zadania/kurs/eo/lekcja_2/lekcja_2_dzialania_na_liczbach.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 2", detail: "Działania na liczbach" }
+    { path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 1", detail: "Odczytywanie danych i procenty" },
+    { path: "zadania/kurs/eo/lekcja_2/lekcja_2_dzialania_na_liczbach.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 2", detail: "Działania na liczbach" },
+    { path: "zadania/kurs/eo/lekcja_3/lekcja_3_potegi.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 3", detail: "Potęgi" },
+    { path: "zadania/kurs/eo/lekcja_4/lekcja_4_pierwiastki.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 4", detail: "Pierwiastki" },
+    { path: "zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 5", detail: "Wyrażenia algebraiczne i równania" },
+    { path: "zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 6", detail: "Wyrażenia algebraiczne i równania II" },
+    { path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 7", detail: "Czas i odległość" },
+    { path: "zadania/kurs/eo/lekcja_8/lekcja_8_predkosc.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 8", detail: "Prędkość" },
+    { path: "zadania/kurs/eo/lekcja_9/lekcja_9_pola_powierzchni_trojkatow_i_czworokatow.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 9", detail: "Pola powierzchni trójkątów i czworokątów" },
+    { path: "zadania/kurs/eo/lekcja_10/lekcja_10_skala_i_jednostki_powierzchni.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 10", detail: "Skala mapy i jednostki powierzchni" },
+    { path: "zadania/kurs/eo/lekcja_11/lekcja_11_uklad_wspolrzednych.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 11", detail: "Kartezjański układ współrzędnych" },
+    { path: "zadania/kurs/eo/lekcja_12/lekcja_12_katy_przystawanie_podobienstwo.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 12", detail: "Kąty, przystawanie i podobieństwo figur" },
+    { path: "zadania/kurs/eo/lekcja_13/lekcja_13_trojkaty.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 13", detail: "Trójkąty" },
+    { path: "zadania/kurs/eo/lekcja_14/lekcja_14_czworokaty_1.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 14", detail: "Czworokąty I" },
+    { path: "zadania/kurs/eo/lekcja_15/lekcja_15_czworokaty_2_i_wielokaty.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 15", detail: "Czworokąty II i wielokąty" },
+    { path: "zadania/kurs/eo/lekcja_16/lekcja_16_graniastoslupy.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 16", detail: "Graniastosłupy" },
+    { path: "zadania/kurs/eo/lekcja_17/lekcja_17_ostroslupy.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 17", detail: "Ostrosłupy" },
+    { path: "zadania/kurs/eo/lekcja_18/lekcja_18_kombinatoryka_i_prawdopodobienstwo.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 18", detail: "Kombinatoryka i prawdopodobieństwo" },
+    { path: "zadania/kurs/eo/lekcja_19/lekcja_19_logika_i_dowodzenie_w_algebrze.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 19", detail: "Logika i dowodzenie w algebrze" },
+    { path: "zadania/kurs/eo/lekcja_20/lekcja_20_logika_i_dowodzenie_w_geometrii.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 20", detail: "Logika i dowodzenie w geometrii" }
 ];
 
 const COURSE_TARGETS = {

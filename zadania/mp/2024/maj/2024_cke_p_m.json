@@ -60,7 +60,8 @@
         "label": "B",
         "file": "3_s_b.png"
       }
-    ]
+    ],
+    "gradingCriteriaFile": "3_z.png"
   },
   {
     "file": "4_2024_cke_p_m.png",
@@ -183,7 +184,8 @@
         "label": "B",
         "file": "9_s_b.png"
       }
-    ]
+    ],
+    "gradingCriteriaFile": "9_z.png"
   },
   {
     "file": "10_2024_cke_p_m.png",
@@ -422,7 +424,8 @@
         "label": "E",
         "file": "17_s_e.png"
       }
-    ]
+    ],
+    "gradingCriteriaFile": "17_z.png"
   },
   {
     "file": "18_2024_cke_p_m.png",
@@ -574,7 +577,8 @@
         "label": "C",
         "file": "24_s_c.png"
       }
-    ]
+    ],
+    "gradingCriteriaFile": "24_z.png"
   },
   {
     "file": "25.1_2024_cke_p_m.png",
@@ -716,7 +720,8 @@
         "label": "C",
         "file": "30_s_c.png"
       }
-    ]
+    ],
+    "gradingCriteriaFile": "30_z.png"
   },
   {
     "file": "31_2024_cke_p_m.png",
@@ -755,6 +760,7 @@
         "label": "F",
         "file": "31_s_f.png"
       }
-    ]
+    ],
+    "gradingCriteriaFile": "31_z.png"
   }
 ]

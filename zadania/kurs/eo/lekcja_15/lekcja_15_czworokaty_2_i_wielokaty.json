@@ -1,0 +1,513 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 15 - zadanie 1",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 15 - zadanie 2",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "β = 144°.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 15 - zadanie 3.1",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Suma kątów wynosi 1080°.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "contextFile": "3.png"
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 15 - zadanie 3.2",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "∠ABC = 135°.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "contextFile": "3.png"
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 15 - zadanie 3.3",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "∠BDF = 90°.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "contextFile": "3.png"
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 15 - zadanie 3.4",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "∠AGF = 112,5°.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "contextFile": "3.png"
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 15 - zadanie 3.5",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Można utworzyć 20 przekątnych.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "contextFile": "3.png"
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 15 - zadanie 4",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Pozostałe kąty mają miary 75°, 100° i 125°.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 15 - zadanie 5",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Pole trapezu wynosi 45 cm².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 15 - zadanie 6",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Długość przerywanej linii łamanej wynosi 6√3 + 2 mm.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 15 - zadanie 7",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Suma kątów w ośmiokącie jest o 180° mniejsza niż w siedmiokącie.",
+      "Stosunek sumy kątów w dziesięciokącie do sumy kątów w dziewięciokącie wynosi 8:7."
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 15 - zadanie 8",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": [
+      "F",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Miara kąta wewnętrznego w dziewięciokącie foremnym jest o 5° mniejsza niż w ośmiokącie foremnym.",
+      "Suma kątów wewnętrznych ośmiokąta jest dwukrotnością sumy kątów wewnętrznych pięciokąta."
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 15 - zadanie 9",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Pole rombu wynosi 1224 m².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ]
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 15 - zadanie 10.1",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Pole wynosi 8(√2 - 1) cm².",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "contextFile": "15.png"
+  },
+  {
+    "file": "17.png",
+    "title": "Lekcja 15 - zadanie 10.2",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Najdłuższa przekątna jest dłuższa od boku o 6 - 3√2 m.",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "contextFile": "15.png"
+  },
+  {
+    "file": "18.png",
+    "title": "Lekcja 15 - zadanie 11",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "19.png",
+    "title": "Lekcja 15 - zadanie 12",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "20.png",
+    "title": "Lekcja 15 - zadanie 13",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "zadania"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 15 - praca domowa 1",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "A",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 15 - praca domowa 2",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "D",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 15 - praca domowa 3",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "B",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 15 - praca domowa 4",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 15 - praca domowa 5",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "β = 160°.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 15 - praca domowa 6",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "D",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "praca domowa"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 15 - praca domowa 7",
+    "difficulty": 1,
+    "topic": "czworokaty i wielokaty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj wzory na kąty i przekątne wielokątów oraz pola trapezu, rombu i figur złożonych.",
+    "answer": "Pole wynosi 60 + 24√3, a obwód 32 + 12√3.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 15",
+      "czworokaty",
+      "wielokaty",
+      "praca domowa"
+    ]
+  }
+]

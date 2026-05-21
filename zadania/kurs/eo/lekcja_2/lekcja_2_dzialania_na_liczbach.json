@@ -388,7 +388,7 @@
       "C",
       "D"
     ],
-    "hint": "Odpowiedz C pasuje do rachunku 5,6329 - 3,0152. Jesli w materiale widzisz 15,6329, to w tresci jest niespojnosc.",
+    "hint": "Najpierw wykonaj odejmowanie 5,6329 - 3,0152, a potem zaokraglij wynik do czesci dziesietnych.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [

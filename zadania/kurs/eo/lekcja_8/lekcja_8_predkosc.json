@@ -1,0 +1,455 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 8 - zadanie 1",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Dla każdego biegacza policz dystans podzielony przez czas w godzinach.",
+    "answer": "D",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 8 - zadanie 2",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Aby zamienić m/s na km/h, pomnóż przez 3,6.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 8 - zadanie 3",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Pociągi zbliżają się z prędkością 200 km/h, więc w 2 godziny pokonują razem 400 km.",
+    "answer": "1 godzina 20 minut",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania"
+    ]
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 8 - zadanie 4",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zsumuj dystanse i czasy. 96 km w 32 h to 3 km/h, czyli 5/6 m/s.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 8 - zadanie 5",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "7,92 km/h to 2,2 m/s. Czas na 50 m wynosi około 22,73 s.",
+    "answer": [
+      "P",
+      "F"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "prawda falsz"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Pływak zakwalifikował się na igrzyska olimpijskie",
+      "Pływak pobił rekord Europy"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 8 - zadanie 6",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "400 m w 12 sekund to 120 km/h, czyli mniej niż początkowe 160 km/h.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "prawda falsz"
+    ],
+    "type": "true_false",
+    "statements": [
+      "W pewnym momencie po wjeździe do tunelu pociąg zwolnił",
+      "Zmiana średniej prędkości pociągu wyniosła 40 km/h"
+    ]
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 8 - zadanie 7",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Między 16.09.2027 a 27.06.2029 mija 650 dni, a 65000 : 650 = 100.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 8 - zadanie 8",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamień wszystkie prędkości na km/h.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 8 - zadanie 9",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "36 000 gwoździ w 8 godzin to 4500 gwoździ na godzinę.",
+    "answer": "75 gwoździ na minutę",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania"
+    ]
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 8 - zadanie 10.1",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "30 km/h to 30 000 m w 3600 s. Podziel 800 m przez tę prędkość.",
+    "answer": "B",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 8 - zadanie 10.2",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "48 minut to 0,8 godziny. Pomnóż 13 km/h przez 0,8 h.",
+    "answer": "C",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 8 - zadanie 10.3",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "170 m/min to 10 200 m/h, czyli 10,2 km/h.",
+    "answer": "A",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 8 - zadanie 11",
+    "difficulty": 1,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz czas każdego etapu osobno, a potem podziel łączny dystans przez łączny czas.",
+    "answer": "84 km/h",
+    "coursePart": "zadania",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "zadania"
+    ]
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 8 - praca domowa 1",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Porównaj 7,5 m/s z około 7,14 m/s oraz 7 m/s z 420 m/min.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa",
+      "prawda falsz"
+    ],
+    "type": "true_false",
+    "statements": [
+      "30 m w 4 sekundy wymaga większej prędkości niż 50 m w 7 sekund",
+      "Obiekt po przyspieszeniu do 7 m/s pokona ponad 0,41 km w minutę"
+    ]
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 8 - praca domowa 2",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "400 m w 50 s to 8 m/s. Zamień na km/h, mnożąc przez 3,6.",
+    "answer": "C",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa",
+      "zadanie zamkniete"
+    ],
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 8 - praca domowa 3",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Aby zamienić km/h na m/s, podziel przez 3,6.",
+    "answer": "350/9 m/s, czyli około 38,9 m/s",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 8 - praca domowa 4",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Rok 2024 ma 366 dni. 480 km na dobę to 20 km/h.",
+    "answer": [
+      "P",
+      "F"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa",
+      "prawda falsz"
+    ],
+    "type": "true_false",
+    "statements": [
+      "Lodowiec przemieścił się średnio o 0,2 m na dobę",
+      "Średnia prędkość wieloryba wyniosła 5 km/h"
+    ]
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 8 - praca domowa 5",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Do czasu jazdy dolicz godzinny postój. Średnia prędkość to całkowity dystans przez całkowity czas.",
+    "answer": "Cała podróż trwała 1 godzinę 52 minuty, a średnia prędkość wyniosła 37,5 km/h.",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 8 - praca domowa 6",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Podziel 4 · 10^5 km przez 2 km/s.",
+    "answer": "200 000 sekund, czyli 55 godzin 33 minuty 20 sekund",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa"
+    ]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 8 - praca domowa 7",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zamień obie strony nierówności na te same jednostki.",
+    "answer": [
+      "P",
+      "P"
+    ],
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa",
+      "prawda falsz"
+    ],
+    "type": "true_false",
+    "statements": [
+      "16 mm/s < 60 m/h",
+      "1 dm / 2 h > 1 m / dobę"
+    ]
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 8 - praca domowa 8",
+    "difficulty": 2,
+    "topic": "predkosc",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Całe 20 km przy średniej 12 km/h ma zająć 100 minut. Po pierwszych 90 minutach zostaje 10 minut na 5 km.",
+    "answer": "30 km/h",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 8",
+      "predkosc",
+      "praca domowa"
+    ]
+  }
+]
