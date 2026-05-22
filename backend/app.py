@@ -9,12 +9,14 @@ from werkzeug.security import check_password_hash
 
 from auth_storage import (
     INTEGRITY_ERRORS,
+    create_contact_message,
     create_user,
     delete_student,
     generate_temporary_password,
     get_user_by_email,
     get_user_by_id,
     init_auth_db,
+    list_contact_messages,
     list_students,
     mark_task_for_review,
     progress_for_user,
@@ -25,6 +27,7 @@ from auth_storage import (
     reset_user_password,
     sync_admin_user,
     touch_last_login,
+    update_contact_message_read_state,
     update_student,
     update_review_task_resolution,
 )
@@ -292,6 +295,31 @@ def api_admin_students(_admin):
     })
 
 
+@app.get("/api/admin/contact-messages")
+@require_admin
+def api_admin_contact_messages(_admin):
+    return jsonify({
+        "messages": list_contact_messages(),
+    })
+
+
+@app.patch("/api/admin/contact-messages/<int:message_id>")
+@require_admin
+def api_admin_update_contact_message(_admin, message_id):
+    def handler():
+        data = payload()
+        item = update_contact_message_read_state(message_id, data.get("is_read", True))
+
+        if not item:
+            return api_error("Nie znaleziono wiadomości.", 404)
+
+        return jsonify({
+            "message": item,
+        })
+
+    return safe(handler)
+
+
 @app.post("/api/admin/students")
 @require_admin
 def api_admin_create_student(_admin):
@@ -443,6 +471,18 @@ def api_mark_review_task(user):
             "review_task": item,
             "created": created,
         }), 201 if created else 200
+
+    return safe(handler)
+
+
+@app.post("/api/contact-messages")
+def api_create_contact_message():
+    def handler():
+        item = create_contact_message(payload())
+
+        return jsonify({
+            "message": item,
+        }), 201
 
     return safe(handler)
 

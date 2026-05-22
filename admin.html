@@ -76,6 +76,43 @@ body {
     align-items: start;
 }
 
+.admin-tabs {
+    display: inline-flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.admin-tab-btn {
+    min-height: 34px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+}
+
+.admin-tab-btn.active {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+}
+
+.admin-tab-panel {
+    display: none;
+}
+
+.admin-tab-panel.active {
+    display: block;
+}
+
 .panel {
     display: grid;
     gap: 10px;
@@ -90,6 +127,32 @@ body {
     margin: 0;
     font-size: 18px;
     line-height: 1.2;
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.panel-heading h2 {
+    margin: 0;
+}
+
+.sort-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-control label {
+    white-space: nowrap;
+}
+
+.sort-control select {
+    min-width: 190px;
 }
 
 .field {
@@ -694,6 +757,65 @@ th {
     color: var(--red-text);
 }
 
+.messages-panel {
+    gap: 12px;
+}
+
+.message-list {
+    display: grid;
+    gap: 10px;
+}
+
+.message-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: start;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 12px;
+}
+
+.message-card.unread {
+    border-color: #b8d3ee;
+    background: #f1f7fd;
+}
+
+.message-main {
+    display: grid;
+    gap: 6px;
+}
+
+.message-contact {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.message-meta {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.message-body {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+.message-empty {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    padding: 14px;
+    font-size: 13px;
+}
+
 footer {
     text-align: center;
     padding: 15px;
@@ -729,6 +851,10 @@ footer {
     .review-item {
         grid-template-columns: 1fr;
     }
+
+    .message-card {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -753,6 +879,12 @@ footer {
         <button class="btn secondary" type="button" id="logoutBtn">Wyloguj</button>
     </header>
 
+    <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">
+        <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
+        <button class="admin-tab-btn" type="button" data-admin-tab="messages">Wiadomości <span id="messageBadge"></span></button>
+    </div>
+
+    <div class="admin-tab-panel active" id="studentsTab">
     <div class="admin-layout">
         <form class="panel" id="studentForm">
             <h2>Dodaj ucznia</h2>
@@ -799,7 +931,19 @@ footer {
         </form>
 
         <section class="panel">
-            <h2>Uczniowie i postępy</h2>
+            <div class="panel-heading">
+                <h2>Uczniowie i postępy</h2>
+                <div class="sort-control">
+                    <label for="studentSort">Sortuj</label>
+                    <select id="studentSort">
+                        <option value="created_desc">Dodano: najnowsi</option>
+                        <option value="created_asc">Dodano: najstarsi</option>
+                        <option value="name_asc">Uczeń: A-Z</option>
+                        <option value="name_desc">Uczeń: Z-A</option>
+                        <option value="level_asc">Poziom</option>
+                    </select>
+                </div>
+            </div>
             <div class="table-wrap">
                 <table>
                     <colgroup>
@@ -849,6 +993,15 @@ footer {
             </div>
         </section>
     </div>
+    </div>
+
+    <section class="panel messages-panel admin-tab-panel" id="messagesTab">
+        <div class="panel-heading">
+            <h2>Wiadomości</h2>
+            <button class="btn secondary" type="button" id="refreshMessagesBtn">Odśwież</button>
+        </div>
+        <div class="message-list" id="messageList" aria-live="polite"></div>
+    </section>
 </main>
 
 <div class="source-attribution">
@@ -928,8 +1081,17 @@ const credentialsPassword = document.getElementById("credentialsPassword");
 const copyCredentialsBtn = document.getElementById("copyCredentialsBtn");
 const studentLevelInput = document.getElementById("studentLevel");
 const levelCards = document.querySelectorAll(".level-card");
+const studentSort = document.getElementById("studentSort");
+const adminTabButtons = document.querySelectorAll(".admin-tab-btn");
+const studentsTab = document.getElementById("studentsTab");
+const messagesTab = document.getElementById("messagesTab");
+const messageList = document.getElementById("messageList");
+const messageBadge = document.getElementById("messageBadge");
+const refreshMessagesBtn = document.getElementById("refreshMessagesBtn");
 
 let students = [];
+let contactMessages = [];
+let currentStudentSort = "created_desc";
 let lastCredentialsText = "";
 let adminTaskCatalog = [];
 let studentProgressCache = new Map();
@@ -1363,6 +1525,37 @@ function buildProgressCell(student){
     return cell;
 }
 
+function getSortedStudents(){
+    const sorted = [...students];
+
+    sorted.sort((a, b) => {
+        if(currentStudentSort === "name_desc"){
+            return String(b.display_name || "").localeCompare(String(a.display_name || ""), "pl");
+        }
+
+        if(currentStudentSort === "name_asc"){
+            return String(a.display_name || "").localeCompare(String(b.display_name || ""), "pl");
+        }
+
+        if(currentStudentSort === "level_asc"){
+            const levelCompare = String(levelLabels[a.level] || a.level || "")
+                .localeCompare(String(levelLabels[b.level] || b.level || ""), "pl");
+
+            if(levelCompare) return levelCompare;
+
+            return String(a.display_name || "").localeCompare(String(b.display_name || ""), "pl");
+        }
+
+        if(currentStudentSort === "created_asc"){
+            return new Date(a.created_at || 0) - new Date(b.created_at || 0);
+        }
+
+        return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+    });
+
+    return sorted;
+}
+
 function renderStudents(){
     studentTable.innerHTML = "";
 
@@ -1377,7 +1570,7 @@ function renderStudents(){
         return;
     }
 
-    students.forEach((student, index) => {
+    getSortedStudents().forEach((student, index) => {
         const row = document.createElement("tr");
         const indexCell = document.createElement("td");
         const userCell = document.createElement("td");
@@ -1457,6 +1650,105 @@ async function loadStudentProgressSummaries(){
     );
 
     studentProgressCache = new Map(pairs);
+}
+
+function setAdminTab(tab){
+    const showMessages = tab === "messages";
+
+    adminTabButtons.forEach(button => {
+        button.classList.toggle("active", button.dataset.adminTab === tab);
+    });
+
+    studentsTab.classList.toggle("active", !showMessages);
+    messagesTab.classList.toggle("active", showMessages);
+
+    if(showMessages){
+        loadMessages();
+    }
+}
+
+function updateMessageBadge(){
+    const unread = contactMessages.filter(message => !message.is_read).length;
+
+    messageBadge.innerText = unread ? `(${unread})` : "";
+}
+
+function renderMessages(){
+    messageList.innerHTML = "";
+    updateMessageBadge();
+
+    if(!contactMessages.length){
+        const empty = document.createElement("div");
+
+        empty.className = "message-empty";
+        empty.innerText = "Brak wiadomości z formularza kontaktowego.";
+        messageList.appendChild(empty);
+        return;
+    }
+
+    contactMessages.forEach(message => {
+        const card = document.createElement("article");
+        const main = document.createElement("div");
+        const contact = document.createElement("div");
+        const meta = document.createElement("div");
+        const body = document.createElement("div");
+        const action = button(
+            message.is_read ? "Oznacz jako nowe" : "Oznacz jako przeczytane",
+            message.is_read ? "btn secondary" : "btn",
+            () => toggleMessageRead(message)
+        );
+        const term = message.preferred_term
+            ? ` • Termin: ${message.preferred_term}`
+            : "";
+
+        card.className = message.is_read ? "message-card" : "message-card unread";
+        main.className = "message-main";
+        contact.className = "message-contact";
+        meta.className = "message-meta";
+        body.className = "message-body";
+
+        contact.innerText = message.contact;
+        meta.innerText = `${formatDate(message.created_at)}${term}`;
+        body.innerText = message.message;
+
+        main.appendChild(contact);
+        main.appendChild(meta);
+        main.appendChild(body);
+        card.appendChild(main);
+        card.appendChild(action);
+        messageList.appendChild(card);
+    });
+}
+
+async function loadMessages(){
+    try {
+        const data = await apiFetch("/api/admin/contact-messages");
+
+        contactMessages = Array.isArray(data.messages) ? data.messages : [];
+        renderMessages();
+    } catch(error) {
+        messageList.innerHTML = "";
+
+        const empty = document.createElement("div");
+
+        empty.className = "message-empty";
+        empty.innerText = error.message || "Nie udało się wczytać wiadomości.";
+        messageList.appendChild(empty);
+    }
+}
+
+async function toggleMessageRead(message){
+    const data = await apiFetch(`/api/admin/contact-messages/${message.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+            is_read: !message.is_read
+        })
+    });
+
+    contactMessages = contactMessages.map(item =>
+        item.id === message.id ? data.message : item
+    );
+    renderMessages();
 }
 
 async function toggleStudent(student){
@@ -1746,6 +2038,17 @@ document.getElementById("closeProgressBtn").addEventListener("click", () => {
     activeProgressStudentId = null;
 });
 
+adminTabButtons.forEach(button => {
+    button.addEventListener("click", () => setAdminTab(button.dataset.adminTab));
+});
+
+studentSort.addEventListener("change", () => {
+    currentStudentSort = studentSort.value;
+    renderStudents();
+});
+
+refreshMessagesBtn.addEventListener("click", loadMessages);
+
 levelCards.forEach(card => {
     card.addEventListener("click", () => {
         setStudentLevel(card.dataset.level);
@@ -1810,6 +2113,7 @@ async function boot(){
         adminEmail.innerText = session.user.email;
         await loadAdminTaskCatalog();
         await loadStudents();
+        await loadMessages();
     } catch(error) {
         window.location.href = "login.html";
     }
