@@ -11,8 +11,15 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 2,
     "completionPercent": 77,
-    "maxPoints": 2
+    "solutions": [
+      {
+        "label": "A",
+        "file": "1_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "1_z.png"
   },
   {
     "file": "2_2025_cke_r_m.png",
@@ -26,8 +33,23 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 3,
     "completionPercent": 35,
-    "maxPoints": 3
+    "solutions": [
+      {
+        "label": "A",
+        "file": "2_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "2_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "2_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "2_z.png"
   },
   {
     "file": "3_2025_cke_r_m.png",
@@ -41,8 +63,56 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 3,
     "completionPercent": 17,
-    "maxPoints": 3
+    "solutions": [
+      {
+        "label": "A",
+        "file": "3_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "3_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "3_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "3_s_d.png"
+      },
+      {
+        "label": "E 1",
+        "file": "3_s_e1.png"
+      },
+      {
+        "label": "E 2",
+        "file": "3_s_e2.png"
+      },
+      {
+        "label": "F 1",
+        "file": "3_s_f1.png"
+      },
+      {
+        "label": "F 2",
+        "file": "3_s_f2.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "3_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "3_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "3_z3.png"
+      }
+    ]
   },
   {
     "file": "4_2025_cke_r_m.png",
@@ -56,8 +126,15 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 3,
     "completionPercent": 14,
-    "maxPoints": 3
+    "solutions": [
+      {
+        "label": "A",
+        "file": "4_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "4_z.png"
   },
   {
     "file": "5_2025_cke_r_m.png",
@@ -71,8 +148,28 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 4,
     "completionPercent": 52,
-    "maxPoints": 4
+    "solutions": [
+      {
+        "label": "A",
+        "file": "5_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "5_s_b.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "5_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "5_z2.png"
+      }
+    ]
   },
   {
     "file": "6_2025_cke_r_m.png",
@@ -86,8 +183,36 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 4,
     "completionPercent": 46,
-    "maxPoints": 4
+    "solutions": [
+      {
+        "label": "A",
+        "file": "6_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "6_s_b.png"
+      },
+      {
+        "label": "C 1",
+        "file": "6_s_c1.png"
+      },
+      {
+        "label": "C 2",
+        "file": "6_s_c2.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "6_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "6_z2.png"
+      }
+    ]
   },
   {
     "file": "7_2025_cke_r_m.png",
@@ -102,8 +227,32 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 4,
     "completionPercent": 29,
-    "maxPoints": 4
+    "solutions": [
+      {
+        "label": "A",
+        "file": "7_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "7_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "7_s_c.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "7_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "7_z2.png"
+      }
+    ]
   },
   {
     "file": "8_2025_cke_r_m.png",
@@ -118,8 +267,19 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 5,
     "completionPercent": 23,
-    "maxPoints": 5
+    "solutions": [
+      {
+        "label": "A 1",
+        "file": "8_s_a1.png"
+      },
+      {
+        "label": "A 2",
+        "file": "8_s_a2.png"
+      }
+    ],
+    "gradingCriteriaFile": "8_z.png"
   },
   {
     "file": "9_2025_cke_r_m.png",
@@ -133,8 +293,48 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 5,
     "completionPercent": 22,
-    "maxPoints": 5
+    "solutions": [
+      {
+        "label": "A",
+        "file": "9_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "9_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "9_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "9_s_d.png"
+      },
+      {
+        "label": "E",
+        "file": "9_s_e.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "9_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "9_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "9_z3.png"
+      },
+      {
+        "label": "Część 4",
+        "file": "9_z4.png"
+      }
+    ]
   },
   {
     "file": "10_2025_cke_r_m.png",
@@ -148,8 +348,44 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 5,
     "completionPercent": 16,
-    "maxPoints": 5
+    "solutions": [
+      {
+        "label": "A 1",
+        "file": "10_s_a1.png"
+      },
+      {
+        "label": "A 2",
+        "file": "10_s_a2.png"
+      },
+      {
+        "label": "B 1",
+        "file": "10_s_b1.png"
+      },
+      {
+        "label": "B 2",
+        "file": "10_s_b2.png"
+      },
+      {
+        "label": "C 1",
+        "file": "10_s_c1.png"
+      },
+      {
+        "label": "C 2",
+        "file": "10_s_c2.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "10_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "10_z2.png"
+      }
+    ]
   },
   {
     "file": "11_2025_cke_r_m.png",
@@ -164,12 +400,31 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 6,
     "completionPercent": 41,
-    "maxPoints": 6
+    "solutions": [
+      {
+        "label": "A 1",
+        "file": "11_s_a1.png"
+      },
+      {
+        "label": "A 2",
+        "file": "11_s_a2.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "11_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "11_z2.png"
+      }
+    ]
   },
   {
     "file": "12.1_2025_cke_r_m.png",
-    "contextFile": "12_2025_cke_r_m.png",
     "difficulty": 4,
     "topic": "stożek",
     "hint": "W przekroju osiowym stożka zapisz zależność między promieńiem, wysokością i odległością środka podstawy od tworzącej.",
@@ -181,12 +436,19 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "contextFile": "12_2025_cke_r_m.png",
     "completionPercent": 22,
-    "maxPoints": 2
+    "solutions": [
+      {
+        "label": "A",
+        "file": "12.1_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "12.1_z.png"
   },
   {
     "file": "12.2_2025_cke_r_m.png",
-    "contextFile": "12_2025_cke_r_m.png",
     "difficulty": 3,
     "topic": "optymalizacja",
     "hint": "Zbadaj pochodną funkcji V(h) z podpunktu 12.1 i sprawdź, dla jakiej wysokości funkcja osiąga minimum.",
@@ -198,7 +460,15 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "contextFile": "12_2025_cke_r_m.png",
     "completionPercent": 42,
-    "maxPoints": 4
+    "solutions": [
+      {
+        "label": "A",
+        "file": "12.2_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "12.2_z.png"
   }
 ]

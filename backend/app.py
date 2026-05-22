@@ -9,8 +9,10 @@ from werkzeug.security import check_password_hash
 
 from auth_storage import (
     INTEGRITY_ERRORS,
+    contact_message_counts,
     create_contact_message,
     create_user,
+    delete_contact_message,
     delete_student,
     generate_temporary_password,
     get_user_by_email,
@@ -27,6 +29,7 @@ from auth_storage import (
     reset_user_password,
     sync_admin_user,
     touch_last_login,
+    update_contact_message_deleted_state,
     update_contact_message_read_state,
     update_student,
     update_review_task_resolution,
@@ -298,8 +301,14 @@ def api_admin_students(_admin):
 @app.get("/api/admin/contact-messages")
 @require_admin
 def api_admin_contact_messages(_admin):
+    box = request.args.get("box", "inbox")
+
+    if box not in ("inbox", "trash"):
+        box = "inbox"
+
     return jsonify({
-        "messages": list_contact_messages(),
+        "messages": list_contact_messages(box=box),
+        "counts": contact_message_counts(),
     })
 
 
@@ -308,13 +317,37 @@ def api_admin_contact_messages(_admin):
 def api_admin_update_contact_message(_admin, message_id):
     def handler():
         data = payload()
-        item = update_contact_message_read_state(message_id, data.get("is_read", True))
+        item = None
+
+        if "is_deleted" in data:
+            item = update_contact_message_deleted_state(message_id, data.get("is_deleted", True))
+
+        if "is_read" in data:
+            item = update_contact_message_read_state(message_id, data.get("is_read", True))
 
         if not item:
             return api_error("Nie znaleziono wiadomości.", 404)
 
         return jsonify({
             "message": item,
+            "counts": contact_message_counts(),
+        })
+
+    return safe(handler)
+
+
+@app.delete("/api/admin/contact-messages/<int:message_id>")
+@require_admin
+def api_admin_delete_contact_message(_admin, message_id):
+    def handler():
+        item = delete_contact_message(message_id)
+
+        if not item:
+            return api_error("Nie znaleziono wiadomości.", 404)
+
+        return jsonify({
+            "message": item,
+            "counts": contact_message_counts(),
         })
 
     return safe(handler)

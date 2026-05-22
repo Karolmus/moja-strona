@@ -1,0 +1,483 @@
+[
+  {
+    "file": "1.png",
+    "difficulty": 3,
+    "topic": "diagramy i procenty",
+    "hint": "Odczytaj wartości z diagramu i porównaj łączny czas oraz zmianę procentową.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "diagramy",
+      "procenty",
+      "statystyka",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "2.png",
+    "difficulty": 2,
+    "topic": "ułamki",
+    "hint": "Wypisz liczniki spełniające warunki i policz wszystkie możliwe ułamki.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "ułamki",
+      "liczby wymierne",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "3.png",
+    "difficulty": 3,
+    "topic": "średnia arytmetyczna",
+    "hint": "Zamień informację o średniej na sumę liczb i sprawdź oba zdania.",
+    "answer": "PF",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "średnia",
+      "arytmetyczna",
+      "statystyka",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "4.png",
+    "difficulty": 3,
+    "topic": "ułamki",
+    "hint": "Oblicz wartości x i y, a następnie porównaj ich znaki i wielkości.",
+    "answer": "AC",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "ułamki",
+      "działania na ułamkach",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "5.png",
+    "difficulty": 2,
+    "topic": "kąty w figurach",
+    "hint": "Użyj własności kątów przy prostych równoległych i sumy kątów w trójkącie.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "kąty",
+      "w",
+      "figurach",
+      "trapez",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "6.png",
+    "difficulty": 2,
+    "topic": "przekształcanie wzorów",
+    "hint": "Przekształć wzór na pole trapezu tak, aby wyznaczyć wskazaną wielkość.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "przekształcanie",
+      "wzorów",
+      "algebra",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "7.png",
+    "difficulty": 3,
+    "topic": "potęgi",
+    "hint": "Zastosuj prawa mnożenia, dzielenia i potęgowania potęg o tej samej podstawie.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "potęgi",
+      "działania na potęgach",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "8.png",
+    "difficulty": 2,
+    "topic": "prawdopodobieństwo",
+    "hint": "Po dwóch losowaniach czerwonych balonów zmień liczbę czerwonych balonów i liczbę wszystkich balonów.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prawdopodobieństwo",
+      "kombinatoryka",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "9.png",
+    "difficulty": 2,
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Wymnóż nawiasy i zredukuj wyrazy podobne.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wyrażenia",
+      "algebraiczne",
+      "algebra",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "10.png",
+    "difficulty": 2,
+    "topic": "obliczenia zegarowe",
+    "hint": "Od godziny przyjazdu odejmij opóźnienie i planowy czas podróży.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "obliczenia",
+      "zegarowe",
+      "czas",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "11.png",
+    "difficulty": 3,
+    "topic": "proporcjonalność",
+    "hint": "Odczytaj z wykresu zależność między litrami farby a polem powierzchni.",
+    "answer": "PF",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "proporcjonalność",
+      "wykres",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "12.png",
+    "difficulty": 2,
+    "topic": "układ współrzędnych",
+    "hint": "Dodaj do współrzędnych punktu P1 wskazane liczby i odczytaj nowy punkt z rysunku.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "układ",
+      "współrzędnych",
+      "współrzędne",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "13.png",
+    "difficulty": 2,
+    "topic": "prostokąt i kwadraty",
+    "hint": "Odczytaj zależności między bokami kwadratów i zapisz stosunek długości boków prostokąta.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prostokąt",
+      "kwadraty",
+      "geometria",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "14.png",
+    "difficulty": 3,
+    "topic": "twierdzenie Pitagorasa",
+    "hint": "Wyznacz przyprostokątną trójkąta równoramiennego z pola, a potem porównaj z rysunkiem.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "twierdzenie",
+      "pitagorasa",
+      "trójkąt prostokątny",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "15.png",
+    "difficulty": 3,
+    "topic": "ostrosłup",
+    "hint": "Porównaj pole jednej ściany bocznej z polem bocznym i całkowitym ostrosłupa.",
+    "answer": "BC",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "ostrosłup",
+      "geometria przestrzenna",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "16.png",
+    "difficulty": 3,
+    "topic": "ułamki i równania",
+    "hint": "Oznacz liczbę elementów jednego zestawu przez x i zapisz, jaką część zestawu ułożyły dziewczynki.",
+    "answer": "Jeden zestaw puzzli składa się z 600 elementów.",
+    "tags": [
+      "ułamki",
+      "równania",
+      "zadanie tekstowe",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "16_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "16_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "16_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "16_s_d.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "16_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "16_z2.png"
+      }
+    ]
+  },
+  {
+    "file": "17.png",
+    "difficulty": 4,
+    "topic": "pole trapezu",
+    "hint": "Najpierw oblicz długość AE z twierdzenia Pitagorasa, potem wykorzystaj trójkąt równoramienny.",
+    "answer": "Pole trapezu ABCE jest równe 650 cm².",
+    "tags": [
+      "pole",
+      "trapezu",
+      "geometria",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "17_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "17_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "17_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "17_s_d.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "17_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "17_z2.png"
+      }
+    ]
+  },
+  {
+    "file": "18.png",
+    "difficulty": 4,
+    "topic": "procenty i obliczenia praktyczne",
+    "hint": "Oblicz masy truskawek w każdym rodzaju opakowań, liczbę opakowań i przychód ze sprzedaży.",
+    "answer": "Pan Jan otrzymał ze sprzedaży truskawek 2472 zł.",
+    "tags": [
+      "procenty",
+      "obliczenia",
+      "praktyczne",
+      "tabela",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "18_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "18_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "18_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "18_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "18_z.png"
+  },
+  {
+    "file": "19.png",
+    "difficulty": 3,
+    "topic": "objętość ostrosłupa",
+    "hint": "Oblicz wysokość ostrosłupa z wzoru na objętość, a potem porównaj wysokości wież.",
+    "answer": "Różnica wysokości obu wież wynosi 2 cm.",
+    "tags": [
+      "objętość",
+      "ostrosłupa",
+      "bryły",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "19_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "19_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "19_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "19_z.png"
+  }
+]

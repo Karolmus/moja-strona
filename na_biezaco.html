@@ -82,6 +82,102 @@ body{
     color:#444;
 }
 
+.timeline-section{
+    padding:28px 20px 18px;
+}
+
+.timeline{
+    position:relative;
+    width:900px;
+    max-width:100%;
+    margin:0 auto;
+    padding:1em 0;
+    list-style:none;
+}
+
+.timeline:before{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    width:6px;
+    height:100%;
+    margin-left:-3px;
+    background:linear-gradient(to bottom, rgba(64,78,237,0), #404EED 10%, #5865F2 90%, rgba(64,78,237,0));
+    border-radius:10px;
+}
+
+.timeline li{
+    padding:1.2em 0;
+}
+
+.timeline li::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.direction-l,
+.direction-r{
+    position:relative;
+    width:calc(50% - 40px);
+}
+
+.direction-l{
+    float:left;
+    text-align:right;
+}
+
+.direction-r{
+    float:right;
+}
+
+.flag-wrapper{
+    position:relative;
+    display:inline-block;
+}
+
+.flag{
+    display:inline-block;
+    background:white;
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:600;
+    box-shadow:0 8px 22px rgba(31,42,54,0.08);
+}
+
+.time{
+    display:block;
+    margin-top:8px;
+    color:#404EED;
+    font-weight:600;
+}
+
+.desc{
+    margin-top:12px;
+    color:#444;
+    line-height:1.65;
+    font-size:15px;
+}
+
+.timeline-signup-slot{
+    margin:0 auto 70px;
+}
+
+@media(max-width:700px){
+    .timeline:before{
+        left:14px;
+    }
+
+    .direction-l,
+    .direction-r{
+        float:none;
+        width:100%;
+        padding-left:42px;
+        text-align:left;
+    }
+}
+
 
 
 </style>
@@ -107,7 +203,39 @@ body{
     </p>
 </section>
 
-<div id="baner"></div>
+<section class="timeline-section">
+    <ul class="timeline">
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="flag">Diagnoza</span>
+                    <span class="time">Ustalamy, z czym uczeń ma największy problem</span>
+                </div>
+                <div class="desc">Zaczynamy od bieżących lekcji, sprawdzianu albo kartkówki, żeby szybko uporządkować materiał.</div>
+            </div>
+        </li>
+        <li>
+            <div class="direction-l">
+                <div class="flag-wrapper">
+                    <span class="flag">Praca na lekcji</span>
+                    <span class="time">Rozwiązujemy zadania krok po kroku</span>
+                </div>
+                <div class="desc">Uczeń ćwiczy dokładnie ten typ zadań, który pojawia się w szkole, bez zbędnego odchodzenia od celu.</div>
+            </div>
+        </li>
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="flag">Utrwalenie</span>
+                    <span class="time">Zostawiam konkretny plan powtórki</span>
+                </div>
+                <div class="desc">Po zajęciach wiadomo, co trzeba jeszcze przećwiczyć i jak przygotować się do następnej pracy pisemnej.</div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<div class="timeline-signup-slot" data-baner-slot></div>
 
 </div>
 
@@ -131,7 +259,9 @@ fetch("nav.html")
 fetch("baner.html")
     .then(res => res.text())
     .then(html => {
-        document.getElementById("baner").innerHTML = html;
+        document.querySelectorAll("[data-baner-slot]").forEach(slot => {
+            slot.innerHTML = html;
+        });
     });
 </script>
 <script src="static/auth.js?v=20260518-token"></script>

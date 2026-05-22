@@ -631,6 +631,14 @@ th {
 .review-main {
     display: grid;
     gap: 3px;
+    border-radius: 7px;
+    cursor: copy;
+    padding: 3px;
+    transition: background 0.18s ease;
+}
+
+.review-main:hover {
+    background: rgba(227, 189, 65, 0.14);
 }
 
 .review-main strong {
@@ -641,6 +649,13 @@ th {
     color: var(--muted);
     font-size: 11px;
     line-height: 1.35;
+}
+
+.review-copy-hint {
+    color: #765a12;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
 .legend-item {
@@ -758,7 +773,54 @@ th {
 }
 
 .messages-panel {
-    gap: 12px;
+    gap: 14px;
+    max-width: 980px;
+}
+
+.messages-heading-copy {
+    display: grid;
+    gap: 4px;
+}
+
+.inbox-subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.mailbox-tabs {
+    display: inline-flex;
+    gap: 6px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    width: fit-content;
+}
+
+.mailbox-tab {
+    min-height: 32px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 11px;
+}
+
+.mailbox-tab.active {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+}
+
+.mailbox-tab span {
+    margin-left: 4px;
+    opacity: 0.8;
 }
 
 .message-list {
@@ -768,7 +830,7 @@ th {
 
 .message-card {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(136px, auto);
     gap: 12px;
     align-items: start;
     border: 1px solid var(--line);
@@ -780,6 +842,10 @@ th {
 .message-card.unread {
     border-color: #b8d3ee;
     background: #f1f7fd;
+}
+
+.message-card.deleted {
+    background: #fffafa;
 }
 
 .message-main {
@@ -807,6 +873,21 @@ th {
     white-space: pre-wrap;
 }
 
+.message-actions {
+    display: grid;
+    gap: 6px;
+    justify-items: stretch;
+}
+
+.message-action-btn {
+    min-height: 30px;
+    padding: 5px 9px;
+    border-radius: 7px;
+    font-size: 11px;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
 .message-empty {
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -827,6 +908,10 @@ footer {
 @media(max-width: 900px) {
     .admin-layout {
         grid-template-columns: 1fr;
+    }
+
+    .messages-panel {
+        max-width: none;
     }
 }
 
@@ -855,6 +940,10 @@ footer {
     .message-card {
         grid-template-columns: 1fr;
     }
+
+    .message-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 </style>
 </head>
@@ -881,7 +970,7 @@ footer {
 
     <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">
         <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
-        <button class="admin-tab-btn" type="button" data-admin-tab="messages">Wiadomości <span id="messageBadge"></span></button>
+        <button class="admin-tab-btn" type="button" data-admin-tab="messages">Skrzynka odbiorcza <span id="messageBadge"></span></button>
     </div>
 
     <div class="admin-tab-panel active" id="studentsTab">
@@ -997,8 +1086,15 @@ footer {
 
     <section class="panel messages-panel admin-tab-panel" id="messagesTab">
         <div class="panel-heading">
-            <h2>Wiadomości</h2>
+            <div class="messages-heading-copy">
+                <h2>Skrzynka odbiorcza</h2>
+                <p class="inbox-subtitle">Wiadomości z formularza kontaktowego na stronie zapisów.</p>
+            </div>
             <button class="btn secondary" type="button" id="refreshMessagesBtn">Odśwież</button>
+        </div>
+        <div class="mailbox-tabs" role="tablist" aria-label="Folder wiadomości">
+            <button class="mailbox-tab active" type="button" data-mailbox="inbox">Odebrane <span id="inboxCount"></span></button>
+            <button class="mailbox-tab" type="button" data-mailbox="trash">Kosz <span id="trashCount"></span></button>
         </div>
         <div class="message-list" id="messageList" aria-live="polite"></div>
     </section>
@@ -1088,14 +1184,25 @@ const messagesTab = document.getElementById("messagesTab");
 const messageList = document.getElementById("messageList");
 const messageBadge = document.getElementById("messageBadge");
 const refreshMessagesBtn = document.getElementById("refreshMessagesBtn");
+const mailboxTabs = document.querySelectorAll(".mailbox-tab");
+const inboxCount = document.getElementById("inboxCount");
+const trashCount = document.getElementById("trashCount");
 
 let students = [];
 let contactMessages = [];
+let currentMailbox = "inbox";
+let messageCounts = {
+    inbox: 0,
+    trash: 0,
+    unread: 0
+};
 let currentStudentSort = "created_desc";
 let lastCredentialsText = "";
 let adminTaskCatalog = [];
 let studentProgressCache = new Map();
 let activeProgressStudentId = null;
+const reviewImageClipboardCache = new Map();
+const reviewSourceTaskCache = new Map();
 const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
 
 function showStatus(message){
@@ -1663,25 +1770,41 @@ function setAdminTab(tab){
     messagesTab.classList.toggle("active", showMessages);
 
     if(showMessages){
-        loadMessages();
+        loadMessages(currentMailbox);
     }
 }
 
-function updateMessageBadge(){
-    const unread = contactMessages.filter(message => !message.is_read).length;
+function updateMailboxCounts(){
+    const unread = Number(messageCounts.unread || 0);
+    const inbox = Number(messageCounts.inbox || 0);
+    const trash = Number(messageCounts.trash || 0);
 
     messageBadge.innerText = unread ? `(${unread})` : "";
+    inboxCount.innerText = inbox ? `(${inbox})` : "";
+    trashCount.innerText = trash ? `(${trash})` : "";
+}
+
+function setMailbox(box){
+    currentMailbox = box === "trash" ? "trash" : "inbox";
+
+    mailboxTabs.forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.mailbox === currentMailbox);
+    });
+
+    loadMessages(currentMailbox);
 }
 
 function renderMessages(){
     messageList.innerHTML = "";
-    updateMessageBadge();
+    updateMailboxCounts();
 
     if(!contactMessages.length){
         const empty = document.createElement("div");
 
         empty.className = "message-empty";
-        empty.innerText = "Brak wiadomości z formularza kontaktowego.";
+        empty.innerText = currentMailbox === "trash"
+            ? "Kosz jest pusty."
+            : "Brak wiadomości z formularza kontaktowego.";
         messageList.appendChild(empty);
         return;
     }
@@ -1692,39 +1815,53 @@ function renderMessages(){
         const contact = document.createElement("div");
         const meta = document.createElement("div");
         const body = document.createElement("div");
-        const action = button(
-            message.is_read ? "Oznacz jako nowe" : "Oznacz jako przeczytane",
-            message.is_read ? "btn secondary" : "btn",
-            () => toggleMessageRead(message)
-        );
+        const actions = document.createElement("div");
         const term = message.preferred_term
             ? ` • Termin: ${message.preferred_term}`
             : "";
+        const deleted = currentMailbox === "trash" && message.deleted_at
+            ? ` • Usunięto: ${formatDate(message.deleted_at)}`
+            : "";
 
         card.className = message.is_read ? "message-card" : "message-card unread";
+        card.classList.toggle("deleted", currentMailbox === "trash");
         main.className = "message-main";
         contact.className = "message-contact";
         meta.className = "message-meta";
         body.className = "message-body";
+        actions.className = "message-actions";
 
         contact.innerText = message.contact;
-        meta.innerText = `${formatDate(message.created_at)}${term}`;
+        meta.innerText = `${formatDate(message.created_at)}${term}${deleted}`;
         body.innerText = message.message;
+
+        if(currentMailbox === "trash"){
+            actions.appendChild(button("Przywróć", "btn secondary message-action-btn", () => restoreMessage(message)));
+            actions.appendChild(button("Usuń trwale", "btn danger message-action-btn", () => deleteMessagePermanently(message)));
+        } else {
+            actions.appendChild(button(
+                message.is_read ? "Oznacz jako nowe" : "Oznacz jako przeczytane",
+                message.is_read ? "btn secondary message-action-btn" : "btn message-action-btn",
+                () => toggleMessageRead(message)
+            ));
+            actions.appendChild(button("Usuń wiadomość", "btn danger message-action-btn", () => moveMessageToTrash(message)));
+        }
 
         main.appendChild(contact);
         main.appendChild(meta);
         main.appendChild(body);
         card.appendChild(main);
-        card.appendChild(action);
+        card.appendChild(actions);
         messageList.appendChild(card);
     });
 }
 
-async function loadMessages(){
+async function loadMessages(box = currentMailbox){
     try {
-        const data = await apiFetch("/api/admin/contact-messages");
+        const data = await apiFetch(`/api/admin/contact-messages?box=${encodeURIComponent(box)}`);
 
         contactMessages = Array.isArray(data.messages) ? data.messages : [];
+        messageCounts = data.counts || messageCounts;
         renderMessages();
     } catch(error) {
         messageList.innerHTML = "";
@@ -1748,6 +1885,51 @@ async function toggleMessageRead(message){
     contactMessages = contactMessages.map(item =>
         item.id === message.id ? data.message : item
     );
+    messageCounts = data.counts || messageCounts;
+    renderMessages();
+}
+
+async function moveMessageToTrash(message){
+    if(!window.confirm(`Czy na pewno przenieść do kosza wiadomość od ${message.contact}?`)){
+        return;
+    }
+
+    const data = await apiFetch(`/api/admin/contact-messages/${message.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+            is_deleted: true
+        })
+    });
+
+    messageCounts = data.counts || messageCounts;
+    contactMessages = contactMessages.filter(item => item.id !== message.id);
+    renderMessages();
+}
+
+async function restoreMessage(message){
+    const data = await apiFetch(`/api/admin/contact-messages/${message.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+            is_deleted: false
+        })
+    });
+
+    messageCounts = data.counts || messageCounts;
+    contactMessages = contactMessages.filter(item => item.id !== message.id);
+    renderMessages();
+}
+
+async function deleteMessagePermanently(message){
+    if(!window.confirm(`Czy na pewno trwale usunąć wiadomość od ${message.contact}?`)){
+        return;
+    }
+
+    const data = await apiFetch(`/api/admin/contact-messages/${message.id}`, {
+        method: "DELETE"
+    });
+
+    messageCounts = data.counts || messageCounts;
+    contactMessages = contactMessages.filter(item => item.id !== message.id);
     renderMessages();
 }
 
@@ -1916,6 +2098,200 @@ function reviewTaskMeta(item){
     return parts.join(" • ");
 }
 
+function reviewTaskImagePath(item){
+    const source = String(item.source_id || "");
+    const file = String(item.file || "");
+
+    if(!file) return "";
+    if(file.startsWith("/") || /^https?:\/\//i.test(file)) return file;
+    if(!source.includes("/")) return file;
+
+    return source.slice(0, source.lastIndexOf("/") + 1) + file;
+}
+
+function reviewTaskBasePath(item){
+    const source = String(item.source_id || "");
+
+    if(!source.includes("/")) return "";
+
+    return source.slice(0, source.lastIndexOf("/") + 1);
+}
+
+function pathFromReviewTaskFile(item, file){
+    const value = String(file || "");
+
+    if(!value) return "";
+    if(value.startsWith("/") || /^https?:\/\//i.test(value)) return value;
+
+    return reviewTaskBasePath(item) + value;
+}
+
+async function reviewSourceTasks(source){
+    if(!source) return [];
+
+    if(!reviewSourceTaskCache.has(source)){
+        reviewSourceTaskCache.set(source, fetch(source)
+            .then(response => response.ok ? response.json() : [])
+            .catch(() => [])
+        );
+    }
+
+    return reviewSourceTaskCache.get(source);
+}
+
+async function reviewTaskImagePaths(item){
+    const taskPath = reviewTaskImagePath(item);
+
+    if(!taskPath) return [];
+
+    const source = String(item.source_id || "");
+    const tasks = await reviewSourceTasks(source);
+    const task = Array.isArray(tasks)
+        ? tasks.find(candidate => String(candidate.file || "") === String(item.file || ""))
+        : null;
+    const contextPath = task?.contextFile
+        ? pathFromReviewTaskFile(item, task.contextFile)
+        : "";
+
+    return contextPath ? [contextPath, taskPath] : [taskPath];
+}
+
+function blobToImage(blob){
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        const url = URL.createObjectURL(blob);
+
+        image.onload = () => {
+            URL.revokeObjectURL(url);
+            resolve(image);
+        };
+        image.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error("Nie udało się przygotować obrazu zadania."));
+        };
+        image.src = url;
+    });
+}
+
+function canvasToPngBlob(canvas){
+    return new Promise((resolve, reject) => {
+        canvas.toBlob(output => {
+            if(output){
+                resolve(output);
+            } else {
+                reject(new Error("Nie udało się przekonwertować obrazu do PNG."));
+            }
+        }, "image/png");
+    });
+}
+
+async function normalizeImageBlobForClipboard(blob){
+    if(blob.type === "image/png"){
+        return blob;
+    }
+
+    const image = await blobToImage(blob);
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    canvas.width = image.naturalWidth || image.width;
+    canvas.height = image.naturalHeight || image.height;
+    context.drawImage(image, 0, 0);
+
+    return canvasToPngBlob(canvas);
+}
+
+async function fetchImageBlob(path){
+    const response = await fetch(path);
+
+    if(!response.ok){
+        throw new Error("Nie udało się pobrać obrazka zadania.");
+    }
+
+    return response.blob();
+}
+
+async function combineImagePaths(paths){
+    const blobs = await Promise.all(paths.map(fetchImageBlob));
+
+    if(blobs.length === 1){
+        return normalizeImageBlobForClipboard(blobs[0]);
+    }
+
+    const images = await Promise.all(blobs.map(blobToImage));
+    const gap = 18;
+    const padding = 18;
+    const width = Math.max(...images.map(image => image.naturalWidth || image.width)) + padding * 2;
+    const height = images.reduce((sum, image) => sum + (image.naturalHeight || image.height), 0)
+        + gap * (images.length - 1)
+        + padding * 2;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    let y = padding;
+
+    canvas.width = width;
+    canvas.height = height;
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, width, height);
+
+    images.forEach(image => {
+        const imageWidth = image.naturalWidth || image.width;
+        const imageHeight = image.naturalHeight || image.height;
+        const x = Math.round((width - imageWidth) / 2);
+
+        context.drawImage(image, x, y);
+        y += imageHeight + gap;
+    });
+
+    return canvasToPngBlob(canvas);
+}
+
+function clipboardImageBlob(item){
+    const cacheKey = `${item.source_id || ""}:${item.file || ""}`;
+
+    if(!reviewImageClipboardCache.has(cacheKey)){
+        reviewImageClipboardCache.set(cacheKey, reviewTaskImagePaths(item)
+            .then(paths => {
+                if(!paths.length){
+                    throw new Error("Nie mam zapisanej ścieżki do obrazka tego zadania.");
+                }
+
+                return combineImagePaths(paths);
+            })
+            .catch(error => {
+                reviewImageClipboardCache.delete(cacheKey);
+                throw error;
+            })
+        );
+    }
+
+    return reviewImageClipboardCache.get(cacheKey);
+}
+
+function prefetchReviewTaskImage(item){
+    clipboardImageBlob(item).catch(() => {});
+}
+
+async function copyReviewTaskImage(item){
+    if(!navigator.clipboard?.write || !window.ClipboardItem){
+        showStatus("Ta przeglądarka nie pozwala skopiować obrazu do schowka z poziomu strony.");
+        return;
+    }
+
+    try {
+        const pngBlob = await clipboardImageBlob(item);
+
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                "image/png": pngBlob
+            })
+        ]);
+        showStatus(`Skopiowano obraz zadania: ${reviewTaskTitle(item)}.`);
+    } catch(error) {
+        showStatus(error.message || "Nie udało się skopiować obrazka zadania do schowka.");
+    }
+}
+
 function renderReviewTasks(items, student){
     reviewTasks.innerHTML = "";
 
@@ -1938,20 +2314,37 @@ function renderReviewTasks(items, student){
         const title = document.createElement("strong");
         const meta = document.createElement("div");
         const date = document.createElement("div");
+        const hint = document.createElement("div");
         const action = button("Odznacz", "btn secondary", () => resolveReviewTask(item, student));
 
         row.className = "review-item";
         main.className = "review-main";
         meta.className = "review-meta";
         date.className = "review-meta";
+        hint.className = "review-copy-hint";
+        main.title = "Kliknij, aby skopiować obraz zadania do schowka.";
+        main.tabIndex = 0;
+        main.setAttribute("role", "button");
 
         title.innerText = reviewTaskTitle(item);
         meta.innerText = reviewTaskMeta(item) || item.file || "";
         date.innerText = `Dodano: ${formatDate(item.created_at)}`;
+        hint.innerText = "Kliknij zadanie, aby skopiować obraz.";
+
+        main.addEventListener("click", () => copyReviewTaskImage(item));
+        main.addEventListener("mouseenter", () => prefetchReviewTaskImage(item));
+        main.addEventListener("focus", () => prefetchReviewTaskImage(item));
+        main.addEventListener("keydown", event => {
+            if(event.key === "Enter" || event.key === " "){
+                event.preventDefault();
+                copyReviewTaskImage(item);
+            }
+        });
 
         main.appendChild(title);
         main.appendChild(meta);
         main.appendChild(date);
+        main.appendChild(hint);
         row.appendChild(main);
         row.appendChild(action);
         reviewTasks.appendChild(row);
@@ -2047,7 +2440,11 @@ studentSort.addEventListener("change", () => {
     renderStudents();
 });
 
-refreshMessagesBtn.addEventListener("click", loadMessages);
+refreshMessagesBtn.addEventListener("click", () => loadMessages(currentMailbox));
+
+mailboxTabs.forEach(tab => {
+    tab.addEventListener("click", () => setMailbox(tab.dataset.mailbox));
+});
 
 levelCards.forEach(card => {
     card.addEventListener("click", () => {

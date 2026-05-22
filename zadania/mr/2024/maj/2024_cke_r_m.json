@@ -1,0 +1,361 @@
+[
+  {
+    "file": "1.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "completionPercent": 48,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "1_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "1_s_b.png"
+      }
+    ],
+    "gradingCriteriaFile": "1_z.png"
+  },
+  {
+    "file": "2.png",
+    "difficulty": 4,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "completionPercent": 31,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "2_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "2_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "2_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "2_z.png"
+  },
+  {
+    "file": "3.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "completionPercent": 47,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "3_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "3_z.png"
+  },
+  {
+    "file": "4.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "completionPercent": 50,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "4_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "4_z.png"
+  },
+  {
+    "file": "5.png",
+    "difficulty": 2,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "completionPercent": 62,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "5_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "5_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "5_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "5_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "5_z.png"
+  },
+  {
+    "file": "6.png",
+    "difficulty": 5,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "completionPercent": 18,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "6_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "6_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "6_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "6_z.png"
+  },
+  {
+    "file": "7.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "completionPercent": 42,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "7_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "7_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "7_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "7_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "7_z.png"
+  },
+  {
+    "file": "8.png",
+    "difficulty": 5,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "completionPercent": 15,
+    "solutions": [
+      {
+        "label": "A 1",
+        "file": "8_s_a1.png"
+      },
+      {
+        "label": "A 2",
+        "file": "8_s_a2.png"
+      },
+      {
+        "label": "B",
+        "file": "8_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "8_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "8_s_d.png"
+      },
+      {
+        "label": "E 1",
+        "file": "8_s_e1.png"
+      },
+      {
+        "label": "E 2",
+        "file": "8_s_e2.png"
+      },
+      {
+        "label": "F",
+        "file": "8_s_f.png"
+      },
+      {
+        "label": "G",
+        "file": "8_s_g.png"
+      },
+      {
+        "label": "H",
+        "file": "8_s_h.png"
+      },
+      {
+        "label": "I",
+        "file": "8_s_i.png"
+      },
+      {
+        "label": "J 1",
+        "file": "8_s_j1.png"
+      },
+      {
+        "label": "J 2",
+        "file": "8_s_j2.png"
+      },
+      {
+        "label": "J 3",
+        "file": "8_s_j3.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część A-E",
+        "file": "8_z_a-e.png"
+      },
+      {
+        "label": "Część F-J",
+        "file": "8_z_f-j.png"
+      }
+    ]
+  },
+  {
+    "file": "9.png",
+    "difficulty": 5,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "completionPercent": 18
+  },
+  {
+    "file": "10.png",
+    "difficulty": 4,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 5,
+    "completionPercent": 29
+  },
+  {
+    "file": "11.png",
+    "difficulty": 5,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 5,
+    "completionPercent": 18
+  },
+  {
+    "file": "12.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 6,
+    "completionPercent": 41
+  },
+  {
+    "file": "13.1.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "contextFile": "13.png",
+    "completionPercent": 47
+  },
+  {
+    "file": "13.2.png",
+    "difficulty": 4,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "contextFile": "13.png",
+    "completionPercent": 24
+  }
+]

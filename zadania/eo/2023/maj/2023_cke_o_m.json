@@ -1,0 +1,484 @@
+[
+  {
+    "file": "1.png",
+    "difficulty": 3,
+    "topic": "proporcjonalność",
+    "hint": "Przelicz składniki przepisu proporcjonalnie do liczby gofrów.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "proporcjonalność",
+      "proporcje",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "2.png",
+    "difficulty": 2,
+    "topic": "potęgi i ułamki",
+    "hint": "Oblicz sześcian liczby 4 oraz najmniejszy wspólny mianownik podanych ułamków.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "potęgi",
+      "ułamki",
+      "działania na liczbach",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "3.png",
+    "difficulty": 2,
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Podstaw kolejno x = 1 oraz x = -1 i sprawdź, które wyrażenie daje zero w obu przypadkach.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wyrażenia",
+      "algebraiczne",
+      "wartość wyrażenia",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "4.png",
+    "difficulty": 2,
+    "topic": "zadanie tekstowe i geometria",
+    "hint": "Porównaj ustawienie książek na obu półkach i wykorzystaj podane wymiary.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "zadanie",
+      "tekstowe",
+      "geometria",
+      "figury",
+      "praktyczne",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "5.png",
+    "difficulty": 3,
+    "topic": "pierwiastki",
+    "hint": "Oblicz osobno wartości pierwiastków z liczb będących kwadratami liczb naturalnych.",
+    "answer": "AD",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "pierwiastki",
+      "działania na liczbach",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "6.png",
+    "difficulty": 2,
+    "topic": "równania",
+    "hint": "Zapisz zależność między liczbą uczniów i nauczycieli, a potem rozwiąż równanie.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "równania",
+      "zadanie tekstowe",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "7.png",
+    "difficulty": 3,
+    "topic": "potęgi",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "answer": "BD",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "potęgi",
+      "działania na potęgach",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "8.png",
+    "difficulty": 2,
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Zapisz długości odcinków przy pomocy zmiennej i porównaj otrzymane wyrażenia.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wyrażenia",
+      "algebraiczne",
+      "algebra",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "9.png",
+    "difficulty": 2,
+    "topic": "bryły",
+    "hint": "Rozpoznaj, z jakich brył składa się figura i policz widoczne elementy.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "bryły",
+      "geometria przestrzenna",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "10.png",
+    "difficulty": 2,
+    "topic": "skala",
+    "hint": "Zamień skalę planu na odległość rzeczywistą i pamiętaj o jednostkach.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "skala",
+      "obliczenia praktyczne",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "11.png",
+    "difficulty": 3,
+    "topic": "prawdopodobieństwo",
+    "hint": "Policz liczbę wszystkich kul oraz odpowiednie prawdopodobieństwa.",
+    "answer": "PF",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "prawdopodobieństwo",
+      "ułamki",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "12.png",
+    "difficulty": 2,
+    "topic": "prostokąt i twierdzenie Pitagorasa",
+    "hint": "Wykorzystaj położenie środków boków i długości odcinków z rysunku.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prostokąt",
+      "twierdzenie",
+      "pitagorasa",
+      "geometria",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "13.png",
+    "difficulty": 3,
+    "topic": "proste równoległe i prostopadłe",
+    "hint": "Prześledź powtarzający się kierunek kolejnych odcinków figury.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "proste",
+      "równoległe",
+      "prostopadłe",
+      "geometria",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "14.png",
+    "difficulty": 3,
+    "topic": "pola figur",
+    "hint": "Porównaj pole kwadratu K z polami figur oraz sprawdź, czy można uzyskać bok 7 cm.",
+    "answer": "B3",
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "tags": [
+      "pola",
+      "figur",
+      "kwadrat",
+      "prostokąt",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "15.png",
+    "difficulty": 3,
+    "topic": "kąty w figurach",
+    "hint": "Skorzystaj z własności trójkąta równobocznego i równoramiennego.",
+    "answer": "FP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "kąty",
+      "w",
+      "figurach",
+      "geometria",
+      "prawda fałsz",
+      "zadanie zamknięte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "16.png",
+    "difficulty": 3,
+    "topic": "równania",
+    "hint": "Oznacz cenę jednego biletu do kina lub teatru i zapisz równanie z treści zadania.",
+    "answer": "Cena jednego biletu do teatru jest równa 80 zł.",
+    "tags": [
+      "równania",
+      "zadanie tekstowe",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "16_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "16_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "16_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "16_s_d.png"
+      },
+      {
+        "label": "Sposób E",
+        "file": "16_s_e.png"
+      }
+    ],
+    "gradingCriteriaFile": "16_z.png"
+  },
+  {
+    "file": "17.png",
+    "difficulty": 3,
+    "topic": "prędkość droga czas",
+    "hint": "Najpierw oblicz prędkość pociągu, a potem drogę przebytą w 15 sekund.",
+    "answer": "Długość pociągu wynosi 210 m.",
+    "tags": [
+      "prędkość",
+      "droga",
+      "czas",
+      "obliczenia praktyczne",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "17_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "17_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "17_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "17_z.png"
+  },
+  {
+    "file": "18.png",
+    "difficulty": 4,
+    "topic": "pola trójkątów",
+    "hint": "Oblicz pole trójkąta ACD, odejmij je od pola czworokąta i użyj wzoru na pole trójkąta ABC.",
+    "answer": "Wysokość trójkąta ABC jest równa 10 cm.",
+    "tags": [
+      "pola",
+      "trójkątów",
+      "geometria",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "18_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "18_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "18_s_c.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "18_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "18_z2.png"
+      }
+    ]
+  },
+  {
+    "file": "19.png",
+    "difficulty": 4,
+    "topic": "objętość prostopadłościanu",
+    "hint": "Wyznacz brakujące krawędzie klocka z podanych wymiarów całej figury, a potem oblicz objętość.",
+    "answer": "Objętość jednego klocka jest równa 225 cm³.",
+    "tags": [
+      "objętość",
+      "prostopadłościanu",
+      "bryły",
+      "geometria przestrzenna",
+      "zadanie otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "19_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "19_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "19_s_c.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "19_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "19_z2.png"
+      }
+    ]
+  }
+]
