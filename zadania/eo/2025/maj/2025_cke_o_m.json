@@ -344,7 +344,18 @@
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 46,
-    "maxPoints": 2
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "16_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "16_s_b.png"
+      }
+    ],
+    "gradingCriteriaFile": "16_z.png"
   },
   {
     "file": "17_2025_cke_o_m.png",
@@ -359,7 +370,30 @@
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 45,
-    "maxPoints": 3
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "17_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "17_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "17_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "17_s_d.png"
+      },
+      {
+        "label": "Sposób E",
+        "file": "17_s_e.png"
+      }
+    ],
+    "gradingCriteriaFile": "17_z.png"
   },
   {
     "file": "18_2025_cke_o_m.png",
@@ -375,7 +409,22 @@
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 50,
-    "maxPoints": 2
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "18_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "18_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "18_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "18_z.png"
   },
   {
     "file": "19_2025_cke_o_m.png",
@@ -390,7 +439,26 @@
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 46,
-    "maxPoints": 2
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "19_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "19_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "19_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "19_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "19_z.png"
   },
   {
     "file": "20_2025_cke_o_m.png",
@@ -406,7 +474,39 @@
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 29,
-    "maxPoints": 3
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "20_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "20_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "20_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "20_s_d.png"
+      },
+      {
+        "label": "Sposób E",
+        "file": "20_s_e.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "20_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "20_z2.png"
+      }
+    ]
   },
   {
     "file": "21_2025_cke_o_m.png",
@@ -422,6 +522,22 @@
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 38,
-    "maxPoints": 3
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "21_s_a.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "21_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "21_z2.png"
+      }
+    ]
   }
 ]

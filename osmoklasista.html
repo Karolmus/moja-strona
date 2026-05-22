@@ -325,6 +325,10 @@ body{
     padding:50px 20px 70px;
 }
 
+.timeline-signup-slot{
+    margin:-34px auto 70px;
+}
+
 .timeline{
     position:relative;
     width:900px;
@@ -955,6 +959,8 @@ footer{
 </ul>
 </section>
 
+<div class="timeline-signup-slot" data-baner-slot></div>
+
 <div class="source-attribution">
     Część materiałów egzaminacyjnych prezentowanych w serwisie pochodzi z Centralnej Komisji Egzaminacyjnej:
     <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
@@ -1184,7 +1190,9 @@ fetch("nav.html")
 fetch("baner.html")
     .then(res => res.text())
     .then(html => {
-        document.getElementById("baner").innerHTML = html;
+        document.querySelectorAll("#baner, [data-baner-slot]").forEach(slot => {
+            slot.innerHTML = html;
+        });
     });
 </script>
 <script src="static/auth.js?v=20260518-token"></script>

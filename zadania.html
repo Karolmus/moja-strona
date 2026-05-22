@@ -1703,6 +1703,7 @@ let sessionResults = new Map();
 let drawTaskRequestId = 0;
 let isTaskLoading = false;
 let selectedSolutionIndex = 0;
+let selectedGradingIndex = 0;
 
 const IMAGE_FADE_MS = 220;
 
@@ -1722,7 +1723,11 @@ const TASK_SOURCES = [
     { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2023/maj/2023_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy" },
     {
         path: "zadania/kurs/mp/zadania_kurs_mp.json",
@@ -2134,6 +2139,7 @@ function loadTaskSource(sourceConfig){
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
             solutions: normalizeTaskSolutions(task, basePath),
+            gradingCriteria: normalizeTaskGradingCriteria(task, basePath),
             gradingCriteriaPath: task.gradingCriteriaFile ? basePath + task.gradingCriteriaFile : null,
             tags: normalizeTaskTags(task),
             category: sourceMeta.category,
@@ -2165,6 +2171,42 @@ function normalizeTaskSolutions(task, basePath){
                 ...solution,
                 label: solution.label || String.fromCharCode(65 + index),
                 path: basePath + solution.file
+            };
+        })
+        .filter(Boolean);
+}
+
+function normalizeTaskGradingCriteria(task, basePath){
+    const files = [];
+
+    if(Array.isArray(task.gradingCriteria)){
+        files.push(...task.gradingCriteria);
+    }
+
+    if(Array.isArray(task.gradingCriteriaFiles)){
+        files.push(...task.gradingCriteriaFiles);
+    }
+
+    if(task.gradingCriteriaFile){
+        files.push(task.gradingCriteriaFile);
+    }
+
+    return files
+        .map((item, index) => {
+            if(typeof item === "string"){
+                return {
+                    label: files.length > 1 ? `Część ${index + 1}` : "Zasady oceniania",
+                    file: item,
+                    path: basePath + item
+                };
+            }
+
+            if(!item?.file) return null;
+
+            return {
+                ...item,
+                label: item.label || (files.length > 1 ? `Część ${index + 1}` : "Zasady oceniania"),
+                path: basePath + item.file
             };
         })
         .filter(Boolean);
@@ -3492,6 +3534,7 @@ function clearTaskInteraction(){
     }
 
     selectedSolutionIndex = 0;
+    selectedGradingIndex = 0;
     hideMessage();
 }
 
@@ -3785,7 +3828,9 @@ function hasTaskSolutions(task = currentTask){
 }
 
 function hasGradingCriteria(task = currentTask){
-    return Boolean(task?.gradingCriteriaPath);
+    return Array.isArray(task?.gradingCriteria)
+        ? task.gradingCriteria.length > 0
+        : Boolean(task?.gradingCriteriaPath);
 }
 
 function shouldShowScorePanel(task = currentTask){
@@ -4578,28 +4623,38 @@ function showSolution(index = selectedSolutionIndex){
     updateAnswerTools();
 }
 
-function showGradingCriteria(){
+function showGradingCriteria(index = selectedGradingIndex){
     if(!currentTask || !hasGradingCriteria(currentTask)) return;
     if(isClosedTask(currentTask)) return;
 
+    const criteria = Array.isArray(currentTask.gradingCriteria) && currentTask.gradingCriteria.length
+        ? currentTask.gradingCriteria
+        : [{ label: "Zasady oceniania", path: currentTask.gradingCriteriaPath }];
+    const safeIndex = Math.min(Math.max(Number(index) || 0, 0), criteria.length - 1);
+    const item = criteria[safeIndex];
     const box = document.getElementById("solutionBox");
     const switcher = document.getElementById("solutionSwitcher");
     const image = document.getElementById("solutionImage");
 
-    if(!box || !switcher || !image) return;
+    if(!box || !switcher || !image || !item?.path) return;
 
+    selectedGradingIndex = safeIndex;
     answerShown = true;
     box.hidden = false;
     switcher.innerHTML = "";
-    image.src = currentTask.gradingCriteriaPath;
-    image.alt = `Zasady oceniania zadania ${taskLabel(currentTask)}`;
+    image.src = item.path;
+    image.alt = `${item.label} zadania ${taskLabel(currentTask)}`;
 
-    const label = document.createElement("span");
+    criteria.forEach((criteriaItem, itemIndex) => {
+        const button = document.createElement("button");
 
-    label.className = "solution-tab active";
-    label.setAttribute("aria-disabled", "true");
-    label.innerText = "Zasady oceniania";
-    switcher.appendChild(label);
+        button.type = "button";
+        button.className = itemIndex === safeIndex ? "solution-tab active" : "solution-tab";
+        button.innerText = criteriaItem.label || `Część ${itemIndex + 1}`;
+        button.onclick = () => showGradingCriteria(itemIndex);
+
+        switcher.appendChild(button);
+    });
 
     updateAnswerTools();
 }

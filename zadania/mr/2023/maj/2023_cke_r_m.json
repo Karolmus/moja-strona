@@ -1,0 +1,429 @@
+[
+  {
+    "file": "1.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "1_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "1_z.png"
+  },
+  {
+    "file": "2.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "2_s_a.png"
+      },
+      {
+        "label": "B 1",
+        "file": "2_s_b1.png"
+      },
+      {
+        "label": "B 2",
+        "file": "2_s_b2.png"
+      },
+      {
+        "label": "C",
+        "file": "2_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "2_z.png"
+  },
+  {
+    "file": "3.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "3_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "3_z.png"
+  },
+  {
+    "file": "4.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "4_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "4_s_b.png"
+      }
+    ],
+    "gradingCriteriaFile": "4_z.png"
+  },
+  {
+    "file": "5.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "5_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "5_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "5_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "5_s_d.png"
+      },
+      {
+        "label": "E 1",
+        "file": "5_s_e1.png"
+      },
+      {
+        "label": "E 2",
+        "file": "5_s_e2.png"
+      },
+      {
+        "label": "F",
+        "file": "5_s_f.png"
+      },
+      {
+        "label": "G",
+        "file": "5_s_g.png"
+      }
+    ],
+    "gradingCriteriaFile": "5_z.png"
+  },
+  {
+    "file": "6.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "6_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "6_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "6_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "6_z.png"
+  },
+  {
+    "file": "7.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "7_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "7_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "7_s_c.png"
+      },
+      {
+        "label": "D",
+        "file": "7_s_d.png"
+      },
+      {
+        "label": "E",
+        "file": "7_s_e.png"
+      },
+      {
+        "label": "F",
+        "file": "7_s_f.png"
+      },
+      {
+        "label": "A",
+        "file": "7_s.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "7_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "7_z2.png"
+      }
+    ]
+  },
+  {
+    "file": "8.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "8_s_a.png"
+      },
+      {
+        "label": "B",
+        "file": "8_s_b.png"
+      },
+      {
+        "label": "C",
+        "file": "8_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "8_z.png"
+  },
+  {
+    "file": "9.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część A",
+        "file": "9_z_a.png"
+      },
+      {
+        "label": "Część B",
+        "file": "9_z_b.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "9_z.png"
+      }
+    ]
+  },
+  {
+    "file": "10.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "10_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "10_z.png"
+  },
+  {
+    "file": "11.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 5,
+    "solutions": [
+      {
+        "label": "Etap 1 A",
+        "file": "11_s_etap1_a.png"
+      },
+      {
+        "label": "Etap 2 A",
+        "file": "11_s_etap2_a.png"
+      },
+      {
+        "label": "Etap 2 B",
+        "file": "11_s_etap2_b.png"
+      },
+      {
+        "label": "Etap 3 A",
+        "file": "11_s_etap3_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "11_z.png"
+  },
+  {
+    "file": "12.1.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "contextFile": "12.png",
+    "solutions": [
+      {
+        "label": "A",
+        "file": "12.1_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "12.1_z.png"
+  },
+  {
+    "file": "12.2.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "contextFile": "12.png",
+    "solutions": [
+      {
+        "label": "A",
+        "file": "12.2_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "12.2_z.png"
+  },
+  {
+    "file": "13.png",
+    "difficulty": 3,
+    "topic": "matura rozszerzona",
+    "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "matura rozszerzona",
+      "zadanie otwarte"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 6,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "13_s_a.png"
+      },
+      {
+        "label": "B 1",
+        "file": "13_s_b1.png"
+      },
+      {
+        "label": "B 2",
+        "file": "13_s_b2.png"
+      },
+      {
+        "label": "C 1",
+        "file": "13_s_c1.png"
+      },
+      {
+        "label": "C 2",
+        "file": "13_s_c2.png"
+      },
+      {
+        "label": "D 1",
+        "file": "13_s_d1.png"
+      },
+      {
+        "label": "D 2",
+        "file": "13_s_d2.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "13_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "13_z2.png"
+      }
+    ]
+  }
+]

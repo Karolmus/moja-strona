@@ -215,7 +215,8 @@ def init_auth_db():
                 message TEXT NOT NULL,
                 is_read BOOLEAN NOT NULL DEFAULT FALSE,
                 created_at TEXT NOT NULL,
-                read_at TEXT
+                read_at TEXT,
+                deleted_at TEXT
             )
             """,
             """
@@ -233,6 +234,14 @@ def init_auth_db():
             """
             ALTER TABLE task_progress
                 ADD COLUMN IF NOT EXISTS max_points DOUBLE PRECISION
+            """,
+            """
+            ALTER TABLE contact_messages
+                ADD COLUMN IF NOT EXISTS deleted_at TEXT
+            """,
+            """
+            CREATE INDEX IF NOT EXISTS idx_contact_messages_deleted_at
+                ON contact_messages(deleted_at)
             """,
         ]
 
@@ -310,7 +319,8 @@ def init_auth_db():
             message TEXT NOT NULL,
             is_read INTEGER NOT NULL DEFAULT 0,
             created_at TEXT NOT NULL,
-            read_at TEXT
+            read_at TEXT,
+            deleted_at TEXT
         );
 
         CREATE INDEX IF NOT EXISTS idx_contact_messages_created_at
@@ -331,6 +341,21 @@ def init_auth_db():
 
         if "max_points" not in columns:
             db.execute("ALTER TABLE task_progress ADD COLUMN max_points REAL")
+
+        contact_columns = {
+            row["name"]
+            for row in db.execute("PRAGMA table_info(contact_messages)").fetchall()
+        }
+
+        if "deleted_at" not in contact_columns:
+            db.execute("ALTER TABLE contact_messages ADD COLUMN deleted_at TEXT")
+
+        db.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_contact_messages_deleted_at
+                ON contact_messages(deleted_at)
+            """
+        )
 
     db.commit()
 
@@ -795,6 +820,7 @@ def contact_message_to_dict(row):
 
     if item:
         item["is_read"] = bool(item["is_read"])
+        item["is_deleted"] = bool(item.get("deleted_at"))
 
     return item
 
@@ -864,20 +890,51 @@ def create_contact_message(data):
     return item
 
 
-def list_contact_messages(limit=200):
+def list_contact_messages(limit=200, box="inbox"):
+    show_trash = box == "trash"
+    where_clause = "deleted_at IS NOT NULL" if show_trash else "deleted_at IS NULL"
+    order_clause = "deleted_at DESC, created_at DESC" if show_trash else "is_read ASC, created_at DESC"
+
     return [
         contact_message_to_dict(row)
         for row in execute(
-            """
+            f"""
             SELECT *
             FROM contact_messages
-            ORDER BY is_read ASC, created_at DESC
+            WHERE {where_clause}
+            ORDER BY {order_clause}
             LIMIT ?
             """,
             (limit,),
         )
         .fetchall()
     ]
+
+
+def contact_message_counts():
+    row = execute(
+        """
+        SELECT
+            SUM(CASE WHEN deleted_at IS NULL THEN 1 ELSE 0 END) AS inbox,
+            SUM(CASE WHEN deleted_at IS NOT NULL THEN 1 ELSE 0 END) AS trash,
+            SUM(CASE WHEN deleted_at IS NULL AND is_read = ? THEN 1 ELSE 0 END) AS unread
+        FROM contact_messages
+        """,
+        (db_bool(False),),
+    ).fetchone()
+
+    if row is None:
+        return {
+            "inbox": 0,
+            "trash": 0,
+            "unread": 0,
+        }
+
+    return {
+        "inbox": int(row["inbox"] or 0),
+        "trash": int(row["trash"] or 0),
+        "unread": int(row["unread"] or 0),
+    }
 
 
 def update_contact_message_read_state(message_id, is_read=True):
@@ -917,6 +974,69 @@ def update_contact_message_read_state(message_id, is_read=True):
                 ).fetchone()
             )
 
+    db.commit()
+
+    return item
+
+
+def update_contact_message_deleted_state(message_id, is_deleted=True):
+    deleted_at = now_iso() if is_deleted else None
+    db = get_db()
+
+    if database_engine() == "postgres":
+        cursor = db.execute(
+            prepare_sql(
+                """
+                UPDATE contact_messages
+                SET deleted_at = ?
+                WHERE id = ?
+                RETURNING *
+                """
+            ),
+            (deleted_at, message_id),
+        )
+        item = contact_message_to_dict(cursor.fetchone())
+    else:
+        cursor = db.execute(
+            """
+            UPDATE contact_messages
+            SET deleted_at = ?
+            WHERE id = ?
+            """,
+            (deleted_at, message_id),
+        )
+
+        if cursor.rowcount == 0:
+            item = None
+        else:
+            item = contact_message_to_dict(
+                db.execute(
+                    "SELECT * FROM contact_messages WHERE id = ?",
+                    (message_id,),
+                ).fetchone()
+            )
+
+    db.commit()
+
+    return item
+
+
+def delete_contact_message(message_id):
+    db = get_db()
+    item = contact_message_to_dict(
+        execute(
+            "SELECT * FROM contact_messages WHERE id = ?",
+            (message_id,),
+        ).fetchone()
+    )
+
+    if not item:
+        return None
+
+    db.execute(
+        prepare_sql("DELETE FROM contact_messages WHERE id = ?"),
+        (message_id,),
+    )
     db.commit()
 
     return item
