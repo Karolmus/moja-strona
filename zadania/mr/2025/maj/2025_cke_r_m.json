@@ -11,7 +11,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 77
+    "completionPercent": 77,
+    "maxPoints": 2
   },
   {
     "file": "2_2025_cke_r_m.png",
@@ -25,7 +26,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 35
+    "completionPercent": 35,
+    "maxPoints": 3
   },
   {
     "file": "3_2025_cke_r_m.png",
@@ -39,7 +41,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 17
+    "completionPercent": 17,
+    "maxPoints": 3
   },
   {
     "file": "4_2025_cke_r_m.png",
@@ -53,7 +56,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 14
+    "completionPercent": 14,
+    "maxPoints": 3
   },
   {
     "file": "5_2025_cke_r_m.png",
@@ -67,7 +71,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 52
+    "completionPercent": 52,
+    "maxPoints": 4
   },
   {
     "file": "6_2025_cke_r_m.png",
@@ -81,7 +86,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 46
+    "completionPercent": 46,
+    "maxPoints": 4
   },
   {
     "file": "7_2025_cke_r_m.png",
@@ -96,7 +102,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 29
+    "completionPercent": 29,
+    "maxPoints": 4
   },
   {
     "file": "8_2025_cke_r_m.png",
@@ -111,7 +118,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 23
+    "completionPercent": 23,
+    "maxPoints": 5
   },
   {
     "file": "9_2025_cke_r_m.png",
@@ -125,7 +133,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 22
+    "completionPercent": 22,
+    "maxPoints": 5
   },
   {
     "file": "10_2025_cke_r_m.png",
@@ -139,7 +148,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 16
+    "completionPercent": 16,
+    "maxPoints": 5
   },
   {
     "file": "11_2025_cke_r_m.png",
@@ -154,7 +164,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 41
+    "completionPercent": 41,
+    "maxPoints": 6
   },
   {
     "file": "12.1_2025_cke_r_m.png",
@@ -170,7 +181,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 22
+    "completionPercent": 22,
+    "maxPoints": 2
   },
   {
     "file": "12.2_2025_cke_r_m.png",
@@ -186,6 +198,7 @@
       "zadanie otwarte"
     ],
     "level": "matura_rozszerzona",
-    "completionPercent": 42
+    "completionPercent": 42,
+    "maxPoints": 4
   }
 ]

@@ -17,7 +17,8 @@
       "wartość bezwzględna",
       "zadanie zamknięte",
       "przedziały"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2_2023_cke_p_m.png",
@@ -37,7 +38,8 @@
       "pierwiastki",
       "zadanie zamknięte",
       "potęgi"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3_2023_cke_p_m.png",
@@ -68,7 +70,8 @@
         "file": "3_s_d.png"
       }
     ],
-    "gradingCriteriaFile": "3_z.png"
+    "gradingCriteriaFile": "3_z.png",
+    "maxPoints": 2
   },
   {
     "file": "4_2023_cke_p_m.png",
@@ -88,7 +91,8 @@
       "logarytmy",
       "zadanie zamknięte",
       "logarytmy"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "5_2023_cke_p_m.png",
@@ -108,7 +112,8 @@
       "wzory skróconego mnożenia",
       "zadanie zamknięte",
       "algebra"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "6_2023_cke_p_m.png",
@@ -128,7 +133,8 @@
       "nierownosci liniowe",
       "zadanie zamknięte",
       "nierownosci"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "7_2023_cke_p_m.png",
@@ -148,7 +154,8 @@
       "równańia wielomianowe",
       "zadanie zamknięte",
       "równańia"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8_2023_cke_p_m.png",
@@ -168,7 +175,8 @@
       "równańia wymierne",
       "zadanie zamknięte",
       "dziedzina"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9_2023_cke_p_m.png",
@@ -199,7 +207,8 @@
         "file": "9_s_d.png"
       }
     ],
-    "gradingCriteriaFile": "9_z.png"
+    "gradingCriteriaFile": "9_z.png",
+    "maxPoints": 3
   },
   {
     "file": "10_2023_cke_p_m.png",
@@ -220,7 +229,8 @@
       "zadanie zamknięte",
       "funkcja liniowa",
       "układy równań"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "11_2023_cke_p_m.png",
@@ -244,7 +254,8 @@
     "tags": [
       "układy równań",
       "wybor wielokrotny"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "12.1_2023_cke_p_m.png",
@@ -265,7 +276,8 @@
       "odczytywanie z wykresu",
       "zadanie zamknięte"
     ],
-    "contextFile": "12_2023_cke_p_m.png"
+    "contextFile": "12_2023_cke_p_m.png",
+    "maxPoints": 1
   },
   {
     "file": "12.2_2023_cke_p_m.png",
@@ -286,7 +298,8 @@
       "odczytywanie z wykresu",
       "zadanie zamknięte"
     ],
-    "contextFile": "12_2023_cke_p_m.png"
+    "contextFile": "12_2023_cke_p_m.png",
+    "maxPoints": 1
   },
   {
     "file": "12.3_2023_cke_p_m.png",
@@ -307,7 +320,8 @@
       "monotonicznosc",
       "zadanie zamknięte"
     ],
-    "contextFile": "12_2023_cke_p_m.png"
+    "contextFile": "12_2023_cke_p_m.png",
+    "maxPoints": 1
   },
   {
     "file": "13_2023_cke_p_m.png",
@@ -327,7 +341,8 @@
       "funkcja liniowa",
       "zadanie zamknięte",
       "wykres funkcji"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "14_2023_cke_p_m.png",
@@ -347,7 +362,8 @@
       "funkcja kwadratówa",
       "zadanie zamknięte",
       "miejsca zerowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "15_2023_cke_p_m.png",
@@ -367,7 +383,8 @@
       "ciągi",
       "zadanie zamknięte",
       "ciągi"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "16_2023_cke_p_m.png",
@@ -387,7 +404,8 @@
       "ciąg geometryczny",
       "zadanie zamknięte",
       "ciągi"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "17_2023_cke_p_m.png",
@@ -426,7 +444,8 @@
         "file": "17_s_f.png"
       }
     ],
-    "gradingCriteriaFile": "17_z.png"
+    "gradingCriteriaFile": "17_z.png",
+    "maxPoints": 2
   },
   {
     "file": "18_2023_cke_p_m.png",
@@ -446,7 +465,8 @@
       "trygonometria",
       "zadanie zamknięte",
       "tangens"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "19_2023_cke_p_m.png",
@@ -466,7 +486,8 @@
       "trygonometria",
       "zadanie zamknięte",
       "jedynka trygonometryczna"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "20_2023_cke_p_m.png",
@@ -486,7 +507,8 @@
       "romb",
       "zadanie zamknięte",
       "geometria"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "21_2023_cke_p_m.png",
@@ -506,7 +528,8 @@
       "kąty w okręgu",
       "zadanie zamknięte",
       "okrag"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "22_2023_cke_p_m.png",
@@ -533,7 +556,8 @@
         "file": "22_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "22_z.png"
+    "gradingCriteriaFile": "22_z.png",
+    "maxPoints": 2
   },
   {
     "file": "23_2023_cke_p_m.png",
@@ -555,7 +579,8 @@
       "proste",
       "układ wspolrzednych",
       "zadanie zamknięte"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "24_2023_cke_p_m.png",
@@ -575,7 +600,8 @@
       "prosta rownolegla",
       "zadanie zamknięte",
       "funkcja liniowa"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "25_2023_cke_p_m.png",
@@ -595,7 +621,8 @@
       "graniastosłupy",
       "zadanie zamknięte",
       "geometria przestrzenna"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "26_2023_cke_p_m.png",
@@ -615,7 +642,8 @@
         "file": "26_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "26_z.png"
+    "gradingCriteriaFile": "26_z.png",
+    "maxPoints": 4
   },
   {
     "file": "27_2023_cke_p_m.png",
@@ -635,7 +663,8 @@
       "ostrosłupy",
       "zadanie zamknięte",
       "geometria przestrzenna"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "28_2023_cke_p_m.png",
@@ -655,7 +684,8 @@
       "kombinatoryka",
       "zadanie zamknięte",
       "zliczanie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "29_2023_cke_p_m.png",
@@ -668,7 +698,8 @@
       "statystyka",
       "mediana",
       "średnia arytmetyczna"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "30_2023_cke_p_m.png",
@@ -695,7 +726,8 @@
         "file": "30_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "30_z.png"
+    "gradingCriteriaFile": "30_z.png",
+    "maxPoints": 2
   },
   {
     "file": "31.1_2023_cke_p_m.png",
@@ -716,7 +748,8 @@
       "funkcja kwadratówa",
       "prawda/fałsz"
     ],
-    "contextFile": "31_2023_cke_p_m.png"
+    "contextFile": "31_2023_cke_p_m.png",
+    "maxPoints": 1
   },
   {
     "file": "31.2_2023_cke_p_m.png",
@@ -745,6 +778,7 @@
         "file": "31.2_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "31.2_z.png"
+    "gradingCriteriaFile": "31.2_z.png",
+    "maxPoints": 2
   }
 ]

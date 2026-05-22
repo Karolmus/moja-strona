@@ -17,7 +17,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 83
+    "completionPercent": 83,
+    "maxPoints": 1
   },
   {
     "file": "2_2024_cke_p_m.png",
@@ -37,7 +38,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 76
+    "completionPercent": 76,
+    "maxPoints": 1
   },
   {
     "file": "3_2024_cke_p_m.png",
@@ -61,7 +63,8 @@
         "file": "3_s_b.png"
       }
     ],
-    "gradingCriteriaFile": "3_z.png"
+    "gradingCriteriaFile": "3_z.png",
+    "maxPoints": 2
   },
   {
     "file": "4_2024_cke_p_m.png",
@@ -81,7 +84,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 74
+    "completionPercent": 74,
+    "maxPoints": 1
   },
   {
     "file": "5_2024_cke_p_m.png",
@@ -101,7 +105,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 79
+    "completionPercent": 79,
+    "maxPoints": 1
   },
   {
     "file": "6_2024_cke_p_m.png",
@@ -121,7 +126,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 63
+    "completionPercent": 63,
+    "maxPoints": 1
   },
   {
     "file": "7_2024_cke_p_m.png",
@@ -141,7 +147,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 82
+    "completionPercent": 82,
+    "maxPoints": 1
   },
   {
     "file": "8_2024_cke_p_m.png",
@@ -161,7 +168,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 84
+    "completionPercent": 84,
+    "maxPoints": 1
   },
   {
     "file": "9_2024_cke_p_m.png",
@@ -185,7 +193,8 @@
         "file": "9_s_b.png"
       }
     ],
-    "gradingCriteriaFile": "9_z.png"
+    "gradingCriteriaFile": "9_z.png",
+    "maxPoints": 3
   },
   {
     "file": "10_2024_cke_p_m.png",
@@ -205,7 +214,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 57
+    "completionPercent": 57,
+    "maxPoints": 1
   },
   {
     "file": "11_2024_cke_p_m.png",
@@ -225,7 +235,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 71
+    "completionPercent": 71,
+    "maxPoints": 1
   },
   {
     "file": "12_2024_cke_p_m.png",
@@ -245,7 +256,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 57
+    "completionPercent": 57,
+    "maxPoints": 1
   },
   {
     "file": "13_2024_cke_p_m.png",
@@ -265,7 +277,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 65
+    "completionPercent": 65,
+    "maxPoints": 1
   },
   {
     "file": "14.1_2024_cke_p_m.png",
@@ -279,7 +292,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 53
+    "completionPercent": 53,
+    "maxPoints": 1
   },
   {
     "file": "14.2_2024_cke_p_m.png",
@@ -300,7 +314,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 79
+    "completionPercent": 79,
+    "maxPoints": 1
   },
   {
     "file": "14.3_2024_cke_p_m.png",
@@ -321,7 +336,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 62
+    "completionPercent": 62,
+    "maxPoints": 1
   },
   {
     "file": "14.4_2024_cke_p_m.png",
@@ -347,7 +363,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 55
+    "completionPercent": 55,
+    "maxPoints": 2
   },
   {
     "file": "15_2024_cke_p_m.png",
@@ -367,7 +384,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 77
+    "completionPercent": 77,
+    "maxPoints": 1
   },
   {
     "file": "16_2024_cke_p_m.png",
@@ -389,7 +407,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 78
+    "completionPercent": 78,
+    "maxPoints": 1
   },
   {
     "file": "17_2024_cke_p_m.png",
@@ -425,7 +444,8 @@
         "file": "17_s_e.png"
       }
     ],
-    "gradingCriteriaFile": "17_z.png"
+    "gradingCriteriaFile": "17_z.png",
+    "maxPoints": 2
   },
   {
     "file": "18_2024_cke_p_m.png",
@@ -450,7 +470,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 61
+    "completionPercent": 61,
+    "maxPoints": 2
   },
   {
     "file": "19_2024_cke_p_m.png",
@@ -470,7 +491,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 60
+    "completionPercent": 60,
+    "maxPoints": 1
   },
   {
     "file": "20_2024_cke_p_m.png",
@@ -490,7 +512,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 70
+    "completionPercent": 70,
+    "maxPoints": 1
   },
   {
     "file": "21_2024_cke_p_m.png",
@@ -510,7 +533,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 77
+    "completionPercent": 77,
+    "maxPoints": 1
   },
   {
     "file": "22_2024_cke_p_m.png",
@@ -530,7 +554,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 64
+    "completionPercent": 64,
+    "maxPoints": 1
   },
   {
     "file": "23_2024_cke_p_m.png",
@@ -550,7 +575,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 66
+    "completionPercent": 66,
+    "maxPoints": 1
   },
   {
     "file": "24_2024_cke_p_m.png",
@@ -578,7 +604,8 @@
         "file": "24_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "24_z.png"
+    "gradingCriteriaFile": "24_z.png",
+    "maxPoints": 2
   },
   {
     "file": "25.1_2024_cke_p_m.png",
@@ -599,7 +626,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 70
+    "completionPercent": 70,
+    "maxPoints": 1
   },
   {
     "file": "25.2_2024_cke_p_m.png",
@@ -620,7 +648,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 80
+    "completionPercent": 80,
+    "maxPoints": 1
   },
   {
     "file": "26_2024_cke_p_m.png",
@@ -633,7 +662,8 @@
       "zadanie otwarte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 23
+    "completionPercent": 23,
+    "maxPoints": 1
   },
   {
     "file": "27_2024_cke_p_m.png",
@@ -653,7 +683,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 85
+    "completionPercent": 85,
+    "maxPoints": 1
   },
   {
     "file": "28_2024_cke_p_m.png",
@@ -673,7 +704,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 74
+    "completionPercent": 74,
+    "maxPoints": 1
   },
   {
     "file": "29_2024_cke_p_m.png",
@@ -693,7 +725,8 @@
       "zadanie zamknięte"
     ],
     "level": "matura_podstawowa",
-    "completionPercent": 78
+    "completionPercent": 78,
+    "maxPoints": 1
   },
   {
     "file": "30_2024_cke_p_m.png",
@@ -721,7 +754,8 @@
         "file": "30_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "30_z.png"
+    "gradingCriteriaFile": "30_z.png",
+    "maxPoints": 2
   },
   {
     "file": "31_2024_cke_p_m.png",
@@ -761,6 +795,7 @@
         "file": "31_s_f.png"
       }
     ],
-    "gradingCriteriaFile": "31_z.png"
+    "gradingCriteriaFile": "31_z.png",
+    "maxPoints": 4
   }
 ]
