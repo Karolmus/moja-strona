@@ -3109,8 +3109,35 @@ function rememberRandomIndex(index){
     randomHistoryIndex = randomHistory.length - 1;
 }
 
-function parseFile(file){
-    const p = file.replace(".png","").split("_");
+function sourceDetailLabel(task){
+    if(task?.sourceDetail){
+        return String(task.sourceDetail)
+            .split("/")
+            .map(part => part.trim())
+            .filter(Boolean)
+            .join(" • ");
+    }
+
+    const sourceParts = String(task?.sourceId || "").split("/");
+
+    if(task?.category === "egzaminy" && sourceParts.length >= 4){
+        const year = sourceParts[2];
+        const month = MONTH_LABELS[sourceParts[3]] || sourceParts[3];
+
+        return [year, month, "CKE"].filter(Boolean).join(" • ");
+    }
+
+    return "";
+}
+
+function parseFile(file, task = null){
+    const p = String(file || "").replace(/\.[^.]+$/,"").split("_");
+    const number = p[0] || "zadanie";
+    const detail = sourceDetailLabel(task);
+
+    if(detail){
+        return `Zadanie ${number} • ${detail}`;
+    }
 
     const monthMap = {
         m: "maj",
@@ -3118,12 +3145,17 @@ function parseFile(file){
         pr: "próbna",
         s: "sierpień"
     };
+    const fallbackDetail = [p[1], monthMap[p[4]] || p[4], "CKE"]
+        .filter(Boolean)
+        .join(" • ");
 
-    return `Zadanie ${p[0]} • ${p[1]} • ${monthMap[p[4]] || p[4]} • CKE`;
+    return fallbackDetail
+        ? `Zadanie ${number} • ${fallbackDetail}`
+        : `Zadanie ${number}`;
 }
 
 function taskLabel(task){
-    return (task.title || parseFile(task.file))
+    return (task.title || parseFile(task.file, task))
         .replace(/praca domowa/gi, match => match[0] === match[0].toUpperCase()
             ? "Zadanie domowe"
             : "zadanie domowe");
