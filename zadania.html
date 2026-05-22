@@ -107,6 +107,33 @@ body {
     line-height: 1.35;
 }
 
+.formula-card {
+    display: grid;
+    gap: 3px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--text);
+    padding: 10px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.formula-card:hover {
+    border-color: var(--navy);
+    transform: translateY(-1px);
+}
+
+.formula-card strong {
+    font-size: 13px;
+}
+
+.formula-card span {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+}
+
 .student-progress-panel {
     display: grid;
     gap: 10px;
@@ -699,8 +726,10 @@ body.focus-mode .task-card {
     align-items: center;
     border: 1px solid var(--line-dark);
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     margin-bottom: 12px;
+    position: relative;
+    z-index: 8;
 }
 
 .meta-podstawowa {
@@ -741,7 +770,7 @@ body.focus-mode .task-card {
     position: absolute;
     right: 0;
     bottom: calc(100% + 8px);
-    z-index: 12;
+    z-index: 120;
     width: max-content;
     max-width: min(280px, 70vw);
     padding: 8px 10px;
@@ -759,8 +788,24 @@ body.focus-mode .task-card {
     transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
+.difficulty-stars[data-tooltip]::before {
+    content: "";
+    position: absolute;
+    right: 16px;
+    bottom: calc(100% + 2px);
+    z-index: 121;
+    border: 6px solid transparent;
+    border-top-color: #1f2a36;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
 .difficulty-stars[data-tooltip]:hover::after,
-.difficulty-stars[data-tooltip]:focus-visible::after {
+.difficulty-stars[data-tooltip]:focus-visible::after,
+.difficulty-stars[data-tooltip]:hover::before,
+.difficulty-stars[data-tooltip]:focus-visible::before {
     opacity: 1;
     transform: translateY(0);
 }
@@ -1086,7 +1131,30 @@ button {
     align-items: stretch;
 }
 
+.mcq.grouped-multi {
+    grid-template-columns: 1fr;
+}
+
+.grouped-choice-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(var(--grouped-option-count, 2), minmax(80px, 120px));
+    gap: 8px;
+    align-items: stretch;
+}
+
 .tf-label {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 9px 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.grouped-choice-label {
     display: flex;
     align-items: center;
     min-height: 48px;
@@ -1280,12 +1348,18 @@ footer {
         gap: 6px;
     }
 
+    .grouped-choice-row {
+        grid-template-columns: minmax(0, 1fr) repeat(2, minmax(56px, 72px));
+        gap: 6px;
+    }
+
     .input-answer-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
     }
 
-    .tf-label {
+    .tf-label,
+    .grouped-choice-label {
         min-height: 42px;
         padding: 8px 10px;
         font-size: 13px;
@@ -1408,6 +1482,14 @@ footer {
                 <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
             </div>
 
+            <div class="side-section" id="formulaSection" style="display:none">
+                <div class="side-title">Materiały do pobrania</div>
+                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" download>
+                    <strong>Karta wzorów</strong>
+                    <span>Egzamin Ósmoklasisty</span>
+                </a>
+            </div>
+
             <div class="side-section" id="categorySection">
                 <div class="side-title">Materiał</div>
                 <div class="category-toggle">
@@ -1506,6 +1588,7 @@ let taskMode = "ordered";
 let randomHistory = [];
 let randomHistoryIndex = -1;
 let multiSelection = new Set();
+let groupedMultiSelection = new Map();
 let trueFalseSelection = [];
 let savedProgress = [];
 let focusMode = false;
@@ -1725,6 +1808,14 @@ const LEVEL_LABELS = {
     egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
 };
 
+const FORMULA_SHEETS = {
+    egzamin_osmoklasisty: {
+        label: "Karta wzorów",
+        detail: "Egzamin Ósmoklasisty",
+        href: "wzory_eo.pdf"
+    }
+};
+
 const MONTH_LABELS = {
     maj: "maj"
 };
@@ -1874,8 +1965,10 @@ function updateAccessModeUI(){
     setTimerVisible(!isLoggedInStudent);
     setPanelSectionVisible("progressSection", isLoggedInStudent);
     setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
+    setPanelSectionVisible("formulaSection", isLoggedInStudent && Boolean(FORMULA_SHEETS[selectedLevel]));
     setPanelSectionVisible("categorySection", isLoggedInStudent);
     setPanelSectionVisible("tagSearchSection", !isLoggedInStudent);
+    updateFormulaSection();
 
     if(window.updateAuthNav){
         window.updateAuthNav(isLoggedInStudent ? loggedUser : null);
@@ -1898,6 +1991,22 @@ function updateAccessModeUI(){
     if(focusButton){
         focusButton.hidden = false;
     }
+}
+
+function updateFormulaSection(){
+    const section = document.getElementById("formulaSection");
+    const card = document.getElementById("formulaCard");
+    const data = FORMULA_SHEETS[selectedLevel];
+
+    if(!section || !card) return;
+
+    section.style.display = isLoggedInStudent && data ? "grid" : "none";
+
+    if(!data) return;
+
+    card.href = data.href;
+    card.querySelector("strong").innerText = data.label;
+    card.querySelector("span").innerText = data.detail;
 }
 
 function updateAssignedCourseName(user = null){
@@ -2216,6 +2325,7 @@ function setLevel(btn, level){
     ensureSelectedCoursePart();
     updateLevelButtons();
     updateMetaTheme();
+    updateFormulaSection();
     resetSession();
     renderSourceSelector();
     refreshTaskNavigator();
@@ -2246,6 +2356,7 @@ function setSource(sourceId){
     updateLevelButtons();
     updateModeButtons();
     updateMetaTheme();
+    updateFormulaSection();
     resetSession();
     renderSourceSelector();
     refreshTaskNavigator();
@@ -2641,6 +2752,61 @@ function getSavedResult(task){
     return saved?.result || "";
 }
 
+function isTaskDoneInCurrentRun(task){
+    const key = getTaskKey(task);
+
+    return Boolean(key && sessionResults.has(key));
+}
+
+function isExamSourceComplete(sourceId = selectedSource){
+    if(selectedCategory !== "egzaminy" || sourceId === "all") return false;
+
+    const sourceTasks = tasks.filter(task =>
+        task.category === "egzaminy" &&
+        task.level === selectedLevel &&
+        task.sourceId === sourceId
+    );
+
+    return sourceTasks.length > 0 && sourceTasks.every(task => getSavedResult(task));
+}
+
+function nextExamSourceId(){
+    const sources = getAvailableSources();
+    const currentSourceIndex = sources.findIndex(source => source.id === selectedSource);
+
+    if(currentSourceIndex < 0) return "";
+
+    return sources[currentSourceIndex + 1]?.id || "";
+}
+
+function advanceToNextExamIfComplete(){
+    if(!isExamSourceComplete()) return false;
+
+    const nextSource = nextExamSourceId();
+
+    if(!nextSource){
+        showMessage("Ukończono wszystkie zadania w tym arkuszu.");
+        return true;
+    }
+
+    selectedSource = nextSource;
+    currentIndex = 0;
+    randomHistory = [];
+    randomHistoryIndex = -1;
+    sessionResults = new Map();
+
+    updateCategoryButtons();
+    updateLevelButtons();
+    updateModeButtons();
+    updateMetaTheme();
+    renderSourceSelector();
+    refreshTaskNavigator();
+    renderTagSearch();
+    drawTask(getInitialIndex());
+
+    return true;
+}
+
 function taskNavigatorItems(items = pool()){
     return selectedCategory === "kurs"
         ? getCourseNavigatorItems()
@@ -2756,21 +2922,30 @@ function getInitialIndex(){
     const p = pool();
 
     if(!p.length) return 0;
-    if(taskMode === "random") return randomIndex(p.length, -1);
+    if(taskMode === "random") return randomIndex(p, -1);
 
     return 0;
 }
 
-function randomIndex(length, current){
-    if(length <= 1) return 0;
+function randomIndex(items, current){
+    if(!items.length) return 0;
 
-    let index = current;
+    const candidates = items
+        .map((task, index) => ({ task, index }))
+        .filter(item => item.index !== current && !isTaskDoneInCurrentRun(item.task))
+        .map(item => item.index);
 
-    while(index === current){
-        index = Math.floor(Math.random() * length);
+    if(candidates.length){
+        return candidates[Math.floor(Math.random() * candidates.length)];
     }
 
-    return index;
+    const fallback = items
+        .map((_, index) => index)
+        .filter(index => index !== current);
+
+    if(!fallback.length) return 0;
+
+    return fallback[Math.floor(Math.random() * fallback.length)];
 }
 
 function rememberRandomIndex(index){
@@ -2885,6 +3060,81 @@ function getOptions(task){
     return ["A", "B", "C", "D"];
 }
 
+function getGroupedMultiOptions(task){
+    if(task?.type !== "multi") return [];
+
+    const options = getOptions(task).map(String);
+    const prefixed = options.map(option => option.match(/^([a-z]\)|\d+[.)])\s*(.+)$/i));
+
+    if(options.length >= 4 && prefixed.every(Boolean)){
+        const groups = [];
+
+        prefixed.forEach((match, index) => {
+            const label = match[1];
+            let group = groups.find(item => item.label === label);
+
+            if(!group){
+                group = {
+                    label: `Podpunkt ${label}`,
+                    options: []
+                };
+                groups.push(group);
+            }
+
+            group.options.push({
+                value: options[index],
+                label: match[2]
+            });
+        });
+
+        return groups.filter(group => group.options.length > 1);
+    }
+
+    return [];
+}
+
+function isGroupedMultiTask(task){
+    const groups = getGroupedMultiOptions(task);
+
+    return task?.type === "multi" &&
+        groups.length > 1 &&
+        groups.every(group => group.options.length > 1);
+}
+
+function getGroupedChoiceOptions(task){
+    if(!task || task.type === "multi" || isInputTask(task) || isTrueFalseSequenceTask(task)) return [];
+
+    const options = getOptions(task).map(String);
+    const answer = String(task.answer || "");
+    const optionLength = options[0]?.length || 0;
+
+    if(options.length < 4 || optionLength < 2 || answer.length !== optionLength) return [];
+    if(!options.every(option => option.length === optionLength && /^[A-Z]+$/i.test(option))) return [];
+
+    const groups = Array.from({ length: optionLength }, (_, index) => {
+        const values = [...new Set(options.map(option => option[index]))];
+        const statement = Array.isArray(task.statements) ? task.statements[index] : "";
+
+        return {
+            label: statement ? `${index + 1}. ${statement}` : `${index + 1}. Stwierdzenie`,
+            options: values.map(value => ({
+                value,
+                label: value
+            }))
+        };
+    });
+    const productCount = groups.reduce((total, group) => total * group.options.length, 1);
+
+    if(productCount !== options.length) return [];
+    if(!groups.every(group => group.options.length > 1 && group.options.length <= 4)) return [];
+
+    return groups;
+}
+
+function isGroupedChoiceTask(task){
+    return getGroupedChoiceOptions(task).length > 1;
+}
+
 function usesTrueFalseLabels(task){
     if(!task) return false;
     if(task.type === "true_false") return true;
@@ -2916,6 +3166,14 @@ function formatOption(option, task = null){
 }
 
 function formatAnswer(answer, task = null){
+    if(isGroupedMultiTask(task)){
+        return formatGroupedMultiAnswer(task);
+    }
+
+    if(isGroupedChoiceTask(task)){
+        return formatGroupedChoiceAnswer(task);
+    }
+
     if(isTrueFalseSequenceTask(task)){
         return getCorrectAnswers(task)
             .map((item, index) => `Stwierdzenie ${index + 1}: ${formatOption(item, task)}`)
@@ -2931,6 +3189,35 @@ function formatAnswer(answer, task = null){
     if(formatted === answer) return answer;
 
     return `${answer} - ${formatted}`;
+}
+
+function formatGroupedMultiAnswer(task){
+    const correctAnswers = getCorrectAnswers(task);
+    const groups = getGroupedMultiOptions(task);
+
+    return groups
+        .map((group, index) => {
+            const answer = correctAnswers.find(item =>
+                group.options.some(option => option.value === item)
+            ) || correctAnswers[index] || "";
+            const option = group.options.find(item => item.value === answer);
+
+            return `${group.label}: ${option?.label || answer}`;
+        })
+        .join("\n");
+}
+
+function formatGroupedChoiceAnswer(task){
+    const answer = String(task.answer || "");
+
+    return getGroupedChoiceOptions(task)
+        .map((group, index) => {
+            const value = answer[index] || "";
+            const option = group.options.find(item => item.value === value);
+
+            return `${group.label}: ${option?.label || value}`;
+        })
+        .join("\n");
 }
 
 function getCorrectAnswers(task){
@@ -3203,6 +3490,7 @@ function nextTask(){
     const p = pool();
 
     if(!p.length) return;
+    if(advanceToNextExamIfComplete()) return;
 
     if(taskMode === "random"){
         if(randomHistoryIndex < randomHistory.length - 1){
@@ -3211,7 +3499,7 @@ function nextTask(){
             return;
         }
 
-        drawTask(randomIndex(p.length, currentIndex));
+        drawTask(randomIndex(p, currentIndex));
         return;
     }
 
@@ -3281,6 +3569,7 @@ function setupMCQ(){
     resultButtons.classList.remove("active");
     setResultButtonsEnabled(true);
     multiSelection = new Set();
+    groupedMultiSelection = new Map();
     trueFalseSelection = [];
 
     if(isClosedTask(currentTask)){
@@ -3288,6 +3577,18 @@ function setupMCQ(){
 
         if(isTrueFalseSequenceTask(currentTask)){
             setupTrueFalseTask(mcq);
+            return;
+        }
+
+        if(isGroupedChoiceTask(currentTask)){
+            mcq.classList.add("grouped-multi");
+            setupGroupedChoiceTask(mcq);
+            return;
+        }
+
+        if(isGroupedMultiTask(currentTask)){
+            mcq.classList.add("grouped-multi");
+            setupGroupedMultiTask(mcq);
             return;
         }
 
@@ -3417,6 +3718,62 @@ function setupTrueFalseTask(mcq){
     });
 }
 
+function setupGroupedMultiTask(mcq){
+    getGroupedMultiOptions(currentTask).forEach((group, index) => {
+        const row = document.createElement("div");
+        const label = document.createElement("div");
+
+        row.className = "grouped-choice-row";
+        row.style.setProperty("--grouped-option-count", String(Math.min(group.options.length, 4)));
+        label.className = "grouped-choice-label";
+        label.innerText = group.label;
+
+        row.appendChild(label);
+
+        group.options.forEach(option => {
+            const button = document.createElement("button");
+
+            button.className = "choice-btn";
+            button.dataset.index = String(index);
+            button.dataset.value = option.value;
+            button.innerText = option.label;
+            button.onclick = () => chooseGroupedMulti(index, option.value, button);
+
+            row.appendChild(button);
+        });
+
+        mcq.appendChild(row);
+    });
+}
+
+function setupGroupedChoiceTask(mcq){
+    getGroupedChoiceOptions(currentTask).forEach((group, index) => {
+        const row = document.createElement("div");
+        const label = document.createElement("div");
+
+        row.className = "grouped-choice-row";
+        row.style.setProperty("--grouped-option-count", String(Math.min(group.options.length, 4)));
+        label.className = "grouped-choice-label";
+        label.innerText = group.label;
+
+        row.appendChild(label);
+
+        group.options.forEach(option => {
+            const button = document.createElement("button");
+
+            button.className = "choice-btn";
+            button.dataset.index = String(index);
+            button.dataset.value = option.value;
+            button.innerText = option.label;
+            button.onclick = () => chooseGroupedChoice(index, option.value, button);
+
+            row.appendChild(button);
+        });
+
+        mcq.appendChild(row);
+    });
+}
+
 function setupInputTask(mcq){
     const form = document.createElement("form");
     const grid = document.createElement("div");
@@ -3475,6 +3832,10 @@ function applyCourseAnswerLock(){
 
         if(isTrueFalseSequenceTask(currentTask)){
             revealTrueFalseAnswers(correctAnswers);
+        } else if(isGroupedChoiceTask(currentTask)){
+            revealGroupedChoiceAnswers(getGroupedChoiceOptions(currentTask), String(currentTask.answer || ""));
+        } else if(isGroupedMultiTask(currentTask)){
+            revealGroupedMultiAnswers(getGroupedMultiOptions(currentTask), correctAnswers);
         } else {
             revealCorrectAnswer(correctAnswers);
         }
@@ -3571,6 +3932,83 @@ function chooseMulti(opt, btn){
     }
 }
 
+function chooseGroupedMulti(index, value, btn){
+    if(currentTaskAnswered) return;
+
+    const row = btn.closest(".grouped-choice-row");
+    const groups = getGroupedMultiOptions(currentTask);
+    const correctAnswers = getCorrectAnswers(currentTask);
+
+    row?.querySelectorAll(".choice-btn")
+        .forEach(button => {
+            button.classList.remove("selected");
+        });
+
+    btn.classList.add("selected");
+    groupedMultiSelection.set(index, value);
+
+    if(groupedMultiSelection.size < groups.length) return;
+
+    const isCorrect = groups.every((group, groupIndex) => {
+        const selected = groupedMultiSelection.get(groupIndex);
+
+        return correctAnswers.includes(selected);
+    });
+
+    disableMCQ();
+    revealGroupedMultiAnswers(groups, correctAnswers);
+
+    if(!isCorrect && isCourseTask()){
+        showCorrection(correctAnswers);
+        addProgress("bad");
+        return;
+    }
+
+    addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
+
+    setTimeout(() => {
+        nextTask();
+    }, isCorrect ? 850 : 1400);
+}
+
+function chooseGroupedChoice(index, value, btn){
+    if(currentTaskAnswered) return;
+
+    const row = btn.closest(".grouped-choice-row");
+    const groups = getGroupedChoiceOptions(currentTask);
+    const correctAnswer = String(currentTask.answer || "");
+
+    row?.querySelectorAll(".choice-btn")
+        .forEach(button => {
+            button.classList.remove("selected");
+        });
+
+    btn.classList.add("selected");
+    groupedMultiSelection.set(index, value);
+
+    if(groupedMultiSelection.size < groups.length) return;
+
+    const selectedAnswer = groups
+        .map((_, groupIndex) => groupedMultiSelection.get(groupIndex) || "")
+        .join("");
+    const isCorrect = selectedAnswer === correctAnswer;
+
+    disableMCQ();
+    revealGroupedChoiceAnswers(groups, correctAnswer);
+
+    if(!isCorrect && isCourseTask()){
+        showCorrection([correctAnswer]);
+        addProgress("bad");
+        return;
+    }
+
+    addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
+
+    setTimeout(() => {
+        nextTask();
+    }, isCorrect ? 850 : 1400);
+}
+
 function chooseTrueFalse(index, opt, btn){
     if(currentTaskAnswered) return;
 
@@ -3630,6 +4068,32 @@ function revealTrueFalseAnswers(correctAnswers){
             const value = button.dataset.value;
             const wasSelected = trueFalseSelection[index] === value;
             const isCorrect = correctAnswers[index] === value;
+
+            if(isCorrect) button.classList.add("correct");
+            if(wasSelected && !isCorrect) button.classList.add("wrong");
+        });
+}
+
+function revealGroupedMultiAnswers(groups, correctAnswers){
+    document.querySelectorAll("#mcq button")
+        .forEach(button => {
+            const index = Number(button.dataset.index);
+            const value = button.dataset.value;
+            const wasSelected = groupedMultiSelection.get(index) === value;
+            const isCorrect = correctAnswers.includes(value);
+
+            if(isCorrect) button.classList.add("correct");
+            if(wasSelected && !isCorrect) button.classList.add("wrong");
+        });
+}
+
+function revealGroupedChoiceAnswers(groups, correctAnswer){
+    document.querySelectorAll("#mcq button")
+        .forEach(button => {
+            const index = Number(button.dataset.index);
+            const value = button.dataset.value;
+            const wasSelected = groupedMultiSelection.get(index) === value;
+            const isCorrect = correctAnswer[index] === value;
 
             if(isCorrect) button.classList.add("correct");
             if(wasSelected && !isCorrect) button.classList.add("wrong");
@@ -3946,6 +4410,10 @@ function showCorrection(correctAnswers = null){
 
     if(isInputTask(currentTask)){
         correct = formatInputAnswer(currentTask);
+    } else if(isGroupedMultiTask(currentTask)){
+        correct = formatGroupedMultiAnswer(currentTask);
+    } else if(isGroupedChoiceTask(currentTask)){
+        correct = formatGroupedChoiceAnswer(currentTask);
     } else if(correctAnswers){
         correct = correctAnswers.map(answer => formatOption(answer, currentTask)).join(", ");
     } else {
