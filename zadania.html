@@ -817,6 +817,20 @@ body.focus-mode .task-card {
     gap: 6px;
 }
 
+.points-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.78);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 9px;
+}
+
 .task-image-stack {
     display: grid;
     gap: 12px;
@@ -1176,6 +1190,77 @@ button {
     border-radius: 8px;
     white-space: pre-line;
     color: var(--text);
+}
+
+.score-panel {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    padding: 12px;
+}
+
+.score-panel[hidden] {
+    display: none;
+}
+
+.score-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.score-panel-head span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.score-form {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.score-form label {
+    display: grid;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.score-form input {
+    width: 130px;
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font: inherit;
+}
+
+.score-save-btn {
+    min-height: 42px;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    background: var(--navy);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    padding: 8px 14px;
+}
+
+.score-status {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
 }
 
 .solution-box {
@@ -1552,6 +1637,23 @@ footer {
                 <div class="mcq" id="mcq"></div>
 
                 <div id="answer" class="box"></div>
+
+                <div class="score-panel" id="scorePanel" hidden>
+                    <div class="score-panel-head">
+                        <strong>Punkty za zadanie</strong>
+                        <span id="scoreMaxLabel">0 pkt</span>
+                    </div>
+
+                    <form class="score-form" id="scoreForm">
+                        <label>
+                            Zdobyte punkty
+                            <input id="scoreInput" name="earned_points" type="number" min="0" step="0.5" inputmode="decimal">
+                        </label>
+                        <button class="score-save-btn" id="scoreSaveButton" type="submit">Zapisz punkty</button>
+                    </form>
+
+                    <div class="score-status" id="scoreStatus"></div>
+                </div>
 
                 <div class="solution-box" id="solutionBox" hidden>
                     <div class="solution-switcher" id="solutionSwitcher"></div>
@@ -2752,6 +2854,14 @@ function getSavedResult(task){
     return saved?.result || "";
 }
 
+function getSavedProgressItem(task){
+    const key = getTaskKey(task);
+
+    if(!key) return null;
+
+    return savedProgress.find(item => progressTaskKey(item) === key) || null;
+}
+
 function isTaskDoneInCurrentRun(task){
     const key = getTaskKey(task);
 
@@ -2997,6 +3107,28 @@ function difficultyFromCompletionPercent(percent){
 
 function taskDifficulty(task){
     return difficultyFromCompletionPercent(task?.completionPercent) || task?.difficulty || 1;
+}
+
+function taskMaxPoints(task){
+    const points = Number(task?.maxPoints);
+
+    return Number.isFinite(points) && points > 0 ? points : 0;
+}
+
+function formatPoints(points){
+    const value = Number(points);
+
+    if(!Number.isFinite(value)) return "";
+
+    return Number.isInteger(value) ? String(value) : String(value).replace(".", ",");
+}
+
+function pointsBadgeMarkup(task){
+    const maxPoints = taskMaxPoints(task);
+
+    if(!maxPoints) return "";
+
+    return `<span class="points-badge">0-${formatPoints(maxPoints)} pkt</span>`;
 }
 
 function completionTooltip(task){
@@ -3310,7 +3442,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #solutionSwitcher button"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #solutionSwitcher button, #scoreInput, #scoreSaveButton"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -3322,6 +3454,9 @@ function clearTaskInteraction(){
     const solutionBox = document.getElementById("solutionBox");
     const solutionSwitcher = document.getElementById("solutionSwitcher");
     const solutionImage = document.getElementById("solutionImage");
+    const scorePanel = document.getElementById("scorePanel");
+    const scoreStatus = document.getElementById("scoreStatus");
+    const scoreInput = document.getElementById("scoreInput");
 
     if(mcq){
         mcq.innerHTML = "";
@@ -3342,6 +3477,18 @@ function clearTaskInteraction(){
 
     if(solutionImage){
         solutionImage.removeAttribute("src");
+    }
+
+    if(scorePanel){
+        scorePanel.hidden = true;
+    }
+
+    if(scoreStatus){
+        scoreStatus.innerText = "";
+    }
+
+    if(scoreInput){
+        scoreInput.value = "";
     }
 
     selectedSolutionIndex = 0;
@@ -3366,6 +3513,8 @@ function updateTaskDetails(task, total){
         <div class="meta-section">
             ${task.topic}
         </div>
+
+        ${pointsBadgeMarkup(task) ? `<div class="meta-section">${pointsBadgeMarkup(task)}</div>` : ""}
 
         <div class="meta-section">
             ${difficultyStarsMarkup(task)}
@@ -3559,6 +3708,7 @@ function handleKeyboardNavigation(event){
 }
 
 document.addEventListener("keydown", handleKeyboardNavigation);
+document.getElementById("scoreForm")?.addEventListener("submit", submitScore);
 
 function setupMCQ(){
     const mcq = document.getElementById("mcq");
@@ -3638,6 +3788,57 @@ function hasGradingCriteria(task = currentTask){
     return Boolean(task?.gradingCriteriaPath);
 }
 
+function shouldShowScorePanel(task = currentTask){
+    return Boolean(task && task.category === "egzaminy" && taskMaxPoints(task) && (!isClosedTask(task) || taskMaxPoints(task) > 1));
+}
+
+function scoreResultType(earnedPoints, maxPoints){
+    if(earnedPoints >= maxPoints) return "good";
+    if(earnedPoints > 0) return "medium";
+
+    return "bad";
+}
+
+function automaticScoreForResult(type, task = currentTask){
+    const maxPoints = taskMaxPoints(task);
+
+    if(!maxPoints || !isClosedTask(task)) return null;
+    if(type === "good") return { earnedPoints: maxPoints, maxPoints };
+    if(type === "bad") return { earnedPoints: 0, maxPoints };
+
+    return { earnedPoints: null, maxPoints };
+}
+
+function updateScorePanel(){
+    const panel = document.getElementById("scorePanel");
+    const input = document.getElementById("scoreInput");
+    const maxLabel = document.getElementById("scoreMaxLabel");
+    const status = document.getElementById("scoreStatus");
+
+    if(!panel || !input || !maxLabel || !status) return;
+
+    const maxPoints = taskMaxPoints(currentTask);
+    const saved = getSavedProgressItem(currentTask);
+
+    panel.hidden = !shouldShowScorePanel();
+
+    if(panel.hidden) return;
+
+    input.min = "0";
+    input.max = String(maxPoints);
+    input.step = Number.isInteger(maxPoints) ? "1" : "0.5";
+    input.placeholder = `0-${formatPoints(maxPoints)}`;
+    maxLabel.innerText = `maks. ${formatPoints(maxPoints)} pkt`;
+
+    if(saved?.earned_points !== null && saved?.earned_points !== undefined && saved?.earned_points !== ""){
+        input.value = String(saved.earned_points);
+        status.innerText = `Zapisano: ${formatPoints(saved.earned_points)} / ${formatPoints(saved.max_points || maxPoints)} pkt.`;
+    } else {
+        input.value = "";
+        status.innerText = "Wpisz wynik po sprawdzeniu rozwiązania z zasadami oceniania.";
+    }
+}
+
 function updateAnswerTools(){
     const answerButton = document.getElementById("answerButton");
     const resultButtons = document.getElementById("resultButtons");
@@ -3674,6 +3875,8 @@ function updateAnswerTools(){
     if(isCourseTaskLocked()){
         setResultButtonsEnabled(false);
     }
+
+    updateScorePanel();
 }
 
 function setResultButtonsEnabled(enabled){
@@ -4162,8 +4365,8 @@ function checkInputAnswer(form){
     }, 1400);
 }
 
-function addProgress(type){
-    if(currentTaskAnswered) return;
+function addProgress(type, scoreData = null){
+    if(currentTaskAnswered) return false;
 
     currentTaskAnswered = true;
 
@@ -4175,8 +4378,9 @@ function addProgress(type){
 
     if(shouldShowTaskNavigator()){
         renderTaskNavigator();
-        saveProgress(type);
-        return;
+        saveProgress(type, scoreData);
+        updateScorePanel();
+        return true;
     }
 
     const tile = document.createElement("div");
@@ -4190,14 +4394,19 @@ function addProgress(type){
     document.getElementById("progress")
         .appendChild(tile);
 
-    saveProgress(type);
+    saveProgress(type, scoreData);
+    updateScorePanel();
+
+    return true;
 }
 
-async function saveProgress(type){
+async function saveProgress(type, scoreData = null){
     if(!isLoggedInStudent) return;
     if(!currentTask || !window.apiFetch) return;
 
     try {
+        const automaticScore = automaticScoreForResult(type);
+        const score = scoreData || automaticScore || {};
         const data = await apiFetch("/api/progress", {
             method: "POST",
             body: JSON.stringify({
@@ -4212,19 +4421,62 @@ async function saveProgress(type){
                 answer_shown: answerShown,
                 source_category: currentTask.category,
                 task_mode: taskMode,
-                duration_seconds: getCurrentTaskDurationSeconds()
+                duration_seconds: getCurrentTaskDurationSeconds(),
+                earned_points: score.earnedPoints,
+                max_points: (score.maxPoints ?? taskMaxPoints(currentTask)) || undefined
             })
         });
 
         if(data?.progress){
             savedProgress.unshift(data.progress);
             renderLearningProgress();
+            updateScorePanel();
         }
     } catch(error) {
         if(error.status !== 401){
             console.warn("Nie udało się zapisać postępu.", error);
         }
     }
+}
+
+async function submitScore(event){
+    event.preventDefault();
+
+    if(!currentTask || !shouldShowScorePanel()) return;
+
+    const input = document.getElementById("scoreInput");
+    const status = document.getElementById("scoreStatus");
+    const button = document.getElementById("scoreSaveButton");
+    const maxPoints = taskMaxPoints(currentTask);
+    const earnedPoints = Number(String(input.value).replace(",", "."));
+
+    if(!Number.isFinite(earnedPoints) || earnedPoints < 0 || earnedPoints > maxPoints){
+        status.innerText = `Wpisz liczbę od 0 do ${formatPoints(maxPoints)}.`;
+        return;
+    }
+
+    const result = scoreResultType(earnedPoints, maxPoints);
+    const scoreData = { earnedPoints, maxPoints };
+
+    button.disabled = true;
+    status.innerText = "Zapisuję punkty...";
+
+    if(currentTaskAnswered){
+        const key = getTaskKey(currentTask);
+
+        if(key){
+            sessionResults.set(key, result);
+        }
+
+        await saveProgress(result, scoreData);
+        renderTaskNavigator();
+    } else {
+        addProgress(result, scoreData);
+    }
+
+    document.getElementById("resultButtons")?.classList.remove("active");
+    status.innerText = `Zapisano: ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt.`;
+    button.disabled = false;
 }
 
 function getCurrentTaskDurationSeconds(){

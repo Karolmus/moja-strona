@@ -64,6 +64,21 @@ def duration_seconds(value):
     return max(0, min(seconds, 4 * 60 * 60))
 
 
+def point_value(value):
+    if value is None or value == "":
+        return None
+
+    try:
+        points = float(value)
+    except (TypeError, ValueError):
+        return None
+
+    if points < 0:
+        return 0.0
+
+    return round(points, 2)
+
+
 def get_db():
     if "db" not in g:
         if database_engine() == "postgres":
@@ -153,6 +168,8 @@ def init_auth_db():
                 answer_shown BOOLEAN NOT NULL DEFAULT FALSE,
                 task_mode TEXT,
                 duration_seconds INTEGER NOT NULL DEFAULT 0,
+                earned_points DOUBLE PRECISION,
+                max_points DOUBLE PRECISION,
                 created_at TEXT NOT NULL
             )
             """,
@@ -209,6 +226,14 @@ def init_auth_db():
             ALTER TABLE task_progress
                 ADD COLUMN IF NOT EXISTS duration_seconds INTEGER NOT NULL DEFAULT 0
             """,
+            """
+            ALTER TABLE task_progress
+                ADD COLUMN IF NOT EXISTS earned_points DOUBLE PRECISION
+            """,
+            """
+            ALTER TABLE task_progress
+                ADD COLUMN IF NOT EXISTS max_points DOUBLE PRECISION
+            """,
         ]
 
         for statement in statements:
@@ -242,6 +267,8 @@ def init_auth_db():
             answer_shown INTEGER NOT NULL DEFAULT 0,
             task_mode TEXT,
             duration_seconds INTEGER NOT NULL DEFAULT 0,
+            earned_points REAL,
+            max_points REAL,
             created_at TEXT NOT NULL,
             FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
         );
@@ -298,6 +325,12 @@ def init_auth_db():
 
         if "duration_seconds" not in columns:
             db.execute("ALTER TABLE task_progress ADD COLUMN duration_seconds INTEGER NOT NULL DEFAULT 0")
+
+        if "earned_points" not in columns:
+            db.execute("ALTER TABLE task_progress ADD COLUMN earned_points REAL")
+
+        if "max_points" not in columns:
+            db.execute("ALTER TABLE task_progress ADD COLUMN max_points REAL")
 
     db.commit()
 
@@ -534,6 +567,11 @@ def delete_student(user_id):
 def record_progress(user_id, data):
     created_at = now_iso()
     db = get_db()
+    max_points = point_value(data.get("max_points"))
+    earned_points = point_value(data.get("earned_points"))
+
+    if max_points is not None and earned_points is not None:
+        earned_points = min(earned_points, max_points)
 
     values = (
         user_id,
@@ -548,6 +586,8 @@ def record_progress(user_id, data):
         db_bool(data.get("answer_shown")),
         data.get("task_mode"),
         duration_seconds(data.get("duration_seconds")),
+        earned_points,
+        max_points,
         created_at,
     )
 
@@ -568,9 +608,11 @@ def record_progress(user_id, data):
                     answer_shown,
                     task_mode,
                     duration_seconds,
+                    earned_points,
+                    max_points,
                     created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 RETURNING *
                 """
             ),
@@ -593,9 +635,11 @@ def record_progress(user_id, data):
                 answer_shown,
                 task_mode,
                 duration_seconds,
+                earned_points,
+                max_points,
                 created_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             values,
         )

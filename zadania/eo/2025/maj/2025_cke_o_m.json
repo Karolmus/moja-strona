@@ -18,7 +18,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 59
+    "completionPercent": 59,
+    "maxPoints": 1
   },
   {
     "file": "2_2025_cke_o_m.png",
@@ -39,7 +40,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 46
+    "completionPercent": 46,
+    "maxPoints": 1
   },
   {
     "file": "3_2025_cke_o_m.png",
@@ -60,7 +62,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 79
+    "completionPercent": 79,
+    "maxPoints": 1
   },
   {
     "file": "4_2025_cke_o_m.png",
@@ -81,7 +84,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 64
+    "completionPercent": 64,
+    "maxPoints": 1
   },
   {
     "file": "5_2025_cke_o_m.png",
@@ -102,7 +106,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 57
+    "completionPercent": 57,
+    "maxPoints": 1
   },
   {
     "file": "6_2025_cke_o_m.png",
@@ -123,7 +128,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 42
+    "completionPercent": 42,
+    "maxPoints": 1
   },
   {
     "file": "7_2025_cke_o_m.png",
@@ -145,7 +151,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 37
+    "completionPercent": 37,
+    "maxPoints": 1
   },
   {
     "file": "8_2025_cke_o_m.png",
@@ -165,7 +172,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 58
+    "completionPercent": 58,
+    "maxPoints": 1
   },
   {
     "file": "9_2025_cke_o_m.png",
@@ -186,7 +194,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 83
+    "completionPercent": 83,
+    "maxPoints": 1
   },
   {
     "file": "10_2025_cke_o_m.png",
@@ -207,7 +216,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 56
+    "completionPercent": 56,
+    "maxPoints": 1
   },
   {
     "file": "11_2025_cke_o_m.png",
@@ -229,7 +239,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 44
+    "completionPercent": 44,
+    "maxPoints": 1
   },
   {
     "file": "12_2025_cke_o_m.png",
@@ -251,7 +262,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 71
+    "completionPercent": 71,
+    "maxPoints": 1
   },
   {
     "file": "13_2025_cke_o_m.png",
@@ -272,7 +284,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 70
+    "completionPercent": 70,
+    "maxPoints": 1
   },
   {
     "file": "14_2025_cke_o_m.png",
@@ -293,7 +306,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 66
+    "completionPercent": 66,
+    "maxPoints": 1
   },
   {
     "file": "15_2025_cke_o_m.png",
@@ -314,7 +328,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 52
+    "completionPercent": 52,
+    "maxPoints": 1
   },
   {
     "file": "16_2025_cke_o_m.png",
@@ -328,7 +343,8 @@
       "zadanie otwarte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 46
+    "completionPercent": 46,
+    "maxPoints": 2
   },
   {
     "file": "17_2025_cke_o_m.png",
@@ -342,7 +358,8 @@
       "zadanie otwarte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 45
+    "completionPercent": 45,
+    "maxPoints": 3
   },
   {
     "file": "18_2025_cke_o_m.png",
@@ -357,7 +374,8 @@
       "zadanie otwarte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 50
+    "completionPercent": 50,
+    "maxPoints": 2
   },
   {
     "file": "19_2025_cke_o_m.png",
@@ -371,7 +389,8 @@
       "zadanie otwarte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 46
+    "completionPercent": 46,
+    "maxPoints": 2
   },
   {
     "file": "20_2025_cke_o_m.png",
@@ -386,7 +405,8 @@
       "zadanie otwarte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 29
+    "completionPercent": 29,
+    "maxPoints": 3
   },
   {
     "file": "21_2025_cke_o_m.png",
@@ -401,6 +421,7 @@
       "zadanie otwarte"
     ],
     "level": "egzamin_osmoklasisty",
-    "completionPercent": 38
+    "completionPercent": 38,
+    "maxPoints": 3
   }
 ]

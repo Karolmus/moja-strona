@@ -715,8 +715,8 @@ footer{
     </a>
 
     <section class="contact-form-card" aria-labelledby="contactFormTitle">
-        <h2 id="contactFormTitle">Napisz wiadomość</h2>
-        <p>Podaj telefon lub e-mail, termin który Cię interesuje i krótką informację, z czym potrzebujesz pomocy.</p>
+        <h2 id="contactFormTitle">Formularz kontaktowy</h2>
+        <p></p>
 
         <form class="contact-form" id="contactForm">
             <label>
@@ -725,12 +725,12 @@ footer{
             </label>
 
             <label>
-                Termin, który Cię interesuje
+                Termin lub terminy, które Cię interesują
                 <input name="preferred_term" maxlength="160" placeholder="Podaj najlepiej kilka dostępnych godzin">
             </label>
 
             <label>
-                Treść wiadomości
+                Dodatkowe informacje takie jak klasa do której uczęszcza uczeń, jaki ma cel  lub jaki kurs chce realizować
                 <textarea name="message" maxlength="3000" required placeholder=""></textarea>
             </label>
 
@@ -788,8 +788,6 @@ footer{
 	    <div class="tools-panel">
 	        <h2 id="tools-title">Narzędzia wykorzystywane na zajęciach</h2>
 	        <p class="tools-intro">
-	            Zajęcia prowadzę z użyciem narzędzi, które pozwalają uczniowi nie tylko oglądać rozwiązanie,
-	            ale też aktywnie pisać, sprawdzać pomysły i widzieć matematykę w dynamiczny sposób.
 	        </p>
 
 		        <div class="tools-grid">
@@ -823,7 +821,7 @@ footer{
 	        </div>
 
 	        <div class="tools-note">
-	            <strong>Do samej matury</strong> uczeń ma dostęp do indywidualnej strefy ucznia na której rozwiązując zadania realizuje kurs, a ja monitoruje jego postępy.
+	            <strong>Do samej matury</strong> uczeń ma dostęp do indywidualnej strefy ucznia na której rozwiązując zadania realizuje kurs, a ja na bieżąco widzę postępy.
 	        </div>
 	    </div>
 	</section>
@@ -1046,7 +1044,7 @@ contactForm.addEventListener("submit", async event => {
         });
 
         contactForm.reset();
-        showContactStatus("Wiadomość wysłana. Odezwę się możliwie szybko.");
+        showContactStatus("Wiadomość wysłana.");
     } catch(error) {
         showContactStatus(error.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz SMS.");
     } finally {
