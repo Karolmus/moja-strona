@@ -338,6 +338,18 @@ body {
     padding: 9px 11px;
 }
 
+.mode-toggle {
+    width: fit-content;
+}
+
+.mode-btn {
+    width: auto;
+    min-height: 30px;
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+}
+
 .section-toggle {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 4px;
@@ -1586,7 +1598,6 @@ footer {
             <div class="side-section" id="modeSection" style="display:none">
                 <div class="side-title">Tryb</div>
                 <div class="mode-toggle">
-                    <button class="mode-btn active" data-mode="ordered" onclick="setMode(this,'ordered')">Po kolei</button>
                     <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
                 </div>
             </div>
@@ -2438,9 +2449,9 @@ function ensureSelectedCoursePart(){
 function setCategory(btn, category){
     selectedCategory = category;
     selectedSource = "all";
+    taskMode = "ordered";
 
     if(selectedCategory === "kurs"){
-        taskMode = "ordered";
         selectedCoursePart = "zadania";
     }
 
@@ -2458,6 +2469,7 @@ function setCategory(btn, category){
 
 function setLevel(btn, level){
     selectedLevel = level;
+    taskMode = "ordered";
 
     const selectedSourceMeta = getSourceMetaById(selectedSource);
 
@@ -2480,6 +2492,7 @@ function setLevel(btn, level){
 
 function setSource(sourceId){
     selectedSource = sourceId;
+    taskMode = "ordered";
 
     if(sourceId !== "all"){
         const sourceMeta = getSourceMetaById(sourceId);
@@ -2491,7 +2504,6 @@ function setSource(sourceId){
     }
 
     if(selectedCategory === "kurs"){
-        taskMode = "ordered";
         selectedCoursePart = "zadania";
     }
 
@@ -2509,14 +2521,18 @@ function setSource(sourceId){
     drawTask(getInitialIndex());
 }
 
+function isRandomMode(){
+    return selectedCategory === "egzaminy" && taskMode === "random";
+}
+
 function setMode(btn, mode){
-    if(selectedCategory === "kurs" && mode === "random"){
+    if(selectedCategory !== "egzaminy" || mode !== "random"){
         taskMode = "ordered";
         updateModeButtons();
         return;
     }
 
-    taskMode = mode;
+    taskMode = taskMode === "random" ? "ordered" : "random";
     updateModeButtons();
     resetSession();
     drawTask(getInitialIndex());
@@ -2536,9 +2552,12 @@ function updateLevelButtons(){
 function updateModeButtons(){
     updateModeSection();
 
+    if(selectedCategory !== "egzaminy"){
+        taskMode = "ordered";
+    }
+
     document.querySelectorAll(".mode-btn")
         .forEach(b => {
-            b.disabled = selectedCategory === "kurs" && b.dataset.mode === "random";
             b.classList.toggle("active", b.dataset.mode === taskMode);
         });
 }
@@ -3074,7 +3093,7 @@ function getInitialIndex(){
     const p = pool();
 
     if(!p.length) return 0;
-    if(taskMode === "random") return randomIndex(p, -1);
+    if(isRandomMode()) return randomIndex(p, -1);
 
     return 0;
 }
@@ -3101,7 +3120,7 @@ function randomIndex(items, current){
 }
 
 function rememberRandomIndex(index){
-    if(taskMode !== "random") return;
+    if(!isRandomMode()) return;
     if(randomHistory[randomHistoryIndex] === index) return;
 
     randomHistory = randomHistory.slice(0, randomHistoryIndex + 1);
@@ -3716,7 +3735,7 @@ function nextTask(){
     if(!p.length) return;
     if(advanceToNextExamIfComplete()) return;
 
-    if(taskMode === "random"){
+    if(isRandomMode()){
         if(randomHistoryIndex < randomHistory.length - 1){
             randomHistoryIndex++;
             drawTask(randomHistory[randomHistoryIndex], false);
@@ -3741,7 +3760,7 @@ function prevTask(){
 
     if(!p.length) return;
 
-    if(taskMode === "random"){
+    if(isRandomMode()){
         if(randomHistoryIndex > 0){
             randomHistoryIndex--;
             drawTask(randomHistory[randomHistoryIndex], false);
