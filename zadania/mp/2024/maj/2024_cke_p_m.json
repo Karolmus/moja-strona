@@ -13,8 +13,8 @@
       "D"
     ],
     "tags": [
-      "wartość bezwzględna",
-      "zadanie zamknięte"
+      "wartosc-bezwzgledna",
+      "przedzialy-liczbowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 83,
@@ -34,8 +34,8 @@
       "D"
     ],
     "tags": [
-      "potęgi",
-      "zadanie zamknięte"
+      "potegi",
+      "dzialania-na-liczbach"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 76,
@@ -48,8 +48,9 @@
     "hint": "Rozwiń kwadraty (n + 1)² oraz (n + 2)², a potem wyłącz wielokrotność liczby 3.",
     "answer": "n² + (n + 1)² + (n + 2)² = 3(n² + 2n + 1) + 2, więc reszta z dzielenia przez 3 wynosi 2.",
     "tags": [
-      "podzielność",
-      "zadanie otwarte"
+      "dowodzenie",
+      "dowody-algebraiczne",
+      "wyrazenia-algebraiczne"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 56,
@@ -80,8 +81,7 @@
       "D"
     ],
     "tags": [
-      "logarytmy",
-      "zadanie zamknięte"
+      "logarytmy"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 74,
@@ -101,8 +101,8 @@
       "D"
     ],
     "tags": [
-      "wzory skróconego mnożenia",
-      "zadanie zamknięte"
+      "wzory-skroconego-mnozenia",
+      "wyrazenia-algebraiczne"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -122,8 +122,8 @@
       "D"
     ],
     "tags": [
-      "nierówności",
-      "zadanie zamknięte"
+      "nierownosci-liniowe",
+      "przedzialy-liczbowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 63,
@@ -143,8 +143,8 @@
       "D"
     ],
     "tags": [
-      "równania wymierne",
-      "zadanie zamknięte"
+      "rownania-wymierne",
+      "dziedzina-funkcji"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 82,
@@ -164,8 +164,8 @@
       "FF"
     ],
     "tags": [
-      "wielomiany",
-      "zadanie zamknięte"
+      "wyrazenia-algebraiczne",
+      "miejsce-zerowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 84,
@@ -178,8 +178,8 @@
     "hint": "Pogrupuj wyrazy: x²(x - 2) - 3(x - 2), a potem skorzystaj z zasady iloczynu równego zeru.",
     "answer": "x ∈ {−√3, √3, 2}",
     "tags": [
-      "równania wielomianowe",
-      "zadanie otwarte"
+      "wyrazenia-algebraiczne",
+      "rownania-kwadratowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -210,8 +210,9 @@
       "D"
     ],
     "tags": [
-      "układy równań",
-      "zadanie zamknięte"
+      "uklady-rownan",
+      "procenty",
+      "zadania-tekstowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 57,
@@ -231,8 +232,9 @@
       "D"
     ],
     "tags": [
-      "układy równań",
-      "zadanie zamknięte"
+      "uklady-rownan",
+      "funkcja-liniowa",
+      "proste-rownolegle"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 71,
@@ -252,8 +254,9 @@
       "D"
     ],
     "tags": [
-      "funkcja liniowa",
-      "zadanie zamknięte"
+      "funkcja-liniowa",
+      "monotonicznosc",
+      "zadania-z-parametrem"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 57,
@@ -273,8 +276,9 @@
       "D"
     ],
     "tags": [
-      "funkcja liniowa",
-      "zadanie zamknięte"
+      "funkcja-liniowa",
+      "miejsce-zerowe",
+      "zadania-z-parametrem"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 65,
@@ -288,8 +292,9 @@
     "answer": "[−2, 4]",
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja kwadratówa",
-      "zadanie otwarte"
+      "funkcja-kwadratowa",
+      "nierownosci-kwadratowe",
+      "odczytywanie-z-wykresu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 53,
@@ -310,8 +315,8 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja kwadratówa",
-      "zadanie zamknięte"
+      "funkcja-kwadratowa",
+      "wykres-funkcji"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -332,8 +337,9 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja kwadratówa",
-      "zadanie zamknięte"
+      "funkcja-kwadratowa",
+      "symetria-wykresu",
+      "wartosci-funkcji"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 62,
@@ -359,8 +365,9 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "przekształcenia wykresów",
-      "zadanie zamknięte"
+      "funkcja-kwadratowa",
+      "przesuniecia-wykresu",
+      "symetria-wykresu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 55,
@@ -380,8 +387,8 @@
       "FF"
     ],
     "tags": [
-      "ciągi",
-      "zadanie zamknięte"
+      "ciagi",
+      "wyraz-ogolny-ciagu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 77,
@@ -403,8 +410,9 @@
       "B3"
     ],
     "tags": [
-      "ciąg geometryczny",
-      "zadanie zamknięte"
+      "ciagi",
+      "ciag-geometryczny",
+      "monotonicznosc-ciagu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 78,
@@ -417,8 +425,8 @@
     "hint": "Zapisz trzeci wyraz jako a₃ = a₁ + 2r oraz sumę piętnastu początkowych wyrazów ciągu.",
     "answer": "r = −2",
     "tags": [
-      "ciąg arytmetyczny",
-      "zadanie otwarte"
+      "ciag-arytmetyczny",
+      "suma-ciagu-arytmetycznego"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 40,
@@ -467,7 +475,8 @@
     ],
     "tags": [
       "trygonometria",
-      "zadanie zamknięte"
+      "tangens",
+      "wartosci-trygonometryczne"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 61,
@@ -488,7 +497,8 @@
     ],
     "tags": [
       "trygonometria",
-      "zadanie zamknięte"
+      "tozsamosci-trygonometryczne",
+      "sinus"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 60,
@@ -508,8 +518,9 @@
       "D"
     ],
     "tags": [
-      "geometria",
-      "zadanie zamknięte"
+      "trojkaty",
+      "podobienstwo-trojkatow",
+      "planimetria"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 70,
@@ -529,8 +540,9 @@
       "D"
     ],
     "tags": [
-      "trygonometria",
-      "zadanie zamknięte"
+      "czworokaty",
+      "pola-figur",
+      "trygonometria"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 77,
@@ -550,8 +562,8 @@
       "D"
     ],
     "tags": [
-      "okręgi",
-      "zadanie zamknięte"
+      "okrag",
+      "katy-w-okregu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 64,
@@ -571,8 +583,9 @@
       "D"
     ],
     "tags": [
-      "proste",
-      "zadanie zamknięte"
+      "rownanie-prostej",
+      "proste-prostopadle",
+      "zadania-z-parametrem"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 66,
@@ -585,8 +598,9 @@
     "hint": "Wykorzystaj fakt, że punkt przecięcia przekątnych równoległoboku jest środkiem każdej przekątnej.",
     "answer": "|BC| = √52 = 2√13",
     "tags": [
-      "geometria analityczna",
-      "zadanie otwarte"
+      "geometria-analityczna",
+      "uklad-wspolrzednych",
+      "odleglosc-punktow"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 41,
@@ -622,8 +636,9 @@
     ],
     "contextFile": "25_2024_cke_p_m.png",
     "tags": [
-      "stereometria",
-      "zadanie zamknięte"
+      "graniastoslupy",
+      "pole-powierzchni-bryl",
+      "pola-figur"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 70,
@@ -644,8 +659,9 @@
     ],
     "contextFile": "25_2024_cke_p_m.png",
     "tags": [
-      "stereometria",
-      "zadanie zamknięte"
+      "graniastoslupy",
+      "przekroje-bryl",
+      "trygonometria"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 80,
@@ -658,8 +674,9 @@
     "hint": "Dla brył podobnych stosunek pól powierzchni jest kwadratem skali podobieństwa.",
     "answer": "4",
     "tags": [
-      "stereometria",
-      "zadanie otwarte"
+      "ostroslupy",
+      "objetosc-bryl",
+      "pole-powierzchni-bryl"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 23,
@@ -680,7 +697,8 @@
     ],
     "tags": [
       "kombinatoryka",
-      "zadanie zamknięte"
+      "permutacje",
+      "zliczanie-przypadkow"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 85,
@@ -701,7 +719,7 @@
     ],
     "tags": [
       "statystyka",
-      "zadanie zamknięte"
+      "srednia-arytmetyczna"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 74,
@@ -722,7 +740,8 @@
     ],
     "tags": [
       "statystyka",
-      "zadanie zamknięte"
+      "mediana",
+      "diagramy"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 78,
@@ -735,8 +754,9 @@
     "hint": "Wypisz pary wyników losowania lub policz osobno przypadki, gdy obie liczby są parzyste albo obie nieparzyste.",
     "answer": "P(A) = 13/25",
     "tags": [
-      "prawdopodobieństwo",
-      "zadanie otwarte"
+      "prawdopodobienstwo",
+      "prawdopodobienstwo-klasyczne",
+      "zliczanie-przypadkow"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 64,
@@ -765,7 +785,8 @@
     "answer": "x = 4,5 m, y = 3 m",
     "tags": [
       "optymalizacja",
-      "zadanie otwarte"
+      "funkcja-kwadratowa",
+      "zadania-tekstowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 35,

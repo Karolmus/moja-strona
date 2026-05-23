@@ -20,7 +20,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -43,7 +44,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -66,7 +68,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -82,7 +85,8 @@
       "lekcja 11",
       "układ współrzędnych",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "6.png",
@@ -106,7 +110,8 @@
       "C",
       "D"
     ],
-    "contextFile": "5.png"
+    "contextFile": "5.png",
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -123,7 +128,8 @@
       "układ współrzędnych",
       "zadania"
     ],
-    "contextFile": "5.png"
+    "contextFile": "5.png",
+    "maxPoints": 2
   },
   {
     "file": "8.png",
@@ -140,7 +146,8 @@
       "układ współrzędnych",
       "zadania"
     ],
-    "contextFile": "5.png"
+    "contextFile": "5.png",
+    "maxPoints": 2
   },
   {
     "file": "9.png",
@@ -165,7 +172,8 @@
       "B1",
       "B2",
       "B3"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -188,7 +196,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "11.png",
@@ -211,7 +220,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -235,7 +245,8 @@
     "statements": [
       "Środek odcinka AB ma obie współrzędne całkowite",
       "Odcinek CD ma całkowitą długość"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -257,7 +268,8 @@
       "A",
       "B",
       "C"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -280,7 +292,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -296,6 +309,7 @@
       "lekcja 11",
       "układ współrzędnych",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]

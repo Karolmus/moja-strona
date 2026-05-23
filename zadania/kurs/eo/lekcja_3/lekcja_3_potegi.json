@@ -20,7 +20,8 @@
       "lekcja 3",
       "potęgi",
       "porównywanie potęg"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -43,7 +44,8 @@
       "lekcja 3",
       "potęgi",
       "działania na potęgach"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -66,7 +68,8 @@
       "lekcja 3",
       "potęgi",
       "działania na potęgach"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -91,7 +94,8 @@
       "potęgi",
       "prawda/fałsz",
       "wyrażenia algebraiczne"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -114,7 +118,8 @@
       "lekcja 3",
       "potęgi",
       "suma potęg"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -139,7 +144,8 @@
       "potęgi",
       "prawda/fałsz",
       "liczby ujemne"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -164,7 +170,8 @@
       "potęgi",
       "prawda/fałsz",
       "nwd"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -188,7 +195,8 @@
       "potęgi",
       "porównywanie potęg",
       "kolejnosc rosnaca"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -212,7 +220,8 @@
       "potęgi",
       "działania na potęgach",
       "ułamki"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -235,7 +244,8 @@
       "lekcja 3",
       "potęgi",
       "nww"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -258,7 +268,8 @@
       "lekcja 3",
       "potęgi",
       "działania na potęgach"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -283,7 +294,8 @@
       "potęgi",
       "prawda/fałsz",
       "nierówności"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -306,7 +318,8 @@
       "lekcja 3",
       "potęgi",
       "notacja wykladnicza"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -329,7 +342,8 @@
       "lekcja 3",
       "potęgi",
       "notacja wykladnicza"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -355,7 +369,8 @@
       "prawda/fałsz",
       "liczby ujemne",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -379,7 +394,8 @@
       "potęgi",
       "działania na potęgach",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -403,7 +419,8 @@
       "potęgi",
       "działania na potęgach",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -428,7 +445,8 @@
       "potęgi",
       "prawda/fałsz",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -453,7 +471,8 @@
       "nwd",
       "rozklad na czynniki",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -478,7 +497,8 @@
       "działania na potęgach",
       "ułamki",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -504,7 +524,8 @@
       "nww",
       "os liczbowa",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -530,7 +551,8 @@
       "nww",
       "kolejnosc rosnaca",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -557,7 +579,8 @@
       "podzielność",
       "uzasadnienie",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -584,7 +607,8 @@
       "notacja wykladnicza",
       "uzasadnienie",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -608,7 +632,8 @@
       "potęgi",
       "notacja wykladnicza",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -632,6 +657,7 @@
       "potęgi",
       "notacja wykladnicza",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   }
 ]

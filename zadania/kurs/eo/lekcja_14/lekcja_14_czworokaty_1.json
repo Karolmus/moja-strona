@@ -20,7 +20,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -40,7 +41,8 @@
       "czworokąty",
       "zadania"
     ],
-    "type": "true_false"
+    "type": "true_false",
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -57,7 +59,8 @@
       "czworokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "5.png",
@@ -74,7 +77,8 @@
       "czworokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -91,7 +95,8 @@
       "czworokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -107,7 +112,8 @@
       "lekcja 14",
       "czworokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -123,7 +129,8 @@
       "lekcja 14",
       "czworokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "9.png",
@@ -143,7 +150,8 @@
       "czworokąty",
       "zadania"
     ],
-    "type": "true_false"
+    "type": "true_false",
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -159,7 +167,8 @@
       "lekcja 14",
       "czworokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "11.png",
@@ -175,7 +184,8 @@
       "lekcja 14",
       "czworokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "12.png",
@@ -191,7 +201,8 @@
       "lekcja 14",
       "czworokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "13.png",
@@ -207,7 +218,8 @@
       "lekcja 14",
       "czworokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "14.png",
@@ -223,7 +235,8 @@
       "lekcja 14",
       "czworokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "15.png",
@@ -245,7 +258,8 @@
       "czworokąty",
       "zadania"
     ],
-    "type": "true_false"
+    "type": "true_false",
+    "maxPoints": 2
   },
   {
     "file": "zd1.png",
@@ -268,7 +282,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -288,7 +303,8 @@
       "czworokąty",
       "Zadanie domowe"
     ],
-    "type": "true_false"
+    "type": "true_false",
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -311,7 +327,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -327,6 +344,7 @@
       "lekcja 14",
       "czworokąty",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 3
   }
 ]

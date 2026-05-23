@@ -6,8 +6,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "funkcja-wykladnicza",
+      "rownania-wykladnicze",
+      "logarytmy",
+      "modelowanie-matematyczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -17,7 +19,8 @@
         "file": "1_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "1_z.png"
+    "gradingCriteriaFile": "1_z.png",
+    "completionPercent": 49
   },
   {
     "file": "2.png",
@@ -26,8 +29,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "prawdopodobienstwo",
+      "schemat-bernoulliego",
+      "zdarzenia-losowe"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -49,7 +53,8 @@
         "file": "2_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "2_z.png"
+    "gradingCriteriaFile": "2_z.png",
+    "completionPercent": 71
   },
   {
     "file": "3.png",
@@ -58,8 +63,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "funkcje-wymierne",
+      "pochodne",
+      "styczna-do-wykresu",
+      "rownanie-prostej"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -69,7 +76,8 @@
         "file": "3_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "3_z.png"
+    "gradingCriteriaFile": "3_z.png",
+    "completionPercent": 61
   },
   {
     "file": "4.png",
@@ -78,8 +86,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "dowodzenie",
+      "dowody-z-nierownosci",
+      "wyrazenia-algebraiczne",
+      "uklady-rownan"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -93,7 +103,8 @@
         "file": "4_s_b.png"
       }
     ],
-    "gradingCriteriaFile": "4_z.png"
+    "gradingCriteriaFile": "4_z.png",
+    "completionPercent": 72
   },
   {
     "file": "5.png",
@@ -102,8 +113,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "dowody-geometryczne",
+      "trojkaty",
+      "wysokosc",
+      "trygonometria"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -141,7 +154,8 @@
         "file": "5_s_g.png"
       }
     ],
-    "gradingCriteriaFile": "5_z.png"
+    "gradingCriteriaFile": "5_z.png",
+    "completionPercent": 37
   },
   {
     "file": "6.png",
@@ -150,8 +164,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "rownania-trygonometryczne",
+      "wzory-na-sume-i-roznice-katow",
+      "trygonometria"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -169,7 +184,8 @@
         "file": "6_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "6_z.png"
+    "gradingCriteriaFile": "6_z.png",
+    "completionPercent": 46
   },
   {
     "file": "7.png",
@@ -178,8 +194,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "stereometria",
+      "graniastoslup",
+      "odleglosci-w-brylach",
+      "twierdzenie-pitagorasa-w-przestrzeni"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -222,7 +240,8 @@
         "label": "Część 2",
         "file": "7_z2.png"
       }
-    ]
+    ],
+    "completionPercent": 51
   },
   {
     "file": "8.png",
@@ -231,8 +250,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "czworokaty",
+      "okrag-wpisany",
+      "trygonometria",
+      "obwody-figur"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -250,7 +271,8 @@
         "file": "8_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "8_z.png"
+    "gradingCriteriaFile": "8_z.png",
+    "completionPercent": 44
   },
   {
     "file": "9.png",
@@ -259,8 +281,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "nierownosci-z-wartoscia-bezwzgledna",
+      "wartosc-bezwzgledna",
+      "przedzialy-liczbowe"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -277,7 +300,8 @@
         "label": "Część 3",
         "file": "9_z.png"
       }
-    ]
+    ],
+    "completionPercent": 52
   },
   {
     "file": "10.png",
@@ -286,8 +310,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "ciag-geometryczny",
+      "szereg-geometryczny",
+      "czworokaty",
+      "obwody-figur"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -297,7 +323,8 @@
         "file": "10_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "10_z.png"
+    "gradingCriteriaFile": "10_z.png",
+    "completionPercent": 41
   },
   {
     "file": "11.png",
@@ -306,8 +333,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "rownania-kwadratowe",
+      "rownania-z-parametrem",
+      "zadania-z-parametrem",
+      "pierwiastki-wielomianu"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -329,7 +358,8 @@
         "file": "11_s_etap3_a.png"
       }
     ],
-    "gradingCriteriaFile": "11_z.png"
+    "gradingCriteriaFile": "11_z.png",
+    "completionPercent": 46
   },
   {
     "file": "12.1.png",
@@ -338,8 +368,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "logarytmy",
+      "wlasnosci-logarytmow",
+      "funkcja-logarytmiczna",
+      "wyrazenia-algebraiczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -350,7 +382,8 @@
         "file": "12.1_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "12.1_z.png"
+    "gradingCriteriaFile": "12.1_z.png",
+    "completionPercent": 72
   },
   {
     "file": "12.2.png",
@@ -359,8 +392,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "pochodne",
+      "wartosc-najmniejsza",
+      "optymalizacja",
+      "funkcja-wielomianowa"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -371,7 +406,8 @@
         "file": "12.2_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "12.2_z.png"
+    "gradingCriteriaFile": "12.2_z.png",
+    "completionPercent": 59
   },
   {
     "file": "13.png",
@@ -380,8 +416,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "geometria-analityczna",
+      "funkcja-kwadratowa",
+      "rownanie-okregu",
+      "rownanie-prostej"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 6,
@@ -424,6 +462,7 @@
         "label": "Część 2",
         "file": "13_z2.png"
       }
-    ]
+    ],
+    "completionPercent": 44
   }
 ]

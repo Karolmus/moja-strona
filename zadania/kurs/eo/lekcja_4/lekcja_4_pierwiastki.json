@@ -20,7 +20,8 @@
       "lekcja 4",
       "pierwiastki",
       "porównywanie liczb"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -43,7 +44,8 @@
       "lekcja 4",
       "pierwiastki",
       "liczby rzeczywiste"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -66,7 +68,8 @@
       "lekcja 4",
       "pierwiastki",
       "szacowanie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -90,7 +93,8 @@
       "lekcja 4",
       "pierwiastki",
       "prawda/fałsz"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -113,7 +117,8 @@
       "lekcja 4",
       "pierwiastki",
       "dodawanie pierwiastkow"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -137,7 +142,8 @@
       "lekcja 4",
       "pierwiastki",
       "prawda/fałsz"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 1,
@@ -162,7 +168,8 @@
       "pierwiastki",
       "prawda/fałsz",
       "porównywanie liczb"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -185,7 +192,8 @@
       "lekcja 4",
       "pierwiastki",
       "porzadkowanie liczb"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -209,7 +217,8 @@
       "pierwiastki",
       "szacowanie",
       "liczby dwucyfrowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -232,7 +241,8 @@
       "lekcja 4",
       "pierwiastki",
       "liczby wymierne"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -249,7 +259,8 @@
       "pierwiastki",
       "os liczbowa",
       "szacowanie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -272,7 +283,8 @@
       "lekcja 4",
       "pierwiastki",
       "pierwiastek trzeciego stopnia"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -295,7 +307,8 @@
       "lekcja 4",
       "pierwiastki",
       "wzory skróconego mnożenia"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -319,7 +332,8 @@
       "Zadanie domowe",
       "pierwiastki",
       "mnożenie pierwiastkow"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -343,7 +357,8 @@
       "Zadanie domowe",
       "pierwiastki",
       "porównywanie liczb"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -360,7 +375,8 @@
       "Zadanie domowe",
       "pierwiastki",
       "wzory skróconego mnożenia"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "difficulty": 3,
@@ -391,7 +407,8 @@
       "pierwiastki",
       "wybor wielokrotny",
       "szacowanie"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "difficulty": 3,
@@ -408,7 +425,8 @@
       "Zadanie domowe",
       "pierwiastki",
       "potęgi pierwiastkow"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "difficulty": 2,
@@ -432,7 +450,8 @@
       "Zadanie domowe",
       "pierwiastki",
       "wzory skróconego mnożenia"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -449,7 +468,8 @@
       "Zadanie domowe",
       "pierwiastki",
       "porzadkowanie liczb"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "difficulty": 2,
@@ -466,7 +486,8 @@
       "Zadanie domowe",
       "pierwiastki",
       "porównywanie wyrażeń"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "difficulty": 2,
@@ -490,6 +511,7 @@
       "Zadanie domowe",
       "pierwiastki",
       "liczby calkowite"
-    ]
+    ],
+    "maxPoints": 1
   }
 ]

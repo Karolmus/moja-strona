@@ -22,7 +22,8 @@
       "C",
       "D",
       "E"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -46,7 +47,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -70,7 +72,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -86,7 +89,8 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "5.png",
@@ -110,7 +114,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -135,7 +140,8 @@
     "statements": [
       "Równanie 2x - 1 = (4x + 5)/2 nie jest sprzeczne",
       "Równanie 5x - 11 = 0 posiada całkowite rozwiązanie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -160,7 +166,8 @@
     "statements": [
       "Wyrażenie 2(a + c)(a - c) można zapisać w postaci 2c^2 - 2a^2",
       "Kwadrat sumy trzecich potęg liczb a i c ma formę (a^3 + c^3)^2"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -184,7 +191,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -200,7 +208,8 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "zadania"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "file": "10.png",
@@ -224,7 +233,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "11.png",
@@ -248,7 +258,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "12.png",
@@ -272,7 +283,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "13.png",
@@ -288,7 +300,8 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "zadania"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "file": "zd1.png",
@@ -313,7 +326,8 @@
     "statements": [
       "Kwadrat sumy liczb x i y to x^2 + y^2",
       "(x + y)^2 = x^2 - 2xy + y^2"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -337,7 +351,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -361,7 +376,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -386,7 +402,8 @@
     "statements": [
       "(a + b)^2 > a^2 + b^2",
       "Średnia arytmetyczna z liczb a i b jest mniejszą od sumy, lecz większa od różnicy a - b"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -410,7 +427,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd6.png",
@@ -434,7 +452,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd7.png",
@@ -450,7 +469,8 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd8.png",
@@ -474,7 +494,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd9.png",
@@ -500,7 +521,8 @@
       "B1",
       "B2",
       "B3"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd10.png",
@@ -516,7 +538,8 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd11.png",
@@ -532,6 +555,7 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 4
   }
 ]

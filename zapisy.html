@@ -61,8 +61,10 @@ body{
 }
 
 h1{
-    text-align:center;
-    margin-bottom:20px;
+    margin:0;
+    color:#1f2a36;
+    font-size:32px;
+    line-height:1.15;
 }
 
 /* CTA */
@@ -85,22 +87,64 @@ h1{
     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     transition:0.3s;
 
-    margin: 0 auto 15px;
-    max-width: 500px;
+    margin: 0;
+    width: 100%;
 }
 
 .cta-card:hover {
     transform: translateY(-2px);
 }
 
-.contact-form-card {
-    max-width: 760px;
-    margin: 0 auto 18px;
+.booking-section {
+    max-width: var(--content-width);
+    margin: 0 auto;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.8fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.schedule-card {
+    display: grid;
+    gap: 14px;
     background: white;
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: 16px;
     padding: 22px;
     box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+.booking-head {
+    display: grid;
+    gap: 8px;
+}
+
+.booking-eyebrow {
+    margin: 0;
+    color: #5865F2;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.booking-copy {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+    font-size: 14px;
+}
+
+.contact-form-card {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    scroll-margin-top: 88px;
 }
 
 .contact-form-card h2 {
@@ -156,6 +200,45 @@ h1{
     font: inherit;
     font-weight: 600;
     padding: 10px 18px;
+}
+
+.selected-term-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    min-height: 28px;
+}
+
+.selected-term-list.empty {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.selected-term-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid #cce5c9;
+    border-radius: 999px;
+    background: #e8f5e7;
+    color: #2f6b36;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 8px 5px 10px;
+}
+
+.selected-term-chip button {
+    width: 20px;
+    height: 20px;
+    min-height: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(47, 107, 54, 0.12);
+    color: #2f6b36;
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    padding: 0;
 }
 
 .contact-status {
@@ -270,12 +353,10 @@ h1{
 	/* TABLE */
 	.table-wrapper{
 	    overflow-x:auto;
-	    background:white;
-	    border:1px solid rgba(0,0,0,0.05);
-	    border-radius:16px;
-	    padding:18px;
-	    box-shadow:0 10px 28px rgba(0,0,0,0.08);
-	    margin-bottom:18px;
+	    background:#f8fafc;
+	    border:1px solid #e2e8f0;
+	    border-radius:14px;
+	    padding:12px;
 	}
 
 	table{
@@ -309,6 +390,15 @@ h1{
 	    background:#e8f5e7;
 	    color:#2f6b36;
 	    border:1px solid #cce5c9;
+	    cursor:pointer;
+	    transition:background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.free:hover,
+	.free.selected{
+	    background:#dff1db;
+	    border-color:#78b66d;
+	    box-shadow:inset 0 0 0 1px #78b66d;
 	}
 
 	.busy{
@@ -593,6 +683,10 @@ h1{
 
 @media (max-width:1100px){
 
+    .booking-grid{
+        grid-template-columns:1fr;
+    }
+
     .about-container{
         grid-template-columns:1fr;
     }
@@ -688,55 +782,64 @@ footer{
 
 <div class="container">
 
-    <h1>Dostępne terminy</h1>
+    <section class="booking-section" aria-label="Zapisy na zajęcia">
+        <div class="booking-grid">
+            <section class="schedule-card" aria-labelledby="availabilityTitle">
+                <div class="booking-head">
+                    <p class="booking-eyebrow">Zapisy 2026/27</p>
+                    <h1 id="availabilityTitle">Dostępne terminy</h1>
+                    <p class="booking-copy">
+                        Kliknij wolny termin w tabeli. Wybrana godzina automatycznie trafi do formularza,
+                        a kolejne kliknięcia dopiszą następne propozycje.
+                    </p>
+                </div>
 
-    <div class="table-wrapper">
-        <table id="schedule"></table>
-    </div>
+                <div class="table-wrapper">
+                    <table id="schedule"></table>
+                </div>
+            </section>
 
-    <div class="info">
-        W celu umówienia terminu zajęć proszę o kontakt telefoniczny lub wiadomość SMS
-    </div>
+            <section class="contact-form-card" id="contactFormCard" aria-labelledby="contactFormTitle">
+                <h2 id="contactFormTitle">Formularz kontaktowy</h2>
+                <p>Wybierz termin z tabeli albo napisz, jakie godziny wchodzą w grę.</p>
 
-    <!-- CTA -->
-    <a class="cta-card" href="tel:514681958">
+                <a class="cta-card" href="tel:514681958">
+                    <span class="cta-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
+                            11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
+                            17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
+                            11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+                        </svg>
+                    </span>
+                    <span>Zadzwoń: 514 681 958</span>
+                </a>
 
-        <span class="cta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
-                11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
-                17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
-                11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-            </svg>
-        </span>
+                <form class="contact-form" id="contactForm">
+                    <label>
+                        Telefon lub e-mail
+                        <input name="contact" autocomplete="email" maxlength="254" required placeholder="">
+                    </label>
 
-        <span>Zadzwoń: 514 681 958</span>
+                    <label>
+                        Wybrane terminy
+                        <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Kliknij wolny termin w tabeli">
+                    </label>
 
-    </a>
+                    <div class="selected-term-list empty" id="selectedTermList" aria-live="polite">
+                        Brak wybranych terminów.
+                    </div>
 
-    <section class="contact-form-card" aria-labelledby="contactFormTitle">
-        <h2 id="contactFormTitle">Formularz kontaktowy</h2>
-        <p></p>
+                    <label>
+                        Dodatkowe informacje takie jak klasa do której uczęszcza uczeń, jaki ma cel lub jaki kurs chce realizować
+                        <textarea name="message" maxlength="3000" required placeholder=""></textarea>
+                    </label>
 
-        <form class="contact-form" id="contactForm">
-            <label>
-                Telefon lub e-mail
-                <input name="contact" autocomplete="email" maxlength="254" required placeholder="">
-            </label>
-
-            <label>
-                Termin lub terminy, które Cię interesują
-                <input name="preferred_term" maxlength="160" placeholder="Podaj najlepiej kilka dostępnych godzin">
-            </label>
-
-            <label>
-                Dodatkowe informacje takie jak klasa do której uczęszcza uczeń, jaki ma cel  lub jaki kurs chce realizować
-                <textarea name="message" maxlength="3000" required placeholder=""></textarea>
-            </label>
-
-            <button type="submit">Wyślij wiadomość</button>
-            <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
-        </form>
+                    <button type="submit">Wyślij wiadomość</button>
+                    <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
+                </form>
+            </section>
+        </div>
     </section>
 
 	</div>
@@ -955,6 +1058,7 @@ const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxNVJJM5pZVmVLJzDV-O9FCdWj1DaA1JGeKVvlIuwVSdi9rtGsvUfbJR66tHpSbMsqueDkooTyyvXN/pub?gid=0&single=true&output=csv";
 
 let data = [];
+let selectedTerms = [];
 
 fetch(SHEET_URL)
 .then(r => r.text())
@@ -968,6 +1072,78 @@ fetch(SHEET_URL)
 
     render();
 });
+
+function termLabel(rowIndex, columnIndex){
+    const day = data[0]?.[columnIndex] || "";
+    const time = data[rowIndex]?.[0] || "";
+
+    return [day, time].filter(Boolean).join(" ").trim();
+}
+
+function updateSelectedTermView(){
+    const input = document.getElementById("preferredTermInput");
+    const list = document.getElementById("selectedTermList");
+
+    if(input){
+        input.value = selectedTerms.join("; ");
+    }
+
+    document.querySelectorAll("[data-term]")
+        .forEach(cell => {
+            cell.classList.toggle("selected", selectedTerms.includes(cell.dataset.term));
+        });
+
+    if(!list) return;
+
+    list.innerHTML = "";
+    list.classList.toggle("empty", selectedTerms.length === 0);
+
+    if(!selectedTerms.length){
+        list.innerText = "Brak wybranych terminów.";
+        return;
+    }
+
+    selectedTerms.forEach(term => {
+        const chip = document.createElement("span");
+        const remove = document.createElement("button");
+
+        chip.className = "selected-term-chip";
+        chip.innerText = term;
+
+        remove.type = "button";
+        remove.setAttribute("aria-label", `Usuń termin ${term}`);
+        remove.innerText = "×";
+        remove.onclick = () => removePreferredTerm(term);
+
+        chip.appendChild(remove);
+        list.appendChild(chip);
+    });
+}
+
+function addPreferredTerm(term){
+    if(!term) return;
+
+    if(!selectedTerms.includes(term)){
+        const nextTerms = [...selectedTerms, term];
+
+        if(nextTerms.join("; ").length > 160){
+            window.showContactStatus?.("Lista terminów jest już dość długa. Usuń jeden z terminów albo dopisz resztę w wiadomości.");
+            return;
+        }
+
+        selectedTerms = nextTerms;
+    }
+
+    updateSelectedTermView();
+
+    document.getElementById("contactFormCard")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function removePreferredTerm(term){
+    selectedTerms = selectedTerms.filter(item => item !== term);
+    updateSelectedTermView();
+}
 
 function render(){
 
@@ -991,8 +1167,21 @@ function render(){
             }
             else{
                 if(!cell){
+                    const term = termLabel(i, j);
+
                     el.classList.add('free');
+                    el.dataset.term = term;
+                    el.tabIndex = 0;
+                    el.setAttribute("role", "button");
+                    el.setAttribute("aria-label", `Wybierz termin ${term}`);
                     el.innerText = 'wolny';
+                    el.addEventListener("click", () => addPreferredTerm(term));
+                    el.addEventListener("keydown", event => {
+                        if(event.key === "Enter" || event.key === " "){
+                            event.preventDefault();
+                            addPreferredTerm(term);
+                        }
+                    });
                 } else {
                     el.classList.add('busy');
                     el.innerText = '';
@@ -1004,6 +1193,8 @@ function render(){
 
         table.appendChild(tr);
     });
+
+    updateSelectedTermView();
 }
 
 </script>
@@ -1044,6 +1235,8 @@ contactForm.addEventListener("submit", async event => {
         });
 
         contactForm.reset();
+        selectedTerms = [];
+        updateSelectedTermView();
         showContactStatus("Wiadomość wysłana.");
     } catch(error) {
         showContactStatus(error.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz SMS.");

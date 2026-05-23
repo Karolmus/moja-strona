@@ -14,11 +14,11 @@
       "D"
     ],
     "tags": [
-      "wartość bezwzględna",
-      "zadanie zamknięte",
-      "przedziały"
+      "wartosc-bezwzgledna",
+      "przedzialy-liczbowe"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 74
   },
   {
     "file": "2_2023_cke_p_m.png",
@@ -36,10 +36,11 @@
     ],
     "tags": [
       "pierwiastki",
-      "zadanie zamknięte",
-      "potęgi"
+      "potegi",
+      "dzialania-na-liczbach"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 83
   },
   {
     "file": "3_2023_cke_p_m.png",
@@ -49,8 +50,9 @@
     "hint": "Przekształć (2n + 1)^2 - 1 do postaci iloczynu i wykorzystaj fakt, że iloczyn dwóch kolejnych liczb naturalnych jest parzysty.",
     "answer": "(2n + 1)^2 - 1 = 4n(n + 1), a n(n + 1) jest parzyste, więc liczba jest podzielna przez 8.",
     "tags": [
-      "podzielność",
-      "zadanie otwarte"
+      "dowodzenie",
+      "dowody-algebraiczne",
+      "wyrazenia-algebraiczne"
     ],
     "solutions": [
       {
@@ -71,7 +73,8 @@
       }
     ],
     "gradingCriteriaFile": "3_z.png",
-    "maxPoints": 2
+    "maxPoints": 2,
+    "completionPercent": 45
   },
   {
     "file": "4_2023_cke_p_m.png",
@@ -89,10 +92,10 @@
     ],
     "tags": [
       "logarytmy",
-      "zadanie zamknięte",
-      "logarytmy"
+      "dzialania-na-liczbach"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 90
   },
   {
     "file": "5_2023_cke_p_m.png",
@@ -109,11 +112,11 @@
       "D"
     ],
     "tags": [
-      "wzory skróconego mnożenia",
-      "zadanie zamknięte",
-      "algebra"
+      "wzory-skroconego-mnozenia",
+      "wyrazenia-algebraiczne"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 78
   },
   {
     "file": "6_2023_cke_p_m.png",
@@ -130,11 +133,11 @@
       "D"
     ],
     "tags": [
-      "nierownosci liniowe",
-      "zadanie zamknięte",
-      "nierownosci"
+      "nierownosci-liniowe",
+      "przedzialy-liczbowe"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 70
   },
   {
     "file": "7_2023_cke_p_m.png",
@@ -151,11 +154,11 @@
       "D"
     ],
     "tags": [
-      "równańia wielomianowe",
-      "zadanie zamknięte",
-      "równańia"
+      "rownania-kwadratowe",
+      "pierwiastki"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 85
   },
   {
     "file": "8_2023_cke_p_m.png",
@@ -172,11 +175,11 @@
       "D"
     ],
     "tags": [
-      "równańia wymierne",
-      "zadanie zamknięte",
-      "dziedzina"
+      "rownania-wymierne",
+      "wyrazenia-algebraiczne"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 77
   },
   {
     "file": "9_2023_cke_p_m.png",
@@ -186,8 +189,8 @@
     "hint": "Pogrupuj składniki albo znajdź pierwiastek wielomianu, a potem rozłóż wielomian na czynniki.",
     "answer": "x = -2, x = 2/3, x = 2",
     "tags": [
-      "równańia wielomianowe",
-      "zadanie otwarte"
+      "wyrazenia-algebraiczne",
+      "rownania-kwadratowe"
     ],
     "solutions": [
       {
@@ -208,7 +211,8 @@
       }
     ],
     "gradingCriteriaFile": "9_z.png",
-    "maxPoints": 3
+    "maxPoints": 3,
+    "completionPercent": 79
   },
   {
     "file": "10_2023_cke_p_m.png",
@@ -225,12 +229,12 @@
       "D"
     ],
     "tags": [
-      "układy równań",
-      "zadanie zamknięte",
-      "funkcja liniowa",
-      "układy równań"
+      "uklady-rownan",
+      "funkcja-liniowa",
+      "wykres-funkcji"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 87
   },
   {
     "file": "11_2023_cke_p_m.png",
@@ -252,10 +256,12 @@
       "F"
     ],
     "tags": [
-      "układy równań",
-      "wybor wielokrotny"
+      "uklady-rownan",
+      "zadania-tekstowe",
+      "modelowanie-matematyczne"
     ],
-    "maxPoints": 2
+    "maxPoints": 2,
+    "completionPercent": 92
   },
   {
     "file": "12.1_2023_cke_p_m.png",
@@ -273,11 +279,12 @@
     ],
     "tags": [
       "funkcje",
-      "odczytywanie z wykresu",
-      "zadanie zamknięte"
+      "dziedzina-funkcji",
+      "odczytywanie-z-wykresu"
     ],
     "contextFile": "12_2023_cke_p_m.png",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 91
   },
   {
     "file": "12.2_2023_cke_p_m.png",
@@ -295,11 +302,12 @@
     ],
     "tags": [
       "funkcje",
-      "odczytywanie z wykresu",
-      "zadanie zamknięte"
+      "wartosci-funkcji",
+      "odczytywanie-z-wykresu"
     ],
     "contextFile": "12_2023_cke_p_m.png",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 66
   },
   {
     "file": "12.3_2023_cke_p_m.png",
@@ -318,10 +326,11 @@
     "tags": [
       "funkcje",
       "monotonicznosc",
-      "zadanie zamknięte"
+      "odczytywanie-z-wykresu"
     ],
     "contextFile": "12_2023_cke_p_m.png",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 96
   },
   {
     "file": "13_2023_cke_p_m.png",
@@ -338,11 +347,12 @@
       "D"
     ],
     "tags": [
-      "funkcja liniowa",
-      "zadanie zamknięte",
-      "wykres funkcji"
+      "funkcja-liniowa",
+      "wykres-funkcji",
+      "wspolczynnik-kierunkowy"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 81
   },
   {
     "file": "14_2023_cke_p_m.png",
@@ -359,11 +369,12 @@
       "D"
     ],
     "tags": [
-      "funkcja kwadratówa",
-      "zadanie zamknięte",
-      "miejsca zerowe"
+      "funkcja-kwadratowa",
+      "miejsce-zerowe",
+      "symetria-wykresu"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 79
   },
   {
     "file": "15_2023_cke_p_m.png",
@@ -380,11 +391,11 @@
       "D"
     ],
     "tags": [
-      "ciągi",
-      "zadanie zamknięte",
-      "ciągi"
+      "ciagi",
+      "wyraz-ogolny-ciagu"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 96
   },
   {
     "file": "16_2023_cke_p_m.png",
@@ -401,11 +412,11 @@
       "D"
     ],
     "tags": [
-      "ciąg geometryczny",
-      "zadanie zamknięte",
-      "ciągi"
+      "ciagi",
+      "ciag-geometryczny"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 85
   },
   {
     "file": "17_2023_cke_p_m.png",
@@ -415,8 +426,9 @@
     "hint": "Raty tworzą ciąg arytmetyczny o różnicy -30. Użyj wzoru na sumę 18 początkowych wyrazów.",
     "answer": "Pierwsza rata byla rowna 750 zl.",
     "tags": [
-      "ciąg arytmetyczny",
-      "zadanie otwarte"
+      "ciag-arytmetyczny",
+      "suma-ciagu-arytmetycznego",
+      "zadania-tekstowe"
     ],
     "solutions": [
       {
@@ -445,7 +457,8 @@
       }
     ],
     "gradingCriteriaFile": "17_z.png",
-    "maxPoints": 2
+    "maxPoints": 2,
+    "completionPercent": 50
   },
   {
     "file": "18_2023_cke_p_m.png",
@@ -463,10 +476,11 @@
     ],
     "tags": [
       "trygonometria",
-      "zadanie zamknięte",
-      "tangens"
+      "tangens",
+      "uklad-wspolrzednych"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 83
   },
   {
     "file": "19_2023_cke_p_m.png",
@@ -484,10 +498,11 @@
     ],
     "tags": [
       "trygonometria",
-      "zadanie zamknięte",
-      "jedynka trygonometryczna"
+      "tozsamosci-trygonometryczne",
+      "sinus"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 51
   },
   {
     "file": "20_2023_cke_p_m.png",
@@ -504,11 +519,12 @@
       "D"
     ],
     "tags": [
-      "romb",
-      "zadanie zamknięte",
-      "geometria"
+      "czworokaty",
+      "trygonometria",
+      "pola-figur"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 63
   },
   {
     "file": "21_2023_cke_p_m.png",
@@ -525,11 +541,12 @@
       "D"
     ],
     "tags": [
-      "kąty w okręgu",
-      "zadanie zamknięte",
-      "okrag"
+      "okrag",
+      "katy-w-okregu",
+      "planimetria"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 75
   },
   {
     "file": "22_2023_cke_p_m.png",
@@ -539,8 +556,9 @@
     "hint": "Najpierw oblicz przeciwprostokatna trójkąta o bokach 5 i 12, potem wyznacz skale podobienstwa.",
     "answer": "Pole trójkąta T2 wynosi 120.",
     "tags": [
-      "podobienstwo trojkatow",
-      "zadanie otwarte"
+      "podobienstwo-trojkatow",
+      "trojkat-prostokatny",
+      "pola-figur"
     ],
     "solutions": [
       {
@@ -557,7 +575,8 @@
       }
     ],
     "gradingCriteriaFile": "22_z.png",
-    "maxPoints": 2
+    "maxPoints": 2,
+    "completionPercent": 77
   },
   {
     "file": "23_2023_cke_p_m.png",
@@ -576,11 +595,12 @@
       "B3"
     ],
     "tags": [
-      "proste",
-      "układ wspolrzednych",
-      "zadanie zamknięte"
+      "rownanie-prostej",
+      "proste-prostopadle",
+      "uklad-wspolrzednych"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 77
   },
   {
     "file": "24_2023_cke_p_m.png",
@@ -597,11 +617,12 @@
       "D"
     ],
     "tags": [
-      "prosta rownolegla",
-      "zadanie zamknięte",
-      "funkcja liniowa"
+      "rownanie-prostej",
+      "proste-rownolegle",
+      "wspolczynnik-kierunkowy"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 77
   },
   {
     "file": "25_2023_cke_p_m.png",
@@ -618,11 +639,12 @@
       "D"
     ],
     "tags": [
-      "graniastosłupy",
-      "zadanie zamknięte",
-      "geometria przestrzenna"
+      "graniastoslupy",
+      "trygonometria",
+      "trojkat-prostokatny"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 66
   },
   {
     "file": "26_2023_cke_p_m.png",
@@ -632,9 +654,9 @@
     "hint": "Z trójkąta prostokątnego w przekroju wyznacz wysokość ostrosłupa i połowę przekątnej podstawy, a potem oblicz objętość i pole.",
     "answer": "V = 108, Pc = 108 + 72sqrt(3)",
     "tags": [
-      "ostrosłupy",
-      "zadanie otwarte",
-      "geometria przestrzenna"
+      "ostroslupy",
+      "objetosc-bryl",
+      "pole-powierzchni-bryl"
     ],
     "solutions": [
       {
@@ -643,7 +665,8 @@
       }
     ],
     "gradingCriteriaFile": "26_z.png",
-    "maxPoints": 4
+    "maxPoints": 4,
+    "completionPercent": 55
   },
   {
     "file": "27_2023_cke_p_m.png",
@@ -660,11 +683,12 @@
       "D"
     ],
     "tags": [
-      "ostrosłupy",
-      "zadanie zamknięte",
-      "geometria przestrzenna"
+      "ostroslupy",
+      "wielokaty",
+      "stereometria"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 89
   },
   {
     "file": "28_2023_cke_p_m.png",
@@ -682,10 +706,11 @@
     ],
     "tags": [
       "kombinatoryka",
-      "zadanie zamknięte",
-      "zliczanie"
+      "regula-mnozenia",
+      "zliczanie-przypadkow"
     ],
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 83
   },
   {
     "file": "29_2023_cke_p_m.png",
@@ -697,9 +722,10 @@
     "tags": [
       "statystyka",
       "mediana",
-      "średnia arytmetyczna"
+      "srednia-arytmetyczna"
     ],
-    "maxPoints": 2
+    "maxPoints": 2,
+    "completionPercent": 69
   },
   {
     "file": "30_2023_cke_p_m.png",
@@ -709,8 +735,9 @@
     "hint": "Policz wszystkie pary uporzadkowane oraz te, w ktorych iloczyn jest podzielny przez 15.",
     "answer": "P(A) = 6/64 = 3/32",
     "tags": [
-      "prawdopodobieństwo",
-      "zadanie otwarte"
+      "prawdopodobienstwo",
+      "prawdopodobienstwo-klasyczne",
+      "zliczanie-przypadkow"
     ],
     "solutions": [
       {
@@ -727,7 +754,8 @@
       }
     ],
     "gradingCriteriaFile": "30_z.png",
-    "maxPoints": 2
+    "maxPoints": 2,
+    "completionPercent": 71
   },
   {
     "file": "31.1_2023_cke_p_m.png",
@@ -745,11 +773,13 @@
       "Stwierdzenie 2"
     ],
     "tags": [
-      "funkcja kwadratówa",
-      "prawda/fałsz"
+      "funkcja-kwadratowa",
+      "modelowanie-matematyczne",
+      "wartosci-funkcji"
     ],
     "contextFile": "31_2023_cke_p_m.png",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 57
   },
   {
     "file": "31.2_2023_cke_p_m.png",
@@ -759,9 +789,9 @@
     "hint": "Wyznacz wierzcholek paraboli opisanej wzorem L(n).",
     "answer": "Najwięcej klientow obsluzono 11. dnia; bylo ich 400.",
     "tags": [
-      "funkcja kwadratówa",
+      "funkcja-kwadratowa",
       "optymalizacja",
-      "zadanie otwarte"
+      "zadania-tekstowe"
     ],
     "contextFile": "31_2023_cke_p_m.png",
     "solutions": [
@@ -779,6 +809,7 @@
       }
     ],
     "gradingCriteriaFile": "31.2_z.png",
-    "maxPoints": 2
+    "maxPoints": 2,
+    "completionPercent": 55
   }
 ]

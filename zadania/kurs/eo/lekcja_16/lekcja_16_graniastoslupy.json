@@ -20,7 +20,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -43,7 +44,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -66,7 +68,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -82,7 +85,8 @@
       "lekcja 16",
       "graniastosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "5.png",
@@ -98,7 +102,8 @@
       "lekcja 16",
       "graniastosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "file": "6.png",
@@ -121,7 +126,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -145,7 +151,8 @@
     "statements": [
       "Aby całkowicie wypełnić wodą sześcienny basen o krawędzi 3 m, należy 2700 razy wlać zawartość wiadra 10-litrowego.",
       "Basen o głębokości 4 m i objętości 6000 hl ma powierzchnię wody większą niż 1000 m²."
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -169,7 +176,8 @@
     "statements": [
       "Przecięcie graniastosłupa płaszczyzną przechodzącą przez jego wnętrze zwiększa łączną powierzchnię całkowitą powstałych brył.",
       "W każdym graniastosłupie liczba ścian bocznych jest trzykrotnie mniejszą od liczby wszystkich krawędzi."
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -192,7 +200,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -208,7 +217,8 @@
       "lekcja 16",
       "graniastosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "file": "11.png",
@@ -231,7 +241,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "12.png",
@@ -254,7 +265,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "14.png",
@@ -271,7 +283,8 @@
       "graniastosłupy",
       "zadania"
     ],
-    "contextFile": "13.png"
+    "contextFile": "13.png",
+    "maxPoints": 1
   },
   {
     "file": "16.png",
@@ -288,7 +301,8 @@
       "graniastosłupy",
       "zadania"
     ],
-    "contextFile": "13.png"
+    "contextFile": "13.png",
+    "maxPoints": 1
   },
   {
     "file": "17.png",
@@ -305,7 +319,8 @@
       "graniastosłupy",
       "zadania"
     ],
-    "contextFile": "13.png"
+    "contextFile": "13.png",
+    "maxPoints": 1
   },
   {
     "file": "18.png",
@@ -321,7 +336,8 @@
       "lekcja 16",
       "graniastosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "19.png",
@@ -337,7 +353,8 @@
       "lekcja 16",
       "graniastosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "20.png",
@@ -353,7 +370,8 @@
       "lekcja 16",
       "graniastosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "21.png",
@@ -376,7 +394,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -393,7 +412,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "22.png"
+    "contextFile": "22.png",
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -410,7 +430,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "22.png"
+    "contextFile": "22.png",
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -427,7 +448,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "22.png"
+    "contextFile": "22.png",
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -444,7 +466,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "22.png"
+    "contextFile": "22.png",
+    "maxPoints": 1
   },
   {
     "file": "zd6.png",
@@ -461,7 +484,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "zd5.png"
+    "contextFile": "zd5.png",
+    "maxPoints": 1
   },
   {
     "file": "zd7.png",
@@ -478,7 +502,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "zd5.png"
+    "contextFile": "zd5.png",
+    "maxPoints": 1
   },
   {
     "file": "zd8.png",
@@ -495,7 +520,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "zd5.png"
+    "contextFile": "zd5.png",
+    "maxPoints": 1
   },
   {
     "file": "zd9.png",
@@ -512,7 +538,8 @@
       "graniastosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "zd5.png"
+    "contextFile": "zd5.png",
+    "maxPoints": 1
   },
   {
     "file": "zd10.png",
@@ -528,7 +555,8 @@
       "lekcja 16",
       "graniastosłupy",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd11.png",
@@ -544,7 +572,8 @@
       "lekcja 16",
       "graniastosłupy",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd12.png",
@@ -560,7 +589,8 @@
       "lekcja 16",
       "graniastosłupy",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd13.png",
@@ -576,7 +606,8 @@
       "lekcja 16",
       "graniastosłupy",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd14.png",
@@ -592,7 +623,8 @@
       "lekcja 16",
       "graniastosłupy",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "file": "zd15.png",
@@ -608,6 +640,7 @@
       "lekcja 16",
       "graniastosłupy",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]

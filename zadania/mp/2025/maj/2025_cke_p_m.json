@@ -15,7 +15,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "zadanie zamknięte"
+      "dzialania-na-liczbach"
     ],
     "completionPercent": 67,
     "maxPoints": 1
@@ -35,8 +35,8 @@
       "D"
     ],
     "tags": [
-      "potęgi",
-      "zadanie zamknięte"
+      "potegi",
+      "dzialania-na-liczbach"
     ],
     "completionPercent": 63,
     "maxPoints": 1
@@ -57,7 +57,7 @@
     ],
     "tags": [
       "logarytmy",
-      "zadanie zamknięte"
+      "dzialania-na-liczbach"
     ],
     "completionPercent": 78,
     "maxPoints": 1
@@ -77,8 +77,8 @@
       "D"
     ],
     "tags": [
-      "algebra",
-      "zadanie zamknięte"
+      "wzory-skroconego-mnozenia",
+      "wyrazenia-algebraiczne"
     ],
     "completionPercent": 72,
     "maxPoints": 1
@@ -91,8 +91,9 @@
     "hint": "Zapisz nieparzystą liczbę naturalną jako n = 2l + 1 i przekształć wyrażenie do postaci wielokrotności 4.",
     "answer": "Należy wykazać podzielność przez 4, np. dla n = 2l + 1 otrzymać 3n² + 2n + 7 = 4(3l² + 4l + 3).",
     "tags": [
-      "podzielność",
-      "zadanie otwarte"
+      "dowodzenie",
+      "dowody-algebraiczne",
+      "wyrazenia-algebraiczne"
     ],
     "completionPercent": 32,
     "solutions": [
@@ -131,8 +132,8 @@
       "D"
     ],
     "tags": [
-      "nierówności",
-      "zadanie zamknięte"
+      "nierownosci-liniowe",
+      "przedzialy-liczbowe"
     ],
     "completionPercent": 73,
     "maxPoints": 1
@@ -152,8 +153,8 @@
       "D"
     ],
     "tags": [
-      "równania",
-      "zadanie zamknięte"
+      "rownania-kwadratowe",
+      "liczby-rzeczywiste"
     ],
     "completionPercent": 62,
     "maxPoints": 1
@@ -173,8 +174,8 @@
       "D"
     ],
     "tags": [
-      "wyrażenia wymierne",
-      "zadanie zamknięte"
+      "wyrazenia-algebraiczne",
+      "rownania-wymierne"
     ],
     "completionPercent": 60,
     "maxPoints": 1
@@ -187,8 +188,9 @@
     "hint": "Oznacz kwotę zespołu A przez x, zespołu B przez y i zapisz układ z sumą budżetu oraz wykorzystaną kwotą.",
     "answer": "735 000 zł",
     "tags": [
-      "układy równań",
-      "zadanie otwarte"
+      "uklady-rownan",
+      "zadania-tekstowe",
+      "modelowanie-matematyczne"
     ],
     "completionPercent": 30,
     "solutions": [
@@ -208,8 +210,9 @@
     "hint": "Przenieś wszystko na jedną stronę, oblicz miejsca zerowe trójmianu i odczytaj, gdzie parabola jest poniżej osi.",
     "answer": "x ∈ (1/3, 3/2)",
     "tags": [
-      "nierówność kwadratówa",
-      "zadanie otwarte"
+      "nierownosci-kwadratowe",
+      "rownania-kwadratowe",
+      "przedzialy-liczbowe"
     ],
     "completionPercent": 68,
     "solutions": [
@@ -230,7 +233,8 @@
     "answer": "1. Dziedzina: [−4, 4).\n2. Zbiór wartości: (−3, 3].\n3. Argumenty, dla których f przyjmuje wartości dodatnie: [−4, 3).\n4. Rozwiązania równania f(x) = 3: [−2, 2].",
     "tags": [
       "funkcje",
-      "zadanie otwarte"
+      "dziedzina-funkcji",
+      "odczytywanie-z-wykresu"
     ],
     "completionPercent": 67,
     "gradingCriteriaFile": "11_z.png",
@@ -245,8 +249,8 @@
     "answer": "f(x) = −1/3 · (x − 3)² + 6",
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja kwadratówa",
-      "zadanie otwarte"
+      "funkcja-kwadratowa",
+      "wykres-funkcji"
     ],
     "completionPercent": 62,
     "solutions": [
@@ -278,8 +282,8 @@
     ],
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja kwadratówa",
-      "zadanie zamknięte"
+      "funkcja-kwadratowa",
+      "symetria-wykresu"
     ],
     "completionPercent": 84,
     "maxPoints": 1
@@ -293,8 +297,9 @@
     "answer": "6",
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja kwadratówa",
-      "zadanie otwarte"
+      "funkcja-kwadratowa",
+      "miejsce-zerowe",
+      "przesuniecia-wykresu"
     ],
     "completionPercent": 47,
     "maxPoints": 1
@@ -314,8 +319,9 @@
       "D"
     ],
     "tags": [
-      "funkcja liniowa",
-      "zadanie zamknięte"
+      "funkcja-liniowa",
+      "miejsce-zerowe",
+      "zadania-z-parametrem"
     ],
     "completionPercent": 72,
     "maxPoints": 1
@@ -336,8 +342,8 @@
     ],
     "contextFile": "14_2025_cke_p_m.png",
     "tags": [
-      "ciągi",
-      "zadanie zamknięte"
+      "ciagi",
+      "wyraz-ogolny-ciagu"
     ],
     "completionPercent": 75,
     "maxPoints": 1
@@ -358,8 +364,9 @@
     ],
     "contextFile": "14_2025_cke_p_m.png",
     "tags": [
-      "ciągi",
-      "zadanie zamknięte"
+      "ciagi",
+      "ciag-arytmetyczny",
+      "ciag-geometryczny"
     ],
     "completionPercent": 47,
     "maxPoints": 1
@@ -372,8 +379,9 @@
     "hint": "Dla ciągu arytmetycznego środkowy wyraz jest średnią sąsiednich; potem sprawdź warunek malejącości.",
     "answer": "m = 5/2",
     "tags": [
-      "ciągi",
-      "zadanie otwarte"
+      "ciag-arytmetyczny",
+      "monotonicznosc-ciagu",
+      "zadania-z-parametrem"
     ],
     "completionPercent": 49,
     "solutions": [
@@ -412,8 +420,9 @@
       "D"
     ],
     "tags": [
-      "ciąg geometryczny",
-      "zadanie zamknięte"
+      "ciagi",
+      "ciag-geometryczny",
+      "wyraz-ogolny-ciagu"
     ],
     "completionPercent": 78,
     "maxPoints": 1
@@ -434,7 +443,8 @@
     ],
     "tags": [
       "trygonometria",
-      "zadanie zamknięte"
+      "tangens",
+      "cosinus"
     ],
     "completionPercent": 70,
     "maxPoints": 1
@@ -456,7 +466,8 @@
     "contextFile": "18_2025_cke_p_m.png",
     "tags": [
       "trygonometria",
-      "zadanie zamknięte"
+      "tangens",
+      "trojkat-prostokatny"
     ],
     "completionPercent": 81,
     "maxPoints": 1
@@ -478,7 +489,8 @@
     "contextFile": "18_2025_cke_p_m.png",
     "tags": [
       "trygonometria",
-      "zadanie zamknięte"
+      "sinus",
+      "trojkat-prostokatny"
     ],
     "completionPercent": 59,
     "maxPoints": 1
@@ -498,8 +510,8 @@
       "D"
     ],
     "tags": [
-      "okręgi",
-      "zadanie zamknięte"
+      "okrag",
+      "katy-w-okregu"
     ],
     "completionPercent": 81,
     "maxPoints": 1
@@ -519,8 +531,8 @@
       "D"
     ],
     "tags": [
-      "podobieństwo",
-      "zadanie zamknięte"
+      "podobienstwo-trojkatow",
+      "trojkaty"
     ],
     "completionPercent": 53,
     "maxPoints": 1
@@ -540,8 +552,9 @@
       "FF"
     ],
     "tags": [
-      "geometria",
-      "zadanie zamknięte"
+      "trojkaty",
+      "pola-figur",
+      "trygonometria"
     ],
     "completionPercent": 51,
     "maxPoints": 1
@@ -561,8 +574,9 @@
       "D"
     ],
     "tags": [
-      "geometria analityczna",
-      "zadanie zamknięte"
+      "geometria-analityczna",
+      "srodek-odcinka",
+      "odleglosc-punktow"
     ],
     "completionPercent": 70,
     "maxPoints": 1
@@ -582,8 +596,9 @@
       "D"
     ],
     "tags": [
-      "proste",
-      "zadanie zamknięte"
+      "rownanie-prostej",
+      "proste-rownolegle",
+      "zadania-z-parametrem"
     ],
     "completionPercent": 79,
     "maxPoints": 1
@@ -603,8 +618,9 @@
       "D"
     ],
     "tags": [
-      "okrąg",
-      "zadanie zamknięte"
+      "geometria-analityczna",
+      "okrag-w-ukladzie-wspolrzednych",
+      "odleglosc-punktow"
     ],
     "completionPercent": 61,
     "maxPoints": 1
@@ -617,8 +633,9 @@
     "hint": "Rozważ przekrój osiowy stożka. Połowa kąta rozwarcia ma 60°, a tworząca jest przeciwprostokątną trójkąta prostokątnego.",
     "answer": "V = 64π",
     "tags": [
-      "stereometria",
-      "zadanie otwarte"
+      "stozek",
+      "objetosc-bryl",
+      "trygonometria"
     ],
     "completionPercent": 49,
     "solutions": [
@@ -653,8 +670,8 @@
       "D"
     ],
     "tags": [
-      "stereometria",
-      "zadanie zamknięte"
+      "graniastoslupy",
+      "objetosc-bryl"
     ],
     "completionPercent": 64,
     "maxPoints": 1
@@ -675,7 +692,8 @@
     ],
     "tags": [
       "kombinatoryka",
-      "zadanie zamknięte"
+      "regula-mnozenia",
+      "zliczanie-przypadkow"
     ],
     "completionPercent": 71,
     "maxPoints": 1
@@ -695,8 +713,9 @@
       "D"
     ],
     "tags": [
-      "prawdopodobieństwo",
-      "zadanie zamknięte"
+      "prawdopodobienstwo",
+      "prawdopodobienstwo-klasyczne",
+      "zliczanie-przypadkow"
     ],
     "completionPercent": 85,
     "maxPoints": 1
@@ -717,7 +736,7 @@
     ],
     "tags": [
       "statystyka",
-      "zadanie zamknięte"
+      "srednia-arytmetyczna"
     ],
     "completionPercent": 91,
     "maxPoints": 1
@@ -731,7 +750,8 @@
     "answer": "1. Mediana: 4,5.\n2. Dominanta: 6.",
     "tags": [
       "statystyka",
-      "zadanie otwarte"
+      "mediana",
+      "dominanta"
     ],
     "completionPercent": 70,
     "gradingCriteriaFile": "30_z.png",
@@ -746,7 +766,8 @@
     "answer": "P(x) = −2x² + 22x + 88, D = (0, 11), największe pole dla x = 11/2.",
     "tags": [
       "optymalizacja",
-      "zadanie otwarte"
+      "funkcja-kwadratowa",
+      "stereometria"
     ],
     "completionPercent": 38,
     "solutions": [

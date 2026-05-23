@@ -21,7 +21,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -45,7 +46,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -69,7 +71,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -93,7 +96,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "5.png",
@@ -117,7 +121,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -141,7 +146,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "7.png",
@@ -157,7 +163,8 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "8.png",
@@ -181,7 +188,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -205,7 +213,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -229,7 +238,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "11.png",
@@ -253,7 +263,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "12.png",
@@ -269,7 +280,8 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "13.png",
@@ -293,7 +305,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "14.png",
@@ -309,7 +322,8 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "15.png",
@@ -325,7 +339,8 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd1.png",
@@ -349,7 +364,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -373,7 +389,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -389,7 +406,8 @@
       "lekcja 10",
       "skala i jednostki powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -413,7 +431,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -437,6 +456,7 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   }
 ]

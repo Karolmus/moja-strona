@@ -6,8 +6,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "funkcja-wykladnicza",
+      "rownania-wykladnicze",
+      "logarytmy",
+      "modelowanie-matematyczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -31,8 +33,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "granice-funkcji",
+      "granice-jednostronne",
+      "wyrazenia-algebraiczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -60,8 +63,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "prawdopodobienstwo",
+      "schemat-bernoulliego",
+      "zdarzenia-losowe"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -81,8 +85,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "funkcje-wymierne",
+      "pochodne",
+      "styczna-do-wykresu",
+      "rownanie-prostej"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -102,8 +108,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "logarytmy",
+      "wlasnosci-logarytmow",
+      "dowodzenie",
+      "dowody-algebraiczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -135,8 +143,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "kombinatoryka",
+      "regula-mnozenia",
+      "permutacje",
+      "zliczanie-przypadkow"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -164,8 +174,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "ciagi",
+      "ciag-geometryczny",
+      "ciag-arytmetyczny",
+      "uklady-rownan"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -197,8 +209,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "dowody-geometryczne",
+      "trojkaty",
+      "twierdzenie-cosinusow",
+      "planimetria"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -279,8 +293,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "czworokaty",
+      "pola-figur",
+      "planimetria",
+      "uklad-wspolrzednych"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -293,8 +309,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "rownania-trygonometryczne",
+      "wzory-na-sume-i-roznice-katow",
+      "wzory-na-podwojony-kat",
+      "trygonometria"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -307,8 +325,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "geometria-analityczna",
+      "rownanie-okregu",
+      "styczna-do-okregu",
+      "odleglosc-punktow"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -321,8 +341,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "rownania-kwadratowe",
+      "rownania-z-parametrem",
+      "zadania-z-parametrem"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 6,
@@ -335,8 +356,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "graniastoslup",
+      "objetosc-bryl",
+      "pole-powierzchni-bryl",
+      "modelowanie-matematyczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -350,8 +373,10 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "matura rozszerzona",
-      "zadanie otwarte"
+      "graniastoslup",
+      "pole-powierzchni-bryl",
+      "pochodne",
+      "optymalizacja"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,

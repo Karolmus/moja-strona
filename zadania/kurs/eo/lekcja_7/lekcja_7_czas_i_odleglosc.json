@@ -21,7 +21,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -37,7 +38,8 @@
       "lekcja 7",
       "czas i odległość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "3.png",
@@ -61,7 +63,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -77,7 +80,8 @@
       "lekcja 7",
       "czas i odległość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "5.png",
@@ -93,7 +97,8 @@
       "lekcja 7",
       "czas i odległość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "6.png",
@@ -109,7 +114,8 @@
       "lekcja 7",
       "czas i odległość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "7.png",
@@ -152,7 +158,8 @@
       "Samochód A szybciej pokonał trasę niż samochód B",
       "960 sekund to mniej niż kwadrans",
       "Między 1 lipca a 1 września następnego roku mija 427 lub 428 dni"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -176,7 +183,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -200,7 +208,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -216,7 +225,8 @@
       "lekcja 7",
       "czas i odległość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "11.png",
@@ -232,7 +242,8 @@
       "lekcja 7",
       "czas i odległość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "12.png",
@@ -256,7 +267,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "13.png",
@@ -280,7 +292,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -305,7 +318,8 @@
     "statements": [
       "Od 1 stycznia 2000 do 1 stycznia 2004 minęło dokładnie 1460 dni",
       "Od 5 maja 2027 do 10 lipca 2027 minie tyle samo dni co od 5 lipca 2027 do 9 września 2027"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -329,7 +343,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -345,7 +360,8 @@
       "lekcja 7",
       "czas i odległość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd4.png",
@@ -370,7 +386,8 @@
     "statements": [
       "Rok przestępny trwa 52 tygodnie i 2 dni",
       "Jeśli 21 maja to środa, to 13 września to sobota"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -386,7 +403,8 @@
       "lekcja 7",
       "czas i odległość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd6.png",
@@ -402,7 +420,8 @@
       "lekcja 7",
       "czas i odległość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd7.png",
@@ -427,7 +446,8 @@
     "statements": [
       "59,25 dm < 6 m",
       "10^10 mm > 100 km"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd8.png",
@@ -443,6 +463,7 @@
       "lekcja 7",
       "czas i odległość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]
