@@ -20,7 +20,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -43,7 +44,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -66,7 +68,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -82,7 +85,8 @@
       "lekcja 17",
       "ostrosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "5.png",
@@ -105,7 +109,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -133,7 +138,8 @@
       "W najmniejszym prostopadłościennym pudełku zawsze dokładnie 2/3 objętości musi pozostać puste.",
       "W każdym ostrosłupie suma liczby ścian i wierzchołków jest o 2 większa od liczby krawędzi.",
       "Dla tego samego wielokąta w podstawie liczba krawędzi ostrosłupa stanowi 3/2 liczby krawędzi graniastosłupa."
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "7.png",
@@ -156,7 +162,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -179,7 +186,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -196,7 +204,8 @@
       "ostrosłupy",
       "zadania"
     ],
-    "contextFile": "9_rysunek.png"
+    "contextFile": "9_rysunek.png",
+    "maxPoints": 3
   },
   {
     "file": "10.png",
@@ -212,7 +221,8 @@
       "lekcja 17",
       "ostrosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "11.png",
@@ -228,7 +238,8 @@
       "lekcja 17",
       "ostrosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "13.png",
@@ -244,7 +255,8 @@
       "lekcja 17",
       "ostrosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "14.png",
@@ -260,7 +272,8 @@
       "lekcja 17",
       "ostrosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "file": "15.png",
@@ -276,7 +289,8 @@
       "lekcja 17",
       "ostrosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "16.png",
@@ -300,7 +314,8 @@
     "statements": [
       "W ostrosłupie prawidłowym wszystkie ściany boczne są trójkątami przystającymi.",
       "W ostrosłupie prawidłowym wszystkie krawędzie ostrosłupa są równej długości."
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd1.png",
@@ -316,7 +331,8 @@
       "lekcja 17",
       "ostrosłupy",
       "zadania"
-    ]
+    ],
+    "maxPoints": 3
   },
   {
     "file": "zd2.png",
@@ -339,7 +355,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -362,7 +379,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -385,7 +403,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -409,7 +428,8 @@
     "statements": [
       "Ostrosłup o podstawie pięciokąta ma dwa razy mniej krawędzi niż ostrosłup o podstawie czworokąta ma wierzchołków.",
       "Suma wszystkich ścian, krawędzi i wierzchołków zwiększa się o 4 przy każdym zwiększeniu liczby wierzchołków podstawy o 1."
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "12.png",
@@ -426,6 +446,7 @@
       "ostrosłupy",
       "Zadanie domowe"
     ],
-    "contextFile": "12_rysunek.png"
+    "contextFile": "12_rysunek.png",
+    "maxPoints": 2
   }
 ]

@@ -134,6 +134,31 @@ body {
     line-height: 1.35;
 }
 
+.progress-toggle-btn {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.progress-toggle-btn:hover {
+    background: var(--surface-soft);
+    border-color: #b9c6d4;
+}
+
+.progress-toggle-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+}
+
 .student-progress-panel {
     display: grid;
     gap: 10px;
@@ -189,6 +214,56 @@ body {
 }
 
 .learning-progress-detail {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+.source-summary-card {
+    display: grid;
+    gap: 9px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 100%);
+}
+
+.source-summary-main {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.source-summary-points {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.source-summary-percent {
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.source-summary-track {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.source-summary-fill {
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6aa84f, #24527a);
+    transition: width 0.25s ease;
+}
+
+.source-summary-detail {
     color: var(--muted);
     font-size: 11px;
     line-height: 1.35;
@@ -369,6 +444,21 @@ body {
     border-color: #b9c6d4;
 }
 
+.source-btn.complete {
+    background: #eef8ec;
+    border-color: #aad7a4;
+    color: var(--green-text);
+}
+
+.source-btn.complete small {
+    color: #4f7f4f;
+}
+
+.source-btn.complete:hover {
+    background: #e4f4e1;
+    border-color: #8ac27f;
+}
+
 .source-btn.active,
 .mode-btn.active,
 .category-btn.active,
@@ -379,8 +469,19 @@ body {
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.16);
 }
 
+.source-btn.active.complete {
+    background: #dff1db;
+    border-color: #6aa84f;
+    color: var(--green-text);
+    box-shadow: inset 0 0 0 1px #6aa84f, 0 2px 8px rgba(47, 107, 54, 0.16);
+}
+
 .source-btn.active small {
     color: rgba(255,255,255,0.76);
+}
+
+.source-btn.active.complete small {
+    color: #4f7f4f;
 }
 
 .tag-search-input {
@@ -1319,6 +1420,58 @@ button {
     border-radius: 8px;
 }
 
+.solution-image[hidden],
+.grading-criteria-text[hidden] {
+    display: none;
+}
+
+.grading-criteria-text {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #f8fafc;
+    color: var(--text);
+    padding: 14px;
+    line-height: 1.55;
+}
+
+.grading-criteria-title {
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.grading-criteria-section {
+    border-top: 1px solid var(--line);
+    padding: 10px 0 2px;
+}
+
+.grading-criteria-section:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.grading-criteria-section-title {
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.grading-threshold {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.grading-points {
+    color: var(--navy);
+    font-weight: 900;
+}
+
+.grading-note {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 12px;
+}
+
 footer {
     text-align: center;
     padding: 15px;
@@ -1331,6 +1484,11 @@ footer {
     .container {
         margin: 24px auto;
         padding: 5px;
+    }
+
+    .grading-threshold {
+        grid-template-columns: 1fr;
+        gap: 2px;
     }
 
     .task-card {
@@ -1547,7 +1705,11 @@ footer {
                 <div class="tag-helper" id="tagHelper">Wybierz tag albo wpisz fragment nazwy.</div>
             </div>
 
-            <div class="side-section" id="progressSection">
+            <div class="side-section" id="progressToggleSection">
+                <button class="progress-toggle-btn" id="progressToggleButton" type="button" onclick="toggleStudentProgressPanel()">Pokaż postęp ucznia</button>
+            </div>
+
+            <div class="side-section" id="progressSection" style="display:none">
                 <div class="side-title">Postęp ucznia</div>
                 <div class="student-progress-panel" aria-live="polite">
                     <div class="learning-progress">
@@ -1605,6 +1767,20 @@ footer {
             <div class="side-section">
                 <div class="side-title" id="sourceTitle">Numer lekcji</div>
                 <div class="source-list" id="sourceList"></div>
+            </div>
+
+            <div class="side-section" id="sourceSummarySection">
+                <div class="side-title" id="sourceSummaryTitle">Podsumowanie</div>
+                <div class="source-summary-card">
+                    <div class="source-summary-main">
+                        <strong class="source-summary-points" id="sourceSummaryPoints">0 / 0 pkt</strong>
+                        <span class="source-summary-percent" id="sourceSummaryPercent">0%</span>
+                    </div>
+                    <div class="source-summary-track" aria-hidden="true">
+                        <span class="source-summary-fill" id="sourceSummaryFill"></span>
+                    </div>
+                    <div class="source-summary-detail" id="sourceSummaryDetail">Wybierz arkusz albo lekcję.</div>
+                </div>
             </div>
         </aside>
 
@@ -1669,6 +1845,7 @@ footer {
                 <div class="solution-box" id="solutionBox" hidden>
                     <div class="solution-switcher" id="solutionSwitcher"></div>
                     <img class="solution-image" id="solutionImage" alt="rozwiązanie zadania">
+                    <div class="grading-criteria-text" id="gradingCriteriaText" hidden></div>
                 </div>
             </div>
 
@@ -1676,7 +1853,7 @@ footer {
     </div>
 </div>
 
-<div class="source-attribution">
+<div class="source-attribution" id="sourceAttribution" hidden>
     Część zadań pochodzi z
     <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
 </div>
@@ -1704,7 +1881,9 @@ let multiSelection = new Set();
 let groupedMultiSelection = new Map();
 let trueFalseSelection = [];
 let savedProgress = [];
+let sessionScores = new Map();
 let focusMode = false;
+let progressPanelOpen = false;
 let currentTaskAnswered = false;
 let isLoggedInStudent = false;
 let loggedUser = null;
@@ -1715,6 +1894,7 @@ let drawTaskRequestId = 0;
 let isTaskLoading = false;
 let selectedSolutionIndex = 0;
 let selectedGradingIndex = 0;
+let courseGradingCriteriaByTask = new Map();
 
 const IMAGE_FADE_MS = 220;
 
@@ -1975,6 +2155,7 @@ bootStudentPanel();
 async function bootStudentPanel(){
     try {
         await loadAssignedCourse();
+        await loadCourseGradingCriteria();
 
         const activeSources = isLoggedInStudent
             ? TASK_SOURCES
@@ -2078,14 +2259,40 @@ function setPanelSectionVisible(id, isVisible){
     }
 }
 
+function updateSourceAttributionVisibility(){
+    const attribution = document.getElementById("sourceAttribution");
+
+    if(attribution){
+        attribution.hidden = isLoggedInStudent || selectedCategory !== "egzaminy";
+    }
+}
+
+function updateProgressPanelVisibility(){
+    setPanelSectionVisible("progressToggleSection", isLoggedInStudent);
+    setPanelSectionVisible("progressSection", isLoggedInStudent && progressPanelOpen);
+
+    const button = document.getElementById("progressToggleButton");
+
+    if(button){
+        button.classList.toggle("active", progressPanelOpen);
+        button.innerText = progressPanelOpen ? "Ukryj postęp ucznia" : "Pokaż postęp ucznia";
+    }
+}
+
+function toggleStudentProgressPanel(){
+    progressPanelOpen = !progressPanelOpen;
+    updateProgressPanelVisibility();
+}
+
 function updateAccessModeUI(){
     document.body.classList.toggle("guest-exam-mode", !isLoggedInStudent);
     setTimerVisible(!isLoggedInStudent);
-    setPanelSectionVisible("progressSection", isLoggedInStudent);
+    updateProgressPanelVisibility();
     setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
     setPanelSectionVisible("formulaSection", isLoggedInStudent && Boolean(FORMULA_SHEETS[selectedLevel]));
     setPanelSectionVisible("categorySection", isLoggedInStudent);
     setPanelSectionVisible("tagSearchSection", !isLoggedInStudent);
+    updateSourceAttributionVisibility();
     updateFormulaSection();
 
     if(window.updateAuthNav){
@@ -2133,6 +2340,45 @@ function updateAssignedCourseName(user = null){
     assignedCourseName.innerText = LEVEL_LABELS[selectedLevel] || user?.level || "Kurs ucznia";
 }
 
+async function loadCourseGradingCriteria(){
+    courseGradingCriteriaByTask = new Map();
+
+    try {
+        const response = await fetch("zadania/kurs/eo/odpowiedzi_kurs_eo.json");
+
+        if(!response.ok) return;
+
+        const data = await response.json();
+        const items = Array.isArray(data.items) ? data.items : [];
+
+        items.forEach(item => {
+            if(item.gradingStatus !== "gotowe") return;
+            if(!Array.isArray(item.gradingCriteria) || !item.gradingCriteria.length) return;
+
+            const criteria = {
+                type: "text",
+                label: "Zasady oceniania",
+                criteriaStyle: item.criteriaStyle || data.criteriaStyle || "cke_thresholds",
+                maxPoints: item.maxPoints,
+                sections: item.gradingCriteria,
+                note: item.note || "",
+                answer: item.answer || "",
+                title: item.title || ""
+            };
+
+            [
+                `${item.sourceFile}:${item.taskFile}`,
+                `${item.lessonId}:${item.taskFile}`
+            ].filter(Boolean).forEach(key => {
+                courseGradingCriteriaByTask.set(key, criteria);
+            });
+        });
+    } catch(error) {
+        courseGradingCriteriaByTask = new Map();
+        console.warn("Nie udało się wczytać zasad oceniania kursu.", error);
+    }
+}
+
 function loadTaskSource(sourceConfig){
     const sourceMeta = getSourceMeta(sourceConfig);
     const source = sourceMeta.path;
@@ -2150,7 +2396,10 @@ function loadTaskSource(sourceConfig){
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
             solutions: normalizeTaskSolutions(task, basePath),
-            gradingCriteria: normalizeTaskGradingCriteria(task, basePath),
+            gradingCriteria: [
+                ...normalizeTaskGradingCriteria(task, basePath),
+                ...normalizeCourseTextGradingCriteria(sourceMeta.id, task.file)
+            ],
             gradingCriteriaPath: task.gradingCriteriaFile ? basePath + task.gradingCriteriaFile : null,
             tags: normalizeTaskTags(task),
             category: sourceMeta.category,
@@ -2223,6 +2472,12 @@ function normalizeTaskGradingCriteria(task, basePath){
         .filter(Boolean);
 }
 
+function normalizeCourseTextGradingCriteria(sourceId, file){
+    const criteria = courseGradingCriteriaByTask.get(`${sourceId}:${file}`);
+
+    return criteria ? [{ ...criteria }] : [];
+}
+
 function getSourceMeta(sourceConfig){
     const source = typeof sourceConfig === "string" ? sourceConfig : sourceConfig.path;
     const parts = source.split("/");
@@ -2250,8 +2505,16 @@ function normalizeTag(tag){
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/[łŁ]/g, "l")
+        .replace(/-/g, " ")
         .replace(/\s+/g, " ")
         .toLocaleLowerCase("pl-PL");
+}
+
+function formatTagLabel(tag){
+    return String(tag || "")
+        .replace(/-/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
 }
 
 function normalizeTaskTags(task){
@@ -2357,7 +2620,7 @@ function renderTagSearch(){
 
         button.type = "button";
         button.className = selectedTags.has(tag.key) ? "tag-chip active" : "tag-chip";
-        button.innerText = tag.label;
+        button.innerText = formatTagLabel(tag.label);
         button.onclick = () => toggleTagFilter(tag.key);
 
         list.appendChild(button);
@@ -2460,6 +2723,7 @@ function setCategory(btn, category){
     updateCategoryButtons();
     updateModeButtons();
     resetSession();
+    updateSourceAttributionVisibility();
     renderSourceSelector();
     refreshTaskNavigator();
     renderTagSearch();
@@ -2482,6 +2746,7 @@ function setLevel(btn, level){
     updateLevelButtons();
     updateMetaTheme();
     updateFormulaSection();
+    updateSourceAttributionVisibility();
     resetSession();
     renderSourceSelector();
     refreshTaskNavigator();
@@ -2513,6 +2778,7 @@ function setSource(sourceId){
     updateModeButtons();
     updateMetaTheme();
     updateFormulaSection();
+    updateSourceAttributionVisibility();
     resetSession();
     renderSourceSelector();
     refreshTaskNavigator();
@@ -2608,11 +2874,13 @@ function renderSourceSelector(){
 
     if(selectedCategory === "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak lekcji", "Dodaj zadania dla tego poziomu", true);
+        updateSourceSummary();
         return;
     }
 
     if(selectedCategory !== "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak arkuszy", "Dodaj arkusz dla tego poziomu", true);
+        updateSourceSummary();
         return;
     }
 
@@ -2635,9 +2903,12 @@ function renderSourceSelector(){
             source.label,
             detail,
             selectedSource === source.id,
-            titleDetail
+            titleDetail,
+            isSourceComplete(source)
         );
     });
+
+    updateSourceSummary();
 }
 
 function updateModeSection(){
@@ -2648,13 +2919,16 @@ function updateModeSection(){
     section.style.display = selectedCategory === "egzaminy" ? "grid" : "none";
 }
 
-function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail){
+function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false){
     const button = document.createElement("button");
     const name = document.createElement("span");
     const meta = document.createElement("small");
 
     button.type = "button";
     button.className = active ? "source-btn active" : "source-btn";
+    if(complete){
+        button.classList.add("complete");
+    }
     button.title = titleDetail ? `${label} • ${titleDetail}` : label;
     button.onclick = () => setSource(sourceId);
 
@@ -2664,6 +2938,28 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     button.appendChild(name);
     button.appendChild(meta);
     list.appendChild(button);
+}
+
+function getSourceCompletionTasks(source){
+    const sourceTasks = tasks.filter(task =>
+        task.category === source.category &&
+        task.level === source.level &&
+        task.sourceId === source.id
+    );
+
+    if(source.category === "kurs"){
+        const homeworkTasks = sourceTasks.filter(task => task.coursePart === "praca_domowa");
+
+        return homeworkTasks.length ? homeworkTasks : sourceTasks;
+    }
+
+    return sourceTasks;
+}
+
+function isSourceComplete(source){
+    const completionTasks = getSourceCompletionTasks(source);
+
+    return completionTasks.length > 0 && completionTasks.every(task => getSavedResult(task));
 }
 
 function getCoursePartTasks(part){
@@ -2714,6 +3010,8 @@ function refreshTaskNavigator(){
 async function loadStudentProgress(){
     if(!window.apiFetch){
         renderLearningProgress("Postęp będzie widoczny po zalogowaniu.");
+        renderSourceSelector();
+        updateSourceSummary();
         return;
     }
 
@@ -2721,12 +3019,16 @@ async function loadStudentProgress(){
         const data = await apiFetch("/api/progress/me");
 
         savedProgress = Array.isArray(data.progress) ? data.progress : [];
+        renderSourceSelector();
         renderLearningProgress();
         renderTaskNavigator();
+        updateSourceSummary();
     } catch(error) {
         savedProgress = [];
+        renderSourceSelector();
         renderLearningProgress("Nie udało się wczytać postępu.");
         renderTaskNavigator();
+        updateSourceSummary();
     }
 }
 
@@ -2887,14 +3189,143 @@ function renderLearningProgress(unavailableText = ""){
     });
 }
 
+function sourceSummaryTasks(){
+    if(selectedSource === "all") return [];
+
+    return tasks.filter(task =>
+        task.category === selectedCategory &&
+        task.level === selectedLevel &&
+        task.sourceId === selectedSource
+    );
+}
+
+function taskPointValue(task){
+    const points = taskMaxPoints(task);
+
+    if(points) return points;
+
+    return isClosedTask(task) ? 1 : 0;
+}
+
+function normalizeScoreValue(value){
+    const numeric = Number(value);
+
+    return Number.isFinite(numeric) ? numeric : null;
+}
+
+function getTaskScore(task){
+    const key = getTaskKey(task);
+    const maxPoints = taskPointValue(task);
+
+    if(!key || !maxPoints) return null;
+
+    const sessionScore = sessionScores.get(key);
+    const sessionEarned = normalizeScoreValue(sessionScore?.earnedPoints);
+
+    if(sessionEarned !== null){
+        return {
+            earnedPoints: sessionEarned,
+            maxPoints: normalizeScoreValue(sessionScore?.maxPoints) || maxPoints
+        };
+    }
+
+    const saved = getSavedProgressItem(task);
+    const savedEarned = normalizeScoreValue(saved?.earned_points);
+
+    if(savedEarned !== null){
+        return {
+            earnedPoints: savedEarned,
+            maxPoints: normalizeScoreValue(saved?.max_points) || maxPoints
+        };
+    }
+
+    const automatic = automaticScoreForResult(getSavedResult(task), task);
+    const automaticEarned = normalizeScoreValue(automatic?.earnedPoints);
+
+    if(automaticEarned !== null){
+        return {
+            earnedPoints: automaticEarned,
+            maxPoints: normalizeScoreValue(automatic?.maxPoints) || maxPoints
+        };
+    }
+
+    return null;
+}
+
+function percentLabel(value){
+    if(!Number.isFinite(value)) return "0%";
+
+    const rounded = Math.round(value * 10) / 10;
+
+    return `${formatPoints(rounded)}%`;
+}
+
+function updateSourceSummary(){
+    const section = document.getElementById("sourceSummarySection");
+    const title = document.getElementById("sourceSummaryTitle");
+    const points = document.getElementById("sourceSummaryPoints");
+    const percent = document.getElementById("sourceSummaryPercent");
+    const fill = document.getElementById("sourceSummaryFill");
+    const detail = document.getElementById("sourceSummaryDetail");
+
+    if(!section || !title || !points || !percent || !fill || !detail) return;
+
+    const summaryTasks = sourceSummaryTasks();
+
+    if(!summaryTasks.length){
+        section.style.display = "none";
+        return;
+    }
+
+    section.style.display = "grid";
+    title.innerText = selectedCategory === "kurs" ? "Podsumowanie lekcji" : "Podsumowanie arkusza";
+
+    let earnedPoints = 0;
+    let totalPoints = 0;
+    let scoredTasks = 0;
+    let attemptedTasks = 0;
+
+    summaryTasks.forEach(task => {
+        const maxPoints = taskPointValue(task);
+        const result = getSavedResult(task);
+        const score = getTaskScore(task);
+
+        totalPoints += maxPoints;
+
+        if(result) attemptedTasks++;
+
+        if(score){
+            earnedPoints += score.earnedPoints;
+            scoredTasks++;
+        }
+    });
+
+    const completionPercent = totalPoints ? (earnedPoints / totalPoints) * 100 : 0;
+
+    points.innerText = `${formatPoints(earnedPoints)} / ${formatPoints(totalPoints)} pkt`;
+    percent.innerText = percentLabel(completionPercent);
+    fill.style.width = `${Math.max(0, Math.min(100, completionPercent))}%`;
+
+    if(!totalPoints){
+        detail.innerText = "Ten zestaw nie ma jeszcze wpisanej punktacji.";
+        return;
+    }
+
+    detail.innerText =
+        `Punkty zapisane dla ${scoredTasks}/${summaryTasks.length} zadań. ` +
+        `Rozwiązane: ${attemptedTasks}/${summaryTasks.length}.`;
+}
+
 function resetSession(){
     currentIndex = 0;
     randomHistory = [];
     randomHistoryIndex = -1;
     sessionResults = new Map();
+    sessionScores = new Map();
     seconds = 0;
     updateTimer();
     document.getElementById("progress").innerHTML = "";
+    updateSourceSummary();
 }
 
 function getTaskKey(task){
@@ -3547,6 +3978,7 @@ function clearTaskInteraction(){
     const solutionBox = document.getElementById("solutionBox");
     const solutionSwitcher = document.getElementById("solutionSwitcher");
     const solutionImage = document.getElementById("solutionImage");
+    const gradingCriteriaText = document.getElementById("gradingCriteriaText");
     const scorePanel = document.getElementById("scorePanel");
     const scoreStatus = document.getElementById("scoreStatus");
     const scoreInput = document.getElementById("scoreInput");
@@ -3570,6 +4002,12 @@ function clearTaskInteraction(){
 
     if(solutionImage){
         solutionImage.removeAttribute("src");
+        solutionImage.hidden = false;
+    }
+
+    if(gradingCriteriaText){
+        gradingCriteriaText.innerHTML = "";
+        gradingCriteriaText.hidden = true;
     }
 
     if(scorePanel){
@@ -3884,8 +4322,28 @@ function hasGradingCriteria(task = currentTask){
         : Boolean(task?.gradingCriteriaPath);
 }
 
+function hasSavedPoints(progressItem){
+    return progressItem?.earned_points !== null &&
+        progressItem?.earned_points !== undefined &&
+        progressItem?.earned_points !== "";
+}
+
+function isCourseManualScoreTask(task = currentTask){
+    return Boolean(task && task.category === "kurs" && !isClosedTask(task) && taskMaxPoints(task) > 1);
+}
+
 function shouldShowScorePanel(task = currentTask){
-    return Boolean(task && task.category === "egzaminy" && taskMaxPoints(task) && (!isClosedTask(task) || taskMaxPoints(task) > 1));
+    if(!task || !taskMaxPoints(task)) return false;
+
+    if(task.category === "egzaminy"){
+        return !isClosedTask(task) || taskMaxPoints(task) > 1;
+    }
+
+    if(isCourseManualScoreTask(task)){
+        return answerShown || Boolean(getSavedProgressItem(task));
+    }
+
+    return false;
 }
 
 function scoreResultType(earnedPoints, maxPoints){
@@ -3898,7 +4356,7 @@ function scoreResultType(earnedPoints, maxPoints){
 function automaticScoreForResult(type, task = currentTask){
     const maxPoints = taskMaxPoints(task);
 
-    if(!maxPoints || !isClosedTask(task)) return null;
+    if(!maxPoints) return null;
     if(type === "good") return { earnedPoints: maxPoints, maxPoints };
     if(type === "bad") return { earnedPoints: 0, maxPoints };
 
@@ -3915,6 +4373,7 @@ function updateScorePanel(){
 
     const maxPoints = taskMaxPoints(currentTask);
     const saved = getSavedProgressItem(currentTask);
+    const lockedScore = isCourseTask(currentTask) && hasSavedPoints(saved);
 
     panel.hidden = !shouldShowScorePanel();
 
@@ -3925,13 +4384,25 @@ function updateScorePanel(){
     input.step = Number.isInteger(maxPoints) ? "1" : "0.5";
     input.placeholder = `0-${formatPoints(maxPoints)}`;
     maxLabel.innerText = `maks. ${formatPoints(maxPoints)} pkt`;
+    input.disabled = lockedScore;
 
-    if(saved?.earned_points !== null && saved?.earned_points !== undefined && saved?.earned_points !== ""){
+    const saveButton = document.getElementById("scoreSaveButton");
+
+    if(saveButton){
+        saveButton.disabled = lockedScore;
+    }
+
+    if(hasSavedPoints(saved)){
         input.value = String(saved.earned_points);
         status.innerText = `Zapisano: ${formatPoints(saved.earned_points)} / ${formatPoints(saved.max_points || maxPoints)} pkt.`;
+        if(lockedScore){
+            status.innerText += " W trybie kursu nie można poprawiać zapisanego wyniku.";
+        }
     } else {
         input.value = "";
-        status.innerText = "Wpisz wynik po sprawdzeniu rozwiązania z zasadami oceniania.";
+        status.innerText = isCourseManualScoreTask(currentTask)
+            ? "Po sprawdzeniu odpowiedzi wpisz liczbę zdobytych punktów."
+            : "Wpisz wynik po sprawdzeniu rozwiązania z zasadami oceniania.";
     }
 }
 
@@ -3962,7 +4433,7 @@ function updateAnswerTools(){
         reviewButton.hidden = !isLoggedInStudent;
     }
 
-    if(!isClosed && answerShown){
+    if(!isClosed && answerShown && !isCourseManualScoreTask(currentTask)){
         resultButtons.classList.add("active");
     } else {
         resultButtons.classList.remove("active");
@@ -4145,6 +4616,7 @@ function applyCourseAnswerLock(){
     }
 
     showMessage("W trybie kursu nie można poprawiać odpowiedzi po jej zapisaniu.");
+    updateScorePanel();
 }
 
 function choose(opt, btn){
@@ -4461,6 +4933,18 @@ function checkInputAnswer(form){
     }, 1400);
 }
 
+function setSessionScore(task, type, scoreData = null){
+    const key = getTaskKey(task);
+    const score = scoreData || automaticScoreForResult(type, task);
+
+    if(!key || !score) return;
+
+    sessionScores.set(key, {
+        earnedPoints: score.earnedPoints,
+        maxPoints: (score.maxPoints ?? taskPointValue(task)) || undefined
+    });
+}
+
 function addProgress(type, scoreData = null){
     if(currentTaskAnswered) return false;
 
@@ -4470,12 +4954,15 @@ function addProgress(type, scoreData = null){
 
     if(key){
         sessionResults.set(key, type);
+        setSessionScore(currentTask, type, scoreData);
     }
 
     if(shouldShowTaskNavigator()){
         renderTaskNavigator();
+        renderSourceSelector();
         saveProgress(type, scoreData);
         updateScorePanel();
+        updateSourceSummary();
         return true;
     }
 
@@ -4491,7 +4978,9 @@ function addProgress(type, scoreData = null){
         .appendChild(tile);
 
     saveProgress(type, scoreData);
+    renderSourceSelector();
     updateScorePanel();
+    updateSourceSummary();
 
     return true;
 }
@@ -4525,8 +5014,10 @@ async function saveProgress(type, scoreData = null){
 
         if(data?.progress){
             savedProgress.unshift(data.progress);
+            renderSourceSelector();
             renderLearningProgress();
             updateScorePanel();
+            updateSourceSummary();
         }
     } catch(error) {
         if(error.status !== 401){
@@ -4544,6 +5035,14 @@ async function submitScore(event){
     const status = document.getElementById("scoreStatus");
     const button = document.getElementById("scoreSaveButton");
     const maxPoints = taskMaxPoints(currentTask);
+    const saved = getSavedProgressItem(currentTask);
+    const lockAfterSave = isCourseManualScoreTask(currentTask);
+
+    if(isCourseTask() && hasSavedPoints(saved)){
+        status.innerText = "W trybie kursu nie można poprawiać zapisanego wyniku.";
+        return;
+    }
+
     const earnedPoints = Number(String(input.value).replace(",", "."));
 
     if(!Number.isFinite(earnedPoints) || earnedPoints < 0 || earnedPoints > maxPoints){
@@ -4562,17 +5061,23 @@ async function submitScore(event){
 
         if(key){
             sessionResults.set(key, result);
+            setSessionScore(currentTask, result, scoreData);
+            updateSourceSummary();
         }
 
         await saveProgress(result, scoreData);
+        renderSourceSelector();
         renderTaskNavigator();
+        updateSourceSummary();
     } else {
         addProgress(result, scoreData);
     }
 
     document.getElementById("resultButtons")?.classList.remove("active");
     status.innerText = `Zapisano: ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt.`;
-    button.disabled = false;
+    input.disabled = lockAfterSave;
+    button.disabled = lockAfterSave;
+    updateSourceSummary();
 }
 
 function getCurrentTaskDurationSeconds(){
@@ -4633,9 +5138,7 @@ function showAnswer(){
             : formatAnswer(currentTask.answer, currentTask) || "Brak odpowiedzi."
     );
 
-    if(!isClosedTask(currentTask)){
-        document.getElementById("resultButtons").classList.add("active");
-    }
+    updateAnswerTools();
 }
 
 function showSolution(index = selectedSolutionIndex){
@@ -4648,15 +5151,22 @@ function showSolution(index = selectedSolutionIndex){
     const box = document.getElementById("solutionBox");
     const switcher = document.getElementById("solutionSwitcher");
     const image = document.getElementById("solutionImage");
+    const gradingText = document.getElementById("gradingCriteriaText");
 
     if(!box || !switcher || !image || !solution) return;
 
     selectedSolutionIndex = safeIndex;
     answerShown = true;
     box.hidden = false;
+    image.hidden = false;
     image.src = solution.path;
     image.alt = `Rozwiązanie ${solution.label} zadania ${taskLabel(currentTask)}`;
     switcher.innerHTML = "";
+
+    if(gradingText){
+        gradingText.innerHTML = "";
+        gradingText.hidden = true;
+    }
 
     if(solutions.length > 1){
         solutions.forEach((item, itemIndex) => {
@@ -4674,6 +5184,66 @@ function showSolution(index = selectedSolutionIndex){
     updateAnswerTools();
 }
 
+function isTextGradingCriteria(item){
+    return item?.type === "text" ||
+        Array.isArray(item?.sections) ||
+        Array.isArray(item?.thresholds);
+}
+
+function pointLabel(points){
+    const value = Number(points);
+    const suffix = value === 1 ? "pkt" : "pkt";
+
+    return `${formatPoints(points)} ${suffix}`;
+}
+
+function appendTextElement(parent, className, text){
+    const element = document.createElement("div");
+
+    element.className = className;
+    element.innerText = text;
+    parent.appendChild(element);
+
+    return element;
+}
+
+function renderGradingCriteriaText(item, container){
+    container.innerHTML = "";
+
+    const title = item.title
+        ? `${item.label || "Zasady oceniania"}: ${item.title}`
+        : item.label || "Zasady oceniania";
+
+    appendTextElement(container, "grading-criteria-title", title);
+
+    const sections = Array.isArray(item.sections)
+        ? item.sections
+        : [{ section: item.section || "Zadanie", thresholds: item.thresholds || [] }];
+
+    sections.forEach(section => {
+        const sectionElement = document.createElement("div");
+        const thresholds = Array.isArray(section.thresholds) ? section.thresholds : [];
+
+        sectionElement.className = "grading-criteria-section";
+        appendTextElement(sectionElement, "grading-criteria-section-title", section.section || "Zadanie");
+
+        thresholds.forEach(threshold => {
+            const row = document.createElement("div");
+
+            row.className = "grading-threshold";
+            appendTextElement(row, "grading-points", pointLabel(threshold.points));
+            appendTextElement(row, "grading-description", threshold.description || "");
+            sectionElement.appendChild(row);
+        });
+
+        container.appendChild(sectionElement);
+    });
+
+    if(item.note){
+        appendTextElement(container, "grading-note", item.note);
+    }
+}
+
 function showGradingCriteria(index = selectedGradingIndex){
     if(!currentTask || !hasGradingCriteria(currentTask)) return;
     if(isClosedTask(currentTask)) return;
@@ -4686,15 +5256,29 @@ function showGradingCriteria(index = selectedGradingIndex){
     const box = document.getElementById("solutionBox");
     const switcher = document.getElementById("solutionSwitcher");
     const image = document.getElementById("solutionImage");
+    const gradingText = document.getElementById("gradingCriteriaText");
 
-    if(!box || !switcher || !image || !item?.path) return;
+    if(!box || !switcher || !image || !gradingText || !item) return;
 
     selectedGradingIndex = safeIndex;
     answerShown = true;
     box.hidden = false;
     switcher.innerHTML = "";
-    image.src = item.path;
-    image.alt = `${item.label} zadania ${taskLabel(currentTask)}`;
+
+    if(isTextGradingCriteria(item)){
+        image.removeAttribute("src");
+        image.hidden = true;
+        gradingText.hidden = false;
+        renderGradingCriteriaText(item, gradingText);
+    } else if(item.path){
+        gradingText.innerHTML = "";
+        gradingText.hidden = true;
+        image.hidden = false;
+        image.src = item.path;
+        image.alt = `${item.label} zadania ${taskLabel(currentTask)}`;
+    } else {
+        return;
+    }
 
     criteria.forEach((criteriaItem, itemIndex) => {
         const button = document.createElement("button");

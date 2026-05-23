@@ -14,7 +14,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -31,7 +32,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -48,7 +50,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -65,7 +68,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -83,7 +87,8 @@
       "podobieństwo",
       "zadania"
     ],
-    "contextFile": "5.png"
+    "contextFile": "5.png",
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -101,7 +106,8 @@
       "podobieństwo",
       "zadania"
     ],
-    "contextFile": "5.png"
+    "contextFile": "5.png",
+    "maxPoints": 2
   },
   {
     "file": "8.png",
@@ -118,7 +124,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -144,7 +151,8 @@
       "B1",
       "B2",
       "B3"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -170,7 +178,8 @@
       "B1",
       "B2",
       "B3"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "11.png",
@@ -187,7 +196,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "12.png",
@@ -204,7 +214,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "14.png",
@@ -221,7 +232,8 @@
       "kąty",
       "podobieństwo",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "15.png",
@@ -239,7 +251,8 @@
       "podobieństwo",
       "Zadanie domowe"
     ],
-    "contextFile": "13.png"
+    "contextFile": "13.png",
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -257,7 +270,8 @@
       "podobieństwo",
       "Zadanie domowe"
     ],
-    "contextFile": "13.png"
+    "contextFile": "13.png",
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -274,7 +288,8 @@
       "kąty",
       "podobieństwo",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd3.png",
@@ -300,7 +315,8 @@
       "B1",
       "B2",
       "B3"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -317,7 +333,8 @@
       "kąty",
       "podobieństwo",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd5.png",
@@ -342,7 +359,8 @@
     "statements": [
       "Trójkąt o bokach 2, 3 i 4 cm jest podobny do trójkąta o bokach 15, 9 i 6 m",
       "Obwody trójkątów podobnych w skali podobieństwa k pozostają w stosunku k"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd6.png",
@@ -366,7 +384,8 @@
       "AD",
       "BC",
       "BD"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd7.png",
@@ -390,7 +409,8 @@
       "AD",
       "BC",
       "BD"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd9.png",
@@ -408,7 +428,8 @@
       "podobieństwo",
       "Zadanie domowe"
     ],
-    "contextFile": "zd8.png"
+    "contextFile": "zd8.png",
+    "maxPoints": 2
   },
   {
     "file": "zd10.png",
@@ -434,6 +455,7 @@
       "B1",
       "B2",
       "B3"
-    ]
+    ],
+    "maxPoints": 1
   }
 ]

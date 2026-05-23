@@ -14,7 +14,8 @@
       "dowodzenie",
       "geometria",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "2.png",
@@ -31,7 +32,8 @@
       "dowodzenie",
       "geometria",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "3.png",
@@ -48,7 +50,8 @@
       "dowodzenie",
       "geometria",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "4.png",
@@ -65,7 +68,8 @@
       "dowodzenie",
       "geometria",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "5.png",
@@ -82,7 +86,8 @@
       "dowodzenie",
       "geometria",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "6.png",
@@ -99,7 +104,8 @@
       "dowodzenie",
       "geometria",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd1.png",
@@ -116,7 +122,8 @@
       "dowodzenie",
       "geometria",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd2.png",
@@ -133,7 +140,8 @@
       "dowodzenie",
       "geometria",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd3.png",
@@ -150,7 +158,8 @@
       "dowodzenie",
       "geometria",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd4.png",
@@ -167,7 +176,8 @@
       "dowodzenie",
       "geometria",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd5.png",
@@ -184,7 +194,8 @@
       "dowodzenie",
       "geometria",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd6.png",
@@ -201,7 +212,8 @@
       "dowodzenie",
       "geometria",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd7.png",
@@ -218,6 +230,7 @@
       "dowodzenie",
       "geometria",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]

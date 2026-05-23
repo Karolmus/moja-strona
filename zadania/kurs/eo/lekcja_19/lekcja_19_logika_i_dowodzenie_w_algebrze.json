@@ -14,7 +14,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "2.png",
@@ -31,7 +32,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "3.png",
@@ -48,7 +50,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "4.png",
@@ -65,7 +68,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "5.png",
@@ -82,7 +86,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "6.png",
@@ -99,7 +104,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "7.png",
@@ -116,7 +122,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "8.png",
@@ -133,7 +140,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "9.png",
@@ -150,7 +158,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "10.png",
@@ -167,7 +176,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "11.png",
@@ -184,7 +194,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "12.png",
@@ -201,7 +212,8 @@
       "dowodzenie",
       "algebra",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd1.png",
@@ -218,7 +230,8 @@
       "dowodzenie",
       "algebra",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -235,7 +248,8 @@
       "dowodzenie",
       "algebra",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd3.png",
@@ -252,7 +266,8 @@
       "dowodzenie",
       "algebra",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd4.png",
@@ -269,7 +284,8 @@
       "dowodzenie",
       "algebra",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd5.png",
@@ -286,7 +302,8 @@
       "dowodzenie",
       "algebra",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd6.png",
@@ -303,7 +320,8 @@
       "dowodzenie",
       "algebra",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd7.png",
@@ -320,6 +338,7 @@
       "dowodzenie",
       "algebra",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]

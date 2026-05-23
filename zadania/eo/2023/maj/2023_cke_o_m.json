@@ -19,7 +19,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 65
   },
   {
     "file": "2.png",
@@ -41,7 +42,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 65
   },
   {
     "file": "3.png",
@@ -63,7 +65,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 57
   },
   {
     "file": "4.png",
@@ -87,7 +90,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 70
   },
   {
     "file": "5.png",
@@ -108,7 +112,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 73
   },
   {
     "file": "6.png",
@@ -129,7 +134,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 42
   },
   {
     "file": "7.png",
@@ -150,7 +156,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 40
   },
   {
     "file": "8.png",
@@ -172,7 +179,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 67
   },
   {
     "file": "9.png",
@@ -193,7 +201,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 57
   },
   {
     "file": "10.png",
@@ -214,7 +223,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 47
   },
   {
     "file": "11.png",
@@ -236,7 +246,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 67
   },
   {
     "file": "12.png",
@@ -259,7 +270,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 73
   },
   {
     "file": "13.png",
@@ -283,7 +295,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 48
   },
   {
     "file": "14.png",
@@ -308,7 +321,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 63
   },
   {
     "file": "15.png",
@@ -332,7 +346,8 @@
       "zadanie zamknięte"
     ],
     "level": "egzamin_osmoklasisty",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "completionPercent": 52
   },
   {
     "file": "16.png",
@@ -369,7 +384,8 @@
         "file": "16_s_e.png"
       }
     ],
-    "gradingCriteriaFile": "16_z.png"
+    "gradingCriteriaFile": "16_z.png",
+    "completionPercent": 52
   },
   {
     "file": "17.png",
@@ -400,7 +416,8 @@
         "file": "17_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "17_z.png"
+    "gradingCriteriaFile": "17_z.png",
+    "completionPercent": 56
   },
   {
     "file": "18.png",
@@ -439,7 +456,8 @@
         "label": "Część 2",
         "file": "18_z2.png"
       }
-    ]
+    ],
+    "completionPercent": 35
   },
   {
     "file": "19.png",
@@ -479,6 +497,7 @@
         "label": "Część 2",
         "file": "19_z2.png"
       }
-    ]
+    ],
+    "completionPercent": 42
   }
 ]

@@ -13,7 +13,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -29,7 +30,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -45,7 +47,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -61,7 +64,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "5.png",
@@ -77,7 +81,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -93,7 +98,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -109,7 +115,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "8.png",
@@ -125,7 +132,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -141,7 +149,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -157,7 +166,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "11.png",
@@ -173,7 +183,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "12.png",
@@ -189,7 +200,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "13.png",
@@ -205,7 +217,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "14.png",
@@ -221,7 +234,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "15.png",
@@ -237,7 +251,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "16.png",
@@ -253,7 +268,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "17.png",
@@ -269,7 +285,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "19.png",
@@ -286,7 +303,8 @@
       "pola powierzchni",
       "zadania"
     ],
-    "contextFile": "18.png"
+    "contextFile": "18.png",
+    "maxPoints": 2
   },
   {
     "file": "20.png",
@@ -303,7 +321,8 @@
       "pola powierzchni",
       "zadania"
     ],
-    "contextFile": "18.png"
+    "contextFile": "18.png",
+    "maxPoints": 1
   },
   {
     "file": "21.png",
@@ -319,7 +338,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "22.png",
@@ -335,7 +355,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "23.png",
@@ -351,7 +372,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "24.png",
@@ -367,7 +389,8 @@
       "lekcja 9",
       "pola powierzchni",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -383,7 +406,8 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -399,7 +423,8 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -415,7 +440,8 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -431,7 +457,8 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -447,7 +474,8 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd6.png",
@@ -463,7 +491,8 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd7.png",
@@ -479,7 +508,8 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd8.png",
@@ -495,6 +525,7 @@
       "lekcja 9",
       "pola powierzchni",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]

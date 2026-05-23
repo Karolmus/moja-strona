@@ -21,7 +21,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -38,7 +39,8 @@
       "czworokąty",
       "wielokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -56,7 +58,8 @@
       "wielokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "5.png",
@@ -74,7 +77,8 @@
       "wielokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -92,7 +96,8 @@
       "wielokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -110,7 +115,8 @@
       "wielokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -128,7 +134,8 @@
       "wielokąty",
       "zadania"
     ],
-    "contextFile": "3.png"
+    "contextFile": "3.png",
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -145,7 +152,8 @@
       "czworokąty",
       "wielokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -162,7 +170,8 @@
       "czworokąty",
       "wielokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "11.png",
@@ -179,7 +188,8 @@
       "czworokąty",
       "wielokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "12.png",
@@ -204,7 +214,8 @@
     "statements": [
       "Suma kątów w ośmiokącie jest o 180° mniejszą niż w siedmiokącie.",
       "Stosunek sumy kątów w dziesięciokącie do sumy kątów w dziewięciokącie wynosi 8:7."
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "13.png",
@@ -229,7 +240,8 @@
     "statements": [
       "Miara kąta wewnętrznego w dziewięciokącie foremnym jest o 5° mniejszą niż w ośmiokącie foremnym.",
       "Suma kątów wewnętrznych ośmiokąta jest dwukrotnością sumy kątów wewnętrznych pięciokąta."
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "14.png",
@@ -246,7 +258,8 @@
       "czworokąty",
       "wielokąty",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "16.png",
@@ -264,7 +277,8 @@
       "wielokąty",
       "zadania"
     ],
-    "contextFile": "15.png"
+    "contextFile": "15.png",
+    "maxPoints": 1
   },
   {
     "file": "17.png",
@@ -282,7 +296,8 @@
       "wielokąty",
       "zadania"
     ],
-    "contextFile": "15.png"
+    "contextFile": "15.png",
+    "maxPoints": 1
   },
   {
     "file": "18.png",
@@ -306,7 +321,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "19.png",
@@ -330,7 +346,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "20.png",
@@ -354,7 +371,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -378,7 +396,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -402,7 +421,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -426,7 +446,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd4.png",
@@ -450,7 +471,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -467,7 +489,8 @@
       "czworokąty",
       "wielokąty",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd6.png",
@@ -491,7 +514,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd7.png",
@@ -508,6 +532,7 @@
       "czworokąty",
       "wielokąty",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]

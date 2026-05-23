@@ -21,7 +21,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -45,7 +46,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -61,7 +63,8 @@
       "lekcja 8",
       "prędkość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "4.png",
@@ -85,7 +88,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "5.png",
@@ -110,7 +114,8 @@
     "statements": [
       "Pływak zakwalifikował się na igrzyska olimpijskie",
       "Pływak pobił rekord Europy"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "6.png",
@@ -135,7 +140,8 @@
     "statements": [
       "W pewnym momencie po wjeździe do tunelu pociąg zwolnił",
       "Zmiana średniej prędkości pociągu wyniosła 40 km/h"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "7.png",
@@ -159,7 +165,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -183,7 +190,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -199,7 +207,8 @@
       "lekcja 8",
       "prędkość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "10.png",
@@ -223,7 +232,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "11.png",
@@ -247,7 +257,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "12.png",
@@ -271,7 +282,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "13.png",
@@ -287,7 +299,8 @@
       "lekcja 8",
       "prędkość",
       "zadania"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd1.png",
@@ -312,7 +325,8 @@
     "statements": [
       "30 m w 4 sekundy wymaga większej prędkości niż 50 m w 7 sekund",
       "Obiekt po przyspieszeniu do 7 m/s pokona ponad 0,41 km w minutę"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -336,7 +350,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -352,7 +367,8 @@
       "lekcja 8",
       "prędkość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd4.png",
@@ -377,7 +393,8 @@
     "statements": [
       "Lodowięc przemieścił się średnio o 0,2 m na dobę",
       "Średnia prędkość wieloryba wyniosła 5 km/h"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -393,7 +410,8 @@
       "lekcja 8",
       "prędkość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd6.png",
@@ -409,7 +427,8 @@
       "lekcja 8",
       "prędkość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd7.png",
@@ -434,7 +453,8 @@
     "statements": [
       "16 mm/s < 60 m/h",
       "1 dm / 2 h > 1 m / dobę"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd8.png",
@@ -450,6 +470,7 @@
       "lekcja 8",
       "prędkość",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   }
 ]

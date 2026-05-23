@@ -19,7 +19,8 @@
       "kurs",
       "lekcja 2",
       "działania na liczbach"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "2.png",
@@ -41,7 +42,8 @@
       "kurs",
       "lekcja 2",
       "działania na liczbach"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "3.png",
@@ -64,7 +66,8 @@
       "lekcja 2",
       "działania na liczbach",
       "os liczbowa"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "4.png",
@@ -88,7 +91,8 @@
       "lekcja 2",
       "działania na liczbach",
       "prawda/fałsz"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "5.png",
@@ -112,7 +116,8 @@
       "lekcja 2",
       "działania na liczbach",
       "prawda/fałsz"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "6.png",
@@ -128,7 +133,8 @@
       "lekcja 2",
       "działania na liczbach",
       "ułamki"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "7.png",
@@ -151,7 +157,8 @@
       "lekcja 2",
       "działania na liczbach",
       "podzielność"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "8.png",
@@ -174,7 +181,8 @@
       "lekcja 2",
       "działania na liczbach",
       "średnia"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "9.png",
@@ -196,7 +204,8 @@
       "kurs",
       "lekcja 2",
       "działania na liczbach"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "10.png",
@@ -225,7 +234,8 @@
       "działania na liczbach",
       "wybor wielokrotny",
       "podzielność"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "11.png",
@@ -248,7 +258,8 @@
       "lekcja 2",
       "działania na liczbach",
       "trójki pitagorejskie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "12.png",
@@ -274,7 +285,8 @@
       "działania na liczbach",
       "podzielność",
       "uzasadnienie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "13.png",
@@ -300,7 +312,8 @@
       "działania na liczbach",
       "podzielność",
       "uzasadnienie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "14.png",
@@ -327,7 +340,8 @@
       "nwd",
       "nww",
       "uzasadnienie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "15.png",
@@ -350,7 +364,8 @@
       "lekcja 2",
       "działania na liczbach",
       "średnia"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "16.png",
@@ -373,7 +388,8 @@
       "lekcja 2",
       "działania na liczbach",
       "zaokraglanie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "17.png",
@@ -396,7 +412,8 @@
       "lekcja 2",
       "działania na liczbach",
       "zaokraglanie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "18.png",
@@ -419,7 +436,8 @@
       "lekcja 2",
       "działania na liczbach",
       "liczby rzymskie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -444,7 +462,8 @@
       "działania na liczbach",
       "prawda/fałsz",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd2.png",
@@ -460,7 +479,8 @@
       "lekcja 2",
       "działania na liczbach",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd3.png",
@@ -491,7 +511,8 @@
       "działania na liczbach",
       "wybor wielokrotny",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd4.png",
@@ -514,7 +535,8 @@
       "lekcja 2",
       "działania na liczbach",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd5.png",
@@ -543,7 +565,8 @@
       "działania na liczbach",
       "prawda/fałsz",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd6.png",
@@ -559,7 +582,8 @@
       "lekcja 2",
       "działania na liczbach",
       "Zadanie domowe"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd7.png",
@@ -585,7 +609,8 @@
       "działania na liczbach",
       "podzielność",
       "uzasadnienie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd8.png",
@@ -608,7 +633,8 @@
       "lekcja 2",
       "działania na liczbach",
       "dzielenie z reszta"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd9.png",
@@ -633,7 +659,8 @@
       "działania na liczbach",
       "prawda/fałsz",
       "os liczbowa"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd10.png",
@@ -656,7 +683,8 @@
       "lekcja 2",
       "działania na liczbach",
       "podzielność"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd11.png",
@@ -672,7 +700,8 @@
       "lekcja 2",
       "działania na liczbach",
       "średnia"
-    ]
+    ],
+    "maxPoints": 2
   },
   {
     "file": "zd12.png",
@@ -695,7 +724,8 @@
       "lekcja 2",
       "działania na liczbach",
       "liczby rzymskie"
-    ]
+    ],
+    "maxPoints": 1
   },
   {
     "file": "zd13.png",
@@ -718,6 +748,7 @@
       "lekcja 2",
       "działania na liczbach",
       "liczby rzymskie"
-    ]
+    ],
+    "maxPoints": 1
   }
 ]
