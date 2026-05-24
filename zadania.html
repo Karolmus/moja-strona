@@ -73,7 +73,7 @@ body {
 
 .sidebar-head {
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-columns: 82px minmax(0, 1fr);
     gap: 6px;
     align-items: center;
 }
@@ -87,20 +87,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
+    min-height: 52px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 100%);
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
     text-decoration: none;
 }
 
 .task-brand-logo {
-    width: 58px;
-    max-width: 72%;
+    width: 70px;
+    max-width: 82%;
     height: auto;
     object-fit: contain;
-    opacity: 0.92;
+    opacity: 1;
 }
 
 .assigned-course-card {
@@ -228,34 +228,38 @@ body {
 
 .source-summary-card {
     display: grid;
-    gap: 6px;
-    padding: 8px;
+    gap: 5px;
+    padding: 6px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 100%);
+    height: 100%;
+    align-content: center;
 }
 
 .source-summary-main {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 10px;
+    gap: 6px;
 }
 
 .source-summary-points {
     color: var(--text);
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 900;
+    white-space: nowrap;
 }
 
 .source-summary-percent {
     color: var(--navy);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 900;
+    white-space: nowrap;
 }
 
 .source-summary-track {
-    height: 8px;
+    height: 6px;
     overflow: hidden;
     border-radius: 999px;
     background: #e2e8f0;
@@ -272,7 +276,7 @@ body {
 
 .source-summary-detail {
     color: var(--muted);
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.35;
 }
 
@@ -356,6 +360,22 @@ body {
 .source-list.exam-source-list {
     gap: 3px;
     max-height: 126px;
+}
+
+.source-summary-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(94px, 0.78fr);
+    gap: 6px;
+    align-items: stretch;
+}
+
+.source-summary-row.summary-hidden {
+    grid-template-columns: 1fr;
+}
+
+.source-picker-section,
+#sourceSummarySection {
+    min-width: 0;
 }
 
 .source-btn,
@@ -1720,16 +1740,38 @@ footer {
     }
 
     .sidebar-head {
-        grid-template-columns: 58px minmax(0, 1fr);
+        grid-template-columns: 68px minmax(0, 1fr);
         gap: 5px;
     }
 
     .task-brand-card {
-        min-height: 36px;
+        min-height: 44px;
     }
 
     .task-brand-logo {
-        width: 46px;
+        width: 58px;
+    }
+
+    .source-summary-row {
+        grid-template-columns: minmax(0, 1.35fr) minmax(86px, 0.72fr);
+        gap: 5px;
+    }
+
+    .source-summary-card {
+        padding: 5px;
+    }
+
+    .source-summary-main {
+        gap: 5px;
+    }
+
+    .source-summary-points {
+        font-size: 12px;
+    }
+
+    .source-summary-percent,
+    .source-summary-detail {
+        font-size: 9px;
     }
 
     .source-list {
@@ -2010,9 +2052,25 @@ footer {
                 </div>
             </div>
 
-            <div class="side-section">
-                <div class="side-title" id="sourceTitle">Numer lekcji</div>
-                <div class="source-list" id="sourceList"></div>
+            <div class="source-summary-row">
+                <div class="side-section source-picker-section">
+                    <div class="side-title" id="sourceTitle">Numer lekcji</div>
+                    <div class="source-list" id="sourceList"></div>
+                </div>
+
+                <div class="side-section" id="sourceSummarySection">
+                    <div class="side-title" id="sourceSummaryTitle">Podsumowanie</div>
+                    <div class="source-summary-card">
+                        <div class="source-summary-main">
+                            <strong class="source-summary-points" id="sourceSummaryPoints">0 / 0 pkt</strong>
+                            <span class="source-summary-percent" id="sourceSummaryPercent">0%</span>
+                        </div>
+                        <div class="source-summary-track" aria-hidden="true">
+                            <span class="source-summary-fill" id="sourceSummaryFill"></span>
+                        </div>
+                        <div class="source-summary-detail" id="sourceSummaryDetail">Wybierz arkusz albo lekcję.</div>
+                    </div>
+                </div>
             </div>
 
             <div class="exam-tools-row">
@@ -2068,19 +2126,6 @@ footer {
                 </div>
             </div>
 
-            <div class="side-section" id="sourceSummarySection">
-                <div class="side-title" id="sourceSummaryTitle">Podsumowanie</div>
-                <div class="source-summary-card">
-                    <div class="source-summary-main">
-                        <strong class="source-summary-points" id="sourceSummaryPoints">0 / 0 pkt</strong>
-                        <span class="source-summary-percent" id="sourceSummaryPercent">0%</span>
-                    </div>
-                    <div class="source-summary-track" aria-hidden="true">
-                        <span class="source-summary-fill" id="sourceSummaryFill"></span>
-                    </div>
-                    <div class="source-summary-detail" id="sourceSummaryDetail">Wybierz arkusz albo lekcję.</div>
-                </div>
-            </div>
         </aside>
 
         <div class="task-card">
@@ -3620,10 +3665,12 @@ function updateSourceSummary(){
 
     if(!summaryTasks.length){
         section.style.display = "none";
+        section.parentElement?.classList.add("summary-hidden");
         return;
     }
 
     section.style.display = "grid";
+    section.parentElement?.classList.remove("summary-hidden");
     title.innerText = selectedCategory === "kurs" ? "Podsumowanie lekcji" : "Podsumowanie arkusza";
 
     let earnedPoints = 0;
