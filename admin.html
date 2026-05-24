@@ -753,6 +753,151 @@ th {
     overflow: auto;
 }
 
+.source-progress {
+    display: grid;
+    gap: 10px;
+}
+
+.source-progress h4,
+.source-detail h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.source-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 8px;
+}
+
+.source-card {
+    display: grid;
+    gap: 7px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 10px;
+    text-align: left;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+}
+
+.source-card:hover,
+.source-card.active {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08);
+}
+
+.source-card-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: start;
+}
+
+.source-card-title {
+    display: grid;
+    gap: 2px;
+}
+
+.source-card-title strong {
+    font-size: 13px;
+}
+
+.source-card-title span,
+.source-card-meta,
+.rasch-note {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+.source-card-progress {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.source-card-progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6aa84f, #8fcf74);
+}
+
+.source-card.exam .source-card-progress span {
+    background: linear-gradient(90deg, #24527a, #5d8fbd);
+}
+
+.rasch-chip {
+    justify-self: start;
+    border-radius: 999px;
+    background: #eef2f7;
+    color: var(--navy);
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.source-detail {
+    display: grid;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    padding: 10px;
+}
+
+.source-detail-empty {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.source-task-table-wrap {
+    overflow-x: auto;
+}
+
+.source-task-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+}
+
+.source-task-table th,
+.source-task-table td {
+    border-bottom: 1px solid var(--line);
+    padding: 7px 8px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.source-task-table th {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.source-task-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.task-title-cell {
+    display: grid;
+    gap: 2px;
+}
+
+.task-title-cell span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.result-pill.missing {
+    background: #e2e8f0;
+    color: var(--muted);
+}
+
 .recent-row {
     display: grid;
     grid-template-columns: 120px minmax(0, 1fr) auto;
@@ -1091,6 +1236,7 @@ footer {
 
                 <div class="work-summary" id="workSummary"></div>
                 <div class="review-tasks" id="reviewTasks"></div>
+                <div class="source-progress" id="sourceProgress"></div>
                 <div class="activity-chart" id="activityChart"></div>
                 <div class="recent-progress" id="recentProgress"></div>
             </div>
@@ -1135,7 +1281,11 @@ const ADMIN_TASK_SOURCES = [
     { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa", label: "Matura podstawowa", detail: "2023 / maj / CKE" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa", label: "Matura podstawowa", detail: "2024 / maj / CKE" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa", label: "Matura podstawowa", detail: "2025 / maj / CKE" },
+    { path: "zadania/mr/2023/maj/2023_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona", label: "Matura rozszerzona", detail: "2023 / maj / CKE" },
+    { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona", label: "Matura rozszerzona", detail: "2024 / maj / CKE" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona", label: "Matura rozszerzona", detail: "2025 / maj / CKE" },
+    { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty", label: "Egzamin Ósmoklasisty", detail: "2023 / maj / CKE" },
+    { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty", label: "Egzamin Ósmoklasisty", detail: "2024 / maj / CKE" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty", label: "Egzamin Ósmoklasisty", detail: "2025 / maj / CKE" },
     { path: "zadania/kurs/mp/zadania_kurs_mp.json", category: "kurs", level: "matura_podstawowa", label: "Kurs", detail: "Matura podstawowa" },
     { path: "zadania/kurs/mr/zadania_kurs_mr.json", category: "kurs", level: "matura_rozszerzona", label: "Kurs", detail: "Matura rozszerzona" },
@@ -1182,6 +1332,7 @@ const progressDetail = document.getElementById("progressDetail");
 const progressTitle = document.getElementById("progressTitle");
 const workSummary = document.getElementById("workSummary");
 const reviewTasks = document.getElementById("reviewTasks");
+const sourceProgress = document.getElementById("sourceProgress");
 const activityChart = document.getElementById("activityChart");
 const recentProgress = document.getElementById("recentProgress");
 const credentialsBox = document.getElementById("credentialsBox");
@@ -1215,6 +1366,7 @@ let lastCredentialsText = "";
 let adminTaskCatalog = [];
 let studentProgressCache = new Map();
 let activeProgressStudentId = null;
+let activeSourceDetailKey = "";
 const reviewImageClipboardCache = new Map();
 const reviewSourceTaskCache = new Map();
 const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
@@ -1372,7 +1524,7 @@ function progressTaskKey(item){
 
 async function loadAdminTaskCatalog(){
     const groups = await Promise.all(
-        ADMIN_TASK_SOURCES.map(async source => {
+        ADMIN_TASK_SOURCES.map(async (source, sourceIndex) => {
             try {
                 const response = await fetch(source.path);
 
@@ -1387,7 +1539,8 @@ async function loadAdminTaskCatalog(){
                     coursePart: task.coursePart || task.section || "zadania",
                     sourceId: source.path,
                     sourceLabel: source.label,
-                    sourceDetail: source.detail
+                    sourceDetail: source.detail,
+                    sourceIndex
                 }));
             } catch(error) {
                 return [];
@@ -2098,6 +2251,469 @@ function renderWorkSummary(progress){
     });
 }
 
+function numberValue(value){
+    if(value === null || value === undefined || value === "") return null;
+
+    const numeric = Number(String(value).replace(",", "."));
+
+    return Number.isFinite(numeric) ? numeric : null;
+}
+
+function formatPoints(value){
+    const numeric = numberValue(value);
+
+    if(numeric === null) return "-";
+
+    return Number.isInteger(numeric) ? String(numeric) : String(numeric).replace(".", ",");
+}
+
+function taskMaxPoints(task){
+    return numberValue(task?.maxPoints ?? task?.points) || 1;
+}
+
+function taskCompletionPercent(task){
+    return numberValue(task?.completionPercent ?? task?.successRate ?? task?.percentage);
+}
+
+function taskOrderValue(task){
+    const raw = String(task?.taskNumber || task?.title || task?.file || "");
+    const match = raw.match(/\d+(?:[._]\d+)?/);
+
+    if(!match) return 9999;
+
+    return Number(match[0].replace("_", "."));
+}
+
+function taskDisplayTitle(task){
+    if(task?.title) return task.title;
+
+    const value = String(task?.taskNumber || task?.file || "Zadanie");
+    const match = value.match(/\d+(?:[._]\d+)?/);
+
+    return match ? `Zadanie ${match[0].replace("_", ".")}` : value;
+}
+
+function latestProgressMap(progress){
+    const map = new Map();
+
+    progress.forEach(item => {
+        const key = progressTaskKey(item);
+
+        if(key && !map.has(key)){
+            map.set(key, item);
+        }
+    });
+
+    return map;
+}
+
+function inferredTaskScore(progressItem, task){
+    const maxPoints = numberValue(progressItem?.max_points) || taskMaxPoints(task);
+    const savedEarned = numberValue(progressItem?.earned_points);
+
+    if(savedEarned !== null){
+        return {
+            earned: Math.min(savedEarned, maxPoints),
+            max: maxPoints,
+            estimated: false
+        };
+    }
+
+    if(!progressItem){
+        return {
+            earned: null,
+            max: maxPoints,
+            estimated: false
+        };
+    }
+
+    if(progressItem.result === "good"){
+        return {
+            earned: maxPoints,
+            max: maxPoints,
+            estimated: true
+        };
+    }
+
+    if(progressItem.result === "medium"){
+        return {
+            earned: maxPoints / 2,
+            max: maxPoints,
+            estimated: true
+        };
+    }
+
+    return {
+        earned: 0,
+        max: maxPoints,
+        estimated: true
+    };
+}
+
+function raschDifficulty(task){
+    const percent = taskCompletionPercent(task);
+
+    if(percent === null) return null;
+
+    const p = Math.min(0.98, Math.max(0.02, percent / 100));
+
+    return Math.log((1 - p) / p);
+}
+
+function logistic(value){
+    return 1 / (1 + Math.exp(-value));
+}
+
+function estimateRaschAbility(items){
+    let theta = 0;
+
+    for(let index = 0; index < 30; index++){
+        let derivative = 0;
+        let information = 0;
+
+        items.forEach(item => {
+            const predicted = logistic(theta - item.difficulty);
+
+            derivative += item.weight * (item.fraction - predicted);
+            information += item.weight * predicted * (1 - predicted);
+        });
+
+        if(information <= 0.0001) break;
+
+        const step = derivative / information;
+
+        theta = Math.max(-4, Math.min(4, theta + step));
+
+        if(Math.abs(step) < 0.001) break;
+    }
+
+    return theta;
+}
+
+function predictedRaschPercent(theta, level){
+    const targetTasks = adminTaskCatalog
+        .filter(task =>
+            task.category === "egzaminy" &&
+            task.level === level &&
+            raschDifficulty(task) !== null &&
+            taskMaxPoints(task) > 0
+        );
+    const totalPoints = targetTasks.reduce((sum, task) => sum + taskMaxPoints(task), 0);
+
+    if(!targetTasks.length || !totalPoints) return null;
+
+    const expectedPoints = targetTasks.reduce((sum, task) => (
+        sum + taskMaxPoints(task) * logistic(theta - raschDifficulty(task))
+    ), 0);
+
+    return {
+        percent: Math.round((expectedPoints / totalPoints) * 1000) / 10,
+        targetItems: targetTasks.length
+    };
+}
+
+function sourceProgressGroups(progress, student){
+    const latest = latestProgressMap(progress);
+    const groups = new Map();
+
+    adminTaskCatalog
+        .filter(task => !student?.level || task.level === student.level)
+        .forEach(task => {
+            if(!groups.has(task.sourceId)){
+                groups.set(task.sourceId, {
+                    key: task.sourceId,
+                    label: task.sourceLabel || "Materiał",
+                    detail: task.sourceDetail || "",
+                    category: task.category,
+                    level: task.level,
+                    sourceIndex: task.sourceIndex || 0,
+                    tasks: []
+                });
+            }
+
+            groups.get(task.sourceId).tasks.push(task);
+        });
+
+    return [...groups.values()]
+        .map(group => {
+            group.tasks.sort((a, b) => taskOrderValue(a) - taskOrderValue(b));
+
+            let attempted = 0;
+            let good = 0;
+            let medium = 0;
+            let bad = 0;
+            let earnedPoints = 0;
+            let attemptedMaxPoints = 0;
+            let estimatedPoints = false;
+            const totalPoints = group.tasks.reduce((sum, task) => sum + taskMaxPoints(task), 0);
+
+            group.tasks.forEach(task => {
+                const progressItem = latest.get(`${task.sourceId}:${task.file}`);
+
+                task.latestProgress = progressItem || null;
+
+                if(!progressItem) return;
+
+                attempted++;
+
+                if(progressItem.result === "good") good++;
+                if(progressItem.result === "medium") medium++;
+                if(progressItem.result === "bad") bad++;
+
+                const score = inferredTaskScore(progressItem, task);
+
+                if(score.earned !== null){
+                    earnedPoints += score.earned;
+                    attemptedMaxPoints += score.max;
+                    estimatedPoints = estimatedPoints || score.estimated;
+                }
+            });
+
+            return {
+                ...group,
+                attempted,
+                good,
+                medium,
+                bad,
+                total: group.tasks.length,
+                completed: attempted > 0 && attempted >= group.tasks.length,
+                earnedPoints,
+                attemptedMaxPoints,
+                totalPoints,
+                estimatedPoints,
+                percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
+            };
+        })
+        .filter(group => group.attempted > 0)
+        .sort((a, b) => a.sourceIndex - b.sourceIndex);
+}
+
+function raschEstimateForGroup(group){
+    if(group.category !== "egzaminy") return null;
+
+    const items = group.tasks
+        .filter(task => task.latestProgress && raschDifficulty(task) !== null && taskMaxPoints(task) > 0)
+        .map(task => {
+            const score = inferredTaskScore(task.latestProgress, task);
+
+            if(score.earned === null) return null;
+
+            return {
+                fraction: Math.max(0, Math.min(1, score.earned / score.max)),
+                weight: score.max,
+                difficulty: raschDifficulty(task)
+            };
+        })
+        .filter(Boolean);
+
+    if(!group.completed || items.length < 3){
+        return {
+            unavailable: true,
+            reason: group.completed
+                ? "Za mało zadań z procentami CKE."
+                : "Prognoza pojawi się po ukończeniu arkusza."
+        };
+    }
+
+    const theta = estimateRaschAbility(items);
+    const prediction = predictedRaschPercent(theta, group.level);
+
+    if(!prediction){
+        return {
+            unavailable: true,
+            reason: "Brak wystarczających danych CKE dla tego poziomu."
+        };
+    }
+
+    return {
+        theta,
+        usedItems: items.length,
+        ...prediction
+    };
+}
+
+function renderSourceDetail(group){
+    const detail = document.createElement("div");
+    const heading = document.createElement("h4");
+    const summary = document.createElement("div");
+    const wrap = document.createElement("div");
+    const table = document.createElement("table");
+    const rasch = raschEstimateForGroup(group);
+
+    detail.className = "source-detail";
+    summary.className = "source-card-meta";
+    wrap.className = "source-task-table-wrap";
+    table.className = "source-task-table";
+    heading.innerText = `${group.label} • ${group.detail || "szczegóły"}`;
+
+    const scoreText = group.attemptedMaxPoints
+        ? `${group.estimatedPoints ? "~" : ""}${formatPoints(group.earnedPoints)} / ${formatPoints(group.totalPoints)} pkt`
+        : "brak zapisanych punktów";
+    const raschText = rasch && !rasch.unavailable
+        ? ` • Prognoza Rascha: ${rasch.percent}%`
+        : "";
+
+    summary.innerText = `Wykonane: ${group.attempted}/${group.total}. Punkty: ${scoreText}.${raschText}`;
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>Zadanie</th>
+                <th>Wynik</th>
+                <th>Punkty</th>
+                <th>% CKE</th>
+                <th>Czas</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    `;
+
+    const tbody = table.querySelector("tbody");
+
+    group.tasks.forEach(task => {
+        const progressItem = task.latestProgress;
+        const score = inferredTaskScore(progressItem, task);
+        const percent = taskCompletionPercent(task);
+        const row = document.createElement("tr");
+        const titleCell = document.createElement("td");
+        const titleWrap = document.createElement("div");
+        const title = document.createElement("strong");
+        const meta = document.createElement("span");
+        const resultCell = document.createElement("td");
+        const result = document.createElement("span");
+        const pointsCell = document.createElement("td");
+        const percentCell = document.createElement("td");
+        const timeCell = document.createElement("td");
+
+        titleWrap.className = "task-title-cell";
+        result.className = `result-pill ${progressItem?.result || "missing"}`;
+        title.innerText = taskDisplayTitle(task);
+        meta.innerText = task.topic || task.file || "";
+        result.innerText = progressItem ? resultLabel(progressItem.result) : "Nie wykonano";
+        pointsCell.innerText = score.earned === null
+            ? `- / ${formatPoints(score.max)}`
+            : `${score.estimated ? "~" : ""}${formatPoints(score.earned)} / ${formatPoints(score.max)}`;
+        percentCell.innerText = percent === null ? "-" : `${percent}%`;
+        timeCell.innerText = progressItem ? formatDuration(progressItem.duration_seconds || 0) : "-";
+
+        titleWrap.appendChild(title);
+        titleWrap.appendChild(meta);
+        titleCell.appendChild(titleWrap);
+        resultCell.appendChild(result);
+        row.appendChild(titleCell);
+        row.appendChild(resultCell);
+        row.appendChild(pointsCell);
+        row.appendChild(percentCell);
+        row.appendChild(timeCell);
+        tbody.appendChild(row);
+    });
+
+    detail.appendChild(heading);
+    detail.appendChild(summary);
+
+    if(rasch?.unavailable){
+        const note = document.createElement("div");
+
+        note.className = "rasch-note";
+        note.innerText = rasch.reason;
+        detail.appendChild(note);
+    } else if(rasch){
+        const note = document.createElement("div");
+
+        note.className = "rasch-note";
+        note.innerText = `Model Rascha użył ${rasch.usedItems} zadań z tego arkusza i skaluje wynik do puli egzaminów tego poziomu (${rasch.targetItems} zadań z % CKE). To prognoza orientacyjna, nie oficjalny wynik.`;
+        detail.appendChild(note);
+    }
+
+    wrap.appendChild(table);
+    detail.appendChild(wrap);
+
+    return detail;
+}
+
+function renderSourceProgress(progress, student){
+    const groups = sourceProgressGroups(progress, student);
+    const heading = document.createElement("h4");
+    const grid = document.createElement("div");
+
+    sourceProgress.innerHTML = "";
+    heading.innerText = "Arkusze i lekcje";
+    grid.className = "source-card-grid";
+    sourceProgress.appendChild(heading);
+
+    if(!groups.length){
+        const empty = document.createElement("div");
+
+        empty.className = "source-detail-empty";
+        empty.innerText = "Brak rozpoczętych arkuszy lub lekcji.";
+        sourceProgress.appendChild(empty);
+        return;
+    }
+
+    if(activeSourceDetailKey && !groups.some(group => group.key === activeSourceDetailKey)){
+        activeSourceDetailKey = "";
+    }
+
+    groups.forEach(group => {
+        const card = document.createElement("button");
+        const head = document.createElement("div");
+        const titleWrap = document.createElement("div");
+        const title = document.createElement("strong");
+        const detail = document.createElement("span");
+        const status = document.createElement("span");
+        const progressTrack = document.createElement("div");
+        const progressFill = document.createElement("span");
+        const meta = document.createElement("div");
+        const rasch = raschEstimateForGroup(group);
+
+        card.type = "button";
+        card.className = `source-card ${group.category === "egzaminy" ? "exam" : "course"}`;
+        card.classList.toggle("active", activeSourceDetailKey === group.key);
+        head.className = "source-card-head";
+        titleWrap.className = "source-card-title";
+        status.className = `result-pill ${group.completed ? "good" : "missing"}`;
+        progressTrack.className = "source-card-progress";
+        meta.className = "source-card-meta";
+
+        title.innerText = group.label;
+        detail.innerText = group.detail || (group.category === "egzaminy" ? "Arkusz" : "Lekcja");
+        status.innerText = group.completed ? "Ukończone" : "Rozpoczęte";
+        progressFill.style.width = `${group.percent}%`;
+        meta.innerText = `${group.attempted}/${group.total} zadań • dobrze ${group.good}, z pomocą ${group.medium}, źle ${group.bad}`;
+
+        titleWrap.appendChild(title);
+        titleWrap.appendChild(detail);
+        head.appendChild(titleWrap);
+        head.appendChild(status);
+        progressTrack.appendChild(progressFill);
+        card.appendChild(head);
+        card.appendChild(progressTrack);
+        card.appendChild(meta);
+
+        if(rasch && !rasch.unavailable){
+            const chip = document.createElement("span");
+
+            chip.className = "rasch-chip";
+            chip.innerText = `Rasch: ${rasch.percent}%`;
+            card.appendChild(chip);
+        }
+
+        card.addEventListener("click", () => {
+            activeSourceDetailKey = activeSourceDetailKey === group.key ? "" : group.key;
+            renderSourceProgress(progress, student);
+        });
+
+        grid.appendChild(card);
+    });
+
+    sourceProgress.appendChild(grid);
+
+    const activeGroup = groups.find(group => group.key === activeSourceDetailKey);
+
+    if(activeGroup){
+        sourceProgress.appendChild(renderSourceDetail(activeGroup));
+    }
+}
+
 function reviewTaskTitle(item){
     return item.title || item.file || item.task_id || "Zadanie";
 }
@@ -2412,6 +3028,7 @@ async function showProgress(student){
     if(activeProgressStudentId === student.id && progressDetail.classList.contains("active")){
         progressDetail.classList.remove("active");
         activeProgressStudentId = null;
+        activeSourceDetailKey = "";
         showStatus(`Schowano postępy ucznia ${student.display_name}.`);
         return;
     }
@@ -2425,10 +3042,12 @@ async function showProgress(student){
     progressTitle.innerText = `Postępy: ${student.display_name}`;
     progressDetail.classList.add("active");
     activeProgressStudentId = student.id;
+    activeSourceDetailKey = "";
     studentProgressCache.set(student.id, progress);
     renderStudents();
     renderWorkSummary(progress);
     renderReviewTasks(reviewItems, student);
+    renderSourceProgress(progress, student);
     renderActivityChart(progress);
     renderRecentProgress(progress);
 
@@ -2443,6 +3062,7 @@ async function showProgress(student){
 document.getElementById("closeProgressBtn").addEventListener("click", () => {
     progressDetail.classList.remove("active");
     activeProgressStudentId = null;
+    activeSourceDetailKey = "";
 });
 
 adminTabButtons.forEach(button => {
