@@ -65,23 +65,11 @@
         }
 
         if(panelLink){
-            panelLink.hidden = !isAuthenticated;
+            panelLink.hidden = !isAuthenticated || user?.role !== "admin";
             panelLink.innerText = "Mój panel";
-            panelLink.href = user?.role === "admin" ? "admin.html" : "zadania.html#postep";
-            panelLink.title = user?.role === "admin"
-                ? "Przejdź do panelu admina"
-                : "Przejdź do panelu ucznia i postępów";
-            panelLink.onclick = user?.role === "admin"
-                ? null
-                : event => {
-                    if(
-                        window.location.pathname.endsWith("zadania.html") &&
-                        typeof window.openStudentProgressPanelFromNav === "function"
-                    ){
-                        event.preventDefault();
-                        window.openStudentProgressPanelFromNav();
-                    }
-                };
+            panelLink.href = "admin.html";
+            panelLink.title = "Przejdź do panelu admina";
+            panelLink.onclick = null;
         }
 
         if(userLabel){

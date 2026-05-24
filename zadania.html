@@ -2320,7 +2320,6 @@ async function bootStudentPanel(){
         }
 
         drawTask(getInitialIndex());
-        openProgressPanelFromHash();
     } catch(error) {
         if(error.redirecting) return;
 
@@ -2413,34 +2412,6 @@ function toggleStudentProgressPanel(){
     progressPanelOpen = !progressPanelOpen;
     updateProgressPanelVisibility();
 }
-
-function shouldOpenProgressFromHash(){
-    return ["#postep", "#panel", "#moj-panel"].includes(window.location.hash.toLowerCase());
-}
-
-function openProgressPanelFromHash(){
-    if(!isLoggedInStudent || !shouldOpenProgressFromHash()) return;
-
-    progressPanelOpen = true;
-    updateProgressPanelVisibility();
-
-    window.setTimeout(() => {
-        document.getElementById("progressSection")?.scrollIntoView({
-            block: "start",
-            behavior: "smooth"
-        });
-    }, 80);
-}
-
-window.openStudentProgressPanelFromNav = function(){
-    if(window.location.hash !== "#postep"){
-        window.location.hash = "postep";
-    }
-
-    openProgressPanelFromHash();
-};
-
-window.addEventListener("hashchange", openProgressPanelFromHash);
 
 function updateAccessModeUI(){
     document.body.classList.toggle("guest-exam-mode", !isLoggedInStudent);
