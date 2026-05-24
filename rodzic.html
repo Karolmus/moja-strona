@@ -152,7 +152,7 @@ body {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
 }
 
@@ -197,6 +197,78 @@ body {
     color: var(--muted);
     font-size: 12px;
     line-height: 1.45;
+}
+
+.parent-tabs {
+    display: inline-flex;
+    width: fit-content;
+    gap: 6px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.parent-tab {
+    min-height: 34px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+}
+
+.parent-tab.active {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+}
+
+.parent-tab-panel {
+    display: none;
+    gap: 16px;
+}
+
+.parent-tab-panel.active {
+    display: grid;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.info-card {
+    display: grid;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 14px;
+}
+
+.info-card span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.info-card strong {
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.info-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 .progress-block {
@@ -356,7 +428,7 @@ body {
 .recent-list {
     display: grid;
     gap: 7px;
-    max-height: 360px;
+    max-height: 230px;
     overflow: auto;
 }
 
@@ -368,7 +440,7 @@ body {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
-    padding: 9px;
+    padding: 7px 9px;
 }
 
 .result-chip {
@@ -411,8 +483,15 @@ body {
 @media(max-width: 820px) {
     .hero,
     .grid-two,
-    .stats-grid {
+    .stats-grid,
+    .info-grid {
         grid-template-columns: 1fr;
+    }
+
+    .parent-tabs {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        display: grid;
     }
 
     .brand-card {
@@ -437,7 +516,6 @@ body {
     <section class="hero">
         <div>
             <h1>Panel rodzica</h1>
-            <p></p>
         </div>
         <div class="brand-card" aria-label="Delta Sigma">
             <img src="img/logo3.png" alt="Delta Sigma">
@@ -455,9 +533,15 @@ body {
                 <strong id="studentName">Uczeń</strong>
                 <span id="studentMeta">Poziom</span>
             </div>
-            <div class="last-sync" id="lastSync">Ostatnia aktywność: brak</div>
+            <div class="last-sync" id="lastSync">Ostatnia aktywność ucznia: brak</div>
         </div>
 
+        <div class="parent-tabs" role="tablist" aria-label="Panel rodzica">
+            <button class="parent-tab active" type="button" data-parent-tab="progress">Postępy ucznia</button>
+            <button class="parent-tab" type="button" data-parent-tab="organization">Organizacja i płatności</button>
+        </div>
+
+        <div class="parent-tab-panel active" id="parentProgressPanel">
         <div class="stats-grid">
             <div class="stat-card">
                 <span>Wykonane próby</span>
@@ -471,10 +555,6 @@ body {
                 <span>Czas pracy</span>
                 <strong id="durationStat">0 s</strong>
             </div>
-            <div class="stat-card">
-                <span>Wymaga uwagi</span>
-                <strong id="reviewStat">0</strong>
-            </div>
         </div>
 
         <div class="grid-two">
@@ -483,18 +563,18 @@ body {
                 <div class="progress-block">
                     <div class="progress-head">
                         <span>Kurs</span>
-                        <span id="courseProgressText">0 zadań</span>
+                        <span id="courseProgressText">0/20 lekcji</span>
                     </div>
                     <div class="progress-track"><span class="progress-fill" id="courseProgressFill"></span></div>
-                    <div class="small-note">Próby wykonania zadań</div>
+                    <div class="small-note">Lekcje liczymy do najwyższego numeru lekcji, przy której zapisano przynajmniej jedno zadanie.</div>
                 </div>
                 <div class="progress-block">
                     <div class="progress-head">
                         <span>Egzaminy</span>
-                        <span id="examProgressText">0 zadań</span>
+                        <span id="examProgressText">0/10 egzaminów</span>
                     </div>
                     <div class="progress-track"><span class="progress-fill exam" id="examProgressFill"></span></div>
-                    <div class="small-note"></div>
+                    <div class="small-note">Minimum przewidziane przed prawdziwym egzaminem: 10 pełnych arkuszy.</div>
                 </div>
                 <div class="distribution">
                     <h2 class="section-title">Rozkład odpowiedzi</h2>
@@ -521,6 +601,30 @@ body {
             <h2 class="section-title">Ostatnie zadania</h2>
             <div class="recent-list" id="recentList"></div>
         </section>
+        </div>
+
+        <div class="parent-tab-panel" id="parentOrganizationPanel">
+            <section class="panel">
+                <h2 class="section-title">Organizacja zajęć</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <span>Odbyte lekcje</span>
+                        <strong id="lessonLedgerStat">W przygotowaniu</strong>
+                        <p>Docelowo ta wartość będzie pobierana z arkusza zajęć i pokaże liczbę spotkań odbytych w bieżącym miesiącu.</p>
+                    </div>
+                    <div class="info-card">
+                        <span>Płatności</span>
+                        <strong id="paymentStatusStat">Do uzupełnienia</strong>
+                        <p>Miejsce pod informację o rozliczeniu oraz przyszłą bramkę płatności.</p>
+                    </div>
+                    <div class="info-card">
+                        <span>Najbliższy kontakt</span>
+                        <strong id="nextContactStat">Po lekcji</strong>
+                        <p>Tu można później pokazywać najbliższy termin zajęć, krótką notatkę lub przypomnienie organizacyjne.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
     </section>
 </main>
 
@@ -537,6 +641,20 @@ const resultLabels = {
     medium: "Z pomocą",
     bad: "Źle"
 };
+const COURSE_LESSON_TARGET = 20;
+const EXAM_TARGET = 10;
+const PARENT_EXAM_SOURCES = [
+    { path: "zadania/mp/2023/maj/2023_cke_p_m.json", level: "matura_podstawowa" },
+    { path: "zadania/mp/2024/maj/2024_cke_p_m.json", level: "matura_podstawowa" },
+    { path: "zadania/mp/2025/maj/2025_cke_p_m.json", level: "matura_podstawowa" },
+    { path: "zadania/mr/2023/maj/2023_cke_r_m.json", level: "matura_rozszerzona" },
+    { path: "zadania/mr/2024/maj/2024_cke_r_m.json", level: "matura_rozszerzona" },
+    { path: "zadania/mr/2025/maj/2025_cke_r_m.json", level: "matura_rozszerzona" },
+    { path: "zadania/eo/2023/maj/2023_cke_o_m.json", level: "egzamin_osmoklasisty" },
+    { path: "zadania/eo/2024/maj/2024_cke_o_m.json", level: "egzamin_osmoklasisty" },
+    { path: "zadania/eo/2025/maj/2025_cke_o_m.json", level: "egzamin_osmoklasisty" }
+];
+let examCatalog = new Map();
 
 function getParentToken(){
     const hashToken = decodeURIComponent(window.location.hash.replace(/^#/, "").trim());
@@ -562,6 +680,15 @@ function setStatus(title, message){
     statusPanel.querySelector("p").innerText = message;
     statusPanel.style.display = "grid";
     document.getElementById("dashboard").classList.remove("active");
+}
+
+function setParentTab(tab){
+    document.querySelectorAll(".parent-tab").forEach(button => {
+        button.classList.toggle("active", button.dataset.parentTab === tab);
+    });
+
+    document.getElementById("parentProgressPanel").classList.toggle("active", tab === "progress");
+    document.getElementById("parentOrganizationPanel").classList.toggle("active", tab === "organization");
 }
 
 function formatDate(value){
@@ -599,6 +726,24 @@ function taskKey(item){
     return item.task_id || item.file || "";
 }
 
+function progressSourceId(item){
+    if(item.source_id) return item.source_id;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(0, splitIndex) : "";
+}
+
+function progressFile(item){
+    if(item.file) return item.file;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(splitIndex + 1) : "";
+}
+
 function taskTitle(item){
     const file = String(item.file || item.task_id || "Zadanie");
     const match = file.match(/(?:zadanie_|zad_|^)(\d+(?:\.\d+)?)/i);
@@ -624,6 +769,107 @@ function uniqueCount(progress, predicate){
     );
 
     return keys.size;
+}
+
+function isCourseItem(item){
+    return String(progressSourceId(item)).includes("/kurs/");
+}
+
+function courseLessonNumber(item){
+    const text = [
+        progressSourceId(item),
+        progressFile(item),
+        item.task_id,
+        item.topic
+    ].join(" ");
+    const match = text.match(/lekcja[_\s-]*(\d+)/i);
+
+    if(!match) return 0;
+
+    return Number(match[1]) || 0;
+}
+
+function courseLessonProgress(progress){
+    const highestStartedLesson = progress
+        .filter(isCourseItem)
+        .map(courseLessonNumber)
+        .filter(number => number > 0)
+        .reduce((max, number) => Math.max(max, number), 0);
+    const completed = Math.min(COURSE_LESSON_TARGET, highestStartedLesson);
+
+    return {
+        completed,
+        target: COURSE_LESSON_TARGET,
+        percent: Math.min(100, Math.round((completed / COURSE_LESSON_TARGET) * 100))
+    };
+}
+
+async function loadExamCatalog(level){
+    const sources = PARENT_EXAM_SOURCES.filter(source => source.level === level);
+    const entries = await Promise.all(
+        sources.map(async source => {
+            try {
+                const response = await fetch(source.path);
+
+                if(!response.ok) return [source.path, new Set()];
+
+                const tasks = await response.json();
+                const files = new Set(
+                    tasks
+                        .map(task => task.file)
+                        .filter(Boolean)
+                );
+
+                return [source.path, files];
+            } catch(error) {
+                return [source.path, new Set()];
+            }
+        })
+    );
+
+    examCatalog = new Map(entries);
+}
+
+function examProgress(progress){
+    const attemptedBySource = new Map();
+
+    progress
+        .filter(item => !isCourseItem(item))
+        .forEach(item => {
+            const sourceId = progressSourceId(item);
+            const file = progressFile(item);
+
+            if(!sourceId || !file) return;
+
+            if(!attemptedBySource.has(sourceId)){
+                attemptedBySource.set(sourceId, new Set());
+            }
+
+            attemptedBySource.get(sourceId).add(file);
+        });
+
+    let completed = 0;
+
+    attemptedBySource.forEach((attemptedFiles, sourceId) => {
+        const expectedFiles = examCatalog.get(sourceId);
+
+        if(expectedFiles?.size){
+            const done = [...expectedFiles].every(file => attemptedFiles.has(file));
+
+            if(done) completed++;
+            return;
+        }
+
+        if(attemptedFiles.size > 0){
+            completed++;
+        }
+    });
+
+    return {
+        completed,
+        target: EXAM_TARGET,
+        percent: Math.min(100, Math.round((completed / EXAM_TARGET) * 100))
+    };
 }
 
 function renderDistribution(progress){
@@ -723,7 +969,7 @@ function renderRecent(progress){
         return;
     }
 
-    progress.slice(0, 16).forEach(item => {
+    progress.slice(0, 8).forEach(item => {
         const row = document.createElement("div");
         const chip = document.createElement("span");
         const main = document.createElement("div");
@@ -756,22 +1002,20 @@ function renderDashboard(student, progress){
     const medium = progress.filter(item => item.result === "medium").length;
     const bad = progress.filter(item => item.result === "bad").length;
     const duration = progress.reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0);
-    const courseCount = uniqueCount(progress, item => String(item.source_id || "").includes("/kurs/"));
-    const examCount = uniqueCount(progress, item => !String(item.source_id || "").includes("/kurs/"));
+    const courseStats = courseLessonProgress(progress);
+    const examStats = examProgress(progress);
     const latest = progress[0]?.created_at || student.last_login_at;
-    const maxProgress = Math.max(courseCount, examCount, 1);
 
     document.getElementById("studentName").innerText = student.display_name || student.email;
     document.getElementById("studentMeta").innerText = `${levelLabels[student.level] || student.level || "Poziom"} • konto rodzica`;
-    document.getElementById("lastSync").innerText = `Ostatnia aktywność: ${formatDate(latest)}`;
+    document.getElementById("lastSync").innerText = `Ostatnia aktywność ucznia: ${formatDate(latest)}`;
     document.getElementById("attemptsStat").innerText = total;
     document.getElementById("accuracyStat").innerText = total ? `${Math.round((good / total) * 100)}%` : "0%";
     document.getElementById("durationStat").innerText = formatDuration(duration);
-    document.getElementById("reviewStat").innerText = medium + bad;
-    document.getElementById("courseProgressText").innerText = `${courseCount} zadań`;
-    document.getElementById("examProgressText").innerText = `${examCount} zadań`;
-    document.getElementById("courseProgressFill").style.width = `${Math.round((courseCount / maxProgress) * 100)}%`;
-    document.getElementById("examProgressFill").style.width = `${Math.round((examCount / maxProgress) * 100)}%`;
+    document.getElementById("courseProgressText").innerText = `${courseStats.completed}/${courseStats.target} lekcji`;
+    document.getElementById("examProgressText").innerText = `${examStats.completed}/${examStats.target} egzaminów`;
+    document.getElementById("courseProgressFill").style.width = `${courseStats.percent}%`;
+    document.getElementById("examProgressFill").style.width = `${examStats.percent}%`;
 
     renderDistribution(progress);
     renderActivity(progress);
@@ -798,6 +1042,7 @@ async function bootParentPanel(){
             body: JSON.stringify({ token })
         });
 
+        await loadExamCatalog(data.student?.level);
         renderDashboard(data.student, Array.isArray(data.progress) ? data.progress : []);
     } catch(error) {
         window.localStorage.removeItem(PARENT_TOKEN_KEY);
@@ -805,7 +1050,13 @@ async function bootParentPanel(){
     }
 }
 
-document.addEventListener("DOMContentLoaded", bootParentPanel);
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".parent-tab").forEach(button => {
+        button.addEventListener("click", () => setParentTab(button.dataset.parentTab));
+    });
+
+    bootParentPanel();
+});
 </script>
 </body>
 </html>
