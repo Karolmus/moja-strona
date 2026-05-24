@@ -39,12 +39,49 @@
         if(!nav) return;
 
         const loginLink = nav.querySelector("[data-auth-login]");
+        let panelLink = nav.querySelector("[data-auth-panel]");
         const userLabel = nav.querySelector("[data-auth-user]");
         const logoutButton = nav.querySelector("[data-auth-logout]");
         const isAuthenticated = Boolean(user);
 
+        if(!panelLink){
+            panelLink = document.createElement("a");
+            panelLink.className = "my-panel-link";
+            panelLink.dataset.authPanel = "";
+            panelLink.hidden = true;
+            panelLink.innerText = "Mój panel";
+
+            if(loginLink){
+                nav.insertBefore(panelLink, loginLink);
+            } else if(userLabel){
+                nav.insertBefore(panelLink, userLabel);
+            } else {
+                nav.appendChild(panelLink);
+            }
+        }
+
         if(loginLink){
             loginLink.hidden = isAuthenticated;
+        }
+
+        if(panelLink){
+            panelLink.hidden = !isAuthenticated;
+            panelLink.innerText = "Mój panel";
+            panelLink.href = user?.role === "admin" ? "admin.html" : "zadania.html#postep";
+            panelLink.title = user?.role === "admin"
+                ? "Przejdź do panelu admina"
+                : "Przejdź do panelu ucznia i postępów";
+            panelLink.onclick = user?.role === "admin"
+                ? null
+                : event => {
+                    if(
+                        window.location.pathname.endsWith("zadania.html") &&
+                        typeof window.openStudentProgressPanelFromNav === "function"
+                    ){
+                        event.preventDefault();
+                        window.openStudentProgressPanelFromNav();
+                    }
+                };
         }
 
         if(userLabel){
