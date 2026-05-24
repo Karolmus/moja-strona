@@ -329,6 +329,20 @@ th {
     font-weight: 600;
 }
 
+.student-row {
+    cursor: pointer;
+    transition: background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.student-row:hover {
+    background: #f8fafc;
+}
+
+.student-row.active {
+    background: #edf4fb;
+    box-shadow: inset 3px 0 0 #24527a;
+}
+
 .index-cell {
     width: 38px;
     color: var(--muted);
@@ -1949,6 +1963,12 @@ function getSortedStudents(){
     return sorted;
 }
 
+function isInteractiveTableClick(event){
+    return Boolean(event.target.closest(
+        "button, a, input, select, textarea, label, [role='button']"
+    ));
+}
+
 function renderStudents(){
     studentTable.innerHTML = "";
 
@@ -1978,6 +1998,15 @@ function renderStudents(){
         const actions = document.createElement("div");
         const primaryActions = document.createElement("div");
         const dangerActions = document.createElement("div");
+
+        row.className = "student-row";
+        row.classList.toggle("active", activeProgressStudentId === student.id);
+        row.title = "Kliknij wiersz, aby pokazać albo ukryć postępy ucznia.";
+        row.addEventListener("click", event => {
+            if(isInteractiveTableClick(event)) return;
+
+            showProgress(student);
+        });
 
         indexCell.className = "index-cell";
         indexCell.innerText = String(index + 1);
