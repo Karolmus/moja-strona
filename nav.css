@@ -74,6 +74,20 @@
     box-shadow: 0 6px 18px rgba(184, 212, 156, 0.32);
 }
 
+.main-nav .my-panel-link {
+    color: #102033;
+    background: linear-gradient(135deg, #edf4fb, #ffffff);
+    border: 1px solid rgba(142, 181, 222, 0.9);
+    box-shadow: 0 4px 14px rgba(142, 181, 222, 0.22);
+    font-weight: 700;
+}
+
+.main-nav .my-panel-link:hover {
+    color: #102033;
+    background: linear-gradient(135deg, #dbeaf8, #ffffff);
+    box-shadow: 0 6px 18px rgba(142, 181, 222, 0.32);
+}
+
 .main-nav a.active{
     color: #ffffff;
     background: rgba(88,101,242,0.25);
@@ -82,6 +96,11 @@
 .main-nav .student-zone-link.active {
     color: #102033;
     background: linear-gradient(135deg, #dff1db, #ffffff);
+}
+
+.main-nav .my-panel-link.active {
+    color: #102033;
+    background: linear-gradient(135deg, #dbeaf8, #ffffff);
 }
 
 footer {
