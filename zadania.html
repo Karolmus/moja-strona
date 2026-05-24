@@ -107,21 +107,21 @@ body {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
-    padding: 10px;
+    padding: 8px 10px;
     color: var(--text);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 1.25;
 }
 
 .formula-card {
     display: grid;
-    gap: 3px;
+    gap: 2px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
     color: var(--text);
-    padding: 10px;
+    padding: 8px 10px;
     text-decoration: none;
     transition: border-color 0.2s ease, transform 0.2s ease;
 }
@@ -132,13 +132,14 @@ body {
 }
 
 .formula-card strong {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.2;
 }
 
 .formula-card span {
     color: var(--muted);
-    font-size: 11px;
-    line-height: 1.35;
+    font-size: 10px;
+    line-height: 1.25;
 }
 
 .progress-toggle-btn {
@@ -399,15 +400,15 @@ body {
 .source-btn {
     display: grid;
     gap: 1px;
-    padding: 5px 7px;
+    padding: 4px 6px;
     text-align: left;
 }
 
 .course-source-list .source-btn {
-    min-height: 28px;
+    min-height: 25px;
     align-content: center;
     gap: 1px;
-    padding: 4px 4px;
+    padding: 3px 4px;
     text-align: center;
 }
 
@@ -417,7 +418,7 @@ body {
 }
 
 .course-source-list .source-btn span {
-    font-size: 11px;
+    font-size: 9.5px;
     line-height: 1.05;
 }
 
@@ -432,7 +433,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 10px;
+    font-size: 8.5px;
     line-height: 1.1;
 }
 
@@ -1236,28 +1237,6 @@ button {
     border-color: var(--navy-hover);
 }
 
-.action-btn.success {
-    background: var(--green-soft);
-    color: var(--green-text);
-    border-color: #cce5c9;
-}
-
-.action-btn.danger {
-    background: var(--red-soft);
-    color: var(--red-text);
-    border-color: #efc6c2;
-}
-
-.action-btn.success:hover {
-    background: #dff0dd;
-    border-color: #b8d9b4;
-}
-
-.action-btn.danger:hover {
-    background: #f9ddd9;
-    border-color: #e8b5af;
-}
-
 .result-buttons {
     display: none;
 }
@@ -1603,6 +1582,17 @@ button {
     padding: 8px 14px;
 }
 
+.score-max-btn {
+    border-color: #cce5c9;
+    background: var(--green-soft);
+    color: var(--green-text);
+}
+
+.score-max-btn:hover {
+    background: #dff0dd;
+    border-color: #b8d9b4;
+}
+
 .score-status {
     color: var(--muted);
     font-size: 12px;
@@ -1758,20 +1748,21 @@ footer {
     }
 
     .source-summary-card {
-        padding: 5px;
+        padding: 4px;
     }
 
     .source-summary-main {
-        gap: 5px;
+        gap: 3px;
     }
 
     .source-summary-points {
-        font-size: 12px;
+        font-size: 10.5px;
     }
 
     .source-summary-percent,
     .source-summary-detail {
-        font-size: 9px;
+        font-size: 8px;
+        line-height: 1.2;
     }
 
     .source-list {
@@ -1788,16 +1779,36 @@ footer {
     }
 
     .course-source-list .source-btn {
-        min-height: 25px;
-        padding: 3px;
+        min-height: 23px;
+        padding: 2px 3px;
     }
 
     .course-source-list .source-btn span {
-        font-size: 9.5px;
+        font-size: 8.5px;
+        line-height: 1;
     }
 
     .course-source-list .source-btn small {
         display: none;
+    }
+
+    .assigned-course-card,
+    .formula-card {
+        padding: 7px 9px;
+    }
+
+    .assigned-course-card,
+    .formula-card strong {
+        font-size: 11px;
+    }
+
+    .formula-card span {
+        font-size: 9.5px;
+    }
+
+    .progress-toggle-btn {
+        min-height: 34px;
+        font-size: 11.5px;
     }
 
     .focus-toggle {
@@ -2159,10 +2170,7 @@ footer {
                         <button class="action-btn nav" onclick="nextTask()">Kolejne →</button>
                     </div>
 
-                    <div class="action-group check result-buttons" id="resultButtons">
-                        <button class="action-btn success" onclick="finish('good')">✓ Dobrze</button>
-                        <button class="action-btn danger" onclick="finish('bad')">× Źle</button>
-                    </div>
+                    <div class="action-group check result-buttons" id="resultButtons"></div>
                 </div>
 
                 <div class="mcq" id="mcq"></div>
@@ -2180,6 +2188,7 @@ footer {
                             Zdobyte punkty
                             <input id="scoreInput" name="earned_points" type="number" min="0" step="0.5" inputmode="decimal">
                         </label>
+                        <button class="score-save-btn score-max-btn" id="scoreMaxButton" type="button">Maks.</button>
                         <button class="score-save-btn" id="scoreSaveButton" type="submit">Zapisz punkty</button>
                     </form>
 
@@ -2198,8 +2207,8 @@ footer {
 </div>
 
 <div class="source-attribution" id="sourceAttribution" hidden>
-    Część zadań pochodzi z
-    <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
+    Zadania z oznaczeniem CKE pochodzą z zasobów i egzaminów przeprowadzanych przez centralną komisję egzaminacyjną
+    <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>
 </div>
 
 <footer>© 2026 Delta sigma</footer>
@@ -2619,7 +2628,7 @@ function updateSourceAttributionVisibility(){
     const attribution = document.getElementById("sourceAttribution");
 
     if(attribution){
-        attribution.hidden = isLoggedInStudent || selectedCategory !== "egzaminy";
+        attribution.hidden = selectedCategory !== "egzaminy";
     }
 }
 
@@ -4495,7 +4504,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton, #scoreMaxButton"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -4773,6 +4782,7 @@ function handleKeyboardNavigation(event){
 
 document.addEventListener("keydown", handleKeyboardNavigation);
 document.getElementById("scoreForm")?.addEventListener("submit", submitScore);
+document.getElementById("scoreMaxButton")?.addEventListener("click", submitMaxScore);
 
 function setupMCQ(){
     const mcq = document.getElementById("mcq");
@@ -4863,15 +4873,25 @@ function hasSavedPoints(progressItem){
         progressItem?.earned_points !== "";
 }
 
+function isManualScoreTask(task = currentTask){
+    return Boolean(
+        task &&
+        !isClosedTask(task) &&
+        !isInputTask(task) &&
+        !isPracticalTask(task) &&
+        taskMaxPoints(task) > 0
+    );
+}
+
 function isCourseManualScoreTask(task = currentTask){
-    return Boolean(task && task.category === "kurs" && !isClosedTask(task) && !isPracticalTask(task) && taskMaxPoints(task) > 1);
+    return Boolean(task && task.category === "kurs" && isManualScoreTask(task));
 }
 
 function shouldShowScorePanel(task = currentTask){
-    if(!task || !taskMaxPoints(task)) return false;
+    if(!task || !isManualScoreTask(task)) return false;
 
     if(task.category === "egzaminy"){
-        return !isClosedTask(task) || taskMaxPoints(task) > 1;
+        return true;
     }
 
     if(isCourseManualScoreTask(task)){
@@ -4903,6 +4923,8 @@ function updateScorePanel(){
     const input = document.getElementById("scoreInput");
     const maxLabel = document.getElementById("scoreMaxLabel");
     const status = document.getElementById("scoreStatus");
+    const saveButton = document.getElementById("scoreSaveButton");
+    const maxButton = document.getElementById("scoreMaxButton");
 
     if(!panel || !input || !maxLabel || !status) return;
 
@@ -4921,10 +4943,12 @@ function updateScorePanel(){
     maxLabel.innerText = `maks. ${formatPoints(maxPoints)} pkt`;
     input.disabled = lockedScore;
 
-    const saveButton = document.getElementById("scoreSaveButton");
-
     if(saveButton){
         saveButton.disabled = lockedScore;
+    }
+
+    if(maxButton){
+        maxButton.disabled = lockedScore;
     }
 
     if(hasSavedPoints(saved)){
@@ -4936,8 +4960,8 @@ function updateScorePanel(){
     } else {
         input.value = "";
         status.innerText = isCourseManualScoreTask(currentTask)
-            ? "Po sprawdzeniu odpowiedzi wpisz liczbę zdobytych punktów."
-            : "Wpisz wynik po sprawdzeniu rozwiązania z zasadami oceniania.";
+            ? "Po sprawdzeniu odpowiedzi wpisz liczbę zdobytych punktów albo kliknij Maks."
+            : "Wpisz wynik po sprawdzeniu rozwiązania z zasadami oceniania albo kliknij Maks.";
     }
 }
 
@@ -4968,11 +4992,7 @@ function updateAnswerTools(){
         reviewButton.hidden = !isLoggedInStudent;
     }
 
-    if(!isClosed && answerShown && !isCourseManualScoreTask(currentTask)){
-        resultButtons.classList.add("active");
-    } else {
-        resultButtons.classList.remove("active");
-    }
+    resultButtons.classList.remove("active");
 
     if(isCourseTaskLocked()){
         setResultButtonsEnabled(false);
@@ -5872,6 +5892,7 @@ async function submitScore(event){
     const input = document.getElementById("scoreInput");
     const status = document.getElementById("scoreStatus");
     const button = document.getElementById("scoreSaveButton");
+    const maxButton = document.getElementById("scoreMaxButton");
     const maxPoints = taskMaxPoints(currentTask);
     const saved = getSavedProgressItem(currentTask);
     const lockAfterSave = isCourseManualScoreTask(currentTask);
@@ -5892,6 +5913,7 @@ async function submitScore(event){
     const scoreData = { earnedPoints, maxPoints };
 
     button.disabled = true;
+    if(maxButton) maxButton.disabled = true;
     status.innerText = "Zapisuję punkty...";
 
     if(currentTaskAnswered){
@@ -5915,7 +5937,21 @@ async function submitScore(event){
     status.innerText = `Zapisano: ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt.`;
     input.disabled = lockAfterSave;
     button.disabled = lockAfterSave;
+    if(maxButton) maxButton.disabled = lockAfterSave;
     updateSourceSummary();
+}
+
+function submitMaxScore(){
+    if(!currentTask || !shouldShowScorePanel()) return;
+
+    const input = document.getElementById("scoreInput");
+    const form = document.getElementById("scoreForm");
+    const maxPoints = taskMaxPoints(currentTask);
+
+    if(!input || !form || !maxPoints || input.disabled) return;
+
+    input.value = String(maxPoints);
+    form.requestSubmit();
 }
 
 function getCurrentTaskDurationSeconds(){
@@ -5924,32 +5960,6 @@ function getCurrentTaskDurationSeconds(){
     const duration = Math.round((Date.now() - currentTaskStartedAt) / 1000);
 
     return Math.max(1, Math.min(duration, 4 * 60 * 60));
-}
-
-function finish(type){
-    if(currentTaskAnswered) return;
-
-    if(isCourseTask()){
-        if(type === "bad"){
-            showCorrection();
-            setResultButtonsEnabled(false);
-            addProgress("bad");
-            return;
-        }
-
-        setResultButtonsEnabled(false);
-        addProgress(hintUsed ? "medium" : "good");
-        nextTask();
-        return;
-    }
-
-    if(type === "good" && hintUsed){
-        addProgress("medium");
-    } else {
-        addProgress(type);
-    }
-
-    nextTask();
 }
 
 function showHint(){

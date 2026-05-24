@@ -718,7 +718,23 @@
     "topic": "statystyka",
     "level": "matura_podstawowa",
     "hint": "Z diagramu odczytaj liczebności, uporządkuj ceny do mediany i oblicz średnia ważona.",
-    "answer": "29.1 C, 29.2 A",
+    "answer": [
+      "1) C",
+      "2) A"
+    ],
+    "type": "multi",
+    "options": [
+      "1) A",
+      "1) B",
+      "1) C",
+      "1) D",
+      "1) E",
+      "2) A",
+      "2) B",
+      "2) C",
+      "2) D",
+      "2) E"
+    ],
     "tags": [
       "statystyka",
       "mediana",
