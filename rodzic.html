@@ -245,11 +245,11 @@ body {
 
 .info-card {
     display: grid;
-    gap: 8px;
+    gap: 6px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
-    padding: 14px;
+    padding: 12px;
 }
 
 .info-card span {
@@ -260,15 +260,10 @@ body {
 }
 
 .info-card strong {
-    font-size: 18px;
+    min-height: 22px;
+    color: var(--text);
+    font-size: 16px;
     line-height: 1.2;
-}
-
-.info-card p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.5;
 }
 
 .progress-block {
@@ -609,18 +604,15 @@ body {
                 <div class="info-grid">
                     <div class="info-card">
                         <span>Odbyte lekcje</span>
-                        <strong id="lessonLedgerStat">W przygotowaniu</strong>
-                        <p>Docelowo ta wartość będzie pobierana z arkusza zajęć i pokaże liczbę spotkań odbytych w bieżącym miesiącu.</p>
+                        <strong id="lessonLedgerStat">—</strong>
                     </div>
                     <div class="info-card">
                         <span>Płatności</span>
-                        <strong id="paymentStatusStat">Do uzupełnienia</strong>
-                        <p>Miejsce pod informację o rozliczeniu oraz przyszłą bramkę płatności.</p>
+                        <strong id="paymentStatusStat">—</strong>
                     </div>
                     <div class="info-card">
                         <span>Najbliższy kontakt</span>
-                        <strong id="nextContactStat">Po lekcji</strong>
-                        <p>Tu można później pokazywać najbliższy termin zajęć, krótką notatkę lub przypomnienie organizacyjne.</p>
+                        <strong id="nextContactStat">—</strong>
                     </div>
                 </div>
             </section>
