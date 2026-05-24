@@ -10,10 +10,12 @@ from werkzeug.security import check_password_hash
 from auth_storage import (
     INTEGRITY_ERRORS,
     contact_message_counts,
+    create_parent_access_token,
     create_contact_message,
     create_user,
     delete_contact_message,
     delete_student,
+    disable_parent_access_token,
     generate_temporary_password,
     get_user_by_email,
     get_user_by_id,
@@ -21,6 +23,7 @@ from auth_storage import (
     list_contact_messages,
     list_students,
     mark_task_for_review,
+    parent_access_by_token,
     progress_for_user,
     public_user,
     record_progress,
@@ -28,6 +31,7 @@ from auth_storage import (
     review_tasks_for_user,
     reset_user_password,
     sync_admin_user,
+    touch_parent_access,
     touch_last_login,
     update_contact_message_deleted_state,
     update_contact_message_read_state,
@@ -370,10 +374,12 @@ def api_admin_create_student(_admin):
             level=data.get("level") or "matura_podstawowa",
             is_active=data.get("is_active", True),
         )
+        _access, parent_token = create_parent_access_token(student["id"])
 
         return jsonify({
             "student": student_payload(student),
             "temporary_password": password,
+            "parent_access_token": parent_token,
         }), 201
 
     return safe(handler)
@@ -427,6 +433,38 @@ def api_admin_reset_student_password(_admin, user_id):
         })
 
     return safe(handler)
+
+
+@app.post("/api/admin/students/<int:user_id>/parent-access")
+@require_admin
+def api_admin_create_parent_access(_admin, user_id):
+    def handler():
+        access, token = create_parent_access_token(user_id)
+
+        if not access:
+            return api_error("Nie znaleziono ucznia.", 404)
+
+        return jsonify({
+            "parent_access": access,
+            "parent_access_token": token,
+        })
+
+    return safe(handler)
+
+
+@app.delete("/api/admin/students/<int:user_id>/parent-access")
+@require_admin
+def api_admin_disable_parent_access(_admin, user_id):
+    student = get_user_by_id(user_id)
+
+    if not student or student["role"] != "student":
+        return api_error("Nie znaleziono ucznia.", 404)
+
+    disabled = disable_parent_access_token(user_id)
+
+    return jsonify({
+        "disabled": disabled,
+    })
 
 
 @app.get("/api/admin/students/<int:user_id>/progress")
@@ -526,6 +564,30 @@ def api_my_progress(user):
     return jsonify({
         "progress": progress_for_user(user["id"]),
     })
+
+
+@app.post("/api/parent/progress")
+def api_parent_progress():
+    def handler():
+        data = payload()
+        session_data = parent_access_by_token(data.get("token"))
+
+        if not session_data:
+            return api_error("Link rodzica jest nieprawidłowy albo wygasł.", 401)
+
+        student = session_data["student"]
+
+        if not student["is_active"]:
+            return api_error("Konto ucznia jest nieaktywne.", 403)
+
+        touch_parent_access(session_data["access"]["id"])
+
+        return jsonify({
+            "student": student_payload(student),
+            "progress": progress_for_user(student["id"]),
+        })
+
+    return safe(handler)
 
 
 @app.post("/api/bernoulli")

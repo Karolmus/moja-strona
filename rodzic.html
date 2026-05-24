@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="img/logo3.png">
+<link rel="shortcut icon" type="image/webp" href="img/logo3.png">
+<link rel="apple-touch-icon" href="img/logo3.png">
+<title>Panel rodzica</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
+
+<style>
+:root {
+    --page-bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+    --line: #d9e1ea;
+    --text: #1f2a36;
+    --muted: #64748b;
+    --navy: #263545;
+    --blue-text: #24527a;
+    --green: #57a663;
+    --green-soft: #e8f5e7;
+    --yellow: #e3bd41;
+    --yellow-soft: #fff4cf;
+    --red: #d95b50;
+    --red-soft: #fdecea;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+}
+
+.parent-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 30px 16px 48px;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(26px, 4vw, 40px);
+    line-height: 1.1;
+}
+
+.hero p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.brand-card {
+    display: grid;
+    place-items: center;
+    width: 118px;
+    min-height: 92px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+.brand-card img {
+    width: 74px;
+    height: auto;
+}
+
+.panel {
+    display: grid;
+    gap: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    padding: 16px;
+}
+
+.status-panel {
+    min-height: 150px;
+    place-items: center;
+    text-align: center;
+}
+
+.status-panel h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.status-panel p {
+    max-width: 620px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.dashboard {
+    display: none;
+    gap: 16px;
+}
+
+.dashboard.active {
+    display: grid;
+}
+
+.student-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.student-strip strong {
+    display: block;
+    font-size: 20px;
+}
+
+.student-strip span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.last-sync {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    padding: 7px 11px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.stat-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 13px;
+}
+
+.stat-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.stat-card strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 24px;
+    line-height: 1.1;
+}
+
+.grid-two {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 14px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0;
+    font-size: 17px;
+}
+
+.small-note {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.progress-block {
+    display: grid;
+    gap: 8px;
+}
+
+.progress-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.progress-track {
+    height: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.progress-fill {
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6aa84f, #8fcf74);
+}
+
+.progress-fill.exam {
+    background: linear-gradient(90deg, #24527a, #5d8fbd);
+}
+
+.distribution {
+    display: grid;
+    gap: 10px;
+}
+
+.distribution-track {
+    display: flex;
+    height: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.distribution-track span {
+    min-width: 0;
+}
+
+.distribution-track .good {
+    background: var(--green);
+}
+
+.distribution-track .medium {
+    background: var(--yellow);
+}
+
+.distribution-track .bad {
+    background: var(--red);
+}
+
+.legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.dot.good {
+    background: var(--green);
+}
+
+.dot.medium {
+    background: var(--yellow);
+}
+
+.dot.bad {
+    background: var(--red);
+}
+
+.activity-chart {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(44px, 1fr);
+    align-items: end;
+    gap: 8px;
+    min-height: 180px;
+    overflow-x: auto;
+    padding-top: 8px;
+}
+
+.day-column {
+    display: grid;
+    justify-items: center;
+    align-items: end;
+    gap: 5px;
+}
+
+.stacked-bar {
+    width: 28px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 7px 7px 4px 4px;
+    background: #eef2f7;
+}
+
+.bar-segment {
+    width: 100%;
+    min-height: 2px;
+}
+
+.bar-segment.good {
+    background: var(--green);
+}
+
+.bar-segment.medium {
+    background: var(--yellow);
+}
+
+.bar-segment.bad {
+    background: var(--red);
+}
+
+.day-total {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.day-label {
+    color: var(--muted);
+    font-size: 10px;
+    text-align: center;
+}
+
+.recent-list {
+    display: grid;
+    gap: 7px;
+    max-height: 360px;
+    overflow: auto;
+}
+
+.recent-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 9px;
+}
+
+.result-chip {
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.result-chip.good {
+    background: var(--green-soft);
+    color: #2f6b36;
+}
+
+.result-chip.medium {
+    background: var(--yellow-soft);
+    color: #765a12;
+}
+
+.result-chip.bad {
+    background: var(--red-soft);
+    color: #8b2119;
+}
+
+.recent-main {
+    display: grid;
+    gap: 2px;
+}
+
+.recent-main strong {
+    font-size: 13px;
+}
+
+.recent-main span,
+.recent-date {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+@media(max-width: 820px) {
+    .hero,
+    .grid-two,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-card {
+        width: 100%;
+        min-height: 76px;
+    }
+}
+</style>
+</head>
+
+<body>
+<nav class="main-nav" aria-label="Główna nawigacja">
+    <a href="index.html">Strona główna</a>
+    <a href="zadania.html">Strefa ucznia</a>
+    <a href="kalkulatory.html">Kalkulatory</a>
+    <a href="login.html" data-auth-login>Logowanie</a>
+    <span class="nav-user" data-auth-user hidden></span>
+    <button class="nav-logout" type="button" data-auth-logout hidden>Wyloguj</button>
+</nav>
+
+<main class="parent-page">
+    <section class="hero">
+        <div>
+            <h1>Panel rodzica</h1>
+            <p>Podgląd pracy ucznia, wykonanych zadań i regularności bez możliwości edycji wyników.</p>
+        </div>
+        <div class="brand-card" aria-label="Delta Sigma">
+            <img src="img/logo3.png" alt="Delta Sigma">
+        </div>
+    </section>
+
+    <section class="panel status-panel" id="statusPanel">
+        <h2>Ładuję podsumowanie...</h2>
+        <p>Jeżeli link został otwarty z wiadomości od nauczyciela, panel za chwilę pokaże aktualne dane ucznia.</p>
+    </section>
+
+    <section class="dashboard" id="dashboard" aria-live="polite">
+        <div class="panel student-strip">
+            <div>
+                <strong id="studentName">Uczeń</strong>
+                <span id="studentMeta">Poziom</span>
+            </div>
+            <div class="last-sync" id="lastSync">Ostatnia aktywność: brak</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span>Wykonane próby</span>
+                <strong id="attemptsStat">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>Skuteczność</span>
+                <strong id="accuracyStat">0%</strong>
+            </div>
+            <div class="stat-card">
+                <span>Czas pracy</span>
+                <strong id="durationStat">0 s</strong>
+            </div>
+            <div class="stat-card">
+                <span>Wymaga uwagi</span>
+                <strong id="reviewStat">0</strong>
+            </div>
+        </div>
+
+        <div class="grid-two">
+            <section class="panel">
+                <h2 class="section-title">Postęp pracy</h2>
+                <div class="progress-block">
+                    <div class="progress-head">
+                        <span>Kurs</span>
+                        <span id="courseProgressText">0 zadań</span>
+                    </div>
+                    <div class="progress-track"><span class="progress-fill" id="courseProgressFill"></span></div>
+                    <div class="small-note">Pokazuje liczbę unikalnych zadań z kursu, które uczeń rozpoczął lub zakończył.</div>
+                </div>
+                <div class="progress-block">
+                    <div class="progress-head">
+                        <span>Egzaminy</span>
+                        <span id="examProgressText">0 zadań</span>
+                    </div>
+                    <div class="progress-track"><span class="progress-fill exam" id="examProgressFill"></span></div>
+                    <div class="small-note">Pokazuje unikalne zadania egzaminacyjne zapisane na koncie ucznia.</div>
+                </div>
+                <div class="distribution">
+                    <h2 class="section-title">Rozkład odpowiedzi</h2>
+                    <div class="distribution-track" id="distributionTrack">
+                        <span class="good"></span>
+                        <span class="medium"></span>
+                        <span class="bad"></span>
+                    </div>
+                    <div class="legend">
+                        <span><i class="dot good"></i>Dobrze</span>
+                        <span><i class="dot medium"></i>Z pomocą</span>
+                        <span><i class="dot bad"></i>Źle</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2 class="section-title">Aktywność dzienna</h2>
+                <div class="activity-chart" id="activityChart"></div>
+            </section>
+        </div>
+
+        <section class="panel">
+            <h2 class="section-title">Ostatnie zadania</h2>
+            <div class="recent-list" id="recentList"></div>
+        </section>
+    </section>
+</main>
+
+<script src="static/auth.js"></script>
+<script>
+const PARENT_TOKEN_KEY = "deltaSigmaParentAccessToken";
+const levelLabels = {
+    matura_podstawowa: "Matura podstawowa",
+    matura_rozszerzona: "Matura rozszerzona",
+    egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
+};
+const resultLabels = {
+    good: "Dobrze",
+    medium: "Z pomocą",
+    bad: "Źle"
+};
+
+function getParentToken(){
+    const hashToken = decodeURIComponent(window.location.hash.replace(/^#/, "").trim());
+
+    if(hashToken){
+        window.localStorage.setItem(PARENT_TOKEN_KEY, hashToken);
+
+        if(window.history?.replaceState){
+            window.history.replaceState(null, document.title, `${window.location.pathname}${window.location.search}`);
+        }
+
+        return hashToken;
+    }
+
+    return window.localStorage.getItem(PARENT_TOKEN_KEY) || "";
+}
+
+function setStatus(title, message){
+    const statusPanel = document.getElementById("statusPanel");
+
+    statusPanel.innerHTML = `<h2></h2><p></p>`;
+    statusPanel.querySelector("h2").innerText = title;
+    statusPanel.querySelector("p").innerText = message;
+    statusPanel.style.display = "grid";
+    document.getElementById("dashboard").classList.remove("active");
+}
+
+function formatDate(value){
+    if(!value) return "brak";
+
+    return new Date(value).toLocaleString("pl-PL", {
+        dateStyle: "short",
+        timeStyle: "short"
+    });
+}
+
+function dayKey(value){
+    const date = new Date(value);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+function formatDuration(seconds){
+    const value = Math.max(0, Number(seconds) || 0);
+    const hours = Math.floor(value / 3600);
+    const minutes = Math.floor((value % 3600) / 60);
+    const rest = value % 60;
+
+    if(hours) return `${hours} h ${minutes} min`;
+    if(minutes) return `${minutes} min ${rest} s`;
+
+    return `${rest} s`;
+}
+
+function taskKey(item){
+    if(item.source_id && item.file) return `${item.source_id}:${item.file}`;
+    return item.task_id || item.file || "";
+}
+
+function taskTitle(item){
+    const file = String(item.file || item.task_id || "Zadanie");
+    const match = file.match(/(?:zadanie_|zad_|^)(\d+(?:\.\d+)?)/i);
+
+    if(match) return `Zadanie ${match[1]}`;
+
+    return item.topic || "Zadanie";
+}
+
+function taskSource(item){
+    if(String(item.source_id || "").includes("/kurs/")) return "Kurs";
+    if(item.level && levelLabels[item.level]) return levelLabels[item.level];
+
+    return "Egzamin";
+}
+
+function uniqueCount(progress, predicate){
+    const keys = new Set(
+        progress
+            .filter(predicate)
+            .map(taskKey)
+            .filter(Boolean)
+    );
+
+    return keys.size;
+}
+
+function renderDistribution(progress){
+    const total = progress.length || 1;
+    const counts = {
+        good: progress.filter(item => item.result === "good").length,
+        medium: progress.filter(item => item.result === "medium").length,
+        bad: progress.filter(item => item.result === "bad").length
+    };
+    const track = document.getElementById("distributionTrack");
+
+    ["good", "medium", "bad"].forEach(result => {
+        const segment = track.querySelector(`.${result}`);
+        const percent = progress.length ? (counts[result] / total) * 100 : 0;
+
+        segment.style.width = `${percent}%`;
+    });
+}
+
+function renderActivity(progress){
+    const chart = document.getElementById("activityChart");
+    const days = new Map();
+
+    progress.forEach(item => {
+        const key = dayKey(item.created_at);
+
+        if(!days.has(key)){
+            days.set(key, {
+                date: item.created_at,
+                good: 0,
+                medium: 0,
+                bad: 0,
+                total: 0
+            });
+        }
+
+        const day = days.get(key);
+
+        if(day[item.result] !== undefined){
+            day[item.result]++;
+        }
+
+        day.total++;
+    });
+
+    const values = [...days.values()].slice(-21);
+    const maxTotal = Math.max(1, ...values.map(day => day.total));
+
+    chart.innerHTML = "";
+
+    if(!values.length){
+        chart.innerHTML = `<div class="small-note">Brak zapisanej aktywności.</div>`;
+        return;
+    }
+
+    values.forEach(day => {
+        const column = document.createElement("div");
+        const total = document.createElement("div");
+        const bar = document.createElement("div");
+        const label = document.createElement("div");
+        const barHeight = Math.max(24, Math.round((day.total / maxTotal) * 130));
+
+        column.className = "day-column";
+        total.className = "day-total";
+        bar.className = "stacked-bar";
+        label.className = "day-label";
+        total.innerText = day.total;
+        bar.style.height = `${barHeight}px`;
+        label.innerText = new Date(day.date).toLocaleDateString("pl-PL", {
+            day: "2-digit",
+            month: "2-digit"
+        });
+
+        ["good", "medium", "bad"].forEach(result => {
+            const segment = document.createElement("span");
+            const percent = day.total ? (day[result] / day.total) * 100 : 0;
+
+            segment.className = `bar-segment ${result}`;
+            segment.style.height = `${percent}%`;
+            bar.appendChild(segment);
+        });
+
+        column.appendChild(total);
+        column.appendChild(bar);
+        column.appendChild(label);
+        chart.appendChild(column);
+    });
+}
+
+function renderRecent(progress){
+    const list = document.getElementById("recentList");
+
+    list.innerHTML = "";
+
+    if(!progress.length){
+        list.innerHTML = `<div class="small-note">Brak zapisanych zadań.</div>`;
+        return;
+    }
+
+    progress.slice(0, 16).forEach(item => {
+        const row = document.createElement("div");
+        const chip = document.createElement("span");
+        const main = document.createElement("div");
+        const title = document.createElement("strong");
+        const meta = document.createElement("span");
+        const date = document.createElement("span");
+
+        row.className = "recent-item";
+        chip.className = `result-chip ${item.result}`;
+        main.className = "recent-main";
+        date.className = "recent-date";
+
+        chip.innerText = resultLabels[item.result] || item.result;
+        title.innerText = taskTitle(item);
+        meta.innerText = `${taskSource(item)}${item.topic ? ` • ${item.topic}` : ""}`;
+        date.innerText = formatDate(item.created_at);
+
+        main.appendChild(title);
+        main.appendChild(meta);
+        row.appendChild(chip);
+        row.appendChild(main);
+        row.appendChild(date);
+        list.appendChild(row);
+    });
+}
+
+function renderDashboard(student, progress){
+    const total = progress.length;
+    const good = progress.filter(item => item.result === "good").length;
+    const medium = progress.filter(item => item.result === "medium").length;
+    const bad = progress.filter(item => item.result === "bad").length;
+    const duration = progress.reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0);
+    const courseCount = uniqueCount(progress, item => String(item.source_id || "").includes("/kurs/"));
+    const examCount = uniqueCount(progress, item => !String(item.source_id || "").includes("/kurs/"));
+    const latest = progress[0]?.created_at || student.last_login_at;
+    const maxProgress = Math.max(courseCount, examCount, 1);
+
+    document.getElementById("studentName").innerText = student.display_name || student.email;
+    document.getElementById("studentMeta").innerText = `${levelLabels[student.level] || student.level || "Poziom"} • konto rodzica`;
+    document.getElementById("lastSync").innerText = `Ostatnia aktywność: ${formatDate(latest)}`;
+    document.getElementById("attemptsStat").innerText = total;
+    document.getElementById("accuracyStat").innerText = total ? `${Math.round((good / total) * 100)}%` : "0%";
+    document.getElementById("durationStat").innerText = formatDuration(duration);
+    document.getElementById("reviewStat").innerText = medium + bad;
+    document.getElementById("courseProgressText").innerText = `${courseCount} zadań`;
+    document.getElementById("examProgressText").innerText = `${examCount} zadań`;
+    document.getElementById("courseProgressFill").style.width = `${Math.round((courseCount / maxProgress) * 100)}%`;
+    document.getElementById("examProgressFill").style.width = `${Math.round((examCount / maxProgress) * 100)}%`;
+
+    renderDistribution(progress);
+    renderActivity(progress);
+    renderRecent(progress);
+
+    document.getElementById("statusPanel").style.display = "none";
+    document.getElementById("dashboard").classList.add("active");
+}
+
+async function bootParentPanel(){
+    const token = getParentToken();
+
+    if(!token){
+        setStatus(
+            "Brakuje linku rodzica",
+            "Otwórz indywidualny link otrzymany od nauczyciela albo poproś o wygenerowanie nowego linku w panelu admina."
+        );
+        return;
+    }
+
+    try {
+        const data = await apiFetch("/api/parent/progress", {
+            method: "POST",
+            body: JSON.stringify({ token })
+        });
+
+        renderDashboard(data.student, Array.isArray(data.progress) ? data.progress : []);
+    } catch(error) {
+        window.localStorage.removeItem(PARENT_TOKEN_KEY);
+        setStatus("Nie można otworzyć panelu", error.message || "Link rodzica jest nieprawidłowy albo wygasł.");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", bootParentPanel);
+</script>
+</body>
+</html>
