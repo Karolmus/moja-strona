@@ -1300,6 +1300,10 @@ footer {
                     <span>Hasło</span>
                     <strong id="credentialsPassword"></strong>
                 </div>
+                <div class="credential-row">
+                    <span>Link rodzica</span>
+                    <strong id="credentialsParentLink"></strong>
+                </div>
                 <button class="btn secondary" type="button" id="copyCredentialsBtn">Kopiuj dane</button>
             </div>
             <div class="status-box" id="adminStatus" role="status" aria-live="polite"></div>
@@ -1466,6 +1470,7 @@ const credentialsBox = document.getElementById("credentialsBox");
 const credentialsTitle = document.getElementById("credentialsTitle");
 const credentialsLogin = document.getElementById("credentialsLogin");
 const credentialsPassword = document.getElementById("credentialsPassword");
+const credentialsParentLink = document.getElementById("credentialsParentLink");
 const copyCredentialsBtn = document.getElementById("copyCredentialsBtn");
 const studentLevelInput = document.getElementById("studentLevel");
 const levelCards = document.querySelectorAll(".level-card");
@@ -1503,12 +1508,36 @@ function showStatus(message){
     adminStatus.innerText = message;
 }
 
-function showCredentials(title, student, password){
+function parentLinkFromToken(token){
+    if(!token) return "";
+
+    const url = new URL(window.location.href);
+
+    url.search = "";
+    url.hash = token;
+
+    if(url.pathname.endsWith("admin.html")){
+        url.pathname = url.pathname.replace(/admin\.html$/, "rodzic.html");
+    } else if(!url.pathname.endsWith("rodzic.html")){
+        url.pathname = url.pathname.replace(/\/?$/, "/rodzic.html");
+    }
+
+    return url.toString();
+}
+
+function showCredentials(title, student, password, parentAccessToken = ""){
+    const parentLink = parentLinkFromToken(parentAccessToken);
+
     lastCredentialsText = `Login: ${student.email}\nHasło: ${password}`;
+
+    if(parentLink){
+        lastCredentialsText += `\nLink rodzica: ${parentLink}`;
+    }
 
     credentialsTitle.innerText = title;
     credentialsLogin.innerText = student.email;
     credentialsPassword.innerText = password;
+    credentialsParentLink.innerText = parentLink || "Wygeneruj link w wierszu ucznia";
     credentialsBox.classList.add("active");
 }
 
@@ -1524,14 +1553,16 @@ function saveIssuedCredentials(credentials){
     window.localStorage.setItem(ISSUED_CREDENTIALS_KEY, JSON.stringify(credentials));
 }
 
-function rememberIssuedPassword(student, password){
-    if(!student?.id || !password) return;
+function rememberIssuedPassword(student, password, parentAccessToken = ""){
+    if(!student?.id || (!password && !parentAccessToken)) return;
 
     const credentials = loadIssuedCredentials();
+    const current = credentials[String(student.id)] || {};
 
     credentials[String(student.id)] = {
         email: student.email,
-        password
+        password: password || current.password || "",
+        parentAccessToken: parentAccessToken || current.parentAccessToken || ""
     };
 
     saveIssuedCredentials(credentials);
@@ -1552,6 +1583,16 @@ function getIssuedPassword(student){
     }
 
     return item.password || "";
+}
+
+function getIssuedParentAccessToken(student){
+    const item = loadIssuedCredentials()[String(student.id)];
+
+    if(!item || item.email !== student.email){
+        return "";
+    }
+
+    return item.parentAccessToken || "";
 }
 
 async function copyLastCredentials(){
@@ -1799,16 +1840,48 @@ function confirmStudentAction(action, student, details = ""){
 
 async function copyStudentCredentials(student){
     const password = getIssuedPassword(student);
+    const parentToken = getIssuedParentAccessToken(student);
+    const parentLink = parentLinkFromToken(parentToken);
     const text = password
         ? `Login: ${student.email}\nHasło: ${password}`
         : `Login: ${student.email}\nHasło: zresetuj hasło, aby wydać nowe`;
+    const fullText = parentLink ? `${text}\nLink rodzica: ${parentLink}` : text;
 
     try {
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(fullText);
         showStatus("Skopiowano dane logowania ucznia.");
     } catch(error) {
-        showStatus(text);
+        showStatus(fullText);
     }
+}
+
+async function copyParentLink(student, forceRefresh = false){
+    let parentToken = getIssuedParentAccessToken(student);
+
+    if(forceRefresh && !window.confirm(`Czy wygenerować nowy link rodzica dla ucznia ${student.display_name}? Poprzedni link przestanie działać.`)){
+        return;
+    }
+
+    if(forceRefresh || !parentToken){
+        const data = await apiFetch(`/api/admin/students/${student.id}/parent-access`, {
+            method: "POST",
+            body: JSON.stringify({})
+        });
+
+        parentToken = data.parent_access_token;
+        rememberIssuedPassword(data.student || student, "", parentToken);
+    }
+
+    const parentLink = parentLinkFromToken(parentToken);
+
+    try {
+        await navigator.clipboard.writeText(parentLink);
+        showStatus(`Skopiowano link rodzica dla ${student.display_name}.`);
+    } catch(error) {
+        showStatus(parentLink);
+    }
+
+    renderStudents();
 }
 
 function buildCredentialsCell(student){
@@ -1821,7 +1894,10 @@ function buildCredentialsCell(student){
     const passwordLabel = document.createElement("span");
     const passwordValue = document.createElement("strong");
     const copyButton = document.createElement("button");
+    const parentButton = document.createElement("button");
+    const refreshParentButton = document.createElement("button");
     const issuedPassword = getIssuedPassword(student);
+    const issuedParentToken = getIssuedParentAccessToken(student);
 
     wrap.className = "login-details";
     loginLine.className = "login-line";
@@ -1830,6 +1906,14 @@ function buildCredentialsCell(student){
     copyButton.className = "mini-link";
     copyButton.innerText = "Kopiuj dane";
     copyButton.addEventListener("click", () => copyStudentCredentials(student));
+    parentButton.type = "button";
+    parentButton.className = "mini-link";
+    parentButton.innerText = issuedParentToken ? "Kopiuj link rodzica" : "Utwórz link rodzica";
+    parentButton.addEventListener("click", () => copyParentLink(student));
+    refreshParentButton.type = "button";
+    refreshParentButton.className = "mini-link";
+    refreshParentButton.innerText = "Nowy link rodzica";
+    refreshParentButton.addEventListener("click", () => copyParentLink(student, true));
 
     loginLabel.innerText = "Login";
     loginValue.innerText = student.email;
@@ -1847,6 +1931,12 @@ function buildCredentialsCell(student){
     wrap.appendChild(loginLine);
     wrap.appendChild(passwordLine);
     wrap.appendChild(copyButton);
+    wrap.appendChild(parentButton);
+
+    if(issuedParentToken){
+        wrap.appendChild(refreshParentButton);
+    }
+
     cell.appendChild(wrap);
 
     return cell;
@@ -2276,7 +2366,7 @@ async function resetPassword(student){
     });
 
     rememberIssuedPassword(data.student, data.temporary_password);
-    showCredentials("Nowe hasło ucznia", data.student, data.temporary_password);
+    showCredentials("Nowe hasło ucznia", data.student, data.temporary_password, getIssuedParentAccessToken(data.student));
     showStatus(`Nowe hasło dla ${student.display_name}: ${data.temporary_password}`);
     await loadStudents();
 }
@@ -3602,8 +3692,8 @@ studentForm.addEventListener("submit", async event => {
 
         studentForm.reset();
         setStudentLevel("matura_podstawowa");
-        rememberIssuedPassword(data.student, data.temporary_password);
-        showCredentials("Utworzono konto ucznia", data.student, data.temporary_password);
+        rememberIssuedPassword(data.student, data.temporary_password, data.parent_access_token);
+        showCredentials("Utworzono konto ucznia", data.student, data.temporary_password, data.parent_access_token);
         showStatus("Konto ucznia zostało utworzone. Dane logowania są widoczne powyżej.");
         await loadStudents();
     } catch(error) {
