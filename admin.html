@@ -43,7 +43,7 @@ body {
 }
 
 .container {
-    max-width: 1480px;
+    max-width: 2070px;
     margin: 28px auto;
     padding: 16px;
 }
@@ -71,7 +71,7 @@ body {
 
 .admin-layout {
     display: grid;
-    grid-template-columns: 290px minmax(0, 1fr);
+    grid-template-columns: 300px minmax(0, 1fr);
     gap: 14px;
     align-items: start;
 }
@@ -308,17 +308,19 @@ table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
-    min-width: 980px;
+    min-width: 1240px;
 }
 
 th,
 td {
     border-bottom: 1px solid var(--line);
-    padding: 7px 7px;
+    padding: 5px 8px;
     text-align: left;
     vertical-align: middle;
-    font-size: 13px;
-    overflow-wrap: anywhere;
+    font-size: 12.5px;
+    line-height: 1.25;
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 th {
@@ -338,11 +340,11 @@ th {
 }
 
 .col-student {
-    width: 10%;
+    width: 11%;
 }
 
 .col-login {
-    width: 18%;
+    width: 17%;
 }
 
 .col-created {
@@ -354,7 +356,7 @@ th {
 }
 
 .col-status {
-    width: 7%;
+    width: 8%;
 }
 
 .col-progress {
@@ -366,16 +368,20 @@ th {
 }
 
 .col-actions {
-    width: 20%;
+    width: 19%;
 }
 
 .badge {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 74px;
     border-radius: 999px;
-    padding: 4px 8px;
+    padding: 3px 9px;
     font-size: 11px;
+    line-height: 1;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .badge.active {
@@ -390,13 +396,13 @@ th {
 
 .actions {
     display: grid;
-    gap: 6px;
+    gap: 4px;
 }
 
 .actions .btn {
     width: 100%;
-    min-height: 30px;
-    padding: 5px 8px;
+    min-height: 24px;
+    padding: 3px 8px;
     font-size: 11px;
     line-height: 1.15;
     white-space: nowrap;
@@ -409,11 +415,11 @@ th {
 .action-danger-group {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
+    gap: 4px;
     border: 1px solid #f3d2ce;
     border-radius: 8px;
     background: #fff7f6;
-    padding: 6px;
+    padding: 4px;
 }
 
 .action-danger-group .btn:last-child {

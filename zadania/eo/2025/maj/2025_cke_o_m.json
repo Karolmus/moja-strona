@@ -14,8 +14,7 @@
     ],
     "tags": [
       "diagramy",
-      "procenty",
-      "zadanie zamknięte"
+      "procenty"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 59,
@@ -35,9 +34,8 @@
       "D"
     ],
     "tags": [
-      "ułamki",
-      "działania na liczbach",
-      "zadanie zamknięte"
+      "ulamki",
+      "dzialania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 46,
@@ -57,9 +55,8 @@
       "D"
     ],
     "tags": [
-      "dzielenie z resztą",
-      "liczby naturalne",
-      "zadanie zamknięte"
+      "dzielenie-z-reszta",
+      "liczby-naturalne"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 79,
@@ -79,9 +76,8 @@
       "BD"
     ],
     "tags": [
-      "średnia arytmetyczna",
-      "statystyka",
-      "zadanie zamknięte"
+      "srednia-arytmetyczna",
+      "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 64,
@@ -101,9 +97,8 @@
       "D"
     ],
     "tags": [
-      "przekształcanie wzorów",
-      "wyrażenia algebraiczne",
-      "zadanie zamknięte"
+      "przeksztalcanie-wzorow",
+      "wyrazenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 57,
@@ -123,9 +118,8 @@
       "D"
     ],
     "tags": [
-      "wyrażenia algebraiczne",
-      "zadanie tekstowe",
-      "zadanie zamknięte"
+      "wyrazenia-algebraiczne",
+      "zadania-tekstowe"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 42,
@@ -146,9 +140,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "działania na liczbach",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "dzialania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 37,
@@ -168,8 +160,7 @@
       "D"
     ],
     "tags": [
-      "potęgi",
-      "zadanie zamknięte"
+      "potegi"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 58,
@@ -189,9 +180,7 @@
       "D"
     ],
     "tags": [
-      "prędkość",
-      "jednostki",
-      "zadanie zamknięte"
+      "predkosc-droga-czas"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 83,
@@ -211,9 +200,8 @@
       "D"
     ],
     "tags": [
-      "prawdopodobieństwo",
-      "ułamki",
-      "zadanie zamknięte"
+      "prawdopodobienstwo",
+      "ulamki"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 56,
@@ -233,10 +221,9 @@
       "FF"
     ],
     "tags": [
-      "twierdzenie Pitagorasa",
-      "pola figur",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "twierdzenie-pitagorasa",
+      "pola-figur",
+      "trojkat-prostokatny"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 44,
@@ -256,10 +243,8 @@
       "FF"
     ],
     "tags": [
-      "oś liczbowa",
-      "liczby całkowite",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "os-liczbowa",
+      "liczby-calkowite"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 71,
@@ -279,9 +264,8 @@
       "D"
     ],
     "tags": [
-      "obwód",
-      "wielokąty",
-      "zadanie zamknięte"
+      "obwody-figur",
+      "wielokaty"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 70,
@@ -301,9 +285,8 @@
       "D"
     ],
     "tags": [
-      "układ współrzędnych",
-      "równoległobok",
-      "zadanie zamknięte"
+      "uklad-wspolrzednych",
+      "rownoleglobok"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 66,
@@ -323,9 +306,8 @@
       "D"
     ],
     "tags": [
-      "prostopadłościan",
-      "pole powierzchni",
-      "zadanie zamknięte"
+      "prostopadloscian",
+      "pole-powierzchni-bryl"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 52,
@@ -338,9 +320,9 @@
     "hint": "Odejmij od 7/15 ułamki 1/5 i 1/6, sprowadźając je do wspólnego mianownika.",
     "answer": "Trzeci składnik sumy to 1/10.",
     "tags": [
-      "ułamki",
-      "działania na ułamkach",
-      "zadanie otwarte"
+      "ulamki",
+      "dzialania-na-liczbach",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 46,
@@ -364,9 +346,9 @@
     "hint": "Oznacz liczbę plakatów Basi przez b. Wtedy Andrzej ma b + 28, a Marek ma b/3.",
     "answer": "Basia ma 42 plakaty, Marek ma 14 plakatów, a Andrzej ma 70 plakatów.",
     "tags": [
-      "równania",
-      "zadania tekstowe",
-      "zadanie otwarte"
+      "rownania-liniowe",
+      "zadania-tekstowe",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 45,
@@ -402,10 +384,10 @@
     "hint": "Najpierw oblicz trzeci kąt trójkąta EBC. Potem użyj własności kątów przy prostych równoległych.",
     "answer": "∠DAB = 75°, ∠BCD = 132°, ∠CDA = 105°.",
     "tags": [
-      "kąty",
+      "katy",
       "trapez",
-      "równoległobok",
-      "zadanie otwarte"
+      "rownoleglobok",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 50,
@@ -434,8 +416,8 @@
     "answer": "Pole dużej tablicy jest 6 razy większe od pola małej tablicy.",
     "tags": [
       "skala",
-      "pola figur",
-      "zadanie otwarte"
+      "pola-figur",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 46,
@@ -467,10 +449,10 @@
     "hint": "Kwadrat ma bok 15 cm. Wyznacz położenie punktów E i F, a pole czworokąta policz jako sumę albo różnicę pól prostszych figur.",
     "answer": "Pole czworokąta AECF jest równe 105 cm².",
     "tags": [
-      "pola figur",
+      "pola-figur",
       "kwadrat",
-      "czworokąt",
-      "zadanie otwarte"
+      "czworokaty",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 29,
@@ -515,10 +497,10 @@
     "hint": "Najpierw wyznacz krawędź podstawy z pola ściany bocznej. Potem oblicz krawędź boczną z twierdzenia Pitagorasa.",
     "answer": "Suma długości wszystkich krawędzi ostrosłupa wynosi 132 cm.",
     "tags": [
-      "ostrosłup",
-      "twierdzenie Pitagorasa",
-      "bryły",
-      "zadanie otwarte"
+      "ostroslup",
+      "twierdzenie-pitagorasa",
+      "bryly",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 38,

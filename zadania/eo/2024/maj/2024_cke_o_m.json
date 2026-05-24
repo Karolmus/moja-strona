@@ -15,9 +15,7 @@
     "tags": [
       "diagramy",
       "procenty",
-      "statystyka",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -37,9 +35,8 @@
       "D"
     ],
     "tags": [
-      "ułamki",
-      "liczby wymierne",
-      "zadanie zamknięte"
+      "ulamki",
+      "liczby-wymierne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -59,11 +56,8 @@
       "FF"
     ],
     "tags": [
-      "średnia",
-      "arytmetyczna",
-      "statystyka",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "srednia-arytmetyczna",
+      "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -83,9 +77,8 @@
       "BD"
     ],
     "tags": [
-      "ułamki",
-      "działania na ułamkach",
-      "zadanie zamknięte"
+      "ulamki",
+      "dzialania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -105,11 +98,9 @@
       "D"
     ],
     "tags": [
-      "kąty",
-      "w",
-      "figurach",
-      "trapez",
-      "zadanie zamknięte"
+      "katy",
+      "geometria",
+      "trapez"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -129,10 +120,8 @@
       "D"
     ],
     "tags": [
-      "przekształcanie",
-      "wzorów",
-      "algebra",
-      "zadanie zamknięte"
+      "przeksztalcanie-wzorow",
+      "wyrazenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -152,10 +141,7 @@
       "FF"
     ],
     "tags": [
-      "potęgi",
-      "działania na potęgach",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "potegi"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -175,9 +161,8 @@
       "D"
     ],
     "tags": [
-      "prawdopodobieństwo",
-      "kombinatoryka",
-      "zadanie zamknięte"
+      "prawdopodobienstwo",
+      "zliczanie-przypadkow"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -197,10 +182,7 @@
       "D"
     ],
     "tags": [
-      "wyrażenia",
-      "algebraiczne",
-      "algebra",
-      "zadanie zamknięte"
+      "wyrazenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -220,10 +202,8 @@
       "D"
     ],
     "tags": [
-      "obliczenia",
-      "zegarowe",
-      "czas",
-      "zadanie zamknięte"
+      "katy",
+      "predkosc-droga-czas"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -243,10 +223,8 @@
       "FF"
     ],
     "tags": [
-      "proporcjonalność",
-      "wykres",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "proporcje",
+      "wykresy"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -266,10 +244,8 @@
       "D"
     ],
     "tags": [
-      "układ",
-      "współrzędnych",
-      "współrzędne",
-      "zadanie zamknięte"
+      "uklad-wspolrzednych",
+      "wspolrzedne-punktu"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -289,10 +265,9 @@
       "D"
     ],
     "tags": [
-      "prostokąt",
-      "kwadraty",
-      "geometria",
-      "zadanie zamknięte"
+      "prostokat",
+      "kwadrat",
+      "geometria"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -312,11 +287,8 @@
       "FF"
     ],
     "tags": [
-      "twierdzenie",
-      "pitagorasa",
-      "trójkąt prostokątny",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "twierdzenie-pitagorasa",
+      "trojkat-prostokatny"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -336,9 +308,8 @@
       "BD"
     ],
     "tags": [
-      "ostrosłup",
-      "geometria przestrzenna",
-      "zadanie zamknięte"
+      "ostroslup",
+      "bryly"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -351,10 +322,10 @@
     "hint": "Oznacz liczbę elementów jednego zestawu przez x i zapisz, jaką część zestawu ułożyły dziewczynki.",
     "answer": "Jeden zestaw puzzli składa się z 600 elementów.",
     "tags": [
-      "ułamki",
-      "równania",
-      "zadanie tekstowe",
-      "zadanie otwarte"
+      "ulamki",
+      "rownania-liniowe",
+      "zadania-tekstowe",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 2,
@@ -395,10 +366,10 @@
     "hint": "Najpierw oblicz długość AE z twierdzenia Pitagorasa, potem wykorzystaj trójkąt równoramienny.",
     "answer": "Pole trapezu ABCE jest równe 650 cm².",
     "tags": [
-      "pole",
-      "trapezu",
+      "pola-figur",
+      "trapez",
       "geometria",
-      "zadanie otwarte"
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 3,
@@ -440,10 +411,9 @@
     "answer": "Pan Jan otrzymał ze sprzedaży truskawek 2472 zł.",
     "tags": [
       "procenty",
-      "obliczenia",
-      "praktyczne",
-      "tabela",
-      "zadanie otwarte"
+      "zadania-tekstowe",
+      "tabele",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 3,
@@ -475,10 +445,10 @@
     "hint": "Oblicz wysokość ostrosłupa z wzoru na objętość, a potem porównaj wysokości wież.",
     "answer": "Różnica wysokości obu wież wynosi 2 cm.",
     "tags": [
-      "objętość",
-      "ostrosłupa",
-      "bryły",
-      "zadanie otwarte"
+      "objetosc-bryl",
+      "ostroslup",
+      "bryly",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 2,

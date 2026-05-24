@@ -13,10 +13,7 @@
       "FF"
     ],
     "tags": [
-      "proporcjonalność",
-      "proporcje",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "proporcje"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -36,10 +33,9 @@
       "D"
     ],
     "tags": [
-      "potęgi",
-      "ułamki",
-      "działania na liczbach",
-      "zadanie zamknięte"
+      "potegi",
+      "ulamki",
+      "dzialania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -59,10 +55,7 @@
       "D"
     ],
     "tags": [
-      "wyrażenia",
-      "algebraiczne",
-      "wartość wyrażenia",
-      "zadanie zamknięte"
+      "wyrazenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -82,12 +75,8 @@
       "D"
     ],
     "tags": [
-      "zadanie",
-      "tekstowe",
-      "geometria",
-      "figury",
-      "praktyczne",
-      "zadanie zamknięte"
+      "zadania-tekstowe",
+      "geometria"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -108,8 +97,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "działania na liczbach",
-      "zadanie zamknięte"
+      "dzialania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -129,9 +117,8 @@
       "D"
     ],
     "tags": [
-      "równania",
-      "zadanie tekstowe",
-      "zadanie zamknięte"
+      "rownania-liniowe",
+      "zadania-tekstowe"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -151,9 +138,7 @@
       "BD"
     ],
     "tags": [
-      "potęgi",
-      "działania na potęgach",
-      "zadanie zamknięte"
+      "potegi"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -173,10 +158,7 @@
       "D"
     ],
     "tags": [
-      "wyrażenia",
-      "algebraiczne",
-      "algebra",
-      "zadanie zamknięte"
+      "wyrazenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -196,9 +178,7 @@
       "D"
     ],
     "tags": [
-      "bryły",
-      "geometria przestrzenna",
-      "zadanie zamknięte"
+      "bryly"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -219,8 +199,7 @@
     ],
     "tags": [
       "skala",
-      "obliczenia praktyczne",
-      "zadanie zamknięte"
+      "zadania-tekstowe"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -240,10 +219,8 @@
       "FF"
     ],
     "tags": [
-      "prawdopodobieństwo",
-      "ułamki",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "prawdopodobienstwo",
+      "ulamki"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -263,11 +240,9 @@
       "D"
     ],
     "tags": [
-      "prostokąt",
-      "twierdzenie",
-      "pitagorasa",
-      "geometria",
-      "zadanie zamknięte"
+      "prostokat",
+      "twierdzenie-pitagorasa",
+      "geometria"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -288,11 +263,9 @@
     ],
     "tags": [
       "proste",
-      "równoległe",
-      "prostopadłe",
-      "geometria",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "proste-rownolegle",
+      "proste-prostopadle",
+      "geometria"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -314,11 +287,10 @@
       "B3"
     ],
     "tags": [
-      "pola",
-      "figur",
+      "pola-figur",
+      "geometria",
       "kwadrat",
-      "prostokąt",
-      "zadanie zamknięte"
+      "prostokat"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -338,12 +310,8 @@
       "FF"
     ],
     "tags": [
-      "kąty",
-      "w",
-      "figurach",
-      "geometria",
-      "prawda fałsz",
-      "zadanie zamknięte"
+      "katy",
+      "geometria"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -356,9 +324,9 @@
     "hint": "Oznacz cenę jednego biletu do kina lub teatru i zapisz równanie z treści zadania.",
     "answer": "Cena jednego biletu do teatru jest równa 80 zł.",
     "tags": [
-      "równania",
-      "zadanie tekstowe",
-      "zadanie otwarte"
+      "rownania-liniowe",
+      "zadania-tekstowe",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 2,
@@ -394,11 +362,9 @@
     "hint": "Najpierw oblicz prędkość pociągu, a potem drogę przebytą w 15 sekund.",
     "answer": "Długość pociągu wynosi 210 m.",
     "tags": [
-      "prędkość",
-      "droga",
-      "czas",
-      "obliczenia praktyczne",
-      "zadanie otwarte"
+      "predkosc-droga-czas",
+      "zadania-tekstowe",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 2,
@@ -426,10 +392,10 @@
     "hint": "Oblicz pole trójkąta ACD, odejmij je od pola czworokąta i użyj wzoru na pole trójkąta ABC.",
     "answer": "Wysokość trójkąta ABC jest równa 10 cm.",
     "tags": [
-      "pola",
-      "trójkątów",
+      "pola-figur",
+      "trojkaty",
       "geometria",
-      "zadanie otwarte"
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 3,
@@ -466,11 +432,10 @@
     "hint": "Wyznacz brakujące krawędzie klocka z podanych wymiarów całej figury, a potem oblicz objętość.",
     "answer": "Objętość jednego klocka jest równa 225 cm³.",
     "tags": [
-      "objętość",
-      "prostopadłościanu",
-      "bryły",
-      "geometria przestrzenna",
-      "zadanie otwarte"
+      "objetosc-bryl",
+      "prostopadloscian",
+      "bryly",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 3,

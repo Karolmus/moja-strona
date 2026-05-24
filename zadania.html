@@ -48,8 +48,8 @@ body {
 
 .container {
     max-width: 1180px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 28px auto;
+    padding: 16px;
 }
 
 .tasks-layout {
@@ -63,24 +63,31 @@ body {
     position: sticky;
     top: 16px;
     display: grid;
-    gap: 12px;
+    gap: 9px;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 14px;
+    padding: 12px;
     box-shadow: var(--shadow);
+}
+
+.sidebar-head {
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 8px;
+    align-items: stretch;
 }
 
 .side-section {
     display: grid;
-    gap: 8px;
+    gap: 6px;
 }
 
 .task-brand-card {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 72px;
+    min-height: 58px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 100%);
@@ -89,8 +96,8 @@ body {
 }
 
 .task-brand-logo {
-    width: 92px;
-    max-width: 58%;
+    width: 72px;
+    max-width: 72%;
     height: auto;
     object-fit: contain;
     opacity: 0.92;
@@ -221,8 +228,8 @@ body {
 
 .source-summary-card {
     display: grid;
-    gap: 9px;
-    padding: 10px;
+    gap: 6px;
+    padding: 8px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 100%);
@@ -278,7 +285,7 @@ body {
 
 .side-title {
     color: var(--muted);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -287,9 +294,9 @@ body {
     display: flex;
     gap: 4px;
     background: #e9eef4;
-    padding: 4px;
+    padding: 3px;
     border-radius: 8px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     border: 1px solid var(--line);
 }
 
@@ -304,10 +311,11 @@ body {
     border: none;
     background: transparent;
     color: var(--muted);
-    padding: 10px 12px;
+    padding: 7px 9px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 12px;
     line-height: 1.2;
     overflow-wrap: anywhere;
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
@@ -333,7 +341,7 @@ body {
 }
 
 .source-list {
-    max-height: 238px;
+    max-height: 192px;
     overflow-y: auto;
     padding-right: 2px;
 }
@@ -341,12 +349,12 @@ body {
 .source-list.course-source-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 4px;
-    max-height: 224px;
+    max-height: 176px;
 }
 
 .source-list.exam-source-list {
     gap: 5px;
-    max-height: 220px;
+    max-height: 168px;
 }
 
 .source-btn,
@@ -369,22 +377,22 @@ body {
 
 .source-btn {
     display: grid;
-    gap: 3px;
-    padding: 10px 11px;
+    gap: 1px;
+    padding: 7px 9px;
     text-align: left;
 }
 
 .course-source-list .source-btn {
-    min-height: 40px;
+    min-height: 34px;
     align-content: center;
     gap: 1px;
-    padding: 6px 6px;
+    padding: 5px 5px;
     text-align: center;
 }
 
 .exam-source-list .source-btn {
     gap: 1px;
-    padding: 8px 10px;
+    padding: 6px 9px;
 }
 
 .course-source-list .source-btn span {
@@ -409,20 +417,55 @@ body {
 .mode-btn,
 .category-btn,
 .section-btn {
-    min-height: 40px;
-    padding: 9px 11px;
+    min-height: 34px;
+    padding: 7px 9px;
 }
 
-.mode-toggle {
+.exam-tools-row {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    align-items: center;
+    gap: 6px;
+}
+
+.mode-toggle,
+.tag-toggle {
     width: fit-content;
 }
 
 .mode-btn {
     width: auto;
-    min-height: 30px;
-    padding: 5px 10px;
+    min-height: 28px;
+    padding: 4px 9px;
     border-radius: 7px;
     font-size: 12px;
+}
+
+.tag-toggle-btn {
+    width: auto;
+    min-height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 9px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tag-toggle-btn:hover {
+    background: #f3f6fa;
+    border-color: #b9c6d4;
+}
+
+.tag-toggle-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
 }
 
 .section-toggle {
@@ -486,14 +529,14 @@ body {
 
 .tag-search-input {
     width: 100%;
-    min-height: 40px;
+    min-height: 34px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
     color: var(--text);
     font: inherit;
     font-size: 13px;
-    padding: 9px 11px;
+    padding: 7px 9px;
 }
 
 .tag-search-input::placeholder {
@@ -548,7 +591,7 @@ body {
 .task-card {
     background: var(--surface);
     border-radius: 8px;
-    padding: 24px;
+    padding: 20px;
     box-shadow: var(--shadow);
     border: 1px solid var(--line);
 }
@@ -1170,6 +1213,9 @@ button {
     font-size: 16px;
     line-height: 1.2;
     white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
 }
 
 .choice-btn:hover {
@@ -1253,7 +1299,7 @@ button {
 
 .tf-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(80px, 120px));
+    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(112px, 148px));
     gap: 8px;
     align-items: stretch;
 }
@@ -1482,7 +1528,7 @@ footer {
 
 @media(max-width: 760px) {
     .container {
-        margin: 24px auto;
+        margin: 8px auto 18px;
         padding: 5px;
     }
 
@@ -1492,34 +1538,53 @@ footer {
     }
 
     .task-card {
-        padding: 16px;
+        padding: 12px;
     }
 
     .tasks-layout {
         grid-template-columns: 1fr;
+        gap: 8px;
     }
 
     .task-sidebar {
         position: static;
-        padding: 12px;
+        gap: 7px;
+        padding: 8px;
+    }
+
+    .sidebar-head {
+        grid-template-columns: 74px minmax(0, 1fr);
+        gap: 6px;
+    }
+
+    .task-brand-card {
+        min-height: 48px;
+    }
+
+    .task-brand-logo {
+        width: 58px;
     }
 
     .source-list {
-        max-height: 178px;
+        max-height: 118px;
     }
 
     .source-list.course-source-list {
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        max-height: 150px;
+        max-height: 116px;
+    }
+
+    .source-list.exam-source-list {
+        max-height: 112px;
     }
 
     .course-source-list .source-btn {
-        min-height: 36px;
-        padding: 5px 4px;
+        min-height: 30px;
+        padding: 4px;
     }
 
     .course-source-list .source-btn span {
-        font-size: 11px;
+        font-size: 10.5px;
     }
 
     .course-source-list .source-btn small {
@@ -1527,18 +1592,21 @@ footer {
     }
 
     .focus-toggle {
-        position: static;
-        display: block;
-        width: calc(100% - 10px);
-        margin: 8px auto 10px;
-        border-radius: 8px;
+        top: auto;
+        right: 9px;
+        bottom: 9px;
+        min-height: 34px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 12px;
     }
 
     body.focus-mode .focus-toggle {
-        position: sticky;
-        top: 5px;
-        width: calc(100% - 10px);
-        margin: 5px auto 8px;
+        top: auto;
+        right: 9px;
+        bottom: 9px;
+        width: auto;
+        margin: 0;
     }
 
     body.focus-mode .container {
@@ -1552,6 +1620,45 @@ footer {
 
     .level-selector {
         flex-direction: column;
+        gap: 3px;
+        margin-bottom: 0;
+    }
+
+    .level-btn {
+        padding: 5px 6px;
+        font-size: 11px;
+    }
+
+    .exam-tools-row {
+        grid-template-columns: auto auto;
+        gap: 5px;
+    }
+
+    .source-summary-card {
+        gap: 4px;
+        padding: 6px 7px;
+        background: white;
+        box-shadow: none;
+    }
+
+    .source-summary-main {
+        align-items: center;
+    }
+
+    .source-summary-points {
+        font-size: 13px;
+    }
+
+    .source-summary-percent {
+        font-size: 11px;
+    }
+
+    .source-summary-track {
+        height: 5px;
+    }
+
+    .source-summary-detail {
+        display: none;
     }
 
     .task-actions {
@@ -1599,7 +1706,7 @@ footer {
     }
 
     .tf-row {
-        grid-template-columns: minmax(0, 1fr) repeat(2, minmax(56px, 72px));
+        grid-template-columns: minmax(0, 1fr) repeat(2, minmax(84px, 1fr));
         gap: 6px;
     }
 
@@ -1684,20 +1791,62 @@ footer {
 
     <div class="tasks-layout">
         <aside class="task-sidebar" aria-label="Ustawienia zadań">
-            <a class="task-brand-card" href="index.html" aria-label="Delta Sigma">
-                <img class="task-brand-logo" src="img/logo3.png" alt="Delta Sigma">
-            </a>
+            <div class="sidebar-head">
+                <a class="task-brand-card" href="index.html" aria-label="Delta Sigma">
+                    <img class="task-brand-logo" src="img/logo3.png" alt="Delta Sigma">
+                </a>
 
-            <div class="side-section">
-                <div class="side-title">Poziom</div>
-                <div class="level-selector sidebar-levels" id="guestLevelSection">
-                    <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
-                    <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
-                    <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
+                <div class="side-section" id="guestLevelWrapper">
+                    <div class="side-title">Poziom</div>
+                    <div class="level-selector sidebar-levels" id="guestLevelSection">
+                        <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
+                        <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
+                        <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="side-section" id="tagSearchSection">
+            <div class="side-section" id="assignedCourseSection" style="display:none">
+                <div class="side-title">Przypisany kurs</div>
+                <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
+            </div>
+
+            <div class="side-section" id="formulaSection" style="display:none">
+                <div class="side-title">Materiały do pobrania</div>
+                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" download>
+                    <strong>Karta wzorów</strong>
+                    <span>Egzamin Ósmoklasisty</span>
+                </a>
+            </div>
+
+            <div class="side-section" id="categorySection" style="display:none">
+                <div class="side-title">Materiał</div>
+                <div class="category-toggle">
+                    <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
+                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
+                </div>
+            </div>
+
+            <div class="side-section">
+                <div class="side-title" id="sourceTitle">Numer lekcji</div>
+                <div class="source-list" id="sourceList"></div>
+            </div>
+
+            <div class="exam-tools-row">
+                <div class="side-section" id="modeSection" style="display:none">
+                    <div class="mode-toggle">
+                        <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
+                    </div>
+                </div>
+
+                <div class="side-section" id="tagToggleSection" style="display:none">
+                    <div class="tag-toggle">
+                        <button class="tag-toggle-btn" id="tagToggleButton" type="button" onclick="toggleTagPanel()">Tagi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-section" id="tagSearchSection" style="display:none">
                 <div class="side-title">Tagi</div>
                 <input class="tag-search-input" id="tagSearchInput" type="search" placeholder="Szukaj tagu, np. funkcje" oninput="setTagSearch(this.value)">
                 <div class="tag-chip-list" id="tagChipList"></div>
@@ -1705,7 +1854,7 @@ footer {
                 <div class="tag-helper" id="tagHelper">Wybierz tag albo wpisz fragment nazwy.</div>
             </div>
 
-            <div class="side-section" id="progressToggleSection">
+            <div class="side-section" id="progressToggleSection" style="display:none">
                 <button class="progress-toggle-btn" id="progressToggleButton" type="button" onclick="toggleStudentProgressPanel()">Pokaż postęp ucznia</button>
             </div>
 
@@ -1726,7 +1875,7 @@ footer {
                     <div class="learning-progress">
                         <div class="learning-progress-head">
                             <span>Egzaminy</span>
-                            <strong id="examProgressLabel">0 / 20 arkuszy</strong>
+                            <strong id="examProgressLabel">0 / 0 arkuszy</strong>
                         </div>
                         <div class="learning-progress-track">
                             <span class="learning-progress-fill exam" id="examProgressFill"></span>
@@ -1734,39 +1883,6 @@ footer {
                         <div class="learning-progress-detail" id="examProgressDetail">Wczytywanie postępu...</div>
                     </div>
                 </div>
-            </div>
-
-            <div class="side-section" id="assignedCourseSection">
-                <div class="side-title">Przypisany kurs</div>
-                <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
-            </div>
-
-            <div class="side-section" id="formulaSection" style="display:none">
-                <div class="side-title">Materiały do pobrania</div>
-                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" download>
-                    <strong>Karta wzorów</strong>
-                    <span>Egzamin Ósmoklasisty</span>
-                </a>
-            </div>
-
-            <div class="side-section" id="categorySection">
-                <div class="side-title">Materiał</div>
-                <div class="category-toggle">
-                    <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
-                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
-                </div>
-            </div>
-
-            <div class="side-section" id="modeSection" style="display:none">
-                <div class="side-title">Tryb</div>
-                <div class="mode-toggle">
-                    <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
-                </div>
-            </div>
-
-            <div class="side-section">
-                <div class="side-title" id="sourceTitle">Numer lekcji</div>
-                <div class="source-list" id="sourceList"></div>
             </div>
 
             <div class="side-section" id="sourceSummarySection">
@@ -1889,6 +2005,7 @@ let isLoggedInStudent = false;
 let loggedUser = null;
 let tagSearchTerm = "";
 let selectedTags = new Set();
+let tagPanelOpen = false;
 let sessionResults = new Map();
 let drawTaskRequestId = 0;
 let isTaskLoading = false;
@@ -2268,6 +2385,10 @@ function updateSourceAttributionVisibility(){
 }
 
 function updateProgressPanelVisibility(){
+    if(!isLoggedInStudent){
+        progressPanelOpen = false;
+    }
+
     setPanelSectionVisible("progressToggleSection", isLoggedInStudent);
     setPanelSectionVisible("progressSection", isLoggedInStudent && progressPanelOpen);
 
@@ -2291,15 +2412,15 @@ function updateAccessModeUI(){
     setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
     setPanelSectionVisible("formulaSection", isLoggedInStudent && Boolean(FORMULA_SHEETS[selectedLevel]));
     setPanelSectionVisible("categorySection", isLoggedInStudent);
-    setPanelSectionVisible("tagSearchSection", !isLoggedInStudent);
     updateSourceAttributionVisibility();
     updateFormulaSection();
+    renderTagSearch();
 
     if(window.updateAuthNav){
         window.updateAuthNav(isLoggedInStudent ? loggedUser : null);
     }
 
-    const levelSection = document.getElementById("guestLevelSection")?.closest(".side-section");
+    const levelSection = document.getElementById("guestLevelWrapper");
 
     if(levelSection){
         levelSection.style.display = isLoggedInStudent ? "none" : "grid";
@@ -2583,18 +2704,29 @@ function pruneSelectedTags(availableTags){
 
 function renderTagSearch(){
     const section = document.getElementById("tagSearchSection");
+    const toggleSection = document.getElementById("tagToggleSection");
+    const toggleButton = document.getElementById("tagToggleButton");
     const input = document.getElementById("tagSearchInput");
     const list = document.getElementById("tagChipList");
     const clearButton = document.getElementById("clearTagsButton");
     const helper = document.getElementById("tagHelper");
 
-    if(!section || !input || !list || !clearButton || !helper) return;
+    if(!section || !toggleSection || !toggleButton || !input || !list || !clearButton || !helper) return;
 
     const shouldShow = !isLoggedInStudent && selectedCategory === "egzaminy";
 
-    section.style.display = shouldShow ? "grid" : "none";
+    toggleSection.style.display = shouldShow ? "grid" : "none";
+    section.style.display = shouldShow && tagPanelOpen ? "grid" : "none";
+    toggleButton.classList.toggle("active", shouldShow && tagPanelOpen);
 
-    if(!shouldShow) return;
+    const activeCount = selectedTags.size + (tagSearchTerm ? 1 : 0);
+    toggleButton.innerText = tagPanelOpen
+        ? "Ukryj tagi"
+        : activeCount
+            ? `Tagi (${activeCount})`
+            : "Tagi";
+
+    if(!shouldShow || !tagPanelOpen) return;
 
     input.value = tagSearchTerm;
     list.innerHTML = "";
@@ -2627,6 +2759,11 @@ function renderTagSearch(){
     });
 
     clearButton.hidden = !selectedTags.size && !tagSearchTerm;
+}
+
+function toggleTagPanel(){
+    tagPanelOpen = !tagPanelOpen;
+    renderTagSearch();
 }
 
 function setTagSearch(value){
@@ -3121,14 +3258,22 @@ function calculateProgressStats(category, target, options = {}){
         }
     });
 
+    const progressTarget = options.targetMode === "available"
+        ? sources.length
+        : target;
+    const safeTarget = Math.max(1, progressTarget || 0);
+    const percentBasis = options.percentMode === "completedSources"
+        ? completed
+        : visualUnits;
+
     return {
-        target,
+        target: progressTarget,
         completed,
         started,
         attempted,
         total,
         available: sources.length,
-        percent: Math.min(100, Math.round((visualUnits / target) * 1000) / 10)
+        percent: Math.min(100, Math.round((percentBasis / safeTarget) * 1000) / 10)
     };
 }
 
@@ -3153,18 +3298,17 @@ function updateProgressBar({ labelId, fillId, detailId, label, unit, stats, empt
     }
 
     detailElement.innerText =
-        `${label}: dostępne ${stats.available}, rozpoczęte ${stats.started}, zadania ${stats.attempted}/${stats.total}`;
+        `${label}: ukończone ${stats.completed}/${stats.available}, rozpoczęte ${stats.started}. Zadania: ${stats.attempted}/${stats.total}`;
 }
 
 function renderLearningProgress(unavailableText = ""){
     const courseStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
         coursePart: "praca_domowa"
     });
-    const availableExamTasks = tasks.filter(task =>
-        task.category === "egzaminy" &&
-        task.level === selectedLevel
-    ).length;
-    const examStats = calculateProgressStats("egzaminy", Math.max(1, availableExamTasks));
+    const examStats = calculateProgressStats("egzaminy", EXAM_TARGETS[selectedLevel] || 20, {
+        targetMode: "available",
+        percentMode: "completedSources"
+    });
 
     updateProgressBar({
         labelId: "courseProgressLabel",
@@ -3181,8 +3325,8 @@ function renderLearningProgress(unavailableText = ""){
         labelId: "examProgressLabel",
         fillId: "examProgressFill",
         detailId: "examProgressDetail",
-        label: "Zadania egzaminacyjne",
-        unit: "zadań",
+        label: "Egzaminy",
+        unit: "arkuszy",
         stats: examStats,
         emptyText: "Brak dodanych arkuszy dla tego poziomu.",
         unavailableText
