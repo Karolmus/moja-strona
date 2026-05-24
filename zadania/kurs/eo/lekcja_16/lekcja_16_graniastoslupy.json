@@ -276,15 +276,192 @@
     "level": "egzamin_osmoklasisty",
     "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
     "answer": "Dla prostopadłościanu o wymiarach a, b, c: V = abc oraz Pc = 2(ab + ac + bc). Oblicz osobno dla obiektu 1 i 2.",
-    "coursePart": "zadania",
+    "coursePart": "zadania_praktyczne",
     "tags": [
       "kurs",
       "lekcja 16",
       "graniastosłupy",
-      "zadania"
+      "zadania",
+      "zadanie praktyczne"
     ],
     "contextFile": "13.png",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "type": "practical",
+    "practical": {
+      "groupId": "lekcja16_prostopadlosciany",
+      "dataLabel": "Dane z pomiaru obiektów",
+      "dataNote": "Wpisz wymiary dwóch obiektów. Dane zostaną użyte także w kolejnych podpunktach praktycznych.",
+      "resultLabel": "Objętość i pole całkowite",
+      "resultNote": "Wyniki podaj po zamianie wymiarów na metry.",
+      "fields": [
+        {
+          "key": "object1",
+          "label": "Nazwa obiektu 1",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. pudełko"
+        },
+        {
+          "key": "length1",
+          "label": "Obiekt 1 - długość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "width1",
+          "label": "Obiekt 1 - szerokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "height1",
+          "label": "Obiekt 1 - wysokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "object2",
+          "label": "Nazwa obiektu 2",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. książka"
+        },
+        {
+          "key": "length2",
+          "label": "Obiekt 2 - długość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "width2",
+          "label": "Obiekt 2 - szerokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "height2",
+          "label": "Obiekt 2 - wysokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "key": "volume1",
+          "label": "Objętość obiektu 1",
+          "unit": "m³",
+          "formula": "length1 * width1 * height1",
+          "precision": 3,
+          "tolerance": 0.02,
+          "relativeTolerance": 0.01
+        },
+        {
+          "key": "surface1",
+          "label": "Pole całkowite obiektu 1",
+          "unit": "m²",
+          "formula": "2 * (length1 * width1 + length1 * height1 + width1 * height1)",
+          "precision": 3,
+          "tolerance": 0.02,
+          "relativeTolerance": 0.01
+        },
+        {
+          "key": "volume2",
+          "label": "Objętość obiektu 2",
+          "unit": "m³",
+          "formula": "length2 * width2 * height2",
+          "precision": 3,
+          "tolerance": 0.02,
+          "relativeTolerance": 0.01
+        },
+        {
+          "key": "surface2",
+          "label": "Pole całkowite obiektu 2",
+          "unit": "m²",
+          "formula": "2 * (length2 * width2 + length2 * height2 + width2 * height2)",
+          "precision": 3,
+          "tolerance": 0.02,
+          "relativeTolerance": 0.01
+        }
+      ]
+    }
   },
   {
     "file": "16.png",
@@ -294,15 +471,165 @@
     "level": "egzamin_osmoklasisty",
     "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
     "answer": "Porównanie objętości: oblicz iloraz V2/V1 albo V1/V2, zależnie od tego, który obiekt ma większą objętość.",
-    "coursePart": "zadania",
+    "coursePart": "zadania_praktyczne",
     "tags": [
       "kurs",
       "lekcja 16",
       "graniastosłupy",
-      "zadania"
+      "zadania",
+      "zadanie praktyczne"
     ],
     "contextFile": "13.png",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "type": "practical",
+    "practical": {
+      "groupId": "lekcja16_prostopadlosciany",
+      "dataLabel": "Dane z pomiaru obiektów",
+      "dataNote": "Jeżeli uzupełniłeś dane w zadaniu 12.1, pola powinny być już wypełnione.",
+      "resultLabel": "Porównanie objętości",
+      "resultNote": "Podaj, ile razy większa jest większa objętość od mniejszej.",
+      "fields": [
+        {
+          "key": "object1",
+          "label": "Nazwa obiektu 1",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. pudełko"
+        },
+        {
+          "key": "length1",
+          "label": "Obiekt 1 - długość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "width1",
+          "label": "Obiekt 1 - szerokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "height1",
+          "label": "Obiekt 1 - wysokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "object2",
+          "label": "Nazwa obiektu 2",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. książka"
+        },
+        {
+          "key": "length2",
+          "label": "Obiekt 2 - długość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "width2",
+          "label": "Obiekt 2 - szerokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "height2",
+          "label": "Obiekt 2 - wysokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "key": "volumeRatio",
+          "label": "Stosunek objętości",
+          "unit": "razy",
+          "formula": "max(length1 * width1 * height1, length2 * width2 * height2) / min(length1 * width1 * height1, length2 * width2 * height2)",
+          "precision": 2,
+          "tolerance": 0.02,
+          "relativeTolerance": 0.01
+        }
+      ]
+    }
   },
   {
     "file": "17.png",
@@ -312,15 +639,165 @@
     "level": "egzamin_osmoklasisty",
     "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
     "answer": "Porównanie pól całkowitych: oblicz iloraz Pc2/Pc1 albo Pc1/Pc2, zależnie od tego, który obiekt ma większe pole.",
-    "coursePart": "zadania",
+    "coursePart": "zadania_praktyczne",
     "tags": [
       "kurs",
       "lekcja 16",
       "graniastosłupy",
-      "zadania"
+      "zadania",
+      "zadanie praktyczne"
     ],
     "contextFile": "13.png",
-    "maxPoints": 1
+    "maxPoints": 1,
+    "type": "practical",
+    "practical": {
+      "groupId": "lekcja16_prostopadlosciany",
+      "dataLabel": "Dane z pomiaru obiektów",
+      "dataNote": "Jeżeli uzupełniłeś dane w zadaniu 12.1, pola powinny być już wypełnione.",
+      "resultLabel": "Porównanie pól całkowitych",
+      "resultNote": "Podaj, ile razy większe jest większe pole całkowite od mniejszego.",
+      "fields": [
+        {
+          "key": "object1",
+          "label": "Nazwa obiektu 1",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. pudełko"
+        },
+        {
+          "key": "length1",
+          "label": "Obiekt 1 - długość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "width1",
+          "label": "Obiekt 1 - szerokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "height1",
+          "label": "Obiekt 1 - wysokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "object2",
+          "label": "Nazwa obiektu 2",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. książka"
+        },
+        {
+          "key": "length2",
+          "label": "Obiekt 2 - długość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "width2",
+          "label": "Obiekt 2 - szerokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "height2",
+          "label": "Obiekt 2 - wysokość",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "key": "surfaceRatio",
+          "label": "Stosunek pól całkowitych",
+          "unit": "razy",
+          "formula": "max(2 * (length1 * width1 + length1 * height1 + width1 * height1), 2 * (length2 * width2 + length2 * height2 + width2 * height2)) / min(2 * (length1 * width1 + length1 * height1 + width1 * height1), 2 * (length2 * width2 + length2 * height2 + width2 * height2))",
+          "precision": 2,
+          "tolerance": 0.02,
+          "relativeTolerance": 0.01
+        }
+      ]
+    }
   },
   {
     "file": "18.png",
