@@ -934,44 +934,7 @@ footer{
 	    </div>
 	</section>
 
-	<section class="about">
-
-    <div class="about-container">
-
-        <div class="slider" id="photo-slider">
-            <img src="img/me3.png" class="active">
-            <img src="img/me1.jpeg">
-        </div>
-
-        <div class="about-text-wrapper">
-
-            <h2>O mnie</h2>
-
-            <div class="about-text">
-
-                Nazywam się Karol Musioł i od 2019 roku prowadzę korepetycje z matematyki we Wrocławiu oraz przez internet.
-
-                Specjalizuję się w przygotowaniu do egzaminu ósmoklasisty, matury podstawowej i rozszerzonej.
-
-                W mojej pracy skupiam się na wyjaśnieniu schematów i metod umożliwiających osiągnięcie wysokich wyników.
-
-                Moja filozofia opiera się na budowaniu sieci wiedzy — czyli łączenia faktów z różnych dziedzin w spójną całość.
-
-                Jestem absolwentem Politechniki Wrocławskiej (mgr inż.), laureatem Diamentowego Indeksu AGH oraz autorem publikacji i współautorem patentu.
-
-                Obszar moich zainteresowań obejmuje programowanie z naciskiem na wykorzystanie narzędzi komputerowych w edukacji.
-
-                W swojej pracy ponad wszystko przekładam skuteczność.
-
-                Moi podopieczni regularnie uzyskują maksymalną liczbę punktów z egzaminów państwowych.
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+	<div data-about-slot></div>
 
 <section class="reviews">
 
@@ -1034,6 +997,8 @@ function startSlider(selector){
     const elements =
         document.querySelectorAll(selector);
 
+    if(elements.length < 2) return;
+
     let index = 0;
 
     setInterval(() => {
@@ -1053,7 +1018,19 @@ function startSlider(selector){
 
 }
 
-startSlider("#photo-slider img");
+function loadAboutSection(){
+    fetch("o-mnie.html")
+        .then(res => res.text())
+        .then(html => {
+            document.querySelectorAll("[data-about-slot]").forEach(slot => {
+                slot.innerHTML = html;
+            });
+
+            startSlider("#about-photo-slider img");
+        });
+}
+
+loadAboutSection();
 
 </script>
 
