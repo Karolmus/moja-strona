@@ -772,6 +772,48 @@ body.focus-mode .task-card {
     color: var(--text);
 }
 
+.tile.nav-tile.nav-theme-practical,
+.tile.nav-tile.nav-theme-practical.good,
+.tile.nav-tile.nav-theme-practical.medium,
+.tile.nav-tile.nav-theme-practical.bad {
+    background: #e7f0f7;
+    border-color: #9dbbd4;
+    color: #244963;
+}
+
+.tile.nav-tile.nav-theme-practical.good {
+    box-shadow: inset 0 var(--tile-result-band) 0 var(--success);
+}
+
+.tile.nav-tile.nav-theme-practical.medium {
+    box-shadow: inset 0 var(--tile-result-band) 0 var(--warning);
+}
+
+.tile.nav-tile.nav-theme-practical.bad {
+    box-shadow: inset 0 var(--tile-result-band) 0 var(--danger);
+}
+
+.tile.nav-tile.active.nav-theme-practical,
+.tile.nav-tile.active.nav-theme-practical.good,
+.tile.nav-tile.active.nav-theme-practical.medium,
+.tile.nav-tile.active.nav-theme-practical.bad {
+    background: linear-gradient(90deg, #9dbbd4 0%, #d9e8f3 55%, #ffffff 100%);
+    border-color: #6e97b8;
+    color: var(--text);
+}
+
+.tile.nav-tile.active.nav-theme-practical.good {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
+}
+
+.tile.nav-tile.active.nav-theme-practical.medium {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--warning);
+}
+
+.tile.nav-tile.active.nav-theme-practical.bad {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--danger);
+}
+
 .tile.nav-tile.active.nav-theme-homework {
     background: linear-gradient(90deg, #d99595 0%, #e7b4b4 55%, #ffffff 100%);
     border-color: #bf7474;
@@ -902,6 +944,10 @@ body.focus-mode .task-card {
 
 .meta-homework {
     background: linear-gradient(90deg, #d99595 0%, #e7b4b4 36%, #ffffff 100%);
+}
+
+.meta-practical {
+    background: linear-gradient(90deg, #9dbbd4 0%, #d9e8f3 42%, #ffffff 100%);
 }
 
 .meta-section {
@@ -1303,6 +1349,111 @@ button {
 
 .input-check-btn {
     justify-self: start;
+}
+
+.mcq.practical-task {
+    grid-template-columns: 1fr;
+}
+
+.practical-answer-form {
+    display: grid;
+    gap: 12px;
+}
+
+.practical-section {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.practical-section-title {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.practical-section-note {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.practical-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.practical-field {
+    display: grid;
+    gap: 5px;
+}
+
+.practical-field label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.practical-field-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px;
+}
+
+.practical-field input,
+.practical-field select {
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+}
+
+.practical-field select {
+    min-width: 78px;
+    padding-right: 24px;
+}
+
+.practical-field input.correct {
+    background: #dff3e4;
+    border-color: var(--success);
+}
+
+.practical-field input.wrong {
+    background: #fde5e2;
+    border-color: var(--danger);
+}
+
+.practical-feedback {
+    display: none;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.45;
+    white-space: pre-line;
+}
+
+.practical-feedback.active {
+    display: block;
+}
+
+.practical-feedback.good {
+    background: #dff3e4;
+    color: #1f6b35;
+}
+
+.practical-feedback.bad {
+    background: #fde5e2;
+    color: #8b2119;
 }
 
 .tf-row {
@@ -1728,6 +1879,15 @@ footer {
         gap: 8px;
     }
 
+    .practical-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .practical-section {
+        padding: 10px;
+    }
+
     .tf-label,
     .grouped-choice-label {
         min-height: 42px;
@@ -2020,8 +2180,19 @@ let isTaskLoading = false;
 let selectedSolutionIndex = 0;
 let selectedGradingIndex = 0;
 let courseGradingCriteriaByTask = new Map();
+let practicalValueStore = new Map();
 
 const IMAGE_FADE_MS = 220;
+const COURSE_PART_ORDER = {
+    zadania: 1,
+    zadania_praktyczne: 2,
+    praca_domowa: 3
+};
+const COURSE_PART_LABELS = {
+    zadania: "1. Część główna",
+    zadania_praktyczne: "2. Zadania praktyczne",
+    praca_domowa: "3. Zadanie domowe"
+};
 
 const COURSE_TARGETS = {
     matura_podstawowa: 20,
@@ -2849,9 +3020,8 @@ function ensureSelectedCoursePart(){
     if(selectedCategory !== "kurs") return;
     if(getCoursePartTasks(selectedCoursePart).length) return;
 
-    selectedCoursePart = getCoursePartTasks("zadania").length
-        ? "zadania"
-        : "praca_domowa";
+    selectedCoursePart = ["zadania", "zadania_praktyczne", "praca_domowa"]
+        .find(part => getCoursePartTasks(part).length) || "zadania";
 }
 
 function setCategory(btn, category){
@@ -2988,6 +3158,7 @@ function updateMetaTheme(){
         "meta-rozszerzona",
         "meta-osmoklasista",
         "meta-homework",
+        "meta-practical",
         "meta-all"
     );
 
@@ -3131,7 +3302,15 @@ function getCourseNavigatorItems(){
         task.level === selectedLevel &&
         task.sourceId === selectedSource &&
         taskMatchesTagFilters(task)
-    );
+    )
+    .map((task, index) => ({ task, index }))
+    .sort((a, b) => {
+        const aOrder = COURSE_PART_ORDER[a.task.coursePart] || 99;
+        const bOrder = COURSE_PART_ORDER[b.task.coursePart] || 99;
+
+        return aOrder - bOrder || a.index - b.index;
+    })
+    .map(item => item.task);
 }
 
 function selectCoursePartTask(part, file = ""){
@@ -3590,6 +3769,7 @@ function resultLabel(result){
 }
 
 function taskThemeClass(task){
+    if(task.coursePart === "zadania_praktyczne") return "nav-theme-practical";
     if(task.coursePart === "praca_domowa") return "nav-theme-homework";
     if(task.category === "kurs") return "nav-theme-course";
 
@@ -3628,9 +3808,7 @@ function addNavigatorSectionLabel(progress, section){
     const label = document.createElement("span");
 
     label.className = "nav-section-label";
-    label.innerText = section === "homework"
-        ? "2. Zadanie domowe"
-        : "1. Część główna";
+    label.innerText = COURSE_PART_LABELS[section] || "Część kursu";
 
     progress.appendChild(label);
 }
@@ -3651,7 +3829,7 @@ function renderTaskNavigator(items = pool()){
         const button = document.createElement("button");
         const result = getSavedResult(task);
         const themeClass = taskThemeClass(task);
-        const section = task.coursePart === "praca_domowa" ? "homework" : "main";
+        const section = task.coursePart || "zadania";
 
         if(selectedCategory === "kurs" && section !== currentSection){
             addNavigatorSectionLabel(progress, section);
@@ -3825,6 +4003,7 @@ function difficultyStarsMarkup(task){
 }
 
 function isClosedTask(task){
+    if(isPracticalTask(task)) return false;
     if(isInputTask(task)) return false;
     if(["closed", "multi", "true_false"].includes(task.type)) return true;
     if(task.type === "closed" && Array.isArray(task.options)) return true;
@@ -3833,12 +4012,16 @@ function isClosedTask(task){
     return ["A", "B", "C", "D", "P", "F", "PP", "PF", "FP", "FF"].includes(task.answer);
 }
 
+function isPracticalTask(task){
+    return task?.type === "practical" || Boolean(task?.practical);
+}
+
 function isInputTask(task){
     return ["input", "fill", "short_answer", "numeric"].includes(task?.type);
 }
 
 function requiresSubmittedAnswer(task){
-    return isClosedTask(task) || isInputTask(task);
+    return isClosedTask(task) || isInputTask(task) || isPracticalTask(task);
 }
 
 function isTrueFalseSequenceTask(task){
@@ -4057,6 +4240,41 @@ function getInputFields(task){
     return [{ label: "Odpowiedź", answers }];
 }
 
+function getPracticalConfig(task = currentTask){
+    return task?.practical || {};
+}
+
+function getPracticalFields(task = currentTask){
+    const config = getPracticalConfig(task);
+
+    return Array.isArray(config.fields) ? config.fields : [];
+}
+
+function getPracticalResults(task = currentTask){
+    const config = getPracticalConfig(task);
+
+    return Array.isArray(config.results) ? config.results : [];
+}
+
+function getPracticalGroupKey(task = currentTask){
+    const config = getPracticalConfig(task);
+    const groupId = config.groupId || task?.file || "task";
+
+    return `${task?.sourceId || "course"}:${groupId}`;
+}
+
+function practicalStorageKey(task, key){
+    return `${getPracticalGroupKey(task)}:${key}`;
+}
+
+function getStoredPracticalValue(task, key){
+    return practicalValueStore.get(practicalStorageKey(task, key)) || null;
+}
+
+function setStoredPracticalValue(task, key, value){
+    practicalValueStore.set(practicalStorageKey(task, key), value);
+}
+
 function normalizeTypedAnswer(value){
     return String(value || "")
         .trim()
@@ -4064,6 +4282,103 @@ function normalizeTypedAnswer(value){
         .replace(/\s+/g, "")
         .replace(/,/g, ".")
         .replace(/%/g, "");
+}
+
+function parsePracticalNumber(value){
+    const normalized = normalizeTypedAnswer(value)
+        .replace(/−/g, "-")
+        .replace(/:/g, "/");
+    const fraction = normalized.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+
+    if(fraction){
+        const numerator = Number(fraction[1]);
+        const denominator = Number(fraction[2]);
+
+        return denominator ? numerator / denominator : NaN;
+    }
+
+    return Number(normalized);
+}
+
+function formatPracticalNumber(value, precision = 2){
+    const numeric = Number(value);
+
+    if(!Number.isFinite(numeric)) return "";
+
+    return numeric.toLocaleString("pl-PL", {
+        maximumFractionDigits: precision,
+        minimumFractionDigits: 0
+    });
+}
+
+function formulaVariableNames(values){
+    return Object.keys(values)
+        .filter(name => /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name));
+}
+
+function evaluatePracticalFormula(formula, values){
+    const expression = String(formula || "").replace(/(\d),(\d)/g, "$1.$2");
+
+    if(!expression || !/^[\d\sA-Za-z_+\-*/().,]+$/.test(expression)){
+        return NaN;
+    }
+
+    const names = formulaVariableNames(values);
+    const fn = new Function(
+        ...names,
+        "sqrt",
+        "pow",
+        "max",
+        "min",
+        "abs",
+        "round",
+        `return (${expression});`
+    );
+
+    return Number(fn(
+        ...names.map(name => values[name]),
+        Math.sqrt,
+        Math.pow,
+        Math.max,
+        Math.min,
+        Math.abs,
+        Math.round
+    ));
+}
+
+function practicalTolerance(expected, resultConfig = {}){
+    const absolute = Number(resultConfig.tolerance ?? 0.01);
+    const relative = Number(resultConfig.relativeTolerance ?? 0.005);
+
+    return Math.max(
+        Number.isFinite(absolute) ? absolute : 0.01,
+        Math.abs(Number(expected) || 0) * (Number.isFinite(relative) ? relative : 0)
+    );
+}
+
+function isPracticalResultCorrect(value, expected, resultConfig = {}){
+    const typed = parsePracticalNumber(value);
+
+    if(!Number.isFinite(typed) || !Number.isFinite(expected)) return false;
+
+    return Math.abs(typed - expected) <= practicalTolerance(expected, resultConfig);
+}
+
+function formatPracticalAnswer(task = currentTask, computed = null){
+    const results = getPracticalResults(task);
+    const computedResults = computed || computePracticalResultsFromForm(task);
+
+    if(computedResults?.messages?.length){
+        return computedResults.messages.join(", ");
+    }
+
+    if(results.length){
+        return results
+            .map(result => `${result.label || "Wynik"} = ${result.unit ? `... ${result.unit}` : "..."}`)
+            .join(", ");
+    }
+
+    return task?.answer || "Wynik zależy od wpisanych danych.";
 }
 
 function isTypedAnswerCorrect(value, answers){
@@ -4118,7 +4433,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #solutionSwitcher button, #scoreInput, #scoreSaveButton"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -4183,9 +4498,11 @@ function updateTaskDetails(task, total){
     const taskCounter = document.getElementById("taskCounter");
     const metaBox = document.getElementById("metaBox");
     const isHomework = task.coursePart === "praca_domowa";
+    const isPractical = task.coursePart === "zadania_praktyczne" || isPracticalTask(task);
 
     taskCounter.innerText = `${currentIndex + 1} / ${total}`;
     metaBox.classList.toggle("meta-homework", isHomework);
+    metaBox.classList.toggle("meta-practical", isPractical && !isHomework);
 
     metaBox.innerHTML =
     `
@@ -4220,6 +4537,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("contextImage").classList.add("hidden");
         document.getElementById("metaBox").innerHTML = "";
         document.getElementById("metaBox").classList.remove("meta-homework");
+        document.getElementById("metaBox").classList.remove("meta-practical");
         document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
         const tagSuffix = !isLoggedInStudent && (selectedTags.size || tagSearchTerm)
@@ -4442,6 +4760,9 @@ function setupMCQ(){
 
             mcq.appendChild(b);
         });
+    } else if(isPracticalTask(currentTask)){
+        mcq.classList.add("active", "practical-task");
+        setupPracticalTask(mcq);
     } else if(isInputTask(currentTask)){
         mcq.classList.add("active", "input-task");
         setupInputTask(mcq);
@@ -4481,7 +4802,7 @@ function hasSavedPoints(progressItem){
 }
 
 function isCourseManualScoreTask(task = currentTask){
-    return Boolean(task && task.category === "kurs" && !isClosedTask(task) && taskMaxPoints(task) > 1);
+    return Boolean(task && task.category === "kurs" && !isClosedTask(task) && !isPracticalTask(task) && taskMaxPoints(task) > 1);
 }
 
 function shouldShowScorePanel(task = currentTask){
@@ -4740,6 +5061,305 @@ function setupInputTask(mcq){
     mcq.appendChild(form);
 }
 
+function practicalFieldValue(field, input, unitSelect){
+    if(field.type === "text"){
+        return String(input.value || "").trim();
+    }
+
+    const numeric = parsePracticalNumber(input.value);
+    const factor = Number(unitSelect?.selectedOptions?.[0]?.dataset.factor ?? field.factor ?? 1);
+
+    return Number.isFinite(numeric) ? numeric * (Number.isFinite(factor) ? factor : 1) : NaN;
+}
+
+function practicalFieldIsFilled(field, input){
+    if(field.type === "text"){
+        return Boolean(String(input.value || "").trim());
+    }
+
+    return Number.isFinite(parsePracticalNumber(input.value));
+}
+
+function createPracticalInput(field, kind){
+    const wrapper = document.createElement("div");
+    const label = document.createElement("label");
+    const row = document.createElement("div");
+    const input = document.createElement("input");
+    const inputId = `practical-${kind}-${field.key}`;
+    const stored = getStoredPracticalValue(currentTask, field.key);
+
+    wrapper.className = "practical-field";
+    row.className = "practical-field-row";
+    label.htmlFor = inputId;
+    label.innerText = field.label || field.key;
+    input.id = inputId;
+    input.type = "text";
+    input.autocomplete = "off";
+    input.inputMode = field.type === "text" ? "text" : "decimal";
+    input.placeholder = field.placeholder || (kind === "result" ? "Wpisz wynik" : "Wpisz dane");
+    input.dataset.kind = kind;
+    input.dataset.key = field.key;
+
+    if(stored?.raw){
+        input.value = stored.raw;
+    }
+
+    row.appendChild(input);
+
+    if(Array.isArray(field.unitOptions) && field.unitOptions.length){
+        const select = document.createElement("select");
+
+        select.dataset.kind = `${kind}-unit`;
+        select.dataset.key = field.key;
+
+        field.unitOptions.forEach(option => {
+            const item = document.createElement("option");
+
+            item.value = option.label;
+            item.dataset.factor = String(option.factor ?? 1);
+            item.innerText = option.label;
+            item.selected = stored?.unit
+                ? stored.unit === option.label
+                : option.label === field.defaultUnit;
+
+            select.appendChild(item);
+        });
+
+        select.onchange = () => {
+            setStoredPracticalValue(currentTask, field.key, {
+                raw: input.value,
+                unit: select.value
+            });
+        };
+        row.appendChild(select);
+    }
+
+    input.oninput = () => {
+        const select = row.querySelector("select");
+
+        input.classList.remove("correct", "wrong");
+        setStoredPracticalValue(currentTask, field.key, {
+            raw: input.value,
+            unit: select?.value || field.unit || ""
+        });
+    };
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(row);
+
+    return wrapper;
+}
+
+function appendPracticalSection(form, title, note, items, kind){
+    if(!items.length) return;
+
+    const section = document.createElement("div");
+    const titleElement = document.createElement("div");
+    const grid = document.createElement("div");
+
+    section.className = "practical-section";
+    titleElement.className = "practical-section-title";
+    titleElement.innerText = title;
+    grid.className = "practical-grid";
+    section.appendChild(titleElement);
+
+    if(note){
+        const noteElement = document.createElement("div");
+
+        noteElement.className = "practical-section-note";
+        noteElement.innerText = note;
+        section.appendChild(noteElement);
+    }
+
+    items.forEach(item => {
+        grid.appendChild(createPracticalInput(item, kind));
+    });
+
+    section.appendChild(grid);
+    form.appendChild(section);
+}
+
+function setupPracticalTask(mcq){
+    const config = getPracticalConfig();
+    const form = document.createElement("form");
+    const feedback = document.createElement("div");
+    const button = document.createElement("button");
+
+    form.className = "practical-answer-form";
+    appendPracticalSection(
+        form,
+        config.dataLabel || "Dane z zadania",
+        config.dataNote || "Wpisz dane odczytane z zadania albo z własnego pomiaru.",
+        getPracticalFields(),
+        "field"
+    );
+    appendPracticalSection(
+        form,
+        config.resultLabel || "Twój wynik",
+        config.resultNote || "Wpisz wynik obliczony na podstawie danych.",
+        getPracticalResults().map(result => ({
+            key: result.key,
+            label: result.label,
+            unit: result.unit,
+            placeholder: result.placeholder || (result.unit ? `Wynik w ${result.unit}` : "Wpisz wynik")
+        })),
+        "result"
+    );
+
+    feedback.className = "practical-feedback";
+    button.type = "submit";
+    button.className = "action-btn answer input-check-btn";
+    button.innerText = "Sprawdź obliczenia";
+
+    form.appendChild(button);
+    form.appendChild(feedback);
+    form.onsubmit = event => {
+        event.preventDefault();
+        checkPracticalAnswer(form);
+    };
+
+    mcq.appendChild(form);
+}
+
+function collectPracticalValues(form, task = currentTask){
+    const values = {};
+    const missing = [];
+
+    getPracticalFields(task).forEach(field => {
+        const input = form?.querySelector(`[data-kind="field"][data-key="${field.key}"]`);
+        const unitSelect = form?.querySelector(`[data-kind="field-unit"][data-key="${field.key}"]`);
+
+        if(!input) return;
+
+        input.classList.remove("correct", "wrong");
+
+        if(field.required !== false && !practicalFieldIsFilled(field, input)){
+            input.classList.add("wrong");
+            missing.push(field.label || field.key);
+            return;
+        }
+
+        const value = practicalFieldValue(field, input, unitSelect);
+
+        if(field.type !== "text" && Number.isFinite(value)){
+            values[field.key] = value;
+        }
+    });
+
+    return { values, missing };
+}
+
+function computePracticalResultsFromForm(task = currentTask){
+    const form = document.querySelector("#mcq .practical-answer-form");
+
+    if(!form || !isPracticalTask(task)) return null;
+
+    const { values, missing } = collectPracticalValues(form, task);
+
+    if(missing.length){
+        return { values, missing, computed: [], messages: [] };
+    }
+
+    const computed = getPracticalResults(task)
+        .map(result => {
+            const value = evaluatePracticalFormula(result.formula, values);
+            const precision = Number(result.precision ?? 2);
+            const formatted = formatPracticalNumber(value, Number.isFinite(precision) ? precision : 2);
+            const message = `${result.label || "Wynik"} = ${formatted}${result.unit ? ` ${result.unit}` : ""}`;
+
+            return { ...result, value, formatted, message };
+        });
+
+    return {
+        values,
+        missing,
+        computed,
+        messages: computed
+            .filter(item => Number.isFinite(item.value))
+            .map(item => item.message)
+    };
+}
+
+function setPracticalFeedback(form, type, text){
+    const feedback = form.querySelector(".practical-feedback");
+
+    if(!feedback) return;
+
+    feedback.className = `practical-feedback active ${type}`;
+    feedback.innerText = text;
+}
+
+function checkPracticalAnswer(form){
+    if(currentTaskAnswered) return;
+
+    const resultInputs = [...form.querySelectorAll(`[data-kind="result"]`)];
+    const computation = computePracticalResultsFromForm();
+
+    if(!computation || computation.missing.length){
+        setPracticalFeedback(
+            form,
+            "bad",
+            `Uzupełnij dane: ${computation?.missing?.join(", ") || "brak danych"}.`
+        );
+        return;
+    }
+
+    let isCorrect = true;
+
+    resultInputs.forEach(input => {
+        const result = computation.computed.find(item => item.key === input.dataset.key);
+        const correct = result && isPracticalResultCorrect(input.value, result.value, result);
+
+        input.classList.toggle("correct", Boolean(correct));
+        input.classList.toggle("wrong", !correct);
+
+        if(!correct) isCorrect = false;
+    });
+
+    getPracticalFields().forEach(field => {
+        const input = form.querySelector(`[data-kind="field"][data-key="${field.key}"]`);
+
+        if(input && field.type !== "text"){
+            input.classList.add("correct");
+        }
+    });
+
+    if(isCorrect){
+        setPracticalFeedback(form, "good", `Dobrze. Wynik z podanych danych:\n${computation.messages.join("\n")}`);
+        disableMCQ();
+        addProgress(hintUsed || answerShown ? "medium" : "good");
+
+        setTimeout(() => {
+            nextTask();
+        }, 950);
+
+        return;
+    }
+
+    setPracticalFeedback(form, "bad", `Sprawdź rachunki. Wynik z podanych danych:\n${computation.messages.join("\n")}`);
+    disableMCQ();
+    showCorrection(null);
+    addProgress("bad");
+}
+
+function revealPracticalAnswers(){
+    const form = document.querySelector("#mcq .practical-answer-form");
+    const computation = computePracticalResultsFromForm();
+
+    if(!form || !computation?.computed?.length) return;
+
+    computation.computed.forEach(result => {
+        const input = form.querySelector(`[data-kind="result"][data-key="${result.key}"]`);
+
+        if(input && Number.isFinite(result.value)){
+            input.value = result.formatted;
+            input.classList.add("correct");
+        }
+    });
+
+    setPracticalFeedback(form, "good", `Wynik z podanych danych:\n${computation.messages.join("\n")}`);
+}
+
 function applyCourseAnswerLock(){
     const lockedResult = getLockedCourseResult();
 
@@ -4761,6 +5381,10 @@ function applyCourseAnswerLock(){
         } else {
             revealCorrectAnswer(correctAnswers);
         }
+    }
+
+    if(isPracticalTask(currentTask)){
+        revealPracticalAnswers();
     }
 
     if(isInputTask(currentTask)){
@@ -4969,7 +5593,7 @@ function chooseTrueFalse(index, opt, btn){
 }
 
 function disableMCQ(){
-    document.querySelectorAll("#mcq button, #mcq input")
+    document.querySelectorAll("#mcq button, #mcq input, #mcq select")
         .forEach(b => {
             b.disabled = true;
         });
@@ -5285,7 +5909,9 @@ function showAnswer(){
     answerShown = true;
 
     showMessage(
-        isInputTask(currentTask)
+        isPracticalTask(currentTask)
+            ? formatPracticalAnswer(currentTask)
+            : isInputTask(currentTask)
             ? formatInputAnswer(currentTask)
             : formatAnswer(currentTask.answer, currentTask) || "Brak odpowiedzi."
     );
@@ -5502,7 +6128,9 @@ function showCorrection(correctAnswers = null){
 
     let correct;
 
-    if(isInputTask(currentTask)){
+    if(isPracticalTask(currentTask)){
+        correct = formatPracticalAnswer(currentTask);
+    } else if(isInputTask(currentTask)){
         correct = formatInputAnswer(currentTask);
     } else if(isGroupedMultiTask(currentTask)){
         correct = formatGroupedMultiAnswer(currentTask);
