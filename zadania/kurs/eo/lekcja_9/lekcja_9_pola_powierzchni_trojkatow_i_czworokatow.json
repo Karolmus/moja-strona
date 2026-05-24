@@ -332,14 +332,74 @@
     "level": "egzamin_osmoklasisty",
     "hint": "Zmierz długość i szerokość blatu, zamień obie wartości na metry i pomnóż.",
     "answer": "Odpowiedź zależy od wykonanego pomiaru. Pole blatu to długość · szerokość po zamianie jednostek na metry.",
-    "coursePart": "zadania",
+    "coursePart": "zadania_praktyczne",
     "tags": [
       "kurs",
       "lekcja 9",
       "pola powierzchni",
-      "zadania"
+      "zadania",
+      "zadanie praktyczne"
     ],
-    "maxPoints": 2
+    "maxPoints": 2,
+    "type": "practical",
+    "practical": {
+      "groupId": "lekcja9_blat_stolu",
+      "dataLabel": "Dane z pomiaru",
+      "dataNote": "Wpisz wymiary blatu. Strona zamieni je na metry i policzy pole.",
+      "resultLabel": "Obliczony wynik",
+      "resultNote": "Podaj pole blatu w metrach kwadratowych.",
+      "fields": [
+        {
+          "key": "length",
+          "label": "Długość blatu",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        },
+        {
+          "key": "width",
+          "label": "Szerokość blatu",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "cm",
+              "factor": 0.01
+            },
+            {
+              "label": "dm",
+              "factor": 0.1
+            },
+            {
+              "label": "m",
+              "factor": 1
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "key": "area",
+          "label": "Pole powierzchni blatu",
+          "unit": "m²",
+          "formula": "length * width",
+          "precision": 3,
+          "tolerance": 0.02,
+          "relativeTolerance": 0.01
+        }
+      ]
+    }
   },
   {
     "file": "22.png",

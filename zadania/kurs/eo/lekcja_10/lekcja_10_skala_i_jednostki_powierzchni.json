@@ -333,14 +333,70 @@
     "level": "egzamin_osmoklasisty",
     "hint": "Odczytaj skalę mapy i pomnóż zmierzoną odległość przez skalę.",
     "answer": "Odpowiedź zależy od wybranej mapy. Rzeczywista odległość to odległość na mapie pomnożona przez mianownik skali.",
-    "coursePart": "zadania",
+    "coursePart": "zadania_praktyczne",
     "tags": [
       "kurs",
       "lekcja 10",
       "skala i jednostki powierzchni",
-      "zadania"
+      "zadania",
+      "zadanie praktyczne"
     ],
-    "maxPoints": 2
+    "maxPoints": 2,
+    "type": "practical",
+    "practical": {
+      "groupId": "lekcja10_mapa_skala",
+      "dataLabel": "Dane z mapy",
+      "dataNote": "Wpisz mianownik skali oraz odległość zmierzoną na mapie. Wynik będzie liczony w kilometrach.",
+      "resultLabel": "Obliczony wynik",
+      "resultNote": "Podaj rzeczywistą odległość między obiektami w kilometrach.",
+      "fields": [
+        {
+          "key": "scale",
+          "label": "Mianownik skali 1 :",
+          "placeholder": "np. 500000"
+        },
+        {
+          "key": "object1",
+          "label": "Obiekt 1",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. Kraków"
+        },
+        {
+          "key": "object2",
+          "label": "Obiekt 2",
+          "type": "text",
+          "required": false,
+          "placeholder": "np. Rzeszów"
+        },
+        {
+          "key": "mapDistance",
+          "label": "Odległość na mapie",
+          "defaultUnit": "cm",
+          "unitOptions": [
+            {
+              "label": "mm",
+              "factor": 0.1
+            },
+            {
+              "label": "cm",
+              "factor": 1
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "key": "realDistance",
+          "label": "Rzeczywista odległość",
+          "unit": "km",
+          "formula": "mapDistance * scale / 100000",
+          "precision": 2,
+          "tolerance": 0.05,
+          "relativeTolerance": 0.01
+        }
+      ]
+    }
   },
   {
     "file": "zd1.png",
