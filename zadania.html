@@ -1417,6 +1417,17 @@ button {
     line-height: 1.4;
 }
 
+.practical-decimal-note {
+    border: 1px solid #cfe0f2;
+    border-radius: 8px;
+    background: var(--blue-soft);
+    color: var(--blue-text);
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
 .practical-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2366,13 +2377,13 @@ let practicalValueStore = new Map();
 const IMAGE_FADE_MS = 220;
 const COURSE_PART_ORDER = {
     zadania: 1,
-    zadania_praktyczne: 2,
-    praca_domowa: 3
+    praca_domowa: 2,
+    zadania_praktyczne: 3
 };
 const COURSE_PART_LABELS = {
     zadania: "1. Część główna",
-    zadania_praktyczne: "2. Zadania praktyczne",
-    praca_domowa: "3. Zadanie domowe"
+    praca_domowa: "2. Zadanie domowe",
+    zadania_praktyczne: "3. Zadania praktyczne"
 };
 
 const COURSE_TARGETS = {
@@ -3234,7 +3245,7 @@ function ensureSelectedCoursePart(){
     if(selectedCategory !== "kurs") return;
     if(getCoursePartTasks(selectedCoursePart).length) return;
 
-    selectedCoursePart = ["zadania", "zadania_praktyczne", "praca_domowa"]
+    selectedCoursePart = ["zadania", "praca_domowa", "zadania_praktyczne"]
         .find(part => getCoursePartTasks(part).length) || "zadania";
 }
 
@@ -4516,6 +4527,12 @@ function parsePracticalNumber(value){
     return Number(normalized);
 }
 
+function practicalPlaceholder(field, kind){
+    if(field.type === "text") return "Wpisz nazwę";
+
+    return kind === "result" ? "Wpisz wynik" : "Wpisz dane";
+}
+
 function formatPracticalNumber(value, precision = 2){
     const numeric = Number(value);
 
@@ -5335,7 +5352,7 @@ function createPracticalInput(field, kind){
     input.type = "text";
     input.autocomplete = "off";
     input.inputMode = field.type === "text" ? "text" : "decimal";
-    input.placeholder = field.placeholder || (kind === "result" ? "Wpisz wynik" : "Wpisz dane");
+    input.placeholder = practicalPlaceholder(field, kind);
     input.dataset.kind = kind;
     input.dataset.key = field.key;
 
@@ -5421,10 +5438,14 @@ function appendPracticalSection(form, title, note, items, kind){
 function setupPracticalTask(mcq){
     const config = getPracticalConfig();
     const form = document.createElement("form");
+    const decimalNote = document.createElement("div");
     const feedback = document.createElement("div");
     const button = document.createElement("button");
 
     form.className = "practical-answer-form";
+    decimalNote.className = "practical-decimal-note";
+    decimalNote.innerText = "Możesz używać dowolnego separatora dziesiętnego: kropki albo przecinka.";
+    form.appendChild(decimalNote);
     appendPracticalSection(
         form,
         config.dataLabel || "Dane z zadania",
@@ -5439,8 +5460,7 @@ function setupPracticalTask(mcq){
         getPracticalResults().map(result => ({
             key: result.key,
             label: result.label,
-            unit: result.unit,
-            placeholder: result.placeholder || (result.unit ? `Wynik w ${result.unit}` : "Wpisz wynik")
+            unit: result.unit
         })),
         "result"
     );
