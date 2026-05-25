@@ -259,7 +259,7 @@ def bernoulli_plot(p, n, k_values):
     )
 
 
-def poly_solve(coeffs):
+def poly_solve(coeffs, include_plot=True):
     coeffs = [_as_expr(item) for item in coeffs]
 
     while len(coeffs) > 1 and coeffs[0] == 0:
@@ -274,7 +274,9 @@ def poly_solve(coeffs):
     factored = sp.factor(expanded)
     roots = sp.solve(expanded, x)
 
-    return roots, factored, expanded, polynomial_plot(expanded, roots)
+    plot = polynomial_plot(expanded, roots) if include_plot else None
+
+    return roots, factored, expanded, plot
 
 
 def polynomial_plot(expression, roots):
