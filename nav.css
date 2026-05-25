@@ -110,26 +110,6 @@ footer {
     color: #aaa;
 }
 
-.source-attribution {
-    padding: 14px 18px;
-    background: #eef2f6;
-    color: #536174;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    line-height: 1.5;
-    text-align: center;
-}
-
-.source-attribution a {
-    color: #24527a;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.source-attribution a:hover {
-    text-decoration: underline;
-}
-
 .footer-contact {
     display: flex;
     justify-content: center;
