@@ -5,6 +5,11 @@ const API_BASE_URL = (
     window.CALCULATORS_API_URL ||
     (["localhost", "127.0.0.1"].includes(window.location.hostname) ? LOCAL_API_URL : RENDER_API_URL)
 ).replace(/\/$/, "");
+let mathJaxLoadPromise = null;
+
+function includePlots(){
+    return Boolean(document.getElementById("includePlots")?.checked);
+}
 
 async function post(path, data){
     const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -22,15 +27,47 @@ async function post(path, data){
     return result;
 }
 
-function renderMath(target){
+function ensureMathJax(){
     if(window.MathJax){
+        return Promise.resolve(window.MathJax);
+    }
+
+    if(mathJaxLoadPromise){
+        return mathJaxLoadPromise;
+    }
+
+    window.MathJax = {
+        startup: {
+            typeset: false
+        }
+    };
+
+    mathJaxLoadPromise = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+
+        script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+        script.async = true;
+        script.onload = () => resolve(window.MathJax);
+        script.onerror = () => reject(new Error("Nie udało się wczytać zapisu matematycznego."));
+
+        document.head.appendChild(script);
+    });
+
+    return mathJaxLoadPromise;
+}
+
+async function renderMath(target){
+    try {
+        const mathJax = await ensureMathJax();
         const elements = target ? [target] : undefined;
 
-        if(MathJax.typesetPromise){
-            MathJax.typesetPromise(elements);
+        if(mathJax.typesetPromise){
+            await mathJax.typesetPromise(elements);
         } else {
-            MathJax.typeset(elements);
+            mathJax.typeset(elements);
         }
+    } catch(error) {
+        console.warn(error.message || "Nie udało się wyrenderować wzoru.");
     }
 }
 
@@ -149,7 +186,8 @@ async function calcBernoulli(){
         const d = await post("/api/bernoulli", {
             p: readNumber("p"),
             n: readNumber("n"),
-            k: readNumberList("k")
+            k: readNumberList("k"),
+            include_plot: includePlots()
         });
 
         const result = typeof d === "object" && d !== null ? d.result : d;
@@ -174,7 +212,8 @@ async function calcPoly(){
     try {
         const coeffs = readNumberList("coeffs");
         const d = await post("/api/poly", {
-            coeffs
+            coeffs,
+            include_plot: includePlots()
         });
 
         const zeros = renderFormulaList(d.sol, "Brak miejsc zerowych w liczbach rzeczywistych.");
@@ -210,7 +249,8 @@ async function calcStyczna(){
             ya: readNumber("ya"),
             xs: readNumber("xs"),
             ys: readNumber("ys"),
-            r: readNumber("r")
+            r: readNumber("r"),
+            include_plot: includePlots()
         });
 
         const result = Array.isArray(d) ? d : d.result;
@@ -237,7 +277,8 @@ async function calcLineCircle(){
             C: readNumber("C"),
             p: readNumber("p1"),
             q: readNumber("q1"),
-            r: readNumber("r1")
+            r: readNumber("r1"),
+            include_plot: includePlots()
         });
 
         const result = Array.isArray(d) ? d : d.result;
@@ -264,7 +305,8 @@ async function calcTwoCircles(){
             c: readNumber("c"),
             p: readNumber("p2"),
             q: readNumber("q2"),
-            r: readNumber("r2")
+            r: readNumber("r2"),
+            include_plot: includePlots()
         });
 
         const result = Array.isArray(d) ? d : d.result;
@@ -287,7 +329,8 @@ async function calcAngle(){
     try {
         const d = await post("/api/angle", {
             a1: readNumber("a1"),
-            a2: readNumber("a2")
+            a2: readNumber("a2"),
+            include_plot: includePlots()
         });
 
         const result = typeof d === "object" && d !== null ? d.result : d;

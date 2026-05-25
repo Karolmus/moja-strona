@@ -44,6 +44,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background: var(--page-bg);
     color: var(--text);
+    overflow-x: hidden;
 }
 
 .container {
@@ -54,7 +55,7 @@ body {
 
 .tasks-layout {
     display: grid;
-    grid-template-columns: 320px minmax(0, 1fr);
+    grid-template-columns: 380px minmax(0, 1fr);
     gap: 16px;
     align-items: start;
 }
@@ -69,13 +70,6 @@ body {
     border-radius: 8px;
     padding: 8px;
     box-shadow: var(--shadow);
-}
-
-.sidebar-head {
-    display: grid;
-    grid-template-columns: 82px minmax(0, 1fr);
-    gap: 6px;
-    align-items: center;
 }
 
 .side-section {
@@ -296,14 +290,28 @@ body {
     line-height: 1.1;
 }
 
+.selector-grid {
+    display: grid;
+    grid-template-columns: minmax(108px, 0.75fr) minmax(0, 1.25fr);
+    gap: 8px;
+    align-items: start;
+}
+
+body:not(.guest-exam-mode) .selector-grid {
+    grid-template-columns: 1fr;
+}
+
+.selector-grid .source-picker-section {
+    min-width: 0;
+}
+
 .level-selector {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 2px;
     background: #e9eef4;
     padding: 2px;
     border-radius: 8px;
-    margin-bottom: 6px;
     border: 1px solid var(--line);
 }
 
@@ -317,11 +325,12 @@ body {
     border: none;
     background: transparent;
     color: var(--muted);
-    padding: 5px 4px;
+    min-height: 44px;
+    padding: 7px 6px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.05;
     overflow-wrap: anywhere;
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
@@ -347,7 +356,7 @@ body {
 }
 
 .source-list {
-    max-height: 142px;
+    max-height: 194px;
     overflow-y: auto;
     padding-right: 2px;
 }
@@ -360,14 +369,18 @@ body {
 
 .source-list.exam-source-list {
     gap: 3px;
-    max-height: 126px;
+    max-height: 194px;
 }
 
 .source-summary-row {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(94px, 0.78fr);
+    grid-template-columns: 1fr;
     gap: 6px;
     align-items: stretch;
+}
+
+body.guest-exam-mode .source-summary-row {
+    grid-template-columns: 1fr;
 }
 
 .source-summary-row.summary-hidden {
@@ -414,7 +427,13 @@ body {
 
 .exam-source-list .source-btn {
     gap: 1px;
-    padding: 5px 7px;
+    min-height: 58px;
+    padding: 8px 10px;
+}
+
+.exam-source-list .source-btn span {
+    font-size: 14px;
+    line-height: 1.15;
 }
 
 .course-source-list .source-btn span {
@@ -613,6 +632,7 @@ body {
 }
 
 .task-card {
+    min-width: 0;
     background: var(--surface);
     border-radius: 8px;
     padding: 14px;
@@ -1104,7 +1124,7 @@ body.focus-mode .task-card {
 
 .task-actions {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(180px, auto) minmax(0, 1fr);
     align-items: center;
     gap: 10px;
 }
@@ -1721,6 +1741,46 @@ footer {
     margin-top: 40px;
 }
 
+@media(max-width: 1100px) {
+    .tasks-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .task-sidebar {
+        position: static;
+    }
+
+    .task-actions {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .action-group.tools,
+    .action-group.navigation,
+    .action-group.check {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .action-group.navigation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .action-group.navigation .action-btn {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .action-group.result-buttons {
+        display: none;
+    }
+
+    .action-group.result-buttons.active {
+        display: flex;
+    }
+}
+
 @media(max-width: 760px) {
     .container {
         margin: 8px auto 18px;
@@ -1747,21 +1807,17 @@ footer {
         padding: 6px;
     }
 
-    .sidebar-head {
-        grid-template-columns: 68px minmax(0, 1fr);
+    .selector-grid {
+        grid-template-columns: minmax(100px, 0.72fr) minmax(0, 1.28fr);
         gap: 5px;
     }
 
-    .task-brand-card {
-        min-height: 44px;
-    }
-
-    .task-brand-logo {
-        width: 58px;
+    body:not(.guest-exam-mode) .selector-grid {
+        grid-template-columns: 1fr;
     }
 
     .source-summary-row {
-        grid-template-columns: minmax(0, 1.35fr) minmax(86px, 0.72fr);
+        grid-template-columns: 1fr;
         gap: 5px;
     }
 
@@ -1784,7 +1840,7 @@ footer {
     }
 
     .source-list {
-        max-height: 78px;
+        max-height: 174px;
     }
 
     .source-list.course-source-list {
@@ -1793,7 +1849,22 @@ footer {
     }
 
     .source-list.exam-source-list {
-        max-height: 72px;
+        max-height: 174px;
+    }
+
+    .exam-source-list .source-btn {
+        min-height: 54px;
+        padding: 7px 8px;
+    }
+
+    .exam-source-list .source-btn span {
+        font-size: 12px;
+        line-height: 1.12;
+    }
+
+    .exam-source-list .source-btn small {
+        font-size: 9px;
+        line-height: 1.12;
     }
 
     .course-source-list .source-btn {
@@ -1857,14 +1928,15 @@ footer {
     }
 
     .level-selector {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 2px;
         margin-bottom: 0;
     }
 
     .level-btn {
-        padding: 4px 3px;
-        font-size: 9px;
+        min-height: 54px;
+        padding: 5px 4px;
+        font-size: 10px;
         line-height: 1.05;
     }
 
@@ -1900,9 +1972,24 @@ footer {
         display: none;
     }
 
+    body.guest-exam-mode .progress-grid {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        min-height: 30px;
+        padding-bottom: 4px;
+        scrollbar-width: thin;
+    }
+
+    body.guest-exam-mode .progress-grid .tile {
+        flex: 0 0 auto;
+    }
+
     .task-actions {
         grid-template-columns: 1fr;
-        justify-items: center;
+        justify-items: stretch;
     }
 
     .action-group.tools,
@@ -1913,8 +2000,17 @@ footer {
 
     .action-group {
         width: 100%;
-        display: flex;
         justify-content: center;
+    }
+
+    .action-group.tools {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .action-group.navigation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .action-group.result-buttons {
@@ -1926,7 +2022,8 @@ footer {
     }
 
     .action-btn {
-        min-width: min(160px, 100%);
+        width: 100%;
+        min-width: 0;
     }
 
     .mcq {
@@ -2045,11 +2142,7 @@ footer {
 
     <div class="tasks-layout">
         <aside class="task-sidebar" aria-label="Ustawienia zadań">
-            <div class="sidebar-head">
-                <a class="task-brand-card" href="index.html" aria-label="Delta Sigma">
-                    <img class="task-brand-logo" src="img/logo3.png" alt="Delta Sigma">
-                </a>
-
+            <div class="selector-grid">
                 <div class="side-section" id="guestLevelWrapper">
                     <div class="side-title">Poziom</div>
                     <div class="level-selector sidebar-levels" id="guestLevelSection">
@@ -2057,6 +2150,11 @@ footer {
                         <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
                         <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
                     </div>
+                </div>
+
+                <div class="side-section source-picker-section">
+                    <div class="side-title" id="sourceTitle">Numer lekcji</div>
+                    <div class="source-list" id="sourceList"></div>
                 </div>
             </div>
 
@@ -2082,11 +2180,6 @@ footer {
             </div>
 
             <div class="source-summary-row">
-                <div class="side-section source-picker-section">
-                    <div class="side-title" id="sourceTitle">Numer lekcji</div>
-                    <div class="source-list" id="sourceList"></div>
-                </div>
-
                 <div class="side-section" id="sourceSummarySection">
                     <div class="side-title" id="sourceSummaryTitle">Podsumowanie</div>
                     <div class="source-summary-card">

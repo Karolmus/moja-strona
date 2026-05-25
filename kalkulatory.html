@@ -11,8 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css">
 
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 <style>
 :root {
     --page-bg: #f0f2f5;
@@ -142,6 +140,25 @@ body {
     color: var(--muted);
     font-size: 13px;
     font-weight: 600;
+}
+
+.plot-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--muted);
+    padding: 9px 11px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.plot-toggle input {
+    width: 16px;
+    min-height: 16px;
+    margin: 0;
 }
 
 .calculator-section {
@@ -431,6 +448,10 @@ footer {
             <header class="page-header">
                 <h1 class="page-title">Kalkulatory</h1>
                 <div class="tool-count" id="toolCount">1 narzędzie</div>
+                <label class="plot-toggle">
+                    <input id="includePlots" type="checkbox">
+                    Wykres
+                </label>
             </header>
 
             <section class="calculator-section" data-category="algebra">
@@ -449,11 +470,11 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Postać równania</div>
                             <div class="formula-note">
-                                <strong>Wzór:</strong> \(a_nx^n+\ldots+a_1x+a_0=0\)
+                                <strong>Wzór:</strong> a_n x^n + ... + a_1 x + a_0 = 0
                             </div>
                             <div class="input-grid single">
                                 <div class="field">
-                                    <label for="coeffs">Współczynniki \(a_n,\ldots,a_0\)</label>
+                                    <label for="coeffs">Współczynniki a_n, ..., a_0</label>
                                     <input id="coeffs" placeholder="1; 0; -1">
                                 </div>
                             </div>
@@ -481,21 +502,21 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Parametry</div>
                             <div class="formula-note">
-                                <strong>Model:</strong> \(X\sim B(n,p)\), szukamy \(P(X\in K)\)
+                                <strong>Model:</strong> X ~ B(n,p), szukamy P(X w K)
                             </div>
                             <div class="input-grid three">
                                 <div class="field">
-                                    <label for="p">Prawdopodobieństwo \(p\)</label>
+                                    <label for="p">Prawdopodobieństwo p</label>
                                     <input id="p" inputmode="decimal" placeholder="0,5">
                                 </div>
 
                                 <div class="field">
-                                    <label for="n">Liczba prób \(n\)</label>
+                                    <label for="n">Liczba prób n</label>
                                     <input id="n" inputmode="numeric" placeholder="10">
                                 </div>
 
                                 <div class="field">
-                                    <label for="k">Liczba sukcesów \(K\)</label>
+                                    <label for="k">Liczba sukcesów K</label>
                                     <input id="k" placeholder="1; 2; 3">
                                 </div>
                             </div>
@@ -523,16 +544,16 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Punkt A</div>
                             <div class="formula-note">
-                                <strong>Punkt:</strong> \(A=(x_A,y_A)\)
+                                <strong>Punkt:</strong> A = (x_A, y_A)
                             </div>
                             <div class="input-grid">
                                 <div class="field">
-                                    <label for="xa">Współrzędna \(x_A\)</label>
+                                    <label for="xa">Współrzędna x_A</label>
                                     <input id="xa" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="ya">Współrzędna \(y_A\)</label>
+                                    <label for="ya">Współrzędna y_A</label>
                                     <input id="ya" inputmode="decimal">
                                 </div>
                             </div>
@@ -541,21 +562,21 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Okrąg</div>
                             <div class="formula-note">
-                                <strong>Okrąg:</strong> środek \(S=(x_S,y_S)\), promień \(r\)
+                                <strong>Okrąg:</strong> środek S = (x_S, y_S), promień r
                             </div>
                             <div class="input-grid three">
                                 <div class="field">
-                                    <label for="xs">Współrzędna \(x_S\)</label>
+                                    <label for="xs">Współrzędna x_S</label>
                                     <input id="xs" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="ys">Współrzędna \(y_S\)</label>
+                                    <label for="ys">Współrzędna y_S</label>
                                     <input id="ys" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="r">Promień \(r\)</label>
+                                    <label for="r">Promień r</label>
                                     <input id="r" inputmode="decimal">
                                 </div>
                             </div>
@@ -574,21 +595,21 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Prosta</div>
                             <div class="formula-note">
-                                <strong>Wzór:</strong> \(Ax+By+C=0\)
+                                <strong>Wzór:</strong> Ax + By + C = 0
                             </div>
                             <div class="input-grid three">
                                 <div class="field">
-                                    <label for="A">Współczynnik \(A\)</label>
+                                    <label for="A">Współczynnik A</label>
                                     <input id="A" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="B">Współczynnik \(B\)</label>
+                                    <label for="B">Współczynnik B</label>
                                     <input id="B" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="C">Współczynnik \(C\)</label>
+                                    <label for="C">Współczynnik C</label>
                                     <input id="C" inputmode="decimal">
                                 </div>
                             </div>
@@ -597,21 +618,21 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Okrąg</div>
                             <div class="formula-note">
-                                <strong>Wzór:</strong> \((x-p)^2+(y-q)^2=r^2\)
+                                <strong>Wzór:</strong> (x - p)^2 + (y - q)^2 = r^2
                             </div>
                             <div class="input-grid three">
                                 <div class="field">
-                                    <label for="p1">Środek \(p\)</label>
+                                    <label for="p1">Środek p</label>
                                     <input id="p1" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="q1">Środek \(q\)</label>
+                                    <label for="q1">Środek q</label>
                                     <input id="q1" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="r1">Promień \(r\)</label>
+                                    <label for="r1">Promień r</label>
                                     <input id="r1" inputmode="decimal">
                                 </div>
                             </div>
@@ -630,21 +651,21 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Pierwszy okrąg</div>
                             <div class="formula-note">
-                                <strong>Wzór:</strong> \((x-x_1)^2+(y-y_1)^2=r_1^2\)
+                                <strong>Wzór:</strong> (x - x_1)^2 + (y - y_1)^2 = r_1^2
                             </div>
                             <div class="input-grid three">
                                 <div class="field">
-                                    <label for="a">Środek \(x_1\)</label>
+                                    <label for="a">Środek x_1</label>
                                     <input id="a" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="b">Środek \(y_1\)</label>
+                                    <label for="b">Środek y_1</label>
                                     <input id="b" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="c">Promień \(r_1\)</label>
+                                    <label for="c">Promień r_1</label>
                                     <input id="c" inputmode="decimal">
                                 </div>
                             </div>
@@ -653,21 +674,21 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Drugi okrąg</div>
                             <div class="formula-note">
-                                <strong>Wzór:</strong> \((x-x_2)^2+(y-y_2)^2=r_2^2\)
+                                <strong>Wzór:</strong> (x - x_2)^2 + (y - y_2)^2 = r_2^2
                             </div>
                             <div class="input-grid three">
                                 <div class="field">
-                                    <label for="p2">Środek \(x_2\)</label>
+                                    <label for="p2">Środek x_2</label>
                                     <input id="p2" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="q2">Środek \(y_2\)</label>
+                                    <label for="q2">Środek y_2</label>
                                     <input id="q2" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="r2">Promień \(r_2\)</label>
+                                    <label for="r2">Promień r_2</label>
                                     <input id="r2" inputmode="decimal">
                                 </div>
                             </div>
@@ -686,16 +707,16 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Współczynniki kierunkowe</div>
                             <div class="formula-note">
-                                <strong>Proste:</strong> \(y=a_1x+b_1\), \(y=a_2x+b_2\)
+                                <strong>Proste:</strong> y = a_1 x + b_1, y = a_2 x + b_2
                             </div>
                             <div class="input-grid">
                                 <div class="field">
-                                    <label for="a1">Współczynnik \(a_1\)</label>
+                                    <label for="a1">Współczynnik a_1</label>
                                     <input id="a1" inputmode="decimal">
                                 </div>
 
                                 <div class="field">
-                                    <label for="a2">Współczynnik \(a_2\)</label>
+                                    <label for="a2">Współczynnik a_2</label>
                                     <input id="a2" inputmode="decimal">
                                 </div>
                             </div>
@@ -736,9 +757,6 @@ function setCalculatorCategory(btn, category){
 
     const visibleSection = document.querySelector(".calculator-section:not([hidden])");
 
-    if(window.MathJax && visibleSection){
-        MathJax.typesetPromise ? MathJax.typesetPromise([visibleSection]) : MathJax.typeset([visibleSection]);
-    }
 }
 
 function updateToolCount(){
