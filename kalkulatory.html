@@ -42,14 +42,14 @@ body {
 
 .container {
     max-width: 1180px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 20px auto;
+    padding: 12px;
 }
 
 .calculator-layout {
     display: grid;
-    grid-template-columns: 260px minmax(0, 1fr);
-    gap: 16px;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 12px;
     align-items: start;
 }
 
@@ -57,11 +57,11 @@ body {
     position: sticky;
     top: 16px;
     display: grid;
-    gap: 12px;
+    gap: 8px;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 14px;
+    padding: 10px;
     box-shadow: var(--shadow);
 }
 
@@ -84,7 +84,7 @@ body {
 
 .category-btn {
     width: 100%;
-    min-height: 40px;
+    min-height: 34px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
@@ -93,7 +93,7 @@ body {
     font: inherit;
     font-weight: 600;
     text-align: left;
-    padding: 9px 11px;
+    padding: 7px 9px;
     transition:
         background 0.2s ease,
         border-color 0.2s ease,
@@ -115,7 +115,7 @@ body {
 
 .workspace {
     display: grid;
-    gap: 18px;
+    gap: 12px;
 }
 
 .page-header {
@@ -128,14 +128,14 @@ body {
 
 .page-title {
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1.2;
 }
 
 .tool-count {
     border: 1px solid var(--line-dark);
     border-radius: 8px;
-    padding: 9px 12px;
+    padding: 7px 10px;
     background: white;
     color: var(--muted);
     font-size: 13px;
@@ -150,7 +150,7 @@ body {
     border-radius: 8px;
     background: white;
     color: var(--muted);
-    padding: 9px 11px;
+    padding: 7px 9px;
     font-size: 12px;
     font-weight: 600;
 }
@@ -163,7 +163,7 @@ body {
 
 .calculator-section {
     display: grid;
-    gap: 10px;
+    gap: 8px;
 }
 
 .section-heading {
@@ -172,12 +172,12 @@ body {
     justify-content: space-between;
     gap: 12px;
     border-bottom: 1px solid var(--line);
-    padding-bottom: 8px;
+    padding-bottom: 6px;
 }
 
 .section-heading h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.2;
 }
 
@@ -190,18 +190,18 @@ body {
 .tool-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 12px;
 }
 
 .calculator-card {
     display: grid;
-    gap: 14px;
+    gap: 10px;
     align-content: start;
     background: var(--surface);
     border: 1px solid var(--line);
     border-top: 4px solid #8eb5de;
     border-radius: 8px;
-    padding: 18px;
+    padding: 12px;
     box-shadow: var(--shadow);
 }
 
@@ -218,7 +218,7 @@ body {
 
 .tool-header h3 {
     margin: 0;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.25;
 }
 
@@ -235,7 +235,7 @@ body {
 
 .field-group {
     display: grid;
-    gap: 8px;
+    gap: 6px;
 }
 
 .group-title {
@@ -249,8 +249,8 @@ body {
     border-radius: 8px;
     background: var(--surface-soft);
     color: var(--text);
-    padding: 8px 10px;
-    font-size: 13px;
+    padding: 6px 8px;
+    font-size: 12px;
     line-height: 1.35;
     overflow-x: auto;
 }
@@ -263,7 +263,7 @@ body {
 .input-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    gap: 8px;
 }
 
 .input-grid.three {
@@ -276,7 +276,7 @@ body {
 
 .field {
     display: grid;
-    gap: 5px;
+    gap: 4px;
 }
 
 .field.full {
@@ -291,10 +291,10 @@ label {
 
 input {
     width: 100%;
-    min-height: 42px;
+    min-height: 34px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 9px 11px;
+    padding: 7px 9px;
     background: white;
     color: var(--text);
     font: inherit;
@@ -308,7 +308,7 @@ input:focus {
 
 .calc-btn {
     width: 100%;
-    min-height: 42px;
+    min-height: 36px;
     border: 1px solid var(--navy);
     border-radius: 8px;
     background: var(--navy);
@@ -336,12 +336,12 @@ input:focus {
 
 .result {
     display: grid;
-    gap: 12px;
-    min-height: 48px;
+    gap: 8px;
+    min-height: 36px;
     border: 1px solid var(--line);
     border-left: 4px solid #8eb5de;
     border-radius: 8px;
-    padding: 12px;
+    padding: 8px 10px;
     background: var(--surface-soft);
     color: var(--text);
     overflow-x: auto;
@@ -357,11 +357,11 @@ input:focus {
 
 .plot-card {
     display: grid;
-    gap: 8px;
+    gap: 6px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
-    padding: 10px;
+    padding: 8px;
 }
 
 .plot-title {
@@ -374,15 +374,15 @@ input:focus {
     display: block;
     width: 100%;
     height: auto;
-    max-height: 320px;
+    max-height: 240px;
 }
 
 footer {
     text-align: center;
-    padding: 15px;
+    padding: 12px;
     background: #1f2a36;
     color: #aaa;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 @media(max-width: 900px) {
@@ -401,7 +401,7 @@ footer {
 
 @media(max-width: 760px) {
     .container {
-        margin: 24px auto;
+        margin: 14px auto;
         padding: 5px;
     }
 
@@ -410,18 +410,28 @@ footer {
     }
 
     .tool-count {
-        width: 100%;
+        width: auto;
     }
 
     .tool-grid,
     .input-grid,
-    .input-grid.three,
-    .category-tabs {
+    .input-grid.three {
         grid-template-columns: 1fr;
     }
 
+    .category-tabs {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .category-btn {
+        min-height: 32px;
+        padding: 6px 7px;
+        text-align: center;
+        font-size: 12px;
+    }
+
     .calculator-card {
-        padding: 16px;
+        padding: 12px;
     }
 }
 </style>
@@ -730,13 +740,6 @@ footer {
         </div>
     </div>
 </main>
-
-<div class="source-attribution">
-    Część materiałów egzaminacyjnych prezentowanych w serwisie pochodzi z Centralnej Komisji Egzaminacyjnej:
-    <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
-    Delta Sigma nie jest oficjalnym serwisem CKE.
-</div>
-
 <footer>© 2026 Delta sigma</footer>
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 

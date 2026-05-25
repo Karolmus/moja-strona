@@ -53,12 +53,22 @@ body {
     gap: 25px;
 }
 
+.grid > * {
+    min-width: 0;
+}
+
 /* CARD */
 .card {
     background: white;
     padding: 25px;
     border-radius: 16px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-card {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 18px;
 }
 
 /* CONTACT INFO */
@@ -95,14 +105,80 @@ body {
     transform: scale(1.05);
 }
 
+.contact-action-card {
+    display: grid;
+    gap: 10px;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+.contact-action-card h2,
+.contact-action-card h3 {
+    margin: 0;
+    color: #1f2a36;
+}
+
+.contact-action-card h2 {
+    font-size: 24px;
+}
+
+.contact-action-card h3 {
+    font-size: 18px;
+}
+
+.contact-action-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.contact-call-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 18px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #404EED, #5865F2);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition: 0.3s;
+}
+
+.contact-call-button:hover {
+    transform: translateY(-2px);
+}
+
+.contact-call-button svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+}
+
 /* FORM */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    gap: 14px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 input, textarea {
+    width: 100%;
     padding: 12px;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -112,6 +188,17 @@ input, textarea {
 textarea {
     min-height: 120px;
     resize: vertical;
+}
+
+.form-status {
+    min-height: 22px;
+    color: #2f6b36;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-status.error {
+    color: #8b2119;
 }
 
 button {
@@ -143,6 +230,10 @@ button:hover {
     overflow: hidden;
 }
 
+.map iframe {
+    display: block;
+}
+
 /* FOOTER */
 footer {
     background: #1f2a36;
@@ -156,6 +247,23 @@ footer {
 @media (max-width: 800px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .container {
+        margin: 24px auto;
+        padding: 10px;
+    }
+
+    .card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .contact-action-card {
+        padding: 18px;
+        border-radius: 14px;
     }
 }
 </style>
@@ -198,7 +306,6 @@ footer {
 </div>
 
 
-
 <!-- MAPA -->
 <div class="map">
     <iframe
@@ -207,24 +314,81 @@ footer {
     </iframe>
 </div>
 
+<div class="card contact-card">
+    <div class="contact-action-card">
+        <h2>Zadzwoń</h2>
+        <p>Po więcej informacji lub aby zapisać się na zajęcia.</p>
+
+        <a class="contact-call-button" href="tel:514681958">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
+                11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
+                17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
+                11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            <span>514 681 958</span>
+        </a>
+    </div>
+
+    <div class="contact-action-card">
+        <h3>Możesz też wygodnie skontaktować się ze mną przez formularz</h3>
+
+        <form id="contactForm">
+            <label>
+                Telefon lub e-mail
+                <input id="contactValue" name="contact" autocomplete="email" maxlength="254" required placeholder="">
+            </label>
+
+            <label>
+                Preferowany termin
+                <input id="preferredTerm" name="preferred_term" maxlength="160" placeholder="">
+            </label>
+
+            <label>
+                Wiadomość
+                <textarea id="contactMessage" name="message" maxlength="3000" required placeholder=""></textarea>
+            </label>
+
+            <button type="submit">Wyślij wiadomość</button>
+            <div class="form-status" id="status" aria-live="polite"></div>
+        </form>
+    </div>
 </div>
 
-<div class="source-attribution">
-    Część materiałów egzaminacyjnych prezentowanych w serwisie pochodzi z Centralnej Komisji Egzaminacyjnej:
-    <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
-    Delta Sigma nie jest oficjalnym serwisem CKE.
 </div>
-
 <footer>
     © 2026 Karol Musioł Delta sigma
 </footer>
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script>
-function sendMsg(e){
-    e.preventDefault();
-    document.getElementById("status").innerText = "✔ Wiadomość wysłana (demo)";
-}
+document.getElementById("contactForm")?.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const status = document.getElementById("status");
+    const message = document.getElementById("contactMessage").value.trim();
+
+    status.classList.remove("error");
+    status.innerText = "Wysyłam wiadomość...";
+
+    try {
+        await window.apiFetch("/api/contact-messages", {
+            method: "POST",
+            body: JSON.stringify({
+                contact: document.getElementById("contactValue").value.trim(),
+                preferred_term: document.getElementById("preferredTerm").value.trim(),
+                message
+            })
+        });
+
+        form.reset();
+        status.innerText = "Wiadomość wysłana.";
+    } catch(error) {
+        status.classList.add("error");
+        status.innerText = error.message || "Nie udało się wysłać wiadomości.";
+    }
+});
 </script>
 <script>
 fetch("nav.html")

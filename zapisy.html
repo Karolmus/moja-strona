@@ -140,28 +140,39 @@ h1{
 }
 
 .contact-form-card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 18px;
+    scroll-margin-top: 88px;
+    height: 100%;
+}
+
+.contact-action-card {
+    display: grid;
+    gap: 10px;
     background: white;
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: 16px;
     padding: 22px;
     box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-    scroll-margin-top: 88px;
-    height: 100%;
 }
 
 .contact-form-card h2 {
-    margin: 0 0 8px;
+    margin: 0;
     color: #1f2a36;
     font-size: 24px;
 }
 
 .contact-form-card p {
-    margin: 0 0 16px;
+    margin: 0;
     color: #555;
     line-height: 1.6;
     font-size: 14px;
+}
+
+.contact-action-card h3 {
+    margin: 0;
+    color: #1f2a36;
+    font-size: 18px;
 }
 
 .contact-form {
@@ -205,6 +216,87 @@ h1{
     font: inherit;
     font-weight: 600;
     padding: 10px 18px;
+}
+
+.course-picker {
+    display: grid;
+    gap: 8px;
+    margin: 2px 0 4px;
+}
+
+.course-picker-title {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.course-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.course-option {
+    min-width: 0;
+}
+
+.course-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.course-price-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1f2a36;
+    cursor: pointer;
+    min-height: 54px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.course-price-option:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    box-shadow: 0 7px 18px rgba(15, 23, 42, 0.1);
+}
+
+.course-option input:focus-visible + .course-price-option,
+.course-option input:checked + .course-price-option {
+    background: #fff;
+    border-color: #263545;
+    box-shadow: 0 0 0 3px rgba(38, 53, 69, 0.14);
+}
+
+.course-price-name {
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.course-price-value {
+    color: #050505;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.course-picker-note {
+    margin: 0;
+    color: #555;
+    font-size: 12px;
+    line-height: 1.45;
 }
 
 .selected-term-list {
@@ -336,13 +428,6 @@ h1{
 	    border-top:1px solid #eee;
 	}
 
-	main + .tools-section{
-	    max-width:var(--content-width);
-	    margin:20px auto 0;
-	    padding:var(--content-padding);
-	}
-
-
 .card-icon{
     width:80px;
     height:80px;
@@ -424,7 +509,9 @@ h1{
 ========================= */
 
 .tools-section{
-    margin:0 auto 8px;
+    max-width:var(--content-width);
+    margin:20px auto 8px;
+    padding:0 var(--content-padding);
 }
 
 .tools-panel{
@@ -704,6 +791,22 @@ h1{
 
 @media (max-width:700px){
 
+    .container{
+        padding:12px;
+    }
+
+    .contact-form-card,
+    .contact-action-card,
+    .schedule-card{
+        padding:18px;
+        border-radius:14px;
+    }
+
+    .course-options{
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+
     .about{
         padding:50px 16px;
     }
@@ -805,44 +908,90 @@ footer{
             </section>
 
             <section class="contact-form-card" id="contactFormCard" aria-labelledby="contactFormTitle">
-                <h2 id="contactFormTitle">Formularz kontaktowy</h2>
-                <p>Wybierz termin z tabeli albo napisz, jakie godziny wchodzą w grę.</p>
+                <div class="contact-action-card">
+                    <h2 id="contactFormTitle">Zadzwoń</h2>
+                    <p>Po więcej informacji lub aby zapisać się na zajecia.</p>
 
-                <a class="cta-card" href="tel:514681958">
-                    <span class="cta-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
-                            11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
-                            17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
-                            11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-                        </svg>
-                    </span>
-                    <span>Zadzwoń: 514 681 958</span>
-                </a>
+                    <a class="cta-card" href="tel:514681958">
+                        <span class="cta-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
+                                11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
+                                17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
+                                11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+                            </svg>
+                        </span>
+                        <span>514 681 958</span>
+                    </a>
+                </div>
 
-                <form class="contact-form" id="contactForm">
-                    <label>
-                        Telefon lub e-mail
-                        <input name="contact" autocomplete="email" maxlength="254" required placeholder="">
-                    </label>
+                <div class="contact-action-card">
+                    <h3>Możesz też wygodnie skontaktować się ze mną przez formularz</h3>
 
-                    <label>
-                        Wybrane terminy
-                        <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Kliknij wolny termin w tabeli">
-                    </label>
+                    <form class="contact-form" id="contactForm">
+                        <div class="course-picker">
+                            <div class="course-picker-title">Wybierz kurs</div>
+                            <div class="course-options" role="radiogroup" aria-label="Wybór kursu">
+                                <label class="course-option">
+                                    <input type="radio" name="course" value="Na bieżąco | 85 zł / 55 min" required>
+                                    <span class="course-price-option">
+                                        <span class="course-price-name">Na bieżąco</span>
+                                        <span class="course-price-value">85 zł / 55 min</span>
+                                    </span>
+                                </label>
 
-                    <div class="selected-term-list empty" id="selectedTermList" aria-live="polite">
-                        Brak wybranych terminów.
-                    </div>
+                                <label class="course-option">
+                                    <input type="radio" name="course" value="Egzamin ósmoklasisty | 90 zł / 55 min">
+                                    <span class="course-price-option">
+                                        <span class="course-price-name">Egzamin ósmoklasisty</span>
+                                        <span class="course-price-value">90 zł / 55 min</span>
+                                    </span>
+                                </label>
 
-                    <label>
-                        Dodatkowe informacje takie jak klasa do której uczęszcza uczeń, jaki ma cel lub jaki kurs chce realizować
-                        <textarea name="message" maxlength="3000" required placeholder=""></textarea>
-                    </label>
+                                <label class="course-option">
+                                    <input type="radio" name="course" value="Matura podstawowa | 100 zł / 55 min">
+                                    <span class="course-price-option">
+                                        <span class="course-price-name">Matura podstawowa</span>
+                                        <span class="course-price-value">100 zł / 55 min</span>
+                                    </span>
+                                </label>
 
-                    <button type="submit">Wyślij wiadomość</button>
-                    <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
-                </form>
+                                <label class="course-option">
+                                    <input type="radio" name="course" value="Matura rozszerzona | 110 zł / 55 min">
+                                    <span class="course-price-option">
+                                        <span class="course-price-name">Matura rozszerzona</span>
+                                        <span class="course-price-value">110 zł / 55 min</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <p class="course-picker-note">
+                                Uczeń dostaje dostęp do materiałów wspomagających proces, a rodzic dostaje narzędzie do obserwowania pracy ucznia.
+                            </p>
+                        </div>
+
+                        <label>
+                            Telefon lub e-mail
+                            <input name="contact" autocomplete="email" maxlength="254" required placeholder="">
+                        </label>
+
+                        <label>
+                            Wybrane terminy
+                            <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Kliknij wolny termin w tabeli">
+                        </label>
+
+                        <div class="selected-term-list empty" id="selectedTermList" aria-live="polite">
+                            Brak wybranych terminów.
+                        </div>
+
+                        <label>
+                            Dodatkowe informacje takie jak klasa do której uczęszcza uczeń, jaki ma cel lub jaki kurs chce realizować
+                            <textarea name="message" maxlength="3000" required placeholder=""></textarea>
+                        </label>
+
+                        <button type="submit">Wyślij wiadomość</button>
+                        <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
             </section>
         </div>
     </section>
@@ -978,13 +1127,6 @@ footer{
     </div>
 
 </section>
-
-<div class="source-attribution">
-    Część materiałów egzaminacyjnych prezentowanych w serwisie pochodzi z Centralnej Komisji Egzaminacyjnej:
-    <a href="https://cke.gov.pl/" target="_blank" rel="noopener">cke.gov.pl</a>.
-    Delta Sigma nie jest oficjalnym serwisem CKE.
-</div>
-
 <footer>
     © 2026 Karol Musioł Delta sigma
 </footer>
@@ -1207,12 +1349,15 @@ contactForm.addEventListener("submit", async event => {
     button.innerText = "Wysyłam...";
 
     try {
+        const selectedCourse = formData.get("course") || "";
+        const message = String(formData.get("message") || "").trim();
+
         await apiFetch("/api/contact-messages", {
             method: "POST",
             body: JSON.stringify({
                 contact: formData.get("contact"),
                 preferred_term: formData.get("preferred_term"),
-                message: formData.get("message")
+                message: `Wybrany kurs: ${selectedCourse}\n\n${message}`
             })
         });
 
