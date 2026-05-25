@@ -3972,7 +3972,20 @@ function shouldShowTaskNavigator(items = taskNavigatorItems()){
         items.length > 0;
 }
 
+function courseTaskNumberFromTitle(task){
+    const title = String(task?.title || "");
+    const match = title.match(/(?:zadanie(?:\s+(?:domowe|praktyczne))?|ćwiczenie\s+wstępne)\s+(\d+(?:[.,]\d+)?)/i);
+
+    return match ? match[1].replace(",", ".") : "";
+}
+
 function taskNumberLabel(task){
+    if(task?.category === "kurs"){
+        const courseNumber = courseTaskNumberFromTitle(task);
+
+        if(courseNumber) return courseNumber;
+    }
+
     return String(task?.file || "")
         .replace(".png", "")
         .split("_")[0] || "?";
