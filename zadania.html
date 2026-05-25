@@ -2363,6 +2363,7 @@ let sessionResults = new Map();
 let drawTaskRequestId = 0;
 let isTaskLoading = false;
 let selectedSolutionIndex = 0;
+let completedExamSummarySource = "";
 let selectedGradingIndex = 0;
 let courseGradingCriteriaByTask = new Map();
 let practicalValueStore = new Map();
@@ -2599,6 +2600,8 @@ const MONTH_LABELS = {
     maj: "maj"
 };
 
+const GUEST_PROGRESS_STORAGE_KEY = "deltaSigmaGuestExamProgress";
+
 setInterval(() => {
     seconds++;
     updateTimer();
@@ -2658,6 +2661,7 @@ async function bootStudentPanel(){
             selectedLevel = "matura_podstawowa";
             selectedCategory = "egzaminy";
             taskMode = "ordered";
+            loadGuestSessionProgress();
         }
 
         updateAccessModeUI();
@@ -3809,6 +3813,39 @@ function percentLabel(value){
     return `${formatPoints(rounded)}%`;
 }
 
+function calculateSourceSummary(tasksToSummarize = sourceSummaryTasks()){
+    let earnedPoints = 0;
+    let totalPoints = 0;
+    let scoredTasks = 0;
+    let attemptedTasks = 0;
+
+    tasksToSummarize.forEach(task => {
+        const maxPoints = taskPointValue(task);
+        const result = getSavedResult(task);
+        const score = getTaskScore(task);
+
+        totalPoints += maxPoints;
+
+        if(result) attemptedTasks++;
+
+        if(score){
+            earnedPoints += score.earnedPoints;
+            scoredTasks++;
+        }
+    });
+
+    const percent = totalPoints ? (earnedPoints / totalPoints) * 100 : 0;
+
+    return {
+        tasks: tasksToSummarize,
+        earnedPoints,
+        totalPoints,
+        scoredTasks,
+        attemptedTasks,
+        percent
+    };
+}
+
 function updateSourceSummary(){
     const section = document.getElementById("sourceSummarySection");
     const title = document.getElementById("sourceSummaryTitle");
@@ -3831,48 +3868,33 @@ function updateSourceSummary(){
     section.parentElement?.classList.remove("summary-hidden");
     title.innerText = selectedCategory === "kurs" ? "Podsumowanie lekcji" : "Podsumowanie arkusza";
 
-    let earnedPoints = 0;
-    let totalPoints = 0;
-    let scoredTasks = 0;
-    let attemptedTasks = 0;
+    const summary = calculateSourceSummary(summaryTasks);
 
-    summaryTasks.forEach(task => {
-        const maxPoints = taskPointValue(task);
-        const result = getSavedResult(task);
-        const score = getTaskScore(task);
+    points.innerText = `${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt`;
+    percent.innerText = percentLabel(summary.percent);
+    fill.style.width = `${Math.max(0, Math.min(100, summary.percent))}%`;
 
-        totalPoints += maxPoints;
-
-        if(result) attemptedTasks++;
-
-        if(score){
-            earnedPoints += score.earnedPoints;
-            scoredTasks++;
-        }
-    });
-
-    const completionPercent = totalPoints ? (earnedPoints / totalPoints) * 100 : 0;
-
-    points.innerText = `${formatPoints(earnedPoints)} / ${formatPoints(totalPoints)} pkt`;
-    percent.innerText = percentLabel(completionPercent);
-    fill.style.width = `${Math.max(0, Math.min(100, completionPercent))}%`;
-
-    if(!totalPoints){
+    if(!summary.totalPoints){
         detail.innerText = "Ten zestaw nie ma jeszcze wpisanej punktacji.";
         return;
     }
 
     detail.innerText =
-        `Punkty zapisane dla ${scoredTasks}/${summaryTasks.length} zadań. ` +
-        `Rozwiązane: ${attemptedTasks}/${summaryTasks.length}.`;
+        `Punkty zapisane dla ${summary.scoredTasks}/${summaryTasks.length} zadań. ` +
+        `Rozwiązane: ${summary.attemptedTasks}/${summaryTasks.length}.`;
 }
 
 function resetSession(){
     currentIndex = 0;
     randomHistory = [];
     randomHistoryIndex = -1;
-    sessionResults = new Map();
-    sessionScores = new Map();
+
+    if(isLoggedInStudent){
+        sessionResults = new Map();
+        sessionScores = new Map();
+    }
+
+    completedExamSummarySource = "";
     seconds = 0;
     updateTimer();
     document.getElementById("progress").innerHTML = "";
@@ -3905,6 +3927,34 @@ function getSavedProgressItem(task){
     return savedProgress.find(item => progressTaskKey(item) === key) || null;
 }
 
+function loadGuestSessionProgress(){
+    if(isLoggedInStudent) return;
+
+    try {
+        const raw = sessionStorage.getItem(GUEST_PROGRESS_STORAGE_KEY);
+        const data = raw ? JSON.parse(raw) : null;
+
+        sessionResults = new Map(Array.isArray(data?.results) ? data.results : []);
+        sessionScores = new Map(Array.isArray(data?.scores) ? data.scores : []);
+    } catch(error) {
+        sessionResults = new Map();
+        sessionScores = new Map();
+    }
+}
+
+function saveGuestSessionProgress(){
+    if(isLoggedInStudent) return;
+
+    try {
+        sessionStorage.setItem(GUEST_PROGRESS_STORAGE_KEY, JSON.stringify({
+            results: [...sessionResults],
+            scores: [...sessionScores]
+        }));
+    } catch(error) {
+        // Brak zapisu w sessionStorage nie powinien blokować rozwiązywania zadań.
+    }
+}
+
 function isTaskDoneInCurrentRun(task){
     const key = getTaskKey(task);
 
@@ -3932,17 +3982,46 @@ function nextExamSourceId(){
     return sources[currentSourceIndex + 1]?.id || "";
 }
 
+function showExamCompletionSummary(){
+    const summary = calculateSourceSummary();
+    const source = getSourceMetaById(selectedSource);
+    const nextSource = nextExamSourceId();
+    const sourceLabel = source
+        ? `${source.label}${source.detail ? ` (${source.detail})` : ""}`
+        : "arkusz";
+    const nextInfo = nextSource
+        ? "Kliknij „Kolejne”, aby przejść do następnego arkusza."
+        : "To ostatni dostępny arkusz w tym poziomie.";
+
+    showMessage(
+        `Arkusz ukończony: ${sourceLabel}\n` +
+        `Wynik: ${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt (${percentLabel(summary.percent)}).\n` +
+        `Zapisane zadania: ${summary.scoredTasks}/${summary.tasks.length}. Rozwiązane: ${summary.attemptedTasks}/${summary.tasks.length}.\n` +
+        nextInfo
+    );
+}
+
 function advanceToNextExamIfComplete(){
     if(!isExamSourceComplete()) return false;
 
     const nextSource = nextExamSourceId();
 
+    if(completedExamSummarySource !== selectedSource){
+        completedExamSummarySource = selectedSource;
+        updateSourceSummary();
+        renderSourceSelector();
+        renderTaskNavigator();
+        showExamCompletionSummary();
+        return true;
+    }
+
     if(!nextSource){
-        showMessage("Ukończono wszystkie zadania w tym arkuszu.");
+        showExamCompletionSummary();
         return true;
     }
 
     selectedSource = nextSource;
+    completedExamSummarySource = "";
     currentIndex = 0;
     randomHistory = [];
     randomHistoryIndex = -1;
@@ -5092,6 +5171,16 @@ function automaticScoreForResult(type, task = currentTask){
     return { earnedPoints: null, maxPoints };
 }
 
+function advanceAfterScoreSave(task){
+    if(!task || !isManualScoreTask(task)) return;
+
+    setTimeout(() => {
+        if(currentTask === task){
+            nextTask();
+        }
+    }, 250);
+}
+
 function updateScorePanel(){
     const panel = document.getElementById("scorePanel");
     const input = document.getElementById("scoreInput");
@@ -6002,6 +6091,7 @@ function addProgress(type, scoreData = null){
     if(key){
         sessionResults.set(key, type);
         setSessionScore(currentTask, type, scoreData);
+        saveGuestSessionProgress();
     }
 
     if(shouldShowTaskNavigator()){
@@ -6085,6 +6175,7 @@ async function submitScore(event){
     const maxPoints = taskMaxPoints(currentTask);
     const saved = getSavedProgressItem(currentTask);
     const lockAfterSave = isCourseManualScoreTask(currentTask);
+    const scoredTask = currentTask;
 
     if(isCourseTask() && hasSavedPoints(saved)){
         status.innerText = "W trybie kursu nie można poprawiać zapisanego wyniku.";
@@ -6111,6 +6202,7 @@ async function submitScore(event){
         if(key){
             sessionResults.set(key, result);
             setSessionScore(currentTask, result, scoreData);
+            saveGuestSessionProgress();
             updateSourceSummary();
         }
 
@@ -6128,6 +6220,7 @@ async function submitScore(event){
     button.disabled = lockAfterSave;
     if(maxButton) maxButton.disabled = lockAfterSave;
     updateSourceSummary();
+    advanceAfterScoreSave(scoredTask);
 }
 
 function submitMaxScore(){
