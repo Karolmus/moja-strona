@@ -155,19 +155,42 @@ footer {
 /* MOBILE */
 @media (max-width: 760px){
     .main-nav{
-        flex-wrap: wrap;
-        gap: 6px;
-        padding: 7px 8px;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 2px;
+        padding: 6px 5px;
     }
 
     .main-nav a,
     .nav-logout,
     .nav-user{
-        font-size: 13px;
-        padding: 5px 8px;
+        flex: 0 1 auto;
+        min-width: 0;
+        white-space: nowrap;
+        font-size: 10px;
+        line-height: 1.1;
+        padding: 5px 4px;
     }
 
     .nav-user {
-        max-width: 100%;
+        display: none;
+    }
+}
+
+@media (max-width: 340px){
+    .main-nav{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px;
+        padding: 6px;
+    }
+
+    .main-nav a,
+    .nav-logout,
+    .nav-user{
+        width: 100%;
+        text-align: center;
+        font-size: 11px;
+        padding: 5px 4px;
     }
 }
