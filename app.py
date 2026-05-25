@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from calculators.solver import *
 import sympy as sp
 
@@ -14,7 +14,7 @@ def kontakt():
 
 @app.route("/kalkulatory")
 def kalkulatory():
-    return render_template("kalkulatory.html")
+    return redirect(url_for("home"))
 
 
 # ===== API =====
