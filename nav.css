@@ -7,8 +7,8 @@
     justify-content: center;
     align-items: center;
 
-    gap: 24px;
-    padding: 14px 20px;
+    gap: 16px;
+    padding: 8px 16px;
 
     background: rgba(4, 6, 8, 0.85);
     backdrop-filter: blur(12px);
@@ -25,11 +25,11 @@
     text-decoration: none;
 
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
 
-    padding: 8px 14px;
-    border-radius: 10px;
+    padding: 5px 11px;
+    border-radius: 8px;
 
     transition: all 0.25s ease;
 }
@@ -82,7 +82,21 @@
     font-weight: 700;
 }
 
+.main-nav .signup-link {
+    color: #102033;
+    background: linear-gradient(135deg, #edf4fb, #ffffff);
+    border: 1px solid rgba(142, 181, 222, 0.9);
+    box-shadow: 0 4px 14px rgba(142, 181, 222, 0.22);
+    font-weight: 700;
+}
+
 .main-nav .my-panel-link:hover {
+    color: #102033;
+    background: linear-gradient(135deg, #dbeaf8, #ffffff);
+    box-shadow: 0 6px 18px rgba(142, 181, 222, 0.32);
+}
+
+.main-nav .signup-link:hover {
     color: #102033;
     background: linear-gradient(135deg, #dbeaf8, #ffffff);
     box-shadow: 0 6px 18px rgba(142, 181, 222, 0.32);
@@ -99,6 +113,11 @@
 }
 
 .main-nav .my-panel-link.active {
+    color: #102033;
+    background: linear-gradient(135deg, #dbeaf8, #ffffff);
+}
+
+.main-nav .signup-link.active {
     color: #102033;
     background: linear-gradient(135deg, #dbeaf8, #ffffff);
 }
@@ -137,15 +156,15 @@ footer {
 @media (max-width: 760px){
     .main-nav{
         flex-wrap: wrap;
-        gap: 8px;
-        padding: 12px;
+        gap: 6px;
+        padding: 7px 8px;
     }
 
     .main-nav a,
     .nav-logout,
     .nav-user{
-        font-size: 14px;
-        padding: 8px 10px;
+        font-size: 13px;
+        padding: 5px 8px;
     }
 
     .nav-user {
