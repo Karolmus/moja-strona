@@ -1117,6 +1117,8 @@ body.focus-mode .task-card {
 }
 
 .action-group.tools {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(96px, 1fr));
     justify-content: flex-start;
 }
 
@@ -1151,6 +1153,13 @@ button {
     padding: 6px 11px;
     font-size: 14px;
     line-height: 1.15;
+}
+
+.action-group.tools .action-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 32px;
+    padding: 6px 8px;
 }
 
 .action-btn:hover,
@@ -1641,6 +1650,15 @@ button {
     height: auto;
     border: 1px solid var(--line);
     border-radius: 8px;
+}
+
+.solution-images {
+    display: grid;
+    gap: 10px;
+}
+
+.solution-images[hidden] {
+    display: none;
 }
 
 .solution-image[hidden],
@@ -2197,6 +2215,7 @@ footer {
 
                 <div class="solution-box" id="solutionBox" hidden>
                     <div class="solution-switcher" id="solutionSwitcher"></div>
+                    <div class="solution-images" id="solutionImages" hidden></div>
                     <img class="solution-image" id="solutionImage" alt="rozwiązanie zadania">
                     <div class="grading-criteria-text" id="gradingCriteriaText" hidden></div>
                 </div>
@@ -2784,7 +2803,7 @@ function loadTaskSource(sourceConfig){
 function normalizeTaskSolutions(task, basePath){
     if(!Array.isArray(task.solutions)) return [];
 
-    return task.solutions
+    const normalized = task.solutions
         .map((solution, index) => {
             if(typeof solution === "string"){
                 return {
@@ -2803,6 +2822,39 @@ function normalizeTaskSolutions(task, basePath){
             };
         })
         .filter(Boolean);
+
+    const groups = new Map();
+
+    normalized.forEach((solution, index) => {
+        const match = String(solution.file || "").match(/^(.*_s_)([a-z]+)(\d+)(\.[^.]+)$/i);
+        const key = match ? `${match[1]}${match[2]}`.toLowerCase() : `single:${index}`;
+        const label = match
+            ? String(solution.label || match[2].toUpperCase()).replace(/\s*\d+$/, "")
+            : solution.label;
+        const order = match ? Number(match[3]) : 0;
+
+        if(!groups.has(key)){
+            groups.set(key, {
+                ...solution,
+                label,
+                images: []
+            });
+        }
+
+        groups.get(key).images.push({
+            ...solution,
+            order,
+            path: solution.path
+        });
+    });
+
+    return [...groups.values()].map(group => {
+        group.images.sort((a, b) => a.order - b.order);
+        group.file = group.images[0]?.file || group.file;
+        group.path = group.images[0]?.path || group.path;
+
+        return group;
+    });
 }
 
 function normalizeTaskGradingCriteria(task, basePath){
@@ -4515,6 +4567,7 @@ function clearTaskInteraction(){
     const resultButtons = document.getElementById("resultButtons");
     const solutionBox = document.getElementById("solutionBox");
     const solutionSwitcher = document.getElementById("solutionSwitcher");
+    const solutionImages = document.getElementById("solutionImages");
     const solutionImage = document.getElementById("solutionImage");
     const gradingCriteriaText = document.getElementById("gradingCriteriaText");
     const scorePanel = document.getElementById("scorePanel");
@@ -4536,6 +4589,11 @@ function clearTaskInteraction(){
 
     if(solutionSwitcher){
         solutionSwitcher.innerHTML = "";
+    }
+
+    if(solutionImages){
+        solutionImages.innerHTML = "";
+        solutionImages.hidden = true;
     }
 
     if(solutionImage){
@@ -4966,6 +5024,7 @@ function updateScorePanel(){
 }
 
 function updateAnswerTools(){
+    const hintButton = document.getElementById("hintButton");
     const answerButton = document.getElementById("answerButton");
     const resultButtons = document.getElementById("resultButtons");
     const reviewButton = document.getElementById("reviewButton");
@@ -4977,8 +5036,13 @@ function updateAnswerTools(){
     const isCourse = isCourseTask();
     const isClosed = isClosedTask(currentTask);
     const isSubmitted = requiresSubmittedAnswer(currentTask);
+    const isOpenExam = currentTask.category === "egzaminy" && !isClosed && !isSubmitted;
 
-    answerButton.hidden = isCourse && isSubmitted;
+    if(hintButton){
+        hintButton.hidden = isOpenExam;
+    }
+
+    answerButton.hidden = isOpenExam || (isCourse && isSubmitted);
 
     if(solutionButton){
         solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
@@ -5520,6 +5584,7 @@ function chooseMulti(opt, btn){
     if(currentTaskAnswered) return;
 
     const correctAnswers = getCorrectAnswers(currentTask);
+    const requiredSelections = correctAnswers.length;
 
     if(multiSelection.has(opt)){
         multiSelection.delete(opt);
@@ -5527,38 +5592,43 @@ function chooseMulti(opt, btn){
         return;
     }
 
-    if(!correctAnswers.includes(opt)){
-        disableMCQ();
-        btn.classList.add("wrong");
-        revealCorrectAnswer(correctAnswers);
-
-        if(isCourseTask()){
-            showCorrection(correctAnswers);
-            addProgress("bad");
-            return;
-        }
-
-        addProgress("bad");
-
-        setTimeout(() => {
-            nextTask();
-        }, 1200);
-
-        return;
-    }
+    if(requiredSelections && multiSelection.size >= requiredSelections) return;
 
     multiSelection.add(opt);
     btn.classList.add("selected");
 
-    if(multiSelection.size === correctAnswers.length){
-        disableMCQ();
-        revealCorrectAnswer(correctAnswers);
-        addProgress(hintUsed || answerShown ? "medium" : "good");
+    if(multiSelection.size !== requiredSelections) return;
 
-        setTimeout(() => {
-            nextTask();
-        }, 850);
+    const selectedAnswers = [...multiSelection];
+    const correctSelections = selectedAnswers.filter(answer => correctAnswers.includes(answer)).length;
+    const maxPoints = taskMaxPoints(currentTask) || correctAnswers.length;
+    const earnedPoints = Math.min(correctSelections, maxPoints);
+    const result = scoreResultType(earnedPoints, maxPoints);
+    const scoreData = { earnedPoints, maxPoints };
+
+    disableMCQ();
+
+    document.querySelectorAll("#mcq button")
+        .forEach(button => {
+            const value = button.dataset.value;
+            const wasSelected = multiSelection.has(value);
+            const isCorrect = correctAnswers.includes(value);
+
+            if(isCorrect) button.classList.add("correct");
+            if(wasSelected && !isCorrect) button.classList.add("wrong");
+        });
+
+    if(earnedPoints < maxPoints && isCourseTask()){
+        showCorrection(correctAnswers);
+        addProgress(result, scoreData);
+        return;
     }
+
+    addProgress(result === "good" && (hintUsed || answerShown) ? "medium" : result, scoreData);
+
+    setTimeout(() => {
+        nextTask();
+    }, earnedPoints === maxPoints ? 850 : 1400);
 }
 
 function chooseGroupedMulti(index, value, btn){
@@ -6000,17 +6070,27 @@ function showSolution(index = selectedSolutionIndex){
     const solution = solutions[safeIndex];
     const box = document.getElementById("solutionBox");
     const switcher = document.getElementById("solutionSwitcher");
+    const images = document.getElementById("solutionImages");
     const image = document.getElementById("solutionImage");
     const gradingText = document.getElementById("gradingCriteriaText");
 
-    if(!box || !switcher || !image || !solution) return;
+    if(!box || !switcher || !images || !image || !solution) return;
 
     selectedSolutionIndex = safeIndex;
     answerShown = true;
     box.hidden = false;
-    image.hidden = false;
-    image.src = solution.path;
-    image.alt = `Rozwiązanie ${solution.label} zadania ${taskLabel(currentTask)}`;
+    image.removeAttribute("src");
+    image.hidden = true;
+    images.hidden = false;
+    images.innerHTML = "";
+    (solution.images?.length ? solution.images : [solution]).forEach((item, itemIndex) => {
+        const solutionImage = document.createElement("img");
+
+        solutionImage.className = "solution-image";
+        solutionImage.src = item.path;
+        solutionImage.alt = `Rozwiązanie ${solution.label}${itemIndex ? `, część ${itemIndex + 1}` : ""} zadania ${taskLabel(currentTask)}`;
+        images.appendChild(solutionImage);
+    });
     switcher.innerHTML = "";
 
     if(gradingText){
@@ -6105,15 +6185,18 @@ function showGradingCriteria(index = selectedGradingIndex){
     const item = criteria[safeIndex];
     const box = document.getElementById("solutionBox");
     const switcher = document.getElementById("solutionSwitcher");
+    const images = document.getElementById("solutionImages");
     const image = document.getElementById("solutionImage");
     const gradingText = document.getElementById("gradingCriteriaText");
 
-    if(!box || !switcher || !image || !gradingText || !item) return;
+    if(!box || !switcher || !images || !image || !gradingText || !item) return;
 
     selectedGradingIndex = safeIndex;
     answerShown = true;
     box.hidden = false;
     switcher.innerHTML = "";
+    images.innerHTML = "";
+    images.hidden = true;
 
     if(isTextGradingCriteria(item)){
         image.removeAttribute("src");
