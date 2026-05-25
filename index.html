@@ -479,29 +479,51 @@
         }
         @media (max-width: 600px){
             .home-hero-row{
-                grid-template-columns:1fr;
-                margin:20px auto;
+                grid-template-columns:minmax(0, 1fr) 112px;
+                margin:12px auto;
                 padding:0 12px;
-                gap:12px;
+                gap:10px;
             }
 
             .home-hero-row .enrollment-card,
             .delta-brand-card{
-                min-height:190px;
-                border-radius:18px;
+                min-height:132px;
+                border-radius:16px;
             }
 
             .delta-brand-card{
-                padding:22px;
+                padding:12px;
+                gap:6px;
             }
 
             .delta-brand-logo{
-                width:98px;
-                height:98px;
+                width:78px;
+                height:78px;
             }
 
-            .delta-brand-title{
-                font-size:22px;
+            .delta-brand-subtitle{
+                font-size:11px;
+                line-height:1.2;
+            }
+
+            .home-hero-row .enrollment-card{
+                padding:14px;
+            }
+
+            .home-hero-row .enrollment-badge{
+                padding:6px 10px;
+                font-size:10px;
+            }
+
+            .home-hero-row .enrollment-content h2{
+                margin:8px 0;
+                font-size:20px;
+                line-height:1.08;
+            }
+
+            .home-hero-row .enrollment-content p{
+                font-size:12px;
+                line-height:1.35;
             }
         }
 
