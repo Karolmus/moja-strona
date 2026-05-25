@@ -478,6 +478,42 @@
 
         }
         @media (max-width: 600px){
+            main{
+                gap:10px;
+                padding:10px 12px;
+            }
+
+            main .card:not(.horizontal){
+                border-radius:12px;
+            }
+
+            main .card:not(.horizontal) .card-bar{
+                height:8px;
+            }
+
+            main .card:not(.horizontal) img{
+                height:62px;
+            }
+
+            main .card:not(.horizontal) .card-content{
+                padding:8px 9px 6px;
+            }
+
+            main .card:not(.horizontal) .card-content h3{
+                margin:0;
+                font-size:13px;
+                line-height:1.15;
+            }
+
+            main .card:not(.horizontal) .card-content p{
+                display:none;
+            }
+
+            main .card:not(.horizontal) .price-bar{
+                padding:6px 5px;
+                font-size:11px;
+            }
+
             .home-hero-row{
                 grid-template-columns:minmax(0, 1fr) 112px;
                 margin:12px auto;
