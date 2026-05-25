@@ -157,7 +157,7 @@ footer {
     .main-nav{
         flex-wrap: nowrap;
         justify-content: center;
-        gap: 2px;
+        gap: 3px;
         padding: 6px 5px;
     }
 
@@ -169,7 +169,7 @@ footer {
         white-space: nowrap;
         font-size: 10px;
         line-height: 1.1;
-        padding: 5px 4px;
+        padding: 5px 5px;
     }
 
     .nav-user {
