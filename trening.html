@@ -752,12 +752,12 @@ const LEVELS = {
         shortLabel: "Ósmoklasisty",
         topics: [
             { id: "all", label: "Mieszany" },
-            { id: "powers", label: "Potęgi" },
             { id: "roots", label: "Pierwiastki" },
-            { id: "percents", label: "Procenty" },
+            { id: "fractions", label: "Ułamki zwykłe" },
+            { id: "approximations", label: "Przybliżenia" },
             { id: "areas", label: "Pola figur" },
-            { id: "equations", label: "Równania i proporcje" },
-            { id: "exam_schemes", label: "Schematy egzaminacyjne" }
+            { id: "volume", label: "Objętość" },
+            { id: "motion", label: "Prędkość, czas, droga" }
         ]
     },
     mp: {
@@ -765,15 +765,10 @@ const LEVELS = {
         shortLabel: "Matura podstawowa",
         topics: [
             { id: "all", label: "Mieszany" },
-            { id: "formulas", label: "Wzory skróconego mnożenia" },
-            { id: "powers", label: "Potęgi i pierwiastki" },
+            { id: "powers", label: "Potęgi" },
+            { id: "roots", label: "Pierwiastki" },
             { id: "logs", label: "Logarytmy" },
-            { id: "functions", label: "Funkcje i równania" },
-            { id: "analytic", label: "Geometria analityczna" },
-            { id: "sequences", label: "Ciągi" },
-            { id: "trig", label: "Trygonometria" },
-            { id: "combinatorics", label: "Kombinatoryka" },
-            { id: "statistics", label: "Statystyka" }
+            { id: "functions", label: "Funkcje" }
         ]
     }
 };
@@ -828,53 +823,47 @@ const leaderboardRefreshButton = document.getElementById("leaderboardRefreshButt
 let leaderboardRequestId = 0;
 
 const GENERATORS = [
-    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerRules },
-    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerMissingBase },
     { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
-    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
-    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentChange },
-    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentReverse },
+    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootSimplify },
+    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootCompare },
+    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionAdd },
+    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionCommonDenominator },
+    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionEquivalent },
+    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionOfNumber },
+    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMissingPart },
+    { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoRootApproximation },
+    { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoDecimalRounding },
+    { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoApproximateProduct },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoAreaReverse },
-    { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoLinearEquation },
-    { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoProportion },
-    { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoScaleRatio },
-    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoAngleTriangle },
-    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoSupplementaryAngles },
-    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoFractionOfNumber },
-    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoSpeedDistance },
-    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoUnitConversion },
-    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoPythagoreanTriple },
-    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoExpressionValue },
-    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulaCoefficient },
-    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpDifferenceSquares },
-    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulaValue },
-    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpPowerRules },
+    { level: "eo", topic: "volume", label: "Objętość", make: genEoCuboidVolume },
+    { level: "eo", topic: "volume", label: "Objętość", make: genEoCubeVolume },
+    { level: "eo", topic: "volume", label: "Objętość", make: genEoVolumeMissingEdge },
+    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedDistance },
+    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionTime },
+    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionSpeed },
+    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedConversion },
+    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerMultiply },
+    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerDivide },
+    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerPower },
+    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerRoot },
+    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerAddLikeTerms },
+    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootExtractCoefficient },
+    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootMultiply },
+    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootDivide },
+    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootAddLikeTerms },
+    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootMixedSimplify },
     { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogValues },
-    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogRules },
-    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogEquations },
-    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearFunctionValue },
-    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpQuadraticFunctionValue },
-    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearEquation },
-    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpParabolaVertex },
-    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearZero },
-    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpLineSlopeFromPoints },
-    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpDistanceBetweenPoints },
-    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpMidpointCoordinate },
-    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpCircleEquation },
-    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpArithmeticSequence },
-    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpGeometricSequence },
-    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpSequenceSum },
-    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpExactTrig },
-    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpTrigTriangle },
-    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpTrigComplements },
-    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpFactorials },
-    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCombinations },
-    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCountingShortcuts },
-    { level: "mp", topic: "statistics", label: "Statystyka", make: genMpAverageMissingValue },
-    { level: "mp", topic: "statistics", label: "Statystyka", make: genMpWeightedAverage },
-    { level: "mp", topic: "statistics", label: "Statystyka", make: genMpMedianValue }
+    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogAdd },
+    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogSubtract },
+    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogPullInCoefficient },
+    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogPullOutCoefficient },
+    { level: "mp", topic: "functions", label: "Funkcje", make: genMpLinearSlopeFromFormula },
+    { level: "mp", topic: "functions", label: "Funkcje", make: genMpLineSlopeFromPoints },
+    { level: "mp", topic: "functions", label: "Funkcje", make: genMpLinearTrendSign },
+    { level: "mp", topic: "functions", label: "Funkcje", make: genMpQuadraticCoefficientSign },
+    { level: "mp", topic: "functions", label: "Funkcje", make: genMpQuadraticCValue }
 ];
 
 function rand(min, max){
@@ -923,6 +912,19 @@ function parens(value){
 
 function signed(value){
     return value >= 0 ? `+ ${value}` : `- ${Math.abs(value)}`;
+}
+
+function coefficientTerm(value, variable){
+    if(value === 1) return variable;
+    if(value === -1) return `-${variable}`;
+
+    return `${value}${variable}`;
+}
+
+function signedCoefficientTerm(value, variable){
+    return value >= 0
+        ? `+ ${coefficientTerm(value, variable)}`
+        : `- ${coefficientTerm(Math.abs(value), variable)}`;
 }
 
 function factorial(n){
@@ -997,13 +999,64 @@ function genEoPowerMissingBase(){
 }
 
 function genEoRootEquations(){
-    const answer = rand(byDifficulty([5, 6, 7, 8, 9]), byDifficulty([10, 14, 18, 22, 26]));
-    const add = rand(1, byDifficulty([9, 12, 15, 18, 20]));
-    const mode = rand(1, 2);
+    const rootValue = rand(5, byDifficulty([10, 12, 14, 16, 18]));
+    const add = rand(2, byDifficulty([8, 10, 12, 14, 16]));
+    const mode = rand(1, 3);
 
-    return mode === 1
-        ? task("Pierwiastki", `${root(blank())} = ${answer}`, answer * answer)
-        : task("Pierwiastki", `${root(answer * answer)} + ${blank()} = ${answer + add}`, add);
+    if(mode === 1){
+        return task("Pierwiastki", `${root(blank())} = ${rootValue}`, rootValue * rootValue);
+    }
+
+    if(mode === 2){
+        return task("Pierwiastki", `${root(rootValue * rootValue)} + ${blank()} = ${rootValue + add}`, add);
+    }
+
+    return task("Pierwiastki", `${root(rootValue * rootValue)} - ${blank()} = ${rootValue - add}`, add);
+}
+
+function genEoRootSimplify(){
+    const cases = [
+        [12, 3, 2], [20, 5, 2], [27, 3, 3], [28, 7, 2],
+        [45, 5, 3], [48, 3, 4], [50, 2, 5], [63, 7, 3],
+        [72, 2, 6], [75, 3, 5]
+    ];
+    const [inside, simpleInside, coefficient] = choice(cases);
+
+    return task("Pierwiastki", `${root(inside)} = ${blank()}${root(simpleInside)}`, coefficient);
+}
+
+function genEoRootCompare(){
+    const n = choice([10, 15, 17, 26, 30, 37, 40, 50, 60, 70]);
+    const lower = Math.floor(Math.sqrt(n));
+
+    return task("Pierwiastki", `${lower} < ${root(n)} < ${blank()}`, lower + 1);
+}
+
+function genEoRootApproximation(){
+    const n = choice([8, 10, 15, 20, 24, 26, 35, 48, 63, 80]);
+    const nearest = Math.round(Math.sqrt(n));
+
+    return task("Przybliżenia", `${root(n)} ≈ ${blank()} do liczby całkowitej`, nearest);
+}
+
+function genEoDecimalRounding(){
+    const cases = [
+        [1.24, 1], [1.58, 2], [2.49, 2], [2.51, 3],
+        [3.14, 3], [4.76, 5], [6.49, 6], [7.5, 8]
+    ];
+    const [value, rounded] = choice(cases);
+
+    return task("Przybliżenia", `${String(value).replace(".", ",")} ≈ ${blank()} do jedności`, rounded);
+}
+
+function genEoApproximateProduct(){
+    const cases = [
+        [19, 21, 20, 20], [29, 31, 30, 30], [49, 12, 50, 10],
+        [98, 6, 100, 6], [41, 18, 40, 20], [59, 9, 60, 10]
+    ];
+    const [a, b, approxA, approxB] = choice(cases);
+
+    return task("Przybliżenia", `${a} · ${b} ≈ ${approxA} · ${approxB} = ${blank()}`, approxA * approxB);
 }
 
 function genEoPercentOfNumber(){
@@ -1069,6 +1122,32 @@ function genEoAreaReverse(){
     return task("Pola figur", `Równoległobok: a = ${side}, h = ${height}, P = ${blank()}`, side * height);
 }
 
+function genEoCuboidVolume(){
+    const cases = [
+        [2, 3, 4], [2, 4, 5], [3, 4, 5], [3, 5, 6],
+        [4, 5, 6], [2, 6, 8], [5, 5, 4]
+    ];
+    const [a, b, c] = choice(cases);
+
+    return task("Objętość", `Prostopadłościan: ${a} × ${b} × ${c}, V = ${blank()}`, a * b * c);
+}
+
+function genEoCubeVolume(){
+    const edge = rand(3, byDifficulty([6, 7, 8, 9, 10]));
+
+    return task("Objętość", `Sześcian: a = ${edge}, V = ${blank()}`, edge ** 3);
+}
+
+function genEoVolumeMissingEdge(){
+    const cases = [
+        [2, 3, 24], [2, 4, 40], [3, 4, 60], [3, 5, 90],
+        [4, 5, 120], [5, 6, 150], [2, 8, 96]
+    ];
+    const [a, b, volume] = choice(cases);
+
+    return task("Objętość", `Prostopadłościan: V = ${volume}, a = ${a}, b = ${b}, c = ${blank()}`, volume / (a * b));
+}
+
 function genEoLinearEquation(){
     const x = rand(1, byDifficulty([6, 8, 9, 10, 12]));
     const a = rand(2, byDifficulty([4, 5, 6, 7, 8]));
@@ -1120,6 +1199,33 @@ function genEoSupplementaryAngles(){
         : task("Schematy egzaminacyjne", `Kąt pełny: ${angle}° + ${blank()}° = 360°`, 360 - angle);
 }
 
+function genEoFractionAdd(){
+    const denominators = [4, 5, 6, 8, 10, 12];
+    const denominator = choice(denominators);
+    const a = rand(1, denominator - 2);
+    const b = rand(1, denominator - a - 1);
+
+    return task("Ułamki zwykłe", `${frac(a, denominator)} + ${frac(b, denominator)} = ${frac(blank(), denominator)}`, a + b);
+}
+
+function genEoFractionCommonDenominator(){
+    const cases = [
+        [1, 2, 1, 4, 4, 3], [1, 3, 1, 6, 6, 3], [1, 4, 3, 8, 8, 5],
+        [2, 5, 1, 10, 10, 5], [1, 6, 1, 3, 6, 3], [3, 10, 1, 5, 10, 5]
+    ];
+    const [a, b, c, d, denominator, numerator] = choice(cases);
+
+    return task("Ułamki zwykłe", `${frac(a, b)} + ${frac(c, d)} = ${frac(blank(), denominator)}`, numerator);
+}
+
+function genEoFractionEquivalent(){
+    const denominator = choice([3, 4, 5, 6, 8]);
+    const numerator = rand(1, denominator - 1);
+    const multiplier = choice([2, 3, 4, 5]);
+
+    return task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${frac(blank(), denominator * multiplier)}`, numerator * multiplier);
+}
+
 function genEoFractionOfNumber(){
     const cases = [
         [1, 2, 48], [1, 3, 60], [2, 3, 45], [3, 4, 80],
@@ -1127,7 +1233,16 @@ function genEoFractionOfNumber(){
     ];
     const [numerator, denominator, number] = choice(cases);
 
-    return task("Schematy egzaminacyjne", `${frac(numerator, denominator)} liczby ${number} = ${blank()}`, number * numerator / denominator);
+    return task("Ułamki zwykłe", `${frac(numerator, denominator)} liczby ${number} = ${blank()}`, number * numerator / denominator);
+}
+
+function genEoFractionMissingPart(){
+    const denominators = [5, 6, 8, 10, 12];
+    const denominator = choice(denominators);
+    const first = rand(1, denominator - 3);
+    const result = rand(first + 1, denominator - 1);
+
+    return task("Ułamki zwykłe", `${frac(first, denominator)} + ${frac(blank(), denominator)} = ${frac(result, denominator)}`, result - first);
 }
 
 function genEoSpeedDistance(){
@@ -1137,7 +1252,39 @@ function genEoSpeedDistance(){
     ];
     const [speed, hours] = choice(cases);
 
-    return task("Schematy egzaminacyjne", `v = ${speed} km/h, t = ${hours} h, s = ${blank()} km`, speed * hours);
+    return task("Prędkość, czas, droga", `v = ${speed} km/h, t = ${hours} h, s = ${blank()} km`, speed * hours);
+}
+
+function genEoMotionTime(){
+    const cases = [
+        [120, 60], [150, 50], [180, 90], [240, 80],
+        [300, 100], [90, 45], [72, 24], [200, 50]
+    ];
+    const [distance, speed] = choice(cases);
+
+    return task("Prędkość, czas, droga", `s = ${distance} km, v = ${speed} km/h, t = ${blank()} h`, distance / speed);
+}
+
+function genEoMotionSpeed(){
+    const cases = [
+        [120, 2], [150, 3], [180, 2], [240, 4],
+        [300, 5], [90, 3], [160, 4], [210, 3]
+    ];
+    const [distance, hours] = choice(cases);
+
+    return task("Prędkość, czas, droga", `s = ${distance} km, t = ${hours} h, v = ${blank()} km/h`, distance / hours);
+}
+
+function genEoSpeedConversion(){
+    const cases = [
+        [5, 18], [10, 36], [15, 54], [20, 72], [25, 90]
+    ];
+    const [metersPerSecond, kilometersPerHour] = choice(cases);
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Prędkość, czas, droga", `${metersPerSecond} m/s = ${blank()} km/h`, kilometersPerHour)
+        : task("Prędkość, czas, droga", `${kilometersPerHour} km/h = ${blank()} m/s`, metersPerSecond);
 }
 
 function genEoUnitConversion(){
@@ -1239,15 +1386,138 @@ function genMpPowerRules(){
     return task("Potęgi i pierwiastki", `${sup(blank(), exponent)} = ${base ** exponent}`, base);
 }
 
+function genMpPowerMultiply(){
+    const base = choice([2, 3, 5, 7]);
+    const a = rand(2, byDifficulty([7, 8, 9, 10, 11]));
+    const b = rand(2, byDifficulty([5, 6, 7, 8, 9]));
+
+    return task("Potęgi", `${sup(base, a)} · ${sup(base, b)} = ${sup(base, blank())}`, a + b);
+}
+
+function genMpPowerDivide(){
+    const base = choice([2, 3, 5, 7]);
+    const answer = rand(2, byDifficulty([6, 7, 8, 9, 10]));
+    const divisorExponent = rand(1, byDifficulty([4, 5, 6, 7, 8]));
+
+    return task("Potęgi", `${frac(sup(base, answer + divisorExponent), sup(base, divisorExponent))} = ${sup(base, blank())}`, answer);
+}
+
+function genMpPowerPower(){
+    const base = choice([2, 3, 5]);
+    const a = rand(2, byDifficulty([5, 5, 6, 6, 7]));
+    const b = rand(2, byDifficulty([4, 5, 5, 6, 6]));
+
+    return task("Potęgi", `${sup(parens(sup(base, a)), b)} = ${sup(base, blank())}`, a * b);
+}
+
+function genMpPowerRoot(){
+    const base = choice([2, 3, 5, 7]);
+    const exponent = choice([4, 6, 8, 10, 12]);
+
+    return task("Potęgi", `${root(sup(base, exponent))} = ${sup(base, blank())}`, exponent / 2);
+}
+
+function genMpPowerAddLikeTerms(){
+    const base = choice([2, 3, 5, 7]);
+    const exponent = rand(3, byDifficulty([6, 7, 8, 9, 10]));
+    const a = rand(2, 5);
+    const b = rand(2, 5);
+
+    return task("Potęgi", `${a}·${sup(base, exponent)} + ${b}·${sup(base, exponent)} = ${blank()}·${sup(base, exponent)}`, a + b);
+}
+
+function genMpRootExtractCoefficient(){
+    const cases = [
+        [12, 3, 2], [18, 2, 3], [20, 5, 2], [27, 3, 3],
+        [28, 7, 2], [32, 2, 4], [45, 5, 3], [48, 3, 4],
+        [50, 2, 5], [72, 2, 6], [75, 3, 5], [98, 2, 7]
+    ];
+    const [inside, simpleInside, coefficient] = choice(cases);
+
+    return task("Pierwiastki", `${root(inside)} = ${blank()}${root(simpleInside)}`, coefficient);
+}
+
+function genMpRootMultiply(){
+    const cases = [
+        [2, 8, 4], [3, 12, 6], [5, 20, 10], [6, 24, 12],
+        [8, 18, 12], [12, 27, 18]
+    ];
+    const [a, b, result] = choice(cases);
+
+    return task("Pierwiastki", `${root(a)} · ${root(b)} = ${blank()}`, result);
+}
+
+function genMpRootDivide(){
+    const cases = [
+        [18, 2, 3], [32, 2, 4], [50, 2, 5], [75, 3, 5],
+        [98, 2, 7], [108, 3, 6]
+    ];
+    const [a, b, result] = choice(cases);
+
+    return task("Pierwiastki", `${frac(root(a), root(b))} = ${blank()}`, result);
+}
+
+function genMpRootAddLikeTerms(){
+    const inside = choice([2, 3, 5, 7]);
+    const a = rand(2, 7);
+    const b = rand(2, 7);
+
+    return task("Pierwiastki", `${a}${root(inside)} + ${b}${root(inside)} = ${blank()}${root(inside)}`, a + b);
+}
+
+function genMpRootMixedSimplify(){
+    const cases = [
+        [50, 8, 2, 7], [72, 18, 2, 9], [27, 12, 3, 5],
+        [75, 12, 3, 7], [20, 45, 5, 5], [48, 75, 3, 9]
+    ];
+    const [a, b, simpleInside, coefficientSum] = choice(cases);
+
+    return task("Pierwiastki", `${root(a)} + ${root(b)} = ${blank()}${root(simpleInside)}`, coefficientSum);
+}
+
 function genMpLogValues(){
     const base = choice(difficultyTier() >= 4 ? [2, 3, 4, 5, 10] : [2, 3, 5, 10]);
-    const exponent = rand(1, byDifficulty([3, 4, 4, 4, 4]));
+    const exponent = rand(2, byDifficulty([3, 4, 4, 4, 4]));
     const value = base ** exponent;
     const mode = rand(1, 2);
 
     return mode === 1
         ? task("Logarytmy", `${logBase(base)} ${value} = ${blank()}`, exponent)
         : task("Logarytmy", `${logBase(base)} ${blank()} = ${exponent}`, value);
+}
+
+function genMpLogAdd(){
+    const base = choice([2, 3, 5, 10]);
+    const a = base ** rand(1, 3);
+    const b = base ** rand(1, 3);
+
+    return task("Logarytmy", `${logBase(base)} ${a} + ${logBase(base)} ${b} = ${logBase(base)} ${blank()}`, a * b);
+}
+
+function genMpLogSubtract(){
+    const base = choice([2, 3, 5, 10]);
+    const quotient = base ** rand(1, 3);
+    const divisor = base ** rand(1, 2);
+
+    return task("Logarytmy", `${logBase(base)} ${quotient * divisor} - ${logBase(base)} ${divisor} = ${logBase(base)} ${blank()}`, quotient);
+}
+
+function genMpLogPullInCoefficient(){
+    const base = choice([2, 3, 5]);
+    const argument = choice(base === 5 ? [5, 25] : [base, base ** 2]);
+    const coefficient = choice([2, 3]);
+
+    return task("Logarytmy", `${coefficient}${logBase(base)} ${argument} = ${logBase(base)} ${blank()}`, argument ** coefficient);
+}
+
+function genMpLogPullOutCoefficient(){
+    const cases = [
+        [2, 64, 4, 3], [2, 32, 2, 5], [3, 81, 3, 4],
+        [3, 729, 9, 3], [5, 625, 5, 4], [10, 1000, 10, 3]
+    ];
+    const [base, argument, innerArgument, coefficient] = choice(cases);
+
+    return task("Logarytmy", `${logBase(base)} ${argument} = ${blank()}${logBase(base)} ${innerArgument}`, coefficient);
 }
 
 function genMpLogRules(){
@@ -1276,6 +1546,41 @@ function genMpLogEquations(){
     return mode === 1
         ? task("Logarytmy", `${logBase(base)} x = ${answer}, x = ${blank()}`, right)
         : task("Logarytmy", `${logBase(blank())} ${right} = ${answer}`, base);
+}
+
+function genMpLinearSlopeFromFormula(){
+    const a = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
+    const b = rand(-8, 8);
+
+    return task("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}, współczynnik kierunkowy a = ${blank()}`, a);
+}
+
+function genMpLinearTrendSign(){
+    const a = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
+    const b = rand(-8, 8);
+
+    return task("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}. Funkcja rosnąca? 1 = tak, 0 = nie: ${blank()}`, a > 0 ? 1 : 0);
+}
+
+function genMpQuadraticCoefficientSign(){
+    const a = choice([-3, -2, -1, 1, 2, 3]);
+    const b = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
+    const c = choice([-9, -7, -5, -3, 3, 5, 7, 9]);
+    const mode = rand(1, 2);
+    const formula = `f(x) = ${coefficientTerm(a, sup("x", 2))} ${signedCoefficientTerm(b, "x")} ${signed(c)}`;
+
+    return mode === 1
+        ? task("Funkcje", `${formula}, znak a: 1 dodatni, -1 ujemny = ${blank()}`, a > 0 ? 1 : -1)
+        : task("Funkcje", `${formula}, znak c: 1 dodatni, -1 ujemny = ${blank()}`, c > 0 ? 1 : -1);
+}
+
+function genMpQuadraticCValue(){
+    const a = choice([-2, -1, 1, 2, 3]);
+    const b = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
+    const c = choice([-12, -9, -6, -3, 3, 6, 9, 12]);
+    const formula = `f(x) = ${coefficientTerm(a, sup("x", 2))} ${signedCoefficientTerm(b, "x")} ${signed(c)}`;
+
+    return task("Funkcje", `${formula}, f(0) = c = ${blank()}`, c);
 }
 
 function genMpLinearFunctionValue(){
@@ -1343,7 +1648,7 @@ function genMpLineSlopeFromPoints(){
     const x2 = x1 + dx;
     const y2 = y1 + slope * dx;
 
-    return task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), współczynnik a prostej AB = ${blank()}`, slope);
+    return task("Funkcje", `A(${x1}, ${y1}), B(${x2}, ${y2}), współczynnik kierunkowy a = ${blank()}`, slope);
 }
 
 function genMpDistanceBetweenPoints(){
