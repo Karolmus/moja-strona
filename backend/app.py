@@ -26,10 +26,12 @@ from auth_storage import (
     parent_access_by_token,
     progress_for_user,
     public_user,
+    record_speed_training_result,
     record_progress,
     register_auth_db,
     review_tasks_for_user,
     reset_user_password,
+    speed_training_leaderboard,
     sync_admin_user,
     touch_parent_access,
     touch_last_login,
@@ -567,6 +569,39 @@ def api_create_contact_message():
 def api_my_progress(user):
     return jsonify({
         "progress": progress_for_user(user["id"]),
+    })
+
+
+@app.post("/api/speed-training/results")
+@require_auth
+def api_save_speed_training_result(user):
+    def handler():
+        result = record_speed_training_result(user["id"], payload())
+
+        return jsonify({
+            "result": result,
+        }), 201
+
+    return safe(handler)
+
+
+@app.get("/api/speed-training/leaderboard")
+@require_auth
+def api_speed_training_leaderboard(user):
+    filters = {
+        "level": request.args.get("level"),
+        "topic": request.args.get("topic"),
+        "difficulty": request.args.get("difficulty"),
+        "round_seconds": request.args.get("round_seconds"),
+    }
+    limit = request.args.get("limit", 10)
+
+    return jsonify({
+        "leaderboard": speed_training_leaderboard(
+            filters=filters,
+            limit=limit,
+            viewer_user_id=user["id"],
+        ),
     })
 
 
