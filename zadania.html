@@ -136,6 +136,36 @@ body {
     line-height: 1.25;
 }
 
+.training-card {
+    display: grid;
+    gap: 2px;
+    border: 1px solid rgba(142, 181, 222, 0.9);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #edf4fb, #ffffff);
+    color: var(--text);
+    padding: 8px 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(142, 181, 222, 0.16);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.training-card:hover {
+    border-color: var(--blue-text);
+    box-shadow: 0 7px 18px rgba(142, 181, 222, 0.24);
+    transform: translateY(-1px);
+}
+
+.training-card strong {
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.training-card span {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.25;
+}
+
 .progress-toggle-btn {
     width: 100%;
     min-height: 38px;
@@ -2171,6 +2201,14 @@ footer {
             <div class="side-section" id="assignedCourseSection" style="display:none">
                 <div class="side-title">Przypisany kurs</div>
                 <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
+            </div>
+
+            <div class="side-section">
+                <div class="side-title">Trening</div>
+                <a class="training-card" href="trening.html">
+                    <strong>Trening szybkości</strong>
+                    <span>Generator luk liczbowych</span>
+                </a>
             </div>
 
             <div class="side-section" id="formulaSection" style="display:none">
