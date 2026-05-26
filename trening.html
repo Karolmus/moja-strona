@@ -54,7 +54,8 @@ body {
 
 .training-panel,
 .training-stage,
-.history-panel {
+.history-panel,
+.leaderboard-panel {
     border: 1px solid var(--line);
     border-radius: 10px;
     background: var(--surface);
@@ -81,17 +82,26 @@ body {
 
 .level-tabs,
 .topic-list,
+.duration-tabs,
+.difficulty-tabs,
 .round-controls {
     display: grid;
     gap: 7px;
 }
 
-.level-tabs {
+.level-tabs,
+.duration-tabs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.difficulty-tabs {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .level-btn,
 .topic-btn,
+.duration-btn,
+.difficulty-btn,
 .control-btn,
 .key-btn,
 .secondary-btn {
@@ -106,7 +116,9 @@ body {
 }
 
 .level-btn,
-.topic-btn {
+.topic-btn,
+.duration-btn,
+.difficulty-btn {
     min-height: 38px;
     padding: 8px 10px;
     font-size: 12px;
@@ -117,8 +129,15 @@ body {
     text-align: center;
 }
 
+.duration-btn,
+.difficulty-btn {
+    text-align: center;
+}
+
 .level-btn.active,
-.topic-btn.active {
+.topic-btn.active,
+.duration-btn.active,
+.difficulty-btn.active {
     border-color: rgba(142, 181, 222, 0.9);
     background: var(--blue-soft);
     color: var(--blue-text);
@@ -140,11 +159,62 @@ body {
 
 .level-btn:hover,
 .topic-btn:hover,
+.duration-btn:hover,
+.difficulty-btn:hover,
 .control-btn:hover,
 .secondary-btn:hover,
 .key-btn:hover {
     transform: translateY(-1px);
     border-color: var(--blue-text);
+}
+
+.topic-settings {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    overflow: hidden;
+}
+
+.topic-settings summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    list-style: none;
+    cursor: pointer;
+    padding: 9px 10px;
+}
+
+.topic-settings summary::-webkit-details-marker {
+    display: none;
+}
+
+.topic-settings[open] summary {
+    border-bottom: 1px solid var(--line);
+}
+
+.topic-current {
+    display: block;
+    margin-top: 2px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.topic-summary-action {
+    border-radius: 999px;
+    background: white;
+    border: 1px solid var(--line);
+    color: var(--blue-text);
+    flex: 0 0 auto;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 8px;
+}
+
+.topic-settings .topic-list {
+    padding: 8px;
 }
 
 .training-stage {
@@ -197,7 +267,7 @@ body {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 8px;
 }
 
@@ -237,31 +307,104 @@ body {
 .problem-text {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 0.16em;
     min-height: 72px;
-    font-size: 38px;
-    font-weight: 800;
-    line-height: 1.25;
+    color: #111827;
+    font-family: Arial, sans-serif;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: 0;
 }
 
 .problem-text sup {
     font-size: 0.58em;
 }
 
+.math-expression {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.18em;
+}
+
+.math-token {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.math-sup {
+    align-items: flex-start;
+    gap: 0.02em;
+}
+
+.math-sup sup,
+.math-sub sub {
+    font-size: 0.55em;
+    line-height: 1;
+}
+
+.math-sub {
+    align-items: flex-end;
+    gap: 0.02em;
+}
+
+.frac {
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    align-items: center;
+    min-width: 1.35em;
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.frac > span {
+    display: block;
+    padding: 0 0.12em;
+}
+
+.frac .den {
+    border-top: 0.07em solid currentColor;
+    padding-top: 0.08em;
+}
+
+.sqrt {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 0.03em;
+}
+
+.sqrt-symbol {
+    font-size: 1.08em;
+    line-height: 1;
+}
+
+.sqrt-radicand {
+    border-top: 0.06em solid currentColor;
+    padding: 0.03em 0.12em 0;
+}
+
 .blank {
     display: inline-grid;
     place-items: center;
-    min-width: 62px;
-    min-height: 44px;
-    margin: 0 3px;
-    border: 2px solid rgba(142, 181, 222, 0.85);
-    border-radius: 8px;
+    min-width: 1.45em;
+    min-height: 1.02em;
+    margin: 0 0.03em;
+    border: 0.06em solid rgba(142, 181, 222, 0.95);
+    border-radius: 0.16em;
     background: white;
     color: var(--blue-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88em;
+    font-weight: 800;
 }
 
 .answer-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 120px;
+    grid-template-columns: minmax(0, 1fr) 94px 94px;
     gap: 8px;
 }
 
@@ -298,6 +441,16 @@ body {
     border-radius: 8px;
     background: var(--navy);
     color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 800;
+}
+
+.skip-btn {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--muted);
     cursor: pointer;
     font: inherit;
     font-weight: 800;
@@ -352,6 +505,96 @@ body {
     color: var(--green-text);
 }
 
+.leaderboard-panel {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+}
+
+.leaderboard-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.leaderboard-scope {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.leaderboard-refresh {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 7px 9px;
+}
+
+.leaderboard-list {
+    display: grid;
+    gap: 7px;
+}
+
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) 64px 64px 64px;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 8px 9px;
+    font-size: 12px;
+}
+
+.leaderboard-row.current {
+    border-color: rgba(142, 181, 222, 0.9);
+    background: var(--blue-soft);
+}
+
+.leaderboard-rank {
+    color: var(--blue-text);
+    font-weight: 900;
+}
+
+.leaderboard-name {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--text);
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.leaderboard-stat {
+    color: var(--muted);
+    font-weight: 700;
+    text-align: right;
+}
+
+.leaderboard-stat strong {
+    color: var(--text);
+    display: block;
+    font-size: 14px;
+    line-height: 1.1;
+}
+
+.leaderboard-empty {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px;
+}
+
 @media (max-width: 880px) {
     .training-shell {
         grid-template-columns: 1fr;
@@ -392,19 +635,32 @@ body {
 
     .problem-text {
         min-height: 62px;
-        font-size: 29px;
+        font-size: 32px;
     }
 
     .answer-row {
         grid-template-columns: 1fr;
     }
 
-    .submit-btn {
+    .submit-btn,
+    .skip-btn {
         min-height: 44px;
     }
 
     .topic-list {
         grid-template-columns: 1fr;
+    }
+
+    .leaderboard-head {
+        flex-direction: column;
+    }
+
+    .leaderboard-row {
+        grid-template-columns: 30px minmax(0, 1fr) 54px 54px;
+    }
+
+    .leaderboard-stat.streak {
+        display: none;
     }
 }
 </style>
@@ -421,9 +677,25 @@ body {
                 <div class="level-tabs" id="levelTabs"></div>
             </div>
 
-            <div>
-                <div class="panel-title">Temat</div>
+            <details class="topic-settings">
+                <summary>
+                    <span>
+                        <span class="panel-title">Tryb</span>
+                        <strong class="topic-current" id="topicCurrent">Mieszany</strong>
+                    </span>
+                    <span class="topic-summary-action">Tematy</span>
+                </summary>
                 <div class="topic-list" id="topicList"></div>
+            </details>
+
+            <div>
+                <div class="panel-title">Trudność</div>
+                <div class="difficulty-tabs" id="difficultyTabs"></div>
+            </div>
+
+            <div>
+                <div class="panel-title">Czas rundy</div>
+                <div class="duration-tabs" id="durationTabs"></div>
             </div>
 
             <div class="round-controls">
@@ -462,6 +734,10 @@ body {
                     <span class="stat-label">Śr.</span>
                     <strong class="stat-value" id="averageTime">-</strong>
                 </div>
+                <div class="stat-card">
+                    <span class="stat-label">Rekord</span>
+                    <strong class="stat-value" id="bestScore">0</strong>
+                </div>
             </div>
 
             <div class="problem-card">
@@ -470,6 +746,7 @@ body {
                 <div class="answer-row">
                     <input class="answer-input" id="answerInput" type="text" inputmode="decimal" autocomplete="off" aria-label="Odpowiedź">
                     <button class="submit-btn" id="submitButton" type="button">OK</button>
+                    <button class="skip-btn" id="skipButton" type="button">Pomiń</button>
                 </div>
                 <div class="keypad" id="keypad" aria-label="Klawiatura numeryczna"></div>
             </div>
@@ -478,12 +755,26 @@ body {
                 <div class="history-title">Ostatnie</div>
                 <div class="history-list" id="historyList"></div>
             </div>
+
+            <div class="leaderboard-panel" aria-live="polite">
+                <div class="leaderboard-head">
+                    <div>
+                        <div class="history-title">Ranking uczniów</div>
+                        <p class="leaderboard-scope" id="leaderboardScope"></p>
+                    </div>
+                    <button class="leaderboard-refresh" id="leaderboardRefreshButton" type="button">Odśwież</button>
+                </div>
+                <div class="leaderboard-list" id="leaderboardList"></div>
+            </div>
         </section>
     </div>
 </main>
 
 <script>
-const ROUND_SECONDS = 60;
+const ROUND_OPTIONS = [30, 60, 90];
+const DIFFICULTY_OPTIONS = [1, 2, 3, 4, 5];
+const MIXED_DIFFICULTY = "mixed";
+const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
 
 const LEVELS = {
     eo: {
@@ -493,7 +784,9 @@ const LEVELS = {
             { id: "all", label: "Mieszany" },
             { id: "powers", label: "Potęgi" },
             { id: "roots", label: "Pierwiastki" },
-            { id: "percents", label: "Procenty" }
+            { id: "percents", label: "Procenty" },
+            { id: "areas", label: "Pola figur" },
+            { id: "equations", label: "Równania i proporcje" }
         ]
     },
     mp: {
@@ -503,6 +796,8 @@ const LEVELS = {
             { id: "all", label: "Mieszany" },
             { id: "formulas", label: "Wzory skróconego mnożenia" },
             { id: "powers", label: "Potęgi i pierwiastki" },
+            { id: "logs", label: "Logarytmy" },
+            { id: "functions", label: "Funkcje i równania" },
             { id: "sequences", label: "Ciągi" },
             { id: "trig", label: "Trygonometria" },
             { id: "combinatorics", label: "Kombinatoryka" }
@@ -513,22 +808,31 @@ const LEVELS = {
 const state = {
     level: "eo",
     topic: "all",
+    difficulty: 1,
+    currentDifficulty: 1,
+    roundSeconds: 60,
     running: false,
     finished: false,
     roundEndsAt: 0,
     timerId: null,
     currentTask: null,
+    answerLocked: false,
     taskStartedAt: 0,
     correct: 0,
     mistakes: 0,
     streak: 0,
     bestStreak: 0,
+    bestScore: 0,
     totalAnswerTime: 0,
+    reviewTopic: "",
     history: []
 };
 
 const levelTabs = document.getElementById("levelTabs");
+const topicCurrent = document.getElementById("topicCurrent");
 const topicList = document.getElementById("topicList");
+const difficultyTabs = document.getElementById("difficultyTabs");
+const durationTabs = document.getElementById("durationTabs");
 const stageSubtitle = document.getElementById("stageSubtitle");
 const statusPill = document.getElementById("statusPill");
 const timeLeft = document.getElementById("timeLeft");
@@ -536,24 +840,60 @@ const correctCount = document.getElementById("correctCount");
 const mistakeCount = document.getElementById("mistakeCount");
 const streakCount = document.getElementById("streakCount");
 const averageTime = document.getElementById("averageTime");
+const bestScore = document.getElementById("bestScore");
 const taskTopic = document.getElementById("taskTopic");
 const problemText = document.getElementById("problemText");
 const answerInput = document.getElementById("answerInput");
 const submitButton = document.getElementById("submitButton");
+const skipButton = document.getElementById("skipButton");
 const startButton = document.getElementById("startButton");
 const resetButton = document.getElementById("resetButton");
 const keypad = document.getElementById("keypad");
 const historyList = document.getElementById("historyList");
+const leaderboardScope = document.getElementById("leaderboardScope");
+const leaderboardList = document.getElementById("leaderboardList");
+const leaderboardRefreshButton = document.getElementById("leaderboardRefreshButton");
+
+let leaderboardRequestId = 0;
 
 const GENERATORS = [
-    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowers },
-    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRoots },
-    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercents },
-    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulas },
-    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpPowersRoots },
-    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpSequences },
-    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpTrig },
-    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCombinatorics }
+    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerRules },
+    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerValues },
+    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerMissingBase },
+    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootValues },
+    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootOperations },
+    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
+    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
+    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentChange },
+    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentReverse },
+    { level: "eo", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
+    { level: "eo", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
+    { level: "eo", topic: "areas", label: "Pola figur", make: genEoTrapezoidArea },
+    { level: "eo", topic: "areas", label: "Pola figur", make: genEoAreaReverse },
+    { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoLinearEquation },
+    { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoProportion },
+    { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoScaleRatio },
+    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulaCoefficient },
+    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpDifferenceSquares },
+    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulaValue },
+    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpPowerRules },
+    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpRootOperations },
+    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpRationalPowers },
+    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogValues },
+    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogRules },
+    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogEquations },
+    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearFunctionValue },
+    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpQuadraticFunctionValue },
+    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearEquation },
+    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpArithmeticSequence },
+    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpGeometricSequence },
+    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpSequenceSum },
+    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpExactTrig },
+    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpTrigTriangle },
+    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpTrigComplements },
+    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpFactorials },
+    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCombinations },
+    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCountingShortcuts }
 ];
 
 function rand(min, max){
@@ -564,12 +904,44 @@ function choice(items){
     return items[rand(0, items.length - 1)];
 }
 
-function sup(value){
-    return `<sup>${value}</sup>`;
-}
-
 function blank(){
     return `<span class="blank">?</span>`;
+}
+
+function math(html){
+    return `<span class="math-expression">${html}</span>`;
+}
+
+function token(value){
+    return `<span class="math-token">${value}</span>`;
+}
+
+function sup(base, exponent){
+    return `<span class="math-token math-sup"><span>${base}</span><sup>${exponent}</sup></span>`;
+}
+
+function sub(base, index){
+    return `<span class="math-token math-sub"><span>${base}</span><sub>${index}</sub></span>`;
+}
+
+function logBase(base){
+    return `<span class="math-token math-sub"><span>log</span><sub>${base}</sub></span>`;
+}
+
+function frac(numerator, denominator){
+    return `<span class="frac"><span>${numerator}</span><span class="den">${denominator}</span></span>`;
+}
+
+function root(radicand){
+    return `<span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-radicand">${radicand}</span></span>`;
+}
+
+function parens(value){
+    return `<span class="math-token">(${value})</span>`;
+}
+
+function signed(value){
+    return value >= 0 ? `+ ${value}` : `- ${Math.abs(value)}`;
 }
 
 function factorial(n){
@@ -584,198 +956,598 @@ function combination(n, k){
     return factorial(n) / (factorial(k) * factorial(n - k));
 }
 
-function task(label, html, answer){
-    return { label, html, answer };
+function range(min, max){
+    return Array.from({ length: max - min + 1 }, (_, index) => min + index);
 }
 
-function genEoPowers(){
-    const base = choice([2, 3, 5, 7]);
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        const a = rand(2, 6);
-        const b = rand(2, 6);
-        return task("Potęgi", `${base}${sup(a)} · ${base}${sup(b)} = ${base}${sup(blank())}`, a + b);
-    }
-
-    if(mode === 2){
-        const b = rand(2, 5);
-        const answer = rand(2, 6);
-        return task("Potęgi", `${base}${sup(answer + b)} : ${base}${sup(b)} = ${base}${sup(blank())}`, answer);
-    }
-
-    const a = rand(2, 5);
-    const b = rand(2, 4);
-    return task("Potęgi", `(${base}${sup(a)})${sup(b)} = ${base}${sup(blank())}`, a * b);
+function difficultyTier(){
+    return state.currentDifficulty || 1;
 }
 
-function genEoRoots(){
-    const squares = [4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225];
+function byDifficulty(values){
+    return values[Math.min(values.length - 1, difficultyTier() - 1)];
+}
+
+function resolveTaskDifficulty(){
+    return state.difficulty === MIXED_DIFFICULTY
+        ? choice(DIFFICULTY_OPTIONS)
+        : Number(state.difficulty) || 1;
+}
+
+function difficultyLabel(value = state.currentDifficulty){
+    return `Poziom ${value}`;
+}
+
+function task(label, html, answer, meta = {}){
+    return { label, html: math(html), answer, ...meta };
+}
+
+function genEoPowerRules(){
+    const base = choice(difficultyTier() >= 4 ? [2, 3, 5, 7, 10] : [2, 3, 5, 7]);
     const mode = rand(1, 4);
+    const maxExp = byDifficulty([6, 8, 10, 12, 14]);
 
     if(mode === 1){
-        const value = choice(squares);
-        return task("Pierwiastki", `√${value} = ${blank()}`, Math.sqrt(value));
+        const a = rand(2, maxExp);
+        const b = rand(2, maxExp);
+        return task("Potęgi", `${sup(base, a)} · ${sup(base, b)} = ${sup(base, blank())}`, a + b);
     }
 
     if(mode === 2){
-        const a = choice(squares.slice(2, 9));
-        const b = choice(squares.slice(0, 7));
-        return task("Pierwiastki", `√${a} + √${b} = ${blank()}`, Math.sqrt(a) + Math.sqrt(b));
+        const b = rand(2, maxExp - 1);
+        const answer = rand(2, maxExp);
+        return task("Potęgi", `${sup(base, answer + b)} : ${sup(base, b)} = ${sup(base, blank())}`, answer);
     }
 
     if(mode === 3){
-        const a = choice([4, 9, 16, 25]);
-        const b = choice([4, 9, 16, 25]);
-        return task("Pierwiastki", `√(${a} · ${b}) = ${blank()}`, Math.sqrt(a * b));
+        const a = rand(2, byDifficulty([4, 5, 5, 6, 6]));
+        const b = rand(2, byDifficulty([4, 4, 5, 5, 6]));
+        return task("Potęgi", `${sup(parens(sup(base, a)), b)} = ${sup(base, blank())}`, a * b);
     }
 
-    const coefficient = rand(2, 5);
-    const value = choice([4, 9, 16, 25, 36, 49]);
-    return task("Pierwiastki", `${coefficient}√${value} = ${blank()}`, coefficient * Math.sqrt(value));
+    const exponent = rand(3, maxExp);
+    const factor = rand(1, exponent - 1);
+    return task("Potęgi", `${sup(base, factor)} · ${sup(base, blank())} = ${sup(base, exponent)}`, exponent - factor);
 }
 
-function genEoPercents(){
+function genEoPowerValues(){
+    const bases = [
+        [2, 3, 5],
+        [2, 3, 4, 5],
+        [2, 3, 4, 5, 6],
+        [2, 3, 4, 5, 6, 7],
+        [2, 3, 4, 5, 6, 8, 10]
+    ];
+    const base = choice(byDifficulty(bases));
+    const maxExponent = base >= 7 ? 3 : byDifficulty([4, 4, 5, 5, 6]);
+    const exponent = base === 5 ? rand(2, Math.min(4, maxExponent)) : rand(2, maxExponent);
+
+    return task("Potęgi", `${sup(base, exponent)} = ${blank()}`, base ** exponent);
+}
+
+function genEoPowerMissingBase(){
+    const base = choice(range(2, byDifficulty([6, 7, 8, 9, 10])));
+    const exponent = rand(2, byDifficulty([2, 3, 3, 4, 4]));
+
+    return task("Potęgi", `${sup(blank(), exponent)} = ${base ** exponent}`, base);
+}
+
+function genEoRootValues(){
+    const roots = range(2, byDifficulty([12, 15, 18, 22, 26]));
+    const value = choice(roots);
+
+    return task("Pierwiastki", `${root(value * value)} = ${blank()}`, value);
+}
+
+function genEoRootOperations(){
     const mode = rand(1, 4);
-    const percent = choice([10, 20, 25, 50, 75]);
-    const number = rand(4, 40) * 10;
+    const a = rand(2, byDifficulty([9, 12, 14, 16, 18]));
+    const b = rand(2, byDifficulty([8, 10, 12, 14, 16]));
 
     if(mode === 1){
-        return task("Procenty", `${percent}% z ${number} = ${blank()}`, number * percent / 100);
+        return task("Pierwiastki", `${root(a * a)} + ${root(b * b)} = ${blank()}`, a + b);
     }
 
     if(mode === 2){
-        return task("Procenty", `${number} zwiększone o ${percent}% = ${blank()}`, number * (100 + percent) / 100);
+        const larger = Math.max(a, b);
+        const smaller = Math.min(a, b);
+        return task("Pierwiastki", `${root(larger * larger)} - ${root(smaller * smaller)} = ${blank()}`, larger - smaller);
     }
 
     if(mode === 3){
-        return task("Procenty", `${number} zmniejszone o ${percent}% = ${blank()}`, number * (100 - percent) / 100);
+        return task("Pierwiastki", `${root(a * a)} · ${root(b * b)} = ${blank()}`, a * b);
     }
 
-    const answer = rand(2, 12) * 10;
-    return task("Procenty", `10% liczby ${answer * 10} = ${blank()}`, answer);
+    const coefficient = rand(2, byDifficulty([5, 6, 7, 8, 9]));
+    return task("Pierwiastki", `${coefficient}${root(a * a)} = ${blank()}`, coefficient * a);
 }
 
-function genMpFormulas(){
-    const a = rand(2, 12);
+function genEoRootEquations(){
+    const answer = rand(2, byDifficulty([10, 14, 18, 22, 26]));
+    const add = rand(1, byDifficulty([9, 12, 15, 18, 20]));
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Pierwiastki", `${root(blank())} = ${answer}`, answer * answer)
+        : task("Pierwiastki", `${root(answer * answer)} + ${blank()} = ${answer + add}`, add);
+}
+
+function genEoPercentOfNumber(){
+    const percent = choice(difficultyTier() >= 4 ? [5, 10, 15, 20, 25, 30, 40, 50, 60, 75] : [5, 10, 20, 25, 40, 50, 75]);
+    const number = rand(4, byDifficulty([40, 60, 80, 100, 120])) * 10;
+
+    return task("Procenty", `${percent}% · ${number} = ${blank()}`, number * percent / 100);
+}
+
+function genEoPercentChange(){
+    const percent = choice(difficultyTier() >= 4 ? [5, 10, 15, 20, 25, 30, 40, 50] : [10, 20, 25, 50]);
+    const number = rand(4, byDifficulty([30, 50, 70, 90, 110])) * 10;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Procenty", `${number} + ${percent}% = ${blank()}`, number * (100 + percent) / 100)
+        : task("Procenty", `${number} - ${percent}% = ${blank()}`, number * (100 - percent) / 100);
+}
+
+function genEoPercentReverse(){
+    const percent = choice(difficultyTier() >= 4 ? [5, 10, 20, 25, 40, 50, 75] : [10, 20, 25, 50]);
+    const answer = rand(3, byDifficulty([18, 30, 42, 54, 66])) * 10;
+    const value = answer * percent / 100;
+
+    return task("Procenty", `${percent}% liczby ${blank()} = ${value}`, answer);
+}
+
+function genEoRectangleArea(){
+    const a = rand(2, byDifficulty([12, 16, 20, 24, 30]));
+    const b = rand(2, byDifficulty([10, 14, 18, 22, 26]));
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Pola figur", `Prostokąt: a = ${a}, b = ${b}, P = ${blank()}`, a * b)
+        : task("Pola figur", `Kwadrat: a = ${a}, P = ${blank()}`, a * a);
+}
+
+function genEoTriangleArea(){
+    const base = rand(2, byDifficulty([14, 18, 24, 30, 36]));
+    const height = rand(2, byDifficulty([12, 16, 20, 24, 30]));
+    const evenBase = base % 2 === 0 ? base : base + 1;
+    const mode = rand(1, 2);
+
+    if(mode === 1){
+        return task("Pola figur", `Trójkąt: a = ${evenBase}, h = ${height}, P = ${blank()}`, evenBase * height / 2);
+    }
+
+    const area = evenBase * height / 2;
+    return task("Pola figur", `Trójkąt: P = ${area}, a = ${evenBase}, h = ${blank()}`, height);
+}
+
+function genEoTrapezoidArea(){
+    const a = rand(3, byDifficulty([12, 16, 20, 24, 28]));
+    const b = rand(3, byDifficulty([12, 16, 20, 24, 28]));
+    const height = rand(2, byDifficulty([10, 12, 16, 20, 24]));
+    const adjustedHeight = (a + b) % 2 === 0 ? height : height * 2;
+
+    return task("Pola figur", `Trapez: a = ${a}, b = ${b}, h = ${adjustedHeight}, P = ${blank()}`, (a + b) * adjustedHeight / 2);
+}
+
+function genEoAreaReverse(){
     const mode = rand(1, 3);
 
     if(mode === 1){
-        return task("Wzory skróconego mnożenia", `(x + ${a})${sup(2)} = x${sup(2)} + ${blank()}x + ${a * a}`, 2 * a);
+        const side = rand(2, byDifficulty([10, 12, 16, 18, 20]));
+        const area = side * rand(2, byDifficulty([8, 10, 12, 14, 16]));
+        return task("Pola figur", `Prostokąt: P = ${area}, a = ${side}, b = ${blank()}`, area / side);
     }
 
     if(mode === 2){
-        return task("Wzory skróconego mnożenia", `(x - ${a})${sup(2)} = x${sup(2)} - ${blank()}x + ${a * a}`, 2 * a);
+        const side = rand(2, byDifficulty([12, 16, 20, 24, 28]));
+        const height = rand(2, byDifficulty([10, 12, 16, 18, 20]));
+        return task("Pola figur", `Równoległobok: a = ${side}, h = ${height}, P = ${blank()}`, side * height);
     }
 
-    return task("Wzory skróconego mnożenia", `(x + ${a})(x - ${a}) = x${sup(2)} - ${blank()}`, a * a);
+    const diagonalA = rand(2, byDifficulty([12, 14, 16, 18, 20])) * 2;
+    const diagonalB = rand(2, byDifficulty([10, 12, 14, 16, 18]));
+    return task("Pola figur", `Romb: ${sub("d", 1)} = ${diagonalA}, ${sub("d", 2)} = ${diagonalB}, P = ${blank()}`, diagonalA * diagonalB / 2);
 }
 
-function genMpPowersRoots(){
+function genEoLinearEquation(){
+    const x = rand(1, byDifficulty([8, 10, 12, 15, 18]));
+    const a = rand(2, byDifficulty([6, 7, 8, 9, 10]));
+    const b = rand(1, byDifficulty([12, 16, 20, 24, 30]));
+    const right = a * x + b;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Równania i proporcje", `${a}x + ${b} = ${right}, x = ${blank()}`, x)
+        : task("Równania i proporcje", `${a}x - ${b} = ${a * x - b}, x = ${blank()}`, x);
+}
+
+function genEoProportion(){
+    const x = rand(2, byDifficulty([10, 12, 16, 20, 24]));
+    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
+    const b = rand(2, byDifficulty([8, 10, 12, 14, 16]));
+    const c = a * x / b;
+
+    if(Number.isInteger(c)){
+        return task("Równania i proporcje", `${frac(a, b)} = ${frac(blank(), x)}`, c);
+    }
+
+    return task("Równania i proporcje", `${a} · ${blank()} = ${a * x}`, x);
+}
+
+function genEoScaleRatio(){
+    const scale = choice(difficultyTier() >= 4 ? [2, 3, 4, 5, 10, 20] : [2, 3, 4, 5, 10]);
+    const real = rand(2, byDifficulty([12, 16, 20, 24, 30])) * scale;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Równania i proporcje", `Skala 1:${scale}, na rysunku ${real / scale} cm, w rzeczywistości ${blank()} cm`, real)
+        : task("Równania i proporcje", `Stosunek ${scale}:1, ${blank()} · ${scale} = ${real}`, real / scale);
+}
+
+function genMpFormulaCoefficient(){
+    const a = rand(2, byDifficulty([10, 15, 18, 22, 26]));
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        return task("Wzory skróconego mnożenia", `${sup(parens(`x + ${a}`), 2)} = ${sup("x", 2)} + ${blank()}x + ${a * a}`, 2 * a);
+    }
+
+    if(mode === 2){
+        return task("Wzory skróconego mnożenia", `${sup(parens(`x - ${a}`), 2)} = ${sup("x", 2)} - ${blank()}x + ${a * a}`, 2 * a);
+    }
+
+    return task("Wzory skróconego mnożenia", `${sup(parens(`2x + ${a}`), 2)} = 4${sup("x", 2)} + ${blank()}x + ${a * a}`, 4 * a);
+}
+
+function genMpDifferenceSquares(){
+    const a = rand(2, byDifficulty([12, 18, 22, 26, 30]));
+    const b = rand(1, byDifficulty([6, 8, 10, 12, 14]));
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        return task("Wzory skróconego mnożenia", `${parens(`x + ${a}`)}${parens(`x - ${a}`)} = ${sup("x", 2)} - ${blank()}`, a * a);
+    }
+
+    if(mode === 2){
+        return task("Wzory skróconego mnożenia", `${sup(parens(`${a}x - ${b}`), 2)} = ${a * a}${sup("x", 2)} - ${blank()}x + ${b * b}`, 2 * a * b);
+    }
+
+    return task("Wzory skróconego mnożenia", `${parens(`${a}x + ${b}`)}${parens(`${a}x - ${b}`)} = ${a * a}${sup("x", 2)} - ${blank()}`, b * b);
+}
+
+function genMpFormulaValue(){
+    const a = rand(2, byDifficulty([12, 14, 16, 18, 20]));
+    const b = rand(1, byDifficulty([8, 9, 10, 11, 12]));
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Wzory skróconego mnożenia", `${sup(parens(`${a} + ${b}`), 2)} = ${blank()}`, (a + b) ** 2)
+        : task("Wzory skróconego mnożenia", `${parens(`${a} + ${b}`)}${parens(`${a} - ${b}`)} = ${blank()}`, (a + b) * (a - b));
+}
+
+function genMpPowerRules(){
+    const base = choice(difficultyTier() >= 4 ? [2, 3, 5, 7, 10] : [2, 3, 5, 7]);
     const mode = rand(1, 4);
 
     if(mode === 1){
-        const base = choice([2, 3, 5]);
-        const a = rand(2, 7);
-        const b = rand(2, 5);
-        return task("Potęgi i pierwiastki", `${base}${sup(a)} · ${base}${sup(b)} = ${base}${sup(blank())}`, a + b);
+        const a = rand(2, byDifficulty([7, 8, 9, 10, 11]));
+        const b = rand(2, byDifficulty([5, 6, 7, 8, 9]));
+        return task("Potęgi i pierwiastki", `${sup(base, a)} · ${sup(base, b)} = ${sup(base, blank())}`, a + b);
     }
 
     if(mode === 2){
-        const base = choice([2, 3, 5]);
-        const a = rand(2, 5);
-        const b = rand(2, 4);
-        return task("Potęgi i pierwiastki", `(${base}${sup(a)})${sup(b)} = ${base}${sup(blank())}`, a * b);
+        const a = rand(2, byDifficulty([5, 5, 6, 6, 7]));
+        const b = rand(2, byDifficulty([4, 5, 5, 6, 6]));
+        return task("Potęgi i pierwiastki", `${sup(parens(sup(base, a)), b)} = ${sup(base, blank())}`, a * b);
     }
 
     if(mode === 3){
-        const value = choice([16, 25, 36, 49, 64, 81, 100, 121, 144, 169]);
-        return task("Potęgi i pierwiastki", `√${value} = ${blank()}`, Math.sqrt(value));
+        const b = rand(2, byDifficulty([5, 6, 7, 8, 9]));
+        const answer = rand(2, byDifficulty([7, 8, 9, 10, 11]));
+        return task("Potęgi i pierwiastki", `${frac(sup(base, answer + b), sup(base, b))} = ${sup(base, blank())}`, answer);
     }
 
-    const a = choice([4, 9, 16, 25]);
-    const b = choice([4, 9, 16, 25]);
-    return task("Potęgi i pierwiastki", `√${a} · √${b} = ${blank()}`, Math.sqrt(a) * Math.sqrt(b));
+    const exponent = rand(2, byDifficulty([5, 5, 6, 6, 7]));
+    return task("Potęgi i pierwiastki", `${sup(blank(), exponent)} = ${base ** exponent}`, base);
 }
 
-function genMpSequences(){
-    const mode = rand(1, 3);
+function genMpRootOperations(){
+    const a = rand(2, byDifficulty([10, 13, 16, 20, 24]));
+    const b = rand(2, byDifficulty([9, 12, 15, 18, 22]));
+    const coefficient = rand(2, byDifficulty([6, 7, 8, 9, 10]));
+    const mode = rand(1, 4);
 
     if(mode === 1){
-        const a1 = rand(1, 12);
-        const r = rand(2, 8);
-        const n = rand(4, 12);
-        return task("Ciągi", `a${sub(1)} = ${a1}, r = ${r}, a${sub(n)} = ${blank()}`, a1 + (n - 1) * r);
+        return task("Potęgi i pierwiastki", `${root(a * a)} + ${root(b * b)} = ${blank()}`, a + b);
     }
 
     if(mode === 2){
-        const a1 = rand(2, 8);
-        const q = choice([2, 3]);
-        const n = rand(3, 5);
-        return task("Ciągi", `a${sub(1)} = ${a1}, q = ${q}, a${sub(n)} = ${blank()}`, a1 * (q ** (n - 1)));
+        return task("Potęgi i pierwiastki", `${coefficient}${root(a * a)} = ${blank()}`, coefficient * a);
     }
 
-    const first = rand(1, 10);
-    const diff = rand(2, 9);
-    const next = first + diff;
-    const third = next + diff;
-    return task("Ciągi", `${first}, ${next}, ${third}, ${blank()}`, third + diff);
+    if(mode === 3){
+        return task("Potęgi i pierwiastki", `${root(a * a)} · ${root(b * b)} = ${blank()}`, a * b);
+    }
+
+    return task("Potęgi i pierwiastki", `${root(blank())} = ${a}`, a * a);
 }
 
-function sub(value){
-    return `<sub>${value}</sub>`;
+function genMpRationalPowers(){
+    const rootValue = rand(2, byDifficulty([10, 12, 14, 16, 18]));
+    const square = rootValue * rootValue;
+    const cubeBase = rand(2, byDifficulty([5, 5, 6, 6, 7]));
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        return task("Potęgi i pierwiastki", `${sup(square, frac(1, 2))} = ${blank()}`, rootValue);
+    }
+
+    if(mode === 2){
+        return task("Potęgi i pierwiastki", `${sup(cubeBase ** 3, frac(1, 3))} = ${blank()}`, cubeBase);
+    }
+
+    return task("Potęgi i pierwiastki", `${sup(rootValue, -1)} = ${frac(1, blank())}`, rootValue);
 }
 
-function genMpTrig(){
+function genMpLogValues(){
+    const base = choice(difficultyTier() >= 4 ? [2, 3, 4, 5, 10] : [2, 3, 5, 10]);
+    const exponent = rand(1, byDifficulty([3, 4, 4, 5, 5]));
+    const value = base ** exponent;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Logarytmy", `${logBase(base)} ${value} = ${blank()}`, exponent)
+        : task("Logarytmy", `${logBase(base)} ${blank()} = ${exponent}`, value);
+}
+
+function genMpLogRules(){
+    const base = choice([2, 3, 5, 10]);
+    const a = rand(1, byDifficulty([3, 4, 4, 5, 5]));
+    const b = rand(1, byDifficulty([3, 3, 4, 4, 5]));
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        return task("Logarytmy", `${logBase(base)} ${base ** a} + ${logBase(base)} ${base ** b} = ${blank()}`, a + b);
+    }
+
+    if(mode === 2){
+        return task("Logarytmy", `${logBase(base)} ${base ** (a + b)} - ${logBase(base)} ${base ** b} = ${blank()}`, a);
+    }
+
+    return task("Logarytmy", `${logBase(base)} ${sup(base, a)} = ${blank()}`, a);
+}
+
+function genMpLogEquations(){
+    const base = choice([2, 3, 4, 5]);
+    const answer = rand(1, byDifficulty([4, 5, 6, 7, 8]));
+    const right = base ** answer;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Logarytmy", `${logBase(base)} x = ${answer}, x = ${blank()}`, right)
+        : task("Logarytmy", `${logBase(blank())} ${right} = ${answer}`, base);
+}
+
+function genMpLinearFunctionValue(){
+    const a = rand(1, byDifficulty([5, 6, 7, 8, 10]));
+    const b = rand(-byDifficulty([8, 10, 12, 14, 16]), byDifficulty([8, 10, 12, 14, 16]));
+    const x = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
+    const mode = rand(1, 2);
+
+    if(mode === 1){
+        return task("Funkcje i równania", `f(x) = ${a}x ${signed(b)}, f(${x}) = ${blank()}`, a * x + b);
+    }
+
+    const y = a * x + b;
+    return task("Funkcje i równania", `f(x) = ${a}x ${signed(b)}, f(x) = ${y}, x = ${blank()}`, x);
+}
+
+function genMpQuadraticFunctionValue(){
+    const p = rand(-byDifficulty([4, 5, 6, 7, 8]), byDifficulty([4, 5, 6, 7, 8]));
+    const q = rand(-byDifficulty([6, 8, 10, 12, 14]), byDifficulty([6, 8, 10, 12, 14]));
+    const x = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
+    const a = choice([1, 1, 1, -1]);
+    const value = a * ((x - p) ** 2) + q;
+
+    return task("Funkcje i równania", `f(x) = ${a === -1 ? "-" : ""}${sup(parens(`x ${signed(-p)}`), 2)} ${signed(q)}, f(${x}) = ${blank()}`, value);
+}
+
+function genMpLinearEquation(){
+    const x = rand(-byDifficulty([6, 8, 10, 12, 14]), byDifficulty([6, 8, 10, 12, 14]));
+    const a = rand(2, byDifficulty([6, 8, 10, 12, 14]));
+    const b = rand(-byDifficulty([10, 12, 16, 20, 24]), byDifficulty([10, 12, 16, 20, 24]));
+    let c = rand(1, byDifficulty([5, 6, 7, 8, 9]));
+
+    if(c === a){
+        c = c > 1 ? c - 1 : c + 1;
+    }
+
+    const right = a * x + b - c * x;
+
+    return task("Funkcje i równania", `${a}x ${signed(b)} = ${c}x ${signed(right)}, x = ${blank()}`, x);
+}
+
+function genMpArithmeticSequence(){
+    const a1 = rand(1, byDifficulty([12, 20, 26, 32, 40]));
+    const r = rand(2, byDifficulty([8, 12, 16, 20, 24]));
+    const n = rand(4, byDifficulty([12, 14, 18, 22, 26]));
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        return task("Ciągi", `${sub("a", 1)} = ${a1}, r = ${r}, ${sub("a", n)} = ${blank()}`, a1 + (n - 1) * r);
+    }
+
+    if(mode === 2){
+        const an = a1 + (n - 1) * r;
+        return task("Ciągi", `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, r = ${blank()}`, r);
+    }
+
+    const next = a1 + r;
+    const third = next + r;
+    return task("Ciągi", `${a1}, ${next}, ${third}, ${blank()}`, third + r);
+}
+
+function genMpGeometricSequence(){
+    const a1 = rand(2, byDifficulty([7, 10, 12, 14, 16]));
+    const q = choice(difficultyTier() >= 4 ? [2, 3, 4, 5] : (difficultyTier() >= 2 ? [2, 3, 4] : [2, 3]));
+    const n = rand(3, byDifficulty([5, 6, 6, 7, 7]));
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        return task("Ciągi", `${sub("a", 1)} = ${a1}, q = ${q}, ${sub("a", n)} = ${blank()}`, a1 * (q ** (n - 1)));
+    }
+
+    if(mode === 2){
+        const an = a1 * (q ** (n - 1));
+        return task("Ciągi", `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, q = ${blank()}`, q);
+    }
+
+    const second = a1 * q;
+    const third = second * q;
+    return task("Ciągi", `${a1}, ${second}, ${third}, ${blank()}`, third * q);
+}
+
+function genMpSequenceSum(){
+    const n = rand(4, byDifficulty([8, 12, 16, 20, 24]));
+    const a1 = rand(1, byDifficulty([8, 10, 12, 14, 16]));
+    const r = rand(1, byDifficulty([6, 8, 10, 12, 14]));
+    const an = a1 + (n - 1) * r;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Ciągi", `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, n = ${n}, ${sub("S", n)} = ${blank()}`, n * (a1 + an) / 2)
+        : task("Ciągi", `1 + 2 + ... + ${n} = ${blank()}`, n * (n + 1) / 2);
+}
+
+function genMpExactTrig(){
     const cases = [
-        task("Trygonometria", `sin 30° = ${blank()} / 2`, 1),
-        task("Trygonometria", `cos 60° = ${blank()} / 2`, 1),
+        task("Trygonometria", `sin 30° = ${frac(blank(), 2)}`, 1),
+        task("Trygonometria", `cos 60° = ${frac(blank(), 2)}`, 1),
         task("Trygonometria", `tg 45° = ${blank()}`, 1),
-        task("Trygonometria", `cos 30° = √${blank()} / 2`, 3),
-        task("Trygonometria", `sin 60° = √${blank()} / 2`, 3),
-        task("Trygonometria", `tg 60° = √${blank()}`, 3)
+        task("Trygonometria", `cos 30° = ${frac(root(blank()), 2)}`, 3),
+        task("Trygonometria", `sin 60° = ${frac(root(blank()), 2)}`, 3),
+        task("Trygonometria", `tg 60° = ${root(blank())}`, 3),
+        task("Trygonometria", `sin 45° = ${frac(root(blank()), 2)}`, 2),
+        task("Trygonometria", `cos 45° = ${frac(root(blank()), 2)}`, 2)
     ];
 
     return choice(cases);
 }
 
-function genMpCombinatorics(){
+function genMpTrigTriangle(){
+    const scale = rand(2, byDifficulty([5, 8, 10, 12, 14]));
     const mode = rand(1, 4);
 
     if(mode === 1){
-        const n = rand(3, 6);
+        return task("Trygonometria", `Trójkąt 30°-60°-90°: krótsza = ${scale}, przeciwprostokątna = ${blank()}`, 2 * scale);
+    }
+
+    if(mode === 2){
+        return task("Trygonometria", `Trójkąt 30°-60°-90°: przeciwprostokątna = ${2 * scale}, krótsza = ${blank()}`, scale);
+    }
+
+    if(mode === 3){
+        return task("Trygonometria", `sin α = ${frac(scale, 2 * scale)}, licznik = ${blank()}`, scale);
+    }
+
+    return task("Trygonometria", `tg 45° · ${scale} = ${blank()}`, scale);
+}
+
+function genMpTrigComplements(){
+    const angle = choice([20, 25, 30, 35, 40, 50, 55, 60, 65, 70]);
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Trygonometria", `sin ${angle}° = cos ${blank()}°`, 90 - angle)
+        : task("Trygonometria", `cos ${angle}° = sin ${blank()}°`, 90 - angle);
+}
+
+function genMpFactorials(){
+    const n = rand(3, byDifficulty([6, 7, 7, 8, 8]));
+    const mode = rand(1, 3);
+
+    if(mode === 1){
         return task("Kombinatoryka", `${n}! = ${blank()}`, factorial(n));
     }
 
     if(mode === 2){
-        const n = rand(5, 8);
+        return task("Kombinatoryka", `${frac(`${n}!`, `${n - 1}!`)} = ${blank()}`, n);
+    }
+
+    return task("Kombinatoryka", `${frac(`${n}!`, `${n - 2}!`)} = ${blank()}`, n * (n - 1));
+}
+
+function genMpCombinations(){
+    const n = rand(5, byDifficulty([8, 10, 12, 14, 16]));
+    const mode = rand(1, 4);
+
+    if(mode === 1){
         return task("Kombinatoryka", `C(${n}, 2) = ${blank()}`, combination(n, 2));
     }
 
-    if(mode === 3){
-        const n = rand(4, 7);
-        const k = 2;
-        return task("Kombinatoryka", `Wariacje: ${n} · ${n - 1} = ${blank()}`, n * (n - 1));
+    if(mode === 2){
+        return task("Kombinatoryka", `C(${n}, 1) = ${blank()}`, n);
     }
 
-    const n = rand(4, 8);
-    return task("Kombinatoryka", `Przekątne w ${n}-kącie: ${blank()}`, n * (n - 3) / 2);
+    if(mode === 3){
+        return task("Kombinatoryka", `C(${n}, ${n - 1}) = ${blank()}`, n);
+    }
+
+    return task("Kombinatoryka", `C(${n}, 0) = ${blank()}`, 1);
+}
+
+function genMpCountingShortcuts(){
+    const mode = rand(1, 4);
+
+    if(mode === 1){
+        const n = rand(4, byDifficulty([7, 9, 11, 13, 15]));
+        return task("Kombinatoryka", `Przekątne w ${n}-kącie: ${blank()}`, n * (n - 3) / 2);
+    }
+
+    if(mode === 2){
+        const n = rand(4, byDifficulty([6, 8, 10, 12, 14]));
+        return task("Kombinatoryka", `${n} · ${n - 1} = ${blank()}`, n * (n - 1));
+    }
+
+    if(mode === 3){
+        const shirts = rand(2, byDifficulty([5, 5, 6, 7, 8]));
+        const pants = rand(2, byDifficulty([5, 5, 6, 7, 8]));
+        return task("Kombinatoryka", `${shirts} koszulki · ${pants} spodnie = ${blank()} zestawów`, shirts * pants);
+    }
+
+    const digits = rand(3, byDifficulty([6, 7, 8, 9, 10]));
+    return task("Kombinatoryka", `${digits} cyfr bez powtórzeń, liczby dwucyfrowe: ${blank()}`, digits * (digits - 1));
 }
 
 function generatorPool(){
-    return GENERATORS.filter(generator =>
+    const basePool = GENERATORS.filter(generator =>
         generator.level === state.level &&
         (state.topic === "all" || generator.topic === state.topic)
     );
+
+    if(state.topic === "all" && state.reviewTopic && Math.random() < 0.45){
+        const reviewPool = basePool.filter(generator => generator.topic === state.reviewTopic);
+
+        if(reviewPool.length) return reviewPool;
+    }
+
+    return basePool;
 }
 
 function nextTask(){
     const pool = generatorPool();
     const generator = choice(pool);
 
-    state.currentTask = generator.make();
+    state.currentDifficulty = resolveTaskDifficulty();
+    state.currentTask = {
+        ...generator.make(),
+        topicId: generator.topic,
+        difficulty: state.currentDifficulty
+    };
+    state.answerLocked = false;
     state.taskStartedAt = performance.now();
-    taskTopic.innerText = state.currentTask.label;
+    taskTopic.innerText = `${state.currentTask.label} · ${difficultyLabel(state.currentDifficulty)}`;
     problemText.innerHTML = state.currentTask.html;
     answerInput.value = "";
     answerInput.className = "answer-input";
@@ -800,7 +1572,7 @@ function isCorrectAnswer(value, expected){
 }
 
 function submitAnswer(){
-    if(!state.running || !state.currentTask) return;
+    if(!state.running || !state.currentTask || state.answerLocked) return;
 
     const value = normalizeAnswer(answerInput.value);
 
@@ -816,6 +1588,8 @@ function submitAnswer(){
         state.streak++;
         state.bestStreak = Math.max(state.bestStreak, state.streak);
         state.totalAnswerTime += elapsed;
+        state.answerLocked = true;
+        state.reviewTopic = "";
         answerInput.className = "answer-input good";
         setStatus(`Dobrze · ${elapsed.toFixed(1)} s`, "good");
         pushHistory(state.currentTask, elapsed);
@@ -832,19 +1606,30 @@ function submitAnswer(){
 }
 
 function markWrong(){
+    if(state.answerLocked) return;
+
     state.mistakes++;
     state.streak = 0;
+    state.answerLocked = true;
+    state.reviewTopic = state.currentTask?.topicId || "";
     answerInput.className = "answer-input bad";
-    setStatus("Sprawdź", "bad");
+    setStatus(`Wynik: ${formatAnswer(state.currentTask.answer)}`, "bad");
     updateStats();
+
+    setTimeout(() => {
+        if(state.running) nextTask();
+    }, 650);
 }
 
 function skipTask(){
-    if(!state.running || !state.currentTask) return;
+    if(!state.running || !state.currentTask || state.answerLocked) return;
 
     state.mistakes++;
     state.streak = 0;
-    setStatus(`Wynik: ${formatAnswer(state.currentTask.answer)}`, "bad");
+    state.answerLocked = true;
+    state.reviewTopic = state.currentTask.topicId || "";
+    answerInput.className = "answer-input bad";
+    setStatus(`Pominięto · ${formatAnswer(state.currentTask.answer)}`, "bad");
     updateStats();
 
     setTimeout(() => {
@@ -855,6 +1640,7 @@ function skipTask(){
 function pushHistory(taskItem, elapsed){
     state.history.unshift({
         label: taskItem.label,
+        difficulty: taskItem.difficulty,
         answer: taskItem.answer,
         time: elapsed
     });
@@ -879,13 +1665,164 @@ function renderHistory(){
         const row = document.createElement("div");
 
         row.className = "history-item";
-        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswer(item.answer)} · ${item.time.toFixed(1)} s</strong>`;
+        row.innerHTML = `<span>${item.label} · P${item.difficulty}</span><strong>${formatAnswer(item.answer)} · ${item.time.toFixed(1)} s</strong>`;
         historyList.appendChild(row);
     });
 }
 
 function formatAnswer(value){
     return Number.isInteger(value) ? String(value) : String(Math.round(value * 1000) / 1000).replace(".", ",");
+}
+
+function escapeHtml(value){
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function formatLeaderboardAverage(value){
+    const numeric = Number(value);
+
+    return Number.isFinite(numeric) && numeric > 0 ? `${numeric.toFixed(1)}s` : "-";
+}
+
+function bestScoreId(){
+    return `${state.level}:${state.topic}:${state.difficulty}:${state.roundSeconds}`;
+}
+
+function getBestScores(){
+    try {
+        const raw = localStorage.getItem(BEST_SCORE_KEY);
+
+        return raw ? JSON.parse(raw) : {};
+    } catch(error) {
+        return {};
+    }
+}
+
+function loadBestScore(){
+    const scores = getBestScores();
+
+    state.bestScore = Number(scores[bestScoreId()] || 0);
+}
+
+function saveBestScore(){
+    if(state.correct <= state.bestScore) return false;
+
+    const scores = getBestScores();
+
+    state.bestScore = state.correct;
+    scores[bestScoreId()] = state.bestScore;
+
+    try {
+        localStorage.setItem(BEST_SCORE_KEY, JSON.stringify(scores));
+    } catch(error) {
+        return false;
+    }
+
+    return true;
+}
+
+function leaderboardScopeLabel(){
+    return `${LEVELS[state.level].label} · ${activeTopicLabel()} · ${activeDifficultyLabel()} · ${state.roundSeconds}s`;
+}
+
+function leaderboardParams(){
+    return new URLSearchParams({
+        level: state.level,
+        topic: state.topic,
+        difficulty: String(state.difficulty),
+        round_seconds: String(state.roundSeconds),
+        limit: "10"
+    });
+}
+
+function renderLeaderboardMessage(message){
+    if(!leaderboardList) return;
+
+    leaderboardList.innerHTML = `<div class="leaderboard-empty">${escapeHtml(message)}</div>`;
+}
+
+function renderLeaderboard(items){
+    if(!leaderboardList) return;
+
+    if(!items.length){
+        renderLeaderboardMessage("Brak zapisanych wyników dla tego ustawienia.");
+        return;
+    }
+
+    leaderboardList.innerHTML = items.map(item => `
+        <div class="leaderboard-row${item.is_current_user ? " current" : ""}">
+            <span class="leaderboard-rank">#${item.rank}</span>
+            <span class="leaderboard-name" title="${escapeHtml(item.display_name)}">${escapeHtml(item.display_name || "Uczeń")}</span>
+            <span class="leaderboard-stat"><strong>${Number(item.correct_count || 0)}</strong>pkt</span>
+            <span class="leaderboard-stat"><strong>${Number(item.mistake_count || 0)}</strong>bł.</span>
+            <span class="leaderboard-stat streak"><strong>${Number(item.best_streak || 0)}</strong>seria</span>
+        </div>
+    `).join("");
+}
+
+async function loadLeaderboard(){
+    if(leaderboardScope){
+        leaderboardScope.innerText = leaderboardScopeLabel();
+    }
+
+    if(!leaderboardList) return;
+
+    if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
+        renderLeaderboardMessage("Ranking działa po zalogowaniu ucznia.");
+        return;
+    }
+
+    const requestId = ++leaderboardRequestId;
+
+    renderLeaderboardMessage("Ładowanie rankingu...");
+
+    try {
+        const data = await window.apiFetch(`/api/speed-training/leaderboard?${leaderboardParams().toString()}`);
+
+        if(requestId !== leaderboardRequestId) return;
+
+        renderLeaderboard(Array.isArray(data?.leaderboard) ? data.leaderboard : []);
+    } catch(error) {
+        if(requestId !== leaderboardRequestId) return;
+
+        renderLeaderboardMessage(error.status === 401
+            ? "Ranking działa po zalogowaniu ucznia."
+            : "Nie udało się pobrać rankingu.");
+    }
+}
+
+async function saveSpeedTrainingResult(){
+    if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
+        loadLeaderboard();
+        return;
+    }
+
+    const payload = {
+        level: state.level,
+        topic: state.topic,
+        difficulty: String(state.difficulty),
+        round_seconds: state.roundSeconds,
+        correct_count: state.correct,
+        mistake_count: state.mistakes,
+        best_streak: state.bestStreak,
+        average_time_seconds: state.correct ? state.totalAnswerTime / state.correct : 0
+    };
+
+    try {
+        await window.apiFetch("/api/speed-training/results", {
+            method: "POST",
+            body: JSON.stringify(payload)
+        });
+    } catch(error) {
+        console.warn("Nie udało się zapisać wyniku treningu.", error);
+    } finally {
+        loadLeaderboard();
+    }
 }
 
 function setStatus(text, type){
@@ -896,25 +1833,27 @@ function setStatus(text, type){
 function updateStats(){
     const remaining = state.running
         ? Math.max(0, Math.ceil((state.roundEndsAt - Date.now()) / 1000))
-        : (state.finished ? 0 : ROUND_SECONDS);
+        : (state.finished ? 0 : state.roundSeconds);
 
     timeLeft.innerText = String(remaining);
     correctCount.innerText = String(state.correct);
     mistakeCount.innerText = String(state.mistakes);
     streakCount.innerText = String(state.streak);
     averageTime.innerText = state.correct ? `${(state.totalAnswerTime / state.correct).toFixed(1)}s` : "-";
+    bestScore.innerText = String(state.bestScore);
 }
 
 function startRound(){
     stopTimer();
     state.running = true;
     state.finished = false;
-    state.roundEndsAt = Date.now() + ROUND_SECONDS * 1000;
+    state.roundEndsAt = Date.now() + state.roundSeconds * 1000;
     state.correct = 0;
     state.mistakes = 0;
     state.streak = 0;
     state.bestStreak = 0;
     state.totalAnswerTime = 0;
+    state.reviewTopic = "";
     state.history = [];
     renderHistory();
     updateStats();
@@ -938,34 +1877,42 @@ function finishRound(){
     state.running = false;
     state.finished = true;
     state.currentTask = null;
+    state.answerLocked = true;
+    const isRecord = saveBestScore();
     problemText.innerHTML = "Koniec rundy";
     taskTopic.innerText = "Podsumowanie";
     answerInput.value = "";
     answerInput.className = "answer-input";
-    setStatus(`Wynik: ${state.correct}, seria: ${state.bestStreak}`, "good");
+    setStatus(`${isRecord ? "Nowy rekord" : "Wynik"}: ${state.correct}, seria: ${state.bestStreak}`, "good");
     startButton.innerText = "Start rundy";
     updateStats();
+    saveSpeedTrainingResult();
 }
 
 function resetRound(){
     stopTimer();
+    loadBestScore();
     state.running = false;
     state.finished = false;
     state.currentTask = null;
+    state.answerLocked = false;
     state.correct = 0;
     state.mistakes = 0;
     state.streak = 0;
     state.bestStreak = 0;
+    state.currentDifficulty = state.difficulty === MIXED_DIFFICULTY ? 1 : Number(state.difficulty) || 1;
     state.totalAnswerTime = 0;
+    state.reviewTopic = "";
     state.history = [];
     problemText.innerHTML = "Kliknij Start";
-    taskTopic.innerText = activeTopicLabel();
+    taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
     answerInput.value = "";
     answerInput.className = "answer-input";
     setStatus("Gotowy", "");
     startButton.innerText = "Start rundy";
     renderHistory();
     updateStats();
+    loadLeaderboard();
 }
 
 function stopTimer(){
@@ -978,12 +1925,27 @@ function stopTimer(){
 function setLevel(level){
     state.level = level;
     state.topic = "all";
+    state.reviewTopic = "";
     renderControls();
     resetRound();
 }
 
 function setTopic(topic){
     state.topic = topic;
+    state.reviewTopic = "";
+    renderControls();
+    resetRound();
+}
+
+function setDuration(seconds){
+    state.roundSeconds = seconds;
+    renderControls();
+    resetRound();
+}
+
+function setDifficulty(difficulty){
+    state.difficulty = difficulty;
+    state.reviewTopic = "";
     renderControls();
     resetRound();
 }
@@ -992,10 +1954,17 @@ function activeTopicLabel(){
     return LEVELS[state.level].topics.find(topic => topic.id === state.topic)?.label || "Mieszany";
 }
 
+function activeDifficultyLabel(){
+    return state.difficulty === MIXED_DIFFICULTY ? "Mix trudności" : difficultyLabel(state.difficulty);
+}
+
 function renderControls(){
     stageSubtitle.innerText = LEVELS[state.level].label;
+    topicCurrent.innerText = activeTopicLabel();
     levelTabs.innerHTML = "";
     topicList.innerHTML = "";
+    difficultyTabs.innerHTML = "";
+    durationTabs.innerHTML = "";
 
     Object.entries(LEVELS).forEach(([id, level]) => {
         const button = document.createElement("button");
@@ -1015,6 +1984,34 @@ function renderControls(){
         button.innerText = topic.label;
         button.onclick = () => setTopic(topic.id);
         topicList.appendChild(button);
+    });
+
+    DIFFICULTY_OPTIONS.forEach(difficulty => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = difficulty === state.difficulty ? "difficulty-btn active" : "difficulty-btn";
+        button.innerText = String(difficulty);
+        button.onclick = () => setDifficulty(difficulty);
+        difficultyTabs.appendChild(button);
+    });
+
+    const mixedButton = document.createElement("button");
+
+    mixedButton.type = "button";
+    mixedButton.className = state.difficulty === MIXED_DIFFICULTY ? "difficulty-btn active" : "difficulty-btn";
+    mixedButton.innerText = "Mix";
+    mixedButton.onclick = () => setDifficulty(MIXED_DIFFICULTY);
+    difficultyTabs.appendChild(mixedButton);
+
+    ROUND_OPTIONS.forEach(seconds => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = seconds === state.roundSeconds ? "duration-btn active" : "duration-btn";
+        button.innerText = `${seconds}s`;
+        button.onclick = () => setDuration(seconds);
+        durationTabs.appendChild(button);
     });
 }
 
@@ -1085,17 +2082,22 @@ answerInput.addEventListener("keydown", event => {
     if(event.key === "Enter"){
         event.preventDefault();
         submitAnswer();
+    } else if(event.key === "Escape"){
+        event.preventDefault();
+        skipTask();
     }
 });
 
 submitButton.addEventListener("click", submitAnswer);
+skipButton.addEventListener("click", skipTask);
 startButton.addEventListener("click", startRound);
 resetButton.addEventListener("click", resetRound);
+leaderboardRefreshButton.addEventListener("click", loadLeaderboard);
+window.addEventListener("load", loadLeaderboard);
 
 renderControls();
 renderKeypad();
-renderHistory();
-updateStats();
+resetRound();
 </script>
 
 <script>
