@@ -2366,6 +2366,9 @@ let selectedSolutionIndex = 0;
 let completedExamSummarySource = "";
 let selectedGradingIndex = 0;
 let courseGradingCriteriaByTask = new Map();
+let courseGradingCriteriaLoaded = false;
+const loadedTaskSourceIds = new Set();
+const taskSourceLoadPromises = new Map();
 let practicalValueStore = new Map();
 
 const IMAGE_FADE_MS = 220;
@@ -2639,22 +2642,11 @@ bootStudentPanel();
 async function bootStudentPanel(){
     try {
         await loadAssignedCourse();
-        await loadCourseGradingCriteria();
-
-        const activeSources = isLoggedInStudent
-            ? TASK_SOURCES
-            : TASK_SOURCES.filter(source => {
-                const meta = getSourceMeta(source);
-
-                return meta.category === "egzaminy" &&
-                    ["matura_podstawowa", "matura_rozszerzona", "egzamin_osmoklasisty"].includes(meta.level);
-            });
-
-        const groups = await Promise.all(activeSources.map(loadTaskSource));
-
-        tasks = groups.flat();
 
         if(isLoggedInStudent){
+            if(selectedLevel === "egzamin_osmoklasisty"){
+                await loadCourseGradingCriteria();
+            }
             selectedCategory = "kurs";
             taskMode = "ordered";
         } else {
@@ -2666,6 +2658,8 @@ async function bootStudentPanel(){
 
         updateAccessModeUI();
         ensureSelectedSource();
+        await ensureTaskSourceLoaded(selectedSource);
+        ensureSelectedCoursePart();
         updateCategoryButtons();
         updateLevelButtons();
         updateModeButtons();
@@ -2768,9 +2762,19 @@ function updateProgressPanelVisibility(){
     }
 }
 
-function toggleStudentProgressPanel(){
+async function toggleStudentProgressPanel(){
     progressPanelOpen = !progressPanelOpen;
     updateProgressPanelVisibility();
+
+    if(progressPanelOpen && isLoggedInStudent){
+        try {
+            await ensureLevelTaskSourcesLoaded();
+            renderLearningProgress();
+        } catch(error) {
+            console.warn("Nie udało się wczytać pełnych danych postępu.", error);
+            renderLearningProgress("Nie udało się wczytać pełnych danych postępu.");
+        }
+    }
 }
 
 function updateAccessModeUI(){
@@ -2862,8 +2866,11 @@ async function loadCourseGradingCriteria(){
                 courseGradingCriteriaByTask.set(key, criteria);
             });
         });
+
+        courseGradingCriteriaLoaded = true;
     } catch(error) {
         courseGradingCriteriaByTask = new Map();
+        courseGradingCriteriaLoaded = false;
         console.warn("Nie udało się wczytać zasad oceniania kursu.", error);
     }
 }
@@ -2899,6 +2906,59 @@ function loadTaskSource(sourceConfig){
             sourceDetail: sourceMeta.detail
         }));
     });
+}
+
+function isTaskSourceLoaded(sourceId){
+    return Boolean(sourceId && loadedTaskSourceIds.has(sourceId));
+}
+
+function setTasksForSource(sourceId, sourceTasks){
+    tasks = [
+        ...tasks.filter(task => task.sourceId !== sourceId),
+        ...sourceTasks
+    ];
+}
+
+async function ensureTaskSourceLoaded(sourceId = selectedSource){
+    if(!sourceId || sourceId === "all" || isTaskSourceLoaded(sourceId)) return;
+
+    const sourceMeta = getSourceMetaById(sourceId);
+
+    if(!sourceMeta) return;
+
+    if(sourceMeta.category === "kurs" &&
+        isLoggedInStudent &&
+        sourceMeta.level === "egzamin_osmoklasisty" &&
+        !courseGradingCriteriaLoaded){
+        await loadCourseGradingCriteria();
+    }
+
+    if(taskSourceLoadPromises.has(sourceId)){
+        await taskSourceLoadPromises.get(sourceId);
+        return;
+    }
+
+    const loadPromise = loadTaskSource(sourceMeta)
+        .then(sourceTasks => {
+            setTasksForSource(sourceId, sourceTasks);
+            loadedTaskSourceIds.add(sourceId);
+            taskSourceLoadPromises.delete(sourceId);
+        })
+        .catch(error => {
+            taskSourceLoadPromises.delete(sourceId);
+            throw error;
+        });
+
+    taskSourceLoadPromises.set(sourceId, loadPromise);
+    await loadPromise;
+}
+
+async function ensureLevelTaskSourcesLoaded(level = selectedLevel){
+    const sources = TASK_SOURCES
+        .map(getSourceMeta)
+        .filter(source => source.level === level);
+
+    await Promise.all(sources.map(source => ensureTaskSourceLoaded(source.id)));
 }
 
 function normalizeTaskSolutions(task, basePath){
@@ -3216,12 +3276,7 @@ function getAvailableSources(){
         .map(getSourceMeta)
         .filter(source =>
             source.category === selectedCategory &&
-            source.level === selectedLevel &&
-            tasks.some(t =>
-                t.sourceId === source.id &&
-                t.category === selectedCategory &&
-                t.level === selectedLevel
-            )
+            source.level === selectedLevel
         );
 }
 
@@ -3246,7 +3301,22 @@ function ensureSelectedCoursePart(){
         .find(part => getCoursePartTasks(part).length) || "zadania";
 }
 
-function setCategory(btn, category){
+async function loadSelectedSourceAndDraw(index = getInitialIndex()){
+    try {
+        await ensureTaskSourceLoaded(selectedSource);
+        ensureSelectedCoursePart();
+        renderSourceSelector();
+        refreshTaskNavigator();
+        renderTagSearch();
+        renderLearningProgress();
+        drawTask(index);
+    } catch(error) {
+        console.warn("Nie udało się wczytać wybranego źródła zadań.", error);
+        showMessage("Nie udało się wczytać wybranego zestawu zadań. Spróbuj ponownie za chwilę.");
+    }
+}
+
+async function setCategory(btn, category){
     selectedCategory = category;
     selectedSource = "all";
     taskMode = "ordered";
@@ -3262,13 +3332,10 @@ function setCategory(btn, category){
     resetSession();
     updateSourceAttributionVisibility();
     renderSourceSelector();
-    refreshTaskNavigator();
-    renderTagSearch();
-    renderLearningProgress();
-    drawTask(getInitialIndex());
+    await loadSelectedSourceAndDraw();
 }
 
-function setLevel(btn, level){
+async function setLevel(btn, level){
     selectedLevel = level;
     taskMode = "ordered";
 
@@ -3286,13 +3353,10 @@ function setLevel(btn, level){
     updateSourceAttributionVisibility();
     resetSession();
     renderSourceSelector();
-    refreshTaskNavigator();
-    renderTagSearch();
-    renderLearningProgress();
-    drawTask(getInitialIndex());
+    await loadSelectedSourceAndDraw();
 }
 
-function setSource(sourceId){
+async function setSource(sourceId){
     selectedSource = sourceId;
     taskMode = "ordered";
 
@@ -3318,10 +3382,7 @@ function setSource(sourceId){
     updateSourceAttributionVisibility();
     resetSession();
     renderSourceSelector();
-    refreshTaskNavigator();
-    renderTagSearch();
-    renderLearningProgress();
-    drawTask(getInitialIndex());
+    await loadSelectedSourceAndDraw();
 }
 
 function isRandomMode(){
@@ -3423,16 +3484,19 @@ function renderSourceSelector(){
     }
 
     availableSources.forEach(source => {
-        const count = tasks.filter(t =>
-            t.sourceId === source.id &&
-            t.category === selectedCategory &&
-            t.level === selectedLevel
-        ).length;
+        const isLoaded = isTaskSourceLoaded(source.id);
+        const count = isLoaded
+            ? tasks.filter(t =>
+                t.sourceId === source.id &&
+                t.category === selectedCategory &&
+                t.level === selectedLevel
+            ).length
+            : null;
         const detail = selectedCategory === "kurs"
-            ? `${count} zadań`
-            : `${source.detail} • ${count} zadań`;
+            ? (isLoaded ? `${count} zadań` : "Wczytaj lekcję")
+            : `${source.detail} • ${isLoaded ? `${count} zadań` : "Wczytaj arkusz"}`;
         const titleDetail = selectedCategory === "kurs" && source.detail
-            ? `${source.detail} • ${count} zadań`
+            ? `${source.detail} • ${isLoaded ? `${count} zadań` : "Wczytaj lekcję"}`
             : detail;
 
         addSourceButton(
@@ -4020,21 +4084,7 @@ function advanceToNextExamIfComplete(){
         return true;
     }
 
-    selectedSource = nextSource;
-    completedExamSummarySource = "";
-    currentIndex = 0;
-    randomHistory = [];
-    randomHistoryIndex = -1;
-    sessionResults = new Map();
-
-    updateCategoryButtons();
-    updateLevelButtons();
-    updateModeButtons();
-    updateMetaTheme();
-    renderSourceSelector();
-    refreshTaskNavigator();
-    renderTagSearch();
-    drawTask(getInitialIndex());
+    setSource(nextSource);
 
     return true;
 }
