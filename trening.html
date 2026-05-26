@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="img/logo3.png">
+<link rel="shortcut icon" type="image/webp" href="img/logo3.png">
+<link rel="apple-touch-icon" href="img/logo3.png">
+<title>Trening szybkości</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
+
+<style>
+:root {
+    --page-bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+    --line: #d9e1ea;
+    --text: #1f2a36;
+    --muted: #64748b;
+    --navy: #263545;
+    --blue-soft: #e8f1fb;
+    --blue-text: #24527a;
+    --green-soft: #e8f5e7;
+    --green-text: #2f6b36;
+    --red-soft: #fdecea;
+    --red-text: #8b2119;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
+}
+
+.training-page {
+    width: min(1120px, calc(100% - 28px));
+    margin: 22px auto 40px;
+}
+
+.training-shell {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+}
+
+.training-panel,
+.training-stage,
+.history-panel {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.training-panel {
+    position: sticky;
+    top: 12px;
+    display: grid;
+    gap: 12px;
+    padding: 12px;
+}
+
+.panel-title,
+.stat-label,
+.history-title {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.level-tabs,
+.topic-list,
+.round-controls {
+    display: grid;
+    gap: 7px;
+}
+
+.level-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.level-btn,
+.topic-btn,
+.control-btn,
+.key-btn,
+.secondary-btn {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.level-btn,
+.topic-btn {
+    min-height: 38px;
+    padding: 8px 10px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.level-btn {
+    text-align: center;
+}
+
+.level-btn.active,
+.topic-btn.active {
+    border-color: rgba(142, 181, 222, 0.9);
+    background: var(--blue-soft);
+    color: var(--blue-text);
+}
+
+.control-btn {
+    min-height: 42px;
+    padding: 10px 12px;
+    background: var(--navy);
+    color: white;
+}
+
+.secondary-btn {
+    min-height: 38px;
+    padding: 8px 10px;
+    background: var(--surface-soft);
+    color: var(--text);
+}
+
+.level-btn:hover,
+.topic-btn:hover,
+.control-btn:hover,
+.secondary-btn:hover,
+.key-btn:hover {
+    transform: translateY(-1px);
+    border-color: var(--blue-text);
+}
+
+.training-stage {
+    display: grid;
+    gap: 14px;
+    padding: 16px;
+}
+
+.stage-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.stage-title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.1;
+}
+
+.stage-subtitle {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status-pill {
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    padding: 7px 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-pill.good {
+    background: var(--green-soft);
+    border-color: rgba(65, 150, 90, 0.28);
+    color: var(--green-text);
+}
+
+.status-pill.bad {
+    background: var(--red-soft);
+    border-color: rgba(220, 52, 42, 0.24);
+    color: var(--red-text);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.stat-card {
+    display: grid;
+    gap: 2px;
+    min-height: 58px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 8px;
+}
+
+.stat-value {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.problem-card {
+    display: grid;
+    gap: 14px;
+    min-height: 218px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    padding: 18px;
+}
+
+.task-topic {
+    color: var(--blue-text);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.problem-text {
+    display: flex;
+    align-items: center;
+    min-height: 72px;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.problem-text sup {
+    font-size: 0.58em;
+}
+
+.blank {
+    display: inline-grid;
+    place-items: center;
+    min-width: 62px;
+    min-height: 44px;
+    margin: 0 3px;
+    border: 2px solid rgba(142, 181, 222, 0.85);
+    border-radius: 8px;
+    background: white;
+    color: var(--blue-text);
+}
+
+.answer-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px;
+    gap: 8px;
+}
+
+.answer-input {
+    width: 100%;
+    min-height: 52px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--text);
+    font: inherit;
+    font-size: 26px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.answer-input:focus {
+    border-color: var(--blue-text);
+    outline: 3px solid rgba(142, 181, 222, 0.22);
+}
+
+.answer-input.good {
+    border-color: rgba(65, 150, 90, 0.7);
+    background: var(--green-soft);
+}
+
+.answer-input.bad {
+    border-color: rgba(220, 52, 42, 0.7);
+    background: var(--red-soft);
+}
+
+.submit-btn {
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    background: var(--navy);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 800;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.key-btn {
+    min-height: 50px;
+    font-size: 20px;
+    background: white;
+}
+
+.key-btn.action {
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.key-btn.enter {
+    background: var(--green-soft);
+    color: var(--green-text);
+}
+
+.history-panel {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+}
+
+.history-list {
+    display: grid;
+    gap: 7px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 7px 9px;
+    font-size: 12px;
+}
+
+.history-item strong {
+    color: var(--green-text);
+}
+
+@media (max-width: 880px) {
+    .training-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .training-panel {
+        position: static;
+    }
+
+    .topic-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .training-page {
+        width: min(100% - 18px, 1120px);
+        margin-top: 12px;
+    }
+
+    .training-stage {
+        padding: 10px;
+    }
+
+    .stage-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .problem-card {
+        min-height: 190px;
+        padding: 12px;
+    }
+
+    .problem-text {
+        min-height: 62px;
+        font-size: 29px;
+    }
+
+    .answer-row {
+        grid-template-columns: 1fr;
+    }
+
+    .submit-btn {
+        min-height: 44px;
+    }
+
+    .topic-list {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<div id="nav"></div>
+
+<main class="training-page">
+    <div class="training-shell">
+        <aside class="training-panel" aria-label="Ustawienia treningu">
+            <div>
+                <div class="panel-title">Poziom</div>
+                <div class="level-tabs" id="levelTabs"></div>
+            </div>
+
+            <div>
+                <div class="panel-title">Temat</div>
+                <div class="topic-list" id="topicList"></div>
+            </div>
+
+            <div class="round-controls">
+                <button class="control-btn" id="startButton" type="button">Start rundy</button>
+                <button class="secondary-btn" id="resetButton" type="button">Reset</button>
+            </div>
+        </aside>
+
+        <section class="training-stage" aria-label="Trening szybkości">
+            <div class="stage-head">
+                <div>
+                    <h1 class="stage-title">Trening szybkości</h1>
+                    <p class="stage-subtitle" id="stageSubtitle">Egzamin ósmoklasisty</p>
+                </div>
+                <div class="status-pill" id="statusPill">Gotowy</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Czas</span>
+                    <strong class="stat-value" id="timeLeft">60</strong>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Poprawne</span>
+                    <strong class="stat-value" id="correctCount">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Błędy</span>
+                    <strong class="stat-value" id="mistakeCount">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Seria</span>
+                    <strong class="stat-value" id="streakCount">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Śr.</span>
+                    <strong class="stat-value" id="averageTime">-</strong>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="task-topic" id="taskTopic">Mieszany</div>
+                <div class="problem-text" id="problemText">Kliknij Start</div>
+                <div class="answer-row">
+                    <input class="answer-input" id="answerInput" type="text" inputmode="decimal" autocomplete="off" aria-label="Odpowiedź">
+                    <button class="submit-btn" id="submitButton" type="button">OK</button>
+                </div>
+                <div class="keypad" id="keypad" aria-label="Klawiatura numeryczna"></div>
+            </div>
+
+            <div class="history-panel">
+                <div class="history-title">Ostatnie</div>
+                <div class="history-list" id="historyList"></div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script>
+const ROUND_SECONDS = 60;
+
+const LEVELS = {
+    eo: {
+        label: "Egzamin ósmoklasisty",
+        shortLabel: "Ósmoklasisty",
+        topics: [
+            { id: "all", label: "Mieszany" },
+            { id: "powers", label: "Potęgi" },
+            { id: "roots", label: "Pierwiastki" },
+            { id: "percents", label: "Procenty" }
+        ]
+    },
+    mp: {
+        label: "Matura podstawowa",
+        shortLabel: "Matura podstawowa",
+        topics: [
+            { id: "all", label: "Mieszany" },
+            { id: "formulas", label: "Wzory skróconego mnożenia" },
+            { id: "powers", label: "Potęgi i pierwiastki" },
+            { id: "sequences", label: "Ciągi" },
+            { id: "trig", label: "Trygonometria" },
+            { id: "combinatorics", label: "Kombinatoryka" }
+        ]
+    }
+};
+
+const state = {
+    level: "eo",
+    topic: "all",
+    running: false,
+    finished: false,
+    roundEndsAt: 0,
+    timerId: null,
+    currentTask: null,
+    taskStartedAt: 0,
+    correct: 0,
+    mistakes: 0,
+    streak: 0,
+    bestStreak: 0,
+    totalAnswerTime: 0,
+    history: []
+};
+
+const levelTabs = document.getElementById("levelTabs");
+const topicList = document.getElementById("topicList");
+const stageSubtitle = document.getElementById("stageSubtitle");
+const statusPill = document.getElementById("statusPill");
+const timeLeft = document.getElementById("timeLeft");
+const correctCount = document.getElementById("correctCount");
+const mistakeCount = document.getElementById("mistakeCount");
+const streakCount = document.getElementById("streakCount");
+const averageTime = document.getElementById("averageTime");
+const taskTopic = document.getElementById("taskTopic");
+const problemText = document.getElementById("problemText");
+const answerInput = document.getElementById("answerInput");
+const submitButton = document.getElementById("submitButton");
+const startButton = document.getElementById("startButton");
+const resetButton = document.getElementById("resetButton");
+const keypad = document.getElementById("keypad");
+const historyList = document.getElementById("historyList");
+
+const GENERATORS = [
+    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowers },
+    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRoots },
+    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercents },
+    { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulas },
+    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpPowersRoots },
+    { level: "mp", topic: "sequences", label: "Ciągi", make: genMpSequences },
+    { level: "mp", topic: "trig", label: "Trygonometria", make: genMpTrig },
+    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCombinatorics }
+];
+
+function rand(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function choice(items){
+    return items[rand(0, items.length - 1)];
+}
+
+function sup(value){
+    return `<sup>${value}</sup>`;
+}
+
+function blank(){
+    return `<span class="blank">?</span>`;
+}
+
+function factorial(n){
+    let value = 1;
+
+    for(let i = 2; i <= n; i++) value *= i;
+
+    return value;
+}
+
+function combination(n, k){
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+function task(label, html, answer){
+    return { label, html, answer };
+}
+
+function genEoPowers(){
+    const base = choice([2, 3, 5, 7]);
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        const a = rand(2, 6);
+        const b = rand(2, 6);
+        return task("Potęgi", `${base}${sup(a)} · ${base}${sup(b)} = ${base}${sup(blank())}`, a + b);
+    }
+
+    if(mode === 2){
+        const b = rand(2, 5);
+        const answer = rand(2, 6);
+        return task("Potęgi", `${base}${sup(answer + b)} : ${base}${sup(b)} = ${base}${sup(blank())}`, answer);
+    }
+
+    const a = rand(2, 5);
+    const b = rand(2, 4);
+    return task("Potęgi", `(${base}${sup(a)})${sup(b)} = ${base}${sup(blank())}`, a * b);
+}
+
+function genEoRoots(){
+    const squares = [4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225];
+    const mode = rand(1, 4);
+
+    if(mode === 1){
+        const value = choice(squares);
+        return task("Pierwiastki", `√${value} = ${blank()}`, Math.sqrt(value));
+    }
+
+    if(mode === 2){
+        const a = choice(squares.slice(2, 9));
+        const b = choice(squares.slice(0, 7));
+        return task("Pierwiastki", `√${a} + √${b} = ${blank()}`, Math.sqrt(a) + Math.sqrt(b));
+    }
+
+    if(mode === 3){
+        const a = choice([4, 9, 16, 25]);
+        const b = choice([4, 9, 16, 25]);
+        return task("Pierwiastki", `√(${a} · ${b}) = ${blank()}`, Math.sqrt(a * b));
+    }
+
+    const coefficient = rand(2, 5);
+    const value = choice([4, 9, 16, 25, 36, 49]);
+    return task("Pierwiastki", `${coefficient}√${value} = ${blank()}`, coefficient * Math.sqrt(value));
+}
+
+function genEoPercents(){
+    const mode = rand(1, 4);
+    const percent = choice([10, 20, 25, 50, 75]);
+    const number = rand(4, 40) * 10;
+
+    if(mode === 1){
+        return task("Procenty", `${percent}% z ${number} = ${blank()}`, number * percent / 100);
+    }
+
+    if(mode === 2){
+        return task("Procenty", `${number} zwiększone o ${percent}% = ${blank()}`, number * (100 + percent) / 100);
+    }
+
+    if(mode === 3){
+        return task("Procenty", `${number} zmniejszone o ${percent}% = ${blank()}`, number * (100 - percent) / 100);
+    }
+
+    const answer = rand(2, 12) * 10;
+    return task("Procenty", `10% liczby ${answer * 10} = ${blank()}`, answer);
+}
+
+function genMpFormulas(){
+    const a = rand(2, 12);
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        return task("Wzory skróconego mnożenia", `(x + ${a})${sup(2)} = x${sup(2)} + ${blank()}x + ${a * a}`, 2 * a);
+    }
+
+    if(mode === 2){
+        return task("Wzory skróconego mnożenia", `(x - ${a})${sup(2)} = x${sup(2)} - ${blank()}x + ${a * a}`, 2 * a);
+    }
+
+    return task("Wzory skróconego mnożenia", `(x + ${a})(x - ${a}) = x${sup(2)} - ${blank()}`, a * a);
+}
+
+function genMpPowersRoots(){
+    const mode = rand(1, 4);
+
+    if(mode === 1){
+        const base = choice([2, 3, 5]);
+        const a = rand(2, 7);
+        const b = rand(2, 5);
+        return task("Potęgi i pierwiastki", `${base}${sup(a)} · ${base}${sup(b)} = ${base}${sup(blank())}`, a + b);
+    }
+
+    if(mode === 2){
+        const base = choice([2, 3, 5]);
+        const a = rand(2, 5);
+        const b = rand(2, 4);
+        return task("Potęgi i pierwiastki", `(${base}${sup(a)})${sup(b)} = ${base}${sup(blank())}`, a * b);
+    }
+
+    if(mode === 3){
+        const value = choice([16, 25, 36, 49, 64, 81, 100, 121, 144, 169]);
+        return task("Potęgi i pierwiastki", `√${value} = ${blank()}`, Math.sqrt(value));
+    }
+
+    const a = choice([4, 9, 16, 25]);
+    const b = choice([4, 9, 16, 25]);
+    return task("Potęgi i pierwiastki", `√${a} · √${b} = ${blank()}`, Math.sqrt(a) * Math.sqrt(b));
+}
+
+function genMpSequences(){
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        const a1 = rand(1, 12);
+        const r = rand(2, 8);
+        const n = rand(4, 12);
+        return task("Ciągi", `a${sub(1)} = ${a1}, r = ${r}, a${sub(n)} = ${blank()}`, a1 + (n - 1) * r);
+    }
+
+    if(mode === 2){
+        const a1 = rand(2, 8);
+        const q = choice([2, 3]);
+        const n = rand(3, 5);
+        return task("Ciągi", `a${sub(1)} = ${a1}, q = ${q}, a${sub(n)} = ${blank()}`, a1 * (q ** (n - 1)));
+    }
+
+    const first = rand(1, 10);
+    const diff = rand(2, 9);
+    const next = first + diff;
+    const third = next + diff;
+    return task("Ciągi", `${first}, ${next}, ${third}, ${blank()}`, third + diff);
+}
+
+function sub(value){
+    return `<sub>${value}</sub>`;
+}
+
+function genMpTrig(){
+    const cases = [
+        task("Trygonometria", `sin 30° = ${blank()} / 2`, 1),
+        task("Trygonometria", `cos 60° = ${blank()} / 2`, 1),
+        task("Trygonometria", `tg 45° = ${blank()}`, 1),
+        task("Trygonometria", `cos 30° = √${blank()} / 2`, 3),
+        task("Trygonometria", `sin 60° = √${blank()} / 2`, 3),
+        task("Trygonometria", `tg 60° = √${blank()}`, 3)
+    ];
+
+    return choice(cases);
+}
+
+function genMpCombinatorics(){
+    const mode = rand(1, 4);
+
+    if(mode === 1){
+        const n = rand(3, 6);
+        return task("Kombinatoryka", `${n}! = ${blank()}`, factorial(n));
+    }
+
+    if(mode === 2){
+        const n = rand(5, 8);
+        return task("Kombinatoryka", `C(${n}, 2) = ${blank()}`, combination(n, 2));
+    }
+
+    if(mode === 3){
+        const n = rand(4, 7);
+        const k = 2;
+        return task("Kombinatoryka", `Wariacje: ${n} · ${n - 1} = ${blank()}`, n * (n - 1));
+    }
+
+    const n = rand(4, 8);
+    return task("Kombinatoryka", `Przekątne w ${n}-kącie: ${blank()}`, n * (n - 3) / 2);
+}
+
+function generatorPool(){
+    return GENERATORS.filter(generator =>
+        generator.level === state.level &&
+        (state.topic === "all" || generator.topic === state.topic)
+    );
+}
+
+function nextTask(){
+    const pool = generatorPool();
+    const generator = choice(pool);
+
+    state.currentTask = generator.make();
+    state.taskStartedAt = performance.now();
+    taskTopic.innerText = state.currentTask.label;
+    problemText.innerHTML = state.currentTask.html;
+    answerInput.value = "";
+    answerInput.className = "answer-input";
+    setStatus("Liczenie", "");
+    answerInput.focus();
+}
+
+function normalizeAnswer(value){
+    const normalized = String(value || "")
+        .trim()
+        .replace(",", ".");
+
+    if(!normalized) return null;
+
+    const numeric = Number(normalized);
+
+    return Number.isFinite(numeric) ? numeric : null;
+}
+
+function isCorrectAnswer(value, expected){
+    return Math.abs(value - expected) < 0.000001;
+}
+
+function submitAnswer(){
+    if(!state.running || !state.currentTask) return;
+
+    const value = normalizeAnswer(answerInput.value);
+
+    if(value === null){
+        markWrong();
+        return;
+    }
+
+    if(isCorrectAnswer(value, state.currentTask.answer)){
+        const elapsed = (performance.now() - state.taskStartedAt) / 1000;
+
+        state.correct++;
+        state.streak++;
+        state.bestStreak = Math.max(state.bestStreak, state.streak);
+        state.totalAnswerTime += elapsed;
+        answerInput.className = "answer-input good";
+        setStatus(`Dobrze · ${elapsed.toFixed(1)} s`, "good");
+        pushHistory(state.currentTask, elapsed);
+        updateStats();
+
+        setTimeout(() => {
+            if(state.running) nextTask();
+        }, 260);
+
+        return;
+    }
+
+    markWrong();
+}
+
+function markWrong(){
+    state.mistakes++;
+    state.streak = 0;
+    answerInput.className = "answer-input bad";
+    setStatus("Sprawdź", "bad");
+    updateStats();
+}
+
+function skipTask(){
+    if(!state.running || !state.currentTask) return;
+
+    state.mistakes++;
+    state.streak = 0;
+    setStatus(`Wynik: ${formatAnswer(state.currentTask.answer)}`, "bad");
+    updateStats();
+
+    setTimeout(() => {
+        if(state.running) nextTask();
+    }, 450);
+}
+
+function pushHistory(taskItem, elapsed){
+    state.history.unshift({
+        label: taskItem.label,
+        answer: taskItem.answer,
+        time: elapsed
+    });
+
+    state.history = state.history.slice(0, 6);
+    renderHistory();
+}
+
+function renderHistory(){
+    historyList.innerHTML = "";
+
+    if(!state.history.length){
+        const empty = document.createElement("div");
+
+        empty.className = "history-item";
+        empty.innerHTML = `<span>Brak wyników</span><strong>-</strong>`;
+        historyList.appendChild(empty);
+        return;
+    }
+
+    state.history.forEach(item => {
+        const row = document.createElement("div");
+
+        row.className = "history-item";
+        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswer(item.answer)} · ${item.time.toFixed(1)} s</strong>`;
+        historyList.appendChild(row);
+    });
+}
+
+function formatAnswer(value){
+    return Number.isInteger(value) ? String(value) : String(Math.round(value * 1000) / 1000).replace(".", ",");
+}
+
+function setStatus(text, type){
+    statusPill.innerText = text;
+    statusPill.className = `status-pill${type ? ` ${type}` : ""}`;
+}
+
+function updateStats(){
+    const remaining = state.running
+        ? Math.max(0, Math.ceil((state.roundEndsAt - Date.now()) / 1000))
+        : (state.finished ? 0 : ROUND_SECONDS);
+
+    timeLeft.innerText = String(remaining);
+    correctCount.innerText = String(state.correct);
+    mistakeCount.innerText = String(state.mistakes);
+    streakCount.innerText = String(state.streak);
+    averageTime.innerText = state.correct ? `${(state.totalAnswerTime / state.correct).toFixed(1)}s` : "-";
+}
+
+function startRound(){
+    stopTimer();
+    state.running = true;
+    state.finished = false;
+    state.roundEndsAt = Date.now() + ROUND_SECONDS * 1000;
+    state.correct = 0;
+    state.mistakes = 0;
+    state.streak = 0;
+    state.bestStreak = 0;
+    state.totalAnswerTime = 0;
+    state.history = [];
+    renderHistory();
+    updateStats();
+    nextTask();
+    startButton.innerText = "Nowa runda";
+    state.timerId = setInterval(tick, 200);
+}
+
+function tick(){
+    const remaining = Math.max(0, Math.ceil((state.roundEndsAt - Date.now()) / 1000));
+
+    timeLeft.innerText = String(remaining);
+
+    if(remaining <= 0){
+        finishRound();
+    }
+}
+
+function finishRound(){
+    stopTimer();
+    state.running = false;
+    state.finished = true;
+    state.currentTask = null;
+    problemText.innerHTML = "Koniec rundy";
+    taskTopic.innerText = "Podsumowanie";
+    answerInput.value = "";
+    answerInput.className = "answer-input";
+    setStatus(`Wynik: ${state.correct}, seria: ${state.bestStreak}`, "good");
+    startButton.innerText = "Start rundy";
+    updateStats();
+}
+
+function resetRound(){
+    stopTimer();
+    state.running = false;
+    state.finished = false;
+    state.currentTask = null;
+    state.correct = 0;
+    state.mistakes = 0;
+    state.streak = 0;
+    state.bestStreak = 0;
+    state.totalAnswerTime = 0;
+    state.history = [];
+    problemText.innerHTML = "Kliknij Start";
+    taskTopic.innerText = activeTopicLabel();
+    answerInput.value = "";
+    answerInput.className = "answer-input";
+    setStatus("Gotowy", "");
+    startButton.innerText = "Start rundy";
+    renderHistory();
+    updateStats();
+}
+
+function stopTimer(){
+    if(state.timerId){
+        clearInterval(state.timerId);
+        state.timerId = null;
+    }
+}
+
+function setLevel(level){
+    state.level = level;
+    state.topic = "all";
+    renderControls();
+    resetRound();
+}
+
+function setTopic(topic){
+    state.topic = topic;
+    renderControls();
+    resetRound();
+}
+
+function activeTopicLabel(){
+    return LEVELS[state.level].topics.find(topic => topic.id === state.topic)?.label || "Mieszany";
+}
+
+function renderControls(){
+    stageSubtitle.innerText = LEVELS[state.level].label;
+    levelTabs.innerHTML = "";
+    topicList.innerHTML = "";
+
+    Object.entries(LEVELS).forEach(([id, level]) => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = id === state.level ? "level-btn active" : "level-btn";
+        button.innerText = level.shortLabel || level.label;
+        button.onclick = () => setLevel(id);
+        levelTabs.appendChild(button);
+    });
+
+    LEVELS[state.level].topics.forEach(topic => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = topic.id === state.topic ? "topic-btn active" : "topic-btn";
+        button.innerText = topic.label;
+        button.onclick = () => setTopic(topic.id);
+        topicList.appendChild(button);
+    });
+}
+
+function appendKey(value){
+    if(!state.running) return;
+
+    answerInput.classList.remove("good", "bad");
+
+    if(value === "backspace"){
+        answerInput.value = answerInput.value.slice(0, -1);
+    } else if(value === "clear"){
+        answerInput.value = "";
+    } else if(value === "minus"){
+        answerInput.value = answerInput.value.startsWith("-")
+            ? answerInput.value.slice(1)
+            : `-${answerInput.value}`;
+    } else if(value === "decimal"){
+        if(!/[,.]/.test(answerInput.value)){
+            answerInput.value += ",";
+        }
+    } else {
+        answerInput.value += value;
+    }
+
+    answerInput.focus();
+}
+
+function renderKeypad(){
+    const keys = [
+        "7", "8", "9",
+        "4", "5", "6",
+        "1", "2", "3",
+        "minus", "0", "decimal",
+        "backspace", "clear", "enter"
+    ];
+
+    const labels = {
+        minus: "+/-",
+        decimal: ",",
+        backspace: "Usuń",
+        clear: "C",
+        enter: "OK"
+    };
+
+    keypad.innerHTML = "";
+
+    keys.forEach(key => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = key === "enter"
+            ? "key-btn enter"
+            : ["backspace", "clear", "minus", "decimal"].includes(key)
+                ? "key-btn action"
+                : "key-btn";
+        button.innerText = labels[key] || key;
+        button.onclick = () => key === "enter" ? submitAnswer() : appendKey(key);
+        keypad.appendChild(button);
+    });
+}
+
+answerInput.addEventListener("input", () => {
+    answerInput.value = answerInput.value.replace(/[^0-9,.\-]/g, "");
+    answerInput.classList.remove("good", "bad");
+});
+
+answerInput.addEventListener("keydown", event => {
+    if(event.key === "Enter"){
+        event.preventDefault();
+        submitAnswer();
+    }
+});
+
+submitButton.addEventListener("click", submitAnswer);
+startButton.addEventListener("click", startRound);
+resetButton.addEventListener("click", resetRound);
+
+renderControls();
+renderKeypad();
+renderHistory();
+updateStats();
+</script>
+
+<script>
+fetch("nav.html")
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("nav").innerHTML = html;
+    });
+</script>
+<script src="static/auth.js?v=20260518-token"></script>
+</body>
+</html>
