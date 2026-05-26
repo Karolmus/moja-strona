@@ -88,7 +88,7 @@ body {
 }
 
 .level-tabs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
 }
 
 .level-btn,
@@ -296,6 +296,8 @@ body {
     font-weight: 600;
     line-height: 1.18;
     letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    text-rendering: geometricPrecision;
 }
 
 .problem-text sup {
@@ -307,6 +309,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 0.18em;
+    contain: layout style;
 }
 
 .math-token {
@@ -365,6 +368,27 @@ body {
 .sqrt-radicand {
     border-top: 0.06em solid currentColor;
     padding: 0.03em 0.12em 0;
+}
+
+.abs {
+    display: inline-block;
+    padding: 0 0.02em;
+    white-space: nowrap;
+}
+
+.lim {
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-items: center;
+    line-height: 0.9;
+    margin-right: 0.08em;
+    vertical-align: middle;
+}
+
+.lim sub {
+    font-size: 0.42em;
+    line-height: 1;
 }
 
 .blank {
@@ -745,12 +769,14 @@ const ROUND_SECONDS = 120;
 const MIXED_DIFFICULTIES = [2, 3, 4];
 const MIXED_DIFFICULTY = "mixed";
 const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
-const TASK_RETRY_LIMIT = 80;
+const TASK_MEMORY_KEY = "deltaSigmaSpeedTrainingTaskMemory";
+const TASK_MEMORY_LIMITS = { eo: 600, mp: 500, mr: 600 };
+const TASK_RETRY_LIMIT = 160;
 
 const LEVELS = {
     eo: {
         label: "Egzamin ósmoklasisty",
-        shortLabel: "Ósmoklasisty",
+        shortLabel: "Egzamin ósmoklasisty",
         topics: [
             { id: "all", label: "Mieszany" },
             { id: "roots", label: "Pierwiastki" },
@@ -774,6 +800,18 @@ const LEVELS = {
             { id: "roots", label: "Pierwiastki" },
             { id: "logs", label: "Logarytmy" },
             { id: "functions", label: "Funkcje" }
+        ]
+    },
+    mr: {
+        label: "Matura rozszerzona",
+        shortLabel: "Matura rozszerzona",
+        topics: [
+            { id: "all", label: "Mieszany" },
+            { id: "derivatives", label: "Pochodne" },
+            { id: "limits", label: "Granice" },
+            { id: "trig", label: "Trygonometria" },
+            { id: "absolute", label: "Wartość bezwzględna" },
+            { id: "advanced_functions", label: "Funkcje" }
         ]
     }
 };
@@ -799,7 +837,8 @@ const state = {
     totalAnswerTime: 0,
     reviewTopic: "",
     history: [],
-    seenTaskKeys: new Set()
+    seenTaskKeys: new Set(),
+    taskMemory: []
 };
 
 const levelTabs = document.getElementById("levelTabs");
@@ -880,7 +919,22 @@ const GENERATORS = [
     { level: "mp", topic: "functions", label: "Funkcje", make: genMpLineSlopeFromPoints },
     { level: "mp", topic: "functions", label: "Funkcje", make: genMpLinearTrendSign },
     { level: "mp", topic: "functions", label: "Funkcje", make: genMpQuadraticCoefficientSign },
-    { level: "mp", topic: "functions", label: "Funkcje", make: genMpQuadraticCValue }
+    { level: "mp", topic: "functions", label: "Funkcje", make: genMpQuadraticCValue },
+    { level: "mr", topic: "derivatives", label: "Pochodne", make: genMrDerivativePowerCoefficient },
+    { level: "mr", topic: "derivatives", label: "Pochodne", make: genMrDerivativeValue },
+    { level: "mr", topic: "derivatives", label: "Pochodne", make: genMrTangentSlope },
+    { level: "mr", topic: "limits", label: "Granice", make: genMrLimitDifferenceSquares },
+    { level: "mr", topic: "limits", label: "Granice", make: genMrLimitPolynomialValue },
+    { level: "mr", topic: "limits", label: "Granice", make: genMrLimitAtInfinity },
+    { level: "mr", topic: "trig", label: "Trygonometria", make: genMrTrigExactValue },
+    { level: "mr", topic: "trig", label: "Trygonometria", make: genMrTrigIdentity },
+    { level: "mr", topic: "trig", label: "Trygonometria", make: genMrTrigSign },
+    { level: "mr", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteCompute },
+    { level: "mr", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteEquation },
+    { level: "mr", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteInequalityLength },
+    { level: "mr", topic: "advanced_functions", label: "Funkcje", make: genMrCompositionValue },
+    { level: "mr", topic: "advanced_functions", label: "Funkcje", make: genMrInverseLinearValue },
+    { level: "mr", topic: "advanced_functions", label: "Funkcje", make: genMrParameterLinearRoot }
 ];
 
 function rand(min, max){
@@ -923,6 +977,14 @@ function root(radicand){
     return `<span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-radicand">${radicand}</span></span>`;
 }
 
+function absExpr(value){
+    return `<span class="abs">|${value}|</span>`;
+}
+
+function limitTo(target, body){
+    return `<span class="lim"><span>lim</span><sub>x→${target}</sub></span>${body}`;
+}
+
 function parens(value){
     return `<span class="math-token">(${value})</span>`;
 }
@@ -956,6 +1018,23 @@ function combination(n, k){
     return factorial(n) / (factorial(k) * factorial(n - k));
 }
 
+function gcd(a, b){
+    a = Math.abs(a);
+    b = Math.abs(b);
+
+    while(b){
+        const next = a % b;
+        a = b;
+        b = next;
+    }
+
+    return a || 1;
+}
+
+function lcm(a, b){
+    return Math.abs(a * b) / gcd(a, b);
+}
+
 function range(min, max){
     return Array.from({ length: max - min + 1 }, (_, index) => min + index);
 }
@@ -978,6 +1057,53 @@ function difficultyLabel(value = state.currentDifficulty){
 
 function task(label, html, answer, meta = {}){
     return { label, html: math(html), answer, ...meta };
+}
+
+function taskMemoryLimit(){
+    return TASK_MEMORY_LIMITS[state.level] || 500;
+}
+
+function readTaskMemoryStore(){
+    try {
+        const raw = localStorage.getItem(TASK_MEMORY_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+
+        return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+    } catch(error) {
+        return {};
+    }
+}
+
+function loadTaskMemory(){
+    const store = readTaskMemoryStore();
+    const keys = Array.isArray(store[state.level]) ? store[state.level] : [];
+
+    state.taskMemory = keys.slice(-taskMemoryLimit());
+}
+
+function saveTaskMemory(){
+    const store = readTaskMemoryStore();
+
+    store[state.level] = state.taskMemory.slice(-taskMemoryLimit());
+
+    try {
+        localStorage.setItem(TASK_MEMORY_KEY, JSON.stringify(store));
+    } catch(error) {
+        state.taskMemory = state.taskMemory.slice(-taskMemoryLimit());
+    }
+}
+
+function rememberTaskKey(key){
+    if(!key) return;
+
+    state.taskMemory = state.taskMemory.filter(item => item !== key);
+    state.taskMemory.push(key);
+
+    if(state.taskMemory.length > taskMemoryLimit()){
+        state.taskMemory = state.taskMemory.slice(-taskMemoryLimit());
+    }
+
+    saveTaskMemory();
 }
 
 function genEoPowerRules(){
@@ -1316,28 +1442,34 @@ function genEoSupplementaryAngles(){
 }
 
 function genEoFractionAdd(){
-    const cases = [
-        [1, 2, 1, 4, 4, 3], [1, 2, 3, 8, 8, 7],
-        [1, 3, 1, 6, 6, 3], [2, 3, 1, 6, 6, 5],
-        [1, 4, 3, 8, 8, 5], [3, 4, 1, 8, 8, 7],
-        [2, 5, 1, 10, 10, 5], [3, 5, 1, 10, 10, 7],
-        [1, 6, 1, 4, 12, 5], [1, 3, 1, 4, 12, 7],
-        [5, 6, 1, 12, 12, 11], [3, 8, 1, 4, 8, 5],
-        [1, 5, 3, 10, 10, 5], [1, 8, 1, 2, 8, 5]
-    ];
-    const [a, b, c, d, denominator, numerator] = choice(cases);
+    const denominators = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15];
+    let a;
+    let b;
+    let c;
+    let d;
+    let denominator;
+    let numerator;
+
+    for(let attempt = 0; attempt < 40; attempt++){
+        b = choice(denominators);
+        d = choice(denominators.filter(item => item !== b));
+        denominator = lcm(b, d);
+        a = rand(1, b - 1);
+        c = rand(1, d - 1);
+        numerator = a * (denominator / b) + c * (denominator / d);
+
+        if(denominator <= 60 && numerator < denominator) break;
+    }
 
     return task("Ułamki zwykłe", `${frac(a, b)} + ${frac(c, d)} = ${frac(blank(), denominator)}`, numerator);
 }
 
 function genEoFractionCommonDenominator(){
-    const cases = [
-        [1, 2, 8, 4], [2, 3, 12, 8], [3, 4, 20, 15],
-        [3, 5, 15, 9], [4, 5, 20, 16], [5, 6, 18, 15],
-        [5, 8, 24, 15], [7, 10, 30, 21], [2, 7, 21, 6],
-        [3, 8, 32, 12], [4, 9, 27, 12], [5, 12, 36, 15]
-    ];
-    const [numerator, denominator, targetDenominator, targetNumerator] = choice(cases);
+    const denominator = choice([2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15]);
+    const multiplier = choice([2, 3, 4, 5, 6]);
+    const numerator = rand(1, denominator - 1);
+    const targetDenominator = denominator * multiplier;
+    const targetNumerator = numerator * multiplier;
 
     return task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${frac(blank(), targetDenominator)}`, targetNumerator);
 }
@@ -1351,24 +1483,33 @@ function genEoFractionEquivalent(){
 }
 
 function genEoFractionOfNumber(){
-    const cases = [
-        [1, 2, 48], [1, 3, 60], [2, 3, 45], [3, 4, 80],
-        [1, 5, 75], [2, 5, 90], [3, 5, 100], [5, 8, 64]
-    ];
-    const [numerator, denominator, number] = choice(cases);
+    const denominator = choice([3, 4, 5, 6, 8, 9, 10, 12, 15]);
+    const numerator = rand(1, denominator - 1);
+    const number = denominator * rand(4, 18);
 
     return task("Ułamki zwykłe", `${frac(numerator, denominator)} liczby ${number} = ${blank()}`, number * numerator / denominator);
 }
 
 function genEoFractionMissingPart(){
-    const cases = [
-        [1, 2, 4, 3, 1], [1, 3, 6, 5, 3], [1, 4, 8, 5, 3],
-        [2, 5, 10, 7, 3], [1, 6, 3, 5, 2], [3, 10, 5, 7, 2],
-        [1, 8, 4, 5, 2], [5, 6, 12, 11, 1], [1, 5, 10, 7, 5],
-        [2, 3, 6, 5, 1], [3, 4, 8, 7, 1], [1, 12, 4, 7, 2]
-    ];
-    const [firstNumerator, firstDenominator, missingDenominator, resultNumerator, missingNumerator] = choice(cases);
-    const resultDenominator = Math.max(firstDenominator, missingDenominator);
+    const denominators = [3, 4, 5, 6, 8, 9, 10, 12, 15];
+    let firstNumerator;
+    let firstDenominator;
+    let missingDenominator;
+    let missingNumerator;
+    let resultNumerator;
+    let resultDenominator;
+
+    for(let attempt = 0; attempt < 40; attempt++){
+        firstDenominator = choice(denominators);
+        missingDenominator = choice(denominators.filter(item => item !== firstDenominator));
+        resultDenominator = lcm(firstDenominator, missingDenominator);
+        firstNumerator = rand(1, firstDenominator - 1);
+        missingNumerator = rand(1, missingDenominator - 1);
+        resultNumerator = firstNumerator * (resultDenominator / firstDenominator) +
+            missingNumerator * (resultDenominator / missingDenominator);
+
+        if(resultDenominator <= 60 && resultNumerator < resultDenominator) break;
+    }
 
     return task("Ułamki zwykłe", `${frac(firstNumerator, firstDenominator)} + ${frac(blank(), missingDenominator)} = ${frac(resultNumerator, resultDenominator)}`, missingNumerator);
 }
@@ -1711,6 +1852,163 @@ function genMpQuadraticCValue(){
     return task("Funkcje", `${formula}, f(0) = c = ${blank()}`, c);
 }
 
+function genMrDerivativePowerCoefficient(){
+    const a = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
+    const n = rand(2, 5);
+
+    return task("Pochodne", `f(x) = ${coefficientTerm(a, sup("x", n))}, f'(x) = ${blank()}${sup("x", n - 1)}`, a * n);
+}
+
+function genMrDerivativeValue(){
+    const a = choice([-3, -2, -1, 1, 2, 3]);
+    const b = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
+    const c = choice([-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]);
+    const x0 = rand(-4, 4);
+    const formula = `f(x) = ${coefficientTerm(a, sup("x", 2))} ${signedCoefficientTerm(b, "x")} ${signed(c)}`;
+
+    return task("Pochodne", `${formula}, f'(${x0}) = ${blank()}`, 2 * a * x0 + b);
+}
+
+function genMrTangentSlope(){
+    const a = choice([-2, -1, 1, 2, 3]);
+    const x0 = rand(-4, 4);
+
+    return task("Pochodne", `f(x) = ${coefficientTerm(a, sup("x", 3))}, nachylenie stycznej dla x = ${x0}: ${blank()}`, 3 * a * x0 * x0);
+}
+
+function genMrLimitDifferenceSquares(){
+    const a = choice([-5, -4, -3, -2, 2, 3, 4, 5]);
+    const expression = frac(`${sup("x", 2)} - ${a * a}`, `x ${signed(-a)}`);
+
+    return task("Granice", `${limitTo(a, expression)} = ${blank()}`, 2 * a);
+}
+
+function genMrLimitPolynomialValue(){
+    const a = rand(-4, 4);
+    const p = choice([-2, -1, 1, 2, 3]);
+    const q = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
+    const r = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
+    const expression = `${coefficientTerm(p, sup("x", 2))} ${signedCoefficientTerm(q, "x")} ${signed(r)}`;
+
+    return task("Granice", `${limitTo(a, expression)} = ${blank()}`, p * a * a + q * a + r);
+}
+
+function genMrLimitAtInfinity(){
+    const pairs = [
+        [2, 1, 2], [4, 2, 2], [6, 3, 2],
+        [9, 3, 3], [10, 5, 2], [12, 4, 3]
+    ];
+    const [a, c, result] = choice(pairs);
+    const b = choice([-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]);
+    const d = choice([-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]);
+    const expression = frac(`${coefficientTerm(a, sup("x", 2))} ${signed(b)}`, `${coefficientTerm(c, sup("x", 2))} ${signed(d)}`);
+
+    return task("Granice", `${limitTo("∞", expression)} = ${blank()}`, result);
+}
+
+function genMrTrigExactValue(){
+    const cases = [
+        task("Trygonometria", `sin 30° = ${frac(blank(), 2)}`, 1),
+        task("Trygonometria", `cos 60° = ${frac(blank(), 2)}`, 1),
+        task("Trygonometria", `tg 45° = ${blank()}`, 1),
+        task("Trygonometria", `sin 90° = ${blank()}`, 1),
+        task("Trygonometria", `cos 180° = ${blank()}`, -1),
+        task("Trygonometria", `sin 60° = ${frac(root(blank()), 2)}`, 3),
+        task("Trygonometria", `cos 45° = ${frac(root(blank()), 2)}`, 2)
+    ];
+
+    return choice(cases);
+}
+
+function genMrTrigIdentity(){
+    const mode = rand(1, 4);
+
+    if(mode === 1){
+        return task("Trygonometria", `${sup("sin", 2)}α + ${sup("cos", 2)}α = ${blank()}`, 1);
+    }
+
+    if(mode === 2){
+        return task("Trygonometria", `1 + ${sup("tg 45°", 2)} = ${blank()}`, 2);
+    }
+
+    if(mode === 3){
+        return task("Trygonometria", `2sin 30° + 2cos 60° = ${blank()}`, 2);
+    }
+
+    return task("Trygonometria", `sin 90° - cos 180° = ${blank()}`, 2);
+}
+
+function genMrTrigSign(){
+    const cases = [
+        ["sin", 120, 1], ["sin", 210, -1], ["sin", 300, -1],
+        ["cos", 135, -1], ["cos", 240, -1], ["cos", 315, 1],
+        ["tg", 150, -1], ["tg", 225, 1], ["tg", 330, -1]
+    ];
+    const [fn, angle, sign] = choice(cases);
+
+    return task("Trygonometria", `${fn} ${angle}° ma znak: 1 dodatni, -1 ujemny = ${blank()}`, sign);
+}
+
+function genMrAbsoluteCompute(){
+    const values = [-9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const a = choice(values);
+    const b = choice(values);
+    const c = choice(values);
+    const d = choice(values);
+
+    return task("Wartość bezwzględna", `${absExpr(`${a} ${signed(-b)}`)} + ${absExpr(`${c} ${signed(-d)}`)} = ${blank()}`, Math.abs(a - b) + Math.abs(c - d));
+}
+
+function genMrAbsoluteEquation(){
+    const a = rand(-8, 8);
+    const distance = rand(2, 9);
+    const askGreater = Math.random() < 0.5;
+
+    return task(
+        "Wartość bezwzględna",
+        `${absExpr(`x ${signed(-a)}`)} = ${distance}, ${askGreater ? "większe" : "mniejsze"} rozwiązanie = ${blank()}`,
+        askGreater ? a + distance : a - distance
+    );
+}
+
+function genMrAbsoluteInequalityLength(){
+    const a = rand(-8, 8);
+    const radius = rand(2, 10);
+
+    return task("Wartość bezwzględna", `${absExpr(`x ${signed(-a)}`)} < ${radius}, długość przedziału = ${blank()}`, 2 * radius);
+}
+
+function genMrCompositionValue(){
+    const a = choice([-3, -2, -1, 1, 2, 3]);
+    const b = rand(-6, 6);
+    const c = choice([-3, -2, -1, 1, 2, 3]);
+    const d = rand(-6, 6);
+    const x0 = rand(-3, 3);
+    const gx = c * x0 + d;
+
+    return task(
+        "Funkcje",
+        `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}, g(x) = ${coefficientTerm(c, "x")} ${signed(d)}, f(g(${x0})) = ${blank()}`,
+        a * gx + b
+    );
+}
+
+function genMrInverseLinearValue(){
+    const a = choice([-4, -3, -2, 2, 3, 4]);
+    const b = rand(-8, 8);
+    const x = rand(-5, 5);
+    const y = a * x + b;
+
+    return task("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}, ${sup("f", "-1")}(${y}) = ${blank()}`, x);
+}
+
+function genMrParameterLinearRoot(){
+    const slope = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
+    const zero = rand(-5, 5);
+
+    return task("Funkcje", `f(x) = ${coefficientTerm(slope, "x")} + b, miejsce zerowe x = ${zero}. b = ${blank()}`, -slope * zero);
+}
+
 function genMpLinearFunctionValue(){
     const a = rand(1, byDifficulty([4, 5, 6, 7, 8]));
     const b = rand(-byDifficulty([6, 8, 10, 12, 14]), byDifficulty([6, 8, 10, 12, 14]));
@@ -2050,7 +2348,6 @@ function createTaskCandidate(generator){
 function taskKey(taskItem){
     return [
         state.level,
-        state.topic,
         taskItem.topicId,
         String(taskItem.html).replace(/\s+/g, " "),
         String(taskItem.answer)
@@ -2059,31 +2356,49 @@ function taskKey(taskItem){
 
 function nextTask(){
     const pool = generatorPool();
+    const memoryIndex = new Map(state.taskMemory.map((key, index) => [key, index]));
     let selectedTask = null;
     let selectedKey = "";
-    let fallbackTask = null;
-    let fallbackKey = "";
+    let staleTask = null;
+    let staleKey = "";
+    let staleRank = Number.POSITIVE_INFINITY;
+    let repeatedTask = null;
+    let repeatedKey = "";
 
     for(let attempt = 0; attempt < TASK_RETRY_LIMIT; attempt++){
         const candidate = createTaskCandidate(choice(pool));
         const key = taskKey(candidate);
+        const seenInRound = state.seenTaskKeys.has(key);
+        const seenInMemory = memoryIndex.has(key);
 
-        if(!fallbackTask){
-            fallbackTask = candidate;
-            fallbackKey = key;
-        }
-
-        if(!state.seenTaskKeys.has(key)){
+        if(!seenInRound && !seenInMemory){
             selectedTask = candidate;
             selectedKey = key;
             break;
         }
+
+        if(!seenInRound){
+            const rank = seenInMemory ? memoryIndex.get(key) : -1;
+
+            if(rank < staleRank){
+                staleTask = candidate;
+                staleKey = key;
+                staleRank = rank;
+            }
+        } else if(!repeatedTask){
+            repeatedTask = candidate;
+            repeatedKey = key;
+        }
     }
 
-    state.currentTask = selectedTask || fallbackTask;
-    if(selectedKey || fallbackKey){
-        state.seenTaskKeys.add(selectedKey || fallbackKey);
+    state.currentTask = selectedTask || staleTask || repeatedTask;
+    const finalKey = selectedKey || staleKey || repeatedKey;
+
+    if(finalKey){
+        state.seenTaskKeys.add(finalKey);
+        rememberTaskKey(finalKey);
     }
+
     state.answerLocked = false;
     state.taskStartedAt = performance.now();
     taskTopic.innerText = state.currentTask.label;
@@ -2368,17 +2683,25 @@ function setStatus(text, type){
     statusPill.className = `status-pill${type ? ` ${type}` : ""}`;
 }
 
+function setTextIfChanged(element, value){
+    const text = String(value);
+
+    if(element.innerText !== text){
+        element.innerText = text;
+    }
+}
+
 function updateStats(){
     const remaining = state.running
         ? Math.max(0, Math.ceil((state.roundEndsAt - Date.now()) / 1000))
         : (state.finished ? 0 : state.roundSeconds);
 
-    timeLeft.innerText = String(remaining);
-    correctCount.innerText = String(state.correct);
-    mistakeCount.innerText = String(state.mistakes);
-    streakCount.innerText = String(state.streak);
-    averageTime.innerText = state.correct ? `${(state.totalAnswerTime / state.correct).toFixed(1)}s` : "-";
-    bestScore.innerText = String(state.bestScore);
+    setTextIfChanged(timeLeft, remaining);
+    setTextIfChanged(correctCount, state.correct);
+    setTextIfChanged(mistakeCount, state.mistakes);
+    setTextIfChanged(streakCount, state.streak);
+    setTextIfChanged(averageTime, state.correct ? `${(state.totalAnswerTime / state.correct).toFixed(1)}s` : "-");
+    setTextIfChanged(bestScore, state.bestScore);
 }
 
 function startRound(){
@@ -2394,6 +2717,7 @@ function startRound(){
     state.reviewTopic = "";
     state.history = [];
     state.seenTaskKeys.clear();
+    loadTaskMemory();
     renderHistory();
     updateStats();
     nextTask();
@@ -2404,7 +2728,7 @@ function startRound(){
 function tick(){
     const remaining = Math.max(0, Math.ceil((state.roundEndsAt - Date.now()) / 1000));
 
-    timeLeft.innerText = String(remaining);
+    setTextIfChanged(timeLeft, remaining);
 
     if(remaining <= 0){
         finishRound();
@@ -2444,6 +2768,7 @@ function resetRound(){
     state.reviewTopic = "";
     state.history = [];
     state.seenTaskKeys.clear();
+    loadTaskMemory();
     problemText.innerHTML = "Kliknij Start";
     taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
     answerInput.value = "";
