@@ -82,26 +82,17 @@ body {
 
 .level-tabs,
 .topic-list,
-.duration-tabs,
-.difficulty-tabs,
 .round-controls {
     display: grid;
     gap: 7px;
 }
 
-.level-tabs,
-.duration-tabs {
+.level-tabs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.difficulty-tabs {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .level-btn,
 .topic-btn,
-.duration-btn,
-.difficulty-btn,
 .control-btn,
 .key-btn,
 .secondary-btn {
@@ -116,9 +107,7 @@ body {
 }
 
 .level-btn,
-.topic-btn,
-.duration-btn,
-.difficulty-btn {
+.topic-btn {
     min-height: 38px;
     padding: 8px 10px;
     font-size: 12px;
@@ -129,15 +118,8 @@ body {
     text-align: center;
 }
 
-.duration-btn,
-.difficulty-btn {
-    text-align: center;
-}
-
 .level-btn.active,
-.topic-btn.active,
-.duration-btn.active,
-.difficulty-btn.active {
+.topic-btn.active {
     border-color: rgba(142, 181, 222, 0.9);
     background: var(--blue-soft);
     color: var(--blue-text);
@@ -159,8 +141,6 @@ body {
 
 .level-btn:hover,
 .topic-btn:hover,
-.duration-btn:hover,
-.difficulty-btn:hover,
 .control-btn:hover,
 .secondary-btn:hover,
 .key-btn:hover {
@@ -688,16 +668,6 @@ body {
                 <div class="topic-list" id="topicList"></div>
             </details>
 
-            <div>
-                <div class="panel-title">Trudność</div>
-                <div class="difficulty-tabs" id="difficultyTabs"></div>
-            </div>
-
-            <div>
-                <div class="panel-title">Czas rundy</div>
-                <div class="duration-tabs" id="durationTabs"></div>
-            </div>
-
             <div class="round-controls">
                 <button class="control-btn" id="startButton" type="button">Start rundy</button>
                 <button class="secondary-btn" id="resetButton" type="button">Reset</button>
@@ -716,7 +686,7 @@ body {
             <div class="stats-grid">
                 <div class="stat-card">
                     <span class="stat-label">Czas</span>
-                    <strong class="stat-value" id="timeLeft">60</strong>
+                    <strong class="stat-value" id="timeLeft">120</strong>
                 </div>
                 <div class="stat-card">
                     <span class="stat-label">Poprawne</span>
@@ -771,8 +741,8 @@ body {
 </main>
 
 <script>
-const ROUND_OPTIONS = [30, 60, 90];
-const DIFFICULTY_OPTIONS = [1, 2, 3, 4, 5];
+const ROUND_SECONDS = 120;
+const MIXED_DIFFICULTIES = [2, 3, 4, 5];
 const MIXED_DIFFICULTY = "mixed";
 const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
 
@@ -808,9 +778,9 @@ const LEVELS = {
 const state = {
     level: "eo",
     topic: "all",
-    difficulty: 1,
-    currentDifficulty: 1,
-    roundSeconds: 60,
+    difficulty: MIXED_DIFFICULTY,
+    currentDifficulty: 3,
+    roundSeconds: ROUND_SECONDS,
     running: false,
     finished: false,
     roundEndsAt: 0,
@@ -831,8 +801,6 @@ const state = {
 const levelTabs = document.getElementById("levelTabs");
 const topicCurrent = document.getElementById("topicCurrent");
 const topicList = document.getElementById("topicList");
-const difficultyTabs = document.getElementById("difficultyTabs");
-const durationTabs = document.getElementById("durationTabs");
 const stageSubtitle = document.getElementById("stageSubtitle");
 const statusPill = document.getElementById("statusPill");
 const timeLeft = document.getElementById("timeLeft");
@@ -858,10 +826,7 @@ let leaderboardRequestId = 0;
 
 const GENERATORS = [
     { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerRules },
-    { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerValues },
     { level: "eo", topic: "powers", label: "Potęgi", make: genEoPowerMissingBase },
-    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootValues },
-    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootOperations },
     { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
     { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
     { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentChange },
@@ -877,8 +842,6 @@ const GENERATORS = [
     { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpDifferenceSquares },
     { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulaValue },
     { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpPowerRules },
-    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpRootOperations },
-    { level: "mp", topic: "powers", label: "Potęgi i pierwiastki", make: genMpRationalPowers },
     { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogValues },
     { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogRules },
     { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogEquations },
@@ -969,13 +932,11 @@ function byDifficulty(values){
 }
 
 function resolveTaskDifficulty(){
-    return state.difficulty === MIXED_DIFFICULTY
-        ? choice(DIFFICULTY_OPTIONS)
-        : Number(state.difficulty) || 1;
+    return choice(MIXED_DIFFICULTIES);
 }
 
 function difficultyLabel(value = state.currentDifficulty){
-    return `Poziom ${value}`;
+    return "Mix";
 }
 
 function task(label, html, answer, meta = {}){
@@ -1010,60 +971,15 @@ function genEoPowerRules(){
     return task("Potęgi", `${sup(base, factor)} · ${sup(base, blank())} = ${sup(base, exponent)}`, exponent - factor);
 }
 
-function genEoPowerValues(){
-    const bases = [
-        [2, 3, 5],
-        [2, 3, 4, 5],
-        [2, 3, 4, 5, 6],
-        [2, 3, 4, 5, 6, 7],
-        [2, 3, 4, 5, 6, 8, 10]
-    ];
-    const base = choice(byDifficulty(bases));
-    const maxExponent = base >= 7 ? 3 : byDifficulty([4, 4, 5, 5, 6]);
-    const exponent = base === 5 ? rand(2, Math.min(4, maxExponent)) : rand(2, maxExponent);
-
-    return task("Potęgi", `${sup(base, exponent)} = ${blank()}`, base ** exponent);
-}
-
 function genEoPowerMissingBase(){
-    const base = choice(range(2, byDifficulty([6, 7, 8, 9, 10])));
-    const exponent = rand(2, byDifficulty([2, 3, 3, 4, 4]));
+    const base = choice(range(3, byDifficulty([6, 7, 8, 9, 10])));
+    const exponent = rand(3, byDifficulty([3, 3, 4, 4, 5]));
 
     return task("Potęgi", `${sup(blank(), exponent)} = ${base ** exponent}`, base);
 }
 
-function genEoRootValues(){
-    const roots = range(2, byDifficulty([12, 15, 18, 22, 26]));
-    const value = choice(roots);
-
-    return task("Pierwiastki", `${root(value * value)} = ${blank()}`, value);
-}
-
-function genEoRootOperations(){
-    const mode = rand(1, 4);
-    const a = rand(2, byDifficulty([9, 12, 14, 16, 18]));
-    const b = rand(2, byDifficulty([8, 10, 12, 14, 16]));
-
-    if(mode === 1){
-        return task("Pierwiastki", `${root(a * a)} + ${root(b * b)} = ${blank()}`, a + b);
-    }
-
-    if(mode === 2){
-        const larger = Math.max(a, b);
-        const smaller = Math.min(a, b);
-        return task("Pierwiastki", `${root(larger * larger)} - ${root(smaller * smaller)} = ${blank()}`, larger - smaller);
-    }
-
-    if(mode === 3){
-        return task("Pierwiastki", `${root(a * a)} · ${root(b * b)} = ${blank()}`, a * b);
-    }
-
-    const coefficient = rand(2, byDifficulty([5, 6, 7, 8, 9]));
-    return task("Pierwiastki", `${coefficient}${root(a * a)} = ${blank()}`, coefficient * a);
-}
-
 function genEoRootEquations(){
-    const answer = rand(2, byDifficulty([10, 14, 18, 22, 26]));
+    const answer = rand(byDifficulty([5, 6, 7, 8, 9]), byDifficulty([10, 14, 18, 22, 26]));
     const add = rand(1, byDifficulty([9, 12, 15, 18, 20]));
     const mode = rand(1, 2);
 
@@ -1248,46 +1164,8 @@ function genMpPowerRules(){
         return task("Potęgi i pierwiastki", `${frac(sup(base, answer + b), sup(base, b))} = ${sup(base, blank())}`, answer);
     }
 
-    const exponent = rand(2, byDifficulty([5, 5, 6, 6, 7]));
+    const exponent = rand(3, byDifficulty([5, 5, 6, 6, 7]));
     return task("Potęgi i pierwiastki", `${sup(blank(), exponent)} = ${base ** exponent}`, base);
-}
-
-function genMpRootOperations(){
-    const a = rand(2, byDifficulty([10, 13, 16, 20, 24]));
-    const b = rand(2, byDifficulty([9, 12, 15, 18, 22]));
-    const coefficient = rand(2, byDifficulty([6, 7, 8, 9, 10]));
-    const mode = rand(1, 4);
-
-    if(mode === 1){
-        return task("Potęgi i pierwiastki", `${root(a * a)} + ${root(b * b)} = ${blank()}`, a + b);
-    }
-
-    if(mode === 2){
-        return task("Potęgi i pierwiastki", `${coefficient}${root(a * a)} = ${blank()}`, coefficient * a);
-    }
-
-    if(mode === 3){
-        return task("Potęgi i pierwiastki", `${root(a * a)} · ${root(b * b)} = ${blank()}`, a * b);
-    }
-
-    return task("Potęgi i pierwiastki", `${root(blank())} = ${a}`, a * a);
-}
-
-function genMpRationalPowers(){
-    const rootValue = rand(2, byDifficulty([10, 12, 14, 16, 18]));
-    const square = rootValue * rootValue;
-    const cubeBase = rand(2, byDifficulty([5, 5, 6, 6, 7]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        return task("Potęgi i pierwiastki", `${sup(square, frac(1, 2))} = ${blank()}`, rootValue);
-    }
-
-    if(mode === 2){
-        return task("Potęgi i pierwiastki", `${sup(cubeBase ** 3, frac(1, 3))} = ${blank()}`, cubeBase);
-    }
-
-    return task("Potęgi i pierwiastki", `${sup(rootValue, -1)} = ${frac(1, blank())}`, rootValue);
 }
 
 function genMpLogValues(){
@@ -1547,7 +1425,7 @@ function nextTask(){
     };
     state.answerLocked = false;
     state.taskStartedAt = performance.now();
-    taskTopic.innerText = `${state.currentTask.label} · ${difficultyLabel(state.currentDifficulty)}`;
+    taskTopic.innerText = state.currentTask.label;
     problemText.innerHTML = state.currentTask.html;
     answerInput.value = "";
     answerInput.className = "answer-input";
@@ -1640,7 +1518,6 @@ function skipTask(){
 function pushHistory(taskItem, elapsed){
     state.history.unshift({
         label: taskItem.label,
-        difficulty: taskItem.difficulty,
         answer: taskItem.answer,
         time: elapsed
     });
@@ -1665,7 +1542,7 @@ function renderHistory(){
         const row = document.createElement("div");
 
         row.className = "history-item";
-        row.innerHTML = `<span>${item.label} · P${item.difficulty}</span><strong>${formatAnswer(item.answer)} · ${item.time.toFixed(1)} s</strong>`;
+        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswer(item.answer)} · ${item.time.toFixed(1)} s</strong>`;
         historyList.appendChild(row);
     });
 }
@@ -1900,7 +1777,7 @@ function resetRound(){
     state.mistakes = 0;
     state.streak = 0;
     state.bestStreak = 0;
-    state.currentDifficulty = state.difficulty === MIXED_DIFFICULTY ? 1 : Number(state.difficulty) || 1;
+    state.currentDifficulty = resolveTaskDifficulty();
     state.totalAnswerTime = 0;
     state.reviewTopic = "";
     state.history = [];
@@ -1937,25 +1814,12 @@ function setTopic(topic){
     resetRound();
 }
 
-function setDuration(seconds){
-    state.roundSeconds = seconds;
-    renderControls();
-    resetRound();
-}
-
-function setDifficulty(difficulty){
-    state.difficulty = difficulty;
-    state.reviewTopic = "";
-    renderControls();
-    resetRound();
-}
-
 function activeTopicLabel(){
     return LEVELS[state.level].topics.find(topic => topic.id === state.topic)?.label || "Mieszany";
 }
 
 function activeDifficultyLabel(){
-    return state.difficulty === MIXED_DIFFICULTY ? "Mix trudności" : difficultyLabel(state.difficulty);
+    return "Mix";
 }
 
 function renderControls(){
@@ -1963,8 +1827,6 @@ function renderControls(){
     topicCurrent.innerText = activeTopicLabel();
     levelTabs.innerHTML = "";
     topicList.innerHTML = "";
-    difficultyTabs.innerHTML = "";
-    durationTabs.innerHTML = "";
 
     Object.entries(LEVELS).forEach(([id, level]) => {
         const button = document.createElement("button");
@@ -1986,33 +1848,6 @@ function renderControls(){
         topicList.appendChild(button);
     });
 
-    DIFFICULTY_OPTIONS.forEach(difficulty => {
-        const button = document.createElement("button");
-
-        button.type = "button";
-        button.className = difficulty === state.difficulty ? "difficulty-btn active" : "difficulty-btn";
-        button.innerText = String(difficulty);
-        button.onclick = () => setDifficulty(difficulty);
-        difficultyTabs.appendChild(button);
-    });
-
-    const mixedButton = document.createElement("button");
-
-    mixedButton.type = "button";
-    mixedButton.className = state.difficulty === MIXED_DIFFICULTY ? "difficulty-btn active" : "difficulty-btn";
-    mixedButton.innerText = "Mix";
-    mixedButton.onclick = () => setDifficulty(MIXED_DIFFICULTY);
-    difficultyTabs.appendChild(mixedButton);
-
-    ROUND_OPTIONS.forEach(seconds => {
-        const button = document.createElement("button");
-
-        button.type = "button";
-        button.className = seconds === state.roundSeconds ? "duration-btn active" : "duration-btn";
-        button.innerText = `${seconds}s`;
-        button.onclick = () => setDuration(seconds);
-        durationTabs.appendChild(button);
-    });
 }
 
 function appendKey(value){
