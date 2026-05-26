@@ -742,7 +742,7 @@ body {
 
 <script>
 const ROUND_SECONDS = 120;
-const MIXED_DIFFICULTIES = [2, 3, 4, 5];
+const MIXED_DIFFICULTIES = [2, 3, 4];
 const MIXED_DIFFICULTY = "mixed";
 const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
 
@@ -756,7 +756,8 @@ const LEVELS = {
             { id: "roots", label: "Pierwiastki" },
             { id: "percents", label: "Procenty" },
             { id: "areas", label: "Pola figur" },
-            { id: "equations", label: "Równania i proporcje" }
+            { id: "equations", label: "Równania i proporcje" },
+            { id: "exam_schemes", label: "Schematy egzaminacyjne" }
         ]
     },
     mp: {
@@ -768,9 +769,11 @@ const LEVELS = {
             { id: "powers", label: "Potęgi i pierwiastki" },
             { id: "logs", label: "Logarytmy" },
             { id: "functions", label: "Funkcje i równania" },
+            { id: "analytic", label: "Geometria analityczna" },
             { id: "sequences", label: "Ciągi" },
             { id: "trig", label: "Trygonometria" },
-            { id: "combinatorics", label: "Kombinatoryka" }
+            { id: "combinatorics", label: "Kombinatoryka" },
+            { id: "statistics", label: "Statystyka" }
         ]
     }
 };
@@ -833,11 +836,17 @@ const GENERATORS = [
     { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentReverse },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
-    { level: "eo", topic: "areas", label: "Pola figur", make: genEoTrapezoidArea },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoAreaReverse },
     { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoLinearEquation },
     { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoProportion },
     { level: "eo", topic: "equations", label: "Równania i proporcje", make: genEoScaleRatio },
+    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoAngleTriangle },
+    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoSupplementaryAngles },
+    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoFractionOfNumber },
+    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoSpeedDistance },
+    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoUnitConversion },
+    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoPythagoreanTriple },
+    { level: "eo", topic: "exam_schemes", label: "Schematy egzaminacyjne", make: genEoExpressionValue },
     { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulaCoefficient },
     { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpDifferenceSquares },
     { level: "mp", topic: "formulas", label: "Wzory skróconego mnożenia", make: genMpFormulaValue },
@@ -848,6 +857,12 @@ const GENERATORS = [
     { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearFunctionValue },
     { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpQuadraticFunctionValue },
     { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearEquation },
+    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpParabolaVertex },
+    { level: "mp", topic: "functions", label: "Funkcje i równania", make: genMpLinearZero },
+    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpLineSlopeFromPoints },
+    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpDistanceBetweenPoints },
+    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpMidpointCoordinate },
+    { level: "mp", topic: "analytic", label: "Geometria analityczna", make: genMpCircleEquation },
     { level: "mp", topic: "sequences", label: "Ciągi", make: genMpArithmeticSequence },
     { level: "mp", topic: "sequences", label: "Ciągi", make: genMpGeometricSequence },
     { level: "mp", topic: "sequences", label: "Ciągi", make: genMpSequenceSum },
@@ -856,7 +871,10 @@ const GENERATORS = [
     { level: "mp", topic: "trig", label: "Trygonometria", make: genMpTrigComplements },
     { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpFactorials },
     { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCombinations },
-    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCountingShortcuts }
+    { level: "mp", topic: "combinatorics", label: "Kombinatoryka", make: genMpCountingShortcuts },
+    { level: "mp", topic: "statistics", label: "Statystyka", make: genMpAverageMissingValue },
+    { level: "mp", topic: "statistics", label: "Statystyka", make: genMpWeightedAverage },
+    { level: "mp", topic: "statistics", label: "Statystyka", make: genMpMedianValue }
 ];
 
 function rand(min, max){
@@ -1014,8 +1032,8 @@ function genEoPercentReverse(){
 }
 
 function genEoRectangleArea(){
-    const a = rand(2, byDifficulty([12, 16, 20, 24, 30]));
-    const b = rand(2, byDifficulty([10, 14, 18, 22, 26]));
+    const a = rand(3, byDifficulty([8, 10, 12, 14, 16]));
+    const b = rand(3, byDifficulty([8, 9, 10, 12, 14]));
     const mode = rand(1, 2);
 
     return mode === 1
@@ -1024,8 +1042,8 @@ function genEoRectangleArea(){
 }
 
 function genEoTriangleArea(){
-    const base = rand(2, byDifficulty([14, 18, 24, 30, 36]));
-    const height = rand(2, byDifficulty([12, 16, 20, 24, 30]));
+    const base = rand(4, byDifficulty([10, 12, 14, 16, 18]));
+    const height = rand(3, byDifficulty([8, 10, 12, 14, 16]));
     const evenBase = base % 2 === 0 ? base : base + 1;
     const mode = rand(1, 2);
 
@@ -1037,39 +1055,24 @@ function genEoTriangleArea(){
     return task("Pola figur", `Trójkąt: P = ${area}, a = ${evenBase}, h = ${blank()}`, height);
 }
 
-function genEoTrapezoidArea(){
-    const a = rand(3, byDifficulty([12, 16, 20, 24, 28]));
-    const b = rand(3, byDifficulty([12, 16, 20, 24, 28]));
-    const height = rand(2, byDifficulty([10, 12, 16, 20, 24]));
-    const adjustedHeight = (a + b) % 2 === 0 ? height : height * 2;
-
-    return task("Pola figur", `Trapez: a = ${a}, b = ${b}, h = ${adjustedHeight}, P = ${blank()}`, (a + b) * adjustedHeight / 2);
-}
-
 function genEoAreaReverse(){
-    const mode = rand(1, 3);
+    const mode = rand(1, 2);
 
     if(mode === 1){
-        const side = rand(2, byDifficulty([10, 12, 16, 18, 20]));
-        const area = side * rand(2, byDifficulty([8, 10, 12, 14, 16]));
+        const side = rand(3, byDifficulty([8, 10, 12, 14, 16]));
+        const area = side * rand(3, byDifficulty([8, 9, 10, 12, 14]));
         return task("Pola figur", `Prostokąt: P = ${area}, a = ${side}, b = ${blank()}`, area / side);
     }
 
-    if(mode === 2){
-        const side = rand(2, byDifficulty([12, 16, 20, 24, 28]));
-        const height = rand(2, byDifficulty([10, 12, 16, 18, 20]));
-        return task("Pola figur", `Równoległobok: a = ${side}, h = ${height}, P = ${blank()}`, side * height);
-    }
-
-    const diagonalA = rand(2, byDifficulty([12, 14, 16, 18, 20])) * 2;
-    const diagonalB = rand(2, byDifficulty([10, 12, 14, 16, 18]));
-    return task("Pola figur", `Romb: ${sub("d", 1)} = ${diagonalA}, ${sub("d", 2)} = ${diagonalB}, P = ${blank()}`, diagonalA * diagonalB / 2);
+    const side = rand(3, byDifficulty([8, 10, 12, 14, 16]));
+    const height = rand(3, byDifficulty([8, 10, 12, 14, 16]));
+    return task("Pola figur", `Równoległobok: a = ${side}, h = ${height}, P = ${blank()}`, side * height);
 }
 
 function genEoLinearEquation(){
-    const x = rand(1, byDifficulty([8, 10, 12, 15, 18]));
-    const a = rand(2, byDifficulty([6, 7, 8, 9, 10]));
-    const b = rand(1, byDifficulty([12, 16, 20, 24, 30]));
+    const x = rand(1, byDifficulty([6, 8, 9, 10, 12]));
+    const a = rand(2, byDifficulty([4, 5, 6, 7, 8]));
+    const b = rand(1, byDifficulty([8, 10, 12, 14, 16]));
     const right = a * x + b;
     const mode = rand(1, 2);
 
@@ -1079,9 +1082,9 @@ function genEoLinearEquation(){
 }
 
 function genEoProportion(){
-    const x = rand(2, byDifficulty([10, 12, 16, 20, 24]));
-    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
-    const b = rand(2, byDifficulty([8, 10, 12, 14, 16]));
+    const x = rand(2, byDifficulty([8, 10, 12, 14, 16]));
+    const a = rand(2, byDifficulty([6, 8, 10, 12, 14]));
+    const b = rand(2, byDifficulty([6, 8, 10, 12, 14]));
     const c = a * x / b;
 
     if(Number.isInteger(c)){
@@ -1092,8 +1095,8 @@ function genEoProportion(){
 }
 
 function genEoScaleRatio(){
-    const scale = choice(difficultyTier() >= 4 ? [2, 3, 4, 5, 10, 20] : [2, 3, 4, 5, 10]);
-    const real = rand(2, byDifficulty([12, 16, 20, 24, 30])) * scale;
+    const scale = choice([2, 3, 4, 5, 10]);
+    const real = rand(2, byDifficulty([8, 10, 12, 14, 16])) * scale;
     const mode = rand(1, 2);
 
     return mode === 1
@@ -1101,8 +1104,76 @@ function genEoScaleRatio(){
         : task("Równania i proporcje", `Stosunek ${scale}:1, ${blank()} · ${scale} = ${real}`, real / scale);
 }
 
+function genEoAngleTriangle(){
+    const pairs = [[40, 60], [45, 45], [50, 60], [35, 65], [30, 80], [70, 40], [55, 55]];
+    const [a, b] = choice(pairs);
+
+    return task("Schematy egzaminacyjne", `Trójkąt: kąty ${a}° i ${b}°, trzeci kąt = ${blank()}°`, 180 - a - b);
+}
+
+function genEoSupplementaryAngles(){
+    const angle = choice([30, 35, 40, 45, 50, 60, 70, 75, 80, 100, 110, 120]);
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Schematy egzaminacyjne", `Kąty przyległe: ${angle}° i ${blank()}°`, 180 - angle)
+        : task("Schematy egzaminacyjne", `Kąt pełny: ${angle}° + ${blank()}° = 360°`, 360 - angle);
+}
+
+function genEoFractionOfNumber(){
+    const cases = [
+        [1, 2, 48], [1, 3, 60], [2, 3, 45], [3, 4, 80],
+        [1, 5, 75], [2, 5, 90], [3, 5, 100], [5, 8, 64]
+    ];
+    const [numerator, denominator, number] = choice(cases);
+
+    return task("Schematy egzaminacyjne", `${frac(numerator, denominator)} liczby ${number} = ${blank()}`, number * numerator / denominator);
+}
+
+function genEoSpeedDistance(){
+    const cases = [
+        [40, 2], [50, 3], [60, 2], [70, 2], [80, 3],
+        [90, 2], [30, 4], [45, 2]
+    ];
+    const [speed, hours] = choice(cases);
+
+    return task("Schematy egzaminacyjne", `v = ${speed} km/h, t = ${hours} h, s = ${blank()} km`, speed * hours);
+}
+
+function genEoUnitConversion(){
+    const cases = [
+        ["m", "cm", 100, 2], ["m", "cm", 100, 5], ["m", "dm", 10, 7],
+        ["kg", "g", 1000, 3], ["h", "min", 60, 2], ["min", "s", 60, 5],
+        ["zł", "gr", 100, 4]
+    ];
+    const [from, to, multiplier, value] = choice(cases);
+
+    return task("Schematy egzaminacyjne", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+}
+
+function genEoPythagoreanTriple(){
+    const triples = [[3, 4, 5], [5, 12, 13], [6, 8, 10], [9, 12, 15]];
+    const [a, b, c] = choice(triples);
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Schematy egzaminacyjne", `Trójkąt prostokątny: przyprostokątne ${a} i ${b}, przeciwprostokątna = ${blank()}`, c)
+        : task("Schematy egzaminacyjne", `Trójkąt prostokątny: przeciwprostokątna ${c}, przyprostokątna ${a}, druga = ${blank()}`, b);
+}
+
+function genEoExpressionValue(){
+    const x = rand(2, byDifficulty([6, 8, 10, 12, 14]));
+    const a = rand(2, byDifficulty([4, 5, 6, 7, 8]));
+    const b = rand(1, byDifficulty([8, 10, 12, 14, 16]));
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Schematy egzaminacyjne", `Dla x = ${x}: ${a}x + ${b} = ${blank()}`, a * x + b)
+        : task("Schematy egzaminacyjne", `Dla x = ${x}: ${a}x - ${b} = ${blank()}`, a * x - b);
+}
+
 function genMpFormulaCoefficient(){
-    const a = rand(2, byDifficulty([10, 15, 18, 22, 26]));
+    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
     const mode = rand(1, 3);
 
     if(mode === 1){
@@ -1117,8 +1188,8 @@ function genMpFormulaCoefficient(){
 }
 
 function genMpDifferenceSquares(){
-    const a = rand(2, byDifficulty([12, 18, 22, 26, 30]));
-    const b = rand(1, byDifficulty([6, 8, 10, 12, 14]));
+    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
+    const b = rand(1, byDifficulty([5, 6, 7, 8, 9]));
     const mode = rand(1, 3);
 
     if(mode === 1){
@@ -1133,8 +1204,8 @@ function genMpDifferenceSquares(){
 }
 
 function genMpFormulaValue(){
-    const a = rand(2, byDifficulty([12, 14, 16, 18, 20]));
-    const b = rand(1, byDifficulty([8, 9, 10, 11, 12]));
+    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
+    const b = rand(1, byDifficulty([6, 7, 8, 9, 10]));
     const mode = rand(1, 2);
 
     return mode === 1
@@ -1170,7 +1241,7 @@ function genMpPowerRules(){
 
 function genMpLogValues(){
     const base = choice(difficultyTier() >= 4 ? [2, 3, 4, 5, 10] : [2, 3, 5, 10]);
-    const exponent = rand(1, byDifficulty([3, 4, 4, 5, 5]));
+    const exponent = rand(1, byDifficulty([3, 4, 4, 4, 4]));
     const value = base ** exponent;
     const mode = rand(1, 2);
 
@@ -1181,8 +1252,8 @@ function genMpLogValues(){
 
 function genMpLogRules(){
     const base = choice([2, 3, 5, 10]);
-    const a = rand(1, byDifficulty([3, 4, 4, 5, 5]));
-    const b = rand(1, byDifficulty([3, 3, 4, 4, 5]));
+    const a = rand(1, byDifficulty([3, 4, 4, 4, 4]));
+    const b = rand(1, byDifficulty([3, 3, 4, 4, 4]));
     const mode = rand(1, 3);
 
     if(mode === 1){
@@ -1208,9 +1279,9 @@ function genMpLogEquations(){
 }
 
 function genMpLinearFunctionValue(){
-    const a = rand(1, byDifficulty([5, 6, 7, 8, 10]));
-    const b = rand(-byDifficulty([8, 10, 12, 14, 16]), byDifficulty([8, 10, 12, 14, 16]));
-    const x = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
+    const a = rand(1, byDifficulty([4, 5, 6, 7, 8]));
+    const b = rand(-byDifficulty([6, 8, 10, 12, 14]), byDifficulty([6, 8, 10, 12, 14]));
+    const x = rand(-byDifficulty([4, 5, 6, 7, 8]), byDifficulty([4, 5, 6, 7, 8]));
     const mode = rand(1, 2);
 
     if(mode === 1){
@@ -1222,9 +1293,9 @@ function genMpLinearFunctionValue(){
 }
 
 function genMpQuadraticFunctionValue(){
-    const p = rand(-byDifficulty([4, 5, 6, 7, 8]), byDifficulty([4, 5, 6, 7, 8]));
-    const q = rand(-byDifficulty([6, 8, 10, 12, 14]), byDifficulty([6, 8, 10, 12, 14]));
-    const x = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
+    const p = rand(-byDifficulty([3, 4, 5, 6, 6]), byDifficulty([3, 4, 5, 6, 6]));
+    const q = rand(-byDifficulty([5, 6, 8, 10, 10]), byDifficulty([5, 6, 8, 10, 10]));
+    const x = rand(-byDifficulty([4, 5, 6, 7, 7]), byDifficulty([4, 5, 6, 7, 7]));
     const a = choice([1, 1, 1, -1]);
     const value = a * ((x - p) ** 2) + q;
 
@@ -1232,10 +1303,10 @@ function genMpQuadraticFunctionValue(){
 }
 
 function genMpLinearEquation(){
-    const x = rand(-byDifficulty([6, 8, 10, 12, 14]), byDifficulty([6, 8, 10, 12, 14]));
-    const a = rand(2, byDifficulty([6, 8, 10, 12, 14]));
-    const b = rand(-byDifficulty([10, 12, 16, 20, 24]), byDifficulty([10, 12, 16, 20, 24]));
-    let c = rand(1, byDifficulty([5, 6, 7, 8, 9]));
+    const x = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
+    const a = rand(2, byDifficulty([5, 6, 7, 8, 9]));
+    const b = rand(-byDifficulty([8, 10, 12, 14, 16]), byDifficulty([8, 10, 12, 14, 16]));
+    let c = rand(1, byDifficulty([4, 5, 6, 7, 8]));
 
     if(c === a){
         c = c > 1 ? c - 1 : c + 1;
@@ -1246,10 +1317,84 @@ function genMpLinearEquation(){
     return task("Funkcje i równania", `${a}x ${signed(b)} = ${c}x ${signed(right)}, x = ${blank()}`, x);
 }
 
+function genMpParabolaVertex(){
+    const p = rand(-byDifficulty([4, 5, 6, 7, 8]), byDifficulty([4, 5, 6, 7, 8]));
+    const q = rand(-byDifficulty([8, 10, 12, 14, 16]), byDifficulty([8, 10, 12, 14, 16]));
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Funkcje i równania", `f(x) = ${sup(parens(`x ${signed(-p)}`), 2)} ${signed(q)}, ${sub("x", "w")} = ${blank()}`, p)
+        : task("Funkcje i równania", `f(x) = ${sup(parens(`x ${signed(-p)}`), 2)} ${signed(q)}, ${sub("y", "w")} = ${blank()}`, q);
+}
+
+function genMpLinearZero(){
+    const a = choice([2, 3, 4, 5, 6, 8, 10]);
+    const zero = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
+    const b = -a * zero;
+
+    return task("Funkcje i równania", `f(x) = ${a}x ${signed(b)}, miejsce zerowe = ${blank()}`, zero);
+}
+
+function genMpLineSlopeFromPoints(){
+    const slope = rand(-byDifficulty([3, 4, 5, 6, 6]), byDifficulty([3, 4, 5, 6, 6]));
+    const dx = rand(2, byDifficulty([4, 5, 6, 7, 7]));
+    const x1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const y1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const x2 = x1 + dx;
+    const y2 = y1 + slope * dx;
+
+    return task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), współczynnik a prostej AB = ${blank()}`, slope);
+}
+
+function genMpDistanceBetweenPoints(){
+    const triples = [[3, 4, 5], [6, 8, 10], [5, 12, 13]];
+    const [a, b, c] = choice(triples);
+    const signX = choice([-1, 1]);
+    const signY = choice([-1, 1]);
+    const x1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const y1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const x2 = x1 + signX * a;
+    const y2 = y1 + signY * b;
+
+    return task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), |AB| = ${blank()}`, c);
+}
+
+function genMpMidpointCoordinate(){
+    const sx = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const sy = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const dx = rand(2, byDifficulty([4, 5, 6, 7, 7]));
+    const dy = rand(2, byDifficulty([4, 5, 6, 7, 7]));
+    const x1 = sx - dx;
+    const y1 = sy - dy;
+    const x2 = sx + dx;
+    const y2 = sy + dy;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), ${sub("x", "S")} = ${blank()}`, sx)
+        : task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), ${sub("y", "S")} = ${blank()}`, sy);
+}
+
+function genMpCircleEquation(){
+    const a = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const b = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
+    const r = choice([2, 3, 4, 5, 6, 8, 10]);
+    const mode = rand(1, 3);
+    const equation = `${sup(parens(`x ${signed(-a)}`), 2)} + ${sup(parens(`y ${signed(-b)}`), 2)} = ${r * r}`;
+
+    if(mode === 1){
+        return task("Geometria analityczna", `${equation}, r = ${blank()}`, r);
+    }
+
+    return mode === 2
+        ? task("Geometria analityczna", `${equation}, ${sub("x", "S")} = ${blank()}`, a)
+        : task("Geometria analityczna", `${equation}, ${sub("y", "S")} = ${blank()}`, b);
+}
+
 function genMpArithmeticSequence(){
-    const a1 = rand(1, byDifficulty([12, 20, 26, 32, 40]));
-    const r = rand(2, byDifficulty([8, 12, 16, 20, 24]));
-    const n = rand(4, byDifficulty([12, 14, 18, 22, 26]));
+    const a1 = rand(1, byDifficulty([8, 10, 12, 14, 16]));
+    const r = rand(2, byDifficulty([5, 6, 7, 8, 9]));
+    const n = rand(4, byDifficulty([8, 9, 10, 11, 12]));
     const mode = rand(1, 3);
 
     if(mode === 1){
@@ -1267,9 +1412,9 @@ function genMpArithmeticSequence(){
 }
 
 function genMpGeometricSequence(){
-    const a1 = rand(2, byDifficulty([7, 10, 12, 14, 16]));
-    const q = choice(difficultyTier() >= 4 ? [2, 3, 4, 5] : (difficultyTier() >= 2 ? [2, 3, 4] : [2, 3]));
-    const n = rand(3, byDifficulty([5, 6, 6, 7, 7]));
+    const a1 = rand(2, byDifficulty([5, 6, 7, 8, 9]));
+    const q = choice(difficultyTier() >= 4 ? [2, 3, 4] : [2, 3]);
+    const n = rand(3, byDifficulty([4, 5, 5, 5, 5]));
     const mode = rand(1, 3);
 
     if(mode === 1){
@@ -1287,9 +1432,9 @@ function genMpGeometricSequence(){
 }
 
 function genMpSequenceSum(){
-    const n = rand(4, byDifficulty([8, 12, 16, 20, 24]));
-    const a1 = rand(1, byDifficulty([8, 10, 12, 14, 16]));
-    const r = rand(1, byDifficulty([6, 8, 10, 12, 14]));
+    const n = rand(4, byDifficulty([8, 10, 12, 14, 16]));
+    const a1 = rand(1, byDifficulty([6, 8, 10, 12, 12]));
+    const r = rand(1, byDifficulty([4, 5, 6, 7, 8]));
     const an = a1 + (n - 1) * r;
     const mode = rand(1, 2);
 
@@ -1396,6 +1541,52 @@ function genMpCountingShortcuts(){
 
     const digits = rand(3, byDifficulty([6, 7, 8, 9, 10]));
     return task("Kombinatoryka", `${digits} cyfr bez powtórzeń, liczby dwucyfrowe: ${blank()}`, digits * (digits - 1));
+}
+
+function genMpAverageMissingValue(){
+    const count = rand(4, byDifficulty([5, 5, 6, 6, 7]));
+    const average = rand(6, byDifficulty([14, 16, 18, 20, 22]));
+    const values = [];
+    let knownSum = 0;
+
+    for(let i = 0; i < count - 1; i++){
+        const value = rand(3, byDifficulty([16, 18, 20, 22, 24]));
+
+        values.push(value);
+        knownSum += value;
+    }
+
+    const missing = average * count - knownSum;
+
+    if(missing < 0 || missing > 40){
+        return genMpAverageMissingValue();
+    }
+
+    return task("Statystyka", `Średnia liczb: ${values.join(", ")}, ${blank()} wynosi ${average}`, missing);
+}
+
+function genMpWeightedAverage(){
+    const a = rand(2, byDifficulty([6, 8, 10, 12, 14]));
+    const b = rand(a + 1, byDifficulty([12, 14, 16, 18, 20]));
+    const weightA = rand(2, byDifficulty([4, 5, 6, 7, 8]));
+    const weightB = rand(2, byDifficulty([4, 5, 6, 7, 8]));
+    const total = weightA + weightB;
+    const numerator = a * weightA + b * weightB;
+
+    if(numerator % total !== 0){
+        return genMpWeightedAverage();
+    }
+
+    return task("Statystyka", `Średnia ważona: ${a}×${weightA}, ${b}×${weightB}, wynik = ${blank()}`, numerator / total);
+}
+
+function genMpMedianValue(){
+    const start = rand(1, byDifficulty([6, 8, 10, 12, 14]));
+    const step = rand(1, byDifficulty([3, 4, 5, 6, 7]));
+    const count = choice([5, 7]);
+    const values = Array.from({ length: count }, (_, index) => start + index * step);
+
+    return task("Statystyka", `Mediana uporządkowanego zestawu: ${values.join(", ")} = ${blank()}`, values[Math.floor(count / 2)]);
 }
 
 function generatorPool(){
