@@ -745,6 +745,7 @@ const ROUND_SECONDS = 120;
 const MIXED_DIFFICULTIES = [2, 3, 4];
 const MIXED_DIFFICULTY = "mixed";
 const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
+const TASK_RETRY_LIMIT = 80;
 
 const LEVELS = {
     eo: {
@@ -755,6 +756,10 @@ const LEVELS = {
             { id: "roots", label: "Pierwiastki" },
             { id: "fractions", label: "Ułamki zwykłe" },
             { id: "approximations", label: "Przybliżenia" },
+            { id: "units", label: "Zamiana jednostek" },
+            { id: "percents", label: "Procenty" },
+            { id: "divisibility", label: "Cechy podzielności" },
+            { id: "clock", label: "Zegar" },
             { id: "areas", label: "Pola figur" },
             { id: "volume", label: "Objętość" },
             { id: "motion", label: "Prędkość, czas, droga" }
@@ -793,7 +798,8 @@ const state = {
     bestScore: 0,
     totalAnswerTime: 0,
     reviewTopic: "",
-    history: []
+    history: [],
+    seenTaskKeys: new Set()
 };
 
 const levelTabs = document.getElementById("levelTabs");
@@ -828,12 +834,23 @@ const GENERATORS = [
     { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootCompare },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionAdd },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionCommonDenominator },
-    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionEquivalent },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionOfNumber },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMissingPart },
     { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoRootApproximation },
     { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoDecimalRounding },
     { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoApproximateProduct },
+    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoLengthUnitConversion },
+    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoMassUnitConversion },
+    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoAreaUnitConversion },
+    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
+    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentIncrease },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy3 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy9 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy4 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy5Or10 },
+    { level: "eo", topic: "clock", label: "Zegar", make: genEoClockAddMinutes },
+    { level: "eo", topic: "clock", label: "Zegar", make: genEoClockElapsedMinutes },
+    { level: "eo", topic: "clock", label: "Zegar", make: genEoClockToMinutes },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoAreaReverse },
@@ -1059,11 +1076,50 @@ function genEoApproximateProduct(){
     return task("Przybliżenia", `${a} · ${b} ≈ ${approxA} · ${approxB} = ${blank()}`, approxA * approxB);
 }
 
+function genEoLengthUnitConversion(){
+    const cases = [
+        ["m", "cm", 100, 2], ["m", "cm", 100, 5], ["m", "dm", 10, 7],
+        ["km", "m", 1000, 3], ["dm", "cm", 10, 8], ["cm", "mm", 10, 6],
+        ["cm", "m", 0.01, 250], ["mm", "cm", 0.1, 80]
+    ];
+    const [from, to, multiplier, value] = choice(cases);
+
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+}
+
+function genEoMassUnitConversion(){
+    const cases = [
+        ["kg", "g", 1000, 2], ["kg", "g", 1000, 5], ["dag", "g", 10, 7],
+        ["t", "kg", 1000, 3], ["g", "kg", 0.001, 2500], ["g", "dag", 0.1, 80]
+    ];
+    const [from, to, multiplier, value] = choice(cases);
+
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+}
+
+function genEoAreaUnitConversion(){
+    const cases = [
+        ["dm²", "cm²", 100, 2], ["dm²", "cm²", 100, 7],
+        ["m²", "dm²", 100, 3], ["m²", "cm²", 10000, 1],
+        ["cm²", "dm²", 0.01, 300], ["dm²", "m²", 0.01, 500]
+    ];
+    const [from, to, multiplier, value] = choice(cases);
+
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+}
+
 function genEoPercentOfNumber(){
     const percent = choice(difficultyTier() >= 4 ? [5, 10, 15, 20, 25, 30, 40, 50, 60, 75] : [5, 10, 20, 25, 40, 50, 75]);
     const number = rand(4, byDifficulty([40, 60, 80, 100, 120])) * 10;
 
     return task("Procenty", `${percent}% · ${number} = ${blank()}`, number * percent / 100);
+}
+
+function genEoPercentIncrease(){
+    const percent = choice([5, 10, 20, 25, 50]);
+    const number = choice([80, 100, 120, 160, 200, 240, 300, 400, 500]);
+
+    return task("Procenty", `${number} powiększone o ${percent}% = ${blank()}`, number * (100 + percent) / 100);
 }
 
 function genEoPercentChange(){
@@ -1082,6 +1138,66 @@ function genEoPercentReverse(){
     const value = answer * percent / 100;
 
     return task("Procenty", `${percent}% liczby ${blank()} = ${value}`, answer);
+}
+
+function genEoDivisibilityBy3(){
+    const number = choice([123, 234, 405, 512, 681, 742, 819, 902, 1116, 1245]);
+    const digitSum = String(number).split("").reduce((sum, digit) => sum + Number(digit), 0);
+
+    return task("Cechy podzielności", `${number}: suma cyfr = ${digitSum}. Podzielna przez 3? 1 = tak, 0 = nie: ${blank()}`, digitSum % 3 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy9(){
+    const number = choice([126, 216, 405, 513, 729, 810, 1008, 1125, 1242, 1350]);
+    const digitSum = String(number).split("").reduce((sum, digit) => sum + Number(digit), 0);
+
+    return task("Cechy podzielności", `${number}: suma cyfr = ${digitSum}. Podzielna przez 9? 1 = tak, 0 = nie: ${blank()}`, digitSum % 9 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy4(){
+    const number = choice([124, 236, 318, 420, 516, 634, 728, 812, 936, 1044]);
+    const lastTwo = number % 100;
+
+    return task("Cechy podzielności", `${number}: końcówka ${lastTwo}. Podzielna przez 4? 1 = tak, 0 = nie: ${blank()}`, lastTwo % 4 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy5Or10(){
+    const number = choice([125, 130, 214, 250, 305, 412, 580, 761, 900, 1015]);
+    const divisor = choice([5, 10]);
+
+    return task("Cechy podzielności", `${number} jest podzielna przez ${divisor}? 1 = tak, 0 = nie: ${blank()}`, number % divisor === 0 ? 1 : 0);
+}
+
+function genEoClockAddMinutes(){
+    const cases = [
+        ["7:20", 35, 55], ["8:15", 45, 0], ["9:40", 30, 10],
+        ["10:25", 50, 15], ["12:10", 25, 35], ["14:45", 20, 5]
+    ];
+    const [start, added, resultMinute] = choice(cases);
+
+    return task("Zegar", `${start} + ${added} min, minuta końcowa = ${blank()}`, resultMinute);
+}
+
+function genEoClockElapsedMinutes(){
+    const cases = [
+        ["7:30", "8:10", 40], ["8:20", "9:05", 45], ["9:15", "10:00", 45],
+        ["10:40", "11:25", 45], ["12:05", "12:50", 45], ["13:35", "14:20", 45],
+        ["15:10", "15:55", 45], ["16:25", "17:00", 35]
+    ];
+    const [start, end, minutes] = choice(cases);
+
+    return task("Zegar", `Od ${start} do ${end} jest ${blank()} min`, minutes);
+}
+
+function genEoClockToMinutes(){
+    const cases = [
+        [1, 15, 75], [1, 30, 90], [1, 45, 105],
+        [2, 0, 120], [2, 15, 135], [2, 30, 150],
+        [3, 20, 200], [4, 10, 250]
+    ];
+    const [hours, minutes, total] = choice(cases);
+
+    return task("Zegar", `${hours} h ${minutes} min = ${blank()} min`, total);
 }
 
 function genEoRectangleArea(){
@@ -1200,22 +1316,30 @@ function genEoSupplementaryAngles(){
 }
 
 function genEoFractionAdd(){
-    const denominators = [4, 5, 6, 8, 10, 12];
-    const denominator = choice(denominators);
-    const a = rand(1, denominator - 2);
-    const b = rand(1, denominator - a - 1);
-
-    return task("Ułamki zwykłe", `${frac(a, denominator)} + ${frac(b, denominator)} = ${frac(blank(), denominator)}`, a + b);
-}
-
-function genEoFractionCommonDenominator(){
     const cases = [
-        [1, 2, 1, 4, 4, 3], [1, 3, 1, 6, 6, 3], [1, 4, 3, 8, 8, 5],
-        [2, 5, 1, 10, 10, 5], [1, 6, 1, 3, 6, 3], [3, 10, 1, 5, 10, 5]
+        [1, 2, 1, 4, 4, 3], [1, 2, 3, 8, 8, 7],
+        [1, 3, 1, 6, 6, 3], [2, 3, 1, 6, 6, 5],
+        [1, 4, 3, 8, 8, 5], [3, 4, 1, 8, 8, 7],
+        [2, 5, 1, 10, 10, 5], [3, 5, 1, 10, 10, 7],
+        [1, 6, 1, 4, 12, 5], [1, 3, 1, 4, 12, 7],
+        [5, 6, 1, 12, 12, 11], [3, 8, 1, 4, 8, 5],
+        [1, 5, 3, 10, 10, 5], [1, 8, 1, 2, 8, 5]
     ];
     const [a, b, c, d, denominator, numerator] = choice(cases);
 
     return task("Ułamki zwykłe", `${frac(a, b)} + ${frac(c, d)} = ${frac(blank(), denominator)}`, numerator);
+}
+
+function genEoFractionCommonDenominator(){
+    const cases = [
+        [1, 2, 8, 4], [2, 3, 12, 8], [3, 4, 20, 15],
+        [3, 5, 15, 9], [4, 5, 20, 16], [5, 6, 18, 15],
+        [5, 8, 24, 15], [7, 10, 30, 21], [2, 7, 21, 6],
+        [3, 8, 32, 12], [4, 9, 27, 12], [5, 12, 36, 15]
+    ];
+    const [numerator, denominator, targetDenominator, targetNumerator] = choice(cases);
+
+    return task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${frac(blank(), targetDenominator)}`, targetNumerator);
 }
 
 function genEoFractionEquivalent(){
@@ -1237,12 +1361,16 @@ function genEoFractionOfNumber(){
 }
 
 function genEoFractionMissingPart(){
-    const denominators = [5, 6, 8, 10, 12];
-    const denominator = choice(denominators);
-    const first = rand(1, denominator - 3);
-    const result = rand(first + 1, denominator - 1);
+    const cases = [
+        [1, 2, 4, 3, 1], [1, 3, 6, 5, 3], [1, 4, 8, 5, 3],
+        [2, 5, 10, 7, 3], [1, 6, 3, 5, 2], [3, 10, 5, 7, 2],
+        [1, 8, 4, 5, 2], [5, 6, 12, 11, 1], [1, 5, 10, 7, 5],
+        [2, 3, 6, 5, 1], [3, 4, 8, 7, 1], [1, 12, 4, 7, 2]
+    ];
+    const [firstNumerator, firstDenominator, missingDenominator, resultNumerator, missingNumerator] = choice(cases);
+    const resultDenominator = Math.max(firstDenominator, missingDenominator);
 
-    return task("Ułamki zwykłe", `${frac(first, denominator)} + ${frac(blank(), denominator)} = ${frac(result, denominator)}`, result - first);
+    return task("Ułamki zwykłe", `${frac(firstNumerator, firstDenominator)} + ${frac(blank(), missingDenominator)} = ${frac(resultNumerator, resultDenominator)}`, missingNumerator);
 }
 
 function genEoSpeedDistance(){
@@ -1909,16 +2037,53 @@ function generatorPool(){
     return basePool;
 }
 
-function nextTask(){
-    const pool = generatorPool();
-    const generator = choice(pool);
-
+function createTaskCandidate(generator){
     state.currentDifficulty = resolveTaskDifficulty();
-    state.currentTask = {
+
+    return {
         ...generator.make(),
         topicId: generator.topic,
         difficulty: state.currentDifficulty
     };
+}
+
+function taskKey(taskItem){
+    return [
+        state.level,
+        state.topic,
+        taskItem.topicId,
+        String(taskItem.html).replace(/\s+/g, " "),
+        String(taskItem.answer)
+    ].join("|");
+}
+
+function nextTask(){
+    const pool = generatorPool();
+    let selectedTask = null;
+    let selectedKey = "";
+    let fallbackTask = null;
+    let fallbackKey = "";
+
+    for(let attempt = 0; attempt < TASK_RETRY_LIMIT; attempt++){
+        const candidate = createTaskCandidate(choice(pool));
+        const key = taskKey(candidate);
+
+        if(!fallbackTask){
+            fallbackTask = candidate;
+            fallbackKey = key;
+        }
+
+        if(!state.seenTaskKeys.has(key)){
+            selectedTask = candidate;
+            selectedKey = key;
+            break;
+        }
+    }
+
+    state.currentTask = selectedTask || fallbackTask;
+    if(selectedKey || fallbackKey){
+        state.seenTaskKeys.add(selectedKey || fallbackKey);
+    }
     state.answerLocked = false;
     state.taskStartedAt = performance.now();
     taskTopic.innerText = state.currentTask.label;
@@ -2228,6 +2393,7 @@ function startRound(){
     state.totalAnswerTime = 0;
     state.reviewTopic = "";
     state.history = [];
+    state.seenTaskKeys.clear();
     renderHistory();
     updateStats();
     nextTask();
@@ -2277,6 +2443,7 @@ function resetRound(){
     state.totalAnswerTime = 0;
     state.reviewTopic = "";
     state.history = [];
+    state.seenTaskKeys.clear();
     problemText.innerHTML = "Kliknij Start";
     taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
     answerInput.value = "";
