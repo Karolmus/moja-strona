@@ -2,7 +2,7 @@ import os
 import secrets
 import sqlite3
 import hashlib
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from flask import g
 from werkzeug.security import generate_password_hash
@@ -1097,6 +1097,14 @@ def speed_training_leaderboard(filters=None, limit=10, viewer_user_id=None):
         where.append(f"{column} = ?")
         values.append(value)
 
+    period = str(filters.get("period") or "").strip().lower()
+
+    if period in {"week", "weekly"}:
+        week_start = datetime.now(timezone.utc) - timedelta(days=7)
+
+        where.append("r.created_at >= ?")
+        values.append(week_start.isoformat())
+
     values.append(bounded_int(limit, 1, 50))
     rows = execute(
         f"""
@@ -1152,6 +1160,56 @@ def speed_training_leaderboard(filters=None, limit=10, viewer_user_id=None):
         leaderboard.append(item)
 
     return leaderboard
+
+
+def speed_training_history(user_id, filters=None, limit=12):
+    filters = filters or {}
+    where = ["user_id = ?"]
+    values = [user_id]
+    filter_columns = {
+        "level": "level",
+        "topic": "topic",
+        "difficulty": "difficulty",
+        "round_seconds": "round_seconds",
+    }
+
+    for key, column in filter_columns.items():
+        value = filters.get(key)
+
+        if value in (None, ""):
+            continue
+
+        if key == "round_seconds":
+            value = duration_seconds(value)
+
+        where.append(f"{column} = ?")
+        values.append(value)
+
+    period = str(filters.get("period") or "").strip().lower()
+
+    if period in {"week", "weekly"}:
+        week_start = datetime.now(timezone.utc) - timedelta(days=7)
+
+        where.append("created_at >= ?")
+        values.append(week_start.isoformat())
+
+    values.append(bounded_int(limit, 1, 40))
+    rows = execute(
+        f"""
+        SELECT *
+        FROM (
+            SELECT *
+            FROM speed_training_results
+            WHERE {" AND ".join(where)}
+            ORDER BY created_at DESC
+            LIMIT ?
+        ) AS recent
+        ORDER BY created_at ASC
+        """,
+        tuple(values),
+    ).fetchall()
+
+    return [speed_training_result_to_dict(row) for row in rows]
 
 
 def mark_task_for_review(user_id, data):
