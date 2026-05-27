@@ -41,20 +41,21 @@ body {
 }
 
 .training-page {
-    width: min(1120px, calc(100% - 28px));
-    margin: 22px auto 40px;
+    width: min(1040px, calc(100% - 24px));
+    margin: 14px auto 30px;
 }
 
 .training-shell {
     display: grid;
-    grid-template-columns: 280px minmax(0, 1fr);
-    gap: 14px;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 10px;
     align-items: start;
 }
 
 .training-panel,
 .training-stage,
 .history-panel,
+.progress-panel,
 .leaderboard-panel {
     border: 1px solid var(--line);
     border-radius: 10px;
@@ -66,8 +67,8 @@ body {
     position: sticky;
     top: 12px;
     display: grid;
-    gap: 12px;
-    padding: 12px;
+    gap: 10px;
+    padding: 10px;
 }
 
 .panel-title,
@@ -199,8 +200,8 @@ body {
 
 .training-stage {
     display: grid;
-    gap: 14px;
-    padding: 16px;
+    gap: 10px;
+    padding: 12px;
 }
 
 .stage-head {
@@ -212,7 +213,7 @@ body {
 
 .stage-title {
     margin: 0;
-    font-size: 24px;
+    font-size: 21px;
     line-height: 1.1;
 }
 
@@ -227,10 +228,26 @@ body {
     border-radius: 999px;
     background: var(--surface-soft);
     border: 1px solid var(--line);
-    padding: 7px 10px;
+    padding: 6px 9px;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
+}
+
+.time-progress {
+    height: 9px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-soft);
+}
+
+.time-progress-fill {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: hsl(132, 70%, 38%);
+    transition: width 0.2s linear, background-color 0.2s linear;
 }
 
 .status-pill.good {
@@ -248,33 +265,33 @@ body {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 8px;
+    gap: 6px;
 }
 
 .stat-card {
     display: grid;
     gap: 2px;
-    min-height: 58px;
+    min-height: 48px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
-    padding: 8px;
+    padding: 7px;
 }
 
 .stat-value {
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 800;
     line-height: 1;
 }
 
 .problem-card {
     display: grid;
-    gap: 14px;
-    min-height: 218px;
+    gap: 10px;
+    min-height: 168px;
     border: 1px solid var(--line);
     border-radius: 10px;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    padding: 18px;
+    padding: 14px;
 }
 
 .task-topic {
@@ -289,10 +306,10 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 0.16em;
-    min-height: 72px;
+    min-height: 54px;
     color: #111827;
     font-family: Arial, sans-serif;
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 600;
     line-height: 1.18;
     letter-spacing: 0;
@@ -414,13 +431,13 @@ body {
 
 .answer-input {
     width: 100%;
-    min-height: 52px;
+    min-height: 44px;
     border: 1px solid var(--line);
     border-radius: 8px;
     padding: 8px 12px;
     color: var(--text);
     font: inherit;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 800;
     text-align: center;
 }
@@ -438,6 +455,56 @@ body {
 .answer-input.bad {
     border-color: rgba(220, 52, 42, 0.7);
     background: var(--red-soft);
+}
+
+.round-summary {
+    display: grid;
+    gap: 10px;
+    border: 1px solid rgba(142, 181, 222, 0.7);
+    border-radius: 10px;
+    background: var(--blue-soft);
+    padding: 12px;
+}
+
+.round-summary[hidden] {
+    display: none;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.summary-tile {
+    border: 1px solid rgba(142, 181, 222, 0.58);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+    padding: 8px;
+}
+
+.summary-tile span {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.summary-tile strong {
+    display: block;
+    margin-top: 2px;
+    color: var(--text);
+    font-size: 19px;
+    line-height: 1;
+}
+
+.summary-note {
+    margin: 0;
+    color: var(--blue-text);
+    font-size: 12px;
+    font-weight: 800;
 }
 
 .submit-btn {
@@ -467,8 +534,8 @@ body {
 }
 
 .key-btn {
-    min-height: 50px;
-    font-size: 20px;
+    min-height: 42px;
+    font-size: 18px;
     background: white;
 }
 
@@ -484,6 +551,12 @@ body {
 }
 
 .history-panel {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+}
+
+.progress-panel {
     display: grid;
     gap: 10px;
     padding: 12px;
@@ -507,6 +580,78 @@ body {
 
 .history-item strong {
     color: var(--green-text);
+}
+
+.progress-scope {
+    margin: -5px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.progress-chart {
+    min-height: 188px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 8px;
+}
+
+.progress-chart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.progress-axis {
+    stroke: #94a3b8;
+    stroke-width: 1;
+}
+
+.progress-grid {
+    stroke: #dbe4ee;
+    stroke-width: 1;
+}
+
+.progress-label {
+    fill: var(--muted);
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.progress-correct {
+    fill: #3b8f4f;
+}
+
+.progress-mistake {
+    fill: #c7493d;
+}
+
+.progress-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
+    border-radius: 999px;
+    vertical-align: -1px;
+}
+
+.legend-dot.correct {
+    background: #3b8f4f;
+}
+
+.legend-dot.mistake {
+    background: #c7493d;
 }
 
 .leaderboard-panel {
@@ -538,6 +683,122 @@ body {
     font-size: 12px;
     font-weight: 800;
     padding: 7px 9px;
+}
+
+.leaderboard-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.leaderboard-tabs {
+    display: inline-grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--surface-soft);
+    padding: 3px;
+}
+
+.leaderboard-period {
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 6px 8px;
+}
+
+.leaderboard-period.active {
+    background: white;
+    color: var(--blue-text);
+    box-shadow: 0 1px 5px rgba(15, 23, 42, 0.08);
+}
+
+.podium {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    gap: 8px;
+    min-height: 142px;
+}
+
+.podium:empty {
+    display: none;
+}
+
+.podium-item {
+    display: grid;
+    align-items: end;
+    gap: 6px;
+    min-width: 0;
+}
+
+.podium-item.rank-1 {
+    order: 2;
+}
+
+.podium-item.rank-2 {
+    order: 1;
+}
+
+.podium-item.rank-3 {
+    order: 3;
+}
+
+.podium-person {
+    min-width: 0;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 900;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.podium-bar {
+    display: grid;
+    align-content: end;
+    gap: 4px;
+    border: 1px solid rgba(142, 181, 222, 0.7);
+    border-radius: 9px 9px 7px 7px;
+    background: linear-gradient(180deg, #ffffff 0%, #e8f1fb 100%);
+    color: var(--blue-text);
+    min-height: 72px;
+    padding: 9px 6px;
+    text-align: center;
+}
+
+.rank-1 .podium-bar {
+    min-height: 118px;
+    border-color: rgba(216, 174, 64, 0.62);
+    background: linear-gradient(180deg, #fff8db 0%, #f1d77a 100%);
+    color: #6b4c05;
+}
+
+.rank-2 .podium-bar {
+    min-height: 92px;
+}
+
+.rank-3 .podium-bar {
+    min-height: 76px;
+}
+
+.podium-rank {
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.podium-score {
+    color: inherit;
+    font-size: 12px;
+    font-weight: 900;
 }
 
 .leaderboard-list {
@@ -633,13 +894,13 @@ body {
     }
 
     .problem-card {
-        min-height: 190px;
-        padding: 12px;
+        min-height: 160px;
+        padding: 10px;
     }
 
     .problem-text {
-        min-height: 62px;
-        font-size: 32px;
+        min-height: 48px;
+        font-size: 28px;
     }
 
     .answer-row {
@@ -657,6 +918,21 @@ body {
 
     .leaderboard-head {
         flex-direction: column;
+    }
+
+    .leaderboard-actions {
+        width: 100%;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .leaderboard-tabs,
+    .leaderboard-refresh {
+        width: 100%;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .leaderboard-row {
@@ -707,6 +983,10 @@ body {
                 <div class="status-pill" id="statusPill">Gotowy</div>
             </div>
 
+            <div class="time-progress" aria-label="Pozostały czas">
+                <div class="time-progress-fill" id="timeBar"></div>
+            </div>
+
             <div class="stats-grid">
                 <div class="stat-card">
                     <span class="stat-label">Czas</span>
@@ -737,6 +1017,27 @@ body {
             <div class="problem-card">
                 <div class="task-topic" id="taskTopic">Mieszany</div>
                 <div class="problem-text" id="problemText">Kliknij Start</div>
+                <div class="round-summary" id="roundSummary" hidden>
+                    <div class="summary-grid">
+                        <div class="summary-tile">
+                            <span>Wynik</span>
+                            <strong id="summaryScore">0</strong>
+                        </div>
+                        <div class="summary-tile">
+                            <span>Skuteczność</span>
+                            <strong id="summaryAccuracy">0%</strong>
+                        </div>
+                        <div class="summary-tile">
+                            <span>Średnio</span>
+                            <strong id="summaryAverage">-</strong>
+                        </div>
+                        <div class="summary-tile">
+                            <span>Seria</span>
+                            <strong id="summaryStreak">0</strong>
+                        </div>
+                    </div>
+                    <p class="summary-note" id="summaryNote"></p>
+                </div>
                 <div class="answer-row">
                     <input class="answer-input" id="answerInput" type="text" inputmode="decimal" autocomplete="off" aria-label="Odpowiedź">
                     <button class="submit-btn" id="submitButton" type="button">OK</button>
@@ -750,14 +1051,29 @@ body {
                 <div class="history-list" id="historyList"></div>
             </div>
 
+            <div class="progress-panel" aria-live="polite">
+                <div>
+                    <div class="history-title">Postęp prób</div>
+                    <p class="progress-scope" id="progressScope"></p>
+                </div>
+                <div class="progress-chart" id="progressChart"></div>
+            </div>
+
             <div class="leaderboard-panel" aria-live="polite">
                 <div class="leaderboard-head">
                     <div>
                         <div class="history-title">Ranking uczniów</div>
                         <p class="leaderboard-scope" id="leaderboardScope"></p>
                     </div>
-                    <button class="leaderboard-refresh" id="leaderboardRefreshButton" type="button">Odśwież</button>
+                    <div class="leaderboard-actions">
+                        <div class="leaderboard-tabs" aria-label="Zakres rankingu">
+                            <button class="leaderboard-period active" id="leaderboardWeekButton" type="button">Tydzień</button>
+                            <button class="leaderboard-period" id="leaderboardAllButton" type="button">Całość</button>
+                        </div>
+                        <button class="leaderboard-refresh" id="leaderboardRefreshButton" type="button">Odśwież</button>
+                    </div>
                 </div>
+                <div class="podium" id="leaderboardPodium"></div>
                 <div class="leaderboard-list" id="leaderboardList"></div>
             </div>
         </section>
@@ -838,7 +1154,8 @@ const state = {
     reviewTopic: "",
     history: [],
     seenTaskKeys: new Set(),
-    taskMemory: []
+    taskMemory: [],
+    leaderboardPeriod: "week"
 };
 
 const levelTabs = document.getElementById("levelTabs");
@@ -847,6 +1164,7 @@ const topicList = document.getElementById("topicList");
 const stageSubtitle = document.getElementById("stageSubtitle");
 const statusPill = document.getElementById("statusPill");
 const timeLeft = document.getElementById("timeLeft");
+const timeBar = document.getElementById("timeBar");
 const correctCount = document.getElementById("correctCount");
 const mistakeCount = document.getElementById("mistakeCount");
 const streakCount = document.getElementById("streakCount");
@@ -854,6 +1172,12 @@ const averageTime = document.getElementById("averageTime");
 const bestScore = document.getElementById("bestScore");
 const taskTopic = document.getElementById("taskTopic");
 const problemText = document.getElementById("problemText");
+const roundSummary = document.getElementById("roundSummary");
+const summaryScore = document.getElementById("summaryScore");
+const summaryAccuracy = document.getElementById("summaryAccuracy");
+const summaryAverage = document.getElementById("summaryAverage");
+const summaryStreak = document.getElementById("summaryStreak");
+const summaryNote = document.getElementById("summaryNote");
 const answerInput = document.getElementById("answerInput");
 const submitButton = document.getElementById("submitButton");
 const skipButton = document.getElementById("skipButton");
@@ -861,11 +1185,17 @@ const startButton = document.getElementById("startButton");
 const resetButton = document.getElementById("resetButton");
 const keypad = document.getElementById("keypad");
 const historyList = document.getElementById("historyList");
+const progressScope = document.getElementById("progressScope");
+const progressChart = document.getElementById("progressChart");
 const leaderboardScope = document.getElementById("leaderboardScope");
 const leaderboardList = document.getElementById("leaderboardList");
+const leaderboardPodium = document.getElementById("leaderboardPodium");
+const leaderboardWeekButton = document.getElementById("leaderboardWeekButton");
+const leaderboardAllButton = document.getElementById("leaderboardAllButton");
 const leaderboardRefreshButton = document.getElementById("leaderboardRefreshButton");
 
 let leaderboardRequestId = 0;
+let progressRequestId = 0;
 
 const GENERATORS = [
     { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
@@ -1177,9 +1507,10 @@ function genEoRootCompare(){
 
 function genEoRootApproximation(){
     const n = choice([8, 10, 15, 20, 24, 26, 35, 48, 63, 80]);
-    const nearest = Math.round(Math.sqrt(n));
+    const roundUp = Math.random() < 0.5;
+    const answer = roundUp ? Math.ceil(Math.sqrt(n)) : Math.floor(Math.sqrt(n));
 
-    return task("Przybliżenia", `${root(n)} ≈ ${blank()} do liczby całkowitej`, nearest);
+    return task("Przybliżenia", `${root(n)} zaokrąglij ${roundUp ? "w górę" : "w dół"} do liczby całkowitej: ${blank()}`, answer);
 }
 
 function genEoDecimalRounding(){
@@ -2401,6 +2732,7 @@ function nextTask(){
 
     state.answerLocked = false;
     state.taskStartedAt = performance.now();
+    hideRoundSummary();
     taskTopic.innerText = state.currentTask.label;
     problemText.innerHTML = state.currentTask.html;
     answerInput.value = "";
@@ -2518,7 +2850,7 @@ function renderHistory(){
         const row = document.createElement("div");
 
         row.className = "history-item";
-        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswer(item.answer)} · ${item.time.toFixed(1)} s</strong>`;
+        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswer(item.answer)}</strong>`;
         historyList.appendChild(row);
     });
 }
@@ -2540,6 +2872,127 @@ function formatLeaderboardAverage(value){
     const numeric = Number(value);
 
     return Number.isFinite(numeric) && numeric > 0 ? `${numeric.toFixed(1)}s` : "-";
+}
+
+function progressScopeLabel(){
+    const periodLabel = state.leaderboardPeriod === "week" ? "ostatnie 7 dni" : "całość";
+
+    return `${periodLabel} · ${LEVELS[state.level].label} · ${activeTopicLabel()} · ${state.roundSeconds}s`;
+}
+
+function progressParams(){
+    return new URLSearchParams({
+        level: state.level,
+        topic: state.topic,
+        difficulty: String(state.difficulty),
+        round_seconds: String(state.roundSeconds),
+        period: state.leaderboardPeriod,
+        limit: "12"
+    });
+}
+
+function renderProgressMessage(message){
+    if(!progressChart) return;
+
+    progressChart.innerHTML = `<div class="leaderboard-empty">${escapeHtml(message)}</div>`;
+}
+
+function renderProgressChart(items){
+    if(!progressChart) return;
+
+    if(!items.length){
+        renderProgressMessage("Brak zapisanych prób dla tego ustawienia.");
+        return;
+    }
+
+    const width = 640;
+    const height = 216;
+    const margin = { top: 18, right: 12, bottom: 38, left: 42 };
+    const plotWidth = width - margin.left - margin.right;
+    const plotHeight = height - margin.top - margin.bottom;
+    const totals = items.map(item => Number(item.correct_count || 0) + Number(item.mistake_count || 0));
+    const maxTotal = Math.max(5, ...totals);
+    const yMax = Math.ceil(maxTotal / 5) * 5;
+    const baseY = margin.top + plotHeight;
+    const slot = plotWidth / items.length;
+    const barWidth = Math.min(30, Math.max(12, slot * 0.56));
+    const y = value => baseY - (Number(value || 0) / yMax) * plotHeight;
+    const gridSteps = [0, Math.ceil(yMax / 2), yMax];
+
+    const grid = gridSteps.map(value => {
+        const lineY = y(value);
+
+        return `
+            <line class="progress-grid" x1="${margin.left}" y1="${lineY}" x2="${width - margin.right}" y2="${lineY}"></line>
+            <text class="progress-label" x="${margin.left - 8}" y="${lineY + 4}" text-anchor="end">${value}</text>
+        `;
+    }).join("");
+
+    const bars = items.map((item, index) => {
+        const correct = Number(item.correct_count || 0);
+        const mistakes = Number(item.mistake_count || 0);
+        const total = correct + mistakes;
+        const x = margin.left + index * slot + (slot - barWidth) / 2;
+        const correctY = y(correct);
+        const totalY = y(total);
+        const correctHeight = baseY - correctY;
+        const mistakeHeight = correctY - totalY;
+
+        return `
+            <g>
+                <title>Próba ${index + 1}: ${correct} poprawne, ${mistakes} błędne</title>
+                <rect class="progress-correct" x="${x}" y="${correctY}" width="${barWidth}" height="${Math.max(0, correctHeight)}" rx="3"></rect>
+                <rect class="progress-mistake" x="${x}" y="${totalY}" width="${barWidth}" height="${Math.max(0, mistakeHeight)}" rx="3"></rect>
+                <text class="progress-label" x="${x + barWidth / 2}" y="${height - 18}" text-anchor="middle">${index + 1}</text>
+            </g>
+        `;
+    }).join("");
+
+    progressChart.innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Wykres postępu prób czasowych">
+            ${grid}
+            <line class="progress-axis" x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${baseY}"></line>
+            <line class="progress-axis" x1="${margin.left}" y1="${baseY}" x2="${width - margin.right}" y2="${baseY}"></line>
+            ${bars}
+            <text class="progress-label" x="${width / 2}" y="${height - 3}" text-anchor="middle">nr próby</text>
+            <text class="progress-label" x="10" y="${margin.top + plotHeight / 2}" transform="rotate(-90 10 ${margin.top + plotHeight / 2})" text-anchor="middle">liczba odpowiedzi</text>
+        </svg>
+        <div class="progress-legend">
+            <span><span class="legend-dot correct"></span>poprawne</span>
+            <span><span class="legend-dot mistake"></span>błędne</span>
+        </div>
+    `;
+}
+
+async function loadProgress(){
+    if(progressScope){
+        progressScope.innerText = progressScopeLabel();
+    }
+
+    if(!progressChart) return;
+
+    if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
+        renderProgressMessage("Wykres działa po zalogowaniu ucznia.");
+        return;
+    }
+
+    const requestId = ++progressRequestId;
+
+    renderProgressMessage("Ładowanie postępu...");
+
+    try {
+        const data = await window.apiFetch(`/api/speed-training/history?${progressParams().toString()}`);
+
+        if(requestId !== progressRequestId) return;
+
+        renderProgressChart(Array.isArray(data?.history) ? data.history : []);
+    } catch(error) {
+        if(requestId !== progressRequestId) return;
+
+        renderProgressMessage(error.status === 401
+            ? "Wykres działa po zalogowaniu ucznia."
+            : "Nie udało się pobrać postępu.");
+    }
 }
 
 function bestScoreId(){
@@ -2580,7 +3033,9 @@ function saveBestScore(){
 }
 
 function leaderboardScopeLabel(){
-    return `${LEVELS[state.level].label} · ${activeTopicLabel()} · ${activeDifficultyLabel()} · ${state.roundSeconds}s`;
+    const periodLabel = state.leaderboardPeriod === "week" ? "ostatnie 7 dni" : "całość";
+
+    return `${periodLabel} · ${LEVELS[state.level].label} · ${activeTopicLabel()} · ${activeDifficultyLabel()} · ${state.roundSeconds}s`;
 }
 
 function leaderboardParams(){
@@ -2589,14 +3044,49 @@ function leaderboardParams(){
         topic: state.topic,
         difficulty: String(state.difficulty),
         round_seconds: String(state.roundSeconds),
-        limit: "10"
+        period: state.leaderboardPeriod,
+        limit: "3"
     });
 }
 
 function renderLeaderboardMessage(message){
     if(!leaderboardList) return;
 
+    if(leaderboardPodium){
+        leaderboardPodium.innerHTML = "";
+    }
+
     leaderboardList.innerHTML = `<div class="leaderboard-empty">${escapeHtml(message)}</div>`;
+}
+
+function renderLeaderboardPeriod(){
+    if(leaderboardWeekButton){
+        leaderboardWeekButton.className = state.leaderboardPeriod === "week"
+            ? "leaderboard-period active"
+            : "leaderboard-period";
+    }
+
+    if(leaderboardAllButton){
+        leaderboardAllButton.className = state.leaderboardPeriod === "all"
+            ? "leaderboard-period active"
+            : "leaderboard-period";
+    }
+}
+
+function renderPodium(items){
+    if(!leaderboardPodium) return;
+
+    const podiumItems = items.slice(0, 3);
+
+    leaderboardPodium.innerHTML = podiumItems.map(item => `
+        <div class="podium-item rank-${Number(item.rank || 0)}">
+            <div class="podium-person" title="${escapeHtml(item.display_name)}">${escapeHtml(item.display_name || "Uczeń")}</div>
+            <div class="podium-bar">
+                <span class="podium-rank">#${Number(item.rank || 0)}</span>
+                <span class="podium-score">${Number(item.correct_count || 0)} pkt</span>
+            </div>
+        </div>
+    `).join("");
 }
 
 function renderLeaderboard(items){
@@ -2606,6 +3096,8 @@ function renderLeaderboard(items){
         renderLeaderboardMessage("Brak zapisanych wyników dla tego ustawienia.");
         return;
     }
+
+    renderPodium(items);
 
     leaderboardList.innerHTML = items.map(item => `
         <div class="leaderboard-row${item.is_current_user ? " current" : ""}">
@@ -2619,6 +3111,8 @@ function renderLeaderboard(items){
 }
 
 async function loadLeaderboard(){
+    renderLeaderboardPeriod();
+
     if(leaderboardScope){
         leaderboardScope.innerText = leaderboardScopeLabel();
     }
@@ -2649,9 +3143,16 @@ async function loadLeaderboard(){
     }
 }
 
+function setLeaderboardPeriod(period){
+    state.leaderboardPeriod = period === "all" ? "all" : "week";
+    loadLeaderboard();
+    loadProgress();
+}
+
 async function saveSpeedTrainingResult(){
     if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
         loadLeaderboard();
+        loadProgress();
         return;
     }
 
@@ -2675,12 +3176,36 @@ async function saveSpeedTrainingResult(){
         console.warn("Nie udało się zapisać wyniku treningu.", error);
     } finally {
         loadLeaderboard();
+        loadProgress();
     }
 }
 
 function setStatus(text, type){
     statusPill.innerText = text;
     statusPill.className = `status-pill${type ? ` ${type}` : ""}`;
+}
+
+function hideRoundSummary(){
+    if(roundSummary){
+        roundSummary.hidden = true;
+    }
+}
+
+function renderRoundSummary(isRecord){
+    if(!roundSummary) return;
+
+    const attempts = state.correct + state.mistakes;
+    const accuracy = attempts ? Math.round((state.correct / attempts) * 100) : 0;
+    const average = state.correct ? `${(state.totalAnswerTime / state.correct).toFixed(1)}s` : "-";
+
+    summaryScore.innerText = String(state.correct);
+    summaryAccuracy.innerText = `${accuracy}%`;
+    summaryAverage.innerText = average;
+    summaryStreak.innerText = String(state.bestStreak);
+    summaryNote.innerText = isRecord
+        ? "Nowy rekord w tym ustawieniu."
+        : `Próba zakończona: ${attempts} odpowiedzi, ${state.mistakes} błędów.`;
+    roundSummary.hidden = false;
 }
 
 function setTextIfChanged(element, value){
@@ -2691,11 +3216,24 @@ function setTextIfChanged(element, value){
     }
 }
 
+function updateTimeBar(remaining){
+    if(!timeBar) return;
+
+    const ratio = state.roundSeconds
+        ? Math.max(0, Math.min(1, remaining / state.roundSeconds))
+        : 0;
+    const hue = Math.round(4 + 128 * ratio);
+
+    timeBar.style.width = `${ratio * 100}%`;
+    timeBar.style.backgroundColor = `hsl(${hue}, 70%, 38%)`;
+}
+
 function updateStats(){
     const remaining = state.running
         ? Math.max(0, Math.ceil((state.roundEndsAt - Date.now()) / 1000))
         : (state.finished ? 0 : state.roundSeconds);
 
+    updateTimeBar(remaining);
     setTextIfChanged(timeLeft, remaining);
     setTextIfChanged(correctCount, state.correct);
     setTextIfChanged(mistakeCount, state.mistakes);
@@ -2706,6 +3244,7 @@ function updateStats(){
 
 function startRound(){
     stopTimer();
+    hideRoundSummary();
     state.running = true;
     state.finished = false;
     state.roundEndsAt = Date.now() + state.roundSeconds * 1000;
@@ -2728,6 +3267,7 @@ function startRound(){
 function tick(){
     const remaining = Math.max(0, Math.ceil((state.roundEndsAt - Date.now()) / 1000));
 
+    updateTimeBar(remaining);
     setTextIfChanged(timeLeft, remaining);
 
     if(remaining <= 0){
@@ -2747,6 +3287,7 @@ function finishRound(){
     answerInput.value = "";
     answerInput.className = "answer-input";
     setStatus(`${isRecord ? "Nowy rekord" : "Wynik"}: ${state.correct}, seria: ${state.bestStreak}`, "good");
+    renderRoundSummary(isRecord);
     startButton.innerText = "Start rundy";
     updateStats();
     saveSpeedTrainingResult();
@@ -2770,6 +3311,7 @@ function resetRound(){
     state.seenTaskKeys.clear();
     loadTaskMemory();
     problemText.innerHTML = "Kliknij Start";
+    hideRoundSummary();
     taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
     answerInput.value = "";
     answerInput.className = "answer-input";
@@ -2778,6 +3320,7 @@ function resetRound(){
     renderHistory();
     updateStats();
     loadLeaderboard();
+    loadProgress();
 }
 
 function stopTimer(){
@@ -2916,7 +3459,10 @@ skipButton.addEventListener("click", skipTask);
 startButton.addEventListener("click", startRound);
 resetButton.addEventListener("click", resetRound);
 leaderboardRefreshButton.addEventListener("click", loadLeaderboard);
+leaderboardWeekButton.addEventListener("click", () => setLeaderboardPeriod("week"));
+leaderboardAllButton.addEventListener("click", () => setLeaderboardPeriod("all"));
 window.addEventListener("load", loadLeaderboard);
+window.addEventListener("load", loadProgress);
 
 renderControls();
 renderKeypad();

@@ -32,6 +32,7 @@ from auth_storage import (
     review_tasks_for_user,
     reset_user_password,
     speed_training_leaderboard,
+    speed_training_history,
     sync_admin_user,
     touch_parent_access,
     touch_last_login,
@@ -593,6 +594,7 @@ def api_speed_training_leaderboard(user):
         "topic": request.args.get("topic"),
         "difficulty": request.args.get("difficulty"),
         "round_seconds": request.args.get("round_seconds"),
+        "period": request.args.get("period"),
     }
     limit = request.args.get("limit", 10)
 
@@ -601,6 +603,27 @@ def api_speed_training_leaderboard(user):
             filters=filters,
             limit=limit,
             viewer_user_id=user["id"],
+        ),
+    })
+
+
+@app.get("/api/speed-training/history")
+@require_auth
+def api_speed_training_history(user):
+    filters = {
+        "level": request.args.get("level"),
+        "topic": request.args.get("topic"),
+        "difficulty": request.args.get("difficulty"),
+        "round_seconds": request.args.get("round_seconds"),
+        "period": request.args.get("period"),
+    }
+    limit = request.args.get("limit", 12)
+
+    return jsonify({
+        "history": speed_training_history(
+            user_id=user["id"],
+            filters=filters,
+            limit=limit,
         ),
     })
 
