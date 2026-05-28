@@ -1095,8 +1095,8 @@ const MIXED_DIFFICULTIES = [2, 3, 4];
 const MIXED_DIFFICULTY = "mixed";
 const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
 const TASK_MEMORY_KEY = "deltaSigmaSpeedTrainingTaskMemory";
-const TASK_MEMORY_LIMITS = { eo: 600, mp: 500, mr: 600 };
-const TASK_RETRY_LIMIT = 160;
+const TASK_MEMORY_LIMITS = { eo: 1200, mp: 1000, mr: 1200 };
+const TASK_RETRY_LIMIT = 320;
 const STUDENT_LEVEL_TO_TRAINING = {
     egzamin_osmoklasisty: "eo",
     matura_podstawowa: "mp",
@@ -1411,7 +1411,15 @@ function task(label, html, answer, meta = {}){
 }
 
 function taskMemoryLimit(){
-    return TASK_MEMORY_LIMITS[state.level] || 500;
+    return TASK_MEMORY_LIMITS[state.level] || 1000;
+}
+
+function trainingScopeTopic(){
+    return state.topic || "all";
+}
+
+function taskMemoryKey(){
+    return `${state.level}:${trainingScopeTopic()}`;
 }
 
 function readTaskMemoryStore(){
@@ -1427,7 +1435,10 @@ function readTaskMemoryStore(){
 
 function loadTaskMemory(){
     const store = readTaskMemoryStore();
-    const keys = Array.isArray(store[state.level]) ? store[state.level] : [];
+    const memoryKey = taskMemoryKey();
+    const scopedKeys = Array.isArray(store[memoryKey]) ? store[memoryKey] : null;
+    const legacyKeys = Array.isArray(store[state.level]) ? store[state.level] : [];
+    const keys = scopedKeys || legacyKeys;
 
     state.taskMemory = keys.slice(-taskMemoryLimit());
 }
@@ -1435,7 +1446,7 @@ function loadTaskMemory(){
 function saveTaskMemory(){
     const store = readTaskMemoryStore();
 
-    store[state.level] = state.taskMemory.slice(-taskMemoryLimit());
+    store[taskMemoryKey()] = state.taskMemory.slice(-taskMemoryLimit());
 
     try {
         localStorage.setItem(TASK_MEMORY_KEY, JSON.stringify(store));
@@ -2979,7 +2990,7 @@ function progressScopeLabel(){
 function progressParams(){
     return new URLSearchParams({
         level: state.level,
-        topic: state.topic,
+        topic: trainingScopeTopic(),
         difficulty: String(state.difficulty),
         round_seconds: String(state.roundSeconds),
         period: state.leaderboardPeriod,
@@ -3086,7 +3097,7 @@ async function loadProgress(){
 }
 
 function bestScoreId(){
-    return `${state.level}:${state.topic}:${state.difficulty}:${state.roundSeconds}`;
+    return `${state.level}:${trainingScopeTopic()}:${state.difficulty}:${state.roundSeconds}`;
 }
 
 function getBestScores(){
@@ -3131,7 +3142,7 @@ function leaderboardScopeLabel(){
 function leaderboardParams(){
     return new URLSearchParams({
         level: state.level,
-        topic: state.topic,
+        topic: trainingScopeTopic(),
         difficulty: String(state.difficulty),
         round_seconds: String(state.roundSeconds),
         period: state.leaderboardPeriod,
@@ -3248,7 +3259,7 @@ async function saveSpeedTrainingResult(){
 
     const payload = {
         level: state.level,
-        topic: state.topic,
+        topic: trainingScopeTopic(),
         difficulty: String(state.difficulty),
         round_seconds: state.roundSeconds,
         correct_count: state.correct,
