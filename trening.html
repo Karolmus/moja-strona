@@ -92,6 +92,17 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
 }
 
+.level-locked {
+    border: 1px solid rgba(142, 181, 222, 0.9);
+    border-radius: 8px;
+    background: var(--blue-soft);
+    color: var(--blue-text);
+    padding: 9px 10px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 900;
+}
+
 .level-btn,
 .topic-btn,
 .control-btn,
@@ -623,8 +634,10 @@ body {
     fill: #3b8f4f;
 }
 
-.progress-mistake {
-    fill: #c7493d;
+.progress-point {
+    fill: #3b8f4f;
+    stroke: #ffffff;
+    stroke-width: 3;
 }
 
 .progress-legend {
@@ -648,10 +661,6 @@ body {
 
 .legend-dot.correct {
     background: #3b8f4f;
-}
-
-.legend-dot.mistake {
-    background: #c7493d;
 }
 
 .leaderboard-panel {
@@ -1088,6 +1097,11 @@ const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
 const TASK_MEMORY_KEY = "deltaSigmaSpeedTrainingTaskMemory";
 const TASK_MEMORY_LIMITS = { eo: 600, mp: 500, mr: 600 };
 const TASK_RETRY_LIMIT = 160;
+const STUDENT_LEVEL_TO_TRAINING = {
+    egzamin_osmoklasisty: "eo",
+    matura_podstawowa: "mp",
+    matura_rozszerzona: "mr"
+};
 
 const LEVELS = {
     eo: {
@@ -1104,7 +1118,8 @@ const LEVELS = {
             { id: "clock", label: "Zegar" },
             { id: "areas", label: "Pola figur" },
             { id: "volume", label: "Objętość" },
-            { id: "motion", label: "Prędkość, czas, droga" }
+            { id: "motion", label: "Prędkość, czas, droga" },
+            { id: "combinatorics", label: "Kombinatoryka" }
         ]
     },
     mp: {
@@ -1203,18 +1218,25 @@ const GENERATORS = [
     { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootCompare },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionAdd },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionCommonDenominator },
+    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMixedConversion },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionOfNumber },
     { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMissingPart },
     { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoRootApproximation },
     { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoDecimalRounding },
-    { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoApproximateProduct },
     { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoLengthUnitConversion },
     { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoMassUnitConversion },
     { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoAreaUnitConversion },
+    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoVolumeUnitConversion },
     { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
     { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentIncrease },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy2 },
     { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy3 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy6 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy8 },
     { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy9 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy25 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy50 },
+    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy100 },
     { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy4 },
     { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy5Or10 },
     { level: "eo", topic: "clock", label: "Zegar", make: genEoClockAddMinutes },
@@ -1222,14 +1244,13 @@ const GENERATORS = [
     { level: "eo", topic: "clock", label: "Zegar", make: genEoClockToMinutes },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
     { level: "eo", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
-    { level: "eo", topic: "areas", label: "Pola figur", make: genEoAreaReverse },
     { level: "eo", topic: "volume", label: "Objętość", make: genEoCuboidVolume },
     { level: "eo", topic: "volume", label: "Objętość", make: genEoCubeVolume },
-    { level: "eo", topic: "volume", label: "Objętość", make: genEoVolumeMissingEdge },
     { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedDistance },
     { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionTime },
     { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionSpeed },
     { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedConversion },
+    { level: "eo", topic: "combinatorics", label: "Kombinatoryka", make: genEoMultiplicationRule },
     { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerMultiply },
     { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerDivide },
     { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerPower },
@@ -1499,10 +1520,10 @@ function genEoRootSimplify(){
 }
 
 function genEoRootCompare(){
-    const n = choice([10, 15, 17, 26, 30, 37, 40, 50, 60, 70]);
-    const lower = Math.floor(Math.sqrt(n));
+    const radicand = choice([10, 15, 17, 26, 30, 37, 40, 50, 60, 70]);
+    const answer = Math.floor(Math.sqrt(radicand)) + 1;
 
-    return task("Pierwiastki", `${lower} < ${root(n)} < ${blank()}`, lower + 1);
+    return task("Pierwiastki", `${root(radicand)} < n. Najmniejsze n naturalne = ${blank()}`, answer);
 }
 
 function genEoRootApproximation(){
@@ -1565,6 +1586,18 @@ function genEoAreaUnitConversion(){
     return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
 }
 
+function genEoVolumeUnitConversion(){
+    const cases = [
+        ["dm³", "cm³", 1000, 2], ["dm³", "cm³", 1000, 5],
+        ["m³", "dm³", 1000, 3], ["cm³", "mm³", 1000, 4],
+        ["cm³", "dm³", 0.001, 2500], ["dm³", "m³", 0.001, 7000],
+        ["l", "cm³", 1000, 2], ["l", "dm³", 1, 6]
+    ];
+    const [from, to, multiplier, value] = choice(cases);
+
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+}
+
 function genEoPercentOfNumber(){
     const percent = choice(difficultyTier() >= 4 ? [5, 10, 15, 20, 25, 30, 40, 50, 60, 75] : [5, 10, 20, 25, 40, 50, 75]);
     const number = rand(4, byDifficulty([40, 60, 80, 100, 120])) * 10;
@@ -1576,7 +1609,7 @@ function genEoPercentIncrease(){
     const percent = choice([5, 10, 20, 25, 50]);
     const number = choice([80, 100, 120, 160, 200, 240, 300, 400, 500]);
 
-    return task("Procenty", `${number} powiększone o ${percent}% = ${blank()}`, number * (100 + percent) / 100);
+    return task("Procenty", `Ile wynosi liczba o ${percent}% większa od ${number}? ${blank()}`, number * (100 + percent) / 100);
 }
 
 function genEoPercentChange(){
@@ -1597,42 +1630,75 @@ function genEoPercentReverse(){
     return task("Procenty", `${percent}% liczby ${blank()} = ${value}`, answer);
 }
 
+function genEoDivisibilityBy2(){
+    const number = choice([124, 237, 318, 405, 516, 629, 740, 853, 964, 1075]);
+
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 2? 1 = tak, 0 = nie: ${blank()}`, number % 2 === 0 ? 1 : 0);
+}
+
 function genEoDivisibilityBy3(){
     const number = choice([123, 234, 405, 512, 681, 742, 819, 902, 1116, 1245]);
-    const digitSum = String(number).split("").reduce((sum, digit) => sum + Number(digit), 0);
 
-    return task("Cechy podzielności", `${number}: suma cyfr = ${digitSum}. Podzielna przez 3? 1 = tak, 0 = nie: ${blank()}`, digitSum % 3 === 0 ? 1 : 0);
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 3? 1 = tak, 0 = nie: ${blank()}`, number % 3 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy6(){
+    const number = choice([126, 234, 405, 512, 648, 742, 816, 902, 1116, 1245]);
+
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 6? 1 = tak, 0 = nie: ${blank()}`, number % 6 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy8(){
+    const number = choice([128, 216, 304, 512, 624, 732, 816, 928, 1048, 1256]);
+
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 8? 1 = tak, 0 = nie: ${blank()}`, number % 8 === 0 ? 1 : 0);
 }
 
 function genEoDivisibilityBy9(){
     const number = choice([126, 216, 405, 513, 729, 810, 1008, 1125, 1242, 1350]);
-    const digitSum = String(number).split("").reduce((sum, digit) => sum + Number(digit), 0);
 
-    return task("Cechy podzielności", `${number}: suma cyfr = ${digitSum}. Podzielna przez 9? 1 = tak, 0 = nie: ${blank()}`, digitSum % 9 === 0 ? 1 : 0);
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 9? 1 = tak, 0 = nie: ${blank()}`, number % 9 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy25(){
+    const number = choice([125, 250, 375, 412, 625, 760, 875, 1010, 1125, 1340]);
+
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 25? 1 = tak, 0 = nie: ${blank()}`, number % 25 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy50(){
+    const number = choice([150, 225, 300, 425, 550, 675, 800, 925, 1050, 1175]);
+
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 50? 1 = tak, 0 = nie: ${blank()}`, number % 50 === 0 ? 1 : 0);
+}
+
+function genEoDivisibilityBy100(){
+    const number = choice([200, 350, 400, 575, 800, 925, 1000, 1120, 1300, 1450]);
+
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 100? 1 = tak, 0 = nie: ${blank()}`, number % 100 === 0 ? 1 : 0);
 }
 
 function genEoDivisibilityBy4(){
     const number = choice([124, 236, 318, 420, 516, 634, 728, 812, 936, 1044]);
-    const lastTwo = number % 100;
 
-    return task("Cechy podzielności", `${number}: końcówka ${lastTwo}. Podzielna przez 4? 1 = tak, 0 = nie: ${blank()}`, lastTwo % 4 === 0 ? 1 : 0);
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 4? 1 = tak, 0 = nie: ${blank()}`, number % 4 === 0 ? 1 : 0);
 }
 
 function genEoDivisibilityBy5Or10(){
     const number = choice([125, 130, 214, 250, 305, 412, 580, 761, 900, 1015]);
     const divisor = choice([5, 10]);
 
-    return task("Cechy podzielności", `${number} jest podzielna przez ${divisor}? 1 = tak, 0 = nie: ${blank()}`, number % divisor === 0 ? 1 : 0);
+    return task("Cechy podzielności", `Czy ${number} jest podzielna przez ${divisor}? 1 = tak, 0 = nie: ${blank()}`, number % divisor === 0 ? 1 : 0);
 }
 
 function genEoClockAddMinutes(){
     const cases = [
-        ["7:20", 35, 55], ["8:15", 45, 0], ["9:40", 30, 10],
-        ["10:25", 50, 15], ["12:10", 25, 35], ["14:45", 20, 5]
+        ["7:20", "7:55", 35], ["8:15", "9:00", 45], ["9:40", "10:10", 30],
+        ["10:25", "11:15", 50], ["12:10", "12:35", 25], ["14:45", "15:05", 20]
     ];
-    const [start, added, resultMinute] = choice(cases);
+    const [start, end, minutes] = choice(cases);
 
-    return task("Zegar", `${start} + ${added} min, minuta końcowa = ${blank()}`, resultMinute);
+    return task("Zegar", `Jest godzina ${start}, ile minut upłynie do godziny ${end}? ${blank()}`, minutes);
 }
 
 function genEoClockElapsedMinutes(){
@@ -1643,7 +1709,7 @@ function genEoClockElapsedMinutes(){
     ];
     const [start, end, minutes] = choice(cases);
 
-    return task("Zegar", `Od ${start} do ${end} jest ${blank()} min`, minutes);
+    return task("Zegar", `Jest godzina ${start}, ile minut upłynie do godziny ${end}? ${blank()}`, minutes);
 }
 
 function genEoClockToMinutes(){
@@ -1671,14 +1737,8 @@ function genEoTriangleArea(){
     const base = rand(4, byDifficulty([10, 12, 14, 16, 18]));
     const height = rand(3, byDifficulty([8, 10, 12, 14, 16]));
     const evenBase = base % 2 === 0 ? base : base + 1;
-    const mode = rand(1, 2);
 
-    if(mode === 1){
-        return task("Pola figur", `Trójkąt: a = ${evenBase}, h = ${height}, P = ${blank()}`, evenBase * height / 2);
-    }
-
-    const area = evenBase * height / 2;
-    return task("Pola figur", `Trójkąt: P = ${area}, a = ${evenBase}, h = ${blank()}`, height);
+    return task("Pola figur", `Trójkąt: a = ${evenBase}, h = ${height}, P = ${blank()}`, evenBase * height / 2);
 }
 
 function genEoAreaReverse(){
@@ -1805,6 +1865,18 @@ function genEoFractionCommonDenominator(){
     return task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${frac(blank(), targetDenominator)}`, targetNumerator);
 }
 
+function genEoFractionMixedConversion(){
+    const denominator = choice([3, 4, 5, 6, 7, 8, 9]);
+    const whole = rand(1, 5);
+    const remainder = rand(1, denominator - 1);
+    const numerator = whole * denominator + remainder;
+    const mode = rand(1, 2);
+
+    return mode === 1
+        ? task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${whole} ${frac(blank(), denominator)}`, remainder)
+        : task("Ułamki zwykłe", `${whole} ${frac(remainder, denominator)} = ${frac(blank(), denominator)}`, numerator);
+}
+
 function genEoFractionEquivalent(){
     const denominator = choice([3, 4, 5, 6, 8]);
     const numerator = rand(1, denominator - 1);
@@ -1885,6 +1957,30 @@ function genEoSpeedConversion(){
     return mode === 1
         ? task("Prędkość, czas, droga", `${metersPerSecond} m/s = ${blank()} km/h`, kilometersPerHour)
         : task("Prędkość, czas, droga", `${kilometersPerHour} km/h = ${blank()} m/s`, metersPerSecond);
+}
+
+function genEoMultiplicationRule(){
+    const mode = rand(1, 3);
+
+    if(mode === 1){
+        const shirts = rand(2, 6);
+        const pants = rand(2, 5);
+
+        return task("Kombinatoryka", `${shirts} koszulki i ${pants} par spodni: liczba zestawów = ${blank()}`, shirts * pants);
+    }
+
+    if(mode === 2){
+        const soups = rand(2, 4);
+        const mains = rand(3, 6);
+        const drinks = rand(2, 4);
+
+        return task("Kombinatoryka", `${soups} zupy, ${mains} dania i ${drinks} napoje: liczba obiadów = ${blank()}`, soups * mains * drinks);
+    }
+
+    const first = rand(3, 8);
+    const second = rand(2, 6);
+
+    return task("Kombinatoryka", `Kod: ${first} możliwości na pierwszym miejscu i ${second} na drugim. Liczba kodów = ${blank()}`, first * second);
 }
 
 function genEoUnitConversion(){
@@ -2910,12 +3006,13 @@ function renderProgressChart(items){
     const margin = { top: 18, right: 12, bottom: 38, left: 42 };
     const plotWidth = width - margin.left - margin.right;
     const plotHeight = height - margin.top - margin.bottom;
-    const totals = items.map(item => Number(item.correct_count || 0) + Number(item.mistake_count || 0));
-    const maxTotal = Math.max(5, ...totals);
-    const yMax = Math.ceil(maxTotal / 5) * 5;
+    const correctCounts = items.map(item => Number(item.correct_count || 0));
+    const maxCorrect = Math.max(5, ...correctCounts);
+    const yMax = Math.ceil(maxCorrect / 5) * 5;
     const baseY = margin.top + plotHeight;
-    const slot = plotWidth / items.length;
-    const barWidth = Math.min(30, Math.max(12, slot * 0.56));
+    const x = index => items.length === 1
+        ? margin.left + plotWidth / 2
+        : margin.left + (index / (items.length - 1)) * plotWidth;
     const y = value => baseY - (Number(value || 0) / yMax) * plotHeight;
     const gridSteps = [0, Math.ceil(yMax / 2), yMax];
 
@@ -2928,22 +3025,16 @@ function renderProgressChart(items){
         `;
     }).join("");
 
-    const bars = items.map((item, index) => {
+    const points = items.map((item, index) => {
         const correct = Number(item.correct_count || 0);
-        const mistakes = Number(item.mistake_count || 0);
-        const total = correct + mistakes;
-        const x = margin.left + index * slot + (slot - barWidth) / 2;
-        const correctY = y(correct);
-        const totalY = y(total);
-        const correctHeight = baseY - correctY;
-        const mistakeHeight = correctY - totalY;
+        const pointX = x(index);
+        const pointY = y(correct);
 
         return `
             <g>
-                <title>Próba ${index + 1}: ${correct} poprawne, ${mistakes} błędne</title>
-                <rect class="progress-correct" x="${x}" y="${correctY}" width="${barWidth}" height="${Math.max(0, correctHeight)}" rx="3"></rect>
-                <rect class="progress-mistake" x="${x}" y="${totalY}" width="${barWidth}" height="${Math.max(0, mistakeHeight)}" rx="3"></rect>
-                <text class="progress-label" x="${x + barWidth / 2}" y="${height - 18}" text-anchor="middle">${index + 1}</text>
+                <title>Próba ${index + 1}: ${correct} poprawnych odpowiedzi</title>
+                <circle class="progress-point" cx="${pointX}" cy="${pointY}" r="6"></circle>
+                <text class="progress-label" x="${pointX}" y="${height - 18}" text-anchor="middle">${index + 1}</text>
             </g>
         `;
     }).join("");
@@ -2953,13 +3044,12 @@ function renderProgressChart(items){
             ${grid}
             <line class="progress-axis" x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${baseY}"></line>
             <line class="progress-axis" x1="${margin.left}" y1="${baseY}" x2="${width - margin.right}" y2="${baseY}"></line>
-            ${bars}
+            ${points}
             <text class="progress-label" x="${width / 2}" y="${height - 3}" text-anchor="middle">nr próby</text>
-            <text class="progress-label" x="10" y="${margin.top + plotHeight / 2}" transform="rotate(-90 10 ${margin.top + plotHeight / 2})" text-anchor="middle">liczba odpowiedzi</text>
+            <text class="progress-label" x="10" y="${margin.top + plotHeight / 2}" transform="rotate(-90 10 ${margin.top + plotHeight / 2})" text-anchor="middle">poprawne odpowiedzi</text>
         </svg>
         <div class="progress-legend">
-            <span><span class="legend-dot correct"></span>poprawne</span>
-            <span><span class="legend-dot mistake"></span>błędne</span>
+            <span><span class="legend-dot correct"></span>liczba poprawnych odpowiedzi</span>
         </div>
     `;
 }
@@ -3191,7 +3281,7 @@ function hideRoundSummary(){
     }
 }
 
-function renderRoundSummary(isRecord){
+function renderRoundSummary(isRecord, isRejected = false){
     if(!roundSummary) return;
 
     const attempts = state.correct + state.mistakes;
@@ -3202,7 +3292,9 @@ function renderRoundSummary(isRecord){
     summaryAccuracy.innerText = `${accuracy}%`;
     summaryAverage.innerText = average;
     summaryStreak.innerText = String(state.bestStreak);
-    summaryNote.innerText = isRecord
+    summaryNote.innerText = isRejected
+        ? "Próba odrzucona: błędnych odpowiedzi było więcej niż poprawnych. Powtórz próbę."
+        : isRecord
         ? "Nowy rekord w tym ustawieniu."
         : `Próba zakończona: ${attempts} odpowiedzi, ${state.mistakes} błędów.`;
     roundSummary.hidden = false;
@@ -3281,16 +3373,25 @@ function finishRound(){
     state.finished = true;
     state.currentTask = null;
     state.answerLocked = true;
-    const isRecord = saveBestScore();
+    const isRejected = state.mistakes > state.correct;
+    const isRecord = isRejected ? false : saveBestScore();
     problemText.innerHTML = "Koniec rundy";
     taskTopic.innerText = "Podsumowanie";
     answerInput.value = "";
     answerInput.className = "answer-input";
-    setStatus(`${isRecord ? "Nowy rekord" : "Wynik"}: ${state.correct}, seria: ${state.bestStreak}`, "good");
-    renderRoundSummary(isRecord);
+    setStatus(
+        isRejected
+            ? "Próba odrzucona"
+            : `${isRecord ? "Nowy rekord" : "Wynik"}: ${state.correct}, seria: ${state.bestStreak}`,
+        isRejected ? "bad" : "good"
+    );
+    renderRoundSummary(isRecord, isRejected);
     startButton.innerText = "Start rundy";
     updateStats();
-    saveSpeedTrainingResult();
+
+    if(!isRejected){
+        saveSpeedTrainingResult();
+    }
 }
 
 function resetRound(){
@@ -3330,12 +3431,39 @@ function stopTimer(){
     }
 }
 
-function setLevel(level){
+function applyAssignedLevel(level, shouldReset = true){
+    if(!LEVELS[level]) return;
+
+    const changed = state.level !== level;
+
     state.level = level;
     state.topic = "all";
     state.reviewTopic = "";
     renderControls();
-    resetRound();
+
+    if(shouldReset && changed){
+        resetRound();
+    }
+}
+
+function trainingLevelFromUser(user){
+    return STUDENT_LEVEL_TO_TRAINING[user?.level] || state.level || "eo";
+}
+
+async function syncTrainingLevelFromAuth(){
+    if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
+        renderControls();
+        return;
+    }
+
+    try {
+        const session = await window.apiFetch("/api/auth/me");
+        const user = session.authenticated ? session.user : null;
+
+        applyAssignedLevel(trainingLevelFromUser(user), true);
+    } catch(error) {
+        renderControls();
+    }
 }
 
 function setTopic(topic){
@@ -3359,15 +3487,11 @@ function renderControls(){
     levelTabs.innerHTML = "";
     topicList.innerHTML = "";
 
-    Object.entries(LEVELS).forEach(([id, level]) => {
-        const button = document.createElement("button");
+    const lockedLevel = document.createElement("div");
 
-        button.type = "button";
-        button.className = id === state.level ? "level-btn active" : "level-btn";
-        button.innerText = level.shortLabel || level.label;
-        button.onclick = () => setLevel(id);
-        levelTabs.appendChild(button);
-    });
+    lockedLevel.className = "level-locked";
+    lockedLevel.innerText = LEVELS[state.level].shortLabel || LEVELS[state.level].label;
+    levelTabs.appendChild(lockedLevel);
 
     LEVELS[state.level].topics.forEach(topic => {
         const button = document.createElement("button");
@@ -3463,6 +3587,7 @@ leaderboardWeekButton.addEventListener("click", () => setLeaderboardPeriod("week
 leaderboardAllButton.addEventListener("click", () => setLeaderboardPeriod("all"));
 window.addEventListener("load", loadLeaderboard);
 window.addEventListener("load", loadProgress);
+window.addEventListener("load", syncTrainingLevelFromAuth);
 
 renderControls();
 renderKeypad();
