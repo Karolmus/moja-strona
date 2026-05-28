@@ -65,6 +65,12 @@ app.config.update(
 )
 register_auth_db(app)
 
+TRAINING_LEVEL_BY_STUDENT_LEVEL = {
+    "egzamin_osmoklasisty": "eo",
+    "matura_podstawowa": "mp",
+    "matura_rozszerzona": "mr",
+}
+
 
 def bootstrap_auth_db():
     init_auth_db()
@@ -239,6 +245,10 @@ def student_payload(user):
         item["role"] = "student"
 
     return item
+
+
+def training_level_for_user(user):
+    return TRAINING_LEVEL_BY_STUDENT_LEVEL.get(user.get("level"), "eo")
 
 
 @app.get("/")
@@ -577,7 +587,17 @@ def api_my_progress(user):
 @require_auth
 def api_save_speed_training_result(user):
     def handler():
-        result = record_speed_training_result(user["id"], payload())
+        data = payload()
+        correct_count = int(data.get("correct_count") or 0)
+        mistake_count = int(data.get("mistake_count") or 0)
+
+        if mistake_count > correct_count:
+            return api_error("Próba odrzucona: liczba błędnych odpowiedzi jest większa niż poprawnych.", 400)
+
+        if user.get("role") == "student":
+            data["level"] = training_level_for_user(user)
+
+        result = record_speed_training_result(user["id"], data)
 
         return jsonify({
             "result": result,
@@ -596,6 +616,10 @@ def api_speed_training_leaderboard(user):
         "round_seconds": request.args.get("round_seconds"),
         "period": request.args.get("period"),
     }
+
+    if user.get("role") == "student":
+        filters["level"] = training_level_for_user(user)
+
     limit = request.args.get("limit", 10)
 
     return jsonify({
@@ -617,6 +641,10 @@ def api_speed_training_history(user):
         "round_seconds": request.args.get("round_seconds"),
         "period": request.args.get("period"),
     }
+
+    if user.get("role") == "student":
+        filters["level"] = training_level_for_user(user)
+
     limit = request.args.get("limit", 12)
 
     return jsonify({
