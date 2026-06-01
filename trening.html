@@ -440,6 +440,10 @@ body {
     gap: 8px;
 }
 
+.answer-row[hidden] {
+    display: none;
+}
+
 .answer-input {
     width: 100%;
     min-height: 44px;
@@ -466,6 +470,44 @@ body {
 .answer-input.bad {
     border-color: rgba(220, 52, 42, 0.7);
     background: var(--red-soft);
+}
+
+.yes-no-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.yes-no-row[hidden] {
+    display: none;
+}
+
+.yes-no-btn {
+    min-height: 50px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 800;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.yes-no-btn:hover,
+.yes-no-btn:focus-visible {
+    border-color: var(--blue-text);
+    background: var(--blue-soft);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+.yes-no-btn span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .round-summary {
@@ -1047,10 +1089,14 @@ body {
                     </div>
                     <p class="summary-note" id="summaryNote"></p>
                 </div>
-                <div class="answer-row">
+                <div class="answer-row" id="answerRow">
                     <input class="answer-input" id="answerInput" type="text" inputmode="decimal" autocomplete="off" aria-label="Odpowiedź">
                     <button class="submit-btn" id="submitButton" type="button">OK</button>
                     <button class="skip-btn" id="skipButton" type="button">Pomiń</button>
+                </div>
+                <div class="yes-no-row" id="yesNoControls" hidden>
+                    <button class="yes-no-btn" id="yesButton" type="button">Tak <span>(T)</span></button>
+                    <button class="yes-no-btn" id="noButton" type="button">Nie <span>(N)</span></button>
                 </div>
                 <div class="keypad" id="keypad" aria-label="Klawiatura numeryczna"></div>
             </div>
@@ -1193,9 +1239,13 @@ const summaryAccuracy = document.getElementById("summaryAccuracy");
 const summaryAverage = document.getElementById("summaryAverage");
 const summaryStreak = document.getElementById("summaryStreak");
 const summaryNote = document.getElementById("summaryNote");
+const answerRow = document.getElementById("answerRow");
 const answerInput = document.getElementById("answerInput");
 const submitButton = document.getElementById("submitButton");
 const skipButton = document.getElementById("skipButton");
+const yesNoControls = document.getElementById("yesNoControls");
+const yesButton = document.getElementById("yesButton");
+const noButton = document.getElementById("noButton");
 const startButton = document.getElementById("startButton");
 const resetButton = document.getElementById("resetButton");
 const keypad = document.getElementById("keypad");
@@ -1408,6 +1458,10 @@ function difficultyLabel(value = state.currentDifficulty){
 
 function task(label, html, answer, meta = {}){
     return { label, html: math(html), answer, ...meta };
+}
+
+function yesNoTask(label, html, condition){
+    return task(label, `${html} ${blank()}`, condition ? 1 : 0, { answerMode: "yes-no" });
 }
 
 function taskMemoryLimit(){
@@ -1644,62 +1698,62 @@ function genEoPercentReverse(){
 function genEoDivisibilityBy2(){
     const number = choice([124, 237, 318, 405, 516, 629, 740, 853, 964, 1075]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 2? 1 = tak, 0 = nie: ${blank()}`, number % 2 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 2?`, number % 2 === 0);
 }
 
 function genEoDivisibilityBy3(){
     const number = choice([123, 234, 405, 512, 681, 742, 819, 902, 1116, 1245]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 3? 1 = tak, 0 = nie: ${blank()}`, number % 3 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 3?`, number % 3 === 0);
 }
 
 function genEoDivisibilityBy6(){
     const number = choice([126, 234, 405, 512, 648, 742, 816, 902, 1116, 1245]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 6? 1 = tak, 0 = nie: ${blank()}`, number % 6 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 6?`, number % 6 === 0);
 }
 
 function genEoDivisibilityBy8(){
     const number = choice([128, 216, 304, 512, 624, 732, 816, 928, 1048, 1256]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 8? 1 = tak, 0 = nie: ${blank()}`, number % 8 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 8?`, number % 8 === 0);
 }
 
 function genEoDivisibilityBy9(){
     const number = choice([126, 216, 405, 513, 729, 810, 1008, 1125, 1242, 1350]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 9? 1 = tak, 0 = nie: ${blank()}`, number % 9 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 9?`, number % 9 === 0);
 }
 
 function genEoDivisibilityBy25(){
     const number = choice([125, 250, 375, 412, 625, 760, 875, 1010, 1125, 1340]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 25? 1 = tak, 0 = nie: ${blank()}`, number % 25 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 25?`, number % 25 === 0);
 }
 
 function genEoDivisibilityBy50(){
     const number = choice([150, 225, 300, 425, 550, 675, 800, 925, 1050, 1175]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 50? 1 = tak, 0 = nie: ${blank()}`, number % 50 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 50?`, number % 50 === 0);
 }
 
 function genEoDivisibilityBy100(){
     const number = choice([200, 350, 400, 575, 800, 925, 1000, 1120, 1300, 1450]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 100? 1 = tak, 0 = nie: ${blank()}`, number % 100 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 100?`, number % 100 === 0);
 }
 
 function genEoDivisibilityBy4(){
     const number = choice([124, 236, 318, 420, 516, 634, 728, 812, 936, 1044]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez 4? 1 = tak, 0 = nie: ${blank()}`, number % 4 === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 4?`, number % 4 === 0);
 }
 
 function genEoDivisibilityBy5Or10(){
     const number = choice([125, 130, 214, 250, 305, 412, 580, 761, 900, 1015]);
     const divisor = choice([5, 10]);
 
-    return task("Cechy podzielności", `Czy ${number} jest podzielna przez ${divisor}? 1 = tak, 0 = nie: ${blank()}`, number % divisor === 0 ? 1 : 0);
+    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez ${divisor}?`, number % divisor === 0);
 }
 
 function genEoClockAddMinutes(){
@@ -2266,7 +2320,7 @@ function genMpLinearTrendSign(){
     const a = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
     const b = rand(-8, 8);
 
-    return task("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}. Funkcja rosnąca? 1 = tak, 0 = nie: ${blank()}`, a > 0 ? 1 : 0);
+    return yesNoTask("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}. Czy funkcja jest rosnąca?`, a > 0);
 }
 
 function genMpQuadraticCoefficientSign(){
@@ -2844,8 +2898,8 @@ function nextTask(){
     problemText.innerHTML = state.currentTask.html;
     answerInput.value = "";
     answerInput.className = "answer-input";
+    updateAnswerMode();
     setStatus("Liczenie", "");
-    answerInput.focus();
 }
 
 function normalizeAnswer(value){
@@ -2862,6 +2916,31 @@ function normalizeAnswer(value){
 
 function isCorrectAnswer(value, expected){
     return Math.abs(value - expected) < 0.000001;
+}
+
+function isYesNoTask(taskItem = state.currentTask){
+    return taskItem?.answerMode === "yes-no";
+}
+
+function updateAnswerMode(){
+    const yesNoMode = isYesNoTask();
+
+    answerRow.hidden = yesNoMode;
+    yesNoControls.hidden = !yesNoMode;
+    keypad.hidden = yesNoMode;
+
+    if(yesNoMode){
+        yesButton.focus();
+    } else {
+        answerInput.focus();
+    }
+}
+
+function submitYesNoAnswer(isYes){
+    if(!state.running || !isYesNoTask() || state.answerLocked) return;
+
+    answerInput.value = isYes ? "1" : "0";
+    submitAnswer();
 }
 
 function submitAnswer(){
@@ -2906,7 +2985,7 @@ function markWrong(){
     state.answerLocked = true;
     state.reviewTopic = state.currentTask?.topicId || "";
     answerInput.className = "answer-input bad";
-    setStatus(`Wynik: ${formatAnswer(state.currentTask.answer)}`, "bad");
+    setStatus(`Wynik: ${formatTaskAnswer(state.currentTask)}`, "bad");
     updateStats();
 
     setTimeout(() => {
@@ -2922,7 +3001,7 @@ function skipTask(){
     state.answerLocked = true;
     state.reviewTopic = state.currentTask.topicId || "";
     answerInput.className = "answer-input bad";
-    setStatus(`Pominięto · ${formatAnswer(state.currentTask.answer)}`, "bad");
+    setStatus(`Pominięto · ${formatTaskAnswer(state.currentTask)}`, "bad");
     updateStats();
 
     setTimeout(() => {
@@ -2934,6 +3013,7 @@ function pushHistory(taskItem, elapsed){
     state.history.unshift({
         label: taskItem.label,
         answer: taskItem.answer,
+        answerMode: taskItem.answerMode || "",
         time: elapsed
     });
 
@@ -2957,13 +3037,25 @@ function renderHistory(){
         const row = document.createElement("div");
 
         row.className = "history-item";
-        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswer(item.answer)}</strong>`;
+        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswerForMode(item.answer, item.answerMode)}</strong>`;
         historyList.appendChild(row);
     });
 }
 
 function formatAnswer(value){
     return Number.isInteger(value) ? String(value) : String(Math.round(value * 1000) / 1000).replace(".", ",");
+}
+
+function formatAnswerForMode(value, answerMode = ""){
+    if(answerMode === "yes-no"){
+        return Number(value) === 1 ? "Tak" : "Nie";
+    }
+
+    return formatAnswer(value);
+}
+
+function formatTaskAnswer(taskItem){
+    return formatAnswerForMode(taskItem?.answer, taskItem?.answerMode);
 }
 
 function escapeHtml(value){
@@ -3390,6 +3482,7 @@ function finishRound(){
     taskTopic.innerText = "Podsumowanie";
     answerInput.value = "";
     answerInput.className = "answer-input";
+    updateAnswerMode();
     setStatus(
         isRejected
             ? "Próba odrzucona"
@@ -3427,6 +3520,7 @@ function resetRound(){
     taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
     answerInput.value = "";
     answerInput.className = "answer-input";
+    updateAnswerMode();
     setStatus("Gotowy", "");
     startButton.innerText = "Start rundy";
     renderHistory();
@@ -3589,8 +3683,24 @@ answerInput.addEventListener("keydown", event => {
     }
 });
 
+document.addEventListener("keydown", event => {
+    if(!state.running || !isYesNoTask() || state.answerLocked) return;
+
+    const key = event.key.toLowerCase();
+
+    if(key === "t" || key === "n"){
+        event.preventDefault();
+        submitYesNoAnswer(key === "t");
+    } else if(key === "Escape"){
+        event.preventDefault();
+        skipTask();
+    }
+});
+
 submitButton.addEventListener("click", submitAnswer);
 skipButton.addEventListener("click", skipTask);
+yesButton.addEventListener("click", () => submitYesNoAnswer(true));
+noButton.addEventListener("click", () => submitYesNoAnswer(false));
 startButton.addEventListener("click", startRound);
 resetButton.addEventListener("click", resetRound);
 leaderboardRefreshButton.addEventListener("click", loadLeaderboard);
