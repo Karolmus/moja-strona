@@ -398,8 +398,9 @@ body:not(.guest-exam-mode) .selector-grid {
 }
 
 .source-list.exam-source-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 3px;
-    max-height: 194px;
+    max-height: 132px;
 }
 
 .source-summary-row {
@@ -456,14 +457,16 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn {
+    min-height: 25px;
+    align-content: center;
     gap: 1px;
-    min-height: 58px;
-    padding: 8px 10px;
+    padding: 3px 4px;
+    text-align: center;
 }
 
 .exam-source-list .source-btn span {
-    font-size: 14px;
-    line-height: 1.15;
+    font-size: 9.5px;
+    line-height: 1.05;
 }
 
 .course-source-list .source-btn span {
@@ -475,6 +478,14 @@ body.guest-exam-mode .source-summary-row {
     color: var(--muted);
     font-size: 10px;
     font-weight: 400;
+    line-height: 1.1;
+}
+
+.exam-source-list .source-btn small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 8.5px;
     line-height: 1.1;
 }
 
@@ -1889,22 +1900,22 @@ footer {
     }
 
     .source-list.exam-source-list {
-        max-height: 174px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-height: 74px;
     }
 
     .exam-source-list .source-btn {
-        min-height: 54px;
-        padding: 7px 8px;
+        min-height: 23px;
+        padding: 2px 3px;
     }
 
     .exam-source-list .source-btn span {
-        font-size: 12px;
-        line-height: 1.12;
+        font-size: 8.5px;
+        line-height: 1;
     }
 
     .exam-source-list .source-btn small {
-        font-size: 9px;
-        line-height: 1.12;
+        display: none;
     }
 
     .course-source-list .source-btn {
@@ -2443,27 +2454,6 @@ const TASK_SOURCES = [
     { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy" },
     {
-        path: "zadania/kurs/mp/zadania_kurs_mp.json",
-        category: "kurs",
-        level: "matura_podstawowa",
-        label: "Kurs",
-        detail: "Matura podstawowa"
-    },
-    {
-        path: "zadania/kurs/mr/zadania_kurs_mr.json",
-        category: "kurs",
-        level: "matura_rozszerzona",
-        label: "Kurs",
-        detail: "Matura rozszerzona"
-    },
-    {
-        path: "zadania/kurs/eo/zadania_kurs_eo.json",
-        category: "kurs",
-        level: "egzamin_osmoklasisty",
-        label: "Kurs",
-        detail: "Egzamin Ósmoklasisty"
-    },
-    {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
@@ -2693,10 +2683,23 @@ async function bootStudentPanel(){
             loadGuestSessionProgress();
         }
 
+        ensureAvailableCategory();
         updateAccessModeUI();
         ensureSelectedSource();
         await ensureTaskSourceLoaded(selectedSource);
         ensureSelectedCoursePart();
+
+        let initialIndex = getInitialIndex();
+
+        if(isLoggedInStudent){
+            await loadStudentProgress({ render: false });
+            const resumeIndex = await restoreLastStudentLocation();
+
+            if(Number.isInteger(resumeIndex)){
+                initialIndex = resumeIndex;
+            }
+        }
+
         updateCategoryButtons();
         updateLevelButtons();
         updateModeButtons();
@@ -2706,11 +2709,7 @@ async function bootStudentPanel(){
         renderTagSearch();
         renderLearningProgress();
 
-        if(isLoggedInStudent){
-            loadStudentProgress();
-        }
-
-        drawTask(getInitialIndex());
+        drawTask(initialIndex);
     } catch(error) {
         if(error.redirecting) return;
 
@@ -3317,6 +3316,22 @@ function getAvailableSources(){
         );
 }
 
+function hasSourcesForCategory(category, level = selectedLevel){
+    return TASK_SOURCES
+        .map(getSourceMeta)
+        .some(source =>
+            source.category === category &&
+            source.level === level
+        );
+}
+
+function ensureAvailableCategory(){
+    if(hasSourcesForCategory(selectedCategory)) return;
+
+    selectedCategory = hasSourcesForCategory("kurs") ? "kurs" : "egzaminy";
+    selectedSource = "all";
+}
+
 function ensureSelectedSource(){
     const availableSources = getAvailableSources();
 
@@ -3654,29 +3669,39 @@ function refreshTaskNavigator(){
     renderTaskNavigator();
 }
 
-async function loadStudentProgress(){
+async function loadStudentProgress(options = {}){
+    const shouldRender = options.render !== false;
+
     if(!window.apiFetch){
-        renderLearningProgress("Postęp będzie widoczny po zalogowaniu.");
-        renderSourceSelector();
-        updateSourceSummary();
-        return;
+        if(shouldRender){
+            renderLearningProgress("Postęp będzie widoczny po zalogowaniu.");
+            renderSourceSelector();
+            updateSourceSummary();
+        }
+        return savedProgress;
     }
 
     try {
         const data = await apiFetch("/api/progress/me");
 
         savedProgress = Array.isArray(data.progress) ? data.progress : [];
-        renderSourceSelector();
-        renderLearningProgress();
-        renderTaskNavigator();
-        updateSourceSummary();
+        if(shouldRender){
+            renderSourceSelector();
+            renderLearningProgress();
+            renderTaskNavigator();
+            updateSourceSummary();
+        }
     } catch(error) {
         savedProgress = [];
-        renderSourceSelector();
-        renderLearningProgress("Nie udało się wczytać postępu.");
-        renderTaskNavigator();
-        updateSourceSummary();
+        if(shouldRender){
+            renderSourceSelector();
+            renderLearningProgress("Nie udało się wczytać postępu.");
+            renderTaskNavigator();
+            updateSourceSummary();
+        }
     }
+
+    return savedProgress;
 }
 
 function getProgressSourceId(item){
@@ -3704,6 +3729,77 @@ function progressTaskKey(item){
     if(!sourceId || !file) return "";
 
     return `${sourceId}:${file}`;
+}
+
+function findLastProgressItem(){
+    return savedProgress.find(item => {
+        const sourceId = getProgressSourceId(item);
+        const file = getProgressFile(item);
+        const source = getSourceMetaById(sourceId);
+
+        return Boolean(
+            source &&
+            file &&
+            source.level === selectedLevel &&
+            ["kurs", "egzaminy"].includes(source.category)
+        );
+    }) || null;
+}
+
+function nextResumeIndex(items, lastIndex){
+    if(!items.length) return 0;
+
+    if(lastIndex >= 0){
+        for(let offset = 1; offset <= items.length; offset++){
+            const index = (lastIndex + offset) % items.length;
+
+            if(!getSavedResult(items[index])){
+                return index;
+            }
+        }
+
+        return lastIndex;
+    }
+
+    const firstOpen = items.findIndex(task => !getSavedResult(task));
+
+    return firstOpen >= 0 ? firstOpen : 0;
+}
+
+async function restoreLastStudentLocation(){
+    const lastProgress = findLastProgressItem();
+
+    if(!lastProgress) return null;
+
+    const sourceId = getProgressSourceId(lastProgress);
+    const file = getProgressFile(lastProgress);
+    const source = getSourceMetaById(sourceId);
+
+    if(!source) return null;
+
+    selectedLevel = source.level || selectedLevel;
+    selectedCategory = source.category || selectedCategory;
+    selectedSource = sourceId;
+    taskMode = "ordered";
+    await ensureTaskSourceLoaded(selectedSource);
+
+    const sourceTask = tasks.find(task =>
+        task.sourceId === sourceId &&
+        task.file === file
+    );
+
+    if(selectedCategory === "kurs"){
+        selectedCoursePart = lastProgress.course_part ||
+            sourceTask?.coursePart ||
+            selectedCoursePart ||
+            "zadania";
+        ensureSelectedCoursePart();
+    }
+
+    const items = pool();
+    const lastIndex = items.findIndex(task => task.file === file);
+
+    return nextResumeIndex(items, lastIndex);
 }
 
 function getTaskSources(category, level, options = {}){
@@ -4145,8 +4241,51 @@ function courseTaskNumberFromTitle(task){
     return match ? match[1].replace(",", ".") : "";
 }
 
+function coursePartOrdinalNumber(task){
+    if(!task?.sourceId || !["praca_domowa", "zadania_praktyczne"].includes(task.coursePart)){
+        return "";
+    }
+
+    if(task.coursePart === "zadania_praktyczne"){
+        const practicalNumber = courseTaskNumberFromTitle(task);
+
+        if(practicalNumber) return practicalNumber;
+    }
+
+    const sectionTasks = tasks.filter(item =>
+        item.category === "kurs" &&
+        item.sourceId === task.sourceId &&
+        item.coursePart === task.coursePart
+    );
+    const index = sectionTasks.findIndex(item => item.file === task.file);
+
+    return index >= 0 ? String(index + 1) : "";
+}
+
+function coursePartDisplayTitle(task){
+    const number = coursePartOrdinalNumber(task);
+
+    if(!number) return "";
+
+    const lessonLabel = task.sourceLabel || getSourceMetaById(task.sourceId)?.label || "Lekcja";
+
+    if(task.coursePart === "zadania_praktyczne"){
+        return `${lessonLabel} - zadanie praktyczne ${number}`;
+    }
+
+    if(task.coursePart === "praca_domowa"){
+        return `${lessonLabel} - zadanie domowe ${number}`;
+    }
+
+    return "";
+}
+
 function taskNumberLabel(task){
     if(task?.category === "kurs"){
+        const coursePartNumber = coursePartOrdinalNumber(task);
+
+        if(coursePartNumber) return coursePartNumber;
+
         const courseNumber = courseTaskNumberFromTitle(task);
 
         if(courseNumber) return courseNumber;
@@ -4334,7 +4473,7 @@ function parseFile(file, task = null){
 }
 
 function taskLabel(task){
-    return (task.title || parseFile(task.file, task))
+    return (coursePartDisplayTitle(task) || task.title || parseFile(task.file, task))
         .replace(/praca domowa/gi, match => match[0] === match[0].toUpperCase()
             ? "Zadanie domowe"
             : "zadanie domowe");
