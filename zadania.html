@@ -111,17 +111,19 @@ body {
 .formula-card {
     display: grid;
     gap: 2px;
-    border: 1px solid var(--line);
+    border: 1px solid #b8d3ee;
     border-radius: 8px;
-    background: var(--surface-soft);
+    background: linear-gradient(135deg, #f7fbff, #ffffff);
     color: var(--text);
     padding: 8px 10px;
     text-decoration: none;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 14px rgba(142, 181, 222, 0.14);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .formula-card:hover {
-    border-color: var(--navy);
+    border-color: var(--blue-text);
+    box-shadow: 0 7px 18px rgba(142, 181, 222, 0.22);
     transform: translateY(-1px);
 }
 
@@ -134,6 +136,12 @@ body {
     color: var(--muted);
     font-size: 10px;
     line-height: 1.25;
+}
+
+#formulaSection {
+    border-top: 1px dashed var(--line);
+    margin-top: 4px;
+    padding-top: 10px;
 }
 
 .training-card {
@@ -243,6 +251,10 @@ body {
 
 .learning-progress-fill.exam {
     background: linear-gradient(90deg, #24527a, #5d8fbd);
+}
+
+.learning-progress-fill.homework {
+    background: linear-gradient(90deg, #d99595, #e7b4b4);
 }
 
 .learning-progress-detail {
@@ -400,7 +412,7 @@ body:not(.guest-exam-mode) .selector-grid {
 .source-list.exam-source-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 3px;
-    max-height: 132px;
+    max-height: 146px;
 }
 
 .source-summary-row {
@@ -457,16 +469,17 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn {
-    min-height: 25px;
+    min-height: 39px;
     align-content: center;
     gap: 1px;
-    padding: 3px 4px;
+    padding: 4px 5px;
     text-align: center;
 }
 
 .exam-source-list .source-btn span {
-    font-size: 9.5px;
-    line-height: 1.05;
+    font-size: 9px;
+    line-height: 1;
+    overflow-wrap: anywhere;
 }
 
 .course-source-list .source-btn span {
@@ -482,11 +495,11 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn small {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 8.5px;
-    line-height: 1.1;
+    overflow: visible;
+    white-space: normal;
+    font-size: 8px;
+    line-height: 1;
+    overflow-wrap: anywhere;
 }
 
 .course-source-list .source-btn small {
@@ -1901,21 +1914,23 @@ footer {
 
     .source-list.exam-source-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        max-height: 74px;
+        max-height: 118px;
     }
 
     .exam-source-list .source-btn {
-        min-height: 23px;
-        padding: 2px 3px;
+        min-height: 34px;
+        padding: 3px 4px;
     }
 
     .exam-source-list .source-btn span {
-        font-size: 8.5px;
+        font-size: 8px;
         line-height: 1;
     }
 
     .exam-source-list .source-btn small {
-        display: none;
+        display: block;
+        font-size: 7.5px;
+        line-height: 1;
     }
 
     .course-source-list .source-btn {
@@ -2284,13 +2299,24 @@ footer {
                 <div class="student-progress-panel" aria-live="polite">
                     <div class="learning-progress">
                         <div class="learning-progress-head">
-                            <span>Kurs</span>
-                            <strong id="courseProgressLabel">0 / 20 lekcji</strong>
+                            <span>Lekcje</span>
+                            <strong id="lessonProgressLabel">0 / 20 lekcji</strong>
                         </div>
                         <div class="learning-progress-track">
-                            <span class="learning-progress-fill" id="courseProgressFill"></span>
+                            <span class="learning-progress-fill" id="lessonProgressFill"></span>
                         </div>
-                        <div class="learning-progress-detail" id="courseProgressDetail">Wczytywanie postępu...</div>
+                        <div class="learning-progress-detail" id="lessonProgressDetail">Wczytywanie postępu...</div>
+                    </div>
+
+                    <div class="learning-progress">
+                        <div class="learning-progress-head">
+                            <span>Prace domowe</span>
+                            <strong id="homeworkProgressLabel">0 / 20 lekcji</strong>
+                        </div>
+                        <div class="learning-progress-track">
+                            <span class="learning-progress-fill homework" id="homeworkProgressFill"></span>
+                        </div>
+                        <div class="learning-progress-detail" id="homeworkProgressDetail">Wczytywanie postępu...</div>
                     </div>
 
                     <div class="learning-progress">
@@ -3546,10 +3572,10 @@ function renderSourceSelector(){
             : null;
         const detail = selectedCategory === "kurs"
             ? (isLoaded ? `${count} zadań` : "Wczytaj lekcję")
-            : `${source.detail} • ${isLoaded ? `${count} zadań` : "Wczytaj arkusz"}`;
+            : compactExamSourceDetail(source.detail);
         const titleDetail = selectedCategory === "kurs" && source.detail
             ? `${source.detail} • ${isLoaded ? `${count} zadań` : "Wczytaj lekcję"}`
-            : detail;
+            : `${source.detail}${isLoaded ? ` • ${count} zadań` : ""}`;
 
         addSourceButton(
             list,
@@ -3571,6 +3597,14 @@ function updateModeSection(){
     if(!section) return;
 
     section.style.display = selectedCategory === "egzaminy" ? "grid" : "none";
+}
+
+function compactExamSourceDetail(detail){
+    return String(detail || "")
+        .split("/")
+        .map(part => part.trim())
+        .filter(Boolean)
+        .join("/");
 }
 
 function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false){
@@ -3908,7 +3942,10 @@ function updateProgressBar({ labelId, fillId, detailId, label, unit, stats, empt
 }
 
 function renderLearningProgress(unavailableText = ""){
-    const courseStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
+    const lessonStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
+        coursePart: "zadania"
+    });
+    const homeworkStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
         coursePart: "praca_domowa"
     });
     const examStats = calculateProgressStats("egzaminy", EXAM_TARGETS[selectedLevel] || 20, {
@@ -3917,12 +3954,23 @@ function renderLearningProgress(unavailableText = ""){
     });
 
     updateProgressBar({
-        labelId: "courseProgressLabel",
-        fillId: "courseProgressFill",
-        detailId: "courseProgressDetail",
+        labelId: "lessonProgressLabel",
+        fillId: "lessonProgressFill",
+        detailId: "lessonProgressDetail",
+        label: "Lekcje",
+        unit: "lekcji",
+        stats: lessonStats,
+        emptyText: "Brak dodanych lekcji dla tego poziomu.",
+        unavailableText
+    });
+
+    updateProgressBar({
+        labelId: "homeworkProgressLabel",
+        fillId: "homeworkProgressFill",
+        detailId: "homeworkProgressDetail",
         label: "Prace domowe",
         unit: "lekcji",
-        stats: courseStats,
+        stats: homeworkStats,
         emptyText: "Brak dodanych prac domowych dla tego poziomu.",
         unavailableText
     });
