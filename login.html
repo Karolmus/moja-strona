@@ -100,7 +100,7 @@ label,
     font-weight: 600;
 }
 
-.field input[type="email"],
+.field input[type="text"],
 .password-row input {
     width: 100%;
     min-height: 44px;
@@ -287,15 +287,16 @@ footer {
 
         <form class="login-card" id="loginForm" action="/login" method="post" novalidate>
             <div class="field">
-                <label for="email">Adres e-mail</label>
+                <label for="email">E-mail / login</label>
                 <input
                     id="email"
                     name="email"
-                    type="email"
-                    inputmode="email"
+                    type="text"
+                    inputmode="text"
                     autocomplete="username"
                     maxlength="254"
                     required
+                    spellcheck="false"
                     aria-describedby="emailError"
                 >
                 <div class="field-error" id="emailError" aria-live="polite"></div>
@@ -386,10 +387,7 @@ function validateLoginForm(){
     formStatus.innerText = "";
 
     if(!email.value.trim()){
-        setFieldError(email, emailError, "Podaj adres e-mail.");
-        valid = false;
-    } else if(!email.validity.valid){
-        setFieldError(email, emailError, "Podaj poprawny adres e-mail.");
+        setFieldError(email, emailError, "Podaj e-mail albo login.");
         valid = false;
     }
 
