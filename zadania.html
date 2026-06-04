@@ -469,17 +469,18 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn {
-    min-height: 39px;
+    min-height: 56px;
     align-content: center;
     gap: 1px;
-    padding: 4px 5px;
+    padding: 6px 7px;
     text-align: center;
 }
 
 .exam-source-list .source-btn span {
-    font-size: 9px;
-    line-height: 1;
-    overflow-wrap: anywhere;
+    font-size: 10px;
+    line-height: 1.05;
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 .course-source-list .source-btn span {
@@ -497,9 +498,10 @@ body.guest-exam-mode .source-summary-row {
 .exam-source-list .source-btn small {
     overflow: visible;
     white-space: normal;
-    font-size: 8px;
-    line-height: 1;
-    overflow-wrap: anywhere;
+    font-size: 8.5px;
+    line-height: 1.05;
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 .course-source-list .source-btn small {
@@ -1914,23 +1916,23 @@ footer {
 
     .source-list.exam-source-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        max-height: 118px;
+        max-height: 138px;
     }
 
     .exam-source-list .source-btn {
-        min-height: 34px;
-        padding: 3px 4px;
+        min-height: 50px;
+        padding: 5px;
     }
 
     .exam-source-list .source-btn span {
-        font-size: 8px;
-        line-height: 1;
+        font-size: 9px;
+        line-height: 1.05;
     }
 
     .exam-source-list .source-btn small {
         display: block;
-        font-size: 7.5px;
-        line-height: 1;
+        font-size: 8px;
+        line-height: 1.05;
     }
 
     .course-source-list .source-btn {
@@ -3078,6 +3080,15 @@ function normalizeTaskSolutions(task, basePath){
 
         return group;
     });
+}
+
+function formatSolutionTabLabel(solution, index){
+    const fallback = `Sposób ${String.fromCharCode(65 + index)}`;
+    const label = String(solution?.label || "").trim();
+
+    if(!label) return fallback;
+
+    return /^sposób\b/i.test(label) ? label : `Sposób ${label}`;
 }
 
 function normalizeTaskGradingCriteria(task, basePath){
@@ -6590,7 +6601,7 @@ function showSolution(index = selectedSolutionIndex){
 
             button.type = "button";
             button.className = itemIndex === safeIndex ? "solution-tab active" : "solution-tab";
-            button.innerText = `Sposób ${item.label}`;
+            button.innerText = formatSolutionTabLabel(item, itemIndex);
             button.onclick = () => showSolution(itemIndex);
 
             switcher.appendChild(button);
