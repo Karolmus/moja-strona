@@ -1,0 +1,418 @@
+[
+  {
+    "file": "1_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "PP",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ]
+  },
+  {
+    "file": "2_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "A",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "B",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "A3",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "file": "5_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "A",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "AC",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "7_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "C",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "C",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "C",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "B",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "D",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "B",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "13_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "D",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "C",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "15_2022_cke_o_m.png",
+    "difficulty": 2,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "PP",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1,
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ]
+  },
+  {
+    "file": "16_2022_cke_o_m.png",
+    "difficulty": 3,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "16_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "16_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "16_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "16_s_d.png"
+      },
+      {
+        "label": "Sposób E",
+        "file": "16_s_e.png"
+      },
+      {
+        "label": "Sposób F",
+        "file": "16_s_f.png"
+      },
+      {
+        "label": "Sposób G",
+        "file": "16_s_g.png"
+      },
+      {
+        "label": "Sposób H",
+        "file": "16_s_h.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "16_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "16_z2.png"
+      }
+    ]
+  },
+  {
+    "file": "17_2022_cke_o_m.png",
+    "difficulty": 3,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "17_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "17_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "17_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "17_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "17_z.png"
+  },
+  {
+    "file": "18_2022_cke_o_m.png",
+    "difficulty": 3,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "18_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "18_z.png"
+  },
+  {
+    "file": "19_2022_cke_o_m.png",
+    "difficulty": 3,
+    "topic": "Egzamin ósmoklasisty 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "19_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "19_s_b.png"
+      }
+    ],
+    "gradingCriteriaFile": "19_z.png"
+  }
+]
