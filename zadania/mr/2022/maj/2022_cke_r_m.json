@@ -1,0 +1,462 @@
+[
+  {
+    "file": "1_2022_cke_r_m.png",
+    "difficulty": 2,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "A",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2022_cke_r_m.png",
+    "difficulty": 2,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "C",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2022_cke_r_m.png",
+    "difficulty": 2,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "A",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2022_cke_r_m.png",
+    "difficulty": 2,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "A",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2022_cke_r_m.png",
+    "difficulty": 2,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "411",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "type": "input",
+    "acceptedAnswers": [
+      "411",
+      "4 1 1"
+    ],
+    "inputs": [
+      {
+        "label": "Pierwsza cyfra",
+        "answers": [
+          "4"
+        ]
+      },
+      {
+        "label": "Druga cyfra",
+        "answers": [
+          "1"
+        ]
+      },
+      {
+        "label": "Trzecia cyfra",
+        "answers": [
+          "1"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "6_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "6_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "6_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "6_s_c.png"
+      }
+    ],
+    "gradingCriteriaFile": "6_z.png"
+  },
+  {
+    "file": "7_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "7_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "7_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "7_s_c.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "7_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "7_z2.png"
+      }
+    ]
+  },
+  {
+    "file": "8_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "8_s_a1.png"
+      },
+      {
+        "label": "Sposób A",
+        "file": "8_s_a2.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "8_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "8_s_c.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "8_s_d.png"
+      }
+    ],
+    "gradingCriteriaFile": "8_z.png"
+  },
+  {
+    "file": "9_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "9_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "9_z.png"
+  },
+  {
+    "file": "10_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "10_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "10_s_b.png"
+      }
+    ],
+    "gradingCriteriaFile": "10_z.png"
+  },
+  {
+    "file": "11_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "11_s_a1.png"
+      },
+      {
+        "label": "Sposób A",
+        "file": "11_s_a2.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "11_s_b.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "11_s_c.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "11_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "11_z2.png"
+      }
+    ]
+  },
+  {
+    "file": "12_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 5,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "12_s_a.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "12_s_b.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "12_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "12_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "12_z3.png"
+      }
+    ]
+  },
+  {
+    "file": "13_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 5,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "13_s_a.png"
+      }
+    ],
+    "gradingCriteriaFile": "13_z.png"
+  },
+  {
+    "file": "14_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 6,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "14_s_a1.png"
+      },
+      {
+        "label": "Sposób A",
+        "file": "14_s_a2.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "14_s_b1.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "14_s_b2.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "14_s_c1.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "14_s_c2.png"
+      },
+      {
+        "label": "Sposób C",
+        "file": "14_s_c3.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "14_s_d1.png"
+      },
+      {
+        "label": "Sposób D",
+        "file": "14_s_d2.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "14_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "14_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "14_z3.png"
+      }
+    ]
+  },
+  {
+    "file": "15_2022_cke_r_m.png",
+    "difficulty": 3,
+    "topic": "Matura rozszerzona 2022",
+    "hint": "",
+    "answer": "",
+    "tags": [
+      "arkusz-cke-2022"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 7,
+    "solutions": [
+      {
+        "label": "Sposób A",
+        "file": "15_s_a1.png"
+      },
+      {
+        "label": "Sposób A",
+        "file": "15_s_a2.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "15_s_b1.png"
+      },
+      {
+        "label": "Sposób B",
+        "file": "15_s_b2.png"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "15_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "15_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "15_z3.png"
+      },
+      {
+        "label": "Część 4",
+        "file": "15_z4.png"
+      }
+    ]
+  }
+]

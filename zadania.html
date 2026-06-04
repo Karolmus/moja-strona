@@ -406,7 +406,8 @@ body:not(.guest-exam-mode) .selector-grid {
 .source-list.course-source-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 3px;
-    max-height: 132px;
+    max-height: none;
+    overflow-y: visible;
 }
 
 .source-list.exam-source-list {
@@ -1911,7 +1912,8 @@ footer {
 
     .source-list.course-source-list {
         grid-template-columns: repeat(5, minmax(0, 1fr));
-        max-height: 74px;
+        max-height: none;
+        overflow-y: visible;
     }
 
     .source-list.exam-source-list {
@@ -2467,12 +2469,15 @@ const TASK_SOURCES = [
     { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2022/maj/2022_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mr/2023/maj/2023_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2022/maj/2022_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2022/maj/2022_cke_o_m.json", category: "egzaminy" },
     {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
         category: "kurs",
