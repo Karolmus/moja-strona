@@ -2221,18 +2221,12 @@ footer {
                 </div>
 
                 <div class="side-section source-picker-section">
-                    <div class="side-title" id="sourceTitle">Numer lekcji</div>
+                    <div class="side-title" id="sourceTitle">Wybór lekcji</div>
                     <div class="source-list" id="sourceList"></div>
                 </div>
             </div>
 
-            <div class="side-section" id="assignedCourseSection" style="display:none">
-                <div class="side-title">Przypisany kurs</div>
-                <div class="assigned-course-card" id="assignedCourseName">Sprawdzam kurs ucznia...</div>
-            </div>
-
             <div class="side-section">
-                <div class="side-title">Trening</div>
                 <a class="training-card" href="trening.html">
                     <strong>Trening szybkości</strong>
                 </a>
@@ -2247,7 +2241,6 @@ footer {
             </div>
 
             <div class="side-section" id="categorySection" style="display:none">
-                <div class="side-title">Materiał</div>
                 <div class="category-toggle">
                     <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
                     <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
@@ -2293,11 +2286,10 @@ footer {
             </div>
 
             <div class="side-section" id="progressToggleSection" style="display:none">
-                <button class="progress-toggle-btn" id="progressToggleButton" type="button" onclick="toggleStudentProgressPanel()">Pokaż postęp ucznia</button>
+                <button class="progress-toggle-btn" id="progressToggleButton" type="button" onclick="toggleStudentProgressPanel()">Postęp pracy</button>
             </div>
 
             <div class="side-section" id="progressSection" style="display:none">
-                <div class="side-title">Postęp ucznia</div>
                 <div class="student-progress-panel" aria-live="polite">
                     <div class="learning-progress">
                         <div class="learning-progress-head">
@@ -2822,7 +2814,7 @@ function updateProgressPanelVisibility(){
 
     if(button){
         button.classList.toggle("active", progressPanelOpen);
-        button.innerText = progressPanelOpen ? "Ukryj postęp ucznia" : "Pokaż postęp ucznia";
+        button.innerText = progressPanelOpen ? "Ukryj postęp pracy" : "Postęp pracy";
     }
 }
 
@@ -2845,7 +2837,6 @@ function updateAccessModeUI(){
     document.body.classList.toggle("guest-exam-mode", !isLoggedInStudent);
     setTimerVisible(!isLoggedInStudent);
     updateProgressPanelVisibility();
-    setPanelSectionVisible("assignedCourseSection", isLoggedInStudent);
     setPanelSectionVisible("formulaSection", isLoggedInStudent && Boolean(FORMULA_SHEETS[selectedLevel]));
     setPanelSectionVisible("categorySection", isLoggedInStudent);
     updateSourceAttributionVisibility();
@@ -3555,7 +3546,7 @@ function renderSourceSelector(){
     list.classList.toggle("exam-source-list", selectedCategory !== "kurs");
 
     if(title){
-        title.innerText = selectedCategory === "kurs" ? "Numer lekcji" : "Arkusz";
+        title.innerText = selectedCategory === "kurs" ? "Wybór lekcji" : "Arkusz";
     }
 
     const availableSources = getAvailableSources();
@@ -4122,7 +4113,8 @@ function updateSourceSummary(){
 
     section.style.display = "grid";
     section.parentElement?.classList.remove("summary-hidden");
-    title.innerText = selectedCategory === "kurs" ? "Podsumowanie lekcji" : "Podsumowanie arkusza";
+    title.hidden = selectedCategory === "kurs";
+    title.innerText = selectedCategory === "kurs" ? "" : "Podsumowanie arkusza";
 
     const summary = calculateSourceSummary(summaryTasks);
 
