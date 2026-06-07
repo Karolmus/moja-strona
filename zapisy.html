@@ -189,6 +189,14 @@ h1{
     font-weight: 600;
 }
 
+.form-honeypot {
+    position: absolute !important;
+    left: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+}
+
 .contact-form input,
 .contact-form textarea {
     width: 100%;
@@ -930,6 +938,13 @@ footer{
                     <h3>Możesz też wygodnie skontaktować się ze mną przez formularz</h3>
 
                     <form class="contact-form" id="contactForm">
+                        <div class="form-honeypot" aria-hidden="true">
+                            <label>
+                                Strona internetowa
+                                <input name="website" tabindex="-1" autocomplete="off">
+                            </label>
+                        </div>
+
                         <div class="course-picker">
                             <div class="course-picker-title">Wybierz kurs</div>
                             <div class="course-options" role="radiogroup" aria-label="Wybór kursu">
@@ -1285,6 +1300,7 @@ fetch("nav.html")
 <script>
 const contactForm = document.getElementById("contactForm");
 const contactStatus = document.getElementById("contactStatus");
+const contactFormStartedAt = Date.now();
 
 function showContactStatus(message){
     contactStatus.classList.add("active");
@@ -1309,7 +1325,9 @@ contactForm.addEventListener("submit", async event => {
             body: JSON.stringify({
                 contact: formData.get("contact"),
                 preferred_term: formData.get("preferred_term"),
-                message: `Wybrany kurs: ${selectedCourse}\n\n${message}`
+                message: `Wybrany kurs: ${selectedCourse}\n\n${message}`,
+                website: formData.get("website"),
+                form_started_at: contactFormStartedAt
             })
         });
 

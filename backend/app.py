@@ -1,10 +1,19 @@
 import os
+import gzip
+import hashlib
+import math
+import secrets
+import threading
+import time
+from collections import defaultdict, deque
 from decimal import Decimal, ROUND_HALF_UP
 from functools import wraps
 
 import sympy as sp
 from flask import Flask, jsonify, request, session
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
+from werkzeug.exceptions import HTTPException
+from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash
 
 from auth_storage import (
@@ -55,21 +64,169 @@ from calculators.solver import (
     two_circles_plot,
 )
 
+def production_secret_key():
+    configured = os.environ.get("SECRET_KEY", "").strip()
+    unsafe_values = {
+        "",
+        "dev-only-change-before-render",
+        "change-this-before-production",
+    }
+
+    if configured not in unsafe_values:
+        return configured
+
+    if os.environ.get("RENDER"):
+        raise RuntimeError("Ustaw bezpieczną zmienną SECRET_KEY w usłudze Render.")
+
+    return secrets.token_urlsafe(48)
+
+
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1)
 app.config.update(
-    SECRET_KEY=os.environ.get("SECRET_KEY", "dev-only-change-before-render"),
+    SECRET_KEY=production_secret_key(),
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE=os.environ.get("SESSION_COOKIE_SAMESITE", "Lax"),
     SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "false").lower() == "true",
     AUTH_TOKEN_MAX_AGE=int(os.environ.get("AUTH_TOKEN_MAX_AGE", str(60 * 60 * 24 * 30))),
+    MAX_CONTENT_LENGTH=int(os.environ.get("MAX_CONTENT_LENGTH", str(32 * 1024))),
 )
 register_auth_db(app)
+
+CALCULATORS_ENABLED = os.environ.get("CALCULATORS_ENABLED", "false").lower() == "true"
+RATE_LIMIT_ENABLED = os.environ.get("RATE_LIMIT_ENABLED", "true").lower() == "true"
+CONTACT_FORM_MIN_SECONDS = float(os.environ.get("CONTACT_FORM_MIN_SECONDS", "2"))
 
 TRAINING_LEVEL_BY_STUDENT_LEVEL = {
     "egzamin_osmoklasisty": "eo",
     "matura_podstawowa": "mp",
     "matura_rozszerzona": "mr",
 }
+
+_rate_limit_buckets = defaultdict(deque)
+_rate_limit_lock = threading.Lock()
+_last_rate_limit_cleanup = 0.0
+
+
+def client_ip():
+    return request.remote_addr or "unknown"
+
+
+def token_fingerprint(token):
+    return hashlib.sha256(str(token or "").encode("utf-8")).hexdigest()[:20]
+
+
+def default_rate_limit_key():
+    token = bearer_token()
+
+    if token:
+        return f"auth:{token_fingerprint(token)}"
+
+    return f"ip:{client_ip()}"
+
+
+def contact_rate_limit_key():
+    return f"contact:{client_ip()}"
+
+
+def login_rate_limit_key():
+    data = request.get_json(silent=True) or {}
+    email = str(data.get("email") or "").strip().lower()
+
+    return f"login:{client_ip()}:{token_fingerprint(email)}"
+
+
+def parent_rate_limit_key():
+    data = request.get_json(silent=True) or {}
+
+    return f"parent:{client_ip()}:{token_fingerprint(data.get('token'))}"
+
+
+def enforce_rate_limit(limit, window_seconds, scope, key):
+    global _last_rate_limit_cleanup
+
+    if not RATE_LIMIT_ENABLED:
+        return None
+
+    now = time.monotonic()
+    bucket_key = (scope, key)
+
+    with _rate_limit_lock:
+        bucket = _rate_limit_buckets[bucket_key]
+        cutoff = now - window_seconds
+
+        while bucket and bucket[0] <= cutoff:
+            bucket.popleft()
+
+        if len(bucket) >= limit:
+            retry_after = max(1, math.ceil(window_seconds - (now - bucket[0])))
+            response = api_error("Zbyt wiele żądań. Spróbuj ponownie później.", 429)
+            response[0].headers["Retry-After"] = str(retry_after)
+            return response
+
+        bucket.append(now)
+
+        if now - _last_rate_limit_cleanup > 300:
+            stale = [
+                item_key
+                for item_key, timestamps in _rate_limit_buckets.items()
+                if not timestamps or timestamps[-1] <= now - 86400
+            ]
+
+            for item_key in stale:
+                _rate_limit_buckets.pop(item_key, None)
+
+            _last_rate_limit_cleanup = now
+
+    return None
+
+
+def rate_limit(limit, window_seconds, scope, key_func=default_rate_limit_key):
+    def decorator(handler):
+        @wraps(handler)
+        def wrapper(*args, **kwargs):
+            blocked = enforce_rate_limit(
+                limit=limit,
+                window_seconds=window_seconds,
+                scope=scope,
+                key=key_func(),
+            )
+
+            if blocked:
+                return blocked
+
+            return handler(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+def require_calculators_enabled(handler):
+    @wraps(handler)
+    def wrapper(*args, **kwargs):
+        if not CALCULATORS_ENABLED:
+            return api_error("Kalkulatory są obecnie wyłączone.", 404)
+
+        return handler(*args, **kwargs)
+
+    return wrapper
+
+
+def finite_number(value, minimum=-1_000_000, maximum=1_000_000):
+    number = float(value)
+
+    if not math.isfinite(number) or number < minimum or number > maximum:
+        raise ValueError("Liczba jest poza dozwolonym zakresem.")
+
+    return number
+
+
+def validate_calculator_list(values, maximum_length=10):
+    if not isinstance(values, list) or len(values) > maximum_length:
+        raise ValueError("Nieprawidłowa liczba elementów.")
+
+    return values
 
 
 def bootstrap_auth_db():
@@ -124,6 +281,28 @@ def add_cors_headers(response):
 
     response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, DELETE, OPTIONS"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "no-referrer"
+
+    if request.path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-store, max-age=0"
+
+    accepts_gzip = "gzip" in request.headers.get("Accept-Encoding", "").lower()
+    response_length = response.calculate_content_length() or 0
+
+    if (
+        accepts_gzip
+        and response.mimetype == "application/json"
+        and not response.direct_passthrough
+        and response_length >= 1024
+        and "Content-Encoding" not in response.headers
+    ):
+        compressed = gzip.compress(response.get_data(), compresslevel=5)
+        response.set_data(compressed)
+        response.headers["Content-Encoding"] = "gzip"
+        response.headers["Content-Length"] = str(len(compressed))
+        response.headers.add("Vary", "Accept-Encoding")
 
     return response
 
@@ -134,6 +313,24 @@ def payload():
 
 def api_error(message, status=400):
     return jsonify({"error": message}), status
+
+
+@app.before_request
+def apply_global_rate_limit():
+    if request.method == "OPTIONS":
+        return None
+
+    return enforce_rate_limit(
+        limit=300,
+        window_seconds=60,
+        scope="global",
+        key=default_rate_limit_key(),
+    )
+
+
+@app.errorhandler(413)
+def request_too_large(_error):
+    return api_error("Przesłane dane są zbyt duże.", 413)
 
 
 def auth_serializer():
@@ -182,8 +379,11 @@ def safe(handler):
         return api_error("Taki użytkownik już istnieje.")
     except (TypeError, ValueError):
         return api_error("Nieprawidłowe dane wejściowe.")
-    except Exception as exc:
-        return api_error(f"Nie udało się obsłużyć żądania: {exc}", 500)
+    except HTTPException:
+        raise
+    except Exception:
+        app.logger.exception("Nieobsłużony błąd API")
+        return api_error("Nie udało się obsłużyć żądania.", 500)
 
 
 def wants_plot(data):
@@ -262,6 +462,8 @@ def health():
 
 
 @app.post("/api/auth/login")
+@rate_limit(10, 10 * 60, "login-account", login_rate_limit_key)
+@rate_limit(30, 60, "login-ip", lambda: f"login-ip:{client_ip()}")
 def api_login():
     def handler():
         data = payload()
@@ -531,6 +733,8 @@ def api_admin_update_review_task(_admin, item_id):
 
 
 @app.post("/api/progress")
+@rate_limit(90, 60, "progress-write")
+@rate_limit(1500, 24 * 60 * 60, "progress-write-day")
 @require_auth
 def api_save_progress(user):
     def handler():
@@ -549,6 +753,8 @@ def api_save_progress(user):
 
 
 @app.post("/api/review-tasks")
+@rate_limit(30, 60, "review-task-write")
+@rate_limit(200, 24 * 60 * 60, "review-task-write-day")
 @require_auth
 def api_mark_review_task(user):
     def handler():
@@ -564,9 +770,28 @@ def api_mark_review_task(user):
 
 
 @app.post("/api/contact-messages")
+@rate_limit(5, 60 * 60, "contact-hour", contact_rate_limit_key)
+@rate_limit(20, 24 * 60 * 60, "contact-day", contact_rate_limit_key)
 def api_create_contact_message():
     def handler():
-        item = create_contact_message(payload())
+        data = payload()
+
+        if str(data.get("website") or "").strip():
+            return jsonify({
+                "message": {
+                    "accepted": True,
+                },
+            }), 201
+
+        started_at = data.get("form_started_at")
+
+        if started_at not in (None, ""):
+            elapsed_seconds = (time.time() * 1000 - float(started_at)) / 1000
+
+            if 0 <= elapsed_seconds < CONTACT_FORM_MIN_SECONDS:
+                return api_error("Formularz został wysłany zbyt szybko. Spróbuj ponownie.", 429)
+
+        item = create_contact_message(data)
 
         return jsonify({
             "message": item,
@@ -576,6 +801,7 @@ def api_create_contact_message():
 
 
 @app.get("/api/progress/me")
+@rate_limit(60, 60, "progress-read")
 @require_auth
 def api_my_progress(user):
     return jsonify({
@@ -584,6 +810,8 @@ def api_my_progress(user):
 
 
 @app.post("/api/speed-training/results")
+@rate_limit(12, 10 * 60, "training-result-write")
+@rate_limit(100, 24 * 60 * 60, "training-result-write-day")
 @require_auth
 def api_save_speed_training_result(user):
     def handler():
@@ -607,6 +835,7 @@ def api_save_speed_training_result(user):
 
 
 @app.get("/api/speed-training/leaderboard")
+@rate_limit(60, 60, "training-leaderboard-read")
 @require_auth
 def api_speed_training_leaderboard(user):
     filters = {
@@ -632,6 +861,7 @@ def api_speed_training_leaderboard(user):
 
 
 @app.get("/api/speed-training/history")
+@rate_limit(60, 60, "training-history-read")
 @require_auth
 def api_speed_training_history(user):
     filters = {
@@ -657,6 +887,7 @@ def api_speed_training_history(user):
 
 
 @app.post("/api/parent/progress")
+@rate_limit(30, 60, "parent-progress", parent_rate_limit_key)
 def api_parent_progress():
     def handler():
         data = payload()
@@ -681,13 +912,27 @@ def api_parent_progress():
 
 
 @app.post("/api/bernoulli")
-def api_bernoulli():
+@rate_limit(10, 60, "calculator-bernoulli")
+@require_calculators_enabled
+@require_auth
+def api_bernoulli(_user):
     def handler():
         data = payload()
         n = int(data["n"])
-        result = bernoulli(data["p"], n, data["k"])
+
+        if n < 0 or n > 200:
+            raise ValueError("Liczba prób musi należeć do zakresu 0-200.")
+
+        p = finite_number(data["p"], 0, 1)
+        raw_k = validate_calculator_list(data["k"], maximum_length=201)
+        k_values = [int(value) for value in raw_k]
+
+        if any(value < 0 or value > n for value in k_values):
+            raise ValueError("Wartości k muszą należeć do zakresu 0-n.")
+
+        result = bernoulli(p, n, k_values)
         rounded_result = Decimal(str(sp.N(result, 20))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
-        plot = bernoulli_plot(data["p"], n, data["k"]) if wants_plot(data) else None
+        plot = bernoulli_plot(p, n, k_values) if wants_plot(data) else None
 
         return jsonify({
             "result": sp.latex(result),
@@ -699,10 +944,19 @@ def api_bernoulli():
 
 
 @app.post("/api/poly")
-def api_poly():
+@rate_limit(10, 60, "calculator-poly")
+@require_calculators_enabled
+@require_auth
+def api_poly(_user):
     def handler():
         data = payload()
-        sol, fac, expanded, plot = poly_solve(data["coeffs"], include_plot=wants_plot(data))
+        raw_coeffs = validate_calculator_list(data["coeffs"], maximum_length=5)
+
+        if not raw_coeffs:
+            raise ValueError("Brakuje współczynników.")
+
+        coeffs = [finite_number(value, -100_000, 100_000) for value in raw_coeffs]
+        sol, fac, expanded, plot = poly_solve(coeffs, include_plot=wants_plot(data))
 
         return jsonify({
             "sol": [sp.latex(s) for s in sol],
@@ -716,11 +970,19 @@ def api_poly():
 
 
 @app.post("/api/styczna")
-def api_styczna():
+@rate_limit(10, 60, "calculator-tangent")
+@require_calculators_enabled
+@require_auth
+def api_styczna(_user):
     def handler():
         data = payload()
-        result = styczna(data["xa"], data["ya"], data["xs"], data["ys"], data["r"])
-        plot = styczna_plot(data["xa"], data["ya"], data["xs"], data["ys"], data["r"], result) if wants_plot(data) else None
+        xa = finite_number(data["xa"])
+        ya = finite_number(data["ya"])
+        xs = finite_number(data["xs"])
+        ys = finite_number(data["ys"])
+        radius = finite_number(data["r"], 0.000001, 1_000_000)
+        result = styczna(xa, ya, xs, ys, radius)
+        plot = styczna_plot(xa, ya, xs, ys, radius, result) if wants_plot(data) else None
 
         return jsonify({
             "result": [sp.latex(item) for item in result],
@@ -731,11 +993,39 @@ def api_styczna():
 
 
 @app.post("/api/line_circle")
-def api_line_circle():
+@rate_limit(10, 60, "calculator-line-circle")
+@require_calculators_enabled
+@require_auth
+def api_line_circle(_user):
     def handler():
         data = payload()
-        result = line_and_circle(data["A"], data["B"], data["C"], data["p"], data["q"], data["r"])
-        plot = line_and_circle_plot(data["A"], data["B"], data["C"], data["p"], data["q"], data["r"], result) if wants_plot(data) else None
+        coefficient_a = finite_number(data["A"])
+        coefficient_b = finite_number(data["B"])
+        coefficient_c = finite_number(data["C"])
+        center_p = finite_number(data["p"])
+        center_q = finite_number(data["q"])
+        radius = finite_number(data["r"], 0.000001, 1_000_000)
+
+        if coefficient_a == 0 and coefficient_b == 0:
+            raise ValueError("Równanie prostej jest nieprawidłowe.")
+
+        result = line_and_circle(
+            coefficient_a,
+            coefficient_b,
+            coefficient_c,
+            center_p,
+            center_q,
+            radius,
+        )
+        plot = line_and_circle_plot(
+            coefficient_a,
+            coefficient_b,
+            coefficient_c,
+            center_p,
+            center_q,
+            radius,
+            result,
+        ) if wants_plot(data) else None
 
         return jsonify({
             "result": [sp.latex(item) for item in result],
@@ -746,11 +1036,28 @@ def api_line_circle():
 
 
 @app.post("/api/two_circles")
-def api_two_circles():
+@rate_limit(10, 60, "calculator-two-circles")
+@require_calculators_enabled
+@require_auth
+def api_two_circles(_user):
     def handler():
         data = payload()
-        result = two_circles(data["a"], data["b"], data["c"], data["p"], data["q"], data["r"])
-        plot = two_circles_plot(data["a"], data["b"], data["c"], data["p"], data["q"], data["r"], result) if wants_plot(data) else None
+        center_a = finite_number(data["a"])
+        center_b = finite_number(data["b"])
+        radius_c = finite_number(data["c"], 0.000001, 1_000_000)
+        center_p = finite_number(data["p"])
+        center_q = finite_number(data["q"])
+        radius_r = finite_number(data["r"], 0.000001, 1_000_000)
+        result = two_circles(center_a, center_b, radius_c, center_p, center_q, radius_r)
+        plot = two_circles_plot(
+            center_a,
+            center_b,
+            radius_c,
+            center_p,
+            center_q,
+            radius_r,
+            result,
+        ) if wants_plot(data) else None
 
         return jsonify({
             "result": [sp.latex(item) for item in result],
@@ -761,11 +1068,16 @@ def api_two_circles():
 
 
 @app.post("/api/angle")
-def api_angle():
+@rate_limit(10, 60, "calculator-angle")
+@require_calculators_enabled
+@require_auth
+def api_angle(_user):
     def handler():
         data = payload()
-        result = lines_angle(data["a1"], data["a2"])
-        plot = lines_angle_plot(data["a1"], data["a2"]) if wants_plot(data) else None
+        slope_a = finite_number(data["a1"], -100_000, 100_000)
+        slope_b = finite_number(data["a2"], -100_000, 100_000)
+        result = lines_angle(slope_a, slope_b)
+        plot = lines_angle_plot(slope_a, slope_b) if wants_plot(data) else None
 
         return jsonify({
             "result": result,

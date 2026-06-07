@@ -2,6 +2,10 @@
     const LOCAL_API_URL = "http://127.0.0.1:5000";
     const RENDER_API_URL = "https://deltasigma-calculators.onrender.com";
     const TOKEN_KEY = "deltaSigmaAuthToken";
+    const AUTH_REFRESH_TTL_MS = 30000;
+    let authRefreshPromise = null;
+    let cachedAuthUser = null;
+    let cachedAuthAt = 0;
 
     window.DS_API_BASE_URL = (
         window.DS_API_BASE_URL ||
@@ -15,11 +19,15 @@
     window.saveAuthToken = function(token){
         if(token){
             window.localStorage.setItem(TOKEN_KEY, token);
+            cachedAuthUser = null;
+            cachedAuthAt = 0;
         }
     };
 
     window.clearAuthToken = function(){
         window.localStorage.removeItem(TOKEN_KEY);
+        cachedAuthUser = null;
+        cachedAuthAt = 0;
     };
 
     window.logoutCurrentUser = async function(){
@@ -86,7 +94,7 @@
         }
     };
 
-    window.refreshAuthNav = async function(){
+    window.refreshAuthNav = async function(options = {}){
         const token = window.getAuthToken();
 
         if(!token){
@@ -94,21 +102,39 @@
             return null;
         }
 
-        try {
-            const session = await window.apiFetch("/api/auth/me");
-            const user = session.authenticated ? session.user : null;
-
-            if(!user){
-                window.clearAuthToken();
-            }
-
-            window.updateAuthNav(user);
-            return user;
-        } catch(error) {
-            window.clearAuthToken();
-            window.updateAuthNav(null);
-            return null;
+        if(!options.force && Date.now() - cachedAuthAt < AUTH_REFRESH_TTL_MS){
+            window.updateAuthNav(cachedAuthUser);
+            return cachedAuthUser;
         }
+
+        if(authRefreshPromise){
+            return authRefreshPromise;
+        }
+
+        authRefreshPromise = (async () => {
+            try {
+                const session = await window.apiFetch("/api/auth/me");
+                const user = session.authenticated ? session.user : null;
+
+                if(!user){
+                    window.clearAuthToken();
+                } else {
+                    cachedAuthUser = user;
+                    cachedAuthAt = Date.now();
+                }
+
+                window.updateAuthNav(user);
+                return user;
+            } catch(error) {
+                window.clearAuthToken();
+                window.updateAuthNav(null);
+                return null;
+            } finally {
+                authRefreshPromise = null;
+            }
+        })();
+
+        return authRefreshPromise;
     };
 
     window.apiFetch = async function(path, options = {}){

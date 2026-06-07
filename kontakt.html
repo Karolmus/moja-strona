@@ -136,6 +136,14 @@ body {
     font-size: 14px;
 }
 
+.form-honeypot {
+    position: absolute !important;
+    left: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+}
+
 .contact-call-button {
     display: inline-flex;
     align-items: center;
@@ -333,6 +341,13 @@ footer {
         <h3>Możesz też wygodnie skontaktować się ze mną przez formularz</h3>
 
         <form id="contactForm">
+            <div class="form-honeypot" aria-hidden="true">
+                <label>
+                    Strona internetowa
+                    <input id="contactWebsite" name="website" tabindex="-1" autocomplete="off">
+                </label>
+            </div>
+
             <label>
                 Telefon lub e-mail
                 <input id="contactValue" name="contact" autocomplete="email" maxlength="254" required placeholder="">
@@ -361,6 +376,8 @@ footer {
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script>
+const contactFormStartedAt = Date.now();
+
 document.getElementById("contactForm")?.addEventListener("submit", async event => {
     event.preventDefault();
 
@@ -377,7 +394,9 @@ document.getElementById("contactForm")?.addEventListener("submit", async event =
             body: JSON.stringify({
                 contact: document.getElementById("contactValue").value.trim(),
                 preferred_term: document.getElementById("preferredTerm").value.trim(),
-                message
+                message,
+                website: document.getElementById("contactWebsite").value,
+                form_started_at: contactFormStartedAt
             })
         });
 
