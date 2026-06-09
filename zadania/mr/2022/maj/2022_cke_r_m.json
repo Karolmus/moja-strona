@@ -16,7 +16,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 73
   },
   {
     "file": "2_2022_cke_r_m.png",
@@ -35,7 +36,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 59
   },
   {
     "file": "3_2022_cke_r_m.png",
@@ -54,7 +56,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 28
   },
   {
     "file": "4_2022_cke_r_m.png",
@@ -73,7 +76,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 83
   },
   {
     "file": "5_2022_cke_r_m.png",
@@ -110,7 +114,8 @@
           "1"
         ]
       }
-    ]
+    ],
+    "completionPercent": 52
   },
   {
     "file": "6_2022_cke_r_m.png",
@@ -137,7 +142,8 @@
         "file": "6_s_c.png"
       }
     ],
-    "gradingCriteriaFile": "6_z.png"
+    "gradingCriteriaFile": "6_z.png",
+    "completionPercent": 25
   },
   {
     "file": "7_2022_cke_r_m.png",
@@ -173,7 +179,8 @@
         "label": "Część 2",
         "file": "7_z2.png"
       }
-    ]
+    ],
+    "completionPercent": 44
   },
   {
     "file": "8_2022_cke_r_m.png",
@@ -208,7 +215,8 @@
         "file": "8_s_d.png"
       }
     ],
-    "gradingCriteriaFile": "8_z.png"
+    "gradingCriteriaFile": "8_z.png",
+    "completionPercent": 10
   },
   {
     "file": "9_2022_cke_r_m.png",
@@ -227,7 +235,8 @@
         "file": "9_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "9_z.png"
+    "gradingCriteriaFile": "9_z.png",
+    "completionPercent": 47
   },
   {
     "file": "10_2022_cke_r_m.png",
@@ -250,7 +259,8 @@
         "file": "10_s_b.png"
       }
     ],
-    "gradingCriteriaFile": "10_z.png"
+    "gradingCriteriaFile": "10_z.png",
+    "completionPercent": 32
   },
   {
     "file": "11_2022_cke_r_m.png",
@@ -290,7 +300,8 @@
         "label": "Część 2",
         "file": "11_z2.png"
       }
-    ]
+    ],
+    "completionPercent": 32
   },
   {
     "file": "12_2022_cke_r_m.png",
@@ -326,7 +337,8 @@
         "label": "Część 3",
         "file": "12_z3.png"
       }
-    ]
+    ],
+    "completionPercent": 37
   },
   {
     "file": "13_2022_cke_r_m.png",
@@ -345,7 +357,8 @@
         "file": "13_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "13_z.png"
+    "gradingCriteriaFile": "13_z.png",
+    "completionPercent": 21
   },
   {
     "file": "14_2022_cke_r_m.png",
@@ -409,7 +422,8 @@
         "label": "Część 3",
         "file": "14_z3.png"
       }
-    ]
+    ],
+    "completionPercent": 24
   },
   {
     "file": "15_2022_cke_r_m.png",
@@ -457,6 +471,7 @@
         "label": "Część 4",
         "file": "15_z4.png"
       }
-    ]
+    ],
+    "completionPercent": 28
   }
 ]
