@@ -16,7 +16,8 @@
       "PF",
       "FP",
       "FF"
-    ]
+    ],
+    "completionPercent": 77
   },
   {
     "file": "2_2022_cke_o_m.png",
@@ -35,7 +36,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 61
   },
   {
     "file": "3_2022_cke_o_m.png",
@@ -54,7 +56,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 56
   },
   {
     "file": "4_2022_cke_o_m.png",
@@ -75,7 +78,8 @@
       "B1",
       "B2",
       "B3"
-    ]
+    ],
+    "completionPercent": 68
   },
   {
     "file": "5_2022_cke_o_m.png",
@@ -94,7 +98,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 72
   },
   {
     "file": "6_2022_cke_o_m.png",
@@ -113,7 +118,8 @@
       "AD",
       "BC",
       "BD"
-    ]
+    ],
+    "completionPercent": 56
   },
   {
     "file": "7_2022_cke_o_m.png",
@@ -132,7 +138,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 42
   },
   {
     "file": "8_2022_cke_o_m.png",
@@ -151,7 +158,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 76
   },
   {
     "file": "9_2022_cke_o_m.png",
@@ -170,7 +178,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 82
   },
   {
     "file": "10_2022_cke_o_m.png",
@@ -189,7 +198,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 62
   },
   {
     "file": "11_2022_cke_o_m.png",
@@ -208,7 +218,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 44
   },
   {
     "file": "12_2022_cke_o_m.png",
@@ -227,7 +238,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 92
   },
   {
     "file": "13_2022_cke_o_m.png",
@@ -246,7 +258,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 64
   },
   {
     "file": "14_2022_cke_o_m.png",
@@ -265,7 +278,8 @@
       "B",
       "C",
       "D"
-    ]
+    ],
+    "completionPercent": 63
   },
   {
     "file": "15_2022_cke_o_m.png",
@@ -284,7 +298,8 @@
       "PF",
       "FP",
       "FF"
-    ]
+    ],
+    "completionPercent": 53
   },
   {
     "file": "16_2022_cke_o_m.png",
@@ -340,7 +355,8 @@
         "label": "Część 2",
         "file": "16_z2.png"
       }
-    ]
+    ],
+    "completionPercent": 66
   },
   {
     "file": "17_2022_cke_o_m.png",
@@ -371,7 +387,8 @@
         "file": "17_s_d.png"
       }
     ],
-    "gradingCriteriaFile": "17_z.png"
+    "gradingCriteriaFile": "17_z.png",
+    "completionPercent": 64
   },
   {
     "file": "18_2022_cke_o_m.png",
@@ -390,7 +407,8 @@
         "file": "18_s_a.png"
       }
     ],
-    "gradingCriteriaFile": "18_z.png"
+    "gradingCriteriaFile": "18_z.png",
+    "completionPercent": 53
   },
   {
     "file": "19_2022_cke_o_m.png",
@@ -413,6 +431,7 @@
         "file": "19_s_b.png"
       }
     ],
-    "gradingCriteriaFile": "19_z.png"
+    "gradingCriteriaFile": "19_z.png",
+    "completionPercent": 55
   }
 ]
