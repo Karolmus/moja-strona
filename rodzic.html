@@ -159,8 +159,9 @@ body {
 .stat-card {
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: var(--surface-soft);
+    background: linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 100%);
     padding: 13px;
+    box-shadow: 0 5px 14px rgba(15, 23, 42, 0.05);
 }
 
 .stat-card span {
@@ -268,7 +269,18 @@ body {
 
 .progress-block {
     display: grid;
-    gap: 8px;
+    gap: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    padding: 14px;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.progress-overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
 }
 
 .progress-head {
@@ -276,17 +288,23 @@ body {
     align-items: baseline;
     justify-content: space-between;
     gap: 10px;
-    color: var(--muted);
-    font-size: 12px;
+    color: var(--text);
+    font-size: 14px;
     font-weight: 700;
 }
 
+.progress-head strong {
+    color: var(--navy);
+    font-size: 17px;
+}
+
 .progress-track {
-    height: 12px;
+    height: 18px;
     overflow: hidden;
-    border: 1px solid var(--line);
+    border: 1px solid #cbd5e1;
     border-radius: 999px;
     background: #e2e8f0;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 
 .progress-fill {
@@ -301,123 +319,80 @@ body {
     background: linear-gradient(90deg, #24527a, #5d8fbd);
 }
 
-.distribution {
+.progress-caption {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.organization-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.question-panel {
+    max-width: 760px;
+}
+
+.question-form {
     display: grid;
     gap: 10px;
 }
 
-.distribution-track {
-    display: flex;
-    height: 22px;
-    overflow: hidden;
+.question-form label {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.question-form textarea {
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
     border: 1px solid var(--line);
-    border-radius: 999px;
-    background: #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 11px 12px;
 }
 
-.distribution-track span {
-    min-width: 0;
+.question-form textarea:focus {
+    border-color: #8eb5de;
+    outline: 2px solid rgba(142, 181, 222, 0.2);
 }
 
-.distribution-track .good {
-    background: var(--green);
+.question-form button {
+    width: fit-content;
+    min-height: 38px;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    background: var(--navy);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 15px;
 }
 
-.distribution-track .medium {
-    background: var(--yellow);
+.question-form button:disabled {
+    cursor: wait;
+    opacity: 0.65;
 }
 
-.distribution-track .bad {
-    background: var(--red);
-}
-
-.legend {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    color: var(--muted);
+.question-status {
+    min-height: 20px;
+    color: var(--green);
     font-size: 12px;
     font-weight: 600;
 }
 
-.legend span {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-}
-
-.dot.good {
-    background: var(--green);
-}
-
-.dot.medium {
-    background: var(--yellow);
-}
-
-.dot.bad {
-    background: var(--red);
-}
-
-.activity-chart {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(44px, 1fr);
-    align-items: end;
-    gap: 8px;
-    min-height: 180px;
-    overflow-x: auto;
-    padding-top: 8px;
-}
-
-.day-column {
-    display: grid;
-    justify-items: center;
-    align-items: end;
-    gap: 5px;
-}
-
-.stacked-bar {
-    width: 28px;
-    display: flex;
-    flex-direction: column-reverse;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 7px 7px 4px 4px;
-    background: #eef2f7;
-}
-
-.bar-segment {
-    width: 100%;
-    min-height: 2px;
-}
-
-.bar-segment.good {
-    background: var(--green);
-}
-
-.bar-segment.medium {
-    background: var(--yellow);
-}
-
-.bar-segment.bad {
-    background: var(--red);
-}
-
-.day-total {
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.day-label {
-    color: var(--muted);
-    font-size: 10px;
-    text-align: center;
+.question-status.error {
+    color: var(--red);
 }
 
 .recent-list {
@@ -479,14 +454,21 @@ body {
     .hero,
     .grid-two,
     .stats-grid,
-    .info-grid {
+    .info-grid,
+    .progress-overview,
+    .organization-grid {
         grid-template-columns: 1fr;
     }
 
     .parent-tabs {
         width: 100%;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         display: grid;
+    }
+
+    .parent-tab {
+        padding: 6px 5px;
+        font-size: 11px;
     }
 
     .brand-card {
@@ -533,12 +515,13 @@ body {
         <div class="parent-tabs" role="tablist" aria-label="Panel rodzica">
             <button class="parent-tab active" type="button" data-parent-tab="progress">Postępy ucznia</button>
             <button class="parent-tab" type="button" data-parent-tab="organization">Organizacja i płatności</button>
+            <button class="parent-tab" type="button" data-parent-tab="questions">Pytania</button>
         </div>
 
         <div class="parent-tab-panel active" id="parentProgressPanel">
         <div class="stats-grid">
             <div class="stat-card">
-                <span>Wykonane próby</span>
+                <span>Wykonane zadania</span>
                 <strong id="attemptsStat">0</strong>
             </div>
             <div class="stat-card">
@@ -546,50 +529,32 @@ body {
                 <strong id="accuracyStat">0%</strong>
             </div>
             <div class="stat-card">
-                <span>Czas pracy</span>
+                <span>Czas pracy w tym tygodniu</span>
                 <strong id="durationStat">0 s</strong>
             </div>
         </div>
 
-        <div class="grid-two">
-            <section class="panel">
-                <h2 class="section-title">Postęp pracy</h2>
+        <section>
+            <h2 class="section-title">Postęp pracy</h2>
+            <div class="progress-overview">
                 <div class="progress-block">
                     <div class="progress-head">
                         <span>Kurs</span>
-                        <span id="courseProgressText">0/20 lekcji</span>
+                        <strong id="courseProgressText">0/20 lekcji</strong>
                     </div>
                     <div class="progress-track"><span class="progress-fill" id="courseProgressFill"></span></div>
-                    <div class="small-note">Lekcje liczymy do najwyższego numeru lekcji, przy której zapisano przynajmniej jedno zadanie.</div>
+                    <div class="progress-caption" id="courseProgressPercent">0% planu</div>
                 </div>
                 <div class="progress-block">
                     <div class="progress-head">
                         <span>Egzaminy</span>
-                        <span id="examProgressText">0/10 egzaminów</span>
+                        <strong id="examProgressText">0/10 egzaminów</strong>
                     </div>
                     <div class="progress-track"><span class="progress-fill exam" id="examProgressFill"></span></div>
-                    <div class="small-note">Minimum przewidziane przed prawdziwym egzaminem: 10 pełnych arkuszy.</div>
+                    <div class="progress-caption" id="examProgressPercent">0% planu</div>
                 </div>
-                <div class="distribution">
-                    <h2 class="section-title">Rozkład odpowiedzi</h2>
-                    <div class="distribution-track" id="distributionTrack">
-                        <span class="good"></span>
-                        <span class="medium"></span>
-                        <span class="bad"></span>
-                    </div>
-                    <div class="legend">
-                        <span><i class="dot good"></i>Dobrze</span>
-                        <span><i class="dot medium"></i>Z pomocą</span>
-                        <span><i class="dot bad"></i>Źle</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="panel">
-                <h2 class="section-title">Aktywność dzienna</h2>
-                <div class="activity-chart" id="activityChart"></div>
-            </section>
-        </div>
+            </div>
+        </section>
 
         <section class="panel">
             <h2 class="section-title">Ostatnie zadania</h2>
@@ -598,9 +563,9 @@ body {
         </div>
 
         <div class="parent-tab-panel" id="parentOrganizationPanel">
-            <section class="panel">
+            <section>
                 <h2 class="section-title">Organizacja zajęć</h2>
-                <div class="info-grid">
+                <div class="organization-grid">
                     <div class="info-card">
                         <span>Odbyte lekcje</span>
                         <strong id="lessonLedgerStat">—</strong>
@@ -609,17 +574,26 @@ body {
                         <span>Płatności</span>
                         <strong id="paymentStatusStat">—</strong>
                     </div>
-                    <div class="info-card">
-                        <span>Najbliższy kontakt</span>
-                        <strong id="nextContactStat">—</strong>
-                    </div>
                 </div>
+            </section>
+        </div>
+
+        <div class="parent-tab-panel" id="parentQuestionsPanel">
+            <section class="panel question-panel">
+                <h2 class="section-title">Pytania do nauczyciela</h2>
+                <div class="small-note">Wiadomość trafi bezpośrednio do skrzynki w panelu nauczyciela i zostanie przypisana do tego ucznia.</div>
+                <form class="question-form" id="parentQuestionForm">
+                    <label for="parentQuestion">Treść wiadomości</label>
+                    <textarea id="parentQuestion" name="message" maxlength="3000" required placeholder="Napisz pytanie dotyczące zajęć, postępów lub organizacji."></textarea>
+                    <button type="submit">Wyślij wiadomość</button>
+                    <div class="question-status" id="parentQuestionStatus" role="status" aria-live="polite"></div>
+                </form>
             </section>
         </div>
     </section>
 </main>
 
-<script src="static/auth.js"></script>
+<script src="static/auth.js?v=20260610-profile"></script>
 <script>
 const PARENT_TOKEN_KEY = "deltaSigmaParentAccessToken";
 const levelLabels = {
@@ -649,6 +623,7 @@ const PARENT_EXAM_SOURCES = [
     { path: "zadania/eo/2022/maj/2022_cke_o_m.json", level: "egzamin_osmoklasisty" }
 ];
 let examCatalog = new Map();
+let parentAccessToken = "";
 
 function getParentToken(){
     const hashToken = decodeURIComponent(window.location.hash.replace(/^#/, "").trim());
@@ -683,6 +658,7 @@ function setParentTab(tab){
 
     document.getElementById("parentProgressPanel").classList.toggle("active", tab === "progress");
     document.getElementById("parentOrganizationPanel").classList.toggle("active", tab === "organization");
+    document.getElementById("parentQuestionsPanel").classList.toggle("active", tab === "questions");
 }
 
 function formatDate(value){
@@ -692,15 +668,6 @@ function formatDate(value){
         dateStyle: "short",
         timeStyle: "short"
     });
-}
-
-function dayKey(value){
-    const date = new Date(value);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
 }
 
 function formatDuration(seconds){
@@ -754,15 +721,28 @@ function taskSource(item){
     return "Egzamin";
 }
 
-function uniqueCount(progress, predicate){
-    const keys = new Set(
-        progress
-            .filter(predicate)
-            .map(taskKey)
-            .filter(Boolean)
-    );
+function latestTaskProgress(progress){
+    const latest = new Map();
 
-    return keys.size;
+    progress.forEach(item => {
+        const key = taskKey(item);
+
+        if(key && !latest.has(key)){
+            latest.set(key, item);
+        }
+    });
+
+    return [...latest.values()];
+}
+
+function currentWeekStart(){
+    const date = new Date();
+    const daysSinceMonday = (date.getDay() + 6) % 7;
+
+    date.setDate(date.getDate() - daysSinceMonday);
+    date.setHours(0, 0, 0, 0);
+
+    return date;
 }
 
 function isCourseItem(item){
@@ -866,93 +846,6 @@ function examProgress(progress){
     };
 }
 
-function renderDistribution(progress){
-    const total = progress.length || 1;
-    const counts = {
-        good: progress.filter(item => item.result === "good").length,
-        medium: progress.filter(item => item.result === "medium").length,
-        bad: progress.filter(item => item.result === "bad").length
-    };
-    const track = document.getElementById("distributionTrack");
-
-    ["good", "medium", "bad"].forEach(result => {
-        const segment = track.querySelector(`.${result}`);
-        const percent = progress.length ? (counts[result] / total) * 100 : 0;
-
-        segment.style.width = `${percent}%`;
-    });
-}
-
-function renderActivity(progress){
-    const chart = document.getElementById("activityChart");
-    const days = new Map();
-
-    progress.forEach(item => {
-        const key = dayKey(item.created_at);
-
-        if(!days.has(key)){
-            days.set(key, {
-                date: item.created_at,
-                good: 0,
-                medium: 0,
-                bad: 0,
-                total: 0
-            });
-        }
-
-        const day = days.get(key);
-
-        if(day[item.result] !== undefined){
-            day[item.result]++;
-        }
-
-        day.total++;
-    });
-
-    const values = [...days.values()].slice(-21);
-    const maxTotal = Math.max(1, ...values.map(day => day.total));
-
-    chart.innerHTML = "";
-
-    if(!values.length){
-        chart.innerHTML = `<div class="small-note">Brak zapisanej aktywności.</div>`;
-        return;
-    }
-
-    values.forEach(day => {
-        const column = document.createElement("div");
-        const total = document.createElement("div");
-        const bar = document.createElement("div");
-        const label = document.createElement("div");
-        const barHeight = Math.max(24, Math.round((day.total / maxTotal) * 130));
-
-        column.className = "day-column";
-        total.className = "day-total";
-        bar.className = "stacked-bar";
-        label.className = "day-label";
-        total.innerText = day.total;
-        bar.style.height = `${barHeight}px`;
-        label.innerText = new Date(day.date).toLocaleDateString("pl-PL", {
-            day: "2-digit",
-            month: "2-digit"
-        });
-
-        ["good", "medium", "bad"].forEach(result => {
-            const segment = document.createElement("span");
-            const percent = day.total ? (day[result] / day.total) * 100 : 0;
-
-            segment.className = `bar-segment ${result}`;
-            segment.style.height = `${percent}%`;
-            bar.appendChild(segment);
-        });
-
-        column.appendChild(total);
-        column.appendChild(bar);
-        column.appendChild(label);
-        chart.appendChild(column);
-    });
-}
-
 function renderRecent(progress){
     const list = document.getElementById("recentList");
 
@@ -991,29 +884,31 @@ function renderRecent(progress){
 }
 
 function renderDashboard(student, progress){
-    const total = progress.length;
-    const good = progress.filter(item => item.result === "good").length;
-    const medium = progress.filter(item => item.result === "medium").length;
-    const bad = progress.filter(item => item.result === "bad").length;
-    const duration = progress.reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0);
-    const courseStats = courseLessonProgress(progress);
-    const examStats = examProgress(progress);
+    const latestProgress = latestTaskProgress(progress);
+    const total = latestProgress.length;
+    const good = latestProgress.filter(item => item.result === "good").length;
+    const weekStart = currentWeekStart();
+    const weeklyDuration = progress
+        .filter(item => new Date(item.created_at) >= weekStart)
+        .reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0);
+    const courseStats = courseLessonProgress(latestProgress);
+    const examStats = examProgress(latestProgress);
     const latest = progress[0]?.created_at || student.last_login_at;
 
     document.getElementById("studentName").innerText = student.display_name || student.email;
-    document.getElementById("studentMeta").innerText = `${levelLabels[student.level] || student.level || "Poziom"} • konto rodzica`;
+    document.getElementById("studentMeta").innerText = levelLabels[student.level] || student.level || "Poziom";
     document.getElementById("lastSync").innerText = `Ostatnia aktywność ucznia: ${formatDate(latest)}`;
     document.getElementById("attemptsStat").innerText = total;
     document.getElementById("accuracyStat").innerText = total ? `${Math.round((good / total) * 100)}%` : "0%";
-    document.getElementById("durationStat").innerText = formatDuration(duration);
+    document.getElementById("durationStat").innerText = formatDuration(weeklyDuration);
     document.getElementById("courseProgressText").innerText = `${courseStats.completed}/${courseStats.target} lekcji`;
     document.getElementById("examProgressText").innerText = `${examStats.completed}/${examStats.target} egzaminów`;
+    document.getElementById("courseProgressPercent").innerText = `${courseStats.percent}% planu`;
+    document.getElementById("examProgressPercent").innerText = `${examStats.percent}% planu`;
     document.getElementById("courseProgressFill").style.width = `${courseStats.percent}%`;
     document.getElementById("examProgressFill").style.width = `${examStats.percent}%`;
 
-    renderDistribution(progress);
-    renderActivity(progress);
-    renderRecent(progress);
+    renderRecent(latestProgress);
 
     document.getElementById("statusPanel").style.display = "none";
     document.getElementById("dashboard").classList.add("active");
@@ -1030,6 +925,8 @@ async function bootParentPanel(){
         return;
     }
 
+    parentAccessToken = token;
+
     try {
         const data = await apiFetch("/api/parent/progress", {
             method: "POST",
@@ -1044,11 +941,46 @@ async function bootParentPanel(){
     }
 }
 
+async function sendParentQuestion(event){
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const textarea = form.querySelector("textarea");
+    const button = form.querySelector("button");
+    const status = document.getElementById("parentQuestionStatus");
+    const message = textarea.value.trim();
+
+    if(!message) return;
+
+    button.disabled = true;
+    status.classList.remove("error");
+    status.innerText = "Wysyłam wiadomość...";
+
+    try {
+        await apiFetch("/api/parent/messages", {
+            method: "POST",
+            body: JSON.stringify({
+                token: parentAccessToken,
+                message
+            })
+        });
+
+        form.reset();
+        status.innerText = "Wiadomość została wysłana.";
+    } catch(error) {
+        status.classList.add("error");
+        status.innerText = error.message || "Nie udało się wysłać wiadomości.";
+    } finally {
+        button.disabled = false;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".parent-tab").forEach(button => {
         button.addEventListener("click", () => setParentTab(button.dataset.parentTab));
     });
 
+    document.getElementById("parentQuestionForm").addEventListener("submit", sendParentQuestion);
     bootParentPanel();
 });
 </script>

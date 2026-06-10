@@ -73,10 +73,19 @@
         }
 
         if(panelLink){
-            panelLink.hidden = !isAuthenticated || user?.role !== "admin";
-            panelLink.innerText = "Mój panel";
-            panelLink.href = "admin.html";
-            panelLink.title = "Przejdź do panelu admina";
+            const isAdmin = user?.role === "admin";
+            const isStudent = user?.role === "student";
+            const currentPage = window.location.pathname.split("/").pop();
+
+            panelLink.hidden = !isAuthenticated || (!isAdmin && !isStudent);
+            panelLink.innerText = isAdmin ? "Mój panel" : "Mój profil";
+            panelLink.href = isAdmin ? "admin.html" : "profil.html";
+            panelLink.title = isAdmin ? "Przejdź do panelu admina" : "Przejdź do profilu ucznia";
+            panelLink.classList.toggle(
+                "active",
+                (isAdmin && currentPage === "admin.html") ||
+                (isStudent && currentPage === "profil.html")
+            );
             panelLink.onclick = null;
         }
 

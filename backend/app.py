@@ -315,6 +315,14 @@ def api_error(message, status=400):
     return jsonify({"error": message}), status
 
 
+def message_counts_payload():
+    return {
+        "all": contact_message_counts(),
+        "prospect": contact_message_counts("prospect"),
+        "parent": contact_message_counts("parent"),
+    }
+
+
 @app.before_request
 def apply_global_rate_limit():
     if request.method == "OPTIONS":
@@ -525,13 +533,17 @@ def api_admin_students(_admin):
 @require_admin
 def api_admin_contact_messages(_admin):
     box = request.args.get("box", "inbox")
+    origin = request.args.get("origin", "prospect")
 
     if box not in ("inbox", "trash"):
         box = "inbox"
 
+    if origin not in ("prospect", "parent"):
+        origin = "prospect"
+
     return jsonify({
-        "messages": list_contact_messages(box=box),
-        "counts": contact_message_counts(),
+        "messages": list_contact_messages(box=box, origin=origin),
+        "counts": message_counts_payload(),
     })
 
 
@@ -553,7 +565,7 @@ def api_admin_update_contact_message(_admin, message_id):
 
         return jsonify({
             "message": item,
-            "counts": contact_message_counts(),
+            "counts": message_counts_payload(),
         })
 
     return safe(handler)
@@ -570,7 +582,7 @@ def api_admin_delete_contact_message(_admin, message_id):
 
         return jsonify({
             "message": item,
-            "counts": contact_message_counts(),
+            "counts": message_counts_payload(),
         })
 
     return safe(handler)
@@ -791,7 +803,47 @@ def api_create_contact_message():
             if 0 <= elapsed_seconds < CONTACT_FORM_MIN_SECONDS:
                 return api_error("Formularz został wysłany zbyt szybko. Spróbuj ponownie.", 429)
 
-        item = create_contact_message(data)
+        item = create_contact_message({
+            **data,
+            "origin": "prospect",
+            "user_id": None,
+        })
+
+        return jsonify({
+            "message": item,
+        }), 201
+
+    return safe(handler)
+
+
+@app.post("/api/parent/messages")
+@rate_limit(10, 60 * 60, "parent-message-hour", parent_rate_limit_key)
+@rate_limit(40, 24 * 60 * 60, "parent-message-day", parent_rate_limit_key)
+def api_parent_create_message():
+    def handler():
+        data = payload()
+        session_data = parent_access_by_token(data.get("token"))
+
+        if not session_data:
+            return api_error("Link rodzica jest nieprawidłowy albo wygasł.", 401)
+
+        student = session_data["student"]
+
+        if not student["is_active"]:
+            return api_error("Konto ucznia jest nieaktywne.", 403)
+
+        message = str(data.get("message") or "").strip()
+
+        if not message:
+            return api_error("Wpisz treść pytania.")
+
+        touch_parent_access(session_data["access"]["id"])
+        item = create_contact_message({
+            "contact": f"Rodzic ucznia: {student['display_name']}",
+            "message": message,
+            "origin": "parent",
+            "user_id": student["id"],
+        })
 
         return jsonify({
             "message": item,

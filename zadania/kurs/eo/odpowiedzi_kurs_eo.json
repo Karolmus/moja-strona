@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "course": "egzamin_osmoklasisty",
   "description": "Zasady oceniania zadań otwartych z kursu EO w stylu progów punktowych CKE: pokazują, co musi pojawić się w rozwiązaniu, aby uczeń otrzymał kolejne punkty.",
-  "generatedAt": "2026-05-23",
+  "generatedAt": "2026-06-10",
   "sourceRoot": "zadania/kurs/eo",
   "includedTypes": [
     "open",
@@ -17,8 +17,8 @@
   ],
   "summary": {
     "lessons": 20,
-    "tasks": 241,
-    "ready": 241,
+    "tasks": 239,
+    "ready": 239,
     "missingPointScale": 0
   },
   "items": [
@@ -26,9 +26,9 @@
       "lesson": 1,
       "lessonId": "lekcja_1",
       "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd1.png",
+      "taskFile": "zd_1.png",
       "contextFile": null,
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd1.png",
+      "imagePath": "zadania/kurs/eo/lekcja_1/zd_1.png",
       "contextPath": null,
       "title": "Lekcja 1 - zadanie domowe 1",
       "coursePart": "praca_domowa",
@@ -44,55 +44,25 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: a = 15%, b = 30%, c = 40%, d = 15%."
+              "description": "za poprawne uzupełnienie wszystkich wartości: a = 15%, b = 30%, c = 40%, d = 15%."
             }
           ]
         }
       ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego a = 15%, b = 30%, c = 40%, d = 15%.",
+      "note": "Wszystkie cztery wartości muszą być poprawne.",
       "criteriaStyle": "cke_thresholds"
     },
     {
       "lesson": 1,
       "lessonId": "lekcja_1",
       "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd2.2.png",
-      "contextFile": "zd2_info.png",
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd2.2.png",
-      "contextPath": "zadania/kurs/eo/lekcja_1/zd2_info.png",
-      "title": "Lekcja 1 - Zadanie domowe 2.2",
+      "taskFile": "zd_4.1.png",
+      "contextFile": "zd_4_info.png",
+      "imagePath": "zadania/kurs/eo/lekcja_1/zd_4.1.png",
+      "contextPath": "zadania/kurs/eo/lekcja_1/zd_4_info.png",
+      "title": "Lekcja 1 - zadanie domowe 4.1",
       "coursePart": "praca_domowa",
-      "type": "open",
-      "topic": "odczytywanie danych i procenty",
-      "maxPoints": 1,
-      "answer": "D, A, B, C",
-      "hint": "Porównaj procentowe ubytki: A: 1,3/5,5, B: 0,6/4,6, C: 0,2/3,8, D: 1,7/4,2.",
-      "gradingStatus": "gotowe",
-      "gradingCriteria": [
-        {
-          "section": "Zadanie",
-          "thresholds": [
-            {
-              "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: D, A, B, C."
-            }
-          ]
-        }
-      ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego D, A, B, C.",
-      "criteriaStyle": "cke_thresholds"
-    },
-    {
-      "lesson": 1,
-      "lessonId": "lekcja_1",
-      "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd4.1.png",
-      "contextFile": null,
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd4.1.png",
-      "contextPath": null,
-      "title": "Lekcja 1 - Zadanie domowe 4.1",
-      "coursePart": "praca_domowa",
-      "type": "open",
+      "type": "input",
       "topic": "odczytywanie danych i procenty",
       "maxPoints": 4,
       "answer": "37,5 h, czyli 37 h 30 min",
@@ -100,50 +70,45 @@
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
-          "section": "Podpunkt a)",
+          "section": "Zadanie",
           "thresholds": [
             {
               "points": 1,
-              "description": "za odczytanie z treści, że cała trasa ma 1500 km, oraz z wykresu, że prędkość roweru wynosi 40 km/h."
+              "description": "za odczytanie drogi 1500 km i prędkości roweru 40 km/h."
             },
             {
               "points": 2,
-              "description": "za zastosowanie zależności czas = droga / prędkość i podstawienie danych: 1500 / 40."
-            }
-          ]
-        },
-        {
-          "section": "Podpunkt b)",
-          "thresholds": [
-            {
-              "points": 1,
-              "description": "za poprawne wykonanie dzielenia i otrzymanie wyniku 37,5 godziny."
+              "description": "za zastosowanie zależności czas = droga / prędkość."
             },
             {
-              "points": 2,
-              "description": "za poprawną interpretację wyniku i podanie odpowiedzi z jednostką: 37,5 h, czyli 37 h 30 min."
+              "points": 3,
+              "description": "za poprawne obliczenie 1500 / 40 = 37,5."
+            },
+            {
+              "points": 4,
+              "description": "za podanie odpowiedzi z jednostką: 37,5 h, czyli 37 h 30 min."
             }
           ]
         }
       ],
-      "note": "Schemat zapisany w stylu CKE: punkty w każdym podpunkcie pokazują kolejne progi uzyskania punktów, a nie cztery niezależne jednopunktowe czynności.",
+      "note": "Poprawna odpowiedź wpisana w polu automatycznie przyznaje 4 punkty.",
       "criteriaStyle": "cke_thresholds"
     },
     {
       "lesson": 1,
       "lessonId": "lekcja_1",
       "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd4.2.png",
-      "contextFile": "zd4.1.png",
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd4.2.png",
-      "contextPath": "zadania/kurs/eo/lekcja_1/zd4.1.png",
-      "title": "Lekcja 1 - Zadanie domowe 4.2",
+      "taskFile": "zd_4.2.png",
+      "contextFile": "zd_4_info.png",
+      "imagePath": "zadania/kurs/eo/lekcja_1/zd_4.2.png",
+      "contextPath": "zadania/kurs/eo/lekcja_1/zd_4_info.png",
+      "title": "Lekcja 1 - zadanie domowe 4.2",
       "coursePart": "praca_domowa",
-      "type": "open",
+      "type": "input",
       "topic": "odczytywanie danych i procenty",
       "maxPoints": 1,
-      "answer": "38,25 h, czyli 38 h 15 min",
-      "hint": "Rozbij 1500 km na procenty trasy i dla każdego środka transportu policz czas osobno.",
+      "answer": "37,25 h, czyli 37 h 15 min",
+      "hint": "Rozbij 1500 km na procenty trasy i dla każdego środka transportu oblicz czas osobno.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -151,29 +116,29 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: 38,25 h, czyli 38 h 15 min."
+              "description": "za poprawne obliczenie czasów wszystkich części trasy i podanie łącznego czasu 37,25 h, czyli 37 h 15 min."
             }
           ]
         }
       ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego 38,25 h, czyli 38 h 15 min.",
+      "note": "Akceptowany jest równoważny zapis czasu w godzinach i minutach.",
       "criteriaStyle": "cke_thresholds"
     },
     {
       "lesson": 1,
       "lessonId": "lekcja_1",
       "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd5.1.png",
-      "contextFile": "zd5_info.png",
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd5.1.png",
-      "contextPath": "zadania/kurs/eo/lekcja_1/zd5_info.png",
-      "title": "Lekcja 1 - Zadanie domowe 5.1",
+      "taskFile": "zd_6.2.png",
+      "contextFile": "zd_6_info.png",
+      "imagePath": "zadania/kurs/eo/lekcja_1/zd_6.2.png",
+      "contextPath": "zadania/kurs/eo/lekcja_1/zd_6_info.png",
+      "title": "Lekcja 1 - zadanie domowe 6.2",
       "coursePart": "praca_domowa",
-      "type": "open",
+      "type": "input",
       "topic": "odczytywanie danych i procenty",
       "maxPoints": 1,
-      "answer": "Woda: 300, sok pomaranczowy: 80, sok jablkowy: 120",
-      "hint": "Policz 60%, 24% i 16% z 500 butelek.",
+      "answer": "około 39,7% (po zaokrągleniu do pełnych procentów: 40%)",
+      "hint": "Dodaj cały czas spędzony w aplikacjach i podziel go przez 112 godzin, w których Marek nie śpi.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -181,58 +146,28 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: Woda: 300, sok pomaranczowy: 80, sok jablkowy: 120."
+              "description": "za obliczenie 44,5 / 112 · 100% i podanie wyniku około 39,7%, czyli około 40%."
             }
           ]
         }
       ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego Woda: 300, sok pomaranczowy: 80, sok jablkowy: 120.",
+      "note": "Akceptowane są wyniki 39,7%, 39,73% i 40%.",
       "criteriaStyle": "cke_thresholds"
     },
     {
       "lesson": 1,
       "lessonId": "lekcja_1",
       "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd6.2.png",
-      "contextFile": "zd6_info.png",
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd6.2.png",
-      "contextPath": "zadania/kurs/eo/lekcja_1/zd6_info.png",
-      "title": "Lekcja 1 - Zadanie domowe 6.2",
+      "taskFile": "zd_7.1.png",
+      "contextFile": "zd_7_info.png",
+      "imagePath": "zadania/kurs/eo/lekcja_1/zd_7.1.png",
+      "contextPath": "zadania/kurs/eo/lekcja_1/zd_7_info.png",
+      "title": "Lekcja 1 - zadanie domowe 7.1",
       "coursePart": "praca_domowa",
-      "type": "open",
+      "type": "input",
       "topic": "odczytywanie danych i procenty",
       "maxPoints": 1,
-      "answer": "44,5 h z 112 h, czyli okolo 39,7% (w przyblizeniu 40%)",
-      "hint": "Dodaj caly czas na social mediach i podziel przez czas, w którym Marek nie spi: 7 dni po 16 godzin.",
-      "gradingStatus": "gotowe",
-      "gradingCriteria": [
-        {
-          "section": "Zadanie",
-          "thresholds": [
-            {
-              "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: 44,5 h z 112 h, czyli okolo 39,7% (w przyblizeniu 40%)."
-            }
-          ]
-        }
-      ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego 44,5 h z 112 h, czyli okolo 39,7% (w przyblizeniu 40%).",
-      "criteriaStyle": "cke_thresholds"
-    },
-    {
-      "lesson": 1,
-      "lessonId": "lekcja_1",
-      "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd7.1.png",
-      "contextFile": "zd7_info.png",
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd7.1.png",
-      "contextPath": "zadania/kurs/eo/lekcja_1/zd7_info.png",
-      "title": "Lekcja 1 - Zadanie domowe 7.1",
-      "coursePart": "praca_domowa",
-      "type": "open",
-      "topic": "odczytywanie danych i procenty",
-      "maxPoints": 1,
-      "answer": "Chemia: 5, informatyka: 5",
+      "answer": "x = 5",
       "hint": "Zapisz równanie (3 + 4 + 4 + 3 + x + x) / 6 = 4, a potem wyznacz x.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
@@ -241,29 +176,29 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: Chemia: 5, informatyka: 5."
+              "description": "za poprawne wyznaczenie oceny x = 5."
             }
           ]
         }
       ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego Chemia: 5, informatyka: 5.",
+      "note": "Ocena 5 dotyczy zarówno chemii, jak i informatyki.",
       "criteriaStyle": "cke_thresholds"
     },
     {
       "lesson": 1,
       "lessonId": "lekcja_1",
       "sourceFile": "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
-      "taskFile": "zd7.2.png",
-      "contextFile": "zd7_info.png",
-      "imagePath": "zadania/kurs/eo/lekcja_1/zd7.2.png",
-      "contextPath": "zadania/kurs/eo/lekcja_1/zd7_info.png",
-      "title": "Lekcja 1 - Zadanie domowe 7.2",
+      "taskFile": "zd_7.2.png",
+      "contextFile": "zd_7_info.png",
+      "imagePath": "zadania/kurs/eo/lekcja_1/zd_7.2.png",
+      "contextPath": "zadania/kurs/eo/lekcja_1/zd_7_info.png",
+      "title": "Lekcja 1 - zadanie domowe 7.2",
       "coursePart": "praca_domowa",
-      "type": "open",
+      "type": "input",
       "topic": "odczytywanie danych i procenty",
       "maxPoints": 1,
-      "answer": "26/6 = 4,33...",
-      "hint": "Przy średniej 4 suma sześciu ocen wynosi 24. Piątka z fizyki zamiast trójki zwiększa sumę ocen o 2.",
+      "answer": "3,0",
+      "hint": "Oceny z chemii, informatyki i fizyki sumują się do 7. Dodaj do nich oceny 3, 4 i 4 z pozostałych przedmiotów.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -271,12 +206,12 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: 26/6 = 4,33."
+              "description": "za obliczenie (3 + 4 + 4 + 7) / 6 = 3 i podanie średniej 3,0."
             }
           ]
         }
       ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego 26/6 = 4,33....",
+      "note": "Akceptowane są zapisy 3 i 3,0.",
       "criteriaStyle": "cke_thresholds"
     },
     {

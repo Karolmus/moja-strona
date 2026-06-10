@@ -299,8 +299,27 @@
     "difficulty": 2,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd1.png",
+    "file": "zd_1.png",
     "title": "Lekcja 1 - zadanie domowe 1",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "a",
+        "answers": ["15", "15%"]
+      },
+      {
+        "label": "b",
+        "answers": ["30", "30%"]
+      },
+      {
+        "label": "c",
+        "answers": ["40", "40%"]
+      },
+      {
+        "label": "d",
+        "answers": ["15", "15%"]
+      }
+    ],
     "hint": "Chłopcy to 45% klasy, dziewczynki 55%. Siatkówkę lubi 1/3 chłopców i 8/11 dziewczynek.",
     "answer": "a = 15%, b = 30%, c = 40%, d = 15%",
     "coursePart": "praca_domowa",
@@ -312,36 +331,27 @@
       "diagram kołowy",
       "Zadanie domowe"
     ],
-    "type": "input",
-    "inputs": [
-      {
-        "label": "a",
-        "answers": [
-          "15",
-          "15%"
-        ]
-      },
-      {
-        "label": "b",
-        "answers": [
-          "30",
-          "30%"
-        ]
-      },
-      {
-        "label": "c",
-        "answers": [
-          "40",
-          "40%"
-        ]
-      },
-      {
-        "label": "d",
-        "answers": [
-          "15",
-          "15%"
-        ]
-      }
+    "maxPoints": 1
+  },
+  {
+    "difficulty": 1,
+    "topic": "odczytywanie danych i procenty",
+    "level": "egzamin_osmoklasisty",
+    "file": "zd_2.1.png",
+    "contextFile": "zd_2_info.png",
+    "title": "Lekcja 1 - zadanie domowe 2.1",
+    "type": "closed",
+    "options": ["A", "B", "C", "D"],
+    "hint": "Dla każdego sera oblicz procentowy ubytek masy: ubytek masy podziel przez masę początkową.",
+    "answer": "D",
+    "coursePart": "praca_domowa",
+    "tags": [
+      "kurs",
+      "lekcja 1",
+      "odczytywanie danych",
+      "procenty",
+      "tabela",
+      "Zadanie domowe"
     ],
     "maxPoints": 1
   },
@@ -349,18 +359,13 @@
     "difficulty": 1,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd2.1.png",
-    "contextFile": "zd2_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 2.1",
+    "file": "zd_2.2.png",
+    "contextFile": "zd_2_info.png",
+    "title": "Lekcja 1 - zadanie domowe 2.2",
     "type": "closed",
-    "options": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
-    "hint": "Dla każdego sera policz: ubytek masy / masa poczatkowa.",
-    "answer": "C",
+    "options": ["A", "B", "C", "D"],
+    "hint": "Oblicz 25% każdej masy początkowej i porównaj wynik z ubytkiem masy.",
+    "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -376,38 +381,17 @@
     "difficulty": 2,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd2.2.png",
-    "contextFile": "zd2_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 2.2",
-    "hint": "Porównaj procentowe ubytki: A: 1,3/5,5, B: 0,6/4,6, C: 0,2/3,8, D: 1,7/4,2.",
-    "answer": "D, A, B, C",
-    "coursePart": "praca_domowa",
-    "tags": [
-      "kurs",
-      "lekcja 1",
-      "odczytywanie danych",
-      "procenty",
-      "tabela",
-      "Zadanie domowe"
-    ],
-    "maxPoints": 1
-  },
-  {
-    "difficulty": 1,
-    "topic": "odczytywanie danych i procenty",
-    "level": "egzamin_osmoklasisty",
-    "file": "zd3.png",
-    "title": "Lekcja 1 - Zadanie domowe 3",
+    "file": "zd_3.png",
+    "title": "Lekcja 1 - zadanie domowe 3",
     "type": "true_false",
     "statements": [
       "Stwierdzenie 1",
-      "Stwierdzenie 2"
+      "Stwierdzenie 2",
+      "Stwierdzenie 3",
+      "Stwierdzenie 4"
     ],
-    "hint": "Dodaj sprzedaż od poniedziałku do czwartku i porównaj z piątkiem. 30% z 2500 to 750.",
-    "answer": [
-      "F",
-      "P"
-    ],
+    "hint": "Odczytaj z wykresu sprzedaż dla każdego dnia. Pamiętaj, że „o 300% więcej” oznacza czterokrotność wartości początkowej.",
+    "answer": ["F", "P", "F", "F"],
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -424,8 +408,16 @@
     "difficulty": 2,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd4.1.png",
-    "title": "Lekcja 1 - Zadanie domowe 4.1",
+    "file": "zd_4.1.png",
+    "contextFile": "zd_4_info.png",
+    "title": "Lekcja 1 - zadanie domowe 4.1",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Czas przejazdu (h)",
+        "answers": ["37,5", "37.5", "37 h 30 min", "37h30min"]
+      }
+    ],
     "hint": "Czas oblicz ze wzoru: czas = droga / prędkość. Dla roweru podstaw 1500 km i 40 km/h.",
     "answer": "37,5 h, czyli 37 h 30 min",
     "coursePart": "praca_domowa",
@@ -444,11 +436,18 @@
     "difficulty": 3,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd4.2.png",
-    "contextFile": "zd4.1.png",
-    "title": "Lekcja 1 - Zadanie domowe 4.2",
-    "hint": "Rozbij 1500 km na procenty trasy i dla każdego środka transportu policz czas osobno.",
-    "answer": "38,25 h, czyli 38 h 15 min",
+    "file": "zd_4.2.png",
+    "contextFile": "zd_4_info.png",
+    "title": "Lekcja 1 - zadanie domowe 4.2",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Łączny czas podróży (h)",
+        "answers": ["37,25", "37.25", "37 h 15 min", "37h15min"]
+      }
+    ],
+    "hint": "Rozbij 1500 km na procenty trasy i dla każdego środka transportu oblicz czas osobno.",
+    "answer": "37,25 h, czyli 37 h 15 min",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -462,14 +461,16 @@
     "maxPoints": 1
   },
   {
-    "difficulty": 2,
+    "difficulty": 1,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd5.1.png",
-    "contextFile": "zd5_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 5.1",
-    "hint": "Policz 60%, 24% i 16% z 500 butelek.",
-    "answer": "Woda: 300, sok pomaranczowy: 80, sok jablkowy: 120",
+    "file": "zd_5.1.png",
+    "contextFile": "zd_5_info.png",
+    "title": "Lekcja 1 - zadanie domowe 5.1",
+    "type": "closed",
+    "options": ["A", "B", "C", "D"],
+    "hint": "Oblicz 60% i 24% z 500 butelek, a następnie odejmij otrzymane liczby.",
+    "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -485,19 +486,13 @@
     "difficulty": 2,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd5.2.png",
-    "contextFile": "zd5_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 5.2",
+    "file": "zd_5.2.png",
+    "contextFile": "zd_5_info.png",
+    "title": "Lekcja 1 - zadanie domowe 5.2",
     "type": "true_false",
-    "statements": [
-      "Stwierdzenie 1",
-      "Stwierdzenie 2"
-    ],
-    "hint": "Woda kosztuje 1,5 zl, sok jablkowy 3 zl, a sok pomaranczowy 3,45 zl. Pomnóż ceny przez liczbę butelek.",
-    "answer": [
-      "F",
-      "F"
-    ],
+    "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
+    "hint": "Woda kosztuje 1,50 zł, sok jabłkowy 3 zł, a sok pomarańczowy 3,45 zł. Pomnóż ceny przez liczbę butelek.",
+    "answer": ["F", "F"],
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -514,18 +509,13 @@
     "difficulty": 1,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd6.1.png",
-    "contextFile": "zd6_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 6.1",
+    "file": "zd_6.1.png",
+    "contextFile": "zd_6_info.png",
+    "title": "Lekcja 1 - zadanie domowe 6.1",
     "type": "closed",
-    "options": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
+    "options": ["A", "B", "C", "D"],
     "hint": "Dodaj godziny dla każdej aplikacji ze wszystkich dni tygodnia.",
-    "answer": "B",
+    "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -542,11 +532,18 @@
     "difficulty": 2,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd6.2.png",
-    "contextFile": "zd6_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 6.2",
-    "hint": "Dodaj caly czas na social mediach i podziel przez czas, w którym Marek nie spi: 7 dni po 16 godzin.",
-    "answer": "44,5 h z 112 h, czyli okolo 39,7% (w przyblizeniu 40%)",
+    "file": "zd_6.2.png",
+    "contextFile": "zd_6_info.png",
+    "title": "Lekcja 1 - zadanie domowe 6.2",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Procent czasu",
+        "answers": ["39,7", "39.7", "39,73", "39.73", "40", "39,7%", "39,73%", "40%"]
+      }
+    ],
+    "hint": "Dodaj cały czas spędzony w aplikacjach i podziel go przez 112 godzin, w których Marek nie śpi.",
+    "answer": "około 39,7% (po zaokrągleniu do pełnych procentów: 40%)",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -562,11 +559,18 @@
     "difficulty": 2,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd7.1.png",
-    "contextFile": "zd7_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 7.1",
+    "file": "zd_7.1.png",
+    "contextFile": "zd_7_info.png",
+    "title": "Lekcja 1 - zadanie domowe 7.1",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "x",
+        "answers": ["5"]
+      }
+    ],
     "hint": "Zapisz równanie (3 + 4 + 4 + 3 + x + x) / 6 = 4, a potem wyznacz x.",
-    "answer": "Chemia: 5, informatyka: 5",
+    "answer": "x = 5",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -583,11 +587,18 @@
     "difficulty": 2,
     "topic": "odczytywanie danych i procenty",
     "level": "egzamin_osmoklasisty",
-    "file": "zd7.2.png",
-    "contextFile": "zd7_info.png",
-    "title": "Lekcja 1 - Zadanie domowe 7.2",
-    "hint": "Przy średniej 4 suma sześciu ocen wynosi 24. Piątka z fizyki zamiast trójki zwiększa sumę ocen o 2.",
-    "answer": "26/6 = 4,33...",
+    "file": "zd_7.2.png",
+    "contextFile": "zd_7_info.png",
+    "title": "Lekcja 1 - zadanie domowe 7.2",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Średnia ocen",
+        "answers": ["3", "3,0", "3.0"]
+      }
+    ],
+    "hint": "Oceny z chemii, informatyki i fizyki sumują się do 7. Dodaj do nich oceny 3, 4 i 4 z pozostałych przedmiotów.",
+    "answer": "3,0",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
