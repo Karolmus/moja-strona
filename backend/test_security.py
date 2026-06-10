@@ -23,7 +23,7 @@ os.environ["CONTACT_FORM_MIN_SECONDS"] = "2"
 
 import app as app_module  # noqa: E402
 from app import _rate_limit_buckets, app  # noqa: E402
-from auth_storage import create_user  # noqa: E402
+from auth_storage import create_parent_access_token, create_user  # noqa: E402
 
 
 class SecurityTests(unittest.TestCase):
@@ -164,6 +164,54 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.headers.get("Content-Encoding"), "gzip")
         self.assertEqual(decoded["message"]["contact"], "test@example.com")
+
+    def test_public_contact_form_cannot_spoof_parent_origin(self):
+        payload = self.valid_contact_payload()
+        payload["origin"] = "parent"
+        payload["user_id"] = 123
+
+        response = self.client.post("/api/contact-messages", json=payload)
+
+        self.assertEqual(response.status_code, 201)
+
+        with sqlite3.connect(TEST_DB) as connection:
+            row = connection.execute(
+                "SELECT origin, user_id FROM contact_messages"
+            ).fetchone()
+
+        self.assertEqual(row, ("prospect", None))
+
+    def test_parent_message_requires_valid_token_and_is_assigned_to_student(self):
+        with app.app_context():
+            student = create_user(
+                email="parent-message-student",
+                display_name="Uczeń Testowy",
+                password="bezpieczne-haslo",
+                level="egzamin_osmoklasisty",
+            )
+            _access, token = create_parent_access_token(student["id"])
+
+        invalid = self.client.post(
+            "/api/parent/messages",
+            json={"token": "nieprawidlowy-token", "message": "Pytanie"},
+        )
+        valid = self.client.post(
+            "/api/parent/messages",
+            json={"token": token, "message": "Czy można przełożyć zajęcia?"},
+        )
+
+        self.assertEqual(invalid.status_code, 401)
+        self.assertEqual(valid.status_code, 201)
+
+        with sqlite3.connect(TEST_DB) as connection:
+            row = connection.execute(
+                "SELECT contact, message, origin, user_id FROM contact_messages"
+            ).fetchone()
+
+        self.assertEqual(row[0], "Rodzic ucznia: Uczeń Testowy")
+        self.assertEqual(row[1], "Czy można przełożyć zajęcia?")
+        self.assertEqual(row[2], "parent")
+        self.assertEqual(row[3], student["id"])
 
 
 if __name__ == "__main__":

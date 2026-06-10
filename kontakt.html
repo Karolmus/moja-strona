@@ -1,427 +1,230 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/webp" href="img/logo3.png">
 <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
 <link rel="apple-touch-icon" href="img/logo3.png">
-<meta charset="UTF-8">
-<title>Kontakt – Delta sigma</title>
+<title>Kontakt – Delta Sigma</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css">
 <link rel="stylesheet" href="baner.css">
+
 <style>
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
     background: #f0f2f5;
-}
-
-
-/* HERO */
-.hero {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
-    padding: 10px 10px;
-    text-align: center;
-    max-height: 200px;
-}
-
-.hero h1 {
-    margin: 0;
-    font-weight: 400;
-}
-
-.hero p {
-    margin-top: 10px;
-    opacity: 0.9;
-}
-
-/* MAIN */
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
-
-.grid > * {
-    min-width: 0;
-}
-
-/* CARD */
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.contact-card {
-    grid-column: 1 / -1;
-    display: grid;
-    gap: 18px;
-}
-
-/* CONTACT INFO */
-.contact-item {
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.contact-item strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* CTA BUTTONS */
-.cta {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.cta a {
-    flex: 1;
-    text-align: center;
-    padding: 12px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    color: white;
-    background: #1f2a36;
-    transition: 0.3s;
-}
-
-.cta a:hover {
-    transform: scale(1.05);
-}
-
-.contact-action-card {
-    display: grid;
-    gap: 10px;
-    background: white;
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 16px;
-    padding: 22px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-}
-
-.contact-action-card h2,
-.contact-action-card h3 {
-    margin: 0;
     color: #1f2a36;
+    font-family: 'Poppins', sans-serif;
 }
 
-.contact-action-card h2 {
-    font-size: 24px;
+.contact-shell {
+    display: grid;
+    gap: 16px;
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto 40px;
 }
 
-.contact-action-card h3 {
-    font-size: 18px;
+.contact-section {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 22px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
-.contact-action-card p {
+.contact-section h1,
+.contact-section h2 {
     margin: 0;
-    color: #555;
-    line-height: 1.6;
+    line-height: 1.2;
+}
+
+.contact-section h1 {
+    font-size: 25px;
+}
+
+.contact-section h2 {
+    font-size: 20px;
+}
+
+.contact-section p {
+    margin: 0;
+    color: #64748b;
     font-size: 14px;
+    line-height: 1.6;
 }
 
-.form-honeypot {
-    position: absolute !important;
-    left: -10000px !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
+.contact-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
 }
 
-.contact-call-button {
+.contact-detail {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    background: #f8fafc;
+    padding: 13px;
+}
+
+.contact-detail span {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.contact-detail strong,
+.contact-detail a {
+    color: #1f2a36;
+    font-size: 15px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+.contact-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.contact-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
-    min-height: 52px;
-    padding: 12px 18px;
-    border-radius: 14px;
-    background: linear-gradient(90deg, #404EED, #5865F2);
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    transition: 0.3s;
-}
-
-.contact-call-button:hover {
-    transform: translateY(-2px);
-}
-
-.contact-call-button svg {
-    width: 22px;
-    height: 22px;
-    fill: white;
-}
-
-/* FORM */
-form {
-    display: grid;
-    gap: 14px;
-}
-
-label {
-    display: grid;
-    gap: 6px;
-    color: #64748b;
+    min-height: 42px;
+    border: 1px solid #263545;
+    border-radius: 8px;
+    background: #263545;
+    color: #ffffff;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
+    padding: 8px 14px;
+    text-align: center;
+    text-decoration: none;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-family: 'Poppins', sans-serif;
+.contact-button.secondary {
+    border-color: #8eb5de;
+    background: #edf4fb;
+    color: #24527a;
 }
 
-textarea {
-    min-height: 120px;
-    resize: vertical;
+.signup-section {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
 }
 
-.form-status {
-    min-height: 22px;
-    color: #2f6b36;
-    font-size: 14px;
-    font-weight: 600;
+.signup-copy {
+    display: grid;
+    gap: 7px;
 }
 
-.form-status.error {
-    color: #8b2119;
+.signup-section .contact-button {
+    min-width: 180px;
 }
 
-button {
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #1f2a36;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: scale(1.03);
-}
-
-/* HOURS */
-.hours {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
-}
-
-/* MAP */
-.map {
-    margin-top: 20px;
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.map iframe {
-    display: block;
-}
-
-/* FOOTER */
 footer {
+    margin-top: 40px;
     background: #1f2a36;
     color: #aaa;
-    text-align: center;
     padding: 15px;
-    margin-top: 40px;
+    text-align: center;
 }
 
-/* RESPONSIVE */
-@media (max-width: 800px) {
-    .grid {
+@media(max-width: 640px) {
+    .contact-section {
+        padding: 16px;
+    }
+
+    .contact-details,
+    .contact-actions,
+    .signup-section {
         grid-template-columns: 1fr;
     }
-}
 
-@media (max-width: 560px) {
-    .container {
-        margin: 24px auto;
-        padding: 10px;
-    }
-
-    .card {
-        padding: 16px;
-        border-radius: 12px;
-    }
-
-    .contact-action-card {
-        padding: 18px;
-        border-radius: 14px;
+    .signup-section .contact-button {
+        width: 100%;
+        min-width: 0;
     }
 }
 </style>
 </head>
 
 <body>
-
 <div id="nav"></div>
 <div id="baner"></div>
-<div class="container">
 
-<div class="grid">
+<main class="contact-shell">
+    <section class="contact-section" aria-labelledby="contactTitle">
+        <div>
+            <h1 id="contactTitle">Dane kontaktowe</h1>
+            <p>W sprawach dotyczących zajęć i zapisów możesz skontaktować się telefonicznie lub mailowo.</p>
+        </div>
 
-<!-- LEWA: DANE -->
-<div class="card">
-
-    <h2>Dane kontaktowe</h2>
-
-    <div class="contact-item">
-        <strong>Telefon</strong>
-        514 681 958
-    </div>
-    
-    <div class="contact-item">
-        <strong></strong>
-        Karol Musioł "Delta Sigma"
-    </div>
-
-    <div class="hours">
-        <strong>Dostępność:</strong><br>
-        Pon–Pt: 8:00 – 20:00<br>
-        Sob: 9:00 – 15:00
-    </div>
-
-    <div class="cta">
-        <a href="tel:514681958">Zadzwoń</a>
-        <a href="mailto:kontakt@deltasigma.pl">Napisz</a>
-    </div>
-
-</div>
-
-
-<!-- MAPA -->
-<div class="map">
-    <iframe
-        src="https://maps.google.com/maps?q=Wroc%C5%82aw&t=&z=12&ie=UTF8&iwloc=&output=embed"
-        width="100%" height="300" style="border:0;">
-    </iframe>
-</div>
-
-<div class="card contact-card">
-    <div class="contact-action-card">
-        <h2>Zadzwoń</h2>
-
-        <a class="contact-call-button" href="tel:514681958">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
-                11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
-                17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
-                11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-            </svg>
-            <span>514 681 958</span>
-        </a>
-    </div>
-
-    <div class="contact-action-card">
-        <h3>Możesz też wygodnie skontaktować się ze mną przez formularz</h3>
-
-        <form id="contactForm">
-            <div class="form-honeypot" aria-hidden="true">
-                <label>
-                    Strona internetowa
-                    <input id="contactWebsite" name="website" tabindex="-1" autocomplete="off">
-                </label>
+        <div class="contact-details">
+            <div class="contact-detail">
+                <span>Telefon</span>
+                <a href="tel:514681958">514 681 958</a>
             </div>
+            <div class="contact-detail">
+                <span>E-mail</span>
+                <a href="mailto:kontakt@deltasigma.pl">kontakt@deltasigma.pl</a>
+            </div>
+            <div class="contact-detail">
+                <span>Prowadzący</span>
+                <strong>Karol Musioł – Delta Sigma</strong>
+            </div>
+            <div class="contact-detail">
+                <span>Dostępność</span>
+                <strong>Pon.–Pt. 8:00–20:00, sob. 9:00–15:00</strong>
+            </div>
+        </div>
 
-            <label>
-                Telefon lub e-mail
-                <input id="contactValue" name="contact" autocomplete="email" maxlength="254" required placeholder="">
-            </label>
+        <div class="contact-actions">
+            <a class="contact-button" href="tel:514681958">Zadzwoń</a>
+            <a class="contact-button secondary" href="mailto:kontakt@deltasigma.pl">Napisz e-mail</a>
+        </div>
+    </section>
 
-            <label>
-                Preferowany termin
-                <input id="preferredTerm" name="preferred_term" maxlength="160" placeholder="">
-            </label>
+    <section class="contact-section signup-section" aria-labelledby="signupTitle">
+        <div class="signup-copy">
+            <h2 id="signupTitle">Zapisy na zajęcia</h2>
+            <p>Informacje o dostępnych kursach, cenach i wolnych terminach znajdują się na stronie zapisów.</p>
+        </div>
+        <a class="contact-button" href="zapisy.html">Przejdź do zapisów</a>
+    </section>
+</main>
 
-            <label>
-                Wiadomość
-                <textarea id="contactMessage" name="message" maxlength="3000" required placeholder=""></textarea>
-            </label>
-
-            <button type="submit">Wyślij wiadomość</button>
-            <div class="form-status" id="status" aria-live="polite"></div>
-        </form>
-    </div>
-</div>
-
-</div>
-<footer>
-    © 2026 Karol Musioł Delta sigma
-</footer>
+<footer>© 2026 Karol Musioł Delta Sigma</footer>
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script>
-const contactFormStartedAt = Date.now();
-
-document.getElementById("contactForm")?.addEventListener("submit", async event => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    const status = document.getElementById("status");
-    const message = document.getElementById("contactMessage").value.trim();
-
-    status.classList.remove("error");
-    status.innerText = "Wysyłam wiadomość...";
-
-    try {
-        await window.apiFetch("/api/contact-messages", {
-            method: "POST",
-            body: JSON.stringify({
-                contact: document.getElementById("contactValue").value.trim(),
-                preferred_term: document.getElementById("preferredTerm").value.trim(),
-                message,
-                website: document.getElementById("contactWebsite").value,
-                form_started_at: contactFormStartedAt
-            })
-        });
-
-        form.reset();
-        status.innerText = "Wiadomość wysłana.";
-    } catch(error) {
-        status.classList.add("error");
-        status.innerText = error.message || "Nie udało się wysłać wiadomości.";
-    }
-});
-</script>
-<script>
 fetch("nav.html")
-    .then(res => res.text())
-    .then(data => {
-        document.getElementById("nav").innerHTML = data;
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("nav").innerHTML = html;
     });
-</script>
-<script>
+
 fetch("baner.html")
-    .then(res => res.text())
+    .then(response => response.text())
     .then(html => {
         document.getElementById("baner").innerHTML = html;
     });
 </script>
-<script src="static/auth.js?v=20260518-token"></script>
+<script src="static/auth.js?v=20260610-profile"></script>
 </body>
 </html>

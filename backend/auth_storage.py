@@ -318,6 +318,8 @@ def init_auth_db():
                 contact TEXT NOT NULL,
                 preferred_term TEXT,
                 message TEXT NOT NULL,
+                origin TEXT NOT NULL DEFAULT 'prospect',
+                user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
                 is_read BOOLEAN NOT NULL DEFAULT FALSE,
                 created_at TEXT NOT NULL,
                 read_at TEXT,
@@ -345,8 +347,20 @@ def init_auth_db():
                 ADD COLUMN IF NOT EXISTS deleted_at TEXT
             """,
             """
+            ALTER TABLE contact_messages
+                ADD COLUMN IF NOT EXISTS origin TEXT NOT NULL DEFAULT 'prospect'
+            """,
+            """
+            ALTER TABLE contact_messages
+                ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id) ON DELETE SET NULL
+            """,
+            """
             CREATE INDEX IF NOT EXISTS idx_contact_messages_deleted_at
                 ON contact_messages(deleted_at)
+            """,
+            """
+            CREATE INDEX IF NOT EXISTS idx_contact_messages_origin
+                ON contact_messages(origin, deleted_at, created_at DESC)
             """,
         ]
 
@@ -477,10 +491,13 @@ def init_auth_db():
             contact TEXT NOT NULL,
             preferred_term TEXT,
             message TEXT NOT NULL,
+            origin TEXT NOT NULL DEFAULT 'prospect',
+            user_id INTEGER,
             is_read INTEGER NOT NULL DEFAULT 0,
             created_at TEXT NOT NULL,
             read_at TEXT,
-            deleted_at TEXT
+            deleted_at TEXT,
+            FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET NULL
         );
 
         CREATE INDEX IF NOT EXISTS idx_contact_messages_created_at
@@ -510,10 +527,22 @@ def init_auth_db():
         if "deleted_at" not in contact_columns:
             db.execute("ALTER TABLE contact_messages ADD COLUMN deleted_at TEXT")
 
+        if "origin" not in contact_columns:
+            db.execute("ALTER TABLE contact_messages ADD COLUMN origin TEXT NOT NULL DEFAULT 'prospect'")
+
+        if "user_id" not in contact_columns:
+            db.execute("ALTER TABLE contact_messages ADD COLUMN user_id INTEGER")
+
         db.execute(
             """
             CREATE INDEX IF NOT EXISTS idx_contact_messages_deleted_at
                 ON contact_messages(deleted_at)
+            """
+        )
+        db.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_contact_messages_origin
+                ON contact_messages(origin, deleted_at, created_at DESC)
             """
         )
 
@@ -1414,9 +1443,19 @@ def create_contact_message(data):
     contact = str(data.get("contact") or "").strip()
     preferred_term = str(data.get("preferred_term") or "").strip()
     message = str(data.get("message") or "").strip()
+    origin = str(data.get("origin") or "prospect").strip().lower()
+    user_id = data.get("user_id")
 
     if not contact or not message:
         raise ValueError("Kontakt i treść wiadomości są wymagane.")
+
+    if origin not in {"prospect", "parent"}:
+        origin = "prospect"
+
+    try:
+        user_id = int(user_id) if user_id not in (None, "") else None
+    except (TypeError, ValueError):
+        user_id = None
 
     contact = contact[:254]
     preferred_term = preferred_term[:160] or None
@@ -1427,6 +1466,8 @@ def create_contact_message(data):
         contact,
         preferred_term,
         message,
+        origin,
+        user_id,
         db_bool(False),
         created_at,
     )
@@ -1439,10 +1480,12 @@ def create_contact_message(data):
                     contact,
                     preferred_term,
                     message,
+                    origin,
+                    user_id,
                     is_read,
                     created_at
                 )
-                VALUES (?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
                 RETURNING *
                 """
             ),
@@ -1456,10 +1499,12 @@ def create_contact_message(data):
                 contact,
                 preferred_term,
                 message,
+                origin,
+                user_id,
                 is_read,
                 created_at
             )
-            VALUES (?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             """,
             values,
         )
@@ -1475,10 +1520,17 @@ def create_contact_message(data):
     return item
 
 
-def list_contact_messages(limit=200, box="inbox"):
+def list_contact_messages(limit=200, box="inbox", origin=None):
     show_trash = box == "trash"
-    where_clause = "deleted_at IS NOT NULL" if show_trash else "deleted_at IS NULL"
+    where = ["deleted_at IS NOT NULL" if show_trash else "deleted_at IS NULL"]
+    values = []
+
+    if origin in {"prospect", "parent"}:
+        where.append("origin = ?")
+        values.append(origin)
+
     order_clause = "deleted_at DESC, created_at DESC" if show_trash else "is_read ASC, created_at DESC"
+    values.append(limit)
 
     return [
         contact_message_to_dict(row)
@@ -1486,26 +1538,34 @@ def list_contact_messages(limit=200, box="inbox"):
             f"""
             SELECT *
             FROM contact_messages
-            WHERE {where_clause}
+            WHERE {" AND ".join(where)}
             ORDER BY {order_clause}
             LIMIT ?
             """,
-            (limit,),
+            tuple(values),
         )
         .fetchall()
     ]
 
 
-def contact_message_counts():
+def contact_message_counts(origin=None):
+    where = ""
+    values = [db_bool(False)]
+
+    if origin in {"prospect", "parent"}:
+        where = "WHERE origin = ?"
+        values.append(origin)
+
     row = execute(
-        """
+        f"""
         SELECT
             SUM(CASE WHEN deleted_at IS NULL THEN 1 ELSE 0 END) AS inbox,
             SUM(CASE WHEN deleted_at IS NOT NULL THEN 1 ELSE 0 END) AS trash,
             SUM(CASE WHEN deleted_at IS NULL AND is_read = ? THEN 1 ELSE 0 END) AS unread
         FROM contact_messages
+        {where}
         """,
-        (db_bool(False),),
+        tuple(values),
     ).fetchone()
 
     if row is None:

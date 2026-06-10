@@ -105,6 +105,23 @@ body {
     color: white;
 }
 
+.admin-tab-btn > span:not(:empty) {
+    display: inline-grid;
+    min-width: 21px;
+    min-height: 21px;
+    margin-left: 6px;
+    place-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    background: #d92d20;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(217, 45, 32, 0.38);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 5px;
+}
+
 .admin-tab-panel {
     display: none;
 }
@@ -1164,6 +1181,10 @@ th {
     background: #f1f7fd;
 }
 
+.message-card.parent-message {
+    border-left: 4px solid #5d8fbd;
+}
+
 .message-card.deleted {
     background: #fffafa;
 }
@@ -1178,6 +1199,17 @@ th {
     font-size: 14px;
     font-weight: 700;
     overflow-wrap: anywhere;
+}
+
+.message-origin {
+    width: fit-content;
+    border-radius: 999px;
+    background: #e8f1fb;
+    color: var(--blue-text);
+    padding: 3px 7px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .message-meta {
@@ -1289,7 +1321,8 @@ footer {
 
     <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">
         <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
-        <button class="admin-tab-btn" type="button" data-admin-tab="messages">Skrzynka odbiorcza <span id="messageBadge"></span></button>
+        <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge"></span></button>
+        <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
     </div>
 
     <div class="admin-tab-panel active" id="studentsTab">
@@ -1411,8 +1444,8 @@ footer {
     <section class="panel messages-panel admin-tab-panel" id="messagesTab">
         <div class="panel-heading">
             <div class="messages-heading-copy">
-                <h2>Skrzynka odbiorcza</h2>
-                <p class="inbox-subtitle">Wiadomości z formularza kontaktowego na stronie zapisów.</p>
+                <h2 id="messagePanelTitle">Nowe zapisy</h2>
+                <p class="inbox-subtitle" id="messagePanelSubtitle">Wiadomości od osób zainteresowanych zapisaniem się na kurs.</p>
             </div>
             <button class="btn secondary" type="button" id="refreshMessagesBtn">Odśwież</button>
         </div>
@@ -1426,7 +1459,7 @@ footer {
 <footer>© 2026 Delta sigma</footer>
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
-<script src="static/auth.js?v=20260518-token"></script>
+<script src="static/auth.js?v=20260610-profile"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -1508,7 +1541,10 @@ const adminTabButtons = document.querySelectorAll(".admin-tab-btn");
 const studentsTab = document.getElementById("studentsTab");
 const messagesTab = document.getElementById("messagesTab");
 const messageList = document.getElementById("messageList");
-const messageBadge = document.getElementById("messageBadge");
+const prospectMessageBadge = document.getElementById("prospectMessageBadge");
+const parentMessageBadge = document.getElementById("parentMessageBadge");
+const messagePanelTitle = document.getElementById("messagePanelTitle");
+const messagePanelSubtitle = document.getElementById("messagePanelSubtitle");
 const refreshMessagesBtn = document.getElementById("refreshMessagesBtn");
 const mailboxTabs = document.querySelectorAll(".mailbox-tab");
 const inboxCount = document.getElementById("inboxCount");
@@ -1517,10 +1553,11 @@ const trashCount = document.getElementById("trashCount");
 let students = [];
 let contactMessages = [];
 let currentMailbox = "inbox";
+let currentMessageOrigin = "prospect";
 let messageCounts = {
-    inbox: 0,
-    trash: 0,
-    unread: 0
+    all: { inbox: 0, trash: 0, unread: 0 },
+    prospect: { inbox: 0, trash: 0, unread: 0 },
+    parent: { inbox: 0, trash: 0, unread: 0 }
 };
 let currentStudentSort = "created_desc";
 let lastCredentialsText = "";
@@ -2203,26 +2240,42 @@ async function loadStudentProgressSummaries(){
 }
 
 function setAdminTab(tab){
-    const showMessages = tab === "messages";
+    const showMessages = tab === "messages-prospect" || tab === "messages-parent";
+    const showStudents = !showMessages;
+
+    if(tab === "messages-parent"){
+        currentMessageOrigin = "parent";
+    } else if(tab === "messages-prospect"){
+        currentMessageOrigin = "prospect";
+    }
 
     adminTabButtons.forEach(button => {
         button.classList.toggle("active", button.dataset.adminTab === tab);
     });
 
-    studentsTab.classList.toggle("active", !showMessages);
+    studentsTab.classList.toggle("active", showStudents);
     messagesTab.classList.toggle("active", showMessages);
 
     if(showMessages){
+        const parentMessages = currentMessageOrigin === "parent";
+
+        messagePanelTitle.innerText = parentMessages ? "Wiadomości od rodziców" : "Nowe zapisy";
+        messagePanelSubtitle.innerText = parentMessages
+            ? "Pytania przesłane z paneli rodziców obecnych uczniów."
+            : "Wiadomości od osób zainteresowanych zapisaniem się na kurs.";
         loadMessages(currentMailbox);
     }
 }
 
 function updateMailboxCounts(){
-    const unread = Number(messageCounts.unread || 0);
-    const inbox = Number(messageCounts.inbox || 0);
-    const trash = Number(messageCounts.trash || 0);
+    const currentCounts = messageCounts[currentMessageOrigin] || {};
+    const prospectUnread = Number(messageCounts.prospect?.unread || 0);
+    const parentUnread = Number(messageCounts.parent?.unread || 0);
+    const inbox = Number(currentCounts.inbox || 0);
+    const trash = Number(currentCounts.trash || 0);
 
-    messageBadge.innerText = unread ? `(${unread})` : "";
+    prospectMessageBadge.innerText = prospectUnread ? String(prospectUnread) : "";
+    parentMessageBadge.innerText = parentUnread ? String(parentUnread) : "";
     inboxCount.innerText = inbox ? `(${inbox})` : "";
     trashCount.innerText = trash ? `(${trash})` : "";
 }
@@ -2247,7 +2300,9 @@ function renderMessages(){
         empty.className = "message-empty";
         empty.innerText = currentMailbox === "trash"
             ? "Kosz jest pusty."
-            : "Brak wiadomości z formularza kontaktowego.";
+            : currentMessageOrigin === "parent"
+                ? "Brak wiadomości od rodziców uczniów."
+                : "Brak wiadomości dotyczących nowych zapisów.";
         messageList.appendChild(empty);
         return;
     }
@@ -2256,6 +2311,7 @@ function renderMessages(){
         const card = document.createElement("article");
         const main = document.createElement("div");
         const contact = document.createElement("div");
+        const origin = document.createElement("div");
         const meta = document.createElement("div");
         const body = document.createElement("div");
         const actions = document.createElement("div");
@@ -2267,14 +2323,17 @@ function renderMessages(){
             : "";
 
         card.className = message.is_read ? "message-card" : "message-card unread";
+        card.classList.toggle("parent-message", message.origin === "parent");
         card.classList.toggle("deleted", currentMailbox === "trash");
         main.className = "message-main";
         contact.className = "message-contact";
+        origin.className = "message-origin";
         meta.className = "message-meta";
         body.className = "message-body";
         actions.className = "message-actions";
 
         contact.innerText = message.contact;
+        origin.innerText = message.origin === "parent" ? "Rodzic ucznia" : "Nowy zapis";
         meta.innerText = `${formatDate(message.created_at)}${term}${deleted}`;
         body.innerText = message.message;
 
@@ -2291,6 +2350,7 @@ function renderMessages(){
         }
 
         main.appendChild(contact);
+        main.appendChild(origin);
         main.appendChild(meta);
         main.appendChild(body);
         card.appendChild(main);
@@ -2301,7 +2361,9 @@ function renderMessages(){
 
 async function loadMessages(box = currentMailbox){
     try {
-        const data = await apiFetch(`/api/admin/contact-messages?box=${encodeURIComponent(box)}`);
+        const data = await apiFetch(
+            `/api/admin/contact-messages?box=${encodeURIComponent(box)}&origin=${encodeURIComponent(currentMessageOrigin)}`
+        );
 
         contactMessages = Array.isArray(data.messages) ? data.messages : [];
         messageCounts = data.counts || messageCounts;

@@ -144,125 +144,6 @@ body {
     padding-top: 10px;
 }
 
-.training-card {
-    display: grid;
-    gap: 2px;
-    border: 1px solid rgba(142, 181, 222, 0.9);
-    border-radius: 8px;
-    background: linear-gradient(135deg, #edf4fb, #ffffff);
-    color: var(--text);
-    padding: 8px 10px;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(142, 181, 222, 0.16);
-    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.training-card:hover {
-    border-color: var(--blue-text);
-    box-shadow: 0 7px 18px rgba(142, 181, 222, 0.24);
-    transform: translateY(-1px);
-}
-
-.training-card strong {
-    font-size: 12px;
-    line-height: 1.2;
-}
-
-.training-card span {
-    color: var(--muted);
-    font-size: 10px;
-    line-height: 1.25;
-}
-
-.progress-toggle-btn {
-    width: 100%;
-    min-height: 38px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: white;
-    color: var(--text);
-    cursor: pointer;
-    font: inherit;
-    font-size: 13px;
-    font-weight: 700;
-    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.progress-toggle-btn:hover {
-    background: var(--surface-soft);
-    border-color: #b9c6d4;
-}
-
-.progress-toggle-btn.active {
-    background: var(--navy);
-    border-color: var(--navy);
-    color: white;
-}
-
-.student-progress-panel {
-    display: grid;
-    gap: 10px;
-}
-
-.learning-progress {
-    display: grid;
-    gap: 7px;
-    padding: 10px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface-soft);
-}
-
-.learning-progress-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    font-weight: 600;
-}
-
-.learning-progress-head span {
-    color: var(--muted);
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-.learning-progress-head strong {
-    font-size: 13px;
-    color: var(--text);
-    text-align: right;
-}
-
-.learning-progress-track {
-    height: 10px;
-    overflow: hidden;
-    border-radius: 999px;
-    background: #e2e8f0;
-}
-
-.learning-progress-fill {
-    display: block;
-    width: 0%;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, #6aa84f, #8fcf74);
-    transition: width 0.25s ease;
-}
-
-.learning-progress-fill.exam {
-    background: linear-gradient(90deg, #24527a, #5d8fbd);
-}
-
-.learning-progress-fill.homework {
-    background: linear-gradient(90deg, #d99595, #e7b4b4);
-}
-
-.learning-progress-detail {
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.35;
-}
-
 .source-summary-card {
     display: grid;
     gap: 5px;
@@ -404,16 +285,17 @@ body:not(.guest-exam-mode) .selector-grid {
 }
 
 .source-list.course-source-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 3px;
     max-height: none;
     overflow-y: visible;
 }
 
 .source-list.exam-source-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 3px;
     max-height: 146px;
+    overflow-x: hidden;
 }
 
 .source-summary-row {
@@ -454,9 +336,23 @@ body.guest-exam-mode .source-summary-row {
         box-shadow 0.2s ease;
 }
 
+.category-toggle {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.category-btn.training-card {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1.1;
+}
+
 .source-btn {
     display: grid;
     gap: 1px;
+    min-width: 0;
     padding: 4px 6px;
     text-align: left;
 }
@@ -470,17 +366,18 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn {
-    min-height: 56px;
+    min-height: 46px;
     align-content: center;
     gap: 1px;
-    padding: 6px 7px;
+    padding: 4px 7px;
     text-align: center;
 }
 
 .exam-source-list .source-btn span {
+    min-width: 0;
     font-size: 10px;
     line-height: 1.05;
-    overflow-wrap: normal;
+    overflow-wrap: anywhere;
     word-break: normal;
 }
 
@@ -497,11 +394,12 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn small {
+    min-width: 0;
     overflow: visible;
     white-space: normal;
     font-size: 8.5px;
     line-height: 1.05;
-    overflow-wrap: normal;
+    overflow-wrap: anywhere;
     word-break: normal;
 }
 
@@ -1911,18 +1809,19 @@ footer {
     }
 
     .source-list.course-source-list {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         max-height: none;
         overflow-y: visible;
     }
 
     .source-list.exam-source-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        max-height: 138px;
+        grid-template-columns: minmax(0, 1fr);
+        max-height: 146px;
+        overflow-x: hidden;
     }
 
     .exam-source-list .source-btn {
-        min-height: 50px;
+        min-height: 46px;
         padding: 5px;
     }
 
@@ -1963,11 +1862,6 @@ footer {
 
     .formula-card span {
         font-size: 9.5px;
-    }
-
-    .progress-toggle-btn {
-        min-height: 34px;
-        font-size: 11.5px;
     }
 
     .focus-toggle {
@@ -2228,12 +2122,6 @@ footer {
                 </div>
             </div>
 
-            <div class="side-section">
-                <a class="training-card" href="trening.html">
-                    <strong>Trening szybkości</strong>
-                </a>
-            </div>
-
             <div class="side-section" id="formulaSection" style="display:none">
                 <div class="side-title">Materiały do pobrania</div>
                 <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" download>
@@ -2246,6 +2134,7 @@ footer {
                 <div class="category-toggle">
                     <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
                     <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
+                    <a class="category-btn training-card" href="trening.html">Trening szybkości</a>
                 </div>
             </div>
 
@@ -2285,47 +2174,6 @@ footer {
                 <div class="tag-chip-list" id="tagChipList"></div>
                 <button class="clear-tags-btn" id="clearTagsButton" type="button" onclick="clearTagFilters()" hidden>Wyczyść tagi</button>
                 <div class="tag-helper" id="tagHelper">Wybierz tag albo wpisz fragment nazwy.</div>
-            </div>
-
-            <div class="side-section" id="progressToggleSection" style="display:none">
-                <button class="progress-toggle-btn" id="progressToggleButton" type="button" onclick="toggleStudentProgressPanel()">Postęp pracy</button>
-            </div>
-
-            <div class="side-section" id="progressSection" style="display:none">
-                <div class="student-progress-panel" aria-live="polite">
-                    <div class="learning-progress">
-                        <div class="learning-progress-head">
-                            <span>Lekcje</span>
-                            <strong id="lessonProgressLabel">0 / 20 lekcji</strong>
-                        </div>
-                        <div class="learning-progress-track">
-                            <span class="learning-progress-fill" id="lessonProgressFill"></span>
-                        </div>
-                        <div class="learning-progress-detail" id="lessonProgressDetail">Wczytywanie postępu...</div>
-                    </div>
-
-                    <div class="learning-progress">
-                        <div class="learning-progress-head">
-                            <span>Prace domowe</span>
-                            <strong id="homeworkProgressLabel">0 / 20 lekcji</strong>
-                        </div>
-                        <div class="learning-progress-track">
-                            <span class="learning-progress-fill homework" id="homeworkProgressFill"></span>
-                        </div>
-                        <div class="learning-progress-detail" id="homeworkProgressDetail">Wczytywanie postępu...</div>
-                    </div>
-
-                    <div class="learning-progress">
-                        <div class="learning-progress-head">
-                            <span>Egzaminy</span>
-                            <strong id="examProgressLabel">0 / 0 arkuszy</strong>
-                        </div>
-                        <div class="learning-progress-track">
-                            <span class="learning-progress-fill exam" id="examProgressFill"></span>
-                        </div>
-                        <div class="learning-progress-detail" id="examProgressDetail">Wczytywanie postępu...</div>
-                    </div>
-                </div>
             </div>
 
         </aside>
@@ -2400,7 +2248,7 @@ footer {
 <footer>© 2026 Delta sigma</footer>
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
-<script src="static/auth.js?v=20260518-token"></script>
+<script src="static/auth.js?v=20260610-profile"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -2422,7 +2270,6 @@ let trueFalseSelection = [];
 let savedProgress = [];
 let sessionScores = new Map();
 let focusMode = false;
-let progressPanelOpen = false;
 let currentTaskAnswered = false;
 let isLoggedInStudent = false;
 let loggedUser = null;
@@ -2451,18 +2298,6 @@ const COURSE_PART_LABELS = {
     zadania: "1. Część główna",
     praca_domowa: "2. Zadanie domowe",
     zadania_praktyczne: "3. Zadania praktyczne"
-};
-
-const COURSE_TARGETS = {
-    matura_podstawowa: 20,
-    matura_rozszerzona: 20,
-    egzamin_osmoklasisty: 20
-};
-
-const EXAM_TARGETS = {
-    matura_podstawowa: 20,
-    matura_rozszerzona: 20,
-    egzamin_osmoklasisty: 20
 };
 
 const TASK_SOURCES = [
@@ -2732,7 +2567,6 @@ async function bootStudentPanel(){
         renderSourceSelector();
         refreshTaskNavigator();
         renderTagSearch();
-        renderLearningProgress();
 
         drawTask(initialIndex);
     } catch(error) {
@@ -2807,41 +2641,9 @@ function updateSourceAttributionVisibility(){
     }
 }
 
-function updateProgressPanelVisibility(){
-    if(!isLoggedInStudent){
-        progressPanelOpen = false;
-    }
-
-    setPanelSectionVisible("progressToggleSection", isLoggedInStudent);
-    setPanelSectionVisible("progressSection", isLoggedInStudent && progressPanelOpen);
-
-    const button = document.getElementById("progressToggleButton");
-
-    if(button){
-        button.classList.toggle("active", progressPanelOpen);
-        button.innerText = progressPanelOpen ? "Ukryj postęp pracy" : "Postęp pracy";
-    }
-}
-
-async function toggleStudentProgressPanel(){
-    progressPanelOpen = !progressPanelOpen;
-    updateProgressPanelVisibility();
-
-    if(progressPanelOpen && isLoggedInStudent){
-        try {
-            await ensureLevelTaskSourcesLoaded();
-            renderLearningProgress();
-        } catch(error) {
-            console.warn("Nie udało się wczytać pełnych danych postępu.", error);
-            renderLearningProgress("Nie udało się wczytać pełnych danych postępu.");
-        }
-    }
-}
-
 function updateAccessModeUI(){
     document.body.classList.toggle("guest-exam-mode", !isLoggedInStudent);
     setTimerVisible(!isLoggedInStudent);
-    updateProgressPanelVisibility();
     setPanelSectionVisible("formulaSection", isLoggedInStudent && Boolean(FORMULA_SHEETS[selectedLevel]));
     setPanelSectionVisible("categorySection", isLoggedInStudent);
     updateSourceAttributionVisibility();
@@ -3011,14 +2813,6 @@ async function ensureTaskSourceLoaded(sourceId = selectedSource){
 
     taskSourceLoadPromises.set(sourceId, loadPromise);
     await loadPromise;
-}
-
-async function ensureLevelTaskSourcesLoaded(level = selectedLevel){
-    const sources = TASK_SOURCES
-        .map(getSourceMeta)
-        .filter(source => source.level === level);
-
-    await Promise.all(sources.map(source => ensureTaskSourceLoaded(source.id)));
 }
 
 function normalizeTaskSolutions(task, basePath){
@@ -3393,7 +3187,6 @@ async function loadSelectedSourceAndDraw(index = getInitialIndex()){
         renderSourceSelector();
         refreshTaskNavigator();
         renderTagSearch();
-        renderLearningProgress();
         drawTask(index);
     } catch(error) {
         console.warn("Nie udało się wczytać wybranego źródła zadań.", error);
@@ -3578,10 +3371,10 @@ function renderSourceSelector(){
             ).length
             : null;
         const detail = selectedCategory === "kurs"
-            ? (isLoaded ? `${count} zadań` : "Wczytaj lekcję")
+            ? (isLoaded ? `${count} zadań` : "")
             : compactExamSourceDetail(source.detail);
         const titleDetail = selectedCategory === "kurs" && source.detail
-            ? `${source.detail} • ${isLoaded ? `${count} zadań` : "Wczytaj lekcję"}`
+            ? `${source.detail}${isLoaded ? ` • ${count} zadań` : ""}`
             : `${source.detail}${isLoaded ? ` • ${count} zadań` : ""}`;
 
         addSourceButton(
@@ -3631,7 +3424,9 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     meta.innerText = detail;
 
     button.appendChild(name);
-    button.appendChild(meta);
+    if(detail){
+        button.appendChild(meta);
+    }
     list.appendChild(button);
 }
 
@@ -3715,7 +3510,6 @@ async function loadStudentProgress(options = {}){
 
     if(!window.apiFetch){
         if(shouldRender){
-            renderLearningProgress("Postęp będzie widoczny po zalogowaniu.");
             renderSourceSelector();
             updateSourceSummary();
         }
@@ -3728,7 +3522,6 @@ async function loadStudentProgress(options = {}){
         savedProgress = Array.isArray(data.progress) ? data.progress : [];
         if(shouldRender){
             renderSourceSelector();
-            renderLearningProgress();
             renderTaskNavigator();
             updateSourceSummary();
         }
@@ -3736,7 +3529,6 @@ async function loadStudentProgress(options = {}){
         savedProgress = [];
         if(shouldRender){
             renderSourceSelector();
-            renderLearningProgress("Nie udało się wczytać postępu.");
             renderTaskNavigator();
             updateSourceSummary();
         }
@@ -3841,157 +3633,6 @@ async function restoreLastStudentLocation(){
     const lastIndex = items.findIndex(task => task.file === file);
 
     return nextResumeIndex(items, lastIndex);
-}
-
-function getTaskSources(category, level, options = {}){
-    const sourceMap = new Map();
-
-    tasks
-        .filter(task =>
-            task.category === category &&
-            task.level === level &&
-            (!options.coursePart || task.coursePart === options.coursePart)
-        )
-        .forEach(task => {
-            if(!sourceMap.has(task.sourceId)){
-                sourceMap.set(task.sourceId, {
-                    id: task.sourceId,
-                    label: task.sourceLabel,
-                    detail: task.sourceDetail,
-                    files: new Set()
-                });
-            }
-
-            sourceMap.get(task.sourceId).files.add(task.file);
-        });
-
-    return [...sourceMap.values()]
-        .map(source => ({
-            ...source,
-            totalTasks: source.files.size
-        }))
-        .filter(source => source.totalTasks > 0);
-}
-
-function calculateProgressStats(category, target, options = {}){
-    const attemptedTasks = new Set(
-        savedProgress
-            .map(progressTaskKey)
-            .filter(Boolean)
-    );
-    const sources = getTaskSources(category, selectedLevel, options);
-
-    let completed = 0;
-    let started = 0;
-    let attempted = 0;
-    let total = 0;
-    let visualUnits = 0;
-
-    sources.forEach(source => {
-        const attemptedInSource = [...source.files]
-            .filter(file => attemptedTasks.has(`${source.id}:${file}`))
-            .length;
-
-        total += source.totalTasks;
-        attempted += attemptedInSource;
-
-        if(attemptedInSource > 0) started++;
-
-        if(attemptedInSource >= source.totalTasks){
-            completed++;
-            visualUnits++;
-        } else if(source.totalTasks){
-            visualUnits += attemptedInSource / source.totalTasks;
-        }
-    });
-
-    const progressTarget = options.targetMode === "available"
-        ? sources.length
-        : target;
-    const safeTarget = Math.max(1, progressTarget || 0);
-    const percentBasis = options.percentMode === "completedSources"
-        ? completed
-        : visualUnits;
-
-    return {
-        target: progressTarget,
-        completed,
-        started,
-        attempted,
-        total,
-        available: sources.length,
-        percent: Math.min(100, Math.round((percentBasis / safeTarget) * 1000) / 10)
-    };
-}
-
-function updateProgressBar({ labelId, fillId, detailId, label, unit, stats, emptyText, unavailableText }){
-    const labelElement = document.getElementById(labelId);
-    const fillElement = document.getElementById(fillId);
-    const detailElement = document.getElementById(detailId);
-
-    if(!labelElement || !fillElement || !detailElement) return;
-
-    labelElement.innerText = `${stats.completed} / ${stats.target} ${unit}`;
-    fillElement.style.width = `${stats.percent}%`;
-
-    if(unavailableText){
-        detailElement.innerText = unavailableText;
-        return;
-    }
-
-    if(!stats.available){
-        detailElement.innerText = emptyText;
-        return;
-    }
-
-    detailElement.innerText =
-        `${label}: ukończone ${stats.completed}/${stats.available}, rozpoczęte ${stats.started}. Zadania: ${stats.attempted}/${stats.total}`;
-}
-
-function renderLearningProgress(unavailableText = ""){
-    const lessonStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
-        coursePart: "zadania"
-    });
-    const homeworkStats = calculateProgressStats("kurs", COURSE_TARGETS[selectedLevel] || 20, {
-        coursePart: "praca_domowa"
-    });
-    const examStats = calculateProgressStats("egzaminy", EXAM_TARGETS[selectedLevel] || 20, {
-        targetMode: "available",
-        percentMode: "completedSources"
-    });
-
-    updateProgressBar({
-        labelId: "lessonProgressLabel",
-        fillId: "lessonProgressFill",
-        detailId: "lessonProgressDetail",
-        label: "Lekcje",
-        unit: "lekcji",
-        stats: lessonStats,
-        emptyText: "Brak dodanych lekcji dla tego poziomu.",
-        unavailableText
-    });
-
-    updateProgressBar({
-        labelId: "homeworkProgressLabel",
-        fillId: "homeworkProgressFill",
-        detailId: "homeworkProgressDetail",
-        label: "Prace domowe",
-        unit: "lekcji",
-        stats: homeworkStats,
-        emptyText: "Brak dodanych prac domowych dla tego poziomu.",
-        unavailableText
-    });
-
-    updateProgressBar({
-        labelId: "examProgressLabel",
-        fillId: "examProgressFill",
-        detailId: "examProgressDetail",
-        label: "Egzaminy",
-        unit: "arkuszy",
-        stats: examStats,
-        emptyText: "Brak dodanych arkuszy dla tego poziomu.",
-        unavailableText
-    });
 }
 
 function sourceSummaryTasks(){
@@ -6329,7 +5970,12 @@ function checkInputAnswer(form){
     disableMCQ();
 
     if(isCorrect){
-        addProgress(hintUsed || answerShown ? "medium" : "good");
+        const maxPoints = taskMaxPoints(currentTask);
+        const scoreData = maxPoints
+            ? { earnedPoints: maxPoints, maxPoints }
+            : null;
+
+        addProgress("good", scoreData);
 
         setTimeout(() => {
             nextTask();
@@ -6339,7 +5985,11 @@ function checkInputAnswer(form){
     }
 
     if(isCourseTask()){
-        showCorrection(getInputFields(currentTask).map(field => field.answers[0]));
+        if(hasGradingCriteria(currentTask)){
+            showGradingCriteria();
+        } else {
+            showCorrection(getInputFields(currentTask).map(field => field.answers[0]));
+        }
         addProgress("bad");
         return;
     }
@@ -6434,7 +6084,6 @@ async function saveProgress(type, scoreData = null){
         if(data?.progress){
             savedProgress.unshift(data.progress);
             renderSourceSelector();
-            renderLearningProgress();
             updateScorePanel();
             updateSourceSummary();
         }

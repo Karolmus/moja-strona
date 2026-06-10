@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="img/logo3.png">
+<link rel="shortcut icon" type="image/webp" href="img/logo3.png">
+<link rel="apple-touch-icon" href="img/logo3.png">
+<title>Mój profil – Delta Sigma</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
+
+<style>
+:root {
+    --page-bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+    --line: #d9e1ea;
+    --text: #1f2a36;
+    --muted: #64748b;
+    --navy: #263545;
+    --blue: #5d8fbd;
+    --green: #6aa84f;
+    --homework: #d99595;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-page {
+    display: grid;
+    gap: 16px;
+    width: min(980px, calc(100% - 32px));
+    margin: 28px auto 48px;
+}
+
+.panel {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    padding: 18px;
+}
+
+.loading-panel {
+    display: grid;
+    min-height: 180px;
+    place-items: center;
+    color: var(--muted);
+    text-align: center;
+}
+
+.profile-dashboard {
+    display: none;
+    gap: 16px;
+}
+
+.profile-dashboard.active {
+    display: grid;
+}
+
+.profile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.profile-identity {
+    display: grid;
+    gap: 4px;
+}
+
+.profile-identity h1 {
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.15;
+}
+
+.profile-identity span {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.continue-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    background: var(--navy);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    text-decoration: none;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.stat {
+    display: grid;
+    gap: 4px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff, var(--surface-soft));
+    padding: 14px;
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.stat strong {
+    font-size: 24px;
+    line-height: 1.15;
+}
+
+.section-title {
+    margin: 0 0 14px;
+    font-size: 18px;
+}
+
+.progress-list {
+    display: grid;
+}
+
+.progress-row {
+    display: grid;
+    gap: 9px;
+    padding: 15px 0;
+    border-top: 1px solid var(--line);
+}
+
+.progress-row:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.progress-row:last-child {
+    padding-bottom: 0;
+}
+
+.progress-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.progress-head span {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.progress-head strong {
+    font-size: 15px;
+    text-align: right;
+}
+
+.progress-track {
+    height: 16px;
+    overflow: hidden;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #e2e8f0;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.progress-fill {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--green), #8fcf74);
+    transition: width 0.25s ease;
+}
+
+.progress-fill.homework {
+    background: linear-gradient(90deg, var(--homework), #e7b4b4);
+}
+
+.progress-fill.exam {
+    background: linear-gradient(90deg, #24527a, var(--blue));
+}
+
+.progress-detail {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.recent-list {
+    display: grid;
+    gap: 7px;
+}
+
+.recent-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    padding: 10px 0;
+}
+
+.recent-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.recent-item:last-child {
+    padding-bottom: 0;
+}
+
+.result-chip {
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.result-chip.good {
+    background: #e8f5e7;
+    color: #2f6b36;
+}
+
+.result-chip.medium {
+    background: #fff4cf;
+    color: #765a12;
+}
+
+.result-chip.bad {
+    background: #fdecea;
+    color: #8b2119;
+}
+
+.recent-main {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.recent-main strong {
+    font-size: 13px;
+}
+
+.recent-main span,
+.recent-date {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.recent-date {
+    white-space: nowrap;
+}
+
+@media(max-width: 640px) {
+    .profile-page {
+        width: min(980px, calc(100% - 16px));
+        margin-top: 12px;
+    }
+
+    .panel {
+        padding: 14px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .continue-button {
+        width: 100%;
+    }
+
+    .recent-item {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .recent-date {
+        grid-column: 2;
+    }
+}
+</style>
+</head>
+
+<body>
+<div id="nav"></div>
+
+<main class="profile-page">
+    <section class="panel loading-panel" id="profileStatus">Wczytywanie profilu...</section>
+
+    <div class="profile-dashboard" id="profileDashboard">
+        <section class="panel profile-head">
+            <div class="profile-identity">
+                <h1 id="profileName">Uczeń</h1>
+                <span id="profileLevel">Poziom</span>
+            </div>
+            <a class="continue-button" href="zadania.html">Kontynuuj pracę</a>
+        </section>
+
+        <section class="stats-grid" aria-label="Podsumowanie pracy">
+            <div class="stat">
+                <span>Wykonane zadania</span>
+                <strong id="taskCount">0</strong>
+            </div>
+            <div class="stat">
+                <span>Skuteczność</span>
+                <strong id="accuracy">0%</strong>
+            </div>
+            <div class="stat">
+                <span>Czas w tym tygodniu</span>
+                <strong id="weeklyTime">0 s</strong>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2 class="section-title">Postęp pracy</h2>
+            <div class="progress-list">
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span>Lekcje</span>
+                        <strong id="lessonLabel">0 / 20 lekcji</strong>
+                    </div>
+                    <div class="progress-track"><span class="progress-fill" id="lessonFill"></span></div>
+                    <div class="progress-detail" id="lessonDetail">Wczytywanie postępu...</div>
+                </div>
+
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span>Prace domowe</span>
+                        <strong id="homeworkLabel">0 / 20 lekcji</strong>
+                    </div>
+                    <div class="progress-track"><span class="progress-fill homework" id="homeworkFill"></span></div>
+                    <div class="progress-detail" id="homeworkDetail">Wczytywanie postępu...</div>
+                </div>
+
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span>Egzaminy</span>
+                        <strong id="examLabel">0 / 0 arkuszy</strong>
+                    </div>
+                    <div class="progress-track"><span class="progress-fill exam" id="examFill"></span></div>
+                    <div class="progress-detail" id="examDetail">Wczytywanie postępu...</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2 class="section-title">Ostatnie zadania</h2>
+            <div class="recent-list" id="recentList"></div>
+        </section>
+    </div>
+</main>
+
+<footer>© 2026 Delta Sigma</footer>
+<div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
+
+<script src="static/auth.js?v=20260610-profile"></script>
+<script>
+const levelLabels = {
+    matura_podstawowa: "Matura podstawowa",
+    matura_rozszerzona: "Matura rozszerzona",
+    egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
+};
+
+const resultLabels = {
+    good: "Dobrze",
+    medium: "Z pomocą",
+    bad: "Źle"
+};
+
+const COURSE_TARGET = 20;
+const PROFILE_SOURCES = [
+    { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa" },
+    { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa" },
+    { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa" },
+    { path: "zadania/mp/2022/maj/2022_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa" },
+    { path: "zadania/mr/2023/maj/2023_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona" },
+    { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona" },
+    { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona" },
+    { path: "zadania/mr/2022/maj/2022_cke_r_m.json", category: "egzaminy", level: "matura_rozszerzona" },
+    { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty" },
+    { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty" },
+    { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty" },
+    { path: "zadania/eo/2022/maj/2022_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_2/lekcja_2_dzialania_na_liczbach.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_3/lekcja_3_potegi.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_4/lekcja_4_pierwiastki.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_8/lekcja_8_predkosc.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_9/lekcja_9_pola_powierzchni_trojkatow_i_czworokatow.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_10/lekcja_10_skala_i_jednostki_powierzchni.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_11/lekcja_11_uklad_wspolrzednych.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_12/lekcja_12_katy_przystawanie_podobienstwo.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_13/lekcja_13_trojkaty.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_14/lekcja_14_czworokaty_1.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_15/lekcja_15_czworokaty_2_i_wielokaty.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_16/lekcja_16_graniastoslupy.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_17/lekcja_17_ostroslupy.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_18/lekcja_18_kombinatoryka_i_prawdopodobienstwo.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_19/lekcja_19_logika_i_dowodzenie_w_algebrze.json", category: "kurs", level: "egzamin_osmoklasisty" },
+    { path: "zadania/kurs/eo/lekcja_20/lekcja_20_logika_i_dowodzenie_w_geometrii.json", category: "kurs", level: "egzamin_osmoklasisty" }
+];
+
+let sourceCatalog = [];
+
+function setStatus(message){
+    const status = document.getElementById("profileStatus");
+
+    status.innerText = message;
+    status.style.display = "grid";
+    document.getElementById("profileDashboard").classList.remove("active");
+}
+
+function progressSourceId(item){
+    if(item.source_id) return item.source_id;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(0, splitIndex) : "";
+}
+
+function progressFile(item){
+    if(item.file) return item.file;
+    if(!item.task_id) return "";
+
+    const splitIndex = item.task_id.lastIndexOf(":");
+
+    return splitIndex > 0 ? item.task_id.slice(splitIndex + 1) : "";
+}
+
+function progressKey(item){
+    const sourceId = progressSourceId(item);
+    const file = progressFile(item);
+
+    return sourceId && file ? `${sourceId}:${file}` : "";
+}
+
+function latestTaskProgress(progress){
+    const latest = new Map();
+
+    progress.forEach(item => {
+        const key = progressKey(item);
+
+        if(key && !latest.has(key)){
+            latest.set(key, item);
+        }
+    });
+
+    return [...latest.values()];
+}
+
+function formatDuration(seconds){
+    const value = Math.max(0, Number(seconds) || 0);
+    const hours = Math.floor(value / 3600);
+    const minutes = Math.floor((value % 3600) / 60);
+    const rest = value % 60;
+
+    if(hours) return `${hours} h ${minutes} min`;
+    if(minutes) return `${minutes} min ${rest} s`;
+
+    return `${rest} s`;
+}
+
+function currentWeekStart(){
+    const date = new Date();
+    const daysSinceMonday = (date.getDay() + 6) % 7;
+
+    date.setDate(date.getDate() - daysSinceMonday);
+    date.setHours(0, 0, 0, 0);
+
+    return date;
+}
+
+async function loadSourceCatalog(level){
+    const sources = PROFILE_SOURCES.filter(source => source.level === level);
+    const loaded = await Promise.all(
+        sources.map(async source => {
+            try {
+                const response = await fetch(source.path);
+
+                if(!response.ok) throw new Error("Nie udało się pobrać źródła.");
+
+                const tasks = await response.json();
+                const filesByPart = new Map();
+
+                tasks.forEach(task => {
+                    const part = source.category === "kurs"
+                        ? task.coursePart || task.section || "zadania"
+                        : "egzaminy";
+
+                    if(!filesByPart.has(part)){
+                        filesByPart.set(part, new Set());
+                    }
+
+                    if(task.file){
+                        filesByPart.get(part).add(task.file);
+                    }
+                });
+
+                return {
+                    ...source,
+                    filesByPart
+                };
+            } catch(error) {
+                return {
+                    ...source,
+                    filesByPart: new Map()
+                };
+            }
+        })
+    );
+
+    sourceCatalog = loaded;
+}
+
+function calculateProgress(progress, category, part, targetMode = "fixed"){
+    const attempted = new Set(progress.map(progressKey).filter(Boolean));
+    const sources = sourceCatalog.filter(source => source.category === category);
+    let completed = 0;
+    let started = 0;
+    let attemptedTasks = 0;
+    let totalTasks = 0;
+    let visualUnits = 0;
+
+    sources.forEach(source => {
+        const files = source.filesByPart.get(part) || new Set();
+
+        if(!files.size) return;
+
+        const attemptedInSource = [...files]
+            .filter(file => attempted.has(`${source.path}:${file}`))
+            .length;
+
+        totalTasks += files.size;
+        attemptedTasks += attemptedInSource;
+
+        if(attemptedInSource > 0) started++;
+
+        if(attemptedInSource >= files.size){
+            completed++;
+            visualUnits++;
+        } else {
+            visualUnits += attemptedInSource / files.size;
+        }
+    });
+
+    const available = sources.filter(source => (source.filesByPart.get(part)?.size || 0) > 0).length;
+    const target = targetMode === "available" ? available : COURSE_TARGET;
+    const percentBasis = targetMode === "available" ? completed : visualUnits;
+    const percent = target
+        ? Math.min(100, Math.round((percentBasis / target) * 1000) / 10)
+        : 0;
+
+    return {
+        available,
+        completed,
+        started,
+        attemptedTasks,
+        totalTasks,
+        target,
+        percent
+    };
+}
+
+function renderProgress(prefix, stats, unit, emptyText){
+    document.getElementById(`${prefix}Label`).innerText =
+        `${stats.completed} / ${stats.target} ${unit}`;
+    document.getElementById(`${prefix}Fill`).style.width = `${stats.percent}%`;
+    document.getElementById(`${prefix}Detail`).innerText = stats.available
+        ? `Ukończone: ${stats.completed}/${stats.available}. Rozpoczęte: ${stats.started}. Zadania: ${stats.attemptedTasks}/${stats.totalTasks}.`
+        : emptyText;
+}
+
+function taskTitle(item){
+    const file = String(progressFile(item) || "Zadanie");
+    const match = file.match(/(?:zadanie_|zad_|^)(\d+(?:\.\d+)?)/i);
+
+    return match ? `Zadanie ${match[1]}` : item.topic || "Zadanie";
+}
+
+function sourceLabel(item){
+    return String(progressSourceId(item)).includes("/kurs/")
+        ? "Kurs"
+        : levelLabels[item.level] || "Egzamin";
+}
+
+function formatDate(value){
+    if(!value) return "";
+
+    return new Date(value).toLocaleString("pl-PL", {
+        dateStyle: "short",
+        timeStyle: "short"
+    });
+}
+
+function renderRecent(progress){
+    const list = document.getElementById("recentList");
+
+    list.innerHTML = "";
+
+    if(!progress.length){
+        list.innerHTML = `<div class="progress-detail">Brak zapisanych zadań.</div>`;
+        return;
+    }
+
+    progress.slice(0, 8).forEach(item => {
+        const row = document.createElement("div");
+        const chip = document.createElement("span");
+        const main = document.createElement("div");
+        const title = document.createElement("strong");
+        const meta = document.createElement("span");
+        const date = document.createElement("span");
+
+        row.className = "recent-item";
+        chip.className = `result-chip ${item.result}`;
+        main.className = "recent-main";
+        date.className = "recent-date";
+        chip.innerText = resultLabels[item.result] || item.result;
+        title.innerText = taskTitle(item);
+        meta.innerText = `${sourceLabel(item)}${item.topic ? ` • ${item.topic}` : ""}`;
+        date.innerText = formatDate(item.created_at);
+
+        main.appendChild(title);
+        main.appendChild(meta);
+        row.appendChild(chip);
+        row.appendChild(main);
+        row.appendChild(date);
+        list.appendChild(row);
+    });
+}
+
+function renderProfile(user, progress){
+    const latest = latestTaskProgress(progress);
+    const good = latest.filter(item => item.result === "good").length;
+    const weekStart = currentWeekStart();
+    const weeklySeconds = progress
+        .filter(item => new Date(item.created_at) >= weekStart)
+        .reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0);
+    const lessonStats = calculateProgress(progress, "kurs", "zadania");
+    const homeworkStats = calculateProgress(progress, "kurs", "praca_domowa");
+    const examStats = calculateProgress(progress, "egzaminy", "egzaminy", "available");
+
+    document.getElementById("profileName").innerText = user.display_name || user.email;
+    document.getElementById("profileLevel").innerText = levelLabels[user.level] || user.level || "Poziom";
+    document.getElementById("taskCount").innerText = latest.length;
+    document.getElementById("accuracy").innerText = latest.length
+        ? `${Math.round((good / latest.length) * 100)}%`
+        : "0%";
+    document.getElementById("weeklyTime").innerText = formatDuration(weeklySeconds);
+
+    renderProgress("lesson", lessonStats, "lekcji", "Brak lekcji dla tego poziomu.");
+    renderProgress("homework", homeworkStats, "lekcji", "Brak prac domowych dla tego poziomu.");
+    renderProgress("exam", examStats, "arkuszy", "Brak arkuszy dla tego poziomu.");
+    renderRecent(latest);
+
+    document.getElementById("profileStatus").style.display = "none";
+    document.getElementById("profileDashboard").classList.add("active");
+}
+
+async function bootProfile(){
+    try {
+        const session = await apiFetch("/api/auth/me");
+
+        if(!session.authenticated){
+            window.location.href = "login.html";
+            return;
+        }
+
+        if(session.user.role !== "student"){
+            window.location.href = "admin.html";
+            return;
+        }
+
+        const [progressData] = await Promise.all([
+            apiFetch("/api/progress/me"),
+            loadSourceCatalog(session.user.level)
+        ]);
+
+        renderProfile(
+            session.user,
+            Array.isArray(progressData.progress) ? progressData.progress : []
+        );
+    } catch(error) {
+        setStatus(error.message || "Nie udało się wczytać profilu.");
+    }
+}
+
+fetch("nav.html")
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("nav").innerHTML = html;
+    });
+
+bootProfile();
+</script>
+</body>
+</html>
