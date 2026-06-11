@@ -42,14 +42,14 @@ body {
 }
 
 .training-page {
-    width: min(1040px, calc(100% - 24px));
-    margin: 14px auto 30px;
+    width: min(1180px, calc(100% - 32px));
+    margin: 28px auto 30px;
 }
 
 .training-shell {
     display: grid;
-    grid-template-columns: 250px minmax(0, 1fr);
-    gap: 10px;
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: 16px;
     align-items: start;
 }
 
@@ -59,17 +59,17 @@ body {
 .progress-panel,
 .leaderboard-panel {
     border: 1px solid var(--line);
-    border-radius: 10px;
+    border-radius: 8px;
     background: var(--surface);
     box-shadow: var(--shadow);
 }
 
 .training-panel {
     position: sticky;
-    top: 12px;
+    top: 10px;
     display: grid;
-    gap: 10px;
-    padding: 10px;
+    gap: 6px;
+    padding: 8px;
 }
 
 .training-mode-nav {
@@ -82,61 +82,66 @@ body {
     display: grid;
     place-items: center;
     min-width: 0;
-    min-height: 30px;
+    min-height: 28px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
     color: var(--text);
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 11px;
+    font-weight: 600;
     line-height: 1.1;
-    padding: 5px 4px;
+    padding: 5px 7px;
     text-align: center;
     text-decoration: none;
-    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .training-mode-link:hover {
-    border-color: var(--blue-text);
-    background: var(--surface-soft);
+    border-color: #b9c6d4;
+    background: #f3f6fa;
 }
 
 .training-mode-link.active {
     border-color: var(--navy);
     background: var(--navy);
     color: white;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.16);
 }
 
 .panel-title,
 .stat-label,
 .history-title {
     color: var(--muted);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    font-size: 10px;
+    font-weight: 600;
     text-transform: uppercase;
+    line-height: 1.1;
 }
 
 .level-tabs,
-.topic-list,
 .round-controls {
     display: grid;
-    gap: 7px;
+    gap: 4px;
+}
+
+.round-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .level-tabs {
-    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    grid-template-columns: 1fr;
 }
 
 .level-locked {
-    border: 1px solid rgba(142, 181, 222, 0.9);
+    min-height: 38px;
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: var(--blue-soft);
-    color: var(--blue-text);
-    padding: 9px 10px;
+    background: #e9eef4;
+    color: var(--text);
+    padding: 7px 8px;
     text-align: center;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 .level-btn,
@@ -156,10 +161,10 @@ body {
 
 .level-btn,
 .topic-btn {
-    min-height: 38px;
-    padding: 8px 10px;
-    font-size: 12px;
-    text-align: left;
+    min-height: 25px;
+    padding: 3px 4px;
+    font-size: 9.5px;
+    text-align: center;
 }
 
 .level-btn {
@@ -168,9 +173,10 @@ body {
 
 .level-btn.active,
 .topic-btn.active {
-    border-color: rgba(142, 181, 222, 0.9);
-    background: var(--blue-soft);
-    color: var(--blue-text);
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.16);
 }
 
 .control-btn {
@@ -189,60 +195,63 @@ body {
 
 .level-btn:hover,
 .topic-btn:hover,
-.control-btn:hover,
 .secondary-btn:hover,
 .key-btn:hover {
+    border-color: #b9c6d4;
+    background: #f3f6fa;
+}
+
+.topic-btn.active:hover {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+}
+
+.control-btn:hover {
+    border-color: #1c2834;
+    background: #1c2834;
     transform: translateY(-1px);
-    border-color: var(--blue-text);
 }
 
-.topic-settings {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface-soft);
+.training-side-section {
+    display: grid;
+    gap: 4px;
+}
+
+.topic-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3px;
+}
+
+.topic-btn {
+    display: grid;
+    align-content: center;
+    gap: 1px;
+    min-width: 0;
+    width: 100%;
+}
+
+.topic-btn span {
+    min-width: 0;
+    font-size: 9.5px;
+    font-weight: 600;
+    line-height: 1.05;
+}
+
+.topic-btn small {
+    min-width: 0;
     overflow: hidden;
+    color: var(--muted);
+    font-size: 8.5px;
+    font-weight: 400;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.topic-settings summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    list-style: none;
-    cursor: pointer;
-    padding: 9px 10px;
-}
-
-.topic-settings summary::-webkit-details-marker {
-    display: none;
-}
-
-.topic-settings[open] summary {
-    border-bottom: 1px solid var(--line);
-}
-
-.topic-current {
-    display: block;
-    margin-top: 2px;
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 800;
-    line-height: 1.2;
-}
-
-.topic-summary-action {
-    border-radius: 999px;
-    background: white;
-    border: 1px solid var(--line);
-    color: var(--blue-text);
-    flex: 0 0 auto;
-    font-size: 11px;
-    font-weight: 800;
-    padding: 5px 8px;
-}
-
-.topic-settings .topic-list {
-    padding: 8px;
+.topic-btn.active small {
+    color: rgba(255, 255, 255, 0.76);
 }
 
 .training-stage {
@@ -336,7 +345,7 @@ body {
     gap: 10px;
     min-height: 168px;
     border: 1px solid var(--line);
-    border-radius: 10px;
+    border-radius: 8px;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     padding: 14px;
 }
@@ -977,15 +986,21 @@ body {
         position: static;
     }
 
-    .topic-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 @media (max-width: 560px) {
     .training-page {
-        width: min(100% - 18px, 1120px);
-        margin-top: 12px;
+        width: min(100% - 10px, 1180px);
+        margin-top: 8px;
+    }
+
+    .training-shell {
+        gap: 6px;
+    }
+
+    .training-panel {
+        gap: 5px;
+        padding: 6px;
     }
 
     .training-stage {
@@ -1020,8 +1035,18 @@ body {
         min-height: 44px;
     }
 
-    .topic-list {
-        grid-template-columns: 1fr;
+    .topic-btn {
+        min-height: 23px;
+        padding: 2px 3px;
+    }
+
+    .topic-btn span {
+        font-size: 8.5px;
+        line-height: 1;
+    }
+
+    .topic-btn small {
+        display: none;
     }
 
     .leaderboard-head {
@@ -1060,27 +1085,21 @@ body {
 <main class="training-page">
     <div class="training-shell">
         <aside class="training-panel" aria-label="Ustawienia treningu">
+            <div class="training-side-section">
+                <div class="panel-title">Poziom</div>
+                <div class="level-tabs" id="levelTabs"></div>
+            </div>
+
+            <div class="training-side-section">
+                <div class="panel-title">Wybór lekcji</div>
+                <div class="topic-list" id="topicList"></div>
+            </div>
+
             <nav class="training-mode-nav" aria-label="Wybór trybu pracy">
                 <a class="training-mode-link" href="zadania.html?category=kurs">Kurs</a>
                 <a class="training-mode-link" href="zadania.html?category=egzaminy">Egzaminy</a>
                 <a class="training-mode-link active" href="trening.html" aria-current="page">Trening szybkości</a>
             </nav>
-
-            <div>
-                <div class="panel-title">Poziom</div>
-                <div class="level-tabs" id="levelTabs"></div>
-            </div>
-
-            <details class="topic-settings">
-                <summary>
-                    <span>
-                        <span class="panel-title">Zakres treningu</span>
-                        <strong class="topic-current" id="topicCurrent">Tryb łączny</strong>
-                    </span>
-                    <span class="topic-summary-action">Lekcje</span>
-                </summary>
-                <div class="topic-list" id="topicList"></div>
-            </details>
 
             <div class="round-controls">
                 <button class="control-btn" id="startButton" type="button">Start rundy</button>
@@ -1282,7 +1301,6 @@ const state = {
 };
 
 const levelTabs = document.getElementById("levelTabs");
-const topicCurrent = document.getElementById("topicCurrent");
 const topicList = document.getElementById("topicList");
 const stageSubtitle = document.getElementById("stageSubtitle");
 const statusPill = document.getElementById("statusPill");
@@ -3673,7 +3691,6 @@ function activeDifficultyLabel(){
 
 function renderControls(){
     stageSubtitle.innerText = LEVELS[state.level].label;
-    topicCurrent.innerText = activeTopicLabel();
     levelTabs.innerHTML = "";
     topicList.innerHTML = "";
 
@@ -3685,11 +3702,18 @@ function renderControls(){
 
     LEVELS[state.level].lessons.forEach(lesson => {
         const button = document.createElement("button");
+        const name = document.createElement("span");
+        const detail = document.createElement("small");
+        const parts = lesson.label.split(" · ");
 
         button.type = "button";
         button.className = lesson.id === state.topic ? "topic-btn active" : "topic-btn";
-        button.innerText = lesson.label;
+        button.title = lesson.label;
         button.onclick = () => setTopic(lesson.id);
+        name.innerText = parts[0];
+        detail.innerText = parts.slice(1).join(" · ") || "Wszystkie lekcje";
+        button.appendChild(name);
+        button.appendChild(detail);
         topicList.appendChild(button);
     });
 
