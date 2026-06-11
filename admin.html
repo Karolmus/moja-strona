@@ -1249,6 +1249,241 @@ th {
     font-size: 13px;
 }
 
+.analytics-panel {
+    gap: 16px;
+}
+
+.analytics-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.analytics-controls label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.analytics-controls select {
+    min-height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-size: 12px;
+    padding: 5px 30px 5px 9px;
+}
+
+.analytics-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.analytics-kpi {
+    display: grid;
+    gap: 3px;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 11px;
+}
+
+.analytics-kpi span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.analytics-kpi strong {
+    color: var(--navy);
+    font-size: 24px;
+    line-height: 1.1;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.8fr);
+    gap: 10px;
+}
+
+.analytics-card {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    padding: 12px;
+}
+
+.analytics-card h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.analytics-card-wide {
+    grid-column: 1 / -1;
+}
+
+.analytics-legend {
+    display: flex;
+    gap: 14px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.analytics-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.analytics-legend i {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: #3b82b8;
+}
+
+.analytics-legend .visitors {
+    background: #53a36a;
+}
+
+.analytics-chart-scroll {
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.analytics-chart {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(14px, 1fr);
+    align-items: end;
+    gap: 3px;
+    min-width: 560px;
+    height: 180px;
+    padding-top: 8px;
+    border-bottom: 1px solid var(--line);
+}
+
+.analytics-day {
+    display: grid;
+    grid-template-rows: 148px 18px;
+    align-items: end;
+    gap: 5px;
+    height: 100%;
+}
+
+.analytics-bars {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 2px;
+    height: 148px;
+}
+
+.analytics-bar {
+    width: min(8px, 42%);
+    min-height: 0;
+    border-radius: 3px 3px 0 0;
+    background: #3b82b8;
+}
+
+.analytics-bar.visitors {
+    background: #53a36a;
+}
+
+.analytics-day-label {
+    min-height: 16px;
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.analytics-list {
+    display: grid;
+    gap: 7px;
+}
+
+.analytics-list-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    font-size: 12px;
+}
+
+.analytics-list-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.analytics-list-value {
+    color: var(--navy);
+    font-weight: 700;
+}
+
+.analytics-meter {
+    grid-column: 1 / -1;
+    height: 5px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.analytics-meter span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #d49a35;
+}
+
+.analytics-table-wrap {
+    overflow-x: auto;
+}
+
+.analytics-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.analytics-table th,
+.analytics-table td {
+    border-bottom: 1px solid var(--line);
+    padding: 8px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.analytics-table th {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.analytics-table th:not(:first-child),
+.analytics-table td:not(:first-child) {
+    text-align: right;
+}
+
+.analytics-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.analytics-empty {
+    color: var(--muted);
+    font-size: 12px;
+    padding: 8px 0;
+}
+
 footer {
     text-align: center;
     padding: 15px;
@@ -1264,6 +1499,14 @@ footer {
 
     .messages-panel {
         max-width: none;
+    }
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-card-wide {
+        grid-column: auto;
     }
 }
 
@@ -1296,6 +1539,25 @@ footer {
     .message-actions {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .admin-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+    }
+
+    .analytics-kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .analytics-controls {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .analytics-controls select {
+        flex: 1;
+    }
 }
 </style>
 </head>
@@ -1323,6 +1585,7 @@ footer {
         <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
         <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge"></span></button>
         <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
+        <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie</button>
     </div>
 
     <div class="admin-tab-panel active" id="studentsTab">
@@ -1455,6 +1718,72 @@ footer {
         </div>
         <div class="message-list" id="messageList" aria-live="polite"></div>
     </section>
+
+    <section class="panel analytics-panel admin-tab-panel" id="analyticsTab">
+        <div class="panel-heading">
+            <div class="messages-heading-copy">
+                <h2>Ruch na stronie</h2>
+                <p class="inbox-subtitle" id="analyticsRange">Statystyki są liczone bez zapisywania adresów IP.</p>
+            </div>
+            <div class="analytics-controls">
+                <label for="analyticsPeriod">Okres</label>
+                <select id="analyticsPeriod">
+                    <option value="7">7 dni</option>
+                    <option value="30" selected>30 dni</option>
+                    <option value="90">90 dni</option>
+                </select>
+                <button class="btn secondary" type="button" id="refreshAnalyticsBtn">Odśwież</button>
+            </div>
+        </div>
+
+        <div class="analytics-kpis">
+            <div class="analytics-kpi"><span>Odsłony</span><strong id="analyticsViews">0</strong></div>
+            <div class="analytics-kpi"><span>Użytkownicy</span><strong id="analyticsVisitors">0</strong></div>
+            <div class="analytics-kpi"><span>Sesje</span><strong id="analyticsSessions">0</strong></div>
+            <div class="analytics-kpi"><span>Odsłon na sesję</span><strong id="analyticsViewsPerSession">0</strong></div>
+        </div>
+
+        <div class="analytics-grid">
+            <section class="analytics-card analytics-card-wide">
+                <div class="panel-heading">
+                    <h3>Ruch dzienny</h3>
+                    <div class="analytics-legend">
+                        <span><i></i>Odsłony</span>
+                        <span><i class="visitors"></i>Użytkownicy</span>
+                    </div>
+                </div>
+                <div class="analytics-chart-scroll">
+                    <div class="analytics-chart" id="analyticsChart"></div>
+                </div>
+            </section>
+
+            <section class="analytics-card">
+                <h3>Źródła wejść</h3>
+                <div class="analytics-list" id="analyticsReferrers"></div>
+            </section>
+
+            <section class="analytics-card">
+                <h3>Urządzenia</h3>
+                <div class="analytics-list" id="analyticsDevices"></div>
+            </section>
+
+            <section class="analytics-card analytics-card-wide">
+                <h3>Najczęściej odwiedzane strony</h3>
+                <div class="analytics-table-wrap">
+                    <table class="analytics-table">
+                        <thead>
+                            <tr>
+                                <th>Strona</th>
+                                <th>Użytkownicy</th>
+                                <th>Odsłony</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analyticsPages"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </section>
 </main>
 <footer>© 2026 Delta sigma</footer>
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
@@ -1540,6 +1869,7 @@ const studentSort = document.getElementById("studentSort");
 const adminTabButtons = document.querySelectorAll(".admin-tab-btn");
 const studentsTab = document.getElementById("studentsTab");
 const messagesTab = document.getElementById("messagesTab");
+const analyticsTab = document.getElementById("analyticsTab");
 const messageList = document.getElementById("messageList");
 const prospectMessageBadge = document.getElementById("prospectMessageBadge");
 const parentMessageBadge = document.getElementById("parentMessageBadge");
@@ -1549,6 +1879,17 @@ const refreshMessagesBtn = document.getElementById("refreshMessagesBtn");
 const mailboxTabs = document.querySelectorAll(".mailbox-tab");
 const inboxCount = document.getElementById("inboxCount");
 const trashCount = document.getElementById("trashCount");
+const analyticsPeriod = document.getElementById("analyticsPeriod");
+const refreshAnalyticsBtn = document.getElementById("refreshAnalyticsBtn");
+const analyticsRange = document.getElementById("analyticsRange");
+const analyticsViews = document.getElementById("analyticsViews");
+const analyticsVisitors = document.getElementById("analyticsVisitors");
+const analyticsSessions = document.getElementById("analyticsSessions");
+const analyticsViewsPerSession = document.getElementById("analyticsViewsPerSession");
+const analyticsChart = document.getElementById("analyticsChart");
+const analyticsPages = document.getElementById("analyticsPages");
+const analyticsReferrers = document.getElementById("analyticsReferrers");
+const analyticsDevices = document.getElementById("analyticsDevices");
 
 let students = [];
 let contactMessages = [];
@@ -1565,6 +1906,7 @@ let adminTaskCatalog = [];
 let studentProgressCache = new Map();
 let activeProgressStudentId = null;
 let activeSourceDetailKey = "";
+let analyticsLoadedPeriod = 0;
 const reviewImageClipboardCache = new Map();
 const reviewSourceTaskCache = new Map();
 const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
@@ -2241,7 +2583,8 @@ async function loadStudentProgressSummaries(){
 
 function setAdminTab(tab){
     const showMessages = tab === "messages-prospect" || tab === "messages-parent";
-    const showStudents = !showMessages;
+    const showAnalytics = tab === "analytics";
+    const showStudents = tab === "students";
 
     if(tab === "messages-parent"){
         currentMessageOrigin = "parent";
@@ -2255,6 +2598,7 @@ function setAdminTab(tab){
 
     studentsTab.classList.toggle("active", showStudents);
     messagesTab.classList.toggle("active", showMessages);
+    analyticsTab.classList.toggle("active", showAnalytics);
 
     if(showMessages){
         const parentMessages = currentMessageOrigin === "parent";
@@ -2264,6 +2608,186 @@ function setAdminTab(tab){
             ? "Pytania przesłane z paneli rodziców obecnych uczniów."
             : "Wiadomości od osób zainteresowanych zapisaniem się na kurs.";
         loadMessages(currentMailbox);
+    }
+
+    if(showAnalytics){
+        loadAnalytics();
+    }
+}
+
+function formatAnalyticsNumber(value, maximumFractionDigits = 0){
+    return new Intl.NumberFormat("pl-PL", {
+        maximumFractionDigits
+    }).format(Number(value || 0));
+}
+
+function analyticsPathLabel(path){
+    const labels = {
+        "/": "Strona główna",
+        "/zadania.html": "Strefa ucznia",
+        "/trening.html": "Trening szybkości",
+        "/profil.html": "Profil ucznia",
+        "/zapisy.html": "Zapisy",
+        "/kontakt.html": "Kontakt",
+        "/login.html": "Logowanie",
+        "/matura_podstawowa.html": "Matura podstawowa",
+        "/matura_rozszerzona.html": "Matura rozszerzona",
+        "/osmoklasista.html": "Egzamin ósmoklasisty",
+        "/na_biezaco.html": "Na bieżąco"
+    };
+
+    return labels[path] || path;
+}
+
+function analyticsDeviceLabel(type){
+    return {
+        mobile: "Telefon",
+        tablet: "Tablet",
+        desktop: "Komputer"
+    }[type] || type;
+}
+
+function renderAnalyticsList(element, items, labelForItem){
+    element.innerHTML = "";
+
+    if(!items.length){
+        const empty = document.createElement("div");
+
+        empty.className = "analytics-empty";
+        empty.innerText = "Brak danych w wybranym okresie.";
+        element.appendChild(empty);
+        return;
+    }
+
+    const maximum = Math.max(...items.map(item => Number(item.views || 0)), 1);
+
+    items.forEach(item => {
+        const row = document.createElement("div");
+        const label = document.createElement("span");
+        const value = document.createElement("strong");
+        const meter = document.createElement("div");
+        const fill = document.createElement("span");
+
+        row.className = "analytics-list-row";
+        label.className = "analytics-list-label";
+        value.className = "analytics-list-value";
+        meter.className = "analytics-meter";
+        label.innerText = labelForItem(item);
+        label.title = label.innerText;
+        value.innerText = formatAnalyticsNumber(item.views);
+        fill.style.width = `${Math.max(3, Number(item.views || 0) / maximum * 100)}%`;
+
+        meter.appendChild(fill);
+        row.appendChild(label);
+        row.appendChild(value);
+        row.appendChild(meter);
+        element.appendChild(row);
+    });
+}
+
+function renderAnalytics(data){
+    const overview = data.overview || {};
+    const daily = Array.isArray(data.daily) ? data.daily : [];
+    const pages = Array.isArray(data.pages) ? data.pages : [];
+    const referrers = Array.isArray(data.referrers) ? data.referrers : [];
+    const devices = Array.isArray(data.devices) ? data.devices : [];
+
+    analyticsRange.innerText = `${data.range_start || ""} – ${data.range_end || ""} • bez zapisywania adresów IP`;
+    analyticsViews.innerText = formatAnalyticsNumber(overview.views);
+    analyticsVisitors.innerText = formatAnalyticsNumber(overview.visitors);
+    analyticsSessions.innerText = formatAnalyticsNumber(overview.sessions);
+    analyticsViewsPerSession.innerText = formatAnalyticsNumber(overview.views_per_session, 1);
+    analyticsChart.innerHTML = "";
+
+    const maximum = Math.max(...daily.map(item => Number(item.views || 0)), 1);
+    const labelStep = Math.max(1, Math.ceil(daily.length / 8));
+
+    daily.forEach((item, index) => {
+        const day = document.createElement("div");
+        const bars = document.createElement("div");
+        const views = document.createElement("span");
+        const visitors = document.createElement("span");
+        const label = document.createElement("span");
+        const dayLabel = String(item.day || "").slice(5);
+        const details = `${item.day}: ${formatAnalyticsNumber(item.views)} odsłon, ${formatAnalyticsNumber(item.visitors)} użytkowników`;
+
+        day.className = "analytics-day";
+        bars.className = "analytics-bars";
+        views.className = "analytics-bar";
+        visitors.className = "analytics-bar visitors";
+        label.className = "analytics-day-label";
+        day.title = details;
+        views.style.height = `${Number(item.views || 0) / maximum * 100}%`;
+        visitors.style.height = `${Number(item.visitors || 0) / maximum * 100}%`;
+        label.innerText = index % labelStep === 0 || index === daily.length - 1 ? dayLabel : "";
+
+        bars.appendChild(views);
+        bars.appendChild(visitors);
+        day.appendChild(bars);
+        day.appendChild(label);
+        analyticsChart.appendChild(day);
+    });
+
+    analyticsPages.innerHTML = "";
+
+    if(!pages.length){
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        cell.colSpan = 3;
+        cell.className = "analytics-empty";
+        cell.innerText = "Brak danych w wybranym okresie.";
+        row.appendChild(cell);
+        analyticsPages.appendChild(row);
+    } else {
+        pages.forEach(item => {
+            const row = document.createElement("tr");
+            const page = document.createElement("td");
+            const visitorsCell = document.createElement("td");
+            const viewsCell = document.createElement("td");
+
+            page.innerText = analyticsPathLabel(item.path);
+            page.title = item.path;
+            visitorsCell.innerText = formatAnalyticsNumber(item.visitors);
+            viewsCell.innerText = formatAnalyticsNumber(item.views);
+            row.appendChild(page);
+            row.appendChild(visitorsCell);
+            row.appendChild(viewsCell);
+            analyticsPages.appendChild(row);
+        });
+    }
+
+    renderAnalyticsList(
+        analyticsReferrers,
+        referrers,
+        item => item.host || "Wejścia bezpośrednie"
+    );
+    renderAnalyticsList(
+        analyticsDevices,
+        devices,
+        item => analyticsDeviceLabel(item.type)
+    );
+}
+
+async function loadAnalytics(force = false){
+    const days = Number(analyticsPeriod.value || 30);
+
+    if(!force && analyticsLoadedPeriod === days){
+        return;
+    }
+
+    analyticsRange.innerText = "Wczytywanie statystyk...";
+    refreshAnalyticsBtn.disabled = true;
+
+    try {
+        const data = await apiFetch(`/api/admin/analytics?days=${days}`);
+
+        renderAnalytics(data);
+        analyticsLoadedPeriod = days;
+    } catch(error) {
+        analyticsRange.innerText = error.message || "Nie udało się wczytać statystyk.";
+    } finally {
+        refreshAnalyticsBtn.disabled = false;
     }
 }
 
@@ -3760,6 +4284,8 @@ studentSort.addEventListener("change", () => {
 });
 
 refreshMessagesBtn.addEventListener("click", () => loadMessages(currentMailbox));
+refreshAnalyticsBtn.addEventListener("click", () => loadAnalytics(true));
+analyticsPeriod.addEventListener("change", () => loadAnalytics(true));
 
 mailboxTabs.forEach(tab => {
     tab.addEventListener("click", () => setMailbox(tab.dataset.mailbox));
