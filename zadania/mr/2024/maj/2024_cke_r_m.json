@@ -300,6 +300,16 @@
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {"label": "Część 1", "file": "9_z1.png"},
+      {"label": "Część 2", "file": "9_z2.png"},
+      {"label": "Część 3", "file": "9_z3.png"},
+      {"label": "Część 4", "file": "9_z4.png"},
+      {"label": "Część 5", "file": "9_z5.png"},
+      {"label": "Część 6", "file": "9_z6.png"},
+      {"label": "Część 7", "file": "9_z7.png"},
+      {"label": "Część 8", "file": "9_z8.png"}
+    ],
     "completionPercent": 18
   },
   {
@@ -316,6 +326,12 @@
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
+    "gradingCriteriaFiles": [
+      {"label": "Część 1", "file": "10_z1.png"},
+      {"label": "Część 2", "file": "10_z2.png"},
+      {"label": "Część 3", "file": "10_z3.png"},
+      {"label": "Część 4", "file": "10_z4.png"}
+    ],
     "completionPercent": 29
   },
   {
@@ -332,6 +348,12 @@
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
+    "gradingCriteriaFiles": [
+      {"label": "Część 1", "file": "11_z1.png"},
+      {"label": "Część 2", "file": "11_z2.png"},
+      {"label": "Część 3", "file": "11_z3.png"},
+      {"label": "Część 4", "file": "11_z4.png"}
+    ],
     "completionPercent": 18
   },
   {
@@ -347,6 +369,11 @@
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 6,
+    "gradingCriteriaFiles": [
+      {"label": "Część 1", "file": "12_z1.png"},
+      {"label": "Część 2", "file": "12_z2.png"},
+      {"label": "Część 3", "file": "12_z3.png"}
+    ],
     "completionPercent": 41
   },
   {
@@ -364,6 +391,7 @@
     "level": "matura_rozszerzona",
     "maxPoints": 2,
     "contextFile": "13.png",
+    "gradingCriteriaFile": "13.1_z1.png",
     "completionPercent": 47
   },
   {
@@ -381,6 +409,10 @@
     "level": "matura_rozszerzona",
     "maxPoints": 4,
     "contextFile": "13.png",
+    "gradingCriteriaFiles": [
+      {"label": "Część 1", "file": "13.2_z1.png"},
+      {"label": "Część 2", "file": "13.2_z2.png"}
+    ],
     "completionPercent": 24
   }
 ]

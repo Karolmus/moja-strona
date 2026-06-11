@@ -302,6 +302,18 @@
       "przesuniecia-wykresu"
     ],
     "completionPercent": 47,
+    "gradingCriteria": [
+      {
+        "type": "text",
+        "label": "Zasady oceniania",
+        "thresholds": [
+          {
+            "points": 1,
+            "description": "za poprawne odczytanie miejsca zerowego przesuniętej funkcji i podanie odpowiedzi 6."
+          }
+        ]
+      }
+    ],
     "maxPoints": 1
   },
   {

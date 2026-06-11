@@ -292,10 +292,10 @@ body:not(.guest-exam-mode) .selector-grid {
 }
 
 .source-list.exam-source-list {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 3px;
-    max-height: 146px;
-    overflow-x: hidden;
+    max-height: none;
+    overflow: visible;
 }
 
 .source-summary-row {
@@ -366,16 +366,16 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn {
-    min-height: 46px;
+    min-height: 34px;
     align-content: center;
     gap: 1px;
-    padding: 4px 7px;
+    padding: 3px 4px;
     text-align: center;
 }
 
 .exam-source-list .source-btn span {
     min-width: 0;
-    font-size: 10px;
+    font-size: 9.5px;
     line-height: 1.05;
     overflow-wrap: anywhere;
     word-break: normal;
@@ -395,7 +395,8 @@ body.guest-exam-mode .source-summary-row {
 
 .exam-source-list .source-btn small {
     min-width: 0;
-    overflow: visible;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: normal;
     font-size: 8.5px;
     line-height: 1.05;
@@ -1327,12 +1328,28 @@ button {
     font-weight: 600;
 }
 
-.input-answer-field input.correct {
+.input-answer-field textarea {
+    width: 100%;
+    min-height: 76px;
+    resize: vertical;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 11px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.input-answer-field input.correct,
+.input-answer-field textarea.correct {
     background: #dff3e4;
     border-color: var(--success);
 }
 
-.input-answer-field input.wrong {
+.input-answer-field input.wrong,
+.input-answer-field textarea.wrong {
     background: #fde5e2;
     border-color: var(--danger);
 }
@@ -1815,14 +1832,14 @@ footer {
     }
 
     .source-list.exam-source-list {
-        grid-template-columns: minmax(0, 1fr);
-        max-height: 146px;
-        overflow-x: hidden;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        max-height: none;
+        overflow: visible;
     }
 
     .exam-source-list .source-btn {
-        min-height: 46px;
-        padding: 5px;
+        min-height: 31px;
+        padding: 3px;
     }
 
     .exam-source-list .source-btn span {
@@ -2134,7 +2151,7 @@ footer {
                 <div class="category-toggle">
                     <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
                     <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
-                    <a class="category-btn training-card" href="trening.html">Trening szybkości</a>
+                    <a class="category-btn training-card" id="trainingLink" href="trening.html">Trening szybkości</a>
                 </div>
             </div>
 
@@ -2529,12 +2546,13 @@ bootStudentPanel();
 async function bootStudentPanel(){
     try {
         await loadAssignedCourse();
+        const requestedCategory = isLoggedInStudent ? getRequestedCategory() : "";
 
         if(isLoggedInStudent){
             if(selectedLevel === "egzamin_osmoklasisty"){
                 await loadCourseGradingCriteria();
             }
-            selectedCategory = "kurs";
+            selectedCategory = requestedCategory || "kurs";
             taskMode = "ordered";
         } else {
             selectedLevel = "matura_podstawowa";
@@ -2553,7 +2571,7 @@ async function bootStudentPanel(){
 
         if(isLoggedInStudent){
             await loadStudentProgress({ render: false });
-            const resumeIndex = await restoreLastStudentLocation();
+            const resumeIndex = await restoreLastStudentLocation(requestedCategory);
 
             if(Number.isInteger(resumeIndex)){
                 initialIndex = resumeIndex;
@@ -2574,6 +2592,15 @@ async function bootStudentPanel(){
 
         showMessage("Nie udało się wczytać kursu. Odśwież stronę albo spróbuj później.");
     }
+}
+
+function getRequestedCategory(){
+    const category = new URLSearchParams(window.location.search).get("category");
+
+    if(!["kurs", "egzaminy"].includes(category)) return "";
+    if(!hasSourcesForCategory(category, selectedLevel)) return "";
+
+    return category;
 }
 
 async function loadAssignedCourse(){
@@ -2906,6 +2933,16 @@ function normalizeTaskGradingCriteria(task, basePath){
                 };
             }
 
+            if(item?.type === "text" ||
+                Array.isArray(item?.sections) ||
+                Array.isArray(item?.thresholds)){
+                return {
+                    ...item,
+                    type: "text",
+                    label: item.label || "Zasady oceniania"
+                };
+            }
+
             if(!item?.file) return null;
 
             return {
@@ -3198,6 +3235,7 @@ async function setCategory(btn, category){
     selectedCategory = category;
     selectedSource = "all";
     taskMode = "ordered";
+    updateCategoryUrl(category);
 
     if(selectedCategory === "kurs"){
         selectedCoursePart = "zadania";
@@ -3211,6 +3249,13 @@ async function setCategory(btn, category){
     updateSourceAttributionVisibility();
     renderSourceSelector();
     await loadSelectedSourceAndDraw();
+}
+
+function updateCategoryUrl(category){
+    const url = new URL(window.location.href);
+
+    url.searchParams.set("category", category);
+    window.history.replaceState({}, "", url);
 }
 
 async function setLevel(btn, level){
@@ -3339,12 +3384,15 @@ function renderSourceSelector(){
 
     if(!list) return;
 
+    updateTrainingLink();
     list.innerHTML = "";
     list.classList.toggle("course-source-list", selectedCategory === "kurs");
     list.classList.toggle("exam-source-list", selectedCategory !== "kurs");
 
     if(title){
-        title.innerText = selectedCategory === "kurs" ? "Wybór lekcji" : "Arkusz";
+        title.innerText = selectedCategory === "kurs"
+            ? "Wybór lekcji"
+            : LEVEL_LABELS[selectedLevel] || "Arkusze";
     }
 
     const availableSources = getAvailableSources();
@@ -3370,9 +3418,13 @@ function renderSourceSelector(){
                 t.level === selectedLevel
             ).length
             : null;
+        const examTile = selectedCategory === "kurs"
+            ? null
+            : getExamSourceTileContent(source.detail);
+        const label = examTile ? examTile.label : source.label;
         const detail = selectedCategory === "kurs"
             ? (isLoaded ? `${count} zadań` : "")
-            : compactExamSourceDetail(source.detail);
+            : examTile.detail;
         const titleDetail = selectedCategory === "kurs" && source.detail
             ? `${source.detail}${isLoaded ? ` • ${count} zadań` : ""}`
             : `${source.detail}${isLoaded ? ` • ${count} zadań` : ""}`;
@@ -3380,7 +3432,7 @@ function renderSourceSelector(){
         addSourceButton(
             list,
             source.id,
-            source.label,
+            label,
             detail,
             selectedSource === source.id,
             titleDetail,
@@ -3391,6 +3443,20 @@ function renderSourceSelector(){
     updateSourceSummary();
 }
 
+function updateTrainingLink(){
+    const link = document.getElementById("trainingLink");
+
+    if(!link) return;
+
+    const match = selectedCategory === "kurs"
+        ? String(selectedSource || "").match(/\/lekcja_(\d+)\//)
+        : null;
+
+    link.href = match
+        ? `trening.html?lesson=lesson_${match[1]}`
+        : "trening.html";
+}
+
 function updateModeSection(){
     const section = document.getElementById("modeSection");
 
@@ -3399,12 +3465,16 @@ function updateModeSection(){
     section.style.display = selectedCategory === "egzaminy" ? "grid" : "none";
 }
 
-function compactExamSourceDetail(detail){
-    return String(detail || "")
+function getExamSourceTileContent(detail){
+    const parts = String(detail || "")
         .split("/")
         .map(part => part.trim())
-        .filter(Boolean)
-        .join("/");
+        .filter(Boolean);
+
+    return {
+        label: parts.shift() || "Arkusz",
+        detail: parts.join(" / ")
+    };
 }
 
 function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false){
@@ -3564,7 +3634,7 @@ function progressTaskKey(item){
     return `${sourceId}:${file}`;
 }
 
-function findLastProgressItem(){
+function findLastProgressItem(category = ""){
     return savedProgress.find(item => {
         const sourceId = getProgressSourceId(item);
         const file = getProgressFile(item);
@@ -3574,6 +3644,7 @@ function findLastProgressItem(){
             source &&
             file &&
             source.level === selectedLevel &&
+            (!category || source.category === category) &&
             ["kurs", "egzaminy"].includes(source.category)
         );
     }) || null;
@@ -3599,8 +3670,8 @@ function nextResumeIndex(items, lastIndex){
     return firstOpen >= 0 ? firstOpen : 0;
 }
 
-async function restoreLastStudentLocation(){
-    const lastProgress = findLastProgressItem();
+async function restoreLastStudentLocation(category = ""){
+    const lastProgress = findLastProgressItem(category);
 
     if(!lastProgress) return null;
 
@@ -4255,8 +4326,22 @@ function isInputTask(task){
     return ["input", "fill", "short_answer", "numeric"].includes(task?.type);
 }
 
+function isMaturaOpenAnswerTask(task){
+    return Boolean(
+        task &&
+        task.category === "egzaminy" &&
+        ["matura_podstawowa", "matura_rozszerzona"].includes(task.level) &&
+        !isClosedTask(task) &&
+        !isInputTask(task) &&
+        !isPracticalTask(task)
+    );
+}
+
 function requiresSubmittedAnswer(task){
-    return isClosedTask(task) || isInputTask(task) || isPracticalTask(task);
+    return isClosedTask(task) ||
+        isInputTask(task) ||
+        isPracticalTask(task) ||
+        isMaturaOpenAnswerTask(task);
 }
 
 function isTrueFalseSequenceTask(task){
@@ -4519,6 +4604,83 @@ function normalizeTypedAnswer(value){
         .replace(/%/g, "");
 }
 
+function normalizeExamOpenAnswer(value){
+    return String(value || "")
+        .normalize("NFKC")
+        .trim()
+        .toLowerCase()
+        .replace(/[−–—]/g, "-")
+        .replace(/√/g, "sqrt")
+        .replace(/π/g, "pi")
+        .replace(/,/g, ".")
+        .replace(/\s+/g, "")
+        .replace(/[.;]+$/g, "");
+}
+
+function isAutomaticExamAnswerAvailable(task){
+    if(Array.isArray(task?.acceptedAnswers) && task.acceptedAnswers.length){
+        return true;
+    }
+
+    const answer = String(task?.answer || "").trim();
+
+    if(!answer || /^sprawdź rozwiązanie/i.test(answer)) return false;
+    if(answer.length > 120 || answer.includes("\n")) return false;
+
+    return !/(należy wykazać|to należało wykazać|ponieważ|więc|po przekształceniu|jest parzyst)/i.test(answer);
+}
+
+function examOpenAnswerVariants(task){
+    const source = Array.isArray(task?.acceptedAnswers) && task.acceptedAnswers.length
+        ? task.acceptedAnswers
+        : isAutomaticExamAnswerAvailable(task)
+        ? [task.answer]
+        : [];
+    const variants = new Set();
+
+    source.forEach(value => {
+        const raw = String(value || "").trim();
+        const normalized = normalizeExamOpenAnswer(raw);
+
+        if(!normalized) return;
+
+        variants.add(normalized);
+
+        const equalityCount = (raw.match(/[=∈]/g) || []).length;
+
+        if(equalityCount === 1 || (equalityCount > 1 && !raw.includes(","))){
+            variants.add(normalizeExamOpenAnswer(raw.split(/[=∈]/).pop()));
+        }
+
+        const resultPhrase = raw.match(
+            /\b(?:wynosi|wynoszą|równa|równy|równe|rowna|rowny|rowne|to)\b\s+(.+)$/i
+        );
+
+        if(resultPhrase){
+            variants.add(normalizeExamOpenAnswer(resultPhrase[1]));
+        }
+    });
+
+    [...variants].forEach(value => {
+        const withoutUnit = value.replace(/(?:zł|zl|cm|km|m|h|°)$/i, "");
+
+        if(withoutUnit && withoutUnit !== value){
+            variants.add(withoutUnit);
+        }
+    });
+
+    return [...variants].filter(Boolean);
+}
+
+function isExamOpenAnswerCorrect(value, task = currentTask){
+    const normalized = normalizeExamOpenAnswer(value);
+
+    return Boolean(
+        normalized &&
+        examOpenAnswerVariants(task).some(answer => answer === normalized)
+    );
+}
+
 function parsePracticalNumber(value){
     const normalized = normalizeTypedAnswer(value)
         .replace(/−/g, "-")
@@ -4674,7 +4836,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton, #scoreMaxButton"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #resultButtons button, #mcq button, #mcq input, #mcq textarea, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton, #scoreMaxButton"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -5011,6 +5173,9 @@ function setupMCQ(){
     } else if(isPracticalTask(currentTask)){
         mcq.classList.add("active", "practical-task");
         setupPracticalTask(mcq);
+    } else if(isMaturaOpenAnswerTask(currentTask)){
+        mcq.classList.add("active", "input-task", "exam-open-answer-task");
+        setupExamOpenAnswerTask(mcq);
     } else if(isInputTask(currentTask)){
         mcq.classList.add("active", "input-task");
         setupInputTask(mcq);
@@ -5164,7 +5329,9 @@ function updateAnswerTools(){
     const isCourse = isCourseTask();
     const isClosed = isClosedTask(currentTask);
     const isSubmitted = requiresSubmittedAnswer(currentTask);
-    const isOpenExam = currentTask.category === "egzaminy" && !isClosed && !isSubmitted;
+    const isOpenExam = currentTask.category === "egzaminy" &&
+        !isClosed &&
+        (isMaturaOpenAnswerTask(currentTask) || !isSubmitted);
 
     if(hintButton){
         hintButton.hidden = isOpenExam;
@@ -5330,6 +5497,44 @@ function setupInputTask(mcq){
     form.onsubmit = event => {
         event.preventDefault();
         checkInputAnswer(form);
+    };
+
+    mcq.appendChild(form);
+}
+
+function setupExamOpenAnswerTask(mcq){
+    const form = document.createElement("form");
+    const grid = document.createElement("div");
+    const wrapper = document.createElement("div");
+    const label = document.createElement("label");
+    const input = document.createElement("textarea");
+    const button = document.createElement("button");
+
+    form.className = "input-answer-form exam-open-answer-form";
+    grid.className = "input-answer-grid";
+    wrapper.className = "input-answer-field";
+    label.htmlFor = "exam-open-answer";
+    label.innerText = "Twoja odpowiedź";
+    input.id = "exam-open-answer";
+    input.name = "answer";
+    input.autocomplete = "off";
+    input.placeholder = "Wpisz odpowiedź";
+    input.rows = 3;
+    input.oninput = () => {
+        input.classList.remove("correct", "wrong");
+    };
+    button.type = "submit";
+    button.className = "action-btn answer input-check-btn";
+    button.innerText = "Sprawdź";
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(input);
+    grid.appendChild(wrapper);
+    form.appendChild(grid);
+    form.appendChild(button);
+    form.onsubmit = event => {
+        event.preventDefault();
+        checkExamOpenAnswer(form);
     };
 
     mcq.appendChild(form);
@@ -5876,7 +6081,7 @@ function chooseTrueFalse(index, opt, btn){
 }
 
 function disableMCQ(){
-    document.querySelectorAll("#mcq button, #mcq input, #mcq select")
+    document.querySelectorAll("#mcq button, #mcq input, #mcq textarea, #mcq select")
         .forEach(b => {
             b.disabled = true;
         });
@@ -5999,6 +6204,60 @@ function checkInputAnswer(form){
     setTimeout(() => {
         nextTask();
     }, 1400);
+}
+
+function checkExamOpenAnswer(form){
+    if(currentTaskAnswered) return;
+
+    const input = form.querySelector("textarea");
+    const value = String(input?.value || "").trim();
+
+    if(!value){
+        input?.classList.add("wrong");
+        showMessage("Wpisz odpowiedź przed sprawdzeniem.");
+        return;
+    }
+
+    const isCorrect = isExamOpenAnswerCorrect(value);
+
+    input.classList.toggle("correct", isCorrect);
+    input.classList.toggle("wrong", !isCorrect);
+
+    if(isCorrect){
+        const maxPoints = taskMaxPoints(currentTask);
+        const scoreData = { earnedPoints: maxPoints, maxPoints };
+
+        disableMCQ();
+        addProgress("good", scoreData);
+
+        setTimeout(() => {
+            nextTask();
+        }, 850);
+
+        return;
+    }
+
+    disableMCQ();
+
+    if(hasGradingCriteria(currentTask)){
+        showGradingCriteria();
+        showMessage(
+            "Odpowiedź nie została automatycznie uznana za w pełni poprawną. " +
+            "To zadanie wymaga porównania rozwiązania z zasadami oceniania. " +
+            "Sprawdź kryteria i wpisz poniżej liczbę zdobytych punktów."
+        );
+        return;
+    }
+
+    if(hasTaskSolutions(currentTask)){
+        showSolution();
+    }
+
+    showMessage(
+        "Odpowiedź nie została automatycznie uznana za w pełni poprawną. " +
+        "To zadanie wymaga porównania rozwiązania z zasadami oceniania. " +
+        "Dla tego zadania zasady nie są jeszcze przypisane, dlatego porównaj tok rozwiązania z dostępnym rozwiązaniem i wpisz liczbę punktów."
+    );
 }
 
 function setSessionScore(task, type, scoreData = null){

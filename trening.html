@@ -72,6 +72,41 @@ body {
     padding: 10px;
 }
 
+.training-mode-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.training-mode-link {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    min-height: 30px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.1;
+    padding: 5px 4px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.training-mode-link:hover {
+    border-color: var(--blue-text);
+    background: var(--surface-soft);
+}
+
+.training-mode-link.active {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+}
+
 .panel-title,
 .stat-label,
 .history-title {
@@ -1025,6 +1060,12 @@ body {
 <main class="training-page">
     <div class="training-shell">
         <aside class="training-panel" aria-label="Ustawienia treningu">
+            <nav class="training-mode-nav" aria-label="Wybór trybu pracy">
+                <a class="training-mode-link" href="zadania.html?category=kurs">Kurs</a>
+                <a class="training-mode-link" href="zadania.html?category=egzaminy">Egzaminy</a>
+                <a class="training-mode-link active" href="trening.html" aria-current="page">Trening szybkości</a>
+            </nav>
+
             <div>
                 <div class="panel-title">Poziom</div>
                 <div class="level-tabs" id="levelTabs"></div>
@@ -1033,10 +1074,10 @@ body {
             <details class="topic-settings">
                 <summary>
                     <span>
-                        <span class="panel-title">Tryb</span>
-                        <strong class="topic-current" id="topicCurrent">Mieszany</strong>
+                        <span class="panel-title">Zakres treningu</span>
+                        <strong class="topic-current" id="topicCurrent">Tryb łączny</strong>
                     </span>
-                    <span class="topic-summary-action">Tematy</span>
+                    <span class="topic-summary-action">Lekcje</span>
                 </summary>
                 <div class="topic-list" id="topicList"></div>
             </details>
@@ -1088,7 +1129,7 @@ body {
             </div>
 
             <div class="problem-card">
-                <div class="task-topic" id="taskTopic">Mieszany</div>
+                <div class="task-topic" id="taskTopic">Tryb łączny</div>
                 <div class="problem-text" id="problemText">Kliknij Start</div>
                 <div class="round-summary" id="roundSummary" hidden>
                     <div class="summary-grid">
@@ -1175,42 +1216,41 @@ const LEVELS = {
     eo: {
         label: "Egzamin ósmoklasisty",
         shortLabel: "Egzamin ósmoklasisty",
-        topics: [
-            { id: "all", label: "Mieszany" },
-            { id: "roots", label: "Pierwiastki" },
-            { id: "fractions", label: "Ułamki zwykłe" },
-            { id: "approximations", label: "Przybliżenia" },
-            { id: "units", label: "Zamiana jednostek" },
-            { id: "percents", label: "Procenty" },
-            { id: "divisibility", label: "Cechy podzielności" },
-            { id: "clock", label: "Zegar" },
-            { id: "areas", label: "Pola figur" },
-            { id: "volume", label: "Objętość" },
-            { id: "motion", label: "Prędkość, czas, droga" },
-            { id: "combinatorics", label: "Kombinatoryka" }
+        lessons: [
+            { id: "all", label: "Tryb łączny" },
+            { id: "lesson_1", label: "Lekcja 1 · Procenty" },
+            { id: "lesson_2", label: "Lekcja 2 · Działania na liczbach" },
+            { id: "lesson_4", label: "Lekcja 4 · Pierwiastki" },
+            { id: "lesson_7", label: "Lekcja 7 · Czas i odległość" },
+            { id: "lesson_8", label: "Lekcja 8 · Prędkość" },
+            { id: "lesson_9", label: "Lekcja 9 · Pola figur" },
+            { id: "lesson_10", label: "Lekcja 10 · Zamiana jednostek" },
+            { id: "lesson_16", label: "Lekcja 16 · Graniastosłupy" },
+            { id: "lesson_18", label: "Lekcja 18 · Kombinatoryka" }
         ]
     },
     mp: {
         label: "Matura podstawowa",
         shortLabel: "Matura podstawowa",
-        topics: [
-            { id: "all", label: "Mieszany" },
-            { id: "powers", label: "Potęgi" },
-            { id: "roots", label: "Pierwiastki" },
-            { id: "logs", label: "Logarytmy" },
-            { id: "functions", label: "Funkcje" }
+        lessons: [
+            { id: "all", label: "Tryb łączny" },
+            { id: "lesson_1", label: "Lekcja 1 · Potęgi" },
+            { id: "lesson_2", label: "Lekcja 2 · Pierwiastki" },
+            { id: "lesson_3", label: "Lekcja 3 · Logarytmy" },
+            { id: "lesson_11", label: "Lekcja 11 · Funkcja liniowa" },
+            { id: "lesson_12", label: "Lekcja 12 · Funkcja kwadratowa" }
         ]
     },
     mr: {
         label: "Matura rozszerzona",
         shortLabel: "Matura rozszerzona",
-        topics: [
-            { id: "all", label: "Mieszany" },
-            { id: "derivatives", label: "Pochodne" },
-            { id: "limits", label: "Granice" },
-            { id: "trig", label: "Trygonometria" },
-            { id: "absolute", label: "Wartość bezwzględna" },
-            { id: "advanced_functions", label: "Funkcje" }
+        lessons: [
+            { id: "all", label: "Tryb łączny" },
+            { id: "lesson_1", label: "Lekcja 1 · Wartość bezwzględna" },
+            { id: "lesson_6", label: "Lekcja 6 · Funkcje" },
+            { id: "lesson_16", label: "Lekcja 16 · Granice" },
+            { id: "lesson_18", label: "Lekcja 18 · Pochodne" },
+            { id: "lesson_21", label: "Lekcja 21 · Trygonometria" }
         ]
     }
 };
@@ -1285,79 +1325,79 @@ let leaderboardRequestId = 0;
 let progressRequestId = 0;
 
 const GENERATORS = [
-    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
-    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootSimplify },
-    { level: "eo", topic: "roots", label: "Pierwiastki", make: genEoRootCompare },
-    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionAdd },
-    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionCommonDenominator },
-    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMixedConversion },
-    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionOfNumber },
-    { level: "eo", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMissingPart },
-    { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoRootApproximation },
-    { level: "eo", topic: "approximations", label: "Przybliżenia", make: genEoDecimalRounding },
-    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoLengthUnitConversion },
-    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoMassUnitConversion },
-    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoAreaUnitConversion },
-    { level: "eo", topic: "units", label: "Zamiana jednostek", make: genEoVolumeUnitConversion },
-    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
-    { level: "eo", topic: "percents", label: "Procenty", make: genEoPercentIncrease },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy2 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy3 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy6 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy8 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy9 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy25 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy50 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy100 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy4 },
-    { level: "eo", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy5Or10 },
-    { level: "eo", topic: "clock", label: "Zegar", make: genEoClockAddMinutes },
-    { level: "eo", topic: "clock", label: "Zegar", make: genEoClockElapsedMinutes },
-    { level: "eo", topic: "clock", label: "Zegar", make: genEoClockToMinutes },
-    { level: "eo", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
-    { level: "eo", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
-    { level: "eo", topic: "volume", label: "Objętość", make: genEoCuboidVolume },
-    { level: "eo", topic: "volume", label: "Objętość", make: genEoCubeVolume },
-    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedDistance },
-    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionTime },
-    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionSpeed },
-    { level: "eo", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedConversion },
-    { level: "eo", topic: "combinatorics", label: "Kombinatoryka", make: genEoMultiplicationRule },
-    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerMultiply },
-    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerDivide },
-    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerPower },
-    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerRoot },
-    { level: "mp", topic: "powers", label: "Potęgi", make: genMpPowerAddLikeTerms },
-    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootExtractCoefficient },
-    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootMultiply },
-    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootDivide },
-    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootAddLikeTerms },
-    { level: "mp", topic: "roots", label: "Pierwiastki", make: genMpRootMixedSimplify },
-    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogValues },
-    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogAdd },
-    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogSubtract },
-    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogPullInCoefficient },
-    { level: "mp", topic: "logs", label: "Logarytmy", make: genMpLogPullOutCoefficient },
-    { level: "mp", topic: "functions", label: "Funkcje", make: genMpLinearSlopeFromFormula },
-    { level: "mp", topic: "functions", label: "Funkcje", make: genMpLineSlopeFromPoints },
-    { level: "mp", topic: "functions", label: "Funkcje", make: genMpLinearTrendSign },
-    { level: "mp", topic: "functions", label: "Funkcje", make: genMpQuadraticCoefficientSign },
-    { level: "mp", topic: "functions", label: "Funkcje", make: genMpQuadraticCValue },
-    { level: "mr", topic: "derivatives", label: "Pochodne", make: genMrDerivativePowerCoefficient },
-    { level: "mr", topic: "derivatives", label: "Pochodne", make: genMrDerivativeValue },
-    { level: "mr", topic: "derivatives", label: "Pochodne", make: genMrTangentSlope },
-    { level: "mr", topic: "limits", label: "Granice", make: genMrLimitDifferenceSquares },
-    { level: "mr", topic: "limits", label: "Granice", make: genMrLimitPolynomialValue },
-    { level: "mr", topic: "limits", label: "Granice", make: genMrLimitAtInfinity },
-    { level: "mr", topic: "trig", label: "Trygonometria", make: genMrTrigExactValue },
-    { level: "mr", topic: "trig", label: "Trygonometria", make: genMrTrigIdentity },
-    { level: "mr", topic: "trig", label: "Trygonometria", make: genMrTrigSign },
-    { level: "mr", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteCompute },
-    { level: "mr", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteEquation },
-    { level: "mr", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteInequalityLength },
-    { level: "mr", topic: "advanced_functions", label: "Funkcje", make: genMrCompositionValue },
-    { level: "mr", topic: "advanced_functions", label: "Funkcje", make: genMrInverseLinearValue },
-    { level: "mr", topic: "advanced_functions", label: "Funkcje", make: genMrParameterLinearRoot }
+    { level: "eo", lesson: "lesson_4", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
+    { level: "eo", lesson: "lesson_4", topic: "roots", label: "Pierwiastki", make: genEoRootSimplify },
+    { level: "eo", lesson: "lesson_4", topic: "roots", label: "Pierwiastki", make: genEoRootCompare },
+    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionAdd },
+    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionCommonDenominator },
+    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMixedConversion },
+    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionOfNumber },
+    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMissingPart },
+    { level: "eo", lesson: "lesson_4", topic: "approximations", label: "Przybliżenia", make: genEoRootApproximation },
+    { level: "eo", lesson: "lesson_2", topic: "approximations", label: "Przybliżenia", make: genEoDecimalRounding },
+    { level: "eo", lesson: "lesson_10", topic: "units", label: "Zamiana jednostek", make: genEoLengthUnitConversion },
+    { level: "eo", lesson: "lesson_10", topic: "units", label: "Zamiana jednostek", make: genEoMassUnitConversion },
+    { level: "eo", lesson: "lesson_10", topic: "units", label: "Zamiana jednostek", make: genEoAreaUnitConversion },
+    { level: "eo", lesson: "lesson_16", topic: "units", label: "Zamiana jednostek", make: genEoVolumeUnitConversion },
+    { level: "eo", lesson: "lesson_1", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
+    { level: "eo", lesson: "lesson_1", topic: "percents", label: "Procenty", make: genEoPercentIncrease },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy2 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy3 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy6 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy8 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy9 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy25 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy50 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy100 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy4 },
+    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy5Or10 },
+    { level: "eo", lesson: "lesson_7", topic: "clock", label: "Zegar", make: genEoClockAddMinutes },
+    { level: "eo", lesson: "lesson_7", topic: "clock", label: "Zegar", make: genEoClockElapsedMinutes },
+    { level: "eo", lesson: "lesson_7", topic: "clock", label: "Zegar", make: genEoClockToMinutes },
+    { level: "eo", lesson: "lesson_9", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
+    { level: "eo", lesson: "lesson_9", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
+    { level: "eo", lesson: "lesson_16", topic: "volume", label: "Objętość", make: genEoCuboidVolume },
+    { level: "eo", lesson: "lesson_16", topic: "volume", label: "Objętość", make: genEoCubeVolume },
+    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedDistance },
+    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionTime },
+    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionSpeed },
+    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedConversion },
+    { level: "eo", lesson: "lesson_18", topic: "combinatorics", label: "Kombinatoryka", make: genEoMultiplicationRule },
+    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerMultiply },
+    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerDivide },
+    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerPower },
+    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerRoot },
+    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerAddLikeTerms },
+    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootExtractCoefficient },
+    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootMultiply },
+    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootDivide },
+    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootAddLikeTerms },
+    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootMixedSimplify },
+    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogValues },
+    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogAdd },
+    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogSubtract },
+    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogPullInCoefficient },
+    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogPullOutCoefficient },
+    { level: "mp", lesson: "lesson_11", topic: "functions", label: "Funkcja liniowa", make: genMpLinearSlopeFromFormula },
+    { level: "mp", lesson: "lesson_11", topic: "functions", label: "Funkcja liniowa", make: genMpLineSlopeFromPoints },
+    { level: "mp", lesson: "lesson_11", topic: "functions", label: "Funkcja liniowa", make: genMpLinearTrendSign },
+    { level: "mp", lesson: "lesson_12", topic: "functions", label: "Funkcja kwadratowa", make: genMpQuadraticCoefficientSign },
+    { level: "mp", lesson: "lesson_12", topic: "functions", label: "Funkcja kwadratowa", make: genMpQuadraticCValue },
+    { level: "mr", lesson: "lesson_18", topic: "derivatives", label: "Pochodne", make: genMrDerivativePowerCoefficient },
+    { level: "mr", lesson: "lesson_18", topic: "derivatives", label: "Pochodne", make: genMrDerivativeValue },
+    { level: "mr", lesson: "lesson_18", topic: "derivatives", label: "Pochodne", make: genMrTangentSlope },
+    { level: "mr", lesson: "lesson_16", topic: "limits", label: "Granice", make: genMrLimitDifferenceSquares },
+    { level: "mr", lesson: "lesson_16", topic: "limits", label: "Granice", make: genMrLimitPolynomialValue },
+    { level: "mr", lesson: "lesson_16", topic: "limits", label: "Granice", make: genMrLimitAtInfinity },
+    { level: "mr", lesson: "lesson_21", topic: "trig", label: "Trygonometria", make: genMrTrigExactValue },
+    { level: "mr", lesson: "lesson_21", topic: "trig", label: "Trygonometria", make: genMrTrigIdentity },
+    { level: "mr", lesson: "lesson_21", topic: "trig", label: "Trygonometria", make: genMrTrigSign },
+    { level: "mr", lesson: "lesson_1", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteCompute },
+    { level: "mr", lesson: "lesson_1", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteEquation },
+    { level: "mr", lesson: "lesson_1", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteInequalityLength },
+    { level: "mr", lesson: "lesson_6", topic: "advanced_functions", label: "Funkcje", make: genMrCompositionValue },
+    { level: "mr", lesson: "lesson_6", topic: "advanced_functions", label: "Funkcje", make: genMrInverseLinearValue },
+    { level: "mr", lesson: "lesson_6", topic: "advanced_functions", label: "Funkcje", make: genMrParameterLinearRoot }
 ];
 
 function rand(min, max){
@@ -2837,7 +2877,7 @@ function genMpMedianValue(){
 function generatorPool(){
     const basePool = GENERATORS.filter(generator =>
         generator.level === state.level &&
-        (state.topic === "all" || generator.topic === state.topic)
+        (state.topic === "all" || generator.lesson === state.topic)
     );
 
     if(state.topic === "all" && state.reviewTopic && Math.random() < 0.45){
@@ -2854,6 +2894,7 @@ function createTaskCandidate(generator){
 
     return {
         ...generator.make(),
+        lessonId: generator.lesson,
         topicId: generator.topic,
         difficulty: state.currentDifficulty
     };
@@ -2862,6 +2903,7 @@ function createTaskCandidate(generator){
 function taskKey(taskItem){
     return [
         state.level,
+        taskItem.lessonId,
         taskItem.topicId,
         String(taskItem.html).replace(/\s+/g, " "),
         String(taskItem.answer)
@@ -3564,7 +3606,7 @@ function applyAssignedLevel(level, shouldReset = true){
     const changed = state.level !== level;
 
     state.level = level;
-    state.topic = "all";
+    state.topic = requestedTrainingLesson(level) || "all";
     state.reviewTopic = "";
     renderControls();
 
@@ -3575,6 +3617,14 @@ function applyAssignedLevel(level, shouldReset = true){
 
 function trainingLevelFromUser(user){
     return STUDENT_LEVEL_TO_TRAINING[user?.level] || state.level || "eo";
+}
+
+function requestedTrainingLesson(level = state.level){
+    const lesson = new URLSearchParams(window.location.search).get("lesson");
+
+    return LEVELS[level].lessons.some(item => item.id === lesson)
+        ? lesson
+        : "";
 }
 
 async function syncTrainingLevelFromAuth(){
@@ -3596,12 +3646,25 @@ async function syncTrainingLevelFromAuth(){
 function setTopic(topic){
     state.topic = topic;
     state.reviewTopic = "";
+    updateTrainingLessonUrl(topic);
     renderControls();
     resetRound();
 }
 
+function updateTrainingLessonUrl(lesson){
+    const url = new URL(window.location.href);
+
+    if(lesson === "all"){
+        url.searchParams.delete("lesson");
+    } else {
+        url.searchParams.set("lesson", lesson);
+    }
+
+    window.history.replaceState({}, "", url);
+}
+
 function activeTopicLabel(){
-    return LEVELS[state.level].topics.find(topic => topic.id === state.topic)?.label || "Mieszany";
+    return LEVELS[state.level].lessons.find(lesson => lesson.id === state.topic)?.label || "Tryb łączny";
 }
 
 function activeDifficultyLabel(){
@@ -3620,13 +3683,13 @@ function renderControls(){
     lockedLevel.innerText = LEVELS[state.level].shortLabel || LEVELS[state.level].label;
     levelTabs.appendChild(lockedLevel);
 
-    LEVELS[state.level].topics.forEach(topic => {
+    LEVELS[state.level].lessons.forEach(lesson => {
         const button = document.createElement("button");
 
         button.type = "button";
-        button.className = topic.id === state.topic ? "topic-btn active" : "topic-btn";
-        button.innerText = topic.label;
-        button.onclick = () => setTopic(topic.id);
+        button.className = lesson.id === state.topic ? "topic-btn active" : "topic-btn";
+        button.innerText = lesson.label;
+        button.onclick = () => setTopic(lesson.id);
         topicList.appendChild(button);
     });
 
@@ -3732,6 +3795,7 @@ window.addEventListener("load", loadLeaderboard);
 window.addEventListener("load", loadProgress);
 window.addEventListener("load", syncTrainingLevelFromAuth);
 
+state.topic = requestedTrainingLesson(state.level) || "all";
 renderControls();
 renderKeypad();
 resetRound();
