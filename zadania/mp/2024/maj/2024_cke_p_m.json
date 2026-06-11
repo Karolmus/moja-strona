@@ -298,6 +298,18 @@
     ],
     "level": "matura_podstawowa",
     "completionPercent": 53,
+    "gradingCriteria": [
+      {
+        "type": "text",
+        "label": "Zasady oceniania",
+        "thresholds": [
+          {
+            "points": 1,
+            "description": "za poprawne odczytanie z wykresu zbioru rozwiązań nierówności: [−2, 4]."
+          }
+        ]
+      }
+    ],
     "maxPoints": 1
   },
   {
@@ -680,6 +692,18 @@
     ],
     "level": "matura_podstawowa",
     "completionPercent": 23,
+    "gradingCriteria": [
+      {
+        "type": "text",
+        "label": "Zasady oceniania",
+        "thresholds": [
+          {
+            "points": 1,
+            "description": "za poprawne wykorzystanie skali podobieństwa brył i podanie odpowiedzi 4."
+          }
+        ]
+      }
+    ],
     "maxPoints": 1
   },
   {
