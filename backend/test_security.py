@@ -33,6 +33,9 @@ class SecurityTests(unittest.TestCase):
         app_module.CALCULATORS_ENABLED = False
 
         with sqlite3.connect(TEST_DB) as connection:
+            connection.execute("DELETE FROM site_analytics_daily")
+            connection.execute("DELETE FROM site_analytics_visitors")
+            connection.execute("DELETE FROM site_analytics_sessions")
             connection.execute("DELETE FROM speed_training_results")
             connection.execute("DELETE FROM task_review_items")
             connection.execute("DELETE FROM task_progress")
@@ -212,6 +215,103 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(row[1], "Czy można przełożyć zajęcia?")
         self.assertEqual(row[2], "parent")
         self.assertEqual(row[3], student["id"])
+
+    def test_pageviews_are_aggregated_and_visible_only_to_admin(self):
+        pageview = {
+            "path": "/index.html",
+            "visitor_id": "visitor-00000001",
+            "session_id": "session-00000001",
+            "referrer_host": "",
+            "device_type": "desktop",
+        }
+        headers = {
+            "Origin": "https://deltasigma.pl",
+            "User-Agent": "Mozilla/5.0",
+        }
+
+        first = self.client.post("/api/analytics/pageview", json=pageview, headers=headers)
+        second = self.client.post("/api/analytics/pageview", json=pageview, headers=headers)
+        another_visitor = self.client.post(
+            "/api/analytics/pageview",
+            json={
+                **pageview,
+                "visitor_id": "visitor-00000002",
+                "path": "/zadania.html",
+                "device_type": "mobile",
+            },
+            headers=headers,
+        )
+        unauthorized = self.client.get("/api/admin/analytics?days=7")
+
+        self.assertEqual(first.status_code, 201)
+        self.assertEqual(second.status_code, 201)
+        self.assertEqual(another_visitor.status_code, 201)
+        self.assertEqual(unauthorized.status_code, 401)
+
+        with app.app_context():
+            create_user(
+                email="admin@example.com",
+                display_name="Administrator",
+                password="bezpieczne-haslo",
+                role="admin",
+                level=None,
+            )
+
+        login = self.client.post(
+            "/api/auth/login",
+            json={
+                "email": "admin@example.com",
+                "password": "bezpieczne-haslo",
+            },
+        )
+        token = login.get_json()["token"]
+        response = self.client.get(
+            "/api/admin/analytics?days=7",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        data = response.get_json()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(data["overview"]["views"], 3)
+        self.assertEqual(data["overview"]["visitors"], 2)
+        self.assertEqual(data["overview"]["sessions"], 1)
+        self.assertEqual(data["pages"][0]["path"], "/")
+        self.assertEqual(data["pages"][0]["views"], 2)
+
+    def test_bots_and_foreign_origins_do_not_write_analytics(self):
+        pageview = {
+            "path": "/",
+            "visitor_id": "visitor-00000001",
+            "session_id": "session-00000001",
+            "device_type": "desktop",
+        }
+
+        bot = self.client.post(
+            "/api/analytics/pageview",
+            json=pageview,
+            headers={
+                "Origin": "https://deltasigma.pl",
+                "User-Agent": "ExampleBot/1.0",
+            },
+        )
+        foreign = self.client.post(
+            "/api/analytics/pageview",
+            json=pageview,
+            headers={
+                "Origin": "https://spam.example",
+                "User-Agent": "Mozilla/5.0",
+            },
+        )
+
+        self.assertEqual(bot.status_code, 204)
+        self.assertEqual(foreign.status_code, 204)
+
+        with sqlite3.connect(TEST_DB) as connection:
+            count = connection.execute(
+                "SELECT SUM(page_views) FROM site_analytics_daily"
+            ).fetchone()[0]
+
+        self.assertIsNone(count)
 
 
 if __name__ == "__main__":

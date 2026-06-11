@@ -4,6 +4,7 @@ import sqlite3
 import hashlib
 import math
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 from flask import g
 from werkzeug.security import generate_password_hash
@@ -19,6 +20,8 @@ INTEGRITY_ERRORS = (sqlite3.IntegrityError,)
 
 if psycopg is not None:
     INTEGRITY_ERRORS = INTEGRITY_ERRORS + (psycopg.IntegrityError,)
+
+_last_analytics_cleanup_day = None
 
 
 def database_path():
@@ -40,6 +43,13 @@ def database_engine():
 
 def now_iso():
     return datetime.now(timezone.utc).isoformat()
+
+
+def analytics_today():
+    try:
+        return datetime.now(ZoneInfo("Europe/Warsaw")).date()
+    except Exception:
+        return datetime.now(timezone.utc).date()
 
 
 def normalize_email(email):
@@ -331,6 +341,44 @@ def init_auth_db():
                 ON contact_messages(created_at)
             """,
             """
+            CREATE TABLE IF NOT EXISTS site_analytics_daily (
+                day TEXT NOT NULL,
+                path TEXT NOT NULL,
+                referrer_host TEXT NOT NULL DEFAULT '',
+                device_type TEXT NOT NULL,
+                page_views INTEGER NOT NULL DEFAULT 0,
+                PRIMARY KEY(day, path, referrer_host, device_type)
+            )
+            """,
+            """
+            CREATE INDEX IF NOT EXISTS idx_site_analytics_daily_day
+                ON site_analytics_daily(day)
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS site_analytics_visitors (
+                day TEXT NOT NULL,
+                visitor_hash TEXT NOT NULL,
+                path TEXT NOT NULL,
+                PRIMARY KEY(day, visitor_hash, path)
+            )
+            """,
+            """
+            CREATE INDEX IF NOT EXISTS idx_site_analytics_visitors_day
+                ON site_analytics_visitors(day)
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS site_analytics_sessions (
+                day TEXT NOT NULL,
+                session_hash TEXT NOT NULL,
+                path TEXT NOT NULL,
+                PRIMARY KEY(day, session_hash, path)
+            )
+            """,
+            """
+            CREATE INDEX IF NOT EXISTS idx_site_analytics_sessions_day
+                ON site_analytics_sessions(day)
+            """,
+            """
             ALTER TABLE task_progress
                 ADD COLUMN IF NOT EXISTS duration_seconds INTEGER NOT NULL DEFAULT 0
             """,
@@ -502,6 +550,38 @@ def init_auth_db():
 
         CREATE INDEX IF NOT EXISTS idx_contact_messages_created_at
             ON contact_messages(created_at);
+
+        CREATE TABLE IF NOT EXISTS site_analytics_daily (
+            day TEXT NOT NULL,
+            path TEXT NOT NULL,
+            referrer_host TEXT NOT NULL DEFAULT '',
+            device_type TEXT NOT NULL,
+            page_views INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY(day, path, referrer_host, device_type)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_site_analytics_daily_day
+            ON site_analytics_daily(day);
+
+        CREATE TABLE IF NOT EXISTS site_analytics_visitors (
+            day TEXT NOT NULL,
+            visitor_hash TEXT NOT NULL,
+            path TEXT NOT NULL,
+            PRIMARY KEY(day, visitor_hash, path)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_site_analytics_visitors_day
+            ON site_analytics_visitors(day);
+
+        CREATE TABLE IF NOT EXISTS site_analytics_sessions (
+            day TEXT NOT NULL,
+            session_hash TEXT NOT NULL,
+            path TEXT NOT NULL,
+            PRIMARY KEY(day, session_hash, path)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_site_analytics_sessions_day
+            ON site_analytics_sessions(day);
         """
         )
 
@@ -547,6 +627,224 @@ def init_auth_db():
         )
 
     db.commit()
+
+
+def record_site_pageview(path, visitor_hash, session_hash, referrer_host="", device_type="desktop"):
+    global _last_analytics_cleanup_day
+
+    day = analytics_today()
+    day_text = day.isoformat()
+    db = get_db()
+
+    db.execute(
+        prepare_sql(
+            """
+            INSERT INTO site_analytics_daily (
+                day,
+                path,
+                referrer_host,
+                device_type,
+                page_views
+            )
+            VALUES (?, ?, ?, ?, 1)
+            ON CONFLICT(day, path, referrer_host, device_type)
+            DO UPDATE SET page_views = site_analytics_daily.page_views + 1
+            """
+        ),
+        (day_text, path, referrer_host, device_type),
+    )
+    db.execute(
+        prepare_sql(
+            """
+            INSERT INTO site_analytics_visitors (day, visitor_hash, path)
+            VALUES (?, ?, ?)
+            ON CONFLICT(day, visitor_hash, path) DO NOTHING
+            """
+        ),
+        (day_text, visitor_hash, path),
+    )
+    db.execute(
+        prepare_sql(
+            """
+            INSERT INTO site_analytics_sessions (day, session_hash, path)
+            VALUES (?, ?, ?)
+            ON CONFLICT(day, session_hash, path) DO NOTHING
+            """
+        ),
+        (day_text, session_hash, path),
+    )
+
+    if _last_analytics_cleanup_day != day_text:
+        retention_days = bounded_int(
+            os.environ.get("ANALYTICS_RETENTION_DAYS", "180"),
+            minimum=30,
+            maximum=730,
+        )
+        cutoff = (day - timedelta(days=retention_days)).isoformat()
+
+        for table in (
+            "site_analytics_daily",
+            "site_analytics_visitors",
+            "site_analytics_sessions",
+        ):
+            db.execute(
+                prepare_sql(f"DELETE FROM {table} WHERE day < ?"),
+                (cutoff,),
+            )
+
+        _last_analytics_cleanup_day = day_text
+
+    db.commit()
+
+
+def site_analytics_summary(days=30):
+    period_days = max(1, min(int(days or 30), 90))
+    end_day = analytics_today()
+    start_day = end_day - timedelta(days=period_days - 1)
+    start_text = start_day.isoformat()
+
+    view_rows = execute(
+        """
+        SELECT day, SUM(page_views) AS total
+        FROM site_analytics_daily
+        WHERE day >= ?
+        GROUP BY day
+        ORDER BY day
+        """,
+        (start_text,),
+    ).fetchall()
+    visitor_rows = execute(
+        """
+        SELECT day, COUNT(DISTINCT visitor_hash) AS total
+        FROM site_analytics_visitors
+        WHERE day >= ?
+        GROUP BY day
+        ORDER BY day
+        """,
+        (start_text,),
+    ).fetchall()
+    session_rows = execute(
+        """
+        SELECT day, COUNT(DISTINCT session_hash) AS total
+        FROM site_analytics_sessions
+        WHERE day >= ?
+        GROUP BY day
+        ORDER BY day
+        """,
+        (start_text,),
+    ).fetchall()
+
+    view_by_day = {row["day"]: int(row["total"] or 0) for row in view_rows}
+    visitors_by_day = {row["day"]: int(row["total"] or 0) for row in visitor_rows}
+    sessions_by_day = {row["day"]: int(row["total"] or 0) for row in session_rows}
+    daily = []
+
+    for offset in range(period_days):
+        day_text = (start_day + timedelta(days=offset)).isoformat()
+        daily.append({
+            "day": day_text,
+            "views": view_by_day.get(day_text, 0),
+            "visitors": visitors_by_day.get(day_text, 0),
+            "sessions": sessions_by_day.get(day_text, 0),
+        })
+
+    total_views_row = execute(
+        "SELECT SUM(page_views) AS total FROM site_analytics_daily WHERE day >= ?",
+        (start_text,),
+    ).fetchone()
+    total_visitors_row = execute(
+        "SELECT COUNT(DISTINCT visitor_hash) AS total FROM site_analytics_visitors WHERE day >= ?",
+        (start_text,),
+    ).fetchone()
+    total_sessions_row = execute(
+        "SELECT COUNT(DISTINCT session_hash) AS total FROM site_analytics_sessions WHERE day >= ?",
+        (start_text,),
+    ).fetchone()
+    total_views = int(total_views_row["total"] or 0)
+    total_visitors = int(total_visitors_row["total"] or 0)
+    total_sessions = int(total_sessions_row["total"] or 0)
+
+    page_rows = execute(
+        """
+        SELECT path, SUM(page_views) AS views
+        FROM site_analytics_daily
+        WHERE day >= ?
+        GROUP BY path
+        ORDER BY views DESC, path
+        LIMIT 12
+        """,
+        (start_text,),
+    ).fetchall()
+    page_visitor_rows = execute(
+        """
+        SELECT path, COUNT(DISTINCT visitor_hash) AS visitors
+        FROM site_analytics_visitors
+        WHERE day >= ?
+        GROUP BY path
+        """,
+        (start_text,),
+    ).fetchall()
+    page_visitors = {
+        row["path"]: int(row["visitors"] or 0)
+        for row in page_visitor_rows
+    }
+
+    referrer_rows = execute(
+        """
+        SELECT referrer_host, SUM(page_views) AS views
+        FROM site_analytics_daily
+        WHERE day >= ? AND referrer_host <> '__internal__'
+        GROUP BY referrer_host
+        ORDER BY views DESC, referrer_host
+        LIMIT 10
+        """,
+        (start_text,),
+    ).fetchall()
+    device_rows = execute(
+        """
+        SELECT device_type, SUM(page_views) AS views
+        FROM site_analytics_daily
+        WHERE day >= ?
+        GROUP BY device_type
+        ORDER BY views DESC, device_type
+        """,
+        (start_text,),
+    ).fetchall()
+
+    return {
+        "days": period_days,
+        "range_start": start_text,
+        "range_end": end_day.isoformat(),
+        "overview": {
+            "views": total_views,
+            "visitors": total_visitors,
+            "sessions": total_sessions,
+            "views_per_session": round(total_views / total_sessions, 1) if total_sessions else 0,
+        },
+        "daily": daily,
+        "pages": [
+            {
+                "path": row["path"],
+                "views": int(row["views"] or 0),
+                "visitors": page_visitors.get(row["path"], 0),
+            }
+            for row in page_rows
+        ],
+        "referrers": [
+            {
+                "host": row["referrer_host"] or "",
+                "views": int(row["views"] or 0),
+            }
+            for row in referrer_rows
+        ],
+        "devices": [
+            {
+                "type": row["device_type"],
+                "views": int(row["views"] or 0),
+            }
+            for row in device_rows
+        ],
+    }
 
 
 def public_user(row):

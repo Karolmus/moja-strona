@@ -8,6 +8,7 @@ import time
 from collections import defaultdict, deque
 from decimal import Decimal, ROUND_HALF_UP
 from functools import wraps
+from urllib.parse import urlsplit
 
 import sympy as sp
 from flask import Flask, jsonify, request, session
@@ -35,6 +36,7 @@ from auth_storage import (
     parent_access_by_token,
     progress_for_user,
     public_user,
+    record_site_pageview,
     record_speed_training_result,
     record_progress,
     register_auth_db,
@@ -42,6 +44,7 @@ from auth_storage import (
     reset_user_password,
     speed_training_leaderboard,
     speed_training_history,
+    site_analytics_summary,
     sync_admin_user,
     touch_parent_access,
     touch_last_login,
@@ -140,6 +143,10 @@ def parent_rate_limit_key():
     data = request.get_json(silent=True) or {}
 
     return f"parent:{client_ip()}:{token_fingerprint(data.get('token'))}"
+
+
+def analytics_rate_limit_key():
+    return f"analytics:{client_ip()}"
 
 
 def enforce_rate_limit(limit, window_seconds, scope, key):
@@ -459,6 +466,62 @@ def training_level_for_user(user):
     return TRAINING_LEVEL_BY_STUDENT_LEVEL.get(user.get("level"), "eo")
 
 
+def analytics_identifier(value):
+    identifier = str(value or "").strip()
+
+    if not 8 <= len(identifier) <= 100:
+        raise ValueError("Nieprawidłowy identyfikator analityczny.")
+
+    if not all(character.isalnum() or character in "-_:" for character in identifier):
+        raise ValueError("Nieprawidłowy identyfikator analityczny.")
+
+    return hashlib.sha256(
+        f"{app.config['SECRET_KEY']}:{identifier}".encode("utf-8")
+    ).hexdigest()
+
+
+def analytics_path(value):
+    path = urlsplit(str(value or "")).path.strip()
+
+    if not path or path == "/index.html":
+        return "/"
+
+    if (
+        not path.startswith("/")
+        or len(path) > 180
+        or "\x00" in path
+        or "\\" in path
+        or ".." in path
+    ):
+        raise ValueError("Nieprawidłowa ścieżka strony.")
+
+    return path.rstrip("/") or "/"
+
+
+def analytics_referrer_host(value):
+    host = str(value or "").strip().lower()
+
+    if len(host) > 160 or any(character in host for character in "/\\?#"):
+        return ""
+
+    return host
+
+
+def request_looks_like_bot():
+    user_agent = request.headers.get("User-Agent", "").lower()
+    markers = (
+        "bot",
+        "crawler",
+        "spider",
+        "slurp",
+        "lighthouse",
+        "headless",
+        "preview",
+    )
+
+    return any(marker in user_agent for marker in markers)
+
+
 @app.get("/")
 def root():
     return jsonify({"status": "ok", "service": "delta-sigma-calculators"})
@@ -467,6 +530,38 @@ def root():
 @app.get("/api/health")
 def health():
     return jsonify({"status": "ok"})
+
+
+@app.post("/api/analytics/pageview")
+@rate_limit(240, 60, "analytics-minute", analytics_rate_limit_key)
+@rate_limit(6000, 24 * 60 * 60, "analytics-day", analytics_rate_limit_key)
+def api_analytics_pageview():
+    def handler():
+        origin = request.headers.get("Origin")
+
+        if origin and origin not in allowed_origins():
+            return "", 204
+
+        if request_looks_like_bot():
+            return "", 204
+
+        data = request.get_json(force=True, silent=True) or {}
+        device_type = str(data.get("device_type") or "desktop").strip().lower()
+
+        if device_type not in {"mobile", "tablet", "desktop"}:
+            device_type = "desktop"
+
+        record_site_pageview(
+            path=analytics_path(data.get("path")),
+            visitor_hash=analytics_identifier(data.get("visitor_id")),
+            session_hash=analytics_identifier(data.get("session_id")),
+            referrer_host=analytics_referrer_host(data.get("referrer_host")),
+            device_type=device_type,
+        )
+
+        return jsonify({"ok": True}), 201
+
+    return safe(handler)
 
 
 @app.post("/api/auth/login")
@@ -527,6 +622,23 @@ def api_admin_students(_admin):
     return jsonify({
         "students": list_students(),
     })
+
+
+@app.get("/api/admin/analytics")
+@require_admin
+@rate_limit(60, 60, "admin-analytics")
+def api_admin_analytics(_admin):
+    requested_days = request.args.get("days", "30")
+
+    try:
+        days = int(requested_days)
+    except (TypeError, ValueError):
+        days = 30
+
+    if days not in {7, 30, 90}:
+        days = 30
+
+    return jsonify(site_analytics_summary(days))
 
 
 @app.get("/api/admin/contact-messages")
