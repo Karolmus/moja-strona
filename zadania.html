@@ -198,6 +198,26 @@ body {
     line-height: 1.35;
 }
 
+.source-summary-open {
+    width: 100%;
+    min-height: 30px;
+    border: 1px solid var(--blue-text);
+    border-radius: 7px;
+    background: #ffffff;
+    color: var(--navy);
+    cursor: pointer;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 5px 8px;
+}
+
+.source-summary-open:hover,
+.source-summary-open:focus-visible {
+    background: var(--blue-soft);
+    outline: none;
+}
+
 .sidebar-controls {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2416,6 +2436,9 @@ footer {
                             <span class="source-summary-fill" id="sourceSummaryFill"></span>
                         </div>
                         <div class="source-summary-detail" id="sourceSummaryDetail">Wybierz arkusz albo lekcję.</div>
+                        <button class="source-summary-open" id="examSummaryOpen" type="button" hidden>
+                            Wyświetl podsumowanie
+                        </button>
                     </div>
                 </div>
             </div>
@@ -4112,12 +4135,14 @@ function updateSourceSummary(){
     const percent = document.getElementById("sourceSummaryPercent");
     const fill = document.getElementById("sourceSummaryFill");
     const detail = document.getElementById("sourceSummaryDetail");
+    const summaryButton = document.getElementById("examSummaryOpen");
 
     if(!section || !title || !points || !percent || !fill || !detail) return;
 
     const summaryTasks = sourceSummaryTasks();
 
     if(!summaryTasks.length){
+        if(summaryButton) summaryButton.hidden = true;
         section.style.display = "none";
         section.parentElement?.classList.add("summary-hidden");
         return;
@@ -4133,6 +4158,13 @@ function updateSourceSummary(){
     points.innerText = `${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt`;
     percent.innerText = percentLabel(summary.percent);
     fill.style.width = `${Math.max(0, Math.min(100, summary.percent))}%`;
+    if(summaryButton){
+        summaryButton.hidden = !(
+            selectedCategory === "egzaminy" &&
+            selectedSource !== "all" &&
+            isExamSourceComplete()
+        );
+    }
 
     if(!summary.totalPoints){
         detail.innerText = "Ten zestaw nie ma jeszcze wpisanej punktacji.";
@@ -4475,6 +4507,8 @@ document.getElementById("examSummaryDismiss")
     ?.addEventListener("click", () => closeExamCompletionSummary());
 document.getElementById("examSummaryNext")
     ?.addEventListener("click", openNextExamFromSummary);
+document.getElementById("examSummaryOpen")
+    ?.addEventListener("click", showExamCompletionSummary);
 document.getElementById("examSummaryOverlay")
     ?.addEventListener("click", event => {
         if(event.target === event.currentTarget){

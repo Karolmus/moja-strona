@@ -211,6 +211,75 @@ body {
     line-height: 1.45;
 }
 
+.source-results {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 22px;
+}
+
+.source-result {
+    display: grid;
+    gap: 7px;
+    min-width: 0;
+    border-top: 1px solid var(--line);
+    padding: 11px 2px;
+}
+
+.source-result-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.source-result-name {
+    display: grid;
+    gap: 1px;
+    min-width: 0;
+}
+
+.source-result-name strong {
+    font-size: 13px;
+}
+
+.source-result-name span,
+.source-result-detail {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.source-result-score {
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.source-result.not-started .source-result-score,
+.source-result.not-started .source-result-detail {
+    color: #94a3b8;
+}
+
+.source-result-track {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.source-result-fill {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #24527a, var(--blue));
+}
+
+.source-result.lesson .source-result-fill {
+    background: linear-gradient(90deg, var(--green), #8fcf74);
+}
+
 .recent-list {
     display: grid;
     gap: 7px;
@@ -290,6 +359,10 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .source-results {
+        grid-template-columns: 1fr;
+    }
+
     .continue-button {
         width: 100%;
     }
@@ -365,6 +438,16 @@ body {
                     <div class="progress-detail" id="examDetail">Wczytywanie postępu...</div>
                 </div>
             </div>
+        </section>
+
+        <section class="panel" id="examResultsSection">
+            <h2 class="section-title">Wyniki egzaminów</h2>
+            <div class="source-results" id="examResults"></div>
+        </section>
+
+        <section class="panel" id="lessonResultsSection">
+            <h2 class="section-title">Wyniki lekcji</h2>
+            <div class="source-results" id="lessonResults"></div>
         </section>
 
         <section class="panel">
@@ -508,7 +591,8 @@ async function loadSourceCatalog(level){
 
                 if(!response.ok) throw new Error("Nie udało się pobrać źródła.");
 
-                const tasks = await response.json();
+                const data = await response.json();
+                const tasks = Array.isArray(data) ? data : [];
                 const filesByPart = new Map();
 
                 tasks.forEach(task => {
@@ -527,11 +611,13 @@ async function loadSourceCatalog(level){
 
                 return {
                     ...source,
+                    tasks,
                     filesByPart
                 };
             } catch(error) {
                 return {
                     ...source,
+                    tasks: [],
                     filesByPart: new Map()
                 };
             }
@@ -539,6 +625,190 @@ async function loadSourceCatalog(level){
     );
 
     sourceCatalog = loaded;
+}
+
+function numericValue(value){
+    if(value === null || value === undefined || value === "") return null;
+
+    const numeric = Number(value);
+
+    return Number.isFinite(numeric) ? numeric : null;
+}
+
+function catalogTaskMaxPoints(task, progressItem){
+    const catalogPoints = numericValue(task.maxPoints);
+    const savedPoints = numericValue(progressItem?.max_points);
+
+    if(catalogPoints !== null && catalogPoints > 0) return catalogPoints;
+    if(savedPoints !== null && savedPoints > 0) return savedPoints;
+
+    return 1;
+}
+
+function earnedPointsForProgress(progressItem, maxPoints){
+    if(!progressItem) return 0;
+
+    const savedPoints = numericValue(progressItem.earned_points);
+
+    if(savedPoints !== null){
+        return Math.max(0, Math.min(maxPoints, savedPoints));
+    }
+
+    if(progressItem.result === "good") return maxPoints;
+    if(progressItem.result === "medium") return maxPoints / 2;
+
+    return 0;
+}
+
+function sourcePerformance(source, latestByKey, part = ""){
+    const tasks = source.tasks.filter(task => {
+        if(!task.file) return false;
+        if(!part) return true;
+
+        const taskPart = task.coursePart || task.section || "zadania";
+
+        return taskPart === part;
+    });
+    let attempted = 0;
+    let earnedPoints = 0;
+    let totalPoints = 0;
+
+    tasks.forEach(task => {
+        const progressItem = latestByKey.get(`${source.path}:${task.file}`);
+        const maxPoints = catalogTaskMaxPoints(task, progressItem);
+
+        totalPoints += maxPoints;
+
+        if(progressItem){
+            attempted++;
+            earnedPoints += earnedPointsForProgress(progressItem, maxPoints);
+        }
+    });
+
+    return {
+        attempted,
+        earnedPoints,
+        totalPoints,
+        totalTasks: tasks.length,
+        percent: totalPoints ? Math.round((earnedPoints / totalPoints) * 100) : 0
+    };
+}
+
+function capitalize(value){
+    const text = String(value || "").trim();
+
+    return text ? text.charAt(0).toLocaleUpperCase("pl-PL") + text.slice(1) : "";
+}
+
+function sourceResultLabels(source){
+    if(source.category === "egzaminy"){
+        const parts = source.path.split("/");
+        const year = parts[2] || "";
+        const month = capitalize(parts[3] || "");
+
+        return {
+            title: `${month} ${year}`.trim() || "Arkusz",
+            detail: "CKE"
+        };
+    }
+
+    const lessonMatch = source.path.match(/lekcja_(\d+)/i);
+    const topic = source.tasks.find(task => task.topic)?.topic || "";
+
+    return {
+        title: lessonMatch ? `Lekcja ${lessonMatch[1]}` : "Lekcja",
+        detail: capitalize(topic)
+    };
+}
+
+function formatProfilePoints(value){
+    return Number(value).toLocaleString("pl-PL", {
+        maximumFractionDigits: 1
+    });
+}
+
+function resultPercentLabel(result, prefix = ""){
+    const value = result.attempted ? `${result.percent}%` : "Nie rozpoczęto";
+
+    return prefix ? `${prefix}: ${value}` : value;
+}
+
+function appendSourceResult(list, source, result, detailLines, type){
+    const labels = sourceResultLabels(source);
+    const row = document.createElement("div");
+    const head = document.createElement("div");
+    const name = document.createElement("div");
+    const title = document.createElement("strong");
+    const meta = document.createElement("span");
+    const score = document.createElement("span");
+    const track = document.createElement("div");
+    const fill = document.createElement("span");
+    const detail = document.createElement("div");
+
+    row.className = `source-result ${type}${result.attempted ? "" : " not-started"}`;
+    head.className = "source-result-head";
+    name.className = "source-result-name";
+    score.className = "source-result-score";
+    track.className = "source-result-track";
+    fill.className = "source-result-fill";
+    detail.className = "source-result-detail";
+
+    title.innerText = labels.title;
+    meta.innerText = labels.detail;
+    score.innerText = result.attempted ? `${result.percent}%` : "—";
+    fill.style.width = `${Math.max(0, Math.min(100, result.percent))}%`;
+    detail.innerText = detailLines.filter(Boolean).join(" • ");
+
+    name.appendChild(title);
+    if(labels.detail) name.appendChild(meta);
+    head.appendChild(name);
+    head.appendChild(score);
+    track.appendChild(fill);
+    row.appendChild(head);
+    row.appendChild(track);
+    row.appendChild(detail);
+    list.appendChild(row);
+}
+
+function renderDetailedResults(progress){
+    const latestByKey = new Map(progress.map(item => [progressKey(item), item]));
+    const examList = document.getElementById("examResults");
+    const lessonList = document.getElementById("lessonResults");
+    const examSources = sourceCatalog.filter(source =>
+        source.category === "egzaminy" && source.tasks.length
+    );
+    const lessonSources = sourceCatalog.filter(source =>
+        source.category === "kurs" && source.tasks.length
+    );
+
+    examList.innerHTML = "";
+    lessonList.innerHTML = "";
+    document.getElementById("examResultsSection").hidden = !examSources.length;
+    document.getElementById("lessonResultsSection").hidden = !lessonSources.length;
+
+    examSources.forEach(source => {
+        const result = sourcePerformance(source, latestByKey);
+
+        appendSourceResult(examList, source, result, [
+            result.attempted
+                ? `${formatProfilePoints(result.earnedPoints)} / ${formatProfilePoints(result.totalPoints)} pkt`
+                : "Nie rozpoczęto",
+            `${result.attempted}/${result.totalTasks} zadań`
+        ], "exam");
+    });
+
+    lessonSources.forEach(source => {
+        const main = sourcePerformance(source, latestByKey, "zadania");
+        const homework = sourcePerformance(source, latestByKey, "praca_domowa");
+        const practical = sourcePerformance(source, latestByKey, "zadania_praktyczne");
+        const detailLines = [
+            resultPercentLabel(main, "Część główna"),
+            homework.totalTasks ? resultPercentLabel(homework, "Praca domowa") : "",
+            practical.totalTasks ? resultPercentLabel(practical, "Praktyczne") : ""
+        ];
+
+        appendSourceResult(lessonList, source, main, detailLines, "lesson");
+    });
 }
 
 function calculateProgress(progress, category, part, targetMode = "fixed"){
@@ -679,6 +949,7 @@ function renderProfile(user, progress){
     renderProgress("lesson", lessonStats, "lekcji", "Brak lekcji dla tego poziomu.");
     renderProgress("homework", homeworkStats, "lekcji", "Brak prac domowych dla tego poziomu.");
     renderProgress("exam", examStats, "arkuszy", "Brak arkuszy dla tego poziomu.");
+    renderDetailedResults(latest);
     renderRecent(latest);
 
     document.getElementById("profileStatus").style.display = "none";
