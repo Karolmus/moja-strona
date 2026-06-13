@@ -1715,6 +1715,220 @@ button {
     margin-top: 12px;
 }
 
+.exam-summary-overlay {
+    position: fixed;
+    z-index: 1200;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow-y: auto;
+    background: rgba(15, 23, 42, 0.62);
+    padding: 20px;
+}
+
+.exam-summary-overlay[hidden] {
+    display: none;
+}
+
+.exam-summary-dialog {
+    width: min(620px, 100%);
+    max-height: min(760px, calc(100vh - 40px));
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.28);
+    padding: 18px;
+}
+
+.exam-summary-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.exam-summary-eyebrow {
+    color: var(--blue-text);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.exam-summary-title {
+    margin: 3px 0 0;
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.exam-summary-close {
+    display: grid;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.exam-summary-close:hover {
+    border-color: #b9c6d4;
+    background: #f3f6fa;
+    color: var(--text);
+}
+
+.exam-summary-result {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.exam-summary-score {
+    color: var(--navy);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.exam-summary-percent {
+    color: var(--blue-text);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.exam-summary-track {
+    height: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.exam-summary-fill {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6aa84f, #24527a);
+}
+
+.exam-summary-verdict {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.exam-summary-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.exam-summary-stat {
+    display: grid;
+    gap: 2px;
+}
+
+.exam-summary-stat span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.exam-summary-stat strong {
+    font-size: 16px;
+}
+
+.exam-summary-areas {
+    margin-top: 16px;
+}
+
+.exam-summary-areas h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+.exam-summary-area-list {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.exam-summary-area-list li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.exam-summary-area-list li::before {
+    position: absolute;
+    top: 0.52em;
+    left: 2px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #d49a35;
+    content: "";
+}
+
+.exam-summary-area-list small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.exam-summary-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.exam-summary-btn {
+    min-height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 7px 12px;
+}
+
+.exam-summary-btn.primary {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+}
+
+.exam-summary-btn:hover {
+    border-color: #b9c6d4;
+    background: #f3f6fa;
+}
+
+.exam-summary-btn.primary:hover {
+    border-color: var(--navy-hover);
+    background: var(--navy-hover);
+}
+
 footer {
     text-align: center;
     padding: 15px;
@@ -1865,6 +2079,41 @@ footer {
 
     .course-source-list .source-btn small {
         display: none;
+    }
+
+    .exam-summary-overlay {
+        align-items: end;
+        padding: 8px;
+    }
+
+    .exam-summary-dialog {
+        max-height: calc(100vh - 16px);
+        padding: 14px;
+    }
+
+    .exam-summary-title {
+        font-size: 18px;
+    }
+
+    .exam-summary-score {
+        font-size: 25px;
+    }
+
+    .exam-summary-percent {
+        font-size: 19px;
+    }
+
+    .exam-summary-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .exam-summary-actions.single {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-summary-btn {
+        width: 100%;
     }
 
     .assigned-course-card,
@@ -2262,6 +2511,49 @@ footer {
         </div>
     </div>
 </div>
+
+<div class="exam-summary-overlay" id="examSummaryOverlay" hidden>
+    <section class="exam-summary-dialog" role="dialog" aria-modal="true" aria-labelledby="examSummaryTitle" tabindex="-1">
+        <div class="exam-summary-head">
+            <div>
+                <div class="exam-summary-eyebrow">Arkusz ukończony</div>
+                <h2 class="exam-summary-title" id="examSummaryTitle">Podsumowanie wyniku</h2>
+            </div>
+            <button class="exam-summary-close" id="examSummaryClose" type="button" aria-label="Zamknij podsumowanie">×</button>
+        </div>
+
+        <div class="exam-summary-result">
+            <strong class="exam-summary-score" id="examSummaryScore">0 / 0 pkt</strong>
+            <span class="exam-summary-percent" id="examSummaryPercent">0%</span>
+        </div>
+        <div class="exam-summary-track" aria-hidden="true">
+            <span class="exam-summary-fill" id="examSummaryFill"></span>
+        </div>
+        <p class="exam-summary-verdict" id="examSummaryVerdict"></p>
+
+        <div class="exam-summary-stats">
+            <div class="exam-summary-stat">
+                <span>Rozwiązane zadania</span>
+                <strong id="examSummaryAttempted">0 / 0</strong>
+            </div>
+            <div class="exam-summary-stat">
+                <span>Zapisana punktacja</span>
+                <strong id="examSummaryScored">0 / 0</strong>
+            </div>
+        </div>
+
+        <div class="exam-summary-areas">
+            <h3>Obszary do poprawienia</h3>
+            <ul class="exam-summary-area-list" id="examSummaryAreas"></ul>
+        </div>
+
+        <div class="exam-summary-actions">
+            <button class="exam-summary-btn" id="examSummaryDismiss" type="button">Zamknij</button>
+            <button class="exam-summary-btn primary" id="examSummaryNext" type="button">Następny arkusz</button>
+        </div>
+    </section>
+</div>
+
 <footer>© 2026 Delta sigma</footer>
 <div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
@@ -2300,6 +2592,8 @@ let isTaskLoading = false;
 let selectedSolutionIndex = 0;
 let completedExamSummarySource = "";
 let selectedGradingIndex = 0;
+let examSummaryNextSource = "";
+let examSummaryPreviousFocus = null;
 let courseGradingCriteriaByTask = new Map();
 let courseGradingCriteriaLoaded = false;
 const loadedTaskSourceIds = new Set();
@@ -3948,6 +4242,191 @@ function nextExamSourceId(){
     return sources[currentSourceIndex + 1]?.id || "";
 }
 
+function examSummaryTaskPerformance(task){
+    const maxPoints = taskPointValue(task);
+    const score = getTaskScore(task);
+    const result = getSavedResult(task);
+    let earnedPoints = normalizeScoreValue(score?.earnedPoints);
+
+    if(earnedPoints === null){
+        if(result === "good"){
+            earnedPoints = maxPoints;
+        } else if(result === "medium"){
+            earnedPoints = maxPoints * 0.5;
+        } else {
+            earnedPoints = 0;
+        }
+    }
+
+    return {
+        earnedPoints: Math.max(0, Math.min(maxPoints, earnedPoints)),
+        maxPoints
+    };
+}
+
+function isMeaningfulExamSummaryTag(tag){
+    const normalized = normalizeTag(tag);
+
+    if(!normalized) return false;
+    if(/^20\d{2}$/.test(normalized)) return false;
+
+    return !(
+        normalized === "arkusz" ||
+        normalized.startsWith("arkusz cke") ||
+        normalized === "cke" ||
+        normalized === "zadania otwarte" ||
+        normalized === "zadanie otwarte" ||
+        normalized === "zadania zamkniete" ||
+        normalized === "zadanie zamkniete" ||
+        normalized.startsWith("matura podstawowa") ||
+        normalized.startsWith("matura rozszerzona") ||
+        normalized.startsWith("egzamin osmoklasisty")
+    );
+}
+
+function examSummaryAreaLabel(tag){
+    const label = formatTagLabel(tag);
+
+    return label ? label.charAt(0).toLocaleUpperCase("pl-PL") + label.slice(1) : "";
+}
+
+function calculateExamWeakAreas(summaryTasks){
+    const areas = new Map();
+    const weakTasks = [];
+
+    summaryTasks.forEach(task => {
+        const performance = examSummaryTaskPerformance(task);
+        const lostPoints = performance.maxPoints - performance.earnedPoints;
+
+        if(lostPoints > 0.0001){
+            weakTasks.push(task);
+        }
+
+        const taskTags = [...(task.tags || []), task.topic]
+            .filter(isMeaningfulExamSummaryTag);
+        const uniqueTags = new Map();
+
+        taskTags.forEach(tag => uniqueTags.set(normalizeTag(tag), tag));
+
+        uniqueTags.forEach((tag, key) => {
+            const item = areas.get(key) || {
+                label: examSummaryAreaLabel(tag),
+                earnedPoints: 0,
+                maxPoints: 0,
+                lostPoints: 0,
+                taskNumbers: new Set()
+            };
+
+            item.earnedPoints += performance.earnedPoints;
+            item.maxPoints += performance.maxPoints;
+            item.lostPoints += lostPoints;
+            if(lostPoints > 0.0001){
+                item.taskNumbers.add(taskNumberLabel(task));
+            }
+            areas.set(key, item);
+        });
+    });
+
+    const rankedAreas = [...areas.values()]
+        .filter(area => area.lostPoints > 0.0001)
+        .map(area => ({
+            ...area,
+            percent: area.maxPoints ? area.earnedPoints / area.maxPoints * 100 : 0,
+            taskNumbers: [...area.taskNumbers]
+        }))
+        .sort((a, b) =>
+            b.lostPoints - a.lostPoints ||
+            a.percent - b.percent ||
+            a.label.localeCompare(b.label, "pl")
+        )
+        .slice(0, 3);
+
+    return {
+        areas: rankedAreas,
+        weakTaskNumbers: weakTasks.map(taskNumberLabel)
+    };
+}
+
+function examSummaryVerdict(summary){
+    let verdict = "Warto wrócić do podstawowych zagadnień z tego arkusza.";
+
+    if(summary.percent >= 90){
+        verdict = "Bardzo dobry wynik. Do pełnego utrwalenia zostały pojedyncze elementy.";
+    } else if(summary.percent >= 70){
+        verdict = "Dobry wynik. Najwięcej zyskasz, poprawiając wskazane niżej obszary.";
+    } else if(summary.percent >= 50){
+        verdict = "Wynik pokazuje opanowanie części materiału, ale kilka obszarów wymaga powtórki.";
+    }
+
+    if(summary.scoredTasks < summary.tasks.length){
+        verdict += ` Punktacja jest zapisana dla ${summary.scoredTasks}/${summary.tasks.length} zadań, więc wynik może być niepełny.`;
+    }
+
+    return verdict;
+}
+
+function renderExamWeakAreas(summaryTasks){
+    const list = document.getElementById("examSummaryAreas");
+    const weak = calculateExamWeakAreas(summaryTasks);
+
+    list.innerHTML = "";
+
+    if(weak.areas.length){
+        weak.areas.forEach(area => {
+            const item = document.createElement("li");
+            const label = document.createElement("strong");
+            const detail = document.createElement("small");
+
+            label.innerText = area.label;
+            detail.innerText =
+                `Zadania ${area.taskNumbers.join(", ")} • skuteczność ${percentLabel(area.percent)}`;
+            item.appendChild(label);
+            item.appendChild(detail);
+            list.appendChild(item);
+        });
+        return;
+    }
+
+    const item = document.createElement("li");
+    const label = document.createElement("strong");
+    const detail = document.createElement("small");
+
+    if(weak.weakTaskNumbers.length){
+        label.innerText = "Ponowna analiza zadań";
+        detail.innerText = `Wróć do zadań: ${weak.weakTaskNumbers.slice(0, 10).join(", ")}.`;
+    } else {
+        label.innerText = "Brak wyraźnych obszarów do poprawienia";
+        detail.innerText = "Wszystkie zadania mają pełną punktację.";
+    }
+
+    item.appendChild(label);
+    item.appendChild(detail);
+    list.appendChild(item);
+}
+
+function closeExamCompletionSummary(restoreFocus = true){
+    const overlay = document.getElementById("examSummaryOverlay");
+
+    if(!overlay || overlay.hidden) return;
+
+    overlay.hidden = true;
+    document.body.style.removeProperty("overflow");
+
+    if(restoreFocus && examSummaryPreviousFocus instanceof HTMLElement){
+        examSummaryPreviousFocus.focus();
+    }
+}
+
+function openNextExamFromSummary(){
+    const nextSource = examSummaryNextSource;
+
+    closeExamCompletionSummary(false);
+
+    if(nextSource){
+        setSource(nextSource);
+    }
+}
+
 function showExamCompletionSummary(){
     const summary = calculateSourceSummary();
     const source = getSourceMetaById(selectedSource);
@@ -3955,17 +4434,58 @@ function showExamCompletionSummary(){
     const sourceLabel = source
         ? `${source.label}${source.detail ? ` (${source.detail})` : ""}`
         : "arkusz";
-    const nextInfo = nextSource
-        ? "Kliknij „Kolejne”, aby przejść do następnego arkusza."
-        : "To ostatni dostępny arkusz w tym poziomie.";
+    const overlay = document.getElementById("examSummaryOverlay");
+    const dialog = overlay?.querySelector(".exam-summary-dialog");
+    const nextButton = document.getElementById("examSummaryNext");
 
-    showMessage(
-        `Arkusz ukończony: ${sourceLabel}\n` +
-        `Wynik: ${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt (${percentLabel(summary.percent)}).\n` +
-        `Zapisane zadania: ${summary.scoredTasks}/${summary.tasks.length}. Rozwiązane: ${summary.attemptedTasks}/${summary.tasks.length}.\n` +
-        nextInfo
-    );
+    if(!overlay || !dialog || !nextButton){
+        showMessage(
+            `Arkusz ukończony: ${sourceLabel}\n` +
+            `Wynik: ${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt (${percentLabel(summary.percent)}).`
+        );
+        return;
+    }
+
+    document.getElementById("examSummaryTitle").innerText = sourceLabel;
+    document.getElementById("examSummaryScore").innerText =
+        `${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt`;
+    document.getElementById("examSummaryPercent").innerText = percentLabel(summary.percent);
+    document.getElementById("examSummaryFill").style.width =
+        `${Math.max(0, Math.min(100, summary.percent))}%`;
+    document.getElementById("examSummaryVerdict").innerText = examSummaryVerdict(summary);
+    document.getElementById("examSummaryAttempted").innerText =
+        `${summary.attemptedTasks} / ${summary.tasks.length}`;
+    document.getElementById("examSummaryScored").innerText =
+        `${summary.scoredTasks} / ${summary.tasks.length}`;
+    renderExamWeakAreas(summary.tasks);
+
+    examSummaryNextSource = nextSource;
+    nextButton.hidden = !nextSource;
+    nextButton.parentElement?.classList.toggle("single", !nextSource);
+    examSummaryPreviousFocus = document.activeElement;
+    hideMessage();
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => dialog.focus());
 }
+
+document.getElementById("examSummaryClose")
+    ?.addEventListener("click", () => closeExamCompletionSummary());
+document.getElementById("examSummaryDismiss")
+    ?.addEventListener("click", () => closeExamCompletionSummary());
+document.getElementById("examSummaryNext")
+    ?.addEventListener("click", openNextExamFromSummary);
+document.getElementById("examSummaryOverlay")
+    ?.addEventListener("click", event => {
+        if(event.target === event.currentTarget){
+            closeExamCompletionSummary();
+        }
+    });
+document.addEventListener("keydown", event => {
+    if(event.key === "Escape"){
+        closeExamCompletionSummary();
+    }
+});
 
 function advanceToNextExamIfComplete(){
     if(!isExamSourceComplete()) return false;
@@ -4327,6 +4847,30 @@ function isInputTask(task){
     return ["input", "fill", "short_answer", "numeric"].includes(task?.type);
 }
 
+function isProofTask(task){
+    if(!task) return false;
+    if(task.isProof === true || task.proof === true) return true;
+
+    const descriptors = [
+        task.topic,
+        task.title,
+        ...(Array.isArray(task.tags) ? task.tags : [])
+    ]
+        .map(normalizeTag)
+        .filter(Boolean);
+    const answer = normalizeTag(task.answer);
+
+    return descriptors.some(value =>
+        value.includes("dowod") ||
+        value.includes("udowod") ||
+        value.includes("wykaz")
+    ) || (
+        answer.includes("nalezy wykazac") ||
+        answer.includes("trzeba wykazac") ||
+        answer.includes("udowodnij")
+    );
+}
+
 function isMaturaOpenAnswerTask(task){
     return Boolean(
         task &&
@@ -4334,7 +4878,8 @@ function isMaturaOpenAnswerTask(task){
         ["matura_podstawowa", "matura_rozszerzona"].includes(task.level) &&
         !isClosedTask(task) &&
         !isInputTask(task) &&
-        !isPracticalTask(task)
+        !isPracticalTask(task) &&
+        !isProofTask(task)
     );
 }
 
@@ -5171,6 +5716,8 @@ function setupMCQ(){
 
             mcq.appendChild(b);
         });
+    } else if(isProofTask(currentTask)){
+        mcq.classList.remove("active");
     } else if(isPracticalTask(currentTask)){
         mcq.classList.add("active", "practical-task");
         setupPracticalTask(mcq);
