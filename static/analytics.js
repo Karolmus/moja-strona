@@ -112,13 +112,24 @@
         }
     }
 
-    function sendPageview(){
+    async function sendPageview(){
         const apiBase = String(window.DS_API_BASE_URL || "").replace(/\/$/, "");
 
         if(!apiBase){
             return;
         }
 
+        const user = typeof window.refreshAuthNav === "function"
+            ? await window.refreshAuthNav()
+            : null;
+
+        if(user?.role === "admin"){
+            return;
+        }
+
+        const token = typeof window.getAuthToken === "function"
+            ? window.getAuthToken()
+            : null;
         const body = JSON.stringify({
             path: window.location.pathname || "/",
             visitor_id: visitorId(),
@@ -131,6 +142,7 @@
             method: "POST",
             credentials: "omit",
             keepalive: true,
+            headers: token ? { "Authorization": `Bearer ${token}` } : {},
             body
         }).catch(() => {
             // Analityka nie może wpływać na działanie strony.
