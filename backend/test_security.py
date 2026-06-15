@@ -265,12 +265,25 @@ class SecurityTests(unittest.TestCase):
             },
         )
         token = login.get_json()["token"]
+        admin_pageview = self.client.post(
+            "/api/analytics/pageview",
+            json={
+                **pageview,
+                "visitor_id": "admin-visitor-0001",
+                "session_id": "admin-session-0001",
+            },
+            headers={
+                **headers,
+                "Authorization": f"Bearer {token}",
+            },
+        )
         response = self.client.get(
             "/api/admin/analytics?days=7",
             headers={"Authorization": f"Bearer {token}"},
         )
         data = response.get_json()
 
+        self.assertEqual(admin_pageview.status_code, 204)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(data["overview"]["views"], 3)
         self.assertEqual(data["overview"]["visitors"], 2)

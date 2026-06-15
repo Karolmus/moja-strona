@@ -545,6 +545,11 @@ def api_analytics_pageview():
         if request_looks_like_bot():
             return "", 204
 
+        user = current_user()
+
+        if user and user["role"] == "admin":
+            return "", 204
+
         data = request.get_json(force=True, silent=True) or {}
         device_type = str(data.get("device_type") or "desktop").strip().lower()
 
