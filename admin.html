@@ -1330,6 +1330,24 @@ th {
     grid-column: 1 / -1;
 }
 
+.prices-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+    gap: 10px;
+}
+
+#pricesForm {
+    display: grid;
+    gap: 12px;
+}
+
+.prices-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
 .analytics-legend {
     display: flex;
     gap: 14px;
@@ -1505,6 +1523,10 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .prices-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .analytics-card-wide {
         grid-column: auto;
     }
@@ -1546,6 +1568,10 @@ footer {
         width: 100%;
     }
 
+    .prices-grid {
+        grid-template-columns: 1fr;
+    }
+
     .analytics-kpis {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1585,6 +1611,7 @@ footer {
         <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
         <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge"></span></button>
         <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
+        <button class="admin-tab-btn" type="button" data-admin-tab="prices">Ceny</button>
         <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie</button>
     </div>
 
@@ -1717,6 +1744,42 @@ footer {
             <button class="mailbox-tab" type="button" data-mailbox="trash">Kosz <span id="trashCount"></span></button>
         </div>
         <div class="message-list" id="messageList" aria-live="polite"></div>
+    </section>
+
+    <section class="panel admin-tab-panel" id="pricesTab">
+        <div class="panel-heading">
+            <div class="messages-heading-copy">
+                <h2>Ceny na stronie głównej</h2>
+                <p class="inbox-subtitle">Kwoty są pokazywane przy kafelkach oferty jako cena za 55 minut.</p>
+            </div>
+        </div>
+
+        <form id="pricesForm">
+            <div class="prices-grid">
+                <div class="field">
+                    <label for="priceOngoing">Na bieżąco</label>
+                    <input id="priceOngoing" name="ongoing" type="number" min="0" max="10000" step="1" required>
+                </div>
+                <div class="field">
+                    <label for="priceExam8">Egzamin ósmoklasisty</label>
+                    <input id="priceExam8" name="exam8" type="number" min="0" max="10000" step="1" required>
+                </div>
+                <div class="field">
+                    <label for="priceMaturaBasic">Matura podstawowa</label>
+                    <input id="priceMaturaBasic" name="matura_basic" type="number" min="0" max="10000" step="1" required>
+                </div>
+                <div class="field">
+                    <label for="priceMaturaExtended">Matura rozszerzona</label>
+                    <input id="priceMaturaExtended" name="matura_extended" type="number" min="0" max="10000" step="1" required>
+                </div>
+            </div>
+
+            <div class="prices-actions">
+                <button class="btn secondary" type="button" id="reloadPricesBtn">Odśwież</button>
+                <button class="btn" type="submit">Zapisz ceny</button>
+            </div>
+            <div class="status-box" id="pricesStatus" role="status" aria-live="polite"></div>
+        </form>
     </section>
 
     <section class="panel analytics-panel admin-tab-panel" id="analyticsTab">
@@ -1869,6 +1932,7 @@ const studentSort = document.getElementById("studentSort");
 const adminTabButtons = document.querySelectorAll(".admin-tab-btn");
 const studentsTab = document.getElementById("studentsTab");
 const messagesTab = document.getElementById("messagesTab");
+const pricesTab = document.getElementById("pricesTab");
 const analyticsTab = document.getElementById("analyticsTab");
 const messageList = document.getElementById("messageList");
 const prospectMessageBadge = document.getElementById("prospectMessageBadge");
@@ -1890,6 +1954,15 @@ const analyticsChart = document.getElementById("analyticsChart");
 const analyticsPages = document.getElementById("analyticsPages");
 const analyticsReferrers = document.getElementById("analyticsReferrers");
 const analyticsDevices = document.getElementById("analyticsDevices");
+const pricesForm = document.getElementById("pricesForm");
+const pricesStatus = document.getElementById("pricesStatus");
+const reloadPricesBtn = document.getElementById("reloadPricesBtn");
+const priceInputs = {
+    ongoing: document.getElementById("priceOngoing"),
+    exam8: document.getElementById("priceExam8"),
+    matura_basic: document.getElementById("priceMaturaBasic"),
+    matura_extended: document.getElementById("priceMaturaExtended")
+};
 
 let students = [];
 let contactMessages = [];
@@ -1914,6 +1987,11 @@ const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
 function showStatus(message){
     adminStatus.classList.add("active");
     adminStatus.innerText = message;
+}
+
+function showPricesStatus(message){
+    pricesStatus.classList.add("active");
+    pricesStatus.innerText = message;
 }
 
 function parentLinkFromToken(token){
@@ -2581,8 +2659,36 @@ async function loadStudentProgressSummaries(){
     studentProgressCache = new Map(pairs);
 }
 
+function fillPriceInputs(prices){
+    Object.entries(priceInputs).forEach(([key, input]) => {
+        input.value = Number(prices?.[key] ?? 0);
+    });
+}
+
+async function loadSitePrices(){
+    const data = await apiFetch("/api/admin/site-prices");
+
+    fillPriceInputs(data.prices || {});
+}
+
+async function saveSitePrices(event){
+    event.preventDefault();
+
+    const prices = Object.fromEntries(
+        Object.entries(priceInputs).map(([key, input]) => [key, Number(input.value)])
+    );
+    const data = await apiFetch("/api/admin/site-prices", {
+        method: "PATCH",
+        body: JSON.stringify({ prices })
+    });
+
+    fillPriceInputs(data.prices || {});
+    showPricesStatus("Ceny zostały zapisane i są widoczne na stronie głównej.");
+}
+
 function setAdminTab(tab){
     const showMessages = tab === "messages-prospect" || tab === "messages-parent";
+    const showPrices = tab === "prices";
     const showAnalytics = tab === "analytics";
     const showStudents = tab === "students";
 
@@ -2598,6 +2704,7 @@ function setAdminTab(tab){
 
     studentsTab.classList.toggle("active", showStudents);
     messagesTab.classList.toggle("active", showMessages);
+    pricesTab.classList.toggle("active", showPrices);
     analyticsTab.classList.toggle("active", showAnalytics);
 
     if(showMessages){
@@ -2612,6 +2719,10 @@ function setAdminTab(tab){
 
     if(showAnalytics){
         loadAnalytics();
+    }
+
+    if(showPrices){
+        loadSitePrices().catch(error => showPricesStatus(error.message));
     }
 }
 
@@ -4328,6 +4439,14 @@ studentForm.addEventListener("submit", async event => {
 });
 
 copyCredentialsBtn.addEventListener("click", copyLastCredentials);
+pricesForm.addEventListener("submit", event => {
+    saveSitePrices(event).catch(error => showPricesStatus(error.message));
+});
+reloadPricesBtn.addEventListener("click", () => {
+    loadSitePrices()
+        .then(() => showPricesStatus("Ceny zostały odświeżone."))
+        .catch(error => showPricesStatus(error.message));
+});
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     try {
@@ -4355,6 +4474,7 @@ async function boot(){
         adminEmail.innerText = session.user.email;
         await loadAdminTaskCatalog();
         await loadStudents();
+        await loadSitePrices();
         await loadMessages();
     } catch(error) {
         window.location.href = "login.html";

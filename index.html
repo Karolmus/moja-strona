@@ -636,7 +636,7 @@
             </p>
         </div>
 
-        <div class="price-bar">
+        <div class="price-bar" data-price-key="ongoing">
             85 zł / 55 min
         </div>
 
@@ -653,7 +653,7 @@
             <p>Zgodnie z wytycznymi CKE</p>
         </div>
 
-        <div class="price-bar">
+        <div class="price-bar" data-price-key="exam8">
             90 zł / 55 min
         </div>
 
@@ -670,7 +670,7 @@
             <p>Zgodnie z wytycznymi CKE</p>
         </div>
 
-        <div class="price-bar">
+        <div class="price-bar" data-price-key="matura_basic">
             100 zł / 55 min
         </div>
 
@@ -687,7 +687,7 @@
             <p>Zgodnie z wytycznymi CKE</p>
         </div>
 
-        <div class="price-bar">
+        <div class="price-bar" data-price-key="matura_extended">
             110 zł / 55 min
         </div>
 
@@ -836,6 +836,27 @@ fetch("baner.html")
 </script>
 
 <script src="static/auth.js?v=20260610-profile"></script>
+<script>
+
+async function loadSitePrices(){
+    try {
+        const data = await window.apiFetch("/api/site/prices");
+
+        document.querySelectorAll("[data-price-key]").forEach(element => {
+            const price = Number(data?.prices?.[element.dataset.priceKey]);
+
+            if(Number.isFinite(price)){
+                element.innerText = `${price} zł / 55 min`;
+            }
+        });
+    } catch(error) {
+        console.warn("Nie udało się wczytać cen ze strony.", error);
+    }
+}
+
+loadSitePrices();
+
+</script>
 <script src="static/analytics.js?v=20260615-admin-exclusion"></script>
 </body>
 </html>
