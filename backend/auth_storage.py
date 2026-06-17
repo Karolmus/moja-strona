@@ -23,6 +23,13 @@ if psycopg is not None:
 
 _last_analytics_cleanup_day = None
 
+DEFAULT_SITE_PRICES = {
+    "ongoing": 85,
+    "exam8": 90,
+    "matura_basic": 100,
+    "matura_extended": 110,
+}
+
 
 def database_path():
     configured_path = os.environ.get("DATABASE_PATH")
@@ -379,6 +386,13 @@ def init_auth_db():
                 ON site_analytics_sessions(day)
             """,
             """
+            CREATE TABLE IF NOT EXISTS site_settings (
+                key TEXT PRIMARY KEY,
+                value TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            )
+            """,
+            """
             ALTER TABLE task_progress
                 ADD COLUMN IF NOT EXISTS duration_seconds INTEGER NOT NULL DEFAULT 0
             """,
@@ -582,6 +596,12 @@ def init_auth_db():
 
         CREATE INDEX IF NOT EXISTS idx_site_analytics_sessions_day
             ON site_analytics_sessions(day);
+
+        CREATE TABLE IF NOT EXISTS site_settings (
+            key TEXT PRIMARY KEY,
+            value TEXT NOT NULL,
+            updated_at TEXT NOT NULL
+        );
         """
         )
 
@@ -627,6 +647,75 @@ def init_auth_db():
         )
 
     db.commit()
+
+
+def sanitize_site_prices(values):
+    prices = dict(DEFAULT_SITE_PRICES)
+
+    if isinstance(values, dict):
+        for key in DEFAULT_SITE_PRICES:
+            if key not in values:
+                continue
+
+            try:
+                value = int(values[key])
+            except (TypeError, ValueError):
+                value = DEFAULT_SITE_PRICES[key]
+
+            prices[key] = max(0, min(value, 10000))
+
+    return prices
+
+
+def get_site_prices():
+    rows = execute(
+        """
+        SELECT key, value
+        FROM site_settings
+        WHERE key IN ('price_ongoing', 'price_exam8', 'price_matura_basic', 'price_matura_extended')
+        """
+    ).fetchall()
+    values = {
+        str(row["key"]).replace("price_", "", 1): row["value"]
+        for row in rows
+    }
+
+    return sanitize_site_prices(values)
+
+
+def update_site_prices(values):
+    prices = sanitize_site_prices(values)
+    db = get_db()
+    updated_at = now_iso()
+
+    if database_engine() == "postgres":
+        for key, value in prices.items():
+            db.execute(
+                """
+                INSERT INTO site_settings (key, value, updated_at)
+                VALUES (%s, %s, %s)
+                ON CONFLICT (key) DO UPDATE
+                    SET value = EXCLUDED.value,
+                        updated_at = EXCLUDED.updated_at
+                """,
+                (f"price_{key}", str(value), updated_at),
+            )
+    else:
+        for key, value in prices.items():
+            db.execute(
+                """
+                INSERT INTO site_settings (key, value, updated_at)
+                VALUES (?, ?, ?)
+                ON CONFLICT(key) DO UPDATE SET
+                    value = excluded.value,
+                    updated_at = excluded.updated_at
+                """,
+                (f"price_{key}", str(value), updated_at),
+            )
+
+    db.commit()
+
+    return get_site_prices()
 
 
 def record_site_pageview(path, visitor_hash, session_hash, referrer_host="", device_type="desktop"):

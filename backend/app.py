@@ -27,6 +27,7 @@ from auth_storage import (
     delete_student,
     disable_parent_access_token,
     generate_temporary_password,
+    get_site_prices,
     get_user_by_email,
     get_user_by_id,
     init_auth_db,
@@ -50,6 +51,7 @@ from auth_storage import (
     touch_last_login,
     update_contact_message_deleted_state,
     update_contact_message_read_state,
+    update_site_prices,
     update_student,
     update_review_task_resolution,
 )
@@ -532,6 +534,14 @@ def health():
     return jsonify({"status": "ok"})
 
 
+@app.get("/api/site/prices")
+@rate_limit(120, 60, "site-prices")
+def api_site_prices():
+    return jsonify({
+        "prices": get_site_prices(),
+    })
+
+
 @app.post("/api/analytics/pageview")
 @rate_limit(240, 60, "analytics-minute", analytics_rate_limit_key)
 @rate_limit(6000, 24 * 60 * 60, "analytics-day", analytics_rate_limit_key)
@@ -627,6 +637,25 @@ def api_admin_students(_admin):
     return jsonify({
         "students": list_students(),
     })
+
+
+@app.get("/api/admin/site-prices")
+@require_admin
+def api_admin_site_prices(_admin):
+    return jsonify({
+        "prices": get_site_prices(),
+    })
+
+
+@app.patch("/api/admin/site-prices")
+@require_admin
+def api_admin_update_site_prices(_admin):
+    def handler():
+        return jsonify({
+            "prices": update_site_prices(payload().get("prices") or payload()),
+        })
+
+    return safe(handler)
 
 
 @app.get("/api/admin/analytics")
