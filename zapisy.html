@@ -949,34 +949,34 @@ footer{
                             <div class="course-picker-title">Wybierz kurs</div>
                             <div class="course-options" role="radiogroup" aria-label="Wybór kursu">
                                 <label class="course-option">
-                                    <input type="radio" name="course" value="Na bieżąco | 85 zł / 55 min" required>
+                                    <input type="radio" name="course" value="Na bieżąco | 85 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing" required>
                                     <span class="course-price-option">
                                         <span class="course-price-name">Na bieżąco</span>
-                                        <span class="course-price-value">85 zł / 55 min</span>
+                                        <span class="course-price-value" data-price-key="ongoing">85 zł / 55 min</span>
                                     </span>
                                 </label>
 
                                 <label class="course-option">
-                                    <input type="radio" name="course" value="Egzamin ósmoklasisty | 90 zł / 55 min">
+                                    <input type="radio" name="course" value="Egzamin ósmoklasisty | 90 zł / 55 min" data-course-name="Egzamin ósmoklasisty" data-price-key="exam8">
                                     <span class="course-price-option">
                                         <span class="course-price-name">Egzamin ósmoklasisty</span>
-                                        <span class="course-price-value">90 zł / 55 min</span>
+                                        <span class="course-price-value" data-price-key="exam8">90 zł / 55 min</span>
                                     </span>
                                 </label>
 
                                 <label class="course-option">
-                                    <input type="radio" name="course" value="Matura podstawowa | 100 zł / 55 min">
+                                    <input type="radio" name="course" value="Matura podstawowa | 100 zł / 55 min" data-course-name="Matura podstawowa" data-price-key="matura_basic">
                                     <span class="course-price-option">
                                         <span class="course-price-name">Matura podstawowa</span>
-                                        <span class="course-price-value">100 zł / 55 min</span>
+                                        <span class="course-price-value" data-price-key="matura_basic">100 zł / 55 min</span>
                                     </span>
                                 </label>
 
                                 <label class="course-option">
-                                    <input type="radio" name="course" value="Matura rozszerzona | 110 zł / 55 min">
+                                    <input type="radio" name="course" value="Matura rozszerzona | 110 zł / 55 min" data-course-name="Matura rozszerzona" data-price-key="matura_extended">
                                     <span class="course-price-option">
                                         <span class="course-price-name">Matura rozszerzona</span>
-                                        <span class="course-price-value">110 zł / 55 min</span>
+                                        <span class="course-price-value" data-price-key="matura_extended">110 zł / 55 min</span>
                                     </span>
                                 </label>
                             </div>
@@ -1297,6 +1297,32 @@ fetch("nav.html")
     });
 </script>
 <script src="static/auth.js?v=20260610-profile"></script>
+<script>
+async function loadSignupPrices(){
+    try {
+        const data = await apiFetch("/api/site/prices");
+
+        document.querySelectorAll("[data-price-key]").forEach(element => {
+            const key = element.dataset.priceKey;
+            const price = Number(data?.prices?.[key]);
+
+            if(!Number.isFinite(price)) return;
+
+            const label = `${price} zł / 55 min`;
+
+            if(element.matches('input[name="course"]')){
+                element.value = `${element.dataset.courseName} | ${label}`;
+            } else {
+                element.innerText = label;
+            }
+        });
+    } catch(error) {
+        console.warn("Nie udało się wczytać cen zapisów.", error);
+    }
+}
+
+loadSignupPrices();
+</script>
 <script src="static/analytics.js?v=20260615-admin-exclusion"></script>
 <script>
 const contactForm = document.getElementById("contactForm");
