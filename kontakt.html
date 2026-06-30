@@ -115,6 +115,8 @@ body {
     padding: 8px 14px;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .contact-button.secondary {
@@ -135,6 +137,17 @@ body {
 
 .signup-section .contact-button {
     min-width: 180px;
+}
+
+.contact-status {
+    display: none;
+    color: #24527a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.contact-status.active {
+    display: block;
 }
 
 footer {
@@ -178,7 +191,7 @@ footer {
         <div class="contact-details">
             <div class="contact-detail">
                 <span>Telefon</span>
-                <a href="tel:514681958">514 681 958</a>
+                <strong>514 681 958</strong>
             </div>
             <div class="contact-detail">
                 <span>E-mail</span>
@@ -195,9 +208,10 @@ footer {
         </div>
 
         <div class="contact-actions">
-            <a class="contact-button" href="tel:514681958">Zadzwoń</a>
+            <button class="contact-button" type="button" id="copyPhoneBtn">Skopiuj numer</button>
             <a class="contact-button secondary" href="mailto:kontakt@deltasigma.pl">Napisz e-mail</a>
         </div>
+        <div class="contact-status" id="copyPhoneStatus" role="status" aria-live="polite"></div>
     </section>
 
     <section class="contact-section signup-section" aria-labelledby="signupTitle">
@@ -224,6 +238,22 @@ fetch("baner.html")
     .then(html => {
         document.getElementById("baner").innerHTML = html;
     });
+
+const copyPhoneBtn = document.getElementById("copyPhoneBtn");
+const copyPhoneStatus = document.getElementById("copyPhoneStatus");
+
+copyPhoneBtn.addEventListener("click", async () => {
+    const phone = "514 681 958";
+
+    try {
+        await navigator.clipboard.writeText(phone);
+        copyPhoneStatus.innerText = "Numer telefonu został skopiowany.";
+    } catch(error) {
+        copyPhoneStatus.innerText = `Numer telefonu: ${phone}`;
+    }
+
+    copyPhoneStatus.classList.add("active");
+});
 </script>
 <script src="static/auth.js?v=20260610-profile"></script>
 <script src="static/analytics.js?v=20260615-admin-exclusion"></script>
