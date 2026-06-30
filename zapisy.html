@@ -448,6 +448,7 @@ h1{
 	    border:1px solid #e2e8f0;
 	    border-radius:12px;
 	    padding:7px;
+	    -webkit-overflow-scrolling:touch;
 	}
 
 	table{
@@ -471,11 +472,17 @@ h1{
 
 	th{
 	    background:#263545;
+	    position:sticky;
+	    top:0;
+	    z-index:2;
 	}
 
 	.time{
 	    background:#1f2a36;
 	    font-weight:600;
+	    position:sticky;
+	    left:0;
+	    z-index:3;
 	}
 
 	.free{
@@ -498,6 +505,46 @@ h1{
 	    color:#64748b;
 	    border:1px solid #d5dee8;
 	}
+
+    .schedule-mobile{
+        display:none;
+    }
+
+    .schedule-day-card{
+        display:grid;
+        gap:8px;
+        border:1px solid #e2e8f0;
+        border-radius:10px;
+        background:#f8fafc;
+        padding:10px;
+    }
+
+    .schedule-day-card h2{
+        margin:0;
+        color:#1f2a36;
+        font-size:15px;
+        line-height:1.2;
+    }
+
+    .schedule-term-grid{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:7px;
+    }
+
+    .schedule-term-btn{
+        min-height:36px;
+        border-radius:8px;
+        font:inherit;
+        font-size:12px;
+        font-weight:700;
+    }
+
+    .schedule-empty{
+        margin:0;
+        color:#64748b;
+        font-size:12px;
+    }
 
 /* INFO */
 .info{
@@ -822,6 +869,15 @@ h1{
         font-size:11px;
     }
 
+    .table-wrapper{
+        display:none;
+    }
+
+    .schedule-mobile{
+        display:grid;
+        gap:10px;
+    }
+
     .about{
         padding:50px 16px;
     }
@@ -916,6 +972,7 @@ footer{
                 <div class="table-wrapper">
                     <table id="schedule"></table>
                 </div>
+                <div class="schedule-mobile" id="scheduleMobile" aria-label="Dostępne terminy w układzie mobilnym"></div>
             </section>
 
             <section class="contact-form-card" id="contactFormCard" aria-labelledby="contactFormTitle">
@@ -1240,7 +1297,12 @@ function removePreferredTerm(term){
 function render(){
 
     const table = document.getElementById('schedule');
+    const mobile = document.getElementById('scheduleMobile');
     table.innerHTML = '';
+
+    if(mobile){
+        mobile.innerHTML = '';
+    }
 
     data.forEach((row, i) => {
 
@@ -1285,6 +1347,54 @@ function render(){
 
         table.appendChild(tr);
     });
+
+    if(mobile && data.length){
+        data[0].slice(1).forEach((day, dayOffset) => {
+            const columnIndex = dayOffset + 1;
+            const card = document.createElement("section");
+            const title = document.createElement("h2");
+            const grid = document.createElement("div");
+            let availableCount = 0;
+
+            card.className = "schedule-day-card";
+            title.innerText = day || "Termin";
+            grid.className = "schedule-term-grid";
+
+            data.slice(1).forEach((row, rowOffset) => {
+                const rowIndex = rowOffset + 1;
+                const time = row[0] || "";
+                const cell = row[columnIndex];
+
+                if(cell) return;
+
+                const term = termLabel(rowIndex, columnIndex);
+                const button = document.createElement("button");
+
+                button.type = "button";
+                button.className = "free schedule-term-btn";
+                button.dataset.term = term;
+                button.innerText = time || "wolny";
+                button.setAttribute("aria-label", `Wybierz termin ${term}`);
+                button.addEventListener("click", () => addPreferredTerm(term));
+                grid.appendChild(button);
+                availableCount += 1;
+            });
+
+            card.appendChild(title);
+
+            if(availableCount){
+                card.appendChild(grid);
+            } else {
+                const empty = document.createElement("p");
+
+                empty.className = "schedule-empty";
+                empty.innerText = "Brak wolnych terminów.";
+                card.appendChild(empty);
+            }
+
+            mobile.appendChild(card);
+        });
+    }
 
     updateSelectedTermView();
 }
