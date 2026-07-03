@@ -144,6 +144,53 @@ body{
     color:#444;
 }
 
+.exam-result-banner{
+    max-width:900px;
+    margin:22px auto 6px;
+    padding:0 20px;
+}
+
+.exam-result-inner{
+    display:grid;
+    grid-template-columns:auto minmax(0, 1fr);
+    align-items:center;
+    gap:18px;
+    border:1px solid #d9e1ea;
+    border-radius:18px;
+    background:#ffffff;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    padding:20px 24px;
+}
+
+.exam-result-score{
+    display:grid;
+    place-items:center;
+    width:92px;
+    height:92px;
+    border-radius:50%;
+    background:#e8f5e7;
+    color:#2f6b36;
+    font-size:30px;
+    font-weight:700;
+}
+
+.exam-result-copy{
+    display:grid;
+    gap:4px;
+}
+
+.exam-result-copy strong{
+    color:#1f2a36;
+    font-size:20px;
+    line-height:1.2;
+}
+
+.exam-result-copy span{
+    color:#64748b;
+    font-size:14px;
+    line-height:1.5;
+}
+
 /* =========================
    CTA
 ========================= */
@@ -524,6 +571,18 @@ footer{
     min-width:0;
 }
 
+.exam-result-inner{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:16px;
+}
+
+.exam-result-score{
+    width:74px;
+    height:74px;
+    font-size:24px;
+}
+
 }
 
 </style>
@@ -552,6 +611,15 @@ footer{
         Uczeń jest objęty opieką aż do dnia egzaminu.
     </p>
 
+</section>
+<section class="exam-result-banner" aria-label="Wyniki egzaminu ósmoklasisty 2026">
+    <div class="exam-result-inner">
+        <div class="exam-result-score">90%</div>
+        <div class="exam-result-copy">
+            <strong>Średni wynik moich uczniów z egzaminu ósmoklasisty 2026</strong>
+            <span>Matematyka, egzamin ósmoklasisty 2026.</span>
+        </div>
+    </div>
 </section>
 <section class="countdown-section">
 

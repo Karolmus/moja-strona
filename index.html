@@ -248,6 +248,53 @@
             margin-left:12px;
         }
 
+        .exam-result-banner{
+            max-width:1200px;
+            margin:0 auto 10px;
+            padding:0 20px;
+        }
+
+        .exam-result-inner{
+            display:grid;
+            grid-template-columns:auto minmax(0, 1fr);
+            align-items:center;
+            gap:18px;
+            border:1px solid #d9e1ea;
+            border-radius:12px;
+            background:#ffffff;
+            box-shadow:0 10px 28px rgba(15,23,42,0.08);
+            padding:18px 20px;
+        }
+
+        .exam-result-score{
+            display:grid;
+            place-items:center;
+            width:92px;
+            height:92px;
+            border-radius:50%;
+            background:#e8f5e7;
+            color:#2f6b36;
+            font-size:30px;
+            font-weight:700;
+        }
+
+        .exam-result-copy{
+            display:grid;
+            gap:4px;
+        }
+
+        .exam-result-copy strong{
+            color:#1f2a36;
+            font-size:20px;
+            line-height:1.2;
+        }
+
+        .exam-result-copy span{
+            color:#64748b;
+            font-size:14px;
+            line-height:1.5;
+        }
+
         /* =========================
            ABOUT
         ========================= */
@@ -544,6 +591,26 @@
                 line-height:1.3;
             }
 
+            .exam-result-banner{
+                padding:0 12px;
+            }
+
+            .exam-result-inner{
+                grid-template-columns:1fr;
+                gap:10px;
+                padding:14px;
+            }
+
+            .exam-result-score{
+                width:74px;
+                height:74px;
+                font-size:24px;
+            }
+
+            .exam-result-copy strong{
+                font-size:17px;
+            }
+
             .home-hero-row{
                 grid-template-columns:minmax(0, 1fr) 112px;
                 margin:12px auto;
@@ -707,6 +774,16 @@
 
 </main>
 
+<section class="exam-result-banner" aria-label="Wyniki egzaminu ósmoklasisty 2026">
+    <div class="exam-result-inner">
+        <div class="exam-result-score">90%</div>
+        <div class="exam-result-copy">
+            <strong>Średni wynik moich uczniów z egzaminu ósmoklasisty 2026</strong>
+            <span>Matematyka, egzamin ósmoklasisty 2026.</span>
+        </div>
+    </div>
+</section>
+
 <div data-about-slot></div>
 
 <section class="reviews">
@@ -759,6 +836,23 @@
 
             <div class="review-meta">
                 Ola R. • 10.11.2022
+            </div>
+
+        </div>
+
+        <div class="review-card">
+
+            <div class="stars">★★★★★</div>
+
+            <div class="review-text">
+                Wybitny nauczyciel, systematyczny i ze świetnym podejściem.
+                Dzięki jego pomocy syn zdobył 97% na egzaminie ósmoklasisty.
+                Na pewno będziemy kontynuować współpracę, gdyż niedługo córka będzie kończyć szkołę.
+                Pan Karol jest dla nas oczywistym wyborem.
+            </div>
+
+            <div class="review-meta">
+                Anna • 03.07.2026
             </div>
 
         </div>
