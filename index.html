@@ -249,7 +249,7 @@
         }
 
         .exam-result-banner{
-            max-width:1200px;
+            max-width:1500px;
             margin:16px auto 0;
             padding:0 20px;
         }
@@ -257,30 +257,37 @@
         .exam-result-inner{
             display:grid;
             grid-template-columns:repeat(3, minmax(190px, 1fr));
-            gap:10px;
+            gap:20px;
             overflow-x:auto;
             -webkit-overflow-scrolling:touch;
         }
 
         .exam-result-item{
             display:grid;
-            align-content:space-between;
-            gap:10px;
-            min-height:112px;
-            border:1px solid #d9e1ea;
-            border-radius:8px;
+            align-content:center;
+            gap:14px;
+            justify-items:center;
+            min-height:128px;
+            border:1px solid #111111;
+            border-radius:16px;
             background:#ffffff;
-            box-shadow:0 8px 24px rgba(15,23,42,0.07);
-            padding:14px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+            padding:18px;
+            text-align:center;
+            --result-accent:#d9e1ea;
+            --result-accent-text:#1f2a36;
         }
 
-        .exam-result-item.featured{
-            border-color:#cce5c9;
-            background:linear-gradient(135deg,#ffffff,#f3faf2);
+        .exam-result-item.result-eo{
+            --result-accent-text:#2f6b36;
+        }
+
+        .exam-result-item.result-matura{
+            --result-accent-text:#5b3b72;
         }
 
         .exam-result-score{
-            color:#2f6b36;
+            color:var(--result-accent-text);
             font-size:36px;
             font-weight:700;
             line-height:1;
@@ -290,6 +297,7 @@
         .exam-result-copy{
             display:grid;
             gap:6px;
+            justify-items:center;
         }
 
         .exam-result-copy strong{
@@ -299,7 +307,7 @@
         }
 
         .exam-result-copy small{
-            color:#2f6b36;
+            color:var(--result-accent-text);
             font-size:12px;
             font-weight:700;
             letter-spacing:0.04em;
@@ -613,8 +621,9 @@
             }
 
             .exam-result-item{
-                min-height:104px;
-                box-shadow:0 6px 18px rgba(15,23,42,0.06);
+                min-height:112px;
+                border-radius:12px;
+                padding:14px;
             }
 
             .exam-result-score{
@@ -702,7 +711,7 @@
 
 <section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
     <div class="exam-result-inner">
-        <article class="exam-result-item featured">
+        <article class="exam-result-item result-eo">
             <div class="exam-result-copy">
                 <small>Egzamin ósmoklasisty 2026</small>
                 <strong>Średni wynik moich uczniów</strong>
@@ -710,7 +719,7 @@
             <div class="exam-result-score">90%</div>
         </article>
 
-        <article class="exam-result-item">
+        <article class="exam-result-item result-matura">
             <div class="exam-result-copy">
                 <small>Matura podstawowa 2026</small>
                 <strong>Średni wynik moich uczniów</strong>
@@ -718,7 +727,7 @@
             </div>
         </article>
 
-        <article class="exam-result-item">
+        <article class="exam-result-item result-matura">
             <div class="exam-result-copy">
                 <small>Matura rozszerzona 2026</small>
                 <strong>Średni wynik moich uczniów</strong>
@@ -809,7 +818,7 @@
         <img src="img/notebook.png" class="card-icon">
 
         <div class="card-content">
-            <h3>Strefa ucznia</h3>
+            <h3>Strefa ćwiczeń</h3>
         </div>
 
     </a>
