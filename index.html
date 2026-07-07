@@ -460,60 +460,89 @@
         ========================= */
 
         .reviews{
-            padding:70px 20px;
+            padding:64px 20px;
             background:#fff;
         }
 
         .reviews h2{
             text-align:center;
-            margin-bottom:40px;
-            font-size:34px;
+            margin:0 0 28px;
+            color:#1f2a36;
+            font-size:32px;
+            line-height:1.2;
         }
 
         .reviews-grid{
             display:grid;
-
-            grid-template-columns:
-                repeat(auto-fit,minmax(280px,1fr));
-
-            gap:24px;
-
+            grid-template-columns:repeat(12,1fr);
+            gap:16px;
             max-width:1200px;
             margin:0 auto;
         }
 
         .review-card{
+            display:flex;
+            flex-direction:column;
+            gap:14px;
+            grid-column:span 3;
+            min-height:100%;
+            padding:20px;
+            border:1px solid #d8dee9;
+            border-radius:14px;
+            background:#ffffff;
+            box-shadow:0 8px 20px rgba(15,23,42,0.06);
+            transition:transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .review-card.featured-review{
+            grid-column:span 6;
             background:#f8fafc;
-
-            border-radius:20px;
-
-            padding:24px;
-
-            box-shadow:
-                0 10px 30px rgba(0,0,0,0.08);
-
-            transition:0.3s;
         }
 
         .review-card:hover{
-            transform:translateY(-6px);
+            transform:translateY(-3px);
+            box-shadow:0 12px 26px rgba(15,23,42,0.09);
+        }
+
+        .review-header{
+            display:flex;
+            align-items:flex-start;
+            justify-content:space-between;
+            gap:14px;
+        }
+
+        .review-author{
+            color:#1f2a36;
+            font-size:17px;
+            font-weight:700;
+            line-height:1.2;
+        }
+
+        .review-date{
+            margin-top:3px;
+            color:#7b8794;
+            font-size:12px;
+            line-height:1.2;
         }
 
         .stars{
-            color:#f5c518;
-            font-size:20px;
-            margin-bottom:12px;
+            flex:0 0 auto;
+            color:#2fbd91;
+            font-size:16px;
+            letter-spacing:1px;
+            line-height:1;
         }
 
         .review-text{
+            margin:0;
+            color:#5f6b7a;
             font-size:15px;
-            line-height:1.7;
-            margin-bottom:12px;
+            font-style:italic;
+            line-height:1.55;
         }
 
-        .review-meta{
-            font-size:13px;
-            color:#666;
+        .featured-review .review-text{
+            font-size:16px;
         }
 
         /* =========================
@@ -537,6 +566,18 @@
                 grid-template-columns:repeat(2,1fr);
             }
 
+            .reviews-grid{
+                grid-template-columns:repeat(2,minmax(0,1fr));
+            }
+
+            .review-card{
+                grid-column:auto;
+            }
+
+            .review-card.featured-review{
+                grid-column:span 2;
+            }
+
         }
 
         @media (max-width:1100px){
@@ -555,6 +596,58 @@
 
         }
         @media (max-width: 600px){
+            .reviews{
+                padding:42px 12px;
+            }
+
+            .reviews h2{
+                margin-bottom:18px;
+                font-size:24px;
+            }
+
+            .reviews-grid{
+                grid-template-columns:1fr;
+                gap:10px;
+            }
+
+            .review-card,
+            .review-card.featured-review{
+                grid-column:1;
+                gap:10px;
+                padding:14px;
+                border-radius:12px;
+                border-left:4px solid #2fbd91;
+                box-shadow:none;
+            }
+
+            .review-card:hover{
+                transform:none;
+                box-shadow:none;
+            }
+
+            .review-header{
+                gap:10px;
+            }
+
+            .review-author{
+                font-size:15px;
+            }
+
+            .review-date{
+                font-size:11px;
+            }
+
+            .stars{
+                font-size:13px;
+                letter-spacing:0;
+            }
+
+            .review-text,
+            .featured-review .review-text{
+                font-size:13px;
+                line-height:1.45;
+            }
+
             main{
                 gap:10px;
                 padding:10px 12px;
@@ -846,105 +939,117 @@
 
     <div class="reviews-grid">
 
-        <div class="review-card">
+        <article class="review-card featured-review">
 
-            <div class="stars">★★★★★</div>
+            <header class="review-header">
+                <div>
+                    <div class="review-author">Anna</div>
+                    <time class="review-date" datetime="2026-07-05">05.07.2026</time>
+                </div>
+                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
+            </header>
 
-            <div class="review-text">
+            <p class="review-text">
                 Polecam Pana Karola.
                 Przygotowywał moje dwie córki do egzaminu ósmoklasisty.
                 Zajęcia przez cały rok były systematyczne, zawsze przygotowane z zadaną pracą domową,
                 co mobilizowało córki do większej pracy.
                 Bardzo dziękujemy.
                 Wyniki z egzaminu na wysokim poziomie.
-            </div>
+            </p>
 
-            <div class="review-meta">
-                Anna • 05.07.2026
-            </div>
+        </article>
 
-        </div>
+        <article class="review-card">
 
-        <div class="review-card">
+            <header class="review-header">
+                <div>
+                    <div class="review-author">Łukasz</div>
+                    <time class="review-date" datetime="2021-06-26">26.06.2021</time>
+                </div>
+                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
+            </header>
 
-            <div class="stars">★★★★★</div>
-
-            <div class="review-text">
+            <p class="review-text">
                 Bardzo dobre podejście,
                 jasno wszystko wytłumaczone.
                 Polecam każdemu!
-            </div>
+            </p>
 
-            <div class="review-meta">
-                Łukasz • 26.06.2021
-            </div>
+        </article>
 
-        </div>
+        <article class="review-card">
 
-        <div class="review-card">
+            <header class="review-header">
+                <div>
+                    <div class="review-author">Ania</div>
+                    <time class="review-date" datetime="2021-11-30">30.11.2021</time>
+                </div>
+                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
+            </header>
 
-            <div class="stars">★★★★★</div>
-
-            <div class="review-text">
+            <p class="review-text">
                 Bardzo cierpliwy student.
                 Spokojnie powoli wszystko tłumaczy.
                 Polecam bardzo.
-            </div>
+            </p>
 
-            <div class="review-meta">
-                Ania • 30.11.2021
-            </div>
+        </article>
 
-        </div>
+        <article class="review-card">
 
-        <div class="review-card">
+            <header class="review-header">
+                <div>
+                    <div class="review-author">Sylwia Tomaszek</div>
+                    <time class="review-date" datetime="2021-01-16">16.01.2021</time>
+                </div>
+                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
+            </header>
 
-            <div class="stars">★★★★★</div>
-
-            <div class="review-text">
+            <p class="review-text">
                 Serdecznie polecam.
                 Tłumaczy w jasny,
                 zrozumiały sposób.
-            </div>
+            </p>
 
-            <div class="review-meta">
-                Sylwia Tomaszek • 16.01.2021
-            </div>
+        </article>
 
-        </div>
+        <article class="review-card">
 
-        <div class="review-card">
+            <header class="review-header">
+                <div>
+                    <div class="review-author">Ola R.</div>
+                    <time class="review-date" datetime="2022-11-10">10.11.2022</time>
+                </div>
+                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
+            </header>
 
-            <div class="stars">★★★★★</div>
-
-            <div class="review-text">
+            <p class="review-text">
                 Karol zasługuje na
                 celującą ocenę.
                 Cierpliwy i bardzo kompetentny.
-            </div>
+            </p>
 
-            <div class="review-meta">
-                Ola R. • 10.11.2022
-            </div>
+        </article>
 
-        </div>
+        <article class="review-card featured-review">
 
-        <div class="review-card">
+            <header class="review-header">
+                <div>
+                    <div class="review-author">Anna</div>
+                    <time class="review-date" datetime="2026-07-03">03.07.2026</time>
+                </div>
+                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
+            </header>
 
-            <div class="stars">★★★★★</div>
-
-            <div class="review-text">
+            <p class="review-text">
                 Wybitny nauczyciel, systematyczny i ze świetnym podejściem.
                 Dzięki jego pomocy syn zdobył 97% na egzaminie ósmoklasisty.
                 Na pewno będziemy kontynuować współpracę, gdyż niedługo córka będzie kończyć szkołę.
                 Pan Karol jest dla nas oczywistym wyborem.
-            </div>
+            </p>
 
-            <div class="review-meta">
-                Anna • 03.07.2026
-            </div>
-
-        </div>
+        </article>
 
     </div>
 
