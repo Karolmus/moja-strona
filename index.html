@@ -950,127 +950,7 @@
 
 <div data-about-slot></div>
 
-<section class="reviews">
-
-    <h2>Oceny z serwisu e-korepetycje</h2>
-
-    <div class="reviews-grid">
-
-        <article class="review-card featured-review">
-
-            <header class="review-header">
-                <div>
-                    <div class="review-author">Anna</div>
-                    <time class="review-date" datetime="2026-07-05">05.07.2026</time>
-                </div>
-                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
-            </header>
-
-            <p class="review-text">
-                Polecam Pana Karola.
-                Przygotowywał moje dwie córki do egzaminu ósmoklasisty.
-                Zajęcia przez cały rok były systematyczne, zawsze przygotowane z zadaną pracą domową,
-                co mobilizowało córki do większej pracy.
-                Bardzo dziękujemy.
-                Wyniki z egzaminu na wysokim poziomie.
-            </p>
-
-        </article>
-
-        <article class="review-card">
-
-            <header class="review-header">
-                <div>
-                    <div class="review-author">Łukasz</div>
-                    <time class="review-date" datetime="2021-06-26">26.06.2021</time>
-                </div>
-                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
-            </header>
-
-            <p class="review-text">
-                Bardzo dobre podejście,
-                jasno wszystko wytłumaczone.
-                Polecam każdemu!
-            </p>
-
-        </article>
-
-        <article class="review-card">
-
-            <header class="review-header">
-                <div>
-                    <div class="review-author">Ania</div>
-                    <time class="review-date" datetime="2021-11-30">30.11.2021</time>
-                </div>
-                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
-            </header>
-
-            <p class="review-text">
-                Bardzo cierpliwy student.
-                Spokojnie powoli wszystko tłumaczy.
-                Polecam bardzo.
-            </p>
-
-        </article>
-
-        <article class="review-card">
-
-            <header class="review-header">
-                <div>
-                    <div class="review-author">Sylwia Tomaszek</div>
-                    <time class="review-date" datetime="2021-01-16">16.01.2021</time>
-                </div>
-                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
-            </header>
-
-            <p class="review-text">
-                Serdecznie polecam.
-                Tłumaczy w jasny,
-                zrozumiały sposób.
-            </p>
-
-        </article>
-
-        <article class="review-card">
-
-            <header class="review-header">
-                <div>
-                    <div class="review-author">Ola R.</div>
-                    <time class="review-date" datetime="2022-11-10">10.11.2022</time>
-                </div>
-                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
-            </header>
-
-            <p class="review-text">
-                Karol zasługuje na
-                celującą ocenę.
-                Cierpliwy i bardzo kompetentny.
-            </p>
-
-        </article>
-
-        <article class="review-card featured-review">
-
-            <header class="review-header">
-                <div>
-                    <div class="review-author">Anna</div>
-                    <time class="review-date" datetime="2026-07-03">03.07.2026</time>
-                </div>
-                <div class="stars" aria-label="5 gwiazdek">★★★★★</div>
-            </header>
-
-            <p class="review-text">
-                Wybitny nauczyciel, systematyczny i ze świetnym podejściem.
-                Dzięki jego pomocy syn zdobył 97% na egzaminie ósmoklasisty.
-                Na pewno będziemy kontynuować współpracę, gdyż niedługo córka będzie kończyć szkołę.
-                Pan Karol jest dla nas oczywistym wyborem.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
+<div data-opinions-slot></div>
 <footer>
     © 2026 Karol Musioł Delta sigma
 </footer>
@@ -1117,6 +997,18 @@ function loadAboutSection(){
 }
 
 loadAboutSection();
+
+</script>
+
+<script>
+
+fetch("opinie.html", { cache: "no-cache" })
+    .then(res => res.text())
+    .then(html => {
+        document.querySelectorAll("[data-opinions-slot]").forEach(slot => {
+            slot.innerHTML = html;
+        });
+    });
 
 </script>
 
