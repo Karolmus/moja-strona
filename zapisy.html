@@ -766,8 +766,9 @@ h1{
 ========================= */
 
 .reviews{
-    padding:64px 20px;
-    background:#fff;
+    max-width:var(--content-width);
+    margin:0 auto;
+    padding:64px var(--content-padding);
 }
 
 .reviews h2{
@@ -782,7 +783,7 @@ h1{
     display:grid;
     grid-template-columns:repeat(12,1fr);
     gap:16px;
-    max-width:1200px;
+    max-width:none;
     margin:0 auto;
 }
 
