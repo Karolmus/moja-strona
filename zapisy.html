@@ -884,15 +884,15 @@ h1{
     }
 
     .reviews-grid{
-        grid-template-columns:1fr;
-        gap:10px;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:8px;
     }
 
     .review-card,
     .review-card.featured-review{
-        grid-column:1;
-        gap:10px;
-        padding:14px;
+        grid-column:auto;
+        gap:8px;
+        padding:10px;
         border-radius:12px;
         border-left:4px solid #2fbd91;
         box-shadow:none;
@@ -904,11 +904,12 @@ h1{
     }
 
     .review-header{
-        gap:10px;
+        display:grid;
+        gap:6px;
     }
 
     .review-author{
-        font-size:15px;
+        font-size:14px;
     }
 
     .review-date{
@@ -916,14 +917,14 @@ h1{
     }
 
     .stars{
-        font-size:13px;
+        font-size:12px;
         letter-spacing:0;
     }
 
     .review-text,
     .featured-review .review-text{
-        font-size:13px;
-        line-height:1.45;
+        font-size:12px;
+        line-height:1.4;
     }
 
     .container{
@@ -1020,12 +1021,12 @@ h1{
 
 @media (max-width:700px){
     .reviews-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
     .review-card,
     .review-card.featured-review{
-        grid-column:1;
+        grid-column:auto;
     }
 
     .tools-grid{
