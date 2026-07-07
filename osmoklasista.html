@@ -10,7 +10,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="nav.css?v=20260707">
 <link rel="stylesheet" href="baner.css">
 <style>
 
@@ -145,27 +145,57 @@ body{
 }
 
 .exam-result-banner{
-    max-width:900px;
-    margin:22px auto 6px;
+    max-width:1500px;
+    margin:16px auto 0;
     padding:0 20px;
+}
+
+.exam-result-heading{
+    margin:0 0 12px;
+    color:#1f2a36;
+    font-size:24px;
+    font-weight:700;
+    line-height:1.2;
+    text-align:center;
 }
 
 .exam-result-inner{
     display:grid;
-    grid-template-columns:minmax(0, 1fr) auto;
-    align-items:center;
+    grid-template-columns:repeat(3, minmax(190px, 1fr));
     gap:20px;
-    border:1px solid #cce5c9;
-    border-radius:8px;
-    background:linear-gradient(135deg,#ffffff,#f3faf2);
-    box-shadow:0 8px 24px rgba(15,23,42,0.07);
-    padding:18px 22px;
+    margin:-16px -16px -22px;
+    overflow-x:auto;
+    padding:16px 16px 22px;
+    -webkit-overflow-scrolling:touch;
+}
+
+.exam-result-item{
+    display:grid;
+    align-content:center;
+    gap:14px;
+    justify-items:center;
+    min-height:128px;
+    border:1px solid #111111;
+    border-radius:16px;
+    background:#ffffff;
+    box-shadow:0 6px 14px rgba(15,23,42,0.08);
+    padding:18px;
+    text-align:center;
+    --result-accent:#d9e1ea;
+    --result-accent-text:#1f2a36;
+}
+
+.exam-result-item.result-eo{
+    --result-accent-text:#2f6b36;
+}
+
+.exam-result-item.result-matura{
+    --result-accent-text:#5b3b72;
 }
 
 .exam-result-score{
-    justify-self:end;
-    color:#2f6b36;
-    font-size:44px;
+    color:var(--result-accent-text);
+    font-size:36px;
     font-weight:700;
     line-height:1;
     white-space:nowrap;
@@ -174,16 +204,11 @@ body{
 .exam-result-copy{
     display:grid;
     gap:6px;
-}
-
-.exam-result-copy strong{
-    color:#1f2a36;
-    font-size:22px;
-    line-height:1.2;
+    justify-items:center;
 }
 
 .exam-result-copy small{
-    color:#2f6b36;
+    color:var(--result-accent-text);
     font-size:12px;
     font-weight:700;
     letter-spacing:0.04em;
@@ -576,15 +601,47 @@ footer{
     min-width:0;
 }
 
+.exam-result-banner{
+    padding:0 12px;
+}
+
+.exam-result-heading{
+    margin-bottom:10px;
+    font-size:20px;
+}
+
 .exam-result-inner{
-    grid-template-columns:1fr;
-    gap:12px;
-    padding:16px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+    margin:0;
+    overflow:visible;
+    padding:0;
+}
+
+.exam-result-item{
+    min-height:96px;
+    border-radius:12px;
+    gap:8px;
+    padding:8px 4px;
 }
 
 .exam-result-score{
-    justify-self:start;
-    font-size:36px;
+    font-size:26px;
+}
+
+.exam-result-copy{
+    gap:4px;
+}
+
+.exam-result-copy small{
+    font-size:9px;
+    letter-spacing:0.01em;
+    line-height:1.2;
+}
+
+.exam-result-copy span{
+    font-size:10px;
+    line-height:1.25;
 }
 
 }
@@ -616,14 +673,30 @@ footer{
     </p>
 
 </section>
-<section class="exam-result-banner" aria-label="Wyniki egzaminu ósmoklasisty 2026">
+<section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
+    <h2 class="exam-result-heading">Średnie wyniki moich uczniów</h2>
+
     <div class="exam-result-inner">
-        <div class="exam-result-copy">
-            <small>Wyniki 2026</small>
-            <strong>Średni wynik moich uczniów z egzaminu ósmoklasisty 2026</strong>
-            <span>Matematyka, egzamin ósmoklasisty 2026.</span>
-        </div>
-        <div class="exam-result-score">90%</div>
+        <article class="exam-result-item result-eo">
+            <div class="exam-result-copy">
+                <small>Egzamin ósmoklasisty 2026</small>
+            </div>
+            <div class="exam-result-score">90%</div>
+        </article>
+
+        <article class="exam-result-item result-matura">
+            <div class="exam-result-copy">
+                <small>Matura podstawowa 2026</small>
+                <span>Wyniki pojawią się 08.07.</span>
+            </div>
+        </article>
+
+        <article class="exam-result-item result-matura">
+            <div class="exam-result-copy">
+                <small>Matura rozszerzona 2026</small>
+                <span>Wyniki pojawią się 08.07.</span>
+            </div>
+        </article>
     </div>
 </section>
 <section class="countdown-section">
