@@ -7,8 +7,9 @@
     justify-content: center;
     align-items: center;
 
+    min-height: 58px;
     gap: 16px;
-    padding: 8px 16px;
+    padding: 12px 16px;
 
     background: rgba(4, 6, 8, 0.85);
     backdrop-filter: blur(12px);
@@ -28,7 +29,7 @@
     font-size: 14px;
     font-weight: 500;
 
-    padding: 5px 11px;
+    padding: 8px 12px;
     border-radius: 8px;
 
     transition: all 0.25s ease;
@@ -158,7 +159,8 @@ footer {
         flex-wrap: nowrap;
         justify-content: center;
         gap: 2px;
-        padding: 6px 5px;
+        min-height: 48px;
+        padding: 8px 5px;
     }
 
     .main-nav a,
@@ -169,7 +171,7 @@ footer {
         white-space: nowrap;
         font-size: 9px;
         line-height: 1.1;
-        padding: 5px 4px;
+        padding: 7px 4px;
     }
 
     .nav-user {
@@ -182,7 +184,8 @@ footer {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 4px;
-        padding: 6px;
+        min-height: 0;
+        padding: 8px 6px;
     }
 
     .main-nav a,
@@ -191,6 +194,6 @@ footer {
         width: 100%;
         text-align: center;
         font-size: 11px;
-        padding: 5px 4px;
+        padding: 7px 4px;
     }
 }
