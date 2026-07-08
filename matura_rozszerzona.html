@@ -476,6 +476,14 @@ body{
     -webkit-overflow-scrolling:touch;
 }
 
+.exam-result-inner.single-result{
+    grid-template-columns:minmax(240px, 520px);
+    justify-content:center;
+    margin:0;
+    overflow:visible;
+    padding:0;
+}
+
 .exam-result-item{
     display:grid;
     align-content:center;
@@ -616,6 +624,10 @@ footer{
     padding:0;
 }
 
+.exam-result-inner.single-result{
+    grid-template-columns:minmax(0,1fr);
+}
+
 .exam-result-item{
     min-height:96px;
     border-radius:12px;
@@ -670,24 +682,10 @@ footer{
     </p>
 
 </section>
-<section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
-    <h2 class="exam-result-heading">Średnie wyniki moich uczniów</h2>
+<section class="exam-result-banner" aria-label="Średni wynik z matury rozszerzonej 2026">
+    <h2 class="exam-result-heading">Średni wynik moich uczniów</h2>
 
-    <div class="exam-result-inner">
-        <article class="exam-result-item result-eo">
-            <div class="exam-result-copy">
-                <small>Egzamin ósmoklasisty 2026</small>
-            </div>
-            <div class="exam-result-score">90%</div>
-        </article>
-
-        <article class="exam-result-item result-matura">
-            <div class="exam-result-copy">
-                <small>Matura podstawowa 2026</small>
-                <span>Wyniki napływają od uczniów</span>
-            </div>
-        </article>
-
+    <div class="exam-result-inner single-result">
         <article class="exam-result-item result-matura">
             <div class="exam-result-copy">
                 <small>Matura rozszerzona 2026</small>
