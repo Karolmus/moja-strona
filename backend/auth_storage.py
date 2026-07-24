@@ -1833,7 +1833,7 @@ def create_contact_message(data):
     origin = str(data.get("origin") or "prospect").strip().lower()
     user_id = data.get("user_id")
 
-    if not contact or not message:
+    if origin == "parent" and not message:
         raise ValueError("Kontakt i treść wiadomości są wymagane.")
 
     if origin not in {"prospect", "parent"}:

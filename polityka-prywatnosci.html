@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="img/logo3.png">
+<link rel="shortcut icon" type="image/webp" href="img/logo3.png">
+<link rel="apple-touch-icon" href="img/logo3.png">
+<title>Polityka prywatności - Delta Sigma</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css?v=20260707">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f0f2f5;
+    color: #1f2a36;
+    font-family: 'Poppins', sans-serif;
+}
+
+.legal-shell {
+    width: min(920px, calc(100% - 40px));
+    margin: 0 auto 44px;
+}
+
+.legal-document {
+    display: grid;
+    gap: 22px;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.legal-document h1,
+.legal-document h2 {
+    margin: 0;
+    color: #1f2a36;
+}
+
+.legal-document h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.12;
+}
+
+.legal-document h2 {
+    font-size: 18px;
+}
+
+.legal-document p,
+.legal-document li {
+    color: #475569;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.legal-document p,
+.legal-document ul {
+    margin: 0;
+}
+
+.legal-document ul {
+    padding-left: 20px;
+}
+
+.legal-section {
+    display: grid;
+    gap: 10px;
+}
+
+.legal-meta {
+    color: #64748b;
+    font-size: 13px;
+}
+
+@media (max-width: 640px) {
+    .legal-shell {
+        width: min(100% - 24px, 920px);
+    }
+
+    .legal-document {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+<body>
+<div id="nav"></div>
+
+<main class="legal-shell">
+    <article class="legal-document">
+        <header class="legal-section">
+            <h1>Polityka prywatności</h1>
+            <p class="legal-meta">Obowiązuje od 24.07.2026.</p>
+        </header>
+
+        <section class="legal-section">
+            <h2>Administrator danych</h2>
+            <p>
+                Administratorem danych osobowych jest Karol Musioł Delta Sigma,
+                NIP: 6452595325. Kontakt w sprawach prywatności:
+                kontakt@deltasigma.pl.
+            </p>
+        </section>
+
+        <section class="legal-section">
+            <h2>Jakie dane przetwarzamy</h2>
+            <p>
+                Przetwarzamy dane podane dobrowolnie w formularzu kontaktowym lub
+                podczas korzystania ze strefy ucznia, w szczególności dane kontaktowe,
+                wybrany kurs, preferowany termin oraz treść wiadomości.
+            </p>
+        </section>
+
+        <section class="legal-section">
+            <h2>Cel przetwarzania</h2>
+            <p>
+                Dane wykorzystujemy do obsługi zapytań, organizacji zajęć,
+                prowadzenia komunikacji z uczniami i rodzicami oraz zapewnienia
+                działania strefy ucznia.
+            </p>
+        </section>
+
+        <section class="legal-section">
+            <h2>Cookies i podobne technologie</h2>
+            <p>
+                Strona korzysta z mechanizmów niezbędnych do działania serwisu,
+                w tym zapamiętania sesji użytkownika. Opcjonalnie, po wyrażeniu
+                zgody, strona zapisuje anonimowe statystyki odwiedzin w celu
+                oceny popularności podstron i urządzeń.
+            </p>
+            <p>
+                Strona może ładować zasoby zewnętrzne, takie jak Google Fonts,
+                Google Sheets oraz biblioteki z CDN, potrzebne do prezentacji
+                treści i terminów zajęć.
+            </p>
+        </section>
+
+        <section class="legal-section">
+            <h2>Odbiorcy danych</h2>
+            <p>
+                Dane mogą być przetwarzane przez dostawców usług technicznych,
+                takich jak hosting, poczta elektroniczna, narzędzia Google oraz
+                usługi wykorzystywane do utrzymania strony.
+            </p>
+        </section>
+
+        <section class="legal-section">
+            <h2>Czas przechowywania</h2>
+            <p>
+                Dane z formularzy i korespondencji przechowujemy przez okres
+                potrzebny do obsługi zapytania, organizacji zajęć oraz ochrony
+                ewentualnych roszczeń. Statystyki odwiedzin są przechowywane
+                przez ograniczony czas ustawiony w systemie strony.
+            </p>
+        </section>
+
+        <section class="legal-section">
+            <h2>Prawa użytkownika</h2>
+            <p>
+                Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia,
+                ograniczenia przetwarzania, wniesienia sprzeciwu oraz złożenia
+                skargi do Prezesa Urzędu Ochrony Danych Osobowych.
+            </p>
+        </section>
+    </article>
+</main>
+
+<footer class="site-footer" aria-label="Dane firmy">
+    <div class="footer-business">© 2026 Karol Musioł Delta Sigma</div>
+    <div>Karol Musioł Delta Sigma</div>
+    <div>NIP: 6452595325</div>
+    <nav class="footer-links" aria-label="Linki w stopce">
+        <a href="kontakt.html">Kontakt</a>
+        <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="regulamin-zajec.html">Regulamin zajęć</a>
+    </nav>
+</footer>
+
+<script>
+fetch("nav.html")
+.then(response => response.text())
+.then(html => {
+    document.getElementById("nav").innerHTML = html;
+    window.refreshAuthNav?.();
+});
+</script>
+<script src="static/auth.js?v=20260724-privacy-policy"></script>
+<script src="static/analytics.js?v=20260724-cookie-consent"></script>
+</body>
+</html>

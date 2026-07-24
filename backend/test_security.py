@@ -122,6 +122,21 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(response.status_code, 429)
         self.assertEqual(self.contact_count(), 0)
 
+    def test_public_contact_form_accepts_empty_optional_fields(self):
+        response = self.client.post(
+            "/api/contact-messages",
+            json={
+                "contact": "",
+                "preferred_term": "",
+                "message": "",
+                "form_started_at": int((time.time() - 5) * 1000),
+                "website": "",
+            },
+        )
+
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(self.contact_count(), 1)
+
     def test_contact_form_is_rate_limited(self):
         payload = self.valid_contact_payload()
 
