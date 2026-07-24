@@ -104,18 +104,18 @@ h1{
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.8fr);
     gap: 14px;
-    align-items: stretch;
+    align-items: start;
 }
 
 .schedule-card {
     display: grid;
     gap: 9px;
+    align-content: start;
     background: white;
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: 14px;
     padding: 14px;
     box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-    height: 100%;
 }
 
 .booking-head {
@@ -142,8 +142,8 @@ h1{
 .contact-form-card {
     display: grid;
     gap: 12px;
+    align-content: start;
     scroll-margin-top: 88px;
-    height: 100%;
 }
 
 .contact-action-card {
@@ -312,6 +312,23 @@ h1{
     font-size: 11px;
 }
 
+.reservation-note {
+    margin: 0;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.reservation-note a {
+    color: #24527a;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.reservation-note a:hover {
+    text-decoration: underline;
+}
+
 .selected-term-chip {
     display: inline-flex;
     align-items: center;
@@ -443,6 +460,7 @@ h1{
 
 	/* TABLE */
 	.table-wrapper{
+	    display:none;
 	    overflow-x:auto;
 	    background:#f8fafc;
 	    border:1px solid #e2e8f0;
@@ -507,37 +525,44 @@ h1{
 	}
 
     .schedule-mobile{
-        display:none;
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:12px;
+        align-items:start;
+    }
+
+    .schedule-day-card:last-child{
+        grid-column:1 / -1;
     }
 
     .schedule-day-card{
         display:grid;
-        gap:4px;
+        gap:8px;
         border:1px solid #e2e8f0;
-        border-radius:10px;
+        border-radius:12px;
         background:#f8fafc;
-        padding:6px;
+        padding:10px;
     }
 
     .schedule-day-card h2{
         margin:0;
         color:#1f2a36;
-        font-size:15px;
+        font-size:18px;
         line-height:1.2;
     }
 
     .schedule-term-grid{
         display:grid;
         grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:3px;
+        gap:6px;
     }
 
     .schedule-term-btn{
-        min-height:18px;
-        padding:0 5px;
-        border-radius:5px;
+        min-height:26px;
+        padding:4px 8px;
+        border-radius:8px;
         font:inherit;
-        font-size:10px;
+        font-size:13px;
         font-weight:700;
         line-height:1.1;
     }
@@ -545,7 +570,7 @@ h1{
     .schedule-empty{
         margin:0;
         color:#64748b;
-        font-size:12px;
+        font-size:14px;
     }
 
 /* INFO */
@@ -773,25 +798,48 @@ h1{
 
 .reviews h2{
     text-align:center;
-    margin:0 0 28px;
+    margin:0 0 12px;
     color:#1f2a36;
     font-size:32px;
     line-height:1.2;
 }
 
+.reviews-average{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:fit-content;
+    margin:0 auto 28px;
+    padding:8px 14px;
+    border:1px solid #bdebdc;
+    border-radius:999px;
+    background:#f0fbf7;
+    color:#2f6f58;
+    font-size:14px;
+    font-weight:600;
+    line-height:1.2;
+}
+
+.reviews-average strong{
+    color:#1f2a36;
+    font-size:18px;
+    line-height:1;
+}
+
 .reviews-grid{
     display:grid;
-    grid-template-columns:repeat(12,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:16px;
     max-width:none;
     margin:0 auto;
+    align-items:stretch;
 }
 
 .review-card{
     display:flex;
     flex-direction:column;
     gap:14px;
-    grid-column:span 3;
     min-height:100%;
     padding:20px;
     border:1px solid #d8dee9;
@@ -802,7 +850,6 @@ h1{
 }
 
 .review-card.featured-review{
-    grid-column:span 6;
     background:#f8fafc;
 }
 
@@ -880,19 +927,31 @@ h1{
     }
 
     .reviews h2{
-        margin-bottom:18px;
+        margin-bottom:10px;
         font-size:24px;
     }
 
+    .reviews-average{
+        margin-bottom:16px;
+        padding:7px 12px;
+        font-size:12px;
+    }
+
+    .reviews-average strong{
+        font-size:16px;
+    }
+
     .reviews-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:8px;
+        grid-template-columns:1fr;
+        gap:10px;
+        align-items:start;
     }
 
     .review-card,
     .review-card.featured-review{
         grid-column:auto;
-        gap:8px;
+        min-height:0;
+        gap:6px;
         padding:10px;
         border-radius:12px;
         border-left:4px solid #2fbd91;
@@ -905,8 +964,10 @@ h1{
     }
 
     .review-header{
-        display:grid;
-        gap:6px;
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:8px;
     }
 
     .review-author{
@@ -918,6 +979,7 @@ h1{
     }
 
     .stars{
+        white-space:nowrap;
         font-size:12px;
         letter-spacing:0;
     }
@@ -961,7 +1023,38 @@ h1{
 
     .schedule-mobile{
         display:grid;
+        grid-template-columns:1fr;
         gap:10px;
+    }
+
+    .schedule-day-card,
+    .schedule-day-card:last-child{
+        grid-column:auto;
+    }
+
+    .schedule-day-card{
+        gap:4px;
+        border-radius:10px;
+        padding:6px;
+    }
+
+    .schedule-day-card h2{
+        font-size:15px;
+    }
+
+    .schedule-term-grid{
+        gap:3px;
+    }
+
+    .schedule-term-btn{
+        min-height:18px;
+        padding:0 5px;
+        border-radius:5px;
+        font-size:10px;
+    }
+
+    .schedule-empty{
+        font-size:12px;
     }
 
     .about{
@@ -1004,7 +1097,7 @@ h1{
     }
 
     .reviews-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+        grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     }
 
     .review-card{
@@ -1012,7 +1105,7 @@ h1{
     }
 
     .review-card.featured-review{
-        grid-column:span 2;
+        grid-column:auto;
     }
 
     .tools-grid{
@@ -1022,7 +1115,7 @@ h1{
 
 @media (max-width:700px){
     .reviews-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+        grid-template-columns:1fr;
     }
 
     .review-card,
@@ -1114,7 +1207,7 @@ footer{
                             <div class="course-picker-title">Wybierz kurs</div>
                             <div class="course-options" role="radiogroup" aria-label="Wybór kursu">
                                 <label class="course-option">
-                                    <input type="radio" name="course" value="Na bieżąco | 85 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing" required>
+                                    <input type="radio" name="course" value="Na bieżąco | 85 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing">
                                     <span class="course-price-option">
                                         <span class="course-price-name">Na bieżąco</span>
                                         <span class="course-price-value" data-price-key="ongoing">85 zł / 55 min</span>
@@ -1149,7 +1242,7 @@ footer{
 
                         <label>
                             Telefon lub e-mail
-                            <input name="contact" autocomplete="email" maxlength="254" required placeholder="">
+                            <input name="contact" autocomplete="email" maxlength="254" placeholder="">
                         </label>
 
                         <label>
@@ -1161,9 +1254,15 @@ footer{
                             Brak wybranych terminów.
                         </div>
 
+                        <p class="reservation-note">
+                            Wybranie terminu i wysłanie formularza nie jest zobowiązującą rezerwacją.
+                            Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
+                            <a href="regulamin-zajec.html">Regulamin zajęć</a>
+                        </p>
+
                         <label>
                             Dodatkowe informacje.
-                            <textarea name="message" maxlength="3000" required placeholder=""></textarea>
+                            <textarea name="message" maxlength="3000" placeholder=""></textarea>
                         </label>
 
                         <button type="submit">Wyślij wiadomość</button>
@@ -1218,10 +1317,16 @@ footer{
 	<div data-about-slot></div>
 
 	<div data-opinions-slot></div>
-<footer>
-    © 2026 Karol Musioł Delta sigma
+<footer class="site-footer" aria-label="Dane firmy">
+    <div class="footer-business">© 2026 Karol Musioł Delta Sigma</div>
+    <div>Karol Musioł Delta Sigma</div>
+    <div>NIP: 6452595325</div>
+    <nav class="footer-links" aria-label="Linki w stopce">
+        <a href="kontakt.html">Kontakt</a>
+        <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="regulamin-zajec.html">Regulamin zajęć</a>
+    </nav>
 </footer>
-<div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script>
 
@@ -1482,7 +1587,7 @@ fetch("nav.html")
         document.getElementById("nav").innerHTML = data;
     });
 </script>
-<script src="static/auth.js?v=20260610-profile"></script>
+<script src="static/auth.js?v=20260724-privacy-policy"></script>
 <script>
 async function loadSignupPrices(){
     try {
@@ -1509,7 +1614,7 @@ async function loadSignupPrices(){
 
 loadSignupPrices();
 </script>
-<script src="static/analytics.js?v=20260615-admin-exclusion"></script>
+<script src="static/analytics.js?v=20260724-cookie-consent"></script>
 <script>
 const contactForm = document.getElementById("contactForm");
 const contactStatus = document.getElementById("contactStatus");

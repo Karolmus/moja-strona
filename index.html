@@ -466,25 +466,48 @@
 
         .reviews h2{
             text-align:center;
-            margin:0 0 28px;
+            margin:0 0 12px;
             color:#1f2a36;
             font-size:32px;
             line-height:1.2;
         }
 
+        .reviews-average{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            width:fit-content;
+            margin:0 auto 28px;
+            padding:8px 14px;
+            border:1px solid #bdebdc;
+            border-radius:999px;
+            background:#f0fbf7;
+            color:#2f6f58;
+            font-size:14px;
+            font-weight:600;
+            line-height:1.2;
+        }
+
+        .reviews-average strong{
+            color:#1f2a36;
+            font-size:18px;
+            line-height:1;
+        }
+
         .reviews-grid{
             display:grid;
-            grid-template-columns:repeat(12,1fr);
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
             gap:16px;
             max-width:1200px;
             margin:0 auto;
+            align-items:stretch;
         }
 
         .review-card{
             display:flex;
             flex-direction:column;
             gap:14px;
-            grid-column:span 3;
             min-height:100%;
             padding:20px;
             border:1px solid #d8dee9;
@@ -495,7 +518,6 @@
         }
 
         .review-card.featured-review{
-            grid-column:span 6;
             background:#f8fafc;
         }
 
@@ -567,7 +589,7 @@
             }
 
             .reviews-grid{
-                grid-template-columns:repeat(2,minmax(0,1fr));
+                grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
             }
 
             .review-card{
@@ -575,7 +597,7 @@
             }
 
             .review-card.featured-review{
-                grid-column:span 2;
+                grid-column:auto;
             }
 
         }
@@ -601,19 +623,31 @@
             }
 
             .reviews h2{
-                margin-bottom:18px;
+                margin-bottom:10px;
                 font-size:24px;
             }
 
+            .reviews-average{
+                margin-bottom:16px;
+                padding:7px 12px;
+                font-size:12px;
+            }
+
+            .reviews-average strong{
+                font-size:16px;
+            }
+
             .reviews-grid{
-                grid-template-columns:repeat(2,minmax(0,1fr));
-                gap:8px;
+                grid-template-columns:1fr;
+                gap:10px;
+                align-items:start;
             }
 
             .review-card,
             .review-card.featured-review{
                 grid-column:auto;
-                gap:8px;
+                min-height:0;
+                gap:6px;
                 padding:10px;
                 border-radius:12px;
                 border-left:4px solid #2fbd91;
@@ -626,8 +660,10 @@
             }
 
             .review-header{
-                display:grid;
-                gap:6px;
+                display:flex;
+                align-items:flex-start;
+                justify-content:space-between;
+                gap:8px;
             }
 
             .review-author{
@@ -639,6 +675,7 @@
             }
 
             .stars{
+                white-space:nowrap;
                 font-size:12px;
                 letter-spacing:0;
             }
@@ -873,7 +910,7 @@
 
             <p>
                 Przygotowanie do sprawdzianów,
-                kartkówek oraz kolokwiów
+                kartkówek, kolokwiów oraz konkursów
             </p>
         </div>
 
@@ -951,10 +988,16 @@
 <div data-about-slot></div>
 
 <div data-opinions-slot></div>
-<footer>
-    © 2026 Karol Musioł Delta sigma
+<footer class="site-footer" aria-label="Dane firmy">
+    <div class="footer-business">© 2026 Karol Musioł Delta Sigma</div>
+    <div>Karol Musioł Delta Sigma</div>
+    <div>NIP: 6452595325</div>
+    <nav class="footer-links" aria-label="Linki w stopce">
+        <a href="kontakt.html">Kontakt</a>
+        <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="regulamin-zajec.html">Regulamin zajęć</a>
+    </nav>
 </footer>
-<div class="footer-contact" aria-label="Kontakt"><a href="kontakt.html">Kontakt</a></div>
 
 <script>
 
@@ -1032,7 +1075,7 @@ fetch("baner.html")
 
 </script>
 
-<script src="static/auth.js?v=20260610-profile"></script>
+<script src="static/auth.js?v=20260724-privacy-policy"></script>
 <script>
 
 async function loadSitePrices(){
@@ -1054,6 +1097,6 @@ async function loadSitePrices(){
 loadSitePrices();
 
 </script>
-<script src="static/analytics.js?v=20260615-admin-exclusion"></script>
+<script src="static/analytics.js?v=20260724-cookie-consent"></script>
 </body>
 </html>
