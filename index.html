@@ -548,11 +548,21 @@
         }
 
         .stars{
+            display:flex;
+            align-items:center;
+            gap:6px;
             flex:0 0 auto;
             color:#2fbd91;
             font-size:16px;
             letter-spacing:1px;
             line-height:1;
+        }
+
+        .rating-score{
+            color:#1f2a36;
+            font-size:13px;
+            font-weight:700;
+            letter-spacing:0;
         }
 
         .review-text{
@@ -676,8 +686,13 @@
 
             .stars{
                 white-space:nowrap;
+                gap:4px;
                 font-size:12px;
                 letter-spacing:0;
+            }
+
+            .rating-score{
+                font-size:11px;
             }
 
             .review-text,
