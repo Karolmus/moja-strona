@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <link rel="icon" type="image/webp" href="img/logo3.png">
 <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
 <link rel="apple-touch-icon" href="img/logo3.png">
@@ -1142,6 +1143,18 @@ body.focus-mode .task-card {
     justify-content: center;
 }
 
+.action-group.navigation .previous-task-btn {
+    grid-area: previous;
+}
+
+.action-group.navigation .next-task-btn {
+    grid-area: next;
+}
+
+.action-group.navigation .skip {
+    grid-area: skip;
+}
+
 .action-group.check {
     justify-content: flex-end;
 }
@@ -2038,6 +2051,9 @@ footer {
     .action-group.navigation {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "previous next"
+            "skip skip";
     }
 
     .action-group.navigation .action-btn {
@@ -2318,6 +2334,9 @@ footer {
     .action-group.navigation {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "previous next"
+            "skip skip";
     }
 
     .action-group.result-buttons {
@@ -2551,9 +2570,9 @@ footer {
                     </div>
 
                     <div class="action-group navigation">
-                        <button class="action-btn nav" onclick="prevTask()">← Poprzednie</button>
+                        <button class="action-btn nav previous-task-btn" onclick="prevTask()">← Poprzednie</button>
                         <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
-                        <button class="action-btn nav" onclick="nextTask()">Kolejne →</button>
+                        <button class="action-btn nav next-task-btn" onclick="nextTask()">Kolejne →</button>
                     </div>
 
                     <div class="action-group check result-buttons" id="resultButtons"></div>
