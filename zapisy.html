@@ -11,7 +11,7 @@
 <title>Delta Sigma – Terminy</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260707">
+<link rel="stylesheet" href="nav.css?v=20260730-signup-shadow">
 <style>
 
 *{
@@ -138,6 +138,27 @@ h1{
     color: #555;
     line-height: 1.42;
     font-size: 12px;
+}
+
+.schedule-message {
+    display: grid;
+    gap: 12px;
+    margin-top: 4px;
+    padding: 18px;
+    border: 1px solid #d9e1ea;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.schedule-message p {
+    margin: 0;
+    color: #425466;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.schedule-message strong {
+    color: #1f2a36;
 }
 
 .contact-form-card {
@@ -794,14 +815,14 @@ h1{
 .reviews{
     max-width:var(--content-width);
     margin:0 auto;
-    padding:64px var(--content-padding);
+    padding:56px var(--content-padding);
 }
 
 .reviews h2{
     text-align:center;
-    margin:0 0 12px;
+    margin:0 0 10px;
     color:#1f2a36;
-    font-size:32px;
+    font-size:30px;
     line-height:1.2;
 }
 
@@ -809,29 +830,29 @@ h1{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:8px;
+    gap:7px;
     width:fit-content;
-    margin:0 auto 28px;
-    padding:8px 14px;
+    margin:0 auto 22px;
+    padding:7px 12px;
     border:1px solid #bdebdc;
     border-radius:999px;
     background:#f0fbf7;
     color:#2f6f58;
-    font-size:14px;
+    font-size:13px;
     font-weight:600;
     line-height:1.2;
 }
 
 .reviews-average strong{
     color:#1f2a36;
-    font-size:18px;
+    font-size:17px;
     line-height:1;
 }
 
 .reviews-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
     max-width:none;
     margin:0 auto;
     align-items:stretch;
@@ -840,13 +861,13 @@ h1{
 .review-card{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:10px;
     min-height:100%;
-    padding:20px;
+    padding:16px;
     border:1px solid #d8dee9;
-    border-radius:14px;
+    border-radius:12px;
     background:#ffffff;
-    box-shadow:0 8px 20px rgba(15,23,42,0.06);
+    box-shadow:0 6px 16px rgba(15,23,42,0.055);
     transition:transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -855,20 +876,20 @@ h1{
 }
 
 .review-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 26px rgba(15,23,42,0.09);
+    transform:translateY(-2px);
+    box-shadow:0 9px 20px rgba(15,23,42,0.075);
 }
 
 .review-header{
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
-    gap:14px;
+    gap:10px;
 }
 
 .review-author{
     color:#1f2a36;
-    font-size:17px;
+    font-size:16px;
     font-weight:700;
     line-height:1.2;
 }
@@ -876,24 +897,24 @@ h1{
 .review-date{
     margin-top:3px;
     color:#7b8794;
-    font-size:12px;
+    font-size:11px;
     line-height:1.2;
 }
 
 .stars{
     display:flex;
     align-items:center;
-    gap:6px;
+    gap:5px;
     flex:0 0 auto;
     color:#2fbd91;
-    font-size:16px;
-    letter-spacing:1px;
+    font-size:14px;
+    letter-spacing:0;
     line-height:1;
 }
 
 .rating-score{
     color:#1f2a36;
-    font-size:13px;
+    font-size:12px;
     font-weight:700;
     letter-spacing:0;
 }
@@ -901,13 +922,13 @@ h1{
 .review-text{
     margin:0;
     color:#5f6b7a;
-    font-size:15px;
+    font-size:14px;
     font-style:italic;
-    line-height:1.55;
+    line-height:1.48;
 }
 
 .featured-review .review-text{
-    font-size:16px;
+    font-size:14px;
 }
 
 
@@ -934,17 +955,17 @@ h1{
 @media (max-width:700px){
 
     .reviews{
-        padding:42px 12px;
+        padding:34px 12px;
     }
 
     .reviews h2{
         margin-bottom:10px;
-        font-size:24px;
+        font-size:22px;
     }
 
     .reviews-average{
-        margin-bottom:16px;
-        padding:7px 12px;
+        margin-bottom:14px;
+        padding:6px 10px;
         font-size:12px;
     }
 
@@ -953,8 +974,8 @@ h1{
     }
 
     .reviews-grid{
-        grid-template-columns:1fr;
-        gap:10px;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:8px;
         align-items:start;
     }
 
@@ -962,10 +983,10 @@ h1{
     .review-card.featured-review{
         grid-column:auto;
         min-height:0;
-        gap:6px;
-        padding:10px;
-        border-radius:12px;
-        border-left:4px solid #2fbd91;
+        gap:5px;
+        padding:8px;
+        border-radius:10px;
+        border-left:3px solid #2fbd91;
         box-shadow:none;
     }
 
@@ -978,32 +999,32 @@ h1{
         display:flex;
         align-items:flex-start;
         justify-content:space-between;
-        gap:8px;
+        gap:6px;
     }
 
     .review-author{
-        font-size:14px;
+        font-size:13px;
     }
 
     .review-date{
-        font-size:11px;
+        font-size:10px;
     }
 
     .stars{
         white-space:nowrap;
-        gap:4px;
-        font-size:12px;
+        gap:3px;
+        font-size:11px;
         letter-spacing:0;
     }
 
     .rating-score{
-        font-size:11px;
+        font-size:10px;
     }
 
     .review-text,
     .featured-review .review-text{
-        font-size:12px;
-        line-height:1.4;
+        font-size:11px;
+        line-height:1.35;
     }
 
     .container{
@@ -1131,7 +1152,7 @@ h1{
 
 @media (max-width:700px){
     .reviews-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
     .review-card,
@@ -1164,6 +1185,7 @@ footer{
 }
 
 </style>
+<link rel="stylesheet" href="opinie.css?v=20260730-carousel">
 </head>
 
 <body>
@@ -1182,13 +1204,19 @@ footer{
             <section class="schedule-card" aria-labelledby="availabilityTitle">
                 <div class="booking-head">
                     <p class="booking-eyebrow">Zapisy 2026/27</p>
-                    <h1 id="availabilityTitle">Dostępne terminy</h1>
+                    <h1 id="availabilityTitle">Terminy zajęć</h1>
                 </div>
 
-                <div class="table-wrapper">
-                    <table id="schedule"></table>
+                <div class="schedule-message">
+                    <p>
+                        <strong>W okresie wakacyjnym</strong> terminy zajęć są dostosowywane
+                        do dostępności ucznia oraz mojej.
+                    </p>
+                    <p>
+                        <strong>W roku szkolnym</strong> obowiązuje stały termin, który podlega zmianom
+                        w przypadku zmian planu lekcji oraz innych okoliczności.
+                    </p>
                 </div>
-                <div class="schedule-mobile" id="scheduleMobile" aria-label="Dostępne terminy w układzie mobilnym"></div>
             </section>
 
             <section class="contact-form-card" id="contactFormCard" aria-labelledby="contactFormTitle">
@@ -1262,16 +1290,12 @@ footer{
                         </label>
 
                         <label>
-                            Wybrane terminy
-                            <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Kliknij wolny termin w tabeli">
+                            Preferowany termin
+                            <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Np. poniedziałek po 16:00 albo dni do ustalenia">
                         </label>
 
-                        <div class="selected-term-list empty" id="selectedTermList" aria-live="polite">
-                            Brak wybranych terminów.
-                        </div>
-
                         <p class="reservation-note">
-                            Wybranie terminu i wysłanie formularza nie jest zobowiązującą rezerwacją.
+                            Wysłanie formularza nie jest zobowiązującą rezerwacją.
                             Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
                             <a href="regulamin-zajec.html">Regulamin zajęć</a>
                         </p>
@@ -1396,18 +1420,20 @@ const SHEET_URL =
 let data = [];
 let selectedTerms = [];
 
-fetch(SHEET_URL)
-.then(r => r.text())
-.then(csv => {
+if(document.getElementById("schedule") || document.getElementById("scheduleMobile")){
+    fetch(SHEET_URL)
+    .then(r => r.text())
+    .then(csv => {
 
-    data = csv.trim().split("\n").map(row =>
-        row.split(",").map(cell =>
-            cell.replace(/\r/g,'').trim()
-        )
-    );
+        data = csv.trim().split("\n").map(row =>
+            row.split(",").map(cell =>
+                cell.replace(/\r/g,'').trim()
+            )
+        );
 
-    render();
-});
+        render();
+    });
+}
 
 function termLabel(rowIndex, columnIndex){
     const day = data[0]?.[columnIndex] || "";
@@ -1485,6 +1511,12 @@ function render(){
 
     const table = document.getElementById('schedule');
     const mobile = document.getElementById('scheduleMobile');
+
+    if(!table){
+        updateSelectedTermView();
+        return;
+    }
+
     table.innerHTML = '';
 
     if(mobile){
@@ -1587,23 +1619,25 @@ function render(){
 }
 
 </script>
+<script src="static/reviews-carousel.js?v=20260730-carousel"></script>
 <script>
 fetch("opinie.html", { cache: "no-cache" })
     .then(res => res.text())
     .then(html => {
         document.querySelectorAll("[data-opinions-slot]").forEach(slot => {
             slot.innerHTML = html;
+            window.initReviewCarousel?.(slot);
         });
     });
 </script>
 <script>
-fetch("nav.html")
+fetch("nav.html?v=20260730-results-nav", { cache: "no-cache" })
     .then(res => res.text())
     .then(data => {
         document.getElementById("nav").innerHTML = data;
     });
 </script>
-<script src="static/auth.js?v=20260730-footer-year"></script>
+<script src="static/auth.js?v=20260730-nav-active"></script>
 <script>
 async function loadSignupPrices(){
     try {
