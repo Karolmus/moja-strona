@@ -95,6 +95,13 @@ body {
     overflow-wrap: anywhere;
 }
 
+.contact-detail small {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
 .contact-detail a {
     color: #24527a;
     text-decoration: none;
@@ -105,6 +112,34 @@ body {
 .contact-detail a:focus-visible {
     color: #5865F2;
     border-bottom-color: transparent;
+}
+
+.host-detail {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f9fc 100%);
+}
+
+.host-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.host-photo {
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    box-shadow: 0 5px 14px rgba(15, 23, 42, 0.16);
+}
+
+.host-copy {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
 }
 
 .contact-actions {
@@ -185,6 +220,12 @@ footer {
         width: 100%;
         min-width: 0;
     }
+
+    .host-photo {
+        width: 54px;
+        height: 54px;
+        flex-basis: 54px;
+    }
 }
 </style>
 </head>
@@ -203,18 +244,26 @@ footer {
             <div class="contact-detail">
                 <span>Telefon / sms</span>
                 <strong>514 681 958</strong>
+                <small>Dostępność telefoniczna: pon.–pt. 8:00–20:00, sob. 9:00–15:00.</small>
             </div>
             <div class="contact-detail">
-                <span>Facebook</span>
-                <a href="https://www.facebook.com/profile.php?id=100003285549578">Karol Musioł</a>
+                <span>Facebook / Messenger</span>
+                <a href="https://www.facebook.com/profile.php?id=100003285549578">Karol Musioł - profil</a>
+                <small>Dostępność na Messengerze: całodobowo, w tym niedziele i święta.</small>
             </div>
             <div class="contact-detail">
+                <span>Profil e-korepetycje</span>
+                <a href="https://www.e-korepetycje.net/karolmusiol" target="_blank" rel="noopener">Karol Musioł - profil</a>
+            </div>
+            <div class="contact-detail host-detail">
                 <span>Prowadzący</span>
-                <strong>Karol Musioł – Delta Sigma</strong>
-            </div>
-            <div class="contact-detail">
-                <span>Dostępność telefoniczna</span>
-                <strong>Pon.–Pt. 8:00–20:00, sob. 9:00–15:00</strong>
+                <div class="host-profile">
+                    <img class="host-photo" src="img/me3.png" alt="Karol Musioł">
+                    <div class="host-copy">
+                        <strong>Karol Musioł</strong>
+                        <small>Delta Sigma</small>
+                    </div>
+                </div>
             </div>
         </div>
 

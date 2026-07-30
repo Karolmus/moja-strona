@@ -108,16 +108,6 @@
             updateCarousel(section);
             startAutoplay(section);
 
-            section.addEventListener("mouseenter", () => {
-                section.dataset.reviewPaused = "true";
-                stopAutoplay(section);
-            });
-
-            section.addEventListener("mouseleave", () => {
-                section.dataset.reviewPaused = "false";
-                startAutoplay(section);
-            });
-
             section.addEventListener("focusin", () => {
                 section.dataset.reviewPaused = "true";
                 stopAutoplay(section);

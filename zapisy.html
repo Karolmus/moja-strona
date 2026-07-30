@@ -845,8 +845,16 @@ h1{
 
 .reviews-average strong{
     color:#1f2a36;
-    font-size:17px;
-    line-height:1;
+    font-size:inherit;
+    line-height:1.2;
+}
+
+.reviews-average a{
+    color:#24527a;
+    font-size:inherit;
+    font-weight:800;
+    text-decoration:underline;
+    text-underline-offset:3px;
 }
 
 .reviews-grid{
@@ -970,7 +978,11 @@ h1{
     }
 
     .reviews-average strong{
-        font-size:16px;
+        font-size:inherit;
+    }
+
+    .reviews-average a{
+        font-size:inherit;
     }
 
     .reviews-grid{
@@ -1215,6 +1227,9 @@ footer{
                     <p>
                         <strong>W roku szkolnym</strong> obowiązuje stały termin, który podlega zmianom
                         w przypadku zmian planu lekcji oraz innych okoliczności.
+                    </p>
+                    <p>
+                        <strong>Nie prowadzę pojedynczych zajęć.</strong> Zapisy dotyczą regularnej współpracy.
                     </p>
                 </div>
             </section>
@@ -1619,7 +1634,7 @@ function render(){
 }
 
 </script>
-<script src="static/reviews-carousel.js?v=20260730-carousel"></script>
+<script src="static/reviews-carousel.js?v=20260730-carousel-autoplay"></script>
 <script>
 fetch("opinie.html", { cache: "no-cache" })
     .then(res => res.text())

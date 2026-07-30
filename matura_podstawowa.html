@@ -485,7 +485,7 @@ body{
 }
 
 .exam-result-inner.single-result{
-    grid-template-columns:minmax(240px, 520px);
+    grid-template-columns:minmax(280px, 780px);
     justify-content:center;
     margin:0;
     overflow:visible;
@@ -506,6 +506,11 @@ body{
     text-align:center;
     --result-accent:#d9e1ea;
     --result-accent-text:#1f2a36;
+}
+
+.exam-result-inner.single-result .exam-result-item{
+    justify-items:stretch;
+    text-align:left;
 }
 
 .exam-result-item.result-eo{
@@ -542,6 +547,101 @@ body{
     color:#64748b;
     font-size:14px;
     line-height:1.5;
+}
+
+.exam-result-values{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
+}
+
+.exam-result-value{
+    display:grid;
+    gap:6px;
+    padding:12px;
+    border:1px solid #d8dee9;
+    border-radius:12px;
+    background:#f8fafc;
+}
+
+.exam-result-value span{
+    color:#64748b;
+    font-size:12px;
+    font-weight:800;
+    line-height:1.25;
+}
+
+.exam-result-value strong{
+    color:#1f2a36;
+    font-size:28px;
+    line-height:1;
+}
+
+.exam-result-value.student strong{
+    color:var(--result-accent-text);
+}
+
+.score-bars{
+    display:grid;
+    gap:7px;
+    width:100%;
+}
+
+.score-bar-item{
+    display:grid;
+    grid-template-columns:132px minmax(110px, 1fr) 46px;
+    gap:8px;
+    align-items:center;
+}
+
+.score-bar-track{
+    position:relative;
+    height:11px;
+    overflow:hidden;
+    border-radius:999px;
+    background:#edf0f4;
+}
+
+.score-bar-fill{
+    width:calc(var(--score) * 1%);
+    height:100%;
+    border-radius:inherit;
+    background:hsl(calc(var(--score) * 1.2), 72%, 42%);
+}
+
+.score-bar-label{
+    color:#64748b;
+    font-size:10px;
+    font-weight:800;
+    line-height:1.1;
+    text-align:left;
+}
+
+.score-bar-value{
+    color:#1f2a36;
+    font-size:11px;
+    font-weight:800;
+    line-height:1;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.score-scale{
+    display:grid;
+    grid-template-columns:132px minmax(110px, 1fr) 46px;
+    gap:8px;
+}
+
+.score-scale-values{
+    grid-column:2;
+    display:flex;
+    justify-content:space-between;
+    padding-top:4px;
+    border-top:1px solid #98a2b3;
+    color:#64748b;
+    font-size:10px;
+    font-weight:800;
+    line-height:1;
 }
 
 /* =========================
@@ -647,6 +747,24 @@ footer{
     font-size:26px;
 }
 
+.exam-result-values{
+    grid-template-columns:1fr;
+    gap:8px;
+}
+
+.exam-result-value{
+    padding:10px;
+}
+
+.exam-result-value strong{
+    font-size:24px;
+}
+
+.score-bar-item,
+.score-scale{
+    grid-template-columns:108px minmax(0, 1fr) 42px;
+}
+
 .exam-result-copy{
     gap:4px;
 }
@@ -689,15 +807,49 @@ footer{
     </p>
 
 </section>
-<section class="exam-result-banner" aria-label="Średni wynik z matury podstawowej 2026">
-    <h2 class="exam-result-heading">Średni wynik moich uczniów</h2>
+<section class="exam-result-banner" aria-label="Średni wynik z matury podstawowej 2026 na tle kraju">
+    <h2 class="exam-result-heading">Średni wynik moich uczniów na tle kraju</h2>
 
     <div class="exam-result-inner single-result">
         <article class="exam-result-item result-matura">
             <div class="exam-result-copy">
                 <small>Matura podstawowa 2026</small>
             </div>
-            <div class="exam-result-score">89,5%</div>
+
+            <div class="exam-result-values">
+                <div class="exam-result-value student">
+                    <span>Średni wynik moich uczniów</span>
+                    <strong>89,5%</strong>
+                </div>
+                <div class="exam-result-value">
+                    <span>Średni wynik w kraju</span>
+                    <strong>59%</strong>
+                </div>
+            </div>
+
+            <div class="score-bars" aria-label="Średni wynik moich uczniów 89,5 procent, średni wynik w kraju 59 procent">
+                <div class="score-bar-item" style="--score:89.5;">
+                    <span class="score-bar-label">średni wynik moich uczniów</span>
+                    <div class="score-bar-track" aria-hidden="true">
+                        <div class="score-bar-fill"></div>
+                    </div>
+                    <span class="score-bar-value">89,5%</span>
+                </div>
+                <div class="score-bar-item" style="--score:59;">
+                    <span class="score-bar-label">średni wynik w kraju</span>
+                    <div class="score-bar-track" aria-hidden="true">
+                        <div class="score-bar-fill"></div>
+                    </div>
+                    <span class="score-bar-value">59%</span>
+                </div>
+                <div class="score-scale" aria-hidden="true">
+                    <div class="score-scale-values">
+                        <span>0</span>
+                        <span>50</span>
+                        <span>100</span>
+                    </div>
+                </div>
+            </div>
         </article>
     </div>
 </section>
