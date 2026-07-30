@@ -62,6 +62,61 @@ body {
     padding-left: 20px;
 }
 
+.legal-document ol {
+    margin: 0;
+    padding-left: 22px;
+}
+
+.regulamin-lista > li + li {
+    margin-top: 14px;
+}
+
+.regulamin-lista ul {
+    margin-top: 8px;
+}
+
+.legal-document a {
+    color: #24527a;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.legal-document a:hover,
+.legal-document a:focus-visible {
+    color: #5865F2;
+}
+
+.legal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.legal-document .legal-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    width: fit-content;
+    border: 1px solid #263545;
+    border-radius: 8px;
+    background: #263545;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 9px 14px;
+    text-decoration: none;
+    text-underline-offset: 0;
+}
+
+.legal-document .legal-download:hover,
+.legal-document .legal-download:focus-visible {
+    color: #ffffff;
+    background: #1f2a36;
+}
+
 .legal-meta {
     color: #64748b;
     font-size: 13px;
@@ -75,6 +130,10 @@ body {
     .legal-document {
         padding: 20px;
     }
+
+    .legal-download {
+        width: 100%;
+    }
 }
 </style>
 </head>
@@ -85,30 +144,160 @@ body {
     <article class="legal-document">
         <header>
             <h1>Regulamin współpracy</h1>
-            <p class="legal-meta">Regulamin zajęć Delta Sigma.</p>
+            <h2>Wersja regulaminu 2026/2</h2>
+            <div class="legal-actions">
+                <a class="legal-download" href="Regulamin%20wspo%CC%81%C5%82pracy%202026%3A2.pdf" download="Regulamin współpracy 2026-2.pdf">Pobierz regulamin PDF</a>
+            </div>
         </header>
 
-        <p>Zajęcia odbywają się w ustalonych terminach i są dostosowane do aktualnych potrzeb oraz poziomu ucznia.</p>
-        <p>Zajęcia online odbywają się za pośrednictwem platformy Discord. Jest to główne miejsce kontaktu i wymiany informacji pomiędzy uczniem a korepetytorem.</p>
-        <p>W kontaktach pomiędzy rodzicem a korepetytorem preferowany jest kontakt telefoniczny. Odebranie telefonu może być czasowo niemożliwe ze względu na prowadzone zajęcia. W takim przypadku korepetytor zobowiązuje się oddzwonić najpóźniej w ciągu jednego dnia roboczego.</p>
-        <p>Zajęcia stacjonarne odbywają się w domu ucznia, w warunkach umożliwiających spokojne i komfortowe prowadzenie lekcji. Uczeń powinien mieć zapewnione odpowiednie miejsce do pracy, ciszę oraz niezbędne materiały.</p>
-        <p>Rodzic zobowiązuje się do kontrolowania systematyczności pracy ucznia, w szczególności wykonywania prac domowych, przygotowania do zajęć oraz korzystania z ustalonych terminów odrabiania lekcji.</p>
+        <p>
+            Na potrzeby regulaminu „uczeń” oznacza osobę uczestniczącą w zajęciach,
+            „rodzic” – rodzica lub opiekuna prawnego niepełnoletniego ucznia,
+            a „osoba regulująca opłaty” – osobę zobowiązaną do zapłaty za zajęcia.
+            Jeżeli pełnoletni uczeń zgłasza się samodzielnie, postanowienia dotyczące
+            kontaktu z rodzicem i osoby regulującej opłaty stosuje się odpowiednio
+            do tego ucznia. Regulamin musi zaakceptować zarówno uczeń jak i rodzic lub opiekun.
+        </p>
 
-        <p>Korepetytor zobowiązuje się do:</p>
-        <ul>
-            <li>regularnego egzekwowania prac domowych,</li>
-            <li>kontrolowania postępów ucznia,</li>
-            <li>dostosowywania sposobu pracy do jego aktualnych potrzeb,</li>
-            <li>informowania rodzica o istotnych postępach, trudnościach lub braku systematyczności.</li>
-        </ul>
+        <ol class="regulamin-lista">
+            <li id="rozpoczecie-wspolpracy">
+                Współpraca rozpoczyna się po zaakceptowaniu regulaminu, ceny zajęć
+                oraz ustaleniu terminu pierwszej lekcji. Odbycie się pierwszych zajęć jest równoznaczne z akceptacją niniejszego regulaminu.
+            </li>
 
-        <p>Uczeń zobowiązuje się do przekazywania prawdziwych i pełnych informacji dotyczących swojej sytuacji szkolnej. Nie może zatajać ani fałszować ocen, wyników sprawdzianów lub innych informacji istotnych dla prowadzenia zajęć.</p>
-        <p>Uczeń ma obowiązek poinformować korepetytora o uzyskanej ocenie podczas pierwszych zajęć odbywających się po jej otrzymaniu. Powinien również informować o zapowiedzianych kartkówkach, sprawdzianach, poprawach, odpowiedziach ustnych oraz innych wydarzeniach mogących wpłynąć na jego ocenę końcową.</p>
-        <p>W okresie od września do czerwca uczeń może dwa razy nie uczestniczyć w zajęciach bez podawania przyczyny. W przypadku choroby sposób rozliczenia lub odrobienia zajęć ustalany jest indywidualnie. Notoryczne opuszczanie zajęć może skutkować zakończeniem współpracy.</p>
-        <p>Istnieje możliwość przełożenia lub odrobienia zajęć. Dostępne terminy są publikowane na liście odróbkowej, która jest na bieżąco aktualizowana. Uczeń, który opuścił zajęcia, powinien zapisać się na jeden z dostępnych terminów i odrobić lekcję.</p>
-        <p>Opłata za zajęcia rozliczana jest miesięcznie na podstawie faktury przesłanej drogą mailową. Fakturę należy opłacić w terminie 7 dni roboczych od dnia jej otrzymania.</p>
-        <p>Z zajęć można zrezygnować w dowolnym momencie, informując o tym mailowo, telefonicznie lub za pomocą wiadomości prywatnej oraz podając powód rezygnacji. Rezygnacja nie zwalnia z obowiązku opłacenia zajęć, które odbyły się w miesiącu jej zgłoszenia.</p>
-        <p>Dopuszczalna jest czasowa rezygnacja z zajęć na okres wakacyjny. Należy ją zgłosić w taki sam sposób jak rezygnację stałą.</p>
+            <li id="czas-zajec">
+                Zajęcia odbywają się w ustalonych terminach i trwają 55 minut.
+                Rozpoczynają się o pełnej godzinie i kończą 55 minut później.
+            </li>
+
+            <li id="zasady-platnosci">
+                Opłata jest naliczana wyłącznie za przeprowadzone zajęcia.
+                Rozliczenie następuje na podstawie miesięcznej faktury przesłanej
+                na podany adres e-mail. Fakturę należy opłacić w terminie 7 dni
+                kalendarzowych od dnia jej otrzymania, chyba że wskazano na niej
+                inny termin płatności.
+            </li>
+
+            <li id="zajecia-online">
+                Zajęcia online odbywają się na platformie Discord, która jest
+                głównym miejscem kontaktu i wymiany informacji między uczniem
+                a korepetytorem.
+            </li>
+
+            <li id="kontakt-z-rodzicem">
+                W komunikacji między rodzicem a korepetytorem preferowany jest
+                kontakt telefoniczny. Jeżeli odebranie telefonu jest niemożliwe
+                z powodu prowadzonych zajęć, korepetytor oddzwoni najpóźniej
+                w ciągu jednego dnia roboczego.
+            </li>
+
+            <li id="zajecia-stacjonarne">
+                Zajęcia stacjonarne odbywają się w domu ucznia, w warunkach
+                zapewniających ciszę i komfort pracy. Uczeń powinien mieć
+                przygotowane miejsce do nauki, długopis, linijkę, cyrkiel
+                oraz zeszyt lub czyste kartki A4.
+            </li>
+
+            <li id="obowiazki-rodzica">
+                Rodzic wspiera niepełnoletniego ucznia w przygotowywaniu się
+                do zajęć, wykonywaniu prac domowych i korzystaniu z terminów
+                odróbkowych. Jeżeli jest osobą regulującą opłaty, zobowiązuje się
+                również do terminowego opłacania faktur zgodnie z
+                <a href="#zasady-platnosci">zasadami płatności</a>.
+            </li>
+
+            <li id="obowiazki-korepetytora">
+                Korepetytor zobowiązuje się do:
+                <ul>
+                    <li>regularnego sprawdzania prac domowych,</li>
+                    <li>kontrolowania postępów ucznia,</li>
+                    <li>dostosowywania sposobu pracy do jego potrzeb,</li>
+                    <li>informowania rodzica o istotnych postępach i trudnościach.</li>
+                </ul>
+            </li>
+
+            <li id="informacje-szkolne">
+                Uczeń przekazuje korepetytorowi prawdziwe i aktualne informacje
+                dotyczące ocen, wyników sprawdzianów oraz zapowiedzianych form
+                kontroli wiedzy. O otrzymanej ocenie powinien poinformować podczas
+                pierwszych zajęć odbywających się po jej uzyskaniu.
+            </li>
+
+            <li id="nieobecnosci-ucznia">
+                Od września do czerwca uczeń może trzykrotnie opuścić zajęcia,
+                zgłaszając nieobecność co najmniej 24 godziny wcześniej.
+                Czwarta i każda kolejna nieobecność może skutkować zakończeniem
+                współpracy. Każdy przypadek jest rozpatrywany indywidualnie.
+            </li>
+
+            <li id="nagla-nieobecnosc">
+                W nagłej i niemożliwej do przewidzenia sytuacji nieobecność należy
+                zgłosić możliwie jak najwcześniej, nie później niż przed rozpoczęciem
+                zajęć. Nieobecność niezgłoszona przed lekcją może skutkować
+                zakończeniem współpracy. Każdy przypadek jest rozpatrywany
+                indywidualnie.
+            </li>
+
+            <li id="odrabianie-zajec">
+                W celu zachowania regularności nauki opuszczone zajęcia należy
+                co do zasady odrobić w najbliższym odpowiadającym uczniowi terminie
+                dostępnym na
+                <a
+                    href="https://docs.google.com/spreadsheets/d/19gBGtyUgaOTMowPYbPTjezZ5kqIwdVBm3JB8K4nIYj4/edit?pli=1&amp;gid=0#gid=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >liście odróbkowej</a>.
+                Odrabianie odbywa się w miarę dostępności terminów.
+            </li>
+
+            <li id="przekladanie-zajec">
+                Przełożenie zajęć oznacza uzgodnienie terminu zastępczego przed
+                rozpoczęciem pierwotnie zaplanowanej lekcji. Jest ono możliwe
+                po uzgodnieniu z korepetytorem i w miarę dostępności terminów.
+            </li>
+
+            <li id="nieobecnosci-korepetytora">
+                Korepetytor zobowiązuje się do przestrzegania zasad nieobecności
+                analogicznych do zasad obowiązujących ucznia. Może trzykrotnie
+                odwołać zajęcia, informując o tym co najmniej 24 godziny wcześniej.
+                W nagłych sytuacjach informuje o odwołaniu możliwie jak najwcześniej,
+                nie później niż przed rozpoczęciem zajęć. Odwołane zajęcia nie są
+                naliczane i mogą zostać odrobione w uzgodnionym terminie.
+            </li>
+
+            <li id="spoznienia">
+                Spóźnienia ucznia i korepetytora są rozpatrywane indywidualnie.
+                Pod uwagę brane są przede wszystkim długość spóźnienia,
+                jego częstotliwość oraz dotychczasowy przebieg współpracy.
+            </li>
+
+            <li id="rezygnacja">
+                Ze współpracy można zrezygnować w dowolnym momencie, informując
+                o tym e-mailem, telefonicznie lub w wiadomości prywatnej oraz
+                podając powód rezygnacji. Rezygnacja nie zwalnia z obowiązku
+                opłacenia zajęć przeprowadzonych przed jej zgłoszeniem.
+            </li>
+
+            <li id="zawieszenie-wakacyjne">
+                Zajęcia można zawiesić na okres wakacyjny, zgłaszając to za pomocą
+                dowolnego środka komunikacji wymienionego na stronie
+                <a
+                    href="https://deltasigma.pl/kontakt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >deltasigma.pl/kontakt</a>.
+                Zawieszenie nie gwarantuje zachowania dotychczasowego terminu.
+                Terminy na kolejny rok szkolny są ustalane ponownie na podstawie
+                aktualnego grafiku i możliwości ucznia.
+            </li>
+
+            <li id="zakonczenie-przygotowania-maturalnego">
+                Uczniowie realizujący przygotowanie maturalne ostatnie zajęcia
+                odbywają w tygodniu przed maturą z matematyki. W przypadku matury
+                podstawowej jest to pierwszy lub drugi tydzień maja. W przypadku
+                matury rozszerzonej jest to drugi lub trzeci tydzień maja.
+            </li>
+        </ol>
     </article>
 </main>
 

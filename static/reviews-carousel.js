@@ -87,6 +87,77 @@
         section.appendChild(controls);
     }
 
+    function addSwipe(section){
+        const track = section.querySelector(".reviews-grid");
+
+        if(!track || track.dataset.swipeReady === "true"){
+            return;
+        }
+
+        let startX = 0;
+        let startY = 0;
+        let currentX = 0;
+        let pointerId = null;
+        let isTouchPointer = false;
+
+        function resetSwipe(){
+            startX = 0;
+            startY = 0;
+            currentX = 0;
+            pointerId = null;
+            isTouchPointer = false;
+            section.classList.remove("is-swiping");
+        }
+
+        track.dataset.swipeReady = "true";
+
+        track.addEventListener("pointerdown", event => {
+            if(event.pointerType === "mouse"){
+                return;
+            }
+
+            pointerId = event.pointerId;
+            isTouchPointer = true;
+            startX = event.clientX;
+            startY = event.clientY;
+            currentX = event.clientX;
+            section.classList.add("is-swiping");
+            stopAutoplay(section);
+            track.setPointerCapture?.(event.pointerId);
+        });
+
+        track.addEventListener("pointermove", event => {
+            if(!isTouchPointer || event.pointerId !== pointerId){
+                return;
+            }
+
+            currentX = event.clientX;
+        });
+
+        track.addEventListener("pointerup", event => {
+            if(!isTouchPointer || event.pointerId !== pointerId){
+                return;
+            }
+
+            const deltaX = event.clientX - startX;
+            const deltaY = event.clientY - startY;
+            const absX = Math.abs(deltaX);
+            const absY = Math.abs(deltaY);
+
+            if(absX > 44 && absX > absY * 1.2){
+                moveCarousel(section, deltaX < 0 ? 1 : -1);
+            }
+
+            resetSwipe();
+            startAutoplay(section);
+        });
+
+        track.addEventListener("pointercancel", () => {
+            resetSwipe();
+            startAutoplay(section);
+        });
+    }
+
     function initReviewCarousel(root = document){
         const sections = root.matches?.(".reviews")
             ? [root]
@@ -105,6 +176,7 @@
             section.querySelector(".reviews-grid")?.setAttribute("aria-live", "polite");
 
             addControls(section);
+            addSwipe(section);
             updateCarousel(section);
             startAutoplay(section);
 

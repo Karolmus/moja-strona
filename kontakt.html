@@ -115,6 +115,7 @@ body {
 }
 
 .host-detail {
+    grid-column: 1 / -1;
     background: linear-gradient(135deg, #ffffff 0%, #f5f9fc 100%);
 }
 
@@ -140,6 +141,25 @@ body {
     display: grid;
     gap: 2px;
     min-width: 0;
+}
+
+.discord-username {
+    color: #5865F2;
+}
+
+.discord-contact {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.discord-contact-icon {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 .contact-actions {
@@ -247,6 +267,13 @@ footer {
                 <small>Dostępność telefoniczna: pon.–pt. 8:00–20:00, sob. 9:00–15:00.</small>
             </div>
             <div class="contact-detail">
+                <span>Discord</span>
+                <div class="discord-contact">
+                    <img class="discord-contact-icon" src="img/discord.gif" alt="" aria-hidden="true">
+                    <strong class="discord-username">.karolmusioldeltasigma</strong>
+                </div>
+            </div>
+            <div class="contact-detail">
                 <span>Facebook / Messenger</span>
                 <a href="https://www.facebook.com/profile.php?id=100003285549578">Karol Musioł - profil</a>
                 <small>Dostępność na Messengerze: całodobowo, w tym niedziele i święta.</small>
@@ -268,7 +295,7 @@ footer {
         </div>
 
         <div class="contact-actions">
-            <button class="contact-button" type="button" id="copyPhoneBtn">Skopiuj numer</button>
+            <button class="contact-button" type="button" id="copyPhoneBtn">Skopiuj numer telefonu</button>
             <a class="contact-button secondary" href="zapisy.html">Przejdź do zapisów</a>
         </div>
         <div class="contact-status" id="copyPhoneStatus" role="status" aria-live="polite"></div>
