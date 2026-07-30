@@ -10,7 +10,7 @@
 <title>Kontakt – Delta Sigma</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260730-footer-contact">
+<link rel="stylesheet" href="nav.css?v=20260730-logo-footer">
 <link rel="stylesheet" href="baner.css?v=20260730-card-widths">
 
 <style>
@@ -122,31 +122,59 @@ body {
 
 .host-detail {
     grid-column: 1 / -1;
+    gap: 10px;
+    min-height: 132px;
+    padding: 20px;
     background: linear-gradient(135deg, #ffffff 0%, #f5f9fc 100%);
 }
 
 .host-profile {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 18px;
     min-width: 0;
 }
 
-.host-photo {
-    width: 58px;
-    height: 58px;
-    flex: 0 0 58px;
+.host-visuals {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+}
+
+.host-photo,
+.host-logo {
+    width: 92px;
+    height: 92px;
+    flex: 0 0 92px;
     border: 2px solid #ffffff;
     border-radius: 50%;
+    background: #ffffff;
     object-fit: cover;
-    object-position: 50% 42%;
     box-shadow: 0 5px 14px rgba(15, 23, 42, 0.16);
+}
+
+.host-photo {
+    object-position: 50% 42%;
+}
+
+.host-logo {
+    padding: 12px;
+    object-fit: contain;
 }
 
 .host-copy {
     display: grid;
-    gap: 3px;
+    gap: 5px;
     min-width: 0;
+}
+
+.host-copy strong {
+    font-size: 18px;
+}
+
+.host-copy small {
+    font-size: 13px;
 }
 
 .discord-username {
@@ -158,14 +186,6 @@ body {
     align-items: center;
     gap: 9px;
     min-width: 0;
-}
-
-.discord-contact-icon {
-    width: 28px;
-    height: 28px;
-    flex: 0 0 28px;
-    border-radius: 8px;
-    object-fit: cover;
 }
 
 .contact-actions {
@@ -281,20 +301,36 @@ footer {
         line-height: 1.4;
     }
 
-    .host-photo {
-        width: 54px;
-        height: 54px;
-        flex-basis: 54px;
+    .host-detail {
+        min-height: 112px;
+        padding: 14px;
     }
 
-    .discord-contact {
+    .host-profile {
+        gap: 12px;
+    }
+
+    .host-visuals {
         gap: 8px;
     }
 
-    .discord-contact-icon {
-        width: 24px;
-        height: 24px;
-        flex-basis: 24px;
+    .host-photo,
+    .host-logo {
+        width: 76px;
+        height: 76px;
+        flex-basis: 76px;
+    }
+
+    .host-logo {
+        padding: 10px;
+    }
+
+    .host-copy strong {
+        font-size: 16px;
+    }
+
+    .host-copy small {
+        font-size: 12px;
     }
 
     .contact-button {
@@ -324,7 +360,6 @@ footer {
             <div class="contact-detail">
                 <span>Discord</span>
                 <div class="discord-contact">
-                    <img class="discord-contact-icon" src="img/discord.gif" alt="" aria-hidden="true">
                     <strong class="discord-username">.karolmusioldeltasigma</strong>
                 </div>
             </div>
@@ -340,7 +375,10 @@ footer {
             <div class="contact-detail host-detail">
                 <span>Prowadzący</span>
                 <div class="host-profile">
-                    <img class="host-photo" src="img/me3.png" alt="Karol Musioł">
+                    <div class="host-visuals">
+                        <img class="host-photo" src="img/me3.png" alt="Karol Musioł">
+                        <img class="host-logo" src="img/logo3.png" alt="Delta Sigma">
+                    </div>
                     <div class="host-copy">
                         <strong>Karol Musioł</strong>
                         <small>Delta Sigma</small>

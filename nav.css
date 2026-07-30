@@ -190,6 +190,18 @@
     line-height: 1.45;
 }
 
+.site-footer::before {
+    content: "";
+    justify-self: center;
+    width: 54px;
+    height: 54px;
+    margin-bottom: 4px;
+    border: 2px solid rgba(255,255,255,0.86);
+    border-radius: 50%;
+    background: #ffffff url("img/logo3.png") center / 72% no-repeat;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+}
+
 .site-footer .footer-business {
     color: #ffffff;
     font-weight: 700;
@@ -258,6 +270,12 @@
         padding: 18px 12px;
         font-size: 12px;
         line-height: 1.4;
+    }
+
+    .site-footer::before {
+        width: 46px;
+        height: 46px;
+        margin-bottom: 3px;
     }
 
     .site-footer .footer-links {

@@ -11,7 +11,7 @@
 <title>Delta Sigma – Terminy</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260730-footer-contact">
+<link rel="stylesheet" href="nav.css?v=20260730-logo-footer">
 <style>
 
 *{
@@ -125,7 +125,21 @@ h1{
 
 .booking-head {
     display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 5px;
+    align-items: center;
+}
+
+.booking-head-copy {
+    display: grid;
+    gap: 5px;
+}
+
+.booking-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    justify-self: end;
 }
 
 .booking-eyebrow {
@@ -1071,6 +1085,11 @@ h1{
         padding:0;
     }
 
+    .booking-logo{
+        width:48px;
+        height:48px;
+    }
+
     .contact-form-card,
     .contact-action-card,
     .schedule-card{
@@ -1243,8 +1262,11 @@ footer{
         <div class="booking-grid">
             <section class="schedule-card" aria-labelledby="availabilityTitle">
                 <div class="booking-head">
-                    <p class="booking-eyebrow">Zapisy 2026/27</p>
-                    <h1 id="availabilityTitle">Terminy zajęć</h1>
+                    <div class="booking-head-copy">
+                        <p class="booking-eyebrow">Zapisy 2026/27</p>
+                        <h1 id="availabilityTitle">Terminy zajęć</h1>
+                    </div>
+                    <img class="booking-logo" src="img/logo3.png" alt="Delta Sigma">
                 </div>
 
                 <div class="schedule-message">
