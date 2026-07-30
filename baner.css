@@ -89,6 +89,7 @@
     .enrollment-card{
         padding: 22px;
         gap: 14px;
+        width: min(900px, calc(100% - 24px));
     }
 
     .enrollment-content h2{
