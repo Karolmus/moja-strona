@@ -199,6 +199,17 @@
             logoutButton.onclick = window.logoutCurrentUser;
         }
 
+        const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+        nav.querySelectorAll("a[href]").forEach(link => {
+            if(link.dataset.authPanel !== undefined){
+                return;
+            }
+
+            const linkPage = link.getAttribute("href").split(/[?#]/)[0] || "index.html";
+            link.classList.toggle("active", linkPage === currentPage);
+        });
+
         showPrivacyPolicyPrompt(user);
     };
 

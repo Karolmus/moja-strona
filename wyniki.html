@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wyniki uczniów - Delta Sigma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css?v=20260730-signup-shadow">
+<style>
+:root{
+    --ink:#1f2a36;
+    --muted:#667085;
+    --line:#d8dee9;
+    --soft:#f8fafc;
+    --green:#2f7a3f;
+    --violet:#5b3b72;
+    --sky:#24527a;
+    --content:min(1180px, calc(100% - 32px));
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#f0f2f5;
+    color:var(--ink);
+    font-family:Poppins, sans-serif;
+}
+
+.page{
+    width:var(--content);
+    margin:0 auto;
+    padding:28px 0 42px;
+    display:grid;
+    gap:16px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:16px;
+}
+
+.stat-card{
+    --accent:var(--sky);
+    display:grid;
+    gap:14px;
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#ffffff;
+    box-shadow:0 6px 16px rgba(15,23,42,0.055);
+}
+
+.stat-eo{
+    --accent:var(--green);
+}
+
+.stat-basic{
+    --accent:var(--violet);
+}
+
+.stat-extended{
+    --accent:var(--sky);
+}
+
+.stat-card h2{
+    margin:0;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+    font-size:18px;
+    line-height:1.2;
+}
+
+.result-list{
+    display:grid;
+    gap:6px;
+    margin:0;
+}
+
+.result-list div{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    padding:9px 0;
+    border-bottom:1px solid #edf0f4;
+}
+
+.result-list div:last-child{
+    border-bottom:0;
+}
+
+.result-list dt{
+    color:var(--muted);
+    font-size:13px;
+    font-weight:700;
+}
+
+.result-list dd{
+    margin:0;
+    color:var(--ink);
+    font-size:16px;
+    font-weight:800;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.result-list .primary dd,
+.result-list .difference dd{
+    color:var(--accent);
+}
+
+.sources{
+    display:grid;
+    gap:10px;
+}
+
+.source-card{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:12px;
+    align-items:center;
+    padding:16px 18px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#ffffff;
+    box-shadow:0 6px 16px rgba(15,23,42,0.055);
+}
+
+.source-card h2{
+    margin:0;
+    font-size:18px;
+}
+
+.source-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+.source-links a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:34px;
+    padding:7px 12px;
+    border:1px solid #8eb5de;
+    border-radius:999px;
+    background:#edf4fb;
+    color:#24527a;
+    font-size:12px;
+    font-weight:800;
+    text-decoration:none;
+}
+
+.source-links a:hover,
+.source-links a:focus-visible{
+    background:#dbeaf8;
+}
+
+@media (max-width:900px){
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .source-card{
+        grid-template-columns:1fr;
+    }
+
+    .source-links{
+        justify-content:flex-start;
+    }
+}
+
+@media (max-width:520px){
+    .page{
+        width:calc(100% - 20px);
+        padding:18px 0 30px;
+    }
+
+    .stat-card,
+    .source-card{
+        padding:14px;
+    }
+
+    .stats-grid{
+        gap:10px;
+    }
+
+    .result-list div{
+        gap:10px;
+        padding:8px 0;
+    }
+
+    .source-links a{
+        width:100%;
+    }
+}
+</style>
+</head>
+<body>
+<div id="nav"></div>
+
+<main class="page">
+    <section class="stats-grid" aria-label="Wyniki egzaminów">
+        <article class="stat-card stat-eo">
+            <h2>Egzamin ósmoklasisty 2026</h2>
+            <dl class="result-list">
+                <div class="primary">
+                    <dt>Moi uczniowie</dt>
+                    <dd>90,0%</dd>
+                </div>
+                <div>
+                    <dt>Średnia krajowa</dt>
+                    <dd>55%</dd>
+                </div>
+                <div class="difference">
+                    <dt>Różnica</dt>
+                    <dd>+35,0 p.p.</dd>
+                </div>
+                <div>
+                    <dt>Zakres wyników</dt>
+                    <dd>80-97%</dd>
+                </div>
+            </dl>
+        </article>
+
+        <article class="stat-card stat-basic">
+            <h2>Matura podstawowa 2026</h2>
+            <dl class="result-list">
+                <div class="primary">
+                    <dt>Moi uczniowie</dt>
+                    <dd>89,5%</dd>
+                </div>
+                <div>
+                    <dt>Średnia krajowa</dt>
+                    <dd>59%</dd>
+                </div>
+                <div class="difference">
+                    <dt>Różnica</dt>
+                    <dd>+30,5 p.p.</dd>
+                </div>
+                <div>
+                    <dt>Zakres wyników</dt>
+                    <dd>78-100%</dd>
+                </div>
+            </dl>
+        </article>
+
+        <article class="stat-card stat-extended">
+            <h2>Matura rozszerzona 2026</h2>
+            <dl class="result-list">
+                <div class="primary">
+                    <dt>Moi uczniowie</dt>
+                    <dd>72,3%</dd>
+                </div>
+                <div>
+                    <dt>Średnia krajowa</dt>
+                    <dd>37%</dd>
+                </div>
+                <div class="difference">
+                    <dt>Różnica</dt>
+                    <dd>+35,3 p.p.</dd>
+                </div>
+                <div>
+                    <dt>Zakres wyników</dt>
+                    <dd>30-98%</dd>
+                </div>
+            </dl>
+        </article>
+    </section>
+
+    <section class="sources" aria-label="Źródła danych">
+        <div class="source-card">
+            <div class="source-copy">
+                <h2>Źródła danych państwowych</h2>
+            </div>
+            <div class="source-links">
+                <a href="https://cke.gov.pl/images/_EGZAMIN_OSMOKLASISTY/Informacje_o_wynikach/2026/20260703%20Informacja%20wst%C4%99pna%20E8_26.pdf" target="_blank" rel="noopener">CKE: egzamin ósmoklasisty</a>
+                <a href="https://www.oke.krakow.pl/inf/filemgmt/visit.php?lid=8566" target="_blank" rel="noopener">CKE: egzamin maturalny</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer" aria-label="Dane firmy">
+    <div class="footer-business">© <span data-current-year>2026</span> Karol Musioł Delta Sigma</div>
+    <div>Karol Musioł Delta Sigma</div>
+    <div>NIP: 6452595325</div>
+    <nav class="footer-links" aria-label="Linki w stopce">
+        <a href="kontakt.html">Kontakt</a>
+        <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="regulamin-zajec.html">Regulamin zajęć</a>
+    </nav>
+</footer>
+
+<script>
+fetch("nav.html?v=20260730-results-nav", { cache: "no-cache" })
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("nav").innerHTML = data;
+    });
+</script>
+<script src="static/auth.js?v=20260730-nav-active"></script>
+<script src="static/analytics.js?v=20260724-cookie-consent"></script>
+</body>
+</html>

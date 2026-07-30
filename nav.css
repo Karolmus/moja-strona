@@ -89,6 +89,30 @@
     border: 1px solid rgba(142, 181, 222, 0.9);
     box-shadow: 0 4px 14px rgba(142, 181, 222, 0.22);
     font-weight: 700;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.main-nav .signup-link::after {
+    content: "";
+    position: absolute;
+    top: -45%;
+    bottom: -45%;
+    left: -70%;
+    width: 50%;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(88, 101, 242, 0.08),
+        rgba(88, 101, 242, 0.34),
+        rgba(142, 181, 222, 0.18),
+        transparent
+    );
+    filter: blur(5px);
+    pointer-events: none;
+    transform: translateX(0) skewX(-18deg);
+    animation: signup-shadow-sweep 3.6s ease-in-out infinite;
 }
 
 .main-nav .my-panel-link:hover {
@@ -121,6 +145,35 @@
 .main-nav .signup-link.active {
     color: #102033;
     background: linear-gradient(135deg, #dbeaf8, #ffffff);
+}
+
+@keyframes signup-shadow-sweep {
+    0%,
+    28% {
+        opacity: 0;
+        transform: translateX(0) skewX(-18deg);
+    }
+
+    42% {
+        opacity: 1;
+    }
+
+    68% {
+        opacity: 0;
+        transform: translateX(380%) skewX(-18deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(380%) skewX(-18deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .main-nav .signup-link::after {
+        animation: none;
+        opacity: 0;
+    }
 }
 
 .site-footer,
