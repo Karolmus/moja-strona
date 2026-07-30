@@ -93,7 +93,18 @@ body {
     font-size: 15px;
     font-weight: 600;
     overflow-wrap: anywhere;
+}
+
+.contact-detail a {
+    color: #24527a;
     text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+.contact-detail a:hover,
+.contact-detail a:focus-visible {
+    color: #5865F2;
+    border-bottom-color: transparent;
 }
 
 .contact-actions {
@@ -195,7 +206,7 @@ footer {
             </div>
             <div class="contact-detail">
                 <span>Facebook</span>
-                <a href="mailto:kontakt@deltasigma.pl">kontakt@deltasigma.pl</a>
+                <a href="https://www.facebook.com/profile.php?id=100003285549578">Karol Musioł</a>
             </div>
             <div class="contact-detail">
                 <span>Prowadzący</span>
@@ -209,22 +220,14 @@ footer {
 
         <div class="contact-actions">
             <button class="contact-button" type="button" id="copyPhoneBtn">Skopiuj numer</button>
-            <a class="contact-button secondary" href="mailto:kontakt@deltasigma.pl">Napisz e-mail</a>
+            <a class="contact-button secondary" href="zapisy.html">Przejdź do zapisów</a>
         </div>
         <div class="contact-status" id="copyPhoneStatus" role="status" aria-live="polite"></div>
-    </section>
-
-    <section class="contact-section signup-section" aria-labelledby="signupTitle">
-        <div class="signup-copy">
-            <h2 id="signupTitle">Zapisy na zajęcia</h2>
-            <p>Informacje o dostępnych kursach, cenach i wolnych terminach znajdują się na stronie zapisów.</p>
-        </div>
-        <a class="contact-button" href="zapisy.html">Przejdź do zapisów</a>
     </section>
 </main>
 
 <footer class="site-footer" aria-label="Dane firmy">
-    <div class="footer-business">© 2026 Karol Musioł Delta Sigma</div>
+    <div class="footer-business">© <span data-current-year>2026</span> Karol Musioł Delta Sigma</div>
     <div>Karol Musioł Delta Sigma</div>
     <div>NIP: 6452595325</div>
     <nav class="footer-links" aria-label="Linki w stopce">
@@ -263,7 +266,7 @@ copyPhoneBtn.addEventListener("click", async () => {
     copyPhoneStatus.classList.add("active");
 });
 </script>
-<script src="static/auth.js?v=20260724-privacy-policy"></script>
+<script src="static/auth.js?v=20260730-footer-year"></script>
 <script src="static/analytics.js?v=20260724-cookie-consent"></script>
 </body>
 </html>

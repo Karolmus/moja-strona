@@ -1334,7 +1334,7 @@ footer{
 
 	<div data-opinions-slot></div>
 <footer class="site-footer" aria-label="Dane firmy">
-    <div class="footer-business">© 2026 Karol Musioł Delta Sigma</div>
+    <div class="footer-business">© <span data-current-year>2026</span> Karol Musioł Delta Sigma</div>
     <div>Karol Musioł Delta Sigma</div>
     <div>NIP: 6452595325</div>
     <nav class="footer-links" aria-label="Linki w stopce">
@@ -1603,7 +1603,7 @@ fetch("nav.html")
         document.getElementById("nav").innerHTML = data;
     });
 </script>
-<script src="static/auth.js?v=20260724-privacy-policy"></script>
+<script src="static/auth.js?v=20260730-footer-year"></script>
 <script>
 async function loadSignupPrices(){
     try {

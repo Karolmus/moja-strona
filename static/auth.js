@@ -272,7 +272,16 @@
         return result;
     };
 
+    function updateCurrentYear(){
+        const currentYear = String(new Date().getFullYear());
+
+        document.querySelectorAll("[data-current-year]").forEach(element => {
+            element.innerText = currentYear;
+        });
+    }
+
     function bootAuthNav(){
+        updateCurrentYear();
         window.updateAuthNav(null);
         window.refreshAuthNav();
     }
