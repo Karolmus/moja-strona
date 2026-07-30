@@ -11,8 +11,8 @@
     <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
     <link rel="apple-touch-icon" href="img/logo3.png">
 
-    <link rel="stylesheet" href="nav.css?v=20260730-signup-shadow">
-    <link rel="stylesheet" href="baner.css">
+    <link rel="stylesheet" href="nav.css?v=20260730-footer-contact">
+    <link rel="stylesheet" href="baner.css?v=20260730-card-widths">
 
     <style>
 
@@ -63,7 +63,7 @@
 
         main{
             display:grid;
-            grid-template-columns:repeat(4,1fr);
+            grid-template-columns:repeat(4,minmax(0,1fr));
 
             gap:20px;
 
@@ -76,6 +76,8 @@
         .card{
             display:flex;
             flex-direction:column;
+            width:100%;
+            min-width:0;
 
             background:white;
             color:black;
@@ -644,7 +646,7 @@
         @media (max-width:900px){
 
             main{
-                grid-template-columns:repeat(2,1fr);
+                grid-template-columns:repeat(2,minmax(0,1fr));
             }
 
             .reviews-grid{
