@@ -51,16 +51,22 @@ body{
 
 .results-table{
     width:100%;
-    min-width:820px;
+    min-width:1120px;
     border-collapse:collapse;
 }
 
 .results-table th,
 .results-table td{
     padding:14px 16px;
+    border-right:1px solid #edf0f4;
     border-bottom:1px solid #edf0f4;
     text-align:left;
     vertical-align:top;
+}
+
+.results-table th:last-child,
+.results-table td:last-child{
+    border-right:0;
 }
 
 .results-table thead th{
@@ -93,10 +99,74 @@ body{
     font-weight:800;
 }
 
-.difference-cell{
+.results-table td.difference-cell{
     color:var(--green);
+    background:#f0fbf4;
     font-weight:800;
     line-height:1.45;
+}
+
+.score-bars{
+    display:grid;
+    gap:7px;
+    width:min(350px, 100%);
+}
+
+.score-bar-item{
+    display:grid;
+    grid-template-columns:132px minmax(110px, 1fr) 46px;
+    gap:8px;
+    align-items:center;
+}
+
+.score-bar-track{
+    position:relative;
+    height:11px;
+    overflow:hidden;
+    border-radius:999px;
+    background:#edf0f4;
+}
+
+.score-bar-fill{
+    width:calc(var(--score) * 1%);
+    height:100%;
+    border-radius:inherit;
+    background:hsl(calc(var(--score) * 1.2), 72%, 42%);
+}
+
+.score-bar-label{
+    color:var(--muted);
+    font-size:10px;
+    font-weight:800;
+    line-height:1.1;
+    text-align:left;
+}
+
+.score-bar-value{
+    color:var(--ink);
+    font-size:11px;
+    font-weight:800;
+    line-height:1;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.score-scale{
+    display:grid;
+    grid-template-columns:132px minmax(110px, 1fr) 46px;
+    gap:8px;
+}
+
+.score-scale-values{
+    grid-column:2;
+    display:flex;
+    justify-content:space-between;
+    padding-top:4px;
+    border-top:1px solid #98a2b3;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:800;
+    line-height:1;
 }
 
 .sources{
@@ -213,6 +283,7 @@ body{
         display:grid;
         grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.1fr);
         gap:10px;
+        border-right:0;
         border-bottom:1px solid #edf0f4;
     }
 
@@ -225,6 +296,24 @@ body{
 
     .results-table td:last-child{
         border-bottom:0;
+    }
+
+    .score-bars{
+        width:100%;
+    }
+
+    .results-table td[data-label="Porównanie"]{
+        display:block;
+    }
+
+    .results-table td[data-label="Porównanie"]::before{
+        display:block;
+        margin-bottom:8px;
+    }
+
+    .score-bar-item,
+    .score-scale{
+        grid-template-columns:108px minmax(0, 1fr) 42px;
     }
 
     .source-links a{
@@ -242,6 +331,7 @@ body{
             <thead>
                 <tr>
                     <th scope="col">Egzamin</th>
+                    <th scope="col">Porównanie</th>
                     <th scope="col">Średni wynik moich uczniów</th>
                     <th scope="col">Średnia krajowa</th>
                     <th scope="col">O ile lepiej niż średnia krajowa</th>
@@ -251,6 +341,31 @@ body{
             <tbody>
                 <tr>
                     <th scope="row">Egzamin ósmoklasisty 2026</th>
+                    <td data-label="Porównanie">
+                        <div class="score-bars" aria-label="Średni wynik moich uczniów 90,0 procent, średni wynik w kraju 55 procent">
+                            <div class="score-bar-item" style="--score:90;">
+                                <span class="score-bar-label">średni wynik moich uczniów</span>
+                                <div class="score-bar-track" aria-hidden="true">
+                                    <div class="score-bar-fill"></div>
+                                </div>
+                                <span class="score-bar-value">90,0%</span>
+                            </div>
+                            <div class="score-bar-item" style="--score:55;">
+                                <span class="score-bar-label">średni wynik w kraju</span>
+                                <div class="score-bar-track" aria-hidden="true">
+                                    <div class="score-bar-fill"></div>
+                                </div>
+                                <span class="score-bar-value">55%</span>
+                            </div>
+                            <div class="score-scale" aria-hidden="true">
+                                <div class="score-scale-values">
+                                    <span>0</span>
+                                    <span>50</span>
+                                    <span>100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td class="student-score" data-label="Średni wynik moich uczniów">90,0%</td>
                     <td data-label="Średnia krajowa">55%</td>
                     <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+35,0 p.p.</td>
@@ -258,6 +373,31 @@ body{
                 </tr>
                 <tr>
                     <th scope="row">Matura podstawowa 2026</th>
+                    <td data-label="Porównanie">
+                        <div class="score-bars" aria-label="Średni wynik moich uczniów 89,5 procent, średni wynik w kraju 59 procent">
+                            <div class="score-bar-item" style="--score:89.5;">
+                                <span class="score-bar-label">średni wynik moich uczniów</span>
+                                <div class="score-bar-track" aria-hidden="true">
+                                    <div class="score-bar-fill"></div>
+                                </div>
+                                <span class="score-bar-value">89,5%</span>
+                            </div>
+                            <div class="score-bar-item" style="--score:59;">
+                                <span class="score-bar-label">średni wynik w kraju</span>
+                                <div class="score-bar-track" aria-hidden="true">
+                                    <div class="score-bar-fill"></div>
+                                </div>
+                                <span class="score-bar-value">59%</span>
+                            </div>
+                            <div class="score-scale" aria-hidden="true">
+                                <div class="score-scale-values">
+                                    <span>0</span>
+                                    <span>50</span>
+                                    <span>100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td class="student-score" data-label="Średni wynik moich uczniów">89,5%</td>
                     <td data-label="Średnia krajowa">59%</td>
                     <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+30,5 p.p.</td>
@@ -265,6 +405,31 @@ body{
                 </tr>
                 <tr>
                     <th scope="row">Matura rozszerzona 2026</th>
+                    <td data-label="Porównanie">
+                        <div class="score-bars" aria-label="Średni wynik moich uczniów 72,3 procent, średni wynik w kraju 37 procent">
+                            <div class="score-bar-item" style="--score:72.3;">
+                                <span class="score-bar-label">średni wynik moich uczniów</span>
+                                <div class="score-bar-track" aria-hidden="true">
+                                    <div class="score-bar-fill"></div>
+                                </div>
+                                <span class="score-bar-value">72,3%</span>
+                            </div>
+                            <div class="score-bar-item" style="--score:37;">
+                                <span class="score-bar-label">średni wynik w kraju</span>
+                                <div class="score-bar-track" aria-hidden="true">
+                                    <div class="score-bar-fill"></div>
+                                </div>
+                                <span class="score-bar-value">37%</span>
+                            </div>
+                            <div class="score-scale" aria-hidden="true">
+                                <div class="score-scale-values">
+                                    <span>0</span>
+                                    <span>50</span>
+                                    <span>100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td class="student-score" data-label="Średni wynik moich uczniów">72,3%</td>
                     <td data-label="Średnia krajowa">37%</td>
                     <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+35,3 p.p.</td>

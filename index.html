@@ -312,10 +312,9 @@
             gap:14px;
             justify-items:center;
             min-height:128px;
-            border:1px solid #111111;
             border-radius:16px;
             background:#ffffff;
-            box-shadow:0 6px 14px rgba(15,23,42,0.08);
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
             padding:18px;
             text-align:center;
             color:inherit;
@@ -328,7 +327,7 @@
         .exam-result-item:hover,
         .exam-result-item:focus-visible{
             transform:translateY(-3px);
-            box-shadow:0 10px 20px rgba(15,23,42,0.12);
+            box-shadow:0 15px 30px rgba(0,0,0,0.2);
         }
 
         .exam-result-item.result-eo{
@@ -533,8 +532,16 @@
 
         .reviews-average strong{
             color:#1f2a36;
-            font-size:17px;
-            line-height:1;
+            font-size:inherit;
+            line-height:1.2;
+        }
+
+        .reviews-average a{
+            color:#24527a;
+            font-size:inherit;
+            font-weight:800;
+            text-decoration:underline;
+            text-underline-offset:3px;
         }
 
         .reviews-grid{
@@ -686,7 +693,11 @@
             }
 
             .reviews-average strong{
-                font-size:16px;
+                font-size:inherit;
+            }
+
+            .reviews-average a{
+                font-size:inherit;
             }
 
             .reviews-grid{
@@ -941,7 +952,7 @@
 <section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
     <div class="exam-result-header">
         <h2 class="exam-result-heading">Średnie wyniki moich uczniów</h2>
-        <a class="exam-result-detail-link" href="wyniki.html">Wyniki szczegółowe</a>
+        <a class="exam-result-detail-link" href="wyniki.html">Kliknij po więcej szczegółów</a>
     </div>
 
     <div class="exam-result-inner">
@@ -1114,7 +1125,7 @@ loadAboutSection();
 
 </script>
 
-<script src="static/reviews-carousel.js?v=20260730-carousel"></script>
+<script src="static/reviews-carousel.js?v=20260730-carousel-autoplay"></script>
 <script>
 
 fetch("opinie.html", { cache: "no-cache" })

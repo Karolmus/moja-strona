@@ -31,8 +31,16 @@
 
 .reviews-average strong{
     color:#1f2a36;
-    font-size:17px;
-    line-height:1;
+    font-size:inherit;
+    line-height:1.2;
+}
+
+.reviews-average a{
+    color:#24527a;
+    font-size:inherit;
+    font-weight:800;
+    text-decoration:underline;
+    text-underline-offset:3px;
 }
 
 .reviews-grid{
@@ -229,7 +237,11 @@
     }
 
     .reviews-average strong{
-        font-size:16px;
+        font-size:inherit;
+    }
+
+    .reviews-average a{
+        font-size:inherit;
     }
 
     .reviews-grid{
