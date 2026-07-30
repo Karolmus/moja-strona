@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260730-logo-footer">
+<link rel="stylesheet" href="nav.css?v=20260730-no-footer-logo">
 <style>
 :root{
     --ink:#1f2a36;
@@ -50,14 +50,30 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+    gap:14px;
     min-height:94px;
     padding:16px;
 }
 
 .results-brand img{
     width:82px;
-    height:auto;
+    height:82px;
+    flex:0 0 82px;
     display:block;
+    border:2px solid #ffffff;
+    border-radius:50%;
+    background:#ffffff;
+    box-shadow:0 5px 14px rgba(15,23,42,0.16);
+}
+
+.results-brand-photo{
+    object-fit:cover;
+    object-position:50% 42%;
+}
+
+.results-brand-logo{
+    padding:12px;
+    object-fit:contain;
 }
 
 .results-table-card{
@@ -257,6 +273,12 @@ body{
 
     .results-brand img{
         width:64px;
+        height:64px;
+        flex-basis:64px;
+    }
+
+    .results-brand-logo{
+        padding:10px;
     }
 
     .results-table-card{
@@ -352,7 +374,8 @@ body{
 
 <main class="page">
     <div class="results-brand" aria-label="Delta Sigma">
-        <img src="img/logo3.png" alt="Delta Sigma">
+        <img class="results-brand-photo" src="img/me3.png" alt="Karol Musioł">
+        <img class="results-brand-logo" src="img/logo3.png" alt="Delta Sigma">
     </div>
 
     <section class="results-table-card" aria-label="Wyniki egzaminów">
