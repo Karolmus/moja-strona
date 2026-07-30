@@ -487,7 +487,7 @@ body{
 .exam-result-actions{
     display:flex;
     justify-content:center;
-    margin:0 0 12px;
+    margin:12px 0 0;
 }
 
 .exam-result-detail-link{
@@ -764,7 +764,7 @@ footer{
 }
 
 .exam-result-actions{
-    margin-bottom:10px;
+    margin:10px 0 0;
 }
 
 .exam-result-detail-link{
@@ -862,10 +862,6 @@ footer{
 
 </section>
 <section class="exam-result-banner" aria-label="Średni wynik z matury podstawowej 2026 na tle kraju">
-    <div class="exam-result-actions">
-        <a class="exam-result-detail-link" href="wyniki.html">Szczegóły</a>
-    </div>
-
     <div class="exam-result-inner single-result">
         <article class="exam-result-item result-matura">
             <div class="exam-result-copy">
@@ -878,12 +874,12 @@ footer{
                     <strong>89,5%</strong>
                 </div>
                 <div class="exam-result-value">
-                    <span>Średni wynik w kraju</span>
+                    <span>Średni wynik w skali kraju</span>
                     <strong>59%</strong>
                 </div>
             </div>
 
-            <div class="score-bars" aria-label="Średni wynik moich uczniów 89,5 procent, średni wynik w kraju 59 procent">
+            <div class="score-bars" aria-label="Średni wynik moich uczniów 89,5 procent, średni wynik w skali kraju 59 procent">
                 <div class="score-bar-item" style="--score:89.5;">
                     <span class="score-bar-label">średni wynik moich uczniów</span>
                     <div class="score-bar-track" aria-hidden="true">
@@ -892,7 +888,7 @@ footer{
                     <span class="score-bar-value">89,5%</span>
                 </div>
                 <div class="score-bar-item" style="--score:59;">
-                    <span class="score-bar-label">średni wynik w kraju</span>
+                    <span class="score-bar-label">średni wynik w skali kraju</span>
                     <div class="score-bar-track" aria-hidden="true">
                         <div class="score-bar-fill"></div>
                     </div>
@@ -907,6 +903,10 @@ footer{
                 </div>
             </div>
         </article>
+    </div>
+
+    <div class="exam-result-actions">
+        <a class="exam-result-detail-link" href="wyniki.html">Szczegóły</a>
     </div>
 </section>
 <section class="countdown-section">
