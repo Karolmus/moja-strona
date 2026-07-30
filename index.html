@@ -255,13 +255,45 @@
             padding:0 20px;
         }
 
-        .exam-result-heading{
+        .exam-result-header{
+            display:flex;
+            flex-wrap:wrap;
+            align-items:center;
+            justify-content:center;
+            gap:10px 14px;
             margin:0 0 12px;
+        }
+
+        .exam-result-heading{
+            margin:0;
             color:#1f2a36;
             font-size:24px;
             font-weight:700;
             line-height:1.2;
             text-align:center;
+        }
+
+        .exam-result-detail-link{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-height:34px;
+            padding:7px 12px;
+            border:1px solid #8eb5de;
+            border-radius:999px;
+            background:#edf4fb;
+            color:#24527a;
+            font-size:12px;
+            font-weight:800;
+            text-decoration:none;
+            white-space:nowrap;
+            transition:background 0.2s ease, transform 0.2s ease;
+        }
+
+        .exam-result-detail-link:hover,
+        .exam-result-detail-link:focus-visible{
+            background:#dbeaf8;
+            transform:translateY(-1px);
         }
 
         .exam-result-inner{
@@ -781,9 +813,19 @@
                 padding:0 12px;
             }
 
-            .exam-result-heading{
+            .exam-result-header{
+                gap:8px;
                 margin-bottom:10px;
+            }
+
+            .exam-result-heading{
                 font-size:20px;
+            }
+
+            .exam-result-detail-link{
+                min-height:30px;
+                padding:6px 10px;
+                font-size:11px;
             }
 
             .exam-result-inner{
@@ -897,7 +939,10 @@
 </section>
 
 <section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
-    <h2 class="exam-result-heading">Średnie wyniki moich uczniów</h2>
+    <div class="exam-result-header">
+        <h2 class="exam-result-heading">Średnie wyniki moich uczniów</h2>
+        <a class="exam-result-detail-link" href="wyniki.html">Wyniki szczegółowe</a>
+    </div>
 
     <div class="exam-result-inner">
         <a class="exam-result-item result-eo" href="wyniki.html" aria-label="Zobacz porównanie wyników z egzaminu ósmoklasisty">
