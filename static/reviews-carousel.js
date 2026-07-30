@@ -1,11 +1,22 @@
 (function(){
     const AUTOPLAY_MS = 4200;
     const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const canClickCards = window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches === true;
 
-    function setCardState(card, state, isActive){
+    function setCardState(card, state, isActive, isInteractive){
         card.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
         card.classList.add(state);
-        card.setAttribute("aria-hidden", isActive ? "false" : "true");
+        card.setAttribute("aria-hidden", state === "is-hidden" ? "true" : "false");
+
+        if(isInteractive && !isActive){
+            card.setAttribute("role", "button");
+            card.setAttribute("tabindex", "0");
+            card.setAttribute("aria-label", "Pokaż tę opinię");
+        } else {
+            card.removeAttribute("role");
+            card.removeAttribute("tabindex");
+            card.removeAttribute("aria-label");
+        }
     }
 
     function updateCarousel(section){
@@ -16,13 +27,13 @@
 
         cards.forEach((card, index) => {
             if(index === activeIndex){
-                setCardState(card, "is-active", true);
+                setCardState(card, "is-active", true, false);
             } else if(index === previousIndex){
-                setCardState(card, "is-prev", false);
+                setCardState(card, "is-prev", false, canClickCards);
             } else if(index === nextIndex){
-                setCardState(card, "is-next", false);
+                setCardState(card, "is-next", false, canClickCards);
             } else {
-                setCardState(card, "is-hidden", false);
+                setCardState(card, "is-hidden", false, false);
             }
         });
     }
@@ -52,39 +63,32 @@
         section.dataset.reviewTimer = "";
     }
 
-    function addControls(section){
-        if(section.querySelector(".reviews-carousel-controls")){
+    function addCardSelection(section){
+        if(!canClickCards || section.dataset.cardSelectionReady === "true"){
             return;
         }
 
-        const controls = document.createElement("div");
-        const previous = document.createElement("button");
-        const next = document.createElement("button");
+        section.dataset.cardSelectionReady = "true";
 
-        controls.className = "reviews-carousel-controls";
+        section.querySelectorAll(".review-card").forEach(card => {
+            const selectCard = () => {
+                if(card.classList.contains("is-prev")){
+                    moveCarousel(section, -1);
+                    startAutoplay(section);
+                } else if(card.classList.contains("is-next")){
+                    moveCarousel(section, 1);
+                    startAutoplay(section);
+                }
+            };
 
-        previous.className = "reviews-carousel-control";
-        previous.type = "button";
-        previous.innerText = "‹";
-        previous.setAttribute("aria-label", "Poprzednia opinia");
-
-        next.className = "reviews-carousel-control";
-        next.type = "button";
-        next.innerText = "›";
-        next.setAttribute("aria-label", "Następna opinia");
-
-        previous.addEventListener("click", () => {
-            moveCarousel(section, -1);
-            startAutoplay(section);
+            card.addEventListener("click", selectCard);
+            card.addEventListener("keydown", event => {
+                if(event.key === "Enter" || event.key === " "){
+                    event.preventDefault();
+                    selectCard();
+                }
+            });
         });
-
-        next.addEventListener("click", () => {
-            moveCarousel(section, 1);
-            startAutoplay(section);
-        });
-
-        controls.append(previous, next);
-        section.appendChild(controls);
     }
 
     function addSwipe(section){
@@ -175,7 +179,8 @@
             section.classList.add("reviews-carousel");
             section.querySelector(".reviews-grid")?.setAttribute("aria-live", "polite");
 
-            addControls(section);
+            section.querySelector(".reviews-carousel-controls")?.remove();
+            addCardSelection(section);
             addSwipe(section);
             updateCarousel(section);
             startAutoplay(section);
