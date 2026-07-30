@@ -145,9 +145,19 @@ body{
     color:#444;
 }
 
+.course-summary p{
+    max-width:760px;
+    margin:16px auto 0;
+    padding:16px 20px;
+    border:1px solid #d8dee9;
+    border-radius:16px;
+    background:rgba(255,255,255,0.92);
+    box-shadow:0 8px 22px rgba(15,23,42,0.07);
+}
+
 .exam-result-banner{
     max-width:940px;
-    margin:16px auto 0;
+    margin:22px auto 0;
     padding:0 20px;
 }
 
@@ -158,6 +168,35 @@ body{
     font-weight:700;
     line-height:1.2;
     text-align:center;
+}
+
+.exam-result-actions{
+    display:flex;
+    justify-content:center;
+    margin:0 0 12px;
+}
+
+.exam-result-detail-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:34px;
+    padding:7px 12px;
+    border:1px solid #8eb5de;
+    border-radius:999px;
+    background:#edf4fb;
+    color:#24527a;
+    font-size:12px;
+    font-weight:800;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background 0.2s ease, transform 0.2s ease;
+}
+
+.exam-result-detail-link:hover,
+.exam-result-detail-link:focus-visible{
+    background:#dbeaf8;
+    transform:translateY(-1px);
 }
 
 .exam-result-inner{
@@ -181,13 +220,13 @@ body{
 .exam-result-item{
     display:grid;
     align-content:center;
-    gap:14px;
+    gap:18px;
     justify-items:center;
     min-height:128px;
     border-radius:16px;
     background:#ffffff;
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    padding:18px;
+    padding:24px;
     text-align:center;
     --result-accent:#d9e1ea;
     --result-accent-text:#1f2a36;
@@ -237,13 +276,13 @@ body{
 .exam-result-values{
     display:grid;
     grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:10px;
+    gap:12px;
 }
 
 .exam-result-value{
     display:grid;
     gap:6px;
-    padding:12px;
+    padding:14px 16px;
     border:1px solid #d8dee9;
     border-radius:12px;
     background:#f8fafc;
@@ -268,14 +307,14 @@ body{
 
 .score-bars{
     display:grid;
-    gap:7px;
+    gap:9px;
     width:100%;
 }
 
 .score-bar-item{
     display:grid;
     grid-template-columns:132px minmax(110px, 1fr) 46px;
-    gap:8px;
+    gap:10px;
     align-items:center;
 }
 
@@ -314,7 +353,7 @@ body{
 .score-scale{
     display:grid;
     grid-template-columns:132px minmax(110px, 1fr) 46px;
-    gap:8px;
+    gap:10px;
 }
 
 .score-scale-values{
@@ -710,12 +749,23 @@ footer{
 }
 
 .exam-result-banner{
+    margin-top:18px;
     padding:0 20px;
 }
 
 .exam-result-heading{
     margin-bottom:10px;
     font-size:20px;
+}
+
+.exam-result-actions{
+    margin-bottom:10px;
+}
+
+.exam-result-detail-link{
+    min-height:30px;
+    padding:6px 10px;
+    font-size:11px;
 }
 
 .exam-result-inner{
@@ -731,10 +781,10 @@ footer{
 }
 
 .exam-result-item{
-    min-height:96px;
-    border-radius:12px;
-    gap:8px;
-    padding:8px 4px;
+    min-height:0;
+    border-radius:14px;
+    gap:12px;
+    padding:14px 12px;
 }
 
 .exam-result-score{
@@ -743,11 +793,11 @@ footer{
 
 .exam-result-values{
     grid-template-columns:1fr;
-    gap:8px;
+    gap:10px;
 }
 
 .exam-result-value{
-    padding:10px;
+    padding:12px;
 }
 
 .exam-result-value strong{
@@ -756,7 +806,12 @@ footer{
 
 .score-bar-item,
 .score-scale{
-    grid-template-columns:108px minmax(0, 1fr) 42px;
+    grid-template-columns:112px minmax(0, 1fr) 42px;
+    gap:8px;
+}
+
+.score-bars{
+    gap:9px;
 }
 
 .exam-result-copy{
@@ -792,7 +847,7 @@ footer{
 </div>
 
 <div class="hero-bg">
-<section class="course-info">
+<section class="course-info course-summary">
 
     <h2>Przygotowanie do egzaminu ósmoklasisty</h2>
 
@@ -804,7 +859,9 @@ footer{
 
 </section>
 <section class="exam-result-banner" aria-label="Średni wynik z egzaminu ósmoklasisty 2026 na tle kraju">
-    <h2 class="exam-result-heading">Średni wynik moich uczniów na tle kraju</h2>
+    <div class="exam-result-actions">
+        <a class="exam-result-detail-link" href="wyniki.html">Szczegóły</a>
+    </div>
 
     <div class="exam-result-inner single-result">
         <article class="exam-result-item result-eo">
