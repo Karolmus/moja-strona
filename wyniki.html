@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260730-footer-contact">
+<link rel="stylesheet" href="nav.css?v=20260730-logo-footer">
 <style>
 :root{
     --ink:#1f2a36;
@@ -37,12 +37,27 @@ body{
     gap:16px;
 }
 
+.results-brand,
 .results-table-card,
 .source-card{
     border:1px solid var(--line);
     border-radius:12px;
     background:#ffffff;
     box-shadow:0 6px 16px rgba(15,23,42,0.055);
+}
+
+.results-brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:94px;
+    padding:16px;
+}
+
+.results-brand img{
+    width:82px;
+    height:auto;
+    display:block;
 }
 
 .results-table-card{
@@ -73,20 +88,20 @@ body{
     background:var(--soft);
     color:var(--muted);
     font-size:12px;
-    font-weight:800;
+    font-weight:500;
     text-transform:uppercase;
 }
 
 .results-table tbody th{
     color:var(--ink);
     font-size:15px;
-    font-weight:800;
+    font-weight:500;
 }
 
 .results-table td{
     color:var(--ink);
     font-size:14px;
-    font-weight:700;
+    font-weight:400;
 }
 
 .results-table tbody tr:last-child th,
@@ -96,13 +111,13 @@ body{
 
 .student-score{
     color:var(--ink);
-    font-weight:800;
+    font-weight:500;
 }
 
 .results-table td.difference-cell{
     color:var(--green);
     background:#f0fbf4;
-    font-weight:800;
+    font-weight:500;
     line-height:1.45;
 }
 
@@ -121,7 +136,7 @@ body{
 
 .score-bar-track{
     position:relative;
-    height:11px;
+    height:6px;
     overflow:hidden;
     border-radius:999px;
     background:#edf0f4;
@@ -137,7 +152,7 @@ body{
 .score-bar-label{
     color:var(--muted);
     font-size:10px;
-    font-weight:800;
+    font-weight:500;
     line-height:1.1;
     text-align:left;
 }
@@ -145,7 +160,7 @@ body{
 .score-bar-value{
     color:var(--ink);
     font-size:11px;
-    font-weight:800;
+    font-weight:500;
     line-height:1;
     text-align:right;
     white-space:nowrap;
@@ -165,7 +180,7 @@ body{
     border-top:1px solid #98a2b3;
     color:var(--muted);
     font-size:10px;
-    font-weight:800;
+    font-weight:500;
     line-height:1;
 }
 
@@ -185,6 +200,7 @@ body{
 .source-card h2{
     margin:0;
     font-size:18px;
+    font-weight:500;
 }
 
 .source-links{
@@ -205,7 +221,7 @@ body{
     background:#edf4fb;
     color:#24527a;
     font-size:12px;
-    font-weight:800;
+    font-weight:500;
     text-decoration:none;
 }
 
@@ -232,6 +248,15 @@ body{
 
     .source-card{
         padding:14px;
+    }
+
+    .results-brand{
+        min-height:78px;
+        padding:14px;
+    }
+
+    .results-brand img{
+        width:64px;
     }
 
     .results-table-card{
@@ -291,7 +316,7 @@ body{
         content:attr(data-label);
         color:var(--muted);
         font-size:12px;
-        font-weight:800;
+        font-weight:500;
     }
 
     .results-table td:last-child{
@@ -326,6 +351,10 @@ body{
 <div id="nav"></div>
 
 <main class="page">
+    <div class="results-brand" aria-label="Delta Sigma">
+        <img src="img/logo3.png" alt="Delta Sigma">
+    </div>
+
     <section class="results-table-card" aria-label="Wyniki egzaminów">
         <table class="results-table">
             <thead>
@@ -334,7 +363,7 @@ body{
                     <th scope="col"></th>
                     <th scope="col">Średni wynik moich uczniów</th>
                     <th scope="col">Średnia krajowa</th>
-                    <th scope="col">O ile lepiej niż średnia krajowa</th>
+                    <th scope="col">Różnica względem średniego wyniku w skali kraju</th>
                     <th scope="col">Rozpiętość wyników moich uczniów</th>
                 </tr>
             </thead>
@@ -369,7 +398,7 @@ body{
                     <td class="student-score" data-label="Średni wynik moich uczniów">90,0%</td>
                     <td data-label="Średnia krajowa">55%</td>
                     <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+35,0 p.p.</td>
-                    <td data-label="Zakres wyników">80-97%</td>
+                    <td data-label="Zakres wyników">od 80% do 97%</td>
                 </tr>
                 <tr>
                     <th scope="row">Matura podstawowa 2026</th>
@@ -401,7 +430,7 @@ body{
                     <td class="student-score" data-label="Średni wynik moich uczniów">89,5%</td>
                     <td data-label="Średnia krajowa">59%</td>
                     <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+30,5 p.p.</td>
-                    <td data-label="Zakres wyników">78-100%</td>
+                    <td data-label="Zakres wyników">od 78% do 100%</td>
                 </tr>
                 <tr>
                     <th scope="row">Matura rozszerzona 2026</th>
@@ -433,7 +462,7 @@ body{
                     <td class="student-score" data-label="Średni wynik moich uczniów">72,3%</td>
                     <td data-label="Średnia krajowa">37%</td>
                     <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+35,3 p.p.</td>
-                    <td data-label="Zakres wyników">30-98%</td>
+                    <td data-label="Zakres wyników">od 30% do 98%</td>
                 </tr>
             </tbody>
         </table>

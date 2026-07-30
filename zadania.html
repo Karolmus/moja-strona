@@ -10,7 +10,7 @@
 <title>Zadania</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260730-footer-contact">
+<link rel="stylesheet" href="nav.css?v=20260730-logo-footer">
 
 <style>
 :root {
@@ -1121,8 +1121,8 @@ body.focus-mode .task-card {
 
 .task-actions {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(180px, auto) minmax(0, 1fr);
-    align-items: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
     gap: 10px;
 }
 
@@ -1140,7 +1140,13 @@ body.focus-mode .task-card {
 }
 
 .action-group.navigation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(112px, 1fr));
+    grid-template-areas:
+        "previous next"
+        "skip skip";
     justify-content: center;
+    min-width: min(100%, 300px);
 }
 
 .action-group.navigation .previous-task-btn {
@@ -1155,7 +1161,13 @@ body.focus-mode .task-card {
     grid-area: skip;
 }
 
+.action-group.navigation .action-btn {
+    width: 100%;
+    min-width: 0;
+}
+
 .action-group.check {
+    grid-column: 1 / -1;
     justify-content: flex-end;
 }
 
