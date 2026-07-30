@@ -132,6 +132,7 @@
     height:clamp(230px, 24vw, 292px);
     max-width:min(1120px, 100%);
     overflow:hidden;
+    touch-action:pan-y;
 }
 
 .reviews-carousel .review-card,
@@ -218,6 +219,10 @@
     background:#f8fafc;
     box-shadow:0 6px 16px rgba(15,23,42,0.09);
     transform:translateY(-1px);
+}
+
+.reviews-carousel.is-swiping .review-card{
+    cursor:grabbing;
 }
 
 @media (max-width:700px){
