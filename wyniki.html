@@ -15,8 +15,6 @@
     --line:#d8dee9;
     --soft:#f8fafc;
     --green:#2f7a3f;
-    --violet:#5b3b72;
-    --sky:#24527a;
     --content:min(1180px, calc(100% - 32px));
 }
 
@@ -39,81 +37,66 @@ body{
     gap:16px;
 }
 
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:16px;
-}
-
-.stat-card{
-    --accent:var(--sky);
-    display:grid;
-    gap:14px;
-    padding:18px;
+.results-table-card,
+.source-card{
     border:1px solid var(--line);
     border-radius:12px;
     background:#ffffff;
     box-shadow:0 6px 16px rgba(15,23,42,0.055);
 }
 
-.stat-eo{
-    --accent:var(--green);
+.results-table-card{
+    overflow-x:auto;
 }
 
-.stat-basic{
-    --accent:var(--violet);
+.results-table{
+    width:100%;
+    min-width:820px;
+    border-collapse:collapse;
 }
 
-.stat-extended{
-    --accent:var(--sky);
-}
-
-.stat-card h2{
-    margin:0;
-    padding-bottom:12px;
-    border-bottom:1px solid var(--line);
-    color:var(--ink);
-    font-size:18px;
-    line-height:1.2;
-}
-
-.result-list{
-    display:grid;
-    gap:6px;
-    margin:0;
-}
-
-.result-list div{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:16px;
-    padding:9px 0;
+.results-table th,
+.results-table td{
+    padding:14px 16px;
     border-bottom:1px solid #edf0f4;
+    text-align:left;
+    vertical-align:top;
 }
 
-.result-list div:last-child{
-    border-bottom:0;
-}
-
-.result-list dt{
+.results-table thead th{
+    background:var(--soft);
     color:var(--muted);
-    font-size:13px;
+    font-size:12px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.results-table tbody th{
+    color:var(--ink);
+    font-size:15px;
+    font-weight:800;
+}
+
+.results-table td{
+    color:var(--ink);
+    font-size:14px;
     font-weight:700;
 }
 
-.result-list dd{
-    margin:0;
-    color:var(--ink);
-    font-size:16px;
-    font-weight:800;
-    text-align:right;
-    white-space:nowrap;
+.results-table tbody tr:last-child th,
+.results-table tbody tr:last-child td{
+    border-bottom:0;
 }
 
-.result-list .primary dd,
-.result-list .difference dd{
-    color:var(--accent);
+.student-score{
+    color:var(--ink);
+    font-weight:800;
+}
+
+.difference-cell{
+    color:var(--green);
+    font-weight:800;
+    line-height:1.45;
 }
 
 .sources{
@@ -127,10 +110,6 @@ body{
     gap:12px;
     align-items:center;
     padding:16px 18px;
-    border:1px solid var(--line);
-    border-radius:12px;
-    background:#ffffff;
-    box-shadow:0 6px 16px rgba(15,23,42,0.055);
 }
 
 .source-card h2{
@@ -166,10 +145,6 @@ body{
 }
 
 @media (max-width:900px){
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
     .source-card{
         grid-template-columns:1fr;
     }
@@ -185,18 +160,71 @@ body{
         padding:18px 0 30px;
     }
 
-    .stat-card,
     .source-card{
         padding:14px;
     }
 
-    .stats-grid{
-        gap:10px;
+    .results-table-card{
+        overflow:visible;
+        border:0;
+        background:transparent;
+        box-shadow:none;
     }
 
-    .result-list div{
-        gap:10px;
+    .results-table{
+        min-width:0;
+        border-collapse:separate;
+        border-spacing:0 10px;
+    }
+
+    .results-table thead{
+        display:none;
+    }
+
+    .results-table,
+    .results-table tbody,
+    .results-table tr,
+    .results-table th,
+    .results-table td{
+        display:block;
+        width:100%;
+    }
+
+    .results-table tbody tr{
+        padding:12px;
+        border:1px solid var(--line);
+        border-radius:12px;
+        background:#ffffff;
+        box-shadow:0 6px 16px rgba(15,23,42,0.055);
+    }
+
+    .results-table th,
+    .results-table td{
         padding:8px 0;
+    }
+
+    .results-table tbody th{
+        padding-top:0;
+        padding-bottom:10px;
+        border-bottom:1px solid var(--line);
+    }
+
+    .results-table td{
+        display:grid;
+        grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap:10px;
+        border-bottom:1px solid #edf0f4;
+    }
+
+    .results-table td::before{
+        content:attr(data-label);
+        color:var(--muted);
+        font-size:12px;
+        font-weight:800;
+    }
+
+    .results-table td:last-child{
+        border-bottom:0;
     }
 
     .source-links a{
@@ -209,72 +237,41 @@ body{
 <div id="nav"></div>
 
 <main class="page">
-    <section class="stats-grid" aria-label="Wyniki egzaminów">
-        <article class="stat-card stat-eo">
-            <h2>Egzamin ósmoklasisty 2026</h2>
-            <dl class="result-list">
-                <div class="primary">
-                    <dt>Moi uczniowie</dt>
-                    <dd>90,0%</dd>
-                </div>
-                <div>
-                    <dt>Średnia krajowa</dt>
-                    <dd>55%</dd>
-                </div>
-                <div class="difference">
-                    <dt>Różnica</dt>
-                    <dd>+35,0 p.p.</dd>
-                </div>
-                <div>
-                    <dt>Zakres wyników</dt>
-                    <dd>80-97%</dd>
-                </div>
-            </dl>
-        </article>
-
-        <article class="stat-card stat-basic">
-            <h2>Matura podstawowa 2026</h2>
-            <dl class="result-list">
-                <div class="primary">
-                    <dt>Moi uczniowie</dt>
-                    <dd>89,5%</dd>
-                </div>
-                <div>
-                    <dt>Średnia krajowa</dt>
-                    <dd>59%</dd>
-                </div>
-                <div class="difference">
-                    <dt>Różnica</dt>
-                    <dd>+30,5 p.p.</dd>
-                </div>
-                <div>
-                    <dt>Zakres wyników</dt>
-                    <dd>78-100%</dd>
-                </div>
-            </dl>
-        </article>
-
-        <article class="stat-card stat-extended">
-            <h2>Matura rozszerzona 2026</h2>
-            <dl class="result-list">
-                <div class="primary">
-                    <dt>Moi uczniowie</dt>
-                    <dd>72,3%</dd>
-                </div>
-                <div>
-                    <dt>Średnia krajowa</dt>
-                    <dd>37%</dd>
-                </div>
-                <div class="difference">
-                    <dt>Różnica</dt>
-                    <dd>+35,3 p.p.</dd>
-                </div>
-                <div>
-                    <dt>Zakres wyników</dt>
-                    <dd>30-98%</dd>
-                </div>
-            </dl>
-        </article>
+    <section class="results-table-card" aria-label="Wyniki egzaminów">
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th scope="col">Egzamin</th>
+                    <th scope="col">Średni wynik moich uczniów</th>
+                    <th scope="col">Średnia krajowa</th>
+                    <th scope="col">O ile lepiej niż średnia krajowa</th>
+                    <th scope="col">Zakres wyników</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Egzamin ósmoklasisty 2026</th>
+                    <td class="student-score" data-label="Średni wynik moich uczniów">90,0%</td>
+                    <td data-label="Średnia krajowa">55%</td>
+                    <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+35,0 p.p.</td>
+                    <td data-label="Zakres wyników">80-97%</td>
+                </tr>
+                <tr>
+                    <th scope="row">Matura podstawowa 2026</th>
+                    <td class="student-score" data-label="Średni wynik moich uczniów">89,5%</td>
+                    <td data-label="Średnia krajowa">59%</td>
+                    <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+30,5 p.p.</td>
+                    <td data-label="Zakres wyników">78-100%</td>
+                </tr>
+                <tr>
+                    <th scope="row">Matura rozszerzona 2026</th>
+                    <td class="student-score" data-label="Średni wynik moich uczniów">72,3%</td>
+                    <td data-label="Średnia krajowa">37%</td>
+                    <td class="difference-cell" data-label="O ile lepiej niż średnia krajowa">+35,3 p.p.</td>
+                    <td data-label="Zakres wyników">30-98%</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
     <section class="sources" aria-label="Źródła danych">

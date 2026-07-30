@@ -286,8 +286,17 @@
             box-shadow:0 6px 14px rgba(15,23,42,0.08);
             padding:18px;
             text-align:center;
+            color:inherit;
+            text-decoration:none;
             --result-accent:#d9e1ea;
             --result-accent-text:#1f2a36;
+            transition:transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .exam-result-item:hover,
+        .exam-result-item:focus-visible{
+            transform:translateY(-3px);
+            box-shadow:0 10px 20px rgba(15,23,42,0.12);
         }
 
         .exam-result-item.result-eo{
@@ -891,26 +900,26 @@
     <h2 class="exam-result-heading">Średnie wyniki moich uczniów</h2>
 
     <div class="exam-result-inner">
-        <article class="exam-result-item result-eo">
+        <a class="exam-result-item result-eo" href="wyniki.html" aria-label="Zobacz porównanie wyników z egzaminu ósmoklasisty">
             <div class="exam-result-copy">
                 <small>Egzamin ósmoklasisty 2026</small>
             </div>
             <div class="exam-result-score">90,0%</div>
-        </article>
+        </a>
 
-        <article class="exam-result-item result-matura">
+        <a class="exam-result-item result-matura" href="wyniki.html" aria-label="Zobacz porównanie wyników z matury podstawowej">
             <div class="exam-result-copy">
                 <small>Matura podstawowa 2026</small>
             </div>
             <div class="exam-result-score">89,5%</div>
-        </article>
+        </a>
 
-        <article class="exam-result-item result-matura">
+        <a class="exam-result-item result-matura" href="wyniki.html" aria-label="Zobacz porównanie wyników z matury rozszerzonej">
             <div class="exam-result-copy">
                 <small>Matura rozszerzona 2026</small>
             </div>
             <div class="exam-result-score">72,3%</div>
-        </article>
+        </a>
     </div>
 </section>
 
