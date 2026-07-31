@@ -233,9 +233,9 @@
     .main-nav{
         flex-wrap: nowrap;
         justify-content: center;
-        gap: 2px;
-        min-height: 48px;
-        padding: 8px 5px;
+        gap: 3px;
+        min-height: 55px;
+        padding: 9px 6px;
     }
 
     .main-nav a,
@@ -244,9 +244,9 @@
         flex: 0 1 auto;
         min-width: 0;
         white-space: nowrap;
-        font-size: 9px;
+        font-size: 10px;
         line-height: 1.1;
-        padding: 7px 4px;
+        padding: 8px 5px;
     }
 
     .nav-user {
