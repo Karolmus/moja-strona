@@ -2567,8 +2567,8 @@ footer {
             <div class="meta-box meta-osmoklasista" id="metaBox"></div>
 
             <div class="task-image-stack">
-                <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania">
-                <img id="taskImage" class="task-image" src="" alt="zadanie">
+                <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania" decoding="async">
+                <img id="taskImage" class="task-image" src="" alt="zadanie" decoding="async" fetchpriority="high">
             </div>
 
             <div class="interaction-panel">
@@ -5523,12 +5523,31 @@ function wait(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function preloadImage(src){
-    if(!src) return Promise.resolve(null);
+const imageLoadPromises = new Map();
+
+function optimizedImageCandidate(src){
+    if(!src) return src;
+
+    return /\.(png|jpe?g)$/i.test(src)
+        ? src.replace(/\.(png|jpe?g)$/i, ".webp")
+        : src;
+}
+
+function imageCandidates(src){
+    const optimized = optimizedImageCandidate(src);
+
+    return optimized && optimized !== src
+        ? [optimized, src]
+        : [src];
+}
+
+function loadImageCandidate(candidates, index = 0){
+    const src = candidates[index];
 
     return new Promise((resolve, reject) => {
         const image = new Image();
 
+        image.decoding = "async";
         image.onload = async () => {
             try {
                 if(image.decode) await image.decode();
@@ -5539,9 +5558,53 @@ function preloadImage(src){
             resolve(src);
         };
 
-        image.onerror = () => reject(new Error(`Nie udało się wczytać obrazka: ${src}`));
+        image.onerror = () => {
+            if(index + 1 < candidates.length){
+                loadImageCandidate(candidates, index + 1).then(resolve, reject);
+                return;
+            }
+
+            reject(new Error(`Nie udało się wczytać obrazka: ${candidates[candidates.length - 1]}`));
+        };
+
         image.src = src;
     });
+}
+
+function setOptimizedImageSrc(image, src, { loading = "lazy" } = {}){
+    if(!image || !src) return;
+
+    const candidates = imageCandidates(src);
+    const [primary, fallback] = candidates;
+
+    image.decoding = "async";
+    image.loading = loading;
+    image.onerror = fallback && fallback !== primary
+        ? () => {
+            image.onerror = null;
+            image.src = fallback;
+        }
+        : null;
+    image.src = primary;
+}
+
+function preloadImage(src){
+    if(!src) return Promise.resolve(null);
+
+    const candidates = imageCandidates(src);
+    const cacheKey = candidates.join("|");
+
+    if(!imageLoadPromises.has(cacheKey)){
+        imageLoadPromises.set(
+            cacheKey,
+            loadImageCandidate(candidates).catch(error => {
+                imageLoadPromises.delete(cacheKey);
+                throw error;
+            })
+        );
+    }
+
+    return imageLoadPromises.get(cacheKey);
 }
 
 function setTaskLoading(loading){
@@ -7220,8 +7283,8 @@ function showSolution(index = selectedSolutionIndex){
         const solutionImage = document.createElement("img");
 
         solutionImage.className = "solution-image";
-        solutionImage.src = item.path;
         solutionImage.alt = `Rozwiązanie ${solution.label}${itemIndex ? `, część ${itemIndex + 1}` : ""} zadania ${taskLabel(currentTask)}`;
+        setOptimizedImageSrc(solutionImage, item.path);
         images.appendChild(solutionImage);
     });
     switcher.innerHTML = "";
@@ -7340,8 +7403,8 @@ function showGradingCriteria(index = selectedGradingIndex){
         gradingText.innerHTML = "";
         gradingText.hidden = true;
         image.hidden = false;
-        image.src = item.path;
         image.alt = `${item.label} zadania ${taskLabel(currentTask)}`;
+        setOptimizedImageSrc(image, item.path);
     } else {
         return;
     }
