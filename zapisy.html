@@ -678,12 +678,28 @@ h1{
 }
 
 .tool-card{
+    display:block;
     width:100%;
     min-width:0;
     background:#f8fafc;
     border:1px solid #e2e8f0;
     border-radius:14px;
     padding:18px;
+    color:inherit;
+    text-decoration:none;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tool-card:hover,
+.tool-card:focus-visible{
+    border-color:#8eb5de;
+    box-shadow:0 8px 20px rgba(15,23,42,0.1);
+    transform:translateY(-2px);
+}
+
+.tool-card:focus-visible{
+    outline:3px solid rgba(88,101,242,0.22);
+    outline-offset:3px;
 }
 
 .tool-logo{
@@ -1388,33 +1404,33 @@ footer{
 	        </p>
 
 		        <div class="tools-grid">
-		            <article class="tool-card">
+		            <a class="tool-card" href="https://www.desmos.com/calculator?lang=pl">
 		                <div class="tool-logo" aria-label="Desmos">
 		                    <strong>Desmos</strong>
 		                </div>
 		                <p>Narzędzie do badania funkcji</p>
-		            </article>
+		            </a>
 
-		            <article class="tool-card">
+		            <a class="tool-card" href="https://www.geogebra.org/m/WufaTSf2">
 		                <div class="tool-logo" aria-label="GeoGebra">
 		                    <strong>GeoGebra</strong>
 		                </div>
 		                <p>Narzędzie do badania i budowania figur płaskich i przestrzennych</p>
-		            </article>
+		            </a>
 
-		            <article class="tool-card">
+		            <a class="tool-card" href="https://www.symbolab.com/solver">
 		                <div class="tool-logo" aria-label="Symbolab">
 		                    <strong>Symbolab</strong>
 		                </div>
 		                <p>Narzędzie do sprawdzania rachunków oraz obliczeń symbolicznych</p>
-		            </article>
+		            </a>
 
-		            <article class="tool-card">
+		            <a class="tool-card" href="https://app.idroo.com/dashboard">
 		                <div class="tool-logo" aria-label="iDroo">
 		                    <strong>iDroo</strong>
 		                </div>
 		                <p>Interaktywna tablica, na której w czasie rzeczywistym może pisać również uczeń</p>
-	            </article>
+	            </a>
 	        </div>
 	    </div>
 	</section>
