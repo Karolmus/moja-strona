@@ -206,7 +206,7 @@
     border: 0;
 }
 
-.site-footer a,
+.site-footer .footer-links a,
 .footer-contact a {
     display: inline-flex;
     align-items: center;
@@ -223,7 +223,13 @@
     background: rgba(255,255,255,0.06);
 }
 
-.site-footer a:hover,
+.site-footer > div a {
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+}
+
+.site-footer .footer-links a:hover,
 .footer-contact a:hover {
     background: rgba(255,255,255,0.12);
 }
@@ -265,7 +271,7 @@
         margin-top: 6px;
     }
 
-    .site-footer a {
+    .site-footer .footer-links a {
         min-height: 34px;
         padding: 7px 10px;
         font-size: 12px;
