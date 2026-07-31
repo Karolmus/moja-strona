@@ -11,7 +11,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260730-no-footer-logo">
+<link rel="stylesheet" href="nav.css?v=20260731-mobile-nav-range">
 <link rel="stylesheet" href="baner.css?v=20260730-card-widths">
 <style>
 
@@ -35,10 +35,10 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:10px;
-    padding:10px 15px;
+    gap:8px;
+    padding:4px 14px;
     font-weight:500;
-    font-size:14px;
+    font-size:13px;
     position:sticky;
     top:0;
     z-index:1000;
@@ -46,8 +46,8 @@ body{
 }
 
 .discord-icon{
-    width:22px;
-    height:22px;
+    width:18px;
+    height:18px;
     object-fit:contain;
 }
 
@@ -188,8 +188,11 @@ body{
     color:#24527a;
     font-size:12px;
     font-weight:500;
+    line-height:1.25;
     text-decoration:none;
-    white-space:nowrap;
+    text-align:center;
+    white-space:normal;
+    max-width:100%;
     transition:background 0.2s ease, transform 0.2s ease;
 }
 
@@ -304,6 +307,10 @@ body{
 
 .exam-result-value.student strong{
     color:var(--result-accent-text);
+}
+
+.exam-result-value.range{
+    grid-column:1 / -1;
 }
 
 .score-bars{
@@ -875,9 +882,13 @@ footer{
                     <span>Średni wynik w skali kraju</span>
                     <strong>55%</strong>
                 </div>
+                <div class="exam-result-value range">
+                    <span>Rozpiętość wyników moich uczniów</span>
+                    <strong>od 80% do 97%</strong>
+                </div>
             </div>
 
-            <div class="score-bars" aria-label="Średni wynik moich uczniów 90,0 procent, średni wynik w skali kraju 55 procent">
+            <div class="score-bars" aria-label="Średni wynik moich uczniów 90,0 procent, średni wynik w skali kraju 55 procent, rozpiętość wyników od 80 do 97 procent">
                 <div class="score-bar-item" style="--score:90;">
                     <span class="score-bar-label">średni wynik moich uczniów</span>
                     <div class="score-bar-track" aria-hidden="true">
@@ -904,7 +915,7 @@ footer{
     </div>
 
     <div class="exam-result-actions">
-        <a class="exam-result-detail-link" href="wyniki.html">Szczegóły</a>
+        <a class="exam-result-detail-link" href="wyniki.html">Kliknij aby zobaczyć wyniki z pozostałych egzaminów</a>
     </div>
 </section>
 <section class="countdown-section">
