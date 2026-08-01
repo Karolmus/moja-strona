@@ -6,8 +6,8 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcja-wykladnicza",
-      "rownania-wykladnicze",
+      "funkcja-wykładnicza",
+      "równania-wykładnicze",
       "logarytmy",
       "modelowanie-matematyczne"
     ],
@@ -35,7 +35,7 @@
     "tags": [
       "granice-funkcji",
       "granice-jednostronne",
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -63,7 +63,7 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "prawdopodobienstwo",
+      "prawdopodobieństwo",
       "schemat-bernoulliego",
       "zdarzenia-losowe"
     ],
@@ -88,7 +88,7 @@
       "funkcje-wymierne",
       "pochodne",
       "styczna-do-wykresu",
-      "rownanie-prostej"
+      "równanie-prostej"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -109,7 +109,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "logarytmy",
-      "wlasnosci-logarytmow",
+      "własności-logarytmów",
       "dowodzenie",
       "dowody-algebraiczne"
     ],
@@ -144,9 +144,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "kombinatoryka",
-      "regula-mnozenia",
+      "reguła-mnozenia",
       "permutacje",
-      "zliczanie-przypadkow"
+      "zliczanie-przypadków"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -175,9 +175,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "ciagi",
-      "ciag-geometryczny",
-      "ciag-arytmetyczny",
-      "uklady-rownan"
+      "ciąg-geometryczny",
+      "ciąg-arytmetyczny",
+      "układy-równań"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -211,7 +211,7 @@
     "tags": [
       "dowody-geometryczne",
       "trojkaty",
-      "twierdzenie-cosinusow",
+      "twierdzenie-cosinusów",
       "planimetria"
     ],
     "level": "matura_rozszerzona",
@@ -296,7 +296,7 @@
       "czworokaty",
       "pola-figur",
       "planimetria",
-      "uklad-wspolrzednych"
+      "układ-współrzędnych"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -319,9 +319,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "rownania-trygonometryczne",
-      "wzory-na-sume-i-roznice-katow",
-      "wzory-na-podwojony-kat",
+      "równania-trygonometryczne",
+      "wzory-na-sumę-i-różnice-kątów",
+      "wzory-na-podwojony-kąt",
       "trygonometria"
     ],
     "level": "matura_rozszerzona",
@@ -342,9 +342,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "geometria-analityczna",
-      "rownanie-okregu",
-      "styczna-do-okregu",
-      "odleglosc-punktow"
+      "równanie-okręgu",
+      "styczna-do-okręgu",
+      "odległość-punktów"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -363,8 +363,8 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "rownania-kwadratowe",
-      "rownania-z-parametrem",
+      "równania-kwadratowe",
+      "równania-z-parametrem",
       "zadania-z-parametrem"
     ],
     "level": "matura_rozszerzona",
@@ -384,8 +384,8 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "graniastoslup",
-      "objetosc-bryl",
-      "pole-powierzchni-bryl",
+      "objętość-brył",
+      "pole-powierzchni-brył",
       "modelowanie-matematyczne"
     ],
     "level": "matura_rozszerzona",
@@ -402,7 +402,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "graniastoslup",
-      "pole-powierzchni-bryl",
+      "pole-powierzchni-brył",
       "pochodne",
       "optymalizacja"
     ],

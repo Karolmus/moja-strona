@@ -6,8 +6,8 @@
     "hint": "Podstaw dane z treści do wzoru N(t) = N0 · k^t. Z N(0) wyznacz N0, a z N(2) wyznacz k.",
     "answer": "Liczebność populacji wzrastała o 25% w ciągu każdej godziny.",
     "tags": [
-      "funkcja-wykladnicza",
-      "rownania-wykladnicze",
+      "funkcja-wykładnicza",
+      "równania-wykładnicze",
       "modelowanie-matematyczne",
       "zadania-tekstowe"
     ],
@@ -29,9 +29,9 @@
     "hint": "Przenieś wszystko na jedną stronę i rozłóż wyrażenie na czynniki. Szukaj czynnika (a - 2b).",
     "answer": "Po przekształceniu różnica stron wynosi (a - 2b)²(a + 2b). Ponieważ a > 0, b > 0 oraz b ≠ a/2, mamy a + 2b > 0 i (a - 2b)² > 0, więc nierówność jest prawdziwa.",
     "tags": [
-      "dowody-z-nierownosci",
+      "dowody-z-nierówności",
       "dowody-algebraiczne",
-      "wzory-skroconego-mnozenia"
+      "wzory-skróconego-mnozenia"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -123,9 +123,9 @@
     "hint": "Policz, ile jest wyników z dokładnie dwiema piątkami, a potem ile spośród nich zawiera co najmniej jedną szóstkę.",
     "answer": "Prawdopodobieństwo wynosi 9/25.",
     "tags": [
-      "prawdopodobienstwo-warunkowe",
-      "doswiadczenia-wieloetapowe",
-      "zliczanie-przypadkow"
+      "prawdopodobieństwo-warunkowe",
+      "doświadczenia-wieloetapowe",
+      "zliczanie-przypadków"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -145,9 +145,9 @@
     "hint": "Rozpatrz przedziały wyznaczone przez miejsca zerowe wyrażeń pod wartościami bezwzględnymi: -3 oraz 2.",
     "answer": "x ∈ (-∞, -10) ∪ (-2/3, +∞).",
     "tags": [
-      "nierownosci-z-wartoscia-bezwzgledna",
-      "wartosc-bezwzgledna",
-      "przedzialy-liczbowe"
+      "nierówności-z-wartością-bezwzględna",
+      "wartość-bezwzględna",
+      "przedziały-liczbowe"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -180,9 +180,9 @@
     "hint": "Zapisz warunki dla a1 oraz a3. Potem sprawdź, które ilorazy ciągu dają zbieżny szereg geometryczny.",
     "answer": "Możliwe sumy wszystkich wyrazów ciągu to 27 oraz 27/2.",
     "tags": [
-      "ciag-geometryczny",
+      "ciąg-geometryczny",
       "szereg-geometryczny",
-      "granice-ciagow"
+      "granice-ciągów"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -226,7 +226,7 @@
       "dowody-geometryczne",
       "czworokaty",
       "pola-figur",
-      "podobienstwo"
+      "podobieństwo"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -264,9 +264,9 @@
     "answer": "A = (16/5, -13/5), B = (-1, -2), M = (2/5, -11/5).",
     "tags": [
       "geometria-analityczna",
-      "rownanie-okregu",
+      "równanie-okręgu",
       "wektory",
-      "wzajemne-polozenie-dwoch-okregow"
+      "wzajemne-położenie-dwóch-okręgów"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -290,8 +290,8 @@
     "hint": "Skorzystaj ze wzoru na sin(2x), a następnie sprowadź równanie do równań z tangensem albo z kątem podwojonym.",
     "answer": "x ∈ {−2π/3, −π/6, π/3, 5π/6}.",
     "tags": [
-      "rownania-trygonometryczne",
-      "wzory-na-podwojony-kat",
+      "równania-trygonometryczne",
+      "wzory-na-podwojony-kąt",
       "funkcje-trygonometryczne"
     ],
     "level": "matura_rozszerzona",
@@ -346,8 +346,8 @@
     "answer": "Pole powierzchni bocznej ostrosłupa wynosi 918.",
     "tags": [
       "ostroslup",
-      "katy-w-brylach",
-      "pole-powierzchni-bryl",
+      "kąty-w-bryłach",
+      "pole-powierzchni-brył",
       "trygonometria"
     ],
     "level": "matura_rozszerzona",
@@ -393,12 +393,12 @@
   {
     "file": "11_2025_cke_r_m.png",
     "difficulty": 3,
-    "topic": "funkcja kwadratówa z parametrem",
+    "topic": "funkcja kwadratowa z parametrem",
     "hint": "Połącz warunki: dwa różne miejsca zerowe, ten sam znak pierwiastków z wzorów Viète’a oraz nierówność dla (x1 - x2)².",
     "answer": "m ∈ (-8, -3) ∪ (1, 3/2].",
     "tags": [
       "funkcja-kwadratowa",
-      "rownania-z-parametrem",
+      "równania-z-parametrem",
       "zadania-z-parametrem",
       "miejsca-zerowe"
     ],
@@ -430,11 +430,11 @@
     "file": "12.1_2025_cke_r_m.png",
     "difficulty": 4,
     "topic": "stożek",
-    "hint": "W przekroju osiowym stożka zapisz zależność między promieńiem, wysokością i odległością środka podstawy od tworzącej.",
+    "hint": "W przekroju osiowym stożka zapisz zależność między promieniem, wysokością i odległością środka podstawy od tworzącej.",
     "answer": "Należy wykazać, że V(h) = (π/3) · 25h³/(h² - 25) dla h ∈ (5, +∞).",
     "tags": [
       "stozek",
-      "objetosc-bryl",
+      "objętość-brył",
       "dowodzenie",
       "modelowanie-matematyczne"
     ],
@@ -458,7 +458,7 @@
     "answer": "Najmniejszą objętość jest dla h = 5√3 i wynosi 125√3π/2.",
     "tags": [
       "stozek",
-      "objetosc-bryl",
+      "objętość-brył",
       "pochodne",
       "optymalizacja"
     ],

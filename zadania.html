@@ -2486,7 +2486,7 @@ footer {
                     <div class="level-selector sidebar-levels" id="guestLevelSection">
                         <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
                         <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
-                        <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin Ósmoklasisty</button>
+                        <button class="level-btn" data-level="egzamin_osmoklasisty" onclick="setLevel(this,'egzamin_osmoklasisty')">Egzamin ósmoklasisty</button>
                     </div>
                 </div>
 
@@ -2500,7 +2500,7 @@ footer {
                 <div class="side-title">Materiały do pobrania</div>
                 <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" download>
                     <strong>Karta wzorów</strong>
-                    <span>Egzamin Ósmoklasisty</span>
+                    <span>Egzamin ósmoklasisty</span>
                 </a>
             </div>
 
@@ -2896,7 +2896,7 @@ const TASK_SOURCES = [
 const SOURCE_TYPE_LABELS = {
     mp: "Matura podstawowa",
     mr: "Matura rozszerzona",
-    eo: "Egzamin Ósmoklasisty"
+    eo: "Egzamin ósmoklasisty"
 };
 
 const SOURCE_LEVELS = {
@@ -2913,13 +2913,13 @@ const CATEGORY_LABELS = {
 const LEVEL_LABELS = {
     matura_podstawowa: "Matura podstawowa",
     matura_rozszerzona: "Matura rozszerzona",
-    egzamin_osmoklasisty: "Egzamin Ósmoklasisty"
+    egzamin_osmoklasisty: "Egzamin ósmoklasisty"
 };
 
 const FORMULA_SHEETS = {
     egzamin_osmoklasisty: {
         label: "Karta wzorów",
-        detail: "Egzamin Ósmoklasisty",
+        detail: "Egzamin ósmoklasisty",
         href: "wzory_eo.pdf"
     }
 };
@@ -3417,7 +3417,14 @@ function formatTagLabel(tag){
     return String(tag || "")
         .replace(/-/g, " ")
         .replace(/\s+/g, " ")
-        .trim();
+        .trim()
+        .split(" ")
+        .map(word => ({
+            cke: "CKE",
+            bernoulliego: "Bernoulliego",
+            pitagorasa: "Pitagorasa"
+        })[word] || word)
+        .join(" ");
 }
 
 function normalizeTaskTags(task){

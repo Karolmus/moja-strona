@@ -6,8 +6,8 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcja-wykladnicza",
-      "rownania-wykladnicze",
+      "funkcja-wykładnicza",
+      "równania-wykładnicze",
       "logarytmy",
       "modelowanie-matematyczne"
     ],
@@ -29,7 +29,7 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "prawdopodobienstwo",
+      "prawdopodobieństwo",
       "schemat-bernoulliego",
       "zdarzenia-losowe"
     ],
@@ -66,7 +66,7 @@
       "funkcje-wymierne",
       "pochodne",
       "styczna-do-wykresu",
-      "rownanie-prostej"
+      "równanie-prostej"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -87,9 +87,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "dowodzenie",
-      "dowody-z-nierownosci",
-      "wyrazenia-algebraiczne",
-      "uklady-rownan"
+      "dowody-z-nierówności",
+      "wyrażenia-algebraiczne",
+      "układy-równań"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -164,8 +164,8 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "rownania-trygonometryczne",
-      "wzory-na-sume-i-roznice-katow",
+      "równania-trygonometryczne",
+      "wzory-na-sumę-i-różnice-kątów",
       "trygonometria"
     ],
     "level": "matura_rozszerzona",
@@ -196,7 +196,7 @@
     "tags": [
       "stereometria",
       "graniastoslup",
-      "odleglosci-w-brylach",
+      "odległości-w-bryłach",
       "twierdzenie-pitagorasa-w-przestrzeni"
     ],
     "level": "matura_rozszerzona",
@@ -251,7 +251,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "czworokaty",
-      "okrag-wpisany",
+      "okrąg-wpisany",
       "trygonometria",
       "obwody-figur"
     ],
@@ -281,9 +281,9 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierownosci-z-wartoscia-bezwzgledna",
-      "wartosc-bezwzgledna",
-      "przedzialy-liczbowe"
+      "nierówności-z-wartością-bezwzględna",
+      "wartość-bezwzględna",
+      "przedziały-liczbowe"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -310,7 +310,7 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciag-geometryczny",
+      "ciąg-geometryczny",
       "szereg-geometryczny",
       "czworokaty",
       "obwody-figur"
@@ -333,8 +333,8 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "rownania-kwadratowe",
-      "rownania-z-parametrem",
+      "równania-kwadratowe",
+      "równania-z-parametrem",
       "zadania-z-parametrem",
       "pierwiastki-wielomianu"
     ],
@@ -369,9 +369,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "logarytmy",
-      "wlasnosci-logarytmow",
+      "własności-logarytmów",
       "funkcja-logarytmiczna",
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -393,7 +393,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "pochodne",
-      "wartosc-najmniejsza",
+      "wartość-najmniejsza",
       "optymalizacja",
       "funkcja-wielomianowa"
     ],
@@ -418,8 +418,8 @@
     "tags": [
       "geometria-analityczna",
       "funkcja-kwadratowa",
-      "rownanie-okregu",
-      "rownanie-prostej"
+      "równanie-okręgu",
+      "równanie-prostej"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 6,

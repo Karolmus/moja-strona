@@ -109,7 +109,7 @@
       "C",
       "D"
     ],
-    "hint": "Pieciokrotne dodanie sqrt(2) to 5sqrt(2), czyli sqrt(50).",
+    "hint": "Pięciokrotne dodanie sqrt(2) to 5sqrt(2), czyli sqrt(50).",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -131,7 +131,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Wylacz czynniki przed pierwiastek i pamietaj, ze suma liczby niewymiernej oraz wymiernej jest niewymierna.",
+    "hint": "Wyłącz czynniki przed pierwiastek i pamiętaj, że suma liczby niewymiernej oraz wymiernej jest niewymierna.",
     "answer": [
       "P",
       "P"
@@ -184,7 +184,7 @@
       "C",
       "D"
     ],
-    "hint": "Przybliz wartości: 3, cbrt(30), 3sqrt(3), sqrt(30), a potem ustaw je rosnaco.",
+    "hint": "Przybliż wartości: 3, cbrt(30), 3sqrt(3), sqrt(30), a potem ustaw je rosnąco.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -250,14 +250,14 @@
     "level": "egzamin_osmoklasisty",
     "file": "11.png",
     "title": "Lekcja 4 - zadanie 11",
-    "hint": "Oszacuj przyblizenia liczb: sqrt(13), 1 + sqrt(3) oraz 2 + sqrt(10), a potem dopasuj je do polozenia na osi.",
+    "hint": "Oszacuj przybliżenia liczb: sqrt(13), 1 + sqrt(3) oraz 2 + sqrt(10), a potem dopasuj je do położenia na osi.",
     "answer": "a = II, b = I, c = III",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 4",
       "pierwiastki",
-      "os liczbowa",
+      "oś liczbowa",
       "szacowanie"
     ],
     "maxPoints": 1
@@ -275,7 +275,7 @@
       "C",
       "D"
     ],
-    "hint": "Rozloz 54 jako 27 razy 2 oraz 16 jako 8 razy 2, a potem wylacz czynniki przed pierwiastek trzeciego stopnia.",
+    "hint": "Rozłóż 54 jako 27 razy 2 oraz 16 jako 8 razy 2, a potem wyłącz czynniki przed pierwiastek trzeciego stopnia.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -323,7 +323,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw wymnoz sqrt(6) przez nawias. Iloczyn sqrt(6) i sqrt(150) to sqrt(900).",
+    "hint": "Najpierw wymnóż sqrt(6) przez nawias. Iloczyn sqrt(6) i sqrt(150) to sqrt(900).",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -393,7 +393,7 @@
       "E",
       "F"
     ],
-    "hint": "Zamień każdy przedzial pierwiastkowy na przyblizony przedzial liczbowy i policz liczby naturalne, które do niego naleza.",
+    "hint": "Zamień każdy przedział pierwiastkowy na przybliżony przedział liczbowy i policz liczby naturalne, które do niego należą.",
     "answer": [
       "B",
       "D",
@@ -416,7 +416,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd5.png",
     "title": "Lekcja 4 - Zadanie domowe 5",
-    "hint": "Pierwszy ułamek podnies do trzeciej potęgi, pamietajac ze (cbrt(10))^3 = 10. W drugim skladniku najpierw podnies pierwiastek do kwadratu.",
+    "hint": "Pierwszy ułamek podnieś do trzeciej potęgi, pamiętając, że (cbrt(10))^3 = 10. W drugim składniku najpierw podnieś pierwiastek do kwadratu.",
     "answer": "(sqrt(2) - 21) / 5",
     "coursePart": "praca_domowa",
     "tags": [
@@ -441,7 +441,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw uprość sqrt(24) = 2sqrt(6), a potem podnies 3sqrt(6) do kwadratu.",
+    "hint": "Najpierw uprość sqrt(24) = 2sqrt(6), a potem podnieś 3sqrt(6) do kwadratu.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -459,7 +459,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd7.png",
     "title": "Lekcja 4 - Zadanie domowe 7",
-    "hint": "Oszacuj każdą liczbę: jedna jest ujemna duza co do wartości, jedna rowna -3, jedna rowna 4, a jedna dodatnia okolo 6,7.",
+    "hint": "Oszacuj każdą liczbę: jedna jest ujemna duża co do wartości, jedna równa -3, jedna równa 4, a jedna dodatnia około 6,7.",
     "answer": "II, III, IV, I",
     "coursePart": "praca_domowa",
     "tags": [
@@ -477,7 +477,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd8.png",
     "title": "Lekcja 4 - Zadanie domowe 8",
-    "hint": "W kazdym wierszu uprość pierwiastki albo porównaj przyblizenia. Wstaw kolejno znaki między lewa i prawa strona.",
+    "hint": "W każdym wierszu uprość pierwiastki albo porównaj przybliżenia. Wstaw kolejno znaki między lewą a prawą stroną.",
     "answer": "=, <, <, <",
     "coursePart": "praca_domowa",
     "tags": [
@@ -502,7 +502,7 @@
       "C",
       "D"
     ],
-    "hint": "Uprość każda odpowiedz. Tylko jedna z nich zostawia skladnik niewymierny.",
+    "hint": "Uprość każdą odpowiedź. Tylko jedna z nich zostawia składnik niewymierny.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -510,7 +510,7 @@
       "lekcja 4",
       "Zadanie domowe",
       "pierwiastki",
-      "liczby calkowite"
+      "liczby całkowite"
     ],
     "maxPoints": 1
   }

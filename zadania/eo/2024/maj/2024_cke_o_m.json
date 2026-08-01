@@ -56,7 +56,7 @@
       "FF"
     ],
     "tags": [
-      "srednia-arytmetyczna",
+      "średnia-arytmetyczna",
       "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
@@ -78,7 +78,7 @@
     ],
     "tags": [
       "ulamki",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -98,7 +98,7 @@
       "D"
     ],
     "tags": [
-      "katy",
+      "kąty",
       "geometria",
       "trapez"
     ],
@@ -120,8 +120,8 @@
       "D"
     ],
     "tags": [
-      "przeksztalcanie-wzorow",
-      "wyrazenia-algebraiczne"
+      "przekształcanie-wzorów",
+      "wyrażenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -161,8 +161,8 @@
       "D"
     ],
     "tags": [
-      "prawdopodobienstwo",
-      "zliczanie-przypadkow"
+      "prawdopodobieństwo",
+      "zliczanie-przypadków"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -182,7 +182,7 @@
       "D"
     ],
     "tags": [
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -202,8 +202,8 @@
       "D"
     ],
     "tags": [
-      "katy",
-      "predkosc-droga-czas"
+      "kąty",
+      "prędkość-droga-czas"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -244,8 +244,8 @@
       "D"
     ],
     "tags": [
-      "uklad-wspolrzednych",
-      "wspolrzedne-punktu"
+      "układ-współrzędnych",
+      "współrzędne-punktu"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -288,7 +288,7 @@
     ],
     "tags": [
       "twierdzenie-pitagorasa",
-      "trojkat-prostokatny"
+      "trójkąt-prostokątny"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -323,7 +323,7 @@
     "answer": "Jeden zestaw puzzli składa się z 600 elementów.",
     "tags": [
       "ulamki",
-      "rownania-liniowe",
+      "równania-liniowe",
       "zadania-tekstowe",
       "zadania-otwarte"
     ],
@@ -445,7 +445,7 @@
     "hint": "Oblicz wysokość ostrosłupa z wzoru na objętość, a potem porównaj wysokości wież.",
     "answer": "Różnica wysokości obu wież wynosi 2 cm.",
     "tags": [
-      "objetosc-bryl",
+      "objętość-brył",
       "ostroslup",
       "bryly",
       "zadania-otwarte"

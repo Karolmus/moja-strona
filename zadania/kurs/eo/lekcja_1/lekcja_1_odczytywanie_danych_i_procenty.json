@@ -174,7 +174,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Zsumuj medale złote i wszystkie medale. Średnia liczbę złotych medali policz z czterech igrzysk.",
+    "hint": "Zsumuj medale złote i wszystkie medale. Średnią liczbę złotych medali policz z czterech igrzysk.",
     "answer": [
       "F",
       "P"
@@ -230,7 +230,7 @@
       "C",
       "D"
     ],
-    "hint": "Skoro 20% to 16 uczniow, to cala ankieta obejmuje 80 uczniow. Kot to 25% tej liczby.",
+    "hint": "Skoro 20% to 16 uczniów, to cała ankieta obejmuje 80 uczniów. Kot to 25% tej liczby.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -279,7 +279,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Sok pomidorowy to brakujace 12,5%. Skoro 12,5% to 15 kartonow, oblicz 100%.",
+    "hint": "Sok pomidorowy to brakujące 12,5%. Skoro 12,5% to 15 kartonów, oblicz 100%.",
     "answer": [
       "F",
       "P"

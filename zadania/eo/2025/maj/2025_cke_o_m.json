@@ -35,7 +35,7 @@
     ],
     "tags": [
       "ulamki",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 46,
@@ -76,7 +76,7 @@
       "BD"
     ],
     "tags": [
-      "srednia-arytmetyczna",
+      "średnia-arytmetyczna",
       "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
@@ -97,8 +97,8 @@
       "D"
     ],
     "tags": [
-      "przeksztalcanie-wzorow",
-      "wyrazenia-algebraiczne"
+      "przekształcanie-wzorów",
+      "wyrażenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 57,
@@ -118,7 +118,7 @@
       "D"
     ],
     "tags": [
-      "wyrazenia-algebraiczne",
+      "wyrażenia-algebraiczne",
       "zadania-tekstowe"
     ],
     "level": "egzamin_osmoklasisty",
@@ -140,7 +140,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 37,
@@ -180,7 +180,7 @@
       "D"
     ],
     "tags": [
-      "predkosc-droga-czas"
+      "prędkość-droga-czas"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 83,
@@ -200,7 +200,7 @@
       "D"
     ],
     "tags": [
-      "prawdopodobienstwo",
+      "prawdopodobieństwo",
       "ulamki"
     ],
     "level": "egzamin_osmoklasisty",
@@ -223,7 +223,7 @@
     "tags": [
       "twierdzenie-pitagorasa",
       "pola-figur",
-      "trojkat-prostokatny"
+      "trójkąt-prostokątny"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 44,
@@ -243,8 +243,8 @@
       "FF"
     ],
     "tags": [
-      "os-liczbowa",
-      "liczby-calkowite"
+      "oś-liczbowa",
+      "liczby-całkowite"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 71,
@@ -285,7 +285,7 @@
       "D"
     ],
     "tags": [
-      "uklad-wspolrzednych",
+      "układ-współrzędnych",
       "rownoleglobok"
     ],
     "level": "egzamin_osmoklasisty",
@@ -307,7 +307,7 @@
     ],
     "tags": [
       "prostopadloscian",
-      "pole-powierzchni-bryl"
+      "pole-powierzchni-brył"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 52,
@@ -317,11 +317,11 @@
     "file": "16_2025_cke_o_m.png",
     "difficulty": 3,
     "topic": "ułamki",
-    "hint": "Odejmij od 7/15 ułamki 1/5 i 1/6, sprowadźając je do wspólnego mianownika.",
+    "hint": "Odejmij od 7/15 ułamki 1/5 i 1/6, sprowadzając je do wspólnego mianownika.",
     "answer": "Trzeci składnik sumy to 1/10.",
     "tags": [
       "ulamki",
-      "dzialania-na-liczbach",
+      "działania-na-liczbach",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -346,7 +346,7 @@
     "hint": "Oznacz liczbę plakatów Basi przez b. Wtedy Andrzej ma b + 28, a Marek ma b/3.",
     "answer": "Basia ma 42 plakaty, Marek ma 14 plakatów, a Andrzej ma 70 plakatów.",
     "tags": [
-      "rownania-liniowe",
+      "równania-liniowe",
       "zadania-tekstowe",
       "zadania-otwarte"
     ],
@@ -384,7 +384,7 @@
     "hint": "Najpierw oblicz trzeci kąt trójkąta EBC. Potem użyj własności kątów przy prostych równoległych.",
     "answer": "∠DAB = 75°, ∠BCD = 132°, ∠CDA = 105°.",
     "tags": [
-      "katy",
+      "kąty",
       "trapez",
       "rownoleglobok",
       "zadania-otwarte"
