@@ -313,7 +313,7 @@ body{
     }
 
     .results-table tbody tr{
-        padding:12px;
+        padding:10px 12px;
         border:1px solid var(--line);
         border-radius:12px;
         background:#ffffff;
@@ -326,21 +326,22 @@ body{
 
     .results-table th,
     .results-table td{
-        padding:8px 0;
+        padding:5px 0;
     }
 
     .results-table tbody th{
         padding-top:0;
-        padding-bottom:10px;
+        padding-bottom:8px;
         border-bottom:1px solid var(--line);
     }
 
     .results-table td{
         display:grid;
-        grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.1fr);
-        gap:10px;
+        grid-template-columns:minmax(0, 2fr) minmax(112px, 1fr);
+        gap:8px;
         border-right:0;
         border-bottom:1px solid #edf0f4;
+        align-items:center;
     }
 
     .results-table td::before{
@@ -348,6 +349,7 @@ body{
         color:var(--muted);
         font-size:12px;
         font-weight:500;
+        line-height:1.25;
     }
 
     .results-table td:last-child{
@@ -364,7 +366,11 @@ body{
 
     .results-table td[data-label="Porównanie"]::before{
         display:block;
-        margin-bottom:8px;
+        margin-bottom:6px;
+    }
+
+    .results-table td.difference-cell{
+        line-height:1.25;
     }
 
     .score-bar-item,
