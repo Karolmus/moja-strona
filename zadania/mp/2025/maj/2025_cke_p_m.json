@@ -15,7 +15,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "completionPercent": 67,
     "maxPoints": 1
@@ -36,7 +36,7 @@
     ],
     "tags": [
       "potegi",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "completionPercent": 63,
     "maxPoints": 1
@@ -57,7 +57,7 @@
     ],
     "tags": [
       "logarytmy",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "completionPercent": 78,
     "maxPoints": 1
@@ -77,8 +77,8 @@
       "D"
     ],
     "tags": [
-      "wzory-skroconego-mnozenia",
-      "wyrazenia-algebraiczne"
+      "wzory-skróconego-mnozenia",
+      "wyrażenia-algebraiczne"
     ],
     "completionPercent": 72,
     "maxPoints": 1
@@ -93,7 +93,7 @@
     "tags": [
       "dowodzenie",
       "dowody-algebraiczne",
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "completionPercent": 32,
     "solutions": [
@@ -132,8 +132,8 @@
       "D"
     ],
     "tags": [
-      "nierownosci-liniowe",
-      "przedzialy-liczbowe"
+      "nierówności-liniowe",
+      "przedziały-liczbowe"
     ],
     "completionPercent": 73,
     "maxPoints": 1
@@ -153,7 +153,7 @@
       "D"
     ],
     "tags": [
-      "rownania-kwadratowe",
+      "równania-kwadratowe",
       "liczby-rzeczywiste"
     ],
     "completionPercent": 62,
@@ -174,8 +174,8 @@
       "D"
     ],
     "tags": [
-      "wyrazenia-algebraiczne",
-      "rownania-wymierne"
+      "wyrażenia-algebraiczne",
+      "równania-wymierne"
     ],
     "completionPercent": 60,
     "maxPoints": 1
@@ -188,7 +188,7 @@
     "hint": "Oznacz kwotę zespołu A przez x, zespołu B przez y i zapisz układ z sumą budżetu oraz wykorzystaną kwotą.",
     "answer": "735 000 zł",
     "tags": [
-      "uklady-rownan",
+      "układy-równań",
       "zadania-tekstowe",
       "modelowanie-matematyczne"
     ],
@@ -205,14 +205,14 @@
   {
     "file": "10_2025_cke_p_m.png",
     "difficulty": 2,
-    "topic": "nierówność kwadratówa",
+    "topic": "nierówność kwadratowa",
     "level": "matura_podstawowa",
     "hint": "Przenieś wszystko na jedną stronę, oblicz miejsca zerowe trójmianu i odczytaj, gdzie parabola jest poniżej osi.",
     "answer": "x ∈ (1/3, 3/2)",
     "tags": [
-      "nierownosci-kwadratowe",
-      "rownania-kwadratowe",
-      "przedzialy-liczbowe"
+      "nierówności-kwadratowe",
+      "równania-kwadratowe",
+      "przedziały-liczbowe"
     ],
     "completionPercent": 68,
     "solutions": [
@@ -243,7 +243,7 @@
   {
     "file": "12.1_2025_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
     "hint": "Użyj postaci kanonicznej z wierzchołkiem (3, 6), czyli f(x)=a(x−3)²+6, a potem podstaw punkt (0, 3).",
     "answer": "f(x) = −1/3 · (x − 3)² + 6",
@@ -269,7 +269,7 @@
   {
     "file": "12.2_2025_cke_p_m.png",
     "difficulty": 1,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
     "hint": "Oś symetrii paraboli przechodzi przez jej wierzchołek.",
     "answer": "A",
@@ -291,7 +291,7 @@
   {
     "file": "12.3_2025_cke_p_m.png",
     "difficulty": 3,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
     "hint": "Przesunięcie wykresu o 3 jednostki w dół sprawia, że miejsca zerowe funkcji g odpowiadają punktom wykresu f o wartości 3.",
     "answer": "6",
@@ -299,7 +299,7 @@
     "tags": [
       "funkcja-kwadratowa",
       "miejsce-zerowe",
-      "przesuniecia-wykresu"
+      "przesunięcia-wykresu"
     ],
     "completionPercent": 47,
     "gradingCriteria": [
@@ -355,7 +355,7 @@
     "contextFile": "14_2025_cke_p_m.png",
     "tags": [
       "ciagi",
-      "wyraz-ogolny-ciagu"
+      "wyraz-ogólny-ciągu"
     ],
     "completionPercent": 75,
     "maxPoints": 1
@@ -377,8 +377,8 @@
     "contextFile": "14_2025_cke_p_m.png",
     "tags": [
       "ciagi",
-      "ciag-arytmetyczny",
-      "ciag-geometryczny"
+      "ciąg-arytmetyczny",
+      "ciąg-geometryczny"
     ],
     "completionPercent": 47,
     "maxPoints": 1
@@ -391,8 +391,8 @@
     "hint": "Dla ciągu arytmetycznego środkowy wyraz jest średnią sąsiednich; potem sprawdź warunek malejącości.",
     "answer": "m = 5/2",
     "tags": [
-      "ciag-arytmetyczny",
-      "monotonicznosc-ciagu",
+      "ciąg-arytmetyczny",
+      "monotoniczność-ciągu",
       "zadania-z-parametrem"
     ],
     "completionPercent": 49,
@@ -433,8 +433,8 @@
     ],
     "tags": [
       "ciagi",
-      "ciag-geometryczny",
-      "wyraz-ogolny-ciagu"
+      "ciąg-geometryczny",
+      "wyraz-ogólny-ciągu"
     ],
     "completionPercent": 78,
     "maxPoints": 1
@@ -479,7 +479,7 @@
     "tags": [
       "trygonometria",
       "tangens",
-      "trojkat-prostokatny"
+      "trójkąt-prostokątny"
     ],
     "completionPercent": 81,
     "maxPoints": 1
@@ -502,7 +502,7 @@
     "tags": [
       "trygonometria",
       "sinus",
-      "trojkat-prostokatny"
+      "trójkąt-prostokątny"
     ],
     "completionPercent": 59,
     "maxPoints": 1
@@ -522,8 +522,8 @@
       "D"
     ],
     "tags": [
-      "okrag",
-      "katy-w-okregu"
+      "okrąg",
+      "kąty-w-okręgu"
     ],
     "completionPercent": 81,
     "maxPoints": 1
@@ -543,7 +543,7 @@
       "D"
     ],
     "tags": [
-      "podobienstwo-trojkatow",
+      "podobieństwo-trójkątów",
       "trojkaty"
     ],
     "completionPercent": 53,
@@ -587,8 +587,8 @@
     ],
     "tags": [
       "geometria-analityczna",
-      "srodek-odcinka",
-      "odleglosc-punktow"
+      "środek-odcinka",
+      "odległość-punktów"
     ],
     "completionPercent": 70,
     "maxPoints": 1
@@ -608,8 +608,8 @@
       "D"
     ],
     "tags": [
-      "rownanie-prostej",
-      "proste-rownolegle",
+      "równanie-prostej",
+      "proste-równoległe",
       "zadania-z-parametrem"
     ],
     "completionPercent": 79,
@@ -631,8 +631,8 @@
     ],
     "tags": [
       "geometria-analityczna",
-      "okrag-w-ukladzie-wspolrzednych",
-      "odleglosc-punktow"
+      "okrąg-w-układzie-współrzędnych",
+      "odległość-punktów"
     ],
     "completionPercent": 61,
     "maxPoints": 1
@@ -646,7 +646,7 @@
     "answer": "V = 64π",
     "tags": [
       "stozek",
-      "objetosc-bryl",
+      "objętość-brył",
       "trygonometria"
     ],
     "completionPercent": 49,
@@ -683,7 +683,7 @@
     ],
     "tags": [
       "graniastoslupy",
-      "objetosc-bryl"
+      "objętość-brył"
     ],
     "completionPercent": 64,
     "maxPoints": 1
@@ -704,8 +704,8 @@
     ],
     "tags": [
       "kombinatoryka",
-      "regula-mnozenia",
-      "zliczanie-przypadkow"
+      "reguła-mnozenia",
+      "zliczanie-przypadków"
     ],
     "completionPercent": 71,
     "maxPoints": 1
@@ -725,9 +725,9 @@
       "D"
     ],
     "tags": [
-      "prawdopodobienstwo",
-      "prawdopodobienstwo-klasyczne",
-      "zliczanie-przypadkow"
+      "prawdopodobieństwo",
+      "prawdopodobieństwo-klasyczne",
+      "zliczanie-przypadków"
     ],
     "completionPercent": 85,
     "maxPoints": 1
@@ -748,7 +748,7 @@
     ],
     "tags": [
       "statystyka",
-      "srednia-arytmetyczna"
+      "średnia-arytmetyczna"
     ],
     "completionPercent": 91,
     "maxPoints": 1

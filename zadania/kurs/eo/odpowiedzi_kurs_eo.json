@@ -4692,7 +4692,7 @@
       "topic": "działania na liczbach",
       "maxPoints": 2,
       "answer": "17/30",
-      "hint": "Po wypiciu zostaje 1/3 pelnej szklanki. Odejmij to od 9/10.",
+      "hint": "Po wypiciu zostaje 1/3 pełnej szklanki. Odejmij to od 9/10.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -4700,7 +4700,7 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za zastosowanie poprawnej metody: Po wypiciu zostaje 1/3 pelnej szklanki. Odejmij to od 9/10."
+              "description": "za zastosowanie poprawnej metody: Po wypiciu zostaje 1/3 pełnej szklanki. Odejmij to od 9/10."
             },
             {
               "points": 2,
@@ -4756,7 +4756,7 @@
       "topic": "działania na liczbach",
       "maxPoints": 2,
       "answer": "a) 12, b) 8",
-      "hint": "Ola ma 4 banany, Antek ma 8 bananow. Do średniej uwzglednij Kube, Ole i Antka.",
+      "hint": "Ola ma 4 banany, Antek ma 8 bananów. Do średniej uwzględnij Kubę, Olę i Antka.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -4764,7 +4764,7 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za zastosowanie poprawnej metody: Ola ma 4 banany, Antek ma 8 bananow. Do średniej uwzglednij Kube, Ole i Antka."
+              "description": "za zastosowanie poprawnej metody: Ola ma 4 banany, Antek ma 8 bananów. Do średniej uwzględnij Kubę, Olę i Antka."
             },
             {
               "points": 2,
@@ -4790,7 +4790,7 @@
       "topic": "działania na liczbach",
       "maxPoints": 2,
       "answer": "68,8",
-      "hint": "Dodaj kilometry z pieciu dni i podziel przez 5.",
+      "hint": "Dodaj kilometry z pięciu dni i podziel przez 5.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -4798,7 +4798,7 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za zastosowanie poprawnej metody: Dodaj kilometry z pieciu dni i podziel przez 5."
+              "description": "za zastosowanie poprawnej metody: Dodaj kilometry z pięciu dni i podziel przez 5."
             },
             {
               "points": 2,
@@ -5266,7 +5266,7 @@
       "topic": "pierwiastki",
       "maxPoints": 1,
       "answer": "a = II, b = I, c = III",
-      "hint": "Oszacuj przyblizenia liczb: sqrt(13), 1 + sqrt(3) oraz 2 + sqrt(10), a potem dopasuj je do polozenia na osi.",
+      "hint": "Oszacuj przybliżenia liczb: sqrt(13), 1 + sqrt(3) oraz 2 + sqrt(10), a potem dopasuj je do położenia na osi.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5330,7 +5330,7 @@
       "topic": "pierwiastki",
       "maxPoints": 3,
       "answer": "(sqrt(2) - 21) / 5",
-      "hint": "Pierwszy ułamek podnies do trzeciej potęgi, pamietajac ze (cbrt(10))^3 = 10. W drugim skladniku najpierw podnies pierwiastek do kwadratu.",
+      "hint": "Pierwszy ułamek podnieś do trzeciej potęgi, pamiętając, że (cbrt(10))^3 = 10. W drugim składniku najpierw podnieś pierwiastek do kwadratu.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5342,7 +5342,7 @@
             },
             {
               "points": 2,
-              "description": "za zastosowanie poprawnej metody: Pierwszy ułamek podnies do trzeciej potęgi, pamietajac ze (cbrt(10))^3 = 10. W drugim skladniku najpierw podnies pierwiastek do kwadratu."
+              "description": "za zastosowanie poprawnej metody: Pierwszy ułamek podnieś do trzeciej potęgi, pamiętając, że (cbrt(10))^3 = 10. W drugim składniku najpierw podnieś pierwiastek do kwadratu."
             },
             {
               "points": 3,
@@ -5368,7 +5368,7 @@
       "topic": "pierwiastki",
       "maxPoints": 1,
       "answer": "II, III, IV, I",
-      "hint": "Oszacuj każdą liczbę: jedna jest ujemna duza co do wartości, jedna rowna -3, jedna rowna 4, a jedna dodatnia okolo 6,7.",
+      "hint": "Oszacuj każdą liczbę: jedna jest ujemna duża co do wartości, jedna równa -3, jedna równa 4, a jedna dodatnia około 6,7.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5398,7 +5398,7 @@
       "topic": "pierwiastki",
       "maxPoints": 2,
       "answer": "=, <, <, <",
-      "hint": "W kazdym wierszu uprość pierwiastki albo porównaj przyblizenia. Wstaw kolejno znaki między lewa i prawa strona.",
+      "hint": "W każdym wierszu uprość pierwiastki albo porównaj przybliżenia. Wstaw kolejno znaki między lewą a prawą stroną.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5406,7 +5406,7 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za zastosowanie poprawnej metody: W kazdym wierszu uprość pierwiastki albo porównaj przyblizenia. Wstaw kolejno znaki między lewa i prawa strona."
+              "description": "za zastosowanie poprawnej metody: W każdym wierszu uprość pierwiastki albo porównaj przybliżenia. Wstaw kolejno znaki między lewą a prawą stroną."
             },
             {
               "points": 2,
@@ -5432,7 +5432,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "x = -5",
-      "hint": "Rozwiń prawa strone, przenieś wyrazy z x na jedna strone, a liczby na druga.",
+      "hint": "Rozwiń prawą stronę, przenieś wyrazy z x na jedną stronę, a liczby na drugą.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5466,7 +5466,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "x = 9/22",
-      "hint": "Przenieś -x i 1,2x na jedna strone równania, a liczby na druga.",
+      "hint": "Przenieś -x i 1,2x na jedną stronę równania, a liczby na drugą.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5500,7 +5500,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "x = -8/7",
-      "hint": "Pomnóż równanie przez 3, żeby pozbyc sie ułamków, a potem zbierz wyrazy podobne.",
+      "hint": "Pomnóż równanie przez 3, żeby pozbyć się ułamków, a potem zbierz wyrazy podobne.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5568,7 +5568,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "brak rozwiązań",
-      "hint": "Rozwiń prawa strone. Wyrazy z x sie zredukuja, więc sprawdź, czy pozostaje zdanie prawdziwe czy fałszywe.",
+      "hint": "Rozwiń prawą stronę. Wyrazy z x się zredukują, więc sprawdź, czy pozostaje zdanie prawdziwe czy fałszywe.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5601,8 +5601,8 @@
       "type": "open",
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
-      "answer": "nieskonczenie wiele rozwiązań",
-      "hint": "Rozwiń prawa strone. Jezeli po uproszczeniu obie strony sa identyczne, równanie ma nieskonczenie wiele rozwiązań.",
+      "answer": "nieskończenie wiele rozwiązań",
+      "hint": "Rozwiń prawą stronę. Jeżeli po uproszczeniu obie strony są identyczne, równanie ma nieskończenie wiele rozwiązań.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5670,7 +5670,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "x = 27/7",
-      "hint": "Zapisz zdanie jako równanie: x = 2/9 x + 3. Potem przenieś wyrazy z x na jedna strone.",
+      "hint": "Zapisz zdanie jako równanie: x = 2/9 x + 3. Potem przenieś wyrazy z x na jedną stronę.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5704,7 +5704,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "sqrt(x) = 4/3",
-      "hint": "Zapisz 80% jako 0,8 i uloz równanie x = 0,8 * (1/8 x + 2).",
+      "hint": "Zapisz 80% jako 0,8 i ułóż równanie x = 0,8 * (1/8 x + 2).",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5772,7 +5772,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "7/3 kg",
-      "hint": "Niech x oznacza mase ananasa. Równanie ma postac x = 7/10 + 7/10 x.",
+      "hint": "Niech x oznacza masę ananasa. Równanie ma postać x = 7/10 + 7/10 x.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5840,7 +5840,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 2,
       "answer": "58",
-      "hint": "Oznacz szukana liczbę jako x. Uloz równanie z tresci zadania i rozwiąż je krok po kroku.",
+      "hint": "Oznacz szukaną liczbę jako x. Ułóż równanie z treści zadania i rozwiąż je krok po kroku.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5848,7 +5848,7 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za zastosowanie poprawnej metody: Oznacz szukana liczbę jako x. Uloz równanie z tresci zadania i rozwiąż je krok po kroku."
+              "description": "za zastosowanie poprawnej metody: Oznacz szukaną liczbę jako x. Ułóż równanie z treści zadania i rozwiąż je krok po kroku."
             },
             {
               "points": 2,
@@ -5904,7 +5904,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 1,
       "answer": "x = -12",
-      "hint": "Najpierw pozbadz sie nawiasow, a potem przenieś wyrazy z x na jedna strone.",
+      "hint": "Najpierw pozbądź się nawiasów, a potem przenieś wyrazy z x na jedną stronę.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5934,7 +5934,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 1,
       "answer": "x = 1/3",
-      "hint": "Pomnóż równanie przez wspolny mianownik, żeby uniknac ułamków.",
+      "hint": "Pomnóż równanie przez wspólny mianownik, żeby uniknąć ułamków.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -5994,7 +5994,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 1,
       "answer": "x = -7",
-      "hint": "Rozwiń nawiasy, przenieś x na jedna strone, liczby na druga.",
+      "hint": "Rozwiń nawiasy, przenieś x na jedną stronę, liczby na drugą.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -6024,7 +6024,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 1,
       "answer": "x = -2",
-      "hint": "Po uproszczeniu powinno zostac proste równanie liniowe.",
+      "hint": "Po uproszczeniu powinno zostać proste równanie liniowe.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -6053,8 +6053,8 @@
       "type": "open",
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 1,
-      "answer": "nieskonczenie wiele rozwiązań",
-      "hint": "Sprawdź, czy po uproszczeniu lewa i prawa strona sa takie same.",
+      "answer": "nieskończenie wiele rozwiązań",
+      "hint": "Sprawdź, czy po uproszczeniu lewa i prawa strona są takie same.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {
@@ -6062,12 +6062,12 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: nieskonczenie wiele rozwiązań."
+              "description": "za poprawne rozwiązanie zadania i podanie odpowiedzi: nieskończenie wiele rozwiązań."
             }
           ]
         }
       ],
-      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego nieskonczenie wiele rozwiązań.",
+      "note": "Uczeń może otrzymać punkt także za równoważny zapis, jeśli jednoznacznie wynika z niego nieskończenie wiele rozwiązań.",
       "criteriaStyle": "cke_thresholds"
     },
     {
@@ -6084,7 +6084,7 @@
       "topic": "wyrażenia algebraiczne i równania",
       "maxPoints": 1,
       "answer": "brak rozwiązań",
-      "hint": "Po uproszczeniu powinno wyjsc zdanie fałszywe, czyli równanie sprzeczne.",
+      "hint": "Po uproszczeniu powinno wyjść zdanie fałszywe, czyli równanie sprzeczne.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
         {

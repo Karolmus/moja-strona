@@ -5,7 +5,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "1.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.1",
-    "hint": "Rozwiń prawa strone, przenieś wyrazy z x na jedna strone, a liczby na druga.",
+    "hint": "Rozwiń prawą stronę, przenieś wyrazy z x na jedną stronę, a liczby na drugą.",
     "answer": "x = -5",
     "coursePart": "zadania",
     "tags": [
@@ -22,7 +22,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "2.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.2",
-    "hint": "Przenieś -x i 1,2x na jedna strone równania, a liczby na druga.",
+    "hint": "Przenieś -x i 1,2x na jedną stronę równania, a liczby na drugą.",
     "answer": "x = 9/22",
     "coursePart": "zadania",
     "tags": [
@@ -39,7 +39,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "3.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.3",
-    "hint": "Pomnóż równanie przez 3, żeby pozbyc sie ułamków, a potem zbierz wyrazy podobne.",
+    "hint": "Pomnóż równanie przez 3, żeby pozbyć się ułamków, a potem zbierz wyrazy podobne.",
     "answer": "x = -8/7",
     "coursePart": "zadania",
     "tags": [
@@ -73,7 +73,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "5.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.5",
-    "hint": "Rozwiń prawa strone. Wyrazy z x sie zredukuja, więc sprawdź, czy pozostaje zdanie prawdziwe czy fałszywe.",
+    "hint": "Rozwiń prawą stronę. Wyrazy z x się zredukują, więc sprawdź, czy pozostaje zdanie prawdziwe czy fałszywe.",
     "answer": "brak rozwiązań",
     "coursePart": "zadania",
     "tags": [
@@ -90,8 +90,8 @@
     "level": "egzamin_osmoklasisty",
     "file": "6.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.6",
-    "hint": "Rozwiń prawa strone. Jezeli po uproszczeniu obie strony sa identyczne, równanie ma nieskonczenie wiele rozwiązań.",
-    "answer": "nieskonczenie wiele rozwiązań",
+    "hint": "Rozwiń prawą stronę. Jeżeli po uproszczeniu obie strony są identyczne, równanie ma nieskończenie wiele rozwiązań.",
+    "answer": "nieskończenie wiele rozwiązań",
     "coursePart": "zadania",
     "tags": [
       "kurs",
@@ -124,7 +124,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "8.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.8",
-    "hint": "Zapisz zdanie jako równanie: x = 2/9 x + 3. Potem przenieś wyrazy z x na jedna strone.",
+    "hint": "Zapisz zdanie jako równanie: x = 2/9 x + 3. Potem przenieś wyrazy z x na jedną stronę.",
     "answer": "x = 27/7",
     "coursePart": "zadania",
     "tags": [
@@ -141,7 +141,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "9.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.9",
-    "hint": "Zapisz 80% jako 0,8 i uloz równanie x = 0,8 * (1/8 x + 2).",
+    "hint": "Zapisz 80% jako 0,8 i ułóż równanie x = 0,8 * (1/8 x + 2).",
     "answer": "sqrt(x) = 4/3",
     "coursePart": "zadania",
     "tags": [
@@ -176,7 +176,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "11.png",
     "title": "Lekcja 5 - ćwiczenie wstępne 1.11",
-    "hint": "Niech x oznacza mase ananasa. Równanie ma postac x = 7/10 + 7/10 x.",
+    "hint": "Niech x oznacza masę ananasa. Równanie ma postać x = 7/10 + 7/10 x.",
     "answer": "7/3 kg",
     "coursePart": "zadania",
     "tags": [
@@ -200,7 +200,7 @@
       "C",
       "D"
     ],
-    "hint": "Równanie oznaczone ma dokladnie jedno rozwiązanie.",
+    "hint": "Równanie oznaczone ma dokładnie jedno rozwiązanie.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -265,7 +265,7 @@
       "Stwierdzenie 3",
       "Stwierdzenie 4"
     ],
-    "hint": "Każde równanie uprość osobno i sprawdź, czy ma jedno rozwiązanie, brak rozwiązań czy nieskonczenie wiele rozwiązań.",
+    "hint": "Każde równanie uprość osobno i sprawdź, czy ma jedno rozwiązanie, brak rozwiązań czy nieskończenie wiele rozwiązań.",
     "answer": [
       "P",
       "P",
@@ -313,7 +313,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "17.png",
     "title": "Lekcja 5 - zadanie 5",
-    "hint": "Oznacz szukana liczbę jako x. Uloz równanie z tresci zadania i rozwiąż je krok po kroku.",
+    "hint": "Oznacz szukaną liczbę jako x. Ułóż równanie z treści zadania i rozwiąż je krok po kroku.",
     "answer": "58",
     "coursePart": "zadania",
     "tags": [
@@ -384,7 +384,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd3.png",
     "title": "Lekcja 5 - Zadanie domowe 3",
-    "hint": "Najpierw pozbadz sie nawiasow, a potem przenieś wyrazy z x na jedna strone.",
+    "hint": "Najpierw pozbądź się nawiasów, a potem przenieś wyrazy z x na jedną stronę.",
     "answer": "x = -12",
     "coursePart": "praca_domowa",
     "tags": [
@@ -401,7 +401,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd4.png",
     "title": "Lekcja 5 - Zadanie domowe 4",
-    "hint": "Pomnóż równanie przez wspolny mianownik, żeby uniknac ułamków.",
+    "hint": "Pomnóż równanie przez wspólny mianownik, żeby uniknąć ułamków.",
     "answer": "x = 1/3",
     "coursePart": "praca_domowa",
     "tags": [
@@ -436,7 +436,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd6.png",
     "title": "Lekcja 5 - Zadanie domowe 6",
-    "hint": "Rozwiń nawiasy, przenieś x na jedna strone, liczby na druga.",
+    "hint": "Rozwiń nawiasy, przenieś x na jedną stronę, liczby na drugą.",
     "answer": "x = -7",
     "coursePart": "praca_domowa",
     "tags": [
@@ -453,7 +453,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd7.png",
     "title": "Lekcja 5 - Zadanie domowe 7",
-    "hint": "Po uproszczeniu powinno zostac proste równanie liniowe.",
+    "hint": "Po uproszczeniu powinno zostać proste równanie liniowe.",
     "answer": "x = -2",
     "coursePart": "praca_domowa",
     "tags": [
@@ -470,8 +470,8 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd8.png",
     "title": "Lekcja 5 - Zadanie domowe 8",
-    "hint": "Sprawdź, czy po uproszczeniu lewa i prawa strona sa takie same.",
-    "answer": "nieskonczenie wiele rozwiązań",
+    "hint": "Sprawdź, czy po uproszczeniu lewa i prawa strona są takie same.",
+    "answer": "nieskończenie wiele rozwiązań",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
@@ -488,7 +488,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd9.png",
     "title": "Lekcja 5 - Zadanie domowe 9",
-    "hint": "Po uproszczeniu powinno wyjsc zdanie fałszywe, czyli równanie sprzeczne.",
+    "hint": "Po uproszczeniu powinno wyjść zdanie fałszywe, czyli równanie sprzeczne.",
     "answer": "brak rozwiązań",
     "coursePart": "praca_domowa",
     "tags": [
@@ -521,7 +521,7 @@
       "lekcja 5",
       "Zadanie domowe",
       "wyrażenia algebraiczne",
-      "mnożenie nawiasow"
+      "mnożenie nawiasów"
     ],
     "maxPoints": 1
   },
@@ -538,7 +538,7 @@
       "C",
       "D"
     ],
-    "hint": "Dodaj miejsca z trzech sektorow: a miejsc w pierwszym oraz po 3 rzedy z b i c miejscami w kolejnych sektorach.",
+    "hint": "Dodaj miejsca z trzech sektorów: a miejsc w pierwszym oraz po 3 rzędy z b i c miejscami w kolejnych sektorach.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [

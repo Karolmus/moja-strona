@@ -35,7 +35,7 @@
     "tags": [
       "potegi",
       "ulamki",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -55,7 +55,7 @@
       "D"
     ],
     "tags": [
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -97,7 +97,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -117,7 +117,7 @@
       "D"
     ],
     "tags": [
-      "rownania-liniowe",
+      "równania-liniowe",
       "zadania-tekstowe"
     ],
     "level": "egzamin_osmoklasisty",
@@ -158,7 +158,7 @@
       "D"
     ],
     "tags": [
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -219,7 +219,7 @@
       "FF"
     ],
     "tags": [
-      "prawdopodobienstwo",
+      "prawdopodobieństwo",
       "ulamki"
     ],
     "level": "egzamin_osmoklasisty",
@@ -263,8 +263,8 @@
     ],
     "tags": [
       "proste",
-      "proste-rownolegle",
-      "proste-prostopadle",
+      "proste-równoległe",
+      "proste-prostopadłe",
       "geometria"
     ],
     "level": "egzamin_osmoklasisty",
@@ -310,7 +310,7 @@
       "FF"
     ],
     "tags": [
-      "katy",
+      "kąty",
       "geometria"
     ],
     "level": "egzamin_osmoklasisty",
@@ -324,7 +324,7 @@
     "hint": "Oznacz cenę jednego biletu do kina lub teatru i zapisz równanie z treści zadania.",
     "answer": "Cena jednego biletu do teatru jest równa 80 zł.",
     "tags": [
-      "rownania-liniowe",
+      "równania-liniowe",
       "zadania-tekstowe",
       "zadania-otwarte"
     ],
@@ -362,7 +362,7 @@
     "hint": "Najpierw oblicz prędkość pociągu, a potem drogę przebytą w 15 sekund.",
     "answer": "Długość pociągu wynosi 210 m.",
     "tags": [
-      "predkosc-droga-czas",
+      "prędkość-droga-czas",
       "zadania-tekstowe",
       "zadania-otwarte"
     ],
@@ -432,7 +432,7 @@
     "hint": "Wyznacz brakujące krawędzie klocka z podanych wymiarów całej figury, a potem oblicz objętość.",
     "answer": "Objętość jednego klocka jest równa 225 cm³.",
     "tags": [
-      "objetosc-bryl",
+      "objętość-brył",
       "prostopadloscian",
       "bryly",
       "zadania-otwarte"

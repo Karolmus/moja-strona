@@ -13,8 +13,8 @@
       "D"
     ],
     "tags": [
-      "wartosc-bezwzgledna",
-      "przedzialy-liczbowe"
+      "wartość-bezwzględna",
+      "przedziały-liczbowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 83,
@@ -35,7 +35,7 @@
     ],
     "tags": [
       "potegi",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 76,
@@ -50,7 +50,7 @@
     "tags": [
       "dowodzenie",
       "dowody-algebraiczne",
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 56,
@@ -101,8 +101,8 @@
       "D"
     ],
     "tags": [
-      "wzory-skroconego-mnozenia",
-      "wyrazenia-algebraiczne"
+      "wzory-skróconego-mnozenia",
+      "wyrażenia-algebraiczne"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -122,8 +122,8 @@
       "D"
     ],
     "tags": [
-      "nierownosci-liniowe",
-      "przedzialy-liczbowe"
+      "nierówności-liniowe",
+      "przedziały-liczbowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 63,
@@ -143,7 +143,7 @@
       "D"
     ],
     "tags": [
-      "rownania-wymierne",
+      "równania-wymierne",
       "dziedzina-funkcji"
     ],
     "level": "matura_podstawowa",
@@ -164,7 +164,7 @@
       "FF"
     ],
     "tags": [
-      "wyrazenia-algebraiczne",
+      "wyrażenia-algebraiczne",
       "miejsce-zerowe"
     ],
     "level": "matura_podstawowa",
@@ -178,8 +178,8 @@
     "hint": "Pogrupuj wyrazy: x²(x - 2) - 3(x - 2), a potem skorzystaj z zasady iloczynu równego zeru.",
     "answer": "x ∈ {−√3, √3, 2}",
     "tags": [
-      "wyrazenia-algebraiczne",
-      "rownania-kwadratowe"
+      "wyrażenia-algebraiczne",
+      "równania-kwadratowe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -210,7 +210,7 @@
       "D"
     ],
     "tags": [
-      "uklady-rownan",
+      "układy-równań",
       "procenty",
       "zadania-tekstowe"
     ],
@@ -232,9 +232,9 @@
       "D"
     ],
     "tags": [
-      "uklady-rownan",
+      "układy-równań",
       "funkcja-liniowa",
-      "proste-rownolegle"
+      "proste-równoległe"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 71,
@@ -255,7 +255,7 @@
     ],
     "tags": [
       "funkcja-liniowa",
-      "monotonicznosc",
+      "monotoniczność",
       "zadania-z-parametrem"
     ],
     "level": "matura_podstawowa",
@@ -287,13 +287,13 @@
   {
     "file": "14.1_2024_cke_p_m.png",
     "difficulty": 3,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "hint": "Odczytaj z wykresu, dla jakich argumentów parabola leży na lub nad osią x.",
     "answer": "[−2, 4]",
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
       "funkcja-kwadratowa",
-      "nierownosci-kwadratowe",
+      "nierówności-kwadratowe",
       "odczytywanie-z-wykresu"
     ],
     "level": "matura_podstawowa",
@@ -315,8 +315,8 @@
   {
     "file": "14.2_2024_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratówa",
-    "hint": "Postać kanoniczna funkcji kwadratówej wykorzystuje współrzędne wierzchołka paraboli.",
+    "topic": "funkcja kwadratowa",
+    "hint": "Postać kanoniczna funkcji kwadratowej wykorzystuje współrzędne wierzchołka paraboli.",
     "answer": "B",
     "type": "closed",
     "options": [
@@ -337,7 +337,7 @@
   {
     "file": "14.3_2024_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "hint": "Miejsca zerowe po przesunięciu wykresu odczytaj z nowego położenia paraboli względem osi x.",
     "answer": "A",
     "type": "closed",
@@ -351,7 +351,7 @@
     "tags": [
       "funkcja-kwadratowa",
       "symetria-wykresu",
-      "wartosci-funkcji"
+      "wartości-funkcji"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 62,
@@ -378,7 +378,7 @@
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
       "funkcja-kwadratowa",
-      "przesuniecia-wykresu",
+      "przesunięcia-wykresu",
       "symetria-wykresu"
     ],
     "level": "matura_podstawowa",
@@ -400,7 +400,7 @@
     ],
     "tags": [
       "ciagi",
-      "wyraz-ogolny-ciagu"
+      "wyraz-ogólny-ciągu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 77,
@@ -423,8 +423,8 @@
     ],
     "tags": [
       "ciagi",
-      "ciag-geometryczny",
-      "monotonicznosc-ciagu"
+      "ciąg-geometryczny",
+      "monotoniczność-ciągu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 78,
@@ -437,8 +437,8 @@
     "hint": "Zapisz trzeci wyraz jako a₃ = a₁ + 2r oraz sumę piętnastu początkowych wyrazów ciągu.",
     "answer": "r = −2",
     "tags": [
-      "ciag-arytmetyczny",
-      "suma-ciagu-arytmetycznego"
+      "ciąg-arytmetyczny",
+      "suma-ciągu-arytmetycznego"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 40,
@@ -488,7 +488,7 @@
     "tags": [
       "trygonometria",
       "tangens",
-      "wartosci-trygonometryczne"
+      "wartości-trygonometryczne"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 61,
@@ -509,7 +509,7 @@
     ],
     "tags": [
       "trygonometria",
-      "tozsamosci-trygonometryczne",
+      "tożsamości-trygonometryczne",
       "sinus"
     ],
     "level": "matura_podstawowa",
@@ -531,7 +531,7 @@
     ],
     "tags": [
       "trojkaty",
-      "podobienstwo-trojkatow",
+      "podobieństwo-trójkątów",
       "planimetria"
     ],
     "level": "matura_podstawowa",
@@ -574,8 +574,8 @@
       "D"
     ],
     "tags": [
-      "okrag",
-      "katy-w-okregu"
+      "okrąg",
+      "kąty-w-okręgu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 64,
@@ -595,8 +595,8 @@
       "D"
     ],
     "tags": [
-      "rownanie-prostej",
-      "proste-prostopadle",
+      "równanie-prostej",
+      "proste-prostopadłe",
       "zadania-z-parametrem"
     ],
     "level": "matura_podstawowa",
@@ -611,8 +611,8 @@
     "answer": "|BC| = √52 = 2√13",
     "tags": [
       "geometria-analityczna",
-      "uklad-wspolrzednych",
-      "odleglosc-punktow"
+      "układ-współrzędnych",
+      "odległość-punktów"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 41,
@@ -649,7 +649,7 @@
     "contextFile": "25_2024_cke_p_m.png",
     "tags": [
       "graniastoslupy",
-      "pole-powierzchni-bryl",
+      "pole-powierzchni-brył",
       "pola-figur"
     ],
     "level": "matura_podstawowa",
@@ -672,7 +672,7 @@
     "contextFile": "25_2024_cke_p_m.png",
     "tags": [
       "graniastoslupy",
-      "przekroje-bryl",
+      "przekroje-brył",
       "trygonometria"
     ],
     "level": "matura_podstawowa",
@@ -687,8 +687,8 @@
     "answer": "4",
     "tags": [
       "ostroslupy",
-      "objetosc-bryl",
-      "pole-powierzchni-bryl"
+      "objętość-brył",
+      "pole-powierzchni-brył"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 23,
@@ -722,7 +722,7 @@
     "tags": [
       "kombinatoryka",
       "permutacje",
-      "zliczanie-przypadkow"
+      "zliczanie-przypadków"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 85,
@@ -743,7 +743,7 @@
     ],
     "tags": [
       "statystyka",
-      "srednia-arytmetyczna"
+      "średnia-arytmetyczna"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 74,
@@ -778,9 +778,9 @@
     "hint": "Wypisz pary wyników losowania lub policz osobno przypadki, gdy obie liczby są parzyste albo obie nieparzyste.",
     "answer": "P(A) = 13/25",
     "tags": [
-      "prawdopodobienstwo",
-      "prawdopodobienstwo-klasyczne",
-      "zliczanie-przypadkow"
+      "prawdopodobieństwo",
+      "prawdopodobieństwo-klasyczne",
+      "zliczanie-przypadków"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 64,

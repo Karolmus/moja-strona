@@ -317,7 +317,7 @@
     "type": "true_false",
     "statements": [
       "Od 1 stycznia 2000 do 1 stycznia 2004 minęło dokładnie 1460 dni",
-      "Od 5 maja 2027 do 10 lipca 2027 minie tyle samo dni co od 5 lipca 2027 do 9 września 2027"
+      "Od 5 mają 2027 do 10 lipca 2027 minie tyle samo dni co od 5 lipca 2027 do 9 września 2027"
     ],
     "maxPoints": 1
   },
@@ -369,7 +369,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "366 dni to 52 tygodnie i 2 dni. Od 21 maja do 13 września mija 115 dni, czyli 3 dni ponad pełne tygodnie.",
+    "hint": "366 dni to 52 tygodnie i 2 dni. Od 21 mają do 13 września mija 115 dni, czyli 3 dni ponad pełne tygodnie.",
     "answer": [
       "P",
       "P"
@@ -385,7 +385,7 @@
     "type": "true_false",
     "statements": [
       "Rok przestępny trwa 52 tygodnie i 2 dni",
-      "Jeśli 21 maja to środa, to 13 września to sobota"
+      "Jeśli 21 mają to środa, to 13 września to sobota"
     ],
     "maxPoints": 1
   },

@@ -14,8 +14,8 @@
       "D"
     ],
     "tags": [
-      "wartosc-bezwzgledna",
-      "przedzialy-liczbowe"
+      "wartość-bezwzględna",
+      "przedziały-liczbowe"
     ],
     "maxPoints": 1,
     "completionPercent": 74
@@ -37,7 +37,7 @@
     "tags": [
       "pierwiastki",
       "potegi",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "maxPoints": 1,
     "completionPercent": 83
@@ -52,7 +52,7 @@
     "tags": [
       "dowodzenie",
       "dowody-algebraiczne",
-      "wyrazenia-algebraiczne"
+      "wyrażenia-algebraiczne"
     ],
     "solutions": [
       {
@@ -81,7 +81,7 @@
     "difficulty": 2,
     "topic": "logarytmy",
     "level": "matura_podstawowa",
-    "hint": "Zapisz 27 i 3 jako potęgi liczby 9 albo uzyj definicji logarytmu.",
+    "hint": "Zapisz 27 i 3 jako potęgi liczby 9 albo użyj definicji logarytmu.",
     "answer": "D",
     "type": "closed",
     "options": [
@@ -92,7 +92,7 @@
     ],
     "tags": [
       "logarytmy",
-      "dzialania-na-liczbach"
+      "działania-na-liczbach"
     ],
     "maxPoints": 1,
     "completionPercent": 90
@@ -102,7 +102,7 @@
     "difficulty": 2,
     "topic": "wzory skróconego mnożenia",
     "level": "matura_podstawowa",
-    "hint": "Rozwin oba kwadraty i zredukuj wyrazy podobne.",
+    "hint": "Rozwiń oba kwadraty i zredukuj wyrazy podobne.",
     "answer": "A",
     "type": "closed",
     "options": [
@@ -112,8 +112,8 @@
       "D"
     ],
     "tags": [
-      "wzory-skroconego-mnozenia",
-      "wyrazenia-algebraiczne"
+      "wzory-skróconego-mnozenia",
+      "wyrażenia-algebraiczne"
     ],
     "maxPoints": 1,
     "completionPercent": 78
@@ -121,9 +121,9 @@
   {
     "file": "6_2023_cke_p_m.png",
     "difficulty": 2,
-    "topic": "nierownosci liniowe",
+    "topic": "nierówności liniowe",
     "level": "matura_podstawowa",
-    "hint": "Pomnoz nierownosc przez 3 i rozwiąż ja krok po kroku, pamietajac o znaku nierownosci.",
+    "hint": "Pomnóż nierówność przez 3 i rozwiąż ją krok po kroku, pamiętając o znaku nierówności.",
     "answer": "C",
     "type": "closed",
     "options": [
@@ -133,8 +133,8 @@
       "D"
     ],
     "tags": [
-      "nierownosci-liniowe",
-      "przedzialy-liczbowe"
+      "nierówności-liniowe",
+      "przedziały-liczbowe"
     ],
     "maxPoints": 1,
     "completionPercent": 70
@@ -142,9 +142,9 @@
   {
     "file": "7_2023_cke_p_m.png",
     "difficulty": 2,
-    "topic": "równańia wielomianowe",
+    "topic": "równania wielomianowe",
     "level": "matura_podstawowa",
-    "hint": "Iloczyn jest rowny zero, gdy przynajmniej jeden czynnik jest rowny zero.",
+    "hint": "Iloczyn jest równy zero, gdy przynajmniej jeden czynnik jest równy zero.",
     "answer": "D",
     "type": "closed",
     "options": [
@@ -154,7 +154,7 @@
       "D"
     ],
     "tags": [
-      "rownania-kwadratowe",
+      "równania-kwadratowe",
       "pierwiastki"
     ],
     "maxPoints": 1,
@@ -163,9 +163,9 @@
   {
     "file": "8_2023_cke_p_m.png",
     "difficulty": 2,
-    "topic": "równańia wymierne",
+    "topic": "równania wymierne",
     "level": "matura_podstawowa",
-    "hint": "Najpierw wyznacz dziedzine. Licznik i mianownik zeruja sie dla tych samych wartości, więc sprawdz, czy zostaje jakiekolwiek rozwiążanie.",
+    "hint": "Najpierw wyznacz dziedzinę. Licznik i mianownik zerują się dla tych samych wartości, więc sprawdź, czy zostaje jakiekolwiek rozwiązanie.",
     "answer": "A",
     "type": "closed",
     "options": [
@@ -175,8 +175,8 @@
       "D"
     ],
     "tags": [
-      "rownania-wymierne",
-      "wyrazenia-algebraiczne"
+      "równania-wymierne",
+      "wyrażenia-algebraiczne"
     ],
     "maxPoints": 1,
     "completionPercent": 77
@@ -184,13 +184,13 @@
   {
     "file": "9_2023_cke_p_m.png",
     "difficulty": 4,
-    "topic": "równańia wielomianowe",
+    "topic": "równania wielomianowe",
     "level": "matura_podstawowa",
     "hint": "Pogrupuj składniki albo znajdź pierwiastek wielomianu, a potem rozłóż wielomian na czynniki.",
     "answer": "x = -2, x = 2/3, x = 2",
     "tags": [
-      "wyrazenia-algebraiczne",
-      "rownania-kwadratowe"
+      "wyrażenia-algebraiczne",
+      "równania-kwadratowe"
     ],
     "solutions": [
       {
@@ -219,7 +219,7 @@
     "difficulty": 2,
     "topic": "układy równań",
     "level": "matura_podstawowa",
-    "hint": "Odczytaj z wykresu punkty przecięcia z osiami i wspolczynniki kierunkowe prostych.",
+    "hint": "Odczytaj z wykresu punkty przecięcia z osiami i współczynniki kierunkowe prostych.",
     "answer": "D",
     "type": "closed",
     "options": [
@@ -229,7 +229,7 @@
       "D"
     ],
     "tags": [
-      "uklady-rownan",
+      "układy-równań",
       "funkcja-liniowa",
       "wykres-funkcji"
     ],
@@ -256,7 +256,7 @@
       "F"
     ],
     "tags": [
-      "uklady-rownan",
+      "układy-równań",
       "zadania-tekstowe",
       "modelowanie-matematyczne"
     ],
@@ -268,7 +268,7 @@
     "difficulty": 2,
     "topic": "funkcje",
     "level": "matura_podstawowa",
-    "hint": "Dziedzina to wszystkie wartości x, dla ktorych istnieje punkt wykresu.",
+    "hint": "Dziedzina to wszystkie wartości x, dla których istnieje punkt wykresu.",
     "answer": "A",
     "type": "closed",
     "options": [
@@ -291,7 +291,7 @@
     "difficulty": 2,
     "topic": "funkcje",
     "level": "matura_podstawowa",
-    "hint": "Ogranicz odczyt do przedziału [-4, 1] i znajdź najwyzej polozony punkt wykresu.",
+    "hint": "Ogranicz odczyt do przedziału [-4, 1] i znajdź najwyżej położony punkt wykresu.",
     "answer": "C",
     "type": "closed",
     "options": [
@@ -302,7 +302,7 @@
     ],
     "tags": [
       "funkcje",
-      "wartosci-funkcji",
+      "wartości-funkcji",
       "odczytywanie-z-wykresu"
     ],
     "contextFile": "12_2023_cke_p_m.png",
@@ -314,7 +314,7 @@
     "difficulty": 2,
     "topic": "funkcje",
     "level": "matura_podstawowa",
-    "hint": "Wybierz ten fragment wykresu, na ktorym wraz ze wzrostem x wartości funkcji maleja.",
+    "hint": "Wybierz ten fragment wykresu, na którym wraz ze wzrostem x wartości funkcji maleją.",
     "answer": "D",
     "type": "closed",
     "options": [
@@ -325,7 +325,7 @@
     ],
     "tags": [
       "funkcje",
-      "monotonicznosc",
+      "monotoniczność",
       "odczytywanie-z-wykresu"
     ],
     "contextFile": "12_2023_cke_p_m.png",
@@ -337,7 +337,7 @@
     "difficulty": 2,
     "topic": "funkcja liniowa",
     "level": "matura_podstawowa",
-    "hint": "Z wykresu odczytaj znak wspolczynnika kierunkowego oraz miejsce przecięcia z osia y.",
+    "hint": "Z wykresu odczytaj znak współczynnika kierunkowego oraz miejsce przecięcia z osią y.",
     "answer": "C",
     "type": "closed",
     "options": [
@@ -349,7 +349,7 @@
     "tags": [
       "funkcja-liniowa",
       "wykres-funkcji",
-      "wspolczynnik-kierunkowy"
+      "współczynnik-kierunkowy"
     ],
     "maxPoints": 1,
     "completionPercent": 81
@@ -357,9 +357,9 @@
   {
     "file": "14_2023_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Pierwsza współrzędna wierzcholka jest średnia arytmetyczna miejsc zerowych.",
+    "hint": "Pierwsza współrzędna wierzchołka jest średnią arytmetyczną miejsc zerowych.",
     "answer": "A",
     "type": "closed",
     "options": [
@@ -381,7 +381,7 @@
     "difficulty": 2,
     "topic": "ciągi",
     "level": "matura_podstawowa",
-    "hint": "Podstaw n = 4 do wzoru ogolnego ciągu.",
+    "hint": "Podstaw n = 4 do wzoru ogólnego ciągu.",
     "answer": "D",
     "type": "closed",
     "options": [
@@ -392,7 +392,7 @@
     ],
     "tags": [
       "ciagi",
-      "wyraz-ogolny-ciagu"
+      "wyraz-ogólny-ciągu"
     ],
     "maxPoints": 1,
     "completionPercent": 96
@@ -402,7 +402,7 @@
     "difficulty": 2,
     "topic": "ciąg geometryczny",
     "level": "matura_podstawowa",
-    "hint": "W ciągu geometrycznym iloraz kolejnych wyrazów jest staly.",
+    "hint": "W ciągu geometrycznym iloraz kolejnych wyrazów jest stały.",
     "answer": "C",
     "type": "closed",
     "options": [
@@ -413,7 +413,7 @@
     ],
     "tags": [
       "ciagi",
-      "ciag-geometryczny"
+      "ciąg-geometryczny"
     ],
     "maxPoints": 1,
     "completionPercent": 85
@@ -424,10 +424,10 @@
     "topic": "ciąg arytmetyczny",
     "level": "matura_podstawowa",
     "hint": "Raty tworzą ciąg arytmetyczny o różnicy -30. Użyj wzoru na sumę 18 początkowych wyrazów.",
-    "answer": "Pierwsza rata byla rowna 750 zl.",
+    "answer": "Pierwsza rata była równa 750 zł.",
     "tags": [
-      "ciag-arytmetyczny",
-      "suma-ciagu-arytmetycznego",
+      "ciąg-arytmetyczny",
+      "suma-ciągu-arytmetycznego",
       "zadania-tekstowe"
     ],
     "solutions": [
@@ -465,7 +465,7 @@
     "difficulty": 2,
     "topic": "trygonometria",
     "level": "matura_podstawowa",
-    "hint": "Dla punktu P = (-3, 1) tangens kata w układzie wspolrzednych to y/x.",
+    "hint": "Dla punktu P = (-3, 1) tangens kąta w układzie współrzędnych to y/x.",
     "answer": "D",
     "type": "closed",
     "options": [
@@ -477,7 +477,7 @@
     "tags": [
       "trygonometria",
       "tangens",
-      "uklad-wspolrzednych"
+      "układ-współrzędnych"
     ],
     "maxPoints": 1,
     "completionPercent": 83
@@ -487,7 +487,7 @@
     "difficulty": 2,
     "topic": "trygonometria",
     "level": "matura_podstawowa",
-    "hint": "Wylacz sin^2(alpha) przed nawias i uzyj jedynki trygonometrycznej.",
+    "hint": "Wyłącz sin^2(alpha) przed nawias i użyj jedynki trygonometrycznej.",
     "answer": "A",
     "type": "closed",
     "options": [
@@ -498,7 +498,7 @@
     ],
     "tags": [
       "trygonometria",
-      "tozsamosci-trygonometryczne",
+      "tożsamości-trygonometryczne",
       "sinus"
     ],
     "maxPoints": 1,
@@ -509,7 +509,7 @@
     "difficulty": 2,
     "topic": "romb",
     "level": "matura_podstawowa",
-    "hint": "Pole rombu mozna zapisac jako a^2 sin(alpha) oraz jako połowę iloczynu przekatnych.",
+    "hint": "Pole rombu można zapisać jako a^2 sin(alpha) oraz jako połowę iloczynu przekątnych.",
     "answer": "B",
     "type": "closed",
     "options": [
@@ -531,7 +531,7 @@
     "difficulty": 2,
     "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
-    "hint": "Skorzystaj z zaleznosci katow przy promieńiach oraz kata wpisanego opartego na tym samym luku.",
+    "hint": "Skorzystaj z zależności kątów przy promieniach oraz kąta wpisanego opartego na tym samym łuku.",
     "answer": "B",
     "type": "closed",
     "options": [
@@ -541,8 +541,8 @@
       "D"
     ],
     "tags": [
-      "okrag",
-      "katy-w-okregu",
+      "okrąg",
+      "kąty-w-okręgu",
       "planimetria"
     ],
     "maxPoints": 1,
@@ -551,13 +551,13 @@
   {
     "file": "22_2023_cke_p_m.png",
     "difficulty": 3,
-    "topic": "podobienstwo trojkatow",
+    "topic": "podobieństwo trójkątów",
     "level": "matura_podstawowa",
-    "hint": "Najpierw oblicz przeciwprostokatna trójkąta o bokach 5 i 12, potem wyznacz skale podobienstwa.",
+    "hint": "Najpierw oblicz przeciwprostokątną trójkąta o bokach 5 i 12, potem wyznacz skalę podobieństwa.",
     "answer": "Pole trójkąta T2 wynosi 120.",
     "tags": [
-      "podobienstwo-trojkatow",
-      "trojkat-prostokatny",
+      "podobieństwo-trójkątów",
+      "trójkąt-prostokątny",
       "pola-figur"
     ],
     "solutions": [
@@ -595,9 +595,9 @@
       "B3"
     ],
     "tags": [
-      "rownanie-prostej",
-      "proste-prostopadle",
-      "uklad-wspolrzednych"
+      "równanie-prostej",
+      "proste-prostopadłe",
+      "układ-współrzędnych"
     ],
     "maxPoints": 1,
     "completionPercent": 77
@@ -605,9 +605,9 @@
   {
     "file": "24_2023_cke_p_m.png",
     "difficulty": 2,
-    "topic": "prosta rownolegla",
+    "topic": "prosta równoległa",
     "level": "matura_podstawowa",
-    "hint": "Proste rownolegle maja ten sam wspolczynnik kierunkowy. Podstaw punkt P do równańia, aby znaleźć b.",
+    "hint": "Proste równoległe mają ten sam współczynnik kierunkowy. Podstaw punkt P do równania, aby znaleźć b.",
     "answer": "D",
     "type": "closed",
     "options": [
@@ -617,9 +617,9 @@
       "D"
     ],
     "tags": [
-      "rownanie-prostej",
-      "proste-rownolegle",
-      "wspolczynnik-kierunkowy"
+      "równanie-prostej",
+      "proste-równoległe",
+      "współczynnik-kierunkowy"
     ],
     "maxPoints": 1,
     "completionPercent": 77
@@ -629,7 +629,7 @@
     "difficulty": 2,
     "topic": "graniastosłupy",
     "level": "matura_podstawowa",
-    "hint": "W przekroju przekątna graniastosłupa tworzy z przekątna podstawy kąt alpha.",
+    "hint": "W przekroju przekątna graniastosłupa tworzy z przekątną podstawy kąt alpha.",
     "answer": "B",
     "type": "closed",
     "options": [
@@ -641,7 +641,7 @@
     "tags": [
       "graniastoslupy",
       "trygonometria",
-      "trojkat-prostokatny"
+      "trójkąt-prostokątny"
     ],
     "maxPoints": 1,
     "completionPercent": 66
@@ -655,8 +655,8 @@
     "answer": "V = 108, Pc = 108 + 72sqrt(3)",
     "tags": [
       "ostroslupy",
-      "objetosc-bryl",
-      "pole-powierzchni-bryl"
+      "objętość-brył",
+      "pole-powierzchni-brył"
     ],
     "solutions": [
       {
@@ -673,7 +673,7 @@
     "difficulty": 2,
     "topic": "ostrosłupy",
     "level": "matura_podstawowa",
-    "hint": "Dla ostrosłupa o podstawie n-kata liczba wierzchołków to n + 1, a liczba krawędzi to 2n.",
+    "hint": "Dla ostrosłupa o podstawie n-kąta liczba wierzchołków to n + 1, a liczba krawędzi to 2n.",
     "answer": "B",
     "type": "closed",
     "options": [
@@ -695,7 +695,7 @@
     "difficulty": 2,
     "topic": "kombinatoryka",
     "level": "matura_podstawowa",
-    "hint": "Pierwsza cyfra nie moze byc zerem, a kazda z pozostalych czterech pozycji ma trzy mozliwosci.",
+    "hint": "Pierwsza cyfra nie może być zerem, a każda z pozostałych czterech pozycji ma trzy możliwości.",
     "answer": "C",
     "type": "closed",
     "options": [
@@ -706,8 +706,8 @@
     ],
     "tags": [
       "kombinatoryka",
-      "regula-mnozenia",
-      "zliczanie-przypadkow"
+      "reguła-mnozenia",
+      "zliczanie-przypadków"
     ],
     "maxPoints": 1,
     "completionPercent": 83
@@ -717,7 +717,7 @@
     "difficulty": 3,
     "topic": "statystyka",
     "level": "matura_podstawowa",
-    "hint": "Z diagramu odczytaj liczebności, uporządkuj ceny do mediany i oblicz średnia ważona.",
+    "hint": "Z diagramu odczytaj liczebności, uporządkuj ceny do mediany i oblicz średnią ważoną.",
     "answer": [
       "1) C",
       "2) A"
@@ -738,7 +738,7 @@
     "tags": [
       "statystyka",
       "mediana",
-      "srednia-arytmetyczna"
+      "średnia-arytmetyczna"
     ],
     "maxPoints": 2,
     "completionPercent": 69
@@ -748,12 +748,12 @@
     "difficulty": 3,
     "topic": "prawdopodobieństwo",
     "level": "matura_podstawowa",
-    "hint": "Policz wszystkie pary uporzadkowane oraz te, w ktorych iloczyn jest podzielny przez 15.",
+    "hint": "Policz wszystkie pary uporządkowane oraz te, w których iloczyn jest podzielny przez 15.",
     "answer": "P(A) = 6/64 = 3/32",
     "tags": [
-      "prawdopodobienstwo",
-      "prawdopodobienstwo-klasyczne",
-      "zliczanie-przypadkow"
+      "prawdopodobieństwo",
+      "prawdopodobieństwo-klasyczne",
+      "zliczanie-przypadków"
     ],
     "solutions": [
       {
@@ -776,7 +776,7 @@
   {
     "file": "31.1_2023_cke_p_m.png",
     "difficulty": 2,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
     "hint": "Pierwsze zdanie dotyczy sumy wartości funkcji, a nie jednej wartości. W drugim podstaw n = 3.",
     "answer": [
@@ -791,7 +791,7 @@
     "tags": [
       "funkcja-kwadratowa",
       "modelowanie-matematyczne",
-      "wartosci-funkcji"
+      "wartości-funkcji"
     ],
     "contextFile": "31_2023_cke_p_m.png",
     "maxPoints": 1,
@@ -800,10 +800,10 @@
   {
     "file": "31.2_2023_cke_p_m.png",
     "difficulty": 3,
-    "topic": "funkcja kwadratówa",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Wyznacz wierzcholek paraboli opisanej wzorem L(n).",
-    "answer": "Najwięcej klientow obsluzono 11. dnia; bylo ich 400.",
+    "hint": "Wyznacz wierzchołek paraboli opisanej wzorem L(n).",
+    "answer": "Najwięcej klientów obsłużono 11. dnia; było ich 400.",
     "tags": [
       "funkcja-kwadratowa",
       "optymalizacja",

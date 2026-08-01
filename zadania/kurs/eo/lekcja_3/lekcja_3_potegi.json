@@ -12,7 +12,7 @@
       "C",
       "D"
     ],
-    "hint": "Porównaj każdą liczbę z 10^100. Przy mnozeniu potęg o tej samej podstawie dodajesz wykładniki, a przy potedze potęgi mnozysz wykładniki.",
+    "hint": "Porównaj każdą liczbę z 10^100. Przy mnożeniu potęg o tej samej podstawie dodajesz wykładniki, a przy potędze potęgi mnożysz wykładniki.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -82,7 +82,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "W pierwszym zdaniu porównaj 11^12 z 11^12. W drugim uprość ułamek, pamietajac o potedze iloczynu.",
+    "hint": "W pierwszym zdaniu porównaj 11^12 z 11^12. W drugim uprość ułamek, pamiętając o potędze iloczynu.",
     "answer": [
       "F",
       "P"
@@ -110,7 +110,7 @@
       "C",
       "D"
     ],
-    "hint": "Zlicz, ile razy dodano 5^3. Sume jednakowych skladnikow zamień na mnożenie.",
+    "hint": "Zlicz, ile razy dodano 5^3. Sumę jednakowych składników zamień na mnożenie.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -132,7 +132,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Nieparzysty wykładnik przy liczbie ujemnej daje wynik ujemny. Pamiętaj też, ze liczba niezerowa do potęgi zerowej jest równa 1.",
+    "hint": "Nieparzysty wykładnik przy liczbie ujemnej daje wynik ujemny. Pamiętaj też, że liczba niezerowa do potęgi zerowej jest równa 1.",
     "answer": [
       "P",
       "P"
@@ -158,7 +158,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Rozloz liczby na czynniki pierwsze albo wypisz dzielniki wspolne.",
+    "hint": "Rozłóż liczby na czynniki pierwsze albo wypisz dzielniki wspólne.",
     "answer": [
       "P",
       "F"
@@ -186,7 +186,7 @@
       "C",
       "D"
     ],
-    "hint": "Zwroc uwage na znak liczby z nieparzystym wykładnikiem. Potem porównaj 1/2, 1, 5^10 i 5^12.",
+    "hint": "Zwróć uwagę na znak liczby z nieparzystym wykładnikiem. Potem porównaj 1/2, 1, 5^10 i 5^12.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -211,7 +211,7 @@
       "C",
       "D"
     ],
-    "hint": "Zamień wszystkie składniki na potęgi liczby 2. Dzielenie oznacza odejmowanie wykładnikow.",
+    "hint": "Zamień wszystkie składniki na potęgi liczby 2. Dzielenie oznacza odejmowanie wykładników.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -236,7 +236,7 @@
       "C",
       "D"
     ],
-    "hint": "Rozloz 15 i 18 na czynniki pierwsze, a do NWW wez najwyzsze potęgi wszystkich czynnikow.",
+    "hint": "Rozłóż 15 i 18 na czynniki pierwsze, a do NWW weź najwyższe potęgi wszystkich czynników.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -260,7 +260,7 @@
       "C",
       "D"
     ],
-    "hint": "Ustal znak iloczynu, a potem zapisz 4 jako 2^2 i polacz czynniki 2 oraz 5 w potęgi liczby 10.",
+    "hint": "Ustal znak iloczynu, a potem zapisz 4 jako 2^2 i połącz czynniki 2 oraz 5 w potęgi liczby 10.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -310,14 +310,14 @@
       "C",
       "D"
     ],
-    "hint": "Przesun przecinek tak, aby przed przecinkiem zostala jedna cyfra rozna od zera.",
+    "hint": "Przesuń przecinek tak, aby przed przecinkiem została jedna cyfra różna od zera.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 3",
       "potęgi",
-      "notacja wykladnicza"
+      "notacja wykładnicza"
     ],
     "maxPoints": 1
   },
@@ -334,14 +334,14 @@
       "C",
       "D"
     ],
-    "hint": "Dla liczby mniejszej od 1 wykładnik przy 10 bedzie ujemny. Przesuwasz przecinek o 6 miejsc.",
+    "hint": "Dla liczby mniejszej od 1 wykładnik przy 10 będzie ujemny. Przesuwasz przecinek o 6 miejsc.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 3",
       "potęgi",
-      "notacja wykladnicza"
+      "notacja wykładnicza"
     ],
     "maxPoints": 1
   },
@@ -356,7 +356,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Sprawdź parzystosc wykładnika i pamietaj, ze minus przed potęga nie jest tym samym co nawias.",
+    "hint": "Sprawdź parzystość wykładnika i pamiętaj, że minus przed potęgą nie jest tym samym co nawias.",
     "answer": [
       "P",
       "P"
@@ -461,7 +461,7 @@
       "C",
       "D"
     ],
-    "hint": "Do NWD bierz tylko wspolne czynniki w najmniejszych wykładnikach.",
+    "hint": "Do NWD bierz tylko wspólne czynniki w najmniejszych wykładnikach.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
@@ -522,7 +522,7 @@
       "potęgi",
       "nwd",
       "nww",
-      "os liczbowa",
+      "oś liczbowa",
       "Zadanie domowe"
     ],
     "maxPoints": 1
@@ -597,14 +597,14 @@
       "B2",
       "B3"
     ],
-    "hint": "Pomnożenie przez 2,1 przesuwa przecinek, ale jedna cyfra trafia przed zera.",
+    "hint": "Pomnożenie przez 2,1 przesuwa przecinek, ale jedna cyfra trafia przed przecinek.",
     "answer": "B1",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 3",
       "potęgi",
-      "notacja wykladnicza",
+      "notacja wykładnicza",
       "uzasadnienie",
       "Zadanie domowe"
     ],
@@ -623,14 +623,14 @@
       "C",
       "D"
     ],
-    "hint": "Zapisz 7,3 razy 10^11 jako 0,73 razy 10^12 i dodaj wspolne potęgi dziesiatki.",
+    "hint": "Zapisz 7,3 razy 10^11 jako 0,73 razy 10^12 i dodaj wspólne potęgi dziesiątki.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",
       "lekcja 3",
       "potęgi",
-      "notacja wykladnicza",
+      "notacja wykładnicza",
       "Zadanie domowe"
     ],
     "maxPoints": 1
@@ -655,7 +655,7 @@
       "kurs",
       "lekcja 3",
       "potęgi",
-      "notacja wykladnicza",
+      "notacja wykładnicza",
       "Zadanie domowe"
     ],
     "maxPoints": 1
