@@ -7,11 +7,20 @@
 <link rel="icon" type="image/webp" href="img/logo3.png">
 <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
 <link rel="apple-touch-icon" href="img/logo3.png">
-<title>Kontakt – Delta Sigma</title>
+<title>Kontakt - korepetycje z matematyki | Karol Musioł</title>
+<meta name="description" content="Skontaktuj się z Karolem Musiołem w sprawie indywidualnych korepetycji z matematyki. Telefon, Messenger, Discord i formularz zapisów.">
+<link rel="canonical" href="https://deltasigma.pl/kontakt.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Delta Sigma">
+<meta property="og:title" content="Kontakt - korepetycje z matematyki">
+<meta property="og:description" content="Skontaktuj się w sprawie indywidualnych zajęć z matematyki na rok szkolny 2026/27.">
+<meta property="og:url" content="https://deltasigma.pl/kontakt.html">
+<meta property="og:image" content="https://deltasigma.pl/img/me3.webp">
+<meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260731-footer-nip-fix">
-<link rel="stylesheet" href="baner.css?v=20260731-shorter-signup-banner">
+<link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
+<link rel="stylesheet" href="baner.css?v=20260803-individual-lessons">
 
 <style>
 * {
@@ -376,7 +385,7 @@ footer {
                 <span>Prowadzący zajęcia</span>
                 <div class="host-profile">
                     <div class="host-visuals">
-                        <img class="host-photo" src="img/me3.png" alt="Karol Musioł">
+                        <img class="host-photo" src="img/me3.webp" alt="Karol Musioł" width="1200" height="547" loading="lazy" decoding="async">
                         <img class="host-logo" src="img/logo3.png" alt="Delta Sigma">
                     </div>
                     <div class="host-copy">
@@ -407,13 +416,13 @@ footer {
 </footer>
 
 <script>
-fetch("nav.html?v=20260730-results-nav", { cache: "no-cache" })
+fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
     .then(response => response.text())
     .then(html => {
         document.getElementById("nav").innerHTML = html;
     });
 
-fetch("baner.html")
+fetch("baner.html?v=20260803-individual-lessons", { cache: "no-cache" })
     .then(response => response.text())
     .then(html => {
         document.getElementById("baner").innerHTML = html;
@@ -435,7 +444,7 @@ copyPhoneBtn.addEventListener("click", async () => {
     copyPhoneStatus.classList.add("active");
 });
 </script>
-<script src="static/auth.js?v=20260730-nav-active"></script>
-<script src="static/analytics.js?v=20260724-cookie-consent"></script>
+<script src="static/auth.js?v=20260803-mobile-call"></script>
+<script src="static/analytics.js?v=20260803-utm"></script>
 </body>
 </html>

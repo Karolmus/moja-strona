@@ -4,15 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>Delta Sigma</title>
+    <title>Korepetycje z matematyki online | Karol Musioł</title>
+    <meta name="description" content="Indywidualne korepetycje z matematyki online: przygotowanie do egzaminu ósmoklasisty oraz matury podstawowej i rozszerzonej. Rekrutacja 2026/27.">
+    <link rel="canonical" href="https://deltasigma.pl/">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Delta Sigma">
+    <meta property="og:title" content="Korepetycje z matematyki online | Karol Musioł">
+    <meta property="og:description" content="Indywidualne zajęcia, przygotowanie do egzaminów i rekrutacja na rok szkolny 2026/27.">
+    <meta property="og:url" content="https://deltasigma.pl/">
+    <meta property="og:image" content="https://deltasigma.pl/img/me3.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="547">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/webp" href="img/logo3.png">
     <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
     <link rel="apple-touch-icon" href="img/logo3.png">
 
-    <link rel="stylesheet" href="nav.css?v=20260731-footer-nip-fix">
-    <link rel="stylesheet" href="baner.css?v=20260731-shorter-signup-banner">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://deltasigma.pl/#website",
+          "url": "https://deltasigma.pl/",
+          "name": "Delta Sigma",
+          "inLanguage": "pl-PL"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://deltasigma.pl/#organization",
+          "name": "Delta Sigma",
+          "url": "https://deltasigma.pl/",
+          "logo": "https://deltasigma.pl/img/logo3.png",
+          "telephone": "+48514681958",
+          "founder": { "@id": "https://deltasigma.pl/#karol-musiol" },
+          "areaServed": [
+            { "@type": "City", "name": "Wrocław" },
+            { "@type": "Country", "name": "Polska" }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://deltasigma.pl/#karol-musiol",
+          "name": "Karol Musioł",
+          "jobTitle": "Korepetytor matematyki",
+          "url": "https://deltasigma.pl/",
+          "image": "https://deltasigma.pl/img/me3.webp",
+          "worksFor": { "@id": "https://deltasigma.pl/#organization" },
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=100003285549578",
+            "https://www.e-korepetycje.net/karolmusiol"
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
+    <link rel="stylesheet" href="baner.css?v=20260803-individual-lessons">
 
     <style>
 
@@ -391,6 +444,7 @@
 <body>
 
 <div id="nav"></div>
+<h1 class="visually-hidden">Indywidualne korepetycje z matematyki online</h1>
 
 <div class="discord-banner">
 
@@ -571,7 +625,7 @@ fetch("opinie.html", { cache: "no-cache" })
 
 <script>
 
-fetch("nav.html?v=20260730-results-nav", { cache: "no-cache" })
+fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
     .then(res => res.text())
     .then(data => {
         document.getElementById("nav").innerHTML = data;
@@ -581,7 +635,7 @@ fetch("nav.html?v=20260730-results-nav", { cache: "no-cache" })
 
 <script>
 
-fetch("baner.html")
+fetch("baner.html?v=20260803-individual-lessons", { cache: "no-cache" })
     .then(res => res.text())
     .then(html => {
         document.getElementById("baner").innerHTML = html;
@@ -589,7 +643,7 @@ fetch("baner.html")
 
 </script>
 
-<script src="static/auth.js?v=20260730-nav-active"></script>
+<script src="static/auth.js?v=20260803-mobile-call"></script>
 <script>
 
 async function loadSitePrices(){
@@ -611,6 +665,6 @@ async function loadSitePrices(){
 loadSitePrices();
 
 </script>
-<script src="static/analytics.js?v=20260724-cookie-consent"></script>
+<script src="static/analytics.js?v=20260803-utm"></script>
 </body>
 </html>

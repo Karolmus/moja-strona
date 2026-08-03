@@ -291,8 +291,28 @@
         });
     }
 
+    function updateMobileCallVisibility(){
+        const publicPages = new Set([
+            "index.html",
+            "zapisy.html",
+            "kontakt.html",
+            "na_biezaco.html",
+            "osmoklasista.html",
+            "matura_podstawowa.html",
+            "matura_rozszerzona.html",
+            "wyniki.html"
+        ]);
+        const page = window.location.pathname.split("/").pop() || "index.html";
+        const visible = publicPages.has(page);
+
+        document.querySelectorAll("[data-mobile-call]").forEach(element => {
+            element.hidden = !visible;
+        });
+    }
+
     function bootAuthNav(){
         updateCurrentYear();
+        updateMobileCallVisibility();
         window.updateAuthNav(null);
         window.refreshAuthNav();
     }
@@ -308,6 +328,7 @@
 
         if(nav && !nav.dataset.authReady){
             nav.dataset.authReady = "true";
+            updateMobileCallVisibility();
             window.refreshAuthNav();
         }
     }).observe(document.documentElement, {

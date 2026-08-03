@@ -24,10 +24,10 @@ if psycopg is not None:
 _last_analytics_cleanup_day = None
 
 DEFAULT_SITE_PRICES = {
-    "ongoing": 85,
-    "exam8": 90,
+    "ongoing": 100,
+    "exam8": 100,
     "matura_basic": 100,
-    "matura_extended": 110,
+    "matura_extended": 130,
 }
 
 
@@ -386,6 +386,22 @@ def init_auth_db():
                 ON site_analytics_sessions(day)
             """,
             """
+            CREATE TABLE IF NOT EXISTS site_analytics_campaigns (
+                day TEXT NOT NULL,
+                session_hash TEXT NOT NULL,
+                source TEXT NOT NULL,
+                medium TEXT NOT NULL DEFAULT '',
+                campaign TEXT NOT NULL DEFAULT '',
+                content TEXT NOT NULL DEFAULT '',
+                landing_path TEXT NOT NULL,
+                PRIMARY KEY(day, session_hash, source, medium, campaign, content, landing_path)
+            )
+            """,
+            """
+            CREATE INDEX IF NOT EXISTS idx_site_analytics_campaigns_day
+                ON site_analytics_campaigns(day)
+            """,
+            """
             CREATE TABLE IF NOT EXISTS site_settings (
                 key TEXT PRIMARY KEY,
                 value TEXT NOT NULL,
@@ -597,6 +613,20 @@ def init_auth_db():
         CREATE INDEX IF NOT EXISTS idx_site_analytics_sessions_day
             ON site_analytics_sessions(day);
 
+        CREATE TABLE IF NOT EXISTS site_analytics_campaigns (
+            day TEXT NOT NULL,
+            session_hash TEXT NOT NULL,
+            source TEXT NOT NULL,
+            medium TEXT NOT NULL DEFAULT '',
+            campaign TEXT NOT NULL DEFAULT '',
+            content TEXT NOT NULL DEFAULT '',
+            landing_path TEXT NOT NULL,
+            PRIMARY KEY(day, session_hash, source, medium, campaign, content, landing_path)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_site_analytics_campaigns_day
+            ON site_analytics_campaigns(day);
+
         CREATE TABLE IF NOT EXISTS site_settings (
             key TEXT PRIMARY KEY,
             value TEXT NOT NULL,
@@ -718,7 +748,14 @@ def update_site_prices(values):
     return get_site_prices()
 
 
-def record_site_pageview(path, visitor_hash, session_hash, referrer_host="", device_type="desktop"):
+def record_site_pageview(
+    path,
+    visitor_hash,
+    session_hash,
+    referrer_host="",
+    device_type="desktop",
+    campaign=None,
+):
     global _last_analytics_cleanup_day
 
     day = analytics_today()
@@ -763,6 +800,44 @@ def record_site_pageview(path, visitor_hash, session_hash, referrer_host="", dev
         (day_text, session_hash, path),
     )
 
+    campaign = campaign or {}
+
+    if campaign.get("source"):
+        db.execute(
+            prepare_sql(
+                """
+                INSERT INTO site_analytics_campaigns (
+                    day,
+                    session_hash,
+                    source,
+                    medium,
+                    campaign,
+                    content,
+                    landing_path
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(
+                    day,
+                    session_hash,
+                    source,
+                    medium,
+                    campaign,
+                    content,
+                    landing_path
+                ) DO NOTHING
+                """
+            ),
+            (
+                day_text,
+                session_hash,
+                campaign["source"],
+                campaign.get("medium", ""),
+                campaign.get("campaign", ""),
+                campaign.get("content", ""),
+                campaign.get("landing_path", path),
+            ),
+        )
+
     if _last_analytics_cleanup_day != day_text:
         retention_days = bounded_int(
             os.environ.get("ANALYTICS_RETENTION_DAYS", "180"),
@@ -775,6 +850,7 @@ def record_site_pageview(path, visitor_hash, session_hash, referrer_host="", dev
             "site_analytics_daily",
             "site_analytics_visitors",
             "site_analytics_sessions",
+            "site_analytics_campaigns",
         ):
             db.execute(
                 prepare_sql(f"DELETE FROM {table} WHERE day < ?"),
@@ -899,6 +975,23 @@ def site_analytics_summary(days=30):
         """,
         (start_text,),
     ).fetchall()
+    campaign_rows = execute(
+        """
+        SELECT
+            source,
+            medium,
+            campaign,
+            content,
+            landing_path,
+            COUNT(*) AS clicks
+        FROM site_analytics_campaigns
+        WHERE day >= ?
+        GROUP BY source, medium, campaign, content, landing_path
+        ORDER BY clicks DESC, source, medium, content
+        LIMIT 30
+        """,
+        (start_text,),
+    ).fetchall()
 
     return {
         "days": period_days,
@@ -932,6 +1025,17 @@ def site_analytics_summary(days=30):
                 "views": int(row["views"] or 0),
             }
             for row in device_rows
+        ],
+        "campaigns": [
+            {
+                "source": row["source"],
+                "medium": row["medium"],
+                "campaign": row["campaign"],
+                "content": row["content"],
+                "landing_path": row["landing_path"],
+                "clicks": int(row["clicks"] or 0),
+            }
+            for row in campaign_rows
         ],
     }
 
