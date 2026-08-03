@@ -4,11 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
-<title>Wyniki uczniów - Delta Sigma</title>
+<title>Wyniki uczniów z egzaminów 2026 | Delta Sigma</title>
+<meta name="description" content="Porównanie średnich wyników uczniów Karola Musioła z wynikami krajowymi egzaminu ósmoklasisty oraz matury z matematyki w 2026 roku.">
+<link rel="canonical" href="https://deltasigma.pl/wyniki.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Delta Sigma">
+<meta property="og:title" content="Wyniki uczniów z egzaminów 2026">
+<meta property="og:description" content="Zobacz średnie wyniki uczniów na tle wyników krajowych z matematyki.">
+<meta property="og:url" content="https://deltasigma.pl/wyniki.html">
+<meta property="og:image" content="https://deltasigma.pl/img/me3.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/webp" href="img/logo3.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260731-footer-nip-fix">
+<link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
 <style>
 :root{
     --ink:#1f2a36;
@@ -388,6 +398,7 @@ body{
 <div id="nav"></div>
 
 <main class="page">
+    <h1 class="visually-hidden">Wyniki uczniów na egzaminach z matematyki w 2026 roku</h1>
     <section class="results-table-card" aria-label="Wyniki egzaminów">
         <table class="results-table">
             <thead>
@@ -515,13 +526,13 @@ body{
 </footer>
 
 <script>
-fetch("nav.html?v=20260730-results-nav", { cache: "no-cache" })
+fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
     .then(res => res.text())
     .then(data => {
         document.getElementById("nav").innerHTML = data;
     });
 </script>
-<script src="static/auth.js?v=20260730-nav-active"></script>
-<script src="static/analytics.js?v=20260724-cookie-consent"></script>
+<script src="static/auth.js?v=20260803-mobile-call"></script>
+<script src="static/analytics.js?v=20260803-utm"></script>
 </body>
 </html>

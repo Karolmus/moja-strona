@@ -1,6 +1,7 @@
 (function(){
     const VISITOR_KEY = "deltaSigmaAnalyticsVisitor";
     const SESSION_KEY = "deltaSigmaAnalyticsSession";
+    const CAMPAIGN_KEY = "deltaSigmaAnalyticsCampaign";
     const CONSENT_KEY = "deltaSigmaCookieConsent";
     const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
 
@@ -38,6 +39,58 @@
         } catch(error) {
             // Statystyki nadal działają w obrębie bieżącego widoku.
         }
+    }
+
+    function sessionValue(key){
+        try {
+            return window.sessionStorage.getItem(key);
+        } catch(error) {
+            return null;
+        }
+    }
+
+    function storeSessionValue(key, value){
+        try {
+            window.sessionStorage.setItem(key, value);
+        } catch(error) {
+            // Atrybucja nadal zadziała na bieżącej stronie.
+        }
+    }
+
+    function campaignValue(value){
+        return String(value || "")
+            .trim()
+            .toLocaleLowerCase("pl-PL")
+            .replace(/[^a-z0-9._-]/g, "")
+            .slice(0, 80);
+    }
+
+    function campaignAttribution(){
+        const params = new URLSearchParams(window.location.search);
+        const campaign = {
+            utm_source: campaignValue(params.get("utm_source")),
+            utm_medium: campaignValue(params.get("utm_medium")),
+            utm_campaign: campaignValue(params.get("utm_campaign")),
+            utm_content: campaignValue(params.get("utm_content")),
+            utm_landing_path: window.location.pathname || "/"
+        };
+
+        if(campaign.utm_source){
+            storeSessionValue(CAMPAIGN_KEY, JSON.stringify(campaign));
+            return campaign;
+        }
+
+        try {
+            const stored = JSON.parse(sessionValue(CAMPAIGN_KEY) || "null");
+
+            if(stored?.utm_source){
+                return stored;
+            }
+        } catch(error) {
+            // Uszkodzony wpis kampanii jest pomijany.
+        }
+
+        return {};
     }
 
     function showCookieBanner(onAccept){
@@ -188,6 +241,7 @@
             return;
         }
 
+        const campaign = campaignAttribution();
         const apiBase = String(window.DS_API_BASE_URL || "").replace(/\/$/, "");
 
         if(!apiBase){
@@ -210,7 +264,8 @@
             visitor_id: visitorId(),
             session_id: sessionId(),
             referrer_host: referrerHost(),
-            device_type: deviceType()
+            device_type: deviceType(),
+            ...campaign
         });
 
         fetch(`${apiBase}/api/analytics/pageview`, {

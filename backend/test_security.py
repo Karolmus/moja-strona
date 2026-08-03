@@ -36,6 +36,7 @@ class SecurityTests(unittest.TestCase):
             connection.execute("DELETE FROM site_analytics_daily")
             connection.execute("DELETE FROM site_analytics_visitors")
             connection.execute("DELETE FROM site_analytics_sessions")
+            connection.execute("DELETE FROM site_analytics_campaigns")
             connection.execute("DELETE FROM speed_training_results")
             connection.execute("DELETE FROM task_review_items")
             connection.execute("DELETE FROM task_progress")
@@ -238,6 +239,11 @@ class SecurityTests(unittest.TestCase):
             "session_id": "session-00000001",
             "referrer_host": "",
             "device_type": "desktop",
+            "utm_source": "facebook",
+            "utm_medium": "community",
+            "utm_campaign": "rekrutacja_2026_27",
+            "utm_content": "grupy_rodzicow",
+            "utm_landing_path": "/zapisy.html",
         }
         headers = {
             "Origin": "https://deltasigma.pl",
@@ -305,6 +311,9 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(data["overview"]["sessions"], 1)
         self.assertEqual(data["pages"][0]["path"], "/")
         self.assertEqual(data["pages"][0]["views"], 2)
+        self.assertEqual(data["campaigns"][0]["source"], "facebook")
+        self.assertEqual(data["campaigns"][0]["content"], "grupy_rodzicow")
+        self.assertEqual(data["campaigns"][0]["clicks"], 1)
 
     def test_bots_and_foreign_origins_do_not_write_analytics(self):
         pageview = {

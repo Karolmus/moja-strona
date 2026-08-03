@@ -7,12 +7,21 @@
 <link rel="icon" type="image/webp" href="img/logo3.png">
 <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
 <link rel="apple-touch-icon" href="img/logo3.png">
-<title>Delta Sigma</title>
+<title>Korepetycje - egzamin ósmoklasisty | Karol Musioł</title>
+<meta name="description" content="Indywidualne przygotowanie do egzaminu ósmoklasisty z matematyki: plan nauki, arkusze CKE, egzaminy próbne i opieka do dnia egzaminu.">
+<link rel="canonical" href="https://deltasigma.pl/osmoklasista.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Delta Sigma">
+<meta property="og:title" content="Przygotowanie do egzaminu ósmoklasisty z matematyki">
+<meta property="og:description" content="Indywidualny kurs, arkusze CKE i systematyczne przygotowanie aż do dnia egzaminu.">
+<meta property="og:url" content="https://deltasigma.pl/osmoklasista.html">
+<meta property="og:image" content="https://deltasigma.pl/img/me3.webp">
+<meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260731-footer-nip-fix">
-<link rel="stylesheet" href="baner.css?v=20260731-shorter-signup-banner">
+<link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
+<link rel="stylesheet" href="baner.css?v=20260803-individual-lessons">
 <style>
 
 *{
@@ -134,7 +143,7 @@ body{
     text-align:center;
 }
 
-.course-info h2{
+.course-info h1{
     margin-bottom:0;
     font-size:28px;
 }
@@ -857,7 +866,7 @@ footer{
 <div class="hero-bg">
 <section class="course-info course-summary">
 
-    <h2>Przygotowanie do egzaminu ósmoklasisty</h2>
+    <h1>Przygotowanie do egzaminu ósmoklasisty</h1>
 
     <p>
         Kurs obejmuje <b>30 tematycznych lekcji</b>.
@@ -1548,14 +1557,14 @@ updateCountdown();
 
 </script>
 <script>
-fetch("nav.html?v=20260730-results-nav", { cache: "no-cache" })
+fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
     .then(res => res.text())
     .then(data => {
         document.getElementById("nav").innerHTML = data;
     });
 </script>
 <script>
-fetch("baner.html")
+fetch("baner.html?v=20260803-individual-lessons", { cache: "no-cache" })
     .then(res => res.text())
     .then(html => {
         document.querySelectorAll("#baner, [data-baner-slot]").forEach(slot => {
@@ -1563,7 +1572,7 @@ fetch("baner.html")
         });
     });
 </script>
-<script src="static/auth.js?v=20260730-nav-active"></script>
-<script src="static/analytics.js?v=20260724-cookie-consent"></script>
+<script src="static/auth.js?v=20260803-mobile-call"></script>
+<script src="static/analytics.js?v=20260803-utm"></script>
 </body>
 </html>

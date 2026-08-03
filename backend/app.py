@@ -509,6 +509,18 @@ def analytics_referrer_host(value):
     return host
 
 
+def analytics_campaign_value(value):
+    text = str(value or "").strip().lower()
+
+    if len(text) > 80:
+        return ""
+
+    if not all(character.isalnum() or character in "-_." for character in text):
+        return ""
+
+    return text
+
+
 def request_looks_like_bot():
     user_agent = request.headers.get("User-Agent", "").lower()
     markers = (
@@ -572,6 +584,15 @@ def api_analytics_pageview():
             session_hash=analytics_identifier(data.get("session_id")),
             referrer_host=analytics_referrer_host(data.get("referrer_host")),
             device_type=device_type,
+            campaign={
+                "source": analytics_campaign_value(data.get("utm_source")),
+                "medium": analytics_campaign_value(data.get("utm_medium")),
+                "campaign": analytics_campaign_value(data.get("utm_campaign")),
+                "content": analytics_campaign_value(data.get("utm_content")),
+                "landing_path": analytics_path(
+                    data.get("utm_landing_path") or data.get("path")
+                ),
+            },
         )
 
         return jsonify({"ok": True}), 201

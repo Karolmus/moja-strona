@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/webp" href="img/logo3.png">
 <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
 <link rel="apple-touch-icon" href="img/logo3.png">
 <title>Panel Admina</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260731-footer-nip-fix">
+<link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
 
 <style>
 :root {
@@ -1497,6 +1498,53 @@ th {
     border-bottom: 0;
 }
 
+.campaign-links {
+    display: grid;
+    gap: 8px;
+}
+
+.campaign-link-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.7fr) minmax(0, 2fr) auto auto;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: #ffffff;
+    padding: 9px 10px;
+}
+
+.campaign-link-label {
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.campaign-link-url {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--blue-text);
+    font-size: 11px;
+    line-height: 1.35;
+    text-decoration: underline;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.campaign-link-clicks {
+    min-width: 82px;
+    color: var(--muted);
+    font-size: 11px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.campaign-link-row .btn {
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
 .analytics-empty {
     color: var(--muted);
     font-size: 12px;
@@ -1534,6 +1582,20 @@ footer {
 }
 
 @media(max-width: 760px) {
+    .campaign-link-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .campaign-link-url {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .campaign-link-clicks {
+        grid-column: 1;
+        text-align: left;
+    }
+
     .container {
         margin: 24px auto;
         padding: 5px;
@@ -1833,6 +1895,16 @@ footer {
             </section>
 
             <section class="analytics-card analytics-card-wide">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Linki rekrutacyjne UTM</h3>
+                        <p class="inbox-subtitle">Skopiuj właściwy link. Licznik pokazuje unikalne wejścia zapisane po zgodzie na statystyki w wybranym okresie.</p>
+                    </div>
+                </div>
+                <div class="campaign-links" id="analyticsCampaignLinks"></div>
+            </section>
+
+            <section class="analytics-card analytics-card-wide">
                 <h3>Najczęściej odwiedzane strony</h3>
                 <div class="analytics-table-wrap">
                     <table class="analytics-table">
@@ -1861,7 +1933,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260730-nav-active"></script>
+<script src="static/auth.js?v=20260803-mobile-call"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -1919,6 +1991,49 @@ const EXAM_TARGETS = {
     egzamin_osmoklasisty: 20
 };
 
+const RECRUITMENT_CAMPAIGN_LINKS = [
+    {
+        label: "Facebook / Messenger",
+        source: "facebook",
+        medium: "social",
+        campaign: "rekrutacja_2026_27",
+        content: "profil",
+        url: "https://deltasigma.pl/zapisy.html?utm_source=facebook&utm_medium=social&utm_campaign=rekrutacja_2026_27&utm_content=profil"
+    },
+    {
+        label: "Grupy na Facebooku",
+        source: "facebook",
+        medium: "community",
+        campaign: "rekrutacja_2026_27",
+        content: "grupy_rodzicow",
+        url: "https://deltasigma.pl/zapisy.html?utm_source=facebook&utm_medium=community&utm_campaign=rekrutacja_2026_27&utm_content=grupy_rodzicow"
+    },
+    {
+        label: "e-korepetycje",
+        source: "e-korepetycje",
+        medium: "profile",
+        campaign: "rekrutacja_2026_27",
+        content: "profil",
+        url: "https://deltasigma.pl/zapisy.html?utm_source=e-korepetycje&utm_medium=profile&utm_campaign=rekrutacja_2026_27&utm_content=profil"
+    },
+    {
+        label: "Profil Firmy w Google",
+        source: "google",
+        medium: "business_profile",
+        campaign: "rekrutacja_2026_27",
+        content: "profil_firmy",
+        url: "https://deltasigma.pl/zapisy.html?utm_source=google&utm_medium=business_profile&utm_campaign=rekrutacja_2026_27&utm_content=profil_firmy"
+    },
+    {
+        label: "Polecenia rodziców",
+        source: "polecenie",
+        medium: "referral",
+        campaign: "rekrutacja_2026_27",
+        content: "rodzice_uczniow",
+        url: "https://deltasigma.pl/zapisy.html?utm_source=polecenie&utm_medium=referral&utm_campaign=rekrutacja_2026_27&utm_content=rodzice_uczniow"
+    }
+];
+
 const adminEmail = document.getElementById("adminEmail");
 const studentForm = document.getElementById("studentForm");
 const studentTable = document.getElementById("studentTable");
@@ -1964,6 +2079,7 @@ const analyticsChart = document.getElementById("analyticsChart");
 const analyticsPages = document.getElementById("analyticsPages");
 const analyticsReferrers = document.getElementById("analyticsReferrers");
 const analyticsDevices = document.getElementById("analyticsDevices");
+const analyticsCampaignLinks = document.getElementById("analyticsCampaignLinks");
 const pricesForm = document.getElementById("pricesForm");
 const pricesStatus = document.getElementById("pricesStatus");
 const reloadPricesBtn = document.getElementById("reloadPricesBtn");
@@ -2806,12 +2922,70 @@ function renderAnalyticsList(element, items, labelForItem){
     });
 }
 
+function campaignIdentity(item){
+    return [
+        item.source || "",
+        item.medium || "",
+        item.campaign || "",
+        item.content || ""
+    ].join("|");
+}
+
+function renderCampaignLinks(items){
+    const clicksByCampaign = new Map();
+
+    items.forEach(item => {
+        const key = campaignIdentity(item);
+        const clicks = Number(item.clicks || 0);
+
+        clicksByCampaign.set(key, (clicksByCampaign.get(key) || 0) + clicks);
+    });
+
+    analyticsCampaignLinks.innerHTML = "";
+
+    RECRUITMENT_CAMPAIGN_LINKS.forEach(item => {
+        const row = document.createElement("div");
+        const label = document.createElement("span");
+        const url = document.createElement("a");
+        const clicks = document.createElement("strong");
+        const copy = document.createElement("button");
+        const count = clicksByCampaign.get(campaignIdentity(item)) || 0;
+
+        row.className = "campaign-link-row";
+        label.className = "campaign-link-label";
+        url.className = "campaign-link-url";
+        clicks.className = "campaign-link-clicks";
+        copy.className = "btn secondary";
+        copy.type = "button";
+        label.innerText = item.label;
+        url.href = item.url;
+        url.target = "_blank";
+        url.rel = "noopener";
+        url.innerText = item.url;
+        url.title = item.url;
+        clicks.innerText = `${formatAnalyticsNumber(count)} wejść`;
+        copy.innerText = "Kopiuj";
+
+        copy.addEventListener("click", async () => {
+            await navigator.clipboard.writeText(item.url);
+            copy.innerText = "Skopiowano";
+            window.setTimeout(() => {
+                copy.innerText = "Kopiuj";
+            }, 1600);
+        });
+
+        row.append(label, url, clicks, copy);
+        analyticsCampaignLinks.appendChild(row);
+    });
+}
+
 function renderAnalytics(data){
     const overview = data.overview || {};
     const daily = Array.isArray(data.daily) ? data.daily : [];
     const pages = Array.isArray(data.pages) ? data.pages : [];
     const referrers = Array.isArray(data.referrers) ? data.referrers : [];
     const devices = Array.isArray(data.devices) ? data.devices : [];
+    const campaigns = Array.isArray(data.campaigns) ? data.campaigns : [];
 
     analyticsRange.innerText = `${data.range_start || ""} – ${data.range_end || ""} • bez zapisywania adresów IP`;
     analyticsViews.innerText = formatAnalyticsNumber(overview.views);
@@ -2888,6 +3062,7 @@ function renderAnalytics(data){
         devices,
         item => analyticsDeviceLabel(item.type)
     );
+    renderCampaignLinks(campaigns);
 }
 
 async function loadAnalytics(force = false){
