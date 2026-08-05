@@ -4,6 +4,38 @@
     const CAMPAIGN_KEY = "deltaSigmaAnalyticsCampaign";
     const CONSENT_KEY = "deltaSigmaCookieConsent";
     const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
+    const SHORT_CAMPAIGNS = {
+        fb: {
+            utm_source: "facebook",
+            utm_medium: "social",
+            utm_campaign: "rekrutacja_2026_27",
+            utm_content: "profil"
+        },
+        grupy: {
+            utm_source: "facebook",
+            utm_medium: "community",
+            utm_campaign: "rekrutacja_2026_27",
+            utm_content: "grupy_rodzicow"
+        },
+        ek: {
+            utm_source: "e-korepetycje",
+            utm_medium: "profile",
+            utm_campaign: "rekrutacja_2026_27",
+            utm_content: "profil"
+        },
+        google: {
+            utm_source: "google",
+            utm_medium: "business_profile",
+            utm_campaign: "rekrutacja_2026_27",
+            utm_content: "profil_firmy"
+        },
+        polecenie: {
+            utm_source: "polecenie",
+            utm_medium: "referral",
+            utm_campaign: "rekrutacja_2026_27",
+            utm_content: "rodzice_uczniow"
+        }
+    };
 
     if(
         window.location.protocol === "file:" ||
@@ -67,11 +99,12 @@
 
     function campaignAttribution(){
         const params = new URLSearchParams(window.location.search);
+        const shortCampaign = SHORT_CAMPAIGNS[campaignValue(params.get("ref"))] || {};
         const campaign = {
-            utm_source: campaignValue(params.get("utm_source")),
-            utm_medium: campaignValue(params.get("utm_medium")),
-            utm_campaign: campaignValue(params.get("utm_campaign")),
-            utm_content: campaignValue(params.get("utm_content")),
+            utm_source: shortCampaign.utm_source || campaignValue(params.get("utm_source")),
+            utm_medium: shortCampaign.utm_medium || campaignValue(params.get("utm_medium")),
+            utm_campaign: shortCampaign.utm_campaign || campaignValue(params.get("utm_campaign")),
+            utm_content: shortCampaign.utm_content || campaignValue(params.get("utm_content")),
             utm_landing_path: window.location.pathname || "/"
         };
 

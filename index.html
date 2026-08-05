@@ -65,7 +65,7 @@
     </script>
 
     <link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
-    <link rel="stylesheet" href="baner.css?v=20260803-individual-lessons">
+    <link rel="stylesheet" href="baner.css?v=20260805-compact">
 
     <style>
 
@@ -163,7 +163,7 @@
         }
 
         .card.c .card-bar{
-            background:#d6b8ea;
+            background:#aab8c2;
         }
 
         .card.d .card-bar{
@@ -431,10 +431,6 @@
                 line-height:1.08;
             }
 
-            .home-hero-row .enrollment-content p{
-                font-size:12px;
-                line-height:1.35;
-            }
         }
 
     </style>
@@ -561,7 +557,7 @@
     <nav class="footer-links" aria-label="Linki w stopce">
         <a href="kontakt.html">Kontakt</a>
         <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-        <a href="regulamin-zajec.html">Regulamin zajęć</a>
+        <a href="regulamin-zajec.html">Regulamin korepetycji</a>
     </nav>
 </footer>
 
@@ -635,7 +631,7 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
 
 <script>
 
-fetch("baner.html?v=20260803-individual-lessons", { cache: "no-cache" })
+fetch("baner.html?v=20260805-compact", { cache: "no-cache" })
     .then(res => res.text())
     .then(html => {
         document.getElementById("baner").innerHTML = html;
@@ -665,6 +661,6 @@ async function loadSitePrices(){
 loadSitePrices();
 
 </script>
-<script src="static/analytics.js?v=20260803-utm"></script>
+<script src="static/analytics.js?v=20260805-short-ref"></script>
 </body>
 </html>
