@@ -350,6 +350,31 @@ class SecurityTests(unittest.TestCase):
 
         self.assertIsNone(count)
 
+    def test_excluded_ip_does_not_write_analytics(self):
+        response = self.client.post(
+            "/api/analytics/pageview",
+            json={
+                "path": "/",
+                "visitor_id": "excluded-visitor-0001",
+                "session_id": "excluded-session-0001",
+                "device_type": "desktop",
+            },
+            headers={
+                "Origin": "https://deltasigma.pl",
+                "User-Agent": "Mozilla/5.0",
+                "X-Forwarded-For": "194.181.243.108",
+            },
+        )
+
+        self.assertEqual(response.status_code, 204)
+
+        with sqlite3.connect(TEST_DB) as connection:
+            count = connection.execute(
+                "SELECT SUM(page_views) FROM site_analytics_daily"
+            ).fetchone()[0]
+
+        self.assertIsNone(count)
+
 
 if __name__ == "__main__":
     unittest.main()

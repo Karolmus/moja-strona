@@ -1,6 +1,7 @@
 import os
 import gzip
 import hashlib
+import ipaddress
 import math
 import secrets
 import threading
@@ -113,8 +114,36 @@ _rate_limit_lock = threading.Lock()
 _last_rate_limit_cleanup = 0.0
 
 
+def normalize_ip(value):
+    text = str(value or "").strip()
+
+    try:
+        parsed = ipaddress.ip_address(text)
+
+        if isinstance(parsed, ipaddress.IPv6Address) and parsed.ipv4_mapped:
+            return str(parsed.ipv4_mapped)
+
+        return parsed.compressed
+    except ValueError:
+        return text or "unknown"
+
+
 def client_ip():
-    return request.remote_addr or "unknown"
+    return normalize_ip(request.remote_addr)
+
+
+ANALYTICS_EXCLUDED_IPS = frozenset(
+    normalize_ip(value)
+    for value in (
+        "194.181.243.108",
+        *os.environ.get("ANALYTICS_EXCLUDED_IPS", "").split(","),
+    )
+    if str(value).strip()
+)
+
+
+def analytics_ip_is_excluded():
+    return client_ip() in ANALYTICS_EXCLUDED_IPS
 
 
 def token_fingerprint(token):
@@ -565,6 +594,9 @@ def api_analytics_pageview():
             return "", 204
 
         if request_looks_like_bot():
+            return "", 204
+
+        if analytics_ip_is_excluded():
             return "", 204
 
         user = current_user()
