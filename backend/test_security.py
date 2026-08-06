@@ -23,7 +23,12 @@ os.environ["CONTACT_FORM_MIN_SECONDS"] = "2"
 
 import app as app_module  # noqa: E402
 from app import _rate_limit_buckets, app  # noqa: E402
-from auth_storage import create_parent_access_token, create_user  # noqa: E402
+from auth_storage import (  # noqa: E402
+    ANALYTICS_RESET_KEY,
+    create_parent_access_token,
+    create_user,
+    init_auth_db,
+)
 
 
 class SecurityTests(unittest.TestCase):
@@ -374,6 +379,53 @@ class SecurityTests(unittest.TestCase):
             ).fetchone()[0]
 
         self.assertIsNone(count)
+
+    def test_analytics_reset_runs_only_once(self):
+        with sqlite3.connect(TEST_DB) as connection:
+            connection.execute(
+                "DELETE FROM site_settings WHERE key = ?",
+                (ANALYTICS_RESET_KEY,),
+            )
+            connection.execute(
+                """
+                INSERT INTO site_analytics_daily (
+                    day, path, referrer_host, device_type, page_views
+                ) VALUES ('2026-08-05', '/', '', 'desktop', 12)
+                """
+            )
+            connection.commit()
+
+        with app.app_context():
+            init_auth_db()
+
+        with sqlite3.connect(TEST_DB) as connection:
+            first_count = connection.execute(
+                "SELECT COUNT(*) FROM site_analytics_daily"
+            ).fetchone()[0]
+            reset_marker = connection.execute(
+                "SELECT value FROM site_settings WHERE key = ?",
+                (ANALYTICS_RESET_KEY,),
+            ).fetchone()
+            connection.execute(
+                """
+                INSERT INTO site_analytics_daily (
+                    day, path, referrer_host, device_type, page_views
+                ) VALUES ('2026-08-05', '/', '', 'desktop', 1)
+                """
+            )
+            connection.commit()
+
+        with app.app_context():
+            init_auth_db()
+
+        with sqlite3.connect(TEST_DB) as connection:
+            second_count = connection.execute(
+                "SELECT SUM(page_views) FROM site_analytics_daily"
+            ).fetchone()[0]
+
+        self.assertEqual(first_count, 0)
+        self.assertIsNotNone(reset_marker)
+        self.assertEqual(second_count, 1)
 
 
 if __name__ == "__main__":

@@ -30,6 +30,8 @@ DEFAULT_SITE_PRICES = {
     "matura_extended": 130,
 }
 
+ANALYTICS_RESET_KEY = "analytics_reset_2026_08_05_tabula_rasa"
+
 
 def database_path():
     configured_path = os.environ.get("DATABASE_PATH")
@@ -177,6 +179,44 @@ def close_db(_error=None):
 
 def register_auth_db(app):
     app.teardown_appcontext(close_db)
+
+
+def apply_one_time_analytics_reset(db):
+    timestamp = now_iso()
+
+    if database_engine() == "postgres":
+        inserted = db.execute(
+            """
+            INSERT INTO site_settings (key, value, updated_at)
+            VALUES (%s, %s, %s)
+            ON CONFLICT (key) DO NOTHING
+            RETURNING key
+            """,
+            (ANALYTICS_RESET_KEY, timestamp, timestamp),
+        ).fetchone()
+        should_reset = inserted is not None
+    else:
+        result = db.execute(
+            """
+            INSERT OR IGNORE INTO site_settings (key, value, updated_at)
+            VALUES (?, ?, ?)
+            """,
+            (ANALYTICS_RESET_KEY, timestamp, timestamp),
+        )
+        should_reset = result.rowcount == 1
+
+    if not should_reset:
+        return False
+
+    for table in (
+        "site_analytics_campaigns",
+        "site_analytics_sessions",
+        "site_analytics_visitors",
+        "site_analytics_daily",
+    ):
+        db.execute(f"DELETE FROM {table}")
+
+    return True
 
 
 def row_to_dict(row):
@@ -676,6 +716,7 @@ def init_auth_db():
             """
         )
 
+    apply_one_time_analytics_reset(db)
     db.commit()
 
 
