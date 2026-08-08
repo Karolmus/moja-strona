@@ -1,0 +1,13 @@
+exclude:
+  - backend
+  - calculators
+  - zadania/kurs
+  - tmp
+  - app.py
+  - requirements.txt
+  - render.yaml
+  - push.txt
+  - "Tła do kafelek poziomy.docx"
+
+include:
+  - static

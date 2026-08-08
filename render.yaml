@@ -2,11 +2,11 @@ services:
   - type: web
     name: deltasigma-calculators
     env: python
-    rootDir: backend
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r backend/requirements.txt
     startCommand: >-
-      python init_db.py &&
-      gunicorn --workers 1 --threads 4 --timeout 30
+      python backend/init_db.py &&
+      gunicorn --chdir backend
+      --workers 1 --threads 4 --timeout 30
       --max-requests 1000 --max-requests-jitter 100 app:app
     envVars:
       - key: SECRET_KEY
@@ -17,3 +17,7 @@ services:
         value: "false"
       - key: RATE_LIMIT_ENABLED
         value: "true"
+      - key: AUTH_TOKEN_MAX_AGE
+        value: "86400"
+      - key: PARENT_ACCESS_MAX_AGE_DAYS
+        value: "90"

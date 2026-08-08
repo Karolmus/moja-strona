@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
+<meta name="referrer" content="no-referrer">
+<script src="static/security.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -3157,11 +3160,7 @@ async function loadCourseGradingCriteria(){
     courseGradingCriteriaByTask = new Map();
 
     try {
-        const response = await fetch("zadania/kurs/eo/odpowiedzi_kurs_eo.json");
-
-        if(!response.ok) return;
-
-        const data = await response.json();
+        const data = await loadJsonSource("zadania/kurs/eo/odpowiedzi_kurs_eo.json");
         const items = Array.isArray(data.items) ? data.items : [];
 
         items.forEach(item => {
@@ -3195,15 +3194,38 @@ async function loadCourseGradingCriteria(){
     }
 }
 
+function isProtectedCoursePath(path){
+    return String(path || "").startsWith("zadania/kurs/");
+}
+
+function courseAssetApiPath(path){
+    const relativePath = String(path || "").replace(/^zadania\/kurs\//, "");
+    const encodedPath = relativePath
+        .split("/")
+        .map(segment => encodeURIComponent(segment))
+        .join("/");
+
+    return `/api/course-assets/${encodedPath}`;
+}
+
+async function loadJsonSource(path){
+    if(isProtectedCoursePath(path)){
+        if(!window.apiFetch) throw new Error("Zaloguj się, aby otworzyć kurs.");
+        return window.apiFetch(courseAssetApiPath(path));
+    }
+
+    const response = await fetch(path);
+
+    if(!response.ok) throw new Error("Nie udało się wczytać listy zadań.");
+
+    return response.json();
+}
+
 function loadTaskSource(sourceConfig){
     const sourceMeta = getSourceMeta(sourceConfig);
     const source = sourceMeta.path;
 
-    return fetch(source)
-    .then(r => {
-        if(!r.ok) throw new Error("Nie udało się wczytać listy zadań.");
-        return r.json();
-    })
+    return loadJsonSource(source)
     .then(items => {
         const basePath = source.slice(0, source.lastIndexOf("/") + 1);
 
@@ -5455,27 +5477,110 @@ function evaluatePracticalFormula(formula, values){
         return NaN;
     }
 
-    const names = formulaVariableNames(values);
-    const fn = new Function(
-        ...names,
-        "sqrt",
-        "pow",
-        "max",
-        "min",
-        "abs",
-        "round",
-        `return (${expression});`
-    );
+    const tokens = expression.match(/\d+(?:\.\d+)?|[A-Za-z_][A-Za-z0-9_]*|[()+\-*/,]/g) || [];
+    const compactExpression = expression.replace(/\s/g, "");
 
-    return Number(fn(
-        ...names.map(name => values[name]),
-        Math.sqrt,
-        Math.pow,
-        Math.max,
-        Math.min,
-        Math.abs,
-        Math.round
-    ));
+    if(tokens.join("") !== compactExpression) return NaN;
+
+    const functions = {
+        sqrt: Math.sqrt,
+        pow: Math.pow,
+        max: Math.max,
+        min: Math.min,
+        abs: Math.abs,
+        round: Math.round
+    };
+    let index = 0;
+
+    function parsePrimary(){
+        const token = tokens[index++];
+
+        if(token === "("){
+            const value = parseExpression();
+
+            if(tokens[index++] !== ")") throw new Error("Brakuje nawiasu.");
+            return value;
+        }
+
+        if(/^\d/.test(token || "")) return Number(token);
+
+        if(/^[A-Za-z_]/.test(token || "")){
+            if(tokens[index] === "("){
+                const fn = functions[token];
+
+                if(!fn) throw new Error("Niedozwolona funkcja.");
+
+                index++;
+                const args = [];
+
+                if(tokens[index] !== ")"){
+                    do {
+                        args.push(parseExpression());
+                    } while(tokens[index] === "," && ++index);
+                }
+
+                if(tokens[index++] !== ")") throw new Error("Brakuje nawiasu funkcji.");
+
+                return fn(...args);
+            }
+
+            if(!Object.prototype.hasOwnProperty.call(values, token)){
+                throw new Error("Nieznana zmienna.");
+            }
+
+            return Number(values[token]);
+        }
+
+        throw new Error("Nieprawidłowy wzór.");
+    }
+
+    function parseUnary(){
+        if(tokens[index] === "+"){
+            index++;
+            return parseUnary();
+        }
+
+        if(tokens[index] === "-"){
+            index++;
+            return -parseUnary();
+        }
+
+        return parsePrimary();
+    }
+
+    function parseTerm(){
+        let value = parseUnary();
+
+        while(tokens[index] === "*" || tokens[index] === "/"){
+            const operator = tokens[index++];
+            const right = parseUnary();
+
+            value = operator === "*" ? value * right : value / right;
+        }
+
+        return value;
+    }
+
+    function parseExpression(){
+        let value = parseTerm();
+
+        while(tokens[index] === "+" || tokens[index] === "-"){
+            const operator = tokens[index++];
+            const right = parseTerm();
+
+            value = operator === "+" ? value + right : value - right;
+        }
+
+        return value;
+    }
+
+    try {
+        const result = parseExpression();
+
+        return index === tokens.length && Number.isFinite(result) ? Number(result) : NaN;
+    } catch(error) {
+        return NaN;
+    }
 }
 
 function practicalTolerance(expected, resultConfig = {}){
@@ -5541,6 +5646,20 @@ function wait(ms){
 }
 
 const imageLoadPromises = new Map();
+const protectedAssetUrls = new Map();
+
+async function resolvedAssetUrl(src){
+    if(!isProtectedCoursePath(src)) return src;
+    if(protectedAssetUrls.has(src)) return protectedAssetUrls.get(src);
+    if(!window.apiFetchBlob) throw new Error("Zaloguj się, aby pobrać materiał.");
+
+    const blob = await window.apiFetchBlob(courseAssetApiPath(src));
+    const objectUrl = URL.createObjectURL(blob);
+
+    protectedAssetUrls.set(src, objectUrl);
+
+    return objectUrl;
+}
 
 function optimizedImageCandidate(src){
     if(!src) return src;
@@ -5572,7 +5691,7 @@ function loadImageCandidate(candidates, index = 0){
                 // Samo onload oznacza, że obraz jest dostępny; decode bywa kapryśne w Safari.
             }
 
-            resolve(src);
+            resolve(image.src);
         };
 
         image.onerror = () => {
@@ -5584,25 +5703,38 @@ function loadImageCandidate(candidates, index = 0){
             reject(new Error(`Nie udało się wczytać obrazka: ${candidates[candidates.length - 1]}`));
         };
 
-        image.src = src;
+        resolvedAssetUrl(src)
+            .then(url => {
+                image.src = url;
+            })
+            .catch(() => {
+                if(index + 1 < candidates.length){
+                    loadImageCandidate(candidates, index + 1).then(resolve, reject);
+                    return;
+                }
+
+                reject(new Error(`Nie udało się wczytać obrazka: ${src}`));
+            });
     });
 }
 
 function setOptimizedImageSrc(image, src, { loading = "lazy" } = {}){
     if(!image || !src) return;
 
-    const candidates = imageCandidates(src);
-    const [primary, fallback] = candidates;
-
     image.decoding = "async";
     image.loading = loading;
-    image.onerror = fallback && fallback !== primary
-        ? () => {
-            image.onerror = null;
-            image.src = fallback;
-        }
-        : null;
-    image.src = primary;
+    image.dataset.requestedSrc = src;
+    preloadImage(src)
+        .then(url => {
+            if(image.dataset.requestedSrc === src){
+                image.src = url;
+            }
+        })
+        .catch(() => {
+            if(image.dataset.requestedSrc === src){
+                image.removeAttribute("src");
+            }
+        });
 }
 
 function preloadImage(src){

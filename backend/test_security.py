@@ -42,6 +42,8 @@ class SecurityTests(unittest.TestCase):
             connection.execute("DELETE FROM site_analytics_visitors")
             connection.execute("DELETE FROM site_analytics_sessions")
             connection.execute("DELETE FROM site_analytics_campaigns")
+            connection.execute("DELETE FROM security_rate_limits")
+            connection.execute("DELETE FROM speed_training_attempts")
             connection.execute("DELETE FROM speed_training_results")
             connection.execute("DELETE FROM task_review_items")
             connection.execute("DELETE FROM task_progress")
@@ -150,6 +152,7 @@ class SecurityTests(unittest.TestCase):
             response = self.client.post("/api/contact-messages", json=payload)
             self.assertEqual(response.status_code, 201)
 
+        _rate_limit_buckets.clear()
         response = self.client.post("/api/contact-messages", json=payload)
 
         self.assertEqual(response.status_code, 429)
@@ -173,6 +176,15 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(response.headers.get("Cache-Control"), "no-store, max-age=0")
         self.assertEqual(response.headers.get("X-Content-Type-Options"), "nosniff")
         self.assertEqual(response.headers.get("X-Frame-Options"), "DENY")
+        self.assertEqual(response.headers.get("Referrer-Policy"), "no-referrer")
+        self.assertEqual(
+            response.headers.get("Permissions-Policy"),
+            "camera=(), microphone=(), geolocation=()",
+        )
+        self.assertEqual(
+            response.headers.get("Strict-Transport-Security"),
+            "max-age=31536000; includeSubDomains",
+        )
 
     def test_large_json_responses_are_compressed(self):
         payload = self.valid_contact_payload()
@@ -354,6 +366,182 @@ class SecurityTests(unittest.TestCase):
             ).fetchone()[0]
 
         self.assertIsNone(count)
+
+    def test_analytics_without_origin_is_ignored(self):
+        response = self.client.post(
+            "/api/analytics/pageview",
+            json={
+                "path": "/",
+                "visitor_id": "visitor-without-origin",
+                "session_id": "session-without-origin",
+                "device_type": "desktop",
+            },
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+
+        self.assertEqual(response.status_code, 204)
+
+        with sqlite3.connect(TEST_DB) as connection:
+            count = connection.execute(
+                "SELECT SUM(page_views) FROM site_analytics_daily"
+            ).fetchone()[0]
+
+        self.assertIsNone(count)
+
+    def test_logout_and_password_reset_revoke_bearer_tokens(self):
+        with app.app_context():
+            student = create_user(
+                email="revoke@example.com",
+                display_name="Uczeń",
+                password="bezpieczne-haslo",
+            )
+
+        first_login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        first_headers = {
+            "Authorization": f"Bearer {first_login.get_json()['token']}"
+        }
+
+        self.assertEqual(
+            self.client.get("/api/progress/me", headers=first_headers).status_code,
+            200,
+        )
+        self.client.post("/api/auth/logout", headers=first_headers)
+        self.assertEqual(
+            self.client.get("/api/progress/me", headers=first_headers).status_code,
+            401,
+        )
+
+        second_login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        second_headers = {
+            "Authorization": f"Bearer {second_login.get_json()['token']}"
+        }
+
+        with app.app_context():
+            app_module.reset_user_password(student["id"], "nowe-bezpieczne-haslo")
+
+        self.assertEqual(
+            self.client.get("/api/progress/me", headers=second_headers).status_code,
+            401,
+        )
+
+    def test_training_result_requires_started_attempt(self):
+        with app.app_context():
+            student = create_user(
+                email="training@example.com",
+                display_name="Uczeń Testowy",
+                password="bezpieczne-haslo",
+            )
+
+        login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        response = self.client.post(
+            "/api/speed-training/results",
+            headers=headers,
+            json={
+                "attempt_token": "",
+                "level": "mp",
+                "topic": "all",
+                "difficulty": "mixed",
+                "round_seconds": 120,
+                "correct_count": 10000,
+                "mistake_count": 0,
+                "best_streak": 10000,
+            },
+        )
+
+        self.assertEqual(response.status_code, 400)
+
+        with sqlite3.connect(TEST_DB) as connection:
+            count = connection.execute(
+                "SELECT COUNT(*) FROM speed_training_results"
+            ).fetchone()[0]
+
+        self.assertEqual(count, 0)
+
+    def test_progress_rejects_external_task_reference(self):
+        with app.app_context():
+            student = create_user(
+                email="progress@example.com",
+                display_name="Uczeń",
+                password="bezpieczne-haslo",
+            )
+
+        login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        response = self.client.post(
+            "/api/progress",
+            headers=headers,
+            json={
+                "task_id": "https://attacker.example/tasks.json:image.png",
+                "source_id": "https://attacker.example/tasks.json",
+                "file": "image.png",
+                "result": "good",
+            },
+        )
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_course_assets_require_login_and_assigned_level(self):
+        path = "/api/course-assets/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
+        unauthenticated = self.client.get(path)
+
+        with app.app_context():
+            student = create_user(
+                email="course@example.com",
+                display_name="Uczeń",
+                password="bezpieczne-haslo",
+                level="egzamin_osmoklasisty",
+            )
+
+        login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        assigned = self.client.get(path, headers=headers)
+        other_level = self.client.get(
+            "/api/course-assets/mp/zadania_kurs_mp.json",
+            headers=headers,
+        )
+
+        self.assertEqual(unauthenticated.status_code, 401)
+        self.assertEqual(assigned.status_code, 200)
+        self.assertEqual(other_level.status_code, 403)
+        assigned.close()
+
+    def test_parent_access_token_expires(self):
+        with app.app_context():
+            student = create_user(
+                email="expired-parent@example.com",
+                display_name="Uczeń",
+                password="bezpieczne-haslo",
+            )
+            _access, token = create_parent_access_token(student["id"])
+
+        with sqlite3.connect(TEST_DB) as connection:
+            connection.execute(
+                "UPDATE parent_access_tokens SET expires_at = '2000-01-01T00:00:00+00:00'"
+            )
+            connection.commit()
+
+        response = self.client.post(
+            "/api/parent/progress",
+            json={"token": token},
+        )
+
+        self.assertEqual(response.status_code, 401)
 
     def test_excluded_ip_does_not_write_analytics(self):
         response = self.client.post(
