@@ -6,7 +6,11 @@
         // Oczyszczanie starszych wpisów nie może blokować strony.
     }
 
-    if(window.top === window.self) return;
+    const localPreviewHosts = new Set(["localhost", "127.0.0.1", "::1"]);
+    const isLocalPreview = window.location.protocol === "file:"
+        || localPreviewHosts.has(window.location.hostname);
+
+    if(window.top === window.self || isLocalPreview) return;
 
     document.documentElement.style.display = "none";
 
