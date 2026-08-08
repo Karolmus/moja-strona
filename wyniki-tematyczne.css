@@ -1,0 +1,370 @@
+.course-info {
+    max-width: 940px;
+}
+
+.course-summary p {
+    width: 100%;
+    max-width: none;
+}
+
+.course-summary-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(230px, 0.8fr);
+    width: 100%;
+    margin: 16px auto 0;
+    overflow: hidden;
+    border: 1px solid #d8dee9;
+    border-top: 3px solid #8eb5de;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+    text-align: left;
+}
+
+.course-summary__part {
+    min-width: 0;
+    padding: 17px 20px;
+}
+
+.course-summary__part + .course-summary__part {
+    border-left: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.course-summary__part h2 {
+    margin: 0 0 6px;
+    color: #24527a;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+.course-summary .course-summary-card p {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #425466;
+    font-size: 13px;
+    line-height: 1.55;
+    text-align: left;
+}
+
+.course-summary .course-summary-card b {
+    color: #1f2a36;
+    font-weight: 600;
+}
+
+.flip-section {
+    width: min(100%, 940px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.book-wrapper,
+.harmonogram-box {
+    width: 100%;
+    max-width: 900px;
+    height: 900px;
+}
+
+@media (max-width: 1150px) {
+    .book-wrapper,
+    .harmonogram-box {
+        height: 700px;
+    }
+}
+
+.exam-result-inner.single-result .exam-result-item {
+    align-content: stretch;
+    gap: 14px;
+    padding: 20px;
+}
+
+.exam-result-copy {
+    order: 0;
+    justify-items: start;
+    padding: 0 2px;
+}
+
+.exam-result-copy small {
+    font-size: 12px;
+}
+
+.score-bars {
+    order: 1;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid #dfe5ec;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.score-bar-item {
+    grid-template-columns: 172px minmax(150px, 1fr) 62px;
+    gap: 14px;
+}
+
+.score-bar-label {
+    color: #425466;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.score-bar-track {
+    height: 12px;
+    border-radius: 4px;
+    background: #e6ebf1;
+}
+
+.score-bar-fill {
+    box-shadow: inset 0 -1px 0 rgba(15, 23, 42, 0.12);
+}
+
+.score-bar-value {
+    color: #1f2a36;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.score-scale {
+    grid-template-columns: 172px minmax(150px, 1fr) 62px;
+    gap: 14px;
+}
+
+.score-scale-values {
+    padding-top: 5px;
+    border-top-color: #94a3b8;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.exam-result-values {
+    order: 2;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.exam-result-value {
+    gap: 3px;
+    min-width: 0;
+    padding: 10px 14px 4px;
+    border: 0;
+    border-left: 1px solid #e2e8f0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.exam-result-value:first-child {
+    border-left: 0;
+}
+
+.exam-result-value.range {
+    grid-column: auto;
+}
+
+.exam-result-value span {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.exam-result-value strong {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.exam-result-value.range strong {
+    font-size: 16px;
+}
+
+@media (max-width: 700px) {
+    .exam-result-banner {
+        margin-top: 12px;
+        padding: 0 12px;
+    }
+
+    .exam-result-inner.single-result .exam-result-item {
+        gap: 8px;
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .exam-result-copy {
+        display: none;
+    }
+
+    .score-bars {
+        gap: 7px;
+        padding: 9px 9px 7px;
+        border-radius: 10px;
+    }
+
+    .score-bar-item {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 3px 8px;
+    }
+
+    .score-bar-label {
+        grid-column: 1;
+        font-size: 10px;
+    }
+
+    .score-bar-value {
+        grid-column: 2;
+        font-size: 13px;
+    }
+
+    .score-bar-track {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        height: 8px;
+    }
+
+    .score-scale {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .score-scale-values {
+        grid-column: 1;
+        padding-top: 3px;
+        font-size: 9px;
+    }
+
+    .exam-result-values {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .exam-result-value {
+        padding: 6px 8px 1px;
+    }
+
+    .exam-result-value:not(.range) {
+        display: none;
+    }
+
+    .exam-result-value.range {
+        grid-column: 1;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        border-left: 0;
+    }
+
+    .exam-result-value.range span {
+        font-size: 9px;
+    }
+
+    .exam-result-value.range strong {
+        font-size: 13px;
+        text-align: right;
+    }
+
+    .exam-result-actions {
+        margin-top: 5px;
+    }
+
+    .exam-result-detail-link {
+        min-height: 22px;
+        padding: 3px 7px;
+        border: 0;
+        background: transparent;
+        font-size: 9px;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+}
+
+@media (max-width: 768px) {
+    .course-info,
+    .flip-section,
+    .timeline-section {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .course-summary p {
+        margin-top: 12px;
+        padding: 14px 16px;
+    }
+
+    .course-summary-card {
+        grid-template-columns: 1fr;
+        margin-top: 12px;
+        border-radius: 12px;
+    }
+
+    .course-summary__part {
+        padding: 12px 14px;
+    }
+
+    .course-summary__part + .course-summary__part {
+        border-top: 1px solid #e2e8f0;
+        border-left: 0;
+    }
+
+    .course-summary__part h2 {
+        margin-bottom: 4px;
+        font-size: 9px;
+    }
+
+    .course-summary .course-summary-card p {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .book-wrapper,
+    .harmonogram-box {
+        height: 520px;
+    }
+
+    .countdown-section {
+        margin: 12px;
+    }
+
+    .countdown-card {
+        display: grid;
+        grid-template-columns: minmax(115px, 0.8fr) minmax(0, 1.2fr);
+        gap: 10px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 12px;
+        text-align: left;
+    }
+
+    .countdown-card h3 {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.35;
+    }
+
+    #countdown {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 3px;
+        font-size: 12px;
+    }
+
+    #countdown span,
+    .time-box span {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .time-box small {
+        font-size: 8px;
+        line-height: 1.1;
+    }
+}

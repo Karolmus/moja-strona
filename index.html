@@ -622,7 +622,7 @@ function startSlider(selector){
 }
 
 function loadAboutSection(){
-    fetch("o-mnie.html?v=20260808-photos", { cache: "no-cache" })
+    fetch("o-mnie.html?v=20260808-me2-first", { cache: "no-cache" })
         .then(res => res.text())
         .then(html => {
             document.querySelectorAll("[data-about-slot]").forEach(slot => {
