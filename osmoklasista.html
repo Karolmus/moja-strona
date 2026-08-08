@@ -852,6 +852,7 @@ footer{
 }
 
 </style>
+<link rel="stylesheet" href="wyniki-tematyczne.css?v=20260808-chart-layout">
 </head>
 
 <body>
@@ -871,11 +872,21 @@ footer{
 
     <h1>Przygotowanie do egzaminu ósmoklasisty</h1>
 
-    <p>
-        Kurs obejmuje <b>30 tematycznych lekcji</b>.
-        Następnie przygotowania prowadzone są na arkuszach egzaminacyjnych CKE.
-        Uczeń jest objęty opieką aż do dnia egzaminu.
-    </p>
+    <div class="course-summary-card">
+        <div class="course-summary__part">
+            <h2>Pierwsza część roku szkolnego</h2>
+            <p>
+                Przygotowania polegają na przerobieniu <b>20 tematycznych, autorskich lekcji</b>,
+                podczas których łączymy praktykę z teorią. Egzamin ósmoklasisty sprawdza przede
+                wszystkim umiejętność wykorzystania wiedzy w praktyce, dlatego na tym skupiamy się
+                podczas zajęć.
+            </p>
+        </div>
+        <div class="course-summary__part">
+            <h2>Druga część roku szkolnego</h2>
+            <p>Przechodzimy do rozwiązywania arkuszy egzaminacyjnych CKE.</p>
+        </div>
+    </div>
 
 </section>
 <section class="exam-result-banner" aria-label="Średni wynik z egzaminu ósmoklasisty 2026 na tle kraju">
@@ -963,8 +974,6 @@ footer{
     </div>
 
 </section>
-
-<div id="baner"></div>
 
 <section class="course-info">
 
@@ -1570,7 +1579,7 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
 fetch("baner.html?v=20260805-compact", { cache: "no-cache" })
     .then(res => res.text())
     .then(html => {
-        document.querySelectorAll("#baner, [data-baner-slot]").forEach(slot => {
+        document.querySelectorAll("[data-baner-slot]").forEach(slot => {
             slot.innerHTML = html;
         });
     });
