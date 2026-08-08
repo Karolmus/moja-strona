@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
 <meta name="referrer" content="no-referrer">
-<script src="static/security.js"></script>
+<script src="static/security.js?v=2"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -191,6 +191,32 @@ h1{
 
 .schedule-message strong {
     color: #1f2a36;
+}
+
+.schedule-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 0.58fr);
+    gap: 12px;
+    align-items: stretch;
+}
+
+.booking-photo {
+    min-width: 0;
+    min-height: 220px;
+    margin: 4px 0 0;
+    overflow: hidden;
+    border: 1px solid #d9e1ea;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.booking-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    object-position: 43% 28%;
 }
 
 .contact-form-card {
@@ -1151,6 +1177,20 @@ h1{
         gap:10px;
     }
 
+    .schedule-overview{
+        grid-template-columns:1fr;
+    }
+
+    .booking-photo{
+        min-height:0;
+        aspect-ratio:16 / 10;
+        margin-top:0;
+    }
+
+    .booking-photo img{
+        min-height:0;
+    }
+
     .schedule-day-card,
     .schedule-day-card:last-child{
         grid-column:auto;
@@ -1297,18 +1337,24 @@ footer{
                     <img class="booking-logo" src="img/logo3.png" alt="Delta Sigma">
                 </div>
 
-                <div class="schedule-message">
-                    <p>
-                        <strong>W okresie wakacyjnym</strong> terminy zajęć są dostosowywane
-                        do dostępności ucznia oraz mojej.
-                    </p>
-                    <p>
-                        <strong>W roku szkolnym</strong> obowiązuje stały termin, który podlega zmianom
-                        w przypadku zmian planu lekcji oraz innych okoliczności.
-                    </p>
-                    <p>
-                        <strong>Nie prowadzę pojedynczych zajęć.</strong>
-                    </p>
+                <div class="schedule-overview">
+                    <div class="schedule-message">
+                        <p>
+                            <strong>W okresie wakacyjnym</strong> terminy zajęć są dostosowywane
+                            do dostępności ucznia oraz mojej.
+                        </p>
+                        <p>
+                            <strong>W roku szkolnym</strong> obowiązuje stały termin, który podlega zmianom
+                            w przypadku zmian planu lekcji oraz innych okoliczności.
+                        </p>
+                        <p>
+                            <strong>Nie prowadzę pojedynczych zajęć.</strong>
+                        </p>
+                    </div>
+
+                    <figure class="booking-photo">
+                        <img src="img/me2.webp" alt="Karol Musioł z podręcznikiem do matematyki" width="1600" height="1067" loading="lazy" decoding="async">
+                    </figure>
                 </div>
             </section>
 
@@ -1490,7 +1536,7 @@ function startSlider(selector){
 }
 
 function loadAboutSection(){
-    fetch("o-mnie.html")
+    fetch("o-mnie.html?v=20260808-photos", { cache: "no-cache" })
         .then(res => res.text())
         .then(html => {
             document.querySelectorAll("[data-about-slot]").forEach(slot => {

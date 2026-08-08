@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
 <meta name="referrer" content="no-referrer">
-<script src="static/security.js"></script>
+<script src="static/security.js?v=2"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
@@ -255,10 +255,27 @@
             box-shadow:0 22px 46px rgba(0,0,0,0.16);
         }
 
+        .delta-brand-visuals{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+        }
+
         .delta-brand-logo{
-            width:92px;
-            height:92px;
+            width:74px;
+            height:74px;
             object-fit:contain;
+        }
+
+        .delta-brand-portrait{
+            width:74px;
+            height:74px;
+            border:2px solid #fff;
+            border-radius:50%;
+            object-fit:cover;
+            object-position:42% 28%;
+            box-shadow:0 5px 14px rgba(15,23,42,0.16);
         }
 
         .delta-brand-subtitle{
@@ -409,9 +426,18 @@
                 gap:4px;
             }
 
+            .delta-brand-visuals{
+                gap:6px;
+            }
+
             .delta-brand-logo{
-                width:56px;
-                height:56px;
+                width:40px;
+                height:40px;
+            }
+
+            .delta-brand-portrait{
+                width:40px;
+                height:40px;
             }
 
             .delta-brand-subtitle{
@@ -459,7 +485,10 @@
     <div id="baner"></div>
 
     <a href="zapisy.html" class="delta-brand-card" aria-label="Karol Musioł - korepetycje z matematyki">
-        <img class="delta-brand-logo" src="img/logo3.png" alt="Delta Sigma">
+        <span class="delta-brand-visuals" aria-hidden="true">
+            <img class="delta-brand-logo" src="img/logo3.png" alt="">
+            <img class="delta-brand-portrait" src="img/me2.webp" alt="" width="1600" height="1067">
+        </span>
         <p class="delta-brand-subtitle">
             <span>Karol Musioł</span>
             <span>korepetycje z matematyki</span>
@@ -593,7 +622,7 @@ function startSlider(selector){
 }
 
 function loadAboutSection(){
-    fetch("o-mnie.html")
+    fetch("o-mnie.html?v=20260808-photos", { cache: "no-cache" })
         .then(res => res.text())
         .then(html => {
             document.querySelectorAll("[data-about-slot]").forEach(slot => {
