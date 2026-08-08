@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
+<meta name="referrer" content="no-referrer">
+<script src="static/security.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -1318,7 +1321,8 @@ const state = {
     history: [],
     seenTaskKeys: new Set(),
     taskMemory: [],
-    leaderboardPeriod: "week"
+    leaderboardPeriod: "week",
+    attemptToken: ""
 };
 
 const levelTabs = document.getElementById("levelTabs");
@@ -3460,7 +3464,8 @@ async function saveSpeedTrainingResult(){
         correct_count: state.correct,
         mistake_count: state.mistakes,
         best_streak: state.bestStreak,
-        average_time_seconds: state.correct ? state.totalAnswerTime / state.correct : 0
+        average_time_seconds: state.correct ? state.totalAnswerTime / state.correct : 0,
+        attempt_token: state.attemptToken
     };
 
     try {
@@ -3540,9 +3545,35 @@ function updateStats(){
     setTextIfChanged(bestScore, state.bestScore);
 }
 
-function startRound(){
+async function startRound(){
     stopTimer();
     hideRoundSummary();
+    state.attemptToken = "";
+    startButton.disabled = true;
+
+    if(window.apiFetch && window.getAuthToken?.()){
+        setStatus("Przygotowuję bezpieczną rundę...", "");
+
+        try {
+            const attempt = await window.apiFetch("/api/speed-training/attempts", {
+                method: "POST",
+                body: JSON.stringify({
+                    level: state.level,
+                    topic: trainingScopeTopic(),
+                    difficulty: String(state.difficulty),
+                    round_seconds: state.roundSeconds
+                })
+            });
+
+            state.attemptToken = attempt.attempt_token || "";
+        } catch(error) {
+            startButton.disabled = false;
+            setStatus(error.message || "Nie udało się rozpocząć rundy.", "bad");
+            return;
+        }
+    }
+
+    startButton.disabled = false;
     state.running = true;
     state.finished = false;
     state.roundEndsAt = Date.now() + state.roundSeconds * 1000;
@@ -3607,6 +3638,7 @@ function resetRound(){
     state.running = false;
     state.finished = false;
     state.currentTask = null;
+    state.attemptToken = "";
     state.answerLocked = false;
     state.correct = 0;
     state.mistakes = 0;

@@ -3,16 +3,18 @@ import gzip
 import hashlib
 import ipaddress
 import math
+import re
 import secrets
 import threading
 import time
 from collections import defaultdict, deque
+from datetime import datetime, timedelta, timezone
 from decimal import Decimal, ROUND_HALF_UP
 from functools import wraps
 from urllib.parse import urlsplit
 
 import sympy as sp
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, request, send_from_directory, session
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from werkzeug.exceptions import HTTPException
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -21,6 +23,8 @@ from werkzeug.security import check_password_hash
 from auth_storage import (
     INTEGRITY_ERRORS,
     contact_message_counts,
+    consume_speed_training_attempt,
+    consume_security_rate_limit,
     create_parent_access_token,
     create_contact_message,
     create_user,
@@ -41,9 +45,11 @@ from auth_storage import (
     record_site_pageview,
     record_speed_training_result,
     record_progress,
+    register_speed_training_attempt,
     register_auth_db,
     review_tasks_for_user,
     reset_user_password,
+    revoke_user_auth,
     speed_training_leaderboard,
     speed_training_history,
     site_analytics_summary,
@@ -94,7 +100,7 @@ app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE=os.environ.get("SESSION_COOKIE_SAMESITE", "Lax"),
     SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "false").lower() == "true",
-    AUTH_TOKEN_MAX_AGE=int(os.environ.get("AUTH_TOKEN_MAX_AGE", str(60 * 60 * 24 * 30))),
+    AUTH_TOKEN_MAX_AGE=int(os.environ.get("AUTH_TOKEN_MAX_AGE", str(60 * 60 * 24))),
     MAX_CONTENT_LENGTH=int(os.environ.get("MAX_CONTENT_LENGTH", str(32 * 1024))),
 )
 register_auth_db(app)
@@ -102,12 +108,21 @@ register_auth_db(app)
 CALCULATORS_ENABLED = os.environ.get("CALCULATORS_ENABLED", "false").lower() == "true"
 RATE_LIMIT_ENABLED = os.environ.get("RATE_LIMIT_ENABLED", "true").lower() == "true"
 CONTACT_FORM_MIN_SECONDS = float(os.environ.get("CONTACT_FORM_MIN_SECONDS", "2"))
+COURSE_ASSET_ROOT = os.path.realpath(
+    os.path.join(os.path.dirname(__file__), "..", "zadania", "kurs")
+)
 
 TRAINING_LEVEL_BY_STUDENT_LEVEL = {
     "egzamin_osmoklasisty": "eo",
     "matura_podstawowa": "mp",
     "matura_rozszerzona": "mr",
 }
+TASK_PATH_SEGMENT_BY_STUDENT_LEVEL = {
+    "egzamin_osmoklasisty": "eo",
+    "matura_podstawowa": "mp",
+    "matura_rozszerzona": "mr",
+}
+SAFE_TASK_FILE_RE = re.compile(r"^[A-Za-z0-9_.-]+$")
 
 _rate_limit_buckets = defaultdict(deque)
 _rate_limit_lock = threading.Lock()
@@ -240,6 +255,32 @@ def rate_limit(limit, window_seconds, scope, key_func=default_rate_limit_key):
     return decorator
 
 
+def persistent_rate_limit(limit, window_seconds, scope, key_func=default_rate_limit_key):
+    def decorator(handler):
+        @wraps(handler)
+        def wrapper(*args, **kwargs):
+            if not RATE_LIMIT_ENABLED:
+                return handler(*args, **kwargs)
+
+            allowed, retry_after = consume_security_rate_limit(
+                scope=scope,
+                key=key_func(),
+                limit=limit,
+                window_seconds=window_seconds,
+            )
+
+            if not allowed:
+                response = api_error("Zbyt wiele żądań. Spróbuj ponownie później.", 429)
+                response[0].headers["Retry-After"] = str(retry_after)
+                return response
+
+            return handler(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 def require_calculators_enabled(handler):
     @wraps(handler)
     def wrapper(*args, **kwargs):
@@ -322,8 +363,10 @@ def add_cors_headers(response):
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "no-referrer"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
 
-    if request.path.startswith("/api/"):
+    if request.path.startswith("/api/") and not request.path.startswith("/api/course-assets/"):
         response.headers["Cache-Control"] = "no-store, max-age=0"
 
     accepts_gzip = "gzip" in request.headers.get("Accept-Encoding", "").lower()
@@ -383,10 +426,18 @@ def auth_serializer():
     return URLSafeTimedSerializer(app.config["SECRET_KEY"], salt="delta-sigma-auth")
 
 
+def training_attempt_serializer():
+    return URLSafeTimedSerializer(
+        app.config["SECRET_KEY"],
+        salt="delta-sigma-speed-training",
+    )
+
+
 def create_auth_token(user):
     return auth_serializer().dumps({
         "user_id": user["id"],
         "role": user["role"],
+        "auth_version": int(user.get("auth_version") or 1),
     })
 
 
@@ -413,7 +464,15 @@ def user_from_token(token):
     if not user_id:
         return None
 
-    return get_user_by_id(user_id)
+    user = get_user_by_id(user_id)
+
+    if not user:
+        return None
+
+    if int(data.get("auth_version") or 0) != int(user.get("auth_version") or 1):
+        return None
+
+    return user
 
 
 def safe(handler):
@@ -445,7 +504,14 @@ def current_user():
     user_id = session.get("user_id")
 
     if user_id:
-        return get_user_by_id(user_id)
+        user = get_user_by_id(user_id)
+
+        if (
+            user
+            and int(session.get("auth_version") or 0)
+            == int(user.get("auth_version") or 1)
+        ):
+            return user
 
     return None
 
@@ -484,6 +550,56 @@ def validate_password(password):
         raise ValueError("Hasło musi mieć co najmniej 8 znaków.")
 
 
+def validated_task_data(data, user):
+    item = dict(data or {})
+    source_id = str(item.get("source_id") or "").strip()
+    file_name = str(item.get("file") or "").strip()
+    task_id = str(item.get("task_id") or "").strip()
+
+    if (
+        not source_id.startswith("zadania/")
+        or not source_id.endswith(".json")
+        or ".." in source_id
+        or "\\" in source_id
+        or "://" in source_id
+    ):
+        raise ValueError("Nieprawidłowe źródło zadania.")
+
+    if not SAFE_TASK_FILE_RE.fullmatch(file_name):
+        raise ValueError("Nieprawidłowa nazwa pliku zadania.")
+
+    if task_id != f"{source_id}:{file_name}":
+        raise ValueError("Niespójny identyfikator zadania.")
+
+    if user.get("role") == "student":
+        expected_segment = TASK_PATH_SEGMENT_BY_STUDENT_LEVEL.get(user.get("level"))
+
+        if expected_segment and f"/{expected_segment}/" not in f"/{source_id}":
+            raise ValueError("Zadanie nie należy do poziomu ucznia.")
+
+        item["level"] = user.get("level")
+
+    item["source_id"] = source_id
+    item["file"] = file_name
+    item["task_id"] = task_id
+
+    return item
+
+
+def course_asset_allowed_for_user(asset_path, user):
+    parts = [part for part in str(asset_path or "").split("/") if part]
+
+    if not parts or any(part in {".", ".."} for part in parts):
+        return False
+
+    if user.get("role") == "admin":
+        return True
+
+    expected_segment = TASK_PATH_SEGMENT_BY_STUDENT_LEVEL.get(user.get("level"))
+
+    return bool(expected_segment and parts[0] == expected_segment)
+
+
 def student_payload(user):
     item = public_user(user)
 
@@ -495,6 +611,35 @@ def student_payload(user):
 
 def training_level_for_user(user):
     return TRAINING_LEVEL_BY_STUDENT_LEVEL.get(user.get("level"), "eo")
+
+
+def training_attempt_parameters(data, user):
+    level = str(data.get("level") or "eo").strip().lower()
+    topic = str(data.get("topic") or "all").strip().lower()
+    difficulty = str(data.get("difficulty") or "1").strip()
+    round_seconds = int(data.get("round_seconds") or 0)
+
+    if user.get("role") == "student":
+        level = training_level_for_user(user)
+
+    if level not in {"eo", "mp", "mr"}:
+        raise ValueError("Nieprawidłowy poziom treningu.")
+
+    if not re.fullmatch(r"[a-z0-9_-]{1,80}", topic):
+        raise ValueError("Nieprawidłowy temat treningu.")
+
+    if difficulty not in {"1", "2", "3", "mixed"}:
+        raise ValueError("Nieprawidłowy poziom trudności.")
+
+    if round_seconds != 120:
+        raise ValueError("Nieprawidłowy czas rundy.")
+
+    return {
+        "level": level,
+        "topic": topic,
+        "difficulty": difficulty,
+        "round_seconds": round_seconds,
+    }
 
 
 def analytics_identifier(value):
@@ -590,7 +735,7 @@ def api_analytics_pageview():
     def handler():
         origin = request.headers.get("Origin")
 
-        if origin and origin not in allowed_origins():
+        if origin not in allowed_origins():
             return "", 204
 
         if request_looks_like_bot():
@@ -633,8 +778,8 @@ def api_analytics_pageview():
 
 
 @app.post("/api/auth/login")
-@rate_limit(10, 10 * 60, "login-account", login_rate_limit_key)
-@rate_limit(30, 60, "login-ip", lambda: f"login-ip:{client_ip()}")
+@persistent_rate_limit(10, 10 * 60, "login-account", login_rate_limit_key)
+@persistent_rate_limit(30, 60, "login-ip", lambda: f"login-ip:{client_ip()}")
 def api_login():
     def handler():
         data = payload()
@@ -651,6 +796,7 @@ def api_login():
         session.clear()
         session["user_id"] = user["id"]
         session["role"] = user["role"]
+        session["auth_version"] = int(user.get("auth_version") or 1)
         session.permanent = bool(data.get("remember"))
         touch_last_login(user["id"])
 
@@ -666,6 +812,11 @@ def api_login():
 
 @app.post("/api/auth/logout")
 def api_logout():
+    user = current_user()
+
+    if user:
+        revoke_user_auth(user["id"])
+
     session.clear()
 
     return jsonify({"ok": True})
@@ -949,7 +1100,7 @@ def api_admin_update_review_task(_admin, item_id):
 @require_auth
 def api_save_progress(user):
     def handler():
-        data = payload()
+        data = validated_task_data(payload(), user)
 
         if data["result"] not in {"good", "medium", "bad"}:
             return api_error("Nieprawidłowy wynik zadania.")
@@ -969,7 +1120,7 @@ def api_save_progress(user):
 @require_auth
 def api_mark_review_task(user):
     def handler():
-        data = payload()
+        data = validated_task_data(payload(), user)
         item, created = mark_task_for_review(user["id"], data)
 
         return jsonify({
@@ -981,8 +1132,8 @@ def api_mark_review_task(user):
 
 
 @app.post("/api/contact-messages")
-@rate_limit(5, 60 * 60, "contact-hour", contact_rate_limit_key)
-@rate_limit(20, 24 * 60 * 60, "contact-day", contact_rate_limit_key)
+@persistent_rate_limit(5, 60 * 60, "contact-hour", contact_rate_limit_key)
+@persistent_rate_limit(20, 24 * 60 * 60, "contact-day", contact_rate_limit_key)
 def api_create_contact_message():
     def handler():
         data = payload()
@@ -1016,8 +1167,8 @@ def api_create_contact_message():
 
 
 @app.post("/api/parent/messages")
-@rate_limit(10, 60 * 60, "parent-message-hour", parent_rate_limit_key)
-@rate_limit(40, 24 * 60 * 60, "parent-message-day", parent_rate_limit_key)
+@persistent_rate_limit(10, 60 * 60, "parent-message-hour", parent_rate_limit_key)
+@persistent_rate_limit(40, 24 * 60 * 60, "parent-message-day", parent_rate_limit_key)
 def api_parent_create_message():
     def handler():
         data = payload()
@@ -1060,6 +1211,46 @@ def api_my_progress(user):
     })
 
 
+@app.get("/api/course-assets/<path:asset_path>")
+@rate_limit(180, 60, "course-asset-read")
+@require_auth
+def api_course_asset(user, asset_path):
+    if not course_asset_allowed_for_user(asset_path, user):
+        return api_error("Brak dostępu do tego materiału.", 403)
+
+    response = send_from_directory(COURSE_ASSET_ROOT, asset_path, conditional=True)
+    response.headers["Cache-Control"] = "private, max-age=3600"
+
+    return response
+
+
+@app.post("/api/speed-training/attempts")
+@rate_limit(20, 10 * 60, "training-attempt-start")
+@require_auth
+def api_start_speed_training_attempt(user):
+    def handler():
+        parameters = training_attempt_parameters(payload(), user)
+        started_at = int(time.time())
+        token = training_attempt_serializer().dumps({
+            "user_id": user["id"],
+            "started_at": started_at,
+            "nonce": secrets.token_urlsafe(12),
+            **parameters,
+        })
+        expires_at = (
+            datetime.now(timezone.utc) + timedelta(minutes=10)
+        ).isoformat()
+
+        register_speed_training_attempt(token, user["id"], expires_at)
+
+        return jsonify({
+            "attempt_token": token,
+            "round_seconds": parameters["round_seconds"],
+        }), 201
+
+    return safe(handler)
+
+
 @app.post("/api/speed-training/results")
 @rate_limit(12, 10 * 60, "training-result-write")
 @rate_limit(100, 24 * 60 * 60, "training-result-write-day")
@@ -1067,14 +1258,45 @@ def api_my_progress(user):
 def api_save_speed_training_result(user):
     def handler():
         data = payload()
+        attempt_token = str(data.get("attempt_token") or "")
+
+        try:
+            attempt = training_attempt_serializer().loads(attempt_token, max_age=10 * 60)
+        except (BadSignature, SignatureExpired):
+            return api_error("Próba odrzucona: rozpocznij nową rundę.", 400)
+
+        parameters = training_attempt_parameters(data, user)
+
+        if int(attempt.get("user_id") or 0) != int(user["id"]):
+            return api_error("Próba odrzucona: nieprawidłowy użytkownik.", 400)
+
+        if any(attempt.get(key) != value for key, value in parameters.items()):
+            return api_error("Próba odrzucona: zmieniono parametry rundy.", 400)
+
+        elapsed_seconds = time.time() - int(attempt.get("started_at") or 0)
+
+        if elapsed_seconds < parameters["round_seconds"] - 3:
+            return api_error("Próba odrzucona: runda zakończyła się zbyt wcześnie.", 400)
+
         correct_count = int(data.get("correct_count") or 0)
         mistake_count = int(data.get("mistake_count") or 0)
+        best_streak = int(data.get("best_streak") or 0)
+        maximum_attempts = parameters["round_seconds"] * 3
 
-        if mistake_count > correct_count:
-            return api_error("Próba odrzucona: liczba błędnych odpowiedzi jest większa niż poprawnych.", 400)
+        if (
+            correct_count < 0
+            or mistake_count < 0
+            or best_streak < 0
+            or mistake_count > correct_count
+            or best_streak > correct_count
+            or correct_count + mistake_count > maximum_attempts
+        ):
+            return api_error("Próba odrzucona: nieprawidłowa punktacja.", 400)
 
-        if user.get("role") == "student":
-            data["level"] = training_level_for_user(user)
+        if not consume_speed_training_attempt(attempt_token, user["id"]):
+            return api_error("Próba została już zapisana albo wygasła.", 400)
+
+        data.update(parameters)
 
         result = record_speed_training_result(user["id"], data)
 
@@ -1138,7 +1360,7 @@ def api_speed_training_history(user):
 
 
 @app.post("/api/parent/progress")
-@rate_limit(30, 60, "parent-progress", parent_rate_limit_key)
+@persistent_rate_limit(30, 60, "parent-progress", parent_rate_limit_key)
 def api_parent_progress():
     def handler():
         data = payload()
@@ -1340,4 +1562,4 @@ def api_angle(_user):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "5000"))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="127.0.0.1", port=port, debug=False)

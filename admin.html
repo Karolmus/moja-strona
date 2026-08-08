@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
+<meta name="referrer" content="no-referrer">
+<script src="static/security.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -2108,7 +2111,13 @@ let activeSourceDetailKey = "";
 let analyticsLoadedPeriod = 0;
 const reviewImageClipboardCache = new Map();
 const reviewSourceTaskCache = new Map();
-const ISSUED_CREDENTIALS_KEY = "deltaSigmaIssuedStudentCredentials";
+let issuedCredentials = {};
+
+try {
+    window.localStorage.removeItem("deltaSigmaIssuedStudentCredentials");
+} catch(error) {
+    // Starsza kopia danych zostanie pominięta, jeśli pamięć jest niedostępna.
+}
 
 function showStatus(message){
     adminStatus.classList.add("active");
@@ -2154,15 +2163,11 @@ function showCredentials(title, student, password, parentAccessToken = ""){
 }
 
 function loadIssuedCredentials(){
-    try {
-        return JSON.parse(window.localStorage.getItem(ISSUED_CREDENTIALS_KEY)) || {};
-    } catch(error) {
-        return {};
-    }
+    return issuedCredentials;
 }
 
 function saveIssuedCredentials(credentials){
-    window.localStorage.setItem(ISSUED_CREDENTIALS_KEY, JSON.stringify(credentials));
+    issuedCredentials = credentials;
 }
 
 function rememberIssuedPassword(student, password, parentAccessToken = ""){
@@ -2308,15 +2313,36 @@ function progressTaskKey(item){
     return `${sourceId}:${file}`;
 }
 
+function isProtectedCoursePath(path){
+    return String(path || "").startsWith("zadania/kurs/");
+}
+
+function courseAssetApiPath(path){
+    const relativePath = String(path || "").replace(/^zadania\/kurs\//, "");
+
+    return `/api/course-assets/${relativePath
+        .split("/")
+        .map(segment => encodeURIComponent(segment))
+        .join("/")}`;
+}
+
+async function loadAdminJson(path){
+    if(isProtectedCoursePath(path)){
+        return window.apiFetch(courseAssetApiPath(path));
+    }
+
+    const response = await fetch(path);
+
+    if(!response.ok) throw new Error("Nie udało się pobrać katalogu zadań.");
+
+    return response.json();
+}
+
 async function loadAdminTaskCatalog(){
     const groups = await Promise.all(
         ADMIN_TASK_SOURCES.map(async (source, sourceIndex) => {
             try {
-                const response = await fetch(source.path);
-
-                if(!response.ok) return [];
-
-                const items = await response.json();
+                const items = await loadAdminJson(source.path);
 
                 return items.map(task => ({
                     ...task,
@@ -3287,7 +3313,7 @@ async function resetPassword(student){
 
     rememberIssuedPassword(data.student, data.temporary_password);
     showCredentials("Nowe hasło ucznia", data.student, data.temporary_password, getIssuedParentAccessToken(data.student));
-    showStatus(`Nowe hasło dla ${student.display_name}: ${data.temporary_password}`);
+    showStatus(`Nowe hasło dla ${student.display_name} jest widoczne powyżej.`);
     await loadStudents();
 }
 
@@ -4231,8 +4257,8 @@ function reviewTaskImagePath(item){
     const source = String(item.source_id || "");
     const file = String(item.file || "");
 
-    if(!file) return "";
-    if(file.startsWith("/") || /^https?:\/\//i.test(file)) return file;
+    if(!ADMIN_TASK_SOURCES.some(candidate => candidate.path === source)) return "";
+    if(!/^[A-Za-z0-9_.-]+$/.test(file)) return "";
     if(!source.includes("/")) return file;
 
     return source.slice(0, source.lastIndexOf("/") + 1) + file;
@@ -4249,18 +4275,16 @@ function reviewTaskBasePath(item){
 function pathFromReviewTaskFile(item, file){
     const value = String(file || "");
 
-    if(!value) return "";
-    if(value.startsWith("/") || /^https?:\/\//i.test(value)) return value;
+    if(!/^[A-Za-z0-9_.-]+$/.test(value)) return "";
 
     return reviewTaskBasePath(item) + value;
 }
 
 async function reviewSourceTasks(source){
-    if(!source) return [];
+    if(!ADMIN_TASK_SOURCES.some(candidate => candidate.path === source)) return [];
 
     if(!reviewSourceTaskCache.has(source)){
-        reviewSourceTaskCache.set(source, fetch(source)
-            .then(response => response.ok ? response.json() : [])
+        reviewSourceTaskCache.set(source, loadAdminJson(source)
             .catch(() => [])
         );
     }
@@ -4331,6 +4355,10 @@ async function normalizeImageBlobForClipboard(blob){
 }
 
 async function fetchImageBlob(path){
+    if(isProtectedCoursePath(path)){
+        return window.apiFetchBlob(courseAssetApiPath(path));
+    }
+
     const response = await fetch(path);
 
     if(!response.ok){

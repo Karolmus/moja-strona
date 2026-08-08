@@ -14,18 +14,21 @@
     ).replace(/\/$/, "");
 
     window.getAuthToken = function(){
-        return window.localStorage.getItem(TOKEN_KEY);
+        return window.sessionStorage.getItem(TOKEN_KEY);
     };
 
     window.saveAuthToken = function(token){
         if(token){
-            window.localStorage.setItem(TOKEN_KEY, token);
+            window.sessionStorage.removeItem(TOKEN_KEY);
+            window.localStorage.removeItem(TOKEN_KEY);
+            window.sessionStorage.setItem(TOKEN_KEY, token);
             cachedAuthUser = null;
             cachedAuthAt = 0;
         }
     };
 
     window.clearAuthToken = function(){
+        window.sessionStorage.removeItem(TOKEN_KEY);
         window.localStorage.removeItem(TOKEN_KEY);
         cachedAuthUser = null;
         cachedAuthAt = 0;
@@ -281,6 +284,29 @@
         }
 
         return result;
+    };
+
+    window.apiFetchBlob = async function(path, options = {}){
+        const token = window.getAuthToken();
+        const headers = {
+            ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+            ...(options.headers || {})
+        };
+        const response = await fetch(`${window.DS_API_BASE_URL}${path}`, {
+            ...options,
+            headers,
+            credentials: "include"
+        });
+
+        if(!response.ok){
+            const result = await response.json().catch(() => null);
+            const error = new Error(result?.error || "Nie udało się pobrać materiału.");
+
+            error.status = response.status;
+            throw error;
+        }
+
+        return response.blob();
     };
 
     function updateCurrentYear(){
