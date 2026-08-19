@@ -349,9 +349,9 @@ h1{
     gap: 10px;
     width: 100%;
     min-width: 0;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--course-option-border, #cbd5e1);
     border-radius: 10px;
-    background: #ffffff;
+    background: var(--course-option-background, #ffffff);
     color: #1f2a36;
     cursor: pointer;
     min-height: 32px;
@@ -360,15 +360,36 @@ h1{
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
+.course-option input[data-price-key="ongoing"] + .course-price-option {
+    --course-option-background: linear-gradient(135deg, #b7d1e9 0%, #8eb5de 100%);
+    --course-option-border: #79a4cf;
+}
+
+.course-option input[data-price-key="exam8"] + .course-price-option {
+    --course-option-background: linear-gradient(135deg, #d5e7c3 0%, #b8d49c 100%);
+    --course-option-border: #9fbe80;
+}
+
+.course-option input[data-price-key="matura_basic"] + .course-price-option {
+    --course-option-background: linear-gradient(135deg, #eadcf3 0%, #d6b8ea 100%);
+    --course-option-border: #bea0d2;
+}
+
+.course-option input[data-price-key="matura_extended"] + .course-price-option {
+    --course-option-background: linear-gradient(135deg, #cbd4da 0%, #aab8c2 100%);
+    --course-option-border: #8f9faa;
+}
+
 .course-price-option:hover {
-    background: #f8fafc;
-    border-color: #94a3b8;
+    background: var(--course-option-background, #f8fafc);
+    border-color: #64748b;
     box-shadow: 0 7px 18px rgba(15, 23, 42, 0.1);
+    filter: brightness(0.97);
 }
 
 .course-option input:focus-visible + .course-price-option,
 .course-option input:checked + .course-price-option {
-    background: #fff;
+    background: var(--course-option-background, #fff);
     border-color: #263545;
     box-shadow: 0 0 0 3px rgba(38, 53, 69, 0.14);
 }
@@ -1321,7 +1342,7 @@ footer{
 
 <div class="discord-banner">
     <img class="discord-icon" src="img/discord.gif" alt="Discord">
-    <span>Zajęcia odbywają się online na platformie <b>Discord</b></span>
+    <span>Zajęcia odbywają się <b>online</b> na platformie <b>Discord</b></span>
 </div>
 
 <div class="container">
@@ -1353,7 +1374,7 @@ footer{
                     </div>
 
                     <figure class="booking-photo">
-                        <img src="img/me2.webp" alt="Karol Musioł z podręcznikiem do matematyki" width="1600" height="1067" loading="lazy" decoding="async">
+                        <img src="img/me5.webp?v=20260819" alt="Karol Musioł" width="1200" height="1600" loading="lazy" decoding="async">
                     </figure>
                 </div>
             </section>
@@ -1507,43 +1528,17 @@ footer{
     </nav>
 </footer>
 
+<script src="static/about-slider.js?v=20260819-logo-overlay"></script>
 <script>
 
-function startSlider(selector){
-
-    const elements =
-        document.querySelectorAll(selector);
-
-    if(elements.length < 2) return;
-
-    let index = 0;
-
-    setInterval(() => {
-
-        elements[index]
-            .classList
-            .remove("active");
-
-        index =
-            (index + 1) % elements.length;
-
-        elements[index]
-            .classList
-            .add("active");
-
-    }, 10000);
-
-}
-
 function loadAboutSection(){
-    fetch("o-mnie.html?v=20260808-me2-first", { cache: "no-cache" })
+    fetch("o-mnie.html?v=20260819-new-me2", { cache: "no-cache" })
         .then(res => res.text())
         .then(html => {
             document.querySelectorAll("[data-about-slot]").forEach(slot => {
                 slot.innerHTML = html;
+                window.initAboutSliders?.(slot);
             });
-
-            startSlider("#about-photo-slider img");
         });
 }
 

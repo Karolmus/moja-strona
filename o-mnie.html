@@ -12,17 +12,52 @@
     align-items: stretch;
 }
 
+.about-shared__media {
+    min-width: 0;
+}
+
+.about-shared__brand {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    left: 10px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    border: 1px solid rgba(31, 42, 54, 0.08);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 5px 14px rgba(15, 23, 42, 0.06);
+    pointer-events: none;
+}
+
+.about-shared__brand img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .about-shared__slider {
     position: relative;
+    height: 100%;
     min-height: 230px;
     overflow: hidden;
     border: 1px solid rgba(31, 42, 54, 0.08);
     border-radius: 12px;
     background: #e9edf3;
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
 }
 
-.about-shared__slider img {
+.about-shared__slider.is-dragging {
+    cursor: grabbing;
+}
+
+.about-shared__slider > img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -30,10 +65,67 @@
     object-fit: cover;
     opacity: 0;
     transition: opacity 1.2s ease;
+    pointer-events: none;
 }
 
-.about-shared__slider img.active {
+.about-shared__slider > img.active {
     opacity: 1;
+}
+
+.about-shared__control {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid rgba(31, 42, 54, 0.16);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+    color: #1f2a36;
+    font: 600 25px/1 Arial, sans-serif;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.about-shared__control:hover,
+.about-shared__control:focus-visible {
+    background: #fff;
+}
+
+.about-shared__control--prev {
+    left: 10px;
+}
+
+.about-shared__control--next {
+    right: 10px;
+}
+
+.about-shared__dots {
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 50%;
+    display: flex;
+    gap: 6px;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.about-shared__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0 0 0 1px rgba(31, 42, 54, 0.16);
+}
+
+.about-shared__dot.active {
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(31, 42, 54, 0.38);
 }
 
 .about-shared__content {
@@ -73,19 +165,50 @@
         grid-template-columns: 1fr;
     }
 
+    .about-shared__brand {
+        width: 38px;
+        height: 38px;
+        padding: 5px;
+    }
+
     .about-shared__slider {
-        min-height: 220px;
+        min-height: 0;
+        aspect-ratio: 1;
+        background: #eef1f5;
+    }
+
+    .about-shared__slider > img {
+        object-fit: cover;
+    }
+
+    .about-photo--me2 {
+        object-position: 58% 50%;
+    }
+
+    .about-photo--me1 {
+        object-position: 50% 58%;
+    }
+
+    .about-photo--me5 {
+        object-position: 50% 52%;
     }
 }
 </style>
 
 <section class="about-shared" aria-labelledby="aboutSharedTitle">
     <div class="about-shared__layout">
-        <div class="about-shared__slider" id="about-photo-slider" aria-label="Zdjęcia prowadzącego">
-            <img src="img/me2.webp" class="active" alt="Karol Musioł z podręcznikiem do matematyki" width="1600" height="1067" loading="lazy" decoding="async">
-            <img src="img/me3.webp" alt="Karol Musioł" width="1200" height="547" loading="lazy" decoding="async">
-            <img src="img/me1.jpeg" alt="Karol Musioł podczas zajęć">
-            <img src="img/me4.webp" alt="Karol Musioł" width="1600" height="1143" loading="lazy" decoding="async">
+        <div class="about-shared__media">
+            <div class="about-shared__slider" id="about-photo-slider" aria-label="Zdjęcia prowadzącego">
+                <img src="img/me5.webp" class="active about-photo--me5" alt="Karol Musioł" width="1200" height="1600" loading="lazy" decoding="async">
+                <img src="img/me2.webp?v=20260819-new" class="about-photo--me2" alt="Karol Musioł z podręcznikiem do matematyki" width="1600" height="1066" loading="lazy" decoding="async">
+                <img src="img/me1.jpeg" class="about-photo--me1" alt="Karol Musioł podczas zajęć">
+                <span class="about-shared__brand" aria-label="Delta Sigma">
+                    <img src="img/logo3.png" alt="" width="32" height="32" loading="lazy" decoding="async">
+                </span>
+                <button class="about-shared__control about-shared__control--prev" type="button" aria-label="Poprzednie zdjęcie">&#8249;</button>
+                <button class="about-shared__control about-shared__control--next" type="button" aria-label="Następne zdjęcie">&#8250;</button>
+                <div class="about-shared__dots" aria-hidden="true"></div>
+            </div>
         </div>
 
         <div class="about-shared__content">
