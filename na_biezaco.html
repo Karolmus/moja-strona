@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
-<link rel="stylesheet" href="baner.css?v=20260805-compact">
+<link rel="stylesheet" href="baner.css?v=20260819-no-badge">
 
 <style>
 
@@ -111,7 +111,7 @@ body{
 <div class="discord-banner">
     <img class="discord-icon" src="img/discord.gif" alt="Discord">
     <span>
-        Zajęcia odbywają się online na platformie <b>Discord</b>
+        Zajęcia odbywają się <b>online</b> na platformie <b>Discord</b>
     </span>
 </div>
 
@@ -148,7 +148,7 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
     });
 </script>
 <script>
-fetch("baner.html?v=20260805-compact", { cache: "no-cache" })
+fetch("baner.html?v=20260819-no-badge", { cache: "no-cache" })
     .then(res => res.text())
     .then(html => {
         document.querySelectorAll("[data-baner-slot]").forEach(slot => {

@@ -68,7 +68,7 @@
     </script>
 
     <link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
-    <link rel="stylesheet" href="baner.css?v=20260805-compact">
+    <link rel="stylesheet" href="baner.css?v=20260819-no-badge">
 
     <style>
 
@@ -274,7 +274,7 @@
             border:2px solid #fff;
             border-radius:50%;
             object-fit:cover;
-            object-position:50% 28%;
+            object-position:center;
             box-shadow:0 5px 14px rgba(15,23,42,0.16);
         }
 
@@ -290,7 +290,7 @@
 
         .exam-result-banner{
             max-width:1500px;
-            margin:16px auto 0;
+            margin:16px auto 24px;
             padding:0 20px;
         }
 
@@ -390,6 +390,7 @@
             }
 
             .exam-result-banner{
+                margin-bottom:18px;
                 padding:0 12px;
             }
 
@@ -409,7 +410,7 @@
             }
 
             .home-hero-row{
-                grid-template-columns:minmax(0, 1fr) 112px;
+                grid-template-columns:minmax(0, 1fr);
                 margin:12px auto;
                 padding:0 12px;
                 gap:10px;
@@ -449,13 +450,8 @@
                 padding:11px;
             }
 
-            .home-hero-row .enrollment-badge{
-                padding:6px 10px;
-                font-size:10px;
-            }
-
             .home-hero-row .enrollment-content h2{
-                margin:8px 0;
+                margin:0;
                 font-size:20px;
                 line-height:1.08;
             }
@@ -476,32 +472,10 @@
     <img class="discord-icon" src="img/discord.gif" alt="Discord">
 
     <span>
-        Zajęcia odbywają się online na platformie <b>Discord</b>
+        Zajęcia odbywają się <b>online</b> na platformie <b>Discord</b>
     </span>
 
 </div>
-
-<section class="home-hero-row" aria-label="Oferta i zapisy">
-    <div id="baner"></div>
-
-    <a href="zapisy.html" class="delta-brand-card" aria-label="Karol Musioł - korepetycje z matematyki">
-        <span class="delta-brand-visuals" aria-hidden="true">
-            <img class="delta-brand-logo" src="img/logo3.png" alt="">
-            <img class="delta-brand-portrait" src="img/me4.webp" alt="" width="1600" height="1143">
-        </span>
-        <p class="delta-brand-subtitle">
-            <span>Karol Musioł</span>
-            <span>korepetycje z matematyki</span>
-        </p>
-    </a>
-</section>
-
-<section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
-    <div class="exam-result-summary">
-        <p class="exam-result-text">Zobacz wyniki moich uczniów</p>
-        <a class="exam-result-detail-link" href="wyniki.html">Zobacz szczegóły</a>
-    </div>
-</section>
 
 <main>
 
@@ -579,6 +553,28 @@
 
 </main>
 
+<section class="home-hero-row" aria-label="Oferta i zapisy">
+    <div id="baner"></div>
+
+    <a href="zapisy.html" class="delta-brand-card" aria-label="Karol Musioł - korepetycje z matematyki">
+        <span class="delta-brand-visuals" aria-hidden="true">
+            <img class="delta-brand-logo" src="img/logo3.png" alt="">
+            <img class="delta-brand-portrait" src="img/me5-portret.webp?v=20260819" alt="" width="700" height="700">
+        </span>
+        <p class="delta-brand-subtitle">
+            <span>Karol Musioł</span>
+            <span>korepetycje z matematyki</span>
+        </p>
+    </a>
+</section>
+
+<section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
+    <div class="exam-result-summary">
+        <p class="exam-result-text">Zobacz wyniki moich uczniów</p>
+        <a class="exam-result-detail-link" href="wyniki.html">Zobacz szczegóły</a>
+    </div>
+</section>
+
 <div data-opinions-slot></div>
 
 <div data-about-slot></div>
@@ -593,43 +589,17 @@
     </nav>
 </footer>
 
+<script src="static/about-slider.js?v=20260819-logo-overlay"></script>
 <script>
 
-function startSlider(selector){
-
-    const elements =
-        document.querySelectorAll(selector);
-
-    if(elements.length < 2) return;
-
-    let index = 0;
-
-    setInterval(() => {
-
-        elements[index]
-            .classList
-            .remove("active");
-
-        index =
-            (index + 1) % elements.length;
-
-        elements[index]
-            .classList
-            .add("active");
-
-    }, 10000);
-
-}
-
 function loadAboutSection(){
-    fetch("o-mnie.html?v=20260808-me2-first", { cache: "no-cache" })
+    fetch("o-mnie.html?v=20260819-new-me2", { cache: "no-cache" })
         .then(res => res.text())
         .then(html => {
             document.querySelectorAll("[data-about-slot]").forEach(slot => {
                 slot.innerHTML = html;
+                window.initAboutSliders?.(slot);
             });
-
-            startSlider("#about-photo-slider img");
         });
 }
 
@@ -663,7 +633,7 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
 
 <script>
 
-fetch("baner.html?v=20260805-compact", { cache: "no-cache" })
+fetch("baner.html?v=20260819-no-badge", { cache: "no-cache" })
     .then(res => res.text())
     .then(html => {
         document.getElementById("baner").innerHTML = html;

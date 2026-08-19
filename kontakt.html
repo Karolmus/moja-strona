@@ -18,12 +18,12 @@
 <meta property="og:title" content="Kontakt - korepetycje z matematyki">
 <meta property="og:description" content="Skontaktuj się w sprawie indywidualnych zajęć z matematyki na rok szkolny 2026/27.">
 <meta property="og:url" content="https://deltasigma.pl/kontakt.html">
-<meta property="og:image" content="https://deltasigma.pl/img/me4.webp">
+<meta property="og:image" content="https://deltasigma.pl/img/me5.webp">
 <meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20260803-mobile-call-seo">
-<link rel="stylesheet" href="baner.css?v=20260805-compact">
+<link rel="stylesheet" href="baner.css?v=20260819-no-badge">
 
 <style>
 * {
@@ -167,7 +167,7 @@ body {
 }
 
 .host-photo {
-    object-position: 50% 28%;
+    object-position: center;
 }
 
 .host-logo {
@@ -370,7 +370,7 @@ footer {
                 <small>Dostępność telefoniczna: pon.-pt. 8:00–20:00, sob. 9:00-15:00.</small>
             </div>
             <div class="contact-detail">
-                <span>nazwa użytkownika Discord</span>
+                <span>Discord</span>
                 <div class="discord-contact">
                     <strong class="discord-username">.karolmusioldeltasigma</strong>
                 </div>
@@ -388,7 +388,7 @@ footer {
                 <span>Prowadzący zajęcia</span>
                 <div class="host-profile">
                     <div class="host-visuals">
-                        <img class="host-photo" src="img/me4.webp" alt="Karol Musioł" width="1600" height="1143" loading="lazy" decoding="async">
+                        <img class="host-photo" src="img/me5-portret.webp?v=20260819" alt="Karol Musioł" width="700" height="700" loading="lazy" decoding="async">
                         <img class="host-logo" src="img/logo3.png" alt="Delta Sigma">
                     </div>
                     <div class="host-copy">
@@ -425,7 +425,7 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
         document.getElementById("nav").innerHTML = html;
     });
 
-fetch("baner.html?v=20260805-compact", { cache: "no-cache" })
+fetch("baner.html?v=20260819-no-badge", { cache: "no-cache" })
     .then(response => response.text())
     .then(html => {
         document.getElementById("baner").innerHTML = html;
