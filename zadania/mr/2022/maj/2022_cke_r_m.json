@@ -2,10 +2,13 @@
   {
     "file": "1_2022_cke_r_m.png",
     "difficulty": 2,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "logarytmy",
     "hint": "",
     "answer": "A",
     "tags": [
+      "logarytmy",
+      "własności-logarytmów",
+      "potęgi",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -22,10 +25,13 @@
   {
     "file": "2_2022_cke_r_m.png",
     "difficulty": 2,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "pochodne",
     "hint": "",
     "answer": "C",
     "tags": [
+      "pochodne",
+      "funkcje-wymierne",
+      "funkcja-wielomianowa",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -42,10 +48,13 @@
   {
     "file": "3_2022_cke_r_m.png",
     "difficulty": 2,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "trygonometria",
     "hint": "",
     "answer": "A",
     "tags": [
+      "trygonometria",
+      "funkcje-trygonometryczne",
+      "wzory-na-sumę-i-różnice-kątów",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -62,10 +71,13 @@
   {
     "file": "4_2022_cke_r_m.png",
     "difficulty": 2,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "prawdopodobieństwo całkowite",
     "hint": "",
     "answer": "A",
     "tags": [
+      "prawdopodobieństwo",
+      "prawdopodobieństwo-całkowite",
+      "doświadczenia-wieloetapowe",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -82,10 +94,13 @@
   {
     "file": "5_2022_cke_r_m.png",
     "difficulty": 2,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "granice ciągów",
     "hint": "",
     "answer": "411",
     "tags": [
+      "granice-ciągów",
+      "ciągi",
+      "zadania-z-parametrem",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -120,10 +135,14 @@
   {
     "file": "6_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "dowód algebraiczny",
     "hint": "",
     "answer": "",
     "tags": [
+      "dowodzenie",
+      "dowody-z-nierówności",
+      "dowody-algebraiczne",
+      "wyrażenia-algebraiczne",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -148,10 +167,13 @@
   {
     "file": "7_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "wartość bezwzględna",
     "hint": "",
     "answer": "",
     "tags": [
+      "równania-z-wartością-bezwzględna",
+      "wartość-bezwzględna",
+      "równania",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -185,10 +207,15 @@
   {
     "file": "8_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "dowód geometryczny",
     "hint": "",
     "answer": "",
     "tags": [
+      "dowody-geometryczne",
+      "trapez",
+      "podobieństwo-trójkątów",
+      "okrąg-opisany",
+      "twierdzenie-cosinusów",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -221,10 +248,14 @@
   {
     "file": "9_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "wielomiany",
     "hint": "",
     "answer": "",
     "tags": [
+      "wielomiany",
+      "twierdzenie-o-reszcie",
+      "nierówności-wielomianowe",
+      "rozkład-wielomianu-na-czynniki",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -241,10 +272,14 @@
   {
     "file": "10_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "ciągi",
     "hint": "",
     "answer": "",
     "tags": [
+      "ciąg-geometryczny",
+      "szereg-geometryczny",
+      "ciąg-arytmetyczny",
+      "suma-ciągu-arytmetycznego",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -265,10 +300,14 @@
   {
     "file": "11_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "równania trygonometryczne",
     "hint": "",
     "answer": "",
     "tags": [
+      "równania-trygonometryczne",
+      "wzory-na-sumę-i-różnice-kątów",
+      "funkcje-trygonometryczne",
+      "trygonometria",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -306,10 +345,14 @@
   {
     "file": "12_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "równanie kwadratowe z parametrem",
     "hint": "",
     "answer": "",
     "tags": [
+      "równania-kwadratowe",
+      "równania-z-parametrem",
+      "zadania-z-parametrem",
+      "wzory-viete'a",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -343,10 +386,15 @@
   {
     "file": "13_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "stereometria",
     "hint": "",
     "answer": "",
     "tags": [
+      "stereometria",
+      "graniastosłup",
+      "kąty-w-bryłach",
+      "pola-trójkątów",
+      "trygonometria",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -363,10 +411,15 @@
   {
     "file": "14_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "geometria analityczna",
     "hint": "",
     "answer": "",
     "tags": [
+      "geometria-analityczna",
+      "równanie-prostej",
+      "trójkąty",
+      "pola-figur",
+      "odległość-punktów",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",
@@ -428,10 +481,15 @@
   {
     "file": "15_2022_cke_r_m.png",
     "difficulty": 3,
-    "topic": "Matura rozszerzona 2022",
+    "topic": "optymalizacja",
     "hint": "",
     "answer": "",
     "tags": [
+      "optymalizacja",
+      "pochodne",
+      "trójkąty",
+      "pola-figur",
+      "modelowanie-matematyczne",
       "arkusz-cke-2022"
     ],
     "level": "matura_rozszerzona",

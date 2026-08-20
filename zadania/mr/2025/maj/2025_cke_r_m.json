@@ -31,7 +31,7 @@
     "tags": [
       "dowody-z-nierówności",
       "dowody-algebraiczne",
-      "wzory-skróconego-mnozenia"
+      "wzory-skróconego-mnożenia"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -59,7 +59,7 @@
     "hint": "Zapisz stosunek pól trójkątów ABD i ADC z użyciem wzoru na pole z sinusem kąta.",
     "answer": "Miara kąta DAC wynosi 45°.",
     "tags": [
-      "trojkaty",
+      "trójkąty",
       "pola-figur",
       "trygonometria",
       "planimetria"
@@ -345,7 +345,7 @@
     "hint": "Zinterpretuj kąt między ścianami bocznymi jako kąt w odpowiednim przekroju. Wyznacz potrzebne długości w trójkątach prostokątnych.",
     "answer": "Pole powierzchni bocznej ostrosłupa wynosi 918.",
     "tags": [
-      "ostroslup",
+      "ostrosłup",
       "kąty-w-bryłach",
       "pole-powierzchni-brył",
       "trygonometria"
@@ -433,7 +433,7 @@
     "hint": "W przekroju osiowym stożka zapisz zależność między promieniem, wysokością i odległością środka podstawy od tworzącej.",
     "answer": "Należy wykazać, że V(h) = (π/3) · 25h³/(h² - 25) dla h ∈ (5, +∞).",
     "tags": [
-      "stozek",
+      "stożek",
       "objętość-brył",
       "dowodzenie",
       "modelowanie-matematyczne"
@@ -457,7 +457,7 @@
     "hint": "Zbadaj pochodną funkcji V(h) z podpunktu 12.1 i sprawdź, dla jakiej wysokości funkcja osiąga minimum.",
     "answer": "Najmniejszą objętość jest dla h = 5√3 i wynosi 125√3π/2.",
     "tags": [
-      "stozek",
+      "stożek",
       "objętość-brył",
       "pochodne",
       "optymalizacja"

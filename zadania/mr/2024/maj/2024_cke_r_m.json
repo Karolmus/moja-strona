@@ -2,7 +2,7 @@
   {
     "file": "1.png",
     "difficulty": 3,
-    "topic": "matura rozszerzona",
+    "topic": "funkcja wykładnicza",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -29,7 +29,7 @@
   {
     "file": "2.png",
     "difficulty": 4,
-    "topic": "matura rozszerzona",
+    "topic": "granice funkcji",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -59,7 +59,7 @@
   {
     "file": "3.png",
     "difficulty": 3,
-    "topic": "matura rozszerzona",
+    "topic": "prawdopodobieństwo",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -81,7 +81,7 @@
   {
     "file": "4.png",
     "difficulty": 3,
-    "topic": "matura rozszerzona",
+    "topic": "pochodne i styczna do wykresu",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -104,7 +104,7 @@
   {
     "file": "5.png",
     "difficulty": 2,
-    "topic": "matura rozszerzona",
+    "topic": "logarytmy",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -139,12 +139,12 @@
   {
     "file": "6.png",
     "difficulty": 5,
-    "topic": "matura rozszerzona",
+    "topic": "kombinatoryka",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "kombinatoryka",
-      "reguła-mnozenia",
+      "reguła-mnożenia",
       "permutacje",
       "zliczanie-przypadków"
     ],
@@ -170,11 +170,11 @@
   {
     "file": "7.png",
     "difficulty": 3,
-    "topic": "matura rozszerzona",
+    "topic": "ciągi",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciagi",
+      "ciągi",
       "ciąg-geometryczny",
       "ciąg-arytmetyczny",
       "układy-równań"
@@ -205,12 +205,12 @@
   {
     "file": "8.png",
     "difficulty": 5,
-    "topic": "matura rozszerzona",
+    "topic": "dowód geometryczny",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "dowody-geometryczne",
-      "trojkaty",
+      "trójkąty",
       "twierdzenie-cosinusów",
       "planimetria"
     ],
@@ -289,7 +289,7 @@
   {
     "file": "9.png",
     "difficulty": 5,
-    "topic": "matura rozszerzona",
+    "topic": "geometria płaska",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -315,7 +315,7 @@
   {
     "file": "10.png",
     "difficulty": 4,
-    "topic": "matura rozszerzona",
+    "topic": "równania trygonometryczne",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -337,7 +337,7 @@
   {
     "file": "11.png",
     "difficulty": 5,
-    "topic": "matura rozszerzona",
+    "topic": "geometria analityczna",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -359,7 +359,7 @@
   {
     "file": "12.png",
     "difficulty": 3,
-    "topic": "matura rozszerzona",
+    "topic": "równanie kwadratowe z parametrem",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
@@ -379,11 +379,11 @@
   {
     "file": "13.1.png",
     "difficulty": 3,
-    "topic": "matura rozszerzona",
+    "topic": "graniastosłup",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "graniastoslup",
+      "graniastosłup",
       "objętość-brył",
       "pole-powierzchni-brył",
       "modelowanie-matematyczne"
@@ -397,11 +397,11 @@
   {
     "file": "13.2.png",
     "difficulty": 4,
-    "topic": "matura rozszerzona",
+    "topic": "optymalizacja",
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "graniastoslup",
+      "graniastosłup",
       "pole-powierzchni-brył",
       "pochodne",
       "optymalizacja"
