@@ -38,8 +38,11 @@ body{
 }
 
 :root{
-    --content-width:1500px;
-    --content-padding:20px;
+    --content-width:1180px;
+    --content-padding:clamp(12px, 2vw, 24px);
+    --section-gap:clamp(20px, 3vw, 32px);
+    --panel-radius:18px;
+    --panel-shadow:0 12px 32px rgba(15, 23, 42, 0.075);
 }
 
 
@@ -69,15 +72,15 @@ body{
 /* CONTAINER */
 .container{
     width:min(var(--content-width), calc(100% - (var(--content-padding) * 2)));
-    margin:20px auto;
+    margin:var(--section-gap) auto 0;
     padding:0;
 }
 
 h1{
     margin:0;
     color:#1f2a36;
-    font-size:32px;
-    line-height:1.15;
+    font-size:clamp(28px, 3vw, 36px);
+    line-height:1.08;
 }
 
 /* CTA */
@@ -116,30 +119,33 @@ h1{
 
 .booking-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.8fr);
-    gap: 14px;
-    align-items: start;
+    grid-template-columns: minmax(0, 1.16fr) minmax(360px, 0.84fr);
+    gap: 20px;
+    align-items: stretch;
     width: 100%;
 }
 
 .schedule-card {
     display: grid;
-    gap: 9px;
+    grid-template-rows:auto minmax(0, 1fr);
+    gap: 16px;
     align-content: start;
     width: 100%;
     min-width: 0;
     background: white;
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    border: 1px solid rgba(31, 42, 54, 0.07);
+    border-radius: var(--panel-radius);
+    padding: 20px;
+    box-shadow: var(--panel-shadow);
 }
 
 .booking-head {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 5px;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px;
     align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e4e9ef;
 }
 
 .booking-head-copy {
@@ -148,18 +154,21 @@ h1{
 }
 
 .booking-logo {
-    width: 58px;
-    height: 58px;
+    width: 54px;
+    height: 54px;
+    padding: 7px;
+    border: 1px solid #e1e7ee;
+    border-radius: 50%;
+    background: #f8fafc;
     object-fit: contain;
-    justify-self: end;
 }
 
 .booking-eyebrow {
     margin: 0;
-    color: #5865F2;
+    color: #526172;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
     text-transform: uppercase;
 }
 
@@ -172,41 +181,56 @@ h1{
 
 .schedule-message {
     display: grid;
-    gap: 12px;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) auto;
+    gap: 0;
+    align-content: start;
     width: 100%;
     min-width: 0;
-    margin-top: 4px;
-    padding: 18px;
-    border: 1px solid #d9e1ea;
-    border-radius: 12px;
-    background: #f8fafc;
+    padding: 0 4px;
 }
 
 .schedule-message p {
+    display: block;
+    align-self: center;
+    width: 100%;
     margin: 0;
+    padding: 16px 0;
+    border-bottom: 1px solid #e4e9ef;
     color: #425466;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 .schedule-message strong {
     color: #1f2a36;
 }
 
+.schedule-message p:last-child {
+    align-self: end;
+    width: 100%;
+    margin-top: 14px;
+    padding: 11px 13px;
+    border: 0;
+    border-left: 3px solid #8eb5de;
+    border-radius: 6px;
+    background: #f4f8fb;
+}
+
 .schedule-overview {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(210px, 0.58fr);
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.76fr);
+    gap: 18px;
     align-items: stretch;
+    min-height: 0;
 }
 
 .booking-photo {
     min-width: 0;
-    min-height: 220px;
-    margin: 4px 0 0;
+    min-height: 280px;
+    margin: 0;
     overflow: hidden;
-    border: 1px solid #d9e1ea;
-    border-radius: 12px;
+    border: 1px solid #e1e7ee;
+    border-radius: 14px;
     background: #ffffff;
 }
 
@@ -214,14 +238,14 @@ h1{
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 220px;
+    min-height: 280px;
     object-fit: cover;
-    object-position: 43% 28%;
+    object-position: 43% 36%;
 }
 
 .contact-form-card {
     display: grid;
-    gap: 12px;
+    gap: 16px;
     align-content: start;
     width: 100%;
     min-width: 0;
@@ -230,20 +254,21 @@ h1{
 
 .contact-action-card {
     display: grid;
-    gap: 7px;
+    gap: 10px;
     width: 100%;
     min-width: 0;
     background: white;
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    border: 1px solid rgba(31, 42, 54, 0.07);
+    border-radius: var(--panel-radius);
+    padding: 18px;
+    box-shadow: var(--panel-shadow);
 }
 
 .contact-form-card h2 {
     margin: 0;
     color: #1f2a36;
-    font-size: 20px;
+    font-size: 21px;
+    line-height: 1.2;
 }
 
 .contact-form-card p {
@@ -256,12 +281,13 @@ h1{
 .contact-action-card h3 {
     margin: 0;
     color: #1f2a36;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .contact-form {
     display: grid;
-    gap: 8px;
+    gap: 10px;
     align-content: start;
 }
 
@@ -286,10 +312,18 @@ h1{
     width: 100%;
     border: 1px solid #d9e1ea;
     border-radius: 10px;
-    padding: 8px 10px;
+    padding: 9px 11px;
     color: #1f2a36;
     font: inherit;
     background: #fff;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #8eb5de;
+    box-shadow: 0 0 0 3px rgba(142, 181, 222, 0.2);
 }
 
 .contact-form textarea {
@@ -325,12 +359,14 @@ h1{
 .course-options {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    grid-auto-rows: 1fr;
+    gap: 10px;
 }
 
 .course-option {
     display: block;
     width: 100%;
+    height: 100%;
     min-width: 0;
 }
 
@@ -344,54 +380,59 @@ h1{
 
 .course-price-option {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
     width: 100%;
+    height: 100%;
     min-width: 0;
     border: 1px solid var(--course-option-border, #cbd5e1);
-    border-radius: 10px;
+    border-radius: 11px;
     background: var(--course-option-background, #ffffff);
     color: #1f2a36;
     cursor: pointer;
-    min-height: 32px;
-    padding: 6px 8px;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    min-height: 46px;
+    padding: 9px 10px 9px 13px;
+    box-shadow: inset 3px 0 0 var(--course-option-accent, #94a3b8);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .course-option input[data-price-key="ongoing"] + .course-price-option {
-    --course-option-background: linear-gradient(135deg, #b7d1e9 0%, #8eb5de 100%);
-    --course-option-border: #79a4cf;
+    --course-option-background: linear-gradient(135deg, #fbfdff 0%, #edf4fa 100%);
+    --course-option-border: #c9dbea;
+    --course-option-accent: #8eb5de;
 }
 
 .course-option input[data-price-key="exam8"] + .course-price-option {
-    --course-option-background: linear-gradient(135deg, #d5e7c3 0%, #b8d49c 100%);
-    --course-option-border: #9fbe80;
+    --course-option-background: linear-gradient(135deg, #fcfefb 0%, #f0f7eb 100%);
+    --course-option-border: #d2e3c5;
+    --course-option-accent: #a8c78a;
 }
 
 .course-option input[data-price-key="matura_basic"] + .course-price-option {
-    --course-option-background: linear-gradient(135deg, #eadcf3 0%, #d6b8ea 100%);
-    --course-option-border: #bea0d2;
+    --course-option-background: linear-gradient(135deg, #fefcfe 0%, #f6f0f8 100%);
+    --course-option-border: #e2d5e9;
+    --course-option-accent: #c7a7d9;
 }
 
 .course-option input[data-price-key="matura_extended"] + .course-price-option {
-    --course-option-background: linear-gradient(135deg, #cbd4da 0%, #aab8c2 100%);
-    --course-option-border: #8f9faa;
+    --course-option-background: linear-gradient(135deg, #fcfdfe 0%, #eef2f4 100%);
+    --course-option-border: #d4dde2;
+    --course-option-accent: #91a1ac;
 }
 
 .course-price-option:hover {
-    background: var(--course-option-background, #f8fafc);
-    border-color: #64748b;
-    box-shadow: 0 7px 18px rgba(15, 23, 42, 0.1);
-    filter: brightness(0.97);
+    border-color: var(--course-option-accent, #64748b);
+    box-shadow: inset 3px 0 0 var(--course-option-accent, #64748b), 0 7px 16px rgba(15, 23, 42, 0.07);
+    transform: translateY(-1px);
 }
 
 .course-option input:focus-visible + .course-price-option,
 .course-option input:checked + .course-price-option {
     background: var(--course-option-background, #fff);
-    border-color: #263545;
-    box-shadow: 0 0 0 3px rgba(38, 53, 69, 0.14);
+    border-color: var(--course-option-accent, #263545);
+    box-shadow: inset 4px 0 0 var(--course-option-accent, #263545), 0 0 0 2px rgba(38, 53, 69, 0.1);
 }
 
 .course-price-name {
@@ -402,9 +443,9 @@ h1{
 }
 
 .course-price-value {
-    color: #050505;
+    color: #263545;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 700;
     white-space: nowrap;
 }
 
@@ -700,26 +741,22 @@ h1{
 .tools-section{
     width:min(var(--content-width), calc(100% - (var(--content-padding) * 2)));
     max-width:var(--content-width);
-    margin:20px auto 8px;
+    margin:var(--section-gap) auto 0;
     padding:0;
 }
 
 .tools-panel{
     width:100%;
     min-width:0;
-    background:white;
-    border-radius:16px;
-    padding:26px;
-    box-shadow:0 10px 28px rgba(0,0,0,0.08);
-    border:1px solid rgba(0,0,0,0.05);
+    padding:4px 0;
 }
 
 .tools-panel h2{
-    margin:0 0 10px;
+    margin:0 0 18px;
     color:#1f2a36;
-    font-size:24px;
+    font-size:clamp(21px, 2.2vw, 27px);
     line-height:1.25;
-    max-width:900px;
+    max-width:760px;
 }
 
 .tools-intro{
@@ -732,20 +769,25 @@ h1{
 .tools-grid{
     display:grid;
     grid-template-columns:repeat(4,minmax(0,1fr));
-    gap:16px;
+    grid-auto-rows:1fr;
+    gap:12px;
     width:100%;
 }
 
 .tool-card{
-    display:block;
+    display:flex;
+    flex-direction:column;
     width:100%;
+    height:100%;
     min-width:0;
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    border-radius:14px;
-    padding:18px;
+    min-height:124px;
+    background:rgba(255,255,255,0.86);
+    border:1px solid #dfe6ed;
+    border-radius:12px;
+    padding:16px;
     color:inherit;
     text-decoration:none;
+    box-shadow:0 6px 18px rgba(15,23,42,0.045);
     transition:border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
@@ -764,7 +806,7 @@ h1{
 .tool-logo{
     display:flex;
     align-items:center;
-    margin-bottom:12px;
+    margin-bottom:9px;
 }
 
 .tool-logo strong{
@@ -781,8 +823,18 @@ h1{
 .tool-card p{
     margin:0;
     color:#555;
-    line-height:1.55;
-    font-size:14px;
+    line-height:1.48;
+    font-size:13px;
+}
+
+[data-about-slot] .about-shared{
+    width:min(var(--content-width), calc(100% - (var(--content-padding) * 2)));
+    max-width:none;
+    margin:var(--section-gap) auto;
+}
+
+[data-opinions-slot] .reviews.reviews-carousel .reviews-grid{
+    max-width:var(--content-width);
 }
 
 .tools-note{
@@ -1061,6 +1113,12 @@ h1{
 
     .booking-grid{
         grid-template-columns:1fr;
+        gap:16px;
+        align-items:start;
+    }
+
+    .schedule-card{
+        grid-template-rows:auto auto;
     }
 
     .about-container{
@@ -1156,20 +1214,76 @@ h1{
     }
 
     .container{
-        margin:12px auto;
+        margin:14px auto 0;
         padding:0;
     }
 
-    .booking-logo{
-        width:48px;
-        height:48px;
+    h1{
+        font-size:24px;
     }
 
-    .contact-form-card,
+    .booking-grid{
+        gap:14px;
+    }
+
+    .booking-head{
+        gap:10px;
+        padding-bottom:11px;
+    }
+
+    .booking-head-copy{
+        gap:3px;
+    }
+
+    .booking-logo{
+        width:44px;
+        height:44px;
+        padding:6px;
+    }
+
+    .booking-eyebrow{
+        font-size:10px;
+    }
+
     .contact-action-card,
     .schedule-card{
-        padding:12px;
-        border-radius:12px;
+        padding:14px;
+        border-radius:14px;
+    }
+
+    .schedule-card{
+        gap:12px;
+    }
+
+    .contact-form-card{
+        gap:14px;
+        padding:0;
+    }
+
+    .schedule-message{
+        grid-template-rows:auto auto auto;
+        padding:0;
+    }
+
+    .schedule-message p{
+        display:block;
+        padding:12px 0;
+        font-size:13px;
+        line-height:1.45;
+    }
+
+    .schedule-message strong{
+        display:block;
+        margin-bottom:3px;
+    }
+
+    .schedule-message p:last-child{
+        margin-top:10px;
+        padding:10px 11px;
+    }
+
+    .schedule-message p:last-child strong{
+        margin:0;
     }
 
     .course-options{
@@ -1181,7 +1295,12 @@ h1{
         align-items:flex-start;
         flex-direction:column;
         gap:3px;
-        min-height:42px;
+        min-height:58px;
+        padding:9px 9px 8px 12px;
+    }
+
+    .course-price-name{
+        font-size:12px;
     }
 
     .course-price-value{
@@ -1200,16 +1319,18 @@ h1{
 
     .schedule-overview{
         grid-template-columns:1fr;
+        gap:12px;
     }
 
     .booking-photo{
         min-height:0;
-        aspect-ratio:16 / 10;
+        aspect-ratio:2 / 1;
         margin-top:0;
     }
 
     .booking-photo img{
         min-height:0;
+        object-position:43% 52%;
     }
 
     .schedule-day-card,
@@ -1264,11 +1385,49 @@ h1{
     }
 
     .tools-panel{
-        padding:22px;
+        padding:0;
+    }
+
+    .tools-panel h2{
+        margin-bottom:12px;
+        font-size:20px;
+        line-height:1.25;
     }
 
     .tools-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:9px;
+    }
+
+    .tool-card{
+        min-height:112px;
+        padding:12px;
+    }
+
+    .tool-logo{
+        margin-bottom:7px;
+    }
+
+    .tool-logo strong{
+        font-size:15px;
+    }
+
+    .tool-card p{
+        font-size:11px;
+        line-height:1.4;
+    }
+
+    .cta-card{
+        min-height:46px;
+    }
+
+    .contact-form button{
+        justify-self:stretch;
+        min-height:42px;
+    }
+
+    [data-about-slot] .about-shared{
+        margin:var(--section-gap) auto;
     }
 
     .reviews h2{
@@ -1351,11 +1510,11 @@ footer{
         <div class="booking-grid">
             <section class="schedule-card" aria-labelledby="availabilityTitle">
                 <div class="booking-head">
+                    <img class="booking-logo" src="img/logo3.png" alt="Delta Sigma">
                     <div class="booking-head-copy">
                         <p class="booking-eyebrow">Zapisy 2026/27</p>
                         <h1 id="availabilityTitle">Terminy zajęć</h1>
                     </div>
-                    <img class="booking-logo" src="img/logo3.png" alt="Delta Sigma">
                 </div>
 
                 <div class="schedule-overview">
@@ -1478,7 +1637,7 @@ footer{
 
 	<section class="tools-section" aria-labelledby="tools-title">
 	    <div class="tools-panel">
-	        <h2 id="tools-title">Podczas zajęć wykorzystuję sprawdzone narzędzia wspomagające proces nauczania. Są to między innymi</h2>
+	        <h2 id="tools-title">Narzędzia wykorzystywane podczas zajęć</h2>
 	        <p class="tools-intro">
 	        </p>
 
