@@ -331,6 +331,8 @@
         const page = window.location.pathname.split("/").pop() || "index.html";
         const visible = publicPages.has(page);
 
+        document.documentElement.classList.toggle("mobile-call-visible", visible);
+
         document.querySelectorAll("[data-mobile-call]").forEach(element => {
             element.hidden = !visible;
         });

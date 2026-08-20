@@ -312,6 +312,10 @@
         line-height: 1.4;
     }
 
+    .mobile-call-visible .site-footer {
+        padding-bottom: calc(82px + env(safe-area-inset-bottom));
+    }
+
     .site-footer .footer-links {
         gap: 6px;
         margin-top: 6px;
