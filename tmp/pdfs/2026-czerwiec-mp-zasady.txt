@@ -1,0 +1,1964 @@
+                                                                       Zasady oceniania rozwiązań
+                                                   Rodzaj dokumentu:
+                                                                       zadań
+                                                   Egzamin:            Egzamin maturalny
+                                                   Przedmiot:          Matematyka
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Poziom:             Poziom podstawowy
+                                                                       MMAP-P0-100, MMAP-P0-200,
+                                                   Formy arkusza:      MMAP-P0-300, MMAP-P0-700,
+                                                                       MMAP-P0-Q00
+
+                                                   Termin egzaminu:    2 czerwca 2026 r.
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Uwagi ogólne:
+
+                                                   1. Akceptowane są wszystkie rozwiązania merytorycznie poprawne i spełniające warunki
+                                                      zadania.
+                                                   2. Jeżeli zdający poprawnie rozwiąże zadanie i otrzyma poprawny wynik, lecz w końcowym
+                                                      zapisie przekształca ten wynik i popełnia przy tym błąd, to może uzyskać maksymalną
+                                                      liczbę punktów.
+                                                   3. Jeżeli zdający popełni błędy rachunkowe, które na żadnym etapie rozwiązania nie
+                                                      upraszczają i nie zmieniają danego zagadnienia, lecz stosuje poprawną metodę
+                                                      i konsekwentnie do popełnionych błędów rachunkowych rozwiązuje zadanie, to może
+                                                      otrzymać co najwyżej (𝑛 − 1) punktów (gdzie 𝑛 jest maksymalną możliwą do uzyskania
+                                                      liczbą punktów za dane zadanie).
+
+
+
+
+                                                   Uwaga:
+                                                   Gdy wymaganie egzaminacyjne dotyczy treści z II etapu edukacyjnego, dopisano „SP”.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 1. (0–1)
+
+                                                                          Wymagania określone w podstawie programowej1
+
+                                                                   Wymaganie ogólne                                  Wymaganie szczegółowe
+                                                    I. Sprawność rachunkowa.                               Zdający:
+                                                    Wykonywanie obliczeń na liczbach                       I.3) stosuje własności pierwiastków
+                                                    rzeczywistych, także przy użyciu                       dowolnego stopnia, w tym pierwiastków
+                                                    kalkulatora, stosowanie praw działań                   stopnia nieparzystego z liczb ujemnych.
+                                                    matematycznych przy przekształcaniu
+                                                    wyrażeń algebraicznych oraz
+                                                    wykorzystywanie tych umiejętności przy
+                                                    rozwiązywaniu problemów w kontekstach
+                                                    rzeczywistych i teoretycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+
+
+
+
+                                                   1 Rozporządzenie Ministra Edukacji z dnia 28 czerwca 2024 r. zmieniające rozporządzenie w sprawie podstawy
+
+                                                   programowej kształcenia ogólnego dla liceum ogólnokształcącego, technikum oraz branżowej szkoły II stopnia
+                                                   (Dz.U. z 2024 r. poz. 1019).
+
+
+
+                                                   Strona 2 z 37
+                                                                                                               Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 2. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie       Zdający:
+                                                    reprezentacji.                             I.4) stosuje […] prawa działań na potęgach
+                                                    1. Stosowanie obiektów matematycznych      […].
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 3. (0–1)
+
+                                                               Wymaganie ogólne                          Wymagania szczegółowe
+                                                    III. Wykorzystanie i interpretowanie       Zdający:
+                                                    reprezentacji.                             I.1) wykonuje działania ([…]
+                                                    1. Stosowanie obiektów matematycznych      logarytmowanie) w zbiorze liczb
+                                                    i operowanie nimi, interpretowanie pojęć   rzeczywistych;
+                                                    matematycznych.                            I.9) stosuje związek logarytmowania
+                                                                                               z potęgowaniem, posługuje się wzorami na
+                                                                                               logarytm iloczynu, logarytm ilorazu
+                                                                                               i logarytm potęgi.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   B
+
+
+
+
+                                                                                                                                  Strona 3 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 4. (0–1)
+
+                                                                   Wymaganie ogólne                              Wymagania szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      II.3) wyłącza poza nawias jednomian
+                                                    1. Stosowanie obiektów matematycznych               z sumy algebraicznej;
+                                                    i operowanie nimi, interpretowanie pojęć            II.1) stosuje wzory skróconego mnożenia
+                                                    matematycznych.                                     na: (𝑎 + 𝑏)2 , (𝑎 − 𝑏)2 , 𝑎2 − 𝑏 2 .
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   A
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 5. (0–2)
+
+                                                                   Wymaganie ogólne                              Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.                     Zdający:
+                                                    1. Przeprowadzanie rozumowań, także                 I.2) przeprowadza proste dowody dotyczące
+                                                    kilkuetapowych, podawanie argumentów                podzielności liczb całkowitych i reszt
+                                                    uzasadniających poprawność rozumowania,             z dzielenia […].
+                                                    odróżnianie dowodu od przykładu.
+
+                                                   Zasady oceniania
+                                                   2 pkt – poprawne przekształcenia i przeprowadzenie pełnego rozumowania.
+
+                                                   1 pkt – przekształcenie wyrażenia 7𝑛 + 7𝑛+1 + 7𝑛+2 do postaci 7𝑛 ⋅ (1 + 7 + 72 ).
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Uwaga:
+                                                   Jeżeli zdający sprawdza prawdziwość tezy tylko dla wybranych wartości 𝑛, to otrzymuje
+                                                   0 punktów za całe rozwiązanie.
+
+                                                   Przykładowe pełne rozwiązanie
+                                                   Korzystamy z własności działań na potęgach i otrzymujemy:
+
+                                                                               7𝑛 + 7𝑛+1 + 7𝑛+2 = 7𝑛 + 7𝑛 ⋅ 7 + 7𝑛 ⋅ 72
+                                                   Wyłączamy wspólny czynnik przed nawias i otrzymujemy:
+
+                                                                   7𝑛 + 7𝑛 ⋅ 7 + 7𝑛 ⋅ 72 = 7𝑛 ⋅ (1 + 7 + 72 ) = 7𝑛 ⋅ 57 = 19 ⋅ 3 ⋅ 7𝑛
+                                                   Liczba 3 ⋅ 7𝑛 jest liczbą całkowitą dla każdej liczby całkowitej 𝑛 ≥ 0, zatem liczba
+                                                   7𝑛 + 7𝑛+1 + 7𝑛+2 jest podzielna przez 19 dla każdej liczby całkowitej 𝑛 ≥ 0.
+
+
+
+                                                   Strona 4 z 37
+                                                                                                               Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 6. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    I. Sprawność rachunkowa.                   Zdający:
+                                                    Wykonywanie obliczeń na liczbach           II.2) dodaje, odejmuje i mnoży wielomiany
+                                                    rzeczywistych, także przy użyciu           jednej i wielu zmiennych.
+                                                    kalkulatora, stosowanie praw działań
+                                                    matematycznych przy przekształcaniu
+                                                    wyrażeń algebraicznych oraz
+                                                    wykorzystywanie tych umiejętności przy
+                                                    rozwiązywaniu problemów w kontekstach
+                                                    rzeczywistych i teoretycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Rozwiązanie
+                                                   A
+
+
+                                                   Zadanie 7. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie       Zdający:
+                                                    reprezentacji.                             III.4) rozwiązuje […] nierówności
+                                                    1. Stosowanie obiektów matematycznych      kwadratowe.
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   B
+
+
+
+
+                                                                                                                                   Strona 5 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 8. (0–3)
+
+                                                                   Wymaganie ogólne                              Wymagania szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      III.1) przekształca równania i nierówności
+                                                    1. Stosowanie obiektów matematycznych               w sposób równoważny, w tym np.
+                                                    i operowanie nimi, interpretowanie pojęć            przekształca równoważnie równanie
+                                                    matematycznych.                                        5      𝑥+3
+                                                                                                                =       ;
+                                                                                                        𝑥 + 1 2𝑥−1
+                                                                                                        III.4) rozwiązuje równania […] kwadratowe.
+                                                                                                        I.6) posługuje się pojęciem przedziału
+                                                                                                        liczbowego […].
+
+                                                   Zasady oceniania
+                                                                                                                  3𝑥 + 4 𝑥 + 3
+                                                   3 pkt – zastosowanie poprawnej metody tj. rozwiązanie równania         = 3𝑥 w zbiorze
+                                                                                                                   𝑥−1
+                                                           liczb rzeczywistych oraz wskazanie tego z rozwiązań równania, które należy do
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                                               2        3
+                                                           przedziału (−∞, − ): 𝑥 = − .
+                                                                               3        4
+
+                                                                               3𝑥 + 4 𝑥 + 3
+                                                   2 pkt – rozwiązanie równania      = 3𝑥 w zbiorze liczb rzeczywistych:
+                                                                                𝑥−1
+                                                                 3            1
+                                                           𝑥 = − 4 oraz 𝑥 = − 2 .
+
+                                                                                     3𝑥 + 4 𝑥 + 3
+                                                   1 pkt – przekształcenie równania         = 3𝑥 do równania kwadratowego, np.
+                                                                                      𝑥−1
+                                                           (3𝑥 + 4) ⋅ 3𝑥 = (𝑥 − 1) ⋅ (𝑥 + 3).
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Uwagi:
+                                                   1. Jeżeli zdający popełni błędy rachunkowe przy przekształcaniu równania i otrzyma
+                                                      równanie kwadratowe postaci 𝑎𝑥 2 + 𝑏𝑥 + 𝑐 = 0, które ma co najmniej jedno rozwiązanie
+                                                      rzeczywiste i konsekwentnie rozwiąże zadanie do końca, to otrzymuje 2 punkty za całe
+                                                      rozwiązanie.
+                                                   2. Jeżeli zdający nie spełni kryterium za 1 punkt, a przy przekształcaniu równania popełnia
+                                                      błędy i otrzyma równanie kwadratowe postaci 𝑎𝑥 2 + 𝑏𝑥 + 𝑐 = 0, które nie ma rozwiązań
+                                                      rzeczywistych, albo otrzyma równanie, które nie jest kwadratowe, to otrzymuje 0 punktów
+                                                      za całe rozwiązanie.
+                                                   3. Jeżeli zdający, przekształcając równanie wymierne do równania kwadratowego, zastosuje
+                                                      błędną metodę - np. zapisze (3𝑥 + 4) ⋅ (𝑥 + 3) = (𝑥 − 1) ⋅ 3𝑥 , to otrzymuje 0 punktów
+                                                      za całe rozwiązanie.
+
+
+
+
+                                                   Strona 6 z 37
+                                                                                                                   Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Przykładowe pełne rozwiązanie
+                                                                           2                2
+                                                   Zauważmy, że 0 ∉ (−∞, − ) oraz 1 ∉ (−∞, − ).
+                                                                           3                3
+
+                                                   Przekształcamy równanie:
+                                                                                        3𝑥 + 4 𝑥 + 3
+                                                                                              =
+                                                                                        𝑥−1     3𝑥
+                                                                               (3𝑥 + 4) ⋅ 3𝑥 = (𝑥 − 1) ⋅ (𝑥 + 3)
+                                                   Rozwiązujemy otrzymane równanie kwadratowe:
+
+                                                                                9𝑥 2 + 12𝑥 = 𝑥 2 + 3𝑥 − 𝑥 − 3
+                                                                                       8𝑥 2 + 10𝑥 + 3 = 0
+                                                   Obliczamy wyróżnik Δ trójmianu kwadratowego 8𝑥 2 + 10𝑥 + 3:
+
+                                                                              Δ = 102 − 4 ⋅ 8 ⋅ 3 = 100 − 96 = 4
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Stąd:
+
+                                                                                     −10 − √4    3        2
+                                                                              𝑥1 =            = − ∈ (−∞, − )
+                                                                                       2⋅8       4        3
+
+                                                                                     −10 + √4    1        2
+                                                                              𝑥2 =            = − ∉ (−∞, − )
+                                                                                       2⋅8       2        3
+
+                                                                                          3𝑥 + 4 𝑥 + 3                 2
+                                                   Zatem jedynym rozwiązaniem równania          =      w zbiorze (−∞, − )
+                                                                                          𝑥−1     3𝑥                   3
+                                                                 3
+                                                   jest liczba (− ).
+                                                                 4
+
+
+                                                   Zadanie 9. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie         Zdający:
+                                                    reprezentacji.                               IV.2) stosuje układy równań do
+                                                    2. Dobieranie i tworzenie modeli             rozwiązywania zadań tekstowych.
+                                                    matematycznych przy rozwiązywaniu
+                                                    problemów praktycznych i teoretycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   D
+
+
+
+
+                                                                                                                                      Strona 7 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 10. (0–1)
+
+                                                                   Wymaganie ogólne                              Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      V.5) interpretuje współczynniki występujące
+                                                    1. Stosowanie obiektów matematycznych               we wzorze funkcji liniowej.
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepełna lub niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   PF
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 11. (0–1)
+
+                                                                   Wymaganie ogólne                              Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      V.2) oblicza wartość funkcji zadanej wzorem
+                                                    1. Stosowanie obiektów matematycznych               algebraicznym.
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+
+
+
+
+                                                   Strona 8 z 37
+                                                                                                                    Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 12.1. (0–2)
+
+                                                               Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    II. Wykorzystanie i tworzenie informacji.      Zdający:
+                                                    1. Interpretowanie i operowanie                V.4) odczytuje z wykresu funkcji: […]
+                                                    informacjami przedstawionymi w tekście,        miejsca zerowe […] oraz argumenty, dla
+                                                    zarówno matematycznym, jak                     których wartości największe i najmniejsze
+                                                    i popularnonaukowym, a także w formie          są przez funkcję przyjmowane.
+                                                    wykresów, diagramów, tabel.
+
+                                                   Zasady oceniania
+                                                   2 pkt – poprawne uzupełnienie dwóch zdań.
+                                                   1 pkt – poprawne uzupełnienie jednego zdania.
+                                                   0 pkt – brak spełnienia powyższych kryteriów.
+
+                                                   Rozwiązanie
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   1. 3
+
+                                                   2. 2
+
+
+                                                   Zadanie 12.2. (0–2)
+
+                                                               Wymaganie ogólne                             Wymagania szczegółowe
+                                                    II. Wykorzystanie i tworzenie informacji.      Zdający:
+                                                    1. Interpretowanie i operowanie                V.3) odczytuje i interpretuje wartości funkcji
+                                                    informacjami przedstawionymi w tekście,        określonych za pomocą tabel, wykresów,
+                                                    zarówno matematycznym, jak                     wzorów […];
+                                                    i popularnonaukowym, a także w formie          V.4) odczytuje z wykresu funkcji: dziedzinę,
+                                                    wykresów, diagramów, tabel.                    […] przedziały, w których funkcja przyjmuje
+                                                                                                   wartości większe (nie mniejsze) lub
+                                                                                                   mniejsze (nie większe) od danej liczby […].
+                                                                                                   I.6) posługuje się pojęciem przedziału
+                                                                                                   liczbowego […].
+
+                                                   Zasady oceniania
+                                                   2 pkt – poprawne uzupełnienie dwóch zdań.
+                                                   1 pkt – poprawne uzupełnienie jednego zdania.
+                                                   0 pkt – brak spełnienia powyższych kryteriów.
+
+                                                   Uwaga:
+                                                   Uzupełnienie zdania uznaje się za poprawne tylko wtedy, gdy zapisane krańce przedziału są
+                                                   poprawne i można jednoznacznie ustalić, czy przedział zapisany przez zdającego jest
+                                                   otwarty czy domknięty.
+
+
+
+
+                                                                                                                                       Strona 9 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Kryteria uwzględniające specyficzne trudności w uczeniu się matematyki
+                                                   Jeśli zdający pomyli porządek liczb na osi liczbowej przy zachowaniu poprawnych krańców
+                                                   przedziału, np. zapisze, że dziedziną funkcji 𝑓 jest przedział (4, −5], to otrzymuje 1 punkt
+                                                   za tak uzupełnione zdanie.
+
+                                                   Rozwiązanie
+
+                                                   1. [−5, 4)
+
+                                                        7
+                                                   2. [− , 3]
+                                                        2
+
+
+                                                   Zadanie 13.1. (0–1)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      V.11) wykorzystuje własności funkcji […]
+                                                    1. Stosowanie obiektów matematycznych               kwadratowej […].
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   A
+
+
+                                                   Zadanie 13.2. (0–1)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      V.12) na podstawie wykresu funkcji
+                                                    1. Stosowanie obiektów matematycznych               𝑦 = 𝑓(𝑥) szkicuje wykresy funkcji
+                                                    i operowanie nimi, interpretowanie pojęć            𝑦 = 𝑓(𝑥 − 𝑎) […].
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   D
+
+
+
+
+                                                   Strona 10 z 37
+                                                                                                                Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 14.1. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie        Zdający:
+                                                    reprezentacji.                              VI.2) oblicza początkowe wyrazy ciągów
+                                                    1. Stosowanie obiektów matematycznych       określonych rekurencyjnie.
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 14.2. (0–1)
+
+                                                               Wymaganie ogólne                          Wymagania szczegółowe
+                                                    III. Wykorzystanie i interpretowanie        Zdający:
+                                                    reprezentacji.                              VI.4) sprawdza, czy dany ciąg jest
+                                                    1. Stosowanie obiektów matematycznych       arytmetyczny […];
+                                                    i operowanie nimi, interpretowanie pojęć    VI.3) w prostych przypadkach bada, czy
+                                                    matematycznych.                             ciąg jest rosnący, czy malejący.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepełna lub niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   PP
+
+
+
+
+                                                                                                                                  Strona 11 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 15. (0–2)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.                     Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy            VI.5) stosuje wzór na 𝑛-ty wyraz i na sumę
+                                                    rozwiązywaniu zadań, również w sytuacjach           𝑛 początkowych wyrazów ciągu
+                                                    nietypowych.                                        arytmetycznego.
+
+                                                   Zasady oceniania
+                                                                                                                            34
+                                                   2 pkt – zastosowanie poprawnej metody i poprawny wynik: 𝑎2 =                .
+                                                                                                                            3
+
+                                                   1 pkt – zapisanie równania z jedną niewiadomą 𝑟, np.
+                                                            7 + 7 + 𝑟 + 7 + 2𝑟 + 7 + 3𝑟 = 54
+                                                           ALBO
+                                                         – zapisanie równania z jedną niewiadomą 𝑎2 , np.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                           3𝑎2 + 3(𝑎2 − 7) = 47,
+                                                           ALBO
+                                                                                                   47
+                                                         – obliczenie trzeciego wyrazu ciągu: 𝑎3 =    ,
+                                                                                                   3
+                                                           ALBO
+                                                         – obliczenie czwartego wyrazu ciągu: 𝑎4 = 20 .
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Uwaga:
+                                                   Jeżeli zdający wypisze wszystkie cztery wyrazy rozpatrywanego ciągu arytmetycznego
+                                                       34 47
+                                                   (7, 3 , 3 , 20), to otrzymuje 2 punkty.
+
+                                                   Przykładowe pełne rozwiązania
+                                                   Sposób I
+                                                   Z treści zadania wynika, że 7 + 𝑎2 + 𝑎3 + 𝑎4 = 54.
+                                                   Stąd i ze wzoru na 𝑛-ty wyraz ciągu arytmetycznego otrzymujemy równanie:
+
+                                                                                   7 + 7 + 𝑟 + 7 + 2𝑟 + 7 + 3𝑟 = 54
+                                                                                              28 + 6𝑟 = 54
+                                                                                                  6𝑟 = 26
+                                                                                                       13
+                                                                                                  𝑟=
+                                                                                                        3
+                                                   Zatem:
+                                                                                                            13 34
+                                                                                       𝑎2 = 7 + 𝑟 = 7 +        =
+                                                                                                             3   3
+
+
+
+
+                                                   Strona 12 z 37
+                                                                                                               Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Sposób II
+                                                   Z treści zadania wynika, że 7 + 𝑎2 + 𝑎3 + 𝑎4 = 54.
+                                                   Ze wzoru na 𝑛-ty wyraz ciągu arytmetycznego otrzymujemy:
+
+                                                                                          𝑎2 = 7 + 𝑟
+                                                   Stąd:
+                                                                                          𝑟 = 𝑎2 − 7
+                                                   Wtedy:
+                                                                            𝑎3 = 𝑎2 + 𝑟 = 𝑎2 + 𝑎2 − 7 = 2𝑎2 − 7
+                                                                         𝑎4 = 𝑎2 + 2𝑟 = 𝑎2 + 2(𝑎2 − 7) = 3𝑎2 − 14
+
+                                                   Przekształcamy równanie 7 + 𝑎2 + 𝑎3 + 𝑎4 = 54 do równania z jedną niewiadomą 𝑎2 :
+
+                                                                            7 + 𝑎2 + (2𝑎2 − 7) + (3𝑎2 − 14) = 54
+                                                                                         6𝑎2 − 14 = 54
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                                                           6𝑎2 = 68
+                                                                                                    34
+                                                                                           𝑎2 =
+                                                                                                     3
+
+                                                   Sposób III
+                                                   Z treści zadania wynika, że 7 + 𝑎2 + 𝑎3 + 𝑎4 = 54.
+                                                   Z własności ciągu arytmetycznego otrzymujemy:
+
+                                                                                          𝑎2 = 𝑎3 − 𝑟
+                                                                                          𝑎4 = 𝑎3 + 𝑟
+
+                                                   Przekształcamy równanie 7 + 𝑎2 + 𝑎3 + 𝑎4 = 54 do równania z jedną niewiadomą 𝑎3 :
+
+                                                                              7 + (𝑎3 − 𝑟) + 𝑎3 + (𝑎3 + 𝑟) = 54
+                                                                                         7 + 3𝑎3 = 54
+                                                                                           3𝑎3 = 47
+                                                                                                    47
+                                                                                           𝑎3 =
+                                                                                                     3
+
+                                                   Korzystamy z własności sąsiednich wyrazów ciągu arytmetycznego i obliczamy 𝑎2 :
+                                                                                           47
+                                                                                         7+ 3       68 1 34
+                                                                                  𝑎2 =          =     ⋅ =
+                                                                                           2         3 2  3
+
+
+
+
+                                                                                                                                 Strona 13 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Sposób IV
+                                                   Z treści zadania wynika, że 7 + 𝑎2 + 𝑎3 + 𝑎4 = 54.
+                                                   Ze wzoru na sumę 𝑛 początkowych wyrazów ciągu arytmetycznego otrzymujemy:
+                                                                                              7 + 𝑎4
+                                                                                                     ⋅ 4 = 54
+                                                                                                2
+                                                                                               7 + 𝑎4 = 27
+                                                                                                  𝑎4 = 20
+
+                                                   Ze wzoru na 𝑛-ty wyraz ciągu arytmetycznego otrzymujemy:
+
+                                                                                               𝑎4 = 𝑎1 + 3𝑟
+                                                                                               20 = 7 + 3𝑟
+                                                                                                       13
+                                                                                                  𝑟=
+                                                                                                        3
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zatem:
+                                                                                                            13 34
+                                                                                       𝑎2 = 7 + 𝑟 = 7 +        =
+                                                                                                             3   3
+
+
+                                                   Zadanie 16. (0–1)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.                     Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy            VI.6) stosuje wzór na 𝑛-ty wyraz […] ciągu
+                                                    rozwiązywaniu zadań, również w sytuacjach           geometrycznego.
+                                                    nietypowych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+
+
+
+
+                                                   Strona 14 z 37
+                                                                                                                 Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 17. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie        Zdający:
+                                                    reprezentacji.                              VIII.12) stosuje funkcje trygonometryczne
+                                                    1. Stosowanie obiektów matematycznych       do wyznaczania długości odcinków
+                                                    i operowanie nimi, interpretowanie pojęć    w figurach płaskich oraz obliczania pól figur.
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   B
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 18. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.             Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy    VIII.5) stosuje własności kątów wpisanych
+                                                    rozwiązywaniu zadań, również w sytuacjach   i środkowych.
+                                                    nietypowych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+
+
+                                                   Zadanie 19. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.             Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy    VIII.8) korzysta z cech podobieństwa
+                                                    rozwiązywaniu zadań, również w sytuacjach   trójkątów.
+                                                    nietypowych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   B
+
+
+
+                                                                                                                                   Strona 15 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 20. (0–2)
+
+                                                                    Wymaganie ogólne                              Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.                     Zdający:
+                                                    1. Przeprowadzanie rozumowań, także                 VIII.11) przeprowadza dowody
+                                                    kilkuetapowych, podawanie argumentów                geometryczne.
+                                                    uzasadniających poprawność rozumowania,
+                                                    odróżnianie dowodu od przykładu.
+
+                                                   Zasady oceniania
+                                                   2 pkt – przeprowadzenie pełnego rozumowania.
+
+                                                   1 pkt – zapisanie, że |𝐴𝐸| = |𝐷𝐸|
+                                                           ALBO
+                                                         – zapisanie, że |∡𝐸𝐴𝐷| = |∡𝐴𝐷𝐸|,
+                                                           ALBO
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                         – zapisanie, że |∡𝐵𝐸𝐷| = |∡𝐷𝐵𝐸|,
+                                                           ALBO
+                                                         – wyznaczenie zależności między miarami kątów 𝐴𝐷𝐸 i 𝐴𝐵𝐸 , np.
+                                                           |∡𝐴𝐷𝐸| = 2 ⋅ |∡𝐴𝐵𝐸|.
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Przykładowe pełne rozwiązanie
+                                                   Niech |∡𝐶𝐴𝐵| = 𝛼 oraz |∡𝐴𝐵𝐸| = 𝛽 (zobacz rysunek). Wtedy tezę możemy zapisać
+                                                   w postaci 𝛼 = 2𝛽 .
+                                                                                                 𝐶
+
+
+
+
+                                                                                        𝐸
+
+
+
+
+                                                                                       𝛼                      𝛽
+                                                                                  𝐴              𝐷                  𝐵
+
+                                                   Z równości |𝐷𝐵| = |𝐷𝐸| wynika, że trójkąt 𝐷𝐵𝐸 jest równoramienny. Stąd:
+
+                                                                                           |∡𝐵𝐸𝐷| = |∡𝐷𝐵𝐸| = 𝛽
+                                                   Zatem z twierdzenia o sumie miar kątów wewnętrznych trójkąta wynika, że:
+                                                                                            |∡𝐸𝐷𝐵| = 180° − 2𝛽
+
+
+
+
+                                                   Strona 16 z 37
+                                                                                                                 Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Trójkąt 𝐴𝐷𝐶 jest prostokątny i punkt 𝐸 jest środkiem jego przeciwprostokątnej (tzn. że
+                                                   punkt 𝐸 jest środkiem okręgu opisanego na trójkącie 𝐴𝐷𝐶 ), więc:
+
+                                                                                      |𝐴𝐸| = |𝐷𝐸| = |𝐶𝐸|
+                                                   Stąd wynika, że trójkąt 𝐴𝐷𝐸 jest równoramienny, zatem:
+
+                                                                                    |∡𝐴𝐷𝐸| = |∡𝐸𝐴𝐷| = 𝛼
+
+                                                   Kąty 𝐴𝐷𝐸 i 𝐸𝐷𝐵 są przyległe, więc:
+
+                                                                 𝛼 = |∡𝐴𝐷𝐸| = 180° − |∡𝐸𝐷𝐵| = 180° − (180° − 2𝛽) = 2𝛽
+                                                   Zatem 𝛼 = 2𝛽 . To kończy dowód.
+
+                                                   Uwaga.
+                                                   Równość |∡𝐴𝐷𝐸| = 2𝛽 możemy też otrzymać, korzystając z twierdzenia o kącie
+                                                   zewnętrznym trójkąta.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 21. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie         Zdający:
+                                                    reprezentacji.                               VII.2) korzysta z wzorów
+                                                    1. Stosowanie obiektów matematycznych                                     sin 𝛼
+                                                                                                 sin2 𝛼 + cos 2 𝛼 = 1, tg 𝛼 = cos 𝛼 .
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   A
+
+
+
+
+                                                                                                                                   Strona 17 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 22. (0–3)
+
+                                                                    Wymaganie ogólne                             Wymagania szczegółowe
+                                                    IV. Rozumowanie i argumentacja.                     Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy            IX.1) rozpoznaje wzajemne położenie
+                                                    rozwiązywaniu zadań, również w sytuacjach           prostych na płaszczyźnie na podstawie ich
+                                                    nietypowych.                                        równań, w tym znajduje wspólny punkt
+                                                                                                        dwóch prostych, jeśli taki istnieje.
+                                                                                                        SP X. Oś liczbowa. Układ współrzędnych na
+                                                                                                        płaszczyźnie.
+                                                                                                        4) znajduje środek odcinka, którego końce
+                                                                                                        mają dane współrzędne (całkowite lub
+                                                                                                        wymierne) oraz znajduje współrzędne
+                                                                                                        drugiego końca odcinka, gdy dany jest
+                                                                                                        jeden koniec i środek.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zasady oceniania
+                                                   3 pkt – zastosowanie poprawnej metody i poprawny wynik: 𝑆 = (11, 18).
+
+                                                   2 pkt – obliczenie współrzędnych punktu 𝐵: 𝐵 = (16, 17)
+                                                           ALBO
+                                                         – obliczenie współrzędnych środka 𝑀𝐷𝐶 boku 𝐷𝐶 : 𝑀𝐷𝐶 = (12, 22),
+                                                           ALBO
+                                                         – obliczenie współrzędnych środka 𝑀𝐴𝐷 boku 𝐴𝐷 oraz obliczenie współrzędnych
+                                                                                                                 33
+                                                           środka 𝑀𝐾𝐷 odcinka 𝐾𝐷 : 𝑀𝐴𝐷 = (5, 15), 𝑀𝐾𝐷 = (8, ),
+                                                                                                                  2
+                                                           ALBO
+                                                                                                       1
+                                                         – obliczenie współrzędnych wektora ⃗⃗⃗⃗⃗
+                                                                                              𝐴𝐷 (lub 2 ⋅ ⃗⃗⃗⃗⃗
+                                                                                                          𝐴𝐷):
+                                                           ⃗⃗⃗⃗⃗             1
+                                                           𝐴𝐷 = [2, 8] (lub 2 ⋅ ⃗⃗⃗⃗⃗
+                                                                                𝐴𝐷 = [1, 4]),
+                                                           ALBO
+                                                         – wyznaczenie równań dwóch prostych przecinających się w punkcie 𝑆, np.
+                                                           𝑦 = 4𝑥 − 26 (równanie prostej równoległej do 𝐴𝐷) oraz
+                                                                 1    25
+                                                           𝑦 = 2 𝑥 + 2 (równanie prostej równoległej do 𝐴𝐵 ),
+                                                           ALBO
+                                                         – zapisanie układu równań pozwalającego obliczyć jedną ze współrzędnych punktu 𝑆,
+                                                           np.:
+                                                                               1
+                                                           𝑥𝐵 + 6                𝑥𝐵 + 9 + 19
+                                                                   = 𝑥 oraz 2
+                                                                     𝑆                       𝑆= 4𝑥 − 26,
+                                                             2                    2
+                                                           𝑥𝐵 + 6           𝑦𝐵 + 19               1
+                                                                  = 𝑥𝑆 oraz         = 𝑦𝑆 oraz 𝑦𝐵 = 𝑥𝐵 + 9 oraz 𝑦𝑆 = 4𝑥𝑆 − 26.
+                                                             2                 2                  2
+
+                                                   1 pkt – obliczenie współrzędnych punktu 𝐴: 𝐴 = (4, 11)
+                                                           ALBO
+
+
+
+
+                                                   Strona 18 z 37
+                                                                                                                  Zasady oceniania rozwiązań zadań
+
+
+
+                                                                                                                            33
+                                                           – obliczenie współrzędnych środka 𝑀𝐾𝐷 odcinka 𝐾𝐷 : 𝑀𝐾𝐷 = (8,       ),
+                                                                                                                            2
+                                                             ALBO
+                                                           – wyznaczenie równania prostej przechodzącej przez punkt 𝑆, np.
+                                                             𝑦 = 4𝑥 − 26 (równanie prostej równoległej do 𝐴𝐷),
+                                                             ALBO
+                                                           – zapisanie zależności między odpowiednimi współrzędnymi punktów 𝐵, 𝐷 oraz 𝑆:
+                                                             𝑥𝐵 + 6              𝑦 + 19
+                                                                    =  𝑥𝑆  oraz 𝐵        = 𝑦𝑆 oraz zapisanie współrzędnych punktu 𝐵
+                                                               2                    2
+                                                                                                                         1
+                                                             w zależności od jednej zmiennej (𝑥𝐵 lub 𝑦𝐵 ), np. 𝐵 = (𝑥𝐵 , 𝑥𝐵 + 9).
+                                                                                                                         2
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Uwaga:
+                                                   Jeżeli jedynym błędem zdającego jest:
+                                                           a) zastosowanie niepoprawnego wzoru na współczynnik kierunkowy prostej,
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                           b) zastosowanie niepoprawnego związku między współczynnikami kierunkowymi
+                                                               prostych równoległych,
+                                                           c) zastosowanie niepoprawnego wzoru na współrzędne środka odcinka,
+                                                   i rozwiązanie zostanie doprowadzone konsekwentnie do końca, to zdający może otrzymać
+                                                   1 punkt za całe rozwiązanie. Jeżeli zdający popełni więcej niż jeden z wymienionych błędów
+                                                   a)–c), to otrzymuje 0 punktów za całe rozwiązanie, o ile nie nabył prawa do innej liczby
+                                                   punktów.
+
+                                                   Przykładowe pełne rozwiązania
+                                                   Sposób I
+                                                   Punkt 𝐴 jest punktem wspólnym prostych 𝐴𝐵 i 𝐴𝐷 , zatem współrzędne tego punktu są
+                                                   rozwiązaniem układu równań:
+                                                                                               1
+                                                                                           𝑦 = 𝑥+9
+                                                                                         {     2
+                                                                                           𝑦 = 4𝑥 − 5
+                                                   Stąd:
+                                                                                        1
+                                                                                          𝑥 + 9 = 4𝑥 − 5
+                                                                                        2
+                                                                                             7
+                                                                                               𝑥 = 14
+                                                                                             2
+                                                                                              𝑥=4
+                                                                                              𝑦 = 11
+                                                   Zatem 𝐴 = (4, 11).
+
+                                                   Punkt 𝐾 jest środkiem odcinka 𝐴𝐵 , więc:
+                                                                               4 + 𝑥𝐵                  11 + 𝑦𝐵
+                                                                                      = 10    oraz             = 14
+                                                                                 2                        2
+                                                                                   𝑥𝐵 = 16     oraz     𝑦𝐵 = 17
+
+
+                                                                                                                                    Strona 19 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zatem 𝐵 = (16, 17).
+
+                                                   Punkt 𝑆 = (𝑥𝑆 , 𝑦𝑆 ) jest środkiem odcinka 𝐵𝐷 , więc:
+                                                                                     16 + 6                   17 + 19
+                                                                              𝑥𝑆 =          = 11      oraz            = 18
+                                                                                       2                         2
+                                                   Zatem 𝑆 = (11, 18).
+
+                                                   Sposób II
+                                                   Punkt 𝐴 jest punktem wspólnym prostych 𝐴𝐵 i 𝐴𝐷 , zatem współrzędne tego punktu są
+                                                   rozwiązaniem układu równań:
+                                                                                                   1
+                                                                                                𝑦 = 𝑥+9
+                                                                                              {    2
+                                                                                                 𝑦 = 4𝑥 − 5
+                                                   Stąd:
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                                                            1
+                                                                                              𝑥 + 9 = 4𝑥 − 5
+                                                                                            2
+                                                                                                 7
+                                                                                                   𝑥 = 14
+                                                                                                 2
+                                                                                                   𝑥=4
+                                                                                                  𝑦 = 11
+                                                   Zatem 𝐴 = (4, 11).
+
+                                                   Prosta 𝑆𝐾 jest równoległa do prostej 𝐴𝐷 , zatem współczynnik kierunkowy prostej 𝑆𝐾 jest
+                                                   równy 4. Wyznaczamy równanie prostej 𝑆𝐾 :
+
+                                                                                           𝑦 = 4(𝑥 − 10) + 14
+                                                                                               𝑦 = 4𝑥 − 26
+
+                                                   Oznaczmy przez 𝑀𝐴𝐷 środek odcinka 𝐴𝐷 . Obliczmy współrzędne punktu 𝑀𝐴𝐷 :
+
+                                                                                           4+6   11 + 19
+                                                                                 𝑀𝐴𝐷 = (       ,         ) = (5, 15)
+                                                                                            2       2
+                                                   Prosta 𝑆𝑀𝐴𝐷 jest równoległa do prostej 𝐴𝐵 , zatem współczynnik kierunkowy prostej 𝑆𝑀𝐴𝐷
+                                                             1
+                                                   jest równy . Wyznaczamy równanie prostej 𝑆𝑀𝐴𝐷 :
+                                                             2
+                                                                                              1
+                                                                                           𝑦 = (𝑥 − 5) + 15
+                                                                                              2
+                                                                                                    1    25
+                                                                                               𝑦=     𝑥+
+                                                                                                    2     2
+
+
+
+
+                                                   Strona 20 z 37
+                                                                                                                 Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Punkt 𝑆 jest punktem wspólnym prostych 𝑆𝐾 i 𝑆𝑀𝐴𝐷 , zatem współrzędne tego punktu są
+                                                   rozwiązaniem układu równań:
+                                                                                           𝑦 = 4𝑥 − 26
+                                                                                       {        1    25
+                                                                                           𝑦=     𝑥+
+                                                                                                2     2
+                                                   Stąd:
+                                                                                                  1    25
+                                                                                     4𝑥 − 26 =      𝑥+
+                                                                                                  2     2
+                                                                                            7    77
+                                                                                              𝑥=
+                                                                                            2     2
+                                                                                              𝑥 = 11
+                                                                                              𝑦 = 18
+                                                   Zatem 𝑆 = (11, 18).
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Sposób III
+                                                   Prosta 𝑆𝐾 jest równoległa do prostej 𝐴𝐷 , zatem współczynnik kierunkowy prostej 𝑆𝐾 jest
+                                                   równy 4. Wyznaczamy równanie prostej 𝑆𝐾 :
+
+                                                                                     𝑦 = 4(𝑥 − 10) + 14
+                                                                                        𝑦 = 4𝑥 − 26
+
+                                                   Punkt 𝑆 leży na prostej o równaniu 𝑦 = 4𝑥 − 26, stąd 𝑦𝑆 = 4𝑥𝑆 − 26.
+                                                                                            1                  1
+                                                   Punkt 𝐵 leży na prostej o równaniu 𝑦 =     𝑥 + 9, stąd 𝑦𝐵 = 2 𝑥𝐵 + 9.
+                                                                                            2
+
+                                                   Punkt 𝑆 jest środkiem odcinka 𝐵𝐷 , więc:
+                                                                              𝑥𝐵 + 𝑥𝐷           𝑦𝐵 + 𝑦𝐷
+                                                                                      = 𝑥𝑆 oraz         = 𝑦𝑆
+                                                                                 2                 2
+                                                   Zatem:
+                                                                                           1
+                                                                          𝑥𝐵 + 6             𝑥𝐵 + 9 + 19
+                                                                                 = 𝑥𝑆 oraz 2             = 4𝑥𝑆 − 26
+                                                                            2                    2
+                                                                                                1
+                                                                         𝑥𝐵 = 2𝑥𝑆 − 6 oraz        𝑥 + 28 = 8𝑥𝑆 − 52
+                                                                                                2 𝐵
+                                                   Stąd otrzymujemy:
+                                                                                1
+                                                                                  (2𝑥𝑆 − 6) + 28 = 8𝑥𝑆 − 52
+                                                                                2
+                                                                                   𝑥𝑆 − 3 + 28 = 8𝑥𝑆 − 52
+
+                                                                                            7𝑥𝑆 = 77
+
+                                                                                              𝑥𝑆 = 11
+
+
+                                                                                                                                   Strona 21 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Wtedy:
+
+                                                                                   𝑦𝑆 = 4𝑥𝑆 − 26 = 4 ⋅ 11 − 26 = 18
+
+                                                   Zatem 𝑆 = (11, 18).
+
+                                                   Sposób IV
+                                                   Punkt 𝐴 jest punktem wspólnym prostych 𝐴𝐵 i 𝐴𝐷 , zatem współrzędne tego punktu są
+                                                   rozwiązaniem układu równań:
+                                                                                                    1
+                                                                                                𝑦 = 𝑥+9
+                                                                                              {     2
+                                                                                                𝑦 = 4𝑥 − 5
+                                                   Stąd:
+                                                                                            1
+                                                                                              𝑥 + 9 = 4𝑥 − 5
+                                                                                            2
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                                                                 7
+                                                                                                   𝑥 = 14
+                                                                                                 2
+                                                                                                   𝑥=4
+                                                                                                  𝑦 = 11
+                                                   Zatem 𝐴 = (4, 11).
+
+                                                                ⃗⃗⃗⃗⃗ =    1 ⃗⃗⃗⃗⃗                                  ⃗⃗⃗⃗⃗ oraz 1 ⋅ 𝐴𝐷
+                                                                                                                                   ⃗⃗⃗⃗⃗ :
+                                                   Zauważmy, że 𝐾𝑆           ⋅ 𝐴𝐷  . Obliczamy współrzędne wektorów 𝐾𝑆
+                                                                           2                                                   2
+                                                                                       ⃗⃗⃗⃗⃗
+                                                                                       𝐾𝑆 = [𝑥𝑆 − 10, 𝑦𝑆 − 14]
+                                                                         1         1                    1
+                                                                            ⃗⃗⃗⃗⃗ = ⋅ [6 − 4, 19 − 11] = ⋅ [2, 8] = [1, 4]
+                                                                           ⋅𝐴𝐷
+                                                                         2         2                    2
+                                                   Stąd:
+                                                                                    𝑥𝑆 − 10 = 1 oraz 𝑦𝑆 − 14 = 4
+                                                                                         𝑥𝑆 = 11 oraz 𝑦𝑆 = 18
+
+                                                   Zatem 𝑆 = (11, 18).
+
+                                                   Sposób V
+                                                   Prosta 𝑆𝐾 jest równoległa do prostej 𝐴𝐷 , zatem współczynnik kierunkowy prostej 𝑆𝐾 jest
+                                                   równy 4. Wyznaczamy równanie prostej 𝑆𝐾 :
+
+                                                                                           𝑦 = 4(𝑥 − 10) + 14
+                                                                                               𝑦 = 4𝑥 − 26
+
+                                                   Oznaczmy przez 𝑀𝐾𝐷 środek odcinka 𝐾𝐷 . Obliczmy współrzędne punktu 𝑀𝐾𝐷 :
+
+                                                                                          10 + 6   14 + 19        33
+                                                                                𝑀𝐾𝐷 = (          ,         ) = (8, )
+                                                                                            2         2            2
+
+
+
+                                                   Strona 22 z 37
+                                                                                                              Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Prosta 𝑆𝑀𝐾𝐷 jest równoległa do prostej 𝐴𝐵 , zatem współczynnik kierunkowy prostej 𝑆𝑀𝐾𝐷
+                                                             1
+                                                   jest równy . Wyznaczamy równanie prostej 𝑆𝑀𝐾𝐷 :
+                                                             2
+                                                                                       1          33
+                                                                                    𝑦 = (𝑥 − 8) +
+                                                                                       2           2
+                                                                                             1    25
+                                                                                       𝑦=      𝑥+
+                                                                                             2     2
+
+                                                   Punkt 𝑆 jest punktem wspólnym prostych 𝑆𝐾 i 𝑆𝑀𝐾𝐷 , zatem współrzędne tego punktu są
+                                                   rozwiązaniem układu równań:
+                                                                                          𝑦 = 4𝑥 − 26
+                                                                                      {        1    25
+                                                                                          𝑦=     𝑥+
+                                                                                               2     2
+                                                   Stąd:
+                                                                                                1    25
+                                                                                    4𝑥 − 26 =     𝑥+
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                                                                2     2
+                                                                                          7    77
+                                                                                            𝑥=
+                                                                                          2     2
+                                                                                           𝑥 = 11
+                                                                                           𝑦 = 18
+                                                   Zatem 𝑆 = (11, 18).
+
+
+
+
+                                                                                                                                Strona 23 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 23. (0–1)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      IX.3) oblicza odległość dwóch punktów
+                                                    1. Stosowanie obiektów matematycznych               w układzie współrzędnych.
+                                                    i operowanie nimi, interpretowanie pojęć
+                                                    matematycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   B
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 24. (0–1)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.                     Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy            IX.4) posługuje się równaniem okręgu
+                                                    rozwiązywaniu zadań, również w sytuacjach           (𝑥 − 𝑎)2 + (𝑦 − 𝑏)2 = 𝑟 2 .
+                                                    nietypowych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+
+
+
+
+                                                   Strona 24 z 37
+                                                                                                                 Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 25. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    IV. Rozumowanie i argumentacja.             Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy    VII.4) oblicza kąty trójkąta prostokątnego
+                                                    rozwiązywaniu zadań, również w sytuacjach   i długości jego boków przy odpowiednich
+                                                    nietypowych.                                danych (rozwiązuje trójkąty prostokątne,
+                                                                                                w tym z wykorzystaniem funkcji
+                                                                                                trygonometrycznych).
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   D
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 26. (0–1)
+
+                                                               Wymaganie ogólne                          Wymagania szczegółowe
+                                                    III. Wykorzystanie i interpretowanie        Zdający:
+                                                    reprezentacji.                              X.5) oblicza […] pola powierzchni […]
+                                                    1. Stosowanie obiektów matematycznych       stożka […];
+                                                    i operowanie nimi, interpretowanie pojęć    X.4) rozpoznaje […] w stożkach kąt między
+                                                    matematycznych.                             odcinkami oraz kąt między odcinkami
+                                                                                                i płaszczyznami (np. kąt rozwarcia stożka,
+                                                                                                kąt między tworzącą a podstawą), oblicza
+                                                                                                miary tych kątów.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepełna lub niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   PP
+
+
+
+
+                                                                                                                                   Strona 25 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 27. (0–4)
+
+                                                                    Wymaganie ogólne                             Wymagania szczegółowe
+                                                    IV. Rozumowanie i argumentacja.                     Zdający:
+                                                    4. Stosowanie i tworzenie strategii przy            X.4) rozpoznaje w walcach […] kąt między
+                                                    rozwiązywaniu zadań, również w sytuacjach           odcinkami oraz kąt między odcinkami
+                                                    nietypowych.                                        i płaszczyznami […];
+                                                                                                        X.5) oblicza objętości i pola powierzchni […]
+                                                                                                        walca […] również z wykorzystaniem
+                                                                                                        trygonometrii.
+
+                                                   Zasady oceniania
+                                                   4 pkt – zastosowanie poprawnej metody i poprawne wyniki: 𝑉 = 18𝜋√3,
+                                                           𝑃𝑐 = 18𝜋 + 12𝜋√3.
+
+                                                   3 pkt – obliczenie objętości walca: 𝑉 = 18𝜋√3
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                           ALBO
+                                                         – obliczenie pola powierzchni całkowitej walca: 𝑃𝑐 = 18𝜋 + 12𝜋√3.
+
+                                                   2 pkt – zapisanie promienia podstawy walca (lub średnicy podstawy walca): 𝑟 = 3
+                                                           (lub 2𝑟 = 6) oraz zapisanie wysokości walca: 𝐻 = 2√3
+                                                           ALBO
+                                                         – obliczenie kwadratu promienia podstawy walca (lub kwadratu średnicy podstawy
+                                                           walca): 𝑟 2 = 9 (lub (2𝑟)2 = 36) oraz zapisanie wysokości walca: 𝐻 = 2√3.
+
+                                                   1 pkt – zapisanie promienia podstawy walca (lub średnicy podstawy walca): 𝑟 = 3
+                                                           (lub 2𝑟 = 6)
+                                                           ALBO
+                                                         – zapisanie wysokości walca: 𝐻 = 2√3,
+                                                           ALBO
+                                                         – zapisanie układu równań pozwalającego obliczyć 𝑟 oraz 𝐻 , np.:
+                                                           𝐻=𝑥         oraz     2𝑟 = 𝑥√3    oraz   2𝑥 = 4√3,
+                                                            𝐻                          2𝑟
+                                                                    = sin 30°   oraz         = cos 30° .
+                                                           4√3                         4√3
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Uwaga:
+                                                   Jeżeli jedynym błędem zdającego jest:
+                                                           a) zastosowanie niepoprawnej definicji jednej funkcji trygonometrycznej,
+                                                           b) błędne zastosowanie twierdzenia Pitagorasa,
+                                                           c) zastosowanie niepoprawnej tożsamości √𝑥 2 + 𝑦 2 = 𝑥 + 𝑦,
+                                                           d) błędne zastosowanie własności trójkąta o kątach 30°, 60°, 90° (tzn. zapisanie,
+                                                                że średnica podstawy walca jest równa 2√3 i wysokość walca jest równa 6),
+
+
+
+                                                   Strona 26 z 37
+                                                                                                                  Zasady oceniania rozwiązań zadań
+
+
+
+                                                   i rozwiązanie zostanie doprowadzone konsekwentnie do końca, to zdający może otrzymać
+                                                   co najwyżej 2 punkty za całe rozwiązanie (za konsekwentne obliczenie objętości i pola
+                                                   powierzchni całkowitej walca).
+                                                   Jeżeli zdający popełni więcej niż jeden z wymienionych błędów a)–d), to otrzymuje
+                                                   0 punktów za całe rozwiązanie, o ile nie nabył prawa do innej liczby punktów.
+
+                                                   Przykładowe pełne rozwiązanie
+                                                   Przyjmujemy oznaczenia jak na rysunku:
+                                                                                                         𝐷
+                                                   𝑟 – promień podstawy walca,
+                                                   𝐻 – wysokość walca.
+                                                                                                                         4√3
+                                                   Zauważamy, że kąt 𝐷𝐴𝐵 jest prosty
+                                                                                                     𝐻
+                                                   oraz 𝑟 > 0 i 𝐻 > 0.
+                                                                                                                               30°     𝐵
+                                                                                                                        2𝑟
+                                                                                                         𝐴
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   W trójkącie prostokątnym 𝐴𝐵𝐷 mamy:
+                                                                                                |𝐴𝐷|   𝐻
+                                                                                    sin 30° =        =
+                                                                                                |𝐵𝐷| 4√3
+                                                   Zatem:
+                                                                                                          1
+                                                                             𝐻 = 4√3 ⋅ sin 30° = 4√3 ⋅      = 2√3
+                                                                                                          2
+                                                   Ponadto:
+                                                                                             |𝐴𝐵|   2𝑟   𝑟
+                                                                                 cos 30° =        =    =
+                                                                                             |𝐵𝐷| 4√3 2√3
+                                                   Stąd:
+
+                                                                                                          √3
+                                                                              𝑟 = 2√3 ⋅ cos 30° = 2√3 ⋅      =3
+                                                                                                          2
+                                                   Obliczamy objętość 𝑉 walca:
+
+                                                                              𝑉 = 𝜋𝑟 2 𝐻 = 𝜋 ⋅ 32 ⋅ 2√3 = 18𝜋√3
+                                                   Obliczamy pole powierzchni całkowitej 𝑃𝑐 walca:
+
+                                                                 𝑃𝑐 = 2𝜋𝑟 2 + 2𝜋𝑟𝐻 = 2𝜋 ⋅ 32 + 2𝜋 ⋅ 3 ⋅ 2√3 = 18𝜋 + 12𝜋√3
+
+
+
+
+                                                                                                                                     Strona 27 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 28. (0–1)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      XI.2) zlicza obiekty, stosując reguły
+                                                    2. Dobieranie i tworzenie modeli                    mnożenia i dodawania […].
+                                                    matematycznych przy rozwiązywaniu
+                                                    problemów praktycznych i teoretycznych.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   A
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 29. (0–1)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    II. Wykorzystanie i tworzenie informacji.           Zdający:
+                                                    1. Interpretowanie i operowanie                     XII.2) oblicza […] średnią ważoną […].
+                                                    informacjami przedstawionymi w tekście,
+                                                    zarówno matematycznym, jak
+                                                    i popularnonaukowym, a także w formie
+                                                    wykresów, diagramów, tabel.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   A
+
+
+
+
+                                                   Strona 28 z 37
+                                                                                                                Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 30. (0–1)
+
+                                                               Wymaganie ogólne                          Wymaganie szczegółowe
+                                                    II. Wykorzystanie i tworzenie informacji.   Zdający:
+                                                    1. Interpretowanie i operowanie             XII.2) […] znajduje medianę […].
+                                                    informacjami przedstawionymi w tekście,
+                                                    zarówno matematycznym, jak
+                                                    i popularnonaukowym, a także w formie
+                                                    wykresów, diagramów, tabel.
+
+                                                   Zasady oceniania
+                                                   1 pkt – odpowiedź poprawna.
+                                                   0 pkt – odpowiedź niepoprawna albo brak odpowiedzi.
+
+                                                   Rozwiązanie
+                                                   C
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                                                                                                   Strona 29 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 31. (0–2)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      XII.1) oblicza prawdopodobieństwo
+                                                    2. Dobieranie i tworzenie modeli                    w modelu klasycznym.
+                                                    matematycznych przy rozwiązywaniu
+                                                    problemów praktycznych i teoretycznych.
+
+                                                   Zasady oceniania
+                                                                                                                               7
+                                                   2 pkt – zastosowanie poprawnej metody i poprawny wynik: 𝑃(𝐴) =                 .
+                                                                                                                               30
+
+                                                   1 pkt – wypisanie wszystkich zdarzeń elementarnych LUB obliczenie/podanie liczby tych
+                                                           zdarzeń: |Ω| = 6 ⋅ 5
+                                                           ALBO
+                                                         – sporządzenie tabeli o 36 polach, z których 6 jest wykreślonych a pozostałe 30
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                           odpowiada zdarzeniom elementarnym,
+                                                           ALBO
+                                                         – sporządzenie pełnego drzewa stochastycznego,
+                                                           ALBO
+                                                         – wypisanie (lub zaznaczenie w tabeli) wszystkich zdarzeń elementarnych
+                                                           sprzyjających zdarzeniu 𝐴 i niewypisanie żadnego niewłaściwego,
+                                                           ALBO
+                                                         – podanie liczby wszystkich zdarzeń elementarnych sprzyjających zdarzeniu 𝐴:
+                                                           |𝐴| = 7, o ile nie zostały zliczone błędne pary,
+                                                           ALBO
+                                                         – sporządzenie fragmentu drzewa stochastycznego, które zawiera wszystkie gałęzie
+                                                           sprzyjające zdarzeniu 𝐴, oraz zapisanie prawdopodobieństwa na co najmniej
+                                                           jednym odcinku każdego z etapów doświadczenia,
+                                                           ALBO
+                                                                                                                                        1
+                                                         – podanie prawdopodobieństwa jednoelementowego zdarzenia (elementarnego):        ,
+                                                                                                                                       30
+                                                           ALBO
+                                                                                      7
+                                                         – zapisanie tylko 𝑃(𝐴) =         .
+                                                                                     30
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Uwagi:
+                                                   1. Jeżeli zdający zapisuje tylko liczby 7 lub 30 i z rozwiązania nie wynika znaczenie tych
+                                                      liczb, to otrzymuje 0 punktów za całe rozwiązanie.
+                                                   2. Jeżeli zdający rozważa losowanie ze zwracaniem, to otrzymuje 0 punktów za całe
+                                                      rozwiązanie.
+
+
+
+
+                                                   Strona 30 z 37
+                                                                                                                                          Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Przykładowe pełne rozwiązania
+                                                   Sposób I
+                                                   Zdarzeniami elementarnymi są wszystkie uporządkowane pary liczb (𝑥, 𝑦), gdzie
+                                                   𝑥, 𝑦 ∈ {2, 3, 4, 5, 6, 7} i 𝑥 ≠ 𝑦.
+                                                   Liczbę wszystkich zdarzeń elementarnych obliczamy, korzystając z reguły mnożenia:
+                                                                                                               |Ω| = 6 ⋅ 5 = 30
+                                                   Zdarzeniu 𝐴 sprzyjają następujące zdarzenia elementarne:
+                                                   (4, 5), (4, 6), (4, 7), (6, 3), (6, 4), (6, 5), (6, 7), więc |𝐴| = 7.
+                                                                                                                              7
+                                                   Zatem prawdopodobieństwo zdarzenia 𝐴 jest równe                               .
+                                                                                                                              30
+
+                                                   Sposób II
+                                                   Zdarzeniami elementarnymi są wszystkie uporządkowane pary liczb (𝑥, 𝑦), gdzie
+                                                   𝑥, 𝑦 ∈ {2, 3, 4, 5, 6, 7} i 𝑥 ≠ 𝑦.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   W tabeli literą 𝒜 zaznaczamy zdarzenia elementarne sprzyjające zdarzeniu 𝐴.
+
+                                                                                                           Druga wylosowana liczba
+
+                                                                                                           𝟐   𝟑    𝟒     𝟓       𝟔   𝟕
+                                                                          Pierwsza wylosowana liczba
+
+
+
+
+                                                                                                       𝟐
+
+                                                                                                       𝟑
+
+                                                                                                       𝟒                  𝒜       𝒜   𝒜
+
+                                                                                                       𝟓
+
+                                                                                                       𝟔       𝒜    𝒜     𝒜           𝒜
+
+                                                                                                       𝟕
+
+
+                                                   Wszystkich zdarzeń elementarnych jest 30. Zdarzeń sprzyjających zdarzeniu 𝐴 jest 7.
+                                                                                                      7
+                                                   Zatem prawdopodobieństwo zdarzenia 𝐴 jest równe       .
+                                                                                                      30
+
+
+
+
+                                                                                                                                                            Strona 31 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                   Zadanie 32. (0–3)
+
+                                                                    Wymaganie ogólne                             Wymaganie szczegółowe
+                                                    III. Wykorzystanie i interpretowanie                Zdający:
+                                                    reprezentacji.                                      XIII) rozwiązuje zadania optymalizacyjne
+                                                    2. Dobieranie i tworzenie modeli                    w sytuacjach dających się opisać funkcją
+                                                    matematycznych przy rozwiązywaniu                   kwadratową.
+                                                    problemów praktycznych i teoretycznych.
+
+                                                   Zasady oceniania
+                                                   3 pkt – zastosowanie poprawnej metody i poprawne wyniki, np.
+                                                           𝑃(𝑥) = 𝑥 2 − 2𝑥 + 8 oraz 𝑥 = 1 .
+
+                                                   2 pkt – wyznaczenie poprawnego wzoru na pole trójkąta 𝐷𝐸𝐹 w zależności od zmiennej 𝑥,
+                                                                           1               1           1
+                                                           np. 𝑃(𝑥) = 16 − ⋅ 2𝑥 ⋅ (4 − 𝑥) − ⋅ 4 ⋅ 𝑥 − ⋅ 4 ⋅ (4 − 2𝑥) .
+                                                                           2               2           2
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   1 pkt – zapisanie wzoru na pole trójkąta 𝐷𝐸𝐹 w zależności od pól trójkątów 𝐸𝐵𝐹 , 𝐹𝐶𝐷 ,
+                                                           𝐷𝐴𝐸 , np. 𝑃𝐷𝐸𝐹 = 42 − 𝑃𝐸𝐵𝐹 − 𝑃𝐹𝐶𝐷 − 𝑃𝐷𝐴𝐸
+                                                           ALBO
+                                                         – zapisanie pól co najmniej dwóch spośród trójkątów 𝐸𝐵𝐹 , 𝐹𝐶𝐷 , 𝐷𝐴𝐸 w zależności
+                                                           od zmiennej 𝑥, np.:
+                                                                  1                               1
+                                                           𝑃𝐸𝐵𝐹 = 2 ⋅ 2𝑥 ⋅ (4 − 𝑥) oraz 𝑃𝐹𝐶𝐷 = 2 ⋅ 4 ⋅ 𝑥 ,
+                                                                  1                      1
+                                                           𝑃𝐹𝐶𝐷 = 2 ⋅ 4 ⋅ 𝑥 oraz 𝑃𝐷𝐴𝐸 = 2 ⋅ 4 ⋅ (4 − 2𝑥) .
+
+                                                   0 pkt – rozwiązanie, w którym zastosowano niepoprawną metodę, albo brak rozwiązania.
+
+                                                   Uwagi:
+                                                   1. Jeżeli zdający zapisze jedynie, że szukaną wartością 𝑥 jest liczba 1, to otrzymuje
+                                                      0 punktów za całe rozwiązanie.
+                                                   2. Jeżeli zdający nie zapisze pola trójkąta 𝐷𝐸𝐹 jako funkcji 𝑃 zmiennej 𝑥 , a jedynie
+                                                      obliczy wartości pola dla wybranych długości odcinka 𝐶𝐹 i na tej podstawie wskaże
+                                                      najmniejszą wartość pola, to za całe rozwiązanie otrzymuje 0 punktów, o ile nie nabył
+                                                      prawa do innej liczby punktów.
+                                                   3. Jeżeli zdający stosuje rachunek różniczkowy i nie uzasadni, że w punkcie będącym
+                                                      miejscem zerowym pochodnej funkcji 𝑃 jest najmniejsza wartość funkcji 𝑃, to może
+                                                      otrzymać co najwyżej 2 punkty za całe rozwiązanie.
+                                                      Za poprawne uzasadnienie, że w punkcie będącym miejscem zerowym pochodnej
+                                                      funkcji 𝑃 jest najmniejsza wartość funkcji 𝑃, można uznać sytuację, gdy zdający bada
+                                                      znak pochodnej (np. szkicuje wykres funkcji, która w ten sam sposób jak pochodna
+                                                      zmienia znak, i zaznacza na rysunku, np. znakami „+” i „-”, znak pochodnej), oraz:
+                                                      – opisuje przedziały monotoniczności funkcji 𝑃 (słownie lub graficznie – np. przy użyciu
+                                                      strzałek)
+                                                      LUB
+                                                      – zapisuje, że dla wyznaczonego miejsca zerowego pochodnej, funkcja 𝑃 ma minimum
+
+
+
+                                                   Strona 32 z 37
+                                                                                                                  Zasady oceniania rozwiązań zadań
+
+
+
+                                                      lokalne i jest to jednocześnie jej najmniejsza wartość,
+                                                      LUB
+                                                      – zapisuje, że dla wyznaczonego miejsca zerowego pochodnej, funkcja 𝑃 ma minimum
+                                                      lokalne i jest to jedyne ekstremum tej funkcji.
+                                                   4. Jeżeli zdający nie zapisze, że 1 należy do dziedziny funkcji 𝑃, to może otrzymać
+                                                      3 punkty za całe rozwiązanie.
+
+                                                   Przykładowe pełne rozwiązanie
+                                                   Z warunków zadania wynika, że
+                                                   |𝐴𝐷| = |𝐷𝐶| = 4                      𝐷                   4                    𝐶
+                                                   |𝐶𝐹| = 𝑥
+                                                   |𝐸𝐵| = 2𝑥
+                                                                                                                                  𝑥
+                                                   |𝐴𝐸| = 4 − 2𝑥
+                                                   |𝐵𝐹| = 4 − 𝑥                                                                   𝐹
+                                                   (zobacz rysunek).
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                                                       4
+
+                                                                                                                                  4−𝑥
+
+
+
+
+                                                                                        𝐴    4 − 2𝑥    𝐸           2𝑥            𝐵
+
+                                                   Wówczas pola trójkątów 𝐸𝐵𝐹 , 𝐹𝐶𝐷 , 𝐷𝐴𝐸 w zależności od zmiennej 𝑥 są równe:
+                                                                                    1
+                                                                           𝑃𝐸𝐵𝐹 =     ⋅ 2𝑥 ⋅ (4 − 𝑥) = 4𝑥 − 𝑥 2
+                                                                                    2
+                                                                                    1
+                                                                           𝑃𝐹𝐶𝐷 =     ⋅ 4 ⋅ 𝑥 = 2𝑥
+                                                                                    2
+                                                                                    1
+                                                                           𝑃𝐷𝐴𝐸 =     ⋅ 4 ⋅ (4 − 2𝑥) = 8 − 4𝑥
+                                                                                    2
+
+                                                   Pole 𝑃 trójkąta 𝐷𝐸𝐹 jest różnicą pola kwadratu 𝐴𝐵𝐶𝐷 i sumy pól trójkątów 𝐸𝐵𝐹 , 𝐹𝐶𝐷
+                                                   oraz 𝐷𝐴𝐸 . Zatem:
+
+                                                                           𝑃(𝑥) = 42 − (4𝑥 − 𝑥 2 + 2𝑥 + 8 − 4𝑥)
+                                                                           𝑃(𝑥) = 16 − (−𝑥 2 + 2𝑥 + 8)
+                                                                           𝑃(𝑥) = 𝑥 2 − 2𝑥 + 8
+
+                                                   Wykresem funkcji 𝑃 jest fragment paraboli skierowanej ramionami do góry.
+                                                   Obliczamy pierwszą współrzędną wierzchołka tej paraboli:
+                                                                                −(−2)
+                                                                           𝑝=         = 1 ∈ (0, 2)
+                                                                                 2⋅1
+
+
+                                                                                                                                      Strona 33 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+
+                                                   Zatem funkcja 𝑃 przyjmuje wartość najmniejszą dla argumentu 1.
+                                                   Pole trójkąta 𝐷𝐸𝐹 jest najmniejsze, gdy |𝐶𝐹| = 1.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Strona 34 z 37
+                                                                                                                Zasady oceniania rozwiązań zadań
+
+
+
+                                                                         Ocena prac osób ze stwierdzoną dyskalkulią
+
+
+                                                   Obowiązują zasady oceniania stosowane przy sprawdzaniu prac zdających bez stwierdzonej
+                                                   dyskalkulii z dodatkowym uwzględnieniem:
+                                                      I. ogólnych zasad oceniania zadań otwartych w przypadku arkuszy osób ze
+                                                         stwierdzoną dyskalkulią (punkty 1.–12.);
+                                                     II. dodatkowych szczegółowych zasad oceniania zadań otwartych w przypadku arkuszy
+                                                         osób ze stwierdzoną dyskalkulią – egzamin maturalny z matematyki, poziom
+                                                         podstawowy, termin dodatkowy 2026.
+
+
+                                                   I. Ogólne zasady oceniania zadań otwartych w przypadku arkuszy osób ze stwierdzoną
+                                                      dyskalkulią
+
+                                                     1. Nie należy traktować jako błędy merytoryczne pomyłek wynikających z:
+                                                         •   błędnego przepisania
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                         •   przestawienia cyfr
+                                                         •   zapisania innej cyfry, ale o podobnym wyglądzie
+                                                         •   przestawienia położenia przecinka
+                                                         •   przestawienia położenia znaku liczby.
+
+                                                     2. W przypadku błędów wynikających ze zmiany znaku liczby należy w każdym zadaniu
+                                                        oddzielnie przeanalizować, czy zdający opanował inne umiejętności, poza
+                                                        umiejętnościami rachunkowymi, oceniane w zadaniu. W przypadku opanowania
+                                                        badanych umiejętności zdający powinien otrzymać przynajmniej 1 punkt.
+
+                                                     3. We wszystkich zadaniach otwartych, w których wskazano poprawną metodę
+                                                        rozwiązania, części lub całości zadania, zdającemu należy przyznać przynajmniej
+                                                        1 punkt, zgodnie z kryteriami do poszczególnych zadań.
+
+                                                     4. Jeśli zdający przedstawia nieprecyzyjne zapisy, na przykład pomija nawiasy lub
+                                                        zapisuje nawiasy w niewłaściwych miejscach, ale przeprowadza poprawne
+                                                        rozumowanie lub stosuje właściwą strategię, to może otrzymać przynajmniej 1 punkt
+                                                        za rozwiązanie zadania.
+
+                                                     5. W przypadku zadania wymagającego wyznaczenia pierwiastków trójmianu
+                                                        kwadratowego zdający może otrzymać 1 punkt, jeżeli przedstawi poprawną metodę
+                                                        wyznaczania pierwiastków trójmianu kwadratowego, przy podanych w treści zadania
+                                                        wartościach liczbowych.
+
+                                                     6. W przypadku zadania wymagającego rozwiązania nierówności kwadratowej zdający
+                                                        może otrzymać 1 punkt, jeżeli stosuje poprawny algorytm rozwiązywania nierówności
+                                                        kwadratowej, przy podanych w treści zadania wartościach liczbowych.
+
+                                                     7. W przypadku zadania wymagającego stosowania własności funkcji kwadratowej
+                                                        zdający może otrzymać 1 punkt za wykorzystanie konkretnych własności funkcji
+                                                        kwadratowej, istotnych przy poszukiwaniu rozwiązania.
+
+
+
+
+                                                                                                                                  Strona 35 z 37
+                                                   Egzamin maturalny z matematyki na poziomie podstawowym – termin dodatkowy 2026 r.
+
+
+
+                                                      8. W przypadku zadania wymagającego zastosowania własności ciągów arytmetycznych
+                                                         lub geometrycznych zdający może otrzymać 1 punkt, jeżeli przedstawi wykorzystanie
+                                                         takiej własności ciągu, która umożliwia znalezienie rozwiązania zadania.
+
+                                                      9. W przypadku zadania wymagającego analizowania figur geometrycznych na
+                                                         płaszczyźnie kartezjańskiej zdający może otrzymać punkty, jeżeli przy poszukiwaniu
+                                                         rozwiązania przedstawi poprawne rozumowanie, wykorzystujące własności figur
+                                                         geometrycznych, lub zapisze zależności pozwalające rozwiązać zadanie.
+
+                                                      10. W przypadku zadania z rachunku prawdopodobieństwa zdający może otrzymać
+                                                          przynajmniej 1 punkt, jeśli przy wyznaczaniu liczby zdarzeń elementarnych
+                                                          sprzyjających rozważanemu zdarzeniu przyjmuje określoną regularność lub podaje
+                                                          prawidłową metodę wyznaczenia tej liczby zdarzeń elementarnych.
+
+                                                      11. W przypadku zadania z geometrii zdający może otrzymać przynajmniej 1 punkt, jeżeli
+                                                          podaje poprawną metodę wyznaczenia długości odcinka potrzebnej do znalezienia
+                                                          rozwiązania.
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                      12. W przypadku zadania wymagającego przeprowadzenia dowodu (z zakresu algebry lub
+                                                          geometrii), jeśli w przedstawionym rozwiązaniu zdający powoła się na własność, która
+                                                          wyznacza istotny postęp, prowadzący do przeprowadzenia dowodu, to może otrzymać
+                                                          1 punkt.
+
+
+
+                                                   II. Dodatkowe szczegółowe zasady oceniania zadań otwartych w przypadku arkuszy osób
+                                                       ze stwierdzoną dyskalkulią
+
+
+                                                   Zadanie 5.
+                                                   1 pkt – przekształcenie wyrażenia 7𝑛 + 7𝑛+1 + 7𝑛+2 do postaci 7𝑛 + 7𝑛 ⋅ 7 + 7𝑛 ⋅ 72 .
+
+
+
+                                                   Zadanie 8.
+                                                   Uwaga:
+                                                                                                             3𝑥 + 4 𝑥 + 3
+                                                   Jeżeli zdający popełnia błąd przy przekształceniu równania       = 3𝑥 do postaci
+                                                                                                              𝑥−1
+                                                   równania kwadratowego, lecz dalej stosuje poprawną metodę rozwiązania otrzymanego
+                                                   równania kwadratowego i konsekwentnie oblicza pierwiastki tego równania, to może
+                                                   otrzymać 1 punkt za całe rozwiązanie.
+
+
+                                                   Zadanie 12.1.
+                                                   Stosuje się zasady oceniania arkusza standardowego.
+
+
+                                                   Zadanie 12.2.
+                                                   Stosuje się zasady oceniania arkusza standardowego.
+
+
+
+
+                                                   Strona 36 z 37
+                                                                                                                  Zasady oceniania rozwiązań zadań
+
+
+
+                                                   Zadanie 15.
+                                                   1 pkt – zapisanie związku 𝑎2 = 7 + 𝑟
+                                                           ALBO
+                                                                                                           7+𝑎4
+                                                        – zapisanie równania z jedną niewiadomą 𝑎4 , np.        ⋅ 4 = 54.
+                                                                                                            2
+
+
+                                                   Zadanie 20.
+                                                   Stosuje się zasady oceniania arkusza standardowego.
+
+
+                                                   Zadanie 22.
+                                                   1 pkt – zapisanie równania, w którym niewiadomą jest pierwsza współrzędna wierzchołka 𝐴,
+                                                               1
+                                                           np. 𝑥 + 9 = 4𝑥 − 5.
+                                                               2
+Więcej arkuszy znajdziesz na stronie: arkusze.pl
+
+
+
+
+                                                   Zadanie 27.
+                                                   1 pkt – zastosowanie definicji funkcji trygonometrycznej lub związków miarowych w trójkącie
+                                                           o kątach 30°, 60°, 90° i zapisanie równania z jedną niewiadomą (wysokością walca
+                                                                                                  𝐻              2𝑟   √3
+                                                          lub promieniem podstawy walca), np.:       = sin 30°,     = 2 .
+                                                                                                 4 3
+                                                                                                  √             4 3
+                                                                                                                 √
+
+
+
+
+                                                   Zadanie 31.
+                                                   1 pkt – zapisanie jedynie liczby 30 (należy traktować to jako wyznaczenie liczby wszystkich
+                                                           zdarzeń elementarnych).
+
+                                                   Uwagi:
+                                                   1. W ocenie rozwiązania tego zadania (dla zdających z dyskalkulią) nie stosuje się uwagi 1.
+                                                      ze standardowych zasad oceniania.
+                                                   2. Jeżeli zdający poprawnie wypisze/zaznaczy wszystkie zdarzenia elementarne sprzyjające
+                                                      zdarzeniu 𝐴, lecz popełni błąd w ich zliczeniu (np. |𝐴| = 8) i konsekwentnie zapisze
+                                                                  8
+                                                      wynik (np. ), to otrzymuje 2 punkty.
+                                                                 30
+
+
+                                                   Zadanie 32.
+                                                   1 pkt – zapisanie pola jednego spośród trójkątów 𝐸𝐵𝐹 , 𝐹𝐶𝐷 , 𝐷𝐴𝐸 w zależności
+                                                                                      1
+                                                           od zmiennej 𝑥, np. 𝑃𝐹𝐶𝐷 = ⋅ 4 ⋅ 𝑥
+                                                                                      2
+                                                           ALBO
+                                                         – obliczenie pola kwadratu 𝐴𝐵𝐶𝐷 oraz zapisanie długości odcinków 𝐴𝐸 i 𝐵𝐹
+                                                           w zależności od zmiennej 𝑥 : 𝑃𝐴𝐵𝐶𝐷 = 16 oraz |𝐴𝐸| = 4 − 2𝑥 oraz |𝐵𝐹| = 4 − 𝑥 .
+
+
+
+
+                                                                                                                                    Strona 37 z 37
+

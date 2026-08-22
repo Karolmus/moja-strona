@@ -1,0 +1,709 @@
+[
+  {
+    "file": "1_2021_cke_r_m.webp",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "hint": "Sprowadź oba kąty do kąta ostrego i skorzystaj z wartości funkcji trygonometrycznych.",
+    "answer": "D",
+    "tags": [
+      "trygonometria",
+      "wartości-funkcji-trygonometrycznych",
+      "wzory-redukcyjne"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "completionPercent": 50,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2021_cke_r_m.webp",
+    "difficulty": 2,
+    "topic": "wykresy funkcji trygonometrycznych",
+    "hint": "Porównaj okresowość, miejsca zerowe i wartości funkcji widoczne na wykresie.",
+    "answer": "C",
+    "tags": [
+      "funkcje-trygonometryczne",
+      "wykresy-funkcji",
+      "wartość-bezwzględna"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "completionPercent": 28,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2021_cke_r_m.webp",
+    "difficulty": 2,
+    "topic": "wielomiany",
+    "hint": "Rozłóż wielomian na czynniki, korzystając ze wzorów skróconego mnożenia.",
+    "answer": "C",
+    "tags": [
+      "wielomiany",
+      "rozkład-wielomianu-na-czynniki",
+      "wzory-skróconego-mnożenia"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "completionPercent": 29,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2021_cke_r_m.webp",
+    "difficulty": 2,
+    "topic": "wartość bezwzględna",
+    "hint": "Rozpatrz osobno przedziały wyznaczone przez miejsce zerowe wyrażenia pod wartością bezwzględną.",
+    "answer": "B",
+    "tags": [
+      "równania-z-wartością-bezwzględną",
+      "wartość-bezwzględna",
+      "równania"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 1,
+    "completionPercent": 37,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2021_cke_r_m.webp",
+    "difficulty": 2,
+    "topic": "granice ciągów",
+    "hint": "Podziel licznik i mianownik przez najwyższą potęgę zmiennej n.",
+    "answer": "125",
+    "tags": [
+      "granice-ciągów",
+      "ciągi",
+      "wyrażenia-algebraiczne"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 2,
+    "completionPercent": 67,
+    "type": "input",
+    "acceptedAnswers": [
+      "125",
+      "1 2 5"
+    ],
+    "inputs": [
+      {
+        "label": "Cyfra jedności",
+        "answers": [
+          "1"
+        ]
+      },
+      {
+        "label": "Pierwsza cyfra po przecinku",
+        "answers": [
+          "2"
+        ]
+      },
+      {
+        "label": "Druga cyfra po przecinku",
+        "answers": [
+          "5"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "6_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "logarytmy",
+    "hint": "Skorzystaj ze wzoru na zmianę podstawy logarytmu oraz własności logarytmu ilorazu i potęgi.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "logarytmy",
+      "własności-logarytmów",
+      "zmiana-podstawy-logarytmu",
+      "dowodzenie"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "completionPercent": 52,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "6_s_a.webp"
+      },
+      {
+        "label": "B",
+        "file": "6_s_b1.webp"
+      },
+      {
+        "label": "B",
+        "file": "6_s_b2.webp"
+      },
+      {
+        "label": "C",
+        "file": "6_s_c.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "6_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "6_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "7_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "nierówności wymierne",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal dziedzinę i rozwiąż nierówność iloczynową lub ilorazową.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności-wymierne",
+      "wyrażenia-wymierne",
+      "dziedzina",
+      "przedziały-liczbowe"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "completionPercent": 36,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "7_s_a1.webp"
+      },
+      {
+        "label": "A",
+        "file": "7_s_a2.webp"
+      },
+      {
+        "label": "B",
+        "file": "7_s_b.webp"
+      },
+      {
+        "label": "C",
+        "file": "7_s_c1.webp"
+      },
+      {
+        "label": "C",
+        "file": "7_s_c2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "7_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "7_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "8_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "dowód geometryczny",
+    "hint": "Wyznacz zależności między odcinkami i wykorzystaj podobieństwo trójkątów lub stosunki ich pól.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "dowody-geometryczne",
+      "trójkąt-równoboczny",
+      "podobieństwo-trójkątów",
+      "pola-trójkątów",
+      "planimetria"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 3,
+    "completionPercent": 14,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "8_s_a1.webp"
+      },
+      {
+        "label": "A",
+        "file": "8_s_a2.webp"
+      },
+      {
+        "label": "B",
+        "file": "8_s_b1.webp"
+      },
+      {
+        "label": "B",
+        "file": "8_s_b2.webp"
+      },
+      {
+        "label": "C",
+        "file": "8_s_c1.webp"
+      },
+      {
+        "label": "C",
+        "file": "8_s_c2.webp"
+      },
+      {
+        "label": "D",
+        "file": "8_s_d.webp"
+      },
+      {
+        "label": "E",
+        "file": "8_s_e.webp"
+      },
+      {
+        "label": "F",
+        "file": "8_s_f.webp"
+      },
+      {
+        "label": "G",
+        "file": "8_s_g1.webp"
+      },
+      {
+        "label": "G",
+        "file": "8_s_g2.webp"
+      },
+      {
+        "label": "H",
+        "file": "8_s_h1.webp"
+      },
+      {
+        "label": "H",
+        "file": "8_s_h2.webp"
+      },
+      {
+        "label": "I",
+        "file": "8_s_i1.webp"
+      },
+      {
+        "label": "I",
+        "file": "8_s_i2.webp"
+      },
+      {
+        "label": "J",
+        "file": "8_s_j1.webp"
+      },
+      {
+        "label": "J",
+        "file": "8_s_j2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "8_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "8_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "9_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "prawdopodobieństwo warunkowe",
+    "hint": "Ogranicz przestrzeń zdarzeń do liczb czterocyfrowych podzielnych przez 18 i policz liczby podzielne jednocześnie przez 15.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "prawdopodobieństwo-warunkowe",
+      "prawdopodobieństwo-klasyczne",
+      "podzielność-liczb",
+      "zliczanie-przypadków"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "completionPercent": 30,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "9_s_a1.webp"
+      },
+      {
+        "label": "A",
+        "file": "9_s_a2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "9_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "9_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "geometria analityczna",
+    "hint": "Wyznacz równanie prostej AB, a następnie odległość środka okręgu od tej prostej i rzut prostokątny punktu O.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "geometria-analityczna",
+      "równanie-prostej",
+      "styczna-do-okręgu",
+      "odległość-punktu-od-prostej",
+      "równanie-okręgu"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "completionPercent": 53,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "10_s_a.webp"
+      },
+      {
+        "label": "B",
+        "file": "10_s_b1.webp"
+      },
+      {
+        "label": "B",
+        "file": "10_s_b2.webp"
+      },
+      {
+        "label": "C",
+        "file": "10_s_c.webp"
+      },
+      {
+        "label": "D",
+        "file": "10_s_d1.webp"
+      },
+      {
+        "label": "D",
+        "file": "10_s_d2.webp"
+      },
+      {
+        "label": "E",
+        "file": "10_s_e.webp"
+      },
+      {
+        "label": "F",
+        "file": "10_s_f.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "10_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "10_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "11_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "równanie kwadratowe z parametrem",
+    "hint": "Połącz warunek na dwa różne pierwiastki z wzorami Viète'a oraz podanymi ograniczeniami dotyczącymi pierwiastków.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania-kwadratowe",
+      "równania-z-parametrem",
+      "zadania-z-parametrem",
+      "wzory-viete'a"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 5,
+    "completionPercent": 35,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "11_s_a1.webp"
+      },
+      {
+        "label": "A",
+        "file": "11_s_a2.webp"
+      },
+      {
+        "label": "A",
+        "file": "11_s_a3.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "11_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "11_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "12_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "równania trygonometryczne",
+    "hint": "Zastosuj wzory na cosinus podwojonego kąta oraz przekształć prawą stronę z użyciem sumy lub różnicy sinusa i cosinusa.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania-trygonometryczne",
+      "wzory-na-podwojony-kąt",
+      "tożsamości-trygonometryczne",
+      "trygonometria"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 5,
+    "completionPercent": 17,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "12_s_a.webp"
+      },
+      {
+        "label": "B",
+        "file": "12_s_b1.webp"
+      },
+      {
+        "label": "B",
+        "file": "12_s_b2.webp"
+      },
+      {
+        "label": "C",
+        "file": "12_s_c1.webp"
+      },
+      {
+        "label": "C",
+        "file": "12_s_c2.webp"
+      },
+      {
+        "label": "D",
+        "file": "12_s_d.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "12_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "12_z2.webp"
+      },
+      {
+        "label": "Część 3",
+        "file": "12_z3.webp"
+      },
+      {
+        "label": "Część 4",
+        "file": "12_z4.webp"
+      }
+    ]
+  },
+  {
+    "file": "13_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "geometria płaska",
+    "hint": "Połącz zależności w trójkącie prostokątnym z własnościami okręgu wpisanego i wzorami trygonometrycznymi.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąt-prostokątny",
+      "okrąg-wpisany",
+      "funkcje-trygonometryczne",
+      "twierdzenie-pitagorasa",
+      "planimetria"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 4,
+    "completionPercent": 20,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "13_s_a1.webp"
+      },
+      {
+        "label": "A",
+        "file": "13_s_a2.webp"
+      },
+      {
+        "label": "B",
+        "file": "13_s_b1.webp"
+      },
+      {
+        "label": "B",
+        "file": "13_s_b2.webp"
+      },
+      {
+        "label": "C",
+        "file": "13_s_c1.webp"
+      },
+      {
+        "label": "C",
+        "file": "13_s_c2.webp"
+      },
+      {
+        "label": "D",
+        "file": "13_s_d1.webp"
+      },
+      {
+        "label": "D",
+        "file": "13_s_d2.webp"
+      },
+      {
+        "label": "E",
+        "file": "13_s_e1.webp"
+      },
+      {
+        "label": "E",
+        "file": "13_s_e2.webp"
+      },
+      {
+        "label": "F",
+        "file": "13_s_f1.webp"
+      },
+      {
+        "label": "F",
+        "file": "13_s_f2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "13_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "13_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "14_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "geometria analityczna",
+    "hint": "Zapisz współrzędne punktu C za pomocą parametru m. Pole wyznacz ze współrzędnych, a ostrokątność sprawdź iloczynami skalarnymi.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "geometria-analityczna",
+      "funkcja-kwadratowa",
+      "pola-trójkątów",
+      "wektory",
+      "iloczyn-skalarny",
+      "nierówności-kwadratowe"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 6,
+    "completionPercent": 19,
+    "solutions": [
+      {
+        "label": "Sposób a) - 1.",
+        "file": "14_s_a.webp"
+      },
+      {
+        "label": "Sposób a) - 2.",
+        "file": "14_s_b1.webp"
+      },
+      {
+        "label": "Sposób a) - 2.",
+        "file": "14_s_b2.webp"
+      },
+      {
+        "label": "Sposób b) - 1.",
+        "file": "14_s_c1.webp"
+      },
+      {
+        "label": "Sposób b) - 1.",
+        "file": "14_s_c2.webp"
+      },
+      {
+        "label": "Sposób b) - 2.",
+        "file": "14_s_d1.webp"
+      },
+      {
+        "label": "Sposób b) - 2.",
+        "file": "14_s_d2.webp"
+      },
+      {
+        "label": "Sposób b) - 2.",
+        "file": "14_s_d3.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "14_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "14_z2.webp"
+      },
+      {
+        "label": "Część 3",
+        "file": "14_z3.webp"
+      }
+    ]
+  },
+  {
+    "file": "15_2021_cke_r_m.webp",
+    "difficulty": 3,
+    "topic": "optymalizacja",
+    "hint": "Wyraź wysokość zbiornika przez długość boku podstawy, zapisz funkcję kosztu i zbadaj jej pochodną z uwzględnieniem ograniczeń.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "optymalizacja",
+      "pochodne",
+      "prostopadłościan",
+      "objętość-brył",
+      "pole-powierzchni-brył",
+      "modelowanie-matematyczne"
+    ],
+    "level": "matura_rozszerzona",
+    "maxPoints": 7,
+    "completionPercent": 28,
+    "solutions": [
+      {
+        "label": "A",
+        "file": "15_s_a1.webp"
+      },
+      {
+        "label": "A",
+        "file": "15_s_a2.webp"
+      },
+      {
+        "label": "B",
+        "file": "15_s_b1.webp"
+      },
+      {
+        "label": "B",
+        "file": "15_s_b2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "15_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "15_z2.webp"
+      },
+      {
+        "label": "Część 3",
+        "file": "15_z3.webp"
+      }
+    ]
+  }
+]
