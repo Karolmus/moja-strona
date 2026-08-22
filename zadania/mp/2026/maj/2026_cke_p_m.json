@@ -1,0 +1,931 @@
+[
+  {
+    "file": "1_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastek, a następnie oblicz potęgę o wykładniku ujemnym.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "pierwiastki",
+      "potęgi",
+      "działania-na-liczbach"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "2_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "procent składany",
+    "level": "matura_podstawowa",
+    "hint": "Po każdym roku pomnóż bieżący kapitał przez 1,06, a od wyniku odejmij wpłaconą kwotę.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "procenty",
+      "procent-składany",
+      "zadania-tekstowe"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "3_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "potęgi i pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz pierwiastki w postaci potęg i zastosuj prawa działań na potęgach.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "potęgi",
+      "pierwiastki",
+      "działania-na-liczbach"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "4_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "logarytmy",
+    "level": "matura_podstawowa",
+    "hint": "Zastosuj wzory na logarytm iloczynu, ilorazu lub potęgi.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "logarytmy",
+      "działania-na-liczbach"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "5_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "potęgi i podzielność",
+    "level": "matura_podstawowa",
+    "hint": "Wyłącz wspólną potęgę przed nawias i sprawdź podzielność otrzymanego czynnika.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "potęgi",
+      "podzielność",
+      "prawda-fałsz"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "6_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "wzory skróconego mnożenia",
+    "level": "matura_podstawowa",
+    "hint": "Rozpoznaj kwadrat sumy, kwadrat różnicy albo różnicę kwadratów.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wzory-skróconego-mnożenia",
+      "wyrażenia-algebraiczne"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "7_2026_cke_p_m.webp",
+    "difficulty": 4,
+    "topic": "dowód algebraiczny",
+    "level": "matura_podstawowa",
+    "hint": "Rozpatrz osobno parzyste i nieparzyste wartości n albo wyłącz wspólny czynnik i zbadaj parzystość.",
+    "answer": "Wyrażenie 7n² + 21n jest podzielne przez 14 dla każdej liczby naturalnej n.",
+    "tags": [
+      "dowodzenie",
+      "podzielność",
+      "dowody-algebraiczne"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "7_s_a1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "7_s_b1.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "7_s_c1.webp"
+      },
+      {
+        "label": "Sposób IV",
+        "file": "7_s_d1.webp"
+      },
+      {
+        "label": "Sposób IV",
+        "file": "7_s_d2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "7_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "8_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "równanie z parametrem",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj z zasady iloczynu równego zeru i sprawdź, kiedy wskazany czynnik daje wymagane rozwiązanie.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "równania",
+      "parametr",
+      "wyrażenia-algebraiczne"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "9_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "równanie wymierne",
+    "level": "matura_podstawowa",
+    "hint": "Najpierw zapisz założenia, a następnie usuń mianowniki i rozwiąż otrzymane równanie.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "równania-wymierne",
+      "wyrażenia-wymierne",
+      "dziedzina"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "10_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "nierówność kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Przenieś wszystko na jedną stronę, wyznacz miejsca zerowe i odczytaj znak trójmianu.",
+    "answer": "x ∈ (−∞, −4/3] ∪ [2, +∞)",
+    "tags": [
+      "nierówności-kwadratowe",
+      "funkcja-kwadratowa",
+      "przedziały-liczbowe"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "10_s_a1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "10_s_b1.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "10_s_c1.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "10_s_c2.webp"
+      },
+      {
+        "label": "Sposób IV",
+        "file": "10_s_d1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "10_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "10_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "11_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "układ równań",
+    "level": "matura_podstawowa",
+    "hint": "Oznacz liczby biletów dwiema niewiadomymi i zapisz równania opisujące ich łączną liczbę oraz przychód.",
+    "answer": "78",
+    "tags": [
+      "układy-równań",
+      "zadania-tekstowe",
+      "modelowanie-matematyczne"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "11_s_a1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "11_s_b1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "11_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12.1_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "odczytywanie z wykresu",
+    "level": "matura_podstawowa",
+    "hint": "Odczytaj z wykresu przecięcie z odpowiednią prostą oraz największą wysokość wykresu na podanym przedziale.",
+    "answer": "1. x = 1. 2. Największa wartość funkcji na przedziale [2, 3] jest równa 4.",
+    "tags": [
+      "funkcje",
+      "odczytywanie-z-wykresu",
+      "wartości-funkcji"
+    ],
+    "maxPoints": 2,
+    "contextFile": "12_2026_cke_p_m.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12.1_s_a1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "12.1_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12.2_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "dziedzina i wartości funkcji",
+    "level": "matura_podstawowa",
+    "hint": "Zwróć uwagę na otwarte i domknięte końce wykresu oraz na poziom wskazany w warunku.",
+    "answer": "1. [−2, 4]. 2. (−1, 4).",
+    "tags": [
+      "funkcje",
+      "dziedzina-funkcji",
+      "odczytywanie-z-wykresu"
+    ],
+    "maxPoints": 2,
+    "contextFile": "12_2026_cke_p_m.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12.2_s_a1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "12.2_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "13.1_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "funkcja liniowa",
+    "level": "matura_podstawowa",
+    "hint": "Odczytaj z wykresu znaki współczynnika kierunkowego i wyrazu wolnego.",
+    "answer": "FF",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "funkcja-liniowa",
+      "wykres-funkcji",
+      "prawda-fałsz"
+    ],
+    "maxPoints": 1,
+    "contextFile": "13_2026_cke_p_m.webp"
+  },
+  {
+    "file": "13.2_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "funkcja liniowa",
+    "level": "matura_podstawowa",
+    "hint": "Współczynnik kierunkowy prostej jest równy tangensowi kąta jej nachylenia do osi Ox.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcja-liniowa",
+      "współczynnik-kierunkowy",
+      "trygonometria"
+    ],
+    "maxPoints": 1,
+    "contextFile": "13_2026_cke_p_m.webp"
+  },
+  {
+    "file": "14_2026_cke_p_m.webp",
+    "difficulty": 4,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Wykorzystaj przesunięcie wykresu, oś symetrii oraz podane miejsce zerowe do wyznaczenia wzoru funkcji.",
+    "answer": "f(x) = 1/2 x² − 3x + 5/2",
+    "tags": [
+      "funkcja-kwadratowa",
+      "postać-kanoniczna",
+      "przesunięcia-wykresu"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "14_s_a1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "14_s_b1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "14_s_b2.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "14_s_c1.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "14_s_c2.webp"
+      },
+      {
+        "label": "Sposób IV",
+        "file": "14_s_d1.webp"
+      },
+      {
+        "label": "Sposób IV",
+        "file": "14_s_d2.webp"
+      },
+      {
+        "label": "Sposób V",
+        "file": "14_s_e1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "14_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "14_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "15_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Wyznacz wskazane wyrazy ciągu arytmetycznego, a następnie użyj własności ciągu geometrycznego.",
+    "answer": "k = 41",
+    "tags": [
+      "ciąg-arytmetyczny",
+      "ciąg-geometryczny",
+      "ciągi"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "15_s_a1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "15_s_b1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "15_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "16_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "ciąg arytmetyczny",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj ze wzoru na n-ty wyraz ciągu arytmetycznego.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "ciąg-arytmetyczny",
+      "ciągi"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "17_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "ciąg geometryczny",
+    "level": "matura_podstawowa",
+    "hint": "Zastosuj własność trzech kolejnych wyrazów ciągu geometrycznego.",
+    "answer": "18",
+    "tags": [
+      "ciąg-geometryczny",
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "17_s_a1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "17_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "18_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Dobierz funkcję trygonometryczną łączącą wskazane boki trójkąta prostokątnego.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "trygonometria",
+      "trójkąt-prostokątny"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "19_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "kąty w okręgu",
+    "level": "matura_podstawowa",
+    "hint": "Porównaj kąty środkowe i wpisane oparte na tym samym łuku.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "okrąg",
+      "kąt-wpisany",
+      "kąt-środkowy"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "20_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "podobieństwo trójkątów",
+    "level": "matura_podstawowa",
+    "hint": "Wskaż pary odpowiadających sobie boków w trójkątach podobnych.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "podobieństwo-trójkątów",
+      "twierdzenie-Talesa",
+      "geometria"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "21_2026_cke_p_m.webp",
+    "difficulty": 4,
+    "topic": "pola trójkątów",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz pola obu trójkątów z wykorzystaniem wspólnej wysokości albo wspólnego boku i sinusa kąta.",
+    "answer": "P_KNM / P_NLM = a/b",
+    "tags": [
+      "dowodzenie",
+      "pola-trójkątów",
+      "dwusieczna"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "21_s_a1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "21_s_b1.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "21_s_c1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "21_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "22_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "trójkąt równoboczny",
+    "level": "matura_podstawowa",
+    "hint": "Połącz promień okręgu opisanego z długością boku trójkąta równobocznego.",
+    "answer": "27",
+    "tags": [
+      "trójkąt-równoboczny",
+      "okrąg-opisany",
+      "geometria"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "22_s_a1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "22_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "23_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz tangens wskazanego kąta jako iloraz odpowiednich boków.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "trygonometria",
+      "trójkąt-prostokątny"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "24.1_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "geometria analityczna",
+    "level": "matura_podstawowa",
+    "hint": "Wyznacz potrzebne długości lub wysokość z danych współrzędnych, a potem oblicz pole.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "geometria-analityczna",
+      "pole-figury",
+      "układ-współrzędnych"
+    ],
+    "maxPoints": 1,
+    "contextFile": "24_2026_cke_p_m.webp"
+  },
+  {
+    "file": "24.2_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "okrąg opisany",
+    "level": "matura_podstawowa",
+    "hint": "Środek okręgu opisanego jest punktem jednakowo odległym od wszystkich wierzchołków.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "geometria-analityczna",
+      "okrąg-opisany",
+      "symetralna"
+    ],
+    "maxPoints": 1,
+    "contextFile": "24_2026_cke_p_m.webp"
+  },
+  {
+    "file": "25_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "równanie okręgu",
+    "level": "matura_podstawowa",
+    "hint": "Odczytaj środek i promień bezpośrednio z postaci kanonicznej równania okręgu.",
+    "answer": "PF",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "okrąg",
+      "równanie-okręgu",
+      "prawda-fałsz"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "26_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "równanie prostej",
+    "level": "matura_podstawowa",
+    "hint": "Wyznacz współczynnik kierunkowy z warunku równoległości lub prostopadłości i podstaw punkt.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "równanie-prostej",
+      "geometria-analityczna"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "27_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "ostrosłup",
+    "level": "matura_podstawowa",
+    "hint": "Wyznacz wysokość ostrosłupa z trójkąta prostokątnego, a następnie zastosuj wzór na objętość.",
+    "answer": "V = 128",
+    "tags": [
+      "ostrosłup",
+      "objętość",
+      "stereometria"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "27_s_a1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "27_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "28_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "bryły obrotowe",
+    "level": "matura_podstawowa",
+    "hint": "Porównaj objętości po zapisaniu promieni, wysokości i właściwych wzorów.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "bryły-obrotowe",
+      "objętość",
+      "stereometria"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "29_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "kombinatoryka",
+    "level": "matura_podstawowa",
+    "hint": "Rozbij wybór na etapy i zastosuj regułę mnożenia.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "kombinatoryka",
+      "reguła-mnożenia"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "30_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "prawdopodobieństwo",
+    "level": "matura_podstawowa",
+    "hint": "Policz wszystkie uporządkowane wyniki doświadczenia oraz te, które spełniają warunek zdarzenia.",
+    "answer": "P(A) = 9/25",
+    "tags": [
+      "prawdopodobieństwo-klasyczne",
+      "kombinatoryka",
+      "zdarzenia-elementarne"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "30_s_a1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "30_s_b1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "30_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "30_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "31_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "statystyka",
+    "level": "matura_podstawowa",
+    "hint": "Odczytaj liczebności z diagramu i porównaj je z treścią obu zdań.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "statystyka",
+      "odczytywanie-danych",
+      "prawda-fałsz"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "32_2026_cke_p_m.webp",
+    "difficulty": 2,
+    "topic": "średnia ważona",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz równanie dla średniej ważonej, uwzględniając liczebność każdej grupy.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "średnia-ważona",
+      "statystyka",
+      "zadania-tekstowe"
+    ],
+    "maxPoints": 1
+  },
+  {
+    "file": "33.1_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "modelowanie funkcją kwadratową",
+    "level": "matura_podstawowa",
+    "hint": "Przyrównaj opisującą sytuację funkcję do wskazanej wartości i rozwiąż równanie.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcja-kwadratowa",
+      "modelowanie-matematyczne",
+      "miejsca-zerowe"
+    ],
+    "maxPoints": 1,
+    "contextFile": "33_2026_cke_p_m.webp"
+  },
+  {
+    "file": "33.2_2026_cke_p_m.webp",
+    "difficulty": 3,
+    "topic": "optymalizacja",
+    "level": "matura_podstawowa",
+    "hint": "Największą wartość funkcji kwadratowej skierowanej ramionami w dół odczytasz w jej wierzchołku.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "funkcja-kwadratowa",
+      "optymalizacja",
+      "wierzchołek-paraboli"
+    ],
+    "maxPoints": 1,
+    "contextFile": "33_2026_cke_p_m.webp"
+  }
+]

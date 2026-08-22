@@ -2752,6 +2752,8 @@ const COURSE_PART_LABELS = {
 };
 
 const TASK_SOURCES = [
+    { path: "zadania/mp/2026/maj/2026_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2026/czerwiec/2026_cke_p_c.json", category: "egzaminy" },
     { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
@@ -2760,6 +2762,7 @@ const TASK_SOURCES = [
     { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2022/maj/2022_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2021/maj/2021_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy" },
@@ -3428,6 +3431,7 @@ function getSourceMeta(sourceConfig){
         id: source,
         path: source,
         category,
+        year: isCourse ? null : Number(year),
         level: sourceConfig.level || SOURCE_LEVELS[type],
         label,
         detail
@@ -3632,12 +3636,18 @@ function getSourceMetaById(sourceId){
 }
 
 function getAvailableSources(){
-    return TASK_SOURCES
+    const availableSources = TASK_SOURCES
         .map(getSourceMeta)
         .filter(source =>
             source.category === selectedCategory &&
             source.level === selectedLevel
         );
+
+    if(selectedCategory === "egzaminy"){
+        availableSources.sort((a, b) => b.year - a.year);
+    }
+
+    return availableSources;
 }
 
 function hasSourcesForCategory(category, level = selectedLevel){
