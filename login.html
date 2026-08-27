@@ -273,16 +273,7 @@ footer {
 
 <body>
 
-<nav class="main-nav" aria-label="Główna nawigacja">
-    <a href="index.html">Strona główna</a>
-    <a class="signup-link" href="zapisy.html">Zapisy 2026/27</a>
-    <a href="wyniki.html">Wyniki</a>
-    <a href="zadania.html">Zadania</a>
-    <a href="kontakt.html">Kontakt</a>
-    <a href="login.html" data-auth-login>Logowanie</a>
-    <span class="nav-user" data-auth-user hidden></span>
-    <button class="nav-logout" type="button" data-auth-logout hidden>Wyloguj</button>
-</nav>
+<div id="nav"></div>
 
 <main class="login-page">
     <div class="login-shell">
@@ -420,6 +411,12 @@ togglePassword.addEventListener("click", () => {
     togglePassword.innerText = visible ? "Pokaż" : "Ukryj";
     togglePassword.setAttribute("aria-pressed", String(!visible));
 });
+
+fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("nav").innerHTML = html;
+    });
 
 form.addEventListener("submit", async event => {
     event.preventDefault();

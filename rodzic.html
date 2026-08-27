@@ -485,14 +485,7 @@ body {
 </head>
 
 <body>
-<nav class="main-nav" aria-label="Główna nawigacja">
-    <a href="index.html">Strona główna</a>
-    <a href="wyniki.html">Wyniki</a>
-    <a href="zadania.html">Zadania</a>
-    <a href="login.html" data-auth-login>Logowanie</a>
-    <span class="nav-user" data-auth-user hidden></span>
-    <button class="nav-logout" type="button" data-auth-logout hidden>Wyloguj</button>
-</nav>
+<div id="nav"></div>
 
 <main class="parent-page">
     <section class="hero">
@@ -1001,6 +994,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("parentQuestionForm").addEventListener("submit", sendParentQuestion);
     bootParentPanel();
 });
+
+fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("nav").innerHTML = html;
+    });
 </script>
 </body>
 </html>
