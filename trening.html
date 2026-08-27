@@ -56,25 +56,26 @@ body {
 
 .training-page {
     width: min(1180px, calc(100% - 32px));
-    margin: 28px auto 30px;
+    margin: 24px auto 32px;
 }
 
 .training-shell {
     display: grid;
-    grid-template-columns: 380px minmax(0, 1fr);
-    gap: 16px;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: 14px;
     align-items: start;
 }
 
 .training-panel,
-.training-stage,
+.training-overview,
+.problem-card,
 .history-panel,
 .progress-panel,
 .leaderboard-panel {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface);
-    box-shadow: var(--shadow);
+    box-shadow: 0 5px 15px rgba(15, 23, 42, 0.08);
 }
 
 .training-panel {
@@ -83,6 +84,19 @@ body {
     display: grid;
     gap: 6px;
     padding: 8px;
+}
+
+.training-settings {
+    min-width: 0;
+}
+
+.training-settings-summary {
+    display: none;
+}
+
+.training-settings-body {
+    display: grid;
+    gap: 10px;
 }
 
 .training-mode-nav {
@@ -95,12 +109,12 @@ body {
     display: grid;
     place-items: center;
     min-width: 0;
-    min-height: 28px;
+    min-height: 34px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
     color: var(--text);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 600;
     line-height: 1.1;
     padding: 5px 7px;
@@ -141,6 +155,11 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.stage-round-controls {
+    width: min(100%, 320px);
+    justify-self: end;
+}
+
 .level-tabs {
     grid-template-columns: 1fr;
 }
@@ -168,15 +187,15 @@ body {
     color: var(--text);
     cursor: pointer;
     font: inherit;
-    font-weight: 700;
+    font-weight: 600;
     transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
 .level-btn,
 .topic-btn {
-    min-height: 25px;
-    padding: 3px 4px;
-    font-size: 9.5px;
+    min-height: 36px;
+    padding: 5px 6px;
+    font-size: 10px;
     text-align: center;
 }
 
@@ -193,14 +212,14 @@ body {
 }
 
 .control-btn {
-    min-height: 42px;
-    padding: 10px 12px;
+    min-height: 40px;
+    padding: 8px 12px;
     background: var(--navy);
     color: white;
 }
 
 .secondary-btn {
-    min-height: 38px;
+    min-height: 40px;
     padding: 8px 10px;
     background: var(--surface-soft);
     color: var(--text);
@@ -226,6 +245,27 @@ body {
     transform: translateY(-1px);
 }
 
+.training-mode-link:focus-visible,
+.training-settings-summary:focus-visible,
+.level-btn:focus-visible,
+.topic-btn:focus-visible,
+.control-btn:focus-visible,
+.secondary-btn:focus-visible,
+.key-btn:focus-visible,
+.yes-no-btn:focus-visible,
+.leaderboard-period:focus-visible,
+.leaderboard-refresh:focus-visible {
+    outline: 3px solid rgba(88, 101, 242, 0.24);
+    outline-offset: 2px;
+}
+
+.control-btn:disabled,
+.secondary-btn:disabled {
+    cursor: wait;
+    opacity: 0.6;
+    transform: none;
+}
+
 .training-side-section {
     display: grid;
     gap: 4px;
@@ -233,8 +273,8 @@ body {
 
 .topic-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 3px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
 }
 
 .topic-btn {
@@ -247,7 +287,7 @@ body {
 
 .topic-btn span {
     min-width: 0;
-    font-size: 9.5px;
+    font-size: 10px;
     font-weight: 600;
     line-height: 1.05;
 }
@@ -256,7 +296,7 @@ body {
     min-width: 0;
     overflow: hidden;
     color: var(--muted);
-    font-size: 8.5px;
+    font-size: 8px;
     font-weight: 400;
     line-height: 1.1;
     text-overflow: ellipsis;
@@ -268,6 +308,12 @@ body {
 }
 
 .training-stage {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+}
+
+.training-overview {
     display: grid;
     gap: 10px;
     padding: 12px;
@@ -283,6 +329,7 @@ body {
 .stage-title {
     margin: 0;
     font-size: 21px;
+    font-weight: 600;
     line-height: 1.1;
 }
 
@@ -300,7 +347,7 @@ body {
     padding: 6px 9px;
     color: var(--muted);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .time-progress {
@@ -349,16 +396,14 @@ body {
 
 .stat-value {
     font-size: 17px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1;
 }
 
 .problem-card {
     display: grid;
     gap: 10px;
-    min-height: 168px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
+    min-height: 0;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     padding: 14px;
 }
@@ -366,7 +411,7 @@ body {
 .task-topic {
     color: var(--blue-text);
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
@@ -376,14 +421,16 @@ body {
     flex-wrap: wrap;
     gap: 0.16em;
     min-height: 54px;
+    justify-content: center;
     color: #111827;
     font-family: 'Poppins', sans-serif;
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.18;
     letter-spacing: 0;
     font-variant-numeric: tabular-nums;
     text-rendering: geometricPrecision;
+    text-align: center;
 }
 
 .problem-text sup {
@@ -515,7 +562,7 @@ body {
 
 .answer-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 94px 94px;
+    grid-template-columns: minmax(0, 1fr) 94px;
     gap: 8px;
 }
 
@@ -532,7 +579,7 @@ body {
     color: var(--text);
     font: inherit;
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -570,7 +617,7 @@ body {
     cursor: pointer;
     font: inherit;
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 600;
     transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
@@ -585,7 +632,7 @@ body {
 .yes-no-btn span {
     color: var(--muted);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
@@ -619,7 +666,7 @@ body {
     display: block;
     color: var(--muted);
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
@@ -636,7 +683,7 @@ body {
     margin: 0;
     color: var(--blue-text);
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .submit-btn {
@@ -646,7 +693,7 @@ body {
     color: white;
     cursor: pointer;
     font: inherit;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .skip-btn {
@@ -656,13 +703,17 @@ body {
     color: var(--muted);
     cursor: pointer;
     font: inherit;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .keypad {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
+}
+
+.keypad[hidden] {
+    display: none;
 }
 
 .key-btn {
@@ -680,6 +731,13 @@ body {
 .key-btn.enter {
     background: var(--green-soft);
     color: var(--green-text);
+}
+
+.training-insights {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+    gap: 12px;
+    align-items: stretch;
 }
 
 .history-panel {
@@ -721,7 +779,7 @@ body {
 }
 
 .progress-chart {
-    min-height: 188px;
+    min-height: 0;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
@@ -748,7 +806,7 @@ body {
     fill: var(--muted);
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .progress-correct {
@@ -768,7 +826,7 @@ body {
     margin-top: 6px;
     color: var(--muted);
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .legend-dot {
@@ -811,7 +869,7 @@ body {
     cursor: pointer;
     font: inherit;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 600;
     padding: 7px 9px;
 }
 
@@ -839,7 +897,7 @@ body {
     cursor: pointer;
     font: inherit;
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 600;
     padding: 6px 8px;
 }
 
@@ -884,7 +942,7 @@ body {
     min-width: 0;
     color: var(--text);
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 600;
     overflow: hidden;
     text-align: center;
     text-overflow: ellipsis;
@@ -921,14 +979,14 @@ body {
 
 .podium-rank {
     font-size: 18px;
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1;
 }
 
 .podium-score {
     color: inherit;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 .leaderboard-list {
@@ -955,21 +1013,21 @@ body {
 
 .leaderboard-rank {
     color: var(--blue-text);
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .leaderboard-name {
     min-width: 0;
     overflow: hidden;
     color: var(--text);
-    font-weight: 800;
+    font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .leaderboard-stat {
     color: var(--muted);
-    font-weight: 700;
+    font-weight: 600;
     text-align: right;
 }
 
@@ -986,7 +1044,7 @@ body {
     background: var(--surface-soft);
     color: var(--muted);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 500;
     padding: 10px;
 }
 
@@ -997,50 +1055,156 @@ body {
 
     .training-panel {
         position: static;
+        padding: 0;
+        overflow: hidden;
     }
 
+    .training-settings-summary {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        min-height: 48px;
+        padding: 8px 11px;
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .training-settings-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .training-settings-summary::after {
+        content: "+";
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--surface-soft);
+        color: var(--navy);
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1;
+    }
+
+    .training-settings[open] .training-settings-summary::after {
+        content: "−";
+    }
+
+    .training-settings-summary-copy {
+        display: grid;
+        gap: 2px;
+        min-width: 0;
+    }
+
+    .training-settings-summary-copy span {
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 600;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .training-settings-summary-copy strong {
+        min-width: 0;
+        overflow: hidden;
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.25;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .training-settings-body {
+        gap: 8px;
+        border-top: 1px solid var(--line);
+        padding: 8px;
+    }
+
+    .training-insights {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 560px) {
     .training-page {
-        width: min(100% - 10px, 1180px);
+        width: min(100% - 12px, 1180px);
         margin-top: 8px;
     }
 
     .training-shell {
-        gap: 6px;
-    }
-
-    .training-panel {
-        gap: 5px;
-        padding: 6px;
+        gap: 10px;
     }
 
     .training-stage {
-        padding: 10px;
+        gap: 10px;
     }
 
     .stage-head {
-        align-items: flex-start;
-        flex-direction: column;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .stage-title {
+        font-size: 20px;
+    }
+
+    .stage-subtitle {
+        font-size: 11px;
+    }
+
+    .status-pill {
+        max-width: 44%;
+        padding: 5px 8px;
+        font-size: 10px;
+        overflow-wrap: anywhere;
+        text-align: center;
+    }
+
+    .training-overview,
+    .problem-card,
+    .history-panel,
+    .progress-panel,
+    .leaderboard-panel {
+        padding: 10px;
     }
 
     .stats-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
+    }
+
+    .stat-card {
+        min-height: 44px;
+        padding: 6px;
+    }
+
+    .stat-value {
+        font-size: 16px;
+    }
+
+    .stage-round-controls {
+        width: 100%;
     }
 
     .problem-card {
-        min-height: 160px;
-        padding: 10px;
+        min-height: 0;
     }
 
     .problem-text {
         min-height: 48px;
-        font-size: 28px;
+        font-size: 26px;
     }
 
     .answer-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr) 86px;
+    }
+
+    .answer-input {
+        grid-column: auto;
     }
 
     .submit-btn,
@@ -1049,17 +1213,25 @@ body {
     }
 
     .topic-btn {
-        min-height: 23px;
-        padding: 2px 3px;
+        min-height: 42px;
+        padding: 5px 6px;
     }
 
     .topic-btn span {
-        font-size: 8.5px;
-        line-height: 1;
+        font-size: 10px;
+        line-height: 1.1;
     }
 
     .topic-btn small {
-        display: none;
+        display: block;
+        font-size: 8.5px;
+        line-height: 1.15;
+        white-space: normal;
+    }
+
+    .topic-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
     }
 
     .leaderboard-head {
@@ -1069,12 +1241,15 @@ body {
     .leaderboard-actions {
         width: 100%;
         align-items: stretch;
-        flex-direction: column;
+        flex-direction: row;
     }
 
-    .leaderboard-tabs,
+    .leaderboard-tabs {
+        flex: 1 1 auto;
+    }
+
     .leaderboard-refresh {
-        width: 100%;
+        flex: 0 0 auto;
     }
 
     .summary-grid {
@@ -1098,65 +1273,78 @@ body {
 <main class="training-page">
     <div class="training-shell">
         <aside class="training-panel" aria-label="Ustawienia treningu">
-            <div class="training-side-section">
-                <div class="panel-title">Poziom</div>
-                <div class="level-tabs" id="levelTabs"></div>
-            </div>
+            <details class="training-settings" id="trainingSettings" open>
+                <summary class="training-settings-summary">
+                    <span class="training-settings-summary-copy">
+                        <span>Ustawienia treningu</span>
+                        <strong id="trainingSettingsValue">Egzamin ósmoklasisty · Tryb łączny</strong>
+                    </span>
+                </summary>
 
-            <div class="training-side-section">
-                <div class="panel-title">Wybór lekcji</div>
-                <div class="topic-list" id="topicList"></div>
-            </div>
+                <div class="training-settings-body">
+                    <nav class="training-mode-nav" aria-label="Wybór trybu pracy">
+                        <a class="training-mode-link" href="zadania.html?category=kurs">Kurs</a>
+                        <a class="training-mode-link" href="zadania.html?category=egzaminy">Egzaminy</a>
+                        <a class="training-mode-link active" href="trening.html" aria-current="page">Trening szybkości</a>
+                    </nav>
 
-            <nav class="training-mode-nav" aria-label="Wybór trybu pracy">
-                <a class="training-mode-link" href="zadania.html?category=kurs">Kurs</a>
-                <a class="training-mode-link" href="zadania.html?category=egzaminy">Egzaminy</a>
-                <a class="training-mode-link active" href="trening.html" aria-current="page">Trening szybkości</a>
-            </nav>
+                    <div class="training-side-section">
+                        <div class="panel-title">Poziom</div>
+                        <div class="level-tabs" id="levelTabs"></div>
+                    </div>
 
-            <div class="round-controls">
-                <button class="control-btn" id="startButton" type="button">Start rundy</button>
-                <button class="secondary-btn" id="resetButton" type="button">Reset</button>
-            </div>
+                    <div class="training-side-section">
+                        <div class="panel-title">Wybór lekcji</div>
+                        <div class="topic-list" id="topicList"></div>
+                    </div>
+                </div>
+            </details>
         </aside>
 
         <section class="training-stage" aria-label="Trening szybkości">
-            <div class="stage-head">
-                <div>
-                    <h1 class="stage-title">Trening szybkości</h1>
-                    <p class="stage-subtitle" id="stageSubtitle">Egzamin ósmoklasisty</p>
+            <div class="training-overview">
+                <div class="stage-head">
+                    <div>
+                        <h1 class="stage-title">Trening szybkości</h1>
+                        <p class="stage-subtitle" id="stageSubtitle">Egzamin ósmoklasisty</p>
+                    </div>
+                    <div class="status-pill" id="statusPill" role="status" aria-live="polite">Gotowy</div>
                 </div>
-                <div class="status-pill" id="statusPill">Gotowy</div>
-            </div>
 
-            <div class="time-progress" aria-label="Pozostały czas">
-                <div class="time-progress-fill" id="timeBar"></div>
-            </div>
+                <div class="time-progress" aria-label="Pozostały czas">
+                    <div class="time-progress-fill" id="timeBar"></div>
+                </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-label">Czas</span>
-                    <strong class="stat-value" id="timeLeft">120</strong>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Czas</span>
+                        <strong class="stat-value" id="timeLeft">120</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Poprawne</span>
+                        <strong class="stat-value" id="correctCount">0</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Błędy</span>
+                        <strong class="stat-value" id="mistakeCount">0</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Seria</span>
+                        <strong class="stat-value" id="streakCount">0</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Śr.</span>
+                        <strong class="stat-value" id="averageTime">-</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Rekord</span>
+                        <strong class="stat-value" id="bestScore">0</strong>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-label">Poprawne</span>
-                    <strong class="stat-value" id="correctCount">0</strong>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Błędy</span>
-                    <strong class="stat-value" id="mistakeCount">0</strong>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Seria</span>
-                    <strong class="stat-value" id="streakCount">0</strong>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Śr.</span>
-                    <strong class="stat-value" id="averageTime">-</strong>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Rekord</span>
-                    <strong class="stat-value" id="bestScore">0</strong>
+
+                <div class="round-controls stage-round-controls">
+                    <button class="control-btn" id="startButton" type="button">Start rundy</button>
+                    <button class="secondary-btn" id="resetButton" type="button">Reset</button>
                 </div>
             </div>
 
@@ -1186,7 +1374,7 @@ body {
                 </div>
                 <div class="answer-row" id="answerRow">
                     <input class="answer-input" id="answerInput" type="text" inputmode="decimal" autocomplete="off" aria-label="Odpowiedź">
-                    <button class="submit-btn" id="submitButton" type="button">OK</button>
+                    <button class="submit-btn" id="submitButton" type="button" hidden>OK</button>
                     <button class="skip-btn" id="skipButton" type="button">Pomiń</button>
                 </div>
                 <div class="yes-no-row" id="yesNoControls" hidden>
@@ -1196,17 +1384,19 @@ body {
                 <div class="keypad" id="keypad" aria-label="Klawiatura numeryczna"></div>
             </div>
 
-            <div class="history-panel">
-                <div class="history-title">Ostatnie</div>
-                <div class="history-list" id="historyList"></div>
-            </div>
-
-            <div class="progress-panel" aria-live="polite">
-                <div>
-                    <div class="history-title">Postęp prób</div>
-                    <p class="progress-scope" id="progressScope"></p>
+            <div class="training-insights">
+                <div class="history-panel">
+                    <div class="history-title">Ostatnie</div>
+                    <div class="history-list" id="historyList"></div>
                 </div>
-                <div class="progress-chart" id="progressChart"></div>
+
+                <div class="progress-panel" aria-live="polite">
+                    <div>
+                        <div class="history-title">Postęp prób</div>
+                        <p class="progress-scope" id="progressScope"></p>
+                    </div>
+                    <div class="progress-chart" id="progressChart"></div>
+                </div>
             </div>
 
             <div class="leaderboard-panel" aria-live="polite">
@@ -1327,6 +1517,8 @@ const state = {
 
 const levelTabs = document.getElementById("levelTabs");
 const topicList = document.getElementById("topicList");
+const trainingSettings = document.getElementById("trainingSettings");
+const trainingSettingsValue = document.getElementById("trainingSettingsValue");
 const stageSubtitle = document.getElementById("stageSubtitle");
 const statusPill = document.getElementById("statusPill");
 const timeLeft = document.getElementById("timeLeft");
@@ -3030,11 +3222,19 @@ function isYesNoTask(taskItem = state.currentTask){
 }
 
 function updateAnswerMode(){
+    const interactionActive = state.running && Boolean(state.currentTask) && !state.finished;
     const yesNoMode = isYesNoTask();
 
-    answerRow.hidden = yesNoMode;
-    yesNoControls.hidden = !yesNoMode;
-    keypad.hidden = yesNoMode;
+    answerRow.hidden = !interactionActive || yesNoMode;
+    yesNoControls.hidden = !interactionActive || !yesNoMode;
+    keypad.hidden = !interactionActive || yesNoMode;
+    answerInput.disabled = !interactionActive;
+    submitButton.disabled = !interactionActive;
+    skipButton.disabled = !interactionActive;
+    yesButton.disabled = !interactionActive;
+    noButton.disabled = !interactionActive;
+
+    if(!interactionActive) return;
 
     if(yesNoMode){
         yesButton.focus();
@@ -3720,6 +3920,10 @@ function setTopic(topic){
     updateTrainingLessonUrl(topic);
     renderControls();
     resetRound();
+
+    if(window.matchMedia("(max-width: 880px)").matches && trainingSettings){
+        trainingSettings.open = false;
+    }
 }
 
 function updateTrainingLessonUrl(lesson){
@@ -3744,6 +3948,7 @@ function activeDifficultyLabel(){
 
 function renderControls(){
     stageSubtitle.innerText = LEVELS[state.level].label;
+    trainingSettingsValue.innerText = `${LEVELS[state.level].shortLabel || LEVELS[state.level].label} · ${activeTopicLabel()}`;
     levelTabs.innerHTML = "";
     topicList.innerHTML = "";
 
@@ -3871,6 +4076,17 @@ leaderboardAllButton.addEventListener("click", () => setLeaderboardPeriod("all")
 window.addEventListener("load", loadLeaderboard);
 window.addEventListener("load", loadProgress);
 window.addEventListener("load", syncTrainingLevelFromAuth);
+
+const trainingSettingsMedia = window.matchMedia("(max-width: 880px)");
+
+function syncTrainingSettingsLayout(event){
+    if(!trainingSettings) return;
+
+    trainingSettings.open = !event.matches;
+}
+
+trainingSettingsMedia.addEventListener?.("change", syncTrainingSettingsLayout);
+syncTrainingSettingsLayout(trainingSettingsMedia);
 
 state.topic = requestedTrainingLesson(state.level) || "all";
 renderControls();

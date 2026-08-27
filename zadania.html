@@ -123,21 +123,50 @@ body {
 
 .formula-card {
     display: grid;
-    gap: 2px;
-    border: 1px solid #b8d3ee;
+    grid-template-columns: minmax(0, 1fr) 32px;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #8eb5de;
+    border-left: 4px solid var(--blue-text);
     border-radius: 8px;
-    background: linear-gradient(135deg, #f7fbff, #ffffff);
+    background: linear-gradient(135deg, #e8f1fb 0%, #ffffff 78%);
     color: var(--text);
-    padding: 8px 10px;
+    padding: 10px 11px;
     text-decoration: none;
-    box-shadow: 0 4px 14px rgba(142, 181, 222, 0.14);
+    box-shadow: 0 5px 16px rgba(36, 82, 122, 0.14);
     transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.formula-card:hover {
+.formula-card::after {
+    content: "↗";
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.formula-card-copy {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.formula-card:hover,
+.formula-card:focus-visible {
     border-color: var(--blue-text);
-    box-shadow: 0 7px 18px rgba(142, 181, 222, 0.22);
+    box-shadow: 0 8px 20px rgba(36, 82, 122, 0.2);
     transform: translateY(-1px);
+}
+
+.formula-card:focus-visible {
+    outline: 3px solid rgba(88, 101, 242, 0.24);
+    outline-offset: 2px;
 }
 
 .formula-card strong {
@@ -145,7 +174,7 @@ body {
     line-height: 1.2;
 }
 
-.formula-card span {
+.formula-card-detail {
     color: var(--muted);
     font-size: 10px;
     line-height: 1.25;
@@ -1661,13 +1690,115 @@ button {
     font-weight: 700;
 }
 
-.score-form input {
+.score-input-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.score-value-label {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.score-form input[type="number"] {
     width: 130px;
     min-height: 42px;
     border: 1px solid var(--line);
     border-radius: 8px;
     padding: 8px 10px;
     font: inherit;
+}
+
+.score-form.exam-score-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+}
+
+.score-form.exam-score-form label {
+    min-width: 0;
+}
+
+.score-form input[type="range"] {
+    --score-fill: 0%;
+    width: 100%;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+    accent-color: var(--navy);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.score-form input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(
+        to right,
+        var(--navy) 0,
+        var(--navy) var(--score-fill),
+        #e4e9ef var(--score-fill),
+        #e4e9ef 100%
+    );
+}
+
+.score-form input[type="range"]::-webkit-slider-thumb {
+    width: 22px;
+    height: 22px;
+    margin-top: -8px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: var(--navy);
+    box-shadow: 0 1px 5px rgba(24, 39, 56, 0.3);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.score-form input[type="range"]::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: #e4e9ef;
+}
+
+.score-form input[type="range"]::-moz-range-progress {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--navy);
+}
+
+.score-form input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: var(--navy);
+    box-shadow: 0 1px 5px rgba(24, 39, 56, 0.3);
+}
+
+.score-form input[type="range"]:focus-visible {
+    outline: 2px solid #7aa7d8;
+    outline-offset: 3px;
+}
+
+.score-range-scale {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.score-range-scale[hidden],
+.score-value-label[hidden] {
+    display: none;
 }
 
 .score-save-btn {
@@ -2243,24 +2374,28 @@ footer {
         font-size: 11px;
     }
 
-    .formula-card span {
+    .formula-card-detail {
         font-size: 9.5px;
     }
 
     .focus-toggle {
+        position: static;
         top: auto;
-        right: 9px;
-        bottom: 9px;
+        right: auto;
+        bottom: auto;
+        z-index: auto;
         min-height: 34px;
         padding: 6px 10px;
         border-radius: 999px;
         font-size: 12px;
+        box-shadow: none;
     }
 
     body.focus-mode .focus-toggle {
+        position: static;
         top: auto;
-        right: 9px;
-        bottom: 9px;
+        right: auto;
+        bottom: auto;
         width: auto;
         margin: 0;
     }
@@ -2406,6 +2541,14 @@ footer {
         gap: 8px;
     }
 
+    .score-form.exam-score-form {
+        grid-template-columns: 1fr;
+    }
+
+    .score-form.exam-score-form .score-save-btn {
+        width: 100%;
+    }
+
     .practical-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
@@ -2487,8 +2630,6 @@ footer {
 <div id="nav"></div>
 <h1 class="visually-hidden">Zadania z matematyki</h1>
 
-<button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()">Tryb skupienia</button>
-
 <div class="container">
 
     <div class="tasks-layout">
@@ -2510,10 +2651,12 @@ footer {
             </div>
 
             <div class="side-section" id="formulaSection" style="display:none">
-                <div class="side-title">Materiały do pobrania</div>
-                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" download>
-                    <strong>Karta wzorów</strong>
-                    <span>Egzamin ósmoklasisty</span>
+                <div class="side-title">Materiały</div>
+                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Karta wzorów - egzamin ósmoklasisty, otwiera się w nowej karcie">
+                    <span class="formula-card-copy">
+                        <strong>Karta wzorów</strong>
+                        <span class="formula-card-detail">Egzamin ósmoklasisty</span>
+                    </span>
                 </a>
             </div>
 
@@ -2575,6 +2718,7 @@ footer {
             <div class="top-row">
                 <div class="timer hidden" id="timer">00:00</div>
                 <div class="task-counter" id="taskCounter">0 / 0</div>
+                <button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()">Tryb skupienia</button>
             </div>
 
             <div class="meta-box meta-osmoklasista" id="metaBox"></div>
@@ -2607,6 +2751,13 @@ footer {
 
                 <div id="answer" class="box"></div>
 
+                <div class="solution-box" id="solutionBox" hidden>
+                    <div class="solution-switcher" id="solutionSwitcher"></div>
+                    <div class="solution-images" id="solutionImages" hidden></div>
+                    <img class="solution-image" id="solutionImage" alt="rozwiązanie zadania">
+                    <div class="grading-criteria-text" id="gradingCriteriaText" hidden></div>
+                </div>
+
                 <div class="score-panel" id="scorePanel" hidden>
                     <div class="score-panel-head">
                         <strong>Punkty za zadanie</strong>
@@ -2615,21 +2766,18 @@ footer {
 
                     <form class="score-form" id="scoreForm">
                         <label>
-                            Zdobyte punkty
+                            <span class="score-input-heading">
+                                <span>Zdobyte punkty</span>
+                                <output class="score-value-label" id="scoreValueLabel" for="scoreInput" hidden>0 pkt</output>
+                            </span>
                             <input id="scoreInput" name="earned_points" type="number" min="0" step="0.5" inputmode="decimal">
+                            <span class="score-range-scale" id="scoreRangeScale" hidden></span>
                         </label>
                         <button class="score-save-btn score-max-btn" id="scoreMaxButton" type="button">Maks.</button>
                         <button class="score-save-btn" id="scoreSaveButton" type="submit">Zapisz punkty</button>
                     </form>
 
                     <div class="score-status" id="scoreStatus"></div>
-                </div>
-
-                <div class="solution-box" id="solutionBox" hidden>
-                    <div class="solution-switcher" id="solutionSwitcher"></div>
-                    <div class="solution-images" id="solutionImages" hidden></div>
-                    <img class="solution-image" id="solutionImage" alt="rozwiązanie zadania">
-                    <div class="grading-criteria-text" id="gradingCriteriaText" hidden></div>
                 </div>
             </div>
 
@@ -2703,6 +2851,7 @@ let selectedLevel = "egzamin_osmoklasisty";
 let currentTask = null;
 let hintUsed = false;
 let answerShown = false;
+let examScoreUnlocked = false;
 let seconds = 0;
 let currentIndex = 0;
 let currentTaskStartedAt = 0;
@@ -4195,6 +4344,8 @@ function taskPointValue(task){
 }
 
 function normalizeScoreValue(value){
+    if(value === null || value === undefined || value === "") return null;
+
     const numeric = Number(value);
 
     return Number.isFinite(numeric) ? numeric : null;
@@ -5086,23 +5237,10 @@ function isProofTask(task){
     );
 }
 
-function isMaturaOpenAnswerTask(task){
-    return Boolean(
-        task &&
-        task.category === "egzaminy" &&
-        ["matura_podstawowa", "matura_rozszerzona"].includes(task.level) &&
-        !isClosedTask(task) &&
-        !isInputTask(task) &&
-        !isPracticalTask(task) &&
-        !isProofTask(task)
-    );
-}
-
 function requiresSubmittedAnswer(task){
     return isClosedTask(task) ||
         isInputTask(task) ||
-        isPracticalTask(task) ||
-        isMaturaOpenAnswerTask(task);
+        isPracticalTask(task);
 }
 
 function isTrueFalseSequenceTask(task){
@@ -5363,83 +5501,6 @@ function normalizeTypedAnswer(value){
         .replace(/\s+/g, "")
         .replace(/,/g, ".")
         .replace(/%/g, "");
-}
-
-function normalizeExamOpenAnswer(value){
-    return String(value || "")
-        .normalize("NFKC")
-        .trim()
-        .toLowerCase()
-        .replace(/[−–—]/g, "-")
-        .replace(/√/g, "sqrt")
-        .replace(/π/g, "pi")
-        .replace(/,/g, ".")
-        .replace(/\s+/g, "")
-        .replace(/[.;]+$/g, "");
-}
-
-function isAutomaticExamAnswerAvailable(task){
-    if(Array.isArray(task?.acceptedAnswers) && task.acceptedAnswers.length){
-        return true;
-    }
-
-    const answer = String(task?.answer || "").trim();
-
-    if(!answer || /^sprawdź rozwiązanie/i.test(answer)) return false;
-    if(answer.length > 120 || answer.includes("\n")) return false;
-
-    return !/(należy wykazać|to należało wykazać|ponieważ|więc|po przekształceniu|jest parzyst)/i.test(answer);
-}
-
-function examOpenAnswerVariants(task){
-    const source = Array.isArray(task?.acceptedAnswers) && task.acceptedAnswers.length
-        ? task.acceptedAnswers
-        : isAutomaticExamAnswerAvailable(task)
-        ? [task.answer]
-        : [];
-    const variants = new Set();
-
-    source.forEach(value => {
-        const raw = String(value || "").trim();
-        const normalized = normalizeExamOpenAnswer(raw);
-
-        if(!normalized) return;
-
-        variants.add(normalized);
-
-        const equalityCount = (raw.match(/[=∈]/g) || []).length;
-
-        if(equalityCount === 1 || (equalityCount > 1 && !raw.includes(","))){
-            variants.add(normalizeExamOpenAnswer(raw.split(/[=∈]/).pop()));
-        }
-
-        const resultPhrase = raw.match(
-            /\b(?:wynosi|wynoszą|równa|równy|równe|rowna|rowny|rowne|to)\b\s+(.+)$/i
-        );
-
-        if(resultPhrase){
-            variants.add(normalizeExamOpenAnswer(resultPhrase[1]));
-        }
-    });
-
-    [...variants].forEach(value => {
-        const withoutUnit = value.replace(/(?:zł|zl|cm|km|m|h|°)$/i, "");
-
-        if(withoutUnit && withoutUnit !== value){
-            variants.add(withoutUnit);
-        }
-    });
-
-    return [...variants].filter(Boolean);
-}
-
-function isExamOpenAnswerCorrect(value, task = currentTask){
-    const normalized = normalizeExamOpenAnswer(value);
-
-    return Boolean(
-        normalized &&
-        examOpenAnswerVariants(task).some(answer => answer === normalized)
-    );
 }
 
 function parsePracticalNumber(value){
@@ -5788,6 +5849,8 @@ function clearTaskInteraction(){
     const scoreStatus = document.getElementById("scoreStatus");
     const scoreInput = document.getElementById("scoreInput");
 
+    examScoreUnlocked = false;
+
     if(mcq){
         mcq.innerHTML = "";
         mcq.className = "mcq";
@@ -6072,6 +6135,7 @@ function handleKeyboardNavigation(event){
 document.addEventListener("keydown", handleKeyboardNavigation);
 document.getElementById("scoreForm")?.addEventListener("submit", submitScore);
 document.getElementById("scoreMaxButton")?.addEventListener("click", submitMaxScore);
+document.getElementById("scoreInput")?.addEventListener("input", updateScoreRangePresentation);
 
 function setupMCQ(){
     const mcq = document.getElementById("mcq");
@@ -6126,9 +6190,6 @@ function setupMCQ(){
     } else if(isPracticalTask(currentTask)){
         mcq.classList.add("active", "practical-task");
         setupPracticalTask(mcq);
-    } else if(isMaturaOpenAnswerTask(currentTask)){
-        mcq.classList.add("active", "input-task", "exam-open-answer-task");
-        setupExamOpenAnswerTask(mcq);
     } else if(isInputTask(currentTask)){
         mcq.classList.add("active", "input-task");
         setupInputTask(mcq);
@@ -6181,11 +6242,15 @@ function isCourseManualScoreTask(task = currentTask){
     return Boolean(task && task.category === "kurs" && isManualScoreTask(task));
 }
 
+function isExamManualScoreTask(task = currentTask){
+    return Boolean(task && task.category === "egzaminy" && isManualScoreTask(task));
+}
+
 function shouldShowScorePanel(task = currentTask){
     if(!task || !isManualScoreTask(task)) return false;
 
-    if(task.category === "egzaminy"){
-        return true;
+    if(isExamManualScoreTask(task)){
+        return examScoreUnlocked || Boolean(getTaskScore(task));
     }
 
     if(isCourseManualScoreTask(task)){
@@ -6222,51 +6287,131 @@ function advanceAfterScoreSave(task){
     }, 250);
 }
 
+function scoreRangeStep(maxPoints){
+    return Number.isInteger(maxPoints) ? 1 : 0.5;
+}
+
+function renderScoreRangeScale(maxPoints, step){
+    const scale = document.getElementById("scoreRangeScale");
+
+    if(!scale) return;
+
+    scale.replaceChildren();
+
+    const tickCount = Math.round(maxPoints / step);
+
+    for(let index = 0; index <= tickCount; index++){
+        const tick = document.createElement("span");
+
+        tick.innerText = formatPoints(Math.min(index * step, maxPoints));
+        scale.appendChild(tick);
+    }
+}
+
+function updateScoreRangePresentation(){
+    const input = document.getElementById("scoreInput");
+    const valueLabel = document.getElementById("scoreValueLabel");
+    const status = document.getElementById("scoreStatus");
+
+    if(!input || input.type !== "range" || !valueLabel) return;
+
+    const maxPoints = Number(input.max) || 0;
+    const earnedPoints = Math.min(maxPoints, Math.max(0, Number(input.value) || 0));
+    const fill = maxPoints ? (earnedPoints / maxPoints) * 100 : 0;
+
+    input.style.setProperty("--score-fill", `${fill}%`);
+    input.setAttribute(
+        "aria-valuetext",
+        `${formatPoints(earnedPoints)} z ${formatPoints(maxPoints)} punktów`
+    );
+    valueLabel.value = `${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt`;
+    valueLabel.innerText = valueLabel.value;
+
+    if(status && document.activeElement === input){
+        status.innerText = `Wybrano ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt. Kliknij „Zapisz punkty”.`;
+    }
+}
+
 function updateScorePanel(){
     const panel = document.getElementById("scorePanel");
+    const form = document.getElementById("scoreForm");
     const input = document.getElementById("scoreInput");
     const maxLabel = document.getElementById("scoreMaxLabel");
     const status = document.getElementById("scoreStatus");
     const saveButton = document.getElementById("scoreSaveButton");
     const maxButton = document.getElementById("scoreMaxButton");
+    const valueLabel = document.getElementById("scoreValueLabel");
+    const rangeScale = document.getElementById("scoreRangeScale");
 
-    if(!panel || !input || !maxLabel || !status) return;
+    if(!panel || !form || !input || !maxLabel || !status || !valueLabel || !rangeScale) return;
 
     const maxPoints = taskMaxPoints(currentTask);
     const saved = getSavedProgressItem(currentTask);
+    const isExamScore = isExamManualScoreTask(currentTask);
     const lockedScore = isCourseTask(currentTask) && hasSavedPoints(saved);
+    const currentRangeValue = isExamScore && !panel.hidden && input.type === "range"
+        ? input.value
+        : null;
+    const storedScore = isExamScore
+        ? getTaskScore(currentTask)
+        : hasSavedPoints(saved)
+        ? {
+            earnedPoints: Number(saved.earned_points),
+            maxPoints: Number(saved.max_points) || maxPoints
+        }
+        : null;
 
     panel.hidden = !shouldShowScorePanel();
 
     if(panel.hidden) return;
 
+    form.classList.toggle("exam-score-form", isExamScore);
+    input.type = isExamScore ? "range" : "number";
     input.min = "0";
     input.max = String(maxPoints);
-    input.step = Number.isInteger(maxPoints) ? "1" : "0.5";
+    input.step = String(scoreRangeStep(maxPoints));
     input.placeholder = `0-${formatPoints(maxPoints)}`;
     maxLabel.innerText = `maks. ${formatPoints(maxPoints)} pkt`;
     input.disabled = lockedScore;
+    valueLabel.hidden = !isExamScore;
+    rangeScale.hidden = !isExamScore;
+
+    if(isExamScore){
+        input.removeAttribute("inputmode");
+        input.setAttribute("aria-label", "Zdobyte punkty");
+        renderScoreRangeScale(maxPoints, Number(input.step));
+    } else {
+        input.inputMode = "decimal";
+        input.removeAttribute("aria-valuetext");
+        input.style.removeProperty("--score-fill");
+        rangeScale.replaceChildren();
+    }
 
     if(saveButton){
         saveButton.disabled = lockedScore;
     }
 
     if(maxButton){
+        maxButton.hidden = isExamScore;
         maxButton.disabled = lockedScore;
     }
 
-    if(hasSavedPoints(saved)){
-        input.value = String(saved.earned_points);
-        status.innerText = `Zapisano: ${formatPoints(saved.earned_points)} / ${formatPoints(saved.max_points || maxPoints)} pkt.`;
+    if(currentRangeValue !== null){
+        input.value = currentRangeValue;
+    } else if(storedScore){
+        input.value = String(storedScore.earnedPoints);
+        status.innerText = `Zapisano: ${formatPoints(storedScore.earnedPoints)} / ${formatPoints(storedScore.maxPoints)} pkt.`;
         if(lockedScore){
             status.innerText += " W trybie kursu nie można poprawiać zapisanego wyniku.";
         }
     } else {
-        input.value = "";
+        input.value = isExamScore ? "0" : "";
         status.innerText = isCourseManualScoreTask(currentTask)
             ? "Po sprawdzeniu odpowiedzi wpisz liczbę zdobytych punktów albo kliknij Maks."
-            : "Wpisz wynik po sprawdzeniu rozwiązania z zasadami oceniania albo kliknij Maks.";
+            : "Ustaw liczbę zdobytych punktów na suwaku i zapisz wynik.";
     }
+
+    updateScoreRangePresentation();
 }
 
 function updateAnswerTools(){
@@ -6281,16 +6426,13 @@ function updateAnswerTools(){
 
     const isCourse = isCourseTask();
     const isClosed = isClosedTask(currentTask);
-    const isSubmitted = requiresSubmittedAnswer(currentTask);
-    const isOpenExam = currentTask.category === "egzaminy" &&
-        !isClosed &&
-        (isMaturaOpenAnswerTask(currentTask) || !isSubmitted);
+    const isOpenExam = isExamManualScoreTask(currentTask);
 
     if(hintButton){
         hintButton.hidden = isOpenExam;
     }
 
-    answerButton.hidden = isOpenExam || (isCourse && isSubmitted);
+    answerButton.hidden = isOpenExam || (isCourse && requiresSubmittedAnswer(currentTask));
 
     if(solutionButton){
         solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
@@ -6450,44 +6592,6 @@ function setupInputTask(mcq){
     form.onsubmit = event => {
         event.preventDefault();
         checkInputAnswer(form);
-    };
-
-    mcq.appendChild(form);
-}
-
-function setupExamOpenAnswerTask(mcq){
-    const form = document.createElement("form");
-    const grid = document.createElement("div");
-    const wrapper = document.createElement("div");
-    const label = document.createElement("label");
-    const input = document.createElement("textarea");
-    const button = document.createElement("button");
-
-    form.className = "input-answer-form exam-open-answer-form";
-    grid.className = "input-answer-grid";
-    wrapper.className = "input-answer-field";
-    label.htmlFor = "exam-open-answer";
-    label.innerText = "Twoja odpowiedź";
-    input.id = "exam-open-answer";
-    input.name = "answer";
-    input.autocomplete = "off";
-    input.placeholder = "Wpisz odpowiedź";
-    input.rows = 3;
-    input.oninput = () => {
-        input.classList.remove("correct", "wrong");
-    };
-    button.type = "submit";
-    button.className = "action-btn answer input-check-btn";
-    button.innerText = "Sprawdź";
-
-    wrapper.appendChild(label);
-    wrapper.appendChild(input);
-    grid.appendChild(wrapper);
-    form.appendChild(grid);
-    form.appendChild(button);
-    form.onsubmit = event => {
-        event.preventDefault();
-        checkExamOpenAnswer(form);
     };
 
     mcq.appendChild(form);
@@ -7159,60 +7263,6 @@ function checkInputAnswer(form){
     }, 1400);
 }
 
-function checkExamOpenAnswer(form){
-    if(currentTaskAnswered) return;
-
-    const input = form.querySelector("textarea");
-    const value = String(input?.value || "").trim();
-
-    if(!value){
-        input?.classList.add("wrong");
-        showMessage("Wpisz odpowiedź przed sprawdzeniem.");
-        return;
-    }
-
-    const isCorrect = isExamOpenAnswerCorrect(value);
-
-    input.classList.toggle("correct", isCorrect);
-    input.classList.toggle("wrong", !isCorrect);
-
-    if(isCorrect){
-        const maxPoints = taskMaxPoints(currentTask);
-        const scoreData = { earnedPoints: maxPoints, maxPoints };
-
-        disableMCQ();
-        addProgress("good", scoreData);
-
-        setTimeout(() => {
-            nextTask();
-        }, 850);
-
-        return;
-    }
-
-    disableMCQ();
-
-    if(hasGradingCriteria(currentTask)){
-        showGradingCriteria();
-        showMessage(
-            "Odpowiedź nie została automatycznie uznana za w pełni poprawną. " +
-            "To zadanie wymaga porównania rozwiązania z zasadami oceniania. " +
-            "Sprawdź kryteria i wpisz poniżej liczbę zdobytych punktów."
-        );
-        return;
-    }
-
-    if(hasTaskSolutions(currentTask)){
-        showSolution();
-    }
-
-    showMessage(
-        "Odpowiedź nie została automatycznie uznana za w pełni poprawną. " +
-        "To zadanie wymaga porównania rozwiązania z zasadami oceniania. " +
-        "Dla tego zadania zasady nie są jeszcze przypisane, dlatego porównaj tok rozwiązania z dostępnym rozwiązaniem i wpisz liczbę punktów."
-    );
-}
-
 function setSessionScore(task, type, scoreData = null){
     const key = getTaskKey(task);
     const score = scoreData || automaticScoreForResult(type, task);
@@ -7433,6 +7483,9 @@ function showSolution(index = selectedSolutionIndex){
 
     selectedSolutionIndex = safeIndex;
     answerShown = true;
+    if(isExamManualScoreTask(currentTask)){
+        examScoreUnlocked = true;
+    }
     box.hidden = false;
     image.removeAttribute("src");
     image.hidden = true;
@@ -7566,6 +7619,10 @@ function showGradingCriteria(index = selectedGradingIndex){
         setOptimizedImageSrc(image, item.path);
     } else {
         return;
+    }
+
+    if(isExamManualScoreTask(currentTask)){
+        examScoreUnlocked = true;
     }
 
     criteria.forEach((criteriaItem, itemIndex) => {
