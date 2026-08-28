@@ -151,12 +151,6 @@ body {
     line-height: 1;
 }
 
-.formula-card-copy {
-    display: grid;
-    gap: 2px;
-    min-width: 0;
-}
-
 .formula-card:hover,
 .formula-card:focus-visible {
     border-color: var(--blue-text);
@@ -172,12 +166,6 @@ body {
 .formula-card strong {
     font-size: 12px;
     line-height: 1.2;
-}
-
-.formula-card-detail {
-    color: var(--muted);
-    font-size: 10px;
-    line-height: 1.25;
 }
 
 #formulaSection {
@@ -1158,6 +1146,20 @@ body.focus-mode .task-card {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
+}
+
+.source-attribution {
+    margin: 10px 2px 0;
+    padding-top: 9px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.source-attribution[hidden] {
+    display: none;
 }
 
 .task-actions {
@@ -2374,10 +2376,6 @@ footer {
         font-size: 11px;
     }
 
-    .formula-card-detail {
-        font-size: 9.5px;
-    }
-
     .focus-toggle {
         position: static;
         top: auto;
@@ -2653,10 +2651,7 @@ footer {
             <div class="side-section" id="formulaSection" style="display:none">
                 <div class="side-title">Materiały</div>
                 <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Karta wzorów - egzamin ósmoklasisty, otwiera się w nowej karcie">
-                    <span class="formula-card-copy">
-                        <strong>Karta wzorów</strong>
-                        <span class="formula-card-detail">Egzamin ósmoklasisty</span>
-                    </span>
+                    <strong>Karta wzorów</strong>
                 </a>
             </div>
 
@@ -2780,6 +2775,10 @@ footer {
                     <div class="score-status" id="scoreStatus"></div>
                 </div>
             </div>
+
+            <p class="source-attribution" id="sourceAttribution" hidden>
+                Prezentowane arkusze to materiały Centralnej Komisji Egzaminacyjnej (CKE). Delta Sigma nie jest oficjalnym serwisem CKE.
+            </p>
 
         </div>
     </div>
@@ -3084,7 +3083,6 @@ const LEVEL_LABELS = {
 const FORMULA_SHEETS = {
     egzamin_osmoklasisty: {
         label: "Karta wzorów",
-        detail: "Egzamin ósmoklasisty",
         href: "wzory_eo.pdf"
     }
 };
@@ -3299,7 +3297,7 @@ function updateFormulaSection(){
 
     card.href = data.href;
     card.querySelector("strong").innerText = data.label;
-    card.querySelector("span").innerText = data.detail;
+    card.setAttribute("aria-label", `${data.label}, otwiera się w nowej karcie`);
 }
 
 function updateAssignedCourseName(user = null){

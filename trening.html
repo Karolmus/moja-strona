@@ -168,12 +168,22 @@ body {
     min-height: 38px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: #e9eef4;
     color: var(--text);
     padding: 7px 8px;
     text-align: center;
     font-size: 12px;
     font-weight: 600;
+}
+
+.level-locked-eo {
+    border-color: #8ebd72;
+    background: linear-gradient(90deg, #b2d699, #ffffff);
+}
+
+.level-locked-mp,
+.level-locked-mr {
+    border-color: #b897cf;
+    background: linear-gradient(90deg, #d5b8ea, #ffffff);
 }
 
 .level-btn,
@@ -1350,7 +1360,7 @@ body {
 
             <div class="problem-card">
                 <div class="task-topic" id="taskTopic">Tryb łączny</div>
-                <div class="problem-text" id="problemText">Kliknij Start</div>
+                <div class="problem-text" id="problemText">Kliknij, aby rozpocząć</div>
                 <div class="round-summary" id="roundSummary" hidden>
                     <div class="summary-grid">
                         <div class="summary-tile">
@@ -3850,7 +3860,7 @@ function resetRound(){
     state.history = [];
     state.seenTaskKeys.clear();
     loadTaskMemory();
-    problemText.innerHTML = "Kliknij Start";
+    problemText.innerHTML = "Kliknij, aby rozpocząć";
     hideRoundSummary();
     taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
     answerInput.value = "";
@@ -3954,7 +3964,7 @@ function renderControls(){
 
     const lockedLevel = document.createElement("div");
 
-    lockedLevel.className = "level-locked";
+    lockedLevel.className = `level-locked level-locked-${state.level}`;
     lockedLevel.innerText = LEVELS[state.level].shortLabel || LEVELS[state.level].label;
     levelTabs.appendChild(lockedLevel);
 
