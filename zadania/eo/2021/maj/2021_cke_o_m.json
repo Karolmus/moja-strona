@@ -1,0 +1,440 @@
+[
+  {
+    "file": "1_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "diagramy i średnia arytmetyczna",
+    "hint": "Odczytaj z diagramu liczbę medali każdego koloru dla wszystkich lat, a następnie oblicz sumę i średnią.",
+    "answer": "FP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "diagramy",
+      "odczytywanie-danych",
+      "średnia-arytmetyczna"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "2_2021_cke_o_m.webp",
+    "difficulty": 1,
+    "topic": "działania na liczbach",
+    "hint": "Oblicz kolejno wartości czterech wyrażeń, uważając na znaki liczb ujemnych.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "działania-na-liczbach",
+      "liczby-ujemne",
+      "ułamki-dziesiętne"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "3_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "ułamki",
+    "hint": "Sprowadź ułamki do wspólnego mianownika albo porównaj ich wartości.",
+    "answer": "BC",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "ułamki",
+      "porównywanie-liczb"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "4_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "potęgi",
+    "hint": "Zapisz 60 000 000 jako iloczyn liczby 6 i potęgi dziesięciu.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "potęgi",
+      "działania-na-potęgach"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "5_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "podzielność",
+    "hint": "Wśród pięciu kolejnych liczb znajdź czynnik parzysty i wielokrotność 5.",
+    "answer": "A3",
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "tags": [
+      "podzielność",
+      "liczby-całkowite",
+      "uzasadnianie"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "6_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "procenty",
+    "hint": "Wybierz właściwy wiersz tabeli i podstaw podstawę podatku dokładnie do podanego wzoru.",
+    "answer": "AD",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "procenty",
+      "wyrażenia-arytmetyczne",
+      "odczytywanie-tabel"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "7_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "hint": "Oszacuj pierwiastek z 10 między dwiema kolejnymi liczbami całkowitymi.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "pierwiastki",
+      "szacowanie"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "8_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Sprawdź parzystość wyrażeń oraz odejmij wzory opisujące b i c.",
+    "answer": "BC",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "wyrażenia-algebraiczne",
+      "liczby-parzyste",
+      "wzory"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "9_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Najpierw wyznacz n z warunku dotyczącego najmniejszej liczby, a potem oblicz pozostałe.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "wyrażenia-algebraiczne",
+      "trójki-pitagorejskie"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "10_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "średnia arytmetyczna",
+    "hint": "Najpierw oblicz łączny koszt czterech artykułów ze średniej.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "średnia-arytmetyczna",
+      "zadania-tekstowe"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "11_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "prawdopodobieństwo",
+    "hint": "Oblicz liczbę losów wygrywających i liczbę losów pozostałych po losowaniu.",
+    "answer": "BC",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "prawdopodobieństwo",
+      "ułamki",
+      "zadania-tekstowe"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "12_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "kąty w trójkącie",
+    "hint": "Wykorzystaj prostopadłość obu wysokości oraz kąty przyległe.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "kąty-w-trójkącie",
+      "geometria"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "13_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "podzielność",
+    "hint": "Wspólne linie cięcia pojawiają się w odległościach będących wspólnymi wielokrotnościami 2 i 5.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "nww",
+      "podzielność",
+      "zadania-tekstowe"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "14_2021_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "objętość prostopadłościanu",
+    "hint": "Oblicz pojemność skrzyni i pomnóż ją przez podaną część.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prostopadłościan",
+      "objętość",
+      "ułamki"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "15_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "pole ostrosłupa",
+    "hint": "Wyznacz pole podstawy i ścian bocznych jednego ostrosłupa, pamiętając, że sklejone podstawy nie są na zewnątrz.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "ostrosłup",
+      "pole-powierzchni",
+      "geometria-przestrzenna"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "16_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "ułamki",
+    "hint": "Dodaj trzy części tabliczki i porównaj sumę z jednością.",
+    "answer": "Taki podział tabliczki czekolady nie jest możliwy.",
+    "tags": [
+      "ułamki",
+      "uzasadnianie",
+      "zadania-tekstowe",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "16_s_1.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 2",
+        "file": "16_s_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "16_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "16_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "17_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "prędkość, droga i czas",
+    "hint": "Odczytaj długość trasy z siatki i skali, a następnie oblicz czas przejazdu.",
+    "answer": "Adam dotarł na spotkanie z Bartkiem o godzinie 17:56.",
+    "tags": [
+      "prędkość-droga-czas",
+      "skala",
+      "zadania-tekstowe",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "17_s_1.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 2",
+        "file": "17_s_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "17_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "17_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "18_2021_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "równania",
+    "hint": "Oznacz cenę puszki przez x i zapisz dwa warunki opisujące posiadaną kwotę.",
+    "answer": "Jedna puszka karmy dla psa kosztuje 3,60 zł.",
+    "tags": [
+      "równania",
+      "zadania-tekstowe",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "18_s_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "18_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "19_2021_cke_o_m.webp",
+    "difficulty": 4,
+    "topic": "twierdzenie Pitagorasa i pola figur",
+    "hint": "Oblicz przekątną prostokąta, a następnie porównaj dwa wzory na pole trójkąta ACD.",
+    "answer": "Długość odcinka DS jest równa 9,6 cm.",
+    "tags": [
+      "twierdzenie-pitagorasa",
+      "pole-trójkąta",
+      "prostokąt",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "19_s_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "19_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "19_z2.webp"
+      }
+    ]
+  }
+]

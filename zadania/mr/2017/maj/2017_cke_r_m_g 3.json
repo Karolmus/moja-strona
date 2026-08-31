@@ -1,0 +1,560 @@
+[
+  {
+    "file": "1_2017_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "A",
+    "tags": [
+      "pierwiastki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 62
+  },
+  {
+    "file": "2_2017_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "granice",
+    "level": "matura_rozszerzona",
+    "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
+    "answer": "D",
+    "tags": [
+      "granice",
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 81
+  },
+  {
+    "file": "3_2017_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "okręgi i koła",
+    "level": "matura_rozszerzona",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "answer": "C",
+    "tags": [
+      "okręgi i koła",
+      "trójkąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 81
+  },
+  {
+    "file": "4_2017_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "answer": "B",
+    "tags": [
+      "geometria analityczna",
+      "wektory"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 61
+  },
+  {
+    "file": "5_2017_cke_r_m_g.webp",
+    "difficulty": 3,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "równania",
+      "wielomiany",
+      "wyrażenia algebraiczne",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 61,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "5_s_0_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "6_2017_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "funkcje",
+      "równania",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 45,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "7_2017_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "statystyka",
+      "czworokąty",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 26,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_5_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_6_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_7_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_7_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_8_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "8_2017_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "funkcje",
+    "level": "matura_rozszerzona",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "funkcje",
+      "równania",
+      "trygonometria",
+      "trójkąty",
+      "czworokąty",
+      "pola figur",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 11,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_5_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_5_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_6_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_7_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "9_2017_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "trójkąty",
+    "level": "matura_rozszerzona",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąty",
+      "czworokąty",
+      "stereometria",
+      "objętość",
+      "skala i jednostki",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 12,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_3_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2017_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "funkcje",
+    "level": "matura_rozszerzona",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "funkcje",
+      "nierówności",
+      "równania",
+      "trygonometria",
+      "czworokąty",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 47,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "10_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "10_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "10_s_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "11_2017_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "prawdopodobieństwo",
+      "kombinatoryka",
+      "statystyka",
+      "podzielność",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 23,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_3_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12_2017_cke_r_m_g.webp",
+    "difficulty": 5,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "nierówności",
+      "równania",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "completionPercent": 28,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "12_s_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "13_2017_cke_r_m_g.webp",
+    "difficulty": 5,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "równania",
+      "geometria analityczna",
+      "okręgi i koła",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "completionPercent": 40,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_1_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_5_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_6_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_7_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_8_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_9_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_10_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_11_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_12_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "14_2017_cke_r_m_g.webp",
+    "difficulty": 5,
+    "topic": "ciągi arytmetyczne",
+    "level": "matura_rozszerzona",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi arytmetyczne",
+      "ciągi geometryczne",
+      "ciągi",
+      "nierówności",
+      "równania",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 6,
+    "completionPercent": 60,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_5_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_6_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_7_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_8_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_8_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_9_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_10_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_11_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_12_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_13_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_13_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "14_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "15_2017_cke_r_m_g.webp",
+    "difficulty": 5,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "funkcje",
+      "wielomiany",
+      "czworokąty",
+      "pola figur",
+      "objętość",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 7,
+    "completionPercent": 24,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "15_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "15_s_2_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "15_s_3_1.webp"
+      }
+    ]
+  }
+]

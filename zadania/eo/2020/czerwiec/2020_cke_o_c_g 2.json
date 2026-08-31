@@ -1,0 +1,535 @@
+[
+  {
+    "file": "1_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "procenty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "AD",
+    "tags": [
+      "procenty",
+      "liczby i działania",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "2_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "liczby i działania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "answer": "D",
+    "tags": [
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "answer": "PP",
+    "tags": [
+      "geometria analityczna",
+      "podzielność"
+    ],
+    "maxPoints": 1,
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ]
+  },
+  {
+    "file": "5_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "C",
+    "tags": [
+      "ciągi",
+      "prędkość, droga i czas",
+      "skala i jednostki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "B",
+    "tags": [
+      "pierwiastki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "potęgi",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "answer": "E",
+    "tags": [
+      "potęgi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ]
+  },
+  {
+    "file": "8_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "B",
+    "tags": [
+      "funkcje",
+      "statystyka",
+      "geometria analityczna",
+      "okręgi i koła",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "D",
+    "tags": [
+      "równania",
+      "czworokąty",
+      "pola figur",
+      "prędkość, droga i czas"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "PP",
+    "tags": [
+      "trójkąty",
+      "czworokąty",
+      "pola figur"
+    ],
+    "maxPoints": 1,
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ]
+  },
+  {
+    "file": "12_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "odczytywanie danych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
+    "answer": "AD",
+    "tags": [
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "13_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "procenty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "A",
+    "tags": [
+      "procenty",
+      "dowodzenie"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "D",
+    "tags": [
+      "trójkąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "15_2020_cke_o_c_g.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "A",
+    "tags": [
+      "równania",
+      "wyrażenia algebraiczne",
+      "trójkąty",
+      "czworokąty",
+      "pola figur",
+      "skala i jednostki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "16_2020_cke_o_c_g.webp",
+    "difficulty": 3,
+    "topic": "równania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "trójkąty",
+      "czworokąty",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "16_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "17_2020_cke_o_c_g.webp",
+    "difficulty": 3,
+    "topic": "ciągi",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "prawdopodobieństwo",
+      "kombinatoryka",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "17_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "17_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "17_s_5_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "17_s_5_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_6_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "18_2020_cke_o_c_g.webp",
+    "difficulty": 3,
+    "topic": "procenty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "procenty",
+      "równania",
+      "podzielność",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "18_s_4_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_5_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_6_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_6_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "19_2020_cke_o_c_g.webp",
+    "difficulty": 4,
+    "topic": "ciągi",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "statystyka",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "19_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "19_s_3_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "20_2020_cke_o_c_g.webp",
+    "difficulty": 4,
+    "topic": "pola figur",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pola figur",
+      "skala i jednostki",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "20_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "20_s_3_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "21_2020_cke_o_c_g.webp",
+    "difficulty": 4,
+    "topic": "stereometria",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "stereometria",
+      "pola figur",
+      "objętość",
+      "skala i jednostki",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "21_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "21_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "21_z_1_1.webp"
+      }
+    ]
+  }
+]

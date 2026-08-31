@@ -1,0 +1,554 @@
+[
+  {
+    "file": "1_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 3,
+    "topic": "granice",
+    "level": "matura_rozszerzona",
+    "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "granice",
+      "ciągi",
+      "wielomiany",
+      "wyrażenia algebraiczne",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "1_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "1_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "2_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "prawdopodobieństwo",
+      "kombinatoryka",
+      "podzielność",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "2_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "2_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "3_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "funkcje",
+      "nierówności",
+      "wielomiany",
+      "czworokąty",
+      "stereometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_3_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "4_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "równania",
+      "geometria analityczna",
+      "trójkąty",
+      "czworokąty",
+      "skala i jednostki",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_4_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_5_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "5_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "nierówności",
+      "równania",
+      "wielomiany",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "6_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "ciągi arytmetyczne",
+    "level": "matura_rozszerzona",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi arytmetyczne",
+      "ciągi geometryczne",
+      "ciągi",
+      "równania",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "6_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_3_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "7_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "równania",
+      "trygonometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_3_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "8_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "równania",
+      "trygonometria",
+      "okręgi i koła",
+      "trójkąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_4_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "9_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 5,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "równania",
+      "geometria analityczna",
+      "wektory",
+      "okręgi i koła",
+      "trójkąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_4_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_5_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 5,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "nierówności",
+      "równania",
+      "czworokąty",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_4_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_5_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_6_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_6_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_7_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "11_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 5,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "równania",
+      "trygonometria",
+      "okręgi i koła",
+      "trójkąty",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 6,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12.1_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "równania",
+      "trygonometria",
+      "statystyka",
+      "okręgi i koła",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "contextFile": "12_kontekst_2026_cke_r_m_g_f2023.webp",
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12.2_2026_cke_r_m_g_f2023.webp",
+    "difficulty": 4,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "potęgi",
+      "pierwiastki",
+      "ciągi",
+      "funkcje",
+      "wielomiany",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "contextFile": "12_kontekst_2026_cke_r_m_g_f2023.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12.2_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "12.2_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.2_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12.2_z_3_1.webp"
+      }
+    ]
+  }
+]

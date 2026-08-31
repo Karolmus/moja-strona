@@ -348,6 +348,19 @@ body:not(.guest-exam-mode) .selector-grid {
     overflow: visible;
 }
 
+.source-select {
+    display: none;
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    padding: 8px 34px 8px 10px;
+}
+
 .source-summary-row {
     display: grid;
     grid-template-columns: 1fr;
@@ -2193,6 +2206,14 @@ footer {
         position: static;
     }
 
+    .source-list.exam-source-list {
+        display: none;
+    }
+
+    .source-select.exam-source-select {
+        display: block;
+    }
+
     .task-actions {
         grid-template-columns: 1fr;
         align-items: stretch;
@@ -2644,6 +2665,7 @@ footer {
 
                 <div class="side-section source-picker-section">
                     <div class="side-title" id="sourceTitle">Wybór lekcji</div>
+                    <select class="source-select" id="sourceSelect" aria-label="Wybierz arkusz" onchange="setSource(this.value)"></select>
                     <div class="source-list" id="sourceList"></div>
                 </div>
             </div>
@@ -2902,19 +2924,63 @@ const COURSE_PART_LABELS = {
 const TASK_SOURCES = [
     { path: "zadania/mp/2026/maj/2026_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2026/czerwiec/2026_cke_p_c.json", category: "egzaminy" },
-    { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
-    { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2022/maj/2022_cke_p_m.json", category: "egzaminy" },
-    { path: "zadania/mr/2023/maj/2023_cke_r_m.json", category: "egzaminy" },
-    { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2021/maj/2021_cke_p_m_g.json", category: "egzaminy", detail: "2021 / maj / CKE" },
+    { path: "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json", category: "egzaminy", detail: "2021 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json", category: "egzaminy", detail: "2021 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json", category: "egzaminy", detail: "2020 / czerwiec / CKE" },
+    { path: "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json", category: "egzaminy", detail: "2020 / lipiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json", category: "egzaminy", detail: "2020 / wrzesień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2019/maj/2019_cke_p_m_g.json", category: "egzaminy", detail: "2019 / maj / CKE" },
+    { path: "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json", category: "egzaminy", detail: "2019 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json", category: "egzaminy", detail: "2019 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2018/maj/2018_cke_p_m_g.json", category: "egzaminy", detail: "2018 / maj / CKE" },
+    { path: "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json", category: "egzaminy", detail: "2018 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json", category: "egzaminy", detail: "2018 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2017/maj/2017_cke_p_m_g.json", category: "egzaminy", detail: "2017 / maj / CKE" },
+    { path: "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json", category: "egzaminy", detail: "2017 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json", category: "egzaminy", detail: "2017 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2016/maj/2016_cke_p_m_g.json", category: "egzaminy", detail: "2016 / maj / CKE" },
+    { path: "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json", category: "egzaminy", detail: "2016 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json", category: "egzaminy", detail: "2016 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2015/maj/2015_cke_p_m_g.json", category: "egzaminy", detail: "2015 / maj / CKE" },
+    { path: "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json", category: "egzaminy", detail: "2015 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json", category: "egzaminy", detail: "2015 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json", category: "egzaminy", detail: "2026 / maj / formuła 2023 / CKE" },
+    { path: "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json", category: "egzaminy", detail: "2026 / maj / formuła 2015 / CKE" },
+    { path: "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json", category: "egzaminy", detail: "2026 / czerwiec / termin dodatkowy / formuła 2023 / CKE" },
+    { path: "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json", category: "egzaminy", detail: "2026 / czerwiec / termin dodatkowy / formuła 2015 / CKE" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2023/maj/2023_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2022/maj/2022_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2021/maj/2021_cke_r_m.json", category: "egzaminy" },
-    { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy" },
-    { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json", category: "egzaminy", detail: "2020 / czerwiec / CKE" },
+    { path: "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json", category: "egzaminy", detail: "2020 / lipiec / termin dodatkowy / CKE" },
+    { path: "zadania/mr/2019/maj/2019_cke_r_m_g.json", category: "egzaminy", detail: "2019 / maj / CKE" },
+    { path: "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json", category: "egzaminy", detail: "2019 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mr/2018/maj/2018_cke_r_m_g.json", category: "egzaminy", detail: "2018 / maj / CKE" },
+    { path: "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json", category: "egzaminy", detail: "2018 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mr/2017/maj/2017_cke_r_m_g.json", category: "egzaminy", detail: "2017 / maj / CKE" },
+    { path: "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json", category: "egzaminy", detail: "2017 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mr/2016/maj/2016_cke_r_m_g.json", category: "egzaminy", detail: "2016 / maj / CKE" },
+    { path: "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json", category: "egzaminy", detail: "2016 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mr/2015/maj/2015_cke_r_m_g.json", category: "egzaminy", detail: "2015 / maj / CKE" },
+    { path: "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json", category: "egzaminy", detail: "2015 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/eo/2026/maj/2026_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2022/maj/2022_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2021/maj/2021_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json", category: "egzaminy", detail: "2021 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json", category: "egzaminy", detail: "2020 / czerwiec / CKE" },
+    { path: "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json", category: "egzaminy", detail: "2020 / lipiec / termin dodatkowy / CKE" },
+    { path: "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json", category: "egzaminy", detail: "2019 / kwiecień / CKE" },
+    { path: "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json", category: "egzaminy", detail: "2019 / czerwiec / termin dodatkowy / CKE" },
     {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
         category: "kurs",
@@ -3088,7 +3154,12 @@ const FORMULA_SHEETS = {
 };
 
 const MONTH_LABELS = {
-    maj: "maj"
+    kwiecien: "kwiecień",
+    maj: "maj",
+    czerwiec: "czerwiec",
+    lipiec: "lipiec",
+    sierpien: "sierpień",
+    wrzesien: "wrzesień"
 };
 
 const GUEST_PROGRESS_STORAGE_KEY = "deltaSigmaGuestExamProgress";
@@ -3471,12 +3542,22 @@ function normalizeTaskSolutions(task, basePath){
     const groups = new Map();
 
     normalized.forEach((solution, index) => {
-        const match = String(solution.file || "").match(/^(.*_s_)([a-z]+)(\d+)(\.[^.]+)$/i);
-        const key = match ? `${match[1]}${match[2]}`.toLowerCase() : `single:${index}`;
-        const label = match
-            ? String(solution.label || match[2].toUpperCase()).replace(/\s*\d+$/, "")
+        const filename = String(solution.file || "");
+        const lettered = filename.match(/^(.*_s_)([a-z]+)(\d+)(\.[^.]+)$/i);
+        const numbered = filename.match(/^(.*_s_)(\d+)_(\d+)(\.[^.]+)$/i);
+        const key = lettered
+            ? `${lettered[1]}${lettered[2]}`.toLowerCase()
+            : numbered
+                ? `${numbered[1]}${numbered[2]}`.toLowerCase()
+                : `single:${index}`;
+        const label = lettered
+            ? String(solution.label || lettered[2].toUpperCase()).replace(/\s*\d+$/, "")
             : solution.label;
-        const order = match ? Number(match[3]) : 0;
+        const order = lettered
+            ? Number(lettered[3])
+            : numbered
+                ? Number(numbered[3])
+                : 0;
 
         if(!groups.has(key)){
             groups.set(key, {
@@ -3506,7 +3587,7 @@ function formatSolutionTabLabel(solution, index){
     const fallback = `Sposób ${String.fromCharCode(65 + index)}`;
     const label = String(solution?.label || "").trim();
 
-    if(!label) return fallback;
+    if(!label || /^rozwiązanie$/i.test(label)) return fallback;
 
     return /^sposób\b/i.test(label) ? label : `Sposób ${label}`;
 }
@@ -3526,7 +3607,7 @@ function normalizeTaskGradingCriteria(task, basePath){
         files.push(task.gradingCriteriaFile);
     }
 
-    return files
+    const normalized = files
         .map((item, index) => {
             if(typeof item === "string"){
                 return {
@@ -3555,6 +3636,31 @@ function normalizeTaskGradingCriteria(task, basePath){
             };
         })
         .filter(Boolean);
+
+    const groups = new Map();
+
+    normalized.forEach((item, index) => {
+        const match = String(item.file || "").match(/^(.*_z_)(\d+)_(\d+)(\.[^.]+)$/i);
+        const key = match ? `${match[1]}${match[2]}`.toLowerCase() : `single:${index}`;
+        const order = match ? Number(match[3]) : 0;
+
+        if(!groups.has(key)){
+            groups.set(key, {
+                ...item,
+                images: []
+            });
+        }
+
+        groups.get(key).images.push({
+            ...item,
+            order
+        });
+    });
+
+    return [...groups.values()].map(group => {
+        group.images.sort((a, b) => a.order - b.order);
+        return group;
+    });
 }
 
 function normalizeCourseTextGradingCriteria(sourceId, file){
@@ -3997,12 +4103,19 @@ function updateMetaTheme(){
 
 function renderSourceSelector(){
     const list = document.getElementById("sourceList");
+    const select = document.getElementById("sourceSelect");
     const title = document.getElementById("sourceTitle");
 
     if(!list) return;
 
     updateTrainingLink();
     list.innerHTML = "";
+    if(select){
+        select.innerHTML = "";
+        select.classList.toggle("course-source-select", selectedCategory === "kurs");
+        select.classList.toggle("exam-source-select", selectedCategory !== "kurs");
+        select.disabled = selectedCategory === "kurs";
+    }
     list.classList.toggle("course-source-list", selectedCategory === "kurs");
     list.classList.toggle("exam-source-list", selectedCategory !== "kurs");
 
@@ -4022,8 +4135,16 @@ function renderSourceSelector(){
 
     if(selectedCategory !== "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak arkuszy", "Dodaj arkusz dla tego poziomu", true);
+        if(select){
+            addSourceOption(select, "all", "Brak arkuszy", true);
+            select.disabled = true;
+        }
         updateSourceSummary();
         return;
+    }
+
+    if(select){
+        select.disabled = selectedCategory === "kurs";
     }
 
     availableSources.forEach(source => {
@@ -4055,9 +4176,26 @@ function renderSourceSelector(){
             titleDetail,
             isSourceComplete(source)
         );
+        if(select && selectedCategory !== "kurs"){
+            addSourceOption(
+                select,
+                source.id,
+                detail ? `${label} - ${detail}` : label,
+                selectedSource === source.id
+            );
+        }
     });
 
     updateSourceSummary();
+}
+
+function addSourceOption(select, sourceId, label, active){
+    const option = document.createElement("option");
+
+    option.value = sourceId;
+    option.textContent = label;
+    option.selected = active;
+    select.appendChild(option);
 }
 
 function updateTrainingLink(){
@@ -7609,6 +7747,20 @@ function showGradingCriteria(index = selectedGradingIndex){
         image.hidden = true;
         gradingText.hidden = false;
         renderGradingCriteriaText(item, gradingText);
+    } else if(item.images?.length > 1){
+        image.removeAttribute("src");
+        image.hidden = true;
+        gradingText.innerHTML = "";
+        gradingText.hidden = true;
+        images.hidden = false;
+        item.images.forEach((criteriaImage, imageIndex) => {
+            const criteriaElement = document.createElement("img");
+
+            criteriaElement.className = "solution-image";
+            criteriaElement.alt = `${item.label || "Zasady oceniania"}, część ${imageIndex + 1}, zadanie ${taskLabel(currentTask)}`;
+            setOptimizedImageSrc(criteriaElement, criteriaImage.path);
+            images.appendChild(criteriaElement);
+        });
     } else if(item.path){
         gradingText.innerHTML = "";
         gradingText.hidden = true;
@@ -7623,16 +7775,18 @@ function showGradingCriteria(index = selectedGradingIndex){
         examScoreUnlocked = true;
     }
 
-    criteria.forEach((criteriaItem, itemIndex) => {
-        const button = document.createElement("button");
+    if(criteria.length > 1){
+        criteria.forEach((criteriaItem, itemIndex) => {
+            const button = document.createElement("button");
 
-        button.type = "button";
-        button.className = itemIndex === safeIndex ? "solution-tab active" : "solution-tab";
-        button.innerText = criteriaItem.label || `Część ${itemIndex + 1}`;
-        button.onclick = () => showGradingCriteria(itemIndex);
+            button.type = "button";
+            button.className = itemIndex === safeIndex ? "solution-tab active" : "solution-tab";
+            button.innerText = criteriaItem.label || `Część ${itemIndex + 1}`;
+            button.onclick = () => showGradingCriteria(itemIndex);
 
-        switcher.appendChild(button);
-    });
+            switcher.appendChild(button);
+        });
+    }
 
     updateAnswerTools();
 }
