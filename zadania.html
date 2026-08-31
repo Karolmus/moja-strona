@@ -348,19 +348,6 @@ body:not(.guest-exam-mode) .selector-grid {
     overflow: visible;
 }
 
-.source-select {
-    display: none;
-    width: 100%;
-    min-height: 42px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: white;
-    color: var(--text);
-    font: inherit;
-    font-size: 13px;
-    padding: 8px 34px 8px 10px;
-}
-
 .source-summary-row {
     display: grid;
     grid-template-columns: 1fr;
@@ -1177,9 +1164,14 @@ body.focus-mode .task-card {
 
 .task-actions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: stretch;
-    gap: 10px;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid #c7d3df;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #edf3f8 0%, #f7f9fb 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .action-group {
@@ -1191,8 +1183,14 @@ body.focus-mode .task-card {
 
 .action-group.tools {
     display: grid;
-    grid-template-columns: repeat(2, minmax(96px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    gap: 6px;
     justify-content: flex-start;
+    padding: 5px;
+    border: 1px solid #d7e0e9;
+    border-radius: 8px;
+    background: #ffffff;
 }
 
 .action-group.navigation {
@@ -1201,8 +1199,14 @@ body.focus-mode .task-card {
     grid-template-areas:
         "previous next"
         "skip skip";
+    gap: 6px;
     justify-content: center;
-    min-width: min(100%, 300px);
+    min-width: 0;
+    padding: 6px;
+    border: 1px solid #1f2d3a;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #263545 0%, #33475b 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .action-group.navigation .previous-task-btn {
@@ -1255,8 +1259,9 @@ button {
 .action-group.tools .action-btn {
     width: 100%;
     min-width: 0;
-    min-height: 32px;
-    padding: 6px 8px;
+    min-height: 30px;
+    padding: 5px 8px;
+    font-size: 12px;
 }
 
 .action-btn:hover,
@@ -1345,8 +1350,8 @@ button {
     color: white;
     border-color: var(--navy);
     min-width: 112px;
-    min-height: 36px;
-    padding: 7px 14px;
+    min-height: 34px;
+    padding: 7px 10px;
 }
 
 .action-btn.nav:hover {
@@ -2206,12 +2211,34 @@ footer {
         position: static;
     }
 
-    .source-list.exam-source-list {
-        display: none;
+    .source-list.exam-source-list--slider {
+        display: flex;
+        gap: 6px;
+        width: 100%;
+        min-width: 0;
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 1px 1px 7px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: #b9c6d4 transparent;
+        overscroll-behavior-inline: contain;
     }
 
-    .source-select.exam-source-select {
-        display: block;
+    .source-list.exam-source-list--slider::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    .source-list.exam-source-list--slider::-webkit-scrollbar-thumb {
+        background: #b9c6d4;
+        border-radius: 999px;
+    }
+
+    .source-list.exam-source-list--slider .source-btn {
+        flex: 0 0 clamp(105px, 27vw, 138px);
+        min-height: 42px;
+        scroll-snap-align: start;
     }
 
     .task-actions {
@@ -2320,6 +2347,15 @@ footer {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         max-height: none;
         overflow: visible;
+    }
+
+    .source-list.exam-source-list--slider {
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        grid-template-columns: none;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
 
     .exam-source-list .source-btn {
@@ -2665,7 +2701,6 @@ footer {
 
                 <div class="side-section source-picker-section">
                     <div class="side-title" id="sourceTitle">Wybór lekcji</div>
-                    <select class="source-select" id="sourceSelect" aria-label="Wybierz arkusz" onchange="setSource(this.value)"></select>
                     <div class="source-list" id="sourceList"></div>
                 </div>
             </div>
@@ -2747,15 +2782,15 @@ footer {
 
             <div class="interaction-panel">
                 <div class="task-actions">
-                    <div class="action-group tools">
+                    <div class="action-group tools" role="group" aria-label="Materiały pomocnicze">
                         <button class="action-btn tool" id="hintButton" onclick="showHint()">Wskazówka</button>
+                        <button class="action-btn review" id="reviewButton" onclick="markForReview()" hidden>Dodaj do omówienia</button>
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
-                        <button class="action-btn review" id="reviewButton" onclick="markForReview()" hidden>Do omówienia</button>
                     </div>
 
-                    <div class="action-group navigation">
+                    <div class="action-group navigation" role="group" aria-label="Nawigacja po zadaniach">
                         <button class="action-btn nav previous-task-btn" onclick="prevTask()">← Poprzednie</button>
                         <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
                         <button class="action-btn nav next-task-btn" onclick="nextTask()">Kolejne →</button>
@@ -2799,7 +2834,7 @@ footer {
             </div>
 
             <p class="source-attribution" id="sourceAttribution" hidden>
-                Prezentowane arkusze to materiały Centralnej Komisji Egzaminacyjnej (CKE). Delta Sigma nie jest oficjalnym serwisem CKE.
+                Prezentowane arkusze to materiały Centralnej Komisji Egzaminacyjnej (CKE).
             </p>
 
         </div>
@@ -4103,19 +4138,12 @@ function updateMetaTheme(){
 
 function renderSourceSelector(){
     const list = document.getElementById("sourceList");
-    const select = document.getElementById("sourceSelect");
     const title = document.getElementById("sourceTitle");
 
     if(!list) return;
 
     updateTrainingLink();
     list.innerHTML = "";
-    if(select){
-        select.innerHTML = "";
-        select.classList.toggle("course-source-select", selectedCategory === "kurs");
-        select.classList.toggle("exam-source-select", selectedCategory !== "kurs");
-        select.disabled = selectedCategory === "kurs";
-    }
     list.classList.toggle("course-source-list", selectedCategory === "kurs");
     list.classList.toggle("exam-source-list", selectedCategory !== "kurs");
 
@@ -4126,6 +4154,10 @@ function renderSourceSelector(){
     }
 
     const availableSources = getAvailableSources();
+    list.classList.toggle(
+        "exam-source-list--slider",
+        selectedCategory !== "kurs" && availableSources.length > 8
+    );
 
     if(selectedCategory === "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak lekcji", "Dodaj zadania dla tego poziomu", true);
@@ -4135,16 +4167,8 @@ function renderSourceSelector(){
 
     if(selectedCategory !== "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak arkuszy", "Dodaj arkusz dla tego poziomu", true);
-        if(select){
-            addSourceOption(select, "all", "Brak arkuszy", true);
-            select.disabled = true;
-        }
         updateSourceSummary();
         return;
-    }
-
-    if(select){
-        select.disabled = selectedCategory === "kurs";
     }
 
     availableSources.forEach(source => {
@@ -4176,26 +4200,9 @@ function renderSourceSelector(){
             titleDetail,
             isSourceComplete(source)
         );
-        if(select && selectedCategory !== "kurs"){
-            addSourceOption(
-                select,
-                source.id,
-                detail ? `${label} - ${detail}` : label,
-                selectedSource === source.id
-            );
-        }
     });
 
     updateSourceSummary();
-}
-
-function addSourceOption(select, sourceId, label, active){
-    const option = document.createElement("option");
-
-    option.value = sourceId;
-    option.textContent = label;
-    option.selected = active;
-    select.appendChild(option);
 }
 
 function updateTrainingLink(){
@@ -7797,7 +7804,7 @@ function resetReviewButton(){
     if(!reviewButton) return;
 
     reviewButton.disabled = false;
-    reviewButton.innerText = "Do omówienia";
+    reviewButton.innerText = "Dodaj do omówienia";
 }
 
 async function markForReview(){
@@ -7835,7 +7842,7 @@ async function markForReview(){
     } catch(error) {
         if(reviewButton){
             reviewButton.disabled = false;
-            reviewButton.innerText = "Do omówienia";
+            reviewButton.innerText = "Dodaj do omówienia";
         }
 
         showMessage("Nie udało się dodać zadania do omówienia. Spróbuj jeszcze raz.");

@@ -19,5 +19,3 @@ services:
         value: "true"
       - key: AUTH_TOKEN_MAX_AGE
         value: "86400"
-      - key: PARENT_ACCESS_MAX_AGE_DAYS
-        value: "90"

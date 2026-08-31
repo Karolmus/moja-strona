@@ -27,6 +27,7 @@ from auth_storage import (  # noqa: E402
     ANALYTICS_RESET_KEY,
     create_parent_access_token,
     create_user,
+    get_student_credentials,
     init_auth_db,
 )
 
@@ -493,6 +494,40 @@ class SecurityTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
 
+    def test_student_can_read_own_review_history(self):
+        with app.app_context():
+            student = create_user(
+                email="review-history@example.com",
+                display_name="Uczeń",
+                password="bezpieczne-haslo",
+                level="egzamin_osmoklasisty",
+            )
+
+        unauthenticated = self.client.get("/api/review-tasks/me")
+        login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        source_id = "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
+        task = {
+            "task_id": f"{source_id}:zd_1.png",
+            "source_id": source_id,
+            "file": "zd_1.png",
+            "topic": "Procenty",
+            "course_part": "praca_domowa",
+        }
+
+        created = self.client.post("/api/review-tasks", headers=headers, json=task)
+        response = self.client.get("/api/review-tasks/me", headers=headers)
+        data = response.get_json()
+
+        self.assertEqual(unauthenticated.status_code, 401)
+        self.assertEqual(created.status_code, 201)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(data["review_tasks"]), 1)
+        self.assertEqual(data["review_tasks"][0]["task_id"], task["task_id"])
+
     def test_course_assets_require_login_and_assigned_level(self):
         path = "/api/course-assets/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
         unauthenticated = self.client.get(path)
@@ -542,6 +577,98 @@ class SecurityTests(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 401)
+
+    def test_admin_can_reveal_persisted_student_credentials(self):
+        with app.app_context():
+            create_user(
+                email="admin-credentials@example.com",
+                display_name="Administrator",
+                password="bezpieczne-haslo",
+                role="admin",
+                level=None,
+            )
+
+        login = self.client.post(
+            "/api/auth/login",
+            json={
+                "email": "admin-credentials@example.com",
+                "password": "bezpieczne-haslo",
+            },
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        created = self.client.post(
+            "/api/admin/students",
+            headers=headers,
+            json={
+                "email": "credential-student@example.com",
+                "display_name": "Uczeń z danymi",
+                "level": "matura_podstawowa",
+                "password": "TrwaleHaslo123",
+            },
+        )
+
+        self.assertEqual(created.status_code, 201)
+        created_data = created.get_json()
+        student_id = created_data["student"]["id"]
+        initial_parent_token = created_data["parent_access_token"]
+
+        listed = self.client.get("/api/admin/students", headers=headers)
+        listed_student = next(
+            student
+            for student in listed.get_json()["students"]
+            if student["id"] == student_id
+        )
+
+        self.assertTrue(listed_student["has_stored_password"])
+        self.assertTrue(listed_student["has_parent_access"])
+        self.assertNotIn("password", listed_student)
+        self.assertNotIn("parent_access_token", listed_student)
+
+        credentials = self.client.get(
+            f"/api/admin/students/{student_id}/credentials",
+            headers=headers,
+        )
+        credential_data = credentials.get_json()
+
+        self.assertEqual(credentials.status_code, 200)
+        self.assertEqual(credential_data["password"], "TrwaleHaslo123")
+        self.assertEqual(credential_data["parent_access_token"], initial_parent_token)
+        self.assertNotIn("token_hash", credential_data["parent_access"])
+        self.assertNotIn("token_ciphertext", credential_data["parent_access"])
+
+        repeated_link = self.client.post(
+            f"/api/admin/students/{student_id}/parent-access",
+            headers=headers,
+            json={},
+        )
+
+        self.assertEqual(repeated_link.status_code, 200)
+        self.assertEqual(repeated_link.get_json()["parent_access_token"], initial_parent_token)
+
+        with sqlite3.connect(TEST_DB) as connection:
+            password_ciphertext, token_ciphertext = connection.execute(
+                """
+                SELECT u.password_ciphertext, p.token_ciphertext
+                FROM users u
+                JOIN parent_access_tokens p ON p.user_id = u.id
+                WHERE u.id = ?
+                """,
+                (student_id,),
+            ).fetchone()
+
+        self.assertNotIn("TrwaleHaslo123", password_ciphertext)
+        self.assertNotIn(initial_parent_token, token_ciphertext)
+
+        anonymous_client = app.test_client()
+        unauthorized = anonymous_client.get(f"/api/admin/students/{student_id}/credentials")
+
+        self.assertEqual(unauthorized.status_code, 401)
+
+        with app.app_context():
+            stored = get_student_credentials(student_id)
+
+        self.assertEqual(stored["password"], "TrwaleHaslo123")
+        self.assertEqual(stored["parent_access_token"], initial_parent_token)
 
     def test_excluded_ip_does_not_write_analytics(self):
         response = self.client.post(

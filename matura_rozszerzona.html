@@ -967,22 +967,22 @@ footer{
             <div id="countdown">
         <div class="time-box">
             <span id="days">0</span>
-            <small>dni</small>
+            <small id="days-label">dni</small>
         </div>
 
         <div class="time-box">
             <span id="hours">0</span>
-            <small>godzin</small>
+            <small id="hours-label">godzin</small>
         </div>
 
         <div class="time-box">
             <span id="minutes">0</span>
-            <small>minut</small>
+            <small id="minutes-label">minut</small>
         </div>
 
         <div class="time-box">
             <span id="seconds">0</span>
-            <small>sekund</small>
+            <small id="seconds-label">sekund</small>
         </div>
     </div>
 
@@ -1590,6 +1590,31 @@ const examDate =
         "May 5, 2027 09:00:00"
     ).getTime();
 
+function getPolishCountForm(value, singular, few, many){
+    if(value === 1){
+        return singular;
+    }
+
+    const lastTwoDigits = value % 100;
+    const lastDigit = value % 10;
+
+    if(
+        lastDigit >= 2 &&
+        lastDigit <= 4 &&
+        (lastTwoDigits < 12 || lastTwoDigits > 14)
+    ){
+        return few;
+    }
+
+    return many;
+}
+
+function setCountdownUnit(id, value, forms){
+    document.getElementById(id).textContent = value;
+    document.getElementById(`${id}-label`).textContent =
+        getPolishCountForm(value, ...forms);
+}
+
 function updateCountdown(){
 
     const now = new Date().getTime();
@@ -1626,17 +1651,10 @@ function updateCountdown(){
             (diff / 1000) % 60
         );
 
-    document.getElementById("days")
-        .innerText = days;
-
-    document.getElementById("hours")
-        .innerText = hours;
-
-    document.getElementById("minutes")
-        .innerText = minutes;
-
-    document.getElementById("seconds")
-        .innerText = seconds;
+    setCountdownUnit("days", days, ["dzień", "dni", "dni"]);
+    setCountdownUnit("hours", hours, ["godzina", "godziny", "godzin"]);
+    setCountdownUnit("minutes", minutes, ["minuta", "minuty", "minut"]);
+    setCountdownUnit("seconds", seconds, ["sekunda", "sekundy", "sekund"]);
 }
 
 setInterval(updateCountdown,1000);
