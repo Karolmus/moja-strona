@@ -2533,8 +2533,21 @@ function confirmStudentAction(action, student, details = ""){
 }
 
 async function copyStudentCredentials(student){
-    const password = getIssuedPassword(student);
-    const parentToken = getIssuedParentAccessToken(student);
+    let password = getIssuedPassword(student);
+    let parentToken = getIssuedParentAccessToken(student);
+
+    try {
+        if(!password || !parentToken){
+            const credentials = await fetchStudentCredentials(student);
+
+            password = password || credentials.password || "";
+            parentToken = parentToken || credentials.parent_access_token || "";
+        }
+    } catch(error) {
+        showStatus(error.message || "Nie udało się pobrać danych ucznia.");
+        return;
+    }
+
     const parentLink = parentLinkFromToken(parentToken);
     const text = password
         ? `Login: ${student.email}\nHasło: ${password}`
@@ -2549,25 +2562,34 @@ async function copyStudentCredentials(student){
     }
 }
 
-async function copyParentLink(student, forceRefresh = false){
+async function fetchStudentCredentials(student){
+    const data = await apiFetch(`/api/admin/students/${student.id}/credentials`);
+
+    rememberIssuedPassword(
+        data.student || student,
+        data.password || "",
+        data.parent_access_token || ""
+    );
+
+    return data;
+}
+
+async function copyParentLink(student){
     let parentToken = getIssuedParentAccessToken(student);
 
-    if(!parentToken && !window.confirm(`Pełnego, wcześniej wydanego linku nie można ponownie odczytać. Czy wygenerować nowy link rodzica dla ucznia ${student.display_name}? Poprzedni link przestanie działać.`)){
+    try {
+        if(!parentToken){
+            const credentials = await fetchStudentCredentials(student);
+            parentToken = credentials.parent_access_token || "";
+        }
+    } catch(error) {
+        showStatus(error.message || "Nie udało się pobrać linku rodzica.");
         return;
     }
 
-    if(parentToken && forceRefresh && !window.confirm(`Czy wygenerować nowy link rodzica dla ucznia ${student.display_name}? Poprzedni link przestanie działać.`)){
+    if(!parentToken){
+        showStatus("Nie można odzyskać pełnego adresu istniejącego linku. Użyj „Zmień link” tylko wtedy, gdy naprawdę trzeba go zastąpić.");
         return;
-    }
-
-    if(forceRefresh || !parentToken){
-        const data = await apiFetch(`/api/admin/students/${student.id}/parent-access`, {
-            method: "POST",
-            body: JSON.stringify({})
-        });
-
-        parentToken = data.parent_access_token;
-        rememberIssuedPassword(data.student || student, "", parentToken);
     }
 
     const parentLink = parentLinkFromToken(parentToken);
@@ -2580,6 +2602,97 @@ async function copyParentLink(student, forceRefresh = false){
     }
 
     renderStudents();
+}
+
+async function revealStudentPassword(student, passwordValue, passwordActions){
+    try {
+        const credentials = await fetchStudentCredentials(student);
+        const password = credentials.password || "";
+
+        if(!password){
+            passwordValue.innerText = "Hasło nie zostało zapisane w bezpiecznym magazynie.";
+            passwordValue.classList.add("missing");
+            passwordActions.replaceChildren(
+                button("Nadaj nowe", "mini-link", () => resetPassword(student))
+            );
+            return;
+        }
+
+        passwordValue.innerText = password;
+        passwordValue.classList.remove("masked", "missing");
+        passwordActions.replaceChildren(
+            button("Ukryj", "mini-link", () => {
+                passwordValue.innerText = "********";
+                passwordValue.classList.add("masked");
+                passwordActions.replaceChildren(
+                    button("Pokaż", "mini-link", () =>
+                        revealStudentPassword(student, passwordValue, passwordActions)
+                    )
+                );
+            })
+        );
+    } catch(error) {
+        showStatus(error.message || "Nie udało się pobrać hasła ucznia.");
+    }
+}
+
+async function revealParentLink(student){
+    try {
+        const credentials = await fetchStudentCredentials(student);
+
+        if(credentials.parent_access_token){
+            renderStudents();
+            return;
+        }
+
+        if(credentials.parent_access_needs_reissue){
+            showStatus("Ten link został wydany przed wprowadzeniem trwałego podglądu. Możesz go dalej używać, ale pełnego adresu nie da się odzyskać.");
+            return;
+        }
+
+        showStatus("Dla tego ucznia nie ma aktywnego linku rodzica.");
+    } catch(error) {
+        showStatus(error.message || "Nie udało się pobrać linku rodzica.");
+    }
+}
+
+async function createParentLink(student){
+    try {
+        const data = await apiFetch(`/api/admin/students/${student.id}/parent-access`, {
+            method: "POST",
+            body: JSON.stringify({})
+        });
+
+        if(!data.parent_access_token){
+            showStatus("Istniejący link rodzica nie może zostać odzyskany. Użyj „Zmień link”, jeżeli chcesz zastąpić go nowym.");
+            return;
+        }
+
+        rememberIssuedPassword(student, "", data.parent_access_token);
+        renderStudents();
+        showStatus(`Link rodzica dla ${student.display_name} jest gotowy.`);
+    } catch(error) {
+        showStatus(error.message || "Nie udało się utworzyć linku rodzica.");
+    }
+}
+
+async function replaceParentLink(student){
+    if(!window.confirm(`Czy na pewno zmienić link rodzica dla ucznia ${student.display_name}? Poprzedni link przestanie działać.`)){
+        return;
+    }
+
+    try {
+        const data = await apiFetch(`/api/admin/students/${student.id}/parent-access`, {
+            method: "POST",
+            body: JSON.stringify({ replace: true })
+        });
+
+        rememberIssuedPassword(student, "", data.parent_access_token || "");
+        renderStudents();
+        showStatus(`Zmieniono link rodzica dla ${student.display_name}.`);
+    } catch(error) {
+        showStatus(error.message || "Nie udało się zmienić linku rodzica.");
+    }
 }
 
 function buildCredentialsCell(student){
@@ -2627,23 +2740,17 @@ function buildCredentialsCell(student){
     passwordLabel.innerText = "Hasło";
     parentLabel.innerText = "Link rodzica";
 
-    if(issuedPassword){
-        const passwordToggle = button("Pokaż", "mini-link", event => {
-            const revealed = event.currentTarget.getAttribute("aria-pressed") === "true";
-
-            event.currentTarget.setAttribute("aria-pressed", String(!revealed));
-            event.currentTarget.innerText = revealed ? "Pokaż" : "Ukryj";
-            passwordValue.innerText = revealed ? "********" : issuedPassword;
-            passwordValue.classList.toggle("masked", revealed);
-        });
-
+    if(issuedPassword || student.has_stored_password){
         passwordValue.innerText = "********";
         passwordValue.classList.add("masked");
-        passwordToggle.setAttribute("aria-pressed", "false");
+        const passwordToggle = button("Pokaż", "mini-link", () =>
+            revealStudentPassword(student, passwordValue, passwordActions)
+        );
+
         passwordToggle.setAttribute("aria-label", `Pokaż hasło ucznia ${student.display_name}`);
         passwordActions.appendChild(passwordToggle);
     } else {
-        passwordValue.innerText = "Obecnego hasła nie można odczytać.";
+        passwordValue.innerText = "Hasło wymaga jednorazowego nadania.";
         passwordValue.classList.add("missing");
         passwordActions.appendChild(button("Nadaj nowe", "mini-link", () => resetPassword(student)));
     }
@@ -2668,13 +2775,19 @@ function buildCredentialsCell(student){
         parentAnchor.title = parentLink;
         parentAnchor.setAttribute("aria-label", `Otwórz panel rodzica ucznia ${student.display_name} w nowej karcie`);
         parentActions.appendChild(button("Kopiuj", "mini-link", () => copyParentLink(student)));
-        parentActions.appendChild(button("Wygeneruj nowy", "mini-link", () => copyParentLink(student, true)));
+        parentActions.appendChild(button("Zmień link", "mini-link", () => replaceParentLink(student)));
         parentItem.appendChild(parentAnchor);
         parentItem.appendChild(parentActions);
+    } else if(student.has_parent_access){
+        parentValue.innerText = "Link jest zapisany. Kliknij „Pokaż”.";
+        parentActions.appendChild(button("Pokaż", "mini-link", () => revealParentLink(student)));
+        parentActions.appendChild(button("Zmień link", "mini-link", () => replaceParentLink(student)));
+        parentItem.appendChild(parentValue);
+        parentItem.appendChild(parentActions);
     } else {
-        parentValue.innerText = "Wcześniej wydanego linku nie można odczytać.";
+        parentValue.innerText = "Brak aktywnego linku.";
         parentValue.classList.add("missing");
-        parentActions.appendChild(button("Wygeneruj i pokaż", "mini-link", () => copyParentLink(student)));
+        parentActions.appendChild(button("Utwórz link", "mini-link", () => createParentLink(student)));
         parentItem.appendChild(parentValue);
         parentItem.appendChild(parentActions);
     }

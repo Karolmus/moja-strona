@@ -23,7 +23,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20260820-mobile-call-footer">
-<link rel="stylesheet" href="baner.css?v=20260819-no-badge">
 
 <style>
 * {
@@ -355,7 +354,6 @@ footer {
 
 <body>
 <div id="nav"></div>
-<div id="baner"></div>
 
 <main class="contact-shell">
     <section class="contact-section" aria-labelledby="contactTitle">
@@ -423,12 +421,6 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
     .then(response => response.text())
     .then(html => {
         document.getElementById("nav").innerHTML = html;
-    });
-
-fetch("baner.html?v=20260819-no-badge", { cache: "no-cache" })
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById("baner").innerHTML = html;
     });
 
 const copyPhoneBtn = document.getElementById("copyPhoneBtn");

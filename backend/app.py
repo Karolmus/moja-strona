@@ -33,6 +33,7 @@ from auth_storage import (
     disable_parent_access_token,
     generate_temporary_password,
     get_site_prices,
+    get_student_credentials,
     get_user_by_email,
     get_user_by_id,
     init_auth_db,
@@ -843,6 +844,24 @@ def api_admin_students(_admin):
     })
 
 
+@app.get("/api/admin/students/<int:user_id>/credentials")
+@require_admin
+@rate_limit(60, 60, "admin-student-credentials")
+def api_admin_student_credentials(_admin, user_id):
+    credentials = get_student_credentials(user_id)
+
+    if not credentials:
+        return api_error("Nie znaleziono ucznia.", 404)
+
+    return jsonify({
+        "student": student_payload(credentials["student"]),
+        "password": credentials["password"] or None,
+        "parent_access": credentials["parent_access"],
+        "parent_access_token": credentials["parent_access_token"] or None,
+        "parent_access_needs_reissue": credentials["parent_access_needs_reissue"],
+    })
+
+
 @app.get("/api/admin/site-prices")
 @require_admin
 def api_admin_site_prices(_admin):
@@ -1020,14 +1039,16 @@ def api_admin_reset_student_password(_admin, user_id):
 @require_admin
 def api_admin_create_parent_access(_admin, user_id):
     def handler():
-        access, token = create_parent_access_token(user_id)
+        replace = bool(payload().get("replace"))
+        access, token = create_parent_access_token(user_id, replace=replace)
 
         if not access:
             return api_error("Nie znaleziono ucznia.", 404)
 
         return jsonify({
             "parent_access": access,
-            "parent_access_token": token,
+            "parent_access_token": token or None,
+            "parent_access_needs_reissue": bool(not token),
         })
 
     return safe(handler)
@@ -1208,6 +1229,15 @@ def api_parent_create_message():
 def api_my_progress(user):
     return jsonify({
         "progress": progress_for_user(user["id"]),
+    })
+
+
+@app.get("/api/review-tasks/me")
+@rate_limit(60, 60, "review-task-read")
+@require_auth
+def api_my_review_tasks(user):
+    return jsonify({
+        "review_tasks": review_tasks_for_user(user["id"], include_resolved=True),
     })
 
 

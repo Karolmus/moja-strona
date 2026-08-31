@@ -125,31 +125,151 @@ body {
     text-decoration: none;
 }
 
-.stats-grid {
+.profile-area {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.profile-area[hidden] {
+    display: none;
+}
+
+.profile-area-heading {
+    display: flex;
+    align-items: flex-start;
     gap: 10px;
+    padding: 3px 2px 0;
 }
 
-.stat {
+.profile-area-index {
     display: grid;
-    gap: 4px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: linear-gradient(180deg, #ffffff, var(--surface-soft));
-    padding: 14px;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.stat span {
+.profile-area-heading h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.profile-area-heading p,
+.section-lead {
+    margin: 3px 0 0;
     color: var(--muted);
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
+    line-height: 1.45;
 }
 
-.stat strong {
-    font-size: 24px;
-    line-height: 1.15;
+.homework-chart-panel {
+    display: grid;
+    gap: 12px;
+}
+
+.chart-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.chart-heading .section-title {
+    margin: 0;
+}
+
+.chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.chart-key {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.chart-key::before {
+    width: 18px;
+    height: 3px;
+    border-radius: 999px;
+    background: currentColor;
+    content: "";
+}
+
+.chart-key.good {
+    color: #2f8a45;
+}
+
+.chart-key.bad {
+    color: #c24848;
+}
+
+.chart-key.review {
+    color: #b17816;
+}
+
+.homework-chart-scroll {
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: thin;
+}
+
+.homework-chart {
+    display: block;
+    min-width: 560px;
+    overflow: visible;
+}
+
+.homework-chart-grid {
+    stroke: #dce5ed;
+    stroke-width: 1;
+}
+
+.homework-chart-axis {
+    stroke: #9eafc0;
+    stroke-width: 1;
+}
+
+.homework-chart-label {
+    fill: #64748b;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+}
+
+.homework-chart-series {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.homework-chart-point {
+    stroke: white;
+    stroke-width: 2;
+}
+
+.homework-chart-empty {
+    margin: 0;
+    padding: 16px;
+    border: 1px dashed #c9d5df;
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
 }
 
 .section-title {
@@ -291,114 +411,6 @@ body {
     background: linear-gradient(90deg, #24527a, var(--blue));
 }
 
-.source-result.lesson .source-result-fill {
-    background: linear-gradient(90deg, var(--green), #8fcf74);
-}
-
-.recent-list {
-    display: grid;
-    gap: 7px;
-}
-
-.recent-item {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: 10px;
-    align-items: center;
-    border-top: 1px solid var(--line);
-    padding: 10px 0;
-}
-
-.recent-item:first-child {
-    border-top: 0;
-    padding-top: 0;
-}
-
-.recent-item:last-child {
-    padding-bottom: 0;
-}
-
-.result-chip {
-    border-radius: 999px;
-    padding: 4px 8px;
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.result-chip.good {
-    background: #e8f5e7;
-    color: #2f6b36;
-}
-
-.result-chip.medium {
-    background: #fff4cf;
-    color: #765a12;
-}
-
-.result-chip.bad {
-    background: #fdecea;
-    color: #8b2119;
-}
-
-.recent-main {
-    display: grid;
-    gap: 2px;
-    min-width: 0;
-}
-
-.recent-main strong {
-    font-size: 13px;
-}
-
-.recent-main span,
-.recent-date {
-    color: var(--muted);
-    font-size: 11px;
-}
-
-.recent-date {
-    white-space: nowrap;
-}
-
-.results-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 40px;
-    margin-top: 8px;
-    border: 1px solid #b8c6d5;
-    border-radius: 8px;
-    background: var(--surface-soft);
-    color: var(--navy);
-    cursor: pointer;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 8px 12px;
-}
-
-.results-toggle::after {
-    content: "\2193";
-    margin-left: 7px;
-    font-size: 14px;
-    line-height: 1;
-}
-
-.results-toggle[aria-expanded="true"]::after {
-    content: "\2191";
-}
-
-@media(max-width: 820px) {
-    #lessonResults:not(.expanded) .source-result:nth-child(n + 7) {
-        display: none;
-    }
-
-    .results-toggle:not([hidden]) {
-        display: inline-flex;
-    }
-}
-
 @media(max-width: 640px) {
     .profile-page {
         width: calc(100% - 20px);
@@ -437,30 +449,6 @@ body {
         font-size: 12px;
     }
 
-    .stats-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 6px;
-    }
-
-    .stat {
-        align-content: center;
-        min-height: 88px;
-        gap: 5px;
-        padding: 9px 6px;
-        text-align: center;
-    }
-
-    .stat span {
-        font-size: 9px;
-        line-height: 1.3;
-        text-transform: none;
-    }
-
-    .stat strong {
-        font-size: 18px;
-        line-height: 1.2;
-    }
-
     .source-results {
         grid-template-columns: 1fr;
     }
@@ -469,6 +457,49 @@ body {
         width: 100%;
         min-height: 44px;
         font-size: 13px;
+    }
+
+    .profile-area {
+        gap: 10px;
+    }
+
+    .profile-area-heading {
+        gap: 8px;
+        padding-top: 1px;
+    }
+
+    .profile-area-index {
+        flex-basis: 25px;
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+    .profile-area-heading h2 {
+        font-size: 17px;
+    }
+
+    .profile-area-heading p,
+    .section-lead {
+        font-size: 10px;
+    }
+
+    .homework-chart-panel {
+        gap: 10px;
+    }
+
+    .chart-heading {
+        gap: 8px;
+    }
+
+    .chart-legend {
+        width: 100%;
+        gap: 8px;
+        font-size: 9px;
+    }
+
+    .homework-chart {
+        min-width: 510px;
     }
 
     .section-title {
@@ -521,61 +552,6 @@ body {
         height: 6px;
     }
 
-    .recent-item {
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 3px 10px;
-        align-items: start;
-        padding: 9px 0;
-    }
-
-    .recent-main {
-        grid-column: 1;
-        grid-row: 1 / span 2;
-    }
-
-    .result-chip {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: end;
-        padding: 3px 7px;
-        font-size: 9px;
-    }
-
-    .recent-date {
-        grid-column: 2;
-        grid-row: 2;
-        justify-self: end;
-        font-size: 9px;
-    }
-
-    .recent-main strong {
-        font-size: 12px;
-    }
-
-    .recent-main span {
-        font-size: 9.5px;
-        line-height: 1.4;
-        overflow-wrap: anywhere;
-    }
-}
-
-@media(max-width: 350px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .stat:last-child {
-        grid-column: 1 / -1;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        min-height: 58px;
-        padding-inline: 12px;
-        text-align: left;
-    }
-
-    .stat:last-child strong {
-        text-align: right;
-    }
 }
 </style>
 </head>
@@ -596,67 +572,84 @@ body {
             <a class="continue-button" href="zadania.html">Kontynuuj pracę</a>
         </section>
 
-        <section class="stats-grid" aria-label="Podsumowanie pracy">
-            <div class="stat">
-                <span>Wykonane zadania</span>
-                <strong id="taskCount">0</strong>
-            </div>
-            <div class="stat">
-                <span>Skuteczność</span>
-                <strong id="accuracy">0%</strong>
-            </div>
-            <div class="stat">
-                <span>Czas w tygodniu</span>
-                <strong id="weeklyTime">0 s</strong>
-            </div>
-        </section>
-
-        <section class="panel">
-            <h2 class="section-title">Postęp pracy</h2>
-            <div class="progress-list">
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span>Lekcje</span>
-                        <strong id="lessonLabel">0 / 20 lekcji</strong>
-                    </div>
-                    <div class="progress-track" id="lessonTrack" role="progressbar" aria-label="Postęp lekcji" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" id="lessonFill"></span></div>
-                    <div class="progress-detail" id="lessonDetail">Wczytywanie postępu...</div>
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span>Prace domowe</span>
-                        <strong id="homeworkLabel">0 / 20 lekcji</strong>
-                    </div>
-                    <div class="progress-track" id="homeworkTrack" role="progressbar" aria-label="Postęp prac domowych" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill homework" id="homeworkFill"></span></div>
-                    <div class="progress-detail" id="homeworkDetail">Wczytywanie postępu...</div>
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span>Egzaminy</span>
-                        <strong id="examLabel">0 / 0 arkuszy</strong>
-                    </div>
-                    <div class="progress-track" id="examTrack" role="progressbar" aria-label="Postęp arkuszy egzaminacyjnych" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill exam" id="examFill"></span></div>
-                    <div class="progress-detail" id="examDetail">Wczytywanie postępu...</div>
+        <section class="profile-area" aria-labelledby="courseSectionTitle">
+            <div class="profile-area-heading">
+                <span class="profile-area-index" aria-hidden="true">1</span>
+                <div>
+                    <h2 id="courseSectionTitle">Kurs</h2>
+                    <p id="courseCompletionNote">Wczytywanie postępu kursu...</p>
                 </div>
             </div>
+
+            <section class="panel">
+                <h3 class="section-title">Postęp kursu</h3>
+                <div class="progress-list">
+                    <div class="progress-row">
+                        <div class="progress-head">
+                            <span>Lekcje</span>
+                            <strong id="lessonLabel">0 / 0 lekcji</strong>
+                        </div>
+                        <div class="progress-track" id="lessonTrack" role="progressbar" aria-label="Postęp lekcji" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" id="lessonFill"></span></div>
+                        <div class="progress-detail" id="lessonDetail">Wczytywanie postępu...</div>
+                    </div>
+
+                    <div class="progress-row">
+                        <div class="progress-head">
+                            <span>Prace domowe</span>
+                            <strong id="homeworkLabel">0 / 0 lekcji</strong>
+                        </div>
+                        <div class="progress-track" id="homeworkTrack" role="progressbar" aria-label="Postęp prac domowych" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill homework" id="homeworkFill"></span></div>
+                        <div class="progress-detail" id="homeworkDetail">Wczytywanie postępu...</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel homework-chart-panel" aria-labelledby="homeworkChartTitle">
+                <div class="chart-heading">
+                    <div>
+                        <h3 class="section-title" id="homeworkChartTitle">Prace domowe</h3>
+                        <p class="section-lead">Wyniki każdej pracy domowej względem wszystkich zadań z danej lekcji.</p>
+                    </div>
+                    <div class="chart-legend" aria-label="Legenda wykresu">
+                        <span class="chart-key good">Dobrze</span>
+                        <span class="chart-key bad">Źle</span>
+                        <span class="chart-key review">Przekazano do omówienia</span>
+                    </div>
+                </div>
+                <div class="homework-chart-scroll" id="homeworkChartScroll">
+                    <svg class="homework-chart" id="homeworkChart" viewBox="0 0 560 230" role="img" aria-label="Wykres wyników prac domowych"></svg>
+                </div>
+                <p class="homework-chart-empty" id="homeworkChartEmpty" hidden>Wykres pojawi się po zapisaniu pierwszego wyniku pracy domowej.</p>
+            </section>
         </section>
 
-        <section class="panel" id="recentTasksSection">
-            <h2 class="section-title">Ostatnie zadania</h2>
-            <div class="recent-list" id="recentList" aria-live="polite"></div>
-        </section>
+        <section class="profile-area" id="examSection" aria-labelledby="examSectionTitle" hidden>
+            <div class="profile-area-heading">
+                <span class="profile-area-index" aria-hidden="true">2</span>
+                <div>
+                    <h2 id="examSectionTitle">Egzaminy</h2>
+                    <p>Arkusze CKE dostępne po ukończeniu kursu.</p>
+                </div>
+            </div>
 
-        <section class="panel" id="examResultsSection">
-            <h2 class="section-title">Wyniki egzaminów</h2>
-            <div class="source-results" id="examResults"></div>
-        </section>
+            <section class="panel">
+                <h3 class="section-title">Postęp egzaminów</h3>
+                <div class="progress-list">
+                    <div class="progress-row">
+                        <div class="progress-head">
+                            <span>Arkusze</span>
+                            <strong id="examLabel">0 / 0 arkuszy</strong>
+                        </div>
+                        <div class="progress-track" id="examTrack" role="progressbar" aria-label="Postęp arkuszy egzaminacyjnych" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill exam" id="examFill"></span></div>
+                        <div class="progress-detail" id="examDetail">Wczytywanie postępu...</div>
+                    </div>
+                </div>
+            </section>
 
-        <section class="panel" id="lessonResultsSection">
-            <h2 class="section-title">Wyniki lekcji</h2>
-            <div class="source-results" id="lessonResults"></div>
-            <button class="results-toggle" id="lessonResultsToggle" type="button" aria-controls="lessonResults" aria-expanded="false">Pokaż wszystkie wyniki</button>
+            <section class="panel" id="examResultsPanel">
+                <h3 class="section-title">Wyniki arkuszy</h3>
+                <div class="source-results" id="examResults"></div>
+            </section>
         </section>
     </div>
 </main>
@@ -681,13 +674,6 @@ const levelLabels = {
     egzamin_osmoklasisty: "Egzamin ósmoklasisty"
 };
 
-const resultLabels = {
-    good: "Dobrze",
-    medium: "Z pomocą",
-    bad: "Źle"
-};
-
-const COURSE_TARGET = 20;
 const PROFILE_SOURCES = [
     { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy", level: "matura_podstawowa" },
@@ -772,30 +758,40 @@ function latestTaskProgress(progress){
     return [...latest.values()];
 }
 
-function formatDuration(seconds){
-    const value = Math.max(0, Number(seconds) || 0);
-    const hours = Math.floor(value / 3600);
-    const minutes = Math.floor((value % 3600) / 60);
-    const rest = value % 60;
-
-    if(hours) return `${hours} h ${minutes} min`;
-    if(minutes) return `${minutes} min ${rest} s`;
-
-    return `${rest} s`;
+function coursePartOf(task){
+    return task?.coursePart || task?.section || "zadania";
 }
 
-function currentWeekStart(){
-    const date = new Date();
-    const daysSinceMonday = (date.getDay() + 6) % 7;
+function profileSourceConfigs(level, progress){
+    const sources = PROFILE_SOURCES
+        .filter(source => source.level === level)
+        .map(source => ({ ...source }));
+    const knownPaths = new Set(sources.map(source => source.path));
 
-    date.setDate(date.getDate() - daysSinceMonday);
-    date.setHours(0, 0, 0, 0);
+    (Array.isArray(progress) ? progress : []).forEach(item => {
+        const path = progressSourceId(item);
 
-    return date;
+        if(
+            item?.level !== level ||
+            knownPaths.has(path) ||
+            !/^zadania\/[a-z0-9_./-]+\.json$/i.test(path)
+        ){
+            return;
+        }
+
+        sources.push({
+            path,
+            category: path.includes("/kurs/") ? "kurs" : "egzaminy",
+            level
+        });
+        knownPaths.add(path);
+    });
+
+    return sources;
 }
 
-async function loadSourceCatalog(level){
-    const sources = PROFILE_SOURCES.filter(source => source.level === level);
+async function loadSourceCatalog(level, progress = []){
+    const sources = profileSourceConfigs(level, progress);
     const loaded = await Promise.all(
         sources.map(async source => {
             try {
@@ -809,7 +805,7 @@ async function loadSourceCatalog(level){
 
                 tasks.forEach(task => {
                     const part = source.category === "kurs"
-                        ? task.coursePart || task.section || "zadania"
+                        ? coursePartOf(task)
                         : "egzaminy";
 
                     if(!filesByPart.has(part)){
@@ -877,7 +873,7 @@ function sourcePerformance(source, latestByKey, part = ""){
         if(!task.file) return false;
         if(!part) return true;
 
-        const taskPart = task.coursePart || task.section || "zadania";
+        const taskPart = coursePartOf(task);
 
         return taskPart === part;
     });
@@ -987,26 +983,16 @@ function appendSourceResult(list, source, result, detailLines, type){
     list.appendChild(row);
 }
 
-function renderDetailedResults(progress){
+function renderExamResults(progress){
     const latestByKey = new Map(progress.map(item => [progressKey(item), item]));
     const examList = document.getElementById("examResults");
-    const lessonList = document.getElementById("lessonResults");
     const examSources = sourceCatalog.filter(source =>
         source.category === "egzaminy" && source.tasks.length
     );
-    const lessonSources = sourceCatalog.filter(source =>
-        source.category === "kurs" && source.tasks.length
-    );
-    const lessonResultsToggle = document.getElementById("lessonResultsToggle");
+    const examResultsPanel = document.getElementById("examResultsPanel");
 
     examList.innerHTML = "";
-    lessonList.innerHTML = "";
-    lessonList.classList.remove("expanded");
-    lessonResultsToggle.hidden = lessonSources.length <= 6;
-    lessonResultsToggle.setAttribute("aria-expanded", "false");
-    lessonResultsToggle.innerText = "Pokaż wszystkie wyniki";
-    document.getElementById("examResultsSection").hidden = !examSources.length;
-    document.getElementById("lessonResultsSection").hidden = !lessonSources.length;
+    examResultsPanel.hidden = !examSources.length;
 
     examSources.forEach(source => {
         const result = sourcePerformance(source, latestByKey);
@@ -1018,22 +1004,9 @@ function renderDetailedResults(progress){
             `${result.attempted}/${result.totalTasks} zadań`
         ], "exam");
     });
-
-    lessonSources.forEach(source => {
-        const main = sourcePerformance(source, latestByKey, "zadania");
-        const homework = sourcePerformance(source, latestByKey, "praca_domowa");
-        const practical = sourcePerformance(source, latestByKey, "zadania_praktyczne");
-        const detailLines = [
-            resultPercentLabel(main, "Część główna"),
-            homework.totalTasks ? resultPercentLabel(homework, "Praca domowa") : "",
-            practical.totalTasks ? resultPercentLabel(practical, "Praktyczne") : ""
-        ];
-
-        appendSourceResult(lessonList, source, main, detailLines, "lesson");
-    });
 }
 
-function calculateProgress(progress, category, part, targetMode = "fixed"){
+function calculateProgress(progress, category, part){
     const attempted = new Set(progress.map(progressKey).filter(Boolean));
     const sources = sourceCatalog.filter(source => source.category === category);
     let completed = 0;
@@ -1065,8 +1038,8 @@ function calculateProgress(progress, category, part, targetMode = "fixed"){
     });
 
     const available = sources.filter(source => (source.filesByPart.get(part)?.size || 0) > 0).length;
-    const target = targetMode === "available" ? available : COURSE_TARGET;
-    const percentBasis = targetMode === "available" ? completed : visualUnits;
+    const target = available;
+    const percentBasis = visualUnits;
     const percent = target
         ? Math.min(100, Math.round((percentBasis / target) * 1000) / 10)
         : 0;
@@ -1092,88 +1065,243 @@ function renderProgress(prefix, stats, unit, emptyText){
         : emptyText;
 }
 
-function taskTitle(item){
-    const file = String(progressFile(item) || "Zadanie");
-    const match = file.match(/(?:zadanie_|zad_|^)(\d+(?:\.\d+)?)/i);
+function sourceCompletionFiles(source){
+    const homeworkFiles = source.filesByPart.get("praca_domowa") || new Set();
 
-    return match ? `Zadanie ${match[1]}` : item.topic || "Zadanie";
+    if(homeworkFiles.size) return homeworkFiles;
+
+    return source.filesByPart.get("zadania") || new Set();
 }
 
-function sourceLabel(item){
-    return String(progressSourceId(item)).includes("/kurs/")
-        ? "Kurs"
-        : levelLabels[item.level] || "Egzamin";
+function courseCompletion(progress){
+    const attempted = new Set(progress.map(progressKey).filter(Boolean));
+    const sources = sourceCatalog
+        .filter(source => source.category === "kurs" && sourceCompletionFiles(source).size);
+    const completed = sources.filter(source =>
+        [...sourceCompletionFiles(source)]
+            .every(file => attempted.has(`${source.path}:${file}`))
+    ).length;
+
+    return {
+        completed,
+        total: sources.length,
+        complete: sources.length > 0 && completed === sources.length
+    };
 }
 
-function formatDate(value){
-    if(!value) return "";
+function homeworkChartRows(progress, reviewTasks){
+    const latestByKey = new Map(progress.map(item => [progressKey(item), item]));
+    const reviewKeys = new Set(
+        (Array.isArray(reviewTasks) ? reviewTasks : [])
+            .map(progressKey)
+            .filter(Boolean)
+    );
 
-    return new Date(value).toLocaleString("pl-PL", {
-        dateStyle: "short",
-        timeStyle: "short"
+    return sourceCatalog
+        .filter(source => source.category === "kurs" && source.tasks.length)
+        .map(source => {
+            const tasks = source.tasks.filter(task =>
+                task.file && coursePartOf(task) === "praca_domowa"
+            );
+
+            if(!tasks.length) return null;
+
+            const progressItems = tasks.map(task => latestByKey.get(`${source.path}:${task.file}`) || null);
+            const reviewCount = tasks.filter(task => reviewKeys.has(`${source.path}:${task.file}`)).length;
+            const hasActivity = progressItems.some(Boolean) || reviewCount > 0;
+            const total = tasks.length;
+            const value = count => hasActivity
+                ? Math.round((count / total) * 1000) / 10
+                : null;
+            const lesson = sourceResultLabels(source).title;
+
+            return {
+                label: lesson,
+                shortLabel: lesson.replace(/^Lekcja\s+/i, "L"),
+                good: value(progressItems.filter(item => item?.result === "good").length),
+                bad: value(progressItems.filter(item => item?.result === "bad").length),
+                review: value(reviewCount)
+            };
+        })
+        .filter(Boolean)
+        .sort((first, second) => {
+            const firstNumber = Number(first.label.match(/\d+/)?.[0]) || 0;
+            const secondNumber = Number(second.label.match(/\d+/)?.[0]) || 0;
+
+            return firstNumber - secondNumber || first.label.localeCompare(second.label, "pl");
+        });
+}
+
+function svgElement(name, attributes = {}){
+    const element = document.createElementNS("http://www.w3.org/2000/svg", name);
+
+    Object.entries(attributes).forEach(([key, value]) => {
+        element.setAttribute(key, String(value));
+    });
+
+    return element;
+}
+
+function renderHomeworkChart(progress, reviewTasks){
+    const rows = homeworkChartRows(progress, reviewTasks);
+    const chart = document.getElementById("homeworkChart");
+    const chartScroll = document.getElementById("homeworkChartScroll");
+    const empty = document.getElementById("homeworkChartEmpty");
+    const hasActivity = rows.some(row =>
+        [row.good, row.bad, row.review].some(value => value !== null)
+    );
+
+    chart.innerHTML = "";
+    chart.hidden = !hasActivity;
+    chartScroll.hidden = !hasActivity;
+    empty.hidden = hasActivity;
+
+    if(!hasActivity) return;
+
+    const width = Math.max(560, 58 + Math.max(1, rows.length - 1) * 44 + 20);
+    const height = 230;
+    const left = 38;
+    const right = 14;
+    const top = 16;
+    const bottom = 31;
+    const plotWidth = width - left - right;
+    const plotHeight = height - top - bottom;
+    const xForIndex = index => rows.length <= 1
+        ? left + plotWidth / 2
+        : left + (index / (rows.length - 1)) * plotWidth;
+    const yForValue = value => top + ((100 - value) / 100) * plotHeight;
+    const title = svgElement("title");
+
+    chart.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    chart.setAttribute("width", String(width));
+    chart.setAttribute("height", String(height));
+    title.textContent = "Wykres wyników prac domowych: dobrze, źle i przekazane do omówienia.";
+    chart.appendChild(title);
+
+    [0, 25, 50, 75, 100].forEach(value => {
+        const y = yForValue(value);
+        const line = svgElement("line", {
+            class: "homework-chart-grid",
+            x1: left,
+            y1: y,
+            x2: width - right,
+            y2: y
+        });
+        const label = svgElement("text", {
+            class: "homework-chart-label",
+            x: left - 7,
+            y: y + 3,
+            "text-anchor": "end"
+        });
+
+        label.textContent = `${value}%`;
+        chart.appendChild(line);
+        chart.appendChild(label);
+    });
+
+    chart.appendChild(svgElement("line", {
+        class: "homework-chart-axis",
+        x1: left,
+        y1: height - bottom,
+        x2: width - right,
+        y2: height - bottom
+    }));
+
+    rows.forEach((row, index) => {
+        const label = svgElement("text", {
+            class: "homework-chart-label",
+            x: xForIndex(index),
+            y: height - 10,
+            "text-anchor": "middle"
+        });
+
+        label.textContent = row.shortLabel;
+        chart.appendChild(label);
+    });
+
+    [
+        { key: "good", color: "#2f8a45" },
+        { key: "bad", color: "#c24848" },
+        { key: "review", color: "#b17816" }
+    ].forEach(series => {
+        let path = "";
+        let previousValue = null;
+
+        rows.forEach((row, index) => {
+            const value = row[series.key];
+
+            if(value === null){
+                previousValue = null;
+                return;
+            }
+
+            const point = `${xForIndex(index).toFixed(1)} ${yForValue(value).toFixed(1)}`;
+
+            path += previousValue === null ? `M ${point}` : ` L ${point}`;
+            previousValue = value;
+        });
+
+        if(path){
+            chart.appendChild(svgElement("path", {
+                class: "homework-chart-series",
+                d: path,
+                stroke: series.color
+            }));
+        }
+
+        rows.forEach((row, index) => {
+            const value = row[series.key];
+
+            if(value === null) return;
+
+            const point = svgElement("circle", {
+                class: "homework-chart-point",
+                cx: xForIndex(index),
+                cy: yForValue(value),
+                r: 4,
+                fill: series.color
+            });
+            const pointTitle = svgElement("title");
+
+            pointTitle.textContent = `${row.label}: ${series.key === "good" ? "dobrze" : series.key === "bad" ? "źle" : "przekazano do omówienia"} ${String(value).replace(".", ",")}%`;
+            point.appendChild(pointTitle);
+            chart.appendChild(point);
+        });
     });
 }
 
-function renderRecent(progress){
-    const list = document.getElementById("recentList");
-
-    list.innerHTML = "";
-
-    if(!progress.length){
-        list.innerHTML = `<div class="progress-detail">Brak zapisanych zadań.</div>`;
-        return;
-    }
-
-    progress.slice(0, 8).forEach(item => {
-        const row = document.createElement("div");
-        const chip = document.createElement("span");
-        const main = document.createElement("div");
-        const title = document.createElement("strong");
-        const meta = document.createElement("span");
-        const date = document.createElement("span");
-
-        row.className = "recent-item";
-        chip.className = `result-chip ${item.result}`;
-        main.className = "recent-main";
-        date.className = "recent-date";
-        chip.innerText = resultLabels[item.result] || item.result;
-        title.innerText = taskTitle(item);
-        meta.innerText = `${sourceLabel(item)}${item.topic ? ` • ${item.topic}` : ""}`;
-        date.innerText = formatDate(item.created_at);
-
-        main.appendChild(title);
-        main.appendChild(meta);
-        row.appendChild(chip);
-        row.appendChild(main);
-        row.appendChild(date);
-        list.appendChild(row);
-    });
-}
-
-function renderProfile(user, progress){
+function renderProfile(user, progress, reviewTasks){
     const latest = latestTaskProgress(progress);
-    const good = latest.filter(item => item.result === "good").length;
-    const weekStart = currentWeekStart();
-    const weeklySeconds = progress
-        .filter(item => new Date(item.created_at) >= weekStart)
-        .reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0);
-    const lessonStats = calculateProgress(progress, "kurs", "zadania");
-    const homeworkStats = calculateProgress(progress, "kurs", "praca_domowa");
-    const examStats = calculateProgress(progress, "egzaminy", "egzaminy", "available");
+    const lessonStats = calculateProgress(latest, "kurs", "zadania");
+    const homeworkStats = calculateProgress(latest, "kurs", "praca_domowa");
+    const completion = courseCompletion(latest);
+    const examSection = document.getElementById("examSection");
+    const continueButton = document.querySelector(".continue-button");
+    const completionNote = document.getElementById("courseCompletionNote");
 
     document.getElementById("profileName").innerText = user.display_name || user.email;
     document.getElementById("profileLevel").innerText = levelLabels[user.level] || user.level || "Poziom";
-    document.getElementById("taskCount").innerText = latest.length;
-    document.getElementById("accuracy").innerText = latest.length
-        ? `${Math.round((good / latest.length) * 100)}%`
-        : "0%";
-    document.getElementById("weeklyTime").innerText = formatDuration(weeklySeconds);
-
     renderProgress("lesson", lessonStats, "lekcji", "Brak lekcji dla tego poziomu.");
     renderProgress("homework", homeworkStats, "lekcji", "Brak prac domowych dla tego poziomu.");
-    renderProgress("exam", examStats, "arkuszy", "Brak arkuszy dla tego poziomu.");
-    renderDetailedResults(latest);
-    renderRecent(latest);
+    renderHomeworkChart(latest, reviewTasks);
+
+    if(completion.complete){
+        const examStats = calculateProgress(latest, "egzaminy", "egzaminy");
+
+        examSection.hidden = false;
+        continueButton.href = "zadania.html?category=egzaminy";
+        continueButton.innerText = "Przejdź do egzaminów";
+        completionNote.innerText = "Kurs ukończony. Możesz przejść do arkuszy egzaminacyjnych.";
+        renderProgress("exam", examStats, "arkuszy", "Brak arkuszy dla tego poziomu.");
+        renderExamResults(latest);
+    } else {
+        examSection.hidden = true;
+        continueButton.href = "zadania.html?category=kurs";
+        continueButton.innerText = "Kontynuuj kurs";
+        completionNote.innerText = completion.total
+            ? `Ukończono ${completion.completed} z ${completion.total} lekcji. Po ukończeniu kursu pojawi się sekcja Egzaminy.`
+            : "Brak materiałów kursu dla tego poziomu.";
+    }
 
     document.getElementById("profileStatus").style.display = "none";
     document.getElementById("profileDashboard").classList.add("active");
@@ -1193,14 +1321,19 @@ async function bootProfile(){
             return;
         }
 
-        const [progressData] = await Promise.all([
+        const [progressData, reviewData] = await Promise.all([
             apiFetch("/api/progress/me"),
-            loadSourceCatalog(session.user.level)
+            apiFetch("/api/review-tasks/me")
         ]);
+        const progress = Array.isArray(progressData.progress) ? progressData.progress : [];
+        const reviewTasks = Array.isArray(reviewData.review_tasks) ? reviewData.review_tasks : [];
+
+        await loadSourceCatalog(session.user.level, [...progress, ...reviewTasks]);
 
         renderProfile(
             session.user,
-            Array.isArray(progressData.progress) ? progressData.progress : []
+            progress,
+            reviewTasks
         );
     } catch(error) {
         setStatus(error.message || "Nie udało się wczytać profilu.");
@@ -1212,16 +1345,6 @@ fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
     .then(html => {
         document.getElementById("nav").innerHTML = html;
     });
-
-document.getElementById("lessonResultsToggle").addEventListener("click", event => {
-    const list = document.getElementById("lessonResults");
-    const expanded = list.classList.toggle("expanded");
-
-    event.currentTarget.setAttribute("aria-expanded", String(expanded));
-    event.currentTarget.innerText = expanded
-        ? "Pokaż mniej wyników"
-        : "Pokaż wszystkie wyniki";
-});
 
 bootProfile();
 </script>
