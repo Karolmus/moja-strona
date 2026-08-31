@@ -1,0 +1,502 @@
+[
+  {
+    "file": "1_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "diagram kołowy i procenty",
+    "hint": "Ustal brakujący udział procentowy arytmetyki, a potem oblicz ten procent z 40.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "diagram-kołowy",
+      "procenty",
+      "odczytywanie-danych"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "2_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "NWD i NWW",
+    "hint": "Oblicz NWD(18, 27) i NWW(2, 4), a następnie podstaw cyfry do układu YXXY.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "nwd",
+      "nww",
+      "liczby-naturalne"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "3_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "hint": "Oblicz działania pod znakami pierwiastków, a potem wartości czterech liczb.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "pierwiastki",
+      "działania-na-liczbach"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "4_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "potęgi",
+    "hint": "Zapisz wszystkie czynniki jako potęgi o podstawach 2 i 3.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "potęgi",
+      "działania-na-potęgach"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "5_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "procenty i wyrażenia algebraiczne",
+    "hint": "Po obniżce o 40% płaci się 60% ceny, a po obniżce o 20% - 80% ceny.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "procenty",
+      "wyrażenia-algebraiczne",
+      "zadania-tekstowe"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "6_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "parzystość liczb",
+    "hint": "Skoro suma dowolnych dwóch pozostałych numerów jest parzysta, wszystkie pozostałe numery mają tę samą parzystość.",
+    "answer": "AC",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "parzystość",
+      "liczby-naturalne",
+      "rozumowanie"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "7_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "hint": "Najpierw oblicz liczbę owoców w jednym koszu, a potem rozdziel ją na dwie liczby różniące się o 6.",
+    "answer": "B",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "równania",
+      "zadania-tekstowe"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "8_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Podstaw n = 100 do wzoru, a następnie wymnóż nawias w wyrażeniu ogólnym.",
+    "answer": "BD",
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "tags": [
+      "wyrażenia-algebraiczne",
+      "wzory",
+      "suma-liczb-naturalnych"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "9_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "średnia arytmetyczna",
+    "hint": "Zapisz sumę x + y z pierwszej średniej i wykorzystaj ją w drugiej.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "średnia-arytmetyczna",
+      "równania"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "10_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "trójkąt równoboczny",
+    "hint": "Podziel trójkąt wysokością na dwa trójkąty prostokątne.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "trójkąt-równoboczny",
+      "pole-trójkąta",
+      "twierdzenie-pitagorasa"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "11_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "kąty w czworokącie",
+    "hint": "Suma kątów czworokąta wynosi 360°. Zapisz wszystkie kąty za pomocą alfa.",
+    "answer": "C",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "kąty-w-wielokątach",
+      "równania",
+      "czworokąt"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "12_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "układ współrzędnych",
+    "hint": "Odczytaj przesunięcia na kratkach i zastosuj twierdzenie Pitagorasa.",
+    "answer": "PP",
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "tags": [
+      "układ-współrzędnych",
+      "twierdzenie-pitagorasa",
+      "odległość-punktów"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "13_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "pola figur",
+    "hint": "Z pola i wysokości trójkąta wyznacz przekątną AD, która jest również przekątną kwadratu.",
+    "answer": "D",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "pole-trójkąta",
+      "pole-kwadratu",
+      "geometria"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "14_2026_cke_o_m.webp",
+    "difficulty": 2,
+    "topic": "pole prostopadłościanu",
+    "hint": "Wyznacz wymiary powstałego prostopadłościanu i zastosuj wzór na pole całkowite.",
+    "answer": "A",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "tags": [
+      "prostopadłościan",
+      "pole-powierzchni",
+      "geometria-przestrzenna"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 1
+  },
+  {
+    "file": "15_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "równania",
+    "hint": "Oznacz liczbę czerwonych kartek przez x i zapisz pozostałe liczby kartek za pomocą x.",
+    "answer": "Ela przygotowała 57 kartek niebieskich.",
+    "tags": [
+      "równania",
+      "wyrażenia-algebraiczne",
+      "zadania-tekstowe",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "15_s_1.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 2",
+        "file": "15_s_2.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 3",
+        "file": "15_s_3.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "15_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "15_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "16_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "prędkość, droga i czas",
+    "hint": "Oblicz prędkość na pierwszym odcinku oraz długość drugiego odcinka, a następnie porównaj czas z jedną godziną.",
+    "answer": "Przejazd z Jodłowa do Dębiny trwał dłużej niż godzinę.",
+    "tags": [
+      "prędkość-droga-czas",
+      "proporcjonalność",
+      "zadania-tekstowe",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "16_s_1.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 2",
+        "file": "16_s_2.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 3",
+        "file": "16_s_3.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "16_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "16_z2.webp"
+      },
+      {
+        "label": "Część 3",
+        "file": "16_z3.webp"
+      }
+    ]
+  },
+  {
+    "file": "17_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "procenty",
+    "hint": "Zapisz liczbę uczestników obu turniejów i oblicz, jaką część jednej liczby stanowi druga.",
+    "answer": "Uczestnicy turnieju tenisa stołowego stanowili 29% wszystkich uczestników.",
+    "tags": [
+      "procenty",
+      "zadania-tekstowe",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "17_s_1.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 2",
+        "file": "17_s_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "17_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "18_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "objętość ostrosłupa",
+    "hint": "Porównaj pola podstaw i wysokości obu ostrosłupów we wzorze na objętość.",
+    "answer": "Objętość ostrosłupa ACDS jest 12 razy mniejsza od objętości sześcianu.",
+    "tags": [
+      "ostrosłup",
+      "objętość",
+      "geometria-przestrzenna",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "18_s_1.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 2",
+        "file": "18_s_2.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 3",
+        "file": "18_s_3.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "18_z1.webp"
+      }
+    ]
+  },
+  {
+    "file": "19_2026_cke_o_m.webp",
+    "difficulty": 3,
+    "topic": "pole trapezu i obliczenia praktyczne",
+    "hint": "Oblicz pole trapezu, liczbę potrzebnych opakowań zaokrąglając w górę i ich koszt.",
+    "answer": "Pani Anna musi zapłacić 142,80 zł.",
+    "tags": [
+      "trapez",
+      "pole-figury",
+      "zadania-tekstowe",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "19_s_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "19_z1.webp"
+      },
+      {
+        "label": "Część 2",
+        "file": "19_z2.webp"
+      }
+    ]
+  },
+  {
+    "file": "20_2026_cke_o_m.webp",
+    "difficulty": 4,
+    "topic": "twierdzenie Pitagorasa i obwód",
+    "hint": "Odczytaj długości powstałych boków i oblicz brakujący odcinek z twierdzenia Pitagorasa.",
+    "answer": "Obwód równoległoboku KLMN jest równy 18 + 6√2.",
+    "tags": [
+      "równoległobok",
+      "twierdzenie-pitagorasa",
+      "obwód",
+      "geometria",
+      "zadania-otwarte"
+    ],
+    "level": "egzamin_osmoklasisty",
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie - część 1",
+        "file": "20_s_1.webp"
+      },
+      {
+        "label": "Rozwiązanie - część 2",
+        "file": "20_s_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Część 1",
+        "file": "20_z1.webp"
+      }
+    ]
+  }
+]

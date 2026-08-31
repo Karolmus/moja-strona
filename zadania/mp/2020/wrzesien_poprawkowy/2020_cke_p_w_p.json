@@ -1,0 +1,780 @@
+[
+  {
+    "file": "1_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "C",
+    "tags": [
+      "pierwiastki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "A",
+    "tags": [
+      "pierwiastki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "nierówności",
+    "level": "matura_podstawowa",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "C",
+    "tags": [
+      "nierówności"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "statystyka",
+    "level": "matura_podstawowa",
+    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "answer": "A",
+    "tags": [
+      "statystyka"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "procenty",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "C",
+    "tags": [
+      "procenty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "B",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "A",
+    "tags": [
+      "funkcje",
+      "równania",
+      "czworokąty",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "C",
+    "tags": [
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "C",
+    "tags": [
+      "pierwiastki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "13_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "D",
+    "tags": [
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "15_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "matura_podstawowa",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "D",
+    "tags": [
+      "trójkąty",
+      "czworokąty",
+      "pola figur"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "16_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "answer": "B",
+    "tags": [
+      "trygonometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "17_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "B",
+    "tags": [
+      "pierwiastki",
+      "trygonometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "18_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "A",
+    "tags": [
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "19_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "D",
+    "tags": [
+      "funkcje",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "20_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "21_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "B",
+    "tags": [
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "22_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "23_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "24_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "stereometria",
+    "level": "matura_podstawowa",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "answer": "D",
+    "tags": [
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "25_2020_cke_p_w_p.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "C",
+    "tags": [
+      "pierwiastki",
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "26_2020_cke_p_w_p.webp",
+    "difficulty": 3,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "nierówności",
+      "statystyka",
+      "czworokąty",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "26_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "26_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "26_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "27_2020_cke_p_w_p.webp",
+    "difficulty": 3,
+    "topic": "ciągi geometryczne",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi geometryczne",
+      "ciągi",
+      "równania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "27_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "28_2020_cke_p_w_p.webp",
+    "difficulty": 3,
+    "topic": "funkcja kwadratowa",
+    "level": "matura_podstawowa",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "funkcja kwadratowa",
+      "funkcje",
+      "nierówności",
+      "czworokąty",
+      "odczytywanie danych",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "28_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "28_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "29_2020_cke_p_w_p.webp",
+    "difficulty": 3,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trygonometria",
+      "trójkąty",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "30_2020_cke_p_w_p.webp",
+    "difficulty": 3,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "wyrażenia algebraiczne",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "30_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "30_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "31_2020_cke_p_w_p.webp",
+    "difficulty": 3,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "prawdopodobieństwo",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "31_s_1_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_5_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "32_2020_cke_p_w_p.webp",
+    "difficulty": 4,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "trygonometria",
+      "trójkąty",
+      "czworokąty",
+      "pola figur",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "33_2020_cke_p_w_p.webp",
+    "difficulty": 4,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "trójkąty",
+      "czworokąty",
+      "objętość",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "34_2020_cke_p_w_p.webp",
+    "difficulty": 5,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "ciągi",
+      "funkcje",
+      "nierówności",
+      "równania",
+      "trygonometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_6_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_7_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_8_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_9_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_10_1.webp"
+      }
+    ]
+  }
+]

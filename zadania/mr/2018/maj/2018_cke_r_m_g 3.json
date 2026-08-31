@@ -1,0 +1,451 @@
+[
+  {
+    "file": "1_2018_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "potęgi",
+    "level": "matura_rozszerzona",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "answer": "A",
+    "tags": [
+      "potęgi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 72
+  },
+  {
+    "file": "2_2018_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "B",
+    "tags": [
+      "nierówności",
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 60
+  },
+  {
+    "file": "3_2018_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "logarytmy",
+    "level": "matura_rozszerzona",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
+    "answer": "C",
+    "tags": [
+      "logarytmy",
+      "potęgi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 76
+  },
+  {
+    "file": "4_2018_cke_r_m_g.webp",
+    "difficulty": 2,
+    "topic": "granice",
+    "level": "matura_rozszerzona",
+    "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
+    "answer": "D",
+    "tags": [
+      "granice",
+      "ciągi",
+      "funkcje",
+      "skala i jednostki"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 43
+  },
+  {
+    "file": "5_2018_cke_r_m_g.webp",
+    "difficulty": 3,
+    "topic": "granice",
+    "level": "matura_rozszerzona",
+    "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "granice",
+      "ciągi",
+      "funkcje",
+      "skala i jednostki",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 18,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "5_s_0_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "5_s_0_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "6_2018_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "funkcje",
+      "równania",
+      "trygonometria",
+      "geometria analityczna",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 42,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "6_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "6_s_5_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "7_2018_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "okręgi i koła",
+      "trójkąty",
+      "czworokąty",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 22,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_2_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "8_2018_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "wielomiany",
+    "level": "matura_rozszerzona",
+    "hint": "Rozłóż wielomian na czynniki lub wykorzystaj jego pierwiastki i współczynniki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "wielomiany",
+      "czworokąty",
+      "podzielność",
+      "liczby i działania",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 4,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_1_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_1_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "9_2018_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "prawdopodobieństwo",
+      "kombinatoryka",
+      "statystyka",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 23,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_3_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_4_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2018_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "nierówności",
+      "równania",
+      "trygonometria",
+      "statystyka",
+      "trójkąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 48,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "10_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "10_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "10_s_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "11_2018_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "równania",
+      "trygonometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 21,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12_2018_cke_r_m_g.webp",
+    "difficulty": 5,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "nierówności",
+      "równania",
+      "wielomiany",
+      "czworokąty",
+      "stereometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 6,
+    "completionPercent": 37,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "12_s_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "13_2018_cke_r_m_g.webp",
+    "difficulty": 4,
+    "topic": "ciągi geometryczne",
+    "level": "matura_rozszerzona",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi geometryczne",
+      "ciągi",
+      "równania",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 51,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_6_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "14_2018_cke_r_m_g.webp",
+    "difficulty": 5,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "równania",
+      "trygonometria",
+      "geometria analityczna",
+      "okręgi i koła",
+      "trójkąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 6,
+    "completionPercent": 7,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_5_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "15_2018_cke_r_m_g.webp",
+    "difficulty": 5,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "funkcje",
+      "nierówności",
+      "wielomiany",
+      "trygonometria",
+      "okręgi i koła",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 7,
+    "completionPercent": 14,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "15_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "15_s_2_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "15_s_2_3.webp"
+      }
+    ]
+  }
+]

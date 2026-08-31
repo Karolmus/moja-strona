@@ -1,0 +1,422 @@
+[
+  {
+    "source": {
+      "path": "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+      "category": "egzaminy",
+      "detail": "2021 / maj / CKE"
+    },
+    "tasks": 35,
+    "closed": 28,
+    "open": 7
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
+      "category": "egzaminy",
+      "detail": "2021 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 35,
+    "closed": 28,
+    "open": 7
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
+      "category": "egzaminy",
+      "detail": "2021 / sierpień / termin poprawkowy / CKE"
+    },
+    "tasks": 35,
+    "closed": 28,
+    "open": 7
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
+      "category": "egzaminy",
+      "detail": "2020 / czerwiec / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
+      "category": "egzaminy",
+      "detail": "2020 / lipiec / termin dodatkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
+      "category": "egzaminy",
+      "detail": "2020 / wrzesień / termin poprawkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+      "category": "egzaminy",
+      "detail": "2019 / maj / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+      "category": "egzaminy",
+      "detail": "2019 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
+      "category": "egzaminy",
+      "detail": "2019 / sierpień / termin poprawkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2018/maj/2018_cke_p_m_g.json",
+      "category": "egzaminy",
+      "detail": "2018 / maj / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+      "category": "egzaminy",
+      "detail": "2018 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
+      "category": "egzaminy",
+      "detail": "2018 / sierpień / termin poprawkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+      "category": "egzaminy",
+      "detail": "2017 / maj / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+      "category": "egzaminy",
+      "detail": "2017 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+      "category": "egzaminy",
+      "detail": "2017 / sierpień / termin poprawkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+      "category": "egzaminy",
+      "detail": "2016 / maj / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
+      "category": "egzaminy",
+      "detail": "2016 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 33,
+    "closed": 25,
+    "open": 8
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
+      "category": "egzaminy",
+      "detail": "2016 / sierpień / termin poprawkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+      "category": "egzaminy",
+      "detail": "2015 / maj / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
+      "category": "egzaminy",
+      "detail": "2015 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json",
+      "category": "egzaminy",
+      "detail": "2015 / sierpień / termin poprawkowy / CKE"
+    },
+    "tasks": 34,
+    "closed": 25,
+    "open": 9
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
+      "category": "egzaminy",
+      "detail": "2026 / maj / formuła 2023 / CKE"
+    },
+    "tasks": 13,
+    "closed": 0,
+    "open": 13
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
+      "category": "egzaminy",
+      "detail": "2026 / maj / formuła 2015 / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+      "category": "egzaminy",
+      "detail": "2026 / czerwiec / termin dodatkowy / formuła 2023 / CKE"
+    },
+    "tasks": 14,
+    "closed": 0,
+    "open": 14
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
+      "category": "egzaminy",
+      "detail": "2026 / czerwiec / termin dodatkowy / formuła 2015 / CKE"
+    },
+    "tasks": 16,
+    "closed": 4,
+    "open": 12
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+      "category": "egzaminy",
+      "detail": "2020 / czerwiec / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
+      "category": "egzaminy",
+      "detail": "2020 / lipiec / termin dodatkowy / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2019/maj/2019_cke_r_m_g.json",
+      "category": "egzaminy",
+      "detail": "2019 / maj / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
+      "category": "egzaminy",
+      "detail": "2019 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2018/maj/2018_cke_r_m_g.json",
+      "category": "egzaminy",
+      "detail": "2018 / maj / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
+      "category": "egzaminy",
+      "detail": "2018 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2017/maj/2017_cke_r_m_g.json",
+      "category": "egzaminy",
+      "detail": "2017 / maj / CKE"
+    },
+    "tasks": 15,
+    "closed": 4,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
+      "category": "egzaminy",
+      "detail": "2017 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 15,
+    "closed": 5,
+    "open": 10
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2016/maj/2016_cke_r_m_g.json",
+      "category": "egzaminy",
+      "detail": "2016 / maj / CKE"
+    },
+    "tasks": 16,
+    "closed": 5,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
+      "category": "egzaminy",
+      "detail": "2016 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 17,
+    "closed": 5,
+    "open": 12
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2015/maj/2015_cke_r_m_g.json",
+      "category": "egzaminy",
+      "detail": "2015 / maj / CKE"
+    },
+    "tasks": 16,
+    "closed": 5,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json",
+      "category": "egzaminy",
+      "detail": "2015 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 16,
+    "closed": 5,
+    "open": 11
+  },
+  {
+    "source": {
+      "path": "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
+      "category": "egzaminy",
+      "detail": "2021 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 19,
+    "closed": 15,
+    "open": 4
+  },
+  {
+    "source": {
+      "path": "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
+      "category": "egzaminy",
+      "detail": "2020 / czerwiec / CKE"
+    },
+    "tasks": 21,
+    "closed": 15,
+    "open": 6
+  },
+  {
+    "source": {
+      "path": "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
+      "category": "egzaminy",
+      "detail": "2020 / lipiec / termin dodatkowy / CKE"
+    },
+    "tasks": 21,
+    "closed": 15,
+    "open": 6
+  },
+  {
+    "source": {
+      "path": "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
+      "category": "egzaminy",
+      "detail": "2019 / kwiecień / CKE"
+    },
+    "tasks": 21,
+    "closed": 15,
+    "open": 6
+  },
+  {
+    "source": {
+      "path": "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json",
+      "category": "egzaminy",
+      "detail": "2019 / czerwiec / termin dodatkowy / CKE"
+    },
+    "tasks": 21,
+    "closed": 15,
+    "open": 6
+  }
+]

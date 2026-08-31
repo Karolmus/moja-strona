@@ -1,0 +1,909 @@
+[
+  {
+    "file": "1_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "B",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "A",
+    "tags": [
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "liczby i działania",
+    "level": "matura_podstawowa",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "answer": "D",
+    "tags": [
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "B",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "B",
+    "tags": [
+      "funkcje"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "B",
+    "tags": [
+      "funkcje"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "13_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "B",
+    "tags": [
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "ciągi arytmetyczne",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
+    "answer": "B",
+    "tags": [
+      "ciągi arytmetyczne",
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "15_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "16_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "matura_podstawowa",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "D",
+    "tags": [
+      "trójkąty",
+      "pola figur"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "17_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "18_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "czworokąty",
+    "level": "matura_podstawowa",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "answer": "D",
+    "tags": [
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "19_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "czworokąty",
+    "level": "matura_podstawowa",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "answer": "A",
+    "tags": [
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "20_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "21_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "level": "matura_podstawowa",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "answer": "D",
+    "tags": [
+      "trygonometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "22_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "statystyka",
+    "level": "matura_podstawowa",
+    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "answer": "C",
+    "tags": [
+      "statystyka",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "23_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "stereometria",
+    "level": "matura_podstawowa",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "answer": "A",
+    "tags": [
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "24_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "25_2018_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "C",
+    "tags": [
+      "ciągi",
+      "prawdopodobieństwo"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "26_2018_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "nierówności",
+      "statystyka",
+      "czworokąty",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "26_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "26_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "26_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "27_2018_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "funkcje",
+      "równania",
+      "czworokąty",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "I sposób",
+        "file": "27_s_1_1.webp"
+      },
+      {
+        "label": "Ii sposób",
+        "file": "27_s_3_1.webp"
+      },
+      {
+        "label": "Iii sposób",
+        "file": "27_s_4_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "27_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "27_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "27_z_6_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "28_2018_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "czworokąty",
+    "level": "matura_podstawowa",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "czworokąty",
+      "podzielność",
+      "liczby i działania",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "28_s_1_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "28_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "28_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "29_2018_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "trójkąty",
+    "level": "matura_podstawowa",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąty",
+      "czworokąty",
+      "skala i jednostki",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "I sposób",
+        "file": "29_s_2_1.webp"
+      },
+      {
+        "label": "Ii sposób",
+        "file": "29_s_5_1.webp"
+      },
+      {
+        "label": "Iii sposób",
+        "file": "29_s_8_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_6_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_7_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_9_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_10_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "30_2018_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "funkcje",
+      "równania",
+      "trygonometria",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "30_s_1_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "30_s_4_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "30_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "30_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "30_z_5_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "31_2018_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "prawdopodobieństwo",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "I sposób",
+        "file": "31_s_1_1.webp"
+      },
+      {
+        "label": "Ii sposób",
+        "file": "31_s_4_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_6_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "32_2018_cke_p_c_d.webp",
+    "difficulty": 5,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "trygonometria",
+      "okręgi i koła",
+      "trójkąty",
+      "czworokąty",
+      "stereometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "solutions": [
+      {
+        "label": "I sposób",
+        "file": "32_s_1_1.webp"
+      },
+      {
+        "label": "Ii sposób",
+        "file": "32_s_3_1.webp"
+      },
+      {
+        "label": "Iii sposób",
+        "file": "32_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "32_s_6_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "32_s_8_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "32_s_9_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "32_s_10_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_7_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_11_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "33_2018_cke_p_c_d.webp",
+    "difficulty": 4,
+    "topic": "ciągi arytmetyczne",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi arytmetyczne",
+      "ciągi",
+      "równania",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "I sposób",
+        "file": "33_s_1_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_6_1.webp"
+      },
+      {
+        "label": "Ii sposób",
+        "file": "33_s_7_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_9_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_10_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_11_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_12_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "34_2018_cke_p_c_d.webp",
+    "difficulty": 4,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "geometria analityczna",
+      "wektory",
+      "okręgi i koła",
+      "trójkąty",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "I sposób",
+        "file": "34_s_1_1.webp"
+      },
+      {
+        "label": "Ii sposób",
+        "file": "34_s_3_1.webp"
+      },
+      {
+        "label": "Iii sposób",
+        "file": "34_s_4_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "34_s_7_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "34_s_8_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "34_s_10_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_9_1.webp"
+      }
+    ]
+  }
+]

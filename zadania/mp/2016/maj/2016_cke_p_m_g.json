@@ -1,0 +1,755 @@
+[
+  {
+    "file": "1_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "potęgi",
+    "level": "matura_podstawowa",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "answer": "A",
+    "tags": [
+      "potęgi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 76
+  },
+  {
+    "file": "2_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "logarytmy",
+    "level": "matura_podstawowa",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
+    "answer": "D",
+    "tags": [
+      "logarytmy",
+      "potęgi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 68
+  },
+  {
+    "file": "3_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "procenty",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "A",
+    "tags": [
+      "procenty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 60
+  },
+  {
+    "file": "4_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 73
+  },
+  {
+    "file": "5_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "nierówności",
+    "level": "matura_podstawowa",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "C",
+    "tags": [
+      "nierówności",
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 70
+  },
+  {
+    "file": "6_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "C",
+    "tags": [
+      "równania",
+      "geometria analityczna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 71
+  },
+  {
+    "file": "7_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "okręgi i koła",
+    "level": "matura_podstawowa",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "answer": "D",
+    "tags": [
+      "okręgi i koła"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 88
+  },
+  {
+    "file": "8_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "D",
+    "tags": [
+      "funkcje",
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 72
+  },
+  {
+    "file": "9_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "A",
+    "tags": [
+      "funkcje",
+      "nierówności",
+      "równania",
+      "czworokąty",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 73
+  },
+  {
+    "file": "10_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "D",
+    "tags": [
+      "funkcje",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 81
+  },
+  {
+    "file": "11_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "B",
+    "tags": [
+      "funkcje",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 78
+  },
+  {
+    "file": "12_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "B",
+    "tags": [
+      "funkcje"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 60
+  },
+  {
+    "file": "13_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "A",
+    "tags": [
+      "funkcje",
+      "trygonometria",
+      "okręgi i koła"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 58
+  },
+  {
+    "file": "14_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "A",
+    "tags": [
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 69
+  },
+  {
+    "file": "15_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "D",
+    "tags": [
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 66
+  },
+  {
+    "file": "16_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "matura_podstawowa",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "B",
+    "tags": [
+      "trójkąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 85
+  },
+  {
+    "file": "17_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_podstawowa",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "C",
+    "tags": [
+      "funkcje",
+      "trygonometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 81
+  },
+  {
+    "file": "18_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "matura_podstawowa",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "D",
+    "tags": [
+      "trójkąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 66
+  },
+  {
+    "file": "19_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "okręgi i koła",
+    "level": "matura_podstawowa",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "answer": "B",
+    "tags": [
+      "okręgi i koła",
+      "trójkąty",
+      "pola figur"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 60
+  },
+  {
+    "file": "20_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "C",
+    "tags": [
+      "równania",
+      "geometria analityczna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 65
+  },
+  {
+    "file": "21_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "answer": "B",
+    "tags": [
+      "geometria analityczna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 87
+  },
+  {
+    "file": "22_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "prawdopodobieństwo",
+    "level": "matura_podstawowa",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "answer": "C",
+    "tags": [
+      "prawdopodobieństwo",
+      "kombinatoryka",
+      "statystyka"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 53
+  },
+  {
+    "file": "23_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "objętość",
+    "level": "matura_podstawowa",
+    "hint": "Ustal pole podstawy i wysokość bryły, a następnie zastosuj wzór na objętość.",
+    "answer": "D",
+    "tags": [
+      "objętość"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 68
+  },
+  {
+    "file": "24_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "stereometria",
+    "level": "matura_podstawowa",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "answer": "B",
+    "tags": [
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 60
+  },
+  {
+    "file": "25_2016_cke_p_m_g.webp",
+    "difficulty": 2,
+    "topic": "prawdopodobieństwo",
+    "level": "matura_podstawowa",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "answer": "C",
+    "tags": [
+      "prawdopodobieństwo",
+      "statystyka",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 64
+  },
+  {
+    "file": "26_2016_cke_p_m_g.webp",
+    "difficulty": 3,
+    "topic": "procenty",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "procenty",
+      "nierówności",
+      "prawdopodobieństwo",
+      "statystyka",
+      "okręgi i koła",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 60,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "26_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "27_2016_cke_p_m_g.webp",
+    "difficulty": 3,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "nierówności",
+      "równania",
+      "statystyka",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 60,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "27_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "27_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "28_2016_cke_p_m_g.webp",
+    "difficulty": 3,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "nierówności",
+      "równania",
+      "wielomiany",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 66,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "28_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "28_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "29_2016_cke_p_m_g.webp",
+    "difficulty": 3,
+    "topic": "trójkąty",
+    "level": "matura_podstawowa",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąty",
+      "czworokąty",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 30,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "29_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "30_2016_cke_p_m_g.webp",
+    "difficulty": 3,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 23,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "30_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "31_2016_cke_p_m_g.webp",
+    "difficulty": 3,
+    "topic": "logarytmy",
+    "level": "matura_podstawowa",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "logarytmy",
+      "potęgi",
+      "funkcje",
+      "równania",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 34,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "31_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "32_2016_cke_p_m_g.webp",
+    "difficulty": 4,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "trójkąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 56,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "33_2016_cke_p_m_g.webp",
+    "difficulty": 5,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "trygonometria",
+      "okręgi i koła",
+      "trójkąty",
+      "stereometria",
+      "pola figur",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "completionPercent": 32,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "34_2016_cke_p_m_g.webp",
+    "difficulty": 4,
+    "topic": "prawdopodobieństwo",
+    "level": "matura_podstawowa",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "prawdopodobieństwo",
+      "kombinatoryka",
+      "statystyka",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "completionPercent": 31,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "34_z_1_2.webp"
+      }
+    ]
+  }
+]

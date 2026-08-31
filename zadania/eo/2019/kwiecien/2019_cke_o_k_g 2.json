@@ -1,0 +1,474 @@
+[
+  {
+    "file": "1_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "odczytywanie danych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
+    "answer": "PP",
+    "tags": [
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "completionPercent": 46
+  },
+  {
+    "file": "2_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "okręgi i koła",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "answer": "C",
+    "tags": [
+      "okręgi i koła",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 34
+  },
+  {
+    "file": "3_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "potęgi",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "answer": "B",
+    "tags": [
+      "potęgi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 33
+  },
+  {
+    "file": "4_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "D",
+    "tags": [
+      "pierwiastki",
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 45
+  },
+  {
+    "file": "5_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "podzielność",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
+    "answer": "BC",
+    "tags": [
+      "podzielność"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ],
+    "completionPercent": 82
+  },
+  {
+    "file": "6_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "procenty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "E",
+    "tags": [
+      "procenty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "completionPercent": 51
+  },
+  {
+    "file": "7_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "statystyka",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "answer": "PP",
+    "tags": [
+      "statystyka",
+      "odczytywanie danych",
+      "dowodzenie"
+    ],
+    "maxPoints": 1,
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "completionPercent": 56
+  },
+  {
+    "file": "8_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "wyrażenia algebraiczne",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
+    "answer": "C",
+    "tags": [
+      "wyrażenia algebraiczne",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 52
+  },
+  {
+    "file": "9_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "answer": "B",
+    "tags": [
+      "geometria analityczna",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 59
+  },
+  {
+    "file": "10_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "czworokąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "answer": "FP",
+    "tags": [
+      "czworokąty",
+      "pola figur",
+      "dowodzenie"
+    ],
+    "maxPoints": 1,
+    "type": "true_false",
+    "options": [
+      "PP",
+      "PF",
+      "FP",
+      "FF"
+    ],
+    "completionPercent": 48
+  },
+  {
+    "file": "11_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "B",
+    "tags": [
+      "trójkąty",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 63
+  },
+  {
+    "file": "12_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "A",
+    "tags": [
+      "trójkąty",
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 54
+  },
+  {
+    "file": "13_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "B",
+    "tags": [
+      "trójkąty",
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 47
+  },
+  {
+    "file": "14_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "czworokąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "answer": "C",
+    "tags": [
+      "czworokąty",
+      "stereometria",
+      "objętość"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 44
+  },
+  {
+    "file": "15_2019_cke_o_k_g.webp",
+    "difficulty": 2,
+    "topic": "stereometria",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "answer": "B",
+    "tags": [
+      "stereometria",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "completionPercent": 35
+  },
+  {
+    "file": "16_2019_cke_o_k_g.webp",
+    "difficulty": 3,
+    "topic": "procenty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "procenty",
+      "ciągi",
+      "funkcje",
+      "statystyka",
+      "okręgi i koła",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 69,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "17_2019_cke_o_k_g.webp",
+    "difficulty": 3,
+    "topic": "ciągi",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "prędkość, droga i czas",
+      "skala i jednostki",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 47,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "18_2019_cke_o_k_g.webp",
+    "difficulty": 3,
+    "topic": "równania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "liczby i działania",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "completionPercent": 47,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "19_2019_cke_o_k_g.webp",
+    "difficulty": 4,
+    "topic": "równania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 32,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "19_s_3_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "20_2019_cke_o_k_g.webp",
+    "difficulty": 4,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąty",
+      "czworokąty",
+      "pola figur",
+      "skala i jednostki",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 24,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "20_s_3_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "21_2019_cke_o_k_g.webp",
+    "difficulty": 4,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąty",
+      "czworokąty",
+      "skala i jednostki",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "completionPercent": 38,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "21_s_3_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "21_z_1_1.webp"
+      }
+    ]
+  }
+]

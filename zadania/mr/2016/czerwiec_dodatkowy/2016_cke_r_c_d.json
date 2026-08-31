@@ -1,0 +1,550 @@
+[
+  {
+    "file": "1_2016_cke_r_c_d.webp",
+    "difficulty": 2,
+    "topic": "funkcje",
+    "level": "matura_rozszerzona",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "A",
+    "tags": [
+      "funkcje"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2016_cke_r_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2016_cke_r_c_d.webp",
+    "difficulty": 2,
+    "topic": "czworokąty",
+    "level": "matura_rozszerzona",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "answer": "B",
+    "tags": [
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2016_cke_r_c_d.webp",
+    "difficulty": 2,
+    "topic": "trygonometria",
+    "level": "matura_rozszerzona",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "answer": "A",
+    "tags": [
+      "trygonometria",
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2016_cke_r_c_d.webp",
+    "difficulty": 2,
+    "topic": "granice",
+    "level": "matura_rozszerzona",
+    "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
+    "answer": "C",
+    "tags": [
+      "granice"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6_2016_cke_r_c_d.webp",
+    "difficulty": 3,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "6_s_0_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "7_2016_cke_r_c_d.webp",
+    "difficulty": 3,
+    "topic": "zadanie problemowe",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "zadanie problemowe",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "7_s_0_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "8_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "czworokąty",
+      "liczby i działania",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "8_s_1_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "9_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "pierwiastki",
+      "funkcja kwadratowa",
+      "funkcje",
+      "nierówności",
+      "równania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "9_s_1_1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "9_s_2_1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "9_s_2_2.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "9_s_4_1.webp"
+      },
+      {
+        "label": "Sposób IV",
+        "file": "9_s_6_1.webp"
+      },
+      {
+        "label": "Sposób IV",
+        "file": "9_s_6_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_7_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "10_s_1_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "11_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "trygonometria",
+    "level": "matura_rozszerzona",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trygonometria",
+      "trójkąty",
+      "czworokąty",
+      "stereometria",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_1_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_1_2.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_1_3.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "funkcje",
+      "nierówności",
+      "równania",
+      "wektory",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12_s_1_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "12_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "12_z_2_3.webp"
+      }
+    ]
+  },
+  {
+    "file": "13_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "nierówności",
+    "level": "matura_rozszerzona",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "trygonometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "13_s_1_1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "13_s_3_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "13_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "13_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "13_z_4_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "14_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "funkcje",
+    "level": "matura_rozszerzona",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "funkcje",
+      "równania",
+      "trygonometria",
+      "trójkąty",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "14_s_1_1.webp"
+      },
+      {
+        "label": "Sposób I",
+        "file": "14_s_1_2.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "14_s_3_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "14_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "14_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "15_2016_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "15_s_1_1.webp"
+      },
+      {
+        "label": "Sposób I",
+        "file": "15_s_1_2.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "15_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "15_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "15_z_3_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "16_2016_cke_r_c_d.webp",
+    "difficulty": 5,
+    "topic": "równania",
+    "level": "matura_rozszerzona",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "geometria analityczna",
+      "wektory",
+      "trójkąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "solutions": [
+      {
+        "label": "Sposób I",
+        "file": "16_s_1_1.webp"
+      },
+      {
+        "label": "Sposób I",
+        "file": "16_s_1_2.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "16_s_3_1.webp"
+      },
+      {
+        "label": "Sposób II",
+        "file": "16_s_3_2.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "16_s_5_1.webp"
+      },
+      {
+        "label": "Sposób III",
+        "file": "16_s_5_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_6_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_6_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_6_3.webp"
+      }
+    ]
+  },
+  {
+    "file": "17_2016_cke_r_c_d.webp",
+    "difficulty": 5,
+    "topic": "pochodne",
+    "level": "matura_rozszerzona",
+    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pochodne",
+      "funkcje",
+      "nierówności",
+      "równania",
+      "pola figur",
+      "objętość",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 7,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "17_s_1_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_2_2.webp"
+      }
+    ]
+  }
+]
