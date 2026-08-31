@@ -494,6 +494,41 @@ class SecurityTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
 
+    def test_course_progress_is_saved_and_available_immediately(self):
+        with app.app_context():
+            student = create_user(
+                email="course-progress@example.com",
+                display_name="Uczeń",
+                password="bezpieczne-haslo",
+                level="egzamin_osmoklasisty",
+            )
+
+        login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        source_id = "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
+        task = {
+            "task_id": f"{source_id}:1.png",
+            "source_id": source_id,
+            "file": "1.png",
+            "topic": "Procenty",
+            "result": "good",
+            "earned_points": 1,
+            "max_points": 1,
+        }
+
+        saved = self.client.post("/api/progress", headers=headers, json=task)
+        progress = self.client.get("/api/progress/me", headers=headers)
+        progress_data = progress.get_json()
+
+        self.assertEqual(saved.status_code, 201)
+        self.assertEqual(progress.status_code, 200)
+        self.assertEqual(len(progress_data["progress"]), 1)
+        self.assertEqual(progress_data["progress"][0]["task_id"], task["task_id"])
+        self.assertEqual(progress_data["progress"][0]["level"], "egzamin_osmoklasisty")
+
     def test_student_can_read_own_review_history(self):
         with app.app_context():
             student = create_user(
