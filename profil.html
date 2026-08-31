@@ -762,6 +762,28 @@ function coursePartOf(task){
     return task?.coursePart || task?.section || "zadania";
 }
 
+function courseAssetApiPath(path){
+    const relativePath = String(path || "").replace(/^zadania\/kurs\//, "");
+    const encodedPath = relativePath
+        .split("/")
+        .map(segment => encodeURIComponent(segment))
+        .join("/");
+
+    return `/api/course-assets/${encodedPath}`;
+}
+
+async function loadProfileSource(path){
+    if(String(path).startsWith("zadania/kurs/")){
+        return apiFetch(courseAssetApiPath(path));
+    }
+
+    const response = await fetch(path);
+
+    if(!response.ok) throw new Error("Nie udało się pobrać źródła.");
+
+    return response.json();
+}
+
 function profileSourceConfigs(level, progress){
     const sources = PROFILE_SOURCES
         .filter(source => source.level === level)
@@ -795,11 +817,7 @@ async function loadSourceCatalog(level, progress = []){
     const loaded = await Promise.all(
         sources.map(async source => {
             try {
-                const response = await fetch(source.path);
-
-                if(!response.ok) throw new Error("Nie udało się pobrać źródła.");
-
-                const data = await response.json();
+                const data = await loadProfileSource(source.path);
                 const tasks = Array.isArray(data) ? data : [];
                 const filesByPart = new Map();
 
@@ -1056,12 +1074,14 @@ function calculateProgress(progress, category, part){
 }
 
 function renderProgress(prefix, stats, unit, emptyText){
+    const inProgress = Math.max(0, stats.started - stats.completed);
+
     document.getElementById(`${prefix}Label`).innerText =
-        `${stats.completed} / ${stats.target} ${unit}`;
+        `${stats.completed} / ${stats.target} ${unit}${inProgress ? ` • ${inProgress} w trakcie` : ""}`;
     document.getElementById(`${prefix}Fill`).style.width = `${stats.percent}%`;
     document.getElementById(`${prefix}Track`).setAttribute("aria-valuenow", String(stats.percent));
     document.getElementById(`${prefix}Detail`).innerText = stats.available
-        ? `${stats.completed}/${stats.available} ukończonych • ${stats.started} rozpoczętych • ${stats.attemptedTasks}/${stats.totalTasks} zadań`
+        ? `${stats.completed}/${stats.available} ukończonych • ${inProgress} w trakcie • ${stats.attemptedTasks}/${stats.totalTasks} zadań`
         : emptyText;
 }
 
@@ -1307,9 +1327,13 @@ function renderProfile(user, progress, reviewTasks){
     document.getElementById("profileDashboard").classList.add("active");
 }
 
+let profileBootRequestId = 0;
+
 async function bootProfile(){
+    const requestId = ++profileBootRequestId;
+
     try {
-        const session = await apiFetch("/api/auth/me");
+        const session = await apiFetch("/api/auth/me", { cache: "no-store" });
 
         if(!session.authenticated){
             window.location.href = "login.html";
@@ -1322,13 +1346,15 @@ async function bootProfile(){
         }
 
         const [progressData, reviewData] = await Promise.all([
-            apiFetch("/api/progress/me"),
-            apiFetch("/api/review-tasks/me")
+            apiFetch("/api/progress/me", { cache: "no-store" }),
+            apiFetch("/api/review-tasks/me", { cache: "no-store" })
         ]);
         const progress = Array.isArray(progressData.progress) ? progressData.progress : [];
         const reviewTasks = Array.isArray(reviewData.review_tasks) ? reviewData.review_tasks : [];
 
         await loadSourceCatalog(session.user.level, [...progress, ...reviewTasks]);
+
+        if(requestId !== profileBootRequestId) return;
 
         renderProfile(
             session.user,
@@ -1347,6 +1373,12 @@ fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
     });
 
 bootProfile();
+
+window.addEventListener("pageshow", event => {
+    if(event.persisted){
+        bootProfile();
+    }
+});
 </script>
 </body>
 </html>

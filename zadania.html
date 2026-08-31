@@ -2791,9 +2791,9 @@ footer {
                     </div>
 
                     <div class="action-group navigation" role="group" aria-label="Nawigacja po zadaniach">
-                        <button class="action-btn nav previous-task-btn" onclick="prevTask()">← Poprzednie</button>
+                        <button class="action-btn nav previous-task-btn" onclick="prevTask()">← Poprzednie zadanie</button>
                         <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
-                        <button class="action-btn nav next-task-btn" onclick="nextTask()">Kolejne →</button>
+                        <button class="action-btn nav next-task-btn" onclick="nextTask()">Kolejne zadanie →</button>
                     </div>
 
                     <div class="action-group check result-buttons" id="resultButtons"></div>
@@ -3227,7 +3227,7 @@ function toggleFocusMode(){
     const button = document.getElementById("focusToggle");
 
     if(button){
-        button.innerText = focusMode ? "Wyjdź ze skupienia" : "Tryb skupienia";
+        button.innerText = focusMode ? "Wyjdź z trybu skupienia" : "Tryb skupienia";
     }
 }
 
@@ -6420,16 +6420,6 @@ function automaticScoreForResult(type, task = currentTask){
     return { earnedPoints: null, maxPoints };
 }
 
-function advanceAfterScoreSave(task){
-    if(!task || !isManualScoreTask(task)) return;
-
-    setTimeout(() => {
-        if(currentTask === task){
-            nextTask();
-        }
-    }, 250);
-}
-
 function scoreRangeStep(maxPoints){
     return Number.isInteger(maxPoints) ? 1 : 0.5;
 }
@@ -7011,10 +7001,6 @@ function checkPracticalAnswer(form){
         disableMCQ();
         addProgress(hintUsed || answerShown ? "medium" : "good");
 
-        setTimeout(() => {
-            nextTask();
-        }, 950);
-
         return;
     }
 
@@ -7093,10 +7079,6 @@ function choose(opt, btn){
         btn.classList.add("correct");
         addProgress(hintUsed || answerShown ? "medium" : "good");
 
-        setTimeout(() => {
-            nextTask();
-        }, 650);
-
         return;
     }
 
@@ -7110,10 +7092,6 @@ function choose(opt, btn){
     }
 
     addProgress("bad");
-
-    setTimeout(() => {
-        nextTask();
-    }, 1200);
 }
 
 function chooseMulti(opt, btn){
@@ -7161,10 +7139,6 @@ function chooseMulti(opt, btn){
     }
 
     addProgress(result === "good" && (hintUsed || answerShown) ? "medium" : result, scoreData);
-
-    setTimeout(() => {
-        nextTask();
-    }, earnedPoints === maxPoints ? 850 : 1400);
 }
 
 function chooseGroupedMulti(index, value, btn){
@@ -7200,10 +7174,6 @@ function chooseGroupedMulti(index, value, btn){
     }
 
     addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
-
-    setTimeout(() => {
-        nextTask();
-    }, isCorrect ? 850 : 1400);
 }
 
 function chooseGroupedChoice(index, value, btn){
@@ -7238,10 +7208,6 @@ function chooseGroupedChoice(index, value, btn){
     }
 
     addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
-
-    setTimeout(() => {
-        nextTask();
-    }, isCorrect ? 850 : 1400);
 }
 
 function chooseTrueFalse(index, opt, btn){
@@ -7274,10 +7240,6 @@ function chooseTrueFalse(index, opt, btn){
     }
 
     addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
-
-    setTimeout(() => {
-        nextTask();
-    }, isCorrect ? 850 : 1400);
 }
 
 function disableMCQ(){
@@ -7382,10 +7344,6 @@ function checkInputAnswer(form){
 
         addProgress("good", scoreData);
 
-        setTimeout(() => {
-            nextTask();
-        }, 850);
-
         return;
     }
 
@@ -7400,10 +7358,6 @@ function checkInputAnswer(form){
     }
 
     addProgress("bad");
-
-    setTimeout(() => {
-        nextTask();
-    }, 1400);
 }
 
 function setSessionScore(task, type, scoreData = null){
@@ -7463,26 +7417,32 @@ async function saveProgress(type, scoreData = null){
     if(!isLoggedInStudent) return;
     if(!currentTask || !window.apiFetch) return;
 
+    const task = currentTask;
+    const taskDuration = getCurrentTaskDurationSeconds();
+    const usedHint = hintUsed;
+    const revealedAnswer = answerShown;
+
     try {
-        const automaticScore = automaticScoreForResult(type);
+        const automaticScore = automaticScoreForResult(type, task);
         const score = scoreData || automaticScore || {};
         const data = await apiFetch("/api/progress", {
             method: "POST",
+            keepalive: true,
             body: JSON.stringify({
-                task_id: `${currentTask.sourceId}:${currentTask.file}`,
-                source_id: currentTask.sourceId,
-                file: currentTask.file,
-                level: currentTask.level,
-                topic: currentTask.topic,
-                difficulty: taskDifficulty(currentTask),
+                task_id: `${task.sourceId}:${task.file}`,
+                source_id: task.sourceId,
+                file: task.file,
+                level: task.level,
+                topic: task.topic,
+                difficulty: taskDifficulty(task),
                 result: type,
-                hint_used: hintUsed,
-                answer_shown: answerShown,
-                source_category: currentTask.category,
+                hint_used: usedHint,
+                answer_shown: revealedAnswer,
+                source_category: task.category,
                 task_mode: taskMode,
-                duration_seconds: getCurrentTaskDurationSeconds(),
+                duration_seconds: taskDuration,
                 earned_points: score.earnedPoints,
-                max_points: (score.maxPoints ?? taskMaxPoints(currentTask)) || undefined
+                max_points: (score.maxPoints ?? taskMaxPoints(task)) || undefined
             })
         });
 
@@ -7511,7 +7471,6 @@ async function submitScore(event){
     const maxPoints = taskMaxPoints(currentTask);
     const saved = getSavedProgressItem(currentTask);
     const lockAfterSave = isCourseManualScoreTask(currentTask);
-    const scoredTask = currentTask;
 
     if(isCourseTask() && hasSavedPoints(saved)){
         status.innerText = "W trybie kursu nie można poprawiać zapisanego wyniku.";
@@ -7556,7 +7515,6 @@ async function submitScore(event){
     button.disabled = lockAfterSave;
     if(maxButton) maxButton.disabled = lockAfterSave;
     updateSourceSummary();
-    advanceAfterScoreSave(scoredTask);
 }
 
 function submitMaxScore(){

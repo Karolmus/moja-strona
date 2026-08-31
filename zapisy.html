@@ -224,6 +224,58 @@ h1{
     min-height: 0;
 }
 
+.schedule-picker {
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+    padding-top: 16px;
+    border-top: 1px solid #e4e9ef;
+}
+
+.schedule-picker-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.schedule-picker-head h2 {
+    margin: 0;
+    color: #1f2a36;
+    font-size: 17px;
+    line-height: 1.2;
+}
+
+.schedule-picker-head p {
+    margin: 0;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: right;
+}
+
+.schedule-status {
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.schedule-status[hidden] {
+    display: none;
+}
+
+.schedule-selected {
+    display: grid;
+    gap: 6px;
+    padding-top: 2px;
+}
+
+.schedule-selected > span {
+    color: #526172;
+    font-size: 11px;
+    font-weight: 700;
+}
+
 .booking-photo {
     min-width: 0;
     min-height: 280px;
@@ -610,21 +662,21 @@ h1{
 }
 
 	/* TABLE */
-	.table-wrapper{
-	    display:none;
-	    overflow-x:auto;
-	    background:#f8fafc;
+		.table-wrapper{
+		    display:block;
+		    overflow-x:auto;
+		    background:#f8fafc;
 	    border:1px solid #e2e8f0;
 	    border-radius:12px;
 	    padding:7px;
 	    -webkit-overflow-scrolling:touch;
 	}
 
-	table{
-	    width:100%;
-	    border-collapse:separate;
-	    border-spacing:2px;
-	    min-width:760px;
+		table{
+		    width:100%;
+		    border-collapse:separate;
+		    border-spacing:2px;
+		    min-width:620px;
 	}
 
 	th, td{
@@ -675,8 +727,8 @@ h1{
 	    border:1px solid #d5dee8;
 	}
 
-    .schedule-mobile{
-        display:grid;
+	    .schedule-mobile{
+	        display:none;
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:12px;
         align-items:start;
@@ -1286,6 +1338,26 @@ h1{
         margin:0;
     }
 
+    .schedule-picker{
+        gap:8px;
+        padding-top:12px;
+    }
+
+    .schedule-picker-head{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:3px;
+    }
+
+    .schedule-picker-head h2{
+        font-size:16px;
+    }
+
+    .schedule-picker-head p{
+        font-size:10px;
+        text-align:left;
+    }
+
     .course-options{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:8px;
@@ -1311,9 +1383,9 @@ h1{
         display:none;
     }
 
-    .schedule-mobile{
-        display:grid;
-        grid-template-columns:1fr;
+	    .schedule-mobile{
+	        display:grid;
+	        grid-template-columns:1fr;
         gap:10px;
     }
 
@@ -1535,6 +1607,22 @@ footer{
                         <img src="img/me5.webp?v=20260819" alt="Karol Musioł" width="1200" height="1600" loading="lazy" decoding="async">
                     </figure>
                 </div>
+
+                <section class="schedule-picker" aria-labelledby="scheduleTitle">
+                    <div class="schedule-picker-head">
+                        <h2 id="scheduleTitle">Terminarz zajęć</h2>
+                        <p>Kliknij wolny termin, aby dodać go do formularza.</p>
+                    </div>
+                    <p class="schedule-status" id="scheduleStatus" role="status">Wczytywanie terminarza...</p>
+                    <div class="table-wrapper">
+                        <table id="schedule" aria-label="Dostępne terminy zajęć"></table>
+                    </div>
+                    <div class="schedule-mobile" id="scheduleMobile" aria-label="Dostępne terminy zajęć"></div>
+                    <div class="schedule-selected">
+                        <span>Wybrane terminy</span>
+                        <div class="selected-term-list empty" id="selectedTermList" aria-live="polite">Brak wybranych terminów.</div>
+                    </div>
+                </section>
             </section>
 
             <section class="contact-form-card" id="contactFormCard" aria-labelledby="contactFormTitle">
@@ -1713,9 +1801,16 @@ let data = [];
 let selectedTerms = [];
 
 if(document.getElementById("schedule") || document.getElementById("scheduleMobile")){
+    const scheduleStatus = document.getElementById("scheduleStatus");
+
     fetch(SHEET_URL)
-    .then(r => r.text())
+    .then(response => {
+        if(!response.ok) throw new Error("Nie udało się pobrać terminarza.");
+
+        return response.text();
+    })
     .then(csv => {
+        if(!csv.trim()) throw new Error("Terminarz jest pusty.");
 
         data = csv.trim().split("\n").map(row =>
             row.split(",").map(cell =>
@@ -1724,6 +1819,12 @@ if(document.getElementById("schedule") || document.getElementById("scheduleMobil
         );
 
         render();
+        scheduleStatus?.setAttribute("hidden", "");
+    })
+    .catch(() => {
+        if(scheduleStatus){
+            scheduleStatus.innerText = "Nie udało się wczytać terminarza. Zadzwoń lub wyślij formularz z preferowaną dostępnością.";
+        }
     });
 }
 
