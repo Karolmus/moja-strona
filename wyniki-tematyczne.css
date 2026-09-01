@@ -367,4 +367,29 @@
         font-size: 8px;
         line-height: 1.1;
     }
+
+    /* Keep the mobile marker center on the vertical timeline axis. */
+    .timeline {
+        --timeline-axis-x: 20px;
+        --timeline-content-x: 50px;
+    }
+
+    .timeline:before {
+        left: var(--timeline-axis-x);
+        margin-left: -3px;
+    }
+
+    .direction-l,
+    .direction-r {
+        padding-left: var(--timeline-content-x);
+    }
+
+    .direction-l .flag:before,
+    .direction-r .flag:before {
+        right: auto;
+        left: calc(var(--timeline-axis-x) - var(--timeline-content-x) - 8px);
+        top: 50%;
+        margin-top: 0;
+        transform: translateY(-50%);
+    }
 }

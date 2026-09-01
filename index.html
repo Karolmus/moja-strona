@@ -429,12 +429,18 @@
             }
 
             .exam-result-banner{
-                margin-bottom:18px;
+                order:3;
+                width:100%;
+                margin:18px 0 20px;
                 padding:0 12px;
             }
 
             .exam-result-summary{
+                flex-direction:column;
+                align-items:stretch;
                 gap:8px;
+                width:100%;
+                margin:0;
                 padding:10px 12px;
             }
 
@@ -444,45 +450,38 @@
 
             .exam-result-detail-link{
                 min-height:30px;
+                width:100%;
                 padding:6px 10px;
+                border-radius:10px;
                 font-size:11px;
             }
 
+            .home-flow{
+                display:flex;
+                flex-direction:column;
+            }
+
             .home-hero-row{
+                order:1;
+                width:100%;
                 grid-template-columns:minmax(0, 1fr);
                 margin:12px auto;
                 padding:0 12px;
                 gap:10px;
             }
 
-            .home-hero-row .enrollment-card,
+            [data-opinions-slot]{
+                order:2;
+                width:100%;
+            }
+
             .delta-brand-card{
+                display:none;
+            }
+
+            .home-hero-row .enrollment-card{
                 min-height:106px;
                 border-radius:16px;
-            }
-
-            .delta-brand-card{
-                padding:10px;
-                gap:4px;
-            }
-
-            .delta-brand-visuals{
-                gap:6px;
-            }
-
-            .delta-brand-logo{
-                width:40px;
-                height:40px;
-            }
-
-            .delta-brand-portrait{
-                width:40px;
-                height:40px;
-            }
-
-            .delta-brand-subtitle{
-                font-size:10px;
-                line-height:1.2;
             }
 
             .home-hero-row .enrollment-card{
@@ -592,29 +591,31 @@
 
 </main>
 
-<section class="home-hero-row" aria-label="Oferta i zapisy">
-    <div id="baner"></div>
+<div class="home-flow">
+    <section class="home-hero-row" aria-label="Oferta i zapisy">
+        <div id="baner"></div>
 
-    <a href="zapisy.html" class="delta-brand-card" aria-label="Karol Musioł - korepetycje z matematyki">
-        <span class="delta-brand-visuals" aria-hidden="true">
-            <img class="delta-brand-logo" src="img/logo3.png" alt="">
-            <img class="delta-brand-portrait" src="img/me5-portret.webp?v=20260819" alt="" width="700" height="700">
-        </span>
-        <p class="delta-brand-subtitle">
-            <span>Karol Musioł</span>
-            <span>korepetycje z matematyki</span>
-        </p>
-    </a>
-</section>
+        <a href="zapisy.html" class="delta-brand-card" aria-label="Karol Musioł - korepetycje z matematyki">
+            <span class="delta-brand-visuals" aria-hidden="true">
+                <img class="delta-brand-logo" src="img/logo3.png" alt="">
+                <img class="delta-brand-portrait" src="img/me5-portret.webp?v=20260819" alt="" width="700" height="700">
+            </span>
+            <p class="delta-brand-subtitle">
+                <span>Karol Musioł</span>
+                <span>korepetycje z matematyki</span>
+            </p>
+        </a>
+    </section>
 
-<section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
-    <div class="exam-result-summary">
-        <p class="exam-result-text">Zobacz wyniki moich uczniów</p>
-        <a class="exam-result-detail-link" href="wyniki.html">Zobacz szczegóły</a>
-    </div>
-</section>
+    <section class="exam-result-banner" aria-label="Wyniki egzaminów 2026">
+        <div class="exam-result-summary">
+            <p class="exam-result-text">Zobacz wyniki moich uczniów</p>
+            <a class="exam-result-detail-link" href="wyniki.html">Zobacz szczegóły</a>
+        </div>
+    </section>
 
-<div data-opinions-slot></div>
+    <div data-opinions-slot></div>
+</div>
 
 <div data-about-slot></div>
 <footer class="site-footer" aria-label="Dane firmy">
