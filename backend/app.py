@@ -1,7 +1,9 @@
 import os
+import csv
 import gzip
 import hashlib
 import ipaddress
+import io
 import math
 import re
 import secrets
@@ -12,6 +14,7 @@ from datetime import datetime, timedelta, timezone
 from decimal import Decimal, ROUND_HALF_UP
 from functools import wraps
 from urllib.parse import urlsplit
+from urllib.request import Request, urlopen
 
 import sympy as sp
 from flask import Flask, jsonify, request, send_from_directory, session
@@ -124,6 +127,15 @@ TASK_PATH_SEGMENT_BY_STUDENT_LEVEL = {
     "matura_rozszerzona": "mr",
 }
 SAFE_TASK_FILE_RE = re.compile(r"^[A-Za-z0-9_.-]+$")
+SCHEDULE_SHEET_URL = (
+    "https://docs.google.com/spreadsheets/d/e/"
+    "2PACX-1vSxNVJJM5pZVmVLJzDV-O9FCdWj1DaA1JGeKVvlIuwVSdi9rtGsvUfbJR66tHpSbMsqueDkooTyyvXN/"
+    "pub?gid=0&single=true&output=csv"
+)
+SCHEDULE_CACHE_TTL_SECONDS = 120
+SCHEDULE_MAX_BYTES = 64 * 1024
+_schedule_cache_lock = threading.Lock()
+_schedule_cache = {"rows": None, "updated_at": 0.0}
 
 _rate_limit_buckets = defaultdict(deque)
 _rate_limit_lock = threading.Lock()
@@ -711,6 +723,63 @@ def request_looks_like_bot():
     return any(marker in user_agent for marker in markers)
 
 
+def normalize_schedule_rows(csv_text):
+    rows = [
+        [cell.strip() for cell in row]
+        for row in csv.reader(io.StringIO(csv_text))
+        if any(cell.strip() for cell in row)
+    ]
+
+    if len(rows) < 2 or len(rows[0]) < 2:
+        raise ValueError("Terminarz nie zawiera terminów.")
+
+    width = len(rows[0])
+    if any(len(row) != width for row in rows):
+        raise ValueError("Terminarz ma nieprawidłowy układ danych.")
+
+    return rows
+
+
+def schedule_rows():
+    now = time.monotonic()
+
+    with _schedule_cache_lock:
+        cached_rows = _schedule_cache["rows"]
+        cached_at = _schedule_cache["updated_at"]
+
+        if cached_rows and now - cached_at < SCHEDULE_CACHE_TTL_SECONDS:
+            return cached_rows
+
+    try:
+        sheet_request = Request(
+            SCHEDULE_SHEET_URL,
+            headers={
+                "Accept": "text/csv",
+                "User-Agent": "DeltaSigmaSchedule/1.0",
+            },
+        )
+
+        with urlopen(sheet_request, timeout=8) as response:
+            raw_csv = response.read(SCHEDULE_MAX_BYTES + 1)
+
+        if len(raw_csv) > SCHEDULE_MAX_BYTES:
+            raise ValueError("Terminarz jest zbyt duży.")
+
+        rows = normalize_schedule_rows(raw_csv.decode("utf-8-sig"))
+    except (OSError, UnicodeDecodeError, ValueError):
+        with _schedule_cache_lock:
+            if _schedule_cache["rows"]:
+                return _schedule_cache["rows"]
+
+        raise
+
+    with _schedule_cache_lock:
+        _schedule_cache["rows"] = rows
+        _schedule_cache["updated_at"] = now
+
+    return rows
+
+
 @app.get("/")
 def root():
     return jsonify({"status": "ok", "service": "delta-sigma-calculators"})
@@ -727,6 +796,15 @@ def api_site_prices():
     return jsonify({
         "prices": get_site_prices(),
     })
+
+
+@app.get("/api/schedule")
+@rate_limit(120, 60, "schedule")
+def api_schedule():
+    try:
+        return jsonify({"schedule": schedule_rows()})
+    except (OSError, UnicodeDecodeError, ValueError):
+        return api_error("Nie udało się wczytać terminarza.", 502)
 
 
 @app.post("/api/analytics/pageview")
