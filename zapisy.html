@@ -1794,8 +1794,12 @@ loadAboutSection();
 
 <script>
 
-const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSxNVJJM5pZVmVLJzDV-O9FCdWj1DaA1JGeKVvlIuwVSdi9rtGsvUfbJR66tHpSbMsqueDkooTyyvXN/pub?gid=0&single=true&output=csv";
+const SCHEDULE_API_URL = `${(
+    window.DS_API_BASE_URL ||
+    (["localhost", "127.0.0.1"].includes(window.location.hostname)
+        ? "http://127.0.0.1:5000"
+        : "https://deltasigma-calculators.onrender.com")
+).replace(/\/$/, "")}/api/schedule`;
 
 let data = [];
 let selectedTerms = [];
@@ -1803,20 +1807,25 @@ let selectedTerms = [];
 if(document.getElementById("schedule") || document.getElementById("scheduleMobile")){
     const scheduleStatus = document.getElementById("scheduleStatus");
 
-    fetch(SHEET_URL)
+    fetch(SCHEDULE_API_URL, { cache: "no-store" })
     .then(response => {
         if(!response.ok) throw new Error("Nie udało się pobrać terminarza.");
 
-        return response.text();
+        return response.json();
     })
-    .then(csv => {
-        if(!csv.trim()) throw new Error("Terminarz jest pusty.");
+    .then(payload => {
+        if(!Array.isArray(payload?.schedule)){
+            throw new Error("Terminarz ma nieprawidłowy format.");
+        }
 
-        data = csv.trim().split("\n").map(row =>
-            row.split(",").map(cell =>
-                cell.replace(/\r/g,'').trim()
-            )
-        );
+        data = payload.schedule
+            .filter(row => Array.isArray(row))
+            .map(row => row.map(cell => String(cell ?? "").trim()));
+
+        const columnCount = data[0]?.length || 0;
+        if(data.length < 2 || columnCount < 2 || data.some(row => row.length !== columnCount)){
+            throw new Error("Terminarz jest pusty lub niekompletny.");
+        }
 
         render();
         scheduleStatus?.setAttribute("hidden", "");

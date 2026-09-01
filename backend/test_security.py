@@ -7,6 +7,7 @@ import sqlite3
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 
 TEST_DIR = tempfile.mkdtemp(prefix="deltasigma-security-")
@@ -37,6 +38,10 @@ class SecurityTests(unittest.TestCase):
         self.client = app.test_client()
         _rate_limit_buckets.clear()
         app_module.CALCULATORS_ENABLED = False
+
+        with app_module._schedule_cache_lock:
+            app_module._schedule_cache["rows"] = None
+            app_module._schedule_cache["updated_at"] = 0.0
 
         with sqlite3.connect(TEST_DB) as connection:
             connection.execute("DELETE FROM site_analytics_daily")
@@ -72,6 +77,54 @@ class SecurityTests(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 404)
+
+    def test_schedule_proxy_returns_the_public_grid(self):
+        class SheetResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, _type, _value, _traceback):
+                return False
+
+            def read(self, _size):
+                return b"Godz.,Pn.,Wt.\n8:00,,zajete\n9:00,zajete,\n"
+
+        with patch.object(app_module, "urlopen", return_value=SheetResponse()) as mocked_urlopen:
+            response = self.client.get(
+                "/api/schedule",
+                headers={"Origin": "https://deltasigma.pl"},
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.get_json()["schedule"],
+            [
+                ["Godz.", "Pn.", "Wt."],
+                ["8:00", "", "zajete"],
+                ["9:00", "zajete", ""],
+            ],
+        )
+        self.assertEqual(
+            response.headers.get("Access-Control-Allow-Origin"),
+            "https://deltasigma.pl",
+        )
+        self.assertEqual(
+            mocked_urlopen.call_args.args[0].full_url,
+            app_module.SCHEDULE_SHEET_URL,
+        )
+
+    def test_schedule_proxy_uses_last_valid_schedule_if_google_is_unavailable(self):
+        cached_rows = [["Godz.", "Pn."], ["8:00", ""]]
+
+        with app_module._schedule_cache_lock:
+            app_module._schedule_cache["rows"] = cached_rows
+            app_module._schedule_cache["updated_at"] = 0.0
+
+        with patch.object(app_module, "urlopen", side_effect=OSError("offline")):
+            response = self.client.get("/api/schedule")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["schedule"], cached_rows)
 
     def test_enabled_calculators_require_login_and_validate_input(self):
         app_module.CALCULATORS_ENABLED = True
