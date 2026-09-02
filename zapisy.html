@@ -494,7 +494,7 @@ h1{
 
 .weekly-frequency-options {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
 }
 
@@ -516,11 +516,10 @@ h1{
 
 .frequency-choice {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 2px;
-    min-height: 58px;
-    padding: 10px 12px;
+    min-height: 66px;
+    padding: 10px;
     border: 1px solid #d9e1ea;
     border-radius: 11px;
     background: #f8fafc;
@@ -530,16 +529,9 @@ h1{
 }
 
 .frequency-choice strong {
-    font-size: 15px;
+    font-size: 30px;
     font-weight: 700;
-    line-height: 1.2;
-}
-
-.frequency-choice span {
-    color: #64748b;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
 }
 
 .frequency-option input:focus-visible + .frequency-choice,
@@ -1434,8 +1426,12 @@ h1{
     }
 
     .frequency-choice{
-        min-height:54px;
-        padding:9px 10px;
+        min-height:58px;
+        padding:8px;
+    }
+
+    .frequency-choice strong{
+        font-size:27px;
     }
 
     .table-wrapper{
@@ -1754,19 +1750,18 @@ footer{
 
                             <div class="weekly-frequency-options" role="radiogroup" aria-label="Liczba zajęć w tygodniu">
                                 <label class="frequency-option">
-                                    <input type="radio" name="sessions_per_week" value="1 zajęcie tygodniowo" required>
-                                    <span class="frequency-choice">
-                                        <strong>1 zajęcie</strong>
-                                        <span>tygodniowo</span>
-                                    </span>
+                                    <input type="radio" name="sessions_per_week" value="1 zajęcie tygodniowo" aria-label="1 zajęcie tygodniowo" required>
+                                    <span class="frequency-choice" aria-hidden="true"><strong>1</strong></span>
                                 </label>
 
                                 <label class="frequency-option">
-                                    <input type="radio" name="sessions_per_week" value="2 zajęcia tygodniowo">
-                                    <span class="frequency-choice">
-                                        <strong>2 zajęcia</strong>
-                                        <span>tygodniowo</span>
-                                    </span>
+                                    <input type="radio" name="sessions_per_week" value="2 zajęcia tygodniowo" aria-label="2 zajęcia tygodniowo">
+                                    <span class="frequency-choice" aria-hidden="true"><strong>2</strong></span>
+                                </label>
+
+                                <label class="frequency-option">
+                                    <input type="radio" name="sessions_per_week" value="3 zajęcia tygodniowo" aria-label="3 zajęcia tygodniowo">
+                                    <span class="frequency-choice" aria-hidden="true"><strong>3</strong></span>
                                 </label>
                             </div>
                         </div>
