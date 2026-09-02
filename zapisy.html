@@ -303,24 +303,14 @@ h1{
 }
 
 .contact-form-card {
-    display: grid;
-    gap: 16px;
-    align-content: start;
     width: 100%;
     min-width: 0;
     scroll-margin-top: 88px;
 }
 
-.contact-action-card {
-    display: grid;
-    gap: 10px;
+.signup-form-panel {
     width: 100%;
     min-width: 0;
-    background: white;
-    border: 1px solid rgba(31, 42, 54, 0.07);
-    border-radius: var(--panel-radius);
-    padding: 18px;
-    box-shadow: var(--panel-shadow);
 }
 
 .contact-form-card p {
@@ -339,21 +329,15 @@ h1{
 .signup-form-section {
     display: grid;
     gap: 10px;
-    padding: 16px 0;
-    border-top: 1px solid #e4e9ef;
-}
-
-.signup-form-section:first-of-type {
-    padding-top: 0;
-    border-top: 0;
-}
-
-.signup-form-section:last-of-type {
-    padding-bottom: 0;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid rgba(31, 42, 54, 0.07);
+    border-radius: var(--panel-radius);
+    box-shadow: var(--panel-shadow);
 }
 
 .signup-form-section + .signup-form-section {
-    margin-top: 12px;
+    margin-top: 16px;
 }
 
 .contact-form label {
@@ -1299,7 +1283,7 @@ h1{
         font-size:10px;
     }
 
-    .contact-action-card,
+    .signup-form-section,
     .schedule-card{
         padding:14px;
         border-radius:14px;
@@ -1307,11 +1291,6 @@ h1{
 
     .schedule-card{
         gap:12px;
-    }
-
-    .contact-form-card{
-        gap:14px;
-        padding:0;
     }
 
     .schedule-message{
@@ -1365,11 +1344,11 @@ h1{
     }
 
     .signup-form-section{
-        padding:14px 0;
+        padding:14px;
     }
 
     .signup-form-section + .signup-form-section{
-        margin-top:10px;
+        margin-top:14px;
     }
 
     .course-options{
@@ -1642,7 +1621,7 @@ footer{
             </section>
 
             <section class="contact-form-card" id="contactFormCard" aria-label="Kontakt i zgłoszenie">
-                <div class="contact-action-card">
+                <div class="signup-form-panel">
                     <form class="contact-form" id="contactForm">
                         <div class="form-honeypot" aria-hidden="true">
                             <label>
