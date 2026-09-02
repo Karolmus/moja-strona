@@ -597,6 +597,100 @@ h1{
     padding: 0;
 }
 
+.signup-faq {
+    width: min(var(--content-width), calc(100% - (var(--content-padding) * 2)));
+    max-width: var(--content-width);
+    margin: var(--section-gap) auto 0;
+}
+
+.signup-faq-panel {
+    width: 100%;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid rgba(31, 42, 54, 0.07);
+    border-radius: var(--panel-radius);
+    background: #ffffff;
+    box-shadow: var(--panel-shadow);
+}
+
+.signup-faq-heading {
+    display: grid;
+    gap: 3px;
+    margin-bottom: 6px;
+}
+
+.signup-faq-kicker {
+    margin: 0;
+    color: #526172;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.signup-faq h2 {
+    margin: 0;
+    color: #1f2a36;
+    font-size: clamp(20px, 2vw, 25px);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.signup-faq-list {
+    border-top: 1px solid #e4e9ef;
+}
+
+.signup-faq-item {
+    border-bottom: 1px solid #e4e9ef;
+}
+
+.signup-faq-item summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    padding: 13px 0;
+    color: #1f2a36;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    list-style: none;
+}
+
+.signup-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.signup-faq-item summary::after {
+    content: "+";
+    display: grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border: 1px solid #d9e1ea;
+    border-radius: 50%;
+    color: #526172;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.signup-faq-item[open] summary::after {
+    content: "−";
+    border-color: #c9dbea;
+    background: #edf4fa;
+    color: #24527a;
+}
+
+.signup-faq-answer {
+    margin: 0;
+    padding: 0 34px 14px 0;
+    color: #526172;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
 .contact-status {
     display: none;
     margin-top: 10px;
@@ -1400,6 +1494,31 @@ h1{
         margin-top:14px;
     }
 
+    .signup-faq-panel{
+        padding:14px;
+        border-radius:14px;
+    }
+
+    .signup-faq-heading{
+        margin-bottom:4px;
+    }
+
+    .signup-faq h2{
+        font-size:20px;
+    }
+
+    .signup-faq-item summary{
+        gap:10px;
+        padding:11px 0;
+        font-size:13px;
+    }
+
+    .signup-faq-answer{
+        padding:0 0 12px;
+        font-size:12px;
+        line-height:1.5;
+    }
+
     .course-options{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:8px;
@@ -1818,6 +1937,38 @@ footer{
     </section>
 
 	</div>
+
+	<section class="signup-faq" aria-labelledby="faqTitle">
+	    <div class="signup-faq-panel">
+	        <div class="signup-faq-heading">
+	            <p class="signup-faq-kicker">FAQ</p>
+	            <h2 id="faqTitle">Najczęstsze pytania</h2>
+	        </div>
+
+	        <div class="signup-faq-list">
+	            <details class="signup-faq-item">
+	                <summary>Forma zajęć i komunikacja</summary>
+	                <p class="signup-faq-answer">
+	                    Zajęcia z uczniem rozpoczynają się w dniu i o godzinie ustalonej jako stały termin w tygodniu. Na początku zajęć wysyłam uczniowi link do interaktywnej tablicy i pytam o ostatnie wydarzenia szkolne. Następnie prowadzę zajęcia, biorąc pod uwagę informacje od ucznia oraz nasz ogólny plan działania.
+	                </p>
+	            </details>
+
+	            <details class="signup-faq-item">
+	                <summary>Płatność</summary>
+	                <p class="signup-faq-answer">
+	                    Na koniec każdego miesiąca wysyłam na adres e-mail podany przez opiekuna fakturę zbiorczą za wszystkie zajęcia, które odbyły się w danym miesiącu. Termin płatności wynosi 7 dni kalendarzowych.
+	                </p>
+	            </details>
+
+	            <details class="signup-faq-item">
+	                <summary>Dostępne terminy zajęć</summary>
+	                <p class="signup-faq-answer">
+	                    Aktualne wolne terminy zajęć znajdują się na tej stronie internetowej. Jeśli tabela terminów się nie wyświetla albo nie ma wolnych miejsc, proszę o kontakt telefoniczny. Dam wtedy znać, czy jest możliwość zapisania się.
+	                </p>
+	            </details>
+	        </div>
+	    </div>
+	</section>
 
 
 	<section class="tools-section" aria-labelledby="tools-title">
