@@ -492,6 +492,63 @@ h1{
     white-space: nowrap;
 }
 
+.weekly-frequency-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.contact-form .frequency-option {
+    display: block;
+    min-width: 0;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.frequency-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.frequency-choice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-height: 58px;
+    padding: 10px 12px;
+    border: 1px solid #d9e1ea;
+    border-radius: 11px;
+    background: #f8fafc;
+    color: #1f2a36;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.frequency-choice strong {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.frequency-choice span {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.frequency-option input:focus-visible + .frequency-choice,
+.frequency-option input:checked + .frequency-choice {
+    border-color: #8eb5de;
+    background: #edf4fa;
+    box-shadow: inset 3px 0 0 #8eb5de, 0 0 0 2px rgba(142, 181, 222, 0.16);
+}
+
 .selected-term-list {
     display: flex;
     flex-wrap: wrap;
@@ -1372,6 +1429,15 @@ h1{
         font-size:11px;
     }
 
+    .weekly-frequency-options{
+        gap:8px;
+    }
+
+    .frequency-choice{
+        min-height:54px;
+        padding:9px 10px;
+    }
+
     .table-wrapper{
         display:none;
     }
@@ -1604,7 +1670,7 @@ footer{
                             <div class="booking-step-copy">
                                 <p class="booking-step-kicker">Krok 1</p>
                                 <h2 class="booking-step-title" id="scheduleTitle">Wybierz termin</h2>
-                                <p class="booking-step-description">Kliknij wolny termin, aby dodać go do formularza.</p>
+                                <p class="booking-step-description"><br></p>
                             </div>
                         </div>
                     </div>
@@ -1637,7 +1703,7 @@ footer{
                                     <div class="booking-step-copy">
                                         <p class="booking-step-kicker">Krok 2</p>
                                         <h3 class="booking-step-title">Wybierz poziom</h3>
-                                        <p class="booking-step-description">Wybierz rodzaj zajęć dla ucznia.</p>
+                                        <p class="booking-step-description"><br></p>
                                     </div>
                                 </div>
                                 <div class="course-options" role="radiogroup" aria-label="Wybór poziomu zajęć">
@@ -1681,8 +1747,37 @@ footer{
                                 <span class="booking-step-number" aria-hidden="true">3</span>
                                 <div class="booking-step-copy">
                                     <p class="booking-step-kicker">Krok 3</p>
+                                    <h3 class="booking-step-title">Ile zajęć w tygodniu?</h3>
+                                    <p class="booking-step-description"><br></p>
+                                </div>
+                            </div>
+
+                            <div class="weekly-frequency-options" role="radiogroup" aria-label="Liczba zajęć w tygodniu">
+                                <label class="frequency-option">
+                                    <input type="radio" name="sessions_per_week" value="1 zajęcie tygodniowo" required>
+                                    <span class="frequency-choice">
+                                        <strong>1 zajęcie</strong>
+                                        <span>tygodniowo</span>
+                                    </span>
+                                </label>
+
+                                <label class="frequency-option">
+                                    <input type="radio" name="sessions_per_week" value="2 zajęcia tygodniowo">
+                                    <span class="frequency-choice">
+                                        <strong>2 zajęcia</strong>
+                                        <span>tygodniowo</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="signup-form-section">
+                            <div class="booking-step">
+                                <span class="booking-step-number" aria-hidden="true">4</span>
+                                <div class="booking-step-copy">
+                                    <p class="booking-step-kicker">Krok 4</p>
                                     <h3 class="booking-step-title">Zostaw kontakt</h3>
-                                    <p class="booking-step-description">Telefon lub e-mail wystarczy.</p>
+                                    <p class="booking-step-description"><br></p>
                                 </div>
                             </div>
 
@@ -1710,11 +1805,11 @@ footer{
 
                         <div class="signup-form-section">
                             <div class="booking-step">
-                                <span class="booking-step-number" aria-hidden="true">4</span>
+                                <span class="booking-step-number" aria-hidden="true">5</span>
                                 <div class="booking-step-copy">
-                                    <p class="booking-step-kicker">Krok 4</p>
-                                    <h3 class="booking-step-title">Wyślij zgłoszenie</h3>
-                                    <p class="booking-step-description">Potwierdzę dostępność i skontaktuję się z Tobą.</p>
+                                    <p class="booking-step-kicker">Krok 5</p>
+                                    <h3 class="booking-step-title"><br></h3>
+                                    <p class="booking-step-description"><br></p>
                                 </div>
                             </div>
                             <button type="submit">Wyślij wiadomość</button>
@@ -2096,6 +2191,7 @@ contactForm.addEventListener("submit", async event => {
 
     try {
         const selectedCourse = formData.get("course") || "";
+        const sessionsPerWeek = formData.get("sessions_per_week") || "";
         const message = String(formData.get("message") || "").trim();
 
         await apiFetch("/api/contact-messages", {
@@ -2103,7 +2199,7 @@ contactForm.addEventListener("submit", async event => {
             body: JSON.stringify({
                 contact: formData.get("contact"),
                 preferred_term: formData.get("preferred_term"),
-                message: `Wybrany kurs: ${selectedCourse}\n\n${message}`,
+                message: `Wybrany kurs: ${selectedCourse}\nLiczba zajęć w tygodniu: ${sessionsPerWeek}\n\n${message}`,
                 website: formData.get("website"),
                 form_started_at: contactFormStartedAt
             })
