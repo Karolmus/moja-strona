@@ -83,34 +83,6 @@ h1{
     line-height:1.08;
 }
 
-/* CTA */
-.cta-card {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-
-    background: linear-gradient(90deg, #404EED, #5865F2);
-    color:white;
-    text-decoration:none;
-
-    padding:12px 16px;
-    border-radius:12px;
-
-    font-weight:600;
-    font-size:16px;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    transition:0.3s;
-
-    margin: 0;
-    width: 100%;
-}
-
-.cta-card:hover {
-    transform: translateY(-2px);
-}
-
 .booking-section {
     width: 100%;
     max-width: var(--content-width);
@@ -351,13 +323,6 @@ h1{
     box-shadow: var(--panel-shadow);
 }
 
-.contact-form-card h2 {
-    margin: 0;
-    color: #1f2a36;
-    font-size: 21px;
-    line-height: 1.2;
-}
-
 .contact-form-card p {
     margin: 0;
     color: #555;
@@ -365,17 +330,30 @@ h1{
     font-size: 12px;
 }
 
-.contact-action-card h3 {
-    margin: 0;
-    color: #1f2a36;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
 .contact-form {
     display: grid;
-    gap: 10px;
+    gap: 0;
     align-content: start;
+}
+
+.signup-form-section {
+    display: grid;
+    gap: 10px;
+    padding: 16px 0;
+    border-top: 1px solid #e4e9ef;
+}
+
+.signup-form-section:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.signup-form-section:last-of-type {
+    padding-bottom: 0;
+}
+
+.signup-form-section + .signup-form-section {
+    margin-top: 12px;
 }
 
 .contact-form label {
@@ -588,6 +566,7 @@ h1{
 
 .contact-status {
     display: none;
+    margin-top: 10px;
     border-radius: 10px;
     padding: 10px 12px;
     background: #edf4fb;
@@ -684,12 +663,6 @@ h1{
     object-fit:contain;
     margin-left:15px;
 }
-.cta-icon svg{
-    width:22px;
-    height:22px;
-    fill:white;
-}
-
 	/* TABLE */
 		.table-wrapper{
 		    display:block;
@@ -1391,6 +1364,14 @@ h1{
         font-size:10px;
     }
 
+    .signup-form-section{
+        padding:14px 0;
+    }
+
+    .signup-form-section + .signup-form-section{
+        margin-top:10px;
+    }
+
     .course-options{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:8px;
@@ -1520,10 +1501,6 @@ h1{
     .tool-card p{
         font-size:11px;
         line-height:1.4;
-    }
-
-    .cta-card{
-        min-height:46px;
     }
 
     .contact-form button{
@@ -1666,22 +1643,6 @@ footer{
 
             <section class="contact-form-card" id="contactFormCard" aria-label="Kontakt i zgłoszenie">
                 <div class="contact-action-card">
-                    <h2>Zadzwoń</h2>
-
-                    <a class="cta-card" href="tel:514681958">
-                        <span class="cta-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M6.6 10.79a15.05 15.05 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.01-.24
-                                11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1
-                                17 17 0 0 1-17-17 1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1
-                                11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-                            </svg>
-                        </span>
-                        <span>514 681 958</span>
-                    </a>
-                </div>
-
-                <div class="contact-action-card">
                     <form class="contact-form" id="contactForm">
                         <div class="form-honeypot" aria-hidden="true">
                             <label>
@@ -1690,90 +1651,96 @@ footer{
                             </label>
                         </div>
 
-                        <div class="course-picker">
-                            <div class="booking-step">
-                                <span class="booking-step-number" aria-hidden="true">2</span>
-                                <div class="booking-step-copy">
-                                    <p class="booking-step-kicker">Krok 2</p>
-                                    <h3 class="booking-step-title">Wybierz poziom</h3>
-                                    <p class="booking-step-description">Wybierz rodzaj zajęć dla ucznia.</p>
+                        <div class="signup-form-section">
+                            <div class="course-picker">
+                                <div class="booking-step">
+                                    <span class="booking-step-number" aria-hidden="true">2</span>
+                                    <div class="booking-step-copy">
+                                        <p class="booking-step-kicker">Krok 2</p>
+                                        <h3 class="booking-step-title">Wybierz poziom</h3>
+                                        <p class="booking-step-description">Wybierz rodzaj zajęć dla ucznia.</p>
+                                    </div>
+                                </div>
+                                <div class="course-options" role="radiogroup" aria-label="Wybór poziomu zajęć">
+                                    <label class="course-option">
+                                        <input type="radio" name="course" value="Na bieżąco | 100 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing">
+                                        <span class="course-price-option">
+                                            <span class="course-price-name">Na bieżąco</span>
+                                            <span class="course-price-value" data-price-key="ongoing">100 zł / 55 min</span>
+                                        </span>
+                                    </label>
+
+                                    <label class="course-option">
+                                        <input type="radio" name="course" value="Egzamin ósmoklasisty | 100 zł / 55 min" data-course-name="Egzamin ósmoklasisty" data-price-key="exam8">
+                                        <span class="course-price-option">
+                                            <span class="course-price-name">Egzamin ósmoklasisty</span>
+                                            <span class="course-price-value" data-price-key="exam8">100 zł / 55 min</span>
+                                        </span>
+                                    </label>
+
+                                    <label class="course-option">
+                                        <input type="radio" name="course" value="Matura podstawowa | 100 zł / 55 min" data-course-name="Matura podstawowa" data-price-key="matura_basic">
+                                        <span class="course-price-option">
+                                            <span class="course-price-name">Matura podstawowa</span>
+                                            <span class="course-price-value" data-price-key="matura_basic">100 zł / 55 min</span>
+                                        </span>
+                                    </label>
+
+                                    <label class="course-option">
+                                        <input type="radio" name="course" value="Matura rozszerzona | 130 zł / 55 min" data-course-name="Matura rozszerzona" data-price-key="matura_extended">
+                                        <span class="course-price-option">
+                                            <span class="course-price-name">Matura rozszerzona</span>
+                                            <span class="course-price-value" data-price-key="matura_extended">130 zł / 55 min</span>
+                                        </span>
+                                    </label>
                                 </div>
                             </div>
-                            <div class="course-options" role="radiogroup" aria-label="Wybór poziomu zajęć">
-                                <label class="course-option">
-                                    <input type="radio" name="course" value="Na bieżąco | 100 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing">
-                                    <span class="course-price-option">
-                                        <span class="course-price-name">Na bieżąco</span>
-                                        <span class="course-price-value" data-price-key="ongoing">100 zł / 55 min</span>
-                                    </span>
-                                </label>
-
-                                <label class="course-option">
-                                    <input type="radio" name="course" value="Egzamin ósmoklasisty | 100 zł / 55 min" data-course-name="Egzamin ósmoklasisty" data-price-key="exam8">
-                                    <span class="course-price-option">
-                                        <span class="course-price-name">Egzamin ósmoklasisty</span>
-                                        <span class="course-price-value" data-price-key="exam8">100 zł / 55 min</span>
-                                    </span>
-                                </label>
-
-                                <label class="course-option">
-                                    <input type="radio" name="course" value="Matura podstawowa | 100 zł / 55 min" data-course-name="Matura podstawowa" data-price-key="matura_basic">
-                                    <span class="course-price-option">
-                                        <span class="course-price-name">Matura podstawowa</span>
-                                        <span class="course-price-value" data-price-key="matura_basic">100 zł / 55 min</span>
-                                    </span>
-                                </label>
-
-                                <label class="course-option">
-                                    <input type="radio" name="course" value="Matura rozszerzona | 130 zł / 55 min" data-course-name="Matura rozszerzona" data-price-key="matura_extended">
-                                    <span class="course-price-option">
-                                        <span class="course-price-name">Matura rozszerzona</span>
-                                        <span class="course-price-value" data-price-key="matura_extended">130 zł / 55 min</span>
-                                    </span>
-                                </label>
-                            </div>
                         </div>
 
-                        <div class="booking-step">
-                            <span class="booking-step-number" aria-hidden="true">3</span>
-                            <div class="booking-step-copy">
-                                <p class="booking-step-kicker">Krok 3</p>
-                                <h3 class="booking-step-title">Zostaw kontakt</h3>
-                                <p class="booking-step-description">Telefon lub e-mail wystarczy.</p>
+                        <div class="signup-form-section">
+                            <div class="booking-step">
+                                <span class="booking-step-number" aria-hidden="true">3</span>
+                                <div class="booking-step-copy">
+                                    <p class="booking-step-kicker">Krok 3</p>
+                                    <h3 class="booking-step-title">Zostaw kontakt</h3>
+                                    <p class="booking-step-description">Telefon lub e-mail wystarczy.</p>
+                                </div>
                             </div>
+
+                            <label>
+                                Telefon lub e-mail
+                                <input name="contact" autocomplete="email" maxlength="254" placeholder="">
+                            </label>
+
+                            <label>
+                                Preferowany termin
+                                <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Np. poniedziałek po 16:00 albo dni do ustalenia">
+                            </label>
+
+                            <p class="reservation-note">
+                                Wysłanie formularza nie jest zobowiązującą rezerwacją.
+                                Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
+                                <a href="regulamin-zajec.html">Regulamin korepetycji</a>
+                            </p>
+
+                            <label>
+                                Dodatkowe informacje.
+                                <textarea name="message" maxlength="3000" placeholder=""></textarea>
+                            </label>
                         </div>
 
-                        <label>
-                            Telefon lub e-mail
-                            <input name="contact" autocomplete="email" maxlength="254" placeholder="">
-                        </label>
-
-                        <label>
-                            Preferowany termin
-                            <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Np. poniedziałek po 16:00 albo dni do ustalenia">
-                        </label>
-
-                        <p class="reservation-note">
-                            Wysłanie formularza nie jest zobowiązującą rezerwacją.
-                            Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
-                            <a href="regulamin-zajec.html">Regulamin korepetycji</a>
-                        </p>
-
-                        <label>
-                            Dodatkowe informacje.
-                            <textarea name="message" maxlength="3000" placeholder=""></textarea>
-                        </label>
-
-                        <div class="booking-step">
-                            <span class="booking-step-number" aria-hidden="true">4</span>
-                            <div class="booking-step-copy">
-                                <p class="booking-step-kicker">Krok 4</p>
-                                <h3 class="booking-step-title">Wyślij zgłoszenie</h3>
-                                <p class="booking-step-description">Potwierdzę dostępność i skontaktuję się z Tobą.</p>
+                        <div class="signup-form-section">
+                            <div class="booking-step">
+                                <span class="booking-step-number" aria-hidden="true">4</span>
+                                <div class="booking-step-copy">
+                                    <p class="booking-step-kicker">Krok 4</p>
+                                    <h3 class="booking-step-title">Wyślij zgłoszenie</h3>
+                                    <p class="booking-step-description">Potwierdzę dostępność i skontaktuję się z Tobą.</p>
+                                </div>
                             </div>
+                            <button type="submit">Wyślij wiadomość</button>
                         </div>
 
-                        <button type="submit">Wyślij wiadomość</button>
                         <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
                     </form>
                 </div>
