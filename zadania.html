@@ -3712,8 +3712,11 @@ function getSourceMeta(sourceConfig){
     const type = isCourse ? parts[2] : parts[1];
     const year = parts[2];
     const month = parts[3];
+    const monthLabel = MONTH_LABELS[month] || MONTH_LABELS[String(month || "").split("_")[0]] || month;
     const label = sourceConfig.label || SOURCE_TYPE_LABELS[type] || "Zestaw";
-    const detail = sourceConfig.detail || `${year} / ${MONTH_LABELS[month] || month} / CKE`;
+    const detail = isCourse
+        ? sourceConfig.detail || ""
+        : `${year} / ${monthLabel} / ${sourceConfig.author || "CKE"}`;
 
     return {
         id: source,
