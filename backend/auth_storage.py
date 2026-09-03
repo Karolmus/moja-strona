@@ -23,6 +23,11 @@ INTEGRITY_ERRORS = (sqlite3.IntegrityError,)
 if psycopg is not None:
     INTEGRITY_ERRORS = INTEGRITY_ERRORS + (psycopg.IntegrityError,)
 
+
+class ScheduleReservationConflict(Exception):
+    """A requested timetable slot has already been reserved."""
+
+
 _last_analytics_cleanup_day = None
 
 DEFAULT_SITE_PRICES = {
@@ -455,6 +460,18 @@ def init_auth_db():
                 ON contact_messages(created_at)
             """,
             """
+            CREATE TABLE IF NOT EXISTS schedule_reservations (
+                term_key TEXT PRIMARY KEY,
+                message_id INTEGER NOT NULL REFERENCES contact_messages(id) ON DELETE CASCADE,
+                term_label TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )
+            """,
+            """
+            CREATE INDEX IF NOT EXISTS idx_schedule_reservations_message_id
+                ON schedule_reservations(message_id)
+            """,
+            """
             CREATE TABLE IF NOT EXISTS site_analytics_daily (
                 day TEXT NOT NULL,
                 path TEXT NOT NULL,
@@ -725,6 +742,17 @@ def init_auth_db():
 
         CREATE INDEX IF NOT EXISTS idx_contact_messages_created_at
             ON contact_messages(created_at);
+
+        CREATE TABLE IF NOT EXISTS schedule_reservations (
+            term_key TEXT PRIMARY KEY,
+            message_id INTEGER NOT NULL,
+            term_label TEXT NOT NULL,
+            created_at TEXT NOT NULL,
+            FOREIGN KEY(message_id) REFERENCES contact_messages(id) ON DELETE CASCADE
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_schedule_reservations_message_id
+            ON schedule_reservations(message_id);
 
         CREATE TABLE IF NOT EXISTS site_analytics_daily (
             day TEXT NOT NULL,
@@ -2332,7 +2360,73 @@ def contact_message_to_dict(row):
     return item
 
 
-def create_contact_message(data):
+def active_schedule_reservation_keys():
+    return {
+        str(row["term_key"])
+        for row in execute("SELECT term_key FROM schedule_reservations").fetchall()
+    }
+
+
+def schedule_reservations_for_messages(message_ids):
+    ids = []
+
+    for value in message_ids:
+        try:
+            ids.append(int(value))
+        except (TypeError, ValueError):
+            continue
+
+    if not ids:
+        return {}
+
+    unique_ids = list(dict.fromkeys(ids))
+    placeholders = ", ".join("?" for _ in unique_ids)
+    rows = execute(
+        f"""
+        SELECT message_id, term_label
+        FROM schedule_reservations
+        WHERE message_id IN ({placeholders})
+        ORDER BY message_id ASC, created_at ASC
+        """,
+        tuple(unique_ids),
+    ).fetchall()
+    reservations = {message_id: [] for message_id in unique_ids}
+
+    for row in rows:
+        reservations.setdefault(int(row["message_id"]), []).append(str(row["term_label"]))
+
+    return reservations
+
+
+def release_schedule_reservations(message_id):
+    db = get_db()
+    message = execute(
+        "SELECT id FROM contact_messages WHERE id = ?",
+        (message_id,),
+    ).fetchone()
+
+    if not message:
+        return None
+
+    rows = execute(
+        """
+        SELECT term_label
+        FROM schedule_reservations
+        WHERE message_id = ?
+        ORDER BY created_at ASC
+        """,
+        (message_id,),
+    ).fetchall()
+    db.execute(
+        prepare_sql("DELETE FROM schedule_reservations WHERE message_id = ?"),
+        (message_id,),
+    )
+    db.commit()
+
+    return [str(row["term_label"]) for row in rows]
+
+
+def create_contact_message(data, schedule_reservations=()):
     contact = str(data.get("contact") or "").strip()
     preferred_term = str(data.get("preferred_term") or "").strip()
     message = str(data.get("message") or "").strip()
@@ -2408,6 +2502,43 @@ def create_contact_message(data):
             ).fetchone()
         )
 
+    reservation_rows = []
+
+    for reservation in schedule_reservations or ():
+        if not isinstance(reservation, dict):
+            raise ValueError("Nieprawidłowy termin rezerwacji.")
+
+        term_key = str(reservation.get("key") or "").strip()
+        term_label = str(reservation.get("label") or "").strip()
+
+        if not term_key or not term_label or len(term_key) > 240 or len(term_label) > 160:
+            raise ValueError("Nieprawidłowy termin rezerwacji.")
+
+        reservation_rows.append((term_key, term_label))
+
+    if len({row[0] for row in reservation_rows}) != len(reservation_rows):
+        raise ValueError("Termin może zostać wybrany tylko raz.")
+
+    try:
+        for term_key, term_label in reservation_rows:
+            db.execute(
+                prepare_sql(
+                    """
+                    INSERT INTO schedule_reservations (
+                        term_key,
+                        message_id,
+                        term_label,
+                        created_at
+                    )
+                    VALUES (?, ?, ?, ?)
+                    """
+                ),
+                (term_key, item["id"], term_label, created_at),
+            )
+    except INTEGRITY_ERRORS as exc:
+        db.rollback()
+        raise ScheduleReservationConflict from exc
+
     db.commit()
 
     return item
@@ -2425,7 +2556,7 @@ def list_contact_messages(limit=200, box="inbox", origin=None):
     order_clause = "deleted_at DESC, created_at DESC" if show_trash else "is_read ASC, created_at DESC"
     values.append(limit)
 
-    return [
+    messages = [
         contact_message_to_dict(row)
         for row in execute(
             f"""
@@ -2439,6 +2570,14 @@ def list_contact_messages(limit=200, box="inbox", origin=None):
         )
         .fetchall()
     ]
+    reservations = schedule_reservations_for_messages(
+        message["id"] for message in messages
+    )
+
+    for message in messages:
+        message["reserved_terms"] = reservations.get(message["id"], [])
+
+    return messages
 
 
 def contact_message_counts(origin=None):
@@ -2571,6 +2710,10 @@ def delete_contact_message(message_id):
     if not item:
         return None
 
+    db.execute(
+        prepare_sql("DELETE FROM schedule_reservations WHERE message_id = ?"),
+        (message_id,),
+    )
     db.execute(
         prepare_sql("DELETE FROM contact_messages WHERE id = ?"),
         (message_id,),

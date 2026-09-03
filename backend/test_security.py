@@ -126,6 +126,58 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_json()["schedule"], cached_rows)
 
+    def test_contact_form_reserves_a_selected_schedule_term(self):
+        class SheetResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, _type, _value, _traceback):
+                return False
+
+            def read(self, _size):
+                return b"Godz.,Pn.,Wt.\n8:00,,zajete\n9:00,zajete,\n"
+
+        payload = self.valid_contact_payload()
+        payload.update({
+            "selected_terms": ["Pn. 8:00"],
+            "sessions_per_week_count": 1,
+        })
+
+        with patch.object(app_module, "urlopen", return_value=SheetResponse()):
+            first = self.client.post("/api/contact-messages", json=payload)
+            schedule = self.client.get("/api/schedule")
+            second = self.client.post("/api/contact-messages", json=payload)
+
+        self.assertEqual(first.status_code, 201)
+        self.assertEqual(first.get_json()["reserved_terms"], ["Pn. 8:00"])
+        self.assertEqual(schedule.status_code, 200)
+        self.assertEqual(schedule.get_json()["schedule"][1][1], "zarezerwowany")
+        self.assertEqual(second.status_code, 409)
+        self.assertEqual(self.contact_count(), 1)
+
+    def test_contact_form_requires_matching_number_of_selected_terms(self):
+        class SheetResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, _type, _value, _traceback):
+                return False
+
+            def read(self, _size):
+                return b"Godz.,Pn.,Wt.\n8:00,,\n"
+
+        payload = self.valid_contact_payload()
+        payload.update({
+            "selected_terms": ["Pn. 8:00"],
+            "sessions_per_week_count": 2,
+        })
+
+        with patch.object(app_module, "urlopen", return_value=SheetResponse()):
+            response = self.client.post("/api/contact-messages", json=payload)
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(self.contact_count(), 0)
+
     def test_enabled_calculators_require_login_and_validate_input(self):
         app_module.CALCULATORS_ENABLED = True
 

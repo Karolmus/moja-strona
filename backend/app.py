@@ -25,6 +25,8 @@ from werkzeug.security import check_password_hash
 
 from auth_storage import (
     INTEGRITY_ERRORS,
+    ScheduleReservationConflict,
+    active_schedule_reservation_keys,
     contact_message_counts,
     consume_speed_training_attempt,
     consume_security_rate_limit,
@@ -49,6 +51,7 @@ from auth_storage import (
     record_site_pageview,
     record_speed_training_result,
     record_progress,
+    release_schedule_reservations,
     register_speed_training_attempt,
     register_auth_db,
     review_tasks_for_user,
@@ -739,6 +742,114 @@ def request_looks_like_bot():
     return any(marker in user_agent for marker in markers)
 
 
+class ScheduleTermUnavailableError(ValueError):
+    pass
+
+
+def normalize_schedule_term_text(value):
+    return " ".join(str(value or "").split())
+
+
+def schedule_term_key(day, slot_time):
+    normalized_day = normalize_schedule_term_text(day).casefold()
+    normalized_time = normalize_schedule_term_text(slot_time).casefold()
+
+    if not normalized_day or not normalized_time:
+        return ""
+
+    return f"{normalized_day}\x1f{normalized_time}"
+
+
+def schedule_term_label(day, slot_time):
+    return " ".join(
+        part
+        for part in (
+            normalize_schedule_term_text(day),
+            normalize_schedule_term_text(slot_time),
+        )
+        if part
+    )
+
+
+def available_schedule_slots(rows):
+    slots = {}
+
+    for row in rows[1:]:
+        if not row:
+            continue
+
+        slot_time = row[0] if row else ""
+
+        for column_index, cell in enumerate(row[1:], start=1):
+            if cell:
+                continue
+
+            day = rows[0][column_index] if column_index < len(rows[0]) else ""
+            key = schedule_term_key(day, slot_time)
+            label = schedule_term_label(day, slot_time)
+
+            if key and label:
+                slots[key] = {
+                    "key": key,
+                    "label": label,
+                }
+
+    return slots
+
+
+def selected_schedule_reservations(values, rows):
+    if values in (None, "", []):
+        return []
+
+    if not isinstance(values, list) or not 1 <= len(values) <= 3:
+        raise ValueError("Wybierz od jednego do trzech terminów.")
+
+    slots = available_schedule_slots(rows)
+    slots_by_label = {
+        normalize_schedule_term_text(slot["label"]).casefold(): slot
+        for slot in slots.values()
+    }
+    selected = []
+    selected_keys = set()
+
+    for value in values:
+        label = normalize_schedule_term_text(value)
+
+        if not label or len(label) > 160:
+            raise ValueError("Nieprawidłowy termin.")
+
+        slot = slots_by_label.get(label.casefold())
+
+        if not slot or slot["key"] in selected_keys:
+            raise ScheduleTermUnavailableError
+
+        selected.append(dict(slot))
+        selected_keys.add(slot["key"])
+
+    return selected
+
+
+def schedule_with_reservation_blocks(rows):
+    reserved_keys = active_schedule_reservation_keys()
+
+    if not reserved_keys:
+        return rows
+
+    result = [list(row) for row in rows]
+
+    for row_index in range(1, len(result)):
+        for column_index in range(1, len(result[row_index])):
+            if result[row_index][column_index]:
+                continue
+
+            key = schedule_term_key(result[0][column_index], result[row_index][0])
+
+            if key in reserved_keys:
+                result[row_index][column_index] = "zarezerwowany"
+
+    return result
+
+
 def normalize_schedule_rows(csv_text):
     rows = [
         [cell.strip() for cell in row]
@@ -756,14 +867,18 @@ def normalize_schedule_rows(csv_text):
     return rows
 
 
-def schedule_rows():
+def schedule_rows(force_refresh=False, allow_stale=True):
     now = time.monotonic()
 
     with _schedule_cache_lock:
         cached_rows = _schedule_cache["rows"]
         cached_at = _schedule_cache["updated_at"]
 
-        if cached_rows and now - cached_at < SCHEDULE_CACHE_TTL_SECONDS:
+        if (
+            cached_rows
+            and not force_refresh
+            and now - cached_at < SCHEDULE_CACHE_TTL_SECONDS
+        ):
             return cached_rows
 
     try:
@@ -783,9 +898,10 @@ def schedule_rows():
 
         rows = normalize_schedule_rows(raw_csv.decode("utf-8-sig"))
     except (OSError, UnicodeDecodeError, ValueError):
-        with _schedule_cache_lock:
-            if _schedule_cache["rows"]:
-                return _schedule_cache["rows"]
+        if allow_stale:
+            with _schedule_cache_lock:
+                if _schedule_cache["rows"]:
+                    return _schedule_cache["rows"]
 
         raise
 
@@ -818,7 +934,7 @@ def api_site_prices():
 @rate_limit(120, 60, "schedule")
 def api_schedule():
     try:
-        return jsonify({"schedule": schedule_rows()})
+        return jsonify({"schedule": schedule_with_reservation_blocks(schedule_rows())})
     except (OSError, UnicodeDecodeError, ValueError):
         return api_error("Nie udało się wczytać terminarza.", 502)
 
@@ -1051,6 +1167,22 @@ def api_admin_delete_contact_message(_admin, message_id):
     return safe(handler)
 
 
+@app.delete("/api/admin/contact-messages/<int:message_id>/schedule-reservations")
+@require_admin
+def api_admin_release_schedule_reservations(_admin, message_id):
+    def handler():
+        released_terms = release_schedule_reservations(message_id)
+
+        if released_terms is None:
+            return api_error("Nie znaleziono wiadomości.", 404)
+
+        return jsonify({
+            "released_terms": released_terms,
+        })
+
+    return safe(handler)
+
+
 @app.post("/api/admin/students")
 @require_admin
 def api_admin_create_student(_admin):
@@ -1269,15 +1401,58 @@ def api_create_contact_message():
                 return api_error("Formularz został wysłany zbyt szybko. Spróbuj ponownie.", 429)
 
         data["contact"] = validate_phone_number(data.get("contact"))
+        reservations = []
+        selected_terms = data.get("selected_terms")
 
-        item = create_contact_message({
-            **data,
-            "origin": "prospect",
-            "user_id": None,
-        })
+        if selected_terms not in (None, "", []):
+            try:
+                fresh_schedule = schedule_rows(force_refresh=True, allow_stale=False)
+            except (OSError, UnicodeDecodeError, ValueError):
+                return api_error(
+                    "Nie udało się potwierdzić dostępności terminu. Spróbuj ponownie.",
+                    503,
+                )
+
+            try:
+                reservations = selected_schedule_reservations(
+                    selected_terms,
+                    fresh_schedule,
+                )
+            except ScheduleTermUnavailableError:
+                return api_error(
+                    "Wybrany termin został już zajęty. Wybierz inny termin.",
+                    409,
+                )
+
+            try:
+                sessions_per_week = int(data.get("sessions_per_week_count"))
+            except (TypeError, ValueError):
+                sessions_per_week = 0
+
+            if sessions_per_week not in {1, 2, 3} or len(reservations) != sessions_per_week:
+                return api_error(
+                    "Wybierz tyle terminów, ile zajęć tygodniowo chcesz mieć.",
+                    400,
+                )
+
+        try:
+            item = create_contact_message(
+                {
+                    **data,
+                    "origin": "prospect",
+                    "user_id": None,
+                },
+                schedule_reservations=reservations,
+            )
+        except ScheduleReservationConflict:
+            return api_error(
+                "Wybrany termin został właśnie zajęty. Wybierz inny termin.",
+                409,
+            )
 
         return jsonify({
             "message": item,
+            "reserved_terms": [reservation["label"] for reservation in reservations],
         }), 201
 
     return safe(handler)
