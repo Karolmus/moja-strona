@@ -1906,7 +1906,7 @@ footer{
                             </label>
 
                             <p class="reservation-note">
-                                Wysłanie formularza nie jest zobowiązującą rezerwacją.
+                                Po wysłaniu zgłoszenia wybrany termin zostanie zablokowany.
                                 Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
                                 <a href="regulamin-zajec.html">Regulamin korepetycji</a>
                             </p>
@@ -2090,7 +2090,11 @@ function termLabel(rowIndex, columnIndex){
     const day = data[0]?.[columnIndex] || "";
     const time = data[rowIndex]?.[0] || "";
 
-    return [day, time].filter(Boolean).join(" ").trim();
+    return [day, time]
+        .filter(Boolean)
+        .join(" ")
+        .trim()
+        .replace(/\s+/g, " ");
 }
 
 function updateSelectedTermView(){
@@ -2156,6 +2160,30 @@ function addPreferredTerm(term){
 function removePreferredTerm(term){
     selectedTerms = selectedTerms.filter(item => item !== term);
     updateSelectedTermView();
+}
+
+function markReservedTermsBusy(terms){
+    const reservedTerms = new Set(
+        (Array.isArray(terms) ? terms : [])
+            .map(term => String(term || "").trim().replace(/\s+/g, " "))
+            .filter(Boolean)
+    );
+
+    if(!reservedTerms.size) return;
+
+    data.forEach((row, rowIndex) => {
+        if(rowIndex === 0) return;
+
+        row.forEach((cell, columnIndex) => {
+            if(columnIndex === 0 || cell) return;
+
+            if(reservedTerms.has(termLabel(rowIndex, columnIndex))){
+                data[rowIndex][columnIndex] = "zarezerwowany";
+            }
+        });
+    });
+
+    render();
 }
 
 function render(){
@@ -2338,14 +2366,24 @@ contactForm.addEventListener("submit", async event => {
     try {
         const selectedCourse = formData.get("course") || "";
         const sessionsPerWeek = formData.get("sessions_per_week") || "";
+        const sessionsPerWeekCount = Number(
+            String(sessionsPerWeek).match(/^[1-3]/)?.[0] || 0
+        );
+        const submittedTerms = [...selectedTerms];
         const message = String(formData.get("message") || "").trim();
 
-        await apiFetch("/api/contact-messages", {
+        if(submittedTerms.length && submittedTerms.length !== sessionsPerWeekCount){
+            throw new Error("Wybierz tyle terminów, ile zajęć tygodniowo chcesz mieć.");
+        }
+
+        const response = await apiFetch("/api/contact-messages", {
             method: "POST",
             body: JSON.stringify({
                 contact: formData.get("contact"),
                 preferred_term: formData.get("preferred_term"),
                 message: `Wybrany kurs: ${selectedCourse}\nLiczba zajęć w tygodniu: ${sessionsPerWeek}\n\n${message}`,
+                selected_terms: submittedTerms,
+                sessions_per_week_count: sessionsPerWeekCount,
                 website: formData.get("website"),
                 form_started_at: contactFormStartedAt
             })
@@ -2353,8 +2391,13 @@ contactForm.addEventListener("submit", async event => {
 
         contactForm.reset();
         selectedTerms = [];
+        markReservedTermsBusy(response?.reserved_terms || submittedTerms);
         updateSelectedTermView();
-        showContactStatus("Wiadomość wysłana.");
+        showContactStatus(
+            submittedTerms.length
+                ? "Wiadomość wysłana. Wybrane terminy zostały zablokowane."
+                : "Wiadomość wysłana."
+        );
     } catch(error) {
         showContactStatus(error.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz SMS.");
     } finally {

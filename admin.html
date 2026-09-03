@@ -3384,6 +3384,12 @@ function renderMessages(){
         const term = message.preferred_term
             ? ` • Termin: ${message.preferred_term}`
             : "";
+        const reservedTerms = Array.isArray(message.reserved_terms)
+            ? message.reserved_terms
+            : [];
+        const reservation = reservedTerms.length
+            ? " • Termin zablokowany"
+            : "";
         const deleted = currentMailbox === "trash" && message.deleted_at
             ? ` • Usunięto: ${formatDate(message.deleted_at)}`
             : "";
@@ -3400,8 +3406,16 @@ function renderMessages(){
 
         contact.innerText = message.contact;
         origin.innerText = message.origin === "parent" ? "Rodzic ucznia" : "Nowy zapis";
-        meta.innerText = `${formatDate(message.created_at)}${term}${deleted}`;
+        meta.innerText = `${formatDate(message.created_at)}${term}${reservation}${deleted}`;
         body.innerText = message.message;
+
+        if(reservedTerms.length && message.origin === "prospect"){
+            actions.appendChild(button(
+                reservedTerms.length === 1 ? "Odblokuj termin" : "Odblokuj terminy",
+                "btn secondary message-action-btn",
+                () => releaseReservedTerms(message)
+            ));
+        }
 
         if(currentMailbox === "trash"){
             actions.appendChild(button("Przywróć", "btn secondary message-action-btn", () => restoreMessage(message)));
@@ -3487,6 +3501,32 @@ async function restoreMessage(message){
 
     messageCounts = data.counts || messageCounts;
     contactMessages = contactMessages.filter(item => item.id !== message.id);
+    renderMessages();
+}
+
+async function releaseReservedTerms(message){
+    const terms = Array.isArray(message.reserved_terms) ? message.reserved_terms : [];
+
+    if(!terms.length){
+        return;
+    }
+
+    const termLabel = terms.join(", ");
+    const confirmed = window.confirm(
+        `Odblokować ${terms.length === 1 ? "termin" : "terminy"}: ${termLabel}?`
+    );
+
+    if(!confirmed){
+        return;
+    }
+
+    await apiFetch(
+        `/api/admin/contact-messages/${message.id}/schedule-reservations`,
+        { method: "DELETE" }
+    );
+    contactMessages = contactMessages.map(item =>
+        item.id === message.id ? { ...item, reserved_terms: [] } : item
+    );
     renderMessages();
 }
 
