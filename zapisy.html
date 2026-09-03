@@ -1901,6 +1901,11 @@ footer{
                             </label>
 
                             <label>
+                                Nazwa użytkownika Discord ucznia (opcjonalnie)
+                                <input name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="np. nazwa_uzytkownika">
+                            </label>
+
+                            <label>
                                 Preferowany termin
                                 <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Np. poniedziałek po 16:00 albo dni do ustalenia">
                             </label>
@@ -1947,10 +1952,10 @@ footer{
 
 	        <div class="signup-faq-list">
 	            <details class="signup-faq-item">
-	                <summary>Forma zajęć i komunikacja</summary>
-	                <p class="signup-faq-answer">
-	                    Zajęcia z uczniem rozpoczynają się w dniu i o godzinie ustalonej jako stały termin w tygodniu. Na początku zajęć wysyłam uczniowi link do interaktywnej tablicy i pytam o ostatnie wydarzenia szkolne. Następnie prowadzę zajęcia, biorąc pod uwagę informacje od ucznia oraz nasz ogólny plan działania. W kontakcie z rodzicem preferowany jest kontakt telefoniczny.
-	                </p>
+                <summary>Forma zajęć i komunikacja</summary>
+                <p class="signup-faq-answer">
+                    Zajęcia z uczniem rozpoczynają się w dniu i o godzinie ustalonej jako stały termin w tygodniu. Na początku zajęć wysyłam uczniowi link do interaktywnej tablicy i pytam o ostatnie wydarzenia szkolne. Następnie prowadzę zajęcia, biorąc pod uwagę informacje od ucznia oraz nasz ogólny plan działania. Po każdych zajęciach uczeń otrzymuje pracę domową z zakresu, nad którym pracowaliśmy w trakcie zajęć. W kontakcie z rodzicem preferowany jest kontakt telefoniczny.
+                </p>
 	            </details>
 
 	            <details class="signup-faq-item">
@@ -2366,6 +2371,7 @@ contactForm.addEventListener("submit", async event => {
     try {
         const selectedCourse = formData.get("course") || "";
         const sessionsPerWeek = formData.get("sessions_per_week") || "";
+        const studentDiscord = String(formData.get("student_discord") || "").trim();
         const sessionsPerWeekCount = Number(
             String(sessionsPerWeek).match(/^[1-3]/)?.[0] || 0
         );
@@ -2381,7 +2387,11 @@ contactForm.addEventListener("submit", async event => {
             body: JSON.stringify({
                 contact: formData.get("contact"),
                 preferred_term: formData.get("preferred_term"),
-                message: `Wybrany kurs: ${selectedCourse}\nLiczba zajęć w tygodniu: ${sessionsPerWeek}\n\n${message}`,
+                message: [
+                    `Wybrany kurs: ${selectedCourse}`,
+                    `Liczba zajęć w tygodniu: ${sessionsPerWeek}`,
+                    studentDiscord ? `Discord ucznia: ${studentDiscord}` : ""
+                ].filter(Boolean).join("\n") + (message ? `\n\n${message}` : ""),
                 selected_terms: submittedTerms,
                 sessions_per_week_count: sessionsPerWeekCount,
                 website: formData.get("website"),
