@@ -64,7 +64,7 @@ class SecurityTests(unittest.TestCase):
 
     def valid_contact_payload(self):
         return {
-            "contact": "test@example.com",
+            "contact": "+48 501 234 567",
             "message": "Proszę o kontakt.",
             "form_started_at": int((time.time() - 5) * 1000),
             "website": "",
@@ -184,7 +184,7 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(response.status_code, 429)
         self.assertEqual(self.contact_count(), 0)
 
-    def test_public_contact_form_accepts_empty_optional_fields(self):
+    def test_public_contact_form_requires_phone_number(self):
         response = self.client.post(
             "/api/contact-messages",
             json={
@@ -196,8 +196,17 @@ class SecurityTests(unittest.TestCase):
             },
         )
 
-        self.assertEqual(response.status_code, 201)
-        self.assertEqual(self.contact_count(), 1)
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(self.contact_count(), 0)
+
+    def test_public_contact_form_rejects_non_phone_contact(self):
+        payload = self.valid_contact_payload()
+        payload["contact"] = "test@example.com"
+
+        response = self.client.post("/api/contact-messages", json=payload)
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(self.contact_count(), 0)
 
     def test_contact_form_is_rate_limited(self):
         payload = self.valid_contact_payload()
@@ -253,7 +262,7 @@ class SecurityTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.headers.get("Content-Encoding"), "gzip")
-        self.assertEqual(decoded["message"]["contact"], "test@example.com")
+        self.assertEqual(decoded["message"]["contact"], "+48 501 234 567")
 
     def test_public_contact_form_cannot_spoof_parent_origin(self):
         payload = self.valid_contact_payload()

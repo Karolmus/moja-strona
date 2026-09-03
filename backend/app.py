@@ -127,6 +127,7 @@ TASK_PATH_SEGMENT_BY_STUDENT_LEVEL = {
     "matura_rozszerzona": "mr",
 }
 SAFE_TASK_FILE_RE = re.compile(r"^[A-Za-z0-9_.-]+$")
+PHONE_NUMBER_RE = re.compile(r"^\+?[0-9().\s-]+$")
 SCHEDULE_SHEET_URL = (
     "https://docs.google.com/spreadsheets/d/e/"
     "2PACX-1vSxNVJJM5pZVmVLJzDV-O9FCdWj1DaA1JGeKVvlIuwVSdi9rtGsvUfbJR66tHpSbMsqueDkooTyyvXN/"
@@ -561,6 +562,21 @@ def require_admin(handler):
 def validate_password(password):
     if len(password or "") < 8:
         raise ValueError("Hasło musi mieć co najmniej 8 znaków.")
+
+
+def validate_phone_number(value):
+    phone = str(value or "").strip()
+    digit_count = len(re.sub(r"\D", "", phone))
+
+    if (
+        not phone
+        or len(phone) > 25
+        or not PHONE_NUMBER_RE.fullmatch(phone)
+        or not 9 <= digit_count <= 15
+    ):
+        raise ValueError("Podaj prawidłowy numer telefonu.")
+
+    return phone
 
 
 def validated_task_data(data, user):
@@ -1251,6 +1267,8 @@ def api_create_contact_message():
 
             if 0 <= elapsed_seconds < CONTACT_FORM_MIN_SECONDS:
                 return api_error("Formularz został wysłany zbyt szybko. Spróbuj ponownie.", 429)
+
+        data["contact"] = validate_phone_number(data.get("contact"))
 
         item = create_contact_message({
             **data,
