@@ -1896,18 +1896,18 @@ footer{
                             </div>
 
                             <label>
-                                Numer telefonu
-                                <input name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+(). -]{9,25}" maxlength="25" title="Podaj numer telefonu, np. 501 234 567." required>
+                                Numer telefonu (pole obowiązkowe)
+                                <input name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+(). -]{9,25}" maxlength="25" title="Podaj prawidłowy numer telefonu." required>
                             </label>
 
                             <label>
                                 Nazwa użytkownika Discord ucznia (opcjonalnie)
-                                <input name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="np. nazwa_uzytkownika">
+                                <input name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80">
                             </label>
 
                             <label>
                                 Preferowany termin
-                                <input id="preferredTermInput" name="preferred_term" maxlength="160" placeholder="Np. poniedziałek po 16:00 albo dni do ustalenia">
+                                <input id="preferredTermInput" name="preferred_term" maxlength="160">
                             </label>
 
                             <p class="reservation-note">
@@ -1918,7 +1918,7 @@ footer{
 
                             <label>
                                 Dodatkowe informacje.
-                                <textarea name="message" maxlength="3000" placeholder=""></textarea>
+                                <textarea name="message" maxlength="3000"></textarea>
                             </label>
                         </div>
 
@@ -1931,7 +1931,7 @@ footer{
                                     <p class="booking-step-description"><br></p>
                                 </div>
                             </div>
-                            <button type="submit">Wyślij wiadomość</button>
+                            <button type="submit">Wyślij i zarezerwuj termin</button>
                         </div>
 
                         <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
@@ -2412,7 +2412,7 @@ contactForm.addEventListener("submit", async event => {
         showContactStatus(error.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz SMS.");
     } finally {
         button.disabled = false;
-        button.innerText = "Wyślij wiadomość";
+        button.innerText = "Wyślij i zarezerwuj termin";
     }
 });
 </script>
