@@ -1264,6 +1264,14 @@ button {
     font-size: 12px;
 }
 
+.action-group.tools .box {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
 .action-btn:hover,
 .choice-btn:hover {
     transform: translateY(-1px);
@@ -2788,6 +2796,7 @@ footer {
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
+                        <div id="answer" class="box" aria-live="polite"></div>
                     </div>
 
                     <div class="action-group navigation" role="group" aria-label="Nawigacja po zadaniach">
@@ -2800,8 +2809,6 @@ footer {
                 </div>
 
                 <div class="mcq" id="mcq"></div>
-
-                <div id="answer" class="box"></div>
 
                 <div class="solution-box" id="solutionBox" hidden>
                     <div class="solution-switcher" id="solutionSwitcher"></div>
