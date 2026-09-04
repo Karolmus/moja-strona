@@ -380,6 +380,32 @@ h1{
     resize: vertical;
 }
 
+.contact-form .form-field-error {
+    display: none;
+    margin: 2px 0 0;
+    color: #b42318;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.contact-form .form-field-error.active {
+    display: block;
+}
+
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+    border-color: #d65d5d;
+    box-shadow: 0 0 0 3px rgba(214, 93, 93, 0.14);
+}
+
+.course-options[aria-invalid="true"],
+.weekly-frequency-options[aria-invalid="true"] {
+    outline: 1px solid #d65d5d;
+    outline-offset: 3px;
+    border-radius: 10px;
+}
+
 .contact-form button {
     justify-self: start;
     min-height: 30px;
@@ -1803,7 +1829,7 @@ footer{
 
             <section class="contact-form-card" id="contactFormCard" aria-label="Kontakt i zgłoszenie">
                 <div class="signup-form-panel">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" novalidate>
                         <div class="form-honeypot" aria-hidden="true">
                             <label>
                                 Strona internetowa
@@ -1821,9 +1847,9 @@ footer{
                                         <p class="booking-step-description"><br></p>
                                     </div>
                                 </div>
-                                <div class="course-options" role="radiogroup" aria-label="Wybór poziomu zajęć">
+                                <div class="course-options" id="courseOptions" role="radiogroup" aria-label="Wybór poziomu zajęć" aria-describedby="courseError">
                                     <label class="course-option">
-                                        <input type="radio" name="course" value="Na bieżąco | 100 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing">
+                                        <input type="radio" name="course" value="Na bieżąco | 100 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing" required>
                                         <span class="course-price-option">
                                             <span class="course-price-name">Na bieżąco</span>
                                             <span class="course-price-value" data-price-key="ongoing">100 zł / 55 min</span>
@@ -1854,6 +1880,7 @@ footer{
                                         </span>
                                     </label>
                                 </div>
+                                <span class="form-field-error" id="courseError" role="status" aria-live="polite"></span>
                             </div>
                         </div>
 
@@ -1867,7 +1894,7 @@ footer{
                                 </div>
                             </div>
 
-                            <div class="weekly-frequency-options" role="radiogroup" aria-label="Liczba zajęć w tygodniu">
+                            <div class="weekly-frequency-options" id="sessionsPerWeekOptions" role="radiogroup" aria-label="Liczba zajęć w tygodniu" aria-describedby="sessionsPerWeekError">
                                 <label class="frequency-option">
                                     <input type="radio" name="sessions_per_week" value="1 zajęcie tygodniowo" aria-label="1 zajęcie tygodniowo" required>
                                     <span class="frequency-choice" aria-hidden="true"><strong>1</strong></span>
@@ -1883,6 +1910,7 @@ footer{
                                     <span class="frequency-choice" aria-hidden="true"><strong>3</strong></span>
                                 </label>
                             </div>
+                            <span class="form-field-error" id="sessionsPerWeekError" role="status" aria-live="polite"></span>
                         </div>
 
                         <div class="signup-form-section">
@@ -1897,7 +1925,8 @@ footer{
 
                             <label>
                                 Numer telefonu (pole obowiązkowe)
-                                <input name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+(). -]{9,25}" maxlength="25" title="Podaj prawidłowy numer telefonu." required>
+                                <input id="contactInput" name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+(). -]{9,25}" maxlength="25" title="Podaj prawidłowy numer telefonu." aria-describedby="contactError" required>
+                                <span class="form-field-error" id="contactError" role="status" aria-live="polite"></span>
                             </label>
 
                             <label>
@@ -1907,7 +1936,8 @@ footer{
 
                             <label>
                                 Preferowany termin
-                                <input id="preferredTermInput" name="preferred_term" maxlength="160">
+                                <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError" required>
+                                <span class="form-field-error" id="preferredTermError" role="status" aria-live="polite"></span>
                             </label>
 
                             <p class="reservation-note">
@@ -2108,6 +2138,10 @@ function updateSelectedTermView(){
 
     if(input){
         input.value = selectedTerms.join("; ");
+
+        if(selectedTerms.length && typeof clearSignupFieldError === "function"){
+            clearSignupFieldError("preferredTerm");
+        }
     }
 
     document.querySelectorAll("[data-term]")
@@ -2353,34 +2387,172 @@ loadSignupPrices();
 const contactForm = document.getElementById("contactForm");
 const contactStatus = document.getElementById("contactStatus");
 const contactFormStartedAt = Date.now();
+const signupFieldErrors = {
+    course: {
+        error: document.getElementById("courseError"),
+        stateTarget: document.getElementById("courseOptions"),
+        focusTarget: contactForm.querySelector('input[name="course"]')
+    },
+    sessionsPerWeek: {
+        error: document.getElementById("sessionsPerWeekError"),
+        stateTarget: document.getElementById("sessionsPerWeekOptions"),
+        focusTarget: contactForm.querySelector('input[name="sessions_per_week"]')
+    },
+    preferredTerm: {
+        error: document.getElementById("preferredTermError"),
+        stateTarget: document.getElementById("preferredTermInput"),
+        focusTarget: document.getElementById("preferredTermInput")
+    },
+    contact: {
+        error: document.getElementById("contactError"),
+        stateTarget: document.getElementById("contactInput"),
+        focusTarget: document.getElementById("contactInput")
+    }
+};
+
+function clearSignupFieldError(field){
+    const config = signupFieldErrors[field];
+
+    if(!config) return;
+
+    config.error.classList.remove("active");
+    config.error.innerText = "";
+    config.stateTarget.removeAttribute("aria-invalid");
+
+    if(config.focusTarget !== config.stateTarget){
+        config.focusTarget.removeAttribute("aria-invalid");
+    }
+}
+
+function clearSignupFieldErrors(){
+    Object.keys(signupFieldErrors).forEach(clearSignupFieldError);
+}
+
+function showSignupFieldError(field, message){
+    const config = signupFieldErrors[field];
+
+    if(!config) return;
+
+    config.error.innerText = message;
+    config.error.classList.add("active");
+    config.stateTarget.setAttribute("aria-invalid", "true");
+
+    if(config.focusTarget !== config.stateTarget){
+        config.focusTarget.setAttribute("aria-invalid", "true");
+    }
+}
+
+function focusSignupField(field){
+    const target = signupFieldErrors[field]?.focusTarget;
+
+    if(!target) return;
+
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    target.focus({ preventScroll: true });
+}
+
+function validateSignupForm(formData){
+    clearSignupFieldErrors();
+    let firstInvalidField = "";
+    const report = (field, message) => {
+        showSignupFieldError(field, message);
+
+        if(!firstInvalidField){
+            firstInvalidField = field;
+        }
+    };
+    const contactInput = signupFieldErrors.contact.focusTarget;
+    const preferredTerm = String(formData.get("preferred_term") || "").trim();
+    const contact = String(formData.get("contact") || "").trim();
+
+    if(!formData.get("course")){
+        report("course", "Wybierz poziom zajęć.");
+    }
+
+    if(!formData.get("sessions_per_week")){
+        report("sessionsPerWeek", "Wybierz liczbę zajęć w tygodniu.");
+    }
+
+    if(!preferredTerm){
+        report("preferredTerm", "Wybierz termin lub wpisz preferowany termin.");
+    }
+
+    if(!contact){
+        report("contact", "Podaj numer telefonu.");
+    } else if(!contactInput.validity.valid){
+        report("contact", "Podaj prawidłowy numer telefonu.");
+    }
+
+    if(firstInvalidField){
+        focusSignupField(firstInvalidField);
+        return false;
+    }
+
+    return true;
+}
 
 function showContactStatus(message){
     contactStatus.classList.add("active");
     contactStatus.innerText = message;
 }
 
+function clearContactStatus(){
+    contactStatus.classList.remove("active");
+    contactStatus.innerText = "";
+}
+
+contactForm.querySelectorAll('input[name="course"]').forEach(input => {
+    input.addEventListener("change", () => clearSignupFieldError("course"));
+});
+contactForm.querySelectorAll('input[name="sessions_per_week"]').forEach(input => {
+    input.addEventListener("change", () => clearSignupFieldError("sessionsPerWeek"));
+});
+signupFieldErrors.preferredTerm.focusTarget.addEventListener("input", () => {
+    if(signupFieldErrors.preferredTerm.focusTarget.value.trim()){
+        clearSignupFieldError("preferredTerm");
+    }
+});
+signupFieldErrors.contact.focusTarget.addEventListener("input", () => {
+    const input = signupFieldErrors.contact.focusTarget;
+
+    if(input.value.trim() && input.validity.valid){
+        clearSignupFieldError("contact");
+    }
+});
+
 contactForm.addEventListener("submit", async event => {
     event.preventDefault();
+    clearContactStatus();
 
     const formData = new FormData(contactForm);
     const button = contactForm.querySelector("button");
+
+    if(!validateSignupForm(formData)){
+        return;
+    }
+
+    const selectedCourse = formData.get("course") || "";
+    const sessionsPerWeek = formData.get("sessions_per_week") || "";
+    const studentDiscord = String(formData.get("student_discord") || "").trim();
+    const sessionsPerWeekCount = Number(
+        String(sessionsPerWeek).match(/^[1-3]/)?.[0] || 0
+    );
+    const submittedTerms = [...selectedTerms];
+    const message = String(formData.get("message") || "").trim();
+
+    if(submittedTerms.length && submittedTerms.length !== sessionsPerWeekCount){
+        showSignupFieldError(
+            "sessionsPerWeek",
+            "Wybierz tyle terminów, ile zajęć tygodniowo chcesz mieć."
+        );
+        focusSignupField("sessionsPerWeek");
+        return;
+    }
 
     button.disabled = true;
     button.innerText = "Wysyłam...";
 
     try {
-        const selectedCourse = formData.get("course") || "";
-        const sessionsPerWeek = formData.get("sessions_per_week") || "";
-        const studentDiscord = String(formData.get("student_discord") || "").trim();
-        const sessionsPerWeekCount = Number(
-            String(sessionsPerWeek).match(/^[1-3]/)?.[0] || 0
-        );
-        const submittedTerms = [...selectedTerms];
-        const message = String(formData.get("message") || "").trim();
-
-        if(submittedTerms.length && submittedTerms.length !== sessionsPerWeekCount){
-            throw new Error("Wybierz tyle terminów, ile zajęć tygodniowo chcesz mieć.");
-        }
 
         const response = await apiFetch("/api/contact-messages", {
             method: "POST",
