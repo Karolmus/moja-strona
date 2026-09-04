@@ -2841,7 +2841,7 @@ footer {
             </div>
 
             <p class="source-attribution" id="sourceAttribution" hidden>
-                Prezentowane arkusze to materiały Centralnej Komisji Egzaminacyjnej (CKE).
+                Prezentowane arkusze to egzaminy Centralnej Komisji Egzaminacyjnej.
             </p>
 
         </div>
@@ -2936,6 +2936,9 @@ let loggedUser = null;
 let tagSearchTerm = "";
 let selectedTags = new Set();
 let tagPanelOpen = false;
+let tagIndex = null;
+let tagIndexPromise = null;
+let tagFilterRequestId = 0;
 let sessionResults = new Map();
 let drawTaskRequestId = 0;
 let isTaskLoading = false;
@@ -2961,6 +2964,43 @@ const COURSE_PART_LABELS = {
     zadania: "1. Część główna",
     praca_domowa: "2. Zadanie domowe",
     zadania_praktyczne: "3. Zadania praktyczne"
+};
+const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260904";
+const TAG_WORD_LABELS = {
+    bryly: "bryły",
+    ciagi: "ciągi",
+    czworokaty: "czworokąty",
+    dzialania: "działania",
+    granice: "granice",
+    graniastoslup: "graniastosłup",
+    graniastoslupy: "graniastosłupy",
+    kat: "kąt",
+    katy: "kąty",
+    liczby: "liczby",
+    ostroslup: "ostrosłup",
+    ostroslupy: "ostrosłupy",
+    potegi: "potęgi",
+    prostokat: "prostokąt",
+    prostopadloscian: "prostopadłościan",
+    rownanie: "równanie",
+    rownania: "równania",
+    rownoleglobok: "równoległobok",
+    srednia: "średnia",
+    srodek: "środek",
+    stozek: "stożek",
+    trojkat: "trójkąt",
+    trojkaty: "trójkąty",
+    ulamki: "ułamki",
+    wartosc: "wartość",
+    wartosci: "wartości",
+    wielokaty: "wielokąty",
+    wysokosc: "wysokość",
+    wyrazenia: "wyrażenia",
+    wzory: "wzory",
+    zdarzenia: "zdarzenia",
+    zlozenie: "złożenie",
+    zmienna: "zmienna",
+    zmienne: "zmienne"
 };
 
 const TASK_SOURCES = [
@@ -3753,11 +3793,16 @@ function formatTagLabel(tag){
         .replace(/\s+/g, " ")
         .trim()
         .split(" ")
-        .map(word => ({
-            cke: "CKE",
-            bernoulliego: "Bernoulliego",
-            pitagorasa: "Pitagorasa"
-        })[word] || word)
+        .filter(Boolean)
+        .map(word => {
+            const normalizedWord = normalizeTag(word);
+
+            return TAG_WORD_LABELS[normalizedWord] || ({
+                cke: "CKE",
+                bernoulliego: "Bernoulliego",
+                pitagorasa: "Pitagorasa"
+            })[normalizedWord] || word;
+        })
         .join(" ");
 }
 
@@ -3789,15 +3834,58 @@ function taskMatchesTagFilters(task){
     return true;
 }
 
+function tagFiltersSearchAllSources(){
+    return !isLoggedInStudent &&
+        selectedCategory === "egzaminy" &&
+        Boolean(selectedTags.size || tagSearchTerm);
+}
+
+function getTagIndexEntries(level = selectedLevel){
+    const levelIndex = tagIndex?.levels?.[level] || {};
+
+    return Object.entries(levelIndex)
+        .map(([key, value]) => ({
+            key,
+            label: value?.label || key,
+            sources: Array.isArray(value?.sources) ? value.sources : []
+        }))
+        .sort((a, b) => formatTagLabel(a.label).localeCompare(formatTagLabel(b.label), "pl"));
+}
+
+async function ensureTagIndexLoaded(){
+    if(tagIndex) return tagIndex;
+
+    if(!tagIndexPromise){
+        tagIndexPromise = loadJsonSource(TAG_INDEX_PATH)
+            .then(index => {
+                tagIndex = index;
+                return index;
+            })
+            .catch(error => {
+                tagIndexPromise = null;
+                console.warn("Nie udało się wczytać indeksu tagów.", error);
+                return null;
+            });
+    }
+
+    return tagIndexPromise;
+}
+
 function getTagBaseTasks(){
+    const includeAllMatchingTagSources = tagFiltersSearchAllSources();
+
     return tasks.filter(task =>
         task.category === "egzaminy" &&
         task.level === selectedLevel &&
-        (selectedSource === "all" || task.sourceId === selectedSource)
+        (includeAllMatchingTagSources || selectedSource === "all" || task.sourceId === selectedSource)
     );
 }
 
 function getAvailableTags(){
+    const indexedTags = getTagIndexEntries();
+
+    if(indexedTags.length) return indexedTags;
+
     const map = new Map();
 
     getTagBaseTasks().forEach(task => {
@@ -3813,6 +3901,38 @@ function getAvailableTags(){
     return [...map.entries()]
         .map(([key, label]) => ({ key, label }))
         .sort((a, b) => a.label.localeCompare(b.label, "pl"));
+}
+
+function getTagFilteredSourceIds(){
+    const availableSourceIds = getAvailableSources().map(source => source.id);
+    const indexedTags = getTagIndexEntries();
+
+    if(!indexedTags.length) return availableSourceIds;
+
+    const tagsByKey = new Map(indexedTags.map(tag => [tag.key, tag]));
+    const term = normalizeTag(tagSearchTerm);
+    const termTags = term
+        ? indexedTags.filter(tag => tag.key.includes(term))
+        : indexedTags;
+
+    if(term && !termTags.length) return [];
+
+    return availableSourceIds.filter(sourceId =>
+        [...selectedTags].every(tag => tagsByKey.get(tag)?.sources.includes(sourceId)) &&
+        (!term || termTags.some(tag => tag.sources.includes(sourceId)))
+    );
+}
+
+async function ensureTagFilteredSourcesLoaded(){
+    if(!tagFiltersSearchAllSources()) return;
+
+    await ensureTagIndexLoaded();
+    pruneSelectedTags(getAvailableTags());
+
+    if(!tagFiltersSearchAllSources()) return;
+
+    const sourceIds = getTagFilteredSourceIds();
+    await Promise.all(sourceIds.map(sourceId => ensureTaskSourceLoaded(sourceId)));
 }
 
 function pruneSelectedTags(availableTags){
@@ -3854,7 +3974,8 @@ function renderTagSearch(){
     input.value = tagSearchTerm;
     list.innerHTML = "";
 
-    const availableTags = getAvailableTags();
+    const indexLoading = Boolean(tagIndexPromise && !tagIndex);
+    const availableTags = indexLoading ? [] : getAvailableTags();
     pruneSelectedTags(availableTags);
 
     const term = normalizeTag(tagSearchTerm);
@@ -3862,8 +3983,10 @@ function renderTagSearch(){
         .filter(tag => !term || tag.key.includes(term))
         .slice(0, 18);
 
-    if(!availableTags.length){
-        helper.innerText = "Wybrany arkusz nie ma jeszcze tagów w pliku JSON.";
+    if(indexLoading){
+        helper.innerText = "Wczytywanie tagów...";
+    } else if(!availableTags.length){
+        helper.innerText = "Brak tagów dla wybranego poziomu.";
     } else if(!visibleTags.length){
         helper.innerText = "Nie ma tagu pasującego do wpisanego tekstu.";
     } else {
@@ -3884,31 +4007,47 @@ function renderTagSearch(){
     clearButton.hidden = !selectedTags.size && !tagSearchTerm;
 }
 
-function toggleTagPanel(){
+async function toggleTagPanel(){
     tagPanelOpen = !tagPanelOpen;
     renderTagSearch();
+
+    if(tagPanelOpen){
+        await ensureTagIndexLoaded();
+        renderTagSearch();
+    }
 }
 
-function setTagSearch(value){
-    tagSearchTerm = value;
+async function applyTagFilters(){
+    const requestId = ++tagFilterRequestId;
+
     resetSession();
+    renderTagSearch();
+
+    await ensureTagFilteredSourcesLoaded();
+
+    if(requestId !== tagFilterRequestId) return;
+
     renderTagSearch();
     drawTask(getInitialIndex());
 }
 
-function toggleTagFilter(tag){
+async function setTagSearch(value){
+    tagSearchTerm = value;
+    await applyTagFilters();
+}
+
+async function toggleTagFilter(tag){
     if(selectedTags.has(tag)){
         selectedTags.delete(tag);
     } else {
         selectedTags.add(tag);
     }
 
-    resetSession();
-    renderTagSearch();
-    drawTask(getInitialIndex());
+    await applyTagFilters();
 }
 
 function clearTagFilters(){
+    tagFilterRequestId += 1;
     tagSearchTerm = "";
     selectedTags.clear();
     resetSession();
@@ -3917,10 +4056,12 @@ function clearTagFilters(){
 }
 
 function pool(){
+    const includeAllMatchingTagSources = tagFiltersSearchAllSources();
+
     return tasks.filter(t =>
         t.category === selectedCategory &&
         t.level === selectedLevel &&
-        (selectedSource === "all" || t.sourceId === selectedSource) &&
+        (includeAllMatchingTagSources || selectedSource === "all" || t.sourceId === selectedSource) &&
         taskMatchesTagFilters(t) &&
         (
             selectedCategory !== "kurs" ||
@@ -3988,6 +4129,7 @@ function ensureSelectedCoursePart(){
 async function loadSelectedSourceAndDraw(index = getInitialIndex()){
     try {
         await ensureTaskSourceLoaded(selectedSource);
+        await ensureTagFilteredSourcesLoaded();
         ensureSelectedCoursePart();
         renderSourceSelector();
         refreshTaskNavigator();
@@ -6071,7 +6213,7 @@ function updateTaskDetails(task, total){
 
     <div class="meta-right">
         <div class="meta-section">
-            ${task.topic}
+            ${formatTagLabel(task.topic)}
         </div>
 
         ${pointsBadgeMarkup(task) ? `<div class="meta-section">${pointsBadgeMarkup(task)}</div>` : ""}
