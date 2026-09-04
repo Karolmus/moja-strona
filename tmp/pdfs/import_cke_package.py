@@ -452,16 +452,45 @@ def rendered_page(page, cache: dict[int, Image.Image], page_index: int) -> Image
     return cache[page_index]
 
 
-def trim_vertical(image: Image.Image, padding: int = 8) -> Image.Image | None:
+def trim_vertical(
+    image: Image.Image,
+    padding: int = 12,
+    discard_leading_rule: bool = False,
+) -> Image.Image | None:
     background = Image.new("RGB", image.size, "white")
     difference = ImageChops.difference(image, background)
     mask = ImageOps.grayscale(difference).point(lambda value: 255 if value > 7 else 0)
     bbox = mask.getbbox()
     if not bbox or bbox[3] - bbox[1] < 18:
         return None
-    top = max(0, bbox[1] - padding)
-    bottom = min(image.height, bbox[3] + padding)
-    return image.crop((0, top, image.width, bottom))
+
+    top, bottom = bbox[1], bbox[3]
+    if discard_leading_rule:
+        minimum_rule_width = round(image.width * 0.8)
+        row = top
+
+        while row < min(bottom, top + 8):
+            ink_width = sum(mask.getpixel((column, row)) > 0 for column in range(image.width))
+            if ink_width < minimum_rule_width:
+                row += 1
+                continue
+
+            rule_end = row + 1
+            while rule_end < bottom:
+                next_ink_width = sum(
+                    mask.getpixel((column, rule_end)) > 0
+                    for column in range(image.width)
+                )
+                if next_ink_width < minimum_rule_width:
+                    break
+                rule_end += 1
+
+            if rule_end - row <= 6:
+                top = rule_end
+            break
+
+    content = image.crop((0, top, image.width, bottom))
+    return ImageOps.expand(content, border=(0, padding, 0, padding), fill="white")
 
 
 def crop_region(
@@ -472,6 +501,7 @@ def crop_region(
     bottom: float,
     x0: float,
     x1: float,
+    discard_leading_rule: bool = False,
 ) -> Image.Image | None:
     if bottom <= top + 2:
         return None
@@ -484,7 +514,28 @@ def crop_region(
             round(bottom * SCALE),
         )
     )
-    return trim_vertical(crop)
+    return trim_vertical(crop, discard_leading_rule=discard_leading_rule)
+
+
+def remove_left_score_gutter(image: Image.Image) -> Image.Image:
+    """Remove the narrow coloured point-scale left in 2026 formula-2023 tasks."""
+    gutter_width = min(22, image.width)
+    tallest_coloured_column = 0
+
+    for column in range(gutter_width):
+        coloured_pixels = 0
+        for row in range(image.height):
+            red, green, blue = image.getpixel((column, row))
+            if max(red, green, blue) - min(red, green, blue) > 40 and min(red, green, blue) < 220:
+                coloured_pixels += 1
+        tallest_coloured_column = max(tallest_coloured_column, coloured_pixels)
+
+    if tallest_coloured_column < max(20, round(image.height * 0.2)):
+        return image
+
+    cleaned = image.copy()
+    cleaned.paste("white", (0, 0, gutter_width, cleaned.height))
+    return cleaned
 
 
 def save_webp(image: Image.Image, output: Path) -> None:
@@ -611,7 +662,11 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
 
         for index, header in enumerate(headers):
             page = document.pages[header["page"]]
-            start = header["bottom"] + 4
+            # Header and the first line of the task can visually sit closer
+            # than their extracted text bounds suggest. Starting at the
+            # header's bottom preserves the whole first line without showing
+            # the task-number strip.
+            start = header["bottom"]
             end = boundary_on_page(headers, index, page)
 
             stop = first_line_top(
@@ -650,12 +705,15 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                 end,
                 TASK_X0[session.kind],
                 float(page.width) - TASK_RIGHT_MARGIN,
+                discard_leading_rule=True,
             )
             if image is None:
                 raise RuntimeError(
                     f"Pusty wycinek {session.kind} {session.year} {session.detail}, "
                     f"{header['kind']} {header['number']}"
                 )
+            if session.kind == "mr" and session.year == 2026 and session.formula == "2023":
+                image = remove_left_score_gutter(image)
 
             text = extract_task_text(header, headers, index, lines_by_page, page)
             if header["kind"] == "context":
@@ -1177,6 +1235,35 @@ def import_session(session: Session, replace: bool) -> dict:
     }
 
 
+def repair_task_crops(session: Session) -> dict:
+    if not session.output_dir.exists():
+        raise RuntimeError(f"Brak katalogu docelowego: {session.output_dir}")
+
+    stage = ROOT / "tmp/pdfs/crop-repair-stage" / session.kind / str(session.year) / session.output_dir.name
+    if stage.exists():
+        shutil.rmtree(stage)
+    stage.mkdir(parents=True)
+
+    try:
+        manifest, _ = extract_task_assets(session, stage)
+        filenames = sorted({item["file"] for item in manifest.values() if item.get("file")})
+
+        for filename in filenames:
+            source = stage / filename
+            if not source.exists():
+                raise RuntimeError(f"Brak wygenerowanego obrazu: {source}")
+            shutil.copy2(source, session.output_dir / filename)
+
+        return {
+            "source": session.source_config,
+            "tasks": len([item for key, item in manifest.items() if not key.startswith("context:")]),
+            "images": len(filenames),
+        }
+    finally:
+        if stage.exists():
+            shutil.rmtree(stage)
+
+
 def selected_sessions(all_sessions: list[Session], filters: list[str]) -> list[Session]:
     if not filters:
         return all_sessions
@@ -1192,8 +1279,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--audit", action="store_true")
     parser.add_argument("--replace", action="store_true")
+    parser.add_argument("--repair-task-crops", action="store_true")
     parser.add_argument("--only", action="append", default=[])
     args = parser.parse_args()
+
+    if args.repair_task_crops and (args.audit or args.replace):
+        parser.error("--repair-task-crops nie łączy się z --audit ani --replace")
 
     sessions = selected_sessions(build_sessions(), args.only)
     if not sessions:
@@ -1201,9 +1292,20 @@ def main() -> None:
 
     report = []
     for index, session in enumerate(sessions, 1):
-        action = "AUDYT" if args.audit else "IMPORT"
+        action = "NAPRAWA WYCINKÓW" if args.repair_task_crops else "AUDYT" if args.audit else "IMPORT"
         print(f"[{index}/{len(sessions)}] {action}: {session.kind} {session.detail}", flush=True)
-        report.append(audit_session(session) if args.audit else import_session(session, args.replace))
+        if args.repair_task_crops:
+            report.append(repair_task_crops(session))
+        else:
+            report.append(audit_session(session) if args.audit else import_session(session, args.replace))
+
+    if args.repair_task_crops:
+        print(
+            f"Gotowe: sesje={len(report)}, zadania={sum(item['tasks'] for item in report)}, "
+            f"obrazy={sum(item['images'] for item in report)}",
+            flush=True,
+        )
+        return
 
     report_path = ROOT / "tmp/pdfs/cke_package_audit.json"
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

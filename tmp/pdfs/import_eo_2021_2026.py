@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import shutil
@@ -202,16 +203,15 @@ def rendered_page(page, cache, page_index):
     return cache[page_index]
 
 
-def trim_vertical(image, padding=8):
+def trim_vertical(image, padding=12):
     background = Image.new("RGB", image.size, "white")
     difference = ImageChops.difference(image, background)
     mask = ImageOps.grayscale(difference).point(lambda value: 255 if value > 7 else 0)
     bbox = mask.getbbox()
     if not bbox or bbox[3] - bbox[1] < 18:
         return None
-    top = max(0, bbox[1] - padding)
-    bottom = min(image.height, bbox[3] + padding)
-    return image.crop((0, top, image.width, bottom))
+    content = image.crop((0, bbox[1], image.width, bbox[3]))
+    return ImageOps.expand(content, border=(0, padding, 0, padding), fill="white")
 
 
 def crop_page_region(page, cache, page_index, top, bottom):
@@ -327,7 +327,10 @@ def extract_task_assets(config):
                     continue
                 lines = page_lines(page)
                 for header_index, header in enumerate(headers):
-                    start = header["bottom"] + 3.5
+                    # Tekst pierwszego wiersza bywa bliżej nagłówka niż
+                    # wskazują granice wyodrębnione z PDF. Nie odsuwamy
+                    # początku wycinka, aby go nie przyciąć.
+                    start = header["bottom"]
                     next_header = headers[header_index + 1]["top"] if header_index + 1 < len(headers) else PAGE_BOTTOM
                     end = min(next_header - 3, footer_top(lines, start) - 3, PAGE_BOTTOM)
 
@@ -539,5 +542,38 @@ def run(config):
     )
 
 
-for exam_config in CONFIGS:
-    run(exam_config)
+def repair_task_crops(config):
+    """Regenerate task images from the PDFs already stored with the exam.
+
+    This intentionally leaves JSON metadata, answer keys, and solutions intact.
+    """
+    local_config = {
+        **config,
+        "task_sources": [
+            {
+                **source,
+                "path": config["output"] / source["path"].name,
+            }
+            for source in config["task_sources"]
+        ],
+    }
+    manifest = extract_task_assets(local_config)
+    print(
+        f"{config['output'].relative_to(ROOT)}: naprawiono {len(manifest)} obrazów zadań"
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repair-task-crops", action="store_true")
+    args = parser.parse_args()
+
+    for exam_config in CONFIGS:
+        if args.repair_task_crops:
+            repair_task_crops(exam_config)
+        else:
+            run(exam_config)
+
+
+if __name__ == "__main__":
+    main()

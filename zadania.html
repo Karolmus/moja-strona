@@ -2954,6 +2954,7 @@ const taskSourceLoadPromises = new Map();
 let practicalValueStore = new Map();
 
 const IMAGE_FADE_MS = 220;
+const TASK_IMAGE_CACHE_VERSION = "20260904-crop-fix";
 const SKIPPED_RESULT = "skipped";
 const COURSE_PART_ORDER = {
     zadania: 1,
@@ -6030,8 +6031,10 @@ async function resolvedAssetUrl(src){
 function optimizedImageCandidate(src){
     if(!src) return src;
 
-    return /\.(png|jpe?g)$/i.test(src)
-        ? src.replace(/\.(png|jpe?g)$/i, ".webp")
+    const match = String(src).match(/^(.*)\.(png|jpe?g)([?#].*)?$/i);
+
+    return match
+        ? `${match[1]}.webp${match[3] || ""}`
         : src;
 }
 
@@ -6120,6 +6123,12 @@ function preloadImage(src){
     }
 
     return imageLoadPromises.get(cacheKey);
+}
+
+function versionedTaskImagePath(path){
+    if(!path || isProtectedCoursePath(path)) return path;
+
+    return `${path}${String(path).includes("?") ? "&" : "?"}v=${TASK_IMAGE_CACHE_VERSION}`;
 }
 
 function setTaskLoading(loading){
@@ -6268,14 +6277,16 @@ async function drawTask(index = currentIndex, trackHistory = true){
     const contextImg = document.getElementById("contextImage");
     const loadMessages = [];
 
+    const taskImagePath = versionedTaskImagePath(taskToRender.path);
+    const contextImagePath = versionedTaskImagePath(taskToRender.contextPath);
     const [taskPath, contextPath] = await Promise.all([
-        preloadImage(taskToRender.path)
+        preloadImage(taskImagePath)
             .catch(error => {
                 loadMessages.push("Nie udało się wczytać obrazka zadania.");
                 return null;
             }),
-        taskToRender.contextPath
-            ? preloadImage(taskToRender.contextPath)
+        contextImagePath
+            ? preloadImage(contextImagePath)
                 .catch(error => {
                     loadMessages.push("Nie udało się wczytać informacji do zadania.");
                     return null;
