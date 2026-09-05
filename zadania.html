@@ -1988,7 +1988,8 @@ button {
     margin-top: 12px;
 }
 
-.exam-summary-overlay {
+.exam-summary-overlay,
+.homework-summary-overlay {
     position: fixed;
     z-index: 1200;
     inset: 0;
@@ -1999,7 +2000,8 @@ button {
     padding: 20px;
 }
 
-.exam-summary-overlay[hidden] {
+.exam-summary-overlay[hidden],
+.homework-summary-overlay[hidden] {
     display: none;
 }
 
@@ -2227,6 +2229,96 @@ button {
     background: var(--navy-hover);
 }
 
+.homework-summary-dialog {
+    width: min(480px, 100%);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.28);
+    padding: 18px;
+}
+
+.homework-summary-eyebrow {
+    color: #9b4a4a;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.homework-summary-title {
+    margin: 3px 0 0;
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.homework-summary-lesson {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.homework-summary-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.homework-summary-stat {
+    display: grid;
+    min-height: 86px;
+    align-content: space-between;
+    gap: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfe;
+    padding: 11px;
+}
+
+.homework-summary-stat span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.homework-summary-stat strong {
+    color: var(--text);
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.homework-summary-stat.good {
+    border-color: #b9dcb3;
+    background: #f4fbf2;
+}
+
+.homework-summary-stat.good strong {
+    color: #287942;
+}
+
+.homework-summary-stat.medium {
+    border-color: #e7d6a5;
+    background: #fffdf5;
+}
+
+.homework-summary-stat.medium strong {
+    color: #927000;
+}
+
+.homework-summary-stat.bad {
+    border-color: #e3bcbc;
+    background: #fff7f7;
+}
+
+.homework-summary-stat.bad strong {
+    color: #a64545;
+}
+
+.homework-summary-stat.time strong {
+    color: var(--navy);
+    font-size: 21px;
+}
+
 footer {
     text-align: center;
     padding: 15px;
@@ -2421,17 +2513,20 @@ footer {
         display: none;
     }
 
-    .exam-summary-overlay {
+    .exam-summary-overlay,
+    .homework-summary-overlay {
         align-items: end;
         padding: 8px;
     }
 
-    .exam-summary-dialog {
+    .exam-summary-dialog,
+    .homework-summary-dialog {
         max-height: calc(100vh - 16px);
         padding: 14px;
     }
 
-    .exam-summary-title {
+    .exam-summary-title,
+    .homework-summary-title {
         font-size: 18px;
     }
 
@@ -2454,6 +2549,19 @@ footer {
 
     .exam-summary-btn {
         width: 100%;
+    }
+
+    .homework-summary-stat {
+        min-height: 78px;
+        padding: 10px;
+    }
+
+    .homework-summary-stat strong {
+        font-size: 22px;
+    }
+
+    .homework-summary-stat.time strong {
+        font-size: 18px;
     }
 
     .assigned-course-card,
@@ -2928,6 +3036,43 @@ footer {
     </section>
 </div>
 
+<div class="homework-summary-overlay" id="homeworkSummaryOverlay" hidden>
+    <section class="homework-summary-dialog" role="dialog" aria-modal="true" aria-labelledby="homeworkSummaryTitle" tabindex="-1">
+        <div class="exam-summary-head">
+            <div>
+                <div class="homework-summary-eyebrow">Praca domowa ukończona</div>
+                <h2 class="homework-summary-title" id="homeworkSummaryTitle">Podsumowanie pracy domowej</h2>
+            </div>
+            <button class="exam-summary-close" id="homeworkSummaryClose" type="button" aria-label="Zamknij podsumowanie">×</button>
+        </div>
+
+        <p class="homework-summary-lesson" id="homeworkSummaryLesson"></p>
+
+        <div class="homework-summary-stats">
+            <div class="homework-summary-stat good">
+                <span>Poprawnie</span>
+                <strong id="homeworkSummaryGood">0</strong>
+            </div>
+            <div class="homework-summary-stat medium">
+                <span>Z pomocą</span>
+                <strong id="homeworkSummaryMedium">0</strong>
+            </div>
+            <div class="homework-summary-stat bad">
+                <span>Błędnie</span>
+                <strong id="homeworkSummaryBad">0</strong>
+            </div>
+            <div class="homework-summary-stat time">
+                <span>Czas pracy</span>
+                <strong id="homeworkSummaryDuration">0 s</strong>
+            </div>
+        </div>
+
+        <div class="exam-summary-actions single">
+            <button class="exam-summary-btn primary" id="homeworkSummaryDismiss" type="button">Zamknij</button>
+        </div>
+    </section>
+</div>
+
 <footer class="site-footer" aria-label="Dane firmy">
     <div class="footer-business">© <span data-current-year>2026</span> Karol Musioł Delta Sigma</div>
     <div>Karol Musioł Delta Sigma</div>
@@ -2962,6 +3107,7 @@ let groupedMultiSelection = new Map();
 let trueFalseSelection = [];
 let savedProgress = [];
 let sessionScores = new Map();
+let sessionDurations = new Map();
 let focusMode = false;
 let currentTaskAnswered = false;
 let isLoggedInStudent = false;
@@ -2977,9 +3123,11 @@ let drawTaskRequestId = 0;
 let isTaskLoading = false;
 let selectedSolutionIndex = 0;
 let completedExamSummarySource = "";
+let completedHomeworkSummarySource = "";
 let selectedGradingIndex = 0;
 let examSummaryNextSource = "";
 let examSummaryPreviousFocus = null;
+let homeworkSummaryPreviousFocus = null;
 let courseGradingCriteriaByTask = new Map();
 let courseGradingCriteriaLoaded = false;
 const loadedTaskSourceIds = new Set();
@@ -4839,9 +4987,11 @@ function resetSession(){
     if(isLoggedInStudent){
         sessionResults = new Map();
         sessionScores = new Map();
+        sessionDurations = new Map();
     }
 
     completedExamSummarySource = "";
+    completedHomeworkSummarySource = "";
     seconds = 0;
     updateTimer();
     document.getElementById("progress").innerHTML = "";
@@ -4918,6 +5068,73 @@ function isExamSourceComplete(sourceId = selectedSource){
     );
 
     return sourceTasks.length > 0 && sourceTasks.every(task => getSavedResult(task));
+}
+
+function getHomeworkSummaryTasks(sourceId = selectedSource){
+    if(!sourceId || sourceId === "all") return [];
+
+    return tasks.filter(task =>
+        task.category === "kurs" &&
+        task.sourceId === sourceId &&
+        task.coursePart === "praca_domowa"
+    );
+}
+
+function isHomeworkComplete(sourceId = selectedSource){
+    const homeworkTasks = getHomeworkSummaryTasks(sourceId);
+
+    return homeworkTasks.length > 0 && homeworkTasks.every(task =>
+        ["good", "medium", "bad"].includes(getSavedResult(task))
+    );
+}
+
+function getTaskDurationSeconds(task){
+    const key = getTaskKey(task);
+    const sessionDuration = Number(sessionDurations.get(key));
+
+    if(Number.isFinite(sessionDuration)){
+        return Math.max(0, Math.round(sessionDuration));
+    }
+
+    const savedDuration = Number(getSavedProgressItem(task)?.duration_seconds);
+
+    return Number.isFinite(savedDuration)
+        ? Math.max(0, Math.round(savedDuration))
+        : 0;
+}
+
+function calculateHomeworkSummary(sourceId = selectedSource){
+    const summary = {
+        tasks: getHomeworkSummaryTasks(sourceId),
+        good: 0,
+        medium: 0,
+        bad: 0,
+        durationSeconds: 0
+    };
+
+    summary.tasks.forEach(task => {
+        const result = getSavedResult(task);
+
+        if(result === "good") summary.good++;
+        if(result === "medium") summary.medium++;
+        if(result === "bad") summary.bad++;
+
+        summary.durationSeconds += getTaskDurationSeconds(task);
+    });
+
+    return summary;
+}
+
+function formatHomeworkDuration(seconds){
+    const value = Math.max(0, Math.round(Number(seconds) || 0));
+    const hours = Math.floor(value / 3600);
+    const minutes = Math.floor((value % 3600) / 60);
+    const rest = value % 60;
+
+    if(hours) return `${hours} h ${minutes} min`;
+    if(minutes) return `${minutes} min${rest ? ` ${rest} s` : ""}`;
+
+    return `${rest} s`;
 }
 
 function nextExamSourceId(){
@@ -5182,6 +5399,52 @@ function showExamCompletionSummary(){
     requestAnimationFrame(() => dialog.focus());
 }
 
+function closeHomeworkCompletionSummary(restoreFocus = true){
+    const overlay = document.getElementById("homeworkSummaryOverlay");
+
+    if(!overlay || overlay.hidden) return;
+
+    overlay.hidden = true;
+    document.body.style.removeProperty("overflow");
+    updateNextTaskButton();
+
+    if(restoreFocus && homeworkSummaryPreviousFocus instanceof HTMLElement){
+        homeworkSummaryPreviousFocus.focus();
+    }
+}
+
+function showHomeworkCompletionSummary(sourceId = selectedSource){
+    const summary = calculateHomeworkSummary(sourceId);
+    const source = getSourceMetaById(sourceId);
+    const overlay = document.getElementById("homeworkSummaryOverlay");
+    const dialog = overlay?.querySelector(".homework-summary-dialog");
+
+    if(!summary.tasks.length) return;
+
+    if(!overlay || !dialog){
+        showMessage(
+            `Praca domowa ukończona.\n` +
+            `Poprawnie: ${summary.good}. Z pomocą: ${summary.medium}. Błędnie: ${summary.bad}. ` +
+            `Czas pracy: ${formatHomeworkDuration(summary.durationSeconds)}.`
+        );
+        return;
+    }
+
+    document.getElementById("homeworkSummaryLesson").innerText = source
+        ? `${source.label}${source.detail ? ` · ${source.detail}` : ""}`
+        : "Praca domowa";
+    document.getElementById("homeworkSummaryGood").innerText = summary.good;
+    document.getElementById("homeworkSummaryMedium").innerText = summary.medium;
+    document.getElementById("homeworkSummaryBad").innerText = summary.bad;
+    document.getElementById("homeworkSummaryDuration").innerText =
+        formatHomeworkDuration(summary.durationSeconds);
+
+    homeworkSummaryPreviousFocus = document.activeElement;
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => dialog.focus());
+}
+
 document.getElementById("examSummaryClose")
     ?.addEventListener("click", () => closeExamCompletionSummary());
 document.getElementById("examSummaryDismiss")
@@ -5196,11 +5459,50 @@ document.getElementById("examSummaryOverlay")
             closeExamCompletionSummary();
         }
     });
+document.getElementById("homeworkSummaryClose")
+    ?.addEventListener("click", () => closeHomeworkCompletionSummary());
+document.getElementById("homeworkSummaryDismiss")
+    ?.addEventListener("click", () => closeHomeworkCompletionSummary());
+document.getElementById("homeworkSummaryOverlay")
+    ?.addEventListener("click", event => {
+        if(event.target === event.currentTarget){
+            closeHomeworkCompletionSummary();
+        }
+    });
 document.addEventListener("keydown", event => {
     if(event.key === "Escape"){
         closeExamCompletionSummary();
+        closeHomeworkCompletionSummary();
     }
 });
+
+function advanceToHomeworkSummaryIfComplete(){
+    if(currentTask?.category !== "kurs" || currentTask.coursePart !== "praca_domowa"){
+        return false;
+    }
+
+    if(!isHomeworkComplete(currentTask.sourceId)) return false;
+    if(completedHomeworkSummarySource === currentTask.sourceId) return false;
+
+    completedHomeworkSummarySource = currentTask.sourceId;
+    showHomeworkCompletionSummary(currentTask.sourceId);
+
+    return true;
+}
+
+function updateNextTaskButton(){
+    const button = document.querySelector(".next-task-btn");
+    const shouldShowHomeworkSummary = currentTask?.category === "kurs" &&
+        currentTask.coursePart === "praca_domowa" &&
+        isHomeworkComplete(currentTask.sourceId) &&
+        completedHomeworkSummarySource !== currentTask.sourceId;
+
+    if(button){
+        button.innerText = shouldShowHomeworkSummary
+            ? "Zobacz podsumowanie →"
+            : "Kolejne zadanie →";
+    }
+}
 
 function advanceToNextExamIfComplete(){
     if(!isExamSourceComplete()) return false;
@@ -6483,12 +6785,14 @@ async function drawTask(index = currentIndex, trackHistory = true){
     }
 
     applyCourseAnswerLock();
+    updateNextTaskButton();
 }
 
 function nextTask(){
     const p = pool();
 
     if(!p.length) return;
+    if(advanceToHomeworkSummaryIfComplete()) return;
     if(advanceToNextExamIfComplete()) return;
 
     if(isRandomMode()){
@@ -7671,25 +7975,40 @@ function setSessionScore(task, type, scoreData = null){
     });
 }
 
+function setSessionDuration(task, durationSeconds){
+    const key = getTaskKey(task);
+    const duration = Math.max(0, Math.min(
+        Math.round(Number(durationSeconds) || 0),
+        4 * 60 * 60
+    ));
+
+    if(key){
+        sessionDurations.set(key, duration);
+    }
+}
+
 function addProgress(type, scoreData = null){
     if(currentTaskAnswered) return false;
 
     currentTaskAnswered = true;
 
     const key = getTaskKey(currentTask);
+    const taskDuration = getCurrentTaskDurationSeconds();
 
     if(key){
         sessionResults.set(key, type);
         setSessionScore(currentTask, type, scoreData);
+        setSessionDuration(currentTask, taskDuration);
         saveGuestSessionProgress();
     }
 
     if(shouldShowTaskNavigator()){
         renderTaskNavigator();
         renderSourceSelector();
-        saveProgress(type, scoreData);
+        saveProgress(type, scoreData, taskDuration);
         updateScorePanel();
         updateSourceSummary();
+        updateNextTaskButton();
         return true;
     }
 
@@ -7704,20 +8023,24 @@ function addProgress(type, scoreData = null){
     document.getElementById("progress")
         .appendChild(tile);
 
-    saveProgress(type, scoreData);
+    saveProgress(type, scoreData, taskDuration);
     renderSourceSelector();
     updateScorePanel();
     updateSourceSummary();
+    updateNextTaskButton();
 
     return true;
 }
 
-async function saveProgress(type, scoreData = null){
+async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds()){
     if(!isLoggedInStudent) return;
     if(!currentTask || !window.apiFetch) return;
 
     const task = currentTask;
-    const taskDuration = getCurrentTaskDurationSeconds();
+    const taskDuration = Math.max(0, Math.min(
+        Math.round(Number(durationSeconds) || 0),
+        4 * 60 * 60
+    ));
     const usedHint = hintUsed;
     const revealedAnswer = answerShown;
 
@@ -7792,18 +8115,21 @@ async function submitScore(event){
 
     if(currentTaskAnswered){
         const key = getTaskKey(currentTask);
+        const taskDuration = getCurrentTaskDurationSeconds();
 
         if(key){
             sessionResults.set(key, result);
             setSessionScore(currentTask, result, scoreData);
+            setSessionDuration(currentTask, taskDuration);
             saveGuestSessionProgress();
             updateSourceSummary();
         }
 
-        await saveProgress(result, scoreData);
+        await saveProgress(result, scoreData, taskDuration);
         renderSourceSelector();
         renderTaskNavigator();
         updateSourceSummary();
+        updateNextTaskButton();
     } else {
         addProgress(result, scoreData);
     }
