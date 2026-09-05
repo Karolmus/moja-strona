@@ -3147,7 +3147,7 @@ const COURSE_PART_LABELS = {
     praca_domowa: "2. Zadanie domowe",
     zadania_praktyczne: "3. Zadania praktyczne"
 };
-const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260904-tags-v2";
+const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260905-tags-v4";
 const TAG_WORD_LABELS = {
     bryly: "bryły",
     ciagi: "ciągi",
@@ -3699,7 +3699,7 @@ async function loadJsonSource(path){
         return window.apiFetch(courseAssetApiPath(path));
     }
 
-    const response = await fetch(path);
+    const response = await fetch(path, { cache: "no-cache" });
 
     if(!response.ok) throw new Error("Nie udało się wczytać listy zadań.");
 
@@ -3961,20 +3961,10 @@ function getSourceMeta(sourceConfig){
 const TAG_ALIASES = {
     "ciagi arytmetyczne": "ciag arytmetyczny",
     "ciagi geometryczne": "ciag geometryczny",
-    "ciag rekurencyjny": "ciagi",
-    "funkcje trygonometryczne": "trygonometria",
     "funkcje wykladnicze": "funkcja wykladnicza",
     "funkcje logarytmiczne": "funkcja logarytmiczna",
     "zadania z parametrem": "rownania z parametrem",
-    "wartosc bezwzgledna": "wartosc bezwzgledna",
-    "pola trojkatow": "pola figur",
-    "pola czworokatow": "pola figur",
-    "objetosc bryl": "objetosc",
-    "bryly": "stereometria",
-    "twierdzenie pitagorasa": "trojkaty",
-    "predkosc droga czas": "predkosc, droga i czas",
-    "srednia arytmetyczna": "statystyka",
-    "dzialania na liczbach": "liczby i dzialania"
+    "predkosc droga czas": "predkosc, droga i czas"
 };
 
 function normalizeTag(tag){

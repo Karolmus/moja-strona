@@ -109,6 +109,92 @@ SKIPPED_SESSIONS = {("03_egzamin_osmoklasisty", 2021, "main", "")}
 
 # Kolejność odpowiada priorytetowi głównego tematu zadania. Reguły są celowo
 # wąskie: tag ma opisywać zagadnienie, a nie każde słowo wspomniane w rozwiązaniu.
+# Te reguły wychwytują konkretny podtemat zanim zostanie dodana jego szersza
+# kategoria. Korzystamy wyłącznie z pojęć obecnych w treści zadania, aby filtr
+# nie mieszał zadań pokrewnych, ale innych merytorycznie.
+SPECIFIC_TAG_RULES = [
+    ("procent składany", (r"\bprocent\w* skladan",)),
+    ("średnia arytmetyczna", (r"\bsredni\w* arytmetycz",)),
+    ("średnia ważona", (r"\bsredni\w* wazona",)),
+    ("mediana", (r"\bmedian\w*",)),
+    ("dominanta", (r"\bdominant\w*",)),
+    ("NWD", (r"\bnwd\b", r"\bnajwieksz\w* wspoln\w* dzielnik")),
+    ("NWW", (r"\bnww\b", r"\bnajmniejsz\w* wspoln\w* wielokrotn")),
+    ("dzielenie z resztą", (r"\bdzielen\w* z reszta",)),
+    ("działania na potęgach", (r"\bdzialan\w* na poteg",)),
+    ("wzory skróconego mnożenia", (r"\bwzor\w* skrocon\w* mnozen",)),
+    ("rozkład na czynniki", (r"\brozklad\w* na czynniki",)),
+    ("twierdzenie o reszcie", (r"\btwierdzen\w* o reszcie",)),
+    ("wzory Viete'a", (r"\bviete",)),
+    ("równania liniowe", (r"\brownan\w* liniow",)),
+    ("równania kwadratowe", (
+        r"\brownan\w* kwadrat",
+        r"\brownan\w*[^.]{0,100}[x𝑥]\s*(?:\^|\*\*)?\s*(?:2|²)",
+    )),
+    ("nierówności liniowe", (r"\bnierown\w* liniow",)),
+    ("nierówności kwadratowe", (
+        r"\bnierown\w* kwadrat",
+        r"\bnierown\w*[^.]{0,100}[x𝑥]\s*(?:\^|\*\*)?\s*(?:2|²)",
+    )),
+    ("nierówności wymierne", (r"\bnierown\w* wymiern",)),
+    ("równania wymierne", (r"\brownan\w* wymiern",)),
+    ("równania z parametrem", (r"\brownan\w* z parametr",)),
+    ("równania wykładnicze", (r"\brownan\w* wykladnic",)),
+    ("równania trygonometryczne", (r"\brownan\w* trygonometrycz",)),
+    ("równania z wartością bezwzględną", (r"\brownan\w* z wartosc\w* bezwzgledn",)),
+    ("wykres funkcji", (r"\bwykres\w* funkcj",)),
+    ("dziedzina funkcji", (r"\bdziedzin\w* funkcj",)),
+    ("miejsce zerowe", (r"\bmiejsc\w* zerow",)),
+    ("wierzchołek paraboli", (r"\bwierzcholek\w* parab",)),
+    ("oś symetrii", (r"\bos\w* symetrii",)),
+    ("postać kanoniczna", (r"\bpostac\w* kanoniczn",)),
+    ("wartości funkcji trygonometrycznych", (r"\bwartosc\w* funkcj\w* trygonometrycz",)),
+    ("tożsamości trygonometryczne", (r"\btozsamosc\w* trygonometrycz",)),
+    ("wzory redukcyjne", (r"\bwzor\w* redukcyjn",)),
+    ("wzory na podwojony kąt", (r"\bpodwojon\w* kat",)),
+    ("twierdzenie Pitagorasa", (r"\bpitagoras",)),
+    ("twierdzenie Talesa", (r"\btales",)),
+    ("twierdzenie cosinusów", (r"\bcosinusow",)),
+    ("podobieństwo trójkątów", (r"\bpodobienstw\w* trojkat",)),
+    ("trójkąt prostokątny", (r"\btrojkat\w* prostokat",)),
+    ("trójkąt równoboczny", (r"\btrojkat\w* rownoboczn",)),
+    ("kąty w trójkącie", (r"\bkat\w* w trojk",)),
+    ("pola trójkątów", (r"\bpole\w* trojkat",)),
+    ("trapez", (r"\btrapez\w*",)),
+    ("romb", (r"\bromb\w*",)),
+    ("równoległobok", (r"\brownoleglobok\w*",)),
+    ("prostokąt", (r"\b(?:prostokat(?:u|em|y|ow|ami|ach)?|prostokac(?:ie|y|om|ami|ach))\b",)),
+    ("kwadrat", (r"\b(?:kwadrat(?:u|em|y|ow|ami|ach)?|kwadrac(?:ie|y|om|ami|ach))\b",)),
+    ("kąty w wielokątach", (r"\bkat\w* w wielokat",)),
+    ("okrąg wpisany", (r"\bokrag\w* wpisan",)),
+    ("okrąg opisany", (r"\bokrag\w* opisany",)),
+    ("kąt wpisany", (r"\bkat\w* wpisany",)),
+    ("kąt środkowy", (r"\bkat\w* srodkow",)),
+    ("kąty w okręgu", (r"\bkat\w* w okreg",)),
+    ("równanie okręgu", (r"\brownan\w* okreg",)),
+    ("styczna do okręgu", (r"\bstyczn\w*.*\bokrag",)),
+    ("współrzędne punktu", (r"\bwspolrzedn\w* punkt",)),
+    ("równanie prostej", (r"\brownan\w* prostej",)),
+    ("proste równoległe", (r"\bprost\w* rownolegl",)),
+    ("proste prostopadłe", (r"\bprost\w* prostopadl",)),
+    ("odległość punktów", (r"\bodleglosc\w* punkt",)),
+    ("środek odcinka", (r"\bsrodek\w* odcinka",)),
+    ("ostrosłup", (r"\bostroslup\w*",)),
+    ("graniastosłup", (r"\bgraniastoslup\w*",)),
+    ("prostopadłościan", (r"\bprostopadloscian\w*",)),
+    ("stożek", (r"\bstozek\w*",)),
+    ("walec", (r"\bwalec\w*",)),
+    ("pole powierzchni brył", (r"\bpole\w* powierzchni\w* bryl",)),
+    ("objętość brył", (r"\bobjetosc\w* bryl",)),
+    ("przekroje brył", (r"\bprzekroj\w* bryl",)),
+    ("prawdopodobieństwo klasyczne", (r"\bprawdopodobienstw\w* klasyczn",)),
+    ("zdarzenia losowe", (r"\bzdarzen\w* losow",)),
+    ("permutacje", (r"\bpermutac\w*",)),
+    ("reguła mnożenia", (r"\bregul\w* mnozen",)),
+    ("odczytywanie tabel", (r"\btabel\w*",)),
+    ("odczytywanie z wykresu", (r"\bwykres\w*",)),
+]
+
 TAG_RULES = [
     ("granice", (r"\bgranic\w*",)),
     ("pochodne", (r"\bpochodn\w*", r"\bstyczn\w*.*\bwykres")),
@@ -133,7 +219,14 @@ TAG_RULES = [
     ("objętość", (r"\bobjetosc\w*", r"\bpojemnosc\w*")),
     ("pola figur", (r"\bpole\s+(?:trojkat\w*|czworokat\w*|trapez\w*|romb\w*|prostokat\w*|kwadrat\w*|figury|kola)",)),
     ("trójkąty", (r"\btrojkat\w*", r"\bpitagoras\w*", r"\btales\w*")),
-    ("czworokąty", (r"\bczworokat\w*", r"\bprostokat\w*", r"\btrapez\w*", r"\bromb\w*", r"\brownoleglobok\w*", r"\bkwadrat(?!ow\w*)")),
+    ("czworokąty", (
+        r"\bczworokat\w*",
+        r"\b(?:prostokat(?:u|em|y|ow|ami|ach)?|prostokac(?:ie|y|om|ami|ach))\b",
+        r"\btrapez\w*",
+        r"\bromb\w*",
+        r"\brownoleglobok\w*",
+        r"\b(?:kwadrat(?:u|em|y|ow|ami|ach)?|kwadrac(?:ie|y|om|ami|ach))\b",
+    )),
     ("prędkość, droga i czas", (r"\bpredkosc\w*", r"\bdroga\w*", r"\bczas\w* przejazd")),
     ("skala i jednostki", (r"\bskal\w*", r"\bjednostk\w*")),
     ("procenty", (r"\bprocent\w*", r"%")),
@@ -217,45 +310,362 @@ HINTS = {
     "zadanie problemowe": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
 }
 
-# Warianty pochodzące ze starszych, ręcznie opisywanych arkuszy. Indeks i
-# filtrowanie traktują je jako jeden temat, bez przepisywania tych plików.
+# Warianty pochodzące ze starszych, ręcznie opisywanych arkuszy. Zachowujemy
+# precyzyjny temat (np. twierdzenie Pitagorasa), a kategorię nadrzędną dodajemy
+# osobno w TAG_PARENTS. Dzięki temu filtr działa dla obu poziomów szczegółowości.
 TAG_LABELS = {
+    "ciagi": "ciągi",
     "ciag arytmetyczny": "ciąg arytmetyczny",
     "ciagi arytmetyczne": "ciąg arytmetyczny",
     "ciag geometryczny": "ciąg geometryczny",
     "ciagi geometryczne": "ciąg geometryczny",
-    "ciag rekurencyjny": "ciągi",
+    "ciag rekurencyjny": "ciąg rekurencyjny",
+    "wyraz ogolny ciagu": "wyraz ogólny ciągu",
+    "suma ciagu arytmetycznego": "suma ciągu arytmetycznego",
+    "monotonicznosc ciagu": "monotoniczność ciągu",
+    "szereg geometryczny": "szereg geometryczny",
+    "granice ciagow": "granice ciągów",
     "funkcja kwadratowa": "funkcja kwadratowa",
     "funkcja liniowa": "funkcja liniowa",
     "funkcja wykladnicza": "funkcja wykładnicza",
     "funkcja logarytmiczna": "funkcja logarytmiczna",
     "funkcje wymierne": "funkcje wymierne",
-    "funkcje trygonometryczne": "trygonometria",
-    "funkcje wykładnicze": "funkcja wykładnicza",
+    "funkcje trygonometryczne": "funkcje trygonometryczne",
     "funkcje wykladnicze": "funkcja wykładnicza",
     "funkcje logarytmiczne": "funkcja logarytmiczna",
+    "funkcja wielomianowa": "funkcja wielomianowa",
+    "wykres funkcji": "wykres funkcji",
+    "wykresy funkcji": "wykres funkcji",
+    "wykresy": "wykresy",
+    "wartosci funkcji": "wartości funkcji",
+    "wartosc najmniejsza": "wartość najmniejsza",
+    "dziedzina funkcji": "dziedzina funkcji",
+    "dziedzina": "dziedzina",
+    "przesuniecia wykresu": "przesunięcia wykresu",
+    "symetria wykresu": "symetria wykresu",
+    "os symetrii": "oś symetrii",
+    "postać kanoniczna": "postać kanoniczna",
+    "postac kanoniczna": "postać kanoniczna",
+    "wierzcholek paraboli": "wierzchołek paraboli",
+    "miejsca zerowe": "miejsca zerowe",
+    "miejsce zerowe": "miejsce zerowe",
     "zadania z parametrem": "równania z parametrem",
     "rownania z parametrem": "równania z parametrem",
+    "rownania liniowe": "równania liniowe",
+    "rownania kwadratowe": "równania kwadratowe",
+    "rownania wymierne": "równania wymierne",
+    "rownania wykladnicze": "równania wykładnicze",
+    "rownania trygonometryczne": "równania trygonometryczne",
+    "rownania z wartoscia bezwzgledna": "równania z wartością bezwzględną",
+    "nierownosci liniowe": "nierówności liniowe",
+    "nierownosci kwadratowe": "nierówności kwadratowe",
+    "nierownosci wymierne": "nierówności wymierne",
+    "nierownosci wielomianowe": "nierówności wielomianowe",
+    "nierownosci z wartoscia bezwzgledna": "nierówności z wartością bezwzględną",
     "wartosc bezwzgledna": "wartość bezwzględna",
-    "pola trojkatow": "pola figur",
-    "pola czworokatow": "pola figur",
-    "pola figur": "pola figur",
-    "objetosc bryl": "objętość",
-    "bryly": "stereometria",
-    "twierdzenie pitagorasa": "trójkąty",
-    "predkosc droga czas": "prędkość, droga i czas",
-    "srednia arytmetyczna": "statystyka",
-    "wyrazenia algebraiczne": "wyrażenia algebraiczne",
-    "geometria analityczna": "geometria analityczna",
-    "ulamki": "ułamki",
     "potegi": "potęgi",
+    "dzialania na potegach": "działania na potęgach",
+    "pierwiastki": "pierwiastki",
+    "ulamki": "ułamki",
+    "ulamki dziesietne": "ułamki dziesiętne",
+    "liczby naturalne": "liczby naturalne",
+    "liczby calkowite": "liczby całkowite",
+    "liczby rzeczywiste": "liczby rzeczywiste",
+    "liczby wymierne": "liczby wymierne",
+    "liczby ujemne": "liczby ujemne",
+    "liczby parzyste": "liczby parzyste",
+    "parzystosc": "parzystość",
+    "porownywanie liczb": "porównywanie liczb",
+    "os liczbowa": "oś liczbowa",
+    "wyrazenia arytmetyczne": "wyrażenia arytmetyczne",
+    "dzialania na liczbach": "działania na liczbach",
+    "suma liczb naturalnych": "suma liczb naturalnych",
+    "nwd": "NWD",
+    "nww": "NWW",
+    "dzielenie z reszta": "dzielenie z resztą",
+    "podzielnosc liczb": "podzielność liczb",
+    "wyrazenia algebraiczne": "wyrażenia algebraiczne",
+    "wyrazenia wymierne": "wyrażenia wymierne",
+    "przeksztalcanie wzorow": "przekształcanie wzorów",
+    "wzory skroconego mnozenia": "wzory skróconego mnożenia",
+    "rozklad na czynniki": "rozkład na czynniki",
+    "rozklad wielomianu na czynniki": "rozkład wielomianu na czynniki",
+    "pierwiastki wielomianu": "pierwiastki wielomianu",
+    "twierdzenie o reszcie": "twierdzenie o reszcie",
+    "wzory viete'a": "wzory Viete'a",
+    "wlasnosci logarytmow": "własności logarytmów",
+    "zmiana podstawy logarytmu": "zmiana podstawy logarytmu",
+    "trygonometria": "trygonometria",
+    "wartosci trygonometryczne": "wartości trygonometryczne",
+    "wartosci funkcji trygonometrycznych": "wartości funkcji trygonometrycznych",
+    "tozsamosci trygonometryczne": "tożsamości trygonometryczne",
+    "wzory redukcyjne": "wzory redukcyjne",
+    "wzory na podwojony kat": "wzory na podwojony kąt",
+    "wzory na sume i roznice katow": "wzory na sumę i różnicę kątów",
+    "katy": "kąty",
+    "kat wpisany": "kąt wpisany",
+    "kat srodkowy": "kąt środkowy",
+    "kat rozwarty": "kąt rozwarty",
+    "katy w trojkacie": "kąty w trójkącie",
+    "katy w wielokatach": "kąty w wielokątach",
+    "katy w okregu": "kąty w okręgu",
+    "katy w brylach": "kąty w bryłach",
     "trojkaty": "trójkąty",
+    "trojkat prostokatny": "trójkąt prostokątny",
+    "trojkat rownoboczny": "trójkąt równoboczny",
+    "twierdzenie pitagorasa": "twierdzenie Pitagorasa",
+    "trojki pitagorejskie": "trójki pitagorejskie",
+    "twierdzenie talesa": "twierdzenie Talesa",
+    "twierdzenie cosinusow": "twierdzenie cosinusów",
+    "podobienstwo": "podobieństwo",
+    "podobienstwo trojkatow": "podobieństwo trójkątów",
+    "dwusieczna": "dwusieczna",
+    "pola trojkatow": "pola trójkątów",
+    "pole trojkata": "pole trójkąta",
     "czworokaty": "czworokąty",
+    "czworokat": "czworokąt",
+    "rownoleglobok": "równoległobok",
+    "prostokat": "prostokąt",
+    "wielokaty": "wielokąty",
+    "pola czworokatow": "pola czworokątów",
+    "pole czworokata": "pole czworokąta",
+    "pole kwadratu": "pole kwadratu",
+    "pola figur": "pola figur",
+    "pole figury": "pole figury",
+    "obwody figur": "obwody figur",
+    "obwod": "obwód",
     "okregi i kola": "okręgi i koła",
+    "okrag": "okrąg",
+    "okrag wpisany": "okrąg wpisany",
+    "okrag opisany": "okrąg opisany",
+    "okrag w ukladzie wspolrzednych": "okrąg w układzie współrzędnych",
+    "rowanie okregu": "równanie okręgu",
+    "rownanie okregu": "równanie okręgu",
+    "styczna do okregu": "styczna do okręgu",
+    "wzajemne polozenie dwoch okregow": "wzajemne położenie dwóch okręgów",
+    "geometria analityczna": "geometria analityczna",
+    "uklad wspolrzednych": "układ współrzędnych",
+    "wspolrzedne punktu": "współrzędne punktu",
+    "rownanie prostej": "równanie prostej",
+    "proste rownolegle": "proste równoległe",
+    "proste prostopadle": "proste prostopadłe",
+    "odleglosc punktow": "odległość punktów",
+    "odleglosc punktu od prostej": "odległość punktu od prostej",
+    "srodek odcinka": "środek odcinka",
+    "symetralna": "symetralna",
+    "wspolczynnik kierunkowy": "współczynnik kierunkowy",
+    "stereometria": "stereometria",
+    "bryly": "bryły",
+    "bryly obrotowe": "bryły obrotowe",
+    "geometria przestrzenna": "geometria przestrzenna",
+    "ostroslup": "ostrosłup",
+    "ostroslupy": "ostrosłupy",
+    "graniastoslup": "graniastosłup",
+    "graniastoslupy": "graniastosłupy",
+    "prostopadloscian": "prostopadłościan",
+    "stozek": "stożek",
+    "walec": "walec",
+    "pole powierzchni": "pole powierzchni",
+    "pole powierzchni bryl": "pole powierzchni brył",
+    "objetosc": "objętość",
+    "objetosc bryl": "objętość brył",
+    "przekroje bryl": "przekroje brył",
+    "odleglosci w brylach": "odległości w bryłach",
+    "twierdzenie pitagorasa w przestrzeni": "twierdzenie Pitagorasa w przestrzeni",
     "prawdopodobienstwo": "prawdopodobieństwo",
+    "prawdopodobienstwo klasyczne": "prawdopodobieństwo klasyczne",
+    "prawdopodobienstwo warunkowe": "prawdopodobieństwo warunkowe",
+    "prawdopodobienstwo calkowite": "prawdopodobieństwo całkowite",
+    "zdarzenia elementarne": "zdarzenia elementarne",
+    "zdarzenia losowe": "zdarzenia losowe",
+    "doswiadczenia wieloetapowe": "doświadczenia wieloetapowe",
+    "schemat bernoulliego": "schemat Bernoulliego",
+    "kombinatoryka": "kombinatoryka",
+    "permutacje": "permutacje",
+    "zliczanie przypadkow": "zliczanie przypadków",
+    "regula mnozenia": "reguła mnożenia",
+    "statystyka": "statystyka",
+    "srednia arytmetyczna": "średnia arytmetyczna",
+    "srednia wazona": "średnia ważona",
+    "odczytywanie danych": "odczytywanie danych",
+    "odczytywanie z wykresu": "odczytywanie z wykresu",
+    "odczytywanie tabel": "odczytywanie tabel",
+    "diagramy": "diagramy",
+    "diagram kolowy": "diagram kołowy",
+    "tabele": "tabele",
+    "procent skladany": "procent składany",
+    "proporcjonalnosc": "proporcjonalność",
     "skala i jednostki": "skala i jednostki",
+    "predkosc droga czas": "prędkość, droga i czas",
+    "predkosc, droga i czas": "prędkość, droga i czas",
     "przedzialy liczbowe": "przedziały liczbowe",
+    "dowody algebraiczne": "dowody algebraiczne",
+    "dowody geometryczne": "dowody geometryczne",
+    "dowody z nierownosci": "dowody z nierówności",
+    "uzasadnianie": "uzasadnianie",
+    "rozumowanie": "rozumowanie",
 }
+
+TAG_PARENTS.update({
+    "ciąg rekurencyjny": ("ciągi",),
+    "wyraz ogólny ciągu": ("ciągi",),
+    "suma ciągu arytmetycznego": ("ciąg arytmetyczny",),
+    "monotoniczność ciągu": ("ciągi",),
+    "szereg geometryczny": ("ciąg geometryczny",),
+    "granice ciągów": ("granice", "ciągi"),
+    "funkcje trygonometryczne": ("trygonometria",),
+    "funkcja wielomianowa": ("funkcje", "wielomiany"),
+    "wykres funkcji": ("funkcje",),
+    "wykresy": ("odczytywanie danych",),
+    "wartości funkcji": ("funkcje",),
+    "wartość najmniejsza": ("funkcje",),
+    "dziedzina": ("funkcje",),
+    "dziedzina funkcji": ("funkcje",),
+    "przesunięcia wykresu": ("funkcje",),
+    "symetria wykresu": ("funkcje",),
+    "oś symetrii": ("funkcja kwadratowa",),
+    "postać kanoniczna": ("funkcja kwadratowa",),
+    "wierzchołek paraboli": ("funkcja kwadratowa",),
+    "miejsca zerowe": ("funkcja kwadratowa",),
+    "miejsce zerowe": ("funkcja kwadratowa",),
+    "równania liniowe": ("równania",),
+    "równania kwadratowe": ("równania", "funkcja kwadratowa"),
+    "równania wymierne": ("równania", "funkcje wymierne"),
+    "równania wykładnicze": ("równania", "funkcja wykładnicza"),
+    "równania trygonometryczne": ("równania", "trygonometria"),
+    "równania z wartością bezwzględną": ("równania", "wartość bezwzględna"),
+    "nierówności liniowe": ("nierówności",),
+    "nierówności kwadratowe": ("nierówności", "funkcja kwadratowa"),
+    "nierówności wymierne": ("nierówności", "funkcje wymierne"),
+    "nierówności wielomianowe": ("nierówności", "wielomiany"),
+    "nierówności z wartością bezwzględną": ("nierówności", "wartość bezwzględna"),
+    "działania na potęgach": ("potęgi",),
+    "potęgi": ("liczby i działania",),
+    "pierwiastki": ("liczby i działania",),
+    "ułamki": ("liczby i działania",),
+    "ułamki dziesiętne": ("ułamki",),
+    "liczby naturalne": ("liczby i działania",),
+    "liczby całkowite": ("liczby i działania",),
+    "liczby rzeczywiste": ("liczby i działania",),
+    "liczby wymierne": ("liczby i działania",),
+    "liczby ujemne": ("liczby i działania",),
+    "liczby parzyste": ("podzielność",),
+    "parzystość": ("podzielność",),
+    "porównywanie liczb": ("liczby i działania",),
+    "oś liczbowa": ("liczby i działania",),
+    "wyrażenia arytmetyczne": ("liczby i działania",),
+    "działania na liczbach": ("liczby i działania",),
+    "suma liczb naturalnych": ("liczby i działania",),
+    "NWD": ("podzielność",),
+    "NWW": ("podzielność",),
+    "dzielenie z resztą": ("podzielność",),
+    "podzielność liczb": ("podzielność",),
+    "przekształcanie wzorów": ("wyrażenia algebraiczne",),
+    "wzory skróconego mnożenia": ("wyrażenia algebraiczne",),
+    "rozkład na czynniki": ("wyrażenia algebraiczne",),
+    "rozkład wielomianu na czynniki": ("wielomiany",),
+    "pierwiastki wielomianu": ("wielomiany",),
+    "twierdzenie o reszcie": ("wielomiany",),
+    "wzory Viete'a": ("wielomiany",),
+    "wyrażenia wymierne": ("wyrażenia algebraiczne", "ułamki"),
+    "własności logarytmów": ("logarytmy",),
+    "zmiana podstawy logarytmu": ("logarytmy",),
+    "wartości trygonometryczne": ("trygonometria",),
+    "wartości funkcji trygonometrycznych": ("trygonometria",),
+    "tożsamości trygonometryczne": ("trygonometria",),
+    "wzory redukcyjne": ("trygonometria",),
+    "wzory na podwojony kąt": ("trygonometria",),
+    "wzory na sumę i różnicę kątów": ("trygonometria",),
+    "kąt wpisany": ("okręgi i koła",),
+    "kąt środkowy": ("okręgi i koła",),
+    "kąty w okręgu": ("okręgi i koła",),
+    "trójkąt prostokątny": ("trójkąty",),
+    "trójkąt równoboczny": ("trójkąty",),
+    "twierdzenie Pitagorasa": ("trójkąty",),
+    "trójki pitagorejskie": ("trójkąty",),
+    "twierdzenie Talesa": ("trójkąty",),
+    "twierdzenie cosinusów": ("trójkąty",),
+    "podobieństwo": ("trójkąty",),
+    "podobieństwo trójkątów": ("trójkąty",),
+    "dwusieczna": ("trójkąty",),
+    "kąty w trójkącie": ("trójkąty",),
+    "pola trójkątów": ("pola figur", "trójkąty"),
+    "pole trójkąta": ("pola figur", "trójkąty"),
+    "czworokąt": ("czworokąty",),
+    "równoległobok": ("czworokąty",),
+    "prostokąt": ("czworokąty",),
+    "kwadrat": ("czworokąty",),
+    "trapez": ("czworokąty",),
+    "romb": ("czworokąty",),
+    "wielokąty": ("czworokąty",),
+    "kąty w wielokątach": ("czworokąty",),
+    "pola czworokątów": ("pola figur", "czworokąty"),
+    "pole czworokąta": ("pola figur", "czworokąty"),
+    "pole kwadratu": ("pola figur", "czworokąty"),
+    "pole figury": ("pola figur",),
+    "obwody figur": ("czworokąty",),
+    "okrąg": ("okręgi i koła",),
+    "okrąg wpisany": ("okręgi i koła",),
+    "okrąg opisany": ("okręgi i koła",),
+    "okrąg w układzie współrzędnych": ("okręgi i koła", "geometria analityczna"),
+    "równanie okręgu": ("okręgi i koła", "geometria analityczna"),
+    "styczna do okręgu": ("okręgi i koła",),
+    "wzajemne położenie dwóch okręgów": ("okręgi i koła",),
+    "układ współrzędnych": ("geometria analityczna",),
+    "współrzędne punktu": ("geometria analityczna",),
+    "równanie prostej": ("geometria analityczna",),
+    "proste równoległe": ("geometria analityczna",),
+    "proste prostopadłe": ("geometria analityczna",),
+    "odległość punktów": ("geometria analityczna",),
+    "odległość punktu od prostej": ("geometria analityczna",),
+    "środek odcinka": ("geometria analityczna",),
+    "symetralna": ("geometria analityczna",),
+    "współczynnik kierunkowy": ("funkcja liniowa",),
+    "bryły": ("stereometria",),
+    "bryły obrotowe": ("stereometria",),
+    "geometria przestrzenna": ("stereometria",),
+    "ostrosłup": ("stereometria",),
+    "ostrosłupy": ("stereometria",),
+    "graniastosłup": ("stereometria",),
+    "graniastosłupy": ("stereometria",),
+    "prostopadłościan": ("stereometria",),
+    "stożek": ("stereometria",),
+    "walec": ("stereometria",),
+    "pole powierzchni": ("stereometria",),
+    "pole powierzchni brył": ("stereometria",),
+    "objętość": ("stereometria",),
+    "objętość brył": ("objętość",),
+    "przekroje brył": ("stereometria",),
+    "odległości w bryłach": ("stereometria",),
+    "twierdzenie Pitagorasa w przestrzeni": ("stereometria", "trójkąty"),
+    "prawdopodobieństwo klasyczne": ("prawdopodobieństwo",),
+    "prawdopodobieństwo warunkowe": ("prawdopodobieństwo",),
+    "prawdopodobieństwo całkowite": ("prawdopodobieństwo",),
+    "zdarzenia elementarne": ("prawdopodobieństwo",),
+    "zdarzenia losowe": ("prawdopodobieństwo",),
+    "doświadczenia wieloetapowe": ("prawdopodobieństwo",),
+    "schemat Bernoulliego": ("prawdopodobieństwo",),
+    "permutacje": ("kombinatoryka",),
+    "zliczanie przypadków": ("kombinatoryka",),
+    "reguła mnożenia": ("kombinatoryka",),
+    "średnia arytmetyczna": ("statystyka",),
+    "średnia ważona": ("statystyka",),
+    "mediana": ("statystyka",),
+    "dominanta": ("statystyka",),
+    "odczytywanie z wykresu": ("odczytywanie danych",),
+    "odczytywanie tabel": ("odczytywanie danych",),
+    "diagramy": ("odczytywanie danych",),
+    "diagram kołowy": ("odczytywanie danych",),
+    "tabele": ("odczytywanie danych",),
+    "procent składany": ("procenty",),
+    "proporcjonalność": ("proporcje",),
+    "skala": ("skala i jednostki",),
+    "dowody algebraiczne": ("dowodzenie", "wyrażenia algebraiczne"),
+    "dowody geometryczne": ("dowodzenie",),
+    "dowody z nierówności": ("dowodzenie", "nierówności"),
+    "uzasadnianie": ("dowodzenie",),
+    "rozumowanie": ("dowodzenie",),
+})
 
 NON_THEMATIC_TAGS = {
     "arkusz cke 2022",
@@ -341,6 +751,125 @@ CURATED_TAGS = {
     },
 }
 
+# Starsze skany mają czasem zbyt mało tekstu, by OCR rozpoznał wyłącznie po
+# treści zagadnienie matematyczne. Poniższe przypisania zweryfikowano względem
+# obrazów zadań; są używane tylko jako uzupełnienie automatycznej klasyfikacji.
+REVIEWED_FALLBACK_TAGS = {
+    "zadania/mp/2021/maj/2021_cke_p_m_g.json": {
+        "17": ("kąty w okręgu",),
+    },
+    "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json": {
+        "2": ("potęgi",),
+        "16": ("kąty w okręgu",),
+    },
+    "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json": {
+        "1": ("potęgi",),
+    },
+    "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json": {
+        "17": ("kąty w okręgu",),
+    },
+    "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json": {
+        "1": ("równania",),
+        "2": ("potęgi",),
+        "20": ("stożek",),
+        "24": ("statystyka",),
+    },
+    "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json": {
+        "14": ("środek odcinka",),
+        "22": ("pole trójkąta", "geometria analityczna"),
+    },
+    "zadania/mp/2019/maj/2019_cke_p_m_g.json": {
+        "14": ("okrąg opisany", "trójkąty"),
+    },
+    "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json": {
+        "13": ("trygonometria",),
+        "14": ("kąty w okręgu",),
+    },
+    "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json": {
+        "1": ("logarytmy",),
+        "9": ("potęgi",),
+        "19": ("układ współrzędnych",),
+        "22": ("stożek",),
+    },
+    "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json": {
+        "3": ("nierówności",),
+        "15": ("trygonometria",),
+        "24": ("kombinatoryka",),
+    },
+    "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json": {
+        "2": ("pierwiastki", "potęgi"),
+        "3": ("potęgi",),
+        "5": ("pierwiastki", "wzory skróconego mnożenia", "równania"),
+        "6": ("układy równań",),
+        "16": ("trygonometria",),
+        "19": ("pole trójkąta", "trygonometria"),
+        "21": ("środek odcinka",),
+    },
+    "zadania/mp/2017/maj/2017_cke_p_m_g.json": {
+        "15": ("kąty w okręgu",),
+    },
+    "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json": {
+        "4": ("logarytmy",),
+        "6": ("pierwiastki",),
+        "15": ("trygonometria",),
+        "16": ("kąty w okręgu",),
+        "24": ("walec", "pole powierzchni"),
+    },
+    "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json": {
+        "1": ("potęgi",),
+        "2": ("potęgi",),
+        "5": ("pierwiastki", "wzory skróconego mnożenia"),
+        "6": ("nierówności", "przedziały liczbowe"),
+        "13": ("trygonometria",),
+        "14": ("kąty w okręgu",),
+    },
+    "zadania/mp/2016/maj/2016_cke_p_m_g.json": {
+        "7": ("kąty w okręgu",),
+    },
+    "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json": {
+        "1": ("potęgi",),
+        "3": ("pierwiastki",),
+        "4": ("wzory skróconego mnożenia",),
+        "5": ("wzory skróconego mnożenia", "wyrażenia algebraiczne"),
+        "14": ("kąty w okręgu",),
+        "15": ("skala i jednostki", "potęgi"),
+        "17": ("symetralna",),
+        "19": ("równania",),
+        "24": ("wielomiany", "wyrażenia algebraiczne"),
+    },
+    "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json": {
+        "1": ("równania", "liczby i działania"),
+        "3": ("potęgi",),
+        "13": ("wartość bezwzględna", "ułamki"),
+        "15": ("stożek",),
+        "20": ("okręgi i koła", "geometria analityczna"),
+    },
+    "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json": {
+        "1": ("pierwiastki",),
+        "4": ("wzory skróconego mnożenia", "wyrażenia algebraiczne"),
+        "7": ("trygonometria",),
+        "8": ("trygonometria",),
+        "19": ("stożek",),
+    },
+    "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json": {
+        "3": ("potęgi",),
+        "4": ("pierwiastki", "ułamki"),
+        "19": ("kąty w okręgu",),
+        "21": ("środek odcinka",),
+        "23": ("walec", "twierdzenie Pitagorasa"),
+        "25": ("kombinatoryka",),
+    },
+    "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json": {
+        "4": ("pierwiastki", "ułamki"),
+    },
+    "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json": {
+        "3": ("pierwiastki", "wartość bezwzględna"),
+    },
+    "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json": {
+        "1": ("odczytywanie danych",),
+    },
+}
+
 
 @dataclass(frozen=True)
 class Session:
@@ -358,6 +887,7 @@ class Session:
     stem: str
     detail: str
     exam_pdf_override: Path | None = None
+    key_pdf_override: Path | None = None
     json_path_override: Path | None = None
     task_asset_filenames: dict[str, str] | None = None
     write_context_assets: bool = True
@@ -368,7 +898,7 @@ class Session:
 
     @property
     def key_pdf(self) -> Path:
-        return self.source_dir / "zasady_oceniania.pdf"
+        return self.key_pdf_override or self.source_dir / "zasady_oceniania.pdf"
 
     @property
     def json_path(self) -> Path:
@@ -399,6 +929,36 @@ def tag_key(tag: str) -> str:
 def canonical_tag_label(tag: str) -> str:
     key = tag_key(tag)
     return TAG_LABELS.get(key, str(tag or "").replace("-", " ").strip())
+
+
+# Zadania wieloetapowe mogą łączyć kilka podtematów oraz ich kategorie
+# nadrzędne. Limit pozostaje bezpieczny dla interfejsu, ale nie może obcinać
+# relacji potrzebnych do działania filtra tematów.
+MAX_THEMATIC_TAGS = 20
+
+
+def expand_tag_hierarchy(tags: list[str] | tuple[str, ...]) -> list[str]:
+    """Keep direct topics first, then append their broader related topics."""
+    direct = []
+    for raw_tag in tags:
+        tag = canonical_tag_label(raw_tag)
+        if tag and tag not in direct:
+            direct.append(tag)
+
+    expanded = list(direct)
+
+    def add_parents(tag: str) -> None:
+        for raw_parent in TAG_PARENTS.get(tag, ()):
+            parent = canonical_tag_label(raw_parent)
+            if not parent or parent in expanded:
+                continue
+            expanded.append(parent)
+            add_parents(parent)
+
+    for tag in direct:
+        add_parents(tag)
+
+    return expanded
 
 
 def natural_task_key(number: str) -> tuple[int, ...]:
@@ -517,22 +1077,22 @@ def legacy_task_asset_filenames(json_path: Path) -> dict[str, str]:
     return filenames
 
 
-def build_legacy_matura_sessions() -> list[Session]:
-    """Find older matura imports that retain their original CKE PDFs in-place."""
+def build_local_exam_sessions(kinds: tuple[str, ...] = ("mp", "mr", "eo")) -> list[Session]:
+    """Find local CKE imports whose PDFs live next to the generated task data."""
     sessions = []
-    legacy_levels = {
+    local_levels = {
         "mp": EXAM_META["01_matura_podstawowa"],
         "mr": EXAM_META["02_matura_rozszerzona"],
+        "eo": EXAM_META["03_egzamin_osmoklasisty"],
     }
 
-    for kind, (_, level, level_code, label) in legacy_levels.items():
+    for kind in kinds:
+        _, level, level_code, label = local_levels[kind]
         level_dir = ROOT / "zadania" / kind
         for year_dir in sorted(level_dir.iterdir() if level_dir.exists() else []):
             if not year_dir.is_dir() or not year_dir.name.isdigit():
                 continue
             year = int(year_dir.name)
-            if year > 2025:
-                continue
 
             for output_dir in sorted(path for path in year_dir.iterdir() if path.is_dir()):
                 # Sessions from the package importer already use arkusz_cke.pdf
@@ -556,27 +1116,40 @@ def build_legacy_matura_sessions() -> list[Session]:
                 if len(json_candidates) != 1:
                     continue
 
+                key_candidates = [
+                    path
+                    for path in sorted(output_dir.glob("*.pdf"))
+                    if any(marker in ascii_fold(path.name) for marker in ("zasady", "odpowiedzi"))
+                ]
                 exam_candidates = [
                     path
                     for path in sorted(output_dir.glob("*.pdf"))
-                    if "zasady" not in ascii_fold(path.name)
-                    and "odpowiedzi" not in ascii_fold(path.name)
+                    if path not in key_candidates
+                    and "karta rozwiazan" not in tag_key(path.name)
+                    and "sprawozdanie" not in tag_key(path.name)
                 ]
-                if len(exam_candidates) != 1:
+                if len(exam_candidates) != 1 or len(key_candidates) != 1:
                     continue
 
                 json_path = json_candidates[0]
                 month = output_dir.name.split("_", 1)[0]
                 month_label = MONTH_LABELS.get(month, month)
+                term = (
+                    "additional"
+                    if "dodatkowy" in output_dir.name
+                    else "resit"
+                    if "poprawkowy" in output_dir.name
+                    else "main"
+                )
                 sessions.append(
                     Session(
-                        exam_folder=f"legacy_{kind}",
+                        exam_folder=f"local_{kind}",
                         kind=kind,
                         level=level,
                         level_code=level_code,
                         label=label,
                         year=year,
-                        term="main",
+                        term=term,
                         month=month,
                         formula="",
                         source_dir=output_dir,
@@ -584,6 +1157,7 @@ def build_legacy_matura_sessions() -> list[Session]:
                         stem=json_path.stem,
                         detail=f"{year} / {month_label} / CKE",
                         exam_pdf_override=exam_candidates[0],
+                        key_pdf_override=key_candidates[0],
                         json_path_override=json_path,
                         task_asset_filenames=legacy_task_asset_filenames(json_path),
                         write_context_assets=False,
@@ -591,6 +1165,15 @@ def build_legacy_matura_sessions() -> list[Session]:
                 )
 
     return sessions
+
+
+def build_legacy_matura_sessions() -> list[Session]:
+    """Limit crop repairs to the older matura imports they were created for."""
+    return [
+        session
+        for session in build_local_exam_sessions(("mp", "mr"))
+        if session.year <= 2025
+    ]
 
 
 def page_lines(page) -> list[dict]:
@@ -1391,7 +1974,7 @@ def detected_tags(text: str) -> list[str]:
     """Return only topics evidenced by the supplied task text."""
     tags = [
         label
-        for label, patterns in TAG_RULES
+        for label, patterns in [*SPECIFIC_TAG_RULES, *TAG_RULES]
         if any(re.search(pattern, text) for pattern in patterns)
     ]
 
@@ -1406,6 +1989,8 @@ def detected_tags(text: str) -> list[str]:
     }
     if "odczytywanie danych" in tags and function_topics.intersection(tags):
         tags.remove("odczytywanie danych")
+    if "odczytywanie z wykresu" in tags and function_topics.intersection(tags):
+        tags.remove("odczytywanie z wykresu")
 
     # In polynomial tasks a remainder after division describes a polynomial,
     # rather than a standalone arithmetic divisibility exercise.
@@ -1445,15 +2030,7 @@ def classify_task(task_text: str, key_text: str) -> tuple[str, list[str], str]:
     if is_proof and "dowodzenie" not in tags:
         tags.append("dowodzenie")
 
-    expanded = []
-    for tag in tags:
-        if tag not in expanded:
-            expanded.append(tag)
-        for parent in TAG_PARENTS.get(tag, ()):
-            if parent not in expanded:
-                expanded.append(parent)
-
-    tags = expanded[:4]
+    tags = expand_tag_hierarchy(tags)[:MAX_THEMATIC_TAGS]
     if not tags:
         tags = ["zadanie problemowe"]
     topic = next((tag for tag in tags if tag != "dowodzenie"), tags[0])
@@ -1512,7 +2089,7 @@ def build_json(
             "level": session.level,
             "hint": hint,
             "answer": source.get("answer", "Sprawdź rozwiązanie i zasady oceniania."),
-            "tags": tags + (["zadania-otwarte"] if source["maxPoints"] > 1 else []),
+            "tags": merge_task_tags(tags, is_open=source["maxPoints"] > 1),
             "maxPoints": source["maxPoints"],
         }
         if "contextFile" in source:
@@ -1677,7 +2254,7 @@ def extract_retag_texts(session: Session) -> tuple[dict[str, str], dict[str, str
 
 
 def task_number_from_file(filename: str) -> str | None:
-    match = re.match(r"^(\d+(?:\.\d+)?)_", str(filename or ""))
+    match = re.match(r"^(\d+(?:\.\d+)?)(?:_|(?=\.[A-Za-z][^.]*$))", str(filename or ""))
     return match.group(1) if match else None
 
 
@@ -1694,9 +2271,11 @@ def retag_curated_public_tasks() -> dict:
             if number not in overrides:
                 continue
             topic, thematic_tags = overrides[number]
-            tags = list(thematic_tags)
-            if int(item.get("maxPoints", 1)) > 1:
-                tags.append("zadania-otwarte")
+            tags = merge_task_tags(
+                item.get("tags") or [],
+                thematic_tags,
+                is_open=int(item.get("maxPoints", 1)) > 1,
+            )
             current = (topic, tags, HINTS.get(topic, HINTS["zadanie problemowe"]))
             previous = (item.get("topic"), item.get("tags"), item.get("hint"))
             if current != previous:
@@ -1724,6 +2303,46 @@ def ocr_task_text(image_path: Path) -> str:
     return normalize_text(result.stdout)
 
 
+SQUARE_NOUN_RE = re.compile(
+    r"\b(?:kwadrat(?:u|em|y|ow|ami|ach)?|kwadrac(?:ie|y|om|ami|ach))\b"
+)
+RECTANGLE_NOUN_RE = re.compile(
+    r"\b(?:prostokat(?:u|em|y|ow|ami|ach)?|prostokac(?:ie|y|om|ami|ach))\b"
+)
+QUADRILATERAL_EVIDENCE_RE = re.compile(
+    r"\b(?:czworokat\w*|trapez\w*|romb\w*|rownoleglobok\w*|deltoid\w*|wielokat\w*)\b"
+)
+
+
+def remove_false_shape_tags(raw_tags, statement: str, topic: str = "") -> list[str]:
+    """Drop shape tags caused only by adjectives such as 'kwadratowa'."""
+    tags = [canonical_tag_label(tag) for tag in raw_tags]
+    text = ascii_fold(statement)
+    removed_shape = False
+
+    if "kwadrat" in tags and not SQUARE_NOUN_RE.search(text):
+        tags = [tag for tag in tags if tag != "kwadrat"]
+        removed_shape = True
+    if "prostokąt" in tags and not RECTANGLE_NOUN_RE.search(text):
+        tags = [tag for tag in tags if tag != "prostokąt"]
+        removed_shape = True
+
+    if removed_shape and "czworokąty" in tags:
+        has_supported_child = any(
+            "czworokąty" in TAG_PARENTS.get(tag, ())
+            for tag in tags
+        )
+        is_direct_topic = canonical_tag_label(topic) == "czworokąty"
+        if (
+            not has_supported_child
+            and not is_direct_topic
+            and not QUADRILATERAL_EVIDENCE_RE.search(text)
+        ):
+            tags = [tag for tag in tags if tag != "czworokąty"]
+
+    return tags
+
+
 def retag_session(session: Session, write: bool) -> dict:
     if not session.json_path.exists():
         raise RuntimeError(f"Brak danych zadań: {session.json_path}")
@@ -1733,6 +2352,10 @@ def retag_session(session: Session, write: bool) -> dict:
         raise RuntimeError(f"Nieprawidłowy plik JSON: {session.json_path}")
 
     task_texts, key_texts = extract_retag_texts(session)
+    reviewed_tags_by_task = REVIEWED_FALLBACK_TAGS.get(
+        session.json_path.relative_to(ROOT).as_posix(),
+        {},
+    )
     changed = 0
     unmatched = []
     fallback = 0
@@ -1753,11 +2376,36 @@ def retag_session(session: Session, write: bool) -> dict:
                 statement = normalize_text(f"{statement} {recognized}")
                 ocr_assisted += 1
 
-        topic, tags, hint = classify_task(statement, key_texts.get(number, ""))
-        if topic == "zadanie problemowe":
+        inferred_topic, inferred_tags, inferred_hint = classify_task(
+            statement,
+            key_texts.get(number, ""),
+        )
+        reviewed_tags = reviewed_tags_by_task.get(number, ())
+        if reviewed_tags:
+            inferred_tags = [*reviewed_tags, *inferred_tags]
+            if inferred_topic == "zadanie problemowe":
+                inferred_topic = canonical_tag_label(reviewed_tags[0])
+                inferred_hint = HINTS.get(inferred_topic, inferred_hint)
+        if inferred_topic == "zadanie problemowe":
             fallback += 1
-        if int(item.get("maxPoints", 1)) > 1 and "zadania-otwarte" not in tags:
-            tags.append("zadania-otwarte")
+
+        existing_tags = remove_false_shape_tags(
+            item.get("tags") or [],
+            statement,
+            item.get("topic", ""),
+        )
+        tags = merge_task_tags(
+            existing_tags,
+            inferred_tags,
+            is_open=int(item.get("maxPoints", 1)) > 1,
+        )
+        existing_topic = canonical_tag_label(item.get("topic", ""))
+        topic = (
+            existing_topic
+            if is_thematic_tag(existing_topic) and tag_key(existing_topic) != "zadanie problemowe"
+            else inferred_topic
+        )
+        hint = item.get("hint") or HINTS.get(topic, inferred_hint)
 
         previous = (item.get("topic"), item.get("tags"), item.get("hint"))
         current = (topic, tags, hint)
@@ -1797,7 +2445,69 @@ def public_task_source_paths() -> list[str]:
 
 def is_thematic_tag(tag: str) -> bool:
     key = tag_key(tag)
-    return bool(key) and key not in NON_THEMATIC_TAGS and not key.startswith("lekcja ")
+    return (
+        bool(key)
+        and key not in NON_THEMATIC_TAGS
+        and not key.startswith("lekcja ")
+        and not key.startswith("arkusz cke")
+    )
+
+
+def merge_task_tags(*tag_groups, is_open: bool) -> list[str]:
+    """Canonicalize direct tags and add their related umbrella topics."""
+    direct = []
+    seen_direct = set()
+    for group in tag_groups:
+        for raw_tag in group:
+            tag = canonical_tag_label(raw_tag)
+            key = tag_key(tag)
+            if not is_thematic_tag(tag) or key in seen_direct:
+                continue
+            direct.append(tag)
+            seen_direct.add(key)
+
+    expanded = []
+    seen_expanded = set()
+    for tag in expand_tag_hierarchy(direct):
+        key = tag_key(tag)
+        if not is_thematic_tag(tag) or key in seen_expanded:
+            continue
+        expanded.append(tag)
+        seen_expanded.add(key)
+
+    if not expanded:
+        expanded = ["zadanie problemowe"]
+    return expanded[:MAX_THEMATIC_TAGS] + (["zadania-otwarte"] if is_open else [])
+
+
+def normalize_public_task_tags() -> dict:
+    """Normalize and expand every source that is exposed by the task browser."""
+    changed = 0
+    tasks = 0
+    for source_path in public_task_source_paths():
+        path = ROOT / source_path
+        items = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(items, list):
+            continue
+        source_changed = False
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            tags = item.get("tags") or []
+            if not any(is_thematic_tag(tag) for tag in tags):
+                tags = [item.get("topic", ""), *tags]
+            normalized = merge_task_tags(
+                tags,
+                is_open=int(item.get("maxPoints", 1)) > 1,
+            )
+            if item.get("tags") != normalized:
+                item["tags"] = normalized
+                changed += 1
+                source_changed = True
+            tasks += 1
+        if source_changed:
+            path.write_text(json.dumps(items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return {"sources": len(public_task_source_paths()), "tasks": tasks, "changed": changed}
 
 
 def build_tag_index() -> dict:
@@ -1840,7 +2550,7 @@ def build_tag_index() -> dict:
             for key in sorted(entries, key=lambda value: entries[value]["label"].lower())
         }
     return {
-        "version": 2,
+        "version": 3,
         "sources": len(source_paths),
         "tasks": task_count,
         "levels": ordered_levels,
@@ -1872,13 +2582,20 @@ def main() -> None:
     parser.add_argument("--repair-task-crops", action="store_true")
     parser.add_argument("--retag", action="store_true")
     parser.add_argument("--retag-curated", action="store_true")
+    parser.add_argument("--normalize-public-tags", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--only", action="append", default=[])
     args = parser.parse_args()
 
     exclusive_actions = sum(
         bool(value)
-        for value in (args.audit, args.repair_task_crops, args.retag, args.retag_curated)
+        for value in (
+            args.audit,
+            args.repair_task_crops,
+            args.retag,
+            args.retag_curated,
+            args.normalize_public_tags,
+        )
     )
     if exclusive_actions > 1:
         parser.error("wybrane działania importera są wzajemnie wykluczające")
@@ -1891,6 +2608,20 @@ def main() -> None:
         if args.only:
             parser.error("--retag-curated nie obsługuje --only")
         report = retag_curated_public_tasks()
+        normalized = normalize_public_task_tags()
+        index = write_tag_index()
+        print(
+            f"Gotowe: źródła={report['sources']}, zadania={report['tasks']}, "
+            f"zmienione={report['changed'] + normalized['changed']}, "
+            f"tagi={sum(len(value) for value in index['levels'].values())}",
+            flush=True,
+        )
+        return
+
+    if args.normalize_public_tags:
+        if args.only:
+            parser.error("--normalize-public-tags nie obsługuje --only")
+        report = normalize_public_task_tags()
         index = write_tag_index()
         print(
             f"Gotowe: źródła={report['sources']}, zadania={report['tasks']}, "
@@ -1900,8 +2631,16 @@ def main() -> None:
         return
 
     all_sessions = build_sessions()
-    if args.repair_task_crops:
+    if args.retag:
+        all_sessions.extend(build_local_exam_sessions())
+    elif args.repair_task_crops:
         all_sessions.extend(build_legacy_matura_sessions())
+    if args.retag and not args.only:
+        session_paths = {session.json_path.relative_to(ROOT).as_posix() for session in all_sessions}
+        manual_only_sources = {"zadania/eo/2025/maj/2025_cke_o_m.json"}
+        missing = sorted(set(public_task_source_paths()) - session_paths - manual_only_sources)
+        if missing:
+            raise RuntimeError(f"Brak źródeł do retagowania: {', '.join(missing)}")
     sessions = selected_sessions(all_sessions, args.only)
     if not sessions:
         raise SystemExit("Brak sesji pasujących do filtra.")
@@ -1934,8 +2673,13 @@ def main() -> None:
         return
 
     if args.retag:
+        curated = {"changed": 0}
+        normalized = {"changed": 0}
+        if not args.dry_run:
+            curated = retag_curated_public_tasks()
+            normalized = normalize_public_task_tags()
         index = build_tag_index() if args.dry_run else write_tag_index()
-        changed = sum(item["changed"] for item in report)
+        changed = sum(item["changed"] for item in report) + curated["changed"] + normalized["changed"]
         fallback = sum(item["fallback"] for item in report)
         ocr_assisted = sum(item["ocrAssisted"] for item in report)
         unmatched = [name for item in report for name in item["unmatched"]]

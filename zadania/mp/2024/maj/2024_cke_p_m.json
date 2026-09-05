@@ -13,8 +13,9 @@
       "D"
     ],
     "tags": [
-      "wartość-bezwzględna",
-      "przedziały-liczbowe"
+      "wartość bezwzględna",
+      "przedziały liczbowe",
+      "nierówności"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 83,
@@ -34,8 +35,10 @@
       "D"
     ],
     "tags": [
-      "potegi",
-      "działania-na-liczbach"
+      "potęgi",
+      "wyrażenia algebraiczne",
+      "liczby i działania",
+      "działania na potęgach"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 76,
@@ -49,8 +52,10 @@
     "answer": "n² + (n + 1)² + (n + 2)² = 3(n² + 2n + 1) + 2, więc reszta z dzielenia przez 3 wynosi 2.",
     "tags": [
       "dowodzenie",
-      "dowody-algebraiczne",
-      "wyrażenia-algebraiczne"
+      "dowody algebraiczne",
+      "wyrażenia algebraiczne",
+      "liczby i działania",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 56,
@@ -101,8 +106,9 @@
       "D"
     ],
     "tags": [
-      "wzory-skróconego-mnozenia",
-      "wyrażenia-algebraiczne"
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne",
+      "liczby i działania"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -122,8 +128,12 @@
       "D"
     ],
     "tags": [
-      "nierówności-liniowe",
-      "przedziały-liczbowe"
+      "nierówności liniowe",
+      "przedziały liczbowe",
+      "nierówności",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 63,
@@ -143,8 +153,11 @@
       "D"
     ],
     "tags": [
-      "równania-wymierne",
-      "dziedzina-funkcji"
+      "równania wymierne",
+      "dziedzina funkcji",
+      "równania",
+      "funkcje wymierne",
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 82,
@@ -164,8 +177,12 @@
       "FF"
     ],
     "tags": [
-      "wyrażenia-algebraiczne",
-      "miejsce-zerowe"
+      "wyrażenia algebraiczne",
+      "miejsce zerowe",
+      "wielomiany",
+      "równania",
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 84,
@@ -178,8 +195,12 @@
     "hint": "Pogrupuj wyrazy: x²(x - 2) - 3(x - 2), a potem skorzystaj z zasady iloczynu równego zeru.",
     "answer": "x ∈ {−√3, √3, 2}",
     "tags": [
-      "wyrażenia-algebraiczne",
-      "równania-kwadratowe"
+      "wyrażenia algebraiczne",
+      "równania kwadratowe",
+      "równania",
+      "funkcja kwadratowa",
+      "funkcje",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -210,9 +231,9 @@
       "D"
     ],
     "tags": [
-      "układy-równań",
+      "układy równań",
       "procenty",
-      "zadania-tekstowe"
+      "równania"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 57,
@@ -232,9 +253,12 @@
       "D"
     ],
     "tags": [
-      "układy-równań",
-      "funkcja-liniowa",
-      "proste-równoległe"
+      "układy równań",
+      "funkcja liniowa",
+      "proste równoległe",
+      "geometria analityczna",
+      "równania",
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 71,
@@ -254,9 +278,11 @@
       "D"
     ],
     "tags": [
-      "funkcja-liniowa",
+      "funkcja liniowa",
       "monotoniczność",
-      "zadania-z-parametrem"
+      "równania z parametrem",
+      "funkcje",
+      "równania"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 57,
@@ -276,9 +302,13 @@
       "D"
     ],
     "tags": [
-      "funkcja-liniowa",
-      "miejsce-zerowe",
-      "zadania-z-parametrem"
+      "funkcja liniowa",
+      "miejsce zerowe",
+      "równania z parametrem",
+      "funkcje",
+      "wyrażenia algebraiczne",
+      "funkcja kwadratowa",
+      "równania"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 65,
@@ -292,9 +322,14 @@
     "answer": "[−2, 4]",
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja-kwadratowa",
-      "nierówności-kwadratowe",
-      "odczytywanie-z-wykresu"
+      "funkcja kwadratowa",
+      "nierówności kwadratowe",
+      "odczytywanie z wykresu",
+      "funkcje",
+      "geometria analityczna",
+      "nierówności",
+      "odczytywanie danych",
+      "wykres funkcji"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 53,
@@ -327,8 +362,10 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja-kwadratowa",
-      "wykres-funkcji"
+      "funkcja kwadratowa",
+      "wykres funkcji",
+      "funkcje",
+      "geometria analityczna"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 79,
@@ -349,9 +386,12 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja-kwadratowa",
-      "symetria-wykresu",
-      "wartości-funkcji"
+      "funkcja kwadratowa",
+      "symetria wykresu",
+      "wartości funkcji",
+      "funkcje",
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 62,
@@ -377,9 +417,15 @@
     ],
     "contextFile": "14_2024_cke_p_m.png",
     "tags": [
-      "funkcja-kwadratowa",
-      "przesunięcia-wykresu",
-      "symetria-wykresu"
+      "funkcja kwadratowa",
+      "przesunięcia wykresu",
+      "symetria wykresu",
+      "funkcje",
+      "geometria analityczna",
+      "wykres funkcji",
+      "odczytywanie tabel",
+      "odczytywanie danych",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 55,
@@ -399,8 +445,8 @@
       "FF"
     ],
     "tags": [
-      "ciagi",
-      "wyraz-ogólny-ciągu"
+      "ciągi",
+      "wyraz ogólny ciągu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 77,
@@ -422,9 +468,9 @@
       "B3"
     ],
     "tags": [
-      "ciagi",
-      "ciąg-geometryczny",
-      "monotoniczność-ciągu"
+      "ciągi",
+      "ciąg geometryczny",
+      "monotoniczność ciągu"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 78,
@@ -437,8 +483,10 @@
     "hint": "Zapisz trzeci wyraz jako a₃ = a₁ + 2r oraz sumę piętnastu początkowych wyrazów ciągu.",
     "answer": "r = −2",
     "tags": [
-      "ciąg-arytmetyczny",
-      "suma-ciągu-arytmetycznego"
+      "ciąg arytmetyczny",
+      "suma ciągu arytmetycznego",
+      "ciągi",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 40,
@@ -488,7 +536,9 @@
     "tags": [
       "trygonometria",
       "tangens",
-      "wartości-trygonometryczne"
+      "wartości trygonometryczne",
+      "geometria analityczna",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 61,
@@ -509,7 +559,7 @@
     ],
     "tags": [
       "trygonometria",
-      "tożsamości-trygonometryczne",
+      "tożsamości trygonometryczne",
       "sinus"
     ],
     "level": "matura_podstawowa",
@@ -519,7 +569,7 @@
   {
     "file": "20_2024_cke_p_m.png",
     "difficulty": 2,
-    "topic": "geometria",
+    "topic": "trójkąty",
     "hint": "Skorzystaj z twierdzenia o dwusiecznej kąta w trójkącie.",
     "answer": "B",
     "type": "closed",
@@ -530,9 +580,9 @@
       "D"
     ],
     "tags": [
-      "trojkaty",
-      "podobieństwo-trójkątów",
-      "planimetria"
+      "trójkąty",
+      "podobieństwo trójkątów",
+      "wartość bezwzględna"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 70,
@@ -552,9 +602,12 @@
       "D"
     ],
     "tags": [
-      "czworokaty",
-      "pola-figur",
-      "trygonometria"
+      "czworokąty",
+      "pola figur",
+      "trygonometria",
+      "pierwiastki",
+      "liczby i działania",
+      "równoległobok"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 77,
@@ -575,7 +628,8 @@
     ],
     "tags": [
       "okrąg",
-      "kąty-w-okręgu"
+      "kąty w okręgu",
+      "okręgi i koła"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 64,
@@ -595,9 +649,11 @@
       "D"
     ],
     "tags": [
-      "równanie-prostej",
-      "proste-prostopadłe",
-      "zadania-z-parametrem"
+      "równanie prostej",
+      "proste prostopadłe",
+      "równania z parametrem",
+      "geometria analityczna",
+      "równania"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 66,
@@ -610,9 +666,12 @@
     "hint": "Wykorzystaj fakt, że punkt przecięcia przekątnych równoległoboku jest środkiem każdej przekątnej.",
     "answer": "|BC| = √52 = 2√13",
     "tags": [
-      "geometria-analityczna",
-      "układ-współrzędnych",
-      "odległość-punktów"
+      "geometria analityczna",
+      "układ współrzędnych",
+      "odległość punktów",
+      "czworokąty",
+      "równoległobok",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 41,
@@ -648,9 +707,13 @@
     ],
     "contextFile": "25_2024_cke_p_m.png",
     "tags": [
-      "graniastoslupy",
-      "pole-powierzchni-brył",
-      "pola-figur"
+      "graniastosłupy",
+      "pole powierzchni brył",
+      "pola figur",
+      "stereometria",
+      "pierwiastki",
+      "liczby i działania",
+      "graniastosłup"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 70,
@@ -671,9 +734,13 @@
     ],
     "contextFile": "25_2024_cke_p_m.png",
     "tags": [
-      "graniastoslupy",
-      "przekroje-brył",
-      "trygonometria"
+      "graniastosłupy",
+      "przekroje brył",
+      "trygonometria",
+      "stereometria",
+      "pierwiastki",
+      "liczby i działania",
+      "graniastosłup"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 80,
@@ -686,9 +753,12 @@
     "hint": "Dla brył podobnych stosunek pól powierzchni jest kwadratem skali podobieństwa.",
     "answer": "4",
     "tags": [
-      "ostroslupy",
-      "objętość-brył",
-      "pole-powierzchni-brył"
+      "ostrosłupy",
+      "objętość brył",
+      "pole powierzchni brył",
+      "stereometria",
+      "objętość",
+      "ostrosłup"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 23,
@@ -722,7 +792,8 @@
     "tags": [
       "kombinatoryka",
       "permutacje",
-      "zliczanie-przypadków"
+      "zliczanie przypadków",
+      "reguła mnożenia"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 85,
@@ -743,7 +814,7 @@
     ],
     "tags": [
       "statystyka",
-      "średnia-arytmetyczna"
+      "średnia arytmetyczna"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 74,
@@ -765,7 +836,8 @@
     "tags": [
       "statystyka",
       "mediana",
-      "diagramy"
+      "diagramy",
+      "odczytywanie danych"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 78,
@@ -779,8 +851,10 @@
     "answer": "P(A) = 13/25",
     "tags": [
       "prawdopodobieństwo",
-      "prawdopodobieństwo-klasyczne",
-      "zliczanie-przypadków"
+      "prawdopodobieństwo klasyczne",
+      "zliczanie przypadków",
+      "kombinatoryka",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 64,
@@ -809,8 +883,11 @@
     "answer": "x = 4,5 m, y = 3 m",
     "tags": [
       "optymalizacja",
-      "funkcja-kwadratowa",
-      "zadania-tekstowe"
+      "funkcja kwadratowa",
+      "czworokąty",
+      "funkcje",
+      "prostokąt",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "completionPercent": 35,

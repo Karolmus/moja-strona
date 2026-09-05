@@ -14,8 +14,9 @@
       "D"
     ],
     "tags": [
-      "wartość-bezwzględna",
-      "przedziały-liczbowe"
+      "wartość bezwzględna",
+      "przedziały liczbowe",
+      "nierówności"
     ],
     "maxPoints": 1,
     "completionPercent": 74
@@ -36,8 +37,8 @@
     ],
     "tags": [
       "pierwiastki",
-      "potegi",
-      "działania-na-liczbach"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "completionPercent": 83
@@ -51,8 +52,10 @@
     "answer": "(2n + 1)^2 - 1 = 4n(n + 1), a n(n + 1) jest parzyste, więc liczba jest podzielna przez 8.",
     "tags": [
       "dowodzenie",
-      "dowody-algebraiczne",
-      "wyrażenia-algebraiczne"
+      "dowody algebraiczne",
+      "wyrażenia algebraiczne",
+      "podzielność",
+      "zadania-otwarte"
     ],
     "solutions": [
       {
@@ -91,8 +94,7 @@
       "D"
     ],
     "tags": [
-      "logarytmy",
-      "działania-na-liczbach"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "completionPercent": 90
@@ -112,8 +114,9 @@
       "D"
     ],
     "tags": [
-      "wzory-skróconego-mnozenia",
-      "wyrażenia-algebraiczne"
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "completionPercent": 78
@@ -133,8 +136,9 @@
       "D"
     ],
     "tags": [
-      "nierówności-liniowe",
-      "przedziały-liczbowe"
+      "nierówności liniowe",
+      "przedziały liczbowe",
+      "nierówności"
     ],
     "maxPoints": 1,
     "completionPercent": 70
@@ -154,8 +158,12 @@
       "D"
     ],
     "tags": [
-      "równania-kwadratowe",
-      "pierwiastki"
+      "równania kwadratowe",
+      "pierwiastki",
+      "równania",
+      "liczby i działania",
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "completionPercent": 85
@@ -175,8 +183,11 @@
       "D"
     ],
     "tags": [
-      "równania-wymierne",
-      "wyrażenia-algebraiczne"
+      "równania wymierne",
+      "wyrażenia algebraiczne",
+      "równania",
+      "funkcje wymierne",
+      "funkcje"
     ],
     "maxPoints": 1,
     "completionPercent": 77
@@ -189,8 +200,12 @@
     "hint": "Pogrupuj składniki albo znajdź pierwiastek wielomianu, a potem rozłóż wielomian na czynniki.",
     "answer": "x = -2, x = 2/3, x = 2",
     "tags": [
-      "wyrażenia-algebraiczne",
-      "równania-kwadratowe"
+      "wyrażenia algebraiczne",
+      "równania kwadratowe",
+      "równania",
+      "funkcja kwadratowa",
+      "funkcje",
+      "zadania-otwarte"
     ],
     "solutions": [
       {
@@ -229,9 +244,12 @@
       "D"
     ],
     "tags": [
-      "układy-równań",
-      "funkcja-liniowa",
-      "wykres-funkcji"
+      "układy równań",
+      "funkcja liniowa",
+      "wykres funkcji",
+      "geometria analityczna",
+      "równania",
+      "funkcje"
     ],
     "maxPoints": 1,
     "completionPercent": 87
@@ -256,9 +274,11 @@
       "F"
     ],
     "tags": [
-      "układy-równań",
-      "zadania-tekstowe",
-      "modelowanie-matematyczne"
+      "układy równań",
+      "czworokąty",
+      "równania",
+      "prostokąt",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "completionPercent": 92
@@ -279,8 +299,11 @@
     ],
     "tags": [
       "funkcje",
-      "dziedzina-funkcji",
-      "odczytywanie-z-wykresu"
+      "dziedzina funkcji",
+      "odczytywanie z wykresu",
+      "geometria analityczna",
+      "odczytywanie danych",
+      "wykres funkcji"
     ],
     "contextFile": "12_2023_cke_p_m.png",
     "maxPoints": 1,
@@ -302,8 +325,11 @@
     ],
     "tags": [
       "funkcje",
-      "wartości-funkcji",
-      "odczytywanie-z-wykresu"
+      "wartości funkcji",
+      "odczytywanie z wykresu",
+      "geometria analityczna",
+      "odczytywanie danych",
+      "wykres funkcji"
     ],
     "contextFile": "12_2023_cke_p_m.png",
     "maxPoints": 1,
@@ -326,7 +352,10 @@
     "tags": [
       "funkcje",
       "monotoniczność",
-      "odczytywanie-z-wykresu"
+      "odczytywanie z wykresu",
+      "geometria analityczna",
+      "odczytywanie danych",
+      "wykres funkcji"
     ],
     "contextFile": "12_2023_cke_p_m.png",
     "maxPoints": 1,
@@ -347,9 +376,11 @@
       "D"
     ],
     "tags": [
-      "funkcja-liniowa",
-      "wykres-funkcji",
-      "współczynnik-kierunkowy"
+      "funkcja liniowa",
+      "wykres funkcji",
+      "współczynnik kierunkowy",
+      "funkcje",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "completionPercent": 81
@@ -369,9 +400,12 @@
       "D"
     ],
     "tags": [
-      "funkcja-kwadratowa",
-      "miejsce-zerowe",
-      "symetria-wykresu"
+      "funkcja kwadratowa",
+      "miejsce zerowe",
+      "symetria wykresu",
+      "funkcje",
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "completionPercent": 79
@@ -391,8 +425,8 @@
       "D"
     ],
     "tags": [
-      "ciagi",
-      "wyraz-ogólny-ciągu"
+      "ciągi",
+      "wyraz ogólny ciągu"
     ],
     "maxPoints": 1,
     "completionPercent": 96
@@ -412,8 +446,8 @@
       "D"
     ],
     "tags": [
-      "ciagi",
-      "ciąg-geometryczny"
+      "ciągi",
+      "ciąg geometryczny"
     ],
     "maxPoints": 1,
     "completionPercent": 85
@@ -426,9 +460,12 @@
     "hint": "Raty tworzą ciąg arytmetyczny o różnicy -30. Użyj wzoru na sumę 18 początkowych wyrazów.",
     "answer": "Pierwsza rata była równa 750 zł.",
     "tags": [
-      "ciąg-arytmetyczny",
-      "suma-ciągu-arytmetycznego",
-      "zadania-tekstowe"
+      "ciąg arytmetyczny",
+      "suma ciągu arytmetycznego",
+      "ciągi",
+      "układy równań",
+      "równania",
+      "zadania-otwarte"
     ],
     "solutions": [
       {
@@ -477,7 +514,10 @@
     "tags": [
       "trygonometria",
       "tangens",
-      "układ-współrzędnych"
+      "układ współrzędnych",
+      "geometria analityczna",
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "completionPercent": 83
@@ -498,7 +538,7 @@
     ],
     "tags": [
       "trygonometria",
-      "tożsamości-trygonometryczne",
+      "tożsamości trygonometryczne",
       "sinus"
     ],
     "maxPoints": 1,
@@ -519,9 +559,12 @@
       "D"
     ],
     "tags": [
-      "czworokaty",
+      "czworokąty",
       "trygonometria",
-      "pola-figur"
+      "pola figur",
+      "pierwiastki",
+      "liczby i działania",
+      "romb"
     ],
     "maxPoints": 1,
     "completionPercent": 63
@@ -542,8 +585,9 @@
     ],
     "tags": [
       "okrąg",
-      "kąty-w-okręgu",
-      "planimetria"
+      "kąty w okręgu",
+      "okręgi i koła",
+      "kąt wpisany"
     ],
     "maxPoints": 1,
     "completionPercent": 75
@@ -556,9 +600,12 @@
     "hint": "Najpierw oblicz przeciwprostokątną trójkąta o bokach 5 i 12, potem wyznacz skalę podobieństwa.",
     "answer": "Pole trójkąta T2 wynosi 120.",
     "tags": [
-      "podobieństwo-trójkątów",
-      "trójkąt-prostokątny",
-      "pola-figur"
+      "podobieństwo trójkątów",
+      "trójkąt prostokątny",
+      "pola figur",
+      "trójkąty",
+      "pola trójkątów",
+      "zadania-otwarte"
     ],
     "solutions": [
       {
@@ -595,9 +642,11 @@
       "B3"
     ],
     "tags": [
-      "równanie-prostej",
-      "proste-prostopadłe",
-      "układ-współrzędnych"
+      "równanie prostej",
+      "proste prostopadłe",
+      "układ współrzędnych",
+      "geometria analityczna",
+      "równania"
     ],
     "maxPoints": 1,
     "completionPercent": 77
@@ -617,9 +666,13 @@
       "D"
     ],
     "tags": [
-      "równanie-prostej",
-      "proste-równoległe",
-      "współczynnik-kierunkowy"
+      "równanie prostej",
+      "proste równoległe",
+      "współczynnik kierunkowy",
+      "geometria analityczna",
+      "równania",
+      "funkcja liniowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "completionPercent": 77
@@ -639,9 +692,15 @@
       "D"
     ],
     "tags": [
-      "graniastoslupy",
+      "graniastosłupy",
       "trygonometria",
-      "trójkąt-prostokątny"
+      "trójkąt prostokątny",
+      "stereometria",
+      "czworokąty",
+      "pierwiastki",
+      "liczby i działania",
+      "trójkąty",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "completionPercent": 66
@@ -654,9 +713,14 @@
     "hint": "Z trójkąta prostokątnego w przekroju wyznacz wysokość ostrosłupa i połowę przekątnej podstawy, a potem oblicz objętość i pole.",
     "answer": "V = 108, Pc = 108 + 72sqrt(3)",
     "tags": [
-      "ostroslupy",
-      "objętość-brył",
-      "pole-powierzchni-brył"
+      "ostrosłupy",
+      "objętość brył",
+      "pole powierzchni brył",
+      "stereometria",
+      "objętość",
+      "czworokąty",
+      "ostrosłup",
+      "zadania-otwarte"
     ],
     "solutions": [
       {
@@ -683,9 +747,12 @@
       "D"
     ],
     "tags": [
-      "ostroslupy",
-      "wielokaty",
-      "stereometria"
+      "ostrosłupy",
+      "wielokąty",
+      "stereometria",
+      "czworokąty",
+      "kwadrat",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "completionPercent": 89
@@ -706,8 +773,9 @@
     ],
     "tags": [
       "kombinatoryka",
-      "reguła-mnozenia",
-      "zliczanie-przypadków"
+      "reguła mnożenia",
+      "zliczanie przypadków",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "completionPercent": 83
@@ -738,7 +806,10 @@
     "tags": [
       "statystyka",
       "mediana",
-      "średnia-arytmetyczna"
+      "średnia arytmetyczna",
+      "odczytywanie danych",
+      "odczytywanie tabel",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "completionPercent": 69
@@ -752,8 +823,11 @@
     "answer": "P(A) = 6/64 = 3/32",
     "tags": [
       "prawdopodobieństwo",
-      "prawdopodobieństwo-klasyczne",
-      "zliczanie-przypadków"
+      "prawdopodobieństwo klasyczne",
+      "zliczanie przypadków",
+      "podzielność",
+      "kombinatoryka",
+      "zadania-otwarte"
     ],
     "solutions": [
       {
@@ -789,9 +863,9 @@
       "Stwierdzenie 2"
     ],
     "tags": [
-      "funkcja-kwadratowa",
-      "modelowanie-matematyczne",
-      "wartości-funkcji"
+      "funkcja kwadratowa",
+      "wartości funkcji",
+      "funkcje"
     ],
     "contextFile": "31_2023_cke_p_m.png",
     "maxPoints": 1,
@@ -805,9 +879,10 @@
     "hint": "Wyznacz wierzchołek paraboli opisanej wzorem L(n).",
     "answer": "Najwięcej klientów obsłużono 11. dnia; było ich 400.",
     "tags": [
-      "funkcja-kwadratowa",
+      "funkcja kwadratowa",
       "optymalizacja",
-      "zadania-tekstowe"
+      "funkcje",
+      "zadania-otwarte"
     ],
     "contextFile": "31_2023_cke_p_m.png",
     "solutions": [

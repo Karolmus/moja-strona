@@ -9,7 +9,8 @@
     "tags": [
       "ciąg geometryczny",
       "ciągi",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -111,6 +112,8 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "kombinatoryka",
+      "permutacje",
+      "reguła mnożenia",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -159,6 +162,9 @@
     "tags": [
       "nierówności",
       "dowodzenie",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -362,6 +368,9 @@
     "tags": [
       "równania z parametrem",
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -392,6 +401,10 @@
       "objętość",
       "pola figur",
       "czworokąty",
+      "pierwiastki",
+      "liczby i działania",
+      "trapez",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -422,6 +435,11 @@
       "funkcje",
       "geometria analityczna",
       "trójkąty",
+      "wyrażenia algebraiczne",
+      "równania",
+      "trójkąt prostokątny",
+      "równanie prostej",
+      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 6,

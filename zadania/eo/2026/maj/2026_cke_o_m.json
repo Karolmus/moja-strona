@@ -13,9 +13,9 @@
       "D"
     ],
     "tags": [
-      "diagram-kołowy",
+      "diagram kołowy",
       "procenty",
-      "odczytywanie-danych"
+      "odczytywanie danych"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -34,9 +34,11 @@
       "D"
     ],
     "tags": [
-      "nwd",
-      "nww",
-      "liczby-naturalne"
+      "NWD",
+      "NWW",
+      "liczby naturalne",
+      "podzielność",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -56,7 +58,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "działania-na-liczbach"
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -76,7 +78,8 @@
     ],
     "tags": [
       "potęgi",
-      "działania-na-potęgach"
+      "działania na potęgach",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -96,8 +99,7 @@
     ],
     "tags": [
       "procenty",
-      "wyrażenia-algebraiczne",
-      "zadania-tekstowe"
+      "wyrażenia algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -117,8 +119,13 @@
     ],
     "tags": [
       "parzystość",
-      "liczby-naturalne",
-      "rozumowanie"
+      "liczby naturalne",
+      "rozumowanie",
+      "prawdopodobieństwo",
+      "stereometria",
+      "podzielność",
+      "liczby i działania",
+      "dowodzenie"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -137,8 +144,7 @@
       "D"
     ],
     "tags": [
-      "równania",
-      "zadania-tekstowe"
+      "równania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -157,9 +163,10 @@
       "BD"
     ],
     "tags": [
-      "wyrażenia-algebraiczne",
+      "wyrażenia algebraiczne",
       "wzory",
-      "suma-liczb-naturalnych"
+      "suma liczb naturalnych",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -178,8 +185,9 @@
       "D"
     ],
     "tags": [
-      "średnia-arytmetyczna",
-      "równania"
+      "średnia arytmetyczna",
+      "równania",
+      "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -198,9 +206,13 @@
       "FF"
     ],
     "tags": [
-      "trójkąt-równoboczny",
-      "pole-trójkąta",
-      "twierdzenie-pitagorasa"
+      "trójkąt równoboczny",
+      "pole trójkąta",
+      "twierdzenie Pitagorasa",
+      "trójkąty",
+      "pierwiastki",
+      "liczby i działania",
+      "pola figur"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -219,9 +231,10 @@
       "D"
     ],
     "tags": [
-      "kąty-w-wielokątach",
+      "kąty w wielokątach",
       "równania",
-      "czworokąt"
+      "czworokąt",
+      "czworokąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -240,9 +253,11 @@
       "FF"
     ],
     "tags": [
-      "układ-współrzędnych",
-      "twierdzenie-pitagorasa",
-      "odległość-punktów"
+      "układ współrzędnych",
+      "twierdzenie Pitagorasa",
+      "odległość punktów",
+      "geometria analityczna",
+      "trójkąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -261,9 +276,13 @@
       "D"
     ],
     "tags": [
-      "pole-trójkąta",
-      "pole-kwadratu",
-      "geometria"
+      "pole trójkąta",
+      "pole kwadratu",
+      "pola figur",
+      "trójkąty",
+      "czworokąty",
+      "pola trójkątów",
+      "kwadrat"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -283,8 +302,9 @@
     ],
     "tags": [
       "prostopadłościan",
-      "pole-powierzchni",
-      "geometria-przestrzenna"
+      "pole powierzchni",
+      "geometria przestrzenna",
+      "stereometria"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -297,8 +317,7 @@
     "answer": "Ela przygotowała 57 kartek niebieskich.",
     "tags": [
       "równania",
-      "wyrażenia-algebraiczne",
-      "zadania-tekstowe",
+      "wyrażenia algebraiczne",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -335,9 +354,10 @@
     "hint": "Oblicz prędkość na pierwszym odcinku oraz długość drugiego odcinka, a następnie porównaj czas z jedną godziną.",
     "answer": "Przejazd z Jodłowa do Dębiny trwał dłużej niż godzinę.",
     "tags": [
-      "prędkość-droga-czas",
+      "prędkość, droga i czas",
       "proporcjonalność",
-      "zadania-tekstowe",
+      "dowodzenie",
+      "proporcje",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -379,7 +399,8 @@
     "answer": "Uczestnicy turnieju tenisa stołowego stanowili 29% wszystkich uczestników.",
     "tags": [
       "procenty",
-      "zadania-tekstowe",
+      "odczytywanie danych",
+      "odczytywanie tabel",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -410,7 +431,9 @@
     "tags": [
       "ostrosłup",
       "objętość",
-      "geometria-przestrzenna",
+      "geometria przestrzenna",
+      "stereometria",
+      "trójkąty",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -444,8 +467,9 @@
     "answer": "Pani Anna musi zapłacić 142,80 zł.",
     "tags": [
       "trapez",
-      "pole-figury",
-      "zadania-tekstowe",
+      "pole figury",
+      "czworokąty",
+      "pola figur",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -475,9 +499,12 @@
     "answer": "Obwód równoległoboku KLMN jest równy 18 + 6√2.",
     "tags": [
       "równoległobok",
-      "twierdzenie-pitagorasa",
+      "twierdzenie Pitagorasa",
       "obwód",
-      "geometria",
+      "czworokąty",
+      "trójkąty",
+      "trapez",
+      "prostokąt",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",

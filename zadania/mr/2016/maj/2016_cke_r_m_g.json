@@ -111,6 +111,7 @@
     "tags": [
       "prawdopodobieństwo",
       "odczytywanie danych",
+      "odczytywanie tabel",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -226,6 +227,7 @@
       "okręgi i koła",
       "trójkąty",
       "dowodzenie",
+      "okrąg wpisany",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -305,6 +307,8 @@
       "funkcje",
       "pierwiastki",
       "równania z parametrem",
+      "liczby i działania",
+      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -332,6 +336,9 @@
       "okręgi i koła",
       "czworokąty",
       "równania",
+      "oś symetrii",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -394,6 +401,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -421,6 +429,8 @@
       "funkcje",
       "geometria analityczna",
       "pola figur",
+      "czworokąty",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

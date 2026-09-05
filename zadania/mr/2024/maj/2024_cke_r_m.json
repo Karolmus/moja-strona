@@ -6,10 +6,14 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcja-wykładnicza",
-      "równania-wykładnicze",
+      "funkcja wykładnicza",
+      "równania wykładnicze",
       "logarytmy",
-      "modelowanie-matematyczne"
+      "funkcje",
+      "równania",
+      "odczytywanie tabel",
+      "odczytywanie danych",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -33,9 +37,11 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "granice-funkcji",
-      "granice-jednostronne",
-      "wyrażenia-algebraiczne"
+      "granice funkcji",
+      "granice jednostronne",
+      "wyrażenia algebraiczne",
+      "granice",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -64,8 +70,12 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "prawdopodobieństwo",
-      "schemat-bernoulliego",
-      "zdarzenia-losowe"
+      "schemat Bernoulliego",
+      "zdarzenia losowe",
+      "procenty",
+      "ułamki",
+      "liczby i działania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -85,10 +95,16 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje-wymierne",
+      "funkcje wymierne",
       "pochodne",
-      "styczna-do-wykresu",
-      "równanie-prostej"
+      "styczna do wykresu",
+      "równanie prostej",
+      "funkcje",
+      "geometria analityczna",
+      "wyrażenia algebraiczne",
+      "wykres funkcji",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -109,9 +125,11 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "logarytmy",
-      "własności-logarytmów",
+      "własności logarytmów",
       "dowodzenie",
-      "dowody-algebraiczne"
+      "dowody algebraiczne",
+      "wyrażenia algebraiczne",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -144,9 +162,11 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "kombinatoryka",
-      "reguła-mnożenia",
+      "reguła mnożenia",
       "permutacje",
-      "zliczanie-przypadków"
+      "zliczanie przypadków",
+      "liczby i działania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -175,9 +195,11 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "ciągi",
-      "ciąg-geometryczny",
-      "ciąg-arytmetyczny",
-      "układy-równań"
+      "ciąg geometryczny",
+      "ciąg arytmetyczny",
+      "układy równań",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -209,10 +231,12 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "dowody-geometryczne",
+      "dowody geometryczne",
       "trójkąty",
-      "twierdzenie-cosinusów",
-      "planimetria"
+      "twierdzenie cosinusów",
+      "wartość bezwzględna",
+      "dowodzenie",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -293,22 +317,49 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "czworokaty",
-      "pola-figur",
-      "planimetria",
-      "układ-współrzędnych"
+      "czworokąty",
+      "pola figur",
+      "układ współrzędnych",
+      "trójkąty",
+      "geometria analityczna",
+      "kwadrat",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
     "gradingCriteriaFiles": [
-      {"label": "Część 1", "file": "9_z1.png"},
-      {"label": "Część 2", "file": "9_z2.png"},
-      {"label": "Część 3", "file": "9_z3.png"},
-      {"label": "Część 4", "file": "9_z4.png"},
-      {"label": "Część 5", "file": "9_z5.png"},
-      {"label": "Część 6", "file": "9_z6.png"},
-      {"label": "Część 7", "file": "9_z7.png"},
-      {"label": "Część 8", "file": "9_z8.png"}
+      {
+        "label": "Część 1",
+        "file": "9_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "9_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "9_z3.png"
+      },
+      {
+        "label": "Część 4",
+        "file": "9_z4.png"
+      },
+      {
+        "label": "Część 5",
+        "file": "9_z5.png"
+      },
+      {
+        "label": "Część 6",
+        "file": "9_z6.png"
+      },
+      {
+        "label": "Część 7",
+        "file": "9_z7.png"
+      },
+      {
+        "label": "Część 8",
+        "file": "9_z8.png"
+      }
     ],
     "completionPercent": 18
   },
@@ -319,18 +370,32 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania-trygonometryczne",
-      "wzory-na-sumę-i-różnice-kątów",
-      "wzory-na-podwojony-kąt",
-      "trygonometria"
+      "równania trygonometryczne",
+      "wzory na sumę i różnicę kątów",
+      "wzory na podwojony kąt",
+      "trygonometria",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
     "gradingCriteriaFiles": [
-      {"label": "Część 1", "file": "10_z1.png"},
-      {"label": "Część 2", "file": "10_z2.png"},
-      {"label": "Część 3", "file": "10_z3.png"},
-      {"label": "Część 4", "file": "10_z4.png"}
+      {
+        "label": "Część 1",
+        "file": "10_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "10_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "10_z3.png"
+      },
+      {
+        "label": "Część 4",
+        "file": "10_z4.png"
+      }
     ],
     "completionPercent": 29
   },
@@ -341,18 +406,38 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "geometria-analityczna",
-      "równanie-okręgu",
-      "styczna-do-okręgu",
-      "odległość-punktów"
+      "geometria analityczna",
+      "równanie okręgu",
+      "styczna do okręgu",
+      "odległość punktów",
+      "pola figur",
+      "czworokąty",
+      "pierwiastki",
+      "okręgi i koła",
+      "liczby i działania",
+      "współrzędne punktu",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
     "gradingCriteriaFiles": [
-      {"label": "Część 1", "file": "11_z1.png"},
-      {"label": "Część 2", "file": "11_z2.png"},
-      {"label": "Część 3", "file": "11_z3.png"},
-      {"label": "Część 4", "file": "11_z4.png"}
+      {
+        "label": "Część 1",
+        "file": "11_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "11_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "11_z3.png"
+      },
+      {
+        "label": "Część 4",
+        "file": "11_z4.png"
+      }
     ],
     "completionPercent": 18
   },
@@ -363,16 +448,28 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania-kwadratowe",
-      "równania-z-parametrem",
-      "zadania-z-parametrem"
+      "równania kwadratowe",
+      "równania z parametrem",
+      "równania",
+      "funkcja kwadratowa",
+      "funkcje",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 6,
     "gradingCriteriaFiles": [
-      {"label": "Część 1", "file": "12_z1.png"},
-      {"label": "Część 2", "file": "12_z2.png"},
-      {"label": "Część 3", "file": "12_z3.png"}
+      {
+        "label": "Część 1",
+        "file": "12_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "12_z2.png"
+      },
+      {
+        "label": "Część 3",
+        "file": "12_z3.png"
+      }
     ],
     "completionPercent": 41
   },
@@ -384,9 +481,15 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "graniastosłup",
-      "objętość-brył",
-      "pole-powierzchni-brył",
-      "modelowanie-matematyczne"
+      "objętość brył",
+      "pole powierzchni brył",
+      "stereometria",
+      "objętość",
+      "trójkąty",
+      "pierwiastki",
+      "liczby i działania",
+      "dowodzenie",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -402,16 +505,28 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "graniastosłup",
-      "pole-powierzchni-brył",
+      "pole powierzchni brył",
       "pochodne",
-      "optymalizacja"
+      "optymalizacja",
+      "stereometria",
+      "objętość",
+      "trójkąty",
+      "pierwiastki",
+      "liczby i działania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
     "contextFile": "13.png",
     "gradingCriteriaFiles": [
-      {"label": "Część 1", "file": "13.2_z1.png"},
-      {"label": "Część 2", "file": "13.2_z2.png"}
+      {
+        "label": "Część 1",
+        "file": "13.2_z1.png"
+      },
+      {
+        "label": "Część 2",
+        "file": "13.2_z2.png"
+      }
     ],
     "completionPercent": 24
   }

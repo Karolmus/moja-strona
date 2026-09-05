@@ -40,12 +40,14 @@
   {
     "file": "3_2018_cke_r_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_rozszerzona",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "wartość bezwzględna",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -87,6 +89,7 @@
       "funkcja liniowa",
       "funkcje",
       "wyrażenia algebraiczne",
+      "wykres funkcji",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -199,6 +202,9 @@
     "tags": [
       "równania",
       "dowodzenie",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -313,6 +319,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "czworokąty",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -441,6 +448,9 @@
       "stereometria",
       "objętość",
       "czworokąty",
+      "dziedzina funkcji",
+      "kwadrat",
+      "prostopadłościan",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

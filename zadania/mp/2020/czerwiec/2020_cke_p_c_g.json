@@ -27,7 +27,9 @@
     "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "C",
     "tags": [
-      "potęgi"
+      "potęgi",
+      "liczby i działania",
+      "działania na potęgach"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -170,7 +172,8 @@
       "funkcja kwadratowa",
       "funkcje",
       "geometria analityczna",
-      "równania"
+      "równania",
+      "oś symetrii"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -212,7 +215,8 @@
     "tags": [
       "funkcja liniowa",
       "funkcje",
-      "wyrażenia algebraiczne"
+      "wyrażenia algebraiczne",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -313,7 +317,8 @@
     "answer": "D",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -328,12 +333,14 @@
   {
     "file": "17_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła",
+      "kąt środkowy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -373,7 +380,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "czworokąty"
+      "funkcje",
+      "trygonometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -454,7 +462,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "A",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "mediana"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -495,7 +504,8 @@
     "answer": "B",
     "tags": [
       "stereometria",
-      "objętość"
+      "objętość",
+      "objętość brył"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -548,6 +558,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -717,6 +730,8 @@
       "pola figur",
       "czworokąty",
       "równania",
+      "kwadrat",
+      "współrzędne punktu",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -796,6 +811,7 @@
       "trygonometria",
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

@@ -14,7 +14,8 @@
     ],
     "tags": [
       "diagramy",
-      "procenty"
+      "procenty",
+      "odczytywanie danych"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 59,
@@ -34,8 +35,8 @@
       "D"
     ],
     "tags": [
-      "ulamki",
-      "działania-na-liczbach"
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 46,
@@ -55,8 +56,10 @@
       "D"
     ],
     "tags": [
-      "dzielenie-z-reszta",
-      "liczby-naturalne"
+      "dzielenie z resztą",
+      "liczby naturalne",
+      "podzielność",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 79,
@@ -76,7 +79,7 @@
       "BD"
     ],
     "tags": [
-      "średnia-arytmetyczna",
+      "średnia arytmetyczna",
       "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
@@ -97,8 +100,8 @@
       "D"
     ],
     "tags": [
-      "przekształcanie-wzorów",
-      "wyrażenia-algebraiczne"
+      "przekształcanie wzorów",
+      "wyrażenia algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 57,
@@ -118,8 +121,7 @@
       "D"
     ],
     "tags": [
-      "wyrażenia-algebraiczne",
-      "zadania-tekstowe"
+      "wyrażenia algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 42,
@@ -140,7 +142,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "działania-na-liczbach"
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 37,
@@ -160,7 +162,8 @@
       "D"
     ],
     "tags": [
-      "potegi"
+      "potęgi",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 58,
@@ -180,7 +183,7 @@
       "D"
     ],
     "tags": [
-      "prędkość-droga-czas"
+      "prędkość, droga i czas"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 83,
@@ -201,7 +204,8 @@
     ],
     "tags": [
       "prawdopodobieństwo",
-      "ulamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 56,
@@ -221,9 +225,10 @@
       "FF"
     ],
     "tags": [
-      "twierdzenie-pitagorasa",
-      "pola-figur",
-      "trójkąt-prostokątny"
+      "twierdzenie Pitagorasa",
+      "pola figur",
+      "trójkąt prostokątny",
+      "trójkąty"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 44,
@@ -243,8 +248,9 @@
       "FF"
     ],
     "tags": [
-      "oś-liczbowa",
-      "liczby-całkowite"
+      "oś liczbowa",
+      "liczby całkowite",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 71,
@@ -264,8 +270,9 @@
       "D"
     ],
     "tags": [
-      "obwody-figur",
-      "wielokaty"
+      "obwody figur",
+      "wielokąty",
+      "czworokąty"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 70,
@@ -285,8 +292,10 @@
       "D"
     ],
     "tags": [
-      "układ-współrzędnych",
-      "rownoleglobok"
+      "układ współrzędnych",
+      "równoległobok",
+      "geometria analityczna",
+      "czworokąty"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 66,
@@ -306,8 +315,9 @@
       "D"
     ],
     "tags": [
-      "prostopadloscian",
-      "pole-powierzchni-brył"
+      "prostopadłościan",
+      "pole powierzchni brył",
+      "stereometria"
     ],
     "level": "egzamin_osmoklasisty",
     "completionPercent": 52,
@@ -320,8 +330,8 @@
     "hint": "Odejmij od 7/15 ułamki 1/5 i 1/6, sprowadzając je do wspólnego mianownika.",
     "answer": "Trzeci składnik sumy to 1/10.",
     "tags": [
-      "ulamki",
-      "działania-na-liczbach",
+      "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -346,8 +356,8 @@
     "hint": "Oznacz liczbę plakatów Basi przez b. Wtedy Andrzej ma b + 28, a Marek ma b/3.",
     "answer": "Basia ma 42 plakaty, Marek ma 14 plakatów, a Andrzej ma 70 plakatów.",
     "tags": [
-      "równania-liniowe",
-      "zadania-tekstowe",
+      "równania liniowe",
+      "równania",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -386,7 +396,8 @@
     "tags": [
       "kąty",
       "trapez",
-      "rownoleglobok",
+      "równoległobok",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -416,7 +427,8 @@
     "answer": "Pole dużej tablicy jest 6 razy większe od pola małej tablicy.",
     "tags": [
       "skala",
-      "pola-figur",
+      "pola figur",
+      "skala i jednostki",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -449,9 +461,9 @@
     "hint": "Kwadrat ma bok 15 cm. Wyznacz położenie punktów E i F, a pole czworokąta policz jako sumę albo różnicę pól prostszych figur.",
     "answer": "Pole czworokąta AECF jest równe 105 cm².",
     "tags": [
-      "pola-figur",
+      "pola figur",
       "kwadrat",
-      "czworokaty",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -497,9 +509,11 @@
     "hint": "Najpierw wyznacz krawędź podstawy z pola ściany bocznej. Potem oblicz krawędź boczną z twierdzenia Pitagorasa.",
     "answer": "Suma długości wszystkich krawędzi ostrosłupa wynosi 132 cm.",
     "tags": [
-      "ostroslup",
-      "twierdzenie-pitagorasa",
-      "bryly",
+      "ostrosłup",
+      "twierdzenie Pitagorasa",
+      "bryły",
+      "stereometria",
+      "trójkąty",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",

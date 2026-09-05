@@ -2,12 +2,12 @@
   {
     "file": "1_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "równania",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -21,12 +21,13 @@
   {
     "file": "2_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -124,7 +125,8 @@
       "geometria analityczna",
       "pola figur",
       "trójkąty",
-      "równania"
+      "równania",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -144,7 +146,8 @@
     "answer": "A",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -164,7 +167,8 @@
     "answer": "D",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -202,7 +206,8 @@
     "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
     "answer": "B",
     "tags": [
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie z wykresu"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -279,7 +284,8 @@
     "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "D",
     "tags": [
-      "geometria analityczna"
+      "geometria analityczna",
+      "współrzędne punktu"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -299,7 +305,8 @@
     "answer": "A",
     "tags": [
       "trygonometria",
-      "czworokąty"
+      "czworokąty",
+      "trapez"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -318,7 +325,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -338,7 +346,8 @@
     "answer": "D",
     "tags": [
       "pola figur",
-      "trójkąty"
+      "trójkąty",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -358,7 +367,7 @@
     "answer": "A",
     "tags": [
       "trójkąty",
-      "czworokąty"
+      "trójkąt prostokątny"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -372,12 +381,13 @@
   {
     "file": "20_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "stożek",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "stożek",
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -396,7 +406,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -415,7 +426,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -448,12 +460,12 @@
   {
     "file": "24_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "statystyka",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "statystyka"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -495,6 +507,11 @@
       "funkcje",
       "pierwiastki",
       "nierówności",
+      "przedziały liczbowe",
+      "liczby i działania",
+      "nierówności kwadratowe",
+      "wykres funkcji",
+      "miejsce zerowe",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -698,6 +715,7 @@
     "tags": [
       "geometria analityczna",
       "czworokąty",
+      "współrzędne punktu",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -765,6 +783,7 @@
     "tags": [
       "trygonometria",
       "stereometria",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

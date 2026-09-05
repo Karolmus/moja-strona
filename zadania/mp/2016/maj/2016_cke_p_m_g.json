@@ -7,7 +7,9 @@
     "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "A",
     "tags": [
-      "potęgi"
+      "potęgi",
+      "liczby i działania",
+      "działania na potęgach"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -124,12 +126,15 @@
   {
     "file": "7_2016_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła",
+      "kąt wpisany",
+      "kąt środkowy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -150,7 +155,9 @@
     "answer": "D",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -172,7 +179,11 @@
     "tags": [
       "funkcja kwadratowa",
       "funkcje",
-      "równania"
+      "równania",
+      "równania wymierne",
+      "wykres funkcji",
+      "miejsce zerowe",
+      "funkcje wymierne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -253,7 +264,8 @@
     "answer": "A",
     "tags": [
       "geometria analityczna",
-      "okręgi i koła"
+      "okręgi i koła",
+      "odległość punktów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -376,7 +388,8 @@
     "answer": "B",
     "tags": [
       "pola figur",
-      "trójkąty"
+      "trójkąty",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -456,7 +469,8 @@
     "hint": "Ustal pole podstawy i wysokość bryły, a następnie zastosuj wzór na objętość.",
     "answer": "D",
     "tags": [
-      "objętość"
+      "objętość",
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -476,7 +490,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -496,7 +511,9 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "C",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna",
+      "mediana"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -540,6 +557,15 @@
       "funkcje",
       "pierwiastki",
       "wartość bezwzględna",
+      "nierówności",
+      "równania",
+      "przedziały liczbowe",
+      "liczby i działania",
+      "wzory Viete'a",
+      "nierówności kwadratowe",
+      "miejsce zerowe",
+      "postać kanoniczna",
+      "wielomiany",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -614,6 +640,7 @@
     "tags": [
       "ciągi",
       "czworokąty",
+      "kwadrat",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -680,6 +707,7 @@
       "trygonometria",
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -705,6 +733,7 @@
     "tags": [
       "prawdopodobieństwo",
       "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 4,

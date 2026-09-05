@@ -27,7 +27,9 @@
     "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "A",
     "tags": [
-      "trygonometria"
+      "trygonometria",
+      "twierdzenie cosinusów",
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -212,6 +214,8 @@
       "trójkąty",
       "wartość bezwzględna",
       "dowodzenie",
+      "proste prostopadłe",
+      "geometria analityczna",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -447,6 +451,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "stereometria",
+      "graniastosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

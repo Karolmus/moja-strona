@@ -112,7 +112,8 @@
     "answer": "C",
     "tags": [
       "pierwiastki",
-      "równania"
+      "równania",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -173,7 +174,8 @@
     "answer": "B",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -194,7 +196,9 @@
     "answer": "C",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -315,7 +319,8 @@
     "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "C",
     "tags": [
-      "okręgi i koła"
+      "okręgi i koła",
+      "kąt środkowy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -336,7 +341,8 @@
     "answer": "A",
     "tags": [
       "pola figur",
-      "czworokąty"
+      "czworokąty",
+      "romb"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -417,7 +423,8 @@
     "answer": "A",
     "tags": [
       "stereometria",
-      "trójkąty"
+      "trójkąty",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -457,7 +464,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -477,7 +485,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "D",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -521,6 +530,15 @@
       "funkcje",
       "pierwiastki",
       "wartość bezwzględna",
+      "nierówności",
+      "równania",
+      "przedziały liczbowe",
+      "liczby i działania",
+      "wzory Viete'a",
+      "nierówności kwadratowe",
+      "miejsce zerowe",
+      "postać kanoniczna",
+      "wielomiany",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -555,6 +573,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "nierówności",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -614,6 +635,7 @@
     "tags": [
       "czworokąty",
       "dowodzenie",
+      "kwadrat",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -687,6 +709,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "geometria analityczna",
+      "współrzędne punktu",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -721,6 +744,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -760,6 +784,7 @@
     "tags": [
       "trygonometria",
       "stereometria",
+      "graniastosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -804,6 +829,8 @@
       "prawdopodobieństwo",
       "ułamki",
       "odczytywanie danych",
+      "liczby i działania",
+      "odczytywanie tabel",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -840,6 +867,7 @@
       "ciąg geometryczny",
       "ciągi",
       "statystyka",
+      "średnia arytmetyczna",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

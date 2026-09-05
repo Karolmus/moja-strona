@@ -45,7 +45,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "trapez"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -65,7 +66,8 @@
     "answer": "A",
     "tags": [
       "trygonometria",
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -123,6 +125,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "prawdopodobieństwo",
+      "zdarzenia losowe",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -172,6 +175,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "nierówności",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -501,6 +507,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "objętość",
+      "stereometria",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

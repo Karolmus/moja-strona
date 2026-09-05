@@ -26,7 +26,8 @@
     "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "B",
     "tags": [
-      "ułamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -64,7 +65,8 @@
     "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "C",
     "tags": [
-      "ułamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -104,7 +106,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "E",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -225,7 +228,9 @@
     "tags": [
       "pola figur",
       "trójkąty",
-      "czworokąty"
+      "czworokąty",
+      "trójkąt równoboczny",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -263,7 +268,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "A",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -282,7 +288,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "PF",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -303,6 +310,7 @@
     "tags": [
       "objętość",
       "dowodzenie",
+      "stereometria",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -371,6 +379,7 @@
     "tags": [
       "czworokąty",
       "wartość bezwzględna",
+      "równoległobok",
       "zadania-otwarte"
     ],
     "maxPoints": 3,

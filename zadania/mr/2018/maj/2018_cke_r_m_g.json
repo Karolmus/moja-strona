@@ -7,7 +7,9 @@
     "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "A",
     "tags": [
-      "potęgi"
+      "potęgi",
+      "liczby i działania",
+      "działania na potęgach"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -88,6 +90,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "funkcje",
+      "wykres funkcji",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -115,6 +118,8 @@
       "funkcje",
       "geometria analityczna",
       "równania",
+      "równania kwadratowe",
+      "współrzędne punktu",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -186,6 +191,7 @@
       "ciągi",
       "prawdopodobieństwo",
       "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -216,6 +222,7 @@
       "trygonometria",
       "stereometria",
       "objętość",
+      "stożek",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -316,6 +323,10 @@
       "okręgi i koła",
       "trójkąty",
       "równania",
+      "równania kwadratowe",
+      "okrąg wpisany",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -347,6 +358,7 @@
       "trygonometria",
       "czworokąty",
       "dowodzenie",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

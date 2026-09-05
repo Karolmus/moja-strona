@@ -14,8 +14,9 @@
     ],
     "tags": [
       "diagramy",
-      "odczytywanie-danych",
-      "średnia-arytmetyczna"
+      "odczytywanie danych",
+      "średnia arytmetyczna",
+      "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -23,7 +24,7 @@
   {
     "file": "2_2021_cke_o_m.webp",
     "difficulty": 1,
-    "topic": "działania na liczbach",
+    "topic": "funkcje",
     "hint": "Oblicz kolejno wartości czterech wyrażeń, uważając na znaki liczb ujemnych.",
     "answer": "B",
     "type": "closed",
@@ -34,9 +35,11 @@
       "D"
     ],
     "tags": [
-      "działania-na-liczbach",
-      "liczby-ujemne",
-      "ułamki-dziesiętne"
+      "liczby ujemne",
+      "ułamki dziesiętne",
+      "funkcje",
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -56,7 +59,8 @@
     ],
     "tags": [
       "ułamki",
-      "porównywanie-liczb"
+      "porównywanie liczb",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -76,7 +80,8 @@
     ],
     "tags": [
       "potęgi",
-      "działania-na-potęgach"
+      "działania na potęgach",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -98,8 +103,10 @@
     ],
     "tags": [
       "podzielność",
-      "liczby-całkowite",
-      "uzasadnianie"
+      "liczby całkowite",
+      "uzasadnianie",
+      "dowodzenie",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -119,8 +126,10 @@
     ],
     "tags": [
       "procenty",
-      "wyrażenia-arytmetyczne",
-      "odczytywanie-tabel"
+      "wyrażenia arytmetyczne",
+      "odczytywanie tabel",
+      "odczytywanie danych",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -140,7 +149,8 @@
     ],
     "tags": [
       "pierwiastki",
-      "szacowanie"
+      "szacowanie",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -159,9 +169,11 @@
       "BD"
     ],
     "tags": [
-      "wyrażenia-algebraiczne",
-      "liczby-parzyste",
-      "wzory"
+      "wyrażenia algebraiczne",
+      "liczby parzyste",
+      "wzory",
+      "wartość bezwzględna",
+      "podzielność"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -180,8 +192,9 @@
       "D"
     ],
     "tags": [
-      "wyrażenia-algebraiczne",
-      "trójki-pitagorejskie"
+      "wyrażenia algebraiczne",
+      "trójki pitagorejskie",
+      "trójkąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -200,8 +213,8 @@
       "D"
     ],
     "tags": [
-      "średnia-arytmetyczna",
-      "zadania-tekstowe"
+      "średnia arytmetyczna",
+      "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -222,7 +235,7 @@
     "tags": [
       "prawdopodobieństwo",
       "ułamki",
-      "zadania-tekstowe"
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -241,8 +254,8 @@
       "D"
     ],
     "tags": [
-      "kąty-w-trójkącie",
-      "geometria"
+      "kąty w trójkącie",
+      "trójkąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -261,9 +274,8 @@
       "D"
     ],
     "tags": [
-      "nww",
-      "podzielność",
-      "zadania-tekstowe"
+      "NWW",
+      "podzielność"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -284,7 +296,9 @@
     "tags": [
       "prostopadłościan",
       "objętość",
-      "ułamki"
+      "ułamki",
+      "stereometria",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -304,8 +318,9 @@
     ],
     "tags": [
       "ostrosłup",
-      "pole-powierzchni",
-      "geometria-przestrzenna"
+      "pole powierzchni",
+      "geometria przestrzenna",
+      "stereometria"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1
@@ -319,7 +334,8 @@
     "tags": [
       "ułamki",
       "uzasadnianie",
-      "zadania-tekstowe",
+      "dowodzenie",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -352,9 +368,9 @@
     "hint": "Odczytaj długość trasy z siatki i skali, a następnie oblicz czas przejazdu.",
     "answer": "Adam dotarł na spotkanie z Bartkiem o godzinie 17:56.",
     "tags": [
-      "prędkość-droga-czas",
+      "prędkość, droga i czas",
       "skala",
-      "zadania-tekstowe",
+      "skala i jednostki",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -388,7 +404,7 @@
     "answer": "Jedna puszka karmy dla psa kosztuje 3,60 zł.",
     "tags": [
       "równania",
-      "zadania-tekstowe",
+      "skala i jednostki",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -413,9 +429,10 @@
     "hint": "Oblicz przekątną prostokąta, a następnie porównaj dwa wzory na pole trójkąta ACD.",
     "answer": "Długość odcinka DS jest równa 9,6 cm.",
     "tags": [
-      "twierdzenie-pitagorasa",
-      "pole-trójkąta",
-      "prostokąt",
+      "twierdzenie Pitagorasa",
+      "pole trójkąta",
+      "trójkąty",
+      "pola figur",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",

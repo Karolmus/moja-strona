@@ -28,7 +28,9 @@
     "tags": [
       "geometria analityczna",
       "procenty",
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie tabel",
+      "odczytywanie z wykresu"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -142,7 +144,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "C",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -161,7 +164,8 @@
     "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "PP",
     "tags": [
-      "geometria analityczna"
+      "geometria analityczna",
+      "środek odcinka"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -256,7 +260,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "C",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "prostopadłościan"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -275,7 +280,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "pole powierzchni brył"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -357,6 +363,7 @@
       "procenty",
       "ułamki",
       "równania",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -376,6 +383,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "czworokąty",
+      "prostokąt",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -395,6 +403,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "czworokąty",
+      "kwadrat",
       "zadania-otwarte"
     ],
     "maxPoints": 3,

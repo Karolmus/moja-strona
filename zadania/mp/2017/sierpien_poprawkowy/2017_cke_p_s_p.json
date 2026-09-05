@@ -2,12 +2,13 @@
   {
     "file": "1_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -21,12 +22,13 @@
   {
     "file": "2_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -78,12 +80,15 @@
   {
     "file": "5_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "wzory skróconego mnożenia",
+      "liczby i działania",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -97,12 +102,13 @@
   {
     "file": "6_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "nierówności",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "nierówności",
+      "przedziały liczbowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -121,7 +127,6 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "A",
     "tags": [
-      "czworokąty",
       "układy równań",
       "równania"
     ],
@@ -234,12 +239,12 @@
   {
     "file": "13_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "trygonometria",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "trygonometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -253,12 +258,13 @@
   {
     "file": "14_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -296,7 +302,8 @@
     "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "C",
     "tags": [
-      "trójkąty"
+      "trójkąty",
+      "trójkąt równoboczny"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -315,7 +322,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "C",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -334,7 +342,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "A",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -353,7 +362,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -411,7 +421,8 @@
     "answer": "B",
     "tags": [
       "stereometria",
-      "objętość"
+      "objętość",
+      "stożek"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -430,7 +441,9 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "B",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna",
+      "mediana"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -720,7 +733,7 @@
     "tags": [
       "geometria analityczna",
       "trójkąty",
-      "czworokąty",
+      "trójkąt prostokątny",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -760,6 +773,7 @@
       "stereometria",
       "objętość",
       "trójkąty",
+      "graniastosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

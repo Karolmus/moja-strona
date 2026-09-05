@@ -48,7 +48,9 @@
     "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "B",
     "tags": [
-      "liczby i działania"
+      "liczby i działania",
+      "prawdopodobieństwo",
+      "kombinatoryka"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -68,7 +70,8 @@
     "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
     "answer": "A3",
     "tags": [
-      "podzielność"
+      "podzielność",
+      "dowodzenie"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -90,7 +93,9 @@
     "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "A",
     "tags": [
-      "potęgi"
+      "potęgi",
+      "procenty",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -150,7 +155,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "C",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -170,7 +176,9 @@
     "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "C",
     "tags": [
-      "liczby i działania"
+      "liczby i działania",
+      "geometria analityczna",
+      "współrzędne punktu"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -190,7 +198,9 @@
     "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "B",
     "tags": [
-      "proporcje"
+      "proporcje",
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -210,7 +220,9 @@
     "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "D",
     "tags": [
-      "ułamki"
+      "ułamki",
+      "równania",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -230,7 +242,8 @@
     "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "B",
     "tags": [
-      "proporcje"
+      "proporcje",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -292,7 +305,9 @@
     "tags": [
       "pola figur",
       "czworokąty",
-      "trójkąty"
+      "trójkąty",
+      "trójkąt prostokątny",
+      "trapez"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -405,6 +420,7 @@
     "tags": [
       "czworokąty",
       "trójkąty",
+      "romb",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -427,6 +443,8 @@
     "tags": [
       "stereometria",
       "czworokąty",
+      "objętość",
+      "graniastosłup",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",

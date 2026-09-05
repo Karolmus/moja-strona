@@ -175,6 +175,7 @@
     "tags": [
       "okręgi i koła",
       "dowodzenie",
+      "styczna do okręgu",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -242,6 +243,9 @@
       "trygonometria",
       "nierówności",
       "równania",
+      "równania kwadratowe",
+      "równania trygonometryczne",
+      "funkcja kwadratowa",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -305,6 +309,9 @@
     "tags": [
       "równania z parametrem",
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -340,6 +347,9 @@
       "okręgi i koła",
       "skala i jednostki",
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -422,6 +432,8 @@
       "stereometria",
       "objętość",
       "czworokąty",
+      "trapez",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -449,7 +461,17 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "czworokąty",
+      "średnia arytmetyczna",
+      "równania kwadratowe",
+      "wykres funkcji",
+      "dziedzina funkcji",
+      "miejsce zerowe",
+      "pochodne",
+      "funkcje",
+      "statystyka",
+      "nierówności",
+      "równania",
+      "funkcja kwadratowa",
       "zadania-otwarte"
     ],
     "maxPoints": 7,
