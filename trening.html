@@ -69,7 +69,6 @@ body {
 .training-panel,
 .training-overview,
 .problem-card,
-.history-panel,
 .progress-panel,
 .leaderboard-panel {
     border: 1px solid var(--line);
@@ -137,7 +136,7 @@ body {
 
 .panel-title,
 .stat-label,
-.history-title {
+.section-label {
     color: var(--muted);
     font-size: 10px;
     font-weight: 600;
@@ -391,23 +390,33 @@ body {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--surface);
 }
 
 .stat-card {
-    display: grid;
-    gap: 2px;
-    min-height: 48px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface-soft);
-    padding: 7px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px;
+    min-height: 50px;
+    padding: 8px 10px;
+    border-left: 1px solid var(--line);
+    background: transparent;
+}
+
+.stat-card:first-child {
+    border-left: 0;
 }
 
 .stat-value {
-    font-size: 17px;
-    font-weight: 700;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 600;
     line-height: 1;
+    font-variant-numeric: tabular-nums;
 }
 
 .problem-card {
@@ -430,77 +439,114 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 0.16em;
+    width: 100%;
     min-height: 54px;
+    margin: 0;
+    padding: 0.1em 0;
     justify-content: center;
     color: #111827;
     font-family: 'Poppins', sans-serif;
     font-size: 32px;
     font-weight: 500;
-    line-height: 1.18;
+    line-height: 1.36;
     letter-spacing: 0;
     font-variant-numeric: tabular-nums;
     text-rendering: geometricPrecision;
     text-align: center;
 }
 
-.problem-text sup {
-    font-size: 0.58em;
+.problem-start-prompt {
+    display: grid;
+    width: 100%;
+    place-items: center;
+    min-height: 104px;
+    padding: 12px;
+    border: 1px dashed #9db7d5;
+    border-radius: 7px;
+    background: #f8fbff;
+    color: var(--blue-text);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.problem-start-prompt:hover,
+.problem-start-prompt:focus-visible {
+    border-color: var(--blue-text);
+    background: var(--blue-soft);
+    color: #183f62;
+    outline: 3px solid rgba(142, 181, 222, 0.2);
+    outline-offset: 2px;
 }
 
 .math-expression {
-    display: inline-flex;
-    align-items: center;
+    display: inline;
     flex-wrap: wrap;
-    gap: 0.18em;
     font-family: var(--math-font);
     font-weight: 400;
+    font-feature-settings: "kern", "lnum", "tnum";
     font-variant-numeric: lining-nums tabular-nums;
-    contain: layout style;
 }
 
 .math-token {
     display: inline-flex;
-    align-items: center;
+    align-items: baseline;
     font-family: var(--math-font);
+    line-height: 1;
     white-space: nowrap;
 }
 
 .math-sup {
-    align-items: flex-start;
-    gap: 0.02em;
+    align-items: baseline;
+    vertical-align: middle;
 }
 
-.math-sup sup,
-.math-sub sub {
-    font-size: 0.55em;
+.math-sup sup {
+    position: relative;
+    top: -0.48em;
+    margin-left: 0.03em;
+    font-size: 0.62em;
     font-family: var(--math-font);
     line-height: 1;
 }
 
 .math-sub {
-    align-items: flex-end;
-    gap: 0.02em;
+    align-items: baseline;
+    vertical-align: middle;
+}
+
+.math-sub sub {
+    position: relative;
+    bottom: -0.22em;
+    margin-left: 0.03em;
+    font-size: 0.6em;
+    font-family: var(--math-font);
+    line-height: 1;
 }
 
 .frac {
-    display: inline-grid;
-    grid-template-rows: auto auto;
-    align-items: center;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
     min-width: 1.35em;
+    margin: 0 0.05em;
     font-family: var(--math-font);
-    line-height: 1;
+    line-height: 0.96;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: -0.29em;
 }
 
 .frac > span {
     display: block;
-    padding: 0 0.12em;
+    min-width: 100%;
+    padding: 0.02em 0.14em;
 }
 
 .frac .den {
     border-top: 0.055em solid currentColor;
-    padding-top: 0.1em;
+    padding-top: 0.12em;
 }
 
 .sqrt {
@@ -508,18 +554,19 @@ body {
     align-items: flex-start;
     gap: 0;
     font-family: var(--math-font);
-    line-height: 1;
-    vertical-align: -0.08em;
+    line-height: 1.03;
+    vertical-align: -0.1em;
     white-space: nowrap;
 }
 
 .sqrt-symbol {
     position: relative;
     z-index: 1;
-    margin-right: -0.055em;
+    margin-right: -0.08em;
     font-family: var(--math-font);
-    font-size: 1.2em;
-    line-height: 0.94;
+    font-size: 1.28em;
+    line-height: 0.9;
+    transform: translateY(0.08em);
 }
 
 .sqrt-radicand {
@@ -527,9 +574,9 @@ body {
     align-items: center;
     min-height: 1em;
     border-top: 0.055em solid currentColor;
-    padding: 0.075em 0.1em 0 0.08em;
+    padding: 0.08em 0.12em 0.01em 0.1em;
     font-family: var(--math-font);
-    line-height: 0.94;
+    line-height: 0.98;
 }
 
 .abs {
@@ -545,14 +592,39 @@ body {
     align-items: center;
     justify-items: center;
     font-family: var(--math-font);
-    line-height: 0.9;
+    line-height: 0.86;
     margin-right: 0.08em;
-    vertical-align: middle;
+    vertical-align: -0.24em;
 }
 
 .lim sub {
-    font-size: 0.42em;
+    font-size: 0.48em;
     line-height: 1;
+}
+
+.task-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 20px;
+}
+
+.calculator-indicator {
+    display: inline-grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border: 1px solid #bed0e3;
+    border-radius: 50%;
+    background: #f7fbff;
+    color: var(--blue-text);
+    font-size: 13px;
+    line-height: 1;
+}
+
+.calculator-indicator[hidden] {
+    display: none;
 }
 
 .blank {
@@ -745,41 +817,14 @@ body {
 
 .training-insights {
     display: grid;
-    grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
     align-items: stretch;
-}
-
-.history-panel {
-    display: grid;
-    gap: 10px;
-    padding: 12px;
 }
 
 .progress-panel {
     display: grid;
     gap: 10px;
     padding: 12px;
-}
-
-.history-list {
-    display: grid;
-    gap: 7px;
-}
-
-.history-item {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface-soft);
-    padding: 7px 9px;
-    font-size: 12px;
-}
-
-.history-item strong {
-    color: var(--green-text);
 }
 
 .progress-scope {
@@ -1176,7 +1221,6 @@ body {
 
     .training-overview,
     .problem-card,
-    .history-panel,
     .progress-panel,
     .leaderboard-panel {
         padding: 10px;
@@ -1184,12 +1228,21 @@ body {
 
     .stats-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 5px;
     }
 
     .stat-card {
-        min-height: 44px;
-        padding: 6px;
+        min-height: 46px;
+        padding: 7px 8px;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+    }
+
+    .stat-card:nth-child(3n + 1) {
+        border-left: 0;
+    }
+
+    .stat-card:nth-child(-n + 3) {
+        border-top: 0;
     }
 
     .stat-value {
@@ -1207,6 +1260,12 @@ body {
     .problem-text {
         min-height: 48px;
         font-size: 26px;
+        line-height: 1.34;
+    }
+
+    .problem-start-prompt {
+        min-height: 92px;
+        font-size: 19px;
     }
 
     .answer-row {
@@ -1331,7 +1390,7 @@ body {
                         <strong class="stat-value" id="timeLeft">120</strong>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-label">Poprawne</span>
+                        <span class="stat-label">Dobrze</span>
                         <strong class="stat-value" id="correctCount">0</strong>
                     </div>
                     <div class="stat-card">
@@ -1343,7 +1402,7 @@ body {
                         <strong class="stat-value" id="streakCount">0</strong>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-label">Śr.</span>
+                        <span class="stat-label">Śr. czas</span>
                         <strong class="stat-value" id="averageTime">-</strong>
                     </div>
                     <div class="stat-card">
@@ -1359,8 +1418,13 @@ body {
             </div>
 
             <div class="problem-card">
-                <div class="task-topic" id="taskTopic">Tryb łączny</div>
-                <div class="problem-text" id="problemText">Kliknij, aby rozpocząć</div>
+                <div class="task-heading">
+                    <div class="task-topic" id="taskTopic">Tryb łączny</div>
+                    <span class="calculator-indicator" id="calculatorIndicator" title="W tym zadaniu przyda się kalkulator" aria-label="W tym zadaniu przyda się kalkulator" hidden>&#x1F9EE;</span>
+                </div>
+                <div class="problem-text" id="problemText">
+                    <button class="problem-start-prompt" id="problemStartPrompt" type="button">Kliknij, aby rozpocząć</button>
+                </div>
                 <div class="round-summary" id="roundSummary" hidden>
                     <div class="summary-grid">
                         <div class="summary-tile">
@@ -1395,14 +1459,9 @@ body {
             </div>
 
             <div class="training-insights">
-                <div class="history-panel">
-                    <div class="history-title">Ostatnie</div>
-                    <div class="history-list" id="historyList"></div>
-                </div>
-
                 <div class="progress-panel" aria-live="polite">
                     <div>
-                        <div class="history-title">Postęp prób</div>
+                        <div class="section-label">Postęp prób</div>
                         <p class="progress-scope" id="progressScope"></p>
                     </div>
                     <div class="progress-chart" id="progressChart"></div>
@@ -1412,7 +1471,7 @@ body {
             <div class="leaderboard-panel" aria-live="polite">
                 <div class="leaderboard-head">
                     <div>
-                        <div class="history-title">Ranking uczniów</div>
+                        <div class="section-label">Ranking uczniów</div>
                         <p class="leaderboard-scope" id="leaderboardScope"></p>
                     </div>
                     <div class="leaderboard-actions">
@@ -1505,6 +1564,7 @@ const state = {
     currentDifficulty: 3,
     roundSeconds: ROUND_SECONDS,
     running: false,
+    starting: false,
     finished: false,
     roundEndsAt: 0,
     timerId: null,
@@ -1518,7 +1578,6 @@ const state = {
     bestScore: 0,
     totalAnswerTime: 0,
     reviewTopic: "",
-    history: [],
     seenTaskKeys: new Set(),
     taskMemory: [],
     leaderboardPeriod: "week",
@@ -1540,6 +1599,8 @@ const averageTime = document.getElementById("averageTime");
 const bestScore = document.getElementById("bestScore");
 const taskTopic = document.getElementById("taskTopic");
 const problemText = document.getElementById("problemText");
+const problemStartPrompt = document.getElementById("problemStartPrompt");
+const calculatorIndicator = document.getElementById("calculatorIndicator");
 const roundSummary = document.getElementById("roundSummary");
 const summaryScore = document.getElementById("summaryScore");
 const summaryAccuracy = document.getElementById("summaryAccuracy");
@@ -1556,7 +1617,6 @@ const noButton = document.getElementById("noButton");
 const startButton = document.getElementById("startButton");
 const resetButton = document.getElementById("resetButton");
 const keypad = document.getElementById("keypad");
-const historyList = document.getElementById("historyList");
 const progressScope = document.getElementById("progressScope");
 const progressChart = document.getElementById("progressChart");
 const leaderboardScope = document.getElementById("leaderboardScope");
@@ -1764,7 +1824,13 @@ function difficultyLabel(value = state.currentDifficulty){
 }
 
 function task(label, html, answer, meta = {}){
-    return { label, html: math(html), answer, ...meta };
+    return {
+        label,
+        html: math(html),
+        answer,
+        ...meta,
+        calculator: Boolean(meta.calculator)
+    };
 }
 
 function yesNoTask(label, html, condition){
@@ -1933,8 +1999,11 @@ function genEoLengthUnitConversion(){
         ["cm", "m", 0.01, 250], ["mm", "cm", 0.1, 80]
     ];
     const [from, to, multiplier, value] = choice(cases);
+    const converted = value * multiplier;
 
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
+        calculator: converted >= 1000
+    });
 }
 
 function genEoMassUnitConversion(){
@@ -1943,8 +2012,11 @@ function genEoMassUnitConversion(){
         ["t", "kg", 1000, 3], ["g", "kg", 0.001, 2500], ["g", "dag", 0.1, 80]
     ];
     const [from, to, multiplier, value] = choice(cases);
+    const converted = value * multiplier;
 
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
+        calculator: converted >= 1000
+    });
 }
 
 function genEoAreaUnitConversion(){
@@ -1954,8 +2026,11 @@ function genEoAreaUnitConversion(){
         ["cm²", "dm²", 0.01, 300], ["dm²", "m²", 0.01, 500]
     ];
     const [from, to, multiplier, value] = choice(cases);
+    const converted = value * multiplier;
 
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
+        calculator: converted >= 1000
+    });
 }
 
 function genEoVolumeUnitConversion(){
@@ -1966,8 +2041,11 @@ function genEoVolumeUnitConversion(){
         ["l", "cm³", 1000, 2], ["l", "dm³", 1, 6]
     ];
     const [from, to, multiplier, value] = choice(cases);
+    const converted = value * multiplier;
 
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
+        calculator: converted >= 1000
+    });
 }
 
 function genEoPercentOfNumber(){
@@ -2139,8 +2217,11 @@ function genEoCuboidVolume(){
 
 function genEoCubeVolume(){
     const edge = rand(3, byDifficulty([6, 7, 8, 9, 10]));
+    const volume = edge ** 3;
 
-    return task("Objętość", `Sześcian: a = ${edge}, V = ${blank()}`, edge ** 3);
+    return task("Objętość", `Sześcian: a = ${edge}, V = ${blank()}`, volume, {
+        calculator: volume >= 500
+    });
 }
 
 function genEoVolumeMissingEdge(){
@@ -2362,8 +2443,11 @@ function genEoUnitConversion(){
         ["zł", "gr", 100, 4]
     ];
     const [from, to, multiplier, value] = choice(cases);
+    const converted = value * multiplier;
 
-    return task("Schematy egzaminacyjne", `${value} ${from} = ${blank()} ${to}`, value * multiplier);
+    return task("Schematy egzaminacyjne", `${value} ${from} = ${blank()} ${to}`, converted, {
+        calculator: converted >= 1000
+    });
 }
 
 function genEoPythagoreanTriple(){
@@ -2422,10 +2506,14 @@ function genMpFormulaValue(){
     const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
     const b = rand(1, byDifficulty([6, 7, 8, 9, 10]));
     const mode = rand(1, 2);
+    const answer = mode === 1 ? (a + b) ** 2 : (a + b) * (a - b);
+    const expression = mode === 1
+        ? `${sup(parens(`${a} + ${b}`), 2)} = ${blank()}`
+        : `${parens(`${a} + ${b}`)}${parens(`${a} - ${b}`)} = ${blank()}`;
 
-    return mode === 1
-        ? task("Wzory skróconego mnożenia", `${sup(parens(`${a} + ${b}`), 2)} = ${blank()}`, (a + b) ** 2)
-        : task("Wzory skróconego mnożenia", `${parens(`${a} + ${b}`)}${parens(`${a} - ${b}`)} = ${blank()}`, (a + b) * (a - b));
+    return task("Wzory skróconego mnożenia", expression, answer, {
+        calculator: Math.abs(answer) >= 250
+    });
 }
 
 function genMpPowerRules(){
@@ -2948,7 +3036,11 @@ function genMpGeometricSequence(){
     const mode = rand(1, 3);
 
     if(mode === 1){
-        return task("Ciągi", `${sub("a", 1)} = ${a1}, q = ${q}, ${sub("a", n)} = ${blank()}`, a1 * (q ** (n - 1)));
+        const an = a1 * (q ** (n - 1));
+
+        return task("Ciągi", `${sub("a", 1)} = ${a1}, q = ${q}, ${sub("a", n)} = ${blank()}`, an, {
+            calculator: an >= 250
+        });
     }
 
     if(mode === 2){
@@ -2958,7 +3050,11 @@ function genMpGeometricSequence(){
 
     const second = a1 * q;
     const third = second * q;
-    return task("Ciągi", `${a1}, ${second}, ${third}, ${blank()}`, third * q);
+    const next = third * q;
+
+    return task("Ciągi", `${a1}, ${second}, ${third}, ${blank()}`, next, {
+        calculator: next >= 250
+    });
 }
 
 function genMpSequenceSum(){
@@ -2968,9 +3064,14 @@ function genMpSequenceSum(){
     const an = a1 + (n - 1) * r;
     const mode = rand(1, 2);
 
-    return mode === 1
-        ? task("Ciągi", `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, n = ${n}, ${sub("S", n)} = ${blank()}`, n * (a1 + an) / 2)
-        : task("Ciągi", `1 + 2 + ... + ${n} = ${blank()}`, n * (n + 1) / 2);
+    const answer = mode === 1 ? n * (a1 + an) / 2 : n * (n + 1) / 2;
+    const expression = mode === 1
+        ? `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, n = ${n}, ${sub("S", n)} = ${blank()}`
+        : `1 + 2 + ... + ${n} = ${blank()}`;
+
+    return task("Ciągi", expression, answer, {
+        calculator: answer >= 250
+    });
 }
 
 function genMpExactTrig(){
@@ -3021,7 +3122,11 @@ function genMpFactorials(){
     const mode = rand(1, 3);
 
     if(mode === 1){
-        return task("Kombinatoryka", `${n}! = ${blank()}`, factorial(n));
+        const answer = factorial(n);
+
+        return task("Kombinatoryka", `${n}! = ${blank()}`, answer, {
+            calculator: answer >= 720
+        });
     }
 
     if(mode === 2){
@@ -3155,6 +3260,25 @@ function taskKey(taskItem){
     ].join("|");
 }
 
+function showStartPrompt(){
+    problemStartPrompt.disabled = false;
+    problemStartPrompt.hidden = false;
+    problemText.replaceChildren(problemStartPrompt);
+    calculatorIndicator.hidden = true;
+}
+
+function showTask(taskItem){
+    problemStartPrompt.hidden = true;
+    problemText.innerHTML = taskItem.html;
+    calculatorIndicator.hidden = !taskItem.calculator;
+}
+
+function showRoundFinished(message){
+    problemStartPrompt.hidden = true;
+    problemText.innerText = message;
+    calculatorIndicator.hidden = true;
+}
+
 function nextTask(){
     const pool = generatorPool();
     const memoryIndex = new Map(state.taskMemory.map((key, index) => [key, index]));
@@ -3204,7 +3328,7 @@ function nextTask(){
     state.taskStartedAt = performance.now();
     hideRoundSummary();
     taskTopic.innerText = state.currentTask.label;
-    problemText.innerHTML = state.currentTask.html;
+    showTask(state.currentTask);
     answerInput.value = "";
     answerInput.className = "answer-input";
     updateAnswerMode();
@@ -3281,7 +3405,6 @@ function submitAnswer(){
         state.reviewTopic = "";
         answerInput.className = "answer-input good";
         setStatus(`Dobrze · ${elapsed.toFixed(1)} s`, "good");
-        pushHistory(state.currentTask, elapsed);
         updateStats();
 
         setTimeout(() => {
@@ -3324,39 +3447,6 @@ function skipTask(){
     setTimeout(() => {
         if(state.running) nextTask();
     }, 450);
-}
-
-function pushHistory(taskItem, elapsed){
-    state.history.unshift({
-        label: taskItem.label,
-        answer: taskItem.answer,
-        answerMode: taskItem.answerMode || "",
-        time: elapsed
-    });
-
-    state.history = state.history.slice(0, 6);
-    renderHistory();
-}
-
-function renderHistory(){
-    historyList.innerHTML = "";
-
-    if(!state.history.length){
-        const empty = document.createElement("div");
-
-        empty.className = "history-item";
-        empty.innerHTML = `<span>Brak wyników</span><strong>-</strong>`;
-        historyList.appendChild(empty);
-        return;
-    }
-
-    state.history.forEach(item => {
-        const row = document.createElement("div");
-
-        row.className = "history-item";
-        row.innerHTML = `<span>${item.label}</span><strong>${formatAnswerForMode(item.answer, item.answerMode)}</strong>`;
-        historyList.appendChild(row);
-    });
 }
 
 function formatAnswer(value){
@@ -3660,7 +3750,7 @@ function setLeaderboardPeriod(period){
 }
 
 async function saveSpeedTrainingResult(){
-    if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
+    if(!state.attemptToken || !window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
         loadLeaderboard();
         loadProgress();
         return;
@@ -3756,51 +3846,58 @@ function updateStats(){
 }
 
 async function startRound(){
+    if(state.starting) return;
+
+    state.starting = true;
     stopTimer();
     hideRoundSummary();
     state.attemptToken = "";
     startButton.disabled = true;
+    resetButton.disabled = true;
+    problemStartPrompt.disabled = true;
 
-    if(window.apiFetch && window.getAuthToken?.()){
-        setStatus("Przygotowuję bezpieczną rundę...", "");
+    try {
+        if(window.apiFetch && window.getAuthToken?.()){
+            setStatus("Przygotowuję rundę...", "");
 
-        try {
-            const attempt = await window.apiFetch("/api/speed-training/attempts", {
-                method: "POST",
-                body: JSON.stringify({
-                    level: state.level,
-                    topic: trainingScopeTopic(),
-                    difficulty: String(state.difficulty),
-                    round_seconds: state.roundSeconds
-                })
-            });
+            try {
+                const attempt = await window.apiFetch("/api/speed-training/attempts", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        level: state.level,
+                        topic: trainingScopeTopic(),
+                        difficulty: String(state.difficulty),
+                        round_seconds: state.roundSeconds
+                    })
+                });
 
-            state.attemptToken = attempt.attempt_token || "";
-        } catch(error) {
-            startButton.disabled = false;
-            setStatus(error.message || "Nie udało się rozpocząć rundy.", "bad");
-            return;
+                state.attemptToken = attempt.attempt_token || "";
+            } catch(error) {
+                // Trening pozostaje dostępny również przy chwilowym problemie z serwerem.
+                console.warn("Runda będzie działać lokalnie bez zapisu do rankingu.", error);
+            }
         }
-    }
 
-    startButton.disabled = false;
-    state.running = true;
-    state.finished = false;
-    state.roundEndsAt = Date.now() + state.roundSeconds * 1000;
-    state.correct = 0;
-    state.mistakes = 0;
-    state.streak = 0;
-    state.bestStreak = 0;
-    state.totalAnswerTime = 0;
-    state.reviewTopic = "";
-    state.history = [];
-    state.seenTaskKeys.clear();
-    loadTaskMemory();
-    renderHistory();
-    updateStats();
-    nextTask();
-    startButton.innerText = "Nowa runda";
-    state.timerId = setInterval(tick, 200);
+        state.running = true;
+        state.finished = false;
+        state.roundEndsAt = Date.now() + state.roundSeconds * 1000;
+        state.correct = 0;
+        state.mistakes = 0;
+        state.streak = 0;
+        state.bestStreak = 0;
+        state.totalAnswerTime = 0;
+        state.reviewTopic = "";
+        state.seenTaskKeys.clear();
+        loadTaskMemory();
+        updateStats();
+        nextTask();
+        startButton.innerText = "Nowa runda";
+        state.timerId = setInterval(tick, 200);
+    } finally {
+        state.starting = false;
+        startButton.disabled = false;
+        resetButton.disabled = false;
+    }
 }
 
 function tick(){
@@ -3822,7 +3919,7 @@ function finishRound(){
     state.answerLocked = true;
     const isRejected = state.mistakes > state.correct;
     const isRecord = isRejected ? false : saveBestScore();
-    problemText.innerHTML = "Koniec rundy";
+    showRoundFinished("Koniec rundy");
     taskTopic.innerText = "Podsumowanie";
     answerInput.value = "";
     answerInput.className = "answer-input";
@@ -3843,6 +3940,8 @@ function finishRound(){
 }
 
 function resetRound(){
+    if(state.starting) return;
+
     stopTimer();
     loadBestScore();
     state.running = false;
@@ -3857,10 +3956,9 @@ function resetRound(){
     state.currentDifficulty = resolveTaskDifficulty();
     state.totalAnswerTime = 0;
     state.reviewTopic = "";
-    state.history = [];
     state.seenTaskKeys.clear();
     loadTaskMemory();
-    problemText.innerHTML = "Kliknij, aby rozpocząć";
+    showStartPrompt();
     hideRoundSummary();
     taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
     answerInput.value = "";
@@ -3868,7 +3966,6 @@ function resetRound(){
     updateAnswerMode();
     setStatus("Gotowy", "");
     startButton.innerText = "Start rundy";
-    renderHistory();
     updateStats();
     loadLeaderboard();
     loadProgress();
@@ -4079,6 +4176,7 @@ skipButton.addEventListener("click", skipTask);
 yesButton.addEventListener("click", () => submitYesNoAnswer(true));
 noButton.addEventListener("click", () => submitYesNoAnswer(false));
 startButton.addEventListener("click", startRound);
+problemStartPrompt.addEventListener("click", startRound);
 resetButton.addEventListener("click", resetRound);
 leaderboardRefreshButton.addEventListener("click", loadLeaderboard);
 leaderboardWeekButton.addEventListener("click", () => setLeaderboardPeriod("week"));
