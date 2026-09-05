@@ -40,12 +40,12 @@
   {
     "file": "3_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "logarytmy",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -64,7 +64,8 @@
     "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
     "answer": "B",
     "tags": [
-      "procenty"
+      "procenty",
+      "proporcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -78,12 +79,12 @@
   {
     "file": "5_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "liczby i działania",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -102,8 +103,7 @@
     "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "B",
     "tags": [
-      "nierówności",
-      "liczby i działania"
+      "nierówności"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -142,8 +142,7 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "A",
     "tags": [
-      "równania",
-      "liczby i działania"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -162,8 +161,7 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "C",
     "tags": [
-      "funkcje",
-      "odczytywanie danych"
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -177,14 +175,14 @@
   {
     "file": "10_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "B",
     "tags": [
+      "funkcja kwadratowa",
       "funkcje",
-      "czworokąty",
-      "odczytywanie danych"
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -255,12 +253,12 @@
   {
     "file": "14_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "ciągi geometryczne",
+    "topic": "ciąg geometryczny",
     "level": "matura_podstawowa",
     "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
     "answer": "B",
     "tags": [
-      "ciągi geometryczne",
+      "ciąg geometryczny",
       "ciągi"
     ],
     "maxPoints": 1,
@@ -280,8 +278,7 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "A",
     "tags": [
-      "pierwiastki",
-      "trygonometria"
+      "pierwiastki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -295,13 +292,12 @@
   {
     "file": "16_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "statystyka",
+    "topic": "zadanie problemowe",
     "level": "matura_podstawowa",
-    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "statystyka",
-      "okręgi i koła"
+      "zadanie problemowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -315,12 +311,11 @@
   {
     "file": "17_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "statystyka",
+    "topic": "okręgi i koła",
     "level": "matura_podstawowa",
-    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "D",
     "tags": [
-      "statystyka",
       "okręgi i koła"
     ],
     "maxPoints": 1,
@@ -341,7 +336,8 @@
     "answer": "B",
     "tags": [
       "trójkąty",
-      "czworokąty"
+      "czworokąty",
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -374,13 +370,13 @@
   {
     "file": "20_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "pierwiastki",
+    "topic": "trójkąty",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "B",
     "tags": [
-      "pierwiastki",
-      "trójkąty"
+      "trójkąty",
+      "pierwiastki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -432,14 +428,13 @@
   {
     "file": "23_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "pierwiastki",
+    "topic": "czworokąty",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "D",
     "tags": [
-      "pierwiastki",
       "czworokąty",
-      "pola figur"
+      "pierwiastki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -453,11 +448,12 @@
   {
     "file": "24_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "równania",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "C",
     "tags": [
+      "geometria analityczna",
       "równania"
     ],
     "maxPoints": 1,
@@ -477,8 +473,7 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria",
-      "pola figur"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -497,8 +492,7 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria",
-      "pola figur"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -512,13 +506,13 @@
   {
     "file": "27_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "procenty",
+    "topic": "prawdopodobieństwo",
     "level": "matura_podstawowa",
-    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "C",
     "tags": [
-      "procenty",
-      "prawdopodobieństwo"
+      "prawdopodobieństwo",
+      "procenty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -551,17 +545,12 @@
   {
     "file": "29_2021_cke_p_c_d.webp",
     "difficulty": 3,
-    "topic": "pierwiastki",
+    "topic": "nierówności",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "funkcje",
       "nierówności",
-      "równania",
-      "statystyka",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -589,7 +578,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "nierówności",
-      "liczby i działania",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -608,15 +596,13 @@
   {
     "file": "31_2021_cke_p_c_d.webp",
     "difficulty": 3,
-    "topic": "ciągi arytmetyczne",
+    "topic": "ciąg arytmetyczny",
     "level": "matura_podstawowa",
     "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi arytmetyczne",
+      "ciąg arytmetyczny",
       "ciągi",
-      "równania",
-      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -630,14 +616,13 @@
   {
     "file": "32_2021_cke_p_c_d.webp",
     "difficulty": 3,
-    "topic": "procenty",
+    "topic": "czworokąty",
     "level": "matura_podstawowa",
-    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "procenty",
       "czworokąty",
-      "pola figur",
+      "procenty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -655,14 +640,14 @@
   {
     "file": "33_2021_cke_p_c_d.webp",
     "difficulty": 3,
-    "topic": "trójkąty",
+    "topic": "pola figur",
     "level": "matura_podstawowa",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
+      "pola figur",
       "trójkąty",
       "czworokąty",
-      "pola figur",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -683,8 +668,6 @@
     "tags": [
       "prawdopodobieństwo",
       "podzielność",
-      "liczby i działania",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -710,16 +693,14 @@
   {
     "file": "35_2021_cke_p_c_d.webp",
     "difficulty": 5,
-    "topic": "pierwiastki",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "procenty",
-      "ciągi",
-      "funkcje",
-      "nierówności",
+      "geometria analityczna",
+      "pola figur",
+      "trójkąty",
       "równania",
       "zadania-otwarte"
     ],

@@ -2,15 +2,11 @@
   {
     "file": "1_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "odczytywanie danych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
     "answer": "C",
     "tags": [
-      "funkcje",
-      "statystyka",
-      "geometria analityczna",
-      "okręgi i koła",
       "odczytywanie danych"
     ],
     "maxPoints": 1,
@@ -26,12 +22,12 @@
   {
     "file": "2_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "liczby i działania",
+    "topic": "ułamki",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "D",
     "tags": [
-      "liczby i działania"
+      "ułamki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -64,13 +60,12 @@
   {
     "file": "4_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "liczby i działania",
+    "topic": "ułamki",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "A",
     "tags": [
-      "liczby i działania",
-      "odczytywanie danych"
+      "ułamki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -89,8 +84,7 @@
     "hint": "Zapisz zależność droga = prędkość · czas i ujednolić jednostki.",
     "answer": "PP",
     "tags": [
-      "prędkość, droga i czas",
-      "skala i jednostki"
+      "prędkość, droga i czas"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -123,13 +117,13 @@
   {
     "file": "7_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "równania",
+    "topic": "prędkość, droga i czas",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zapisz zależność droga = prędkość · czas i ujednolić jednostki.",
     "answer": "C",
     "tags": [
-      "równania",
-      "prędkość, droga i czas"
+      "prędkość, droga i czas",
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -143,12 +137,12 @@
   {
     "file": "8_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "potęgi",
+    "topic": "liczby i działania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "AD",
     "tags": [
-      "potęgi"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -164,14 +158,12 @@
   {
     "file": "9_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "pierwiastki",
+    "topic": "liczby i działania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "AC",
     "tags": [
-      "pierwiastki",
-      "czworokąty",
-      "stereometria"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -193,11 +185,7 @@
     "answer": "D",
     "tags": [
       "procenty",
-      "funkcje",
-      "prawdopodobieństwo",
-      "statystyka",
-      "okręgi i koła",
-      "liczby i działania"
+      "odczytywanie danych"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -211,12 +199,12 @@
   {
     "file": "11_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "stereometria",
+    "topic": "prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "prawdopodobieństwo"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -230,13 +218,12 @@
   {
     "file": "12_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "liczby i działania",
+    "topic": "wartość bezwzględna",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "BD",
     "tags": [
-      "liczby i działania",
-      "odczytywanie danych"
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -274,8 +261,7 @@
     "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "B",
     "tags": [
-      "trójkąty",
-      "czworokąty"
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -289,15 +275,14 @@
   {
     "file": "15_2020_cke_o_l_d.webp",
     "difficulty": 2,
-    "topic": "równania",
+    "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "FP",
     "tags": [
-      "równania",
-      "wyrażenia algebraiczne",
       "trójkąty",
-      "skala i jednostki"
+      "skala i jednostki",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -311,12 +296,11 @@
   {
     "file": "16_2020_cke_o_l_d.webp",
     "difficulty": 3,
-    "topic": "trójkąty",
+    "topic": "dowodzenie",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Zapisz kolejne uzasadnione przekształcenia i wskaż, dlaczego prowadzą do tezy.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "trójkąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -331,15 +315,14 @@
   {
     "file": "17_2020_cke_o_l_d.webp",
     "difficulty": 3,
-    "topic": "równania",
+    "topic": "pola figur",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
+      "pola figur",
       "trójkąty",
       "czworokąty",
-      "pola figur",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -353,12 +336,12 @@
   {
     "file": "18_2020_cke_o_l_d.webp",
     "difficulty": 3,
-    "topic": "podzielność",
+    "topic": "proporcje",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
+    "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "podzielność",
+      "proporcje",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -397,8 +380,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "stereometria",
-      "pola figur",
-      "objętość",
       "zadania-otwarte"
     ],
     "maxPoints": 3,

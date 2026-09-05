@@ -7,12 +7,7 @@
     "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
     "answer": "C",
     "tags": [
-      "procenty",
-      "funkcje",
-      "statystyka",
-      "geometria analityczna",
-      "okręgi i koła",
-      "odczytywanie danych"
+      "procenty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -26,12 +21,12 @@
   {
     "file": "2_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "liczby i działania",
+    "topic": "ułamki",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "B",
     "tags": [
-      "liczby i działania"
+      "ułamki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -45,15 +40,12 @@
   {
     "file": "3_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "podzielność",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
     "answer": "BD",
     "tags": [
-      "funkcje",
-      "podzielność",
-      "skala i jednostki",
-      "liczby i działania"
+      "podzielność"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -67,12 +59,12 @@
   {
     "file": "4_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "liczby i działania",
+    "topic": "ułamki",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "C",
     "tags": [
-      "liczby i działania"
+      "ułamki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -86,13 +78,12 @@
   {
     "file": "5_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "potęgi",
+    "topic": "liczby i działania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "BD",
     "tags": [
-      "potęgi",
-      "odczytywanie danych"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -113,10 +104,7 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "E",
     "tags": [
-      "pierwiastki",
-      "czworokąty",
-      "stereometria",
-      "liczby i działania"
+      "pierwiastki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -136,8 +124,7 @@
     "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "PP",
     "tags": [
-      "liczby i działania",
-      "dowodzenie"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -173,12 +160,12 @@
   {
     "file": "9_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wartość bezwzględna",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "AC",
     "tags": [
-      "zadanie problemowe"
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -192,13 +179,13 @@
   {
     "file": "10_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "równania",
+    "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "C",
     "tags": [
-      "równania",
-      "trójkąty"
+      "trójkąty",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -212,14 +199,12 @@
   {
     "file": "11_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "ciągi",
+    "topic": "prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "C",
     "tags": [
-      "ciągi",
-      "prawdopodobieństwo",
-      "kombinatoryka"
+      "prawdopodobieństwo"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -233,15 +218,14 @@
   {
     "file": "12_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "trójkąty",
+    "topic": "pola figur",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "PP",
     "tags": [
-      "trójkąty",
-      "czworokąty",
       "pola figur",
-      "skala i jednostki"
+      "trójkąty",
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -293,16 +277,12 @@
   {
     "file": "15_2021_cke_o_c_d.webp",
     "difficulty": 2,
-    "topic": "równania",
+    "topic": "stereometria",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "PF",
     "tags": [
-      "równania",
-      "stereometria",
-      "pola figur",
-      "objętość",
-      "skala i jednostki"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -346,8 +326,8 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "procenty",
+      "wartość bezwzględna",
       "równania",
-      "pola figur",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -365,14 +345,12 @@
   {
     "file": "18_2021_cke_o_c_d.webp",
     "difficulty": 3,
-    "topic": "statystyka",
+    "topic": "prędkość, droga i czas",
     "level": "egzamin_osmoklasisty",
-    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "hint": "Zapisz zależność droga = prędkość · czas i ujednolić jednostki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "statystyka",
       "prędkość, droga i czas",
-      "skala i jednostki",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -386,15 +364,13 @@
   {
     "file": "19_2021_cke_o_c_d.webp",
     "difficulty": 4,
-    "topic": "trójkąty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "trójkąty",
       "czworokąty",
-      "pola figur",
-      "skala i jednostki",
+      "wartość bezwzględna",
       "zadania-otwarte"
     ],
     "maxPoints": 3,

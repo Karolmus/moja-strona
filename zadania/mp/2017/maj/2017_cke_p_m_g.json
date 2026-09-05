@@ -47,8 +47,7 @@
     "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
     "answer": "A",
     "tags": [
-      "logarytmy",
-      "potęgi"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -89,8 +88,7 @@
     "answer": "C",
     "tags": [
       "nierówności",
-      "równania",
-      "czworokąty"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -147,14 +145,12 @@
   {
     "file": "8_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "nierówności",
+    "topic": "równania",
     "level": "matura_podstawowa",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "C",
     "tags": [
-      "nierówności",
-      "równania",
-      "liczby i działania"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -169,13 +165,13 @@
   {
     "file": "9_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "funkcja liniowa",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Zapisz zależność liniową i wykorzystaj współczynnik kierunkowy oraz punkt należący do wykresu.",
     "answer": "C",
     "tags": [
-      "funkcje",
-      "równania"
+      "funkcja liniowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -196,7 +192,7 @@
     "answer": "C",
     "tags": [
       "funkcje",
-      "czworokąty"
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -211,14 +207,13 @@
   {
     "file": "11_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "potęgi",
+    "topic": "funkcje",
     "level": "matura_podstawowa",
-    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "D",
     "tags": [
-      "potęgi",
       "funkcje",
-      "odczytywanie danych"
+      "potęgi"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -233,11 +228,12 @@
   {
     "file": "12_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "ciągi",
+    "topic": "ciąg arytmetyczny",
     "level": "matura_podstawowa",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "B",
     "tags": [
+      "ciąg arytmetyczny",
       "ciągi"
     ],
     "maxPoints": 1,
@@ -253,11 +249,12 @@
   {
     "file": "13_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "ciągi",
+    "topic": "ciąg geometryczny",
     "level": "matura_podstawowa",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
     "answer": "A",
     "tags": [
+      "ciąg geometryczny",
       "ciągi"
     ],
     "maxPoints": 1,
@@ -294,12 +291,12 @@
   {
     "file": "15_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "okręgi i koła",
+    "topic": "zadanie problemowe",
     "level": "matura_podstawowa",
-    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "okręgi i koła"
+      "zadanie problemowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -314,12 +311,12 @@
   {
     "file": "16_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "trójkąty",
+    "topic": "wartość bezwzględna",
     "level": "matura_podstawowa",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "B",
     "tags": [
-      "trójkąty"
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -341,8 +338,8 @@
     "tags": [
       "funkcje",
       "trygonometria",
-      "trójkąty",
-      "pola figur"
+      "pola figur",
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -357,13 +354,12 @@
   {
     "file": "18_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "B",
     "tags": [
-      "funkcje",
-      "trygonometria"
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -383,8 +379,7 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "D",
     "tags": [
-      "równania",
-      "geometria analityczna"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -399,12 +394,11 @@
   {
     "file": "20_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "geometria analityczna",
+    "topic": "okręgi i koła",
     "level": "matura_podstawowa",
-    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "A",
     "tags": [
-      "geometria analityczna",
       "okręgi i koła"
     ],
     "maxPoints": 1,
@@ -420,17 +414,13 @@
   {
     "file": "21_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "nierówności",
+    "topic": "stereometria",
     "level": "matura_podstawowa",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "A",
     "tags": [
-      "nierówności",
-      "równania",
-      "czworokąty",
       "stereometria",
-      "pola figur",
-      "objętość"
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -470,9 +460,7 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "stereometria",
-      "pola figur",
-      "objętość"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -487,12 +475,11 @@
   {
     "file": "24_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "prawdopodobieństwo",
+    "topic": "statystyka",
     "level": "matura_podstawowa",
-    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "D",
     "tags": [
-      "prawdopodobieństwo",
       "statystyka"
     ],
     "maxPoints": 1,
@@ -513,9 +500,7 @@
     "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "B",
     "tags": [
-      "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka"
+      "prawdopodobieństwo"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -530,17 +515,15 @@
   {
     "file": "26_2017_cke_p_m_g.webp",
     "difficulty": 3,
-    "topic": "pierwiastki",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
+      "funkcja kwadratowa",
       "funkcje",
+      "pierwiastki",
       "nierówności",
-      "równania",
-      "statystyka",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -563,13 +546,13 @@
   {
     "file": "27_2017_cke_p_m_g.webp",
     "difficulty": 3,
-    "topic": "potęgi",
+    "topic": "podzielność",
     "level": "matura_podstawowa",
-    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "potęgi",
       "podzielność",
+      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -584,15 +567,12 @@
   {
     "file": "28_2017_cke_p_m_g.webp",
     "difficulty": 3,
-    "topic": "statystyka",
+    "topic": "wartość bezwzględna",
     "level": "matura_podstawowa",
-    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "statystyka",
-      "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
+      "wartość bezwzględna",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -614,9 +594,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "funkcje",
-      "równania",
-      "czworokąty",
-      "odczytywanie danych",
+      "wyrażenia algebraiczne",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -635,16 +613,12 @@
   {
     "file": "30_2017_cke_p_m_g.webp",
     "difficulty": 3,
-    "topic": "nierówności",
+    "topic": "trójkąty",
     "level": "matura_podstawowa",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
-      "równania",
       "trójkąty",
-      "czworokąty",
-      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -659,14 +633,13 @@
   {
     "file": "31_2017_cke_p_m_g.webp",
     "difficulty": 3,
-    "topic": "ciągi geometryczne",
+    "topic": "ciąg arytmetyczny",
     "level": "matura_podstawowa",
-    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi geometryczne",
+      "ciąg arytmetyczny",
       "ciągi",
-      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -681,16 +654,14 @@
   {
     "file": "32_2017_cke_p_m_g.webp",
     "difficulty": 5,
-    "topic": "równania",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
       "geometria analityczna",
-      "trójkąty",
       "pola figur",
-      "skala i jednostki",
+      "trójkąty",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -715,10 +686,8 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka",
       "podzielność",
-      "liczby i działania",
+      "ułamki",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -733,16 +702,12 @@
   {
     "file": "34_2017_cke_p_m_g.webp",
     "difficulty": 4,
-    "topic": "równania",
+    "topic": "stereometria",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
-      "trygonometria",
-      "trójkąty",
       "stereometria",
-      "pola figur",
       "objętość",
       "zadania-otwarte"
     ],

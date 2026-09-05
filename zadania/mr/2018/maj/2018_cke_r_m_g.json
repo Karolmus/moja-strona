@@ -22,12 +22,11 @@
   {
     "file": "2_2018_cke_r_m_g.webp",
     "difficulty": 2,
-    "topic": "nierówności",
+    "topic": "równania",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "B",
     "tags": [
-      "nierówności",
       "równania"
     ],
     "maxPoints": 1,
@@ -48,8 +47,7 @@
     "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
     "answer": "C",
     "tags": [
-      "logarytmy",
-      "potęgi"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -69,10 +67,7 @@
     "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
     "answer": "D",
     "tags": [
-      "granice",
-      "ciągi",
-      "funkcje",
-      "skala i jednostki"
+      "granice"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -87,16 +82,12 @@
   {
     "file": "5_2018_cke_r_m_g.webp",
     "difficulty": 3,
-    "topic": "granice",
+    "topic": "funkcje",
     "level": "matura_rozszerzona",
-    "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "granice",
-      "ciągi",
       "funkcje",
-      "skala i jednostki",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -115,17 +106,15 @@
   {
     "file": "6_2018_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "pochodne",
+    "topic": "funkcja kwadratowa",
     "level": "matura_rozszerzona",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
+      "funkcja kwadratowa",
       "funkcje",
-      "równania",
-      "trygonometria",
       "geometria analityczna",
-      "czworokąty",
+      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -140,15 +129,12 @@
   {
     "file": "7_2018_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "ciągi",
+    "topic": "okręgi i koła",
     "level": "matura_rozszerzona",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi",
       "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -168,16 +154,12 @@
   {
     "file": "8_2018_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "wielomiany",
+    "topic": "podzielność",
     "level": "matura_rozszerzona",
-    "hint": "Rozłóż wielomian na czynniki lub wykorzystaj jego pierwiastki i współczynniki.",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "wielomiany",
-      "czworokąty",
       "podzielność",
-      "liczby i działania",
-      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -203,9 +185,7 @@
     "tags": [
       "ciągi",
       "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka",
-      "liczby i działania",
+      "ułamki",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -228,17 +208,14 @@
   {
     "file": "10_2018_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "pierwiastki",
+    "topic": "trygonometria",
     "level": "matura_rozszerzona",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "nierówności",
-      "równania",
       "trygonometria",
-      "statystyka",
-      "trójkąty",
+      "stereometria",
+      "objętość",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -257,14 +234,12 @@
   {
     "file": "11_2018_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "nierówności",
+    "topic": "równania",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
       "równania",
-      "trygonometria",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -283,17 +258,13 @@
   {
     "file": "12_2018_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "pierwiastki",
+    "topic": "równania z parametrem",
     "level": "matura_rozszerzona",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Rozpatrz warunki zależne od parametru i sprawdź liczbę dopuszczalnych rozwiązań.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "nierówności",
+      "równania z parametrem",
       "równania",
-      "wielomiany",
-      "czworokąty",
-      "stereometria",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -312,15 +283,12 @@
   {
     "file": "13_2018_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "ciągi geometryczne",
+    "topic": "ciągi",
     "level": "matura_rozszerzona",
-    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi geometryczne",
       "ciągi",
-      "równania",
-      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -339,17 +307,15 @@
   {
     "file": "14_2018_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "nierówności",
+    "topic": "geometria analityczna",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
-      "równania",
-      "trygonometria",
       "geometria analityczna",
       "okręgi i koła",
       "trójkąty",
+      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -372,17 +338,15 @@
   {
     "file": "15_2018_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "pochodne",
+    "topic": "funkcje",
     "level": "matura_rozszerzona",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
       "funkcje",
-      "nierówności",
-      "wielomiany",
       "trygonometria",
-      "okręgi i koła",
+      "czworokąty",
+      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

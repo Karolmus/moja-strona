@@ -1,46 +1,61 @@
 {
-  "version": 1,
+  "version": 2,
   "sources": 59,
   "tasks": 1461,
   "levels": {
     "matura_podstawowa": {
-      "arkusz cke 2022": {
-        "label": "arkusz-cke-2022",
-        "sources": [
-          "zadania/mp/2022/maj/2022_cke_p_m.json"
-        ]
-      },
       "bryly obrotowe": {
-        "label": "bryły-obrotowe",
+        "label": "bryły obrotowe",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
       "ciag arytmetyczny": {
-        "label": "ciąg-arytmetyczny",
+        "label": "ciąg arytmetyczny",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
+          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
+          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
+          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
+          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
+          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json"
         ]
       },
       "ciag geometryczny": {
-        "label": "ciąg-geometryczny",
+        "label": "ciąg geometryczny",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "ciag rekurencyjny": {
-        "label": "ciąg-rekurencyjny",
-        "sources": [
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
+          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
+          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
+          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
+          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json"
         ]
       },
       "ciagi": {
@@ -51,6 +66,7 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -74,34 +90,6 @@
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
-      "ciagi arytmetyczne": {
-        "label": "ciągi arytmetyczne",
-        "sources": [
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
-          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
-          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json"
-        ]
-      },
-      "ciagi geometryczne": {
-        "label": "ciągi geometryczne",
-        "sources": [
-          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
-          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
-          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json"
-        ]
-      },
       "cosinus": {
         "label": "cosinus",
         "sources": [
@@ -113,6 +101,7 @@
         "sources": [
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -149,7 +138,7 @@
         ]
       },
       "dowody algebraiczne": {
-        "label": "dowody-algebraiczne",
+        "label": "dowody algebraiczne",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
@@ -165,6 +154,7 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -194,16 +184,6 @@
           "zadania/mp/2026/maj/2026_cke_p_m.json"
         ]
       },
-      "dzialania na liczbach": {
-        "label": "działania-na-liczbach",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
       "dziedzina": {
         "label": "dziedzina",
         "sources": [
@@ -212,7 +192,7 @@
         ]
       },
       "dziedzina funkcji": {
-        "label": "dziedzina-funkcji",
+        "label": "dziedzina funkcji",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -222,32 +202,58 @@
         ]
       },
       "funkcja kwadratowa": {
-        "label": "funkcja-kwadratowa",
+        "label": "funkcja kwadratowa",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
+          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
+          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
       "funkcja liniowa": {
-        "label": "funkcja-liniowa",
+        "label": "funkcja liniowa",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
+          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
+          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
+          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
+          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
+          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
       "funkcje": {
@@ -257,6 +263,7 @@
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -280,24 +287,22 @@
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
-      "geometria": {
-        "label": "geometria",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
       "geometria analityczna": {
-        "label": "geometria-analityczna",
+        "label": "geometria analityczna",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
+          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
           "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
+          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
           "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
@@ -306,6 +311,7 @@
           "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
           "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
@@ -320,40 +326,6 @@
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
-      "kat rozwarty": {
-        "label": "kąt-rozwarty",
-        "sources": [
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
-      "kat srodkowy": {
-        "label": "kąt-środkowy",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
-      "kat wpisany": {
-        "label": "kąt-wpisany",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
-      "katy w okregu": {
-        "label": "kąty-w-okręgu",
-        "sources": [
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "katy w trojkacie": {
-        "label": "kąty-w-trójkącie",
-        "sources": [
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
       "kombinatoryka": {
         "label": "kombinatoryka",
         "sources": [
@@ -362,18 +334,45 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
-          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json"
+          "zadania/mp/2019/maj/2019_cke_p_m_g.json"
         ]
       },
       "kwadrat": {
         "label": "kwadrat",
+        "sources": [
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+        ]
+      },
+      "kat rozwarty": {
+        "label": "kąt rozwarty",
+        "sources": [
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+        ]
+      },
+      "kat wpisany": {
+        "label": "kąt wpisany",
+        "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json",
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+        ]
+      },
+      "kat srodkowy": {
+        "label": "kąt środkowy",
+        "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json",
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+        ]
+      },
+      "katy w okregu": {
+        "label": "kąty w okręgu",
+        "sources": [
+          "zadania/mp/2025/maj/2025_cke_p_m.json",
+          "zadania/mp/2024/maj/2024_cke_p_m.json",
+          "zadania/mp/2023/maj/2023_cke_p_m.json"
+        ]
+      },
+      "katy w trojkacie": {
+        "label": "kąty w trójkącie",
         "sources": [
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
@@ -385,24 +384,21 @@
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
+          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
           "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
           "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
-          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
       "liczby rzeczywiste": {
-        "label": "liczby-rzeczywiste",
+        "label": "liczby rzeczywiste",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json"
         ]
@@ -415,14 +411,25 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
+          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
           "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
+          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json"
+          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
       "mediana": {
@@ -435,26 +442,17 @@
         ]
       },
       "miejsca zerowe": {
-        "label": "miejsca-zerowe",
+        "label": "miejsca zerowe",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
       "miejsce zerowe": {
-        "label": "miejsce-zerowe",
+        "label": "miejsce zerowe",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "modelowanie matematyczne": {
-        "label": "modelowanie-matematyczne",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
@@ -467,7 +465,7 @@
         ]
       },
       "monotonicznosc ciagu": {
-        "label": "monotoniczność-ciągu",
+        "label": "monotoniczność ciągu",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json"
@@ -476,6 +474,7 @@
       "nierownosci": {
         "label": "nierówności",
         "sources": [
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -495,12 +494,11 @@
           "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
       "nierownosci kwadratowe": {
-        "label": "nierówności-kwadratowe",
+        "label": "nierówności kwadratowe",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -509,7 +507,7 @@
         ]
       },
       "nierownosci liniowe": {
-        "label": "nierówności-liniowe",
+        "label": "nierówności liniowe",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
@@ -521,60 +519,38 @@
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
-          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
-          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
-          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
-          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
-        ]
-      },
-      "objetosc bryl": {
-        "label": "objętość-brył",
-        "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "odczytywanie danych": {
-        "label": "odczytywanie-danych",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
-          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
           "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
-          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
           "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
           "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
+      "odczytywanie danych": {
+        "label": "odczytywanie danych",
+        "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json",
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
+          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
+          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json"
+        ]
+      },
       "odczytywanie z wykresu": {
-        "label": "odczytywanie-z-wykresu",
+        "label": "odczytywanie z wykresu",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -584,7 +560,7 @@
         ]
       },
       "odleglosc punktow": {
-        "label": "odległość-punktów",
+        "label": "odległość punktów",
         "sources": [
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
@@ -602,13 +578,13 @@
         ]
       },
       "okrag opisany": {
-        "label": "okrąg-opisany",
+        "label": "okrąg opisany",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json"
         ]
       },
       "okrag w ukladzie wspolrzednych": {
-        "label": "okrąg-w-układzie-współrzędnych",
+        "label": "okrąg w układzie współrzędnych",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json"
         ]
@@ -616,10 +592,9 @@
       "okregi i kola": {
         "label": "okręgi i koła",
         "sources": [
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
           "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
@@ -627,10 +602,9 @@
           "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
           "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json"
         ]
       },
@@ -644,10 +618,11 @@
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
-      "os symetrii": {
-        "label": "oś-symetrii",
+      "ostroslupy": {
+        "label": "ostroslupy",
         "sources": [
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+          "zadania/mp/2024/maj/2024_cke_p_m.json",
+          "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
       "ostroslup": {
@@ -657,11 +632,10 @@
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
-      "ostroslupy": {
-        "label": "ostroslupy",
+      "os symetrii": {
+        "label": "oś symetrii",
         "sources": [
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
       "parametr": {
@@ -683,43 +657,23 @@
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
           "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
-          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
           "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
-          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
-        ]
-      },
-      "planimetria": {
-        "label": "planimetria",
-        "sources": [
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "pochodne": {
-        "label": "pochodne",
-        "sources": [
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json"
+          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json"
         ]
       },
       "podobienstwo trojkatow": {
-        "label": "podobieństwo-trójkątów",
+        "label": "podobieństwo trójkątów",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -733,68 +687,59 @@
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
-          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
       "pola figur": {
-        "label": "pola-figur",
+        "label": "pola figur",
         "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
           "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
           "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
           "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
           "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
           "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
           "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
-      "pola trojkatow": {
-        "label": "pola-trójkątów",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json"
-        ]
-      },
       "pole figury": {
-        "label": "pole-figury",
+        "label": "pole figury",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json"
         ]
       },
       "pole powierzchni bryl": {
-        "label": "pole-powierzchni-brył",
+        "label": "pole powierzchni brył",
         "sources": [
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
       "postac kanoniczna": {
-        "label": "postać-kanoniczna",
+        "label": "postać kanoniczna",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json"
         ]
@@ -807,22 +752,12 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json"
-        ]
-      },
-      "prawda falsz": {
-        "label": "prawda-fałsz",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json"
         ]
       },
       "prawdopodobienstwo": {
@@ -831,6 +766,7 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -847,6 +783,7 @@
           "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
           "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
@@ -854,7 +791,7 @@
         ]
       },
       "prawdopodobienstwo klasyczne": {
-        "label": "prawdopodobieństwo-klasyczne",
+        "label": "prawdopodobieństwo klasyczne",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -863,14 +800,8 @@
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
-      "predkosc, droga i czas": {
-        "label": "prędkość, droga i czas",
-        "sources": [
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json"
-        ]
-      },
       "procent skladany": {
-        "label": "procent-składany",
+        "label": "procent składany",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json"
         ]
@@ -880,32 +811,52 @@
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
+          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
           "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
           "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
           "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
           "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
+      "proporcje": {
+        "label": "proporcje",
+        "sources": [
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
+          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
+          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json"
+        ]
+      },
       "proste prostopadle": {
-        "label": "proste-prostopadłe",
+        "label": "proste prostopadłe",
         "sources": [
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
       "proste rownolegle": {
-        "label": "proste-równoległe",
+        "label": "proste równoległe",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
@@ -913,23 +864,24 @@
         ]
       },
       "przedzialy liczbowe": {
-        "label": "przedziały-liczbowe",
+        "label": "przedziały liczbowe",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2021/maj/2021_cke_p_m_g.json"
         ]
       },
       "przekroje bryl": {
-        "label": "przekroje-brył",
+        "label": "przekroje brył",
         "sources": [
           "zadania/mp/2024/maj/2024_cke_p_m.json"
         ]
       },
       "przesuniecia wykresu": {
-        "label": "przesunięcia-wykresu",
+        "label": "przesunięcia wykresu",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -937,19 +889,32 @@
           "zadania/mp/2024/maj/2024_cke_p_m.json"
         ]
       },
+      "predkosc, droga i czas": {
+        "label": "prędkość, droga i czas",
+        "sources": [
+          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json"
+        ]
+      },
       "regula mnozenia": {
-        "label": "reguła-mnożenia",
+        "label": "reguła mnożenia",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
+        ]
+      },
+      "rozklad na czynniki": {
+        "label": "rozkład na czynniki",
+        "sources": [
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
       "rownania": {
         "label": "równania",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -974,7 +939,7 @@
         ]
       },
       "rownania kwadratowe": {
-        "label": "równania-kwadratowe",
+        "label": "równania kwadratowe",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
@@ -982,7 +947,7 @@
         ]
       },
       "rownania wymierne": {
-        "label": "równania-wymierne",
+        "label": "równania wymierne",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -991,15 +956,22 @@
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
+      "rownania z parametrem": {
+        "label": "równania z parametrem",
+        "sources": [
+          "zadania/mp/2025/maj/2025_cke_p_m.json",
+          "zadania/mp/2024/maj/2024_cke_p_m.json"
+        ]
+      },
       "rownanie okregu": {
-        "label": "równanie-okręgu",
+        "label": "równanie okręgu",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
       "rownanie prostej": {
-        "label": "równanie-prostej",
+        "label": "równanie prostej",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -1010,12 +982,6 @@
       },
       "rownoleglobok": {
         "label": "równoległobok",
-        "sources": [
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
-      "rozklad na czynniki": {
-        "label": "rozkład-na-czynniki",
         "sources": [
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
@@ -1031,34 +997,9 @@
       "skala i jednostki": {
         "label": "skala i jednostki",
         "sources": [
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
-          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
-          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json"
-        ]
-      },
-      "srednia arytmetyczna": {
-        "label": "średnia-arytmetyczna",
-        "sources": [
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "srednia wazona": {
-        "label": "średnia-ważona",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
-      "srodek odcinka": {
-        "label": "środek-odcinka",
-        "sources": [
-          "zadania/mp/2025/maj/2025_cke_p_m.json"
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json"
         ]
       },
       "statystyka": {
@@ -1069,27 +1010,23 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
           "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
           "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
           "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
           "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
-          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
+          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json"
         ]
       },
       "stereometria": {
@@ -1099,6 +1036,7 @@
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
@@ -1130,7 +1068,7 @@
         ]
       },
       "suma ciagu arytmetycznego": {
-        "label": "suma-ciągu-arytmetycznego",
+        "label": "suma ciągu arytmetycznego",
         "sources": [
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
@@ -1143,7 +1081,7 @@
         ]
       },
       "symetria wykresu": {
-        "label": "symetria-wykresu",
+        "label": "symetria wykresu",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
@@ -1159,53 +1097,10 @@
         ]
       },
       "tozsamosci trygonometryczne": {
-        "label": "tożsamości-trygonometryczne",
+        "label": "tożsamości trygonometryczne",
         "sources": [
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "trojkat prostokatny": {
-        "label": "trójkąt-prostokątny",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "trojkat rownoboczny": {
-        "label": "trójkąt-równoboczny",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json"
-        ]
-      },
-      "trojkaty": {
-        "label": "trójkąty",
-        "sources": [
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
-          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
-          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
-          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
-          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
-          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
-          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
-          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
-          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
-          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
       "trygonometria": {
@@ -1216,13 +1111,49 @@
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
+          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
+          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
+          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
+          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
+          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
+        ]
+      },
+      "trojkat prostokatny": {
+        "label": "trójkąt prostokątny",
+        "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json",
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
+          "zadania/mp/2025/maj/2025_cke_p_m.json",
+          "zadania/mp/2023/maj/2023_cke_p_m.json"
+        ]
+      },
+      "trojkat rownoboczny": {
+        "label": "trójkąt równoboczny",
+        "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json"
+        ]
+      },
+      "trojkaty": {
+        "label": "trójkąty",
+        "sources": [
+          "zadania/mp/2025/maj/2025_cke_p_m.json",
+          "zadania/mp/2024/maj/2024_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
           "zadania/mp/2021/maj/2021_cke_p_m_g.json",
           "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
           "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
           "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
           "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
           "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
@@ -1240,14 +1171,14 @@
         ]
       },
       "twierdzenie talesa": {
-        "label": "twierdzenie-Talesa",
+        "label": "twierdzenie Talesa",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
       "uklad wspolrzednych": {
-        "label": "układ-współrzędnych",
+        "label": "układ współrzędnych",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
@@ -1255,13 +1186,37 @@
         ]
       },
       "uklady rownan": {
-        "label": "układy-równań",
+        "label": "układy równań",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2022/maj/2022_cke_p_m.json",
+          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
+          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
+        ]
+      },
+      "ulamki": {
+        "label": "ułamki",
+        "sources": [
+          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
+          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json"
         ]
       },
       "walec": {
@@ -1270,15 +1225,8 @@
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
-      "wartosc bezwzgledna": {
-        "label": "wartość-bezwzględna",
-        "sources": [
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
       "wartosci funkcji": {
-        "label": "wartości-funkcji",
+        "label": "wartości funkcji",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -1287,18 +1235,29 @@
         ]
       },
       "wartosci trygonometryczne": {
-        "label": "wartości-trygonometryczne",
+        "label": "wartości trygonometryczne",
         "sources": [
           "zadania/mp/2024/maj/2024_cke_p_m.json"
         ]
       },
-      "wektory": {
-        "label": "wektory",
+      "wartosc bezwzgledna": {
+        "label": "wartość bezwzględna",
         "sources": [
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
+          "zadania/mp/2024/maj/2024_cke_p_m.json",
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
+          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
+          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
+          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
+          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
+          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
+          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
+          "zadania/mp/2017/maj/2017_cke_p_m_g.json",
+          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
+          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+          "zadania/mp/2016/maj/2016_cke_p_m_g.json",
           "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
-          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
+          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json"
         ]
       },
       "wielokaty": {
@@ -1312,29 +1271,24 @@
         "sources": [
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
-          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
-          "zadania/mp/2016/maj/2016_cke_p_m_g.json"
+          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json"
         ]
       },
       "wierzcholek paraboli": {
-        "label": "wierzchołek-paraboli",
+        "label": "wierzchołek paraboli",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json"
         ]
       },
       "wspolczynnik kierunkowy": {
-        "label": "współczynnik-kierunkowy",
+        "label": "współczynnik kierunkowy",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
       },
       "wykres funkcji": {
-        "label": "wykres-funkcji",
+        "label": "wykres funkcji",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
@@ -1344,7 +1298,7 @@
         ]
       },
       "wyraz ogolny ciagu": {
-        "label": "wyraz-ogólny-ciągu",
+        "label": "wyraz ogólny ciągu",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
@@ -1352,49 +1306,17 @@
         ]
       },
       "wyrazenia algebraiczne": {
-        "label": "wyrażenia-algebraiczne",
+        "label": "wyrażenia algebraiczne",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json",
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
-          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json"
-        ]
-      },
-      "wyrazenia wymierne": {
-        "label": "wyrażenia-wymierne",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
-        ]
-      },
-      "wzory skroconego mnozenia": {
-        "label": "wzory-skróconego-mnożenia",
-        "sources": [
-          "zadania/mp/2026/maj/2026_cke_p_m.json",
-          "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
-          "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "zadania otwarte": {
-        "label": "zadania-otwarte",
-        "sources": [
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
-          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
           "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
           "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
           "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
-          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
           "zadania/mp/2019/maj/2019_cke_p_m_g.json",
-          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
-          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
           "zadania/mp/2018/maj/2018_cke_p_m_g.json",
           "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
           "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
@@ -1402,91 +1324,91 @@
           "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
           "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
-          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
           "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
           "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
         ]
       },
-      "zadania tekstowe": {
-        "label": "zadania-tekstowe",
+      "wyrazenia wymierne": {
+        "label": "wyrażenia wymierne",
+        "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json",
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+        ]
+      },
+      "wzory skroconego mnozenia": {
+        "label": "wzory skróconego mnożenia",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json",
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
-          "zadania/mp/2023/maj/2023_cke_p_m.json"
-        ]
-      },
-      "zadania z parametrem": {
-        "label": "zadania-z-parametrem",
-        "sources": [
-          "zadania/mp/2025/maj/2025_cke_p_m.json",
-          "zadania/mp/2024/maj/2024_cke_p_m.json"
-        ]
-      },
-      "zadanie problemowe": {
-        "label": "zadanie problemowe",
-        "sources": [
-          "zadania/mp/2021/maj/2021_cke_p_m_g.json",
-          "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json",
-          "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json",
-          "zadania/mp/2020/czerwiec/2020_cke_p_c_g.json",
-          "zadania/mp/2020/lipiec_dodatkowy/2020_cke_p_l_d.json",
-          "zadania/mp/2020/wrzesien_poprawkowy/2020_cke_p_w_p.json",
-          "zadania/mp/2019/czerwiec_dodatkowy/2019_cke_p_c_d.json",
-          "zadania/mp/2019/sierpien_poprawkowy/2019_cke_p_s_p.json",
-          "zadania/mp/2018/maj/2018_cke_p_m_g.json",
-          "zadania/mp/2018/czerwiec_dodatkowy/2018_cke_p_c_d.json",
-          "zadania/mp/2018/sierpien_poprawkowy/2018_cke_p_s_p.json",
-          "zadania/mp/2017/czerwiec_dodatkowy/2017_cke_p_c_d.json",
-          "zadania/mp/2017/sierpien_poprawkowy/2017_cke_p_s_p.json",
+          "zadania/mp/2023/maj/2023_cke_p_m.json",
           "zadania/mp/2016/maj/2016_cke_p_m_g.json",
-          "zadania/mp/2016/czerwiec_dodatkowy/2016_cke_p_c_d.json",
-          "zadania/mp/2016/sierpien_poprawkowy/2016_cke_p_s_p.json",
-          "zadania/mp/2015/maj/2015_cke_p_m_g.json",
-          "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json",
-          "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json"
+          "zadania/mp/2015/maj/2015_cke_p_m_g.json"
         ]
       },
       "zdarzenia elementarne": {
-        "label": "zdarzenia-elementarne",
+        "label": "zdarzenia elementarne",
         "sources": [
           "zadania/mp/2026/maj/2026_cke_p_m.json",
           "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
         ]
       },
       "zliczanie przypadkow": {
-        "label": "zliczanie-przypadków",
+        "label": "zliczanie przypadków",
         "sources": [
           "zadania/mp/2025/maj/2025_cke_p_m.json",
           "zadania/mp/2024/maj/2024_cke_p_m.json",
           "zadania/mp/2023/maj/2023_cke_p_m.json"
         ]
+      },
+      "srednia wazona": {
+        "label": "średnia ważona",
+        "sources": [
+          "zadania/mp/2026/maj/2026_cke_p_m.json",
+          "zadania/mp/2026/czerwiec/2026_cke_p_c.json"
+        ]
+      },
+      "srodek odcinka": {
+        "label": "środek odcinka",
+        "sources": [
+          "zadania/mp/2025/maj/2025_cke_p_m.json"
+        ]
       }
     },
     "matura_rozszerzona": {
-      "arkusz cke 2022": {
-        "label": "arkusz-cke-2022",
-        "sources": [
-          "zadania/mr/2022/maj/2022_cke_r_m.json"
-        ]
-      },
       "ciag arytmetyczny": {
-        "label": "ciąg-arytmetyczny",
+        "label": "ciąg arytmetyczny",
         "sources": [
+          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
+          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json"
+          "zadania/mr/2022/maj/2022_cke_r_m.json",
+          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
+          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "ciag geometryczny": {
-        "label": "ciąg-geometryczny",
+        "label": "ciąg geometryczny",
         "sources": [
+          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
+          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json"
+          "zadania/mr/2022/maj/2022_cke_r_m.json",
+          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
+          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
+          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
+          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
+          "zadania/mr/2016/maj/2016_cke_r_m_g.json"
         ]
       },
       "ciagi": {
@@ -1513,35 +1435,6 @@
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
-      "ciagi arytmetyczne": {
-        "label": "ciągi arytmetyczne",
-        "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
-        ]
-      },
-      "ciagi geometryczne": {
-        "label": "ciągi geometryczne",
-        "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json"
-        ]
-      },
       "czworokaty": {
         "label": "czworokąty",
         "sources": [
@@ -1554,11 +1447,9 @@
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
           "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
           "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
@@ -1566,15 +1457,8 @@
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
-      "doswiadczenia wieloetapowe": {
-        "label": "doświadczenia-wieloetapowe",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json"
-        ]
-      },
       "dowody algebraiczne": {
-        "label": "dowody-algebraiczne",
+        "label": "dowody algebraiczne",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -1582,7 +1466,7 @@
         ]
       },
       "dowody geometryczne": {
-        "label": "dowody-geometryczne",
+        "label": "dowody geometryczne",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -1592,7 +1476,7 @@
         ]
       },
       "dowody z nierownosci": {
-        "label": "dowody-z-nierówności",
+        "label": "dowody z nierówności",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -1625,6 +1509,13 @@
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
+      "doswiadczenia wieloetapowe": {
+        "label": "doświadczenia wieloetapowe",
+        "sources": [
+          "zadania/mr/2025/maj/2025_cke_r_m.json",
+          "zadania/mr/2022/maj/2022_cke_r_m.json"
+        ]
+      },
       "dziedzina": {
         "label": "dziedzina",
         "sources": [
@@ -1632,32 +1523,42 @@
         ]
       },
       "funkcja kwadratowa": {
-        "label": "funkcja-kwadratowa",
+        "label": "funkcja kwadratowa",
         "sources": [
+          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
+          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
+          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
           "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
+      "funkcja liniowa": {
+        "label": "funkcja liniowa",
+        "sources": [
+          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
+          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json"
+        ]
+      },
       "funkcja logarytmiczna": {
-        "label": "funkcja-logarytmiczna",
+        "label": "funkcja logarytmiczna",
         "sources": [
           "zadania/mr/2023/maj/2023_cke_r_m.json"
         ]
       },
       "funkcja wielomianowa": {
-        "label": "funkcja-wielomianowa",
+        "label": "funkcja wielomianowa",
         "sources": [
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "funkcja wykladnicza": {
-        "label": "funkcja-wykładnicza",
+        "label": "funkcja wykładnicza",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -1685,16 +1586,8 @@
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
-      "funkcje trygonometryczne": {
-        "label": "funkcje-trygonometryczne",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
       "funkcje wymierne": {
-        "label": "funkcje-wymierne",
+        "label": "funkcje wymierne",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -1707,6 +1600,7 @@
           "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
           "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -1714,15 +1608,13 @@
           "zadania/mr/2021/maj/2021_cke_r_m.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
           "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
           "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
+          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
       "graniastoslup": {
@@ -1742,14 +1634,13 @@
           "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
           "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "granice ciagow": {
-        "label": "granice-ciągów",
+        "label": "granice ciągów",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
@@ -1757,61 +1648,46 @@
         ]
       },
       "granice funkcji": {
-        "label": "granice-funkcji",
+        "label": "granice funkcji",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json"
         ]
       },
       "granice jednostronne": {
-        "label": "granice-jednostronne",
+        "label": "granice jednostronne",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json"
         ]
       },
       "iloczyn skalarny": {
-        "label": "iloczyn-skalarny",
+        "label": "iloczyn skalarny",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
-      "katy w brylach": {
-        "label": "kąty-w-bryłach",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "kombinatoryka": {
         "label": "kombinatoryka",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2024/maj/2024_cke_r_m.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
+          "zadania/mr/2024/maj/2024_cke_r_m.json"
+        ]
+      },
+      "katy w brylach": {
+        "label": "kąty w bryłach",
+        "sources": [
+          "zadania/mr/2025/maj/2025_cke_r_m.json",
+          "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "liczby i dzialania": {
         "label": "liczby i działania",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
           "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
@@ -1827,26 +1703,17 @@
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
+          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
+          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
       "miejsca zerowe": {
-        "label": "miejsca-zerowe",
+        "label": "miejsca zerowe",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json"
-        ]
-      },
-      "modelowanie matematyczne": {
-        "label": "modelowanie-matematyczne",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2024/maj/2024_cke_r_m.json",
-          "zadania/mr/2023/maj/2023_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "nierownosci": {
@@ -1857,39 +1724,36 @@
           "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
           "zadania/mr/2017/maj/2017_cke_r_m_g.json",
           "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "nierownosci kwadratowe": {
-        "label": "nierówności-kwadratowe",
+        "label": "nierówności kwadratowe",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "nierownosci wielomianowe": {
-        "label": "nierówności-wielomianowe",
+        "label": "nierówności wielomianowe",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "nierownosci wymierne": {
-        "label": "nierówności-wymierne",
+        "label": "nierówności wymierne",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "nierownosci z wartoscia bezwzgledna": {
-        "label": "nierówności-z-wartością-bezwzględna",
+        "label": "nierówności z wartością bezwzględna",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json"
@@ -1898,24 +1762,25 @@
       "objetosc": {
         "label": "objętość",
         "sources": [
+          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
+          "zadania/mr/2025/maj/2025_cke_r_m.json",
+          "zadania/mr/2024/maj/2024_cke_r_m.json",
+          "zadania/mr/2021/maj/2021_cke_r_m.json",
+          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
+          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
           "zadania/mr/2017/maj/2017_cke_r_m_g.json",
+          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
           "zadania/mr/2015/maj/2015_cke_r_m_g.json",
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
-      "objetosc bryl": {
-        "label": "objętość-brył",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2024/maj/2024_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
       "obwody figur": {
-        "label": "obwody-figur",
+        "label": "obwody figur",
         "sources": [
           "zadania/mr/2023/maj/2023_cke_r_m.json"
         ]
@@ -1923,47 +1788,36 @@
       "odczytywanie danych": {
         "label": "odczytywanie danych",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
+          "zadania/mr/2016/maj/2016_cke_r_m_g.json"
+        ]
+      },
+      "odleglosci w brylach": {
+        "label": "odległości w bryłach",
+        "sources": [
+          "zadania/mr/2023/maj/2023_cke_r_m.json"
+        ]
+      },
+      "odleglosc punktu od prostej": {
+        "label": "odległość punktu od prostej",
+        "sources": [
+          "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "odleglosc punktow": {
-        "label": "odległość-punktów",
+        "label": "odległość punktów",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
-      "odleglosc punktu od prostej": {
-        "label": "odległość-punktu-od-prostej",
-        "sources": [
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
-      "odleglosci w brylach": {
-        "label": "odległości-w-bryłach",
-        "sources": [
-          "zadania/mr/2023/maj/2023_cke_r_m.json"
-        ]
-      },
       "okrag opisany": {
-        "label": "okrąg-opisany",
+        "label": "okrąg opisany",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "okrag wpisany": {
-        "label": "okrąg-wpisany",
+        "label": "okrąg wpisany",
         "sources": [
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json"
@@ -1977,8 +1831,6 @@
           "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
@@ -2016,39 +1868,22 @@
         "sources": [
           "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
           "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
           "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "pierwiastki wielomianu": {
-        "label": "pierwiastki-wielomianu",
+        "label": "pierwiastki wielomianu",
         "sources": [
           "zadania/mr/2023/maj/2023_cke_r_m.json"
-        ]
-      },
-      "planimetria": {
-        "label": "planimetria",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2024/maj/2024_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "pochodne": {
         "label": "pochodne",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
           "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
@@ -2057,18 +1892,13 @@
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
           "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
           "zadania/mr/2017/maj/2017_cke_r_m_g.json",
           "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "podobienstwo": {
@@ -2078,7 +1908,7 @@
         ]
       },
       "podobienstwo trojkatow": {
-        "label": "podobieństwo-trójkątów",
+        "label": "podobieństwo trójkątów",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json"
@@ -2089,18 +1919,15 @@
         "sources": [
           "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
           "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
           "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
+          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json"
         ]
       },
       "podzielnosc liczb": {
-        "label": "podzielność-liczb",
+        "label": "podzielność liczb",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
@@ -2108,28 +1935,21 @@
       "pola figur": {
         "label": "pola figur",
         "sources": [
+          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
+          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
+          "zadania/mr/2021/maj/2021_cke_r_m.json",
+          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
-        ]
-      },
-      "pola trojkatow": {
-        "label": "pola-trójkątów",
-        "sources": [
-          "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
+          "zadania/mr/2016/maj/2016_cke_r_m_g.json"
         ]
       },
       "pole powierzchni bryl": {
-        "label": "pole-powierzchni-brył",
+        "label": "pole powierzchni brył",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -2139,13 +1959,7 @@
       "potegi": {
         "label": "potęgi",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json"
         ]
       },
@@ -2166,23 +1980,24 @@
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
           "zadania/mr/2017/maj/2017_cke_r_m_g.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
+          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
           "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "prawdopodobienstwo calkowite": {
-        "label": "prawdopodobieństwo-całkowite",
+        "label": "prawdopodobieństwo całkowite",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "prawdopodobienstwo klasyczne": {
-        "label": "prawdopodobieństwo-klasyczne",
+        "label": "prawdopodobieństwo klasyczne",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "prawdopodobienstwo warunkowe": {
-        "label": "prawdopodobieństwo-warunkowe",
+        "label": "prawdopodobieństwo warunkowe",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json"
@@ -2202,7 +2017,7 @@
         ]
       },
       "przedzialy liczbowe": {
-        "label": "przedziały-liczbowe",
+        "label": "przedziały liczbowe",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -2210,9 +2025,16 @@
         ]
       },
       "regula mnozenia": {
-        "label": "reguła-mnożenia",
+        "label": "reguła mnożenia",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json"
+        ]
+      },
+      "rozklad wielomianu na czynniki": {
+        "label": "rozkład wielomianu na czynniki",
+        "sources": [
+          "zadania/mr/2022/maj/2022_cke_r_m.json",
+          "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "rownania": {
@@ -2239,7 +2061,7 @@
         ]
       },
       "rownania kwadratowe": {
-        "label": "równania-kwadratowe",
+        "label": "równania kwadratowe",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -2248,7 +2070,7 @@
         ]
       },
       "rownania trygonometryczne": {
-        "label": "równania-trygonometryczne",
+        "label": "równania trygonometryczne",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -2258,7 +2080,7 @@
         ]
       },
       "rownania wykladnicze": {
-        "label": "równania-wykładnicze",
+        "label": "równania wykładnicze",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -2266,24 +2088,38 @@
         ]
       },
       "rownania z parametrem": {
-        "label": "równania-z-parametrem",
+        "label": "równania z parametrem",
         "sources": [
+          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
+          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
+          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
+          "zadania/mr/2021/maj/2021_cke_r_m.json",
+          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
+          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
+          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
+          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
+          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
+          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
+          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
+          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
       "rownania z wartoscia bezwzgledna": {
-        "label": "równania-z-wartością-bezwzględną",
+        "label": "równania z wartością bezwzględna",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "rownanie okregu": {
-        "label": "równanie-okręgu",
+        "label": "równanie okręgu",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -2292,7 +2128,7 @@
         ]
       },
       "rownanie prostej": {
-        "label": "równanie-prostej",
+        "label": "równanie prostej",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -2300,15 +2136,8 @@
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
-      "rozklad wielomianu na czynniki": {
-        "label": "rozkład-wielomianu-na-czynniki",
-        "sources": [
-          "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
       "schemat bernoulliego": {
-        "label": "schemat-bernoulliego",
+        "label": "schemat bernoulliego",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json"
@@ -2317,28 +2146,8 @@
       "skala i jednostki": {
         "label": "skala i jednostki",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json"
-        ]
-      },
-      "statystyka": {
-        "label": "statystyka",
-        "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
+          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json"
         ]
       },
       "stereometria": {
@@ -2351,6 +2160,7 @@
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
@@ -2370,27 +2180,27 @@
         ]
       },
       "styczna do okregu": {
-        "label": "styczna-do-okręgu",
+        "label": "styczna do okręgu",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "styczna do wykresu": {
-        "label": "styczna-do-wykresu",
+        "label": "styczna do wykresu",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json"
         ]
       },
       "suma ciagu arytmetycznego": {
-        "label": "suma-ciągu-arytmetycznego",
+        "label": "suma ciągu arytmetycznego",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "szereg geometryczny": {
-        "label": "szereg-geometryczny",
+        "label": "szereg geometryczny",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -2398,7 +2208,7 @@
         ]
       },
       "tozsamosci trygonometryczne": {
-        "label": "tożsamości-trygonometryczne",
+        "label": "tożsamości trygonometryczne",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
@@ -2409,14 +2219,33 @@
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
+      "trygonometria": {
+        "label": "trygonometria",
+        "sources": [
+          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
+          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
+          "zadania/mr/2025/maj/2025_cke_r_m.json",
+          "zadania/mr/2024/maj/2024_cke_r_m.json",
+          "zadania/mr/2023/maj/2023_cke_r_m.json",
+          "zadania/mr/2022/maj/2022_cke_r_m.json",
+          "zadania/mr/2021/maj/2021_cke_r_m.json",
+          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
+          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
+          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
+          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
+          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
+        ]
+      },
       "trojkat prostokatny": {
-        "label": "trójkąt-prostokątny",
+        "label": "trójkąt prostokątny",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "trojkat rownoboczny": {
-        "label": "trójkąt-równoboczny",
+        "label": "trójkąt równoboczny",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
@@ -2432,34 +2261,8 @@
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
-        ]
-      },
-      "trygonometria": {
-        "label": "trygonometria",
-        "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2024/maj/2024_cke_r_m.json",
-          "zadania/mr/2023/maj/2023_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2018/maj/2018_cke_r_m_g.json",
@@ -2468,116 +2271,104 @@
           "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
           "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
         ]
       },
       "twierdzenie cosinusow": {
-        "label": "twierdzenie-cosinusów",
+        "label": "twierdzenie cosinusów",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
       "twierdzenie o reszcie": {
-        "label": "twierdzenie-o-reszcie",
+        "label": "twierdzenie o reszcie",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json"
         ]
       },
-      "twierdzenie pitagorasa": {
-        "label": "twierdzenie-pitagorasa",
-        "sources": [
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
       "twierdzenie pitagorasa w przestrzeni": {
-        "label": "twierdzenie-pitagorasa-w-przestrzeni",
+        "label": "twierdzenie pitagorasa w przestrzeni",
         "sources": [
           "zadania/mr/2023/maj/2023_cke_r_m.json"
         ]
       },
       "uklad wspolrzednych": {
-        "label": "układ-współrzędnych",
+        "label": "układ współrzędnych",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json"
         ]
       },
       "uklady rownan": {
-        "label": "układy-równań",
+        "label": "układy równań",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json"
         ]
       },
-      "wartosc bezwzgledna": {
-        "label": "wartość-bezwzględna",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2023/maj/2023_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
-      "wartosc najmniejsza": {
-        "label": "wartość-najmniejsza",
-        "sources": [
-          "zadania/mr/2023/maj/2023_cke_r_m.json"
-        ]
-      },
-      "wartosci funkcji trygonometrycznych": {
-        "label": "wartości-funkcji-trygonometrycznych",
-        "sources": [
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
-      "wektory": {
-        "label": "wektory",
+      "ulamki": {
+        "label": "ułamki",
         "sources": [
           "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
           "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json"
+          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
+          "zadania/mr/2017/maj/2017_cke_r_m_g.json"
         ]
       },
-      "wielomiany": {
-        "label": "wielomiany",
+      "wartosci funkcji trygonometrycznych": {
+        "label": "wartości funkcji trygonometrycznych",
+        "sources": [
+          "zadania/mr/2021/maj/2021_cke_r_m.json"
+        ]
+      },
+      "wartosc bezwzgledna": {
+        "label": "wartość bezwzględna",
         "sources": [
           "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
           "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
           "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
+          "zadania/mr/2025/maj/2025_cke_r_m.json",
+          "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
           "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
           "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
           "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
+          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
+          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
+        ]
+      },
+      "wartosc najmniejsza": {
+        "label": "wartość najmniejsza",
+        "sources": [
+          "zadania/mr/2023/maj/2023_cke_r_m.json"
+        ]
+      },
+      "wektory": {
+        "label": "wektory",
+        "sources": [
+          "zadania/mr/2025/maj/2025_cke_r_m.json",
+          "zadania/mr/2021/maj/2021_cke_r_m.json",
+          "zadania/mr/2017/maj/2017_cke_r_m_g.json"
+        ]
+      },
+      "wielomiany": {
+        "label": "wielomiany",
+        "sources": [
+          "zadania/mr/2022/maj/2022_cke_r_m.json",
+          "zadania/mr/2021/maj/2021_cke_r_m.json",
+          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
+          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
+          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
-      "wlasnosci logarytmow": {
-        "label": "własności-logarytmów",
-        "sources": [
-          "zadania/mr/2024/maj/2024_cke_r_m.json",
-          "zadania/mr/2023/maj/2023_cke_r_m.json",
-          "zadania/mr/2022/maj/2022_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
-        ]
-      },
       "wykresy funkcji": {
-        "label": "wykresy-funkcji",
+        "label": "wykresy funkcji",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
@@ -2585,21 +2376,20 @@
       "wyrazenia algebraiczne": {
         "label": "wyrażenia algebraiczne",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json",
           "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
           "zadania/mr/2019/maj/2019_cke_r_m_g.json",
+          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
           "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
           "zadania/mr/2016/maj/2016_cke_r_m_g.json",
           "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "wyrazenia wymierne": {
-        "label": "wyrażenia-wymierne",
+        "label": "wyrażenia wymierne",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
@@ -2611,13 +2401,13 @@
         ]
       },
       "wzajemne polozenie dwoch okregow": {
-        "label": "wzajemne-położenie-dwóch-okręgów",
+        "label": "wzajemne położenie dwóch okręgów",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json"
         ]
       },
       "wzory na podwojony kat": {
-        "label": "wzory-na-podwojony-kąt",
+        "label": "wzory na podwojony kąt",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -2625,7 +2415,7 @@
         ]
       },
       "wzory na sume i roznice katow": {
-        "label": "wzory-na-sumę-i-różnice-kątów",
+        "label": "wzory na sumę i różnice kątów",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
@@ -2633,85 +2423,45 @@
         ]
       },
       "wzory redukcyjne": {
-        "label": "wzory-redukcyjne",
+        "label": "wzory redukcyjne",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
       "wzory skroconego mnozenia": {
-        "label": "wzory-skróconego-mnożenia",
+        "label": "wzory skróconego mnożenia",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
-          "zadania/mr/2021/maj/2021_cke_r_m.json"
+          "zadania/mr/2021/maj/2021_cke_r_m.json",
+          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
+          "zadania/mr/2015/maj/2015_cke_r_m_g.json"
         ]
       },
       "wzory viete'a": {
-        "label": "wzory-viete'a",
+        "label": "wzory viete'a",
         "sources": [
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
-      "zadania otwarte": {
-        "label": "zadania-otwarte",
+      "wlasnosci logarytmow": {
+        "label": "własności logarytmów",
         "sources": [
-          "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json",
-          "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json",
-          "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json",
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/maj/2019_cke_r_m_g.json",
-          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/maj/2018_cke_r_m_g.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/maj/2017_cke_r_m_g.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
-        ]
-      },
-      "zadania tekstowe": {
-        "label": "zadania-tekstowe",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json"
-        ]
-      },
-      "zadania z parametrem": {
-        "label": "zadania-z-parametrem",
-        "sources": [
-          "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json",
           "zadania/mr/2022/maj/2022_cke_r_m.json",
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       },
-      "zadanie problemowe": {
-        "label": "zadanie problemowe",
-        "sources": [
-          "zadania/mr/2020/czerwiec/2020_cke_r_c_g.json",
-          "zadania/mr/2020/lipiec_dodatkowy/2020_cke_r_l_d.json",
-          "zadania/mr/2019/czerwiec_dodatkowy/2019_cke_r_c_d.json",
-          "zadania/mr/2018/czerwiec_dodatkowy/2018_cke_r_c_d.json",
-          "zadania/mr/2017/czerwiec_dodatkowy/2017_cke_r_c_d.json",
-          "zadania/mr/2016/maj/2016_cke_r_m_g.json",
-          "zadania/mr/2016/czerwiec_dodatkowy/2016_cke_r_c_d.json",
-          "zadania/mr/2015/maj/2015_cke_r_m_g.json",
-          "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json"
-        ]
-      },
       "zdarzenia losowe": {
-        "label": "zdarzenia-losowe",
+        "label": "zdarzenia losowe",
         "sources": [
           "zadania/mr/2024/maj/2024_cke_r_m.json",
           "zadania/mr/2023/maj/2023_cke_r_m.json"
         ]
       },
       "zliczanie przypadkow": {
-        "label": "zliczanie-przypadków",
+        "label": "zliczanie przypadków",
         "sources": [
           "zadania/mr/2025/maj/2025_cke_r_m.json",
           "zadania/mr/2024/maj/2024_cke_r_m.json",
@@ -2719,31 +2469,16 @@
         ]
       },
       "zmiana podstawy logarytmu": {
-        "label": "zmiana-podstawy-logarytmu",
+        "label": "zmiana podstawy logarytmu",
         "sources": [
           "zadania/mr/2021/maj/2021_cke_r_m.json"
         ]
       }
     },
     "egzamin_osmoklasisty": {
-      "arkusz cke 2022": {
-        "label": "arkusz-cke-2022",
-        "sources": [
-          "zadania/eo/2022/maj/2022_cke_o_m.json"
-        ]
-      },
-      "bryly": {
-        "label": "bryly",
-        "sources": [
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json"
-        ]
-      },
       "ciagi": {
         "label": "ciągi",
         "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
@@ -2759,6 +2494,7 @@
         "label": "czworokąty",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
@@ -2767,7 +2503,7 @@
         ]
       },
       "diagram kolowy": {
-        "label": "diagram-kołowy",
+        "label": "diagram kołowy",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
@@ -2790,63 +2526,46 @@
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
       },
-      "dzialania na liczbach": {
-        "label": "działania-na-liczbach",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json",
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
-        ]
-      },
       "dzialania na potegach": {
-        "label": "działania-na-potęgach",
+        "label": "działania na potęgach",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "dzielenie z reszta": {
-        "label": "dzielenie-z-reszta",
+        "label": "dzielenie z reszta",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json"
-        ]
-      },
-      "funkcje": {
-        "label": "funkcje",
-        "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
-        ]
-      },
-      "geometria": {
-        "label": "geometria",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "geometria analityczna": {
         "label": "geometria analityczna",
         "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
       },
       "geometria przestrzenna": {
-        "label": "geometria-przestrzenna",
+        "label": "geometria przestrzenna",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json"
+        ]
+      },
+      "kombinatoryka": {
+        "label": "kombinatoryka",
+        "sources": [
+          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
+        ]
+      },
+      "kwadrat": {
+        "label": "kwadrat",
+        "sources": [
+          "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2023/maj/2023_cke_o_m.json"
         ]
       },
       "katy": {
@@ -2858,35 +2577,19 @@
         ]
       },
       "katy w trojkacie": {
-        "label": "kąty-w-trójkącie",
+        "label": "kąty w trójkącie",
         "sources": [
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "katy w wielokatach": {
-        "label": "kąty-w-wielokątach",
+        "label": "kąty w wielokątach",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
       },
-      "kombinatoryka": {
-        "label": "kombinatoryka",
-        "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
-        ]
-      },
-      "kwadrat": {
-        "label": "kwadrat",
-        "sources": [
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json"
-        ]
-      },
       "liczby calkowite": {
-        "label": "liczby-całkowite",
+        "label": "liczby całkowite",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json"
@@ -2895,34 +2598,34 @@
       "liczby i dzialania": {
         "label": "liczby i działania",
         "sources": [
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
+          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
         ]
       },
       "liczby naturalne": {
-        "label": "liczby-naturalne",
+        "label": "liczby naturalne",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
       "liczby parzyste": {
-        "label": "liczby-parzyste",
+        "label": "liczby parzyste",
         "sources": [
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "liczby ujemne": {
-        "label": "liczby-ujemne",
+        "label": "liczby ujemne",
         "sources": [
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "liczby wymierne": {
-        "label": "liczby-wymierne",
+        "label": "liczby wymierne",
         "sources": [
           "zadania/eo/2024/maj/2024_cke_o_m.json"
         ]
@@ -2944,18 +2647,17 @@
         "label": "objętość",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2023/maj/2023_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
+          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
         ]
       },
-      "objetosc bryl": {
-        "label": "objętość-brył",
+      "obwody figur": {
+        "label": "obwody figur",
         "sources": [
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json"
+          "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
       "obwod": {
@@ -2964,18 +2666,12 @@
           "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
       },
-      "obwody figur": {
-        "label": "obwody-figur",
-        "sources": [
-          "zadania/eo/2025/maj/2025_cke_o_m.json"
-        ]
-      },
       "odczytywanie danych": {
-        "label": "odczytywanie-danych",
+        "label": "odczytywanie danych",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
@@ -2983,31 +2679,15 @@
         ]
       },
       "odczytywanie tabel": {
-        "label": "odczytywanie-tabel",
+        "label": "odczytywanie tabel",
         "sources": [
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "odleglosc punktow": {
-        "label": "odległość-punktów",
+        "label": "odległość punktów",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json"
-        ]
-      },
-      "okregi i kola": {
-        "label": "okręgi i koła",
-        "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
-        ]
-      },
-      "os liczbowa": {
-        "label": "oś-liczbowa",
-        "sources": [
-          "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
       "ostroslup": {
@@ -3017,6 +2697,12 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json"
+        ]
+      },
+      "os liczbowa": {
+        "label": "oś liczbowa",
+        "sources": [
+          "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
       "parzystosc": {
@@ -3031,10 +2717,9 @@
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
@@ -3042,60 +2727,59 @@
       "podzielnosc": {
         "label": "podzielność",
         "sources": [
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
+          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
         ]
       },
       "pola figur": {
-        "label": "pola-figur",
+        "label": "pola figur",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
       },
       "pole figury": {
-        "label": "pole-figury",
+        "label": "pole figury",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
       },
       "pole kwadratu": {
-        "label": "pole-kwadratu",
+        "label": "pole kwadratu",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
       },
       "pole powierzchni": {
-        "label": "pole-powierzchni",
+        "label": "pole powierzchni",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "pole powierzchni bryl": {
-        "label": "pole-powierzchni-brył",
+        "label": "pole powierzchni brył",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
       "pole trojkata": {
-        "label": "pole-trójkąta",
+        "label": "pole trójkąta",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "porownywanie liczb": {
-        "label": "porównywanie-liczb",
+        "label": "porównywanie liczb",
         "sources": [
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
@@ -3107,11 +2791,9 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
+          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
         ]
       },
       "prawdopodobienstwo": {
@@ -3120,30 +2802,11 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
-        ]
-      },
-      "predkosc droga czas": {
-        "label": "prędkość-droga-czas",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json",
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
-        ]
-      },
-      "predkosc, droga i czas": {
-        "label": "prędkość, droga i czas",
-        "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
       },
@@ -3153,6 +2816,7 @@
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -3165,7 +2829,10 @@
         "label": "proporcje",
         "sources": [
           "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json"
+          "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
+          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json"
         ]
       },
       "proporcjonalnosc": {
@@ -3181,19 +2848,19 @@
         ]
       },
       "proste prostopadle": {
-        "label": "proste-prostopadłe",
+        "label": "proste prostopadłe",
         "sources": [
           "zadania/eo/2023/maj/2023_cke_o_m.json"
         ]
       },
       "proste rownolegle": {
-        "label": "proste-równoległe",
+        "label": "proste równoległe",
         "sources": [
           "zadania/eo/2023/maj/2023_cke_o_m.json"
         ]
       },
       "prostokat": {
-        "label": "prostokąt",
+        "label": "prostokat",
         "sources": [
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
@@ -3210,10 +2877,32 @@
         ]
       },
       "przeksztalcanie wzorow": {
-        "label": "przekształcanie-wzorów",
+        "label": "przekształcanie wzorów",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json"
+        ]
+      },
+      "predkosc, droga i czas": {
+        "label": "prędkość, droga i czas",
+        "sources": [
+          "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2021/maj/2021_cke_o_m.json",
+          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
+          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
+          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
+          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
+          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
+        ]
+      },
+      "rozumowanie": {
+        "label": "rozumowanie",
+        "sources": [
+          "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
       },
       "rownania": {
@@ -3229,7 +2918,7 @@
         ]
       },
       "rownania liniowe": {
-        "label": "równania-liniowe",
+        "label": "równania liniowe",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
@@ -3243,12 +2932,6 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
-      "rozumowanie": {
-        "label": "rozumowanie",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json"
-        ]
-      },
       "skala": {
         "label": "skala",
         "sources": [
@@ -3260,37 +2943,27 @@
       "skala i jednostki": {
         "label": "skala i jednostki",
         "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
-        ]
-      },
-      "srednia arytmetyczna": {
-        "label": "średnia-arytmetyczna",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json",
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
+          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json"
         ]
       },
       "statystyka": {
         "label": "statystyka",
         "sources": [
+          "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
+          "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
+          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
         ]
       },
       "stereometria": {
         "label": "stereometria",
         "sources": [
+          "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
@@ -3299,7 +2972,7 @@
         ]
       },
       "suma liczb naturalnych": {
-        "label": "suma-liczb-naturalnych",
+        "label": "suma liczb naturalnych",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
@@ -3324,15 +2997,21 @@
           "zadania/eo/2024/maj/2024_cke_o_m.json"
         ]
       },
+      "trojki pitagorejskie": {
+        "label": "trójki pitagorejskie",
+        "sources": [
+          "zadania/eo/2021/maj/2021_cke_o_m.json"
+        ]
+      },
       "trojkat prostokatny": {
-        "label": "trójkąt-prostokątny",
+        "label": "trójkąt prostokątny",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json"
         ]
       },
       "trojkat rownoboczny": {
-        "label": "trójkąt-równoboczny",
+        "label": "trójkąt równoboczny",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json"
         ]
@@ -3340,7 +3019,12 @@
       "trojkaty": {
         "label": "trójkąty",
         "sources": [
+          "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
@@ -3348,28 +3032,18 @@
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
       },
-      "trojki pitagorejskie": {
-        "label": "trójki-pitagorejskie",
-        "sources": [
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
-        ]
-      },
-      "twierdzenie pitagorasa": {
-        "label": "twierdzenie-pitagorasa",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json",
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
-        ]
-      },
       "uklad wspolrzednych": {
-        "label": "układ-współrzędnych",
+        "label": "układ współrzędnych",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json"
+        ]
+      },
+      "uzasadnianie": {
+        "label": "uzasadnianie",
+        "sources": [
+          "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
       "ulamki": {
@@ -3378,19 +3052,26 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2021/maj/2021_cke_o_m.json",
+          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
+          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
+          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
+          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
       },
       "ulamki dziesietne": {
-        "label": "ułamki-dziesiętne",
+        "label": "ułamki dziesiętne",
         "sources": [
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
-      "uzasadnianie": {
-        "label": "uzasadnianie",
+      "wartosc bezwzgledna": {
+        "label": "wartość bezwzględna",
         "sources": [
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
+          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
+          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
+          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
         ]
       },
       "wielokaty": {
@@ -3400,7 +3081,7 @@
         ]
       },
       "wspolrzedne punktu": {
-        "label": "współrzędne-punktu",
+        "label": "współrzędne punktu",
         "sources": [
           "zadania/eo/2024/maj/2024_cke_o_m.json"
         ]
@@ -3412,13 +3093,15 @@
         ]
       },
       "wyrazenia algebraiczne": {
-        "label": "wyrażenia-algebraiczne",
+        "label": "wyrażenia algebraiczne",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
+          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
@@ -3426,7 +3109,7 @@
         ]
       },
       "wyrazenia arytmetyczne": {
-        "label": "wyrażenia-arytmetyczne",
+        "label": "wyrażenia arytmetyczne",
         "sources": [
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
@@ -3438,41 +3121,8 @@
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
-      "zadania otwarte": {
-        "label": "zadania-otwarte",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json",
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json",
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
-          "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
-        ]
-      },
-      "zadania tekstowe": {
-        "label": "zadania-tekstowe",
-        "sources": [
-          "zadania/eo/2026/maj/2026_cke_o_m.json",
-          "zadania/eo/2025/maj/2025_cke_o_m.json",
-          "zadania/eo/2024/maj/2024_cke_o_m.json",
-          "zadania/eo/2023/maj/2023_cke_o_m.json",
-          "zadania/eo/2021/maj/2021_cke_o_m.json"
-        ]
-      },
-      "zadanie problemowe": {
-        "label": "zadanie problemowe",
-        "sources": [
-          "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
-          "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
-          "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
-        ]
-      },
       "zliczanie przypadkow": {
-        "label": "zliczanie-przypadków",
+        "label": "zliczanie przypadków",
         "sources": [
           "zadania/eo/2024/maj/2024_cke_o_m.json"
         ]

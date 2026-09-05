@@ -7,8 +7,7 @@
     "hint": "Rozłóż wielomian na czynniki lub wykorzystaj jego pierwiastki i współczynniki.",
     "answer": "D",
     "tags": [
-      "wielomiany",
-      "podzielność"
+      "wielomiany"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -47,8 +46,7 @@
     "answer": "C",
     "tags": [
       "pochodne",
-      "funkcje",
-      "liczby i działania"
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -87,8 +85,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "ciągi",
-      "równania",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -131,15 +127,13 @@
   {
     "file": "7_2020_cke_r_l_d.webp",
     "difficulty": 4,
-    "topic": "trygonometria",
+    "topic": "czworokąty",
     "level": "matura_rozszerzona",
-    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "trygonometria",
-      "okręgi i koła",
-      "trójkąty",
       "czworokąty",
+      "wartość bezwzględna",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -170,12 +164,11 @@
   {
     "file": "8_2020_cke_r_l_d.webp",
     "difficulty": 4,
-    "topic": "nierówności",
+    "topic": "podzielność",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
       "podzielność",
       "dowodzenie",
       "zadania-otwarte"
@@ -209,15 +202,12 @@
   {
     "file": "9_2020_cke_r_l_d.webp",
     "difficulty": 4,
-    "topic": "funkcje",
+    "topic": "równania",
     "level": "matura_rozszerzona",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje",
       "równania",
-      "trygonometria",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -269,14 +259,11 @@
   {
     "file": "10_2020_cke_r_l_d.webp",
     "difficulty": 4,
-    "topic": "logarytmy",
+    "topic": "liczby i działania",
     "level": "matura_rozszerzona",
-    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "logarytmy",
-      "równania",
-      "czworokąty",
       "liczby i działania",
       "zadania-otwarte"
     ],
@@ -309,13 +296,12 @@
   {
     "file": "11_2020_cke_r_l_d.webp",
     "difficulty": 5,
-    "topic": "nierówności",
+    "topic": "liczby i działania",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
-      "czworokąty",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -351,17 +337,14 @@
   {
     "file": "12_2020_cke_r_l_d.webp",
     "difficulty": 5,
-    "topic": "ciągi",
+    "topic": "geometria analityczna",
     "level": "matura_rozszerzona",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi",
-      "równania",
       "geometria analityczna",
-      "wektory",
-      "okręgi i koła",
-      "trójkąty",
+      "czworokąty",
+      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -442,17 +425,13 @@
   {
     "file": "14_2020_cke_r_l_d.webp",
     "difficulty": 5,
-    "topic": "funkcje",
+    "topic": "trygonometria",
     "level": "matura_rozszerzona",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje",
-      "równania",
       "trygonometria",
-      "trójkąty",
       "czworokąty",
-      "pola figur",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -506,17 +485,13 @@
   {
     "file": "15_2020_cke_r_l_d.webp",
     "difficulty": 5,
-    "topic": "pochodne",
+    "topic": "stereometria",
     "level": "matura_rozszerzona",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
-      "funkcje",
-      "nierówności",
-      "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
+      "stereometria",
+      "objętość",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

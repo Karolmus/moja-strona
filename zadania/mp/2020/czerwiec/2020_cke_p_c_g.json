@@ -2,12 +2,12 @@
   {
     "file": "1_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "liczby i działania",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -47,8 +47,7 @@
     "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
     "answer": "D",
     "tags": [
-      "logarytmy",
-      "potęgi"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -88,8 +87,7 @@
     "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "A",
     "tags": [
-      "nierówności",
-      "równania"
+      "nierówności"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -104,12 +102,11 @@
   {
     "file": "6_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "nierówności",
+    "topic": "równania",
     "level": "matura_podstawowa",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "B",
     "tags": [
-      "nierówności",
       "równania"
     ],
     "maxPoints": 1,
@@ -130,8 +127,7 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "D",
     "tags": [
-      "funkcje",
-      "czworokąty"
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -151,8 +147,7 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "C",
     "tags": [
-      "funkcje",
-      "czworokąty"
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -167,13 +162,15 @@
   {
     "file": "9_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "B",
     "tags": [
+      "funkcja kwadratowa",
       "funkcje",
-      "czworokąty"
+      "geometria analityczna",
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -188,13 +185,12 @@
   {
     "file": "10_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "nierówności",
+    "topic": "liczby i działania",
     "level": "matura_podstawowa",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "B",
     "tags": [
-      "nierówności",
-      "równania"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -209,13 +205,14 @@
   {
     "file": "11_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "funkcja liniowa",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Zapisz zależność liniową i wykorzystaj współczynnik kierunkowy oraz punkt należący do wykresu.",
     "answer": "D",
     "tags": [
+      "funkcja liniowa",
       "funkcje",
-      "odczytywanie danych"
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -235,8 +232,7 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "B",
     "tags": [
-      "funkcje",
-      "równania"
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -256,8 +252,7 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "C",
     "tags": [
-      "równania",
-      "geometria analityczna"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -312,13 +307,13 @@
   {
     "file": "16_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "funkcja liniowa",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Zapisz zależność liniową i wykorzystaj współczynnik kierunkowy oraz punkt należący do wykresu.",
     "answer": "D",
     "tags": [
-      "funkcje",
-      "odczytywanie danych"
+      "funkcja liniowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -358,8 +353,7 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "A",
     "tags": [
-      "równania",
-      "geometria analityczna"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -374,13 +368,12 @@
   {
     "file": "19_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "funkcje",
+    "topic": "czworokąty",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "funkcje",
-      "trygonometria"
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -415,14 +408,12 @@
   {
     "file": "21_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "prawdopodobieństwo",
+    "topic": "liczby i działania",
     "level": "matura_podstawowa",
-    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "C",
     "tags": [
-      "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -437,14 +428,13 @@
   {
     "file": "22_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "trójkąty",
+    "topic": "pola figur",
     "level": "matura_podstawowa",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "C",
     "tags": [
-      "trójkąty",
-      "czworokąty",
-      "pola figur"
+      "pola figur",
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -459,12 +449,11 @@
   {
     "file": "23_2020_cke_p_c_g.webp",
     "difficulty": 2,
-    "topic": "prawdopodobieństwo",
+    "topic": "statystyka",
     "level": "matura_podstawowa",
-    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "A",
     "tags": [
-      "prawdopodobieństwo",
       "statystyka"
     ],
     "maxPoints": 1,
@@ -485,9 +474,7 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "A",
     "tags": [
-      "stereometria",
-      "pola figur",
-      "objętość"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -508,7 +495,6 @@
     "answer": "B",
     "tags": [
       "stereometria",
-      "pola figur",
       "objętość"
     ],
     "maxPoints": 1,
@@ -524,17 +510,12 @@
   {
     "file": "26_2020_cke_p_c_g.webp",
     "difficulty": 3,
-    "topic": "pierwiastki",
+    "topic": "nierówności",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "funkcja kwadratowa",
-      "funkcje",
       "nierówności",
-      "równania",
-      "statystyka",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -561,15 +542,12 @@
   {
     "file": "27_2020_cke_p_c_g.webp",
     "difficulty": 3,
-    "topic": "nierówności",
+    "topic": "równania",
     "level": "matura_podstawowa",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
       "równania",
-      "wyrażenia algebraiczne",
-      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -584,16 +562,12 @@
   {
     "file": "28_2020_cke_p_c_g.webp",
     "difficulty": 3,
-    "topic": "funkcja kwadratowa",
+    "topic": "nierówności",
     "level": "matura_podstawowa",
-    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcja kwadratowa",
       "nierówności",
-      "czworokąty",
-      "podzielność",
-      "liczby i działania",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -655,7 +629,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "trójkąty",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -689,10 +662,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka",
-      "liczby i działania",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -715,16 +684,12 @@
   {
     "file": "31_2020_cke_p_c_g.webp",
     "difficulty": 3,
-    "topic": "funkcje",
+    "topic": "trygonometria",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje",
-      "równania",
       "trygonometria",
-      "trójkąty",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -743,17 +708,15 @@
   {
     "file": "32_2020_cke_p_c_g.webp",
     "difficulty": 4,
-    "topic": "funkcja kwadratowa",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcja kwadratowa",
-      "funkcje",
-      "równania",
-      "trygonometria",
       "geometria analityczna",
+      "pola figur",
       "czworokąty",
+      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -788,14 +751,13 @@
   {
     "file": "33_2020_cke_p_c_g.webp",
     "difficulty": 4,
-    "topic": "ciągi",
+    "topic": "ciąg geometryczny",
     "level": "matura_podstawowa",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
+      "ciąg geometryczny",
       "ciągi",
-      "równania",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -826,17 +788,14 @@
   {
     "file": "34_2020_cke_p_c_g.webp",
     "difficulty": 5,
-    "topic": "pierwiastki",
+    "topic": "trygonometria",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "ciągi",
-      "funkcja kwadratowa",
-      "funkcje",
-      "nierówności",
-      "równania",
+      "trygonometria",
+      "stereometria",
+      "objętość",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

@@ -103,41 +103,65 @@ REPAIRED_SOURCES = {
 # The main May 2021 eighth-grade set is already present in the project.
 SKIPPED_SESSIONS = {("03_egzamin_osmoklasisty", 2021, "main", "")}
 
-TOPIC_RULES = [
-    ("granice", ("granica", "granicę", "granic ciąg")),
-    ("pochodne", ("pochodn", "styczn[aey] do wykresu")),
-    ("logarytmy", ("logarytm", "log_")),
-    ("potęgi", ("potęg", "wykładnik")),
-    ("pierwiastki", ("pierwiast", "√")),
-    ("procenty", ("procent", "%")),
-    ("ciągi arytmetyczne", ("ciąg arytmetycz",)),
-    ("ciągi geometryczne", ("ciąg geometrycz",)),
-    ("ciągi", ("ciąg", "wyrazów ciągu", "wyrazu ciągu")),
-    ("funkcja kwadratowa", ("funkcj kwadrat", "trójmian kwadrat")),
-    ("funkcje", ("funkcj", "wykres")),
-    ("nierówności", ("nierówno",)),
-    ("równania", ("równan",)),
-    ("wielomiany", ("wielomian",)),
-    ("wartość bezwzględna", ("wartość bezwzględ",)),
-    ("wyrażenia algebraiczne", ("wyrażen algebra", "jednomian", "dwumian")),
-    ("trygonometria", ("trygonom", "sin", "cos", "tangens", "tg ", "kąt między")),
-    ("prawdopodobieństwo", ("prawdopodob", "losujem", "rzut kost", "rzucamy kost")),
-    ("kombinatoryka", ("kombinatory", "permutac", "wariac", "kombinac")),
-    ("statystyka", ("średni", "mediana", "dominanta", "diagram", "statystyk")),
-    ("geometria analityczna", ("kartezjań", "układzie współrzęd", "współrzędne punkt")),
-    ("wektory", ("wektor",)),
-    ("okręgi i koła", ("okrąg", "okręgu", "koło", "kole ")),
-    ("trójkąty", ("trójkąt", "twierdzenie pitagorasa")),
-    ("czworokąty", ("czworokąt", "kwadrat", "prostokąt", "trapez", "romb", "równoległobok")),
-    ("stereometria", ("ostrosłup", "graniastosłup", "sześcian", "prostopadłościan", "brył")),
-    ("pola figur", ("pole ", "pola ")),
-    ("objętość", ("objęto", "pojemno")),
-    ("podzielność", ("podziel", "nwd", "nww", "liczb pierwsz")),
-    ("prędkość, droga i czas", ("prędko", "droga", "czas przejazdu")),
-    ("skala i jednostki", ("skala", "jednost",)),
-    ("liczby i działania", ("liczb rzeczywist", "liczb natural", "ułam", "działania na liczbach")),
-    ("odczytywanie danych", ("tabel", "wykres", "diagram", "odczyt")),
+# Kolejność odpowiada priorytetowi głównego tematu zadania. Reguły są celowo
+# wąskie: tag ma opisywać zagadnienie, a nie każde słowo wspomniane w rozwiązaniu.
+TAG_RULES = [
+    ("granice", (r"\bgranic\w*",)),
+    ("pochodne", (r"\bpochodn\w*", r"\bstyczn\w*.*\bwykres")),
+    ("logarytmy", (r"\blogarytm\w*", r"\blog\s*[\d(]", r"\bln\s*[\d(]")),
+    ("ciąg arytmetyczny", (r"\bciag\w* arytmetycz",)),
+    ("ciąg geometryczny", (r"\bciag\w* geometrycz", r"\bszereg\w* geometrycz")),
+    ("ciągi", (r"\bciag\w*", r"\bwyraz\w* ciagu")),
+    ("funkcja kwadratowa", (r"\bfunkcj\w* kwadrat", r"\btrojmian\w* kwadrat", r"\bparabol\w*")),
+    ("funkcja liniowa", (r"\bfunkcj\w* liniow", r"\bwspolczynnik\w* kierunkow")),
+    ("funkcje wymierne", (r"\bfunkcj\w* wymiern", r"\bmianownik\w*.*\bdziedzin")),
+    ("funkcja wykładnicza", (r"\bfunkcj\w* wykladnic",)),
+    ("funkcja logarytmiczna", (r"\bfunkcj\w* logarytm",)),
+    ("funkcje", (r"\bfunkcj\w*", r"\bwykres\w* funkcj", r"\bdziedzin\w* funkcj")),
+    ("trygonometria", (r"\btrygonometr\w*", r"\bsinus\w*", r"\bcosinus\w*", r"\btangens\w*", r"\bcotangens\w*")),
+    ("prawdopodobieństwo", (r"\bprawdopodob\w*", r"\blosow\w*", r"\burn\w*", r"\bkostk\w*", r"\bmonet\w*")),
+    ("kombinatoryka", (r"\bkombinator\w*", r"\bpermutac\w*", r"\bwariac\w*", r"\bkombinac\w*", r"\bliczb\w* sposob\w*")),
+    ("statystyka", (r"\bsredni\w* arytmetycz", r"\bmedian\w*", r"\bdominant\w*", r"\brozstep\w*", r"\bodchylen\w*")),
+    ("wektory", (r"\bwektor\w*",)),
+    ("geometria analityczna", (r"\bwspolrzedn\w*", r"\buklad\w* wspolrzedn", r"\bprosta o rownaniu", r"\bodleglosc\w* punkt")),
+    ("okręgi i koła", (r"\bokrag\w*", r"\bcieciw\w*", r"\bstyczn\w*.*\bokrag")),
+    ("stereometria", (r"\bostroslup\w*", r"\bgraniastoslup\w*", r"\bprostopadloscian\w*", r"\bszescian\w*", r"\bstozek\w*", r"\bwalec\w*", r"\bkula\w*", r"\bbryl\w*")),
+    ("objętość", (r"\bobjetosc\w*", r"\bpojemnosc\w*")),
+    ("pola figur", (r"\bpole\s+(?:trojkat\w*|czworokat\w*|trapez\w*|romb\w*|prostokat\w*|kwadrat\w*|figury|kola)",)),
+    ("trójkąty", (r"\btrojkat\w*", r"\bpitagoras\w*", r"\btales\w*")),
+    ("czworokąty", (r"\bczworokat\w*", r"\bprostokat\w*", r"\btrapez\w*", r"\bromb\w*", r"\brownoleglobok\w*", r"\bkwadrat(?!ow\w*)")),
+    ("prędkość, droga i czas", (r"\bpredkosc\w*", r"\bdroga\w*", r"\bczas\w* przejazd")),
+    ("skala i jednostki", (r"\bskal\w*", r"\bjednostk\w*")),
+    ("procenty", (r"\bprocent\w*", r"%")),
+    ("proporcje", (r"\bproporcj\w*", r"\bstosunk\w*", r"\bwprost proporcjonal")),
+    ("podzielność", (r"\bpodzieln\w*", r"\bwielokrotnosc\w*", r"\bnwd\b", r"\bnww\b", r"\breszta z dzielen")),
+    ("potęgi", (r"\bpoteg\w*", r"\bwykladnik\w*", r"\bnotacj\w* wykladnic")),
+    ("pierwiastki", (r"\bpierwiast\w*", r"√", r"\bsqrt\b")),
+    ("ułamki", (r"\bulam\w*", r"\bmianownik\w*", r"\blicznik\w*")),
+    ("wartość bezwzględna", (r"\bwartosc\w* bezwzgledn", r"\|[^|]{1,120}\|")),
+    ("wielomiany", (r"\bwielomian\w*", r"\bpodzieln\w* przez\s*\(\s*[a-z]", r"\breszta\w*.*\bdzielen")),
+    ("wzory skróconego mnożenia", (r"\bwzor\w* skrocon\w* mnozen",)),
+    ("wyrażenia algebraiczne", (r"\bwyrazen\w* algebraiczn", r"\bjednomian\w*", r"\bdwumian\w*", r"\bwspolczynnik\w*")),
+    ("układy równań", (r"\buklad\w* rownan",)),
+    ("równania z parametrem", (r"\bparametr\w*",)),
+    ("nierówności", (r"\bnierown\w*",)),
+    ("równania", (r"\brownan\w*", r"\brozwiaz\w*\s+rown")),
+    ("przedziały liczbowe", (r"\bprzedzial\w* liczb", r"\bzbior\w* rozwiazan")),
+    ("liczby i działania", (r"\bliczb\w* (?:natural|calkowit|wymiern|rzeczywist)", r"\bwartosc\w* wyrazenia")),
+    ("odczytywanie danych", (r"\btabel\w*", r"\bdiagram\w*", r"\bdane przedstawion", r"\bwykres\w*")),
 ]
+
+TAG_PARENTS = {
+    "ciąg arytmetyczny": ("ciągi",),
+    "ciąg geometryczny": ("ciągi",),
+    "funkcja kwadratowa": ("funkcje",),
+    "funkcja liniowa": ("funkcje",),
+    "funkcje wymierne": ("funkcje",),
+    "funkcja wykładnicza": ("funkcje",),
+    "funkcja logarytmiczna": ("funkcje",),
+    "układy równań": ("równania",),
+    "równania z parametrem": ("równania",),
+}
 
 HINTS = {
     "granice": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
@@ -146,15 +170,27 @@ HINTS = {
     "potęgi": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "pierwiastki": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "procenty": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "proporcje": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "ciągi arytmetyczne": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "ciągi geometryczne": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "ciąg arytmetyczny": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
+    "ciąg geometryczny": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
     "ciągi": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
     "funkcja kwadratowa": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
+    "funkcja liniowa": "Zapisz zależność liniową i wykorzystaj współczynnik kierunkowy oraz punkt należący do wykresu.",
+    "funkcje wymierne": "Wyznacz dziedzinę i przekształć wyrażenie, pamiętając o wykluczeniach z mianownika.",
+    "funkcja wykładnicza": "Sprowadź obie strony do wspólnej podstawy albo skorzystaj z własności funkcji wykładniczej.",
+    "funkcja logarytmiczna": "Ustal dziedzinę, a następnie zastosuj definicję i własności logarytmów.",
     "funkcje": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "nierówności": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "równania": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "układy równań": "Zapisz oba równania i rozwiąż układ metodą podstawiania lub przeciwnych współczynników.",
+    "równania z parametrem": "Rozpatrz warunki zależne od parametru i sprawdź liczbę dopuszczalnych rozwiązań.",
+    "przedziały liczbowe": "Zaznacz punkty graniczne i zapisz zbiór spełniający podany warunek.",
     "wielomiany": "Rozłóż wielomian na czynniki lub wykorzystaj jego pierwiastki i współczynniki.",
+    "wzory skróconego mnożenia": "Rozpoznaj odpowiedni wzór i przekształć wyrażenie, zachowując znaki.",
     "wartość bezwzględna": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
+    "ułamki": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "wyrażenia algebraiczne": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
     "trygonometria": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "prawdopodobieństwo": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
@@ -173,7 +209,132 @@ HINTS = {
     "skala i jednostki": "Sprowadź wielkości do wspólnych jednostek i zastosuj skalę lub proporcję.",
     "liczby i działania": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "odczytywanie danych": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
+    "dowodzenie": "Zapisz kolejne uzasadnione przekształcenia i wskaż, dlaczego prowadzą do tezy.",
     "zadanie problemowe": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+}
+
+# Warianty pochodzące ze starszych, ręcznie opisywanych arkuszy. Indeks i
+# filtrowanie traktują je jako jeden temat, bez przepisywania tych plików.
+TAG_LABELS = {
+    "ciag arytmetyczny": "ciąg arytmetyczny",
+    "ciagi arytmetyczne": "ciąg arytmetyczny",
+    "ciag geometryczny": "ciąg geometryczny",
+    "ciagi geometryczne": "ciąg geometryczny",
+    "ciag rekurencyjny": "ciągi",
+    "funkcja kwadratowa": "funkcja kwadratowa",
+    "funkcja liniowa": "funkcja liniowa",
+    "funkcja wykladnicza": "funkcja wykładnicza",
+    "funkcja logarytmiczna": "funkcja logarytmiczna",
+    "funkcje wymierne": "funkcje wymierne",
+    "funkcje trygonometryczne": "trygonometria",
+    "funkcje wykładnicze": "funkcja wykładnicza",
+    "funkcje wykladnicze": "funkcja wykładnicza",
+    "funkcje logarytmiczne": "funkcja logarytmiczna",
+    "zadania z parametrem": "równania z parametrem",
+    "rownania z parametrem": "równania z parametrem",
+    "wartosc bezwzgledna": "wartość bezwzględna",
+    "pola trojkatow": "pola figur",
+    "pola czworokatow": "pola figur",
+    "pola figur": "pola figur",
+    "objetosc bryl": "objętość",
+    "bryly": "stereometria",
+    "twierdzenie pitagorasa": "trójkąty",
+    "predkosc droga czas": "prędkość, droga i czas",
+    "srednia arytmetyczna": "statystyka",
+    "wyrazenia algebraiczne": "wyrażenia algebraiczne",
+    "geometria analityczna": "geometria analityczna",
+    "ulamki": "ułamki",
+    "potegi": "potęgi",
+    "trojkaty": "trójkąty",
+    "czworokaty": "czworokąty",
+    "okregi i kola": "okręgi i koła",
+    "prawdopodobienstwo": "prawdopodobieństwo",
+    "skala i jednostki": "skala i jednostki",
+    "przedzialy liczbowe": "przedziały liczbowe",
+}
+
+NON_THEMATIC_TAGS = {
+    "arkusz cke 2022",
+    "matura podstawowa",
+    "matura rozszerzona",
+    "egzamin osmoklasisty",
+    "zadanie problemowe",
+    "zadania otwarte",
+    "zadanie otwarte",
+    "zadania zamkniete",
+    "zadanie zamkniete",
+    "prawda falsz",
+    "wybor wielokrotny",
+    "zadania tekstowe",
+    "zadanie tekstowe",
+    "dzialania na liczbach",
+    "modelowanie matematyczne",
+    "geometria",
+    "planimetria",
+}
+
+# Dwa starsze archiwa miały wyłącznie techniczny tag całego arkusza. Poniższe
+# przypisania zostały zweryfikowane względem treści zadań, aby przywrócić je do
+# wspólnego filtrowania z pozostałymi latami.
+CURATED_TAGS = {
+    "zadania/eo/2022/maj/2022_cke_o_m.json": {
+        "1": ("procenty", ("procenty", "odczytywanie danych")),
+        "2": ("ułamki", ("ułamki", "liczby i działania")),
+        "3": ("liczby i działania", ("liczby i działania",)),
+        "4": ("podzielność", ("podzielność",)),
+        "5": ("potęgi", ("potęgi",)),
+        "6": ("proporcje", ("proporcje",)),
+        "7": ("wyrażenia algebraiczne", ("wyrażenia algebraiczne",)),
+        "8": ("pierwiastki", ("pierwiastki",)),
+        "9": ("liczby i działania", ("liczby i działania",)),
+        "10": ("proporcje", ("proporcje",)),
+        "11": ("ułamki", ("ułamki",)),
+        "12": ("proporcje", ("proporcje",)),
+        "13": ("trójkąty", ("trójkąty",)),
+        "14": ("prawdopodobieństwo", ("prawdopodobieństwo",)),
+        "15": ("pola figur", ("pola figur", "czworokąty", "trójkąty")),
+        "16": ("procenty", ("procenty",)),
+        "17": ("prędkość, droga i czas", ("prędkość, droga i czas",)),
+        "18": ("czworokąty", ("czworokąty", "trójkąty")),
+        "19": ("stereometria", ("stereometria", "czworokąty")),
+    },
+    "zadania/mp/2022/maj/2022_cke_p_m.json": {
+        "1": ("pierwiastki", ("pierwiastki",)),
+        "2": ("proporcje", ("proporcje",)),
+        "3": ("logarytmy", ("logarytmy",)),
+        "4": ("procenty", ("procenty",)),
+        "5": ("potęgi", ("potęgi", "pierwiastki")),
+        "6": ("układy równań", ("układy równań", "równania")),
+        "7": ("nierówności", ("nierówności",)),
+        "8": ("równania", ("równania",)),
+        "9": ("funkcje", ("funkcje",)),
+        "10": ("funkcje", ("funkcje",)),
+        "11": ("funkcja liniowa", ("funkcja liniowa", "funkcje")),
+        "12": ("funkcja kwadratowa", ("funkcja kwadratowa", "funkcje")),
+        "13": ("ciągi", ("ciągi",)),
+        "14": ("ciąg arytmetyczny", ("ciąg arytmetyczny", "ciągi")),
+        "15": ("ciąg geometryczny", ("ciąg geometryczny", "ciągi")),
+        "16": ("trygonometria", ("trygonometria",)),
+        "17": ("okręgi i koła", ("okręgi i koła",)),
+        "18": ("czworokąty", ("czworokąty", "okręgi i koła")),
+        "19": ("pola figur", ("pola figur", "trójkąty")),
+        "20": ("pola figur", ("pola figur", "czworokąty")),
+        "21": ("geometria analityczna", ("geometria analityczna",)),
+        "22": ("geometria analityczna", ("geometria analityczna",)),
+        "23": ("geometria analityczna", ("geometria analityczna",)),
+        "24": ("geometria analityczna", ("geometria analityczna", "czworokąty")),
+        "25": ("stereometria", ("stereometria", "czworokąty")),
+        "26": ("stereometria", ("stereometria",)),
+        "27": ("podzielność", ("podzielność",)),
+        "28": ("statystyka", ("statystyka",)),
+        "29": ("nierówności", ("nierówności",)),
+        "30": ("ciąg arytmetyczny", ("ciąg arytmetyczny", "ciągi")),
+        "31": ("dowodzenie", ("dowodzenie", "nierówności")),
+        "32": ("trygonometria", ("trygonometria",)),
+        "33": ("trójkąty", ("trójkąty",)),
+        "34": ("prawdopodobieństwo", ("prawdopodobieństwo",)),
+        "35": ("funkcja kwadratowa", ("funkcja kwadratowa", "funkcje", "geometria analityczna")),
+    },
 }
 
 
@@ -220,7 +381,16 @@ def normalize_text(text: str) -> str:
 
 def ascii_fold(text: str) -> str:
     normalized = unicodedata.normalize("NFD", text.lower())
-    return "".join(char for char in normalized if unicodedata.category(char) != "Mn")
+    return "".join(char for char in normalized if unicodedata.category(char) != "Mn").replace("ł", "l")
+
+
+def tag_key(tag: str) -> str:
+    return " ".join(ascii_fold(str(tag or "")).replace("-", " ").split())
+
+
+def canonical_tag_label(tag: str) -> str:
+    key = tag_key(tag)
+    return TAG_LABELS.get(key, str(tag or "").replace("-", " ").strip())
 
 
 def natural_task_key(number: str) -> tuple[int, ...]:
@@ -1067,18 +1237,76 @@ def load_completion_percentages(session: Session) -> dict[str, int]:
     return values
 
 
+def detected_tags(text: str) -> list[str]:
+    """Return only topics evidenced by the supplied task text."""
+    tags = [
+        label
+        for label, patterns in TAG_RULES
+        if any(re.search(pattern, text) for pattern in patterns)
+    ]
+
+    # A graph of a function is not the same topic as reading general data.
+    function_topics = {
+        "funkcje",
+        "funkcja kwadratowa",
+        "funkcja liniowa",
+        "funkcje wymierne",
+        "funkcja wykładnicza",
+        "funkcja logarytmiczna",
+    }
+    if "odczytywanie danych" in tags and function_topics.intersection(tags):
+        tags.remove("odczytywanie danych")
+
+    # In polynomial tasks a remainder after division describes a polynomial,
+    # rather than a standalone arithmetic divisibility exercise.
+    if "wielomiany" in tags and "podzielność" in tags:
+        tags.remove("podzielność")
+
+    # A rational function mentions a denominator by definition. This is not
+    # sufficient to classify the task as a fractions exercise.
+    if "funkcje wymierne" in tags and "ułamki" in tags:
+        tags.remove("ułamki")
+
+    # "Sześcienna kostka" jest typowym elementem doświadczenia losowego, a
+    # nie zadaniem ze stereometrii.
+    if "prawdopodobieństwo" in tags and "stereometria" in tags and "kostk" in text:
+        tags.remove("stereometria")
+
+    # Liczby pojawiają się w prawie każdym zadaniu. Ten szeroki tag zostaje
+    # tylko wtedy, gdy nie wykryto bardziej konkretnego zagadnienia.
+    if "liczby i działania" in tags and len(tags) > 1:
+        tags.remove("liczby i działania")
+
+    # Pierwiastek zapisany w logarytmie nie zmienia tematu zadania.
+    if "logarytmy" in tags and "pierwiastki" in tags:
+        tags.remove("pierwiastki")
+
+    return list(dict.fromkeys(tags))
+
+
 def classify_task(task_text: str, key_text: str) -> tuple[str, list[str], str]:
-    folded = ascii_fold(f"{task_text} {key_text}")
-    tags = []
-    for label, needles in TOPIC_RULES:
-        if any(ascii_fold(needle) in folded for needle in needles):
-            tags.append(label)
-    if "wykaz" in folded or "udowod" in folded or "uzasadn" in folded:
+    # The statement is authoritative. The key is used only when extraction
+    # from a scan leaves the statement without any recognisable topic.
+    statement = ascii_fold(task_text)
+    statement_tags = detected_tags(statement)
+    is_proof = bool(re.search(r"\b(?:wykaz|udowod|uzasadn)\w*", statement))
+    tags = statement_tags or (["dowodzenie"] if is_proof else detected_tags(ascii_fold(key_text)))
+
+    if is_proof and "dowodzenie" not in tags:
         tags.append("dowodzenie")
-    tags = list(dict.fromkeys(tags))[:6]
-    topic = next((tag for tag in tags if tag != "dowodzenie"), "zadanie problemowe")
+
+    expanded = []
+    for tag in tags:
+        if tag not in expanded:
+            expanded.append(tag)
+        for parent in TAG_PARENTS.get(tag, ()):
+            if parent not in expanded:
+                expanded.append(parent)
+
+    tags = expanded[:4]
     if not tags:
-        tags = [topic]
+        tags = ["zadanie problemowe"]
+    topic = next((tag for tag in tags if tag != "dowodzenie"), tags[0])
     hint = HINTS.get(topic, HINTS["zadanie problemowe"])
     return topic, tags, hint
 
@@ -1264,6 +1492,212 @@ def repair_task_crops(session: Session) -> dict:
             shutil.rmtree(stage)
 
 
+def extract_retag_texts(session: Session) -> tuple[dict[str, str], dict[str, str]]:
+    """Read statement and key text without rendering or changing any assets."""
+    task_texts = {}
+    with pdfplumber.open(session.exam_pdf) as document:
+        headers, lines_by_page = collect_exam_headers(document, session.exam_pdf)
+        context_texts = {}
+        for index, header in enumerate(headers):
+            page = document.pages[header["page"]]
+            text = extract_task_text(header, headers, index, lines_by_page, page)
+            if header["kind"] == "context":
+                context_texts[header["number"]] = text
+                continue
+            if "." in header["number"]:
+                parent = header["number"].split(".", 1)[0]
+                text = normalize_text(f"{context_texts.get(parent, '')} {text}")
+            task_texts[header["number"]] = text
+
+    key_texts = {}
+    with pdfplumber.open(session.key_pdf) as document:
+        sections, _ = collect_key_sections(document, session.key_pdf)
+        for number, section in sections.items():
+            key_texts[number] = normalize_text(
+                " ".join(line["text"] for line in section["lines"])
+            )
+
+    return task_texts, key_texts
+
+
+def task_number_from_file(filename: str) -> str | None:
+    match = re.match(r"^(\d+(?:\.\d+)?)_", str(filename or ""))
+    return match.group(1) if match else None
+
+
+def retag_curated_public_tasks() -> dict:
+    changed = 0
+    tasks = 0
+    for source_path, overrides in CURATED_TAGS.items():
+        path = ROOT / source_path
+        items = json.loads(path.read_text(encoding="utf-8"))
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            number = task_number_from_file(item.get("file", ""))
+            if number not in overrides:
+                continue
+            topic, thematic_tags = overrides[number]
+            tags = list(thematic_tags)
+            if int(item.get("maxPoints", 1)) > 1:
+                tags.append("zadania-otwarte")
+            current = (topic, tags, HINTS.get(topic, HINTS["zadanie problemowe"]))
+            previous = (item.get("topic"), item.get("tags"), item.get("hint"))
+            if current != previous:
+                item["topic"], item["tags"], item["hint"] = current
+                changed += 1
+            tasks += 1
+        path.write_text(json.dumps(items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return {"sources": len(CURATED_TAGS), "tasks": tasks, "changed": changed}
+
+
+def ocr_task_text(image_path: Path) -> str:
+    """Read a task image only when PDF text extraction did not find a topic."""
+    if not image_path.exists():
+        return ""
+    try:
+        result = subprocess.run(
+            ["tesseract", str(image_path), "stdout", "-l", "eng"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=20,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return ""
+    return normalize_text(result.stdout)
+
+
+def retag_session(session: Session, write: bool) -> dict:
+    if not session.json_path.exists():
+        raise RuntimeError(f"Brak danych zadań: {session.json_path}")
+
+    items = json.loads(session.json_path.read_text(encoding="utf-8"))
+    if not isinstance(items, list):
+        raise RuntimeError(f"Nieprawidłowy plik JSON: {session.json_path}")
+
+    task_texts, key_texts = extract_retag_texts(session)
+    changed = 0
+    unmatched = []
+    fallback = 0
+    ocr_assisted = 0
+
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        number = task_number_from_file(item.get("file", ""))
+        if not number or (number not in task_texts and number not in key_texts):
+            unmatched.append(str(item.get("file", "?")))
+            continue
+
+        statement = task_texts.get(number, "")
+        if not detected_tags(ascii_fold(statement)):
+            recognized = ocr_task_text(session.output_dir / str(item.get("file", "")))
+            if recognized:
+                statement = normalize_text(f"{statement} {recognized}")
+                ocr_assisted += 1
+
+        topic, tags, hint = classify_task(statement, key_texts.get(number, ""))
+        if topic == "zadanie problemowe":
+            fallback += 1
+        if int(item.get("maxPoints", 1)) > 1 and "zadania-otwarte" not in tags:
+            tags.append("zadania-otwarte")
+
+        previous = (item.get("topic"), item.get("tags"), item.get("hint"))
+        current = (topic, tags, hint)
+        if previous != current:
+            item["topic"] = topic
+            item["tags"] = tags
+            item["hint"] = hint
+            changed += 1
+
+    if write:
+        session.json_path.write_text(
+            json.dumps(items, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+    return {
+        "source": session.source_config,
+        "tasks": len(items),
+        "changed": changed,
+        "fallback": fallback,
+        "unmatched": unmatched,
+        "ocrAssisted": ocr_assisted,
+    }
+
+
+def public_task_source_paths() -> list[str]:
+    html = (ROOT / "zadania.html").read_text(encoding="utf-8")
+    match = re.search(r"const TASK_SOURCES = \[(.*?)\n\];", html, re.DOTALL)
+    if not match:
+        raise RuntimeError("Nie znaleziono listy TASK_SOURCES w zadania.html")
+    paths = re.findall(
+        r'\{\s*path:\s*"([^"]+\.json)"\s*,\s*category:\s*"egzaminy"[^}]*\}',
+        match.group(1),
+    )
+    return list(dict.fromkeys(paths))
+
+
+def is_thematic_tag(tag: str) -> bool:
+    key = tag_key(tag)
+    return bool(key) and key not in NON_THEMATIC_TAGS and not key.startswith("lekcja ")
+
+
+def build_tag_index() -> dict:
+    levels = {}
+    task_count = 0
+    source_paths = public_task_source_paths()
+
+    for source_path in source_paths:
+        path = ROOT / source_path
+        if not path.exists():
+            raise RuntimeError(f"Brak publicznego źródła zadań: {source_path}")
+        items = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(items, list):
+            continue
+        task_count += len(items)
+
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            level = item.get("level")
+            if not level:
+                continue
+            level_index = levels.setdefault(level, {})
+            tags = item.get("tags") or [item.get("topic")]
+            for raw_tag in tags:
+                if not is_thematic_tag(raw_tag):
+                    continue
+                label = canonical_tag_label(raw_tag)
+                key = tag_key(label)
+                if not is_thematic_tag(label):
+                    continue
+                entry = level_index.setdefault(key, {"label": label, "sources": []})
+                if source_path not in entry["sources"]:
+                    entry["sources"].append(source_path)
+
+    ordered_levels = {}
+    for level, entries in levels.items():
+        ordered_levels[level] = {
+            key: entries[key]
+            for key in sorted(entries, key=lambda value: entries[value]["label"].lower())
+        }
+    return {
+        "version": 2,
+        "sources": len(source_paths),
+        "tasks": task_count,
+        "levels": ordered_levels,
+    }
+
+
+def write_tag_index() -> dict:
+    index = build_tag_index()
+    path = ROOT / "zadania/tag-index.json"
+    path.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return index
+
+
 def selected_sessions(all_sessions: list[Session], filters: list[str]) -> list[Session]:
     if not filters:
         return all_sessions
@@ -1280,11 +1714,34 @@ def main() -> None:
     parser.add_argument("--audit", action="store_true")
     parser.add_argument("--replace", action="store_true")
     parser.add_argument("--repair-task-crops", action="store_true")
+    parser.add_argument("--retag", action="store_true")
+    parser.add_argument("--retag-curated", action="store_true")
+    parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--only", action="append", default=[])
     args = parser.parse_args()
 
-    if args.repair_task_crops and (args.audit or args.replace):
-        parser.error("--repair-task-crops nie łączy się z --audit ani --replace")
+    exclusive_actions = sum(
+        bool(value)
+        for value in (args.audit, args.repair_task_crops, args.retag, args.retag_curated)
+    )
+    if exclusive_actions > 1:
+        parser.error("wybrane działania importera są wzajemnie wykluczające")
+    if args.retag and args.replace:
+        parser.error("--retag nie łączy się z --replace")
+    if args.dry_run and not args.retag:
+        parser.error("--dry-run jest dostępne tylko z --retag")
+
+    if args.retag_curated:
+        if args.only:
+            parser.error("--retag-curated nie obsługuje --only")
+        report = retag_curated_public_tasks()
+        index = write_tag_index()
+        print(
+            f"Gotowe: źródła={report['sources']}, zadania={report['tasks']}, "
+            f"zmienione={report['changed']}, tagi={sum(len(value) for value in index['levels'].values())}",
+            flush=True,
+        )
+        return
 
     sessions = selected_sessions(build_sessions(), args.only)
     if not sessions:
@@ -1292,10 +1749,20 @@ def main() -> None:
 
     report = []
     for index, session in enumerate(sessions, 1):
-        action = "NAPRAWA WYCINKÓW" if args.repair_task_crops else "AUDYT" if args.audit else "IMPORT"
+        action = (
+            "NAPRAWA WYCINKÓW"
+            if args.repair_task_crops
+            else "RETAGOWANIE"
+            if args.retag
+            else "AUDYT"
+            if args.audit
+            else "IMPORT"
+        )
         print(f"[{index}/{len(sessions)}] {action}: {session.kind} {session.detail}", flush=True)
         if args.repair_task_crops:
             report.append(repair_task_crops(session))
+        elif args.retag:
+            report.append(retag_session(session, write=not args.dry_run))
         else:
             report.append(audit_session(session) if args.audit else import_session(session, args.replace))
 
@@ -1305,6 +1772,24 @@ def main() -> None:
             f"obrazy={sum(item['images'] for item in report)}",
             flush=True,
         )
+        return
+
+    if args.retag:
+        index = build_tag_index() if args.dry_run else write_tag_index()
+        changed = sum(item["changed"] for item in report)
+        fallback = sum(item["fallback"] for item in report)
+        ocr_assisted = sum(item["ocrAssisted"] for item in report)
+        unmatched = [name for item in report for name in item["unmatched"]]
+        mode = "Sprawdzenie" if args.dry_run else "Gotowe"
+        print(
+            f"{mode}: sesje={len(report)}, zadania={sum(item['tasks'] for item in report)}, "
+            f"zmienione={changed}, ogólne={fallback}, niepowiązane={len(unmatched)}, "
+            f"OCR={ocr_assisted}, źródła indeksu={index['sources']}, "
+            f"tagi={sum(len(value) for value in index['levels'].values())}",
+            flush=True,
+        )
+        if unmatched:
+            print(f"Niepowiązane pliki: {', '.join(unmatched)}", flush=True)
         return
 
     report_path = ROOT / "tmp/pdfs/cke_package_audit.json"
