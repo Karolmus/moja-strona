@@ -720,6 +720,31 @@ body.focus-mode .task-card {
     margin-top: 0;
 }
 
+.progress-grid.grouped-exam-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    align-items: start;
+    gap: 8px 10px;
+}
+
+.exam-nav-group {
+    min-width: 0;
+    padding: 1px 0 7px 8px;
+    border-left: 2px solid #b8c8dc;
+}
+
+.exam-nav-group .nav-section-label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--navy);
+}
+
+.exam-nav-group-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
 .tile {
     min-width: 24px;
     width: auto;
@@ -2530,6 +2555,14 @@ footer {
 
     body.guest-exam-mode .progress-grid .tile {
         flex: 0 0 auto;
+    }
+
+    body.guest-exam-mode .progress-grid.grouped-exam-nav {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        overflow: visible;
+        padding-bottom: 0;
     }
 
     .task-actions {
@@ -5323,6 +5356,84 @@ function addNavigatorSectionLabel(progress, section){
     progress.appendChild(label);
 }
 
+function getExamNavigatorGroup(task){
+    const source = getSourceMetaById(task.sourceId);
+    const detail = String(task.sourceDetail || source?.detail || "");
+    const [year, month] = detail.split("/").map(part => part.trim());
+    const fallback = task.sourceLabel || "Arkusz";
+    const label = [year, month].filter(Boolean).join(" · ") || fallback;
+
+    return {
+        key: `${year || fallback}:${month || task.sourceId}`,
+        label
+    };
+}
+
+function getGroupedExamNavigatorItems(items){
+    const sourceOrder = new Map(
+        TASK_SOURCES.map((source, index) => [getSourceMeta(source).id, index])
+    );
+    const groups = new Map();
+
+    items.forEach((task, index) => {
+        const group = getExamNavigatorGroup(task);
+        const order = sourceOrder.get(task.sourceId) ?? Number.MAX_SAFE_INTEGER;
+
+        if(!groups.has(group.key)){
+            groups.set(group.key, {
+                ...group,
+                order,
+                items: []
+            });
+        }
+
+        const currentGroup = groups.get(group.key);
+        currentGroup.order = Math.min(currentGroup.order, order);
+        currentGroup.items.push({ task, index, order });
+    });
+
+    return [...groups.values()]
+        .sort((a, b) => a.order - b.order)
+        .map(group => ({
+            ...group,
+            items: group.items.sort((a, b) => a.order - b.order || a.index - b.index)
+        }));
+}
+
+function addExamNavigatorGroup(progress, label){
+    const group = document.createElement("section");
+    const heading = document.createElement("span");
+    const tiles = document.createElement("div");
+
+    group.className = "exam-nav-group";
+    heading.className = "nav-section-label";
+    heading.innerText = label;
+    tiles.className = "exam-nav-group-tiles";
+
+    group.append(heading, tiles);
+    progress.appendChild(group);
+
+    return tiles;
+}
+
+function addNavigatorTaskButton(container, task, index){
+    const button = document.createElement("button");
+    const result = getSavedResult(task);
+    const themeClass = taskThemeClass(task);
+
+    button.type = "button";
+    button.className = "tile nav-tile";
+    if(themeClass) button.classList.add(themeClass);
+    button.innerText = navigatorTaskLabel(task);
+    button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
+    button.onclick = () => openNavigatorTask(task, index);
+
+    if(result) button.classList.add(result);
+    if(isActiveNavigatorTask(task, index)) button.classList.add("active");
+
+    container.appendChild(button);
+}
+
 function renderTaskNavigator(items = pool()){
     const progress = document.getElementById("progress");
 
@@ -5331,14 +5442,28 @@ function renderTaskNavigator(items = pool()){
     progress.innerHTML = "";
     items = taskNavigatorItems(items);
 
+    const groupedExamNavigator = selectedCategory === "egzaminy" &&
+        tagFiltersSearchAllSources();
+
+    progress.classList.toggle("grouped-exam-nav", groupedExamNavigator);
+
     if(!shouldShowTaskNavigator(items)) return;
+
+    if(groupedExamNavigator){
+        getGroupedExamNavigatorItems(items).forEach(group => {
+            const tiles = addExamNavigatorGroup(progress, group.label);
+
+            group.items.forEach(({ task, index }) => {
+                addNavigatorTaskButton(tiles, task, index);
+            });
+        });
+
+        return;
+    }
 
     let currentSection = "";
 
     items.forEach((task, index) => {
-        const button = document.createElement("button");
-        const result = getSavedResult(task);
-        const themeClass = taskThemeClass(task);
         const section = task.coursePart || "zadania";
 
         if(selectedCategory === "kurs" && section !== currentSection){
@@ -5346,17 +5471,7 @@ function renderTaskNavigator(items = pool()){
             currentSection = section;
         }
 
-        button.type = "button";
-        button.className = "tile nav-tile";
-        if(themeClass) button.classList.add(themeClass);
-        button.innerText = navigatorTaskLabel(task);
-        button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
-        button.onclick = () => openNavigatorTask(task, index);
-
-        if(result) button.classList.add(result);
-        if(isActiveNavigatorTask(task, index)) button.classList.add("active");
-
-        progress.appendChild(button);
+        addNavigatorTaskButton(progress, task, index);
     });
 }
 
