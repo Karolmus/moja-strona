@@ -7,8 +7,7 @@
     "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "D",
     "tags": [
-      "nierówności",
-      "równania"
+      "nierówności"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -29,7 +28,6 @@
     "answer": "A",
     "tags": [
       "funkcje",
-      "nierówności",
       "równania"
     ],
     "maxPoints": 1,
@@ -45,12 +43,13 @@
   {
     "file": "3_2015_cke_r_m_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wzory skróconego mnożenia",
     "level": "matura_rozszerzona",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Rozpoznaj odpowiedni wzór i przekształć wyrażenie, zachowując znaki.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -65,14 +64,12 @@
   {
     "file": "4_2015_cke_r_m_g.webp",
     "difficulty": 2,
-    "topic": "nierówności",
+    "topic": "równania",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "A",
     "tags": [
-      "nierówności",
-      "równania",
-      "trygonometria"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -92,7 +89,8 @@
     "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "B",
     "tags": [
-      "geometria analityczna"
+      "geometria analityczna",
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -113,7 +111,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "granice",
-      "ciągi",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -135,7 +132,6 @@
     "tags": [
       "funkcja kwadratowa",
       "funkcje",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -164,17 +160,13 @@
   {
     "file": "8_2015_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "pochodne",
+    "topic": "nierówności",
     "level": "matura_rozszerzona",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
-      "pierwiastki",
-      "funkcje",
       "nierówności",
-      "wielomiany",
-      "wyrażenia algebraiczne",
+      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -225,8 +217,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -276,17 +266,13 @@
   {
     "file": "10_2015_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "równania",
+    "topic": "okręgi i koła",
     "level": "matura_rozszerzona",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
-      "trygonometria",
       "okręgi i koła",
-      "trójkąty",
       "czworokąty",
-      "pola figur",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -329,8 +315,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka",
+      "stereometria",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -375,8 +360,6 @@
       "pochodne",
       "funkcje",
       "równania",
-      "geometria analityczna",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -407,11 +390,8 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "pierwiastki",
-      "funkcja kwadratowa",
-      "funkcje",
-      "nierówności",
+      "równania z parametrem",
       "równania",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -440,16 +420,12 @@
   {
     "file": "14_2015_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "funkcje",
+    "topic": "trygonometria",
     "level": "matura_rozszerzona",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje",
-      "równania",
       "trygonometria",
-      "trójkąty",
-      "czworokąty",
       "stereometria",
       "zadania-otwarte"
     ],
@@ -495,16 +471,14 @@
   {
     "file": "15_2015_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "pierwiastki",
+    "topic": "ciąg arytmetyczny",
     "level": "matura_rozszerzona",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "ciągi arytmetyczne",
+      "ciąg arytmetyczny",
       "ciągi",
-      "nierówności",
-      "równania",
+      "pierwiastki",
       "wielomiany",
       "zadania-otwarte"
     ],
@@ -546,17 +520,12 @@
   {
     "file": "16_2015_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "pochodne",
+    "topic": "objętość",
     "level": "matura_rozszerzona",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Ustal pole podstawy i wysokość bryły, a następnie zastosuj wzór na objętość.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
-      "funkcje",
-      "trójkąty",
       "objętość",
-      "odczytywanie danych",
-      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

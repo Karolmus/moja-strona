@@ -40,12 +40,12 @@
   {
     "file": "3_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "logarytmy",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -59,12 +59,12 @@
   {
     "file": "4_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "procenty",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "procenty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -116,14 +116,15 @@
   {
     "file": "7_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "równania",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "C",
     "tags": [
-      "równania",
+      "geometria analityczna",
+      "pola figur",
       "trójkąty",
-      "pola figur"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -137,12 +138,13 @@
   {
     "file": "8_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "funkcja liniowa",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Zapisz zależność liniową i wykorzystaj współczynnik kierunkowy oraz punkt należący do wykresu.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "funkcja liniowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -156,12 +158,13 @@
   {
     "file": "9_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -194,12 +197,12 @@
   {
     "file": "11_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "odczytywanie danych",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "odczytywanie danych"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -251,12 +254,13 @@
   {
     "file": "14_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "ciąg geometryczny",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "ciąg geometryczny",
+      "ciągi"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -270,12 +274,12 @@
   {
     "file": "15_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "okręgi i koła",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "D",
     "tags": [
-      "okręgi i koła"
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -309,12 +313,12 @@
   {
     "file": "17_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "czworokąty",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -328,13 +332,13 @@
   {
     "file": "18_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "trójkąty",
+    "topic": "pola figur",
     "level": "matura_podstawowa",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "D",
     "tags": [
-      "trójkąty",
-      "pola figur"
+      "pola figur",
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -348,11 +352,12 @@
   {
     "file": "19_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "czworokąty",
+    "topic": "trójkąty",
     "level": "matura_podstawowa",
-    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "A",
     "tags": [
+      "trójkąty",
       "czworokąty"
     ],
     "maxPoints": 1,
@@ -367,12 +372,12 @@
   {
     "file": "20_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "pola figur",
+    "topic": "zadanie problemowe",
     "level": "matura_podstawowa",
-    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "pola figur"
+      "zadanie problemowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -424,12 +429,12 @@
   {
     "file": "23_2020_cke_p_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "liczby i działania",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -481,17 +486,15 @@
   {
     "file": "26_2020_cke_p_l_d.webp",
     "difficulty": 3,
-    "topic": "pierwiastki",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
+      "funkcja kwadratowa",
       "funkcje",
+      "pierwiastki",
       "nierówności",
-      "statystyka",
-      "czworokąty",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -548,12 +551,12 @@
   {
     "file": "28_2020_cke_p_l_d.webp",
     "difficulty": 3,
-    "topic": "nierówności",
+    "topic": "liczby i działania",
     "level": "matura_podstawowa",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
+      "liczby i działania",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -578,15 +581,12 @@
   {
     "file": "29_2020_cke_p_l_d.webp",
     "difficulty": 3,
-    "topic": "statystyka",
+    "topic": "trójkąty",
     "level": "matura_podstawowa",
-    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "statystyka",
-      "okręgi i koła",
       "trójkąty",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -623,14 +623,12 @@
   {
     "file": "30_2020_cke_p_l_d.webp",
     "difficulty": 3,
-    "topic": "ciągi geometryczne",
+    "topic": "ciągi",
     "level": "matura_podstawowa",
-    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi geometryczne",
       "ciągi",
-      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -658,12 +656,14 @@
   {
     "file": "31_2020_cke_p_l_d.webp",
     "difficulty": 3,
-    "topic": "trygonometria",
+    "topic": "funkcja liniowa",
     "level": "matura_podstawowa",
-    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "hint": "Zapisz zależność liniową i wykorzystaj współczynnik kierunkowy oraz punkt należący do wykresu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "trygonometria",
+      "funkcja liniowa",
+      "funkcje",
+      "wyrażenia algebraiczne",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -691,12 +691,11 @@
   {
     "file": "32_2020_cke_p_l_d.webp",
     "difficulty": 4,
-    "topic": "równania",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
       "geometria analityczna",
       "czworokąty",
       "zadania-otwarte"
@@ -726,14 +725,12 @@
   {
     "file": "33_2020_cke_p_l_d.webp",
     "difficulty": 4,
-    "topic": "ciągi",
+    "topic": "prawdopodobieństwo",
     "level": "matura_podstawowa",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi",
       "prawdopodobieństwo",
-      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -767,8 +764,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "trygonometria",
-      "trójkąty",
-      "czworokąty",
       "stereometria",
       "zadania-otwarte"
     ],

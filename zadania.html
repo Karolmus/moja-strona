@@ -2966,7 +2966,7 @@ const COURSE_PART_LABELS = {
     praca_domowa: "2. Zadanie domowe",
     zadania_praktyczne: "3. Zadania praktyczne"
 };
-const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260904";
+const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260904-tags-v2";
 const TAG_WORD_LABELS = {
     bryly: "bryły",
     ciagi: "ciągi",
@@ -3777,8 +3777,27 @@ function getSourceMeta(sourceConfig){
     };
 }
 
+const TAG_ALIASES = {
+    "ciagi arytmetyczne": "ciag arytmetyczny",
+    "ciagi geometryczne": "ciag geometryczny",
+    "ciag rekurencyjny": "ciagi",
+    "funkcje trygonometryczne": "trygonometria",
+    "funkcje wykladnicze": "funkcja wykladnicza",
+    "funkcje logarytmiczne": "funkcja logarytmiczna",
+    "zadania z parametrem": "rownania z parametrem",
+    "wartosc bezwzgledna": "wartosc bezwzgledna",
+    "pola trojkatow": "pola figur",
+    "pola czworokatow": "pola figur",
+    "objetosc bryl": "objetosc",
+    "bryly": "stereometria",
+    "twierdzenie pitagorasa": "trojkaty",
+    "predkosc droga czas": "predkosc, droga i czas",
+    "srednia arytmetyczna": "statystyka",
+    "dzialania na liczbach": "liczby i dzialania"
+};
+
 function normalizeTag(tag){
-    return String(tag || "")
+    const normalized = String(tag || "")
         .trim()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
@@ -3786,6 +3805,8 @@ function normalizeTag(tag){
         .replace(/-/g, " ")
         .replace(/\s+/g, " ")
         .toLocaleLowerCase("pl-PL");
+
+    return TAG_ALIASES[normalized] || normalized;
 }
 
 function formatTagLabel(tag){

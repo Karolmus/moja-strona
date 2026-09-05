@@ -2,11 +2,12 @@
   {
     "file": "1_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "procenty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
     "answer": "PP",
     "tags": [
-      "arkusz-cke-2022"
+      "procenty",
+      "odczytywanie danych"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -22,11 +23,12 @@
   {
     "file": "2_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "ułamki",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -42,11 +44,11 @@
   {
     "file": "3_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "liczby i działania",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -62,11 +64,11 @@
   {
     "file": "4_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "podzielność",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
     "answer": "A3",
     "tags": [
-      "arkusz-cke-2022"
+      "podzielność"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -84,11 +86,11 @@
   {
     "file": "5_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "potęgi",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "potęgi"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -104,11 +106,11 @@
   {
     "file": "6_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "proporcje",
+    "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "AC",
     "tags": [
-      "arkusz-cke-2022"
+      "proporcje"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -124,11 +126,11 @@
   {
     "file": "7_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "wyrażenia algebraiczne",
+    "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "wyrażenia algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -144,11 +146,11 @@
   {
     "file": "8_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "pierwiastki",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "pierwiastki"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -164,11 +166,11 @@
   {
     "file": "9_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "liczby i działania",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -184,11 +186,11 @@
   {
     "file": "10_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "proporcje",
+    "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "proporcje"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -204,11 +206,11 @@
   {
     "file": "11_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "ułamki",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "ułamki"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -224,11 +226,11 @@
   {
     "file": "12_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "proporcje",
+    "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "proporcje"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -244,11 +246,11 @@
   {
     "file": "13_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "trójkąty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "trójkąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -264,11 +266,11 @@
   {
     "file": "14_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "prawdopodobieństwo",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "prawdopodobieństwo"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -284,11 +286,13 @@
   {
     "file": "15_2022_cke_o_m.png",
     "difficulty": 2,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "pola figur",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "PP",
     "tags": [
-      "arkusz-cke-2022"
+      "pola figur",
+      "czworokąty",
+      "trójkąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -304,11 +308,12 @@
   {
     "file": "16_2022_cke_o_m.png",
     "difficulty": 3,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "procenty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "procenty",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 2,
@@ -361,11 +366,12 @@
   {
     "file": "17_2022_cke_o_m.png",
     "difficulty": 3,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "prędkość, droga i czas",
+    "hint": "Zapisz zależność droga = prędkość · czas i ujednolić jednostki.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "prędkość, droga i czas",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 2,
@@ -393,11 +399,13 @@
   {
     "file": "18_2022_cke_o_m.png",
     "difficulty": 3,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "czworokąty",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "czworokąty",
+      "trójkąty",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 3,
@@ -413,11 +421,13 @@
   {
     "file": "19_2022_cke_o_m.png",
     "difficulty": 3,
-    "topic": "Egzamin ósmoklasisty 2022",
-    "hint": "",
+    "topic": "stereometria",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "stereometria",
+      "czworokąty",
+      "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 3,

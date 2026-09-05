@@ -2,11 +2,11 @@
   {
     "file": "1_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "pierwiastki",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "pierwiastki"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -22,11 +22,11 @@
   {
     "file": "2_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "proporcje",
+    "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "proporcje"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -42,11 +42,11 @@
   {
     "file": "3_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "logarytmy",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "logarytmy"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -62,11 +62,11 @@
   {
     "file": "4_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "procenty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "procenty"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -82,11 +82,12 @@
   {
     "file": "5_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "potęgi",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "potęgi",
+      "pierwiastki"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -102,11 +103,12 @@
   {
     "file": "6_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "układy równań",
+    "hint": "Zapisz oba równania i rozwiąż układ metodą podstawiania lub przeciwnych współczynników.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "układy równań",
+      "równania"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -122,11 +124,11 @@
   {
     "file": "7_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "nierówności",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "nierówności"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -142,11 +144,11 @@
   {
     "file": "8_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "równania",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "równania"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -162,11 +164,11 @@
   {
     "file": "9_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "funkcje",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -182,11 +184,11 @@
   {
     "file": "10_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "funkcje",
+    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -202,11 +204,12 @@
   {
     "file": "11_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "funkcja liniowa",
+    "hint": "Zapisz zależność liniową i wykorzystaj współczynnik kierunkowy oraz punkt należący do wykresu.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "funkcja liniowa",
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -222,11 +225,12 @@
   {
     "file": "12_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "funkcja kwadratowa",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -242,11 +246,11 @@
   {
     "file": "13_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "ciągi",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "ciągi"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -262,11 +266,12 @@
   {
     "file": "14_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "ciąg arytmetyczny",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "ciąg arytmetyczny",
+      "ciągi"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -282,11 +287,12 @@
   {
     "file": "15_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "ciąg geometryczny",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "ciąg geometryczny",
+      "ciągi"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -302,11 +308,11 @@
   {
     "file": "16_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "trygonometria",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "trygonometria"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -322,11 +328,11 @@
   {
     "file": "17_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "okręgi i koła",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "okręgi i koła"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -342,11 +348,12 @@
   {
     "file": "18_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "czworokąty",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "czworokąty",
+      "okręgi i koła"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -362,11 +369,12 @@
   {
     "file": "19_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "pola figur",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "pola figur",
+      "trójkąty"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -382,11 +390,12 @@
   {
     "file": "20_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "pola figur",
+    "hint": "Podziel figurę na prostsze części i zastosuj odpowiednie wzory na pola.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "pola figur",
+      "czworokąty"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -402,11 +411,11 @@
   {
     "file": "21_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "geometria analityczna",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "geometria analityczna"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -422,11 +431,11 @@
   {
     "file": "22_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "geometria analityczna",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "geometria analityczna"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -442,11 +451,11 @@
   {
     "file": "23_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "geometria analityczna",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "geometria analityczna"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -462,11 +471,12 @@
   {
     "file": "24_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "geometria analityczna",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "A",
     "tags": [
-      "arkusz-cke-2022"
+      "geometria analityczna",
+      "czworokąty"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -482,11 +492,12 @@
   {
     "file": "25_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "stereometria",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "stereometria",
+      "czworokąty"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -502,11 +513,11 @@
   {
     "file": "26_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "stereometria",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "arkusz-cke-2022"
+      "stereometria"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -522,11 +533,11 @@
   {
     "file": "27_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "podzielność",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
     "answer": "B",
     "tags": [
-      "arkusz-cke-2022"
+      "podzielność"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -542,11 +553,11 @@
   {
     "file": "28_2022_cke_p_m.png",
     "difficulty": 2,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "statystyka",
+    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "C",
     "tags": [
-      "arkusz-cke-2022"
+      "statystyka"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 1,
@@ -562,11 +573,12 @@
   {
     "file": "29_2022_cke_p_m.png",
     "difficulty": 3,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "nierówności",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "nierówności",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 2,
@@ -582,11 +594,13 @@
   {
     "file": "30_2022_cke_p_m.png",
     "difficulty": 3,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "ciąg arytmetyczny",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "ciąg arytmetyczny",
+      "ciągi",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 2,
@@ -606,11 +620,13 @@
   {
     "file": "31_2022_cke_p_m.png",
     "difficulty": 3,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "dowodzenie",
+    "hint": "Zapisz kolejne uzasadnione przekształcenia i wskaż, dlaczego prowadzą do tezy.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "dowodzenie",
+      "nierówności",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 2,
@@ -630,11 +646,12 @@
   {
     "file": "32_2022_cke_p_m.png",
     "difficulty": 3,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "trygonometria",
+    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "trygonometria",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 2,
@@ -654,11 +671,12 @@
   {
     "file": "33_2022_cke_p_m.png",
     "difficulty": 3,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "trójkąty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "trójkąty",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 2,
@@ -678,11 +696,12 @@
   {
     "file": "34_2022_cke_p_m.png",
     "difficulty": 3,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "prawdopodobieństwo",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "prawdopodobieństwo",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 2,
@@ -706,11 +725,14 @@
   {
     "file": "35_2022_cke_p_m.png",
     "difficulty": 3,
-    "topic": "Matura podstawowa 2022",
-    "hint": "",
+    "topic": "funkcja kwadratowa",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "",
     "tags": [
-      "arkusz-cke-2022"
+      "funkcja kwadratowa",
+      "funkcje",
+      "geometria analityczna",
+      "zadania-otwarte"
     ],
     "level": "matura_podstawowa",
     "maxPoints": 5,

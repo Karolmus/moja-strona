@@ -2,12 +2,12 @@
   {
     "file": "1_2019_cke_o_k_g.webp",
     "difficulty": 2,
-    "topic": "odczytywanie danych",
+    "topic": "zadanie problemowe",
     "level": "egzamin_osmoklasisty",
-    "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "PP",
     "tags": [
-      "odczytywanie danych"
+      "zadanie problemowe"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -22,12 +22,11 @@
   {
     "file": "2_2019_cke_o_k_g.webp",
     "difficulty": 2,
-    "topic": "okręgi i koła",
+    "topic": "liczby i działania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "C",
     "tags": [
-      "okręgi i koła",
       "liczby i działania"
     ],
     "maxPoints": 1,
@@ -43,12 +42,13 @@
   {
     "file": "3_2019_cke_o_k_g.webp",
     "difficulty": 2,
-    "topic": "potęgi",
+    "topic": "wartość bezwzględna",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "B",
     "tags": [
-      "potęgi"
+      "wartość bezwzględna",
+      "odczytywanie danych"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -68,8 +68,7 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "D",
     "tags": [
-      "pierwiastki",
-      "czworokąty"
+      "pierwiastki"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -84,12 +83,12 @@
   {
     "file": "5_2019_cke_o_k_g.webp",
     "difficulty": 2,
-    "topic": "podzielność",
+    "topic": "wartość bezwzględna",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "BC",
     "tags": [
-      "podzielność"
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -130,9 +129,7 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "PP",
     "tags": [
-      "statystyka",
-      "odczytywanie danych",
-      "dowodzenie"
+      "statystyka"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -152,8 +149,7 @@
     "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
     "answer": "C",
     "tags": [
-      "wyrażenia algebraiczne",
-      "odczytywanie danych"
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -173,8 +169,7 @@
     "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "B",
     "tags": [
-      "geometria analityczna",
-      "odczytywanie danych"
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -194,9 +189,7 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "FP",
     "tags": [
-      "czworokąty",
-      "pola figur",
-      "dowodzenie"
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -216,8 +209,7 @@
     "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "B",
     "tags": [
-      "trójkąty",
-      "odczytywanie danych"
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -238,7 +230,7 @@
     "answer": "A",
     "tags": [
       "trójkąty",
-      "czworokąty"
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -259,7 +251,8 @@
     "answer": "B",
     "tags": [
       "trójkąty",
-      "czworokąty"
+      "czworokąty",
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -274,14 +267,12 @@
   {
     "file": "14_2019_cke_o_k_g.webp",
     "difficulty": 2,
-    "topic": "czworokąty",
+    "topic": "stereometria",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "C",
     "tags": [
-      "czworokąty",
-      "stereometria",
-      "objętość"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -301,8 +292,7 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria",
-      "odczytywanie danych"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -317,17 +307,13 @@
   {
     "file": "16_2019_cke_o_k_g.webp",
     "difficulty": 3,
-    "topic": "procenty",
+    "topic": "ciągi",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "procenty",
       "ciągi",
-      "funkcje",
-      "statystyka",
-      "okręgi i koła",
-      "odczytywanie danych",
+      "procenty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -342,14 +328,12 @@
   {
     "file": "17_2019_cke_o_k_g.webp",
     "difficulty": 3,
-    "topic": "ciągi",
+    "topic": "prędkość, droga i czas",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Zapisz zależność droga = prędkość · czas i ujednolić jednostki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi",
       "prędkość, droga i czas",
-      "skala i jednostki",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -364,13 +348,11 @@
   {
     "file": "18_2019_cke_o_k_g.webp",
     "difficulty": 3,
-    "topic": "równania",
+    "topic": "dowodzenie",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zapisz kolejne uzasadnione przekształcenia i wskaż, dlaczego prowadzą do tezy.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
-      "liczby i działania",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -386,13 +368,14 @@
   {
     "file": "19_2019_cke_o_k_g.webp",
     "difficulty": 4,
-    "topic": "równania",
+    "topic": "ułamki",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
+      "ułamki",
+      "wyrażenia algebraiczne",
       "równania",
-      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -411,15 +394,12 @@
   {
     "file": "20_2019_cke_o_k_g.webp",
     "difficulty": 4,
-    "topic": "trójkąty",
+    "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "trójkąty",
       "czworokąty",
-      "pola figur",
-      "skala i jednostki",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -441,7 +421,6 @@
     "tags": [
       "trójkąty",
       "czworokąty",
-      "skala i jednostki",
       "zadania-otwarte"
     ],
     "maxPoints": 3,

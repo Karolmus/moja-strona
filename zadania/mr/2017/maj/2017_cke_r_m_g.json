@@ -7,7 +7,9 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "A",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -22,12 +24,11 @@
   {
     "file": "2_2017_cke_r_m_g.webp",
     "difficulty": 2,
-    "topic": "granice",
+    "topic": "ciągi",
     "level": "matura_rozszerzona",
-    "hint": "Porównaj wyrazy najwyższego stopnia i zastosuj odpowiednie prawa działań na granicach.",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
     "answer": "D",
     "tags": [
-      "granice",
       "ciągi"
     ],
     "maxPoints": 1,
@@ -64,12 +65,11 @@
   {
     "file": "4_2017_cke_r_m_g.webp",
     "difficulty": 2,
-    "topic": "geometria analityczna",
+    "topic": "wektory",
     "level": "matura_rozszerzona",
-    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "hint": "Zapisz współrzędne wektorów i wykonaj na nich wymagane działania.",
     "answer": "B",
     "tags": [
-      "geometria analityczna",
       "wektory"
     ],
     "maxPoints": 1,
@@ -85,14 +85,11 @@
   {
     "file": "5_2017_cke_r_m_g.webp",
     "difficulty": 3,
-    "topic": "nierówności",
+    "topic": "wyrażenia algebraiczne",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
-      "równania",
-      "wielomiany",
       "wyrażenia algebraiczne",
       "zadania-otwarte"
     ],
@@ -116,7 +113,6 @@
       "pochodne",
       "funkcje",
       "równania",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -137,8 +133,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "nierówności",
-      "statystyka",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -170,17 +164,13 @@
   {
     "file": "8_2017_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "funkcje",
+    "topic": "trójkąty",
     "level": "matura_rozszerzona",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje",
-      "równania",
-      "trygonometria",
       "trójkąty",
-      "czworokąty",
-      "pola figur",
+      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -203,16 +193,13 @@
   {
     "file": "9_2017_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "trójkąty",
+    "topic": "stereometria",
     "level": "matura_rozszerzona",
-    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "trójkąty",
-      "czworokąty",
       "stereometria",
       "objętość",
-      "skala i jednostki",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -231,17 +218,12 @@
   {
     "file": "10_2017_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "funkcje",
+    "topic": "równania",
     "level": "matura_rozszerzona",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje",
-      "nierówności",
       "równania",
-      "trygonometria",
-      "czworokąty",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -256,17 +238,14 @@
   {
     "file": "11_2017_cke_r_m_g.webp",
     "difficulty": 4,
-    "topic": "ciągi",
+    "topic": "prawdopodobieństwo",
     "level": "matura_rozszerzona",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi",
       "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka",
       "podzielność",
-      "liczby i działania",
+      "ułamki",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -285,15 +264,13 @@
   {
     "file": "12_2017_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "pierwiastki",
+    "topic": "równania z parametrem",
     "level": "matura_rozszerzona",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Rozpatrz warunki zależne od parametru i sprawdź liczbę dopuszczalnych rozwiązań.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "nierówności",
+      "równania z parametrem",
       "równania",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -312,16 +289,12 @@
   {
     "file": "13_2017_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "nierówności",
+    "topic": "równania",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
       "równania",
-      "geometria analityczna",
-      "okręgi i koła",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -352,17 +325,12 @@
   {
     "file": "14_2017_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "ciągi arytmetyczne",
+    "topic": "ciągi",
     "level": "matura_rozszerzona",
-    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi arytmetyczne",
-      "ciągi geometryczne",
       "ciągi",
-      "nierówności",
-      "równania",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -397,16 +365,11 @@
   {
     "file": "15_2017_cke_r_m_g.webp",
     "difficulty": 5,
-    "topic": "pochodne",
+    "topic": "objętość",
     "level": "matura_rozszerzona",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Ustal pole podstawy i wysokość bryły, a następnie zastosuj wzór na objętość.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
-      "funkcje",
-      "wielomiany",
-      "czworokąty",
-      "pola figur",
       "objętość",
       "zadania-otwarte"
     ],

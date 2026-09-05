@@ -2,16 +2,12 @@
   {
     "file": "1_2020_cke_r_c_g.webp",
     "difficulty": 2,
-    "topic": "nierówności",
+    "topic": "wielomiany",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Rozłóż wielomian na czynniki lub wykorzystaj jego pierwiastki i współczynniki.",
     "answer": "B",
     "tags": [
-      "nierówności",
-      "równania",
-      "wielomiany",
-      "wyrażenia algebraiczne",
-      "podzielność"
+      "wielomiany"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -52,9 +48,7 @@
     "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
     "answer": "A",
     "tags": [
-      "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka"
+      "prawdopodobieństwo"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -69,12 +63,12 @@
   {
     "file": "4_2020_cke_r_c_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wyrażenia algebraiczne",
     "level": "matura_rozszerzona",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -110,17 +104,14 @@
   {
     "file": "6_2020_cke_r_c_g.webp",
     "difficulty": 4,
-    "topic": "pierwiastki",
+    "topic": "wartość bezwzględna",
     "level": "matura_rozszerzona",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "funkcje",
-      "nierówności",
+      "wartość bezwzględna",
+      "równania z parametrem",
       "równania",
-      "wektory",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -177,15 +168,12 @@
   {
     "file": "7_2020_cke_r_c_g.webp",
     "difficulty": 4,
-    "topic": "równania",
+    "topic": "okręgi i koła",
     "level": "matura_rozszerzona",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
       "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -209,15 +197,11 @@
   {
     "file": "8_2020_cke_r_c_g.webp",
     "difficulty": 4,
-    "topic": "pierwiastki",
+    "topic": "dowodzenie",
     "level": "matura_rozszerzona",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Zapisz kolejne uzasadnione przekształcenia i wskaż, dlaczego prowadzą do tezy.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "funkcja kwadratowa",
-      "równania",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -255,11 +239,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "funkcje",
+      "trygonometria",
       "nierówności",
       "równania",
-      "trygonometria",
-      "czworokąty",
-      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -282,14 +264,14 @@
   {
     "file": "10_2020_cke_r_c_g.webp",
     "difficulty": 5,
-    "topic": "ciągi",
+    "topic": "ciąg arytmetyczny",
     "level": "matura_rozszerzona",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
+      "ciąg arytmetyczny",
       "ciągi",
-      "równania",
-      "czworokąty",
+      "ciąg geometryczny",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -316,17 +298,13 @@
   {
     "file": "11_2020_cke_r_c_g.webp",
     "difficulty": 4,
-    "topic": "potęgi",
+    "topic": "równania z parametrem",
     "level": "matura_rozszerzona",
-    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "hint": "Rozpatrz warunki zależne od parametru i sprawdź liczbę dopuszczalnych rozwiązań.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "potęgi",
-      "pierwiastki",
-      "funkcja kwadratowa",
-      "nierówności",
+      "równania z parametrem",
       "równania",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -353,17 +331,15 @@
   {
     "file": "12_2020_cke_r_c_g.webp",
     "difficulty": 5,
-    "topic": "nierówności",
+    "topic": "geometria analityczna",
     "level": "matura_rozszerzona",
-    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności",
-      "równania",
       "geometria analityczna",
       "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
+      "skala i jednostki",
+      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -398,14 +374,11 @@
   {
     "file": "13_2020_cke_r_c_g.webp",
     "difficulty": 4,
-    "topic": "prawdopodobieństwo",
+    "topic": "liczby i działania",
     "level": "matura_rozszerzona",
-    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "prawdopodobieństwo",
-      "kombinatoryka",
-      "statystyka",
       "liczby i działania",
       "zadania-otwarte"
     ],
@@ -441,17 +414,14 @@
   {
     "file": "14_2020_cke_r_c_g.webp",
     "difficulty": 5,
-    "topic": "funkcje",
+    "topic": "stereometria",
     "level": "matura_rozszerzona",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje",
-      "trygonometria",
-      "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
       "stereometria",
+      "objętość",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -474,17 +444,12 @@
   {
     "file": "15_2020_cke_r_c_g.webp",
     "difficulty": 5,
-    "topic": "pochodne",
+    "topic": "czworokąty",
     "level": "matura_rozszerzona",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
-      "ciągi",
-      "funkcje",
-      "nierówności",
-      "równania",
-      "statystyka",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

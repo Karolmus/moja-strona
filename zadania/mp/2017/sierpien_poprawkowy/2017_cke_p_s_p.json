@@ -40,12 +40,12 @@
   {
     "file": "3_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "logarytmy",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -64,8 +64,7 @@
     "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
     "answer": "D",
     "tags": [
-      "procenty",
-      "pola figur"
+      "procenty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -117,13 +116,14 @@
   {
     "file": "7_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "równania",
+    "topic": "czworokąty",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "A",
     "tags": [
-      "równania",
-      "czworokąty"
+      "czworokąty",
+      "układy równań",
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -156,12 +156,12 @@
   {
     "file": "9_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "proporcje",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "proporcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -175,12 +175,12 @@
   {
     "file": "10_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wyrażenia algebraiczne",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -194,12 +194,13 @@
   {
     "file": "11_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "ciąg arytmetyczny",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "ciąg arytmetyczny",
+      "ciągi"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -213,12 +214,12 @@
   {
     "file": "12_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "ciągi geometryczne",
+    "topic": "ciąg geometryczny",
     "level": "matura_podstawowa",
     "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
     "answer": "B",
     "tags": [
-      "ciągi geometryczne",
+      "ciąg geometryczny",
       "ciągi"
     ],
     "maxPoints": 1,
@@ -233,12 +234,12 @@
   {
     "file": "13_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "trygonometria",
+    "topic": "zadanie problemowe",
     "level": "matura_podstawowa",
-    "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "trygonometria"
+      "zadanie problemowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -271,12 +272,12 @@
   {
     "file": "15_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wartość bezwzględna",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "wartość bezwzględna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -295,8 +296,7 @@
     "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "C",
     "tags": [
-      "trójkąty",
-      "pola figur"
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -315,8 +315,7 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "C",
     "tags": [
-      "czworokąty",
-      "pola figur"
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -349,12 +348,12 @@
   {
     "file": "19_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "stereometria",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -406,11 +405,12 @@
   {
     "file": "22_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "objętość",
+    "topic": "stereometria",
     "level": "matura_podstawowa",
-    "hint": "Ustal pole podstawy i wysokość bryły, a następnie zastosuj wzór na objętość.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
+      "stereometria",
       "objętość"
     ],
     "maxPoints": 1,
@@ -425,12 +425,12 @@
   {
     "file": "23_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "statystyka",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "statystyka"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -444,12 +444,12 @@
   {
     "file": "24_2017_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "liczby i działania",
     "level": "matura_podstawowa",
-    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -482,16 +482,12 @@
   {
     "file": "26_2017_cke_p_s_p.webp",
     "difficulty": 3,
-    "topic": "pierwiastki",
+    "topic": "nierówności",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
-      "funkcje",
       "nierówności",
-      "czworokąty",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -513,15 +509,12 @@
   {
     "file": "27_2017_cke_p_s_p.webp",
     "difficulty": 3,
-    "topic": "pierwiastki",
+    "topic": "równania",
     "level": "matura_podstawowa",
-    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pierwiastki",
       "równania",
-      "wielomiany",
-      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -539,17 +532,13 @@
   {
     "file": "28_2017_cke_p_s_p.webp",
     "difficulty": 3,
-    "topic": "pochodne",
+    "topic": "nierówności",
     "level": "matura_podstawowa",
-    "hint": "Wyznacz pochodną i wykorzystaj jej interpretację zgodnie z treścią zadania.",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "pochodne",
-      "funkcje",
       "nierówności",
-      "statystyka",
-      "czworokąty",
-      "odczytywanie danych",
+      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -585,17 +574,13 @@
   {
     "file": "29_2017_cke_p_s_p.webp",
     "difficulty": 3,
-    "topic": "ciągi",
+    "topic": "trójkąty",
     "level": "matura_podstawowa",
-    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi",
-      "równania",
-      "trygonometria",
       "trójkąty",
-      "czworokąty",
-      "skala i jednostki",
+      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -653,7 +638,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "prawdopodobieństwo",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -671,15 +655,13 @@
   {
     "file": "31_2017_cke_p_s_p.webp",
     "difficulty": 3,
-    "topic": "ciągi arytmetyczne",
+    "topic": "ciąg arytmetyczny",
     "level": "matura_podstawowa",
     "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu arytmetycznego.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciągi arytmetyczne",
+      "ciąg arytmetyczny",
       "ciągi",
-      "równania",
-      "dowodzenie",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -697,16 +679,13 @@
   {
     "file": "32_2017_cke_p_s_p.webp",
     "difficulty": 4,
-    "topic": "funkcje",
+    "topic": "funkcja kwadratowa",
     "level": "matura_podstawowa",
-    "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
+    "hint": "Dobierz najwygodniejszą postać funkcji kwadratowej i wykorzystaj jej własności.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
+      "funkcja kwadratowa",
       "funkcje",
-      "równania",
-      "statystyka",
-      "czworokąty",
-      "odczytywanie danych",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -734,12 +713,11 @@
   {
     "file": "33_2017_cke_p_s_p.webp",
     "difficulty": 4,
-    "topic": "równania",
+    "topic": "geometria analityczna",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
       "geometria analityczna",
       "trójkąty",
       "czworokąty",
@@ -774,17 +752,14 @@
   {
     "file": "34_2017_cke_p_s_p.webp",
     "difficulty": 5,
-    "topic": "równania",
+    "topic": "stereometria",
     "level": "matura_podstawowa",
-    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania",
-      "okręgi i koła",
-      "trójkąty",
-      "czworokąty",
       "stereometria",
-      "pola figur",
+      "objętość",
+      "trójkąty",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
