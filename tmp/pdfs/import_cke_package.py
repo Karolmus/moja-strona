@@ -41,6 +41,10 @@ TASK_POINTS_RE = re.compile(
     r"Zadani[ae]\s+(\d+(?:\.\d+)?)\.\s*\(\s*(\d+)\s*pkt\.?\s*\)",
     re.IGNORECASE,
 )
+PAGE_FOOTER_RE = re.compile(
+    r"^(?:strona\s+\d+\s+z\s+\d+|(?:©\s*)?cke(?:\s+\d{4})?|eduarkusze\.pl|[a-z]{2,}_[a-z0-9_]+)$",
+    re.IGNORECASE,
+)
 PARENT_HEADER_RE = re.compile(r"Zadanie\s+(\d+)\.\s*$", re.IGNORECASE)
 SHORT_KEY_HEADERS_RE = re.compile(
     r"^\s*(?:(?:Zad(?:anie)?|Zadania)\s+\d+(?:\.\d+)?\.\s*)+$",
@@ -353,10 +357,14 @@ class Session:
     output_dir: Path
     stem: str
     detail: str
+    exam_pdf_override: Path | None = None
+    json_path_override: Path | None = None
+    task_asset_filenames: dict[str, str] | None = None
+    write_context_assets: bool = True
 
     @property
     def exam_pdf(self) -> Path:
-        return self.source_dir / "arkusz.pdf"
+        return self.exam_pdf_override or self.source_dir / "arkusz.pdf"
 
     @property
     def key_pdf(self) -> Path:
@@ -364,7 +372,7 @@ class Session:
 
     @property
     def json_path(self) -> Path:
-        return self.output_dir / f"{self.stem}.json"
+        return self.json_path_override or self.output_dir / f"{self.stem}.json"
 
     @property
     def source_config(self) -> dict:
@@ -482,6 +490,107 @@ def build_sessions() -> list[Session]:
             -(int(item.formula) if item.formula else 0),
         ),
     )
+
+
+def legacy_task_asset_filenames(json_path: Path) -> dict[str, str]:
+    try:
+        payload = json.loads(json_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        raise RuntimeError(f"Nieprawidłowy JSON zadań: {json_path}") from error
+
+    if not isinstance(payload, list):
+        raise RuntimeError(f"Plik zadań nie zawiera listy: {json_path}")
+
+    filenames = {}
+    for item in payload:
+        filename = str(item.get("file", "")) if isinstance(item, dict) else ""
+        match = re.match(r"^(\d+(?:\.\d+)?)", Path(filename).stem)
+        if not match:
+            raise RuntimeError(f"Nie można odczytać numeru zadania z pliku: {json_path} / {filename}")
+        number = match.group(1)
+        if number in filenames:
+            raise RuntimeError(f"Powielony numer zadania w {json_path}: {number}")
+        filenames[number] = Path(filename).with_suffix(".webp").name
+
+    if not filenames:
+        raise RuntimeError(f"Brak plików zadań w {json_path}")
+    return filenames
+
+
+def build_legacy_matura_sessions() -> list[Session]:
+    """Find older matura imports that retain their original CKE PDFs in-place."""
+    sessions = []
+    legacy_levels = {
+        "mp": EXAM_META["01_matura_podstawowa"],
+        "mr": EXAM_META["02_matura_rozszerzona"],
+    }
+
+    for kind, (_, level, level_code, label) in legacy_levels.items():
+        level_dir = ROOT / "zadania" / kind
+        for year_dir in sorted(level_dir.iterdir() if level_dir.exists() else []):
+            if not year_dir.is_dir() or not year_dir.name.isdigit():
+                continue
+            year = int(year_dir.name)
+            if year > 2025:
+                continue
+
+            for output_dir in sorted(path for path in year_dir.iterdir() if path.is_dir()):
+                # Sessions from the package importer already use arkusz_cke.pdf
+                # and are covered by build_sessions().
+                if (output_dir / "arkusz_cke.pdf").exists():
+                    continue
+
+                json_candidates = []
+                for json_path in sorted(output_dir.glob("*.json")):
+                    if " " in json_path.stem or json_path.stem.endswith("_completion"):
+                        continue
+                    try:
+                        payload = json.loads(json_path.read_text(encoding="utf-8"))
+                    except json.JSONDecodeError:
+                        continue
+                    if isinstance(payload, list) and any(
+                        isinstance(item, dict) and item.get("file") for item in payload
+                    ):
+                        json_candidates.append(json_path)
+
+                if len(json_candidates) != 1:
+                    continue
+
+                exam_candidates = [
+                    path
+                    for path in sorted(output_dir.glob("*.pdf"))
+                    if "zasady" not in ascii_fold(path.name)
+                    and "odpowiedzi" not in ascii_fold(path.name)
+                ]
+                if len(exam_candidates) != 1:
+                    continue
+
+                json_path = json_candidates[0]
+                month = output_dir.name.split("_", 1)[0]
+                month_label = MONTH_LABELS.get(month, month)
+                sessions.append(
+                    Session(
+                        exam_folder=f"legacy_{kind}",
+                        kind=kind,
+                        level=level,
+                        level_code=level_code,
+                        label=label,
+                        year=year,
+                        term="main",
+                        month=month,
+                        formula="",
+                        source_dir=output_dir,
+                        output_dir=output_dir,
+                        stem=json_path.stem,
+                        detail=f"{year} / {month_label} / CKE",
+                        exam_pdf_override=exam_candidates[0],
+                        json_path_override=json_path,
+                        task_asset_filenames=legacy_task_asset_filenames(json_path),
+                        write_context_assets=False,
+                    )
+                )
+
+    return sessions
 
 
 def page_lines(page) -> list[dict]:
@@ -611,6 +720,24 @@ def collect_exam_headers(document, pdf_path: Path) -> tuple[list[dict], dict[int
 
 def page_bottom(page) -> float:
     return max(PAGE_TOP + 20, float(page.height) - PAGE_BOTTOM_MARGIN)
+
+
+def task_page_bottom(page, lines: list[dict]) -> float:
+    """Use the first real page footer as the lower edge of a task crop.
+
+    Older CKE PDFs place the footer at different heights. A fixed margin can
+    either retain a page number or trim the final line of a task, so task
+    crops use the footer detected in the source page whenever it is present.
+    """
+    footer_tops = [
+        float(line["top"])
+        for line in lines
+        if float(line["top"]) > float(page.height) * 0.7
+        and PAGE_FOOTER_RE.fullmatch(ascii_fold(line["text"]).strip())
+    ]
+    if footer_tops:
+        return max(PAGE_TOP + 20, min(footer_tops) - 4)
+    return page_bottom(page)
 
 
 def rendered_page(page, cache: dict[int, Image.Image], page_index: int) -> Image.Image:
@@ -775,14 +902,19 @@ def grid_top(page, after: float, before: float, x0: float, x1: float) -> float |
     return min(candidates) if candidates else None
 
 
-def boundary_on_page(headers: list[dict], index: int, page) -> float:
+def boundary_on_page(
+    headers: list[dict],
+    index: int,
+    page,
+    page_limit: float | None = None,
+) -> float:
     header = headers[index]
     next_same_page = [
         item["top"]
         for item in headers[index + 1 :]
         if item["page"] == header["page"]
     ]
-    return min(next_same_page) - 4 if next_same_page else page_bottom(page)
+    return min(next_same_page) - 4 if next_same_page else page_limit or page_bottom(page)
 
 
 def first_line_top(lines: list[dict], after: float, before: float, prefixes: tuple[str, ...]) -> float | None:
@@ -812,7 +944,12 @@ def extract_task_text(
     page,
 ) -> str:
     start = header["bottom"] + 2
-    end = boundary_on_page(headers, index, page)
+    end = boundary_on_page(
+        headers,
+        index,
+        page,
+        task_page_bottom(page, lines_by_page[header["page"]]),
+    )
     texts = [
         line["text"]
         for line in lines_by_page[header["page"]]
@@ -832,21 +969,27 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
 
         for index, header in enumerate(headers):
             page = document.pages[header["page"]]
+            page_lines = lines_by_page[header["page"]]
             # Header and the first line of the task can visually sit closer
             # than their extracted text bounds suggest. Starting at the
             # header's bottom preserves the whole first line without showing
             # the task-number strip.
             start = header["bottom"]
-            end = boundary_on_page(headers, index, page)
+            end = boundary_on_page(
+                headers,
+                index,
+                page,
+                task_page_bottom(page, page_lines),
+            )
 
             stop = first_line_top(
-                lines_by_page[header["page"]],
+                page_lines,
                 start,
                 end,
                 ("brudnopis", "przenies rozwiazania zadan"),
             )
             solution_stop = first_exact_line_top(
-                lines_by_page[header["page"]],
+                page_lines,
                 start,
                 end,
                 ("rozwiazanie",),
@@ -893,7 +1036,14 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                 context_texts[header["number"]] = text
                 continue
 
-            filename = f"{header['number']}_{session.stem}.webp"
+            if session.task_asset_filenames is not None:
+                filename = session.task_asset_filenames.get(header["number"])
+                if filename is None:
+                    raise RuntimeError(
+                        f"Brak nazwy pliku zadania {header['number']} w {session.json_path}"
+                    )
+            else:
+                filename = f"{header['number']}_{session.stem}.webp"
             save_webp(image, output / filename)
             item = {"file": filename, "maxPoints": header["maxPoints"]}
             if "." in header["number"]:
@@ -1474,7 +1624,13 @@ def repair_task_crops(session: Session) -> dict:
 
     try:
         manifest, _ = extract_task_assets(session, stage)
-        filenames = sorted({item["file"] for item in manifest.values() if item.get("file")})
+        filenames = sorted(
+            {
+                item["file"]
+                for key, item in manifest.items()
+                if item.get("file") and (session.write_context_assets or not key.startswith("context:"))
+            }
+        )
 
         for filename in filenames:
             source = stage / filename
@@ -1743,7 +1899,10 @@ def main() -> None:
         )
         return
 
-    sessions = selected_sessions(build_sessions(), args.only)
+    all_sessions = build_sessions()
+    if args.repair_task_crops:
+        all_sessions.extend(build_legacy_matura_sessions())
+    sessions = selected_sessions(all_sessions, args.only)
     if not sessions:
         raise SystemExit("Brak sesji pasujących do filtra.")
 
