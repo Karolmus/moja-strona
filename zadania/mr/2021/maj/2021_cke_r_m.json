@@ -7,8 +7,9 @@
     "answer": "D",
     "tags": [
       "trygonometria",
-      "wartości-funkcji-trygonometrycznych",
-      "wzory-redukcyjne"
+      "wartości funkcji trygonometrycznych",
+      "wzory redukcyjne",
+      "funkcje"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 1,
@@ -28,9 +29,11 @@
     "hint": "Porównaj okresowość, miejsca zerowe i wartości funkcji widoczne na wykresie.",
     "answer": "C",
     "tags": [
-      "funkcje-trygonometryczne",
-      "wykresy-funkcji",
-      "wartość-bezwzględna"
+      "funkcje trygonometryczne",
+      "wykres funkcji",
+      "wartość bezwzględna",
+      "funkcje",
+      "trygonometria"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 1,
@@ -51,8 +54,11 @@
     "answer": "C",
     "tags": [
       "wielomiany",
-      "rozkład-wielomianu-na-czynniki",
-      "wzory-skróconego-mnożenia"
+      "rozkład wielomianu na czynniki",
+      "wzory skróconego mnożenia",
+      "pierwiastki",
+      "liczby i działania",
+      "wyrażenia algebraiczne"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 1,
@@ -72,9 +78,11 @@
     "hint": "Rozpatrz osobno przedziały wyznaczone przez miejsce zerowe wyrażenia pod wartością bezwzględną.",
     "answer": "B",
     "tags": [
-      "równania-z-wartością-bezwzględną",
-      "wartość-bezwzględna",
-      "równania"
+      "równania z wartością bezwzględną",
+      "wartość bezwzględna",
+      "równania",
+      "pierwiastki",
+      "liczby i działania"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 1,
@@ -94,9 +102,11 @@
     "hint": "Podziel licznik i mianownik przez najwyższą potęgę zmiennej n.",
     "answer": "125",
     "tags": [
-      "granice-ciągów",
+      "granice ciągów",
       "ciągi",
-      "wyrażenia-algebraiczne"
+      "wyrażenia algebraiczne",
+      "granice",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -135,9 +145,10 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "logarytmy",
-      "własności-logarytmów",
-      "zmiana-podstawy-logarytmu",
-      "dowodzenie"
+      "własności logarytmów",
+      "zmiana podstawy logarytmu",
+      "dowodzenie",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -178,10 +189,19 @@
     "hint": "Przenieś wyrażenia na jedną stronę, ustal dziedzinę i rozwiąż nierówność iloczynową lub ilorazową.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności-wymierne",
-      "wyrażenia-wymierne",
+      "nierówności wymierne",
+      "wyrażenia wymierne",
       "dziedzina",
-      "przedziały-liczbowe"
+      "przedziały liczbowe",
+      "nierówności",
+      "funkcje wymierne",
+      "funkcje",
+      "wyrażenia algebraiczne",
+      "ułamki",
+      "liczby i działania",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -226,11 +246,15 @@
     "hint": "Wyznacz zależności między odcinkami i wykorzystaj podobieństwo trójkątów lub stosunki ich pól.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "dowody-geometryczne",
-      "trójkąt-równoboczny",
-      "podobieństwo-trójkątów",
-      "pola-trójkątów",
-      "planimetria"
+      "dowody geometryczne",
+      "trójkąt równoboczny",
+      "podobieństwo trójkątów",
+      "pola trójkątów",
+      "pola figur",
+      "trójkąty",
+      "wartość bezwzględna",
+      "dowodzenie",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -323,10 +347,14 @@
     "hint": "Ogranicz przestrzeń zdarzeń do liczb czterocyfrowych podzielnych przez 18 i policz liczby podzielne jednocześnie przez 15.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "prawdopodobieństwo-warunkowe",
-      "prawdopodobieństwo-klasyczne",
-      "podzielność-liczb",
-      "zliczanie-przypadków"
+      "prawdopodobieństwo warunkowe",
+      "prawdopodobieństwo klasyczne",
+      "podzielność liczb",
+      "zliczanie przypadków",
+      "prawdopodobieństwo",
+      "podzielność",
+      "kombinatoryka",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -359,11 +387,14 @@
     "hint": "Wyznacz równanie prostej AB, a następnie odległość środka okręgu od tej prostej i rzut prostokątny punktu O.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "geometria-analityczna",
-      "równanie-prostej",
-      "styczna-do-okręgu",
-      "odległość-punktu-od-prostej",
-      "równanie-okręgu"
+      "geometria analityczna",
+      "równanie prostej",
+      "styczna do okręgu",
+      "odległość punktu od prostej",
+      "równanie okręgu",
+      "okręgi i koła",
+      "współrzędne punktu",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -420,10 +451,16 @@
     "hint": "Połącz warunek na dwa różne pierwiastki z wzorami Viète'a oraz podanymi ograniczeniami dotyczącymi pierwiastków.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania-kwadratowe",
-      "równania-z-parametrem",
-      "zadania-z-parametrem",
-      "wzory-viete'a"
+      "równania kwadratowe",
+      "równania z parametrem",
+      "wzory Viete'a",
+      "funkcja kwadratowa",
+      "pierwiastki",
+      "funkcje",
+      "liczby i działania",
+      "równania",
+      "wielomiany",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -460,10 +497,12 @@
     "hint": "Zastosuj wzory na cosinus podwojonego kąta oraz przekształć prawą stronę z użyciem sumy lub różnicy sinusa i cosinusa.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania-trygonometryczne",
-      "wzory-na-podwojony-kąt",
-      "tożsamości-trygonometryczne",
-      "trygonometria"
+      "równania trygonometryczne",
+      "wzory na podwojony kąt",
+      "tożsamości trygonometryczne",
+      "trygonometria",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -520,11 +559,14 @@
     "hint": "Połącz zależności w trójkącie prostokątnym z własnościami okręgu wpisanego i wzorami trygonometrycznymi.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "trójkąt-prostokątny",
-      "okrąg-wpisany",
-      "funkcje-trygonometryczne",
-      "twierdzenie-pitagorasa",
-      "planimetria"
+      "trójkąt prostokątny",
+      "okrąg wpisany",
+      "funkcje trygonometryczne",
+      "twierdzenie Pitagorasa",
+      "trygonometria",
+      "trójkąty",
+      "okręgi i koła",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -597,12 +639,19 @@
     "hint": "Zapisz współrzędne punktu C za pomocą parametru m. Pole wyznacz ze współrzędnych, a ostrokątność sprawdź iloczynami skalarnymi.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "geometria-analityczna",
-      "funkcja-kwadratowa",
-      "pola-trójkątów",
+      "geometria analityczna",
+      "funkcja kwadratowa",
+      "pola trójkątów",
       "wektory",
-      "iloczyn-skalarny",
-      "nierówności-kwadratowe"
+      "iloczyn skalarny",
+      "nierówności kwadratowe",
+      "funkcje",
+      "pola figur",
+      "trójkąty",
+      "nierówności",
+      "współrzędne punktu",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 6,
@@ -666,9 +715,13 @@
       "optymalizacja",
       "pochodne",
       "prostopadłościan",
-      "objętość-brył",
-      "pole-powierzchni-brył",
-      "modelowanie-matematyczne"
+      "objętość brył",
+      "pole powierzchni brył",
+      "stereometria",
+      "objętość",
+      "kwadrat",
+      "czworokąty",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 7,

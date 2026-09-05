@@ -15,7 +15,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "działania-na-liczbach"
+      "liczby i działania"
     ],
     "completionPercent": 67,
     "maxPoints": 1
@@ -35,8 +35,10 @@
       "D"
     ],
     "tags": [
-      "potegi",
-      "działania-na-liczbach"
+      "potęgi",
+      "wyrażenia algebraiczne",
+      "liczby i działania",
+      "działania na potęgach"
     ],
     "completionPercent": 63,
     "maxPoints": 1
@@ -56,8 +58,7 @@
       "D"
     ],
     "tags": [
-      "logarytmy",
-      "działania-na-liczbach"
+      "logarytmy"
     ],
     "completionPercent": 78,
     "maxPoints": 1
@@ -77,8 +78,9 @@
       "D"
     ],
     "tags": [
-      "wzory-skróconego-mnozenia",
-      "wyrażenia-algebraiczne"
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne",
+      "liczby i działania"
     ],
     "completionPercent": 72,
     "maxPoints": 1
@@ -92,8 +94,10 @@
     "answer": "Należy wykazać podzielność przez 4, np. dla n = 2l + 1 otrzymać 3n² + 2n + 7 = 4(3l² + 4l + 3).",
     "tags": [
       "dowodzenie",
-      "dowody-algebraiczne",
-      "wyrażenia-algebraiczne"
+      "dowody algebraiczne",
+      "wyrażenia algebraiczne",
+      "podzielność",
+      "zadania-otwarte"
     ],
     "completionPercent": 32,
     "solutions": [
@@ -132,8 +136,9 @@
       "D"
     ],
     "tags": [
-      "nierówności-liniowe",
-      "przedziały-liczbowe"
+      "nierówności liniowe",
+      "przedziały liczbowe",
+      "nierówności"
     ],
     "completionPercent": 73,
     "maxPoints": 1
@@ -153,8 +158,12 @@
       "D"
     ],
     "tags": [
-      "równania-kwadratowe",
-      "liczby-rzeczywiste"
+      "równania kwadratowe",
+      "liczby rzeczywiste",
+      "równania",
+      "funkcja kwadratowa",
+      "funkcje",
+      "liczby i działania"
     ],
     "completionPercent": 62,
     "maxPoints": 1
@@ -174,8 +183,12 @@
       "D"
     ],
     "tags": [
-      "wyrażenia-algebraiczne",
-      "równania-wymierne"
+      "wyrażenia algebraiczne",
+      "równania wymierne",
+      "liczby i działania",
+      "równania",
+      "funkcje wymierne",
+      "funkcje"
     ],
     "completionPercent": 60,
     "maxPoints": 1
@@ -188,9 +201,10 @@
     "hint": "Oznacz kwotę zespołu A przez x, zespołu B przez y i zapisz układ z sumą budżetu oraz wykorzystaną kwotą.",
     "answer": "735 000 zł",
     "tags": [
-      "układy-równań",
-      "zadania-tekstowe",
-      "modelowanie-matematyczne"
+      "układy równań",
+      "procenty",
+      "równania",
+      "zadania-otwarte"
     ],
     "completionPercent": 30,
     "solutions": [
@@ -210,9 +224,14 @@
     "hint": "Przenieś wszystko na jedną stronę, oblicz miejsca zerowe trójmianu i odczytaj, gdzie parabola jest poniżej osi.",
     "answer": "x ∈ (1/3, 3/2)",
     "tags": [
-      "nierówności-kwadratowe",
-      "równania-kwadratowe",
-      "przedziały-liczbowe"
+      "nierówności kwadratowe",
+      "równania kwadratowe",
+      "przedziały liczbowe",
+      "nierówności",
+      "funkcja kwadratowa",
+      "funkcje",
+      "równania",
+      "zadania-otwarte"
     ],
     "completionPercent": 68,
     "solutions": [
@@ -233,8 +252,13 @@
     "answer": "1. Dziedzina: [−4, 4).\n2. Zbiór wartości: (−3, 3].\n3. Argumenty, dla których f przyjmuje wartości dodatnie: [−4, 3).\n4. Rozwiązania równania f(x) = 3: [−2, 2].",
     "tags": [
       "funkcje",
-      "dziedzina-funkcji",
-      "odczytywanie-z-wykresu"
+      "dziedzina funkcji",
+      "odczytywanie z wykresu",
+      "geometria analityczna",
+      "równania",
+      "odczytywanie danych",
+      "wykres funkcji",
+      "zadania-otwarte"
     ],
     "completionPercent": 67,
     "gradingCriteriaFile": "11_z.png",
@@ -249,8 +273,12 @@
     "answer": "f(x) = −1/3 · (x − 3)² + 6",
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja-kwadratowa",
-      "wykres-funkcji"
+      "funkcja kwadratowa",
+      "wykres funkcji",
+      "funkcje",
+      "geometria analityczna",
+      "postać kanoniczna",
+      "zadania-otwarte"
     ],
     "completionPercent": 62,
     "solutions": [
@@ -282,8 +310,13 @@
     ],
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja-kwadratowa",
-      "symetria-wykresu"
+      "funkcja kwadratowa",
+      "symetria wykresu",
+      "funkcje",
+      "geometria analityczna",
+      "równania",
+      "wykres funkcji",
+      "oś symetrii"
     ],
     "completionPercent": 84,
     "maxPoints": 1
@@ -297,9 +330,12 @@
     "answer": "6",
     "contextFile": "12_2025_cke_p_m.png",
     "tags": [
-      "funkcja-kwadratowa",
-      "miejsce-zerowe",
-      "przesunięcia-wykresu"
+      "funkcja kwadratowa",
+      "miejsce zerowe",
+      "przesunięcia wykresu",
+      "funkcje",
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "completionPercent": 47,
     "gradingCriteria": [
@@ -331,9 +367,12 @@
       "D"
     ],
     "tags": [
-      "funkcja-liniowa",
-      "miejsce-zerowe",
-      "zadania-z-parametrem"
+      "funkcja liniowa",
+      "miejsce zerowe",
+      "równania z parametrem",
+      "funkcje",
+      "funkcja kwadratowa",
+      "równania"
     ],
     "completionPercent": 72,
     "maxPoints": 1
@@ -354,8 +393,8 @@
     ],
     "contextFile": "14_2025_cke_p_m.png",
     "tags": [
-      "ciagi",
-      "wyraz-ogólny-ciągu"
+      "ciągi",
+      "wyraz ogólny ciągu"
     ],
     "completionPercent": 75,
     "maxPoints": 1
@@ -376,9 +415,9 @@
     ],
     "contextFile": "14_2025_cke_p_m.png",
     "tags": [
-      "ciagi",
-      "ciąg-arytmetyczny",
-      "ciąg-geometryczny"
+      "ciągi",
+      "ciąg arytmetyczny",
+      "ciąg geometryczny"
     ],
     "completionPercent": 47,
     "maxPoints": 1
@@ -391,9 +430,12 @@
     "hint": "Dla ciągu arytmetycznego środkowy wyraz jest średnią sąsiednich; potem sprawdź warunek malejącości.",
     "answer": "m = 5/2",
     "tags": [
-      "ciąg-arytmetyczny",
-      "monotoniczność-ciągu",
-      "zadania-z-parametrem"
+      "ciąg arytmetyczny",
+      "monotoniczność ciągu",
+      "równania z parametrem",
+      "ciągi",
+      "równania",
+      "zadania-otwarte"
     ],
     "completionPercent": 49,
     "solutions": [
@@ -432,9 +474,9 @@
       "D"
     ],
     "tags": [
-      "ciagi",
-      "ciąg-geometryczny",
-      "wyraz-ogólny-ciągu"
+      "ciągi",
+      "ciąg geometryczny",
+      "wyraz ogólny ciągu"
     ],
     "completionPercent": 78,
     "maxPoints": 1
@@ -456,7 +498,9 @@
     "tags": [
       "trygonometria",
       "tangens",
-      "cosinus"
+      "cosinus",
+      "pierwiastki",
+      "liczby i działania"
     ],
     "completionPercent": 70,
     "maxPoints": 1
@@ -479,7 +523,8 @@
     "tags": [
       "trygonometria",
       "tangens",
-      "trójkąt-prostokątny"
+      "trójkąt prostokątny",
+      "trójkąty"
     ],
     "completionPercent": 81,
     "maxPoints": 1
@@ -502,7 +547,10 @@
     "tags": [
       "trygonometria",
       "sinus",
-      "trójkąt-prostokątny"
+      "trójkąt prostokątny",
+      "trójkąty",
+      "pierwiastki",
+      "liczby i działania"
     ],
     "completionPercent": 59,
     "maxPoints": 1
@@ -523,7 +571,9 @@
     ],
     "tags": [
       "okrąg",
-      "kąty-w-okręgu"
+      "kąty w okręgu",
+      "okręgi i koła",
+      "kąt wpisany"
     ],
     "completionPercent": 81,
     "maxPoints": 1
@@ -543,8 +593,9 @@
       "D"
     ],
     "tags": [
-      "podobieństwo-trójkątów",
-      "trojkaty"
+      "podobieństwo trójkątów",
+      "trójkąty",
+      "wartość bezwzględna"
     ],
     "completionPercent": 53,
     "maxPoints": 1
@@ -552,7 +603,7 @@
   {
     "file": "21_2025_cke_p_m.png",
     "difficulty": 3,
-    "topic": "geometria",
+    "topic": "pola figur",
     "level": "matura_podstawowa",
     "hint": "Do sprawdzenia boków użyj twierdzenia cosinusów, a do pola wzoru z sinusem kąta między bokami.",
     "answer": "FP",
@@ -564,9 +615,13 @@
       "FF"
     ],
     "tags": [
-      "trojkaty",
-      "pola-figur",
-      "trygonometria"
+      "trójkąty",
+      "pola figur",
+      "trygonometria",
+      "pierwiastki",
+      "wartość bezwzględna",
+      "liczby i działania",
+      "pola trójkątów"
     ],
     "completionPercent": 51,
     "maxPoints": 1
@@ -586,9 +641,11 @@
       "D"
     ],
     "tags": [
-      "geometria-analityczna",
-      "środek-odcinka",
-      "odległość-punktów"
+      "geometria analityczna",
+      "środek odcinka",
+      "odległość punktów",
+      "czworokąty",
+      "kwadrat"
     ],
     "completionPercent": 70,
     "maxPoints": 1
@@ -608,9 +665,11 @@
       "D"
     ],
     "tags": [
-      "równanie-prostej",
-      "proste-równoległe",
-      "zadania-z-parametrem"
+      "równanie prostej",
+      "proste równoległe",
+      "równania z parametrem",
+      "geometria analityczna",
+      "równania"
     ],
     "completionPercent": 79,
     "maxPoints": 1
@@ -630,9 +689,13 @@
       "D"
     ],
     "tags": [
-      "geometria-analityczna",
-      "okrąg-w-układzie-współrzędnych",
-      "odległość-punktów"
+      "geometria analityczna",
+      "okrąg w układzie współrzędnych",
+      "odległość punktów",
+      "okręgi i koła",
+      "pierwiastki",
+      "równania",
+      "liczby i działania"
     ],
     "completionPercent": 61,
     "maxPoints": 1
@@ -645,9 +708,12 @@
     "hint": "Rozważ przekrój osiowy stożka. Połowa kąta rozwarcia ma 60°, a tworząca jest przeciwprostokątną trójkąta prostokątnego.",
     "answer": "V = 64π",
     "tags": [
-      "stozek",
-      "objętość-brył",
-      "trygonometria"
+      "stożek",
+      "objętość brył",
+      "trygonometria",
+      "objętość",
+      "stereometria",
+      "zadania-otwarte"
     ],
     "completionPercent": 49,
     "solutions": [
@@ -682,8 +748,12 @@
       "D"
     ],
     "tags": [
-      "graniastoslupy",
-      "objętość-brył"
+      "graniastosłupy",
+      "objętość brył",
+      "stereometria",
+      "objętość",
+      "pierwiastki",
+      "liczby i działania"
     ],
     "completionPercent": 64,
     "maxPoints": 1
@@ -704,8 +774,9 @@
     ],
     "tags": [
       "kombinatoryka",
-      "reguła-mnozenia",
-      "zliczanie-przypadków"
+      "reguła mnożenia",
+      "zliczanie przypadków",
+      "liczby i działania"
     ],
     "completionPercent": 71,
     "maxPoints": 1
@@ -726,8 +797,9 @@
     ],
     "tags": [
       "prawdopodobieństwo",
-      "prawdopodobieństwo-klasyczne",
-      "zliczanie-przypadków"
+      "prawdopodobieństwo klasyczne",
+      "zliczanie przypadków",
+      "kombinatoryka"
     ],
     "completionPercent": 85,
     "maxPoints": 1
@@ -748,7 +820,7 @@
     ],
     "tags": [
       "statystyka",
-      "średnia-arytmetyczna"
+      "średnia arytmetyczna"
     ],
     "completionPercent": 91,
     "maxPoints": 1
@@ -763,7 +835,9 @@
     "tags": [
       "statystyka",
       "mediana",
-      "dominanta"
+      "dominanta",
+      "odczytywanie danych",
+      "zadania-otwarte"
     ],
     "completionPercent": 70,
     "gradingCriteriaFile": "30_z.png",
@@ -778,8 +852,12 @@
     "answer": "P(x) = −2x² + 22x + 88, D = (0, 11), największe pole dla x = 11/2.",
     "tags": [
       "optymalizacja",
-      "funkcja-kwadratowa",
-      "stereometria"
+      "funkcja kwadratowa",
+      "stereometria",
+      "funkcje",
+      "dziedzina funkcji",
+      "prostopadłościan",
+      "zadania-otwarte"
     ],
     "completionPercent": 38,
     "solutions": [

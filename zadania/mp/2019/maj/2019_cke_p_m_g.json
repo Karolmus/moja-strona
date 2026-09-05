@@ -130,7 +130,9 @@
     "answer": "C",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji",
+      "miejsce zerowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -150,7 +152,9 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "C",
     "tags": [
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -192,7 +196,10 @@
     "tags": [
       "funkcje",
       "geometria analityczna",
-      "równania"
+      "równania",
+      "wykres funkcji",
+      "oś symetrii",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -267,12 +274,15 @@
   {
     "file": "14_2019_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "okrąg opisany",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "okrąg opisany",
+      "trójkąty",
+      "okręgi i koła",
+      "kąt wpisany"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -293,7 +303,8 @@
     "answer": "C",
     "tags": [
       "okręgi i koła",
-      "wartość bezwzględna"
+      "wartość bezwzględna",
+      "styczna do okręgu"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -313,7 +324,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "A",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "romb"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -375,7 +387,8 @@
     "answer": "C",
     "tags": [
       "funkcje",
-      "geometria analityczna"
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -395,7 +408,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "C",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -415,7 +429,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "prostopadłościan"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -456,7 +471,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "B",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "mediana"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -477,7 +493,8 @@
     "answer": "C",
     "tags": [
       "prawdopodobieństwo",
-      "kombinatoryka"
+      "kombinatoryka",
+      "reguła mnożenia"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -521,6 +538,9 @@
       "wyrażenia algebraiczne",
       "nierówności",
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -655,6 +675,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "czworokąty",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -677,6 +698,7 @@
       "ciąg arytmetyczny",
       "ciągi",
       "statystyka",
+      "średnia arytmetyczna",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -705,6 +727,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "geometria analityczna",
+      "współrzędne punktu",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -742,6 +765,7 @@
     "tags": [
       "trygonometria",
       "stereometria",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

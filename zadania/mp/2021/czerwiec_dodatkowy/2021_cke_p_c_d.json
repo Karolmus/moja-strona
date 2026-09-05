@@ -7,7 +7,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "D",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -21,12 +22,13 @@
   {
     "file": "2_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -123,7 +125,8 @@
     "answer": "A",
     "tags": [
       "pierwiastki",
-      "równania"
+      "równania",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -142,7 +145,10 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "A",
     "tags": [
-      "równania"
+      "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -161,7 +167,10 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "C",
     "tags": [
-      "funkcje"
+      "funkcje",
+      "wykres funkcji",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -182,7 +191,8 @@
     "tags": [
       "funkcja kwadratowa",
       "funkcje",
-      "geometria analityczna"
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -201,7 +211,9 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "D",
     "tags": [
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -278,7 +290,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "A",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -292,12 +305,14 @@
   {
     "file": "16_2021_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła",
+      "kąt środkowy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -336,8 +351,8 @@
     "answer": "B",
     "tags": [
       "trójkąty",
-      "czworokąty",
-      "wartość bezwzględna"
+      "wartość bezwzględna",
+      "trójkąt prostokątny"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -356,7 +371,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "C",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "równoległobok"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -376,7 +392,8 @@
     "answer": "B",
     "tags": [
       "trójkąty",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -434,7 +451,9 @@
     "answer": "D",
     "tags": [
       "czworokąty",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania",
+      "prostokąt"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -473,7 +492,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -492,7 +512,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -531,7 +552,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "D",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -623,6 +645,7 @@
     "tags": [
       "czworokąty",
       "procenty",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -702,6 +725,7 @@
       "pola figur",
       "trójkąty",
       "równania",
+      "pola trójkątów",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

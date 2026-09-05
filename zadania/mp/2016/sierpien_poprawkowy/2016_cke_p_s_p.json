@@ -2,12 +2,13 @@
   {
     "file": "1_2016_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "równania",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "równania",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -40,12 +41,13 @@
   {
     "file": "3_2016_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -124,7 +126,8 @@
     "tags": [
       "funkcja liniowa",
       "funkcje",
-      "geometria analityczna"
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -182,7 +185,8 @@
     "answer": "D",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -236,12 +240,14 @@
   {
     "file": "13_2016_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wartość bezwzględna",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "wartość bezwzględna",
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -274,12 +280,13 @@
   {
     "file": "15_2016_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "stożek",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "stożek",
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -317,7 +324,8 @@
     "hint": "Ustal pole podstawy i wysokość bryły, a następnie zastosuj wzór na objętość.",
     "answer": "A",
     "tags": [
-      "objętość"
+      "objętość",
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -336,7 +344,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "D",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "równoległobok"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -356,7 +365,9 @@
     "answer": "C",
     "tags": [
       "okręgi i koła",
-      "wartość bezwzględna"
+      "wartość bezwzględna",
+      "kąt wpisany",
+      "kąt środkowy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -370,12 +381,13 @@
   {
     "file": "20_2016_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "okręgi i koła",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "okręgi i koła",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -394,7 +406,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -413,7 +426,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "C",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -432,7 +446,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "A",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -493,6 +508,13 @@
       "funkcje",
       "pierwiastki",
       "wartość bezwzględna",
+      "nierówności",
+      "równania",
+      "przedziały liczbowe",
+      "liczby i działania",
+      "wzory Viete'a",
+      "nierówności kwadratowe",
+      "wielomiany",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -522,6 +544,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -616,6 +639,7 @@
       "pola figur",
       "trójkąty",
       "dowodzenie",
+      "pola trójkątów",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -675,8 +699,8 @@
     "tags": [
       "geometria analityczna",
       "trójkąty",
-      "czworokąty",
       "równania",
+      "trójkąt prostokątny",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -727,6 +751,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

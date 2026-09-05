@@ -7,7 +7,9 @@
     "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "A",
     "tags": [
-      "potęgi"
+      "potęgi",
+      "liczby i działania",
+      "działania na potęgach"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -27,7 +29,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "C",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -88,7 +91,10 @@
     "answer": "C",
     "tags": [
       "nierówności",
-      "równania"
+      "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -150,7 +156,10 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "C",
     "tags": [
-      "równania"
+      "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -171,7 +180,9 @@
     "answer": "C",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -192,7 +203,9 @@
     "answer": "C",
     "tags": [
       "funkcje",
-      "wyrażenia algebraiczne"
+      "wyrażenia algebraiczne",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -213,7 +226,9 @@
     "answer": "D",
     "tags": [
       "funkcje",
-      "potęgi"
+      "potęgi",
+      "liczby i działania",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -291,12 +306,14 @@
   {
     "file": "15_2017_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła",
+      "kąt środkowy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -339,7 +356,8 @@
       "funkcje",
       "trygonometria",
       "pola figur",
-      "trójkąty"
+      "trójkąty",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -420,7 +438,8 @@
     "answer": "A",
     "tags": [
       "stereometria",
-      "czworokąty"
+      "czworokąty",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -460,7 +479,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "stożek"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -480,7 +500,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "D",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -524,6 +545,12 @@
       "funkcje",
       "pierwiastki",
       "nierówności",
+      "równania",
+      "przedziały liczbowe",
+      "liczby i działania",
+      "nierówności kwadratowe",
+      "wykres funkcji",
+      "miejsce zerowe",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -662,6 +689,7 @@
       "geometria analityczna",
       "pola figur",
       "trójkąty",
+      "pola trójkątów",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -688,6 +716,7 @@
       "prawdopodobieństwo",
       "podzielność",
       "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -709,6 +738,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 4,

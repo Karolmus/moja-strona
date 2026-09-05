@@ -9,7 +9,8 @@
     "tags": [
       "pierwiastki",
       "wzory skróconego mnożenia",
-      "wyrażenia algebraiczne"
+      "wyrażenia algebraiczne",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -50,7 +51,8 @@
     "answer": "C",
     "tags": [
       "okręgi i koła",
-      "trójkąty"
+      "trójkąty",
+      "styczna do okręgu"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -200,6 +202,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -246,6 +249,7 @@
       "prawdopodobieństwo",
       "podzielność",
       "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -295,6 +299,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "równania",
+      "równanie okręgu",
+      "okręgi i koła",
+      "geometria analityczna",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -371,6 +378,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "objętość",
+      "stereometria",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

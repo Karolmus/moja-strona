@@ -90,6 +90,7 @@
     "tags": [
       "ciągi",
       "pierwiastki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -122,6 +123,7 @@
       "prawdopodobieństwo",
       "podzielność",
       "ułamki",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -150,6 +152,9 @@
     "tags": [
       "nierówności",
       "dowodzenie",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -188,6 +193,8 @@
       "pierwiastki",
       "wartość bezwzględna",
       "dowodzenie",
+      "liczby i działania",
+      "kwadrat",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -310,6 +317,9 @@
       "stereometria",
       "trójkąty",
       "pierwiastki",
+      "liczby i działania",
+      "trójkąt równoboczny",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -360,6 +370,8 @@
       "trójkąty",
       "wartość bezwzględna",
       "równania",
+      "równanie okręgu",
+      "okręgi i koła",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -406,6 +418,7 @@
       "funkcje",
       "równania z parametrem",
       "równania",
+      "miejsce zerowe",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

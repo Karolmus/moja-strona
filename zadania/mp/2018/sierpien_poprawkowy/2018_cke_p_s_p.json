@@ -21,12 +21,14 @@
   {
     "file": "2_2018_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -40,12 +42,13 @@
   {
     "file": "3_2018_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -78,12 +81,16 @@
   {
     "file": "5_2018_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "wzory skróconego mnożenia",
+      "równania",
+      "liczby i działania",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -97,12 +104,13 @@
   {
     "file": "6_2018_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "układy równań",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "układy równań",
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -141,7 +149,8 @@
     "answer": "C",
     "tags": [
       "funkcje",
-      "geometria analityczna"
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -161,7 +170,8 @@
     "answer": "D",
     "tags": [
       "funkcje",
-      "wyrażenia algebraiczne"
+      "wyrażenia algebraiczne",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -199,7 +209,9 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "A",
     "tags": [
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -290,12 +302,12 @@
   {
     "file": "16_2018_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "trygonometria",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "trygonometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -333,7 +345,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "C",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "równoległobok"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -347,12 +360,15 @@
   {
     "file": "19_2018_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pole trójkąta",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "pole trójkąta",
+      "trygonometria",
+      "pola figur",
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -385,12 +401,13 @@
   {
     "file": "21_2018_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "środek odcinka",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "środek odcinka",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -428,7 +445,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -447,7 +465,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "C",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "mediana"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -489,6 +508,12 @@
       "funkcje",
       "pierwiastki",
       "nierówności",
+      "przedziały liczbowe",
+      "liczby i działania",
+      "wzory Viete'a",
+      "nierówności kwadratowe",
+      "miejsce zerowe",
+      "wielomiany",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -536,6 +561,7 @@
     "tags": [
       "czworokąty",
       "dowodzenie",
+      "równoległobok",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -611,6 +637,8 @@
     "tags": [
       "trójkąty",
       "równania",
+      "równanie prostej",
+      "geometria analityczna",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -639,6 +667,7 @@
     "tags": [
       "trygonometria",
       "stereometria",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -677,6 +706,8 @@
       "funkcje",
       "prawdopodobieństwo",
       "wyrażenia algebraiczne",
+      "miejsce zerowe",
+      "funkcja kwadratowa",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -709,6 +740,7 @@
     "tags": [
       "pola figur",
       "trójkąty",
+      "pola trójkątów",
       "zadania-otwarte"
     ],
     "maxPoints": 4,

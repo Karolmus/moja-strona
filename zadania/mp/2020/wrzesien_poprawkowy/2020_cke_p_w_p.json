@@ -7,7 +7,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "C",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -26,7 +27,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "A",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -83,7 +85,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "A",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -122,7 +125,9 @@
     "answer": "C",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -164,7 +169,9 @@
       "funkcja kwadratowa",
       "funkcje",
       "geometria analityczna",
-      "równania"
+      "równania",
+      "wykres funkcji",
+      "oś symetrii"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -184,7 +191,8 @@
     "answer": "D",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -222,7 +230,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "C",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -241,7 +250,9 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "D",
     "tags": [
-      "równania"
+      "równania",
+      "równanie prostej",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -255,12 +266,13 @@
   {
     "file": "14_2020_cke_p_w_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "środek odcinka",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "środek odcinka",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -281,7 +293,8 @@
     "tags": [
       "pola figur",
       "trójkąty",
-      "czworokąty"
+      "trójkąt prostokątny",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -319,7 +332,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "B",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -377,7 +391,8 @@
     "answer": "D",
     "tags": [
       "proporcje",
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie tabel"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -410,12 +425,15 @@
   {
     "file": "22_2020_cke_p_w_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pole trójkąta",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "pole trójkąta",
+      "geometria analityczna",
+      "pola figur",
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -453,7 +471,9 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "D",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -473,7 +493,8 @@
     "answer": "C",
     "tags": [
       "stereometria",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -496,6 +517,11 @@
       "funkcje",
       "pierwiastki",
       "nierówności",
+      "przedziały liczbowe",
+      "liczby i działania",
+      "nierówności kwadratowe",
+      "wykres funkcji",
+      "miejsce zerowe",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -686,6 +712,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "objętość",
+      "stereometria",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -709,6 +736,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "geometria analityczna",
+      "współrzędne punktu",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

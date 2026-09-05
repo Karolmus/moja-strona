@@ -2,12 +2,13 @@
   {
     "file": "1_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -40,12 +41,13 @@
   {
     "file": "3_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -59,12 +61,13 @@
   {
     "file": "4_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wzory skróconego mnożenia",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -78,12 +81,13 @@
   {
     "file": "5_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wzory skróconego mnożenia",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -236,7 +240,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "A",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "trapez"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -250,12 +255,13 @@
   {
     "file": "14_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -269,12 +275,14 @@
   {
     "file": "15_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "skala i jednostki",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "skala i jednostki",
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -307,12 +315,13 @@
   {
     "file": "17_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "symetralna",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "symetralna",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -332,7 +341,10 @@
     "answer": "C",
     "tags": [
       "układy równań",
-      "równania"
+      "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -346,12 +358,12 @@
   {
     "file": "19_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "równania",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "równania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -371,7 +383,9 @@
     "answer": "D",
     "tags": [
       "stereometria",
-      "trójkąty"
+      "trójkąty",
+      "trójkąt równoboczny",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -409,7 +423,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "D",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -442,12 +457,13 @@
   {
     "file": "24_2016_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "wielomiany",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "wielomiany",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -467,7 +483,8 @@
     "answer": "D",
     "tags": [
       "pola figur",
-      "trójkąty"
+      "trójkąty",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -530,6 +547,7 @@
       "geometria analityczna",
       "pola figur",
       "trójkąty",
+      "pola trójkątów",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -590,6 +608,7 @@
     "tags": [
       "czworokąty",
       "dowodzenie",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -711,6 +730,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "stożek",
       "zadania-otwarte"
     ],
     "maxPoints": 4,

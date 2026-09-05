@@ -6,10 +6,13 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcja-wykładnicza",
-      "równania-wykładnicze",
+      "funkcja wykładnicza",
+      "równania wykładnicze",
       "logarytmy",
-      "modelowanie-matematyczne"
+      "funkcje",
+      "procenty",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -30,8 +33,11 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "prawdopodobieństwo",
-      "schemat-bernoulliego",
-      "zdarzenia-losowe"
+      "schemat Bernoulliego",
+      "zdarzenia losowe",
+      "ułamki",
+      "liczby i działania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -63,10 +69,15 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "funkcje-wymierne",
+      "funkcje wymierne",
       "pochodne",
-      "styczna-do-wykresu",
-      "równanie-prostej"
+      "styczna do wykresu",
+      "równanie prostej",
+      "funkcje",
+      "równania",
+      "geometria analityczna",
+      "wykres funkcji",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -87,9 +98,16 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "dowodzenie",
-      "dowody-z-nierówności",
-      "wyrażenia-algebraiczne",
-      "układy-równań"
+      "dowody z nierówności",
+      "wyrażenia algebraiczne",
+      "układy równań",
+      "nierówności",
+      "równania",
+      "równania kwadratowe",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -113,10 +131,16 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "dowody-geometryczne",
+      "dowody geometryczne",
       "trójkąty",
       "wysokość",
-      "trygonometria"
+      "trygonometria",
+      "pierwiastki",
+      "wartość bezwzględna",
+      "dowodzenie",
+      "liczby i działania",
+      "trójkąt prostokątny",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -164,9 +188,11 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania-trygonometryczne",
-      "wzory-na-sumę-i-różnice-kątów",
-      "trygonometria"
+      "równania trygonometryczne",
+      "wzory na sumę i różnicę kątów",
+      "trygonometria",
+      "równania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 3,
@@ -196,8 +222,10 @@
     "tags": [
       "stereometria",
       "graniastosłup",
-      "odległości-w-bryłach",
-      "twierdzenie-pitagorasa-w-przestrzeni"
+      "odległości w bryłach",
+      "twierdzenie Pitagorasa w przestrzeni",
+      "trójkąty",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -250,10 +278,13 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "czworokaty",
-      "okrąg-wpisany",
+      "czworokąty",
+      "okrąg wpisany",
       "trygonometria",
-      "obwody-figur"
+      "obwody figur",
+      "wartość bezwzględna",
+      "okręgi i koła",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -281,9 +312,13 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "nierówności-z-wartością-bezwzględna",
-      "wartość-bezwzględna",
-      "przedziały-liczbowe"
+      "nierówności z wartością bezwzględną",
+      "wartość bezwzględna",
+      "przedziały liczbowe",
+      "pierwiastki",
+      "nierówności",
+      "liczby i działania",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -310,10 +345,14 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "ciąg-geometryczny",
-      "szereg-geometryczny",
-      "czworokaty",
-      "obwody-figur"
+      "ciąg geometryczny",
+      "szereg geometryczny",
+      "czworokąty",
+      "obwody figur",
+      "ciągi",
+      "proporcje",
+      "kwadrat",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -333,10 +372,14 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "równania-kwadratowe",
-      "równania-z-parametrem",
-      "zadania-z-parametrem",
-      "pierwiastki-wielomianu"
+      "równania kwadratowe",
+      "równania z parametrem",
+      "pierwiastki wielomianu",
+      "równania",
+      "funkcja kwadratowa",
+      "funkcje",
+      "wielomiany",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 5,
@@ -369,9 +412,12 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "logarytmy",
-      "własności-logarytmów",
-      "funkcja-logarytmiczna",
-      "wyrażenia-algebraiczne"
+      "własności logarytmów",
+      "funkcja logarytmiczna",
+      "wyrażenia algebraiczne",
+      "funkcje",
+      "dowodzenie",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 2,
@@ -393,9 +439,13 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "pochodne",
-      "wartość-najmniejsza",
+      "wartość najmniejsza",
       "optymalizacja",
-      "funkcja-wielomianowa"
+      "funkcja wielomianowa",
+      "logarytmy",
+      "funkcje",
+      "wielomiany",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 4,
@@ -416,10 +466,16 @@
     "hint": "Skorzystaj z rozwiązania i zasad oceniania, aby sprawdzić tok rozumowania krok po kroku.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "geometria-analityczna",
-      "funkcja-kwadratowa",
-      "równanie-okręgu",
-      "równanie-prostej"
+      "geometria analityczna",
+      "funkcja kwadratowa",
+      "równanie okręgu",
+      "równanie prostej",
+      "okręgi i koła",
+      "równania",
+      "funkcje",
+      "równania kwadratowe",
+      "współrzędne punktu",
+      "zadania-otwarte"
     ],
     "level": "matura_rozszerzona",
     "maxPoints": 6,

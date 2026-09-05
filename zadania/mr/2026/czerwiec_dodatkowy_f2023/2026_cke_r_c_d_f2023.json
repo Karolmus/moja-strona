@@ -31,6 +31,8 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "kombinatoryka",
+      "permutacje",
+      "reguła mnożenia",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -337,6 +339,10 @@
       "objętość",
       "pola figur",
       "czworokąty",
+      "pierwiastki",
+      "liczby i działania",
+      "trapez",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -371,6 +377,9 @@
       "funkcje",
       "geometria analityczna",
       "trójkąty",
+      "wyrażenia algebraiczne",
+      "dowodzenie",
+      "trójkąt prostokątny",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -394,6 +403,10 @@
       "funkcje",
       "geometria analityczna",
       "trójkąty",
+      "wyrażenia algebraiczne",
+      "równania",
+      "trójkąt prostokątny",
+      "równanie prostej",
       "zadania-otwarte"
     ],
     "maxPoints": 4,

@@ -2,12 +2,13 @@
   {
     "file": "1_2021_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -123,7 +124,8 @@
     "tags": [
       "funkcja liniowa",
       "funkcje",
-      "skala i jednostki"
+      "skala i jednostki",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -142,7 +144,9 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "C",
     "tags": [
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -182,7 +186,9 @@
     "tags": [
       "funkcja kwadratowa",
       "funkcje",
-      "geometria analityczna"
+      "geometria analityczna",
+      "wykres funkcji",
+      "wierzchołek paraboli"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -221,7 +227,8 @@
     "answer": "D",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -299,7 +306,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "B",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -380,7 +388,8 @@
     "answer": "B",
     "tags": [
       "czworokąty",
-      "wartość bezwzględna"
+      "wartość bezwzględna",
+      "prostokąt"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -424,7 +433,9 @@
       "funkcja liniowa",
       "funkcje",
       "wyrażenia algebraiczne",
-      "równania"
+      "równania",
+      "proste prostopadłe",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -444,7 +455,9 @@
     "answer": "C",
     "tags": [
       "czworokąty",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -464,7 +477,9 @@
     "answer": "C",
     "tags": [
       "stereometria",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -485,7 +500,8 @@
     "tags": [
       "stereometria",
       "objętość",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -543,7 +559,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "B",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -563,6 +580,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "nierówności",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -660,6 +680,8 @@
       "trójkąty",
       "czworokąty",
       "wartość bezwzględna",
+      "pola trójkątów",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 2,

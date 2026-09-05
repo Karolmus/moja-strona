@@ -7,7 +7,8 @@
     "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
     "answer": "C",
     "tags": [
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie tabel"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -27,7 +28,8 @@
     "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "D",
     "tags": [
-      "ułamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -65,7 +67,8 @@
     "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "A",
     "tags": [
-      "ułamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -242,7 +245,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "PP",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "trapez"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -323,6 +327,7 @@
       "pola figur",
       "trójkąty",
       "czworokąty",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 2,

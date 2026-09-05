@@ -27,7 +27,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "C",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "równoległobok"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -47,7 +48,8 @@
     "answer": "A",
     "tags": [
       "pierwiastki",
-      "wielomiany"
+      "wielomiany",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -228,6 +230,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -254,6 +259,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -287,6 +293,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "nierówności",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -333,6 +342,7 @@
     "tags": [
       "czworokąty",
       "równania",
+      "romb",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -372,6 +382,7 @@
       "trygonometria",
       "podzielność",
       "równania",
+      "równania trygonometryczne",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -412,6 +423,7 @@
       "okręgi i koła",
       "pola figur",
       "trójkąty",
+      "pola trójkątów",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

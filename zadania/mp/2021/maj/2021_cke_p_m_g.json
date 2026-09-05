@@ -7,7 +7,9 @@
     "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "B",
     "tags": [
-      "potęgi"
+      "potęgi",
+      "liczby i działania",
+      "działania na potęgach"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -83,7 +85,8 @@
     "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "D",
     "tags": [
-      "ułamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -121,7 +124,10 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "A",
     "tags": [
-      "funkcje"
+      "funkcje",
+      "wykres funkcji",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -179,7 +185,8 @@
     "answer": "B",
     "tags": [
       "funkcje",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -199,7 +206,8 @@
     "answer": "C",
     "tags": [
       "funkcje",
-      "geometria analityczna"
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -311,12 +319,13 @@
   {
     "file": "17_2021_cke_p_m_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -336,7 +345,7 @@
     "answer": "D",
     "tags": [
       "trójkąty",
-      "czworokąty"
+      "trójkąt prostokątny"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -355,7 +364,8 @@
     "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
     "answer": "A",
     "tags": [
-      "trójkąty"
+      "trójkąty",
+      "trójkąt równoboczny"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -376,7 +386,8 @@
     "tags": [
       "trójkąty",
       "pierwiastki",
-      "wartość bezwzględna"
+      "wartość bezwzględna",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -414,7 +425,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "równoległobok"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -433,7 +445,11 @@
     "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
     "answer": "B",
     "tags": [
-      "równania"
+      "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
+      "czworokąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -453,7 +469,8 @@
     "answer": "C",
     "tags": [
       "pola figur",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -474,7 +491,9 @@
     "tags": [
       "pola figur",
       "czworokąty",
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -533,7 +552,8 @@
     "answer": "C",
     "tags": [
       "ciągi",
-      "statystyka"
+      "statystyka",
+      "mediana"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -664,6 +684,10 @@
     "tags": [
       "trójkąty",
       "pierwiastki",
+      "liczby i działania",
+      "trójkąt równoboczny",
+      "proste równoległe",
+      "geometria analityczna",
       "zadania-otwarte"
     ],
     "maxPoints": 2,

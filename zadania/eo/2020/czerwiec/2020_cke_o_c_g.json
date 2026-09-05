@@ -8,7 +8,8 @@
     "answer": "AD",
     "tags": [
       "procenty",
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie tabel"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -65,7 +66,8 @@
     "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "PP",
     "tags": [
-      "geometria analityczna"
+      "geometria analityczna",
+      "współrzędne punktu"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -122,7 +124,8 @@
     "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
     "answer": "E",
     "tags": [
-      "potęgi"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -142,7 +145,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "B",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -182,7 +186,8 @@
     "tags": [
       "pola figur",
       "czworokąty",
-      "równania"
+      "równania",
+      "trapez"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -202,7 +207,9 @@
     "answer": "PP",
     "tags": [
       "trójkąty",
-      "czworokąty"
+      "czworokąty",
+      "trójkąt równoboczny",
+      "romb"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -221,7 +228,8 @@
     "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
     "answer": "AD",
     "tags": [
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie tabel"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -280,7 +288,8 @@
     "tags": [
       "pola figur",
       "trójkąty",
-      "wyrażenia algebraiczne"
+      "wyrażenia algebraiczne",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -300,7 +309,6 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "trójkąty",
-      "czworokąty",
       "dowodzenie",
       "zadania-otwarte"
     ],
@@ -326,6 +334,7 @@
     "tags": [
       "prawdopodobieństwo",
       "kombinatoryka",
+      "reguła mnożenia",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -453,6 +462,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 3,

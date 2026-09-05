@@ -33,9 +33,10 @@
       "D"
     ],
     "tags": [
-      "potegi",
-      "ulamki",
-      "działania-na-liczbach"
+      "potęgi",
+      "ułamki",
+      "stereometria",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -55,7 +56,7 @@
       "D"
     ],
     "tags": [
-      "wyrażenia-algebraiczne"
+      "wyrażenia algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -75,8 +76,8 @@
       "D"
     ],
     "tags": [
-      "zadania-tekstowe",
-      "geometria"
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -97,7 +98,7 @@
     ],
     "tags": [
       "pierwiastki",
-      "działania-na-liczbach"
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -117,8 +118,9 @@
       "D"
     ],
     "tags": [
-      "równania-liniowe",
-      "zadania-tekstowe"
+      "równania liniowe",
+      "procenty",
+      "równania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -138,7 +140,9 @@
       "BD"
     ],
     "tags": [
-      "potegi"
+      "potęgi",
+      "wartość bezwzględna",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -158,7 +162,7 @@
       "D"
     ],
     "tags": [
-      "wyrażenia-algebraiczne"
+      "wyrażenia algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -178,7 +182,10 @@
       "D"
     ],
     "tags": [
-      "bryly"
+      "bryły",
+      "stereometria",
+      "ostrosłup",
+      "graniastosłup"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -199,7 +206,7 @@
     ],
     "tags": [
       "skala",
-      "zadania-tekstowe"
+      "skala i jednostki"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -220,7 +227,8 @@
     ],
     "tags": [
       "prawdopodobieństwo",
-      "ulamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -240,9 +248,10 @@
       "D"
     ],
     "tags": [
-      "prostokat",
-      "twierdzenie-pitagorasa",
-      "geometria"
+      "prostokąt",
+      "twierdzenie Pitagorasa",
+      "czworokąty",
+      "trójkąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -263,9 +272,11 @@
     ],
     "tags": [
       "proste",
-      "proste-równoległe",
-      "proste-prostopadłe",
-      "geometria"
+      "proste równoległe",
+      "proste prostopadłe",
+      "czworokąty",
+      "geometria analityczna",
+      "kwadrat"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -287,10 +298,11 @@
       "B3"
     ],
     "tags": [
-      "pola-figur",
-      "geometria",
+      "pola figur",
       "kwadrat",
-      "prostokat"
+      "prostokąt",
+      "czworokąty",
+      "dowodzenie"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -311,7 +323,9 @@
     ],
     "tags": [
       "kąty",
-      "geometria"
+      "trójkąty",
+      "czworokąty",
+      "trójkąt równoboczny"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -324,8 +338,8 @@
     "hint": "Oznacz cenę jednego biletu do kina lub teatru i zapisz równanie z treści zadania.",
     "answer": "Cena jednego biletu do teatru jest równa 80 zł.",
     "tags": [
-      "równania-liniowe",
-      "zadania-tekstowe",
+      "równania liniowe",
+      "równania",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -358,12 +372,11 @@
   {
     "file": "17.png",
     "difficulty": 3,
-    "topic": "prędkość droga czas",
+    "topic": "prędkość, droga i czas",
     "hint": "Najpierw oblicz prędkość pociągu, a potem drogę przebytą w 15 sekund.",
     "answer": "Długość pociągu wynosi 210 m.",
     "tags": [
-      "prędkość-droga-czas",
-      "zadania-tekstowe",
+      "prędkość, droga i czas",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -392,9 +405,9 @@
     "hint": "Oblicz pole trójkąta ACD, odejmij je od pola czworokąta i użyj wzoru na pole trójkąta ABC.",
     "answer": "Wysokość trójkąta ABC jest równa 10 cm.",
     "tags": [
-      "pola-figur",
-      "trojkaty",
-      "geometria",
+      "pola figur",
+      "trójkąty",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -432,9 +445,11 @@
     "hint": "Wyznacz brakujące krawędzie klocka z podanych wymiarów całej figury, a potem oblicz objętość.",
     "answer": "Objętość jednego klocka jest równa 225 cm³.",
     "tags": [
-      "objętość-brył",
-      "prostopadloscian",
-      "bryly",
+      "objętość brył",
+      "prostopadłościan",
+      "bryły",
+      "objętość",
+      "stereometria",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",

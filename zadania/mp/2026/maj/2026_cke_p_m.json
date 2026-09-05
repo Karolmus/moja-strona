@@ -16,7 +16,7 @@
     "tags": [
       "pierwiastki",
       "potęgi",
-      "działania-na-liczbach"
+      "liczby i działania"
     ],
     "maxPoints": 1
   },
@@ -36,8 +36,7 @@
     ],
     "tags": [
       "procenty",
-      "procent-składany",
-      "zadania-tekstowe"
+      "procent składany"
     ],
     "maxPoints": 1
   },
@@ -58,7 +57,7 @@
     "tags": [
       "potęgi",
       "pierwiastki",
-      "działania-na-liczbach"
+      "liczby i działania"
     ],
     "maxPoints": 1
   },
@@ -77,8 +76,7 @@
       "D"
     ],
     "tags": [
-      "logarytmy",
-      "działania-na-liczbach"
+      "logarytmy"
     ],
     "maxPoints": 1
   },
@@ -99,7 +97,7 @@
     "tags": [
       "potęgi",
       "podzielność",
-      "prawda-fałsz"
+      "liczby i działania"
     ],
     "maxPoints": 1
   },
@@ -118,8 +116,10 @@
       "D"
     ],
     "tags": [
-      "wzory-skróconego-mnożenia",
-      "wyrażenia-algebraiczne"
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne",
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1
   },
@@ -133,7 +133,9 @@
     "tags": [
       "dowodzenie",
       "podzielność",
-      "dowody-algebraiczne"
+      "dowody algebraiczne",
+      "wyrażenia algebraiczne",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "solutions": [
@@ -182,7 +184,7 @@
     "tags": [
       "równania",
       "parametr",
-      "wyrażenia-algebraiczne"
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1
   },
@@ -201,9 +203,15 @@
       "D"
     ],
     "tags": [
-      "równania-wymierne",
-      "wyrażenia-wymierne",
-      "dziedzina"
+      "równania wymierne",
+      "wyrażenia wymierne",
+      "dziedzina",
+      "równania",
+      "funkcje wymierne",
+      "funkcje",
+      "wyrażenia algebraiczne",
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1
   },
@@ -215,9 +223,12 @@
     "hint": "Przenieś wszystko na jedną stronę, wyznacz miejsca zerowe i odczytaj znak trójmianu.",
     "answer": "x ∈ (−∞, −4/3] ∪ [2, +∞)",
     "tags": [
-      "nierówności-kwadratowe",
-      "funkcja-kwadratowa",
-      "przedziały-liczbowe"
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "przedziały liczbowe",
+      "nierówności",
+      "funkcje",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "solutions": [
@@ -261,9 +272,10 @@
     "hint": "Oznacz liczby biletów dwiema niewiadomymi i zapisz równania opisujące ich łączną liczbę oraz przychód.",
     "answer": "78",
     "tags": [
-      "układy-równań",
-      "zadania-tekstowe",
-      "modelowanie-matematyczne"
+      "układy równań",
+      "procenty",
+      "równania",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "solutions": [
@@ -292,8 +304,13 @@
     "answer": "1. x = 1. 2. Największa wartość funkcji na przedziale [2, 3] jest równa 4.",
     "tags": [
       "funkcje",
-      "odczytywanie-z-wykresu",
-      "wartości-funkcji"
+      "odczytywanie z wykresu",
+      "wartości funkcji",
+      "geometria analityczna",
+      "równania",
+      "odczytywanie danych",
+      "wykres funkcji",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "contextFile": "12_2026_cke_p_m.webp",
@@ -319,8 +336,12 @@
     "answer": "1. [−2, 4]. 2. (−1, 4).",
     "tags": [
       "funkcje",
-      "dziedzina-funkcji",
-      "odczytywanie-z-wykresu"
+      "dziedzina funkcji",
+      "odczytywanie z wykresu",
+      "geometria analityczna",
+      "odczytywanie danych",
+      "wykres funkcji",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "contextFile": "12_2026_cke_p_m.webp",
@@ -352,9 +373,11 @@
       "FF"
     ],
     "tags": [
-      "funkcja-liniowa",
-      "wykres-funkcji",
-      "prawda-fałsz"
+      "funkcja liniowa",
+      "wykres funkcji",
+      "funkcje",
+      "geometria analityczna",
+      "wyrażenia algebraiczne"
     ],
     "maxPoints": 1,
     "contextFile": "13_2026_cke_p_m.webp"
@@ -374,9 +397,12 @@
       "D"
     ],
     "tags": [
-      "funkcja-liniowa",
-      "współczynnik-kierunkowy",
-      "trygonometria"
+      "funkcja liniowa",
+      "współczynnik kierunkowy",
+      "trygonometria",
+      "funkcje",
+      "geometria analityczna",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "contextFile": "13_2026_cke_p_m.webp"
@@ -389,9 +415,14 @@
     "hint": "Wykorzystaj przesunięcie wykresu, oś symetrii oraz podane miejsce zerowe do wyznaczenia wzoru funkcji.",
     "answer": "f(x) = 1/2 x² − 3x + 5/2",
     "tags": [
-      "funkcja-kwadratowa",
-      "postać-kanoniczna",
-      "przesunięcia-wykresu"
+      "funkcja kwadratowa",
+      "postać kanoniczna",
+      "przesunięcia wykresu",
+      "funkcje",
+      "geometria analityczna",
+      "wykres funkcji",
+      "miejsce zerowe",
+      "zadania-otwarte"
     ],
     "maxPoints": 4,
     "solutions": [
@@ -447,9 +478,10 @@
     "hint": "Wyznacz wskazane wyrazy ciągu arytmetycznego, a następnie użyj własności ciągu geometrycznego.",
     "answer": "k = 41",
     "tags": [
-      "ciąg-arytmetyczny",
-      "ciąg-geometryczny",
-      "ciągi"
+      "ciąg arytmetyczny",
+      "ciąg geometryczny",
+      "ciągi",
+      "zadania-otwarte"
     ],
     "maxPoints": 3,
     "solutions": [
@@ -484,7 +516,7 @@
       "D"
     ],
     "tags": [
-      "ciąg-arytmetyczny",
+      "ciąg arytmetyczny",
       "ciągi"
     ],
     "maxPoints": 1
@@ -497,7 +529,7 @@
     "hint": "Zastosuj własność trzech kolejnych wyrazów ciągu geometrycznego.",
     "answer": "18",
     "tags": [
-      "ciąg-geometryczny",
+      "ciąg geometryczny",
       "ciągi"
     ],
     "maxPoints": 1,
@@ -530,7 +562,11 @@
     ],
     "tags": [
       "trygonometria",
-      "trójkąt-prostokątny"
+      "trójkąt prostokątny",
+      "trójkąty",
+      "pierwiastki",
+      "wartość bezwzględna",
+      "liczby i działania"
     ],
     "maxPoints": 1
   },
@@ -550,8 +586,9 @@
     ],
     "tags": [
       "okrąg",
-      "kąt-wpisany",
-      "kąt-środkowy"
+      "kąt wpisany",
+      "kąt środkowy",
+      "okręgi i koła"
     ],
     "maxPoints": 1
   },
@@ -570,9 +607,10 @@
       "D"
     ],
     "tags": [
-      "podobieństwo-trójkątów",
-      "twierdzenie-Talesa",
-      "geometria"
+      "podobieństwo trójkątów",
+      "twierdzenie Talesa",
+      "wartość bezwzględna",
+      "trójkąty"
     ],
     "maxPoints": 1
   },
@@ -585,8 +623,12 @@
     "answer": "P_KNM / P_NLM = a/b",
     "tags": [
       "dowodzenie",
-      "pola-trójkątów",
-      "dwusieczna"
+      "pola trójkątów",
+      "dwusieczna",
+      "trójkąty",
+      "wartość bezwzględna",
+      "pola figur",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "solutions": [
@@ -618,9 +660,12 @@
     "hint": "Połącz promień okręgu opisanego z długością boku trójkąta równobocznego.",
     "answer": "27",
     "tags": [
-      "trójkąt-równoboczny",
-      "okrąg-opisany",
-      "geometria"
+      "trójkąt równoboczny",
+      "okrąg opisany",
+      "okręgi i koła",
+      "trójkąty",
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "solutions": [
@@ -652,7 +697,8 @@
     ],
     "tags": [
       "trygonometria",
-      "trójkąt-prostokątny"
+      "trójkąt prostokątny",
+      "trójkąty"
     ],
     "maxPoints": 1
   },
@@ -671,9 +717,13 @@
       "D"
     ],
     "tags": [
-      "geometria-analityczna",
-      "pole-figury",
-      "układ-współrzędnych"
+      "geometria analityczna",
+      "pole figury",
+      "układ współrzędnych",
+      "pola figur",
+      "trójkąty",
+      "trójkąt prostokątny",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "contextFile": "24_2026_cke_p_m.webp"
@@ -693,9 +743,12 @@
       "D"
     ],
     "tags": [
-      "geometria-analityczna",
-      "okrąg-opisany",
-      "symetralna"
+      "geometria analityczna",
+      "okrąg opisany",
+      "symetralna",
+      "trójkąty",
+      "okręgi i koła",
+      "trójkąt prostokątny"
     ],
     "maxPoints": 1,
     "contextFile": "24_2026_cke_p_m.webp"
@@ -716,8 +769,10 @@
     ],
     "tags": [
       "okrąg",
-      "równanie-okręgu",
-      "prawda-fałsz"
+      "równanie okręgu",
+      "geometria analityczna",
+      "okręgi i koła",
+      "równania"
     ],
     "maxPoints": 1
   },
@@ -736,8 +791,9 @@
       "D"
     ],
     "tags": [
-      "równanie-prostej",
-      "geometria-analityczna"
+      "równanie prostej",
+      "geometria analityczna",
+      "równania"
     ],
     "maxPoints": 1
   },
@@ -751,7 +807,11 @@
     "tags": [
       "ostrosłup",
       "objętość",
-      "stereometria"
+      "stereometria",
+      "czworokąty",
+      "pierwiastki",
+      "liczby i działania",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "solutions": [
@@ -782,9 +842,11 @@
       "D"
     ],
     "tags": [
-      "bryły-obrotowe",
+      "bryły obrotowe",
       "objętość",
-      "stereometria"
+      "stereometria",
+      "stożek",
+      "walec"
     ],
     "maxPoints": 1
   },
@@ -804,7 +866,8 @@
     ],
     "tags": [
       "kombinatoryka",
-      "reguła-mnożenia"
+      "reguła mnożenia",
+      "liczby i działania"
     ],
     "maxPoints": 1
   },
@@ -816,9 +879,12 @@
     "hint": "Policz wszystkie uporządkowane wyniki doświadczenia oraz te, które spełniają warunek zdarzenia.",
     "answer": "P(A) = 9/25",
     "tags": [
-      "prawdopodobieństwo-klasyczne",
+      "prawdopodobieństwo klasyczne",
       "kombinatoryka",
-      "zdarzenia-elementarne"
+      "zdarzenia elementarne",
+      "prawdopodobieństwo",
+      "podzielność",
+      "zadania-otwarte"
     ],
     "maxPoints": 2,
     "solutions": [
@@ -858,8 +924,9 @@
     ],
     "tags": [
       "statystyka",
-      "odczytywanie-danych",
-      "prawda-fałsz"
+      "odczytywanie danych",
+      "średnia arytmetyczna",
+      "mediana"
     ],
     "maxPoints": 1
   },
@@ -878,9 +945,9 @@
       "D"
     ],
     "tags": [
-      "średnia-ważona",
+      "średnia ważona",
       "statystyka",
-      "zadania-tekstowe"
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1
   },
@@ -899,9 +966,11 @@
       "D"
     ],
     "tags": [
-      "funkcja-kwadratowa",
-      "modelowanie-matematyczne",
-      "miejsca-zerowe"
+      "funkcja kwadratowa",
+      "miejsca zerowe",
+      "funkcje",
+      "odczytywanie tabel",
+      "odczytywanie danych"
     ],
     "maxPoints": 1,
     "contextFile": "33_2026_cke_p_m.webp"
@@ -921,9 +990,23 @@
       "D"
     ],
     "tags": [
-      "funkcja-kwadratowa",
+      "funkcja kwadratowa",
       "optymalizacja",
-      "wierzchołek-paraboli"
+      "wierzchołek paraboli",
+      "ciąg arytmetyczny",
+      "ciąg geometryczny",
+      "ciągi",
+      "funkcje",
+      "nierówności kwadratowe",
+      "wykres funkcji",
+      "miejsce zerowe",
+      "ostrosłup",
+      "nierówności",
+      "stereometria",
+      "odczytywanie tabel",
+      "trygonometria",
+      "prawdopodobieństwo",
+      "odczytywanie danych"
     ],
     "maxPoints": 1,
     "contextFile": "33_2026_cke_p_m.webp"

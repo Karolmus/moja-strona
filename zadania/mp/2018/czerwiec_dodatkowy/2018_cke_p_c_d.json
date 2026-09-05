@@ -40,12 +40,12 @@
   {
     "file": "3_2018_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "nierówności",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "nierówności"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -122,7 +122,8 @@
     "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
     "answer": "D",
     "tags": [
-      "ułamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -199,7 +200,9 @@
     "answer": "C",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -219,7 +222,8 @@
     "answer": "D",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -272,12 +276,12 @@
   {
     "file": "15_2018_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "trygonometria",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "trygonometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -297,7 +301,8 @@
     "answer": "D",
     "tags": [
       "pola figur",
-      "trójkąty"
+      "trójkąty",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -316,7 +321,8 @@
     "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
     "answer": "A",
     "tags": [
-      "okręgi i koła"
+      "okręgi i koła",
+      "styczna do okręgu"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -335,7 +341,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "D",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "trapez"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -373,7 +380,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "C",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "walec"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -411,7 +419,8 @@
     "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
     "answer": "C",
     "tags": [
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie tabel"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -430,7 +439,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "A",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "graniastosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -444,12 +454,12 @@
   {
     "file": "24_2018_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kombinatoryka",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "kombinatoryka"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -520,6 +530,8 @@
       "funkcje",
       "geometria analityczna",
       "wyrażenia algebraiczne",
+      "równania",
+      "oś symetrii",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -562,6 +574,8 @@
     "tags": [
       "wielomiany",
       "dowodzenie",
+      "kwadrat",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -723,6 +737,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "stereometria",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

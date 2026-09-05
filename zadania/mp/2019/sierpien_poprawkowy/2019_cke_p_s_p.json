@@ -2,12 +2,12 @@
   {
     "file": "1_2019_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "logarytmy",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -26,7 +26,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -123,7 +124,8 @@
     "answer": "D",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -157,12 +159,13 @@
   {
     "file": "9_2019_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -298,7 +301,9 @@
     "answer": "B",
     "tags": [
       "stereometria",
-      "trójkąty"
+      "trójkąty",
+      "trójkąt równoboczny",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -336,7 +341,8 @@
     "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "D",
     "tags": [
-      "geometria analityczna"
+      "geometria analityczna",
+      "współrzędne punktu"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -350,12 +356,13 @@
   {
     "file": "19_2019_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "układ współrzędnych",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "układ współrzędnych",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -393,7 +400,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "C",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "prostopadłościan"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -407,12 +415,13 @@
   {
     "file": "22_2019_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "stożek",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "stożek",
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -431,7 +440,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "A",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "mediana"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -489,6 +499,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -615,6 +628,9 @@
     "tags": [
       "czworokąty",
       "równania",
+      "romb",
+      "równanie prostej",
+      "geometria analityczna",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -686,6 +702,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

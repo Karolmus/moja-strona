@@ -60,12 +60,14 @@
   {
     "file": "4_2020_cke_r_l_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_rozszerzona",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -85,6 +87,8 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "ciągi",
+      "kwadrat",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -345,6 +349,7 @@
       "geometria analityczna",
       "czworokąty",
       "równania",
+      "romb",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -432,6 +437,7 @@
     "tags": [
       "trygonometria",
       "czworokąty",
+      "romb",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -492,6 +498,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

@@ -65,7 +65,8 @@
     "answer": "B",
     "tags": [
       "procenty",
-      "ułamki"
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -85,7 +86,9 @@
     "answer": "C",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -144,7 +147,8 @@
     "answer": "D",
     "tags": [
       "funkcje",
-      "równania"
+      "równania",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -235,12 +239,12 @@
   {
     "file": "13_2019_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "trygonometria",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "C",
     "tags": [
-      "zadanie problemowe"
+      "trygonometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -254,12 +258,13 @@
   {
     "file": "14_2019_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -279,7 +284,8 @@
     "answer": "B",
     "tags": [
       "pola figur",
-      "trójkąty"
+      "trójkąty",
+      "pola trójkątów"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -412,7 +418,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -450,7 +457,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "B",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -550,6 +558,7 @@
       "geometria analityczna",
       "trójkąty",
       "dowodzenie",
+      "odległość punktów",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -683,7 +692,7 @@
     "tags": [
       "stereometria",
       "objętość",
-      "czworokąty",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,

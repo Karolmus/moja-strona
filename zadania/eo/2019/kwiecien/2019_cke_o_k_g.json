@@ -2,12 +2,12 @@
   {
     "file": "1_2019_cke_o_k_g.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "odczytywanie danych",
     "level": "egzamin_osmoklasisty",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "PP",
     "tags": [
-      "zadanie problemowe"
+      "odczytywanie danych"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -48,7 +48,8 @@
     "answer": "B",
     "tags": [
       "wartość bezwzględna",
-      "odczytywanie danych"
+      "odczytywanie danych",
+      "odczytywanie tabel"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -68,7 +69,8 @@
     "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
     "answer": "D",
     "tags": [
-      "pierwiastki"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -129,7 +131,8 @@
     "hint": "Uporządkuj dane i zastosuj definicję wskazanej miary statystycznej.",
     "answer": "PP",
     "tags": [
-      "statystyka"
+      "statystyka",
+      "średnia arytmetyczna"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -169,7 +172,8 @@
     "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
     "answer": "B",
     "tags": [
-      "geometria analityczna"
+      "geometria analityczna",
+      "środek odcinka"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -189,7 +193,8 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "FP",
     "tags": [
-      "czworokąty"
+      "czworokąty",
+      "kwadrat"
     ],
     "maxPoints": 1,
     "type": "true_false",
@@ -251,8 +256,8 @@
     "answer": "B",
     "tags": [
       "trójkąty",
-      "czworokąty",
-      "wartość bezwzględna"
+      "wartość bezwzględna",
+      "trójkąt prostokątny"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -292,7 +297,8 @@
     "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
     "answer": "B",
     "tags": [
-      "stereometria"
+      "stereometria",
+      "ostrosłup"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -376,6 +382,7 @@
       "ułamki",
       "wyrażenia algebraiczne",
       "równania",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -399,7 +406,17 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
+      "pola trójkątów",
+      "trapez",
+      "romb",
+      "równoległobok",
+      "kwadrat",
+      "pola figur",
+      "trójkąty",
       "czworokąty",
+      "proporcje",
+      "wyrażenia algebraiczne",
+      "równania",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -421,6 +438,7 @@
     "tags": [
       "trójkąty",
       "czworokąty",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 3,

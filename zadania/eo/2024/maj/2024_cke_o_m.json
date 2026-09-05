@@ -15,7 +15,8 @@
     "tags": [
       "diagramy",
       "procenty",
-      "statystyka"
+      "statystyka",
+      "odczytywanie danych"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -35,8 +36,9 @@
       "D"
     ],
     "tags": [
-      "ulamki",
-      "liczby-wymierne"
+      "ułamki",
+      "liczby wymierne",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -56,7 +58,7 @@
       "FF"
     ],
     "tags": [
-      "średnia-arytmetyczna",
+      "średnia arytmetyczna",
       "statystyka"
     ],
     "level": "egzamin_osmoklasisty",
@@ -77,8 +79,8 @@
       "BD"
     ],
     "tags": [
-      "ulamki",
-      "działania-na-liczbach"
+      "ułamki",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -99,8 +101,8 @@
     ],
     "tags": [
       "kąty",
-      "geometria",
-      "trapez"
+      "trapez",
+      "czworokąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -120,8 +122,9 @@
       "D"
     ],
     "tags": [
-      "przekształcanie-wzorów",
-      "wyrażenia-algebraiczne"
+      "przekształcanie wzorów",
+      "wyrażenia algebraiczne",
+      "równania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -141,7 +144,8 @@
       "FF"
     ],
     "tags": [
-      "potegi"
+      "potęgi",
+      "liczby i działania"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -162,7 +166,10 @@
     ],
     "tags": [
       "prawdopodobieństwo",
-      "zliczanie-przypadków"
+      "zliczanie przypadków",
+      "odczytywanie danych",
+      "kombinatoryka",
+      "odczytywanie tabel"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -182,7 +189,7 @@
       "D"
     ],
     "tags": [
-      "wyrażenia-algebraiczne"
+      "wyrażenia algebraiczne"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -203,7 +210,7 @@
     ],
     "tags": [
       "kąty",
-      "prędkość-droga-czas"
+      "prędkość, droga i czas"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -224,7 +231,9 @@
     ],
     "tags": [
       "proporcje",
-      "wykresy"
+      "wykresy",
+      "odczytywanie danych",
+      "odczytywanie z wykresu"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -244,8 +253,9 @@
       "D"
     ],
     "tags": [
-      "układ-współrzędnych",
-      "współrzędne-punktu"
+      "układ współrzędnych",
+      "współrzędne punktu",
+      "geometria analityczna"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -265,9 +275,9 @@
       "D"
     ],
     "tags": [
-      "prostokat",
+      "prostokąt",
       "kwadrat",
-      "geometria"
+      "czworokąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -287,8 +297,11 @@
       "FF"
     ],
     "tags": [
-      "twierdzenie-pitagorasa",
-      "trójkąt-prostokątny"
+      "twierdzenie Pitagorasa",
+      "trójkąt prostokątny",
+      "pola figur",
+      "trójkąty",
+      "pola trójkątów"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -308,8 +321,10 @@
       "BD"
     ],
     "tags": [
-      "ostroslup",
-      "bryly"
+      "ostrosłup",
+      "bryły",
+      "stereometria",
+      "czworokąty"
     ],
     "level": "egzamin_osmoklasisty",
     "maxPoints": 1,
@@ -322,9 +337,11 @@
     "hint": "Oznacz liczbę elementów jednego zestawu przez x i zapisz, jaką część zestawu ułożyły dziewczynki.",
     "answer": "Jeden zestaw puzzli składa się z 600 elementów.",
     "tags": [
-      "ulamki",
-      "równania-liniowe",
-      "zadania-tekstowe",
+      "ułamki",
+      "równania liniowe",
+      "proporcje",
+      "równania",
+      "liczby i działania",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -366,9 +383,11 @@
     "hint": "Najpierw oblicz długość AE z twierdzenia Pitagorasa, potem wykorzystaj trójkąt równoramienny.",
     "answer": "Pole trapezu ABCE jest równe 650 cm².",
     "tags": [
-      "pola-figur",
+      "pola figur",
       "trapez",
-      "geometria",
+      "trójkąty",
+      "czworokąty",
+      "prostokąt",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -411,8 +430,9 @@
     "answer": "Pan Jan otrzymał ze sprzedaży truskawek 2472 zł.",
     "tags": [
       "procenty",
-      "zadania-tekstowe",
       "tabele",
+      "odczytywanie danych",
+      "odczytywanie tabel",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",
@@ -445,9 +465,12 @@
     "hint": "Oblicz wysokość ostrosłupa z wzoru na objętość, a potem porównaj wysokości wież.",
     "answer": "Różnica wysokości obu wież wynosi 2 cm.",
     "tags": [
-      "objętość-brył",
-      "ostroslup",
-      "bryly",
+      "objętość brył",
+      "ostrosłup",
+      "bryły",
+      "stereometria",
+      "objętość",
+      "czworokąty",
       "zadania-otwarte"
     ],
     "level": "egzamin_osmoklasisty",

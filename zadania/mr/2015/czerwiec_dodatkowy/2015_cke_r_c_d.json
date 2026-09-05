@@ -27,7 +27,8 @@
     "answer": "B",
     "tags": [
       "logarytmy",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -371,6 +372,8 @@
     "tags": [
       "stereometria",
       "czworokąty",
+      "trapez",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -406,6 +409,8 @@
       "funkcje",
       "równania z parametrem",
       "równania",
+      "miejsce zerowe",
+      "funkcja kwadratowa",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -439,6 +444,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "objętość",
+      "stereometria",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

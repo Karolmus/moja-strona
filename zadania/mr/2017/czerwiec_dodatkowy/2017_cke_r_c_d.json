@@ -123,6 +123,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "nierówności",
+      "nierówności kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 3,
@@ -315,8 +318,9 @@
     "tags": [
       "geometria analityczna",
       "trójkąty",
-      "czworokąty",
       "równania",
+      "trójkąt prostokątny",
+      "równanie prostej",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
@@ -414,6 +418,7 @@
       "pola figur",
       "trójkąty",
       "czworokąty",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 6,
@@ -452,6 +457,7 @@
     "tags": [
       "funkcje",
       "stereometria",
+      "prostopadłościan",
       "zadania-otwarte"
     ],
     "maxPoints": 7,

@@ -26,7 +26,6 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "D",
     "tags": [
-      "czworokąty",
       "procenty"
     ],
     "maxPoints": 1,
@@ -41,12 +40,13 @@
   {
     "file": "3_2015_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "potęgi",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "potęgi",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -60,12 +60,14 @@
   {
     "file": "4_2015_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "ułamki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -200,7 +202,8 @@
     "answer": "C",
     "tags": [
       "funkcja kwadratowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -220,7 +223,8 @@
     "answer": "A",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -241,7 +245,9 @@
     "tags": [
       "funkcja kwadratowa",
       "funkcje",
-      "geometria analityczna"
+      "geometria analityczna",
+      "wykres funkcji",
+      "wierzchołek paraboli"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -317,8 +323,7 @@
     "hint": "Wybierz właściwe zależności trygonometryczne i kontroluj dziedzinę oraz miary kątów.",
     "answer": "C",
     "tags": [
-      "trygonometria",
-      "czworokąty"
+      "trygonometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -338,7 +343,8 @@
     "answer": "B",
     "tags": [
       "pola figur",
-      "czworokąty"
+      "czworokąty",
+      "romb"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -352,12 +358,13 @@
   {
     "file": "19_2015_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -392,12 +399,13 @@
   {
     "file": "21_2015_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "środek odcinka",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "środek odcinka",
+      "geometria analityczna"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -432,12 +440,15 @@
   {
     "file": "23_2015_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "walec",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "walec",
+      "twierdzenie Pitagorasa",
+      "stereometria",
+      "trójkąty"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -470,12 +481,12 @@
   {
     "file": "25_2015_cke_p_s_p.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kombinatoryka",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "kombinatoryka"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -495,6 +506,9 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "równania",
+      "równania kwadratowe",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -660,6 +674,7 @@
       "pola figur",
       "trójkąty",
       "dowodzenie",
+      "pola trójkątów",
       "zadania-otwarte"
     ],
     "maxPoints": 2,
@@ -710,6 +725,9 @@
     "tags": [
       "trójkąty",
       "równania",
+      "oś symetrii",
+      "funkcja kwadratowa",
+      "funkcje",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -752,6 +770,7 @@
     "tags": [
       "stereometria",
       "objętość",
+      "ostrosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 4,

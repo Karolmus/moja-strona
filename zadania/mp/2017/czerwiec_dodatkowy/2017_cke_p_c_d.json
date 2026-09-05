@@ -59,12 +59,12 @@
   {
     "file": "4_2017_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "logarytmy",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "logarytmy"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -97,12 +97,13 @@
   {
     "file": "6_2017_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "pierwiastki",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "pierwiastki",
+      "liczby i działania"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -122,7 +123,9 @@
     "answer": "C",
     "tags": [
       "funkcja liniowa",
-      "funkcje"
+      "funkcje",
+      "miejsce zerowe",
+      "funkcja kwadratowa"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -200,7 +203,8 @@
     "answer": "D",
     "tags": [
       "funkcje",
-      "równania"
+      "równania",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -219,7 +223,8 @@
     "hint": "Przeanalizuj dziedzinę, wartości i własności funkcji wynikające z treści lub wykresu.",
     "answer": "C",
     "tags": [
-      "funkcje"
+      "funkcje",
+      "wykres funkcji"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -272,12 +277,12 @@
   {
     "file": "15_2017_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "trygonometria",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "D",
     "tags": [
-      "zadanie problemowe"
+      "trygonometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -291,12 +296,14 @@
   {
     "file": "16_2017_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "kąty w okręgu",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "B",
     "tags": [
-      "zadanie problemowe"
+      "kąty w okręgu",
+      "okręgi i koła",
+      "kąt wpisany"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -446,12 +453,14 @@
   {
     "file": "24_2017_cke_p_c_d.webp",
     "difficulty": 2,
-    "topic": "zadanie problemowe",
+    "topic": "walec",
     "level": "matura_podstawowa",
     "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
     "answer": "A",
     "tags": [
-      "zadanie problemowe"
+      "walec",
+      "pole powierzchni",
+      "stereometria"
     ],
     "maxPoints": 1,
     "type": "closed",
@@ -565,7 +574,6 @@
     "hint": "Wykorzystaj własności boków, przekątnych i kątów wskazanego czworokąta.",
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
-      "czworokąty",
       "wartość bezwzględna",
       "dowodzenie",
       "zadania-otwarte"
@@ -687,6 +695,7 @@
     "tags": [
       "czworokąty",
       "proporcje",
+      "trapez",
       "zadania-otwarte"
     ],
     "maxPoints": 4,
@@ -767,6 +776,7 @@
     "answer": "Sprawdź rozwiązanie i zasady oceniania.",
     "tags": [
       "stereometria",
+      "graniastosłup",
       "zadania-otwarte"
     ],
     "maxPoints": 5,
