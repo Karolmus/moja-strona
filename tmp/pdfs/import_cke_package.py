@@ -1398,19 +1398,28 @@ def crop_region(
 
 
 def remove_left_score_gutter(image: Image.Image) -> Image.Image:
-    """Remove the narrow coloured point-scale left in 2026 formula-2023 tasks."""
-    gutter_width = min(22, image.width)
-    tallest_coloured_column = 0
+    """Remove a narrow coloured scoring table left on a task crop.
+
+    Some CKE layouts put a short, coloured point table alongside a task. It
+    starts at the edge of the cropped image, so it is not part of the task
+    content. The earlier check required it to span one fifth of the image and
+    missed shorter tables near the bottom of otherwise tall tasks.
+    """
+    gutter_width = min(24, image.width)
+    minimum_run = max(18, min(72, round(image.height * 0.04)))
+    longest_coloured_run = 0
 
     for column in range(gutter_width):
-        coloured_pixels = 0
+        current_run = 0
         for row in range(image.height):
             red, green, blue = image.getpixel((column, row))
             if max(red, green, blue) - min(red, green, blue) > 40 and min(red, green, blue) < 220:
-                coloured_pixels += 1
-        tallest_coloured_column = max(tallest_coloured_column, coloured_pixels)
+                current_run += 1
+                longest_coloured_run = max(longest_coloured_run, current_run)
+            else:
+                current_run = 0
 
-    if tallest_coloured_column < max(20, round(image.height * 0.2)):
+    if longest_coloured_run < minimum_run:
         return image
 
     cleaned = image.copy()
@@ -1608,8 +1617,7 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                     f"Pusty wycinek {session.kind} {session.year} {session.detail}, "
                     f"{header['kind']} {header['number']}"
                 )
-            if session.kind == "mr" and session.year == 2026 and session.formula == "2023":
-                image = remove_left_score_gutter(image)
+            image = remove_left_score_gutter(image)
 
             text = extract_task_text(header, headers, index, lines_by_page, page)
             if header["kind"] == "context":
