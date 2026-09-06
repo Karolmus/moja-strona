@@ -1434,33 +1434,41 @@ def crop_region(
     return trim_vertical(crop, discard_leading_rule=discard_leading_rule)
 
 
-def remove_left_score_gutter(image: Image.Image) -> Image.Image:
-    """Remove a narrow coloured scoring table left on a task crop.
+def remove_score_gutters(image: Image.Image) -> Image.Image:
+    """Remove narrow coloured scoring tables left at either edge of a crop.
 
-    Some CKE layouts put a short, coloured point table alongside a task. It
-    starts at the edge of the cropped image, so it is not part of the task
-    content. The earlier check required it to span one fifth of the image and
-    missed shorter tables near the bottom of otherwise tall tasks.
+    Depending on the CKE layout, the point table can sit at the left or right
+    edge of the page. It is outside the task itself, but may remain visible
+    after a task is cropped vertically.
     """
     gutter_width = min(24, image.width)
     minimum_run = max(18, min(72, round(image.height * 0.04)))
-    longest_coloured_run = 0
+    gutters = (
+        (0, range(gutter_width)),
+        (image.width - gutter_width, range(image.width - gutter_width, image.width)),
+    )
+    edges_to_clean = []
 
-    for column in range(gutter_width):
-        current_run = 0
-        for row in range(image.height):
-            red, green, blue = image.getpixel((column, row))
-            if max(red, green, blue) - min(red, green, blue) > 40 and min(red, green, blue) < 220:
-                current_run += 1
-                longest_coloured_run = max(longest_coloured_run, current_run)
-            else:
-                current_run = 0
+    for edge, columns in gutters:
+        longest_coloured_run = 0
+        for column in columns:
+            current_run = 0
+            for row in range(image.height):
+                red, green, blue = image.getpixel((column, row))
+                if max(red, green, blue) - min(red, green, blue) > 40 and min(red, green, blue) < 220:
+                    current_run += 1
+                    longest_coloured_run = max(longest_coloured_run, current_run)
+                else:
+                    current_run = 0
+        if longest_coloured_run >= minimum_run:
+            edges_to_clean.append(edge)
 
-    if longest_coloured_run < minimum_run:
+    if not edges_to_clean:
         return image
 
     cleaned = image.copy()
-    cleaned.paste("white", (0, 0, gutter_width, cleaned.height))
+    for edge in edges_to_clean:
+        cleaned.paste("white", (edge, 0, edge + gutter_width, cleaned.height))
     return cleaned
 
 
@@ -1676,7 +1684,7 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                     f"Pusty wycinek {session.kind} {session.year} {session.detail}, "
                     f"{header['kind']} {header['number']}"
                 )
-            image = remove_left_score_gutter(image)
+            image = remove_score_gutters(image)
 
             if header["kind"] == "context":
                 filename = f"{header['number']}_kontekst_{session.stem}.webp"
