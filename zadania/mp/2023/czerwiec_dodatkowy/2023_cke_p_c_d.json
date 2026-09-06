@@ -1,0 +1,889 @@
+[
+  {
+    "file": "1_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "wartość bezwzględna",
+    "level": "matura_podstawowa",
+    "hint": "Rozpatrz przypadki wyznaczone przez miejsca zerowe wyrażeń pod wartością bezwzględną.",
+    "answer": "A",
+    "tags": [
+      "wartość bezwzględna",
+      "nierówności"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "A",
+    "tags": [
+      "pierwiastki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2023_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "wielomiany",
+    "level": "matura_podstawowa",
+    "hint": "Rozłóż wielomian na czynniki lub wykorzystaj jego pierwiastki i współczynniki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "wielomiany",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "3_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "4_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "procenty",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "D",
+    "tags": [
+      "procenty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "logarytmy",
+    "level": "matura_podstawowa",
+    "hint": "Zastosuj definicję logarytmu oraz wzory na logarytm iloczynu, ilorazu i potęgi.",
+    "answer": "A",
+    "tags": [
+      "logarytmy"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "matura_podstawowa",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "C",
+    "tags": [
+      "pierwiastki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "liczby i działania",
+    "level": "matura_podstawowa",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "answer": "D",
+    "tags": [
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8_2023_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "nierówności",
+    "level": "matura_podstawowa",
+    "hint": "Przenieś wyrażenia na jedną stronę, ustal punkty krytyczne i zbadaj znaki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "nierówności",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "9_2023_cke_p_c_d.webp",
+    "difficulty": 4,
+    "topic": "równania",
+    "level": "matura_podstawowa",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "równania kwadratowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "B",
+    "tags": [
+      "równania kwadratowe",
+      "równania",
+      "funkcja kwadratowa",
+      "funkcje"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "wykres funkcji",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "wykres funkcji",
+      "funkcja liniowa",
+      "funkcje",
+      "geometria analityczna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "answer": "D",
+    "tags": [
+      "geometria analityczna",
+      "wyrażenia algebraiczne",
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "13.1_2023_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "wykres funkcji",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "AF",
+    "tags": [
+      "wykres funkcji",
+      "dziedzina funkcji",
+      "odczytywanie tabel",
+      "funkcje",
+      "geometria analityczna",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 2,
+    "contextFile": "13_kontekst_2023_cke_p_c_d.webp",
+    "type": "closed",
+    "options": [
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "AF",
+      "BC",
+      "BD",
+      "BE",
+      "BF",
+      "CD",
+      "CE",
+      "CF",
+      "DE",
+      "DF",
+      "EF"
+    ]
+  },
+  {
+    "file": "13.2_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "wykres funkcji",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "wykres funkcji",
+      "funkcje",
+      "geometria analityczna",
+      "nierówności",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "contextFile": "13_kontekst_2023_cke_p_c_d.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "13.2_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "13.2_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "13.2_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "14_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "wykres funkcji",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "wykres funkcji",
+      "funkcja kwadratowa",
+      "funkcje",
+      "geometria analityczna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "15.1_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "odczytywanie tabel",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "odczytywanie tabel",
+      "logarytmy",
+      "funkcja wykładnicza",
+      "funkcje",
+      "skala i jednostki",
+      "odczytywanie danych",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "contextFile": "15_kontekst_2023_cke_p_c_d.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "15.1_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "15.1_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "15.1_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "15.2_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "ciąg geometryczny",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciąg geometryczny",
+      "ciągi",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "contextFile": "15_kontekst_2023_cke_p_c_d.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "15.2_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "15.2_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "16_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "B",
+    "tags": [
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "17_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "ciągi",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "C",
+    "tags": [
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "18_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "ciąg geometryczny",
+    "level": "matura_podstawowa",
+    "hint": "Skorzystaj ze wzoru na wyraz ogólny lub sumę ciągu geometrycznego.",
+    "answer": "A",
+    "tags": [
+      "ciąg geometryczny",
+      "ciągi"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "19_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "20_2023_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "trójkąty",
+    "level": "matura_podstawowa",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "CF",
+    "tags": [
+      "trójkąty",
+      "pierwiastki",
+      "liczby i działania"
+    ],
+    "maxPoints": 2,
+    "type": "closed",
+    "options": [
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "AF",
+      "BC",
+      "BD",
+      "BE",
+      "BF",
+      "CD",
+      "CE",
+      "CF",
+      "DE",
+      "DF",
+      "EF"
+    ]
+  },
+  {
+    "file": "21_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "styczna do okręgu",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "styczna do okręgu",
+      "odległość punktów",
+      "geometria analityczna",
+      "okręgi i koła",
+      "pierwiastki",
+      "wartość bezwzględna",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "22_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "pola trójkątów",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pola trójkątów",
+      "trapez",
+      "pola figur",
+      "trójkąty",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "22_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "22_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "22_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "23_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "okręgi i koła",
+    "level": "matura_podstawowa",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "answer": "B",
+    "tags": [
+      "okręgi i koła",
+      "wartość bezwzględna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "24_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "oś symetrii",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A2",
+    "tags": [
+      "oś symetrii",
+      "trójkąt równoboczny",
+      "pola trójkątów",
+      "pola figur",
+      "trójkąty",
+      "skala i jednostki",
+      "pierwiastki",
+      "dowodzenie",
+      "funkcja kwadratowa",
+      "funkcje",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "file": "25_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "równoległobok",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "równoległobok",
+      "czworokąty",
+      "pierwiastki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "26_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "wykres funkcji",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "wykres funkcji",
+      "funkcja liniowa",
+      "funkcje",
+      "geometria analityczna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "27_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "kwadrat",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "kwadrat",
+      "geometria analityczna",
+      "pola figur",
+      "czworokąty",
+      "pierwiastki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "28_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "level": "matura_podstawowa",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "answer": "B",
+    "tags": [
+      "geometria analityczna",
+      "wartość bezwzględna"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "29.1_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "kwadrat",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "kwadrat",
+      "ostrosłup",
+      "stereometria",
+      "objętość",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "contextFile": "29_kontekst_2023_cke_p_c_d.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "29.1_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "29.1_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "29.2_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "kwadrat",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "kwadrat",
+      "ostrosłup",
+      "trygonometria",
+      "stereometria",
+      "czworokąty",
+      "pierwiastki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "contextFile": "29_kontekst_2023_cke_p_c_d.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "30_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "graniastosłup",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "C",
+    "tags": [
+      "graniastosłup",
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "31_2023_cke_p_c_d.webp",
+    "difficulty": 2,
+    "topic": "liczby i działania",
+    "level": "matura_podstawowa",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "answer": "D",
+    "tags": [
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "32_2023_cke_p_c_d.webp",
+    "difficulty": 3,
+    "topic": "prawdopodobieństwo",
+    "level": "matura_podstawowa",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "prawdopodobieństwo",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "32_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "33_2023_cke_p_c_d.webp",
+    "difficulty": 4,
+    "topic": "trapez",
+    "level": "matura_podstawowa",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trapez",
+      "pola figur",
+      "czworokąty",
+      "wartość bezwzględna",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "33_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_4_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "33_z_5_1.webp"
+      }
+    ]
+  }
+]

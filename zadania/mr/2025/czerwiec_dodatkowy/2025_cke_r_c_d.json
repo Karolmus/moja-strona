@@ -1,0 +1,494 @@
+[
+  {
+    "file": "1_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "prawdopodobieństwo",
+    "level": "matura_rozszerzona",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "prawdopodobieństwo",
+      "ułamki",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "1_s_3_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "1_s_3_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "1_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "1_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "2_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "pierwiastki",
+    "level": "matura_rozszerzona",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "pierwiastki",
+      "dowodzenie",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "2_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "2_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "2_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "2_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "3_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "liczby i działania",
+    "level": "matura_rozszerzona",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "3_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "3_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "3_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "4_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "trapez",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trapez",
+      "prostokąt",
+      "trójkąty",
+      "czworokąty",
+      "wartość bezwzględna",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "5_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "równania z parametrem",
+    "level": "matura_rozszerzona",
+    "hint": "Rozpatrz warunki zależne od parametru i sprawdź liczbę dopuszczalnych rozwiązań.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania z parametrem",
+      "równania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "6_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "równania",
+    "level": "matura_rozszerzona",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "6_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "7_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "okręgi i koła",
+    "level": "matura_rozszerzona",
+    "hint": "Wykorzystaj własności promieni, cięciw, stycznych oraz kątów w okręgu.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "okręgi i koła",
+      "wartość bezwzględna",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_4_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_5_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_5_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_6_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "7_z_6_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "8_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "miejsce zerowe",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "miejsce zerowe",
+      "odczytywanie z wykresu",
+      "pochodne",
+      "geometria analityczna",
+      "wielomiany",
+      "odczytywanie danych",
+      "funkcja kwadratowa",
+      "funkcje",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "8_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "9_2025_cke_r_c_d.webp",
+    "difficulty": 5,
+    "topic": "ciągi",
+    "level": "matura_rozszerzona",
+    "hint": "Zapisz zależności między wyrazami ciągu i wykorzystaj podane warunki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ciągi",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2025_cke_r_c_d.webp",
+    "difficulty": 5,
+    "topic": "ostrosłup",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ostrosłup",
+      "stereometria",
+      "trójkąty",
+      "wartość bezwzględna",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 5,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "10_z_4_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "11_2025_cke_r_c_d.webp",
+    "difficulty": 5,
+    "topic": "równoległobok",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "równoległobok",
+      "równanie okręgu",
+      "geometria analityczna",
+      "okręgi i koła",
+      "czworokąty",
+      "równania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 6,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_3_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_3_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_4_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_5_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12.1_2025_cke_r_c_d.webp",
+    "difficulty": 3,
+    "topic": "graniastosłup",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "graniastosłup",
+      "stereometria",
+      "objętość",
+      "trójkąty",
+      "pierwiastki",
+      "dowodzenie",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "contextFile": "12_kontekst_2025_cke_r_c_d.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12.1_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "12.1_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "12.1_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12.2_2025_cke_r_c_d.webp",
+    "difficulty": 4,
+    "topic": "graniastosłup",
+    "level": "matura_rozszerzona",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "graniastosłup",
+      "stereometria",
+      "objętość",
+      "trójkąty",
+      "pierwiastki",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 4,
+    "contextFile": "12_kontekst_2025_cke_r_c_d.webp",
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "12.2_s_3_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "12.2_z_1_1.webp"
+      }
+    ]
+  }
+]

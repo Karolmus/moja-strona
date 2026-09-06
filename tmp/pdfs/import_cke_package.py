@@ -54,7 +54,7 @@ SHORT_KEY_HEADER_ITEM_RE = re.compile(
     r"\b(?:Zad(?:anie)?|Zadania)\s+(\d+(?:\.\d+)?)\.",
     re.IGNORECASE,
 )
-ANSWER_CODE_RE = re.compile(r"^(?:[A-E]|[A-E]{2}|[PF]{2}|[A-E]\d)$")
+ANSWER_CODE_RE = re.compile(r"^(?:[A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)$")
 
 EXAM_META = {
     "01_matura_podstawowa": ("mp", "matura_podstawowa", "p", "Matura podstawowa"),
@@ -102,7 +102,30 @@ REPAIRED_SOURCES = {
     ("02_matura_rozszerzona", 2015, "additional", "2015"): REPAIRED / "mr/2015/czerwiec",
     ("02_matura_rozszerzona", 2019, "additional", "2015"): REPAIRED / "mr/2019/czerwiec",
     ("02_matura_rozszerzona", 2026, "main", "2023"): REPAIRED / "mr/2026/maj_f2023",
+    ("01_matura_podstawowa", 2023, "additional", "2023"): REPAIRED / "mp/2023/czerwiec_f2023",
+    ("01_matura_podstawowa", 2023, "resit", "2023"): REPAIRED / "mp/2023/sierpien_f2023",
+    ("02_matura_rozszerzona", 2023, "additional", "2023"): REPAIRED / "mr/2023/czerwiec_f2023",
+    ("01_matura_podstawowa", 2024, "additional", "2023"): REPAIRED / "mp/2024/czerwiec_f2023",
+    ("01_matura_podstawowa", 2024, "resit", "2023"): REPAIRED / "mp/2024/sierpien_f2023",
+    ("02_matura_rozszerzona", 2024, "additional", "2023"): REPAIRED / "mr/2024/czerwiec_f2023",
+    ("01_matura_podstawowa", 2025, "additional", "2023"): REPAIRED / "mp/2025/czerwiec_f2023",
+    ("01_matura_podstawowa", 2025, "resit", "2023"): REPAIRED / "mp/2025/sierpien_f2023",
+    ("02_matura_rozszerzona", 2025, "additional", "2023"): REPAIRED / "mr/2025/czerwiec_f2023",
 }
+
+# Dodatkowe arkusze z aktualnej formuły. Nie występują w pobranej paczce,
+# dlatego korzystają z przygotowanych lokalnie źródeł w REPAIRED_SOURCES.
+EXTRA_SESSION_ROWS = (
+    ("01_matura_podstawowa", 2023, "additional", "czerwiec", "2023"),
+    ("01_matura_podstawowa", 2023, "resit", "sierpien", "2023"),
+    ("02_matura_rozszerzona", 2023, "additional", "czerwiec", "2023"),
+    ("01_matura_podstawowa", 2024, "additional", "czerwiec", "2023"),
+    ("01_matura_podstawowa", 2024, "resit", "sierpien", "2023"),
+    ("02_matura_rozszerzona", 2024, "additional", "czerwiec", "2023"),
+    ("01_matura_podstawowa", 2025, "additional", "czerwiec", "2023"),
+    ("01_matura_podstawowa", 2025, "resit", "sierpien", "2023"),
+    ("02_matura_rozszerzona", 2025, "additional", "czerwiec", "2023"),
+)
 
 # The main May 2021 eighth-grade set is already present in the project.
 SKIPPED_SESSIONS = {("03_egzamin_osmoklasisty", 2021, "main", "")}
@@ -995,50 +1018,64 @@ def find_source_dir(exam_folder: str, year: int, term: str, formula: str) -> Pat
 def build_sessions() -> list[Session]:
     sessions = []
     manifest = PACKAGE / "manifest_sesji.csv"
+    rows = []
     with manifest.open(encoding="utf-8-sig", newline="") as handle:
         for row in csv.DictReader(handle, delimiter=";"):
-            exam_folder = row["egzamin"]
-            year = int(row["rok"])
-            term = row["termin"]
-            month = row["miesiac_faktyczny"]
-            formula = row["formula"]
-            identity = (exam_folder, year, term, formula)
-            if identity in SKIPPED_SESSIONS:
-                continue
-
-            kind, level, level_code, label = EXAM_META[exam_folder]
-            source_dir = find_source_dir(exam_folder, year, term, formula)
-            slug = session_slug(kind, year, term, month, formula)
-            output_dir = ROOT / "zadania" / kind / str(year) / slug
-            stem_parts = [str(year), "cke", level_code, MONTH_CODES[month], TERM_CODES[term]]
-            if kind == "mr" and year == 2026 and formula:
-                stem_parts.append(f"f{formula}")
-            stem = "_".join(stem_parts)
-
-            detail_parts = [str(year), MONTH_LABELS[month]]
-            if TERM_LABEL[term]:
-                detail_parts.append(TERM_LABEL[term])
-            if kind == "mr" and year == 2026 and formula:
-                detail_parts.append(f"formuła {formula}")
-            detail_parts.append("CKE")
-
-            sessions.append(
-                Session(
-                    exam_folder=exam_folder,
-                    kind=kind,
-                    level=level,
-                    level_code=level_code,
-                    label=label,
-                    year=year,
-                    term=term,
-                    month=month,
-                    formula=formula,
-                    source_dir=source_dir,
-                    output_dir=output_dir,
-                    stem=stem,
-                    detail=" / ".join(detail_parts),
+            rows.append(
+                (
+                    row["egzamin"],
+                    int(row["rok"]),
+                    row["termin"],
+                    row["miesiac_faktyczny"],
+                    row["formula"],
                 )
             )
+
+    identities = {(exam_folder, year, term, formula) for exam_folder, year, term, _, formula in rows}
+    rows.extend(
+        row
+        for row in EXTRA_SESSION_ROWS
+        if (row[0], row[1], row[2], row[4]) not in identities
+    )
+
+    for exam_folder, year, term, month, formula in rows:
+        identity = (exam_folder, year, term, formula)
+        if identity in SKIPPED_SESSIONS:
+            continue
+
+        kind, level, level_code, label = EXAM_META[exam_folder]
+        source_dir = find_source_dir(exam_folder, year, term, formula)
+        slug = session_slug(kind, year, term, month, formula)
+        output_dir = ROOT / "zadania" / kind / str(year) / slug
+        stem_parts = [str(year), "cke", level_code, MONTH_CODES[month], TERM_CODES[term]]
+        if kind == "mr" and year == 2026 and formula:
+            stem_parts.append(f"f{formula}")
+        stem = "_".join(stem_parts)
+
+        detail_parts = [str(year), MONTH_LABELS[month]]
+        if TERM_LABEL[term]:
+            detail_parts.append(TERM_LABEL[term])
+        if kind == "mr" and year == 2026 and formula:
+            detail_parts.append(f"formuła {formula}")
+        detail_parts.append("CKE")
+
+        sessions.append(
+            Session(
+                exam_folder=exam_folder,
+                kind=kind,
+                level=level,
+                level_code=level_code,
+                label=label,
+                year=year,
+                term=term,
+                month=month,
+                formula=formula,
+                source_dir=source_dir,
+                output_dir=output_dir,
+                stem=stem,
+                detail=" / ".join(detail_parts),
+            )
+        )
 
     term_order = {"main": 0, "additional": 1, "resit": 2}
     return sorted(
@@ -1551,6 +1588,20 @@ def extract_task_text(
     return normalize_text(" ".join(texts))
 
 
+def is_closed_choice_task(task_text: str) -> bool:
+    """Recognise tasks answered by choosing an option rather than by typing."""
+    text = normalize_text(task_text)
+    folded = ascii_fold(text)
+    option_labels = re.findall(r"(?<![A-Za-z])([A-F])[.)](?![A-Za-z])", text)
+    if len(set(option_labels)) >= 2:
+        return True
+    return (
+        "prawda" in folded
+        and "falsz" in folded
+        and bool(re.search(r"\b(?:wybierz|ocen)\w*", folded))
+    )
+
+
 def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict], dict[str, str]]:
     manifest = {}
     task_texts = {}
@@ -1591,6 +1642,7 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
             if stop is not None:
                 end = min(end, stop - 3)
 
+            text = extract_task_text(header, headers, index, lines_by_page, page)
             if header["kind"] == "task" and header["maxPoints"] > 1:
                 detected_grid = grid_top(
                     page,
@@ -1600,7 +1652,14 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                     float(page.width) - TASK_RIGHT_MARGIN,
                 )
                 if detected_grid is not None:
-                    end = min(end, detected_grid - 4)
+                    has_content_after_grid = any(
+                        detected_grid + 4 < float(line["top"]) < end
+                        and ascii_fold(line["text"]).strip()
+                        not in {"brudnopis", "przenies rozwiazania zadan"}
+                        for line in page_lines
+                    )
+                    if not has_content_after_grid:
+                        end = min(end, detected_grid - 4)
 
             image = crop_region(
                 page,
@@ -1619,7 +1678,6 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                 )
             image = remove_left_score_gutter(image)
 
-            text = extract_task_text(header, headers, index, lines_by_page, page)
             if header["kind"] == "context":
                 filename = f"{header['number']}_kontekst_{session.stem}.webp"
                 save_webp(image, output / filename)
@@ -1636,13 +1694,18 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
             else:
                 filename = f"{header['number']}_{session.stem}.webp"
             save_webp(image, output / filename)
-            item = {"file": filename, "maxPoints": header["maxPoints"]}
+            item = {
+                "file": filename,
+                "maxPoints": header["maxPoints"],
+                "isClosedChoice": is_closed_choice_task(text),
+            }
             if "." in header["number"]:
                 parent = header["number"].split(".", 1)[0]
                 context = manifest.get(f"context:{parent}")
                 if context:
                     item["contextFile"] = context["file"]
                     text = normalize_text(f"{context_texts.get(parent, '')} {text}")
+                    item["isClosedChoice"] = is_closed_choice_task(text)
             manifest[header["number"]] = item
             task_texts[header["number"]] = text
 
@@ -1765,8 +1828,21 @@ def solution_marker(text: str) -> str | None:
 
 def parse_closed_answer(section: dict) -> str | None:
     lines = section["lines"]
+    task_number = section["header"]["number"]
+    component_answers = {}
     for line in lines:
-        match = re.search(r"Wersja\s+A\s*:\s*([A-E]|[A-E]{2}|[PF]{2}|[A-E]\d)", line["text"], re.I)
+        match = re.search(
+            rf"\b{re.escape(task_number)}\.(\d+)\.\s*([A-F])\b",
+            line["text"],
+            re.I,
+        )
+        if match:
+            component_answers.setdefault(int(match.group(1)), match.group(2).upper())
+    if component_answers:
+        return "".join(component_answers[index] for index in sorted(component_answers))
+
+    for line in lines:
+        match = re.search(r"Wersja\s+A\s*:\s*([A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)", line["text"], re.I)
         if match:
             return match.group(1).upper()
 
@@ -1779,14 +1855,14 @@ def parse_closed_answer(section: dict) -> str | None:
                     return value
         if "rozwiazanie" in folded and "wersja x" in folded:
             for candidate in lines[index + 1 : index + 4]:
-                values = re.findall(r"\b([A-E]|[A-E]{2}|[PF]{2}|[A-E]\d)\b", candidate["text"].upper())
+                values = re.findall(r"\b([A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)\b", candidate["text"].upper())
                 if values:
                     return values[0]
         if folded not in {"rozwiazanie", "odpowiedz"}:
             continue
         for candidate in lines[index + 1 : index + 5]:
             value = normalize_text(candidate["text"]).replace(" ", "").upper()
-            version = re.match(r"WERSJAA:([A-E]|[A-E]{2}|[PF]{2}|[A-E]\d)$", value)
+            version = re.match(r"WERSJAA:([A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)$", value)
             if version:
                 return version.group(1)
             if ANSWER_CODE_RE.fullmatch(value):
@@ -1801,15 +1877,15 @@ def parse_closed_answer(section: dict) -> str | None:
         if not saw_versions:
             continue
         match = re.search(
-            r"(?:^|\s)([A-E]|[A-E]{2}|[PF]{2}|[A-E]\d)\s+"
-            r"([A-E]|[A-E]{2}|[PF]{2}|[A-E]\d)\s*$",
+            r"(?:^|\s)([A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)\s+"
+            r"([A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)\s*$",
             line["text"],
         )
         if match:
             return match.group(1).upper()
 
     for line in lines:
-        match = re.search(r"Poprawna\s+odpowiedź\s*[:\-]?\s*([A-E]|[A-E]{2}|[PF]{2})", line["text"], re.I)
+        match = re.search(r"Poprawna\s+odpowiedź\s*[:\-]?\s*([A-F]|[A-F]{2}|[PF]{2})", line["text"], re.I)
         if match:
             return match.group(1).upper()
 
@@ -1890,7 +1966,7 @@ def extract_key_assets(
                 continue
             section = sections.get(number)
             if not section:
-                if item["maxPoints"] == 1:
+                if item["isClosedChoice"]:
                     answer = global_answers.get(number)
                     if answer:
                         item["answer"] = answer
@@ -1901,7 +1977,7 @@ def extract_key_assets(
                 continue
 
             key_texts[number] = normalize_text(" ".join(line["text"] for line in section["lines"]))
-            if item["maxPoints"] == 1:
+            if item["isClosedChoice"]:
                 answer = parse_closed_answer(section) or global_answers.get(number)
                 if answer:
                     item["answer"] = answer
@@ -2051,19 +2127,26 @@ def inferred_options(answer: str, task_text: str) -> tuple[str, list[str]]:
     folded = ascii_fold(task_text)
     if answer in {"PP", "PF", "FP", "FF"}:
         return "true_false", ["PP", "PF", "FP", "FF"]
-    if re.fullmatch(r"[A-E]\d", answer):
+    if re.fullmatch(r"[A-F]\d", answer):
         return "closed", [f"{letter}{number}" for letter in "AB" for number in "123"]
-    if re.fullmatch(r"[A-E]{2}", answer):
+    if re.fullmatch(r"[A-F]{2}", answer):
         if "literami a i b" in folded and "literami c i d" in folded:
             return "closed", ["AC", "AD", "BC", "BD"]
-        visible = re.findall(r"\b([A-E])[.)]", task_text)
+        visible = re.findall(r"\b([A-F])[.)]", task_text)
         highest = max(["D", *visible, *answer])
-        letters = "ABCDE"[: "ABCDE".index(highest) + 1]
+        letters = "ABCDEF"[: "ABCDEF".index(highest) + 1]
         return "closed", ["".join(pair) for pair in itertools.combinations(letters, 2)]
-    visible = re.findall(r"\b([A-E])[.)]", task_text)
+    visible = re.findall(r"\b([A-F])[.)]", task_text)
     highest = max(["D", *visible, answer])
-    letters = list("ABCDE"[: "ABCDE".index(highest) + 1])
+    letters = list("ABCDEF"[: "ABCDEF".index(highest) + 1])
     return "closed", letters
+
+
+def normalized_choice_answer(answer: str) -> str:
+    answer = answer.upper()
+    if re.fullmatch(r"[A-F]{2}", answer):
+        return "".join(sorted(answer))
+    return answer
 
 
 def difficulty(max_points: int, topic: str) -> int:
@@ -2090,20 +2173,22 @@ def build_json(
     ):
         source = manifest[number]
         topic, tags, hint = classify_task(task_texts.get(number, ""), key_texts.get(number, ""))
+        is_closed_choice = bool(source.get("isClosedChoice"))
+        answer = normalized_choice_answer(source.get("answer", ""))
         item = {
             "file": source["file"],
             "difficulty": difficulty(source["maxPoints"], topic),
             "topic": topic,
             "level": session.level,
             "hint": hint,
-            "answer": source.get("answer", "Sprawdź rozwiązanie i zasady oceniania."),
-            "tags": merge_task_tags(tags, is_open=source["maxPoints"] > 1),
+            "answer": answer or "Sprawdź rozwiązanie i zasady oceniania.",
+            "tags": merge_task_tags(tags, is_open=not is_closed_choice),
             "maxPoints": source["maxPoints"],
         }
         if "contextFile" in source:
             item["contextFile"] = source["contextFile"]
-        if source["maxPoints"] == 1 and source.get("answer"):
-            task_type, options = inferred_options(source["answer"], task_texts.get(number, ""))
+        if is_closed_choice and answer:
+            task_type, options = inferred_options(answer, task_texts.get(number, ""))
             item["type"] = task_type
             item["options"] = options
         if number in percentages:
@@ -2118,8 +2203,19 @@ def build_json(
 
 def audit_session(session: Session) -> dict:
     with pdfplumber.open(session.exam_pdf) as exam:
-        headers, _ = collect_exam_headers(exam, session.exam_pdf)
-        exam_tasks = [item for item in headers if item["kind"] == "task"]
+        headers, lines_by_page = collect_exam_headers(exam, session.exam_pdf)
+        exam_tasks = []
+        for index, item in enumerate(headers):
+            if item["kind"] != "task":
+                continue
+            text = extract_task_text(
+                item,
+                headers,
+                index,
+                lines_by_page,
+                exam.pages[item["page"]],
+            )
+            exam_tasks.append({**item, "isClosedChoice": is_closed_choice_task(text)})
     with pdfplumber.open(session.key_pdf) as key:
         sections, _ = collect_key_sections(key, session.key_pdf)
         global_answers = extract_global_answers(key)
@@ -2132,7 +2228,7 @@ def audit_session(session: Session) -> dict:
     missing_answers = [
         item["number"]
         for item in exam_tasks
-        if item["maxPoints"] == 1
+        if item["isClosedChoice"]
         and not (
             (item["number"] in sections and parse_closed_answer(sections[item["number"]]))
             or item["number"] in global_answers
@@ -2150,8 +2246,8 @@ def audit_session(session: Session) -> dict:
         "exam": str(session.exam_pdf),
         "key": str(session.key_pdf),
         "tasks": len(exam_tasks),
-        "closed": sum(item["maxPoints"] == 1 for item in exam_tasks),
-        "open": sum(item["maxPoints"] > 1 for item in exam_tasks),
+        "closed": sum(item["isClosedChoice"] for item in exam_tasks),
+        "open": sum(not item["isClosedChoice"] for item in exam_tasks),
         "missingKeySections": missing_key,
         "missingClosedAnswers": missing_answers,
         "openWithoutMarkers": open_without_markers,
