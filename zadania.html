@@ -2981,10 +2981,6 @@ footer {
                 </div>
             </div>
 
-            <p class="source-attribution" id="sourceAttribution" hidden>
-                Prezentowane arkusze to egzaminy Centralnej Komisji Egzaminacyjnej.
-            </p>
-
         </div>
     </div>
 </div>
@@ -3588,20 +3584,11 @@ function setPanelSectionVisible(id, isVisible){
     }
 }
 
-function updateSourceAttributionVisibility(){
-    const attribution = document.getElementById("sourceAttribution");
-
-    if(attribution){
-        attribution.hidden = selectedCategory !== "egzaminy";
-    }
-}
-
 function updateAccessModeUI(){
     document.body.classList.toggle("guest-exam-mode", !isLoggedInStudent);
     setTimerVisible(!isLoggedInStudent);
     setPanelSectionVisible("formulaSection", isLoggedInStudent && Boolean(FORMULA_SHEETS[selectedLevel]));
     setPanelSectionVisible("categorySection", isLoggedInStudent);
-    updateSourceAttributionVisibility();
     updateFormulaSection();
     renderTagSearch();
 
@@ -3954,7 +3941,7 @@ function getSourceMeta(sourceConfig){
     const label = sourceConfig.label || SOURCE_TYPE_LABELS[type] || "Zestaw";
     const detail = isCourse
         ? sourceConfig.detail || ""
-        : `${year} / ${monthLabel} / ${sourceConfig.author || "CKE"}`;
+        : `${year} · ${monthLabel}`;
 
     return {
         id: source,
@@ -4358,7 +4345,6 @@ async function setCategory(btn, category){
     updateCategoryButtons();
     updateModeButtons();
     resetSession();
-    updateSourceAttributionVisibility();
     renderSourceSelector();
     await loadSelectedSourceAndDraw();
 }
@@ -4385,7 +4371,6 @@ async function setLevel(btn, level){
     updateLevelButtons();
     updateMetaTheme();
     updateFormulaSection();
-    updateSourceAttributionVisibility();
     resetSession();
     renderSourceSelector();
     await loadSelectedSourceAndDraw();
@@ -4414,7 +4399,6 @@ async function setSource(sourceId){
     updateModeButtons();
     updateMetaTheme();
     updateFormulaSection();
-    updateSourceAttributionVisibility();
     resetSession();
     renderSourceSelector();
     await loadSelectedSourceAndDraw();
@@ -4541,9 +4525,10 @@ function renderSourceSelector(){
         const detail = selectedCategory === "kurs"
             ? (isLoaded ? `${count} zadań` : "")
             : examTile.detail;
-        const titleDetail = selectedCategory === "kurs" && source.detail
-            ? `${source.detail}${isLoaded ? ` • ${count} zadań` : ""}`
-            : `${source.detail}${isLoaded ? ` • ${count} zadań` : ""}`;
+        const sourceTitle = selectedCategory === "kurs"
+            ? source.detail
+            : [examTile?.detail].filter(Boolean).join(" • ");
+        const titleDetail = `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
 
         addSourceButton(
             list,
@@ -4583,7 +4568,7 @@ function updateModeSection(){
 
 function getExamSourceTileContent(detail){
     const parts = String(detail || "")
-        .split("/")
+        .split("·")
         .map(part => part.trim())
         .filter(Boolean);
 
@@ -5660,7 +5645,7 @@ function addNavigatorSectionLabel(progress, section){
 function getExamNavigatorGroup(task){
     const source = getSourceMetaById(task.sourceId);
     const detail = String(task.sourceDetail || source?.detail || "");
-    const [year, month] = detail.split("/").map(part => part.trim());
+    const [year, month] = detail.split("·").map(part => part.trim());
     const fallback = task.sourceLabel || "Arkusz";
     const label = [year, month].filter(Boolean).join(" · ") || fallback;
 
