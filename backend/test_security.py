@@ -216,6 +216,25 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(self.contact_count(), 2)
         self.assertEqual(self.reserved_terms(), [])
 
+    def test_contact_form_allows_skipping_the_schedule_step(self):
+        for count in (1, 2, 3):
+            with self.subTest(count=count):
+                payload = self.valid_contact_payload()
+                payload.update({
+                    "selected_terms": [],
+                    "sessions_per_week_count": count,
+                    "preferred_term": "",
+                })
+                with patch.object(app_module, "schedule_rows") as schedule:
+                    response = self.client.post("/api/contact-messages", json=payload)
+                schedule.assert_not_called()
+                self.assertEqual(response.status_code, 201, response.get_json())
+                self.assertEqual(response.get_json()["reserved_terms"], [])
+                self.assertIsNone(response.get_json()["message"]["preferred_term"])
+
+        self.assertEqual(self.contact_count(), 3)
+        self.assertEqual(self.reserved_terms(), [])
+
     def test_contact_form_rejects_excess_terms_or_invalid_weekly_frequency(self):
         rows = [["Godz.", "Pn.", "Wt.", "Sr."], ["8:00", "", "", ""]]
         cases = [

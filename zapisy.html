@@ -261,6 +261,19 @@ h1{
     min-width: 0;
 }
 
+.schedule-picker .schedule-help {
+    margin: 0;
+    color: #526172;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.schedule-help a {
+    color: #24527a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 .schedule-status {
     margin: 0;
     color: #64748b;
@@ -1904,10 +1917,13 @@ footer{
                             <div class="booking-step-copy">
                                 <p class="booking-step-kicker">Krok 1</p>
                                 <h2 class="booking-step-title" id="scheduleTitle">Wybierz termin</h2>
-                                <p class="booking-step-description"><br></p>
                             </div>
                         </div>
                     </div>
+                    <p class="schedule-help">
+                        Jeśli żaden z dostępnych terminów Ci nie odpowiada, pomiń ten krok lub
+                        <a href="tel:514681958">zadzwoń do mnie bezpośrednio</a>.
+                    </p>
                     <p class="schedule-status" id="scheduleStatus" role="status">Wczytywanie terminarza...</p>
                     <div class="table-wrapper">
                         <table id="schedule" aria-label="Dostępne terminy zajęć"></table>
@@ -2028,13 +2044,13 @@ footer{
                             </label>
 
                             <label>
-                                Preferowany termin
-                                <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError" required>
+                                Preferowany termin (opcjonalnie)
+                                <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError">
                                 <span class="form-field-error" id="preferredTermError" role="status" aria-live="polite"></span>
                             </label>
 
                             <p class="reservation-note">
-                                Po wysłaniu zgłoszenia wybrany termin zostanie zablokowany.
+                                Jeśli wybierzesz termin z terminarza, zostanie on zablokowany po wysłaniu zgłoszenia.
                                 Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
                                 <a href="regulamin-zajec.html">Regulamin korepetycji</a>
                             </p>
@@ -2063,7 +2079,7 @@ footer{
                             </dl>
                             <p id="signupSummaryPending" hidden></p>
                             <p class="signup-response-time">Odpowiem na zgłoszenie w ciągu 24 godzin.</p>
-                            <button type="submit">Wyślij i zarezerwuj termin</button>
+                            <button type="submit">Wyślij zgłoszenie</button>
                         </div>
 
                         <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
@@ -2559,6 +2575,11 @@ function updateSignupSummary(){
     document.getElementById("signupSummaryDiscordRow").hidden = !discord;
     document.getElementById("signupSummaryPending").textContent = pending;
     document.getElementById("signupSummaryPending").hidden = !pending;
+
+    const button = contactForm.querySelector('button[type="submit"]');
+    if(!button.disabled){
+        button.innerText = selectedTerms.length ? "Wyślij i zarezerwuj termin" : "Wyślij zgłoszenie";
+    }
 }
 
 function clearSignupFieldError(field){
@@ -2613,7 +2634,6 @@ function validateSignupForm(formData){
         }
     };
     const contactInput = signupFieldErrors.contact.focusTarget;
-    const preferredTerm = String(formData.get("preferred_term") || "").trim();
     const contact = String(formData.get("contact") || "").trim();
 
     if(!formData.get("course")){
@@ -2622,10 +2642,6 @@ function validateSignupForm(formData){
 
     if(!formData.get("sessions_per_week")){
         report("sessionsPerWeek", "Wybierz liczbę zajęć w tygodniu.");
-    }
-
-    if(!preferredTerm){
-        report("preferredTerm", "Wybierz termin lub wpisz preferowany termin.");
     }
 
     if(!contact){
@@ -2745,7 +2761,7 @@ contactForm.addEventListener("submit", async event => {
         showContactStatus(error.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz SMS.");
     } finally {
         button.disabled = false;
-        button.innerText = "Wyślij i zarezerwuj termin";
+        updateSignupSummary();
     }
 });
 </script>
