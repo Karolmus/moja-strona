@@ -471,24 +471,36 @@ h1{
     --course-option-background: linear-gradient(135deg, #fbfdff 0%, #edf4fa 100%);
     --course-option-border: #c9dbea;
     --course-option-accent: #8eb5de;
+    --course-option-selected-background: linear-gradient(135deg, #dceeff 0%, #edf7ff 100%);
+    --course-option-selected-ring: rgba(88, 139, 190, 0.28);
+    --course-option-selected-shadow: rgba(55, 103, 150, 0.18);
 }
 
 .course-option input[data-price-key="exam8"] + .course-price-option {
     --course-option-background: linear-gradient(135deg, #fcfefb 0%, #f0f7eb 100%);
     --course-option-border: #d2e3c5;
     --course-option-accent: #a8c78a;
+    --course-option-selected-background: linear-gradient(135deg, #ddf0d5 0%, #f2faed 100%);
+    --course-option-selected-ring: rgba(99, 147, 81, 0.26);
+    --course-option-selected-shadow: rgba(72, 121, 58, 0.18);
 }
 
 .course-option input[data-price-key="matura_basic"] + .course-price-option {
     --course-option-background: linear-gradient(135deg, #fefcfe 0%, #f6f0f8 100%);
     --course-option-border: #e2d5e9;
     --course-option-accent: #c7a7d9;
+    --course-option-selected-background: linear-gradient(135deg, #efe4f6 0%, #fbf7fd 100%);
+    --course-option-selected-ring: rgba(145, 103, 169, 0.24);
+    --course-option-selected-shadow: rgba(124, 79, 150, 0.16);
 }
 
 .course-option input[data-price-key="matura_extended"] + .course-price-option {
     --course-option-background: linear-gradient(135deg, #fcfdfe 0%, #eef2f4 100%);
     --course-option-border: #d4dde2;
     --course-option-accent: #91a1ac;
+    --course-option-selected-background: linear-gradient(135deg, #e2ebef 0%, #f5f8f9 100%);
+    --course-option-selected-ring: rgba(80, 107, 122, 0.24);
+    --course-option-selected-shadow: rgba(68, 91, 104, 0.16);
 }
 
 .course-price-option:hover {
@@ -497,11 +509,25 @@ h1{
     transform: translateY(-1px);
 }
 
-.course-option input:focus-visible + .course-price-option,
+.course-option input:focus-visible + .course-price-option {
+    outline: 3px solid rgba(36, 82, 122, 0.3);
+    outline-offset: 2px;
+}
+
 .course-option input:checked + .course-price-option {
-    background: var(--course-option-background, #fff);
+    background: var(--course-option-selected-background, var(--course-option-background, #fff));
     border-color: var(--course-option-accent, #263545);
-    box-shadow: inset 4px 0 0 var(--course-option-accent, #263545), 0 0 0 2px rgba(38, 53, 69, 0.1);
+    box-shadow:
+        inset 5px 0 0 var(--course-option-accent, #263545),
+        0 0 0 3px var(--course-option-selected-ring, rgba(38, 53, 69, 0.18)),
+        0 9px 18px var(--course-option-selected-shadow, rgba(15, 23, 42, 0.14));
+    transform: translateY(-1px);
+}
+
+.course-option input:checked + .course-price-option .course-price-value::before {
+    content: "✓ ";
+    color: #1f6b3a;
+    font-weight: 900;
 }
 
 .course-price-name {
@@ -542,6 +568,7 @@ h1{
 
 .frequency-choice {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     min-height: 66px;
@@ -551,7 +578,7 @@ h1{
     background: #f8fafc;
     color: #1f2a36;
     cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .frequency-choice strong {
@@ -560,11 +587,34 @@ h1{
     line-height: 1;
 }
 
-.frequency-option input:focus-visible + .frequency-choice,
+.frequency-option input:focus-visible + .frequency-choice {
+    outline: 3px solid rgba(36, 82, 122, 0.3);
+    outline-offset: 2px;
+}
+
 .frequency-option input:checked + .frequency-choice {
-    border-color: #8eb5de;
-    background: #edf4fa;
-    box-shadow: inset 3px 0 0 #8eb5de, 0 0 0 2px rgba(142, 181, 222, 0.16);
+    border-color: #3977aa;
+    background: linear-gradient(135deg, #dceeff 0%, #edf7ff 100%);
+    box-shadow: inset 4px 0 0 #3977aa, 0 0 0 3px rgba(57, 119, 170, 0.24), 0 8px 16px rgba(55, 103, 150, 0.16);
+    color: #1d4f79;
+    transform: translateY(-1px);
+}
+
+.frequency-option input:checked + .frequency-choice::after {
+    content: "✓";
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    display: grid;
+    width: 16px;
+    height: 16px;
+    place-items: center;
+    border-radius: 50%;
+    background: #3977aa;
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
 }
 
 .selected-term-list {
@@ -869,11 +919,18 @@ h1{
 	    transition:background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 	}
 
-	.free:hover,
-	.free.selected{
+	.free:hover{
 	    background:#dff1db;
 	    border-color:#78b66d;
 	    box-shadow:inset 0 0 0 1px #78b66d;
+	}
+
+	.free.selected{
+	    background:#2f7a42;
+	    color:#fff;
+	    border-color:#215d31;
+	    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.34), 0 0 0 2px rgba(47,122,66,0.26), 0 6px 12px rgba(35,96,50,0.18);
+	    font-weight:700;
 	}
 
 	.busy{
@@ -2146,7 +2203,16 @@ function updateSelectedTermView(){
 
     document.querySelectorAll("[data-term]")
         .forEach(cell => {
-            cell.classList.toggle("selected", selectedTerms.includes(cell.dataset.term));
+            const isSelected = selectedTerms.includes(cell.dataset.term);
+
+            cell.classList.toggle("selected", isSelected);
+            cell.setAttribute(
+                "aria-label",
+                isSelected
+                    ? `Wybrany termin ${cell.dataset.term}`
+                    : `Wybierz termin ${cell.dataset.term}`
+            );
+            cell.title = isSelected ? "Termin wybrany" : "Wybierz termin";
         });
 
     if(!list) return;
