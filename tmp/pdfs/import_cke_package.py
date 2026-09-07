@@ -1314,6 +1314,19 @@ def collect_exam_headers(document, pdf_path: Path) -> tuple[list[dict], dict[int
             continue
 
         for line in lines:
+            shared_targets = shared_context_targets(line["text"])
+            if shared_targets:
+                number = f"shared_{shared_targets[0]}_{shared_targets[-1]}"
+                context_id = f"context:{number}"
+                if context_id not in seen:
+                    seen.add(context_id)
+                    headers.append({
+                        "kind": "context", "number": number, "maxPoints": 0,
+                        "page": page_index, "top": float(line["top"]),
+                        "bottom": float(line["bottom"]), "text": line["text"],
+                        "targets": shared_targets,
+                    })
+                continue
             parsed = parse_header(line["text"])
             if parsed:
                 number, max_points = parsed
@@ -1364,6 +1377,18 @@ def collect_exam_headers(document, pdf_path: Path) -> tuple[list[dict], dict[int
             reached_scratch = True
 
     return headers, lines_by_page
+
+
+def shared_context_targets(text: str) -> list[str]:
+    match = re.fullmatch(r"informacja do zadan\s+([\d\s.,i–−-]+)", ascii_fold(text).strip())
+    if not match:
+        return []
+    values = re.findall(r"\d+", match.group(1))
+    if len(values) < 2:
+        return []
+    if any(dash in match.group(1) for dash in DASHES) and len(values) == 2:
+        return [str(number) for number in range(int(values[0]), int(values[1]) + 1)]
+    return list(dict.fromkeys(values))
 
 
 def page_bottom(page) -> float:
@@ -1804,6 +1829,30 @@ def first_exact_line_top(lines: list[dict], after: float, before: float, values:
     return None
 
 
+EXAM_WORK_PREFIXES = (
+    "brudnopis", "przenies rozwiazania zadan", "nr zadania", "wypelnia egzaminator",
+    "maks. liczba pkt", "uzyskana liczba pkt",
+)
+
+
+def continuation_regions(header: dict, headers: list[dict], page, lines_by_page: dict):
+    following = [item for item in headers if (item["page"], item["top"]) > (header["page"], header["top"])]
+    next_header = min(following, key=lambda item: (item["page"], item["top"])) if following else None
+    last_page = next_header["page"] if next_header else len(page.pdf.pages) - 1
+    for page_index in range(header["page"] + 1, last_page + 1):
+        current = page.pdf.pages[page_index]
+        lines = lines_by_page.get(page_index, [])
+        bottom = task_page_bottom(current, lines)
+        if next_header and next_header["page"] == page_index:
+            bottom = min(bottom, next_header["top"] - 4)
+        stop = first_line_top(lines, PAGE_TOP, bottom, EXAM_WORK_PREFIXES)
+        if stop is not None:
+            bottom = min(bottom, stop - 4)
+        yield page_index, current, lines, PAGE_TOP, bottom
+        if any(ascii_fold(line["text"]).startswith("brudnopis") for line in lines):
+            break
+
+
 def extract_task_text(
     header: dict,
     headers: list[dict],
@@ -1822,8 +1871,16 @@ def extract_task_text(
         line["text"]
         for line in lines_by_page[header["page"]]
         if start < float(line["top"]) < end
+        and float(line.get("x1", page.width)) > SIDE_MARGIN
+        and float(line.get("x0", 0)) < float(page.width) - SIDE_MARGIN
         and not ascii_fold(line["text"]).startswith(("strona ", "przenies rozwiazania", "eduarkusze"))
     ]
+    for _, _, lines, top, bottom in continuation_regions(header, headers, page, lines_by_page):
+        texts.extend(
+            line["text"] for line in lines if top < float(line["top"]) < bottom
+            and float(line.get("x1", page.width)) > SIDE_MARGIN
+            and float(line.get("x0", 0)) < float(page.width) - SIDE_MARGIN
+        )
     return normalize_text(" ".join(texts))
 
 
@@ -1832,6 +1889,9 @@ def is_closed_choice_task(task_text: str) -> bool:
     text = normalize_text(task_text)
     folded = ascii_fold(text)
     option_labels = re.findall(r"(?<![A-Za-z])([A-F])[.)](?![A-Za-z])", text)
+    # Older basic papers put the selection instruction on the cover only.
+    if set("ABCD").issubset(option_labels):
+        return True
     has_selection_prompt = bool(re.search(r"\b(?:wybierz|zaznacz|ocen)\w*", folded))
     if len(set(option_labels)) >= 2 and has_selection_prompt:
         return True
@@ -1849,6 +1909,7 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
         headers, lines_by_page = collect_exam_headers(document, session.exam_pdf)
         cache = {}
         context_texts = {}
+        shared_contexts = {}
 
         for index, header in enumerate(headers):
             page = document.pages[header["page"]]
@@ -1876,7 +1937,7 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
             page_lines,
             start,
             end,
-            ("brudnopis", "przenies rozwiazania zadan"),
+            EXAM_WORK_PREFIXES,
         )
             solution_stop = first_exact_line_top(
                 page_lines,
@@ -1905,6 +1966,8 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                 if detected_grid is not None:
                     has_content_after_grid = any(
                         detected_grid + 4 < float(line["top"]) < end
+                        and float(line.get("x1", page.width)) > TASK_X0[session.kind]
+                        and float(line.get("x0", 0)) < float(page.width) - TASK_RIGHT_MARGIN
                         and ascii_fold(line["text"]).strip()
                         not in {"brudnopis", "przenies rozwiazania zadan"}
                         for line in page_lines
@@ -1935,12 +1998,41 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                     f"{header['kind']} {header['number']}"
                 )
             image = remove_score_gutters(image)
+            continuations = []
+            for page_index, next_page, next_lines, top, bottom in continuation_regions(
+                header, headers, page, lines_by_page
+            ):
+                detected_grid = grid_top(next_page, top, bottom, TASK_X0[session.kind], float(next_page.width) - TASK_RIGHT_MARGIN)
+                if detected_grid is not None and not any(
+                    detected_grid + 4 < float(line["top"]) < bottom
+                    and float(line.get("x1", next_page.width)) > TASK_X0[session.kind]
+                    and float(line.get("x0", 0)) < float(next_page.width) - TASK_RIGHT_MARGIN
+                    for line in next_lines
+                ):
+                    bottom = min(bottom, detected_grid - 4)
+                continuation = crop_region(
+                    next_page, cache, page_index, top, bottom,
+                    TASK_X0[session.kind], float(next_page.width) - TASK_RIGHT_MARGIN,
+                    discard_leading_rule=True,
+                )
+                if continuation is not None:
+                    continuations.append(remove_score_gutters(continuation))
+            if continuations:
+                pieces = [image, *continuations]
+                combined = Image.new("RGB", (max(piece.width for piece in pieces), sum(piece.height for piece in pieces) + 16 * len(continuations)), "white")
+                y = 0
+                for piece in pieces:
+                    combined.paste(piece, (0, y))
+                    y += piece.height + 16
+                image = combined
 
             if header["kind"] == "context":
                 filename = f"{header['number']}_kontekst_{session.stem}.webp"
                 save_webp(image, output / filename)
                 manifest[f"context:{header['number']}"] = {"file": filename}
                 context_texts[header["number"]] = text
+                for target in header.get("targets", []):
+                    shared_contexts[target] = {"file": filename, "text": text}
                 continue
 
             if session.task_asset_filenames is not None:
@@ -1957,6 +2049,10 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                 "maxPoints": header["maxPoints"],
                 "isClosedChoice": is_closed_choice_task(text),
             }
+            if header["number"] in shared_contexts:
+                context = shared_contexts[header["number"]]
+                item["contextFile"] = context["file"]
+                text = normalize_text(f"{context['text']} {text}")
             if "." in header["number"]:
                 parent = header["number"].split(".", 1)[0]
                 context = manifest.get(f"context:{parent}")
@@ -1980,6 +2076,8 @@ def collect_key_sections(document, pdf_path: Path) -> tuple[dict[str, dict], lis
     fallback_by_page = poppler_lines(pdf_path)
     for page_index, page in enumerate(document.pages):
         for line in merged_page_lines(page, fallback_by_page.get(page_index, [])):
+            if is_key_running_header(line):
+                continue
             entry = {
                 "page": page_index,
                 "top": float(line["top"]),
@@ -2020,6 +2118,13 @@ def collect_key_sections(document, pdf_path: Path) -> tuple[dict[str, dict], lis
             if next_header
             else (len(document.pages) - 1, page_bottom(document.pages[-1]))
         )
+        appendices = [
+            (line["page"], line["top"]) for line in all_lines
+            if start < (line["page"], line["top"]) < end
+            and ascii_fold(line["text"]).startswith("ocena prac osob ze stwierdzona dyskalkulia")
+        ]
+        if appendices:
+            end = min(appendices)
         lines = [
             line
             for line in all_lines
@@ -2060,8 +2165,12 @@ def solution_marker(text: str) -> str | None:
         "rozwiazanie zadania",
         "przykladowe rozwiazanie",
         "przykladowe pelne rozwiazanie",
+        "przykladowe rozwiazania",
+        "przykladowe pelne rozwiazania",
         "przykladowe sposoby rozwiazania zadania",
     }:
+        return "solution"
+    if re.fullmatch(r"sposob\s+(?:[ivx]+|\d+)\.?(?:\s*\([^)]*\))?", folded):
         return "solution"
     if re.fullmatch(
         r"rozwiazanie\s*(?:\((?:[ivx]+|\d+)\s+sposob\)|(?:[ivx]+|\d+)\s+sposob)(?:\s+.*)?",
@@ -2087,6 +2196,15 @@ def solution_marker(text: str) -> str | None:
 def parse_closed_answer(section: dict) -> str | None:
     lines = section["lines"]
     task_number = section["header"]["number"]
+    saw_versions = False
+    for line in lines:
+        if ascii_fold(line["text"]).count("wersja") >= 2:
+            saw_versions = True
+            continue
+        if saw_versions:
+            match = re.fullmatch(r"\s*([A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)\s+([A-F]|[A-F]{2}|[PF]{2}|[A-F]\d)\s*", line["text"])
+            if match:
+                return match.group(1).upper()
     component_answers = {}
     for line in lines:
         match = re.search(
@@ -2161,6 +2279,15 @@ def position(line: dict, edge: str = "top") -> tuple[int, float]:
     return int(line["page"]), float(line[edge])
 
 
+def is_key_running_header(line: dict) -> bool:
+    text = ascii_fold(line["text"])
+    return float(line["top"]) < 65 and (
+        text.startswith("egzamin maturalny")
+        or text.startswith("egzamin osmoklasisty")
+        or text == "zasady oceniania rozwiazan zadan"
+    )
+
+
 def save_span(
     document,
     cache: dict[int, Image.Image],
@@ -2173,10 +2300,16 @@ def save_span(
     part = 1
     for page_index in range(start[0], end[0] + 1):
         page = document.pages[page_index]
+        lines = page_lines(page)
+        body_top = max([PAGE_TOP, *[
+            float(line["bottom"]) + 4 for line in lines if is_key_running_header(line)
+        ]])
+        # PDF text bounds can sit below the visible footer glyphs.
+        body_bottom = task_page_bottom(page, lines) - 6
         top = start[1] if page_index == start[0] else PAGE_TOP
-        bottom = end[1] if page_index == end[0] else page_bottom(page)
-        top = max(top, PAGE_TOP)
-        bottom = min(bottom, page_bottom(page))
+        bottom = end[1] if page_index == end[0] else body_bottom
+        top = max(top, body_top)
+        bottom = min(bottom, body_bottom)
         image = crop_region(
             page,
             cache,
@@ -2201,6 +2334,8 @@ def solution_label(marker_text: str) -> str:
     if folded == "odpowiedz":
         return "Odpowiedź"
     match = re.search(r"(?:\(|\b)([IVX]+|\d+)\s+sposób\b", text, re.I)
+    if not match:
+        match = re.search(r"\bsposób\s+([IVX]+|\d+)\b", text, re.I)
     if match:
         return f"Sposób {match.group(1).upper()}"
     return "Rozwiązanie"
@@ -2248,6 +2383,11 @@ def extract_key_assets(
                 kind = solution_marker(line["text"])
                 if kind:
                     markers.append({**line, "markerKind": kind})
+            if not any(marker["markerKind"] == "criteria" for marker in markers):
+                first_grading = next((line for line in section["lines"] if ascii_fold(line["text"]).startswith("zdajacy otrzymuje")), None)
+                if first_grading:
+                    markers.append({**first_grading, "bottom": first_grading["top"] - 4, "markerKind": "criteria"})
+                    markers.sort(key=lambda marker: (marker["page"], marker["top"]))
 
             solutions = []
             criteria = []

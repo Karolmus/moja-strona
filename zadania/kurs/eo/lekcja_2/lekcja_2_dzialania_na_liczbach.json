@@ -468,6 +468,13 @@
   {
     "file": "zd2.png",
     "title": "Lekcja 2 - Zadanie domowe 2",
+    "type": "input",
+    "inputs": [
+      { "label": "1. miejsce", "options": ["a", "b", "c", "d"], "answer": "b" },
+      { "label": "2. miejsce", "options": ["a", "b", "c", "d"], "answer": "a" },
+      { "label": "3. miejsce", "options": ["a", "b", "c", "d"], "answer": "c" },
+      { "label": "4. miejsce", "options": ["a", "b", "c", "d"], "answer": "d" }
+    ],
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
@@ -571,6 +578,11 @@
   {
     "file": "zd6.png",
     "title": "Lekcja 2 - Zadanie domowe 6",
+    "type": "input",
+    "inputs": [
+      { "label": "a) Łącznie bananów", "answer": "12" },
+      { "label": "b) Średnio na osobę", "answer": "8" }
+    ],
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
@@ -689,6 +701,10 @@
   {
     "file": "zd11.png",
     "title": "Lekcja 2 - Zadanie domowe 11",
+    "type": "input",
+    "inputs": [
+      { "label": "Średnia liczba kilometrów", "answer": "68,8" }
+    ],
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",

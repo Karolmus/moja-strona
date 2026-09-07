@@ -137,7 +137,7 @@
       "type": "input",
       "topic": "odczytywanie danych i procenty",
       "maxPoints": 1,
-      "answer": "około 39,7% (po zaokrągleniu do pełnych procentów: 40%)",
+      "answer": "39,7%",
       "hint": "Dodaj cały czas spędzony w aplikacjach i podziel go przez 112 godzin, w których Marek nie śpi.",
       "gradingStatus": "gotowe",
       "gradingCriteria": [
@@ -146,12 +146,12 @@
           "thresholds": [
             {
               "points": 1,
-              "description": "za obliczenie 44,5 / 112 · 100% i podanie wyniku około 39,7%, czyli około 40%."
+              "description": "za obliczenie 44,5 / 112 · 100% i podanie wyniku 39,7% po zaokrągleniu do jednego miejsca po przecinku."
             }
           ]
         }
       ],
-      "note": "Akceptowane są wyniki 39,7%, 39,73% i 40%.",
+      "note": "Akceptowany jest tylko wynik 39,7%. Kropka i przecinek są traktowane tak samo.",
       "criteriaStyle": "cke_thresholds"
     },
     {

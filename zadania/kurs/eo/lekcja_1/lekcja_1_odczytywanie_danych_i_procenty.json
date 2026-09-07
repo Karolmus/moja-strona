@@ -535,15 +535,17 @@
     "file": "zd_6.2.png",
     "contextFile": "zd_6_info.png",
     "title": "Lekcja 1 - zadanie domowe 6.2",
+    "instruction": "Podaj wynik w procentach, zaokrąglony do jednego miejsca po przecinku.",
     "type": "input",
     "inputs": [
       {
-        "label": "Procent czasu",
-        "answers": ["39,7", "39.7", "39,73", "39.73", "40", "39,7%", "39,73%", "40%"]
+        "label": "Procent czasu (%)",
+        "answers": ["39,7%"],
+        "exact": true
       }
     ],
     "hint": "Dodaj cały czas spędzony w aplikacjach i podziel go przez 112 godzin, w których Marek nie śpi.",
-    "answer": "około 39,7% (po zaokrągleniu do pełnych procentów: 40%)",
+    "answer": "39,7%",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",

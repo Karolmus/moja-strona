@@ -1481,13 +1481,68 @@ button {
     gap: 5px;
 }
 
+.input-answer-grid.math-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.math-answer-field:only-child {
+    grid-column: 1 / -1;
+}
+
+.math-input-tools {
+    display: flex;
+    gap: 6px;
+}
+
+.math-input-tools button {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface-soft);
+    color: var(--blue-text);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.math-input-tools button:hover,
+.math-input-tools button:focus-visible {
+    background: var(--blue-soft);
+    border-color: var(--blue-text);
+}
+
+.math-input-preview {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    font-size: 20px;
+    padding: 4px 0;
+}
+
+.math-input-error {
+    margin: 0;
+    color: var(--red-text);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+@media(max-width: 760px) {
+    .input-answer-grid.math-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
 .input-answer-field label {
     color: var(--muted);
     font-size: 12px;
     font-weight: 700;
 }
 
-.input-answer-field input {
+.input-answer-field input,
+.input-answer-field select {
     width: 100%;
     min-height: 46px;
     border: 1px solid var(--line);
@@ -1514,12 +1569,14 @@ button {
 }
 
 .input-answer-field input.correct,
+.input-answer-field select.correct,
 .input-answer-field textarea.correct {
     background: #dff3e4;
     border-color: var(--success);
 }
 
 .input-answer-field input.wrong,
+.input-answer-field select.wrong,
 .input-answer-field textarea.wrong {
     background: #fde5e2;
     border-color: var(--danger);
@@ -1527,6 +1584,26 @@ button {
 
 .input-check-btn {
     justify-self: start;
+}
+
+.course-brand {
+    grid-column: 1 / -1;
+    justify-self: center;
+    padding: 8px 0;
+}
+
+.course-brand img {
+    display: block;
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+}
+
+.task-instruction {
+    margin: 0 0 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
 }
 
 .mcq.practical-task {
@@ -2914,6 +2991,9 @@ footer {
                 <div class="tag-helper" id="tagHelper">Wybierz tag albo wpisz fragment nazwy.</div>
             </div>
 
+            <div class="course-brand" id="courseBrand" hidden>
+                <img src="img/logo3.png" width="96" height="96" alt="Delta Sigma" decoding="async">
+            </div>
         </aside>
 
         <div class="task-card">
@@ -2932,6 +3012,7 @@ footer {
                 <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania" decoding="async">
                 <img id="taskImage" class="task-image" src="" alt="zadanie" decoding="async" fetchpriority="high">
             </div>
+            <p class="task-instruction" id="taskInstruction" hidden></p>
 
             <div class="interaction-panel">
                 <div class="task-actions">
@@ -3086,6 +3167,8 @@ footer {
 
 <script src="static/auth.js?v=20260820-mobile-call-footer"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
+<script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
+<script src="static/math-answer-input.js?v=20260907"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -3098,7 +3181,7 @@ let currentIndex = 0;
 let currentTaskStartedAt = 0;
 let selectedSource = "all";
 let selectedCategory = "kurs";
-let selectedCoursePart = "zadania";
+let selectedCoursePart = "praca_domowa";
 let taskMode = "ordered";
 let randomHistory = [];
 let randomHistoryIndex = -1;
@@ -3145,10 +3228,10 @@ const COURSE_PART_ORDER = {
 };
 const COURSE_PART_LABELS = {
     zadania: "1. Część główna",
-    praca_domowa: "2. Zadanie domowe",
+    praca_domowa: "Praca domowa",
     zadania_praktyczne: "3. Zadania praktyczne"
 };
-const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260907-eo-june";
+const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260907-mp-course";
 const TAG_WORD_LABELS = {
     bryly: "bryły",
     ciagi: "ciągi",
@@ -3188,17 +3271,30 @@ const TAG_WORD_LABELS = {
 
 const TASK_SOURCES = [
     { path: "zadania/mp/2026/maj/2026_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2026/maj_f2015/2026_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2026/czerwiec/2026_cke_p_c.json", category: "egzaminy" },
+    { path: "zadania/mp/2026/czerwiec_dodatkowy_f2015/2026_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2025/maj_f2015/2025_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2025/czerwiec_dodatkowy/2025_cke_p_c_d.json", category: "egzaminy", detail: "2025 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2025/czerwiec_dodatkowy_f2015/2025_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2025/sierpien_poprawkowy/2025_cke_p_s_p.json", category: "egzaminy", detail: "2025 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2025/sierpien_poprawkowy_f2015/2025_cke_p_s_p_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2024/maj_f2015/2024_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2024/czerwiec_dodatkowy/2024_cke_p_c_d.json", category: "egzaminy", detail: "2024 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2024/czerwiec_dodatkowy_f2015/2024_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2024/sierpien_poprawkowy/2024_cke_p_s_p.json", category: "egzaminy", detail: "2024 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2024/sierpien_poprawkowy_f2015/2024_cke_p_s_p_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2023/maj_f2015/2023_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2023/czerwiec_dodatkowy/2023_cke_p_c_d.json", category: "egzaminy", detail: "2023 / czerwiec / termin dodatkowy / CKE" },
+    { path: "zadania/mp/2023/czerwiec_dodatkowy_f2015/2023_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2023/sierpien_poprawkowy/2023_cke_p_s_p.json", category: "egzaminy", detail: "2023 / sierpień / termin poprawkowy / CKE" },
+    { path: "zadania/mp/2023/sierpien_poprawkowy_f2015/2023_cke_p_s_p_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2022/maj/2022_cke_p_m.json", category: "egzaminy" },
+    { path: "zadania/mp/2022/czerwiec_dodatkowy/2022_cke_p_c_d.json", category: "egzaminy" },
+    { path: "zadania/mp/2022/sierpien_poprawkowy/2022_cke_p_s_p.json", category: "egzaminy" },
     { path: "zadania/mp/2021/maj/2021_cke_p_m_g.json", category: "egzaminy", detail: "2021 / maj / CKE" },
     { path: "zadania/mp/2021/czerwiec_dodatkowy/2021_cke_p_c_d.json", category: "egzaminy", detail: "2021 / czerwiec / termin dodatkowy / CKE" },
     { path: "zadania/mp/2021/sierpien_poprawkowy/2021_cke_p_s_p.json", category: "egzaminy", detail: "2021 / sierpień / termin poprawkowy / CKE" },
@@ -3724,7 +3820,10 @@ function loadTaskSource(sourceConfig){
     .then(items => {
         const basePath = source.slice(0, source.lastIndexOf("/") + 1);
 
-        return items.map(task => ({
+        return items.filter(task =>
+            sourceMeta.category !== "kurs" ||
+            (task.coursePart || task.section || "zadania") === STUDENT_WORK_COURSE_PART
+        ).map(task => ({
             ...task,
             path: basePath + task.file,
             contextPath: task.contextFile ? basePath + task.contextFile : null,
@@ -3952,10 +4051,11 @@ function getSourceMeta(sourceConfig){
     const year = parts[2];
     const month = parts[3];
     const monthLabel = MONTH_LABELS[month] || MONTH_LABELS[String(month || "").split("_")[0]] || month;
+    const formula = !isCourse && String(month || "").match(/_f(2015|2023)(?:_|$)/)?.[1];
     const label = sourceConfig.label || SOURCE_TYPE_LABELS[type] || "Zestaw";
     const detail = isCourse
         ? sourceConfig.detail || ""
-        : `${year} · ${monthLabel}`;
+        : `${year} · ${monthLabel}${formula ? ` · Formuła ${formula}` : ""}`;
 
     return {
         id: source,
@@ -4268,7 +4368,7 @@ function pool(){
         taskMatchesTagFilters(t) &&
         (
             selectedCategory !== "kurs" ||
-            t.coursePart === selectedCoursePart
+            t.coursePart === STUDENT_WORK_COURSE_PART
         )
     );
 }
@@ -4323,20 +4423,11 @@ function ensureSelectedSource(){
 
 function ensureSelectedCoursePart(){
     if(selectedCategory !== "kurs") return;
-    if(getCoursePartTasks(selectedCoursePart).length) return;
-
-    selectedCoursePart = getPreferredCourseParts()
-        .find(part => getCoursePartTasks(part).length) || defaultCoursePart();
+    selectedCoursePart = STUDENT_WORK_COURSE_PART;
 }
 
 function defaultCoursePart(){
-    return isLoggedInStudent ? STUDENT_WORK_COURSE_PART : "zadania";
-}
-
-function getPreferredCourseParts(){
-    return isLoggedInStudent
-        ? [STUDENT_WORK_COURSE_PART, "zadania", "zadania_praktyczne"]
-        : ["zadania", STUDENT_WORK_COURSE_PART, "zadania_praktyczne"];
+    return STUDENT_WORK_COURSE_PART;
 }
 
 function isCoursePreviewMode(task = currentTask){
@@ -4511,6 +4602,7 @@ function renderSourceSelector(){
     const title = document.getElementById("sourceTitle");
 
     if(!list) return;
+    document.getElementById("courseBrand").hidden = selectedCategory !== "kurs";
 
     updateTrainingLink();
     list.innerHTML = "";
@@ -4606,7 +4698,7 @@ function getExamSourceTileContent(detail){
 
     return {
         label: parts.shift() || "Arkusz",
-        detail: parts.join(" / ")
+        detail: parts.join(" · ")
     };
 }
 
@@ -4643,7 +4735,7 @@ function getSourceCompletionTasks(source){
     if(source.category === "kurs"){
         const homeworkTasks = sourceTasks.filter(task => task.coursePart === "praca_domowa");
 
-        return homeworkTasks.length ? homeworkTasks : sourceTasks;
+        return homeworkTasks;
     }
 
     return sourceTasks;
@@ -4656,6 +4748,7 @@ function isSourceComplete(source){
 }
 
 function getCoursePartTasks(part){
+    if(part !== STUDENT_WORK_COURSE_PART) return [];
     return tasks.filter(task =>
         task.category === "kurs" &&
         task.level === selectedLevel &&
@@ -4676,6 +4769,7 @@ function getCourseNavigatorItems(){
 
     return tasks.filter(task =>
         task.category === "kurs" &&
+        task.coursePart === STUDENT_WORK_COURSE_PART &&
         task.level === selectedLevel &&
         task.sourceId === selectedSource &&
         taskMatchesTagFilters(task)
@@ -4691,7 +4785,7 @@ function getCourseNavigatorItems(){
 }
 
 function selectCoursePartTask(part, file = ""){
-    selectedCoursePart = part;
+    selectedCoursePart = STUDENT_WORK_COURSE_PART;
 
     resetSession();
     renderTagSearch();
@@ -4840,7 +4934,7 @@ function sourceSummaryTasks(){
         task.sourceId === selectedSource
     );
 
-    return selectedCategory === "kurs" && isLoggedInStudent
+    return selectedCategory === "kurs"
         ? sourceTasks.filter(task => task.coursePart === STUDENT_WORK_COURSE_PART)
         : sourceTasks;
 }
@@ -5675,13 +5769,11 @@ function addNavigatorSectionLabel(progress, section){
 function getExamNavigatorGroup(task){
     const source = getSourceMetaById(task.sourceId);
     const detail = String(task.sourceDetail || source?.detail || "");
-    const [year, month] = detail.split("·").map(part => part.trim());
     const fallback = task.sourceLabel || "Arkusz";
-    const label = [year, month].filter(Boolean).join(" · ") || fallback;
 
     return {
-        key: `${year || fallback}:${month || task.sourceId}`,
-        label
+        key: task.sourceId || detail || fallback,
+        label: detail || fallback
     };
 }
 
@@ -6192,19 +6284,26 @@ function getCorrectAnswers(task){
 
 function getInputFields(task){
     if(Array.isArray(task.inputs) && task.inputs.length){
-        return task.inputs.map((input, index) => ({
-            label: input.label || `Odpowiedź ${index + 1}`,
-            answers: Array.isArray(input.answers)
-                ? input.answers
-                : [input.answer ?? ""]
-        }));
+        return task.inputs.map((input, index) => {
+            const answers = Array.isArray(input.answers) ? input.answers : [input.answer ?? ""];
+            return {
+                label: input.label || `Odpowiedź ${index + 1}`,
+                options: Array.isArray(input.options) ? input.options : null,
+                inputMode: input.inputMode || "decimal",
+                exact: input.exact === true,
+                math: input.math === true || (!input.options && !input.exact &&
+                    typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid)),
+                answers
+            };
+        });
     }
 
     const answers = Array.isArray(task.acceptedAnswers)
         ? task.acceptedAnswers
         : [task.answer ?? ""];
 
-    return [{ label: "Odpowiedź", answers }];
+    return [{ label: "Odpowiedź", answers,
+        math: typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid) }];
 }
 
 function getPracticalConfig(task = currentTask){
@@ -6248,6 +6347,7 @@ function normalizeTypedAnswer(value){
         .toLowerCase()
         .replace(/\s+/g, "")
         .replace(/,/g, ".")
+        .replace(/−/g, "-")
         .replace(/%/g, "");
 }
 
@@ -6437,10 +6537,17 @@ function formatPracticalAnswer(task = currentTask, computed = null){
     return task?.answer || "Wynik zależy od wpisanych danych.";
 }
 
-function isTypedAnswerCorrect(value, answers){
+function isTypedAnswerCorrect(value, answers, exact = false){
     const normalized = normalizeTypedAnswer(value);
+    if(!normalized) return false;
+    if(exact && !/^[+-]?\d+(?:[.,]\d+)?\s*%?$/.test(String(value).trim())) return false;
 
     return answers.some(answer => {
+        const typedExpression = String(value).trim().replace(/%$/, "");
+        const expectedExpression = String(answer).trim().replace(/%$/, "");
+        if(!exact && typeof DeltaSigmaMath !== "undefined" && DeltaSigmaMath.isValid(expectedExpression)){
+            return DeltaSigmaMath.equivalent(typedExpression, expectedExpression);
+        }
         const expected = normalizeTypedAnswer(answer);
 
         if(expected === normalized) return true;
@@ -6450,7 +6557,9 @@ function isTypedAnswerCorrect(value, answers){
 
         return Number.isFinite(expectedNumber)
             && Number.isFinite(typedNumber)
-            && Math.abs(expectedNumber - typedNumber) < 0.0000001;
+            && (exact
+                ? expectedNumber === typedNumber
+                : Math.abs(expectedNumber - typedNumber) < 0.0000001);
     });
 }
 
@@ -6594,6 +6703,8 @@ function setTaskLoading(loading){
 }
 
 function clearTaskInteraction(){
+    document.getElementById("taskInstruction").hidden = true;
+    document.getElementById("taskInstruction").textContent = "";
     const mcq = document.getElementById("mcq");
     const resultButtons = document.getElementById("resultButtons");
     const solutionBox = document.getElementById("solutionBox");
@@ -6657,6 +6768,9 @@ function clearTaskInteraction(){
 }
 
 function updateTaskDetails(task, total){
+    const instruction = document.getElementById("taskInstruction");
+    instruction.textContent = task.instruction || "";
+    instruction.hidden = !task.instruction;
     const taskCounter = document.getElementById("taskCounter");
     const metaBox = document.getElementById("metaBox");
     const isHomework = task.coursePart === "praca_domowa";
@@ -6690,6 +6804,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
     const p = pool();
 
     if(!p.length){
+        document.getElementById("taskInstruction").hidden = true;
         drawTaskRequestId++;
         currentTask = null;
         document.getElementById("taskCounter").innerText = "0 / 0";
@@ -7326,21 +7441,39 @@ function setupInputTask(mcq){
     getInputFields(currentTask).forEach((field, index) => {
         const wrapper = document.createElement("div");
         const label = document.createElement("label");
-        const input = document.createElement("input");
+        const input = document.createElement(field.options ? "select" : "input");
         const inputId = `input-answer-${index}`;
 
         wrapper.className = "input-answer-field";
         label.htmlFor = inputId;
         label.innerText = field.label;
         input.id = inputId;
-        input.type = "text";
-        input.inputMode = "decimal";
+        if(field.options){
+            const empty = document.createElement("option");
+            empty.value = "";
+            empty.textContent = "Wybierz";
+            input.appendChild(empty);
+            field.options.forEach(value => {
+                const option = document.createElement("option");
+                option.value = String(value);
+                option.textContent = String(value);
+                input.appendChild(option);
+            });
+        } else {
+            input.type = "text";
+            input.inputMode = field.math ? "text" : field.inputMode || "decimal";
+            input.placeholder = "Wpisz odpowiedź";
+        }
+        input.required = true;
         input.autocomplete = "off";
         input.dataset.index = String(index);
-        input.placeholder = "Wpisz odpowiedź";
 
         wrapper.appendChild(label);
         wrapper.appendChild(input);
+        if(field.math && !field.options && typeof DeltaSigmaMathInput !== "undefined"){
+            grid.classList.add("math-fields");
+            DeltaSigmaMathInput.attach(input, wrapper);
+        }
         grid.appendChild(wrapper);
     });
 
@@ -7932,7 +8065,7 @@ function revealGroupedChoiceAnswers(groups, correctAnswer){
 function revealInputAnswers(){
     const fields = getInputFields(currentTask);
 
-    document.querySelectorAll("#mcq input")
+    document.querySelectorAll("#mcq input, #mcq select")
         .forEach(input => {
             const index = Number(input.dataset.index);
             const expected = fields[index]?.answers?.[0] || "";
@@ -7940,6 +8073,7 @@ function revealInputAnswers(){
             input.value = expected;
             input.classList.add("correct");
             input.disabled = true;
+            if(typeof DeltaSigmaMathInput !== "undefined") DeltaSigmaMathInput.refresh(input);
         });
 
     document.querySelectorAll("#mcq button")
@@ -7952,13 +8086,22 @@ function checkInputAnswer(form){
     if(currentTaskAnswered) return;
 
     const fields = getInputFields(currentTask);
-    const inputs = [...form.querySelectorAll("input")];
+    const inputs = [...form.querySelectorAll("input, select")];
+    if(inputs.length !== fields.length || inputs.some(input => !input.value.trim())){
+        form.reportValidity();
+        return;
+    }
+    const validExpressions = inputs.map(input => {
+        const field = fields[Number(input.dataset.index)];
+        return !field?.math || typeof DeltaSigmaMathInput === "undefined" || DeltaSigmaMathInput.validate(input);
+    });
+    if(validExpressions.includes(false)) return;
     let isCorrect = true;
 
     inputs.forEach(input => {
         const index = Number(input.dataset.index);
         const field = fields[index];
-        const fieldCorrect = field && isTypedAnswerCorrect(input.value, field.answers);
+        const fieldCorrect = field && isTypedAnswerCorrect(input.value, field.answers, field.exact);
 
         input.classList.toggle("correct", Boolean(fieldCorrect));
         input.classList.toggle("wrong", !fieldCorrect);

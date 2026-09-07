@@ -1,0 +1,14 @@
+{
+  "name": "deltasigma-math-answers",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild entry.js --bundle --minify --format=iife --global-name=DeltaSigmaMath --target=es2020 --outfile=../../static/lib/mathjs/answers.min.js --legal-comments=eof"
+  },
+  "dependencies": {
+    "mathjs": "15.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

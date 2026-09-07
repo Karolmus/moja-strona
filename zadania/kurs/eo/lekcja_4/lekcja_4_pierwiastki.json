@@ -250,6 +250,12 @@
     "level": "egzamin_osmoklasisty",
     "file": "11.png",
     "title": "Lekcja 4 - zadanie 11",
+    "type": "input",
+    "inputs": [
+      { "label": "a", "options": ["I", "II", "III"], "answer": "II" },
+      { "label": "b", "options": ["I", "II", "III"], "answer": "I" },
+      { "label": "c", "options": ["I", "II", "III"], "answer": "III" }
+    ],
     "hint": "Oszacuj przybliżenia liczb: sqrt(13), 1 + sqrt(3) oraz 2 + sqrt(10), a potem dopasuj je do położenia na osi.",
     "answer": "a = II, b = I, c = III",
     "coursePart": "zadania",
@@ -341,12 +347,10 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd2.png",
     "title": "Lekcja 4 - Zadanie domowe 2",
-    "type": "closed",
-    "options": [
-      "AC",
-      "AD",
-      "BC",
-      "BD"
+    "type": "input",
+    "inputs": [
+      { "label": "Pierwsze zdanie", "options": ["A", "B"], "answer": "A" },
+      { "label": "Drugie zdanie", "options": ["C", "D"], "answer": "D" }
     ],
     "hint": "Każda nierówność sprawdź osobno. Dla liczb dodatnich możesz porównać kwadraty.",
     "answer": "AD",
@@ -366,6 +370,10 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd3.png",
     "title": "Lekcja 4 - Zadanie domowe 3",
+    "type": "input",
+    "inputs": [
+      { "label": "Wynik", "answer": "-15", "inputMode": "text" }
+    ],
     "hint": "Rozwiń oba kwadraty ze wzoru (a + b)^2, a potem odejmij wyrażenia podobne.",
     "answer": "-15",
     "coursePart": "praca_domowa",
@@ -416,6 +424,10 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd5.png",
     "title": "Lekcja 4 - Zadanie domowe 5",
+    "type": "input",
+    "inputs": [
+      { "label": "Wynik", "answer": "(sqrt(2) - 21) / 5", "math": true }
+    ],
     "hint": "Pierwszy ułamek podnieś do trzeciej potęgi, pamiętając, że (cbrt(10))^3 = 10. W drugim składniku najpierw podnieś pierwiastek do kwadratu.",
     "answer": "(sqrt(2) - 21) / 5",
     "coursePart": "praca_domowa",
@@ -459,6 +471,13 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd7.png",
     "title": "Lekcja 4 - Zadanie domowe 7",
+    "type": "input",
+    "inputs": [
+      { "label": "1. miejsce", "options": ["I", "II", "III", "IV"], "answer": "II" },
+      { "label": "2. miejsce", "options": ["I", "II", "III", "IV"], "answer": "III" },
+      { "label": "3. miejsce", "options": ["I", "II", "III", "IV"], "answer": "IV" },
+      { "label": "4. miejsce", "options": ["I", "II", "III", "IV"], "answer": "I" }
+    ],
     "hint": "Oszacuj każdą liczbę: jedna jest ujemna duża co do wartości, jedna równa -3, jedna równa 4, a jedna dodatnia około 6,7.",
     "answer": "II, III, IV, I",
     "coursePart": "praca_domowa",
@@ -477,6 +496,13 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd8.png",
     "title": "Lekcja 4 - Zadanie domowe 8",
+    "type": "input",
+    "inputs": [
+      { "label": "Wiersz 1", "options": ["<", "=", ">"], "answer": "=" },
+      { "label": "Wiersz 2", "options": ["<", "=", ">"], "answer": "<" },
+      { "label": "Wiersz 3", "options": ["<", "=", ">"], "answer": "<" },
+      { "label": "Wiersz 4", "options": ["<", "=", ">"], "answer": "<" }
+    ],
     "hint": "W każdym wierszu uprość pierwiastki albo porównaj przybliżenia. Wstaw kolejno znaki między lewą a prawą stroną.",
     "answer": "=, <, <, <",
     "coursePart": "praca_domowa",
