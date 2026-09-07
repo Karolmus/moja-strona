@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 
+import numpy as np
 import pdfplumber
 from PIL import Image, ImageChops, ImageOps
 
@@ -111,6 +112,11 @@ REPAIRED_SOURCES = {
     ("01_matura_podstawowa", 2025, "additional", "2023"): REPAIRED / "mp/2025/czerwiec_f2023",
     ("01_matura_podstawowa", 2025, "resit", "2023"): REPAIRED / "mp/2025/sierpien_f2023",
     ("02_matura_rozszerzona", 2025, "additional", "2023"): REPAIRED / "mr/2025/czerwiec_f2023",
+    ("03_egzamin_osmoklasisty", 2022, "additional", ""): REPAIRED / "eo/2022/czerwiec",
+    ("03_egzamin_osmoklasisty", 2023, "additional", ""): REPAIRED / "eo/2023/czerwiec",
+    ("03_egzamin_osmoklasisty", 2024, "additional", ""): REPAIRED / "eo/2024/czerwiec",
+    ("03_egzamin_osmoklasisty", 2025, "additional", ""): REPAIRED / "eo/2025/czerwiec",
+    ("03_egzamin_osmoklasisty", 2026, "additional", ""): REPAIRED / "eo/2026/czerwiec",
 }
 
 # Dodatkowe arkusze z aktualnej formuły. Nie występują w pobranej paczce,
@@ -125,6 +131,11 @@ EXTRA_SESSION_ROWS = (
     ("01_matura_podstawowa", 2025, "additional", "czerwiec", "2023"),
     ("01_matura_podstawowa", 2025, "resit", "sierpien", "2023"),
     ("02_matura_rozszerzona", 2025, "additional", "czerwiec", "2023"),
+    ("03_egzamin_osmoklasisty", 2022, "additional", "czerwiec", ""),
+    ("03_egzamin_osmoklasisty", 2023, "additional", "czerwiec", ""),
+    ("03_egzamin_osmoklasisty", 2024, "additional", "czerwiec", ""),
+    ("03_egzamin_osmoklasisty", 2025, "additional", "czerwiec", ""),
+    ("03_egzamin_osmoklasisty", 2026, "additional", "czerwiec", ""),
 )
 
 # The main May 2021 eighth-grade set is already present in the project.
@@ -1232,7 +1243,14 @@ def poppler_lines(pdf_path: Path) -> dict[int, list[dict]]:
         capture_output=True,
         text=True,
     )
-    root = ET.fromstring(result.stdout)
+    xml_output = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", result.stdout)
+    try:
+        root = ET.fromstring(xml_output)
+    except ET.ParseError:
+        # Some third-party copies contain malformed PDF metadata. pdfplumber
+        # remains a usable primary text source, so a failed optional fallback
+        # must not block the whole session import.
+        return {}
     namespace = {"x": "http://www.w3.org/1999/xhtml"}
     lines_by_page = {}
     for page_index, page in enumerate(root.findall(".//x:page", namespace)):
@@ -1283,6 +1301,7 @@ def collect_exam_headers(document, pdf_path: Path) -> tuple[list[dict], dict[int
     headers = []
     lines_by_page = {}
     seen = set()
+    task_header_index = {}
     reached_scratch = False
     fallback_by_page = poppler_lines(pdf_path)
 
@@ -1290,6 +1309,7 @@ def collect_exam_headers(document, pdf_path: Path) -> tuple[list[dict], dict[int
         lines = merged_page_lines(page, fallback_by_page.get(page_index, []))
         lines_by_page[page_index] = lines
         page_text = " ".join(line["text"] for line in lines)
+        is_card_placeholder_page = "znajduje sie na karcie rozwiazan" in ascii_fold(page_text)
         if reached_scratch and "Zadanie" not in page_text:
             continue
 
@@ -1297,20 +1317,28 @@ def collect_exam_headers(document, pdf_path: Path) -> tuple[list[dict], dict[int
             parsed = parse_header(line["text"])
             if parsed:
                 number, max_points = parsed
+                item = {
+                    "kind": "task",
+                    "number": number,
+                    "maxPoints": max_points,
+                    "page": page_index,
+                    "top": float(line["top"]),
+                    "bottom": float(line["bottom"]),
+                    "text": line["text"],
+                    "isCardPlaceholder": is_card_placeholder_page,
+                }
                 if number in seen:
+                    previous_index = task_header_index.get(number)
+                    if (
+                        previous_index is not None
+                        and headers[previous_index].get("isCardPlaceholder")
+                        and not is_card_placeholder_page
+                    ):
+                        headers[previous_index] = item
                     continue
                 seen.add(number)
-                headers.append(
-                    {
-                        "kind": "task",
-                        "number": number,
-                        "maxPoints": max_points,
-                        "page": page_index,
-                        "top": float(line["top"]),
-                        "bottom": float(line["bottom"]),
-                        "text": line["text"],
-                    }
-                )
+                task_header_index[number] = len(headers)
+                headers.append(item)
                 continue
 
             parent = PARENT_HEADER_RE.search(line["text"])
@@ -1406,8 +1434,52 @@ def trim_vertical(
                 top = rule_end
             break
 
+        top, bottom = strip_colored_edge_rules(image, top, bottom)
+
     content = image.crop((0, top, image.width, bottom))
     return ImageOps.expand(content, border=(0, padding, 0, padding), fill="white")
+
+
+def strip_colored_edge_rules(
+    image: Image.Image,
+    top: int,
+    bottom: int,
+) -> tuple[int, int]:
+    """Drop page-template rules touching the visible edge of a task crop.
+
+    CKE templates sometimes place a thin coloured rule between the task number
+    and its statement. It is not part of the exercise and survives ordinary
+    white-space trimming, especially in eighth-grade papers.
+    """
+    minimum_width = round(image.width * 0.78)
+    scan_depth = min(32, max(0, bottom - top))
+
+    def colored_width(row: int) -> int:
+        return sum(
+            max(red, green, blue) - min(red, green, blue) > 12
+            and max(red, green, blue) < 252
+            for red, green, blue in image.crop((0, row, image.width, row + 1)).get_flattened_data()
+        )
+
+    for row in range(top, min(bottom, top + scan_depth)):
+        if colored_width(row) < minimum_width:
+            continue
+        rule_end = row + 1
+        while rule_end < bottom and colored_width(rule_end) >= minimum_width * 0.45:
+            rule_end += 1
+        top = min(bottom, rule_end)
+        break
+
+    for row in range(bottom - 1, max(top - 1, bottom - scan_depth), -1):
+        if colored_width(row) < minimum_width:
+            continue
+        rule_start = row
+        while rule_start > top and colored_width(rule_start - 1) >= minimum_width * 0.45:
+            rule_start -= 1
+        bottom = max(top, rule_start)
+        break
+
+    return top, bottom
 
 
 def crop_region(
@@ -1419,6 +1491,8 @@ def crop_region(
     x0: float,
     x1: float,
     discard_leading_rule: bool = False,
+    erase_regions: list[tuple[float, float, float, float]] | None = None,
+    clean_answer_grid: bool = False,
 ) -> Image.Image | None:
     if bottom <= top + 2:
         return None
@@ -1431,7 +1505,164 @@ def crop_region(
             round(bottom * SCALE),
         )
     )
+    for region_x0, region_top, region_x1, region_bottom in erase_regions or []:
+        left = max(0, round((region_x0 - x0) * SCALE))
+        upper = max(0, round((region_top - top) * SCALE))
+        right = min(crop.width, round((region_x1 - x0) * SCALE))
+        lower = min(crop.height, round((region_bottom - top) * SCALE))
+        if right > left and lower > upper:
+            crop.paste("white", (left, upper, right, lower))
+
+    if clean_answer_grid:
+        detected_answer_grid = answer_grid_top(crop)
+        if detected_answer_grid is not None:
+            crop = remove_answer_grid(crop, detected_answer_grid)
+
     return trim_vertical(crop, discard_leading_rule=discard_leading_rule)
+
+
+def answer_grid_top(image: Image.Image) -> int | None:
+    """Find a response grid rendered on an eighth-grade answer-card page."""
+    pixels = np.asarray(image, dtype=np.int16)
+    if pixels.ndim != 3 or image.height < 120:
+        return None
+
+    dark = pixels.min(axis=2) < 220
+    red = (
+        (pixels[:, :, 0] > pixels[:, :, 1] + 18)
+        & (pixels[:, :, 0] > pixels[:, :, 2] + 18)
+        & (pixels[:, :, 0] > 120)
+    )
+    ink = dark | red
+    minimum_run = round(image.width * 0.45)
+    padded_cumsum = np.pad(
+        np.cumsum(ink, axis=1, dtype=np.int32),
+        ((0, 0), (1, 0)),
+    )
+    row_has_continuous_rule = (
+        padded_cumsum[:, minimum_run:] - padded_cumsum[:, :-minimum_run]
+    ).max(axis=1) >= minimum_run
+
+    rule_rows = np.flatnonzero(row_has_continuous_rule)
+    rule_levels = []
+    for row in rule_rows:
+        if not rule_levels or row > rule_levels[-1] + 4:
+            rule_levels.append(int(row))
+
+    for candidate_index, candidate in enumerate(rule_levels):
+        if candidate < 24:
+            continue
+        nearby_levels = [
+            level
+            for level in rule_levels[candidate_index:]
+            if level <= candidate + 220
+        ]
+        if len(nearby_levels) < 5:
+            continue
+        region = ink[candidate : min(image.height, candidate + 240)]
+        if region.shape[0] < 120:
+            continue
+        vertical_lines = (region.sum(axis=0) >= region.shape[0] * 0.72).sum()
+        if vertical_lines >= 12:
+            return candidate
+    return None
+
+
+def remove_answer_grid(image: Image.Image, grid_top: int) -> Image.Image:
+    """Erase answer-card grids while retaining a task diagram placed over them."""
+    pixels = np.array(image)
+    cleanup_top = max(0, grid_top - 80)
+    colored_region = pixels[cleanup_top:]
+    if colored_region.size == 0:
+        return image
+
+    region_channels = colored_region.astype(np.int16)
+    red = (
+        (region_channels[:, :, 0] > region_channels[:, :, 1] + 2)
+        & (region_channels[:, :, 0] > region_channels[:, :, 2] + 2)
+        & (region_channels[:, :, 0] > 120)
+    )
+    colored_region[red] = 255
+    pixels[cleanup_top:] = colored_region
+
+    region = pixels[grid_top:]
+
+    dark = region.min(axis=2) < 220
+    horizontal_lines = np.flatnonzero(dark.sum(axis=1) >= image.width * 0.52)
+    for row in horizontal_lines:
+        region[max(0, row - 2) : min(region.shape[0], row + 3), :] = 255
+
+    dark = region.min(axis=2) < 220
+    vertical_lines = np.flatnonzero(
+        dark.sum(axis=0) >= region.shape[0] * 0.46
+    )
+    for column in vertical_lines:
+        region[:, max(0, column - 2) : min(region.shape[1], column + 3)] = 255
+
+    # The response card can carry a barcode at the page edge. It is never task
+    # content once a response grid has been detected.
+    footer_height = min(region.shape[0], max(20, round(image.height * 0.08)))
+    region[-footer_height:] = 255
+    pixels[grid_top:] = region
+    return Image.fromarray(pixels)
+
+
+CARD_IDENTITY_PREFIXES = (
+    "miejsce na naklejke",
+    "sprawdz, czy kod na naklejce",
+    "o - 1 0 0",
+    "jezeli tak",
+    "jezeli nie",
+    "kod ucznia",
+    "pesel",
+    "wypelnia uczen",
+)
+
+
+def visible_card_identity_regions(
+    lines: list[dict],
+    crop_top: float,
+    page_width: float,
+) -> list[tuple[float, float, float, float]]:
+    """Return the visible student-identification area of an answer card."""
+    fields = [
+        line
+        for line in lines
+        if float(line["bottom"]) > crop_top - 1
+        and ascii_fold(line["text"]).strip().startswith(CARD_IDENTITY_PREFIXES)
+    ]
+    if not fields:
+        return []
+
+    regions = [
+        (
+            max(0, float(line["x0"]) - 4),
+            max(crop_top, float(line["top"]) - 4),
+            min(page_width, float(line["x1"]) + 4),
+            float(line["bottom"]) + 4,
+        )
+        for line in fields
+    ]
+    right_side_fields = [line for line in fields if float(line["x0"]) > page_width * 0.5]
+    if right_side_fields:
+        field_bottom = max(float(line["bottom"]) for line in right_side_fields)
+        regions.append(
+            (
+                max(0, min(float(line["x0"]) for line in right_side_fields) - 16),
+                max(crop_top, min(float(line["top"]) for line in right_side_fields) - 8),
+                page_width,
+                field_bottom + 160,
+            )
+        )
+        regions.append(
+            (
+                page_width * 0.55,
+                field_bottom + 8,
+                page_width,
+                field_bottom + 160,
+            )
+        )
+    return regions
 
 
 def remove_score_gutters(image: Image.Image) -> Image.Image:
@@ -1601,7 +1832,8 @@ def is_closed_choice_task(task_text: str) -> bool:
     text = normalize_text(task_text)
     folded = ascii_fold(text)
     option_labels = re.findall(r"(?<![A-Za-z])([A-F])[.)](?![A-Za-z])", text)
-    if len(set(option_labels)) >= 2:
+    has_selection_prompt = bool(re.search(r"\b(?:wybierz|zaznacz|ocen)\w*", folded))
+    if len(set(option_labels)) >= 2 and has_selection_prompt:
         return True
     return (
         "prawda" in folded
@@ -1621,6 +1853,13 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
         for index, header in enumerate(headers):
             page = document.pages[header["page"]]
             page_lines = lines_by_page[header["page"]]
+            clean_answer_grid = (
+                header["kind"] == "task"
+                and header["maxPoints"] > 1
+                and session.kind == "eo"
+                and session.term == "additional"
+                and 2022 <= session.year <= 2026
+            )
             # Header and the first line of the task can visually sit closer
             # than their extracted text bounds suggest. Starting at the
             # header's bottom preserves the whole first line without showing
@@ -1634,11 +1873,11 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
             )
 
             stop = first_line_top(
-                page_lines,
-                start,
-                end,
-                ("brudnopis", "przenies rozwiazania zadan"),
-            )
+            page_lines,
+            start,
+            end,
+            ("brudnopis", "przenies rozwiazania zadan"),
+        )
             solution_stop = first_exact_line_top(
                 page_lines,
                 start,
@@ -1651,7 +1890,11 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                 end = min(end, stop - 3)
 
             text = extract_task_text(header, headers, index, lines_by_page, page)
-            if header["kind"] == "task" and header["maxPoints"] > 1:
+            if (
+                header["kind"] == "task"
+                and header["maxPoints"] > 1
+                and not clean_answer_grid
+            ):
                 detected_grid = grid_top(
                     page,
                     start,
@@ -1669,6 +1912,11 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                     if not has_content_after_grid:
                         end = min(end, detected_grid - 4)
 
+            erase_regions = (
+                visible_card_identity_regions(page_lines, start, float(page.width))
+                if clean_answer_grid
+                else []
+            )
             image = crop_region(
                 page,
                 cache,
@@ -1678,6 +1926,8 @@ def extract_task_assets(session: Session, output: Path) -> tuple[dict[str, dict]
                 TASK_X0[session.kind],
                 float(page.width) - TASK_RIGHT_MARGIN,
                 discard_leading_rule=True,
+                erase_regions=erase_regions,
+                clean_answer_grid=clean_answer_grid,
             )
             if image is None:
                 raise RuntimeError(

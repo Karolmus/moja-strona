@@ -2386,6 +2386,10 @@ footer {
             "skip skip";
     }
 
+    .action-group.navigation.preview {
+        grid-template-areas: "previous next";
+    }
+
     .action-group.navigation .action-btn {
         width: 100%;
         min-width: 0;
@@ -3131,8 +3135,9 @@ const taskSourceLoadPromises = new Map();
 let practicalValueStore = new Map();
 
 const IMAGE_FADE_MS = 220;
-const TASK_IMAGE_CACHE_VERSION = "20260905-matura-crop-fix";
+const TASK_IMAGE_CACHE_VERSION = "20260907-eo-crops";
 const SKIPPED_RESULT = "skipped";
+const STUDENT_WORK_COURSE_PART = "praca_domowa";
 const COURSE_PART_ORDER = {
     zadania: 1,
     praca_domowa: 2,
@@ -3143,7 +3148,7 @@ const COURSE_PART_LABELS = {
     praca_domowa: "2. Zadanie domowe",
     zadania_praktyczne: "3. Zadania praktyczne"
 };
-const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260905-tags-v4";
+const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260907-eo-june";
 const TAG_WORD_LABELS = {
     bryly: "bryły",
     ciagi: "ciągi",
@@ -3240,10 +3245,15 @@ const TASK_SOURCES = [
     { path: "zadania/mr/2015/maj/2015_cke_r_m_g.json", category: "egzaminy", detail: "2015 / maj / CKE" },
     { path: "zadania/mr/2015/czerwiec_dodatkowy/2015_cke_r_c_d.json", category: "egzaminy", detail: "2015 / czerwiec / termin dodatkowy / CKE" },
     { path: "zadania/eo/2026/maj/2026_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json", category: "egzaminy" },
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json", category: "egzaminy" },
     { path: "zadania/eo/2024/maj/2024_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json", category: "egzaminy" },
     { path: "zadania/eo/2023/maj/2023_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json", category: "egzaminy" },
     { path: "zadania/eo/2022/maj/2022_cke_o_m.json", category: "egzaminy" },
+    { path: "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json", category: "egzaminy" },
     { path: "zadania/eo/2021/maj/2021_cke_o_m.json", category: "egzaminy" },
     { path: "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json", category: "egzaminy", detail: "2021 / czerwiec / termin dodatkowy / CKE" },
     { path: "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json", category: "egzaminy", detail: "2020 / czerwiec / CKE" },
@@ -3477,6 +3487,9 @@ async function bootStudentPanel(){
                 await loadCourseGradingCriteria();
             }
             selectedCategory = requestedCategory || "kurs";
+            if(selectedCategory === "kurs"){
+                selectedCoursePart = defaultCoursePart();
+            }
             taskMode = "ordered";
         } else {
             selectedLevel = "matura_podstawowa";
@@ -3495,7 +3508,7 @@ async function bootStudentPanel(){
 
         if(isLoggedInStudent){
             await loadStudentProgress({ render: false });
-            const resumeIndex = await restoreLastStudentLocation(requestedCategory);
+            const resumeIndex = await restoreLastStudentLocation(requestedCategory || "kurs");
 
             if(Number.isInteger(resumeIndex)){
                 initialIndex = resumeIndex;
@@ -3555,6 +3568,7 @@ async function loadAssignedCourse(){
         }
 
         selectedCategory = "kurs";
+        selectedCoursePart = defaultCoursePart();
         taskMode = "ordered";
         setTimerVisible(false);
         updateAssignedCourseName(session.user);
@@ -4311,8 +4325,26 @@ function ensureSelectedCoursePart(){
     if(selectedCategory !== "kurs") return;
     if(getCoursePartTasks(selectedCoursePart).length) return;
 
-    selectedCoursePart = ["zadania", "praca_domowa", "zadania_praktyczne"]
-        .find(part => getCoursePartTasks(part).length) || "zadania";
+    selectedCoursePart = getPreferredCourseParts()
+        .find(part => getCoursePartTasks(part).length) || defaultCoursePart();
+}
+
+function defaultCoursePart(){
+    return isLoggedInStudent ? STUDENT_WORK_COURSE_PART : "zadania";
+}
+
+function getPreferredCourseParts(){
+    return isLoggedInStudent
+        ? [STUDENT_WORK_COURSE_PART, "zadania", "zadania_praktyczne"]
+        : ["zadania", STUDENT_WORK_COURSE_PART, "zadania_praktyczne"];
+}
+
+function isCoursePreviewMode(task = currentTask){
+    return Boolean(
+        isLoggedInStudent &&
+        task?.category === "kurs" &&
+        task.coursePart !== STUDENT_WORK_COURSE_PART
+    );
 }
 
 async function loadSelectedSourceAndDraw(index = getInitialIndex()){
@@ -4337,7 +4369,7 @@ async function setCategory(btn, category){
     updateCategoryUrl(category);
 
     if(selectedCategory === "kurs"){
-        selectedCoursePart = "zadania";
+        selectedCoursePart = defaultCoursePart();
     }
 
     ensureSelectedSource();
@@ -4390,7 +4422,7 @@ async function setSource(sourceId){
     }
 
     if(selectedCategory === "kurs"){
-        selectedCoursePart = "zadania";
+        selectedCoursePart = defaultCoursePart();
     }
 
     ensureSelectedCoursePart();
@@ -4788,16 +4820,8 @@ async function restoreLastStudentLocation(category = ""){
     taskMode = "ordered";
     await ensureTaskSourceLoaded(selectedSource);
 
-    const sourceTask = tasks.find(task =>
-        task.sourceId === sourceId &&
-        task.file === file
-    );
-
     if(selectedCategory === "kurs"){
-        selectedCoursePart = lastProgress.course_part ||
-            sourceTask?.coursePart ||
-            selectedCoursePart ||
-            "zadania";
+        selectedCoursePart = defaultCoursePart();
         ensureSelectedCoursePart();
     }
 
@@ -4810,11 +4834,15 @@ async function restoreLastStudentLocation(category = ""){
 function sourceSummaryTasks(){
     if(selectedSource === "all") return [];
 
-    return tasks.filter(task =>
+    const sourceTasks = tasks.filter(task =>
         task.category === selectedCategory &&
         task.level === selectedLevel &&
         task.sourceId === selectedSource
     );
+
+    return selectedCategory === "kurs" && isLoggedInStudent
+        ? sourceTasks.filter(task => task.coursePart === STUDENT_WORK_COURSE_PART)
+        : sourceTasks;
 }
 
 function taskPointValue(task){
@@ -5637,7 +5665,9 @@ function addNavigatorSectionLabel(progress, section){
     const label = document.createElement("span");
 
     label.className = "nav-section-label";
-    label.innerText = COURSE_PART_LABELS[section] || "Część kursu";
+    label.innerText = isLoggedInStudent && section !== STUDENT_WORK_COURSE_PART
+        ? `${COURSE_PART_LABELS[section] || "Część kursu"} · podgląd`
+        : COURSE_PART_LABELS[section] || "Część kursu";
 
     progress.appendChild(label);
 }
@@ -6824,6 +6854,7 @@ function prevTask(){
 
 function skipTask(){
     if(!currentTask || isTaskLoading) return;
+    if(isCoursePreviewMode()) return;
 
     const key = getTaskKey(currentTask);
 
@@ -6878,6 +6909,8 @@ function setupMCQ(){
     multiSelection = new Set();
     groupedMultiSelection = new Map();
     trueFalseSelection = [];
+
+    if(isCoursePreviewMode()) return;
 
     if(isClosedTask(currentTask)){
         mcq.classList.add("active");
@@ -6977,6 +7010,7 @@ function isExamManualScoreTask(task = currentTask){
 }
 
 function shouldShowScorePanel(task = currentTask){
+    if(isCoursePreviewMode(task)) return false;
     if(!task || !isManualScoreTask(task)) return false;
 
     if(isExamManualScoreTask(task)){
@@ -7141,18 +7175,21 @@ function updateAnswerTools(){
     const reviewButton = document.getElementById("reviewButton");
     const solutionButton = document.getElementById("solutionButton");
     const gradingButton = document.getElementById("gradingButton");
+    const skipButton = document.getElementById("skipButton");
+    const navigationGroup = skipButton?.closest(".action-group.navigation");
 
     if(!currentTask || !answerButton || !resultButtons) return;
 
     const isCourse = isCourseTask();
     const isClosed = isClosedTask(currentTask);
     const isOpenExam = isExamManualScoreTask(currentTask);
+    const isPreview = isCoursePreviewMode();
 
     if(hintButton){
         hintButton.hidden = isOpenExam;
     }
 
-    answerButton.hidden = isOpenExam || (isCourse && requiresSubmittedAnswer(currentTask));
+    answerButton.hidden = isOpenExam || (!isPreview && isCourse && requiresSubmittedAnswer(currentTask));
 
     if(solutionButton){
         solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
@@ -7163,12 +7200,18 @@ function updateAnswerTools(){
     }
 
     if(reviewButton){
-        reviewButton.hidden = !isLoggedInStudent;
+        reviewButton.hidden = !isLoggedInStudent || isPreview;
     }
+
+    if(skipButton){
+        skipButton.hidden = isPreview;
+    }
+
+    navigationGroup?.classList.toggle("preview", isPreview);
 
     resultButtons.classList.remove("active");
 
-    if(isCourseTaskLocked()){
+    if(isPreview || isCourseTaskLocked()){
         setResultButtonsEnabled(false);
     }
 
@@ -7616,6 +7659,8 @@ function revealPracticalAnswers(){
 }
 
 function applyCourseAnswerLock(){
+    if(isCoursePreviewMode()) return;
+
     const lockedResult = getLockedCourseResult();
 
     if(!lockedResult) return;
@@ -7972,6 +8017,7 @@ function setSessionDuration(task, durationSeconds){
 }
 
 function addProgress(type, scoreData = null){
+    if(isCoursePreviewMode()) return false;
     if(currentTaskAnswered) return false;
 
     currentTaskAnswered = true;
@@ -8017,6 +8063,7 @@ function addProgress(type, scoreData = null){
 }
 
 async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds()){
+    if(isCoursePreviewMode()) return;
     if(!isLoggedInStudent) return;
     if(!currentTask || !window.apiFetch) return;
 
@@ -8068,6 +8115,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
 async function submitScore(event){
     event.preventDefault();
 
+    if(isCoursePreviewMode()) return;
     if(!currentTask || !shouldShowScorePanel()) return;
 
     const input = document.getElementById("scoreInput");
@@ -8158,7 +8206,7 @@ function showHint(){
 function showAnswer(){
     if(!currentTask) return;
 
-    if(isCourseTask() && requiresSubmittedAnswer(currentTask)){
+    if(isCourseTask() && !isCoursePreviewMode() && requiresSubmittedAnswer(currentTask)){
         showMessage("Najpierw podaj odpowiedź. Jeśli będzie błędna, pokażę poprawną odpowiedź ze wskazówką.");
         return;
     }
@@ -8376,6 +8424,7 @@ function resetReviewButton(){
 
 async function markForReview(){
     if(!isLoggedInStudent) return;
+    if(isCoursePreviewMode()) return;
     if(!currentTask || !window.apiFetch) return;
 
     const reviewButton = document.getElementById("reviewButton");

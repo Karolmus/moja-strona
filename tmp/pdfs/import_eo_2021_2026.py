@@ -203,6 +203,39 @@ def rendered_page(page, cache, page_index):
     return cache[page_index]
 
 
+def strip_colored_edge_rules(image, top, bottom):
+    """Remove thin coloured template rules that are not part of a task."""
+    minimum_width = round(image.width * 0.78)
+    scan_depth = min(32, max(0, bottom - top))
+
+    def colored_width(row):
+        return sum(
+            max(red, green, blue) - min(red, green, blue) > 12
+            and max(red, green, blue) < 252
+            for red, green, blue in image.crop((0, row, image.width, row + 1)).get_flattened_data()
+        )
+
+    for row in range(top, min(bottom, top + scan_depth)):
+        if colored_width(row) < minimum_width:
+            continue
+        rule_end = row + 1
+        while rule_end < bottom and colored_width(rule_end) >= minimum_width * 0.45:
+            rule_end += 1
+        top = min(bottom, rule_end)
+        break
+
+    for row in range(bottom - 1, max(top - 1, bottom - scan_depth), -1):
+        if colored_width(row) < minimum_width:
+            continue
+        rule_start = row
+        while rule_start > top and colored_width(rule_start - 1) >= minimum_width * 0.45:
+            rule_start -= 1
+        bottom = max(top, rule_start)
+        break
+
+    return top, bottom
+
+
 def trim_vertical(image, padding=12):
     background = Image.new("RGB", image.size, "white")
     difference = ImageChops.difference(image, background)
@@ -210,7 +243,8 @@ def trim_vertical(image, padding=12):
     bbox = mask.getbbox()
     if not bbox or bbox[3] - bbox[1] < 18:
         return None
-    content = image.crop((0, bbox[1], image.width, bbox[3]))
+    top, bottom = strip_colored_edge_rules(image, bbox[1], bbox[3])
+    content = image.crop((0, top, image.width, bottom))
     return ImageOps.expand(content, border=(0, padding, 0, padding), fill="white")
 
 

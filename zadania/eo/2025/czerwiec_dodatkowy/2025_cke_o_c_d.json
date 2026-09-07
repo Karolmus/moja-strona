@@ -1,0 +1,501 @@
+[
+  {
+    "file": "1_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "odczytywanie tabel",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "B",
+    "tags": [
+      "odczytywanie tabel",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "ułamki",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
+    "answer": "C",
+    "tags": [
+      "ułamki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "3_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "zadanie problemowe",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "zadanie problemowe"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "potęgi",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź potęgi do wspólnej podstawy i zastosuj prawa działań na potęgach.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "potęgi",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "4_s_2_1.webp"
+      },
+      {
+        "label": "Rozwiązanie",
+        "file": "4_s_2_2.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "4_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "5_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "podzielność",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "podzielność",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "5_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "5_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "6_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "trójkąt równoboczny",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "BC",
+    "tags": [
+      "trójkąt równoboczny",
+      "kwadrat",
+      "prawdopodobieństwo",
+      "trójkąty",
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "7_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "ułamki",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
+    "answer": "C",
+    "tags": [
+      "ułamki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "C",
+    "tags": [
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "9_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "romb",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "romb",
+      "kwadrat",
+      "pola figur",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "9_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "9_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "10_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "A",
+    "tags": [
+      "trójkąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "wyrażenia algebraiczne",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
+    "answer": "D",
+    "tags": [
+      "wyrażenia algebraiczne"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "12_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "trapez",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "AD",
+    "tags": [
+      "trapez",
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "13_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "stereometria",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "answer": "B",
+    "tags": [
+      "stereometria",
+      "objętość"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "14_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "romb",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "romb",
+      "równoległobok",
+      "geometria analityczna",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "14_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "14_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "14_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "15_2025_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "prawdopodobieństwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "answer": "D",
+    "tags": [
+      "prawdopodobieństwo",
+      "objętość",
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "16_2025_cke_o_c_d.webp",
+    "difficulty": 3,
+    "topic": "procenty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz podane wielkości jako ułamki liczby wyjściowej i ułóż proporcję.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "procenty",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "17_2025_cke_o_c_d.webp",
+    "difficulty": 4,
+    "topic": "ułamki",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ułamki",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "18_2025_cke_o_c_d.webp",
+    "difficulty": 3,
+    "topic": "prędkość, droga i czas",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz zależność droga = prędkość · czas i ujednolić jednostki.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "prędkość, droga i czas",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "19_2025_cke_o_c_d.webp",
+    "difficulty": 3,
+    "topic": "współrzędne punktu",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "współrzędne punktu",
+      "geometria analityczna",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_1_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "20_2025_cke_o_c_d.webp",
+    "difficulty": 4,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_2_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "21_2025_cke_o_c_d.webp",
+    "difficulty": 4,
+    "topic": "ostrosłup",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ostrosłup",
+      "stereometria",
+      "objętość",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "21_z_1_1.webp"
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 {
   "version": 3,
-  "sources": 68,
-  "tasks": 1713,
+  "sources": 73,
+  "tasks": 1811,
   "levels": {
     "matura_podstawowa": {
       "bryly obrotowe": {
@@ -3595,6 +3595,7 @@
       "ciagi": {
         "label": "ciągi",
         "sources": [
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
@@ -3610,10 +3611,15 @@
         "label": "czworokąty",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
@@ -3639,8 +3645,12 @@
         "label": "dowodzenie",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -3662,9 +3672,18 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
+      "funkcja kwadratowa": {
+        "label": "funkcja kwadratowa",
+        "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json"
+        ]
+      },
       "funkcje": {
         "label": "funkcje",
         "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json"
         ]
       },
@@ -3672,8 +3691,11 @@
         "label": "geometria analityczna",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -3691,14 +3713,19 @@
       "graniastoslup": {
         "label": "graniastosłup",
         "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json"
         ]
       },
       "kombinatoryka": {
         "label": "kombinatoryka",
         "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
@@ -3708,9 +3735,13 @@
         "label": "kwadrat",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
@@ -3747,10 +3778,15 @@
         "label": "liczby i działania",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -3801,8 +3837,12 @@
         "label": "objętość",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
@@ -3832,9 +3872,14 @@
         "label": "odczytywanie danych",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
@@ -3846,7 +3891,10 @@
         "label": "odczytywanie tabel",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
@@ -3872,8 +3920,11 @@
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -3886,6 +3937,12 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
+      "os symetrii": {
+        "label": "oś symetrii",
+        "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json"
+        ]
+      },
       "parzystosc": {
         "label": "parzystość",
         "sources": [
@@ -3896,9 +3953,13 @@
         "label": "pierwiastki",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
@@ -3909,8 +3970,13 @@
         "label": "podzielność",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
@@ -3920,9 +3986,12 @@
         "label": "pola figur",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
@@ -3985,9 +4054,12 @@
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
         ]
@@ -3996,9 +4068,13 @@
         "label": "prawdopodobieństwo",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
@@ -4011,10 +4087,15 @@
         "label": "procenty",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -4027,9 +4108,11 @@
         "label": "proporcje",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
@@ -4064,7 +4147,10 @@
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
         ]
       },
@@ -4089,10 +4175,14 @@
         "label": "prędkość, droga i czas",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -4104,13 +4194,16 @@
       "regula mnozenia": {
         "label": "reguła mnożenia",
         "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
         ]
       },
       "romb": {
         "label": "romb",
         "sources": [
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
         ]
@@ -4125,16 +4218,27 @@
         "label": "równania",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json",
           "zadania/eo/2019/czerwiec_dodatkowy/2019_cke_o_c_d.json"
+        ]
+      },
+      "rownania kwadratowe": {
+        "label": "równania kwadratowe",
+        "sources": [
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json"
         ]
       },
       "rownania liniowe": {
@@ -4149,7 +4253,10 @@
         "label": "równoległobok",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
         ]
@@ -4166,7 +4273,9 @@
         "label": "skala i jednostki",
         "sources": [
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json"
         ]
@@ -4177,6 +4286,7 @@
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
@@ -4186,10 +4296,15 @@
         "label": "stereometria",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -4220,9 +4335,14 @@
         "label": "trapez",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
@@ -4237,9 +4357,11 @@
       "trojkat prostokatny": {
         "label": "trójkąt prostokątny",
         "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"
         ]
       },
@@ -4247,6 +4369,7 @@
         "label": "trójkąt równoboczny",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
@@ -4256,10 +4379,15 @@
         "label": "trójkąty",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -4295,10 +4423,15 @@
       "ulamki": {
         "label": "ułamki",
         "sources": [
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/lipiec_dodatkowy/2020_cke_o_l_d.json",
@@ -4328,9 +4461,16 @@
           "zadania/eo/2025/maj/2025_cke_o_m.json"
         ]
       },
+      "wielomiany": {
+        "label": "wielomiany",
+        "sources": [
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json"
+        ]
+      },
       "wspolrzedne punktu": {
         "label": "współrzędne punktu",
         "sources": [
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json"
@@ -4346,10 +4486,15 @@
         "label": "wyrażenia algebraiczne",
         "sources": [
           "zadania/eo/2026/maj/2026_cke_o_m.json",
+          "zadania/eo/2026/czerwiec_dodatkowy/2026_cke_o_c_d.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
+          "zadania/eo/2025/czerwiec_dodatkowy/2025_cke_o_c_d.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2023/maj/2023_cke_o_m.json",
+          "zadania/eo/2023/czerwiec_dodatkowy/2023_cke_o_c_d.json",
           "zadania/eo/2022/maj/2022_cke_o_m.json",
+          "zadania/eo/2022/czerwiec_dodatkowy/2022_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2021/czerwiec_dodatkowy/2021_cke_o_c_d.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
@@ -4383,6 +4528,7 @@
           "zadania/eo/2026/maj/2026_cke_o_m.json",
           "zadania/eo/2025/maj/2025_cke_o_m.json",
           "zadania/eo/2024/maj/2024_cke_o_m.json",
+          "zadania/eo/2024/czerwiec_dodatkowy/2024_cke_o_c_d.json",
           "zadania/eo/2021/maj/2021_cke_o_m.json",
           "zadania/eo/2020/czerwiec/2020_cke_o_c_g.json",
           "zadania/eo/2019/kwiecien/2019_cke_o_k_g.json"

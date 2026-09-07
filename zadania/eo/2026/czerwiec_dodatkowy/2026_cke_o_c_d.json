@@ -1,0 +1,476 @@
+[
+  {
+    "file": "1_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "odczytywanie danych",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Odczytaj dokładnie wartości z tabeli lub wykresu przed rozpoczęciem obliczeń.",
+    "answer": "A",
+    "tags": [
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "2_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "proporcje",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz zależność między wielkościami i ułóż odpowiednią proporcję.",
+    "answer": "AD",
+    "tags": [
+      "proporcje"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "3_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "równania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal dziedzinę, przekształć równanie i sprawdź otrzymane rozwiązania.",
+    "answer": "C",
+    "tags": [
+      "równania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "4_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "odczytywanie tabel",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "B",
+    "tags": [
+      "odczytywanie tabel",
+      "odczytywanie danych"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "5_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "reguła mnożenia",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "D",
+    "tags": [
+      "reguła mnożenia",
+      "prawdopodobieństwo",
+      "kombinatoryka"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "6_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "pierwiastki",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Uprość pierwiastki, wyłączając czynniki przed znak pierwiastka.",
+    "answer": "C",
+    "tags": [
+      "pierwiastki",
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "7_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "podzielność",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Rozłóż liczby lub wyrażenia na czynniki i wykorzystaj cechy podzielności.",
+    "answer": "B",
+    "tags": [
+      "podzielność"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "8_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "prawdopodobieństwo",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Policz wszystkie możliwe wyniki oraz te sprzyjające opisanemu zdarzeniu.",
+    "answer": "BD",
+    "tags": [
+      "prawdopodobieństwo",
+      "podzielność"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "AC",
+      "AD",
+      "BC",
+      "BD"
+    ]
+  },
+  {
+    "file": "9_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "liczby i działania",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonuj działania w ustalonej kolejności i kontroluj znaki oraz mianowniki.",
+    "answer": "C",
+    "tags": [
+      "liczby i działania"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "10_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "prędkość, droga i czas",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz zależność droga = prędkość · czas i ujednolić jednostki.",
+    "answer": "D",
+    "tags": [
+      "prędkość, droga i czas"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "11_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "geometria analityczna",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zapisz współrzędne i równania obiektów, a następnie wykorzystaj wzory na odległość lub nachylenie.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "geometria analityczna",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "11_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "11_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "12_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "równoległobok",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "A",
+    "tags": [
+      "równoległobok",
+      "czworokąty"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "13_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "oś symetrii",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "oś symetrii",
+      "funkcja kwadratowa",
+      "funkcje",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 1,
+    "solutions": [
+      {
+        "label": "Rozwiązanie",
+        "file": "13_s_2_1.webp"
+      }
+    ],
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "13_z_1_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "14_2026_cke_o_c_d.webp",
+    "difficulty": 2,
+    "topic": "stereometria",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wykonaj przekrój pomocniczy i zastosuj wzory na pola, objętości lub długości.",
+    "answer": "D",
+    "tags": [
+      "stereometria"
+    ],
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  {
+    "file": "15_2026_cke_o_c_d.webp",
+    "difficulty": 3,
+    "topic": "ułamki",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Sprowadź ułamki do wspólnego mianownika i wykonaj działania z zachowaniem dziedziny.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "ułamki",
+      "równania",
+      "liczby i działania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "15_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "15_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "15_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "16_2026_cke_o_c_d.webp",
+    "difficulty": 4,
+    "topic": "wyrażenia algebraiczne",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Uprość wyrażenia krok po kroku, korzystając ze wzorów i redukcji wyrazów podobnych.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "wyrażenia algebraiczne",
+      "równania",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "16_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "17_2026_cke_o_c_d.webp",
+    "difficulty": 4,
+    "topic": "objętość",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Ustal pole podstawy i wysokość bryły, a następnie zastosuj wzór na objętość.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "objętość",
+      "procenty",
+      "stereometria",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_4_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "17_z_4_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "18_2026_cke_o_c_d.webp",
+    "difficulty": 3,
+    "topic": "trójkąty",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Zaznacz znane długości i kąty, a następnie dobierz twierdzenie opisujące trójkąt.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąty",
+      "dowodzenie",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 2,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "18_z_2_2.webp"
+      }
+    ]
+  },
+  {
+    "file": "19_2026_cke_o_c_d.webp",
+    "difficulty": 4,
+    "topic": "trapez",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trapez",
+      "pola figur",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_2_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_2_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "19_z_3_1.webp"
+      }
+    ]
+  },
+  {
+    "file": "20_2026_cke_o_c_d.webp",
+    "difficulty": 4,
+    "topic": "trójkąt prostokątny",
+    "level": "egzamin_osmoklasisty",
+    "hint": "Wypisz dane i szukane wielkości, a następnie zapisz zależności wynikające z treści.",
+    "answer": "Sprawdź rozwiązanie i zasady oceniania.",
+    "tags": [
+      "trójkąt prostokątny",
+      "kwadrat",
+      "graniastosłup",
+      "stereometria",
+      "objętość",
+      "trójkąty",
+      "czworokąty",
+      "zadania-otwarte"
+    ],
+    "maxPoints": 3,
+    "gradingCriteriaFiles": [
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_1_1.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_1_2.webp"
+      },
+      {
+        "label": "Zasady oceniania",
+        "file": "20_z_2_1.webp"
+      }
+    ]
+  }
+]
