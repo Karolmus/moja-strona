@@ -1,0 +1,32 @@
+[
+  {
+    "session": "2023:maj_f2015",
+    "tasks": 36,
+    "closed": 29,
+    "points": 46,
+    "failures": [],
+    "reviewFlags": [],
+    "tasksSheet": "/Users/karolmusiol/Documents/Phoenix Code/project/tmp/pdfs/missing-mp/qa/2023-maj_f2015-tasks.webp",
+    "materialsSheet": "/Users/karolmusiol/Documents/Phoenix Code/project/tmp/pdfs/missing-mp/qa/2023-maj_f2015-materials.webp"
+  },
+  {
+    "session": "2023:czerwiec_dodatkowy_f2015",
+    "tasks": 36,
+    "closed": 29,
+    "points": 46,
+    "failures": [],
+    "reviewFlags": [],
+    "tasksSheet": "/Users/karolmusiol/Documents/Phoenix Code/project/tmp/pdfs/missing-mp/qa/2023-czerwiec_dodatkowy_f2015-tasks.webp",
+    "materialsSheet": "/Users/karolmusiol/Documents/Phoenix Code/project/tmp/pdfs/missing-mp/qa/2023-czerwiec_dodatkowy_f2015-materials.webp"
+  },
+  {
+    "session": "2023:sierpien_poprawkowy_f2015",
+    "tasks": 36,
+    "closed": 29,
+    "points": 46,
+    "failures": [],
+    "reviewFlags": [],
+    "tasksSheet": "/Users/karolmusiol/Documents/Phoenix Code/project/tmp/pdfs/missing-mp/qa/2023-sierpien_poprawkowy_f2015-tasks.webp",
+    "materialsSheet": "/Users/karolmusiol/Documents/Phoenix Code/project/tmp/pdfs/missing-mp/qa/2023-sierpien_poprawkowy_f2015-materials.webp"
+  }
+]
