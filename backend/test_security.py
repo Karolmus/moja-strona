@@ -54,6 +54,7 @@ class SecurityTests(unittest.TestCase):
             connection.execute("DELETE FROM task_review_items")
             connection.execute("DELETE FROM task_progress")
             connection.execute("DELETE FROM parent_access_tokens")
+            connection.execute("DELETE FROM schedule_reservations")
             connection.execute("DELETE FROM contact_messages")
             connection.execute("DELETE FROM users")
             connection.commit()
@@ -61,6 +62,12 @@ class SecurityTests(unittest.TestCase):
     def contact_count(self):
         with sqlite3.connect(TEST_DB) as connection:
             return connection.execute("SELECT COUNT(*) FROM contact_messages").fetchone()[0]
+
+    def reserved_terms(self):
+        with sqlite3.connect(TEST_DB) as connection:
+            return [row[0] for row in connection.execute(
+                "SELECT term_label FROM schedule_reservations ORDER BY term_label"
+            ).fetchall()]
 
     def valid_contact_payload(self):
         return {
@@ -155,28 +162,96 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(second.status_code, 409)
         self.assertEqual(self.contact_count(), 1)
 
-    def test_contact_form_requires_matching_number_of_selected_terms(self):
-        class SheetResponse:
-            def __enter__(self):
-                return self
+    def test_contact_form_allows_agreeing_remaining_weekly_terms(self):
+        rows = [["Godz.", "Pn.", "Wt."], ["8:00", "", ""], ["9:00", "", ""]]
+        cases = [
+            (2, ["Pn. 8:00"]),
+            (3, ["Wt. 8:00"]),
+            (3, ["Pn. 9:00", "Wt. 9:00"]),
+        ]
+        for count, terms in cases:
+            with self.subTest(count=count, terms=terms):
+                payload = self.valid_contact_payload()
+                payload.update({"selected_terms": terms, "sessions_per_week_count": count})
+                with patch.object(app_module, "schedule_rows", return_value=rows):
+                    response = self.client.post("/api/contact-messages", json=payload)
+                self.assertEqual(response.status_code, 201, response.get_json())
+                self.assertEqual(response.get_json()["reserved_terms"], terms)
 
-            def __exit__(self, _type, _value, _traceback):
-                return False
+        self.assertEqual(self.contact_count(), 3)
+        self.assertEqual(self.reserved_terms(), ["Pn. 8:00", "Pn. 9:00", "Wt. 8:00", "Wt. 9:00"])
 
-            def read(self, _size):
-                return b"Godz.,Pn.,Wt.\n8:00,,\n"
+    def test_contact_form_reserves_two_or_three_weekly_terms(self):
+        rows = [["Godz.", "Pn.", "Wt.", "Sr."], ["8:00", "", "", ""], ["9:00", "", "", ""]]
+        cases = [
+            (2, ["Pn. 8:00", "Wt. 8:00"]),
+            (3, ["Pn. 9:00", "Wt. 9:00", "Sr. 9:00"]),
+        ]
+        for count, terms in cases:
+            with self.subTest(count=count):
+                payload = self.valid_contact_payload()
+                payload.update({"selected_terms": terms, "sessions_per_week_count": count})
+                with patch.object(app_module, "schedule_rows", return_value=rows):
+                    response = self.client.post("/api/contact-messages", json=payload)
+                self.assertEqual(response.status_code, 201, response.get_json())
+                self.assertEqual(response.get_json()["reserved_terms"], terms)
 
+        self.assertEqual(self.contact_count(), 2)
+        self.assertEqual(len(self.reserved_terms()), 5)
+
+    def test_contact_form_allows_manual_availability_for_multiple_weekly_sessions(self):
+        for count in (2, 3):
+            with self.subTest(count=count):
+                payload = self.valid_contact_payload()
+                payload.update({
+                    "selected_terms": [],
+                    "sessions_per_week_count": count,
+                    "preferred_term": "Do uzgodnienia telefonicznie",
+                })
+                response = self.client.post("/api/contact-messages", json=payload)
+                self.assertEqual(response.status_code, 201, response.get_json())
+                self.assertEqual(response.get_json()["reserved_terms"], [])
+                self.assertEqual(response.get_json()["message"]["preferred_term"], payload["preferred_term"])
+
+        self.assertEqual(self.contact_count(), 2)
+        self.assertEqual(self.reserved_terms(), [])
+
+    def test_contact_form_rejects_excess_terms_or_invalid_weekly_frequency(self):
+        rows = [["Godz.", "Pn.", "Wt.", "Sr."], ["8:00", "", "", ""]]
+        cases = [
+            (1, ["Pn. 8:00", "Wt. 8:00"]),
+            (2, ["Pn. 8:00", "Wt. 8:00", "Sr. 8:00"]),
+            (0, ["Pn. 8:00"]),
+            (4, ["Pn. 8:00"]),
+            (None, ["Pn. 8:00"]),
+        ]
+        for count, terms in cases:
+            with self.subTest(count=count):
+                payload = self.valid_contact_payload()
+                payload.update({"selected_terms": terms, "sessions_per_week_count": count})
+                with patch.object(app_module, "schedule_rows", return_value=rows):
+                    response = self.client.post("/api/contact-messages", json=payload)
+                self.assertEqual(response.status_code, 400, response.get_json())
+
+        self.assertEqual(self.contact_count(), 0)
+        self.assertEqual(self.reserved_terms(), [])
+
+    def test_contact_form_rolls_back_all_terms_when_one_has_been_reserved(self):
+        rows = [["Godz.", "Pn.", "Wt.", "Sr."], ["8:00", "", "", ""]]
         payload = self.valid_contact_payload()
-        payload.update({
-            "selected_terms": ["Pn. 8:00"],
-            "sessions_per_week_count": 2,
-        })
-
-        with patch.object(app_module, "urlopen", return_value=SheetResponse()):
+        payload.update({"selected_terms": ["Wt. 8:00"], "sessions_per_week_count": 1})
+        with patch.object(app_module, "schedule_rows", return_value=rows):
+            first = self.client.post("/api/contact-messages", json=payload)
+            payload.update({
+                "selected_terms": ["Pn. 8:00", "Wt. 8:00", "Sr. 8:00"],
+                "sessions_per_week_count": 3,
+            })
             response = self.client.post("/api/contact-messages", json=payload)
 
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(self.contact_count(), 0)
+        self.assertEqual(first.status_code, 201)
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(self.contact_count(), 1)
+        self.assertEqual(self.reserved_terms(), ["Wt. 8:00"])
 
     def test_enabled_calculators_require_login_and_validate_input(self):
         app_module.CALCULATORS_ENABLED = True

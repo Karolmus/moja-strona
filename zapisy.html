@@ -340,6 +340,42 @@ h1{
     margin-top: 16px;
 }
 
+.signup-summary {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.signup-summary > div {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5eaf0;
+}
+
+.signup-summary > div[hidden] {
+    display: none;
+}
+
+.signup-summary dt {
+    color: #64748b;
+}
+
+.signup-summary dd {
+    margin: 0;
+    color: #1f2a36;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+}
+
+.contact-form .signup-response-time {
+    margin: 4px 0;
+    color: #27603c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
 .contact-form label {
     display: grid;
     gap: 4px;
@@ -2014,10 +2050,19 @@ footer{
                                 <span class="booking-step-number" aria-hidden="true">5</span>
                                 <div class="booking-step-copy">
                                     <p class="booking-step-kicker">Krok 5</p>
-                                    <h3 class="booking-step-title"><br></h3>
-                                    <p class="booking-step-description"><br></p>
+                                    <h3 class="booking-step-title">Podsumowanie zgłoszenia</h3>
                                 </div>
                             </div>
+                            <dl class="signup-summary" aria-live="polite">
+                                <div><dt>Poziom i cena</dt><dd id="signupSummaryCourse">Nie wybrano poziomu.</dd></div>
+                                <div><dt>Zajęcia w tygodniu</dt><dd id="signupSummaryFrequency">Nie wybrano liczby zajęć.</dd></div>
+                                <div><dt>Wybrane terminy</dt><dd id="signupSummaryTerms">Brak wybranych terminów.</dd></div>
+                                <div id="signupSummaryAvailabilityRow" hidden><dt>Preferowany termin</dt><dd id="signupSummaryAvailability"></dd></div>
+                                <div><dt>Numer telefonu</dt><dd id="signupSummaryPhone">Nie podano numeru.</dd></div>
+                                <div id="signupSummaryDiscordRow" hidden><dt>Discord ucznia</dt><dd id="signupSummaryDiscord"></dd></div>
+                            </dl>
+                            <p id="signupSummaryPending" hidden></p>
+                            <p class="signup-response-time">Odpowiem na zgłoszenie w ciągu 24 godzin.</p>
                             <button type="submit">Wyślij i zarezerwuj termin</button>
                         </div>
 
@@ -2214,6 +2259,10 @@ function updateSelectedTermView(){
             );
             cell.title = isSelected ? "Termin wybrany" : "Wybierz termin";
         });
+
+    if(typeof updateSignupSummary === "function"){
+        updateSignupSummary();
+    }
 
     if(!list) return;
 
@@ -2441,6 +2490,9 @@ async function loadSignupPrices(){
                 element.innerText = label;
             }
         });
+        if(typeof updateSignupSummary === "function"){
+            updateSignupSummary();
+        }
     } catch(error) {
         console.warn("Nie udało się wczytać cen zapisów.", error);
     }
@@ -2475,6 +2527,39 @@ const signupFieldErrors = {
         focusTarget: document.getElementById("contactInput")
     }
 };
+
+function pendingSignupTermsMessage(sessionsPerWeekCount, termCount){
+    const remaining = sessionsPerWeekCount - termCount;
+
+    if(remaining <= 0) return "";
+    if(!termCount) return "Terminy zajęć ustalimy indywidualnie.";
+    return remaining === 1
+        ? "Pozostały termin w tygodniu ustalimy indywidualnie."
+        : `Pozostałe ${remaining} terminy w tygodniu ustalimy indywidualnie.`;
+}
+
+function updateSignupSummary(){
+    const formData = new FormData(contactForm);
+    const frequency = String(formData.get("sessions_per_week") || "");
+    const sessionsPerWeekCount = Number(frequency.match(/^[1-3]/)?.[0] || 0);
+    const availability = String(formData.get("preferred_term") || "").trim();
+    const discord = String(formData.get("student_discord") || "").trim();
+    const pending = pendingSignupTermsMessage(sessionsPerWeekCount, selectedTerms.length);
+
+    document.getElementById("signupSummaryCourse").textContent =
+        String(formData.get("course") || "Nie wybrano poziomu.").replace(" | ", ", ");
+    document.getElementById("signupSummaryFrequency").textContent = frequency || "Nie wybrano liczby zajęć.";
+    document.getElementById("signupSummaryTerms").textContent = selectedTerms.join("\n") || "Brak wybranych terminów.";
+    document.getElementById("signupSummaryAvailability").textContent = availability;
+    document.getElementById("signupSummaryAvailabilityRow").hidden =
+        !availability || availability === selectedTerms.join("; ");
+    document.getElementById("signupSummaryPhone").textContent =
+        String(formData.get("contact") || "").trim() || "Nie podano numeru.";
+    document.getElementById("signupSummaryDiscord").textContent = discord;
+    document.getElementById("signupSummaryDiscordRow").hidden = !discord;
+    document.getElementById("signupSummaryPending").textContent = pending;
+    document.getElementById("signupSummaryPending").hidden = !pending;
+}
 
 function clearSignupFieldError(field){
     const config = signupFieldErrors[field];
@@ -2586,12 +2671,18 @@ signupFieldErrors.contact.focusTarget.addEventListener("input", () => {
     }
 });
 
+contactForm.addEventListener("input", updateSignupSummary);
+contactForm.addEventListener("change", updateSignupSummary);
+updateSignupSummary();
+
 contactForm.addEventListener("submit", async event => {
     event.preventDefault();
     clearContactStatus();
 
     const formData = new FormData(contactForm);
-    const button = contactForm.querySelector("button");
+    const button = contactForm.querySelector('button[type="submit"]');
+
+    if(button.disabled) return;
 
     if(!validateSignupForm(formData)){
         return;
@@ -2606,10 +2697,10 @@ contactForm.addEventListener("submit", async event => {
     const submittedTerms = [...selectedTerms];
     const message = String(formData.get("message") || "").trim();
 
-    if(submittedTerms.length && submittedTerms.length !== sessionsPerWeekCount){
+    if(submittedTerms.length > sessionsPerWeekCount){
         showSignupFieldError(
             "sessionsPerWeek",
-            "Wybierz tyle terminów, ile zajęć tygodniowo chcesz mieć."
+            "Wybrano więcej terminów niż zajęć w tygodniu. Zwiększ liczbę zajęć lub usuń nadmiarowe terminy w kroku 1."
         );
         focusSignupField("sessionsPerWeek");
         return;
@@ -2628,6 +2719,7 @@ contactForm.addEventListener("submit", async event => {
                 message: [
                     `Wybrany kurs: ${selectedCourse}`,
                     `Liczba zajęć w tygodniu: ${sessionsPerWeek}`,
+                    pendingSignupTermsMessage(sessionsPerWeekCount, submittedTerms.length),
                     studentDiscord ? `Discord ucznia: ${studentDiscord}` : ""
                 ].filter(Boolean).join("\n") + (message ? `\n\n${message}` : ""),
                 selected_terms: submittedTerms,
@@ -2642,9 +2734,12 @@ contactForm.addEventListener("submit", async event => {
         markReservedTermsBusy(response?.reserved_terms || submittedTerms);
         updateSelectedTermView();
         showContactStatus(
-            submittedTerms.length
+            (submittedTerms.length
                 ? "Wiadomość wysłana. Wybrane terminy zostały zablokowane."
-                : "Wiadomość wysłana."
+                : "Wiadomość wysłana.") + " " + [
+                    pendingSignupTermsMessage(sessionsPerWeekCount, submittedTerms.length),
+                    "Odpowiem na zgłoszenie w ciągu 24 godzin."
+                ].filter(Boolean).join(" ")
         );
     } catch(error) {
         showContactStatus(error.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz SMS.");

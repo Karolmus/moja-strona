@@ -1429,9 +1429,15 @@ def api_create_contact_message():
             except (TypeError, ValueError):
                 sessions_per_week = 0
 
-            if sessions_per_week not in {1, 2, 3} or len(reservations) != sessions_per_week:
+            if sessions_per_week not in {1, 2, 3}:
                 return api_error(
-                    "Wybierz tyle terminów, ile zajęć tygodniowo chcesz mieć.",
+                    "Wybierz od jednego do trzech zajęć w tygodniu.",
+                    400,
+                )
+
+            if len(reservations) > sessions_per_week:
+                return api_error(
+                    "Wybrano więcej terminów niż zajęć w tygodniu. Zwiększ liczbę zajęć lub usuń nadmiarowe terminy w kroku 1.",
                     400,
                 )
 
