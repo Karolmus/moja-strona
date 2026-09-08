@@ -1138,6 +1138,43 @@ body.focus-mode .task-card {
     gap: 12px;
 }
 
+.source-load-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 0;
+    color: var(--muted);
+}
+
+.source-load-status[hidden],
+.source-load-pending > .top-row,
+.source-load-pending > .meta-box,
+.source-load-pending > .task-image-stack,
+.source-load-pending > .task-instruction,
+.source-load-pending > .interaction-panel {
+    display: none;
+}
+
+.source-load-status p {
+    flex: 1 1 220px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.source-load-status button {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 14px;
+    background: var(--navy);
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
 .task-image {
     width: 100%;
     height: auto;
@@ -2998,6 +3035,11 @@ footer {
 
         <div class="task-card">
 
+            <div class="source-load-status" id="sourceLoadStatus" role="status" aria-live="polite" hidden>
+                <p id="sourceLoadMessage"></p>
+                <button id="sourceLoadRetry" type="button" onclick="retrySourceLoad()" hidden>Spróbuj ponownie</button>
+            </div>
+
             <div class="progress-grid" id="progress"></div>
 
             <div class="top-row">
@@ -3612,6 +3654,12 @@ async function bootStudentPanel(){
         ensureAvailableCategory();
         updateAccessModeUI();
         ensureSelectedSource();
+        updateCategoryButtons();
+        updateLevelButtons();
+        updateModeButtons();
+        updateMetaTheme();
+        renderSourceSelector();
+        setSourceLoadState("loading");
         await ensureTaskSourceLoaded(selectedSource);
         ensureSelectedCoursePart();
 
@@ -3634,12 +3682,56 @@ async function bootStudentPanel(){
         refreshTaskNavigator();
         renderTagSearch();
 
-        drawTask(initialIndex);
+        setSourceLoadState("ready");
+        await drawTask(initialIndex);
     } catch(error) {
         if(error.redirecting) return;
 
-        showMessage("Nie udało się wczytać kursu. Odśwież stronę albo spróbuj później.");
+        setSourceLoadState("error", error);
     }
+}
+
+function sourceLoadErrorMessage(error){
+    if(error?.status === 404){
+        return "Serwer nie udostępnia jeszcze materiałów tej lekcji (404). Spróbuj ponownie za chwilę lub zgłoś to prowadzącemu.";
+    }
+    if(error?.status === 403){
+        return "Konto nie ma dostępu do tego zestawu (403). Zgłoś prowadzącemu potrzebę sprawdzenia przypisanego poziomu.";
+    }
+    if(error?.status === 401){
+        return "Sesja wygasła (401). Zaloguj się ponownie, aby otworzyć materiały.";
+    }
+    if(error?.code === "invalid_task_source"){
+        return "Serwer zwrócił nieprawidłowe materiały. Spróbuj ponownie za chwilę lub zgłoś to prowadzącemu.";
+    }
+    return "Nie udało się pobrać zadań. Sprawdź połączenie i spróbuj ponownie.";
+}
+
+function setSourceLoadState(state, error = null){
+    const status = document.getElementById("sourceLoadStatus");
+    const message = document.getElementById("sourceLoadMessage");
+    const retry = document.getElementById("sourceLoadRetry");
+    const pending = state !== "ready";
+
+    document.querySelector(".task-card").classList.toggle("source-load-pending", pending);
+    status.hidden = !pending;
+    retry.hidden = state !== "error";
+    message.textContent = state === "error" ? sourceLoadErrorMessage(error) : "Wczytywanie zadań…";
+
+    if(state === "error"){
+        console.warn("Nie udało się pobrać zestawu zadań.", {
+            source: selectedSource,
+            level: selectedLevel,
+            status: error?.status || null,
+            code: error?.code || null
+        });
+    }
+}
+
+async function retrySourceLoad(){
+    setSourceLoadState("loading");
+    await loadStudentProgress({ render: false });
+    await loadSelectedSourceAndDraw();
 }
 
 function getRequestedCategory(){
@@ -3817,7 +3909,7 @@ function courseAssetApiPath(path){
 async function loadJsonSource(path){
     if(isProtectedCoursePath(path)){
         if(!window.apiFetch) throw new Error("Zaloguj się, aby otworzyć kurs.");
-        return window.apiFetch(courseAssetApiPath(path));
+        return window.apiFetch(courseAssetApiPath(path), { cache: "no-cache" });
     }
 
     const response = await fetch(path, { cache: "no-cache" });
@@ -3833,6 +3925,11 @@ function loadTaskSource(sourceConfig){
 
     return loadJsonSource(source)
     .then(items => {
+        if(!Array.isArray(items)){
+            const error = new Error("Nieprawidłowy format listy zadań.");
+            error.code = "invalid_task_source";
+            throw error;
+        }
         const basePath = source.slice(0, source.lastIndexOf("/") + 1);
 
         return items.filter(task =>
@@ -4453,7 +4550,8 @@ function isCoursePreviewMode(task = currentTask){
     );
 }
 
-async function loadSelectedSourceAndDraw(index = getInitialIndex()){
+async function loadSelectedSourceAndDraw(index = null){
+    setSourceLoadState("loading");
     try {
         await ensureTaskSourceLoaded(selectedSource);
         await ensureTagFilteredSourcesLoaded();
@@ -4461,10 +4559,11 @@ async function loadSelectedSourceAndDraw(index = getInitialIndex()){
         renderSourceSelector();
         refreshTaskNavigator();
         renderTagSearch();
-        drawTask(index);
+        setSourceLoadState("ready");
+        await drawTask(Number.isInteger(index) ? index : getInitialIndex());
     } catch(error) {
-        console.warn("Nie udało się wczytać wybranego źródła zadań.", error);
-        showMessage("Nie udało się wczytać wybranego zestawu zadań. Spróbuj ponownie za chwilę.");
+        if(error.redirecting) return;
+        setSourceLoadState("error", error);
     }
 }
 

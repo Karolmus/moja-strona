@@ -51,6 +51,8 @@ for (const student of [true, false]) {
   assert.deepEqual(files(await ctx.loadTaskSource(course)), ['zd1.webp', 'legacy.webp']);
   ctx.loadJsonSource = async () => [exam];
   assert.deepEqual(files(await ctx.loadTaskSource({...course, category:'egzaminy'})), ['exam.webp']);
+  ctx.loadJsonSource = async () => ({error: 'Unexpected server response'});
+  await assert.rejects(ctx.loadTaskSource(course), {code: 'invalid_task_source'});
   ctx.selectedCategory = 'egzaminy'; ctx.selectedSource = 'exam';
   assert.deepEqual(files(ctx.pool()), ['exam.webp']);
   console.log('PASS: homework-only loading, navigation, resume state and summaries; exams unchanged');

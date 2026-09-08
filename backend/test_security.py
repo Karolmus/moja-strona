@@ -799,6 +799,49 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(other_level.status_code, 403)
         assigned.close()
 
+    def test_mp_student_can_load_first_lesson_and_images(self):
+        path = "/api/course-assets/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json"
+        self.assertEqual(self.client.get(path).status_code, 401)
+
+        with app.app_context():
+            student = create_user(
+                email="mp-course@example.com",
+                display_name="Test MP",
+                password="bezpieczne-haslo",
+                level="matura_podstawowa",
+            )
+
+        login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        session_response = self.client.get("/api/auth/me", headers=headers)
+        self.assertEqual(session_response.get_json()["user"]["level"], "matura_podstawowa")
+
+        with self.client.get(path, headers=headers) as response:
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.headers["Cache-Control"], "private, no-cache")
+            tasks = response.get_json()
+            self.assertEqual(len(tasks), 29)
+            self.assertEqual(sum(task["coursePart"] == "praca_domowa" for task in tasks), 11)
+
+        with self.client.get("/api/course-assets/mp/lekcja_1/zd1.png", headers=headers) as image:
+            self.assertEqual(image.status_code, 200)
+            self.assertEqual(image.mimetype, "image/png")
+
+        self.assertEqual(self.client.get(
+            "/api/course-assets/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
+            headers=headers,
+        ).status_code, 403)
+
+        with tempfile.TemporaryDirectory() as empty_assets:
+            with patch.object(app_module, "COURSE_ASSET_ROOT", empty_assets):
+                missing = self.client.get(path, headers=headers)
+        self.assertEqual(missing.status_code, 404)
+        self.assertEqual(missing.mimetype, "application/json")
+        self.assertEqual(missing.headers["Cache-Control"], "no-store")
+
     def test_parent_access_token_expires(self):
         with app.app_context():
             student = create_user(

@@ -19,7 +19,7 @@ from urllib.request import Request, urlopen
 import sympy as sp
 from flask import Flask, jsonify, request, send_from_directory, session
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
-from werkzeug.exceptions import HTTPException
+from werkzeug.exceptions import HTTPException, NotFound
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash
 
@@ -1525,8 +1525,17 @@ def api_course_asset(user, asset_path):
     if not course_asset_allowed_for_user(asset_path, user):
         return api_error("Brak dostępu do tego materiału.", 403)
 
-    response = send_from_directory(COURSE_ASSET_ROOT, asset_path, conditional=True)
-    response.headers["Cache-Control"] = "private, max-age=3600"
+    try:
+        response = send_from_directory(COURSE_ASSET_ROOT, asset_path, conditional=True)
+    except NotFound:
+        response = jsonify({"error": "Nie znaleziono materiału kursowego na serwerze."})
+        response.status_code = 404
+        response.headers["Cache-Control"] = "no-store"
+        return response
+
+    response.headers["Cache-Control"] = (
+        "private, no-cache" if asset_path.lower().endswith(".json") else "private, max-age=3600"
+    )
 
     return response
 
