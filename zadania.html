@@ -329,10 +329,44 @@ body:not(.guest-exam-mode) .selector-grid {
 }
 
 .source-list.exam-source-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 3px;
-    max-height: none;
-    overflow: visible;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    max-height: 380px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 2px 6px 3px 2px;
+    scrollbar-width: thin;
+    scrollbar-color: #b9c6d4 transparent;
+}
+
+.source-list.exam-source-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.source-list.exam-source-list::-webkit-scrollbar-thumb {
+    background: #b9c6d4;
+    border-radius: 999px;
+}
+
+.exam-year-group {
+    min-width: 0;
+}
+
+.exam-year-label {
+    margin: 0 0 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.exam-year-sources {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    min-width: 0;
 }
 
 .source-summary-row {
@@ -403,17 +437,17 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn {
-    min-height: 34px;
+    min-height: 38px;
     align-content: center;
     gap: 1px;
-    padding: 3px 4px;
+    padding: 5px 4px;
     text-align: center;
 }
 
 .exam-source-list .source-btn span {
     min-width: 0;
-    font-size: 9.5px;
-    line-height: 1.05;
+    font-size: 12px;
+    line-height: 1.2;
     overflow-wrap: anywhere;
     word-break: normal;
 }
@@ -435,8 +469,8 @@ body.guest-exam-mode .source-summary-row {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-    font-size: 8.5px;
-    line-height: 1.05;
+    font-size: 10px;
+    line-height: 1.2;
     overflow-wrap: anywhere;
     word-break: normal;
 }
@@ -688,7 +722,8 @@ body.focus-mode .task-card {
 .progress-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
+    padding: 8px 5px 2px 0;
     margin-bottom: 12px;
     min-height: 0;
 }
@@ -729,7 +764,8 @@ body.focus-mode .task-card {
 .exam-nav-group-tiles {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
+    padding: 8px 5px 2px 0;
 }
 
 .tile {
@@ -737,14 +773,14 @@ body.focus-mode .task-card {
     --tile-border: var(--line);
     --tile-ink: var(--text);
     --status-color: #94a3b8;
-    min-width: 42px;
+    position: relative;
+    min-width: 32px;
     height: 32px;
     display: inline-grid;
-    grid-template-columns: minmax(12px, auto) 14px;
+    grid-template-columns: minmax(12px, auto);
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    padding: 0 7px;
+    padding: 0 6px;
     border: 1px solid var(--tile-border);
     border-radius: 6px;
     background: var(--tile-bg);
@@ -758,13 +794,20 @@ body.focus-mode .task-card {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.tile::before,
 .tile::after {
-    content: "";
-    width: 14px;
-    height: 14px;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.tile::after {
+    content: none;
+    position: absolute;
+    top: -5px;
+    right: -3px;
+    width: 12px;
+    height: 12px;
     background: var(--status-color);
-    border-radius: 50%;
-    transform: scale(0.3);
 }
 
 .tile.good {
@@ -787,15 +830,51 @@ body.focus-mode .task-card {
     --status-icon: url("static/icons/skip-forward.svg");
 }
 
+.tile:is(.good, .medium, .bad, .skipped)::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    right: -5px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: white;
+}
+
 .tile:is(.good, .medium, .bad, .skipped)::after {
-    border-radius: 0;
-    transform: none;
+    content: "";
     -webkit-mask: var(--status-icon) center / contain no-repeat;
     mask: var(--status-icon) center / contain no-repeat;
 }
 
 .tile.nav-tile {
     cursor: pointer;
+}
+
+.tile.review-requested {
+    --tile-border: #d6ba6f;
+}
+
+.nav-review-mark {
+    position: absolute;
+    top: -7px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #d6ba6f;
+    border-radius: 4px;
+    background: #fff6d5;
+    pointer-events: none;
+}
+
+.nav-review-mark::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: #8a6413;
+    -webkit-mask: url("static/icons/message-circle.svg") center / contain no-repeat;
+    mask: url("static/icons/message-circle.svg") center / contain no-repeat;
 }
 
 .tile.nav-theme-course {
@@ -1008,6 +1087,7 @@ body.focus-mode .task-card {
 .source-load-pending > .meta-box,
 .source-load-pending > .task-image-stack,
 .source-load-pending > .task-instruction,
+.source-load-pending > .manual-score-notice,
 .source-load-pending > .mcq,
 .source-load-pending > .interaction-panel {
     display: none;
@@ -1276,16 +1356,20 @@ button {
 }
 
 .action-btn.nav {
-    background: var(--navy);
+    background: #4d6478;
     color: white;
-    border-color: var(--navy);
+    border-color: #8da1b2;
     min-width: 112px;
     padding: 7px 10px;
 }
 
 .action-btn.nav:hover {
-    background: var(--navy-hover);
-    border-color: var(--navy-hover);
+    background: #597286;
+    border-color: #aebcc8;
+}
+
+.action-btn.nav:focus-visible {
+    outline-color: #d4e3ef;
 }
 
 .result-buttons {
@@ -1688,80 +1772,42 @@ button {
     color: var(--text);
 }
 
+.manual-score-notice {
+    margin: 12px 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 .score-panel {
     display: grid;
-    gap: 10px;
+    gap: 6px;
     margin-top: 12px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: white;
-    padding: 12px;
 }
 
 .score-panel[hidden] {
     display: none;
 }
 
-.score-panel-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.score-panel-head span {
-    color: var(--muted);
-    font-size: 12px;
-}
-
 .score-form {
-    display: flex;
-    align-items: end;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.score-form label {
     display: grid;
-    gap: 5px;
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 700;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
 }
 
-.score-input-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+.score-control {
+    display: grid;
+    min-width: 0;
+    gap: 2px;
 }
 
 .score-value-label {
     color: var(--text);
     font-size: 14px;
-    font-weight: 700;
-}
-
-.score-form input[type="number"] {
-    width: 130px;
-    min-height: 42px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 8px 10px;
-    font: inherit;
-}
-
-.score-form.exam-score-form {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-}
-
-.score-form.exam-score-form label {
-    min-width: 0;
+    font-weight: 500;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
 }
 
 .score-form input[type="range"] {
@@ -1829,20 +1875,6 @@ button {
     outline-offset: 3px;
 }
 
-.score-range-scale {
-    display: flex;
-    justify-content: space-between;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 500;
-    line-height: 1;
-}
-
-.score-range-scale[hidden],
-.score-value-label[hidden] {
-    display: none;
-}
-
 .score-save-btn {
     min-height: 42px;
     border: 1px solid var(--navy);
@@ -1851,25 +1883,25 @@ button {
     color: white;
     cursor: pointer;
     font: inherit;
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 14px;
     padding: 8px 14px;
 }
 
-.score-max-btn {
-    border-color: #cce5c9;
-    background: var(--green-soft);
-    color: var(--green-text);
-}
-
-.score-max-btn:hover {
-    background: #dff0dd;
-    border-color: #b8d9b4;
+.score-save-btn:disabled,
+.score-form input:disabled {
+    opacity: 0.6;
+    cursor: default;
 }
 
 .score-status {
     color: var(--muted);
     font-size: 12px;
     line-height: 1.4;
+}
+
+.score-status:empty {
+    display: none;
 }
 
 .solution-box {
@@ -2338,34 +2370,26 @@ footer {
         position: static;
     }
 
-    .source-list.exam-source-list--slider {
-        display: flex;
-        gap: 6px;
+    .source-list.exam-source-list {
         width: 100%;
         min-width: 0;
-        max-height: none;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding: 1px 1px 7px;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: thin;
-        scrollbar-color: #b9c6d4 transparent;
-        overscroll-behavior-inline: contain;
+        max-height: min(340px, 42dvh);
     }
 
-    .source-list.exam-source-list--slider::-webkit-scrollbar {
-        height: 5px;
+    .exam-source-list .source-btn {
+        min-height: 44px;
+        padding: 6px 4px;
+        gap: 3px;
     }
 
-    .source-list.exam-source-list--slider::-webkit-scrollbar-thumb {
-        background: #b9c6d4;
-        border-radius: 999px;
+    .exam-source-list .source-btn span {
+        font-size: 13px;
+        line-height: 1.2;
     }
 
-    .source-list.exam-source-list--slider .source-btn {
-        flex: 0 0 clamp(105px, 27vw, 138px);
-        min-height: 42px;
-        scroll-snap-align: start;
+    .exam-source-list .source-btn small {
+        font-size: 11px;
+        line-height: 1.25;
     }
 
     .task-actions {
@@ -2472,37 +2496,6 @@ footer {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         max-height: none;
         overflow-y: visible;
-    }
-
-    .source-list.exam-source-list {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        max-height: none;
-        overflow: visible;
-    }
-
-    .source-list.exam-source-list--slider {
-        display: flex;
-        width: 100%;
-        min-width: 0;
-        grid-template-columns: none;
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-
-    .exam-source-list .source-btn {
-        min-height: 31px;
-        padding: 3px;
-    }
-
-    .exam-source-list .source-btn span {
-        font-size: 9px;
-        line-height: 1.05;
-    }
-
-    .exam-source-list .source-btn small {
-        display: block;
-        font-size: 8px;
-        line-height: 1.05;
     }
 
     .course-source-list .source-btn {
@@ -2746,14 +2739,6 @@ footer {
         gap: 8px;
     }
 
-    .score-form.exam-score-form {
-        grid-template-columns: 1fr;
-    }
-
-    .score-form.exam-score-form .score-save-btn {
-        width: 100%;
-    }
-
     .practical-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
@@ -2857,8 +2842,8 @@ footer {
 
             <div class="side-section" id="formulaSection" style="display:none">
                 <div class="side-title">Materiały</div>
-                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Karta wzorów - egzamin ósmoklasisty, otwiera się w nowej karcie">
-                    <strong>Karta wzorów</strong>
+                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Tablice matematyczne CKE, otwiera się w nowej karcie">
+                    <strong>Tablice matematyczne CKE</strong>
                 </a>
                 <a class="formula-card" id="extraFormulaCard" href="wzory_spoza_tablic_mp.pdf" target="_blank" rel="noopener noreferrer" aria-label="Wzory spoza tablic, otwiera się w nowej karcie" hidden>
                     <strong>Wzory spoza tablic</strong>
@@ -2945,6 +2930,8 @@ footer {
 
             <div class="mcq" id="mcq"></div>
 
+            <p class="manual-score-notice" id="manualScoreNotice" hidden>To zadanie oceniasz samodzielnie. Po wejściu w zasady oceniania możesz przyznać sobie liczbę punktów zgodną z wytycznymi CKE.</p>
+
             <div class="interaction-panel">
                 <div class="task-actions">
                     <div class="action-group tools" role="group" aria-label="Materiały pomocnicze">
@@ -2973,25 +2960,15 @@ footer {
                 </div>
 
                 <div class="score-panel" id="scorePanel" hidden>
-                    <div class="score-panel-head">
-                        <strong>Punkty za zadanie</strong>
-                        <span id="scoreMaxLabel">0 pkt</span>
-                    </div>
-
                     <form class="score-form" id="scoreForm">
-                        <label>
-                            <span class="score-input-heading">
-                                <span>Zdobyte punkty</span>
-                                <output class="score-value-label" id="scoreValueLabel" for="scoreInput" hidden>0 pkt</output>
-                            </span>
-                            <input id="scoreInput" name="earned_points" type="number" min="0" step="0.5" inputmode="decimal">
-                            <span class="score-range-scale" id="scoreRangeScale" hidden></span>
-                        </label>
-                        <button class="score-save-btn score-max-btn" id="scoreMaxButton" type="button">Maks.</button>
-                        <button class="score-save-btn" id="scoreSaveButton" type="submit">Zapisz punkty</button>
+                        <div class="score-control">
+                            <input id="scoreInput" name="earned_points" type="range" min="0" max="0" step="1" value="0" aria-label="Zdobyte punkty">
+                            <output class="score-value-label" id="scoreValueLabel" for="scoreInput">0 / 0 pkt</output>
+                        </div>
+                        <button class="score-save-btn" id="scoreSaveButton" type="submit">Zapisz wynik</button>
                     </form>
 
-                    <div class="score-status" id="scoreStatus"></div>
+                    <div class="score-status" id="scoreStatus" role="status"></div>
                 </div>
             </div>
 
@@ -3176,7 +3153,7 @@ const COURSE_PART_LABELS = {
     zadania_powtorkowe: "Zadania powtórkowe",
     zadania_praktyczne: "3. Zadania praktyczne"
 };
-const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260907-mp-course";
+const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260909-without-f2015";
 const TAG_WORD_LABELS = {
     bryly: "bryły",
     ciagi: "ciągi",
@@ -3216,27 +3193,16 @@ const TAG_WORD_LABELS = {
 
 const TASK_SOURCES = [
     { path: "zadania/mp/2026/maj/2026_cke_p_m.json", category: "egzaminy" },
-    { path: "zadania/mp/2026/maj_f2015/2026_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2026/czerwiec/2026_cke_p_c.json", category: "egzaminy" },
-    { path: "zadania/mp/2026/czerwiec_dodatkowy_f2015/2026_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2025/maj/2025_cke_p_m.json", category: "egzaminy" },
-    { path: "zadania/mp/2025/maj_f2015/2025_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2025/czerwiec_dodatkowy/2025_cke_p_c_d.json", category: "egzaminy", detail: "2025 / czerwiec / termin dodatkowy / CKE" },
-    { path: "zadania/mp/2025/czerwiec_dodatkowy_f2015/2025_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2025/sierpien_poprawkowy/2025_cke_p_s_p.json", category: "egzaminy", detail: "2025 / sierpień / termin poprawkowy / CKE" },
-    { path: "zadania/mp/2025/sierpien_poprawkowy_f2015/2025_cke_p_s_p_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2024/maj/2024_cke_p_m.json", category: "egzaminy" },
-    { path: "zadania/mp/2024/maj_f2015/2024_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2024/czerwiec_dodatkowy/2024_cke_p_c_d.json", category: "egzaminy", detail: "2024 / czerwiec / termin dodatkowy / CKE" },
-    { path: "zadania/mp/2024/czerwiec_dodatkowy_f2015/2024_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2024/sierpien_poprawkowy/2024_cke_p_s_p.json", category: "egzaminy", detail: "2024 / sierpień / termin poprawkowy / CKE" },
-    { path: "zadania/mp/2024/sierpien_poprawkowy_f2015/2024_cke_p_s_p_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2023/maj/2023_cke_p_m.json", category: "egzaminy" },
-    { path: "zadania/mp/2023/maj_f2015/2023_cke_p_m_g_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2023/czerwiec_dodatkowy/2023_cke_p_c_d.json", category: "egzaminy", detail: "2023 / czerwiec / termin dodatkowy / CKE" },
-    { path: "zadania/mp/2023/czerwiec_dodatkowy_f2015/2023_cke_p_c_d_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2023/sierpien_poprawkowy/2023_cke_p_s_p.json", category: "egzaminy", detail: "2023 / sierpień / termin poprawkowy / CKE" },
-    { path: "zadania/mp/2023/sierpien_poprawkowy_f2015/2023_cke_p_s_p_f2015.json", category: "egzaminy" },
     { path: "zadania/mp/2022/maj/2022_cke_p_m.json", category: "egzaminy" },
     { path: "zadania/mp/2022/czerwiec_dodatkowy/2022_cke_p_c_d.json", category: "egzaminy" },
     { path: "zadania/mp/2022/sierpien_poprawkowy/2022_cke_p_s_p.json", category: "egzaminy" },
@@ -3262,9 +3228,7 @@ const TASK_SOURCES = [
     { path: "zadania/mp/2015/czerwiec_dodatkowy/2015_cke_p_c_d.json", category: "egzaminy", detail: "2015 / czerwiec / termin dodatkowy / CKE" },
     { path: "zadania/mp/2015/sierpien_poprawkowy/2015_cke_p_s_p.json", category: "egzaminy", detail: "2015 / sierpień / termin poprawkowy / CKE" },
     { path: "zadania/mr/2026/maj_f2023/2026_cke_r_m_g_f2023.json", category: "egzaminy", detail: "2026 / maj / formuła 2023 / CKE" },
-    { path: "zadania/mr/2026/maj_f2015/2026_cke_r_m_g_f2015.json", category: "egzaminy", detail: "2026 / maj / formuła 2015 / CKE" },
     { path: "zadania/mr/2026/czerwiec_dodatkowy_f2023/2026_cke_r_c_d_f2023.json", category: "egzaminy", detail: "2026 / czerwiec / termin dodatkowy / formuła 2023 / CKE" },
-    { path: "zadania/mr/2026/czerwiec_dodatkowy_f2015/2026_cke_r_c_d_f2015.json", category: "egzaminy", detail: "2026 / czerwiec / termin dodatkowy / formuła 2015 / CKE" },
     { path: "zadania/mr/2025/maj/2025_cke_r_m.json", category: "egzaminy" },
     { path: "zadania/mr/2025/czerwiec_dodatkowy/2025_cke_r_c_d.json", category: "egzaminy", detail: "2025 / czerwiec / termin dodatkowy / CKE" },
     { path: "zadania/mr/2024/maj/2024_cke_r_m.json", category: "egzaminy" },
@@ -3482,7 +3446,7 @@ const LEVEL_LABELS = {
 
 const FORMULA_SHEETS = {
     matura_podstawowa: {
-        label: "Karta wzorów",
+        label: "Tablice matematyczne CKE",
         href: "wzory_matura.pdf",
         extra: {
             label: "Wzory spoza tablic",
@@ -3490,11 +3454,11 @@ const FORMULA_SHEETS = {
         }
     },
     matura_rozszerzona: {
-        label: "Karta wzorów",
+        label: "Tablice matematyczne CKE",
         href: "wzory_matura.pdf"
     },
     egzamin_osmoklasisty: {
-        label: "Karta wzorów",
+        label: "Tablice matematyczne CKE",
         href: "wzory_eo.pdf"
     }
 };
@@ -3598,6 +3562,14 @@ async function bootStudentPanel(){
 
         setSourceLoadState("ready");
         await drawTask(initialIndex);
+
+        if(isLoggedInStudent){
+            loadStudentReviewTasks().then(() => {
+                refreshTaskNavigator();
+            }).catch(error => {
+                console.warn("Nie udało się pobrać zgłoszeń do omówienia.", error);
+            });
+        }
     } catch(error) {
         if(error.redirecting) return;
 
@@ -4643,6 +4615,9 @@ function renderSourceSelector(){
     const title = document.getElementById("sourceTitle");
 
     if(!list) return;
+    const scrollKey = `${selectedCategory}:${selectedLevel}`;
+    const scrollTop = list.dataset.scrollKey === scrollKey ? list.scrollTop : 0;
+    list.dataset.scrollKey = scrollKey;
     document.getElementById("courseBrand").hidden = selectedCategory !== "kurs";
 
     updateTrainingLink();
@@ -4657,10 +4632,6 @@ function renderSourceSelector(){
     }
 
     const availableSources = getAvailableSources();
-    list.classList.toggle(
-        "exam-source-list--slider",
-        selectedCategory !== "kurs" && availableSources.length > 8
-    );
 
     if(selectedCategory === "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak lekcji", "Dodaj zadania dla tego poziomu", true);
@@ -4674,6 +4645,7 @@ function renderSourceSelector(){
         return;
     }
 
+    const yearLists = new Map();
     availableSources.forEach(source => {
         const isLoaded = isTaskSourceLoaded(source.id);
         const count = isLoaded
@@ -4686,17 +4658,39 @@ function renderSourceSelector(){
         const examTile = selectedCategory === "kurs"
             ? null
             : getExamSourceTileContent(source.detail);
-        const label = examTile ? examTile.label : source.label;
+        const examDetails = examTile?.detail.split(" · ") || [];
+        const label = examTile ? examDetails.shift() || "Arkusz" : source.label;
         const detail = selectedCategory === "kurs"
             ? (isLoaded ? `${count} zadań` : "")
-            : examTile.detail;
+            : examDetails.join(" · ");
         const sourceTitle = selectedCategory === "kurs"
             ? source.detail
-            : [examTile?.detail].filter(Boolean).join(" • ");
+            : `${examTile.label} · ${examTile.detail}`;
         const titleDetail = `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
 
+        let targetList = list;
+        if(examTile){
+            if(!yearLists.has(source.year)){
+                const group = document.createElement("section");
+                const heading = document.createElement("h3");
+                const months = document.createElement("div");
+
+                group.className = "exam-year-group";
+                heading.className = "exam-year-label";
+                heading.id = `exam-year-${selectedLevel}-${source.year}`;
+                heading.innerText = examTile.label;
+                group.setAttribute("aria-labelledby", heading.id);
+                months.className = "exam-year-sources";
+                group.appendChild(heading);
+                group.appendChild(months);
+                list.appendChild(group);
+                yearLists.set(source.year, months);
+            }
+            targetList = yearLists.get(source.year);
+        }
+
         addSourceButton(
-            list,
+            targetList,
             source.id,
             label,
             detail,
@@ -4706,6 +4700,7 @@ function renderSourceSelector(){
         );
     });
 
+    list.scrollTop = scrollTop;
     updateSourceSummary();
 }
 
@@ -4754,6 +4749,8 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
         button.classList.add("complete");
     }
     button.title = titleDetail ? `${label} • ${titleDetail}` : label;
+    button.setAttribute("aria-label", button.title);
+    button.setAttribute("aria-pressed", String(active));
     button.onclick = () => setSource(sourceId);
 
     name.innerText = label;
@@ -5941,6 +5938,14 @@ function addNavigatorTaskButton(container, task, index){
     if(themeClass) button.classList.add(themeClass);
     button.innerText = navigatorTaskLabel(task);
     button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
+    if(reviewTaskKeys.has(getTaskKey(task))){
+        const marker = document.createElement("span");
+        marker.className = "nav-review-mark";
+        marker.setAttribute("aria-hidden", "true");
+        button.appendChild(marker);
+        button.classList.add("review-requested");
+        button.title += " • Zgłoszone do omówienia na zajęciach";
+    }
     button.setAttribute("aria-label", button.title);
     button.onclick = () => openNavigatorTask(task, index);
 
@@ -6809,13 +6814,14 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #skipButton, #resultButtons button, #mcq button, #mcq input, #mcq textarea, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton, #scoreMaxButton"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #skipButton, #resultButtons button, #mcq button, #mcq input, #mcq textarea, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton"
     ).forEach(button => {
         button.disabled = loading;
     });
 }
 
 function clearTaskInteraction(){
+    document.getElementById("manualScoreNotice").hidden = true;
     document.getElementById("taskInstruction").hidden = true;
     document.getElementById("taskInstruction").textContent = "";
     const mcq = document.getElementById("mcq");
@@ -7125,7 +7131,6 @@ function handleKeyboardNavigation(event){
 
 document.addEventListener("keydown", handleKeyboardNavigation);
 document.getElementById("scoreForm")?.addEventListener("submit", submitScore);
-document.getElementById("scoreMaxButton")?.addEventListener("click", submitMaxScore);
 document.getElementById("scoreInput")?.addEventListener("input", updateScoreRangePresentation);
 
 function setupMCQ(){
@@ -7275,23 +7280,6 @@ function scoreRangeStep(maxPoints){
     return Number.isInteger(maxPoints) ? 1 : 0.5;
 }
 
-function renderScoreRangeScale(maxPoints, step){
-    const scale = document.getElementById("scoreRangeScale");
-
-    if(!scale) return;
-
-    scale.replaceChildren();
-
-    const tickCount = Math.round(maxPoints / step);
-
-    for(let index = 0; index <= tickCount; index++){
-        const tick = document.createElement("span");
-
-        tick.innerText = formatPoints(Math.min(index * step, maxPoints));
-        scale.appendChild(tick);
-    }
-}
-
 function updateScoreRangePresentation(){
     const input = document.getElementById("scoreInput");
     const valueLabel = document.getElementById("scoreValueLabel");
@@ -7311,29 +7299,26 @@ function updateScoreRangePresentation(){
     valueLabel.value = `${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt`;
     valueLabel.innerText = valueLabel.value;
 
-    if(status && document.activeElement === input){
-        status.innerText = `Wybrano ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt. Kliknij „Zapisz punkty”.`;
+    if(status && document.activeElement === input && !input.disabled){
+        status.innerText = "";
     }
 }
 
 function updateScorePanel(){
     const panel = document.getElementById("scorePanel");
-    const form = document.getElementById("scoreForm");
+    const notice = document.getElementById("manualScoreNotice");
     const input = document.getElementById("scoreInput");
-    const maxLabel = document.getElementById("scoreMaxLabel");
     const status = document.getElementById("scoreStatus");
     const saveButton = document.getElementById("scoreSaveButton");
-    const maxButton = document.getElementById("scoreMaxButton");
     const valueLabel = document.getElementById("scoreValueLabel");
-    const rangeScale = document.getElementById("scoreRangeScale");
 
-    if(!panel || !form || !input || !maxLabel || !status || !valueLabel || !rangeScale) return;
+    if(!panel || !input || !status || !valueLabel) return;
 
     const maxPoints = taskMaxPoints(currentTask);
     const saved = getSavedProgressItem(currentTask);
     const isExamScore = isExamManualScoreTask(currentTask);
     const lockedScore = isCourseTask(currentTask) && hasSavedPoints(saved);
-    const currentRangeValue = isExamScore && !panel.hidden && input.type === "range"
+    const currentRangeValue = !panel.hidden
         ? input.value
         : null;
     const storedScore = isExamScore
@@ -7346,38 +7331,19 @@ function updateScorePanel(){
         : null;
 
     panel.hidden = !shouldShowScorePanel();
+    if(notice){
+        notice.hidden = !panel.hidden || !isExamScore || !hasGradingCriteria(currentTask) || isCoursePreviewMode();
+    }
 
     if(panel.hidden) return;
 
-    form.classList.toggle("exam-score-form", isExamScore);
-    input.type = isExamScore ? "range" : "number";
     input.min = "0";
     input.max = String(maxPoints);
     input.step = String(scoreRangeStep(maxPoints));
-    input.placeholder = `0-${formatPoints(maxPoints)}`;
-    maxLabel.innerText = `maks. ${formatPoints(maxPoints)} pkt`;
     input.disabled = lockedScore;
-    valueLabel.hidden = !isExamScore;
-    rangeScale.hidden = !isExamScore;
-
-    if(isExamScore){
-        input.removeAttribute("inputmode");
-        input.setAttribute("aria-label", "Zdobyte punkty");
-        renderScoreRangeScale(maxPoints, Number(input.step));
-    } else {
-        input.inputMode = "decimal";
-        input.removeAttribute("aria-valuetext");
-        input.style.removeProperty("--score-fill");
-        rangeScale.replaceChildren();
-    }
 
     if(saveButton){
         saveButton.disabled = lockedScore;
-    }
-
-    if(maxButton){
-        maxButton.hidden = isExamScore;
-        maxButton.disabled = lockedScore;
     }
 
     if(currentRangeValue !== null){
@@ -7389,10 +7355,8 @@ function updateScorePanel(){
             status.innerText += " W trybie kursu nie można poprawiać zapisanego wyniku.";
         }
     } else {
-        input.value = isExamScore ? "0" : "";
-        status.innerText = isCourseManualScoreTask(currentTask)
-            ? "Po sprawdzeniu odpowiedzi wpisz liczbę zdobytych punktów albo kliknij Maks."
-            : "Ustaw liczbę zdobytych punktów na suwaku i zapisz wynik.";
+        input.value = "0";
+        status.innerText = "";
     }
 
     updateScoreRangePresentation();
@@ -8380,7 +8344,6 @@ async function submitScore(event){
     const input = document.getElementById("scoreInput");
     const status = document.getElementById("scoreStatus");
     const button = document.getElementById("scoreSaveButton");
-    const maxButton = document.getElementById("scoreMaxButton");
     const maxPoints = taskMaxPoints(currentTask);
     const saved = getSavedProgressItem(currentTask);
     const lockAfterSave = isCourseManualScoreTask(currentTask);
@@ -8393,7 +8356,7 @@ async function submitScore(event){
     const earnedPoints = Number(String(input.value).replace(",", "."));
 
     if(!Number.isFinite(earnedPoints) || earnedPoints < 0 || earnedPoints > maxPoints){
-        status.innerText = `Wpisz liczbę od 0 do ${formatPoints(maxPoints)}.`;
+        status.innerText = `Wybierz liczbę od 0 do ${formatPoints(maxPoints)}.`;
         return;
     }
 
@@ -8401,7 +8364,6 @@ async function submitScore(event){
     const scoreData = { earnedPoints, maxPoints };
 
     button.disabled = true;
-    if(maxButton) maxButton.disabled = true;
     status.innerText = "Zapisuję punkty...";
 
     if(currentTaskAnswered){
@@ -8429,21 +8391,7 @@ async function submitScore(event){
     status.innerText = `Zapisano: ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt.`;
     input.disabled = lockAfterSave;
     button.disabled = lockAfterSave;
-    if(maxButton) maxButton.disabled = lockAfterSave;
     updateSourceSummary();
-}
-
-function submitMaxScore(){
-    if(!currentTask || !shouldShowScorePanel()) return;
-
-    const input = document.getElementById("scoreInput");
-    const form = document.getElementById("scoreForm");
-    const maxPoints = taskMaxPoints(currentTask);
-
-    if(!input || !form || !maxPoints || input.disabled) return;
-
-    input.value = String(maxPoints);
-    form.requestSubmit();
 }
 
 function getCurrentTaskDurationSeconds(){
@@ -8711,6 +8659,7 @@ async function markForReview(){
         pendingReviewRequests.add(request);
         const data = await request;
         reviewTaskKeys.add(getTaskKey(task));
+        renderTaskNavigator();
 
         if(currentTask !== task) return;
 

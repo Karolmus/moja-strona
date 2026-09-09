@@ -21,7 +21,6 @@ MONTHS = {"maj": "main", "czerwiec": "additional", "sierpien": "resit"}
 
 def sessions():
     rows = [(2022, "czerwiec", "2015"), (2022, "sierpien", "2015")]
-    rows += [(year, month, "2015") for year in range(2023, 2027) for month in MONTHS]
     rows += [(2026, "sierpien", "2023")]
     for year, month, formula in rows:
         term = MONTHS[month]

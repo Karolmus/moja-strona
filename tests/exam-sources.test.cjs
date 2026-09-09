@@ -22,12 +22,16 @@ assert.equal(new Set(sources.map(source => source.id)).size, sources.length);
 for (const source of sources) assert(fs.existsSync(source.path), source.path);
 
 const basic = sources.filter(source => source.path.startsWith('zadania/mp/'));
-assert.equal(basic.length, 46);
+assert.equal(basic.length, 35);
+assert(sources.every(source => !source.path.includes('_f2015/')));
+for (let year = 2015; year <= 2022; year++) {
+  assert(basic.some(source => source.year === year), `Keep legacy exams from ${year}`);
+}
 assert(basic.every((source, index) => !index || source.year <= basic[index - 1].year));
 assert(!basic.some(source => /mp\/2026\/sierpien/.test(source.path)));
-const added = basic.filter(source => /_f2015\//.test(source.path) ||
+const added = basic.filter(source =>
   /mp\/2022\/(czerwiec_dodatkowy|sierpien_poprawkowy)\//.test(source.path));
-assert.equal(added.length, 13);
+assert.equal(added.length, 2);
 let taskCount = 0;
 for (const source of added) {
   const tasks = JSON.parse(fs.readFileSync(source.path));
@@ -46,20 +50,29 @@ for (const source of added) {
   }
   const tile = context.getExamSourceTileContent(source.detail);
   assert(!tile.detail.includes('/') && !tile.detail.includes('CKE'));
-  if (source.year >= 2023) assert(tile.detail.includes('Formuła 2015'));
 }
-assert.equal(taskCount, 456);
+assert.equal(taskCount, 70);
 
 const tagIndex = JSON.parse(fs.readFileSync('zadania/tag-index.json'));
 const indexedSources = new Set(Object.values(tagIndex.levels.matura_podstawowa)
   .flatMap(entry => entry.sources));
 assert(added.every(source => indexedSources.has(source.id)));
+const exams = sources.filter(source => source.category === 'egzaminy');
+assert.equal(tagIndex.sources, exams.length);
+const sourceIds = new Set(exams.map(source => source.id));
+for (const level of Object.values(tagIndex.levels)) {
+  for (const entry of Object.values(level)) {
+    assert(entry.sources.every(id => sourceIds.has(id)), entry.label);
+  }
+}
+assert.equal(tagIndex.tasks, exams.reduce((sum, source) =>
+  sum + JSON.parse(fs.readFileSync(source.path)).length, 0));
 const variants = basic.filter(source => source.year === 2026 && source.detail.includes('maj'));
 const groups = context.getGroupedExamNavigatorItems(variants.map(source => ({sourceId: source.id})));
-assert.equal(groups.length, 2, 'Formula variants must remain separate in tag navigation');
-assert(groups.some(group => group.label.includes('Formuła 2015')));
+assert.equal(groups.length, 1, 'Removed formula variants must not appear in tag navigation');
+assert(!groups.some(group => group.label.includes('Formuła 2015')));
 
 for (const match of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
   if (match[1].trim()) new vm.Script(match[1]);
 }
-console.log('PASS: 13 new exams, 456 tasks, assets, points, tag index, formula groups and inline script syntax');
+console.log('PASS: Formula 2015 variants removed; legacy exams, assets, points, tag index and syntax verified');

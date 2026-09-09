@@ -44,7 +44,8 @@ for (const [level, file] of [
   ctx.updateFormulaSection();
   assert.equal(section.style.display, 'grid', level);
   assert.equal(card.href, file, level);
-  assert.equal(title.innerText, 'Karta wzorów');
+  assert.equal(title.innerText, 'Tablice matematyczne CKE');
+  assert.match(card['aria-label'], /^Tablice matematyczne CKE,/);
   assert.match(card['aria-label'], /otwiera się w nowej karcie/);
   assert.equal(fs.readFileSync(file).subarray(0, 5).toString(), '%PDF-');
   assert.equal(extraCard.hidden, level !== 'matura_podstawowa', 'Additional formulas only appear for MP');

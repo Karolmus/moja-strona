@@ -19,6 +19,7 @@ const ctx = vm.createContext({
   loadAssignedCourse: async () => {}, getRequestedCategory: () => '',
   defaultCoursePart: () => 'praca_domowa', getInitialIndex: () => 3,
   loadStudentProgress: async () => [], restoreLastStudentLocation: async () => 4,
+  loadStudentReviewTasks: async () => [],
   renderSourceSelector: () => {selectorRenders++;},
   drawTask: async index => {drawnIndex = index;},
 });
@@ -59,6 +60,11 @@ for (const name of ['bootStudentPanel', 'sourceLoadErrorMessage', 'setSourceLoad
   assert.equal(drawnIndex, 3, 'Retry selects a task after loading');
   await ctx.bootStudentPanel();
   assert.equal(drawnIndex, 4, 'Successful boot still restores saved progress');
+  assert.equal(elements.sourceLoadStatus.hidden, true);
+  ctx.loadStudentReviewTasks = async () => {throw new Error('Review API offline');};
+  await ctx.bootStudentPanel();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(elements.sourceLoadStatus.hidden, true, 'Unavailable discussion history does not block the lesson');
 
   for (const status of [401, 403, 404]) {
     ctx.ensureTaskSourceLoaded = async () => {throw {status};};

@@ -23,8 +23,10 @@ class MissingMaturaTests(unittest.TestCase):
 
     def test_sessions_do_not_collide(self):
         available = [session for session, _ in sessions()]
-        self.assertEqual(len(available), 15)
-        self.assertEqual(len({session.json_path for session in available}), 15)
+        self.assertEqual(len(available), 3)
+        self.assertEqual(len({session.json_path for session in available}), 3)
+        self.assertFalse(any("_f2015" in str(session.json_path) for session in available))
+        self.assertEqual(sum(session.year == 2022 for session in available), 2)
         for session in available:
             if session.year >= 2023 and session.formula == "2015":
                 self.assertIn("f2015", session.output_dir.name)

@@ -14,6 +14,7 @@ const ctx = vm.createContext({
   currentTask:{sourceId:'lesson', file:'zp1.png', category:'kurs', coursePart:'zadania_powtorkowe'},
   window:{apiFetch:true}, selectedCoursePart:'zadania_powtorkowe',
   pendingReviewRequests:new Set(), reviewTaskKeys:new Set(),
+  renderTaskNavigator:() => {ctx.navigatorRenders = (ctx.navigatorRenders || 0) + 1;},
   taskLabel:() => 'Zadanie', formatTagLabel:text => text, isPracticalTask:() => false,
   showMessage:message => {ctx.message = message;}
 });
@@ -33,7 +34,28 @@ assert(html.indexOf('id="taskInstruction"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="mcq"') < html.indexOf('class="interaction-panel"'), 'Answers precede help and navigation in DOM order');
 assert.match(html, /\.source-load-pending > \.mcq/);
 assert(!html.includes('--tile-result-band'), 'Status no longer uses thick inset bands');
-for (const icon of ['check', 'x', 'minus', 'skip-forward']) {
+const tileStyle = html.match(/\.tile \{([^}]+)\}/)[1];
+assert.match(tileStyle, /min-width: 32px;/);
+assert.match(tileStyle, /height: 32px;/);
+assert.match(tileStyle, /grid-template-columns: minmax\(12px, auto\);/, 'No extra column for a status icon');
+assert.match(html, /\.tile::after \{[^}]*position: absolute;/);
+function contrast(a, b) {
+  const luminance = hex => {
+    const rgb = hex.slice(1).match(/../g).map(value => parseInt(value, 16) / 255)
+      .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+    return rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722;
+  };
+  const values = [luminance(a), luminance(b)].sort((a, b) => b-a);
+  return (values[0] + 0.05) / (values[1] + 0.05);
+}
+for (const selector of ['.action-btn.nav', '.action-btn.nav:hover']) {
+  const style = html.slice(html.indexOf(`${selector} {`)).split('}')[0];
+  const background = style.match(/background: (#[a-f0-9]{6});/)[1];
+  const border = style.match(/border-color: (#[a-f0-9]{6});/)[1];
+  assert(contrast(background, '#ffffff') >= 4.5, 'White navigation labels remain readable');
+  assert(contrast(border, '#33475b') >= 3, 'Navigation boundaries are visible against the panel');
+}
+for (const icon of ['check', 'x', 'minus', 'skip-forward', 'message-circle']) {
   const path = `static/icons/${icon}.svg`;
   assert.match(fs.readFileSync(path, 'utf8'), /viewBox="0 0 24 24"/);
   assert(html.includes(path));
@@ -42,11 +64,13 @@ for (const icon of ['check', 'x', 'minus', 'skip-forward']) {
 const navContext = vm.createContext({
   document:{createElement:() => ({
     classList:{values:new Set(), add(value) {this.values.add(value);}},
+    children:[], appendChild(child) {this.children.push(child);},
     attributes:{}, setAttribute(key, value) {this.attributes[key] = value;}
   })},
   getSavedResult:task => task.result, taskThemeClass:() => 'nav-theme-revision',
   navigatorTaskLabel:() => '12', taskLabel:() => 'Zadanie powtórkowe 12',
   resultLabel:result => result || 'nierozwiązane', isActiveNavigatorTask:task => task.active,
+  reviewTaskKeys:new Set(['lesson:reviewed.png']), getTaskKey:task => task.key || '',
   openNavigatorTask:(task, index) => {navContext.opened = {task, index};}
 });
 const navStart = html.indexOf('function addNavigatorTaskButton(');
@@ -65,6 +89,16 @@ for (const result of ['good', 'bad', 'medium', 'skipped', null]) {
   button.onclick();
   assert.equal(navContext.opened.task, task);
   assert.equal(navContext.opened.index, buttons.length-1);
+}
+for (const result of ['good', 'bad', 'medium', 'skipped', null]) {
+  navContext.addNavigatorTaskButton(container, {key:'lesson:reviewed.png', result}, 0);
+  const tile = buttons.at(-1);
+  assert(tile.classList.values.has('review-requested'), 'Discussion is independent of answer correctness');
+  if (result) assert(tile.classList.values.has(result), 'Keep the existing answer status');
+  assert.equal(tile.children.length, 1);
+  assert.equal(tile.children[0].className, 'nav-review-mark');
+  assert.equal(tile.children[0].attributes['aria-hidden'], 'true');
+  assert.match(tile.attributes['aria-label'], /Zgłoszone do omówienia na zajęciach/);
 }
 for (const coursePart of ['zadania', 'praca_domowa', 'zadania_powtorkowe', 'zadania_praktyczne']) {
   const task = {category:'kurs', coursePart, topic:'Logarytmy', difficulty:3, completionPercent:51, maxPoints:1};
@@ -92,11 +126,13 @@ assert.equal(exam.difficulty, 3, 'The underlying difficulty data is unchanged');
   assert.equal(button.disabled, false);
   assert.match(ctx.message, /Nie udało się/);
   assert.equal(ctx.reviewTaskKeys.size, 0, 'Failed requests do not count as discussion requests');
+  assert.equal(ctx.navigatorRenders || 0, 0, 'Failed requests do not add a marker');
   ctx.apiFetch = async () => ({created:true});
   await ctx.markForReview();
   assert.equal(button.innerText, 'Dodano do omówienia');
   assert.equal(button.disabled, true);
   assert.equal(ctx.reviewTaskKeys.size, 1);
+  assert.equal(ctx.navigatorRenders, 1, 'Update the task marker immediately after successful submission');
   ctx.resetReviewButton();
   assert.equal(button.innerText, reviewLabel, 'A new task resets the label');
   ctx.apiFetch = async () => ({created:false});
@@ -116,6 +152,7 @@ assert.equal(exam.difficulty, 3, 'The underlying difficulty data is unchanged');
   assert.equal(button.innerText, reviewLabel, 'A late response does not rename the next task button');
   assert.equal(button.disabled, false);
   assert.equal(ctx.pendingReviewRequests.size, 0);
+  assert.equal(ctx.navigatorRenders, 3, 'A delayed success still updates its original task marker');
   assert(ctx.reviewTaskKeys.has('lesson:zp1.png'));
   assert(!ctx.reviewTaskKeys.has('lesson:zp2.png'));
   console.log('PASS: course-only difficulty hiding, discussion request races, compact materials, answer order, accessible task statuses and logo caption');
