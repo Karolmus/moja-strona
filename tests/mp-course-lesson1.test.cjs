@@ -62,6 +62,7 @@ for (const [file, name] of [
   const source = {id: sourcePath, path: sourcePath, category: 'kurs', level: 'matura_podstawowa'};
   const ctx = vm.createContext({
     STUDENT_WORK_COURSE_PART: 'praca_domowa', getSourceMeta: () => source,
+    STUDENT_WORK_COURSE_PARTS: ['praca_domowa', 'zadania_powtorkowe'],
     loadJsonSource: async () => tasks,
     normalizeTaskSolutions: () => [], normalizeTaskGradingCriteria: () => [],
     normalizeCourseTextGradingCriteria: () => [], normalizeTaskTags: task => task.tags

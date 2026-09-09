@@ -2014,6 +2014,7 @@ const ADMIN_TASK_SOURCES = [
     { path: "zadania/eo/2025/maj/2025_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty", label: "Egzamin ósmoklasisty", detail: "2025 / maj / CKE" },
     { path: "zadania/eo/2022/maj/2022_cke_o_m.json", category: "egzaminy", level: "egzamin_osmoklasisty", label: "Egzamin ósmoklasisty", detail: "2022 / maj / CKE" },
     { path: "zadania/kurs/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 1", detail: "Potęgi i pierwiastki" },
+    { path: "zadania/kurs/mp/lekcja_2/lekcja_2_logarytmy.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 2", detail: "Logarytmy" },
     { path: "zadania/kurs/mr/zadania_kurs_mr.json", category: "kurs", level: "matura_rozszerzona", label: "Kurs", detail: "Matura rozszerzona" },
     { path: "zadania/kurs/eo/zadania_kurs_eo.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Kurs", detail: "Egzamin ósmoklasisty" },
     { path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 1", detail: "Odczytywanie danych i procenty" },
@@ -2426,7 +2427,8 @@ function getCatalogSources(category, level, options = {}){
         .filter(task =>
             task.category === category &&
             task.level === level &&
-            (!options.coursePart || task.coursePart === options.coursePart)
+            (!options.coursePart || task.coursePart === options.coursePart) &&
+            (!options.courseParts || options.courseParts.includes(task.coursePart))
         )
         .forEach(task => {
             if(!sourceMap.has(task.sourceId)){
@@ -2844,7 +2846,7 @@ function buildProgressCell(student){
         student.level,
         "kurs",
         COURSE_TARGETS[student.level] || 20,
-        { coursePart: "praca_domowa" }
+        { courseParts: ["praca_domowa", "zadania_powtorkowe"] }
     );
     const examStats = calculateStudentProgressStats(
         progress,
@@ -4508,6 +4510,7 @@ function reviewTaskMeta(item){
 
     if(item.topic) parts.push(item.topic);
     if(item.course_part === "praca_domowa") parts.push("praca domowa");
+    if(item.course_part === "zadania_powtorkowe") parts.push("zadania powtórkowe");
     if(item.level) parts.push(levelLabels[item.level] || item.level);
 
     return parts.join(" • ");

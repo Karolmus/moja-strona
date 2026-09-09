@@ -6,6 +6,7 @@ const names = ['loadTaskSource', 'pool', 'ensureSelectedCoursePart', 'defaultCou
   'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems', 'sourceSummaryTasks'];
 const ctx = vm.createContext({
   STUDENT_WORK_COURSE_PART: 'praca_domowa', COURSE_PART_ORDER: {praca_domowa: 2},
+  STUDENT_WORK_COURSE_PARTS: ['praca_domowa', 'zadania_powtorkowe'],
   selectedCategory: 'kurs', selectedSource: 'lesson1', selectedLevel: 'matura_podstawowa',
   selectedCoursePart: 'zadania', isLoggedInStudent: true,
   tagFiltersSearchAllSources: () => false, taskMatchesTagFilters: () => true,

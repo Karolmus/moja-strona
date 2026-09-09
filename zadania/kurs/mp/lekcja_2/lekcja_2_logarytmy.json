@@ -1,0 +1,768 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 2 - zadanie 1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm ilorazu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Połącz różnicę logarytmów w logarytm ilorazu i zapisz otrzymany ułamek jako potęgę liczby 4."
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 2 - zadanie 2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "pierwiastki",
+      "wykładnik wymierny"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Zapisz podstawę i liczbę logarytmowaną jako potęgi liczby 5. Szukany wykładnik ma spełniać definicję logarytmu."
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 2 - zadanie 3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "logarytm ilorazu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Przenieś współczynniki przed logarytmami do wykładników, a następnie zastosuj wzór na logarytm ilorazu."
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 2 - zadanie 4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm dziesiętny",
+      "pierwiastki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Zapisz pierwiastek z 10 jako potęgę z wykładnikiem 1/2. Logarytm dziesiętny potęgi liczby 10 jest równy jej wykładnikowi."
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 2 - zadanie 5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm iloczynu",
+      "ułamki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Sumę logarytmów zapisz jako logarytm iloczynu. Przed obliczeniem skróć ułamki."
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 2 - zadanie 6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "potęgi",
+      "pierwiastki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Podstawę i argument logarytmu zapisz jako potęgi liczby 3, a potem porównaj wykładniki."
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 2 - zadanie 7",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "pierwiastki",
+      "wzory skróconego mnożenia"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Najpierw oblicz a, korzystając z własności logarytmów. Przy obliczaniu b zastosuj wzór na różnicę kwadratów."
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 2 - zadanie 8",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm iloczynu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Możesz obliczyć oba logarytmy osobno albo połączyć je w logarytm iloczynu."
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 2 - zadanie 9",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "pierwiastki",
+      "wykładnik wymierny"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Zapisz pierwiastek z 3 i iloczyn 3 razy pierwiastek z 3 jako potęgi tej samej liczby."
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 2 - zadanie 10",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "logarytm iloczynu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Liczby przed logarytmami przenieś do wykładników. Przy dodawaniu logarytmów mnożymy ich argumenty."
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 2 - zadanie 11",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "pierwiastki",
+      "wykładnik wymierny"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Zapisz 243 jako potęgę liczby 3, a pierwiastkowanie jako potęgowanie do wykładnika 1/2."
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 2 - zadanie 12",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "wykładnik ujemny",
+      "porównywanie liczb"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Oblicz osobno a, b i c. Pamiętaj, że logarytm przy podstawie mniejszej od 1 może mieć ujemną wartość."
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 2 - zadanie 13",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm iloczynu",
+      "wyrażenia algebraiczne"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Rozłóż 48 na iloczyn liczby 12 i potęgi liczby 2. Następnie rozdziel logarytm iloczynu."
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 2 - zadanie 14",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "wykładnik ujemny",
+      "kolejność działań"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Najpierw zauważ, ile wynosi logarytm liczby 1. Potem oblicz pozostały logarytm."
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 2 - zadanie 15",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "pierwiastki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Zapisz pierwiastek z 32 jako potęgę liczby 2. Oblicz licznik i mianownik osobno."
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 2 - zadanie 16",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "pierwiastki",
+      "definicja logarytmu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Zastanów się, do jakiej potęgi trzeba podnieść pierwiastek z 5, aby otrzymać 5."
+  },
+  {
+    "file": "17.png",
+    "title": "Lekcja 2 - zadanie 17",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "porównywanie liczb",
+      "liczby wymierne",
+      "rozkład na czynniki pierwsze"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ],
+    "hint": "Przy porównaniu logarytmów możesz użyć wzoru na zmianę podstawy. W drugim zdaniu rozważ, czy równość 6^p = 66^q jest możliwa dla dodatnich liczb całkowitych p i q."
+  },
+  {
+    "file": "18.png",
+    "title": "Lekcja 2 - zadanie 18",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm iloczynu",
+      "liczby całkowite",
+      "liczby wymierne",
+      "pierwiastki"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "F",
+      "P"
+    ],
+    "hint": "Połącz sumę logarytmów i porównaj argument z kolejnymi potęgami liczby 10. W drugim zdaniu zapisz pierwiastek jako potęgę liczby 11."
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 2 - praca domowa 1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "wykładnik ujemny",
+      "ułamki",
+      "kolejność działań"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Oblicz osobno b i c, korzystając z definicji logarytmu. Przy mnożeniu przez a zwróć uwagę na znaki wszystkich trzech czynników."
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 2 - praca domowa 2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "pierwiastki",
+      "logarytm potęgi"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Zapisz 25 i pierwiastek z 5 jako potęgi liczby 5. Najpierw oblicz logarytmy, potem wykonaj mnożenie i dodawanie."
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 2 - praca domowa 3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "potęgi",
+      "ułamki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Oblicz osobno logarytm w liczniku i w mianowniku, uwzględniając ich różne podstawy."
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 2 - praca domowa 4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "potęgi",
+      "wykładnik wymierny"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Zapisz 9, 3 i 27 jako potęgi liczby 3. Następnie uwzględnij współczynniki stojące przed logarytmami."
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 2 - praca domowa 5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "logarytm iloczynu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Oblicz oba logarytmy przy podstawie 9 albo przenieś współczynnik do wykładnika i połącz sumę."
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 2 - praca domowa 6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm ilorazu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Różnicę logarytmów zamień na logarytm ilorazu. Otrzymaną liczbę zapisz jako potęgę liczby 5."
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 2 - praca domowa 7",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "logarytm ilorazu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Najpierw zapisz podwojony logarytm jako logarytm kwadratu, a następnie podziel argumenty."
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 2 - praca domowa 8",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "pierwiastki",
+      "definicja logarytmu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Najpierw oblicz pierwiastek trzeciego stopnia z 343. Potem zastosuj definicję logarytmu."
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 2 - praca domowa 9",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "logarytm ilorazu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Przenieś liczbę 2 do wykładnika, połącz różnicę logarytmów i uprość argument."
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 2 - praca domowa 10",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "potęgi",
+      "ułamki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Zapisz 27, 3 i 729 jako potęgi liczby 3. Przy odejmowaniu sprowadź wartości do wspólnego mianownika."
+  },
+  {
+    "file": "zd11.png",
+    "title": "Lekcja 2 - praca domowa 11",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "pierwiastki",
+      "wykładnik wymierny"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Podstawa jest pierwiastkiem trzeciego stopnia z 2. Zapisz ją i liczbę 16 jako potęgi liczby 2."
+  },
+  {
+    "file": "zd12.png",
+    "title": "Lekcja 2 - praca domowa 12",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "definicja logarytmu",
+      "własności logarytmów",
+      "potęgi"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "F",
+      "P"
+    ],
+    "hint": "Pierwsze zdanie sprawdź dla x = y = 1. W drugim porównaj zapis potęgowy z definicją logarytmu.",
+    "instruction": "Przyjmij, że podstawy wszystkich występujących logarytmów są dodatnie i różne od 1."
+  },
+  {
+    "file": "zp1.png",
+    "title": "Lekcja 2 - zadanie powtórkowe 1",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "potęgi i pierwiastki",
+    "tags": [
+      "potęgi",
+      "wykładnik ujemny",
+      "działania na potęgach"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Wszystkie czynniki zapisz jako potęgi liczby 2. Przy mnożeniu potęg o tej samej podstawie dodajemy wykładniki."
+  },
+  {
+    "file": "zp2.png",
+    "title": "Lekcja 2 - zadanie powtórkowe 2",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "potęgi i pierwiastki",
+    "tags": [
+      "pierwiastki",
+      "wykładnik wymierny",
+      "potęgi"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Zapisz 7 razy pierwiastek z 7 jako potęgę liczby 7, a następnie uwzględnij pierwiastek trzeciego stopnia."
+  },
+  {
+    "file": "zp3.png",
+    "title": "Lekcja 2 - zadanie powtórkowe 3",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "potęgi i pierwiastki",
+    "tags": [
+      "potęgi",
+      "działania na potęgach",
+      "zapis dziesiętny"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Zapisz 8 i 125 jako potęgi liczb 2 i 5. Połącz pary czynników 2 i 5 w potęgi liczby 10, a następnie policz cyfry."
+  }
+]

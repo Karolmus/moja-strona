@@ -41,6 +41,7 @@
     --green-text: #2f6b36;
     --red-soft: #fdecea;
     --red-text: #8b2119;
+    --revision-color: #ecd0b2;
     --success: rgba(0, 160, 44, 0.82);
     --warning: rgba(238, 194, 55, 0.9);
     --danger: rgba(220, 52, 42, 0.86);
@@ -149,6 +150,10 @@ body {
     font-size: 17px;
     font-weight: 600;
     line-height: 1;
+}
+
+.formula-card[hidden] {
+    display: none;
 }
 
 .formula-card:hover,
@@ -901,6 +906,41 @@ body.focus-mode .task-card {
     color: var(--text);
 }
 
+.tile.nav-tile.nav-theme-revision {
+    background: var(--revision-color);
+    border-color: #b89671;
+    color: var(--text);
+}
+
+.tile.nav-tile.active.nav-theme-revision {
+    background: linear-gradient(90deg, var(--revision-color) 0%, #f6e8d9 55%, #ffffff 100%);
+    border-color: #836345;
+}
+
+.tile.nav-tile.nav-theme-revision.good {
+    box-shadow: inset 0 var(--tile-result-band) 0 var(--success);
+}
+
+.tile.nav-tile.nav-theme-revision.medium {
+    box-shadow: inset 0 var(--tile-result-band) 0 var(--warning);
+}
+
+.tile.nav-tile.nav-theme-revision.bad {
+    box-shadow: inset 0 var(--tile-result-band) 0 var(--danger);
+}
+
+.tile.nav-tile.active.nav-theme-revision.good {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
+}
+
+.tile.nav-tile.active.nav-theme-revision.medium {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--warning);
+}
+
+.tile.nav-tile.active.nav-theme-revision.bad {
+    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--danger);
+}
+
 .tile.nav-tile.active.good {
     box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
 }
@@ -1048,6 +1088,10 @@ body.focus-mode .task-card {
 
 .meta-practical {
     background: linear-gradient(90deg, #9dbbd4 0%, #d9e8f3 42%, #ffffff 100%);
+}
+
+.meta-revision {
+    background: linear-gradient(90deg, var(--revision-color) 0%, #f6e8d9 42%, #ffffff 100%);
 }
 
 .meta-section {
@@ -1637,7 +1681,7 @@ button {
 }
 
 .task-instruction {
-    margin: 0 0 16px;
+    margin: 12px 0 16px;
     font-size: 14px;
     line-height: 1.5;
     color: var(--text);
@@ -2977,6 +3021,9 @@ footer {
                 <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Karta wzorów - egzamin ósmoklasisty, otwiera się w nowej karcie">
                     <strong>Karta wzorów</strong>
                 </a>
+                <a class="formula-card" id="extraFormulaCard" href="wzory_spoza_tablic_mp.pdf" target="_blank" rel="noopener noreferrer" aria-label="Wzory spoza tablic, otwiera się w nowej karcie" hidden>
+                    <strong>Wzory spoza tablic</strong>
+                </a>
             </div>
 
             <div class="side-section" id="categorySection" style="display:none">
@@ -3263,14 +3310,17 @@ const IMAGE_FADE_MS = 220;
 const TASK_IMAGE_CACHE_VERSION = "20260907-eo-crops";
 const SKIPPED_RESULT = "skipped";
 const STUDENT_WORK_COURSE_PART = "praca_domowa";
+const STUDENT_WORK_COURSE_PARTS = ["praca_domowa", "zadania_powtorkowe"];
 const COURSE_PART_ORDER = {
     zadania: 1,
     praca_domowa: 2,
-    zadania_praktyczne: 3
+    zadania_powtorkowe: 3,
+    zadania_praktyczne: 4
 };
 const COURSE_PART_LABELS = {
     zadania: "1. Część główna",
     praca_domowa: "Praca domowa",
+    zadania_powtorkowe: "Zadania powtórkowe",
     zadania_praktyczne: "3. Zadania praktyczne"
 };
 const TAG_INDEX_PATH = "zadania/tag-index.json?v=20260907-mp-course";
@@ -3404,6 +3454,13 @@ const TASK_SOURCES = [
         level: "matura_podstawowa",
         label: "Lekcja 1",
         detail: "Potęgi i pierwiastki"
+    },
+    {
+        path: "zadania/kurs/mp/lekcja_2/lekcja_2_logarytmy.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Lekcja 2",
+        detail: "Logarytmy"
     },
     {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
@@ -3573,7 +3630,11 @@ const LEVEL_LABELS = {
 const FORMULA_SHEETS = {
     matura_podstawowa: {
         label: "Karta wzorów",
-        href: "wzory_matura.pdf"
+        href: "wzory_matura.pdf",
+        extra: {
+            label: "Wzory spoza tablic",
+            href: "wzory_spoza_tablic_mp.pdf"
+        }
     },
     matura_rozszerzona: {
         label: "Karta wzorów",
@@ -3835,11 +3896,21 @@ function updateAccessModeUI(){
 function updateFormulaSection(){
     const section = document.getElementById("formulaSection");
     const card = document.getElementById("formulaCard");
+    const extraCard = document.getElementById("extraFormulaCard");
     const data = FORMULA_SHEETS[selectedLevel];
 
     if(!section || !card) return;
 
     section.style.display = isLoggedInStudent && data ? "grid" : "none";
+
+    if(extraCard){
+        extraCard.hidden = !isLoggedInStudent || !data?.extra;
+        if(data?.extra){
+            extraCard.href = data.extra.href;
+            extraCard.querySelector("strong").innerText = data.extra.label;
+            extraCard.setAttribute("aria-label", `${data.extra.label}, otwiera się w nowej karcie`);
+        }
+    }
 
     if(!data) return;
 
@@ -3934,7 +4005,7 @@ function loadTaskSource(sourceConfig){
 
         return items.filter(task =>
             sourceMeta.category !== "kurs" ||
-            (task.coursePart || task.section || "zadania") === STUDENT_WORK_COURSE_PART
+            STUDENT_WORK_COURSE_PARTS.includes(task.coursePart || task.section || "zadania")
         ).map(task => ({
             ...task,
             path: basePath + task.file,
@@ -4480,7 +4551,7 @@ function pool(){
         taskMatchesTagFilters(t) &&
         (
             selectedCategory !== "kurs" ||
-            t.coursePart === STUDENT_WORK_COURSE_PART
+            STUDENT_WORK_COURSE_PARTS.includes(t.coursePart)
         )
     );
 }
@@ -4535,7 +4606,9 @@ function ensureSelectedSource(){
 
 function ensureSelectedCoursePart(){
     if(selectedCategory !== "kurs") return;
-    selectedCoursePart = STUDENT_WORK_COURSE_PART;
+    if(!STUDENT_WORK_COURSE_PARTS.includes(selectedCoursePart)){
+        selectedCoursePart = STUDENT_WORK_COURSE_PART;
+    }
 }
 
 function defaultCoursePart(){
@@ -4546,7 +4619,7 @@ function isCoursePreviewMode(task = currentTask){
     return Boolean(
         isLoggedInStudent &&
         task?.category === "kurs" &&
-        task.coursePart !== STUDENT_WORK_COURSE_PART
+        !STUDENT_WORK_COURSE_PARTS.includes(task.coursePart)
     );
 }
 
@@ -4698,6 +4771,7 @@ function updateMetaTheme(){
         "meta-osmoklasista",
         "meta-homework",
         "meta-practical",
+        "meta-revision",
         "meta-all"
     );
 
@@ -4847,9 +4921,7 @@ function getSourceCompletionTasks(source){
     );
 
     if(source.category === "kurs"){
-        const homeworkTasks = sourceTasks.filter(task => task.coursePart === "praca_domowa");
-
-        return homeworkTasks;
+        return sourceTasks.filter(task => STUDENT_WORK_COURSE_PARTS.includes(task.coursePart));
     }
 
     return sourceTasks;
@@ -4862,7 +4934,7 @@ function isSourceComplete(source){
 }
 
 function getCoursePartTasks(part){
-    if(part !== STUDENT_WORK_COURSE_PART) return [];
+    if(!STUDENT_WORK_COURSE_PARTS.includes(part)) return [];
     return tasks.filter(task =>
         task.category === "kurs" &&
         task.level === selectedLevel &&
@@ -4883,7 +4955,7 @@ function getCourseNavigatorItems(){
 
     return tasks.filter(task =>
         task.category === "kurs" &&
-        task.coursePart === STUDENT_WORK_COURSE_PART &&
+        STUDENT_WORK_COURSE_PARTS.includes(task.coursePart) &&
         task.level === selectedLevel &&
         task.sourceId === selectedSource &&
         taskMatchesTagFilters(task)
@@ -4899,7 +4971,8 @@ function getCourseNavigatorItems(){
 }
 
 function selectCoursePartTask(part, file = ""){
-    selectedCoursePart = STUDENT_WORK_COURSE_PART;
+    if(!STUDENT_WORK_COURSE_PARTS.includes(part)) return;
+    selectedCoursePart = part;
 
     resetSession();
     renderTagSearch();
@@ -4907,7 +4980,7 @@ function selectCoursePartTask(part, file = ""){
     const items = pool();
     const index = file
         ? items.findIndex(task => task.file === file)
-        : 0;
+        : items.findIndex(task => task.coursePart === part);
 
     drawTask(Math.max(0, index));
 }
@@ -5049,7 +5122,7 @@ function sourceSummaryTasks(){
     );
 
     return selectedCategory === "kurs"
-        ? sourceTasks.filter(task => task.coursePart === STUDENT_WORK_COURSE_PART)
+        ? sourceTasks.filter(task => STUDENT_WORK_COURSE_PARTS.includes(task.coursePart))
         : sourceTasks;
 }
 
@@ -5762,13 +5835,13 @@ function shouldShowTaskNavigator(items = taskNavigatorItems()){
 
 function courseTaskNumberFromTitle(task){
     const title = String(task?.title || "");
-    const match = title.match(/(?:zadanie(?:\s+(?:domowe|praktyczne))?|ćwiczenie\s+wstępne)\s+(\d+(?:[.,]\d+)?)/i);
+    const match = title.match(/(?:zadanie(?:\s+(?:domowe|praktyczne|powtórkowe))?|ćwiczenie\s+wstępne)\s+(\d+(?:[.,]\d+)?)/i);
 
     return match ? match[1].replace(",", ".") : "";
 }
 
 function coursePartOrdinalNumber(task){
-    if(!task?.sourceId || !["praca_domowa", "zadania_praktyczne"].includes(task.coursePart)){
+    if(!task?.sourceId || ![...STUDENT_WORK_COURSE_PARTS, "zadania_praktyczne"].includes(task.coursePart)){
         return "";
     }
 
@@ -5803,6 +5876,10 @@ function coursePartDisplayTitle(task){
         return `${lessonLabel} - zadanie domowe ${number}`;
     }
 
+    if(task.coursePart === "zadania_powtorkowe"){
+        return `${lessonLabel} - zadanie powtórkowe ${number}`;
+    }
+
     return "";
 }
 
@@ -5834,6 +5911,7 @@ function resultLabel(result){
 }
 
 function taskThemeClass(task){
+    if(task.coursePart === "zadania_powtorkowe") return "nav-theme-revision";
     if(task.coursePart === "zadania_praktyczne") return "nav-theme-practical";
     if(task.coursePart === "praca_domowa") return "nav-theme-homework";
     if(task.category === "kurs") return "nav-theme-course";
@@ -5873,7 +5951,7 @@ function addNavigatorSectionLabel(progress, section){
     const label = document.createElement("span");
 
     label.className = "nav-section-label";
-    label.innerText = isLoggedInStudent && section !== STUDENT_WORK_COURSE_PART
+    label.innerText = isLoggedInStudent && !STUDENT_WORK_COURSE_PARTS.includes(section)
         ? `${COURSE_PART_LABELS[section] || "Część kursu"} · podgląd`
         : COURSE_PART_LABELS[section] || "Część kursu";
 
@@ -6888,11 +6966,13 @@ function updateTaskDetails(task, total){
     const taskCounter = document.getElementById("taskCounter");
     const metaBox = document.getElementById("metaBox");
     const isHomework = task.coursePart === "praca_domowa";
+    const isRevision = task.coursePart === "zadania_powtorkowe";
     const isPractical = task.coursePart === "zadania_praktyczne" || isPracticalTask(task);
 
     taskCounter.innerText = `${currentIndex + 1} / ${total}`;
     metaBox.classList.toggle("meta-homework", isHomework);
-    metaBox.classList.toggle("meta-practical", isPractical && !isHomework);
+    metaBox.classList.toggle("meta-practical", isPractical && !isHomework && !isRevision);
+    metaBox.classList.toggle("meta-revision", isRevision);
 
     metaBox.innerHTML =
     `
@@ -6929,6 +7009,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("metaBox").innerHTML = "";
         document.getElementById("metaBox").classList.remove("meta-homework");
         document.getElementById("metaBox").classList.remove("meta-practical");
+        document.getElementById("metaBox").classList.remove("meta-revision");
         document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
         const tagSuffix = !isLoggedInStudent && (selectedTags.size || tagSearchTerm)

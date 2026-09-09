@@ -842,6 +842,45 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(missing.mimetype, "application/json")
         self.assertEqual(missing.headers["Cache-Control"], "no-store")
 
+    def test_mp_student_can_load_second_lesson_and_save_revision(self):
+        source_id = "zadania/kurs/mp/lekcja_2/lekcja_2_logarytmy.json"
+        path = "/api/course-assets/mp/lekcja_2/lekcja_2_logarytmy.json"
+        self.assertEqual(self.client.get(path).status_code, 401)
+        with app.app_context():
+            student = create_user(
+                email="mp-lesson2@example.com",
+                display_name="Test MP",
+                password="bezpieczne-haslo",
+                level="matura_podstawowa",
+            )
+        login = self.client.post(
+            "/api/auth/login",
+            json={"email": student["email"], "password": "bezpieczne-haslo"},
+        )
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        with self.client.get(path, headers=headers) as response:
+            self.assertEqual(response.status_code, 200)
+            tasks = response.get_json()
+            self.assertEqual(len(tasks), 33)
+            self.assertEqual(sum(t["coursePart"] == "praca_domowa" for t in tasks), 12)
+            self.assertEqual(sum(t["coursePart"] == "zadania_powtorkowe" for t in tasks), 3)
+        for file in ["zd12.png", "zp1.png", "zp3.png"]:
+            with self.client.get(f"/api/course-assets/mp/lekcja_2/{file}", headers=headers) as response:
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.mimetype, "image/png")
+        task = {
+            "task_id": f"{source_id}:zp1.png", "source_id": source_id, "file": "zp1.png",
+            "category": "kurs", "topic": "potęgi i pierwiastki", "result": "good",
+            "earned_points": 1, "max_points": 1, "course_part": "zadania_powtorkowe",
+        }
+        self.assertEqual(self.client.post("/api/progress", headers=headers, json=task).status_code, 201)
+        progress = self.client.get("/api/progress/me", headers=headers).get_json()["progress"]
+        self.assertEqual(len(progress), 1)
+        self.assertEqual(progress[0]["task_id"], task["task_id"])
+        self.assertEqual(self.client.post("/api/review-tasks", headers=headers, json=task).status_code, 201)
+        review = self.client.get("/api/review-tasks/me", headers=headers).get_json()["review_tasks"]
+        self.assertEqual(review[0]["course_part"], "zadania_powtorkowe")
+
     def test_parent_access_token_expires(self):
         with app.app_context():
             student = create_user(
