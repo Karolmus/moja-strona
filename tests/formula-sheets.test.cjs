@@ -74,6 +74,8 @@ assert.match(extraLink, /target="_blank"/);
 assert.match(extraLink, /rel="noopener noreferrer"/);
 assert.match(extraLink, /\bhidden\b/);
 assert.match(html, /\.formula-card\[hidden\]\s*\{\s*display:\s*none;/);
+assert(!html.includes('.formula-card::after'), 'Material links have no decorative arrow');
+assert.match(html, /\.formula-card\s*\{[^}]*min-height: 36px;/);
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)) {
   new vm.Script(script[1]);
 }

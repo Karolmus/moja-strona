@@ -45,7 +45,6 @@
     --success: rgba(0, 160, 44, 0.82);
     --warning: rgba(238, 194, 55, 0.9);
     --danger: rgba(220, 52, 42, 0.86);
-    --tile-result-band: -8px;
     --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
@@ -124,32 +123,16 @@ body {
 
 .formula-card {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 32px;
+    grid-template-columns: minmax(0, 1fr);
     align-items: center;
-    gap: 8px;
-    border: 1px solid #8eb5de;
-    border-left: 4px solid var(--blue-text);
-    border-radius: 8px;
-    background: linear-gradient(135deg, #e8f1fb 0%, #ffffff 78%);
-    color: var(--text);
-    padding: 10px 11px;
+    min-height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface-soft);
+    color: var(--blue-text);
+    padding: 6px 10px;
     text-decoration: none;
-    box-shadow: 0 5px 16px rgba(36, 82, 122, 0.14);
-    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.formula-card::after {
-    content: "↗";
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: white;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1;
+    transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .formula-card[hidden] {
@@ -159,8 +142,7 @@ body {
 .formula-card:hover,
 .formula-card:focus-visible {
     border-color: var(--blue-text);
-    box-shadow: 0 8px 20px rgba(36, 82, 122, 0.2);
-    transform: translateY(-1px);
+    background: var(--blue-soft);
 }
 
 .formula-card:focus-visible {
@@ -751,274 +733,103 @@ body.focus-mode .task-card {
 }
 
 .tile {
-    min-width: 24px;
-    width: auto;
-    height: 24px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    background: #d8dee6;
-    color: var(--muted);
-    cursor: default;
-    font: inherit;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1;
-    display: inline-flex;
+    --tile-bg: #ffffff;
+    --tile-border: var(--line);
+    --tile-ink: var(--text);
+    --status-color: #94a3b8;
+    min-width: 42px;
+    height: 32px;
+    display: inline-grid;
+    grid-template-columns: minmax(12px, auto) 14px;
     align-items: center;
     justify-content: center;
-    padding: 0 6px;
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+    gap: 5px;
+    padding: 0 7px;
+    border: 1px solid var(--tile-border);
+    border-radius: 6px;
+    background: var(--tile-bg);
+    color: var(--tile-ink);
+    cursor: default;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.tile.nav-tile {
-    background: white;
-    cursor: pointer;
-}
-
-.tile.nav-tile:hover {
-    border-color: var(--navy);
-    color: var(--navy);
-    transform: translateY(-1px);
-}
-
-.tile.active {
-    border-color: var(--line-dark);
-    color: var(--text);
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08);
+.tile::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background: var(--status-color);
+    border-radius: 50%;
+    transform: scale(0.3);
 }
 
 .tile.good {
-    background: var(--success);
-    border-color: rgba(0, 120, 36, 0.35);
-    color: white;
+    --status-color: #25804a;
+    --status-icon: url("static/icons/check.svg");
 }
 
 .tile.medium {
-    background: var(--warning);
-    border-color: rgba(183, 138, 0, 0.35);
-    color: #2f2600;
+    --status-color: #99700d;
+    --status-icon: url("static/icons/minus.svg");
 }
 
 .tile.bad {
-    background: var(--danger);
-    border-color: rgba(160, 24, 18, 0.35);
-    color: white;
+    --status-color: #c04444;
+    --status-icon: url("static/icons/x.svg");
 }
 
 .tile.skipped {
-    background: #dbeafe;
-    border-color: #8eb5de;
-    color: #24527a;
+    --status-color: #4077a3;
+    --status-icon: url("static/icons/skip-forward.svg");
 }
 
-.tile.nav-tile.active.nav-theme-podstawowa,
-.tile.nav-tile.active.nav-theme-rozszerzona {
-    background: linear-gradient(90deg, #d5b8ea, #ffffff);
-    border-color: #9b75b5;
-    color: var(--text);
+.tile:is(.good, .medium, .bad, .skipped)::after {
+    border-radius: 0;
+    transform: none;
+    -webkit-mask: var(--status-icon) center / contain no-repeat;
+    mask: var(--status-icon) center / contain no-repeat;
 }
 
-.tile.nav-tile.active.nav-theme-osmoklasista {
-    background: linear-gradient(90deg, #b2d699, #ffffff);
-    border-color: #7dab62;
-    color: var(--text);
+.tile.nav-tile {
+    cursor: pointer;
 }
 
-.tile.nav-tile.nav-theme-course,
-.tile.nav-tile.nav-theme-course.good,
-.tile.nav-tile.nav-theme-course.medium,
-.tile.nav-tile.nav-theme-course.bad {
-    background: #edf7e8;
-    border-color: #b2d699;
-    color: #2f562c;
+.tile.nav-theme-course {
+    --tile-bg: #f3f8f0;
+    --tile-border: #cbdcc2;
 }
 
-.tile.nav-tile.nav-theme-course.good {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--success);
+.tile.nav-theme-practical {
+    --tile-bg: #f0f5f9;
+    --tile-border: #c4d7e5;
 }
 
-.tile.nav-tile.nav-theme-course.medium {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--warning);
+.tile.nav-theme-homework {
+    --tile-bg: #ffffff;
 }
 
-.tile.nav-tile.nav-theme-course.bad {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--danger);
+.tile.nav-theme-revision {
+    --tile-bg: var(--revision-color);
+    --tile-border: #c8aa88;
 }
 
-.tile.nav-tile.active.nav-theme-course,
-.tile.nav-tile.active.nav-theme-course.good,
-.tile.nav-tile.active.nav-theme-course.medium,
-.tile.nav-tile.active.nav-theme-course.bad {
-    background: linear-gradient(90deg, #b2d699 0%, #dcedd2 55%, #ffffff 100%);
-    border-color: #7dab62;
-    color: var(--text);
+.tile.nav-tile:hover {
+    border-color: #8b9baa;
+    box-shadow: 0 2px 5px rgba(38, 53, 69, 0.08);
 }
 
-.tile.nav-tile.nav-theme-practical,
-.tile.nav-tile.nav-theme-practical.good,
-.tile.nav-tile.nav-theme-practical.medium,
-.tile.nav-tile.nav-theme-practical.bad {
-    background: #e7f0f7;
-    border-color: #9dbbd4;
-    color: #244963;
+.tile.nav-tile.active {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 1px var(--navy);
 }
 
-.tile.nav-tile.nav-theme-practical.good {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.nav-theme-practical.medium {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.nav-theme-practical.bad {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.active.nav-theme-practical,
-.tile.nav-tile.active.nav-theme-practical.good,
-.tile.nav-tile.active.nav-theme-practical.medium,
-.tile.nav-tile.active.nav-theme-practical.bad {
-    background: linear-gradient(90deg, #9dbbd4 0%, #d9e8f3 55%, #ffffff 100%);
-    border-color: #6e97b8;
-    color: var(--text);
-}
-
-.tile.nav-tile.active.nav-theme-practical.good {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.active.nav-theme-practical.medium {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.active.nav-theme-practical.bad {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.active.nav-theme-homework {
-    background: linear-gradient(90deg, #d99595 0%, #e7b4b4 55%, #ffffff 100%);
-    border-color: #bf7474;
-    color: var(--text);
-}
-
-.tile.nav-tile.nav-theme-revision {
-    background: var(--revision-color);
-    border-color: #b89671;
-    color: var(--text);
-}
-
-.tile.nav-tile.active.nav-theme-revision {
-    background: linear-gradient(90deg, var(--revision-color) 0%, #f6e8d9 55%, #ffffff 100%);
-    border-color: #836345;
-}
-
-.tile.nav-tile.nav-theme-revision.good {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.nav-theme-revision.medium {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.nav-theme-revision.bad {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.active.nav-theme-revision.good {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.active.nav-theme-revision.medium {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.active.nav-theme-revision.bad {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.active.good {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.active.medium {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.active.bad {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.nav-theme-homework,
-.tile.nav-tile.nav-theme-homework.good,
-.tile.nav-tile.nav-theme-homework.medium,
-.tile.nav-tile.nav-theme-homework.bad {
-    background: #f5dddd;
-    border-color: #d99595;
-    color: #6f3030;
-}
-
-.tile.nav-tile.nav-theme-homework.good {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.nav-theme-homework.medium {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.nav-theme-homework.bad {
-    box-shadow: inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.active.nav-theme-homework,
-.tile.nav-tile.active.nav-theme-homework.good,
-.tile.nav-tile.active.nav-theme-homework.medium,
-.tile.nav-tile.active.nav-theme-homework.bad {
-    background: linear-gradient(90deg, #d99595 0%, #e7b4b4 55%, #ffffff 100%);
-    border-color: #bf7474;
-    color: var(--text);
-}
-
-.tile.nav-tile.active.nav-theme-homework.good {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.active.nav-theme-homework.medium {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.active.nav-theme-homework.bad {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.active.nav-theme-course.good {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--success);
-}
-
-.tile.nav-tile.active.nav-theme-course.medium {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--warning);
-}
-
-.tile.nav-tile.active.nav-theme-course.bad {
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 var(--danger);
-}
-
-.tile.nav-tile.skipped {
-    background: #dbeafe;
-    border-color: #8eb5de;
-    color: #24527a;
-    box-shadow: inset 0 var(--tile-result-band) 0 #4f86b8;
-}
-
-.tile.nav-tile.active.skipped {
-    background: linear-gradient(90deg, #8eb5de 0%, #dbeafe 55%, #ffffff 100%);
-    border-color: #4f86b8;
-    color: var(--text);
-    box-shadow: 0 0 0 2px rgba(38, 53, 69, 0.08), inset 0 var(--tile-result-band) 0 #4f86b8;
+.tile.nav-tile:focus-visible {
+    outline: 3px solid #8eb5de;
+    outline-offset: 3px;
 }
 
 .top-row {
@@ -1197,6 +1008,7 @@ body.focus-mode .task-card {
 .source-load-pending > .meta-box,
 .source-load-pending > .task-image-stack,
 .source-load-pending > .task-instruction,
+.source-load-pending > .mcq,
 .source-load-pending > .interaction-panel {
     display: none;
 }
@@ -1248,10 +1060,6 @@ body.focus-mode .task-card {
 
 .interaction-panel {
     margin-top: 16px;
-    padding: 12px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface-soft);
 }
 
 .source-attribution {
@@ -1271,13 +1079,10 @@ body.focus-mode .task-card {
 .task-actions {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    align-items: stretch;
+    align-items: start;
     gap: 12px;
-    padding: 10px;
-    border: 1px solid #c7d3df;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #edf3f8 0%, #f7f9fb 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
 }
 
 .action-group {
@@ -1291,12 +1096,14 @@ body.focus-mode .task-card {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-content: start;
+    align-items: stretch;
     gap: 6px;
     justify-content: flex-start;
-    padding: 5px;
-    border: 1px solid #d7e0e9;
-    border-radius: 8px;
-    background: #ffffff;
+    padding: 7px;
+}
+
+.action-group.tools:has(.review:not([hidden])) {
+    grid-template-columns: minmax(72px, 1fr) minmax(0, 2fr);
 }
 
 .action-group.navigation {
@@ -1306,6 +1113,8 @@ body.focus-mode .task-card {
         "previous next"
         "skip skip";
     gap: 6px;
+    align-items: stretch;
+    align-content: start;
     justify-content: center;
     min-width: 0;
     padding: 6px;
@@ -1313,6 +1122,10 @@ body.focus-mode .task-card {
     border-radius: 8px;
     background: linear-gradient(145deg, #263545 0%, #33475b 100%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.action-group.navigation.preview {
+    grid-template-areas: "previous next";
 }
 
 .action-group.navigation .previous-task-btn {
@@ -1356,18 +1169,21 @@ button {
 }
 
 .action-btn {
-    min-height: 34px;
+    min-height: 60px;
     padding: 6px 11px;
     font-size: 14px;
-    line-height: 1.15;
+    line-height: 1.25;
 }
 
 .action-group.tools .action-btn {
     width: 100%;
     min-width: 0;
-    min-height: 30px;
     padding: 5px 8px;
     font-size: 12px;
+}
+
+.action-group.tools .review {
+    white-space: normal;
 }
 
 .action-group.tools .box {
@@ -1464,7 +1280,6 @@ button {
     color: white;
     border-color: var(--navy);
     min-width: 112px;
-    min-height: 34px;
     padding: 7px 10px;
 }
 
@@ -1668,9 +1483,25 @@ button {
 }
 
 .course-brand {
+    display: grid;
+    justify-items: center;
+    gap: 6px;
     grid-column: 1 / -1;
     justify-self: center;
+    max-width: 100%;
     padding: 8px 0;
+}
+
+.course-brand[hidden] {
+    display: none;
+}
+
+.course-brand p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
 }
 
 .course-brand img {
@@ -2389,6 +2220,8 @@ button {
 
 .homework-summary-dialog {
     width: min(480px, 100%);
+    max-height: calc(100dvh - 40px);
+    overflow-y: auto;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface);
@@ -2436,6 +2269,17 @@ button {
 .homework-summary-stat span {
     color: var(--muted);
     font-size: 12px;
+    line-height: 1.4;
+}
+
+.homework-summary-stat .summary-note {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+}
+
+.homework-summary-stat .summary-note[hidden] {
+    display: none;
 }
 
 .homework-summary-stat strong {
@@ -2454,12 +2298,12 @@ button {
     color: #287942;
 }
 
-.homework-summary-stat.medium {
+.homework-summary-stat.review {
     border-color: #e7d6a5;
     background: #fffdf5;
 }
 
-.homework-summary-stat.medium strong {
+.homework-summary-stat.review strong {
     color: #927000;
 }
 
@@ -2726,13 +2570,8 @@ footer {
         font-size: 18px;
     }
 
-    .assigned-course-card,
-    .formula-card {
+    .assigned-course-card {
         padding: 7px 9px;
-    }
-
-    .assigned-course-card,
-    .formula-card strong {
         font-size: 11px;
     }
 
@@ -3077,6 +2916,7 @@ footer {
 
             <div class="course-brand" id="courseBrand" hidden>
                 <img src="img/logo3.png" width="96" height="96" alt="Delta Sigma" decoding="async">
+                <p>Karol Musioł Delta Sigma</p>
             </div>
         </aside>
 
@@ -3103,11 +2943,13 @@ footer {
             </div>
             <p class="task-instruction" id="taskInstruction" hidden></p>
 
+            <div class="mcq" id="mcq"></div>
+
             <div class="interaction-panel">
                 <div class="task-actions">
                     <div class="action-group tools" role="group" aria-label="Materiały pomocnicze">
                         <button class="action-btn tool" id="hintButton" onclick="showHint()">Wskazówka</button>
-                        <button class="action-btn review" id="reviewButton" onclick="markForReview()" hidden>Dodaj do omówienia</button>
+                        <button class="action-btn review" id="reviewButton" onclick="markForReview()" hidden>Chcę omówić to zadanie na zajęciach</button>
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
@@ -3122,8 +2964,6 @@ footer {
 
                     <div class="action-group check result-buttons" id="resultButtons"></div>
                 </div>
-
-                <div class="mcq" id="mcq"></div>
 
                 <div class="solution-box" id="solutionBox" hidden>
                     <div class="solution-switcher" id="solutionSwitcher"></div>
@@ -3220,16 +3060,25 @@ footer {
 
         <div class="homework-summary-stats">
             <div class="homework-summary-stat good">
-                <span>Poprawnie</span>
-                <strong id="homeworkSummaryGood">0</strong>
-            </div>
-            <div class="homework-summary-stat medium">
-                <span>Z pomocą</span>
-                <strong id="homeworkSummaryMedium">0</strong>
+                <span>Zadania wykonane poprawnie</span>
+                <div>
+                    <strong id="homeworkSummaryGood">0</strong>
+                    <span class="summary-note" id="homeworkSummaryGoodHints">(w tym 0 ze wskazówką)</span>
+                </div>
             </div>
             <div class="homework-summary-stat bad">
-                <span>Błędnie</span>
-                <strong id="homeworkSummaryBad">0</strong>
+                <span>Zadania wykonane błędnie</span>
+                <div>
+                    <strong id="homeworkSummaryBad">0</strong>
+                    <span class="summary-note" id="homeworkSummaryBadHints">(w tym 0 ze wskazówką)</span>
+                </div>
+            </div>
+            <div class="homework-summary-stat review">
+                <span>Zadania zgłoszone do omówienia na zajęciach</span>
+                <div aria-live="polite">
+                    <strong id="homeworkSummaryReview">0</strong>
+                    <span class="summary-note" id="homeworkSummaryReviewStatus" hidden></span>
+                </div>
             </div>
             <div class="homework-summary-stat time">
                 <span>Czas pracy</span>
@@ -3280,6 +3129,10 @@ let trueFalseSelection = [];
 let savedProgress = [];
 let sessionScores = new Map();
 let sessionDurations = new Map();
+let sessionHints = new Map();
+const reviewTaskKeys = new Set();
+const pendingReviewRequests = new Set();
+let reviewTasksLoadPromise = null;
 let focusMode = false;
 let currentTaskAnswered = false;
 let isLoggedInStudent = false;
@@ -5281,6 +5134,7 @@ function resetSession(){
         sessionResults = new Map();
         sessionScores = new Map();
         sessionDurations = new Map();
+        sessionHints = new Map();
     }
 
     completedExamSummarySource = "";
@@ -5369,7 +5223,7 @@ function getHomeworkSummaryTasks(sourceId = selectedSource){
     return tasks.filter(task =>
         task.category === "kurs" &&
         task.sourceId === sourceId &&
-        task.coursePart === "praca_domowa"
+        STUDENT_WORK_COURSE_PARTS.includes(task.coursePart)
     );
 }
 
@@ -5400,22 +5254,79 @@ function calculateHomeworkSummary(sourceId = selectedSource){
     const summary = {
         tasks: getHomeworkSummaryTasks(sourceId),
         good: 0,
-        medium: 0,
         bad: 0,
+        goodHints: 0,
+        badHints: 0,
+        review: 0,
         durationSeconds: 0
     };
 
     summary.tasks.forEach(task => {
         const result = getSavedResult(task);
+        const key = getTaskKey(task);
+        const usedHint = sessionHints.has(key)
+            ? sessionHints.get(key)
+            : Boolean(getSavedProgressItem(task)?.hint_used);
 
-        if(result === "good") summary.good++;
-        if(result === "medium") summary.medium++;
-        if(result === "bad") summary.bad++;
+        if(["good", "medium", "bad"].includes(result)){
+            const score = getTaskScore(task);
+            // A helped answer may be correct, but a partially scored answer is not fully correct.
+            const correct = result === "good" || (result === "medium" &&
+                (!score || score.earnedPoints >= score.maxPoints));
+            const group = correct ? "good" : "bad";
+
+            summary[group]++;
+            if(usedHint) summary[`${group}Hints`]++;
+        }
+        if(reviewTaskKeys.has(key)) summary.review++;
 
         summary.durationSeconds += getTaskDurationSeconds(task);
     });
 
     return summary;
+}
+
+async function loadStudentReviewTasks(){
+    if(!isLoggedInStudent || !window.apiFetch) return;
+    if(reviewTasksLoadPromise) return reviewTasksLoadPromise;
+
+    reviewTasksLoadPromise = (async () => {
+        await Promise.allSettled([...pendingReviewRequests]);
+        const data = await apiFetch("/api/review-tasks/me", { cache: "no-store" });
+
+        if(!Array.isArray(data?.review_tasks)) throw new Error("Nieprawidłowa lista zgłoszeń.");
+        data.review_tasks.forEach(item => {
+            const key = progressTaskKey(item);
+            if(key) reviewTaskKeys.add(key);
+        });
+    })();
+
+    try {
+        await reviewTasksLoadPromise;
+    } finally {
+        reviewTasksLoadPromise = null;
+    }
+}
+
+async function updateHomeworkReviewCount(sourceId){
+    const overlay = document.getElementById("homeworkSummaryOverlay");
+    const count = document.getElementById("homeworkSummaryReview");
+    const status = document.getElementById("homeworkSummaryReviewStatus");
+    const isCurrentSummary = () => !overlay.hidden && overlay.dataset.sourceId === sourceId;
+
+    count.innerText = "...";
+    status.innerText = "Wczytywanie zgłoszeń...";
+    status.hidden = false;
+    try {
+        await loadStudentReviewTasks();
+        if(!isCurrentSummary()) return;
+        count.innerText = calculateHomeworkSummary(sourceId).review;
+        status.hidden = true;
+    } catch(error) {
+        if(!isCurrentSummary()) return;
+        count.innerText = "-";
+        status.innerText = "Nie udało się pobrać liczby zgłoszeń.";
+    }
 }
 
 function formatHomeworkDuration(seconds){
@@ -5717,7 +5628,8 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     if(!overlay || !dialog){
         showMessage(
             `Praca domowa ukończona.\n` +
-            `Poprawnie: ${summary.good}. Z pomocą: ${summary.medium}. Błędnie: ${summary.bad}. ` +
+            `Zadania wykonane poprawnie: ${summary.good} (w tym ${summary.goodHints} ze wskazówką). ` +
+            `Zadania wykonane błędnie: ${summary.bad} (w tym ${summary.badHints} ze wskazówką). ` +
             `Czas pracy: ${formatHomeworkDuration(summary.durationSeconds)}.`
         );
         return;
@@ -5727,15 +5639,18 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
         ? `${source.label}${source.detail ? ` · ${source.detail}` : ""}`
         : "Praca domowa";
     document.getElementById("homeworkSummaryGood").innerText = summary.good;
-    document.getElementById("homeworkSummaryMedium").innerText = summary.medium;
+    document.getElementById("homeworkSummaryGoodHints").innerText = `(w tym ${summary.goodHints} ze wskazówką)`;
     document.getElementById("homeworkSummaryBad").innerText = summary.bad;
+    document.getElementById("homeworkSummaryBadHints").innerText = `(w tym ${summary.badHints} ze wskazówką)`;
     document.getElementById("homeworkSummaryDuration").innerText =
         formatHomeworkDuration(summary.durationSeconds);
 
     homeworkSummaryPreviousFocus = document.activeElement;
+    overlay.dataset.sourceId = sourceId;
     overlay.hidden = false;
     document.body.style.overflow = "hidden";
     requestAnimationFrame(() => dialog.focus());
+    updateHomeworkReviewCount(sourceId);
 }
 
 document.getElementById("examSummaryClose")
@@ -5770,7 +5685,7 @@ document.addEventListener("keydown", event => {
 });
 
 function advanceToHomeworkSummaryIfComplete(){
-    if(currentTask?.category !== "kurs" || currentTask.coursePart !== "praca_domowa"){
+    if(currentTask?.category !== "kurs" || !STUDENT_WORK_COURSE_PARTS.includes(currentTask.coursePart)){
         return false;
     }
 
@@ -5786,7 +5701,7 @@ function advanceToHomeworkSummaryIfComplete(){
 function updateNextTaskButton(){
     const button = document.querySelector(".next-task-btn");
     const shouldShowHomeworkSummary = currentTask?.category === "kurs" &&
-        currentTask.coursePart === "praca_domowa" &&
+        STUDENT_WORK_COURSE_PARTS.includes(currentTask.coursePart) &&
         isHomeworkComplete(currentTask.sourceId) &&
         completedHomeworkSummarySource !== currentTask.sourceId;
 
@@ -6026,10 +5941,14 @@ function addNavigatorTaskButton(container, task, index){
     if(themeClass) button.classList.add(themeClass);
     button.innerText = navigatorTaskLabel(task);
     button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
+    button.setAttribute("aria-label", button.title);
     button.onclick = () => openNavigatorTask(task, index);
 
     if(result) button.classList.add(result);
-    if(isActiveNavigatorTask(task, index)) button.classList.add("active");
+    if(isActiveNavigatorTask(task, index)){
+        button.classList.add("active");
+        button.setAttribute("aria-current", "step");
+    }
 
     container.appendChild(button);
 }
@@ -6219,6 +6138,8 @@ function completionTooltip(task){
 }
 
 function difficultyStarsMarkup(task){
+    if(task?.category === "kurs") return "";
+
     const tooltip = completionTooltip(task);
     const attributes = tooltip
         ? ` data-tooltip="${tooltip}" tabindex="0" aria-label="${tooltip}"`
@@ -6968,6 +6889,7 @@ function updateTaskDetails(task, total){
     const isHomework = task.coursePart === "praca_domowa";
     const isRevision = task.coursePart === "zadania_powtorkowe";
     const isPractical = task.coursePart === "zadania_praktyczne" || isPracticalTask(task);
+    const difficultyMarkup = difficultyStarsMarkup(task);
 
     taskCounter.innerText = `${currentIndex + 1} / ${total}`;
     metaBox.classList.toggle("meta-homework", isHomework);
@@ -6987,9 +6909,7 @@ function updateTaskDetails(task, total){
 
         ${pointsBadgeMarkup(task) ? `<div class="meta-section">${pointsBadgeMarkup(task)}</div>` : ""}
 
-        <div class="meta-section">
-            ${difficultyStarsMarkup(task)}
-        </div>
+        ${difficultyMarkup ? `<div class="meta-section">${difficultyMarkup}</div>` : ""}
     </div>
     `;
 }
@@ -8367,6 +8287,7 @@ function addProgress(type, scoreData = null){
         sessionResults.set(key, type);
         setSessionScore(currentTask, type, scoreData);
         setSessionDuration(currentTask, taskDuration);
+        sessionHints.set(key, hintUsed);
         saveGuestSessionProgress();
     }
 
@@ -8757,7 +8678,7 @@ function resetReviewButton(){
     if(!reviewButton) return;
 
     reviewButton.disabled = false;
-    reviewButton.innerText = "Dodaj do omówienia";
+    reviewButton.innerText = "Chcę omówić to zadanie na zajęciach";
 }
 
 async function markForReview(){
@@ -8766,25 +8687,32 @@ async function markForReview(){
     if(!currentTask || !window.apiFetch) return;
 
     const reviewButton = document.getElementById("reviewButton");
+    const task = currentTask;
+    let request;
 
     if(reviewButton){
         reviewButton.disabled = true;
     }
 
     try {
-        const data = await apiFetch("/api/review-tasks", {
+        request = apiFetch("/api/review-tasks", {
             method: "POST",
             body: JSON.stringify({
-                task_id: `${currentTask.sourceId}:${currentTask.file}`,
-                source_id: currentTask.sourceId,
-                file: currentTask.file,
-                level: currentTask.level,
-                topic: currentTask.topic,
-                difficulty: taskDifficulty(currentTask),
-                title: taskLabel(currentTask),
-                course_part: currentTask.coursePart || selectedCoursePart
+                task_id: `${task.sourceId}:${task.file}`,
+                source_id: task.sourceId,
+                file: task.file,
+                level: task.level,
+                topic: task.topic,
+                difficulty: taskDifficulty(task),
+                title: taskLabel(task),
+                course_part: task.coursePart || selectedCoursePart
             })
         });
+        pendingReviewRequests.add(request);
+        const data = await request;
+        reviewTaskKeys.add(getTaskKey(task));
+
+        if(currentTask !== task) return;
 
         if(reviewButton){
             reviewButton.innerText = data?.created ? "Dodano do omówienia" : "Już na liście";
@@ -8794,12 +8722,12 @@ async function markForReview(){
             ? "Dodałem to zadanie do listy do omówienia."
             : "To zadanie już czeka na omówienie.");
     } catch(error) {
-        if(reviewButton){
-            reviewButton.disabled = false;
-            reviewButton.innerText = "Dodaj do omówienia";
-        }
+        if(currentTask !== task) return;
+        resetReviewButton();
 
         showMessage("Nie udało się dodać zadania do omówienia. Spróbuj jeszcze raz.");
+    } finally {
+        pendingReviewRequests.delete(request);
     }
 }
 
