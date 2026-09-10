@@ -30,7 +30,7 @@ const ctx = vm.createContext({
   updateScorePanel() {}, updateSourceSummary() {}, saveProgress() {}
 });
 for (const name of ['getTaskKey', 'getProgressSourceId', 'getProgressFile', 'progressTaskKey', 'getSavedResult',
-  'getSavedProgressItem', 'getHomeworkSummaryTasks', 'isHomeworkComplete', 'getTaskDurationSeconds', 'taskMaxPoints',
+  'getSavedProgressItem', 'taskUsedHint', 'getHomeworkSummaryTasks', 'isHomeworkComplete', 'getTaskDurationSeconds', 'taskMaxPoints',
   'taskPointValue', 'normalizeScoreValue', 'automaticScoreForResult', 'getTaskScore', 'calculateHomeworkSummary',
   'formatHomeworkDuration', 'loadStudentReviewTasks', 'updateHomeworkReviewCount', 'showHomeworkCompletionSummary',
   'advanceToHomeworkSummaryIfComplete', 'updateNextTaskButton', 'addProgress']) {

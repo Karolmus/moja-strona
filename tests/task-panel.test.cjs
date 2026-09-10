@@ -84,6 +84,7 @@ const navContext = vm.createContext({
     attributes:{}, setAttribute(key, value) {this.attributes[key] = value;}
   })},
   getSavedResult:task => task.result, taskThemeClass:() => 'nav-theme-revision',
+  taskUsedHint:task => Boolean(task.hint_used),
   navigatorTaskLabel:() => '12', taskLabel:() => 'Zadanie powtórkowe 12',
   resultLabel:result => result || 'nierozwiązane', isActiveNavigatorTask:task => task.active,
   reviewTaskKeys:new Set(['lesson:reviewed.png']), getTaskKey:task => task.key || '',
@@ -115,6 +116,13 @@ for (const result of ['good', 'bad', 'medium', 'skipped', null]) {
   assert.equal(tile.children[0].className, 'nav-review-mark');
   assert.equal(tile.children[0].attributes['aria-hidden'], 'true');
   assert.match(tile.attributes['aria-label'], /Zgłoszone do omówienia na zajęciach/);
+  navContext.addNavigatorTaskButton(container, {key:'lesson:reviewed.png', result, hint_used:true}, 0);
+  const hintedTile = buttons.at(-1);
+  assert.equal(hintedTile.children.length, 2, 'Hint and discussion markers coexist');
+  assert.equal(hintedTile.children[1].className, 'nav-hint-mark');
+  assert.equal(hintedTile.children[1].innerText, 'w');
+  assert.equal(hintedTile.children[1].attributes['aria-hidden'], 'true');
+  assert.match(hintedTile.attributes['aria-label'], /Użyto wskazówki/);
 }
 for (const coursePart of ['zadania', 'praca_domowa', 'zadania_powtorkowe', 'zadania_praktyczne']) {
   const task = {category:'kurs', coursePart, topic:'Logarytmy', difficulty:3, completionPercent:51, maxPoints:1};

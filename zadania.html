@@ -330,7 +330,7 @@ body:not(.guest-exam-mode) .selector-grid {
 
 .source-list.exam-source-list {
     grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+    gap: 6px;
     max-height: 380px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -353,13 +353,13 @@ body:not(.guest-exam-mode) .selector-grid {
 }
 
 .exam-year-label {
-    margin: 0 0 3px;
-    padding-bottom: 2px;
+    margin: 0 0 2px;
+    padding-bottom: 1px;
     border-bottom: 1px solid var(--line);
     color: var(--muted);
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.25;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.1;
 }
 
 .exam-year-sources {
@@ -858,6 +858,23 @@ body.focus-mode .task-card {
     mask: url("static/icons/message-circle.svg") center / contain no-repeat;
 }
 
+.nav-hint-mark {
+    position: absolute;
+    right: -5px;
+    bottom: -2px;
+    display: grid;
+    place-items: center;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #d6ba6f;
+    border-radius: 4px;
+    background: #fff4e6;
+    color: #765719;
+    font-size: 9px;
+    line-height: 1;
+    pointer-events: none;
+}
+
 /* Keep both badges above the number, with the discussion bubble on the right. */
 .tile.review-requested:is(.good, .medium, .bad, .skipped)::before {
     right: 11px;
@@ -1274,6 +1291,18 @@ button {
 
 .action-group.tools .review {
     white-space: normal;
+}
+
+.action-group.tools .video-link {
+    display: grid;
+    place-items: center;
+    grid-column: 1 / -1;
+    min-height: 36px;
+    text-decoration: none;
+}
+
+.video-link[hidden] {
+    display: none !important;
 }
 
 .action-group.tools .box {
@@ -2834,6 +2863,14 @@ footer {
 
     <div class="tasks-layout">
         <aside class="task-sidebar" aria-label="Ustawienia zadań">
+            <div class="side-section" id="categorySection" style="display:none">
+                <div class="category-toggle">
+                    <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
+                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
+                    <a class="category-btn training-card" id="trainingLink" href="trening.html">Trening szybkości</a>
+                </div>
+            </div>
+
             <div class="selector-grid">
                 <div class="side-section" id="guestLevelWrapper">
                     <div class="side-title">Poziom</div>
@@ -2858,14 +2895,6 @@ footer {
                 <a class="formula-card" id="extraFormulaCard" href="wzory_spoza_tablic_mp.pdf" target="_blank" rel="noopener noreferrer" aria-label="Wzory spoza tablic, otwiera się w nowej karcie" hidden>
                     <strong>Wzory spoza tablic</strong>
                 </a>
-            </div>
-
-            <div class="side-section" id="categorySection" style="display:none">
-                <div class="category-toggle">
-                    <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
-                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
-                    <a class="category-btn training-card" id="trainingLink" href="trening.html">Trening szybkości</a>
-                </div>
             </div>
 
             <div class="source-summary-row">
@@ -2950,6 +2979,7 @@ footer {
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
+                        <a class="action-btn solution video-link" id="taskVideoLink" target="_blank" rel="noopener noreferrer" aria-label="Zobacz film, otwiera się w nowej karcie" hidden>Zobacz film</a>
                         <div id="answer" class="box" aria-live="polite"></div>
                     </div>
 
@@ -5178,6 +5208,14 @@ function getSavedProgressItem(task){
     return savedProgress.find(item => progressTaskKey(item) === key) || null;
 }
 
+function taskUsedHint(task){
+    const key = getTaskKey(task);
+
+    return sessionHints.has(key)
+        ? Boolean(sessionHints.get(key))
+        : Boolean(getSavedProgressItem(task)?.hint_used);
+}
+
 function loadGuestSessionProgress(){
     if(isLoggedInStudent) return;
 
@@ -5187,9 +5225,11 @@ function loadGuestSessionProgress(){
 
         sessionResults = new Map(Array.isArray(data?.results) ? data.results : []);
         sessionScores = new Map(Array.isArray(data?.scores) ? data.scores : []);
+        sessionHints = new Map(Array.isArray(data?.hints) ? data.hints : []);
     } catch(error) {
         sessionResults = new Map();
         sessionScores = new Map();
+        sessionHints = new Map();
     }
 }
 
@@ -5199,7 +5239,8 @@ function saveGuestSessionProgress(){
     try {
         sessionStorage.setItem(GUEST_PROGRESS_STORAGE_KEY, JSON.stringify({
             results: [...sessionResults],
-            scores: [...sessionScores]
+            scores: [...sessionScores],
+            hints: [...sessionHints]
         }));
     } catch(error) {
         // Brak zapisu w sessionStorage nie powinien blokować rozwiązywania zadań.
@@ -5271,9 +5312,7 @@ function calculateHomeworkSummary(sourceId = selectedSource){
     summary.tasks.forEach(task => {
         const result = getSavedResult(task);
         const key = getTaskKey(task);
-        const usedHint = sessionHints.has(key)
-            ? sessionHints.get(key)
-            : Boolean(getSavedProgressItem(task)?.hint_used);
+        const usedHint = taskUsedHint(task);
 
         if(["good", "medium", "bad"].includes(result)){
             const score = getTaskScore(task);
@@ -5955,6 +5994,14 @@ function addNavigatorTaskButton(container, task, index){
         button.appendChild(marker);
         button.classList.add("review-requested");
         button.title += " • Zgłoszone do omówienia na zajęciach";
+    }
+    if(taskUsedHint(task)){
+        const marker = document.createElement("span");
+        marker.className = "nav-hint-mark";
+        marker.innerText = "w";
+        marker.setAttribute("aria-hidden", "true");
+        button.appendChild(marker);
+        button.title += " • Użyto wskazówki";
     }
     button.setAttribute("aria-label", button.title);
     button.onclick = () => openNavigatorTask(task, index);
@@ -6844,8 +6891,14 @@ function clearTaskInteraction(){
     const scorePanel = document.getElementById("scorePanel");
     const scoreStatus = document.getElementById("scoreStatus");
     const scoreInput = document.getElementById("scoreInput");
+    const videoLink = document.getElementById("taskVideoLink");
 
     examScoreUnlocked = false;
+
+    if(videoLink){
+        videoLink.hidden = true;
+        videoLink.removeAttribute("href");
+    }
 
     if(mcq){
         mcq.innerHTML = "";
@@ -7028,7 +7081,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
         contextImg.classList.remove("fade-out");
     });
 
-    hintUsed = false;
+    hintUsed = taskUsedHint(taskToRender);
     answerShown = false;
     currentTaskAnswered = false;
     currentTaskStartedAt = Date.now();
@@ -7379,6 +7432,7 @@ function updateAnswerTools(){
     const reviewButton = document.getElementById("reviewButton");
     const solutionButton = document.getElementById("solutionButton");
     const gradingButton = document.getElementById("gradingButton");
+    const videoLink = document.getElementById("taskVideoLink");
     const skipButton = document.getElementById("skipButton");
     const navigationGroup = skipButton?.closest(".action-group.navigation");
 
@@ -7403,6 +7457,13 @@ function updateAnswerTools(){
         gradingButton.hidden = isClosed || !hasGradingCriteria(currentTask);
     }
 
+    if(videoLink){
+        const videoUrl = taskVideoUrl(currentTask);
+        videoLink.hidden = !videoUrl;
+        if(videoUrl) videoLink.href = videoUrl;
+        else videoLink.removeAttribute("href");
+    }
+
     if(reviewButton){
         reviewButton.hidden = !isLoggedInStudent || isPreview;
     }
@@ -7420,6 +7481,14 @@ function updateAnswerTools(){
     }
 
     updateScorePanel();
+}
+
+function taskVideoUrl(task){
+    if(task?.category !== "kurs" || task.level !== "matura_podstawowa") return "";
+    if(!STUDENT_WORK_COURSE_PARTS.includes(task.coursePart)) return "";
+
+    const url = String(task.videoUrl || "");
+    return /^https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}$/.test(url) ? url : "";
 }
 
 function setResultButtonsEnabled(enabled){
@@ -8416,6 +8485,12 @@ function showHint(){
     if(!currentTask) return;
 
     hintUsed = true;
+
+    if(!currentTaskAnswered && !isCoursePreviewMode()){
+        sessionHints.set(getTaskKey(currentTask), true);
+        saveGuestSessionProgress();
+        renderTaskNavigator();
+    }
 
     showMessage(currentTask.hint || "Brak wskazówki.");
 }
