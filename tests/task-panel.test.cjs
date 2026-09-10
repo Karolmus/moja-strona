@@ -48,6 +48,22 @@ function contrast(a, b) {
   const values = [luminance(a), luminance(b)].sort((a, b) => b-a);
   return (values[0] + 0.05) / (values[1] + 0.05);
 }
+assert.match(html, /\.tile\.nav-theme-homework,\s*\.tile\.nav-theme-revision\s*\{\s*--tile-bg: #ffffff;\s*\}/,
+  'Unanswered homework and revision tasks have the same neutral appearance');
+for (const [state, color] of Object.entries({good:'#edf7ef', bad:'#fdf0f0', medium:'#fff4e6', skipped:'#edf4fb'})) {
+  const selector = `.tile.${state} {`;
+  const style = html.slice(html.indexOf(selector)).split('}')[0];
+  assert(style.includes(`--tile-bg: ${color};`), `${state} has a subtle result tint`);
+  assert(html.indexOf(selector) > html.indexOf('.tile.nav-theme-revision {'), 'Result tints override course themes');
+  assert(contrast(color, '#1f2a36') >= 4.5, 'Task numbers remain readable on each result tint');
+}
+const reviewMarkStyle = html.match(/\.nav-review-mark \{([^}]+)\}/)[1];
+assert.match(reviewMarkStyle, /right: -5px;/, 'The discussion bubble sits on the right');
+assert(!reviewMarkStyle.includes('left:'), 'No leftover left-side positioning');
+assert.match(reviewMarkStyle, /box-sizing: border-box;/);
+assert.match(html, /\.tile\.review-requested:is\(\.good, \.medium, \.bad, \.skipped\)::before\s*\{\s*right: 11px;/);
+assert.match(html, /\.tile\.review-requested:is\(\.good, \.medium, \.bad, \.skipped\)::after\s*\{\s*right: 13px;/,
+  'Result icons stay centered while leaving space for a separate discussion bubble');
 for (const selector of ['.action-btn.nav', '.action-btn.nav:hover']) {
   const style = html.slice(html.indexOf(`${selector} {`)).split('}')[0];
   const background = style.match(/background: (#[a-f0-9]{6});/)[1];

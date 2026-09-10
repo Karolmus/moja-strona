@@ -213,6 +213,13 @@ h1{
     min-width: 0;
 }
 
+.booking-step-content {
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+    align-content: start;
+}
+
 .booking-step-number {
     display: grid;
     width: 26px;
@@ -1418,6 +1425,128 @@ h1{
    RESPONSIVE
 ========================= */
 
+@media (min-width:1101px){
+    .booking-grid{
+        --step-heading-width:220px;
+        grid-template-columns:minmax(0, 1fr);
+        gap:0;
+        padding:28px;
+        border:1px solid #e1e7ee;
+        border-radius:8px;
+        background:#ffffff;
+        box-shadow:var(--panel-shadow);
+    }
+
+    .schedule-card,
+    .signup-form-section{
+        padding:0;
+        border:0;
+        border-radius:0;
+        background:transparent;
+        box-shadow:none;
+    }
+
+    .schedule-message{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        grid-template-rows:auto auto;
+        gap:14px 28px;
+        padding:0;
+    }
+
+    .schedule-message p{
+        align-self:start;
+        padding:0;
+        border:0;
+    }
+
+    .schedule-message strong{
+        display:block;
+        margin-bottom:4px;
+    }
+
+    .schedule-message p:last-child{
+        grid-column:1 / -1;
+        margin:0;
+        padding:10px 12px;
+    }
+
+    .schedule-message p:last-child strong{
+        margin:0;
+    }
+
+    .schedule-picker,
+    .signup-form-section,
+    .course-picker{
+        grid-template-columns:var(--step-heading-width) minmax(0, 1fr);
+        column-gap:28px;
+        align-items:start;
+    }
+
+    .schedule-picker,
+    .signup-form-section{
+        padding:24px 0;
+        border-top:1px solid #e4e9ef;
+    }
+
+    .signup-form-section + .signup-form-section{
+        margin-top:0;
+    }
+
+    .signup-form-section > .course-picker{
+        grid-column:1 / -1;
+    }
+
+    .booking-step .booking-step-title{
+        font-size:18px;
+    }
+
+    .booking-step .booking-step-kicker{
+        letter-spacing:0;
+    }
+
+    .booking-step-content{
+        gap:14px;
+    }
+
+    .weekly-frequency-options{
+        max-width:420px;
+    }
+
+    .signup-contact-fields{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:16px 20px;
+    }
+
+    .signup-field-wide,
+    .signup-contact-fields .reservation-note{
+        grid-column:1 / -1;
+    }
+
+    .contact-form label{
+        font-size:13px;
+    }
+
+    .contact-form input:not([type="radio"]),
+    .contact-form textarea{
+        border-radius:8px;
+        min-height:42px;
+    }
+
+    .contact-form textarea{
+        min-height:90px;
+    }
+
+    .contact-form button[type="submit"]{
+        min-height:44px;
+        padding:10px 20px;
+        border-radius:8px;
+    }
+
+    .signup-form-section.is-submitted{
+        background:#eef8f0;
+    }
+}
+
 @media (max-width:1100px){
 
     .booking-grid{
@@ -1902,18 +2031,20 @@ footer{
                             </div>
                         </div>
                     </div>
-                    <p class="schedule-help">
-                        Jeśli żaden z dostępnych terminów Ci nie odpowiada, pomiń ten krok lub
-                        <a href="tel:514681958">zadzwoń do mnie bezpośrednio</a>.
-                    </p>
-                    <p class="schedule-status" id="scheduleStatus" role="status">Wczytywanie terminarza...</p>
-                    <div class="table-wrapper">
-                        <table id="schedule" aria-label="Dostępne terminy zajęć"></table>
-                    </div>
-                    <div class="schedule-mobile" id="scheduleMobile" aria-label="Dostępne terminy zajęć"></div>
-                    <div class="schedule-selected">
-                        <span>Wybrane terminy</span>
-                        <div class="selected-term-list empty" id="selectedTermList" aria-live="polite">Brak wybranych terminów.</div>
+                    <div class="booking-step-content">
+                        <p class="schedule-help">
+                            Jeśli żaden z dostępnych terminów Ci nie odpowiada, pomiń ten krok lub
+                            <a href="tel:514681958">zadzwoń do mnie bezpośrednio</a>.
+                        </p>
+                        <p class="schedule-status" id="scheduleStatus" role="status">Wczytywanie terminarza...</p>
+                        <div class="table-wrapper">
+                            <table id="schedule" aria-label="Dostępne terminy zajęć"></table>
+                        </div>
+                        <div class="schedule-mobile" id="scheduleMobile" aria-label="Dostępne terminy zajęć"></div>
+                        <div class="schedule-selected">
+                            <span>Wybrane terminy</span>
+                            <div class="selected-term-list empty" id="selectedTermList" aria-live="polite">Brak wybranych terminów.</div>
+                        </div>
                     </div>
                 </section>
             </section>
@@ -1935,43 +2066,44 @@ footer{
                                     <div class="booking-step-copy">
                                         <p class="booking-step-kicker">Krok 2</p>
                                         <h3 class="booking-step-title">Wybierz poziom</h3>
-                                        <p class="booking-step-description"><br></p>
                                     </div>
                                 </div>
-                                <div class="course-options" id="courseOptions" role="radiogroup" aria-label="Wybór poziomu zajęć" aria-describedby="courseError">
-                                    <label class="course-option">
-                                        <input type="radio" name="course" value="Na bieżąco | 100 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing" required>
-                                        <span class="course-price-option">
-                                            <span class="course-price-name">Na bieżąco</span>
-                                            <span class="course-price-value" data-price-key="ongoing">100 zł / 55 min</span>
-                                        </span>
-                                    </label>
+                                <div class="booking-step-content">
+                                    <div class="course-options" id="courseOptions" role="radiogroup" aria-label="Wybór poziomu zajęć" aria-describedby="courseError">
+                                        <label class="course-option">
+                                            <input type="radio" name="course" value="Na bieżąco | 100 zł / 55 min" data-course-name="Na bieżąco" data-price-key="ongoing" required>
+                                            <span class="course-price-option">
+                                                <span class="course-price-name">Na bieżąco</span>
+                                                <span class="course-price-value" data-price-key="ongoing">100 zł / 55 min</span>
+                                            </span>
+                                        </label>
 
-                                    <label class="course-option">
-                                        <input type="radio" name="course" value="Egzamin ósmoklasisty | 100 zł / 55 min" data-course-name="Egzamin ósmoklasisty" data-price-key="exam8">
-                                        <span class="course-price-option">
-                                            <span class="course-price-name">Egzamin ósmoklasisty</span>
-                                            <span class="course-price-value" data-price-key="exam8">100 zł / 55 min</span>
-                                        </span>
-                                    </label>
+                                        <label class="course-option">
+                                            <input type="radio" name="course" value="Egzamin ósmoklasisty | 100 zł / 55 min" data-course-name="Egzamin ósmoklasisty" data-price-key="exam8">
+                                            <span class="course-price-option">
+                                                <span class="course-price-name">Egzamin ósmoklasisty</span>
+                                                <span class="course-price-value" data-price-key="exam8">100 zł / 55 min</span>
+                                            </span>
+                                        </label>
 
-                                    <label class="course-option">
-                                        <input type="radio" name="course" value="Matura podstawowa | 100 zł / 55 min" data-course-name="Matura podstawowa" data-price-key="matura_basic">
-                                        <span class="course-price-option">
-                                            <span class="course-price-name">Matura podstawowa</span>
-                                            <span class="course-price-value" data-price-key="matura_basic">100 zł / 55 min</span>
-                                        </span>
-                                    </label>
+                                        <label class="course-option">
+                                            <input type="radio" name="course" value="Matura podstawowa | 100 zł / 55 min" data-course-name="Matura podstawowa" data-price-key="matura_basic">
+                                            <span class="course-price-option">
+                                                <span class="course-price-name">Matura podstawowa</span>
+                                                <span class="course-price-value" data-price-key="matura_basic">100 zł / 55 min</span>
+                                            </span>
+                                        </label>
 
-                                    <label class="course-option">
-                                        <input type="radio" name="course" value="Matura rozszerzona | 130 zł / 55 min" data-course-name="Matura rozszerzona" data-price-key="matura_extended">
-                                        <span class="course-price-option">
-                                            <span class="course-price-name">Matura rozszerzona</span>
-                                            <span class="course-price-value" data-price-key="matura_extended">130 zł / 55 min</span>
-                                        </span>
-                                    </label>
+                                        <label class="course-option">
+                                            <input type="radio" name="course" value="Matura rozszerzona | 130 zł / 55 min" data-course-name="Matura rozszerzona" data-price-key="matura_extended">
+                                            <span class="course-price-option">
+                                                <span class="course-price-name">Matura rozszerzona</span>
+                                                <span class="course-price-value" data-price-key="matura_extended">130 zł / 55 min</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <span class="form-field-error" id="courseError" role="status" aria-live="polite"></span>
                                 </div>
-                                <span class="form-field-error" id="courseError" role="status" aria-live="polite"></span>
                             </div>
                         </div>
 
@@ -1981,27 +2113,28 @@ footer{
                                 <div class="booking-step-copy">
                                     <p class="booking-step-kicker">Krok 3</p>
                                     <h3 class="booking-step-title">Ile zajęć w tygodniu?</h3>
-                                    <p class="booking-step-description"><br></p>
                                 </div>
                             </div>
 
-                            <div class="weekly-frequency-options" id="sessionsPerWeekOptions" role="radiogroup" aria-label="Liczba zajęć w tygodniu" aria-describedby="sessionsPerWeekError">
-                                <label class="frequency-option">
-                                    <input type="radio" name="sessions_per_week" value="1 zajęcie tygodniowo" aria-label="1 zajęcie tygodniowo" required>
-                                    <span class="frequency-choice" aria-hidden="true"><strong>1</strong></span>
-                                </label>
+                            <div class="booking-step-content">
+                                <div class="weekly-frequency-options" id="sessionsPerWeekOptions" role="radiogroup" aria-label="Liczba zajęć w tygodniu" aria-describedby="sessionsPerWeekError">
+                                    <label class="frequency-option">
+                                        <input type="radio" name="sessions_per_week" value="1 zajęcie tygodniowo" aria-label="1 zajęcie tygodniowo" required>
+                                        <span class="frequency-choice" aria-hidden="true"><strong>1</strong></span>
+                                    </label>
 
-                                <label class="frequency-option">
-                                    <input type="radio" name="sessions_per_week" value="2 zajęcia tygodniowo" aria-label="2 zajęcia tygodniowo">
-                                    <span class="frequency-choice" aria-hidden="true"><strong>2</strong></span>
-                                </label>
+                                    <label class="frequency-option">
+                                        <input type="radio" name="sessions_per_week" value="2 zajęcia tygodniowo" aria-label="2 zajęcia tygodniowo">
+                                        <span class="frequency-choice" aria-hidden="true"><strong>2</strong></span>
+                                    </label>
 
-                                <label class="frequency-option">
-                                    <input type="radio" name="sessions_per_week" value="3 zajęcia tygodniowo" aria-label="3 zajęcia tygodniowo">
-                                    <span class="frequency-choice" aria-hidden="true"><strong>3</strong></span>
-                                </label>
+                                    <label class="frequency-option">
+                                        <input type="radio" name="sessions_per_week" value="3 zajęcia tygodniowo" aria-label="3 zajęcia tygodniowo">
+                                        <span class="frequency-choice" aria-hidden="true"><strong>3</strong></span>
+                                    </label>
+                                </div>
+                                <span class="form-field-error" id="sessionsPerWeekError" role="status" aria-live="polite"></span>
                             </div>
-                            <span class="form-field-error" id="sessionsPerWeekError" role="status" aria-live="polite"></span>
                         </div>
 
                         <div class="signup-form-section">
@@ -2010,37 +2143,38 @@ footer{
                                 <div class="booking-step-copy">
                                     <p class="booking-step-kicker">Krok 4</p>
                                     <h3 class="booking-step-title">Zostaw kontakt</h3>
-                                    <p class="booking-step-description"><br></p>
                                 </div>
                             </div>
 
-                            <label>
-                                Numer telefonu (pole obowiązkowe)
-                                <input id="contactInput" name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+(). -]{9,25}" maxlength="25" title="Podaj prawidłowy numer telefonu." aria-describedby="contactError" required>
-                                <span class="form-field-error" id="contactError" role="status" aria-live="polite"></span>
-                            </label>
+                            <div class="booking-step-content signup-contact-fields">
+                                <label>
+                                    Numer telefonu (pole obowiązkowe)
+                                    <input id="contactInput" name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+(). -]{9,25}" maxlength="25" title="Podaj prawidłowy numer telefonu." aria-describedby="contactError" required>
+                                    <span class="form-field-error" id="contactError" role="status" aria-live="polite"></span>
+                                </label>
 
-                            <label>
-                                Nazwa użytkownika Discord ucznia (opcjonalnie)
-                                <input name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80">
-                            </label>
+                                <label>
+                                    Nazwa użytkownika Discord ucznia (opcjonalnie)
+                                    <input name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80">
+                                </label>
 
-                            <label>
-                                Preferowany termin (opcjonalnie)
-                                <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError">
-                                <span class="form-field-error" id="preferredTermError" role="status" aria-live="polite"></span>
-                            </label>
+                                <label class="signup-field-wide">
+                                    Preferowany termin (opcjonalnie)
+                                    <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError">
+                                    <span class="form-field-error" id="preferredTermError" role="status" aria-live="polite"></span>
+                                </label>
 
-                            <p class="reservation-note">
-                                Jeśli wybierzesz termin z terminarza, zostanie on zablokowany po wysłaniu zgłoszenia.
-                                Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
-                                <a href="regulamin-zajec.html">Regulamin korepetycji</a>
-                            </p>
+                                <p class="reservation-note">
+                                    Jeśli wybierzesz termin z terminarza, zostanie on zablokowany po wysłaniu zgłoszenia.
+                                    Zgłoszenie ma charakter wstępny, a termin zajęć potwierdzamy indywidualnie.
+                                    <a href="regulamin-zajec.html">Regulamin korepetycji</a>
+                                </p>
 
-                            <label>
-                                Dodatkowe informacje.
-                                <textarea name="message" maxlength="3000"></textarea>
-                            </label>
+                                <label class="signup-field-wide">
+                                    Dodatkowe informacje.
+                                    <textarea name="message" maxlength="3000"></textarea>
+                                </label>
+                            </div>
                         </div>
 
                         <div class="signup-form-section" id="signupFinalStep">
@@ -2051,23 +2185,25 @@ footer{
                                     <h3 class="booking-step-title">Podsumowanie</h3>
                                 </div>
                             </div>
-                            <div class="signup-review" id="signupReview">
-                                <dl class="signup-summary" aria-live="polite">
-                                    <div><dt>Poziom i cena</dt><dd id="signupSummaryCourse">Nie wybrano poziomu.</dd></div>
-                                    <div><dt>Zajęcia w tygodniu</dt><dd id="signupSummaryFrequency">Nie wybrano liczby zajęć.</dd></div>
-                                    <div><dt>Wybrane terminy</dt><dd id="signupSummaryTerms">Brak wybranych terminów.</dd></div>
-                                    <div id="signupSummaryAvailabilityRow" hidden><dt>Preferowany termin</dt><dd id="signupSummaryAvailability"></dd></div>
-                                    <div><dt>Numer telefonu</dt><dd id="signupSummaryPhone">Nie podano numeru.</dd></div>
-                                    <div id="signupSummaryDiscordRow" hidden><dt>Discord ucznia</dt><dd id="signupSummaryDiscord"></dd></div>
-                                </dl>
-                                <p id="signupSummaryPending" hidden></p>
-                                <p class="signup-response-time">Odpowiem na zgłoszenie w ciągu 24 godzin.</p>
-                                <button type="submit">Wyślij zgłoszenie</button>
-                            </div>
-                            <div class="signup-confirmation" id="signupConfirmation" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="signupConfirmationTitle" tabindex="-1" hidden>
-                                <h3 id="signupConfirmationTitle">Zgłoszenie wysłane</h3>
-                                <p>Dziękuję za zgłoszenie. Odpowiem w ciągu 24 godzin.</p>
-                                <p id="signupConfirmationDetails"></p>
+                            <div class="booking-step-content">
+                                <div class="signup-review" id="signupReview">
+                                    <dl class="signup-summary" aria-live="polite">
+                                        <div><dt>Poziom i cena</dt><dd id="signupSummaryCourse">Nie wybrano poziomu.</dd></div>
+                                        <div><dt>Zajęcia w tygodniu</dt><dd id="signupSummaryFrequency">Nie wybrano liczby zajęć.</dd></div>
+                                        <div><dt>Wybrane terminy</dt><dd id="signupSummaryTerms">Brak wybranych terminów.</dd></div>
+                                        <div id="signupSummaryAvailabilityRow" hidden><dt>Preferowany termin</dt><dd id="signupSummaryAvailability"></dd></div>
+                                        <div><dt>Numer telefonu</dt><dd id="signupSummaryPhone">Nie podano numeru.</dd></div>
+                                        <div id="signupSummaryDiscordRow" hidden><dt>Discord ucznia</dt><dd id="signupSummaryDiscord"></dd></div>
+                                    </dl>
+                                    <p id="signupSummaryPending" hidden></p>
+                                    <p class="signup-response-time">Odpowiem na zgłoszenie w ciągu 24 godzin.</p>
+                                    <button type="submit">Wyślij zgłoszenie</button>
+                                </div>
+                                <div class="signup-confirmation" id="signupConfirmation" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="signupConfirmationTitle" tabindex="-1" hidden>
+                                    <h3 id="signupConfirmationTitle">Zgłoszenie wysłane</h3>
+                                    <p>Dziękuję za zgłoszenie. Odpowiem w ciągu 24 godzin.</p>
+                                    <p id="signupConfirmationDetails"></p>
+                                </div>
                             </div>
                         </div>
 

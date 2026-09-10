@@ -791,7 +791,7 @@ body.focus-mode .task-card {
     font-weight: 600;
     line-height: 1;
     font-variant-numeric: tabular-nums;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tile::before,
@@ -808,26 +808,6 @@ body.focus-mode .task-card {
     width: 12px;
     height: 12px;
     background: var(--status-color);
-}
-
-.tile.good {
-    --status-color: #25804a;
-    --status-icon: url("static/icons/check.svg");
-}
-
-.tile.medium {
-    --status-color: #99700d;
-    --status-icon: url("static/icons/minus.svg");
-}
-
-.tile.bad {
-    --status-color: #c04444;
-    --status-icon: url("static/icons/x.svg");
-}
-
-.tile.skipped {
-    --status-color: #4077a3;
-    --status-icon: url("static/icons/skip-forward.svg");
 }
 
 .tile:is(.good, .medium, .bad, .skipped)::before {
@@ -857,9 +837,10 @@ body.focus-mode .task-card {
 }
 
 .nav-review-mark {
+    box-sizing: border-box;
     position: absolute;
     top: -7px;
-    left: 0;
+    right: -5px;
     width: 14px;
     height: 14px;
     border: 1px solid #d6ba6f;
@@ -877,6 +858,15 @@ body.focus-mode .task-card {
     mask: url("static/icons/message-circle.svg") center / contain no-repeat;
 }
 
+/* Keep both badges above the number, with the discussion bubble on the right. */
+.tile.review-requested:is(.good, .medium, .bad, .skipped)::before {
+    right: 11px;
+}
+
+.tile.review-requested:is(.good, .medium, .bad, .skipped)::after {
+    right: 13px;
+}
+
 .tile.nav-theme-course {
     --tile-bg: #f3f8f0;
     --tile-border: #cbdcc2;
@@ -887,13 +877,33 @@ body.focus-mode .task-card {
     --tile-border: #c4d7e5;
 }
 
-.tile.nav-theme-homework {
+.tile.nav-theme-homework,
+.tile.nav-theme-revision {
     --tile-bg: #ffffff;
 }
 
-.tile.nav-theme-revision {
-    --tile-bg: var(--revision-color);
-    --tile-border: #c8aa88;
+.tile.good {
+    --tile-bg: #edf7ef;
+    --status-color: #25804a;
+    --status-icon: url("static/icons/check.svg");
+}
+
+.tile.medium {
+    --tile-bg: #fff4e6;
+    --status-color: #99700d;
+    --status-icon: url("static/icons/minus.svg");
+}
+
+.tile.bad {
+    --tile-bg: #fdf0f0;
+    --status-color: #c04444;
+    --status-icon: url("static/icons/x.svg");
+}
+
+.tile.skipped {
+    --tile-bg: #edf4fb;
+    --status-color: #4077a3;
+    --status-icon: url("static/icons/skip-forward.svg");
 }
 
 .tile.nav-tile:hover {
