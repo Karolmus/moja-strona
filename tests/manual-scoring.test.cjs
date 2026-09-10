@@ -28,8 +28,9 @@ for (const name of ['hasGradingCriteria', 'hasSavedPoints', 'isManualScoreTask',
   vm.runInContext((html.slice(start - 6, start) === 'async ' ? 'async ' : '') +
     html.slice(start, html.indexOf('\n}', start) + 2), context);
 }
-const notice = 'To zadanie oceniasz samodzielnie. Po wejściu w zasady oceniania możesz przyznać sobie liczbę punktów zgodną z wytycznymi CKE.';
+const notice = 'To zadanie oceniasz samodzielnie. Rozwiąż je, a następnie otwórz zasady oceniania, aby przyznać sobie punkty.';
 assert(html.includes(`id="manualScoreNotice" hidden>${notice}</p>`));
+assert.match(html, /\.manual-score-notice \{[^}]*color: #000;/);
 assert.match(html, /id="scoreInput"[^>]*type="range"/);
 assert.match(html, /id="scoreSaveButton"[^>]*>Zapisz wynik<\/button>/);
 for (const removed of ['scoreMaxButton', 'scoreMaxLabel', 'scoreRangeScale', 'score-panel-head']) {

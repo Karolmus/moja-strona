@@ -20,6 +20,14 @@ for (const name of ['getSourceMeta', 'getSourceMetaById', 'getExamSourceTileCont
 const sources = vm.runInContext('TASK_SOURCES.map(getSourceMeta)', context);
 assert.equal(new Set(sources.map(source => source.id)).size, sources.length);
 for (const source of sources) assert(fs.existsSync(source.path), source.path);
+const eighthGrade = sources.filter(source => source.level === 'egzamin_osmoklasisty');
+assert(eighthGrade.length > 0);
+assert(eighthGrade.every(source => !/formuła/i.test(source.detail)));
+for (const formula of ['2015', '2023']) {
+  const source = context.getSourceMeta(`zadania/eo/2026/maj_f${formula}/fixture.json`);
+  assert.equal(source.detail, '2026 · maj', 'Formula suffixes are never shown for eighth-grade exams');
+}
+assert.match(context.getSourceMeta('zadania/mr/2026/maj_f2023/fixture.json').detail, /Formuła 2023/);
 
 const basic = sources.filter(source => source.path.startsWith('zadania/mp/'));
 assert.equal(basic.length, 35);

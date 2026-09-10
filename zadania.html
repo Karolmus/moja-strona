@@ -330,7 +330,7 @@ body:not(.guest-exam-mode) .selector-grid {
 
 .source-list.exam-source-list {
     grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
+    gap: 8px;
     max-height: 380px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -353,13 +353,13 @@ body:not(.guest-exam-mode) .selector-grid {
 }
 
 .exam-year-label {
-    margin: 0 0 6px;
-    padding-bottom: 4px;
+    margin: 0 0 3px;
+    padding-bottom: 2px;
     border-bottom: 1px solid var(--line);
     color: var(--muted);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.25;
 }
 
 .exam-year-sources {
@@ -437,10 +437,10 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .exam-source-list .source-btn {
-    min-height: 38px;
+    min-height: 28px;
     align-content: center;
     gap: 1px;
-    padding: 5px 4px;
+    padding: 3px 4px;
     text-align: center;
 }
 
@@ -1774,7 +1774,7 @@ button {
 
 .manual-score-notice {
     margin: 12px 0;
-    color: var(--muted);
+    color: #000;
     font-size: 13px;
     line-height: 1.5;
 }
@@ -2377,9 +2377,9 @@ footer {
     }
 
     .exam-source-list .source-btn {
-        min-height: 44px;
-        padding: 6px 4px;
-        gap: 3px;
+        min-height: 32px;
+        padding: 3px 4px;
+        gap: 1px;
     }
 
     .exam-source-list .source-btn span {
@@ -2930,7 +2930,7 @@ footer {
 
             <div class="mcq" id="mcq"></div>
 
-            <p class="manual-score-notice" id="manualScoreNotice" hidden>To zadanie oceniasz samodzielnie. Po wejściu w zasady oceniania możesz przyznać sobie liczbę punktów zgodną z wytycznymi CKE.</p>
+            <p class="manual-score-notice" id="manualScoreNotice" hidden>To zadanie oceniasz samodzielnie. Rozwiąż je, a następnie otwórz zasady oceniania, aby przyznać sobie punkty.</p>
 
             <div class="interaction-panel">
                 <div class="task-actions">
@@ -4059,7 +4059,7 @@ function getSourceMeta(sourceConfig){
     const year = parts[2];
     const month = parts[3];
     const monthLabel = MONTH_LABELS[month] || MONTH_LABELS[String(month || "").split("_")[0]] || month;
-    const formula = !isCourse && String(month || "").match(/_f(2015|2023)(?:_|$)/)?.[1];
+    const formula = !isCourse && ["mp", "mr"].includes(type) && String(month || "").match(/_f(2015|2023)(?:_|$)/)?.[1];
     const label = sourceConfig.label || SOURCE_TYPE_LABELS[type] || "Zestaw";
     const detail = isCourse
         ? sourceConfig.detail || ""
