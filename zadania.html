@@ -3124,6 +3124,8 @@ footer {
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
 <script src="static/math-answer-input.js?v=20260907"></script>
+<script src="static/active-work-time.js?v=20260910"></script>
+<script src="static/course-videos.js?v=20260910"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -3133,7 +3135,6 @@ let answerShown = false;
 let examScoreUnlocked = false;
 let seconds = 0;
 let currentIndex = 0;
-let currentTaskStartedAt = 0;
 let selectedSource = "all";
 let selectedCategory = "kurs";
 let selectedCoursePart = "praca_domowa";
@@ -3513,9 +3514,35 @@ const MONTH_LABELS = {
 };
 
 const GUEST_PROGRESS_STORAGE_KEY = "deltaSigmaGuestExamProgress";
+const workTimer = new DeltaSigmaActiveWorkTime();
+
+function syncWorkTimeVisibility(){
+    workTimer.setForeground(document.visibilityState === "visible" && document.hasFocus());
+}
+
+let lastWorkActivityEvent = -Infinity;
+function recordWorkActivity(event){
+    if(!event.isTrusted) return;
+    const at = performance.now();
+    if(at - lastWorkActivityEvent < 500) return;
+    lastWorkActivityEvent = at;
+    workTimer.activity();
+}
+
+for(const type of ["pointerdown", "pointermove", "keydown", "input", "wheel", "touchstart", "touchmove"]){
+    document.addEventListener(type, recordWorkActivity, { passive: true, capture: true });
+}
+document.addEventListener("visibilitychange", syncWorkTimeVisibility);
+window.addEventListener("focus", syncWorkTimeVisibility);
+window.addEventListener("blur", () => workTimer.setForeground(false));
+window.addEventListener("pagehide", () => workTimer.setForeground(false));
+window.addEventListener("pageshow", syncWorkTimeVisibility);
+document.addEventListener("freeze", () => workTimer.setForeground(false));
+document.addEventListener("resume", syncWorkTimeVisibility);
+syncWorkTimeVisibility();
 
 setInterval(() => {
-    seconds++;
+    seconds = workTimer.totalSeconds();
     updateTimer();
 }, 1000);
 
@@ -3638,6 +3665,7 @@ function setSourceLoadState(state, error = null){
     const message = document.getElementById("sourceLoadMessage");
     const retry = document.getElementById("sourceLoadRetry");
     const pending = state !== "ready";
+    if(pending) workTimer.pause();
 
     document.querySelector(".task-card").classList.toggle("source-load-pending", pending);
     status.hidden = !pending;
@@ -5163,6 +5191,7 @@ function updateSourceSummary(){
 }
 
 function resetSession(){
+    workTimer.resetTotal();
     currentIndex = 0;
     randomHistory = [];
     randomHistoryIndex = -1;
@@ -6984,6 +7013,7 @@ function updateTaskDetails(task, total){
 }
 
 async function drawTask(index = currentIndex, trackHistory = true){
+    workTimer.pause();
     const p = pool();
 
     if(!p.length){
@@ -7084,7 +7114,6 @@ async function drawTask(index = currentIndex, trackHistory = true){
     hintUsed = taskUsedHint(taskToRender);
     answerShown = false;
     currentTaskAnswered = false;
-    currentTaskStartedAt = Date.now();
 
     resetReviewButton();
     setupMCQ();
@@ -7098,6 +7127,9 @@ async function drawTask(index = currentIndex, trackHistory = true){
     }
 
     applyCourseAnswerLock();
+    if(taskPath && !currentTaskAnswered && !isCoursePreviewMode()){
+        workTimer.start(getTaskKey(taskToRender));
+    }
     updateNextTaskButton();
 }
 
@@ -7487,7 +7519,7 @@ function taskVideoUrl(task){
     if(task?.category !== "kurs" || task.level !== "matura_podstawowa") return "";
     if(!STUDENT_WORK_COURSE_PARTS.includes(task.coursePart)) return "";
 
-    const url = String(task.videoUrl || "");
+    const url = String(DeltaSigmaCourseVideos[task.sourceId]?.[task.file] || task.videoUrl || "");
     return /^https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}$/.test(url) ? url : "";
 }
 
@@ -8325,6 +8357,7 @@ function addProgress(type, scoreData = null){
 
     const key = getTaskKey(currentTask);
     const taskDuration = getCurrentTaskDurationSeconds();
+    workTimer.finish(key);
 
     if(key){
         sessionResults.set(key, type);
@@ -8448,6 +8481,7 @@ async function submitScore(event){
     if(currentTaskAnswered){
         const key = getTaskKey(currentTask);
         const taskDuration = getCurrentTaskDurationSeconds();
+        workTimer.finish(key);
 
         if(key){
             sessionResults.set(key, result);
@@ -8474,11 +8508,7 @@ async function submitScore(event){
 }
 
 function getCurrentTaskDurationSeconds(){
-    if(!currentTaskStartedAt) return 0;
-
-    const duration = Math.round((Date.now() - currentTaskStartedAt) / 1000);
-
-    return Math.max(1, Math.min(duration, 4 * 60 * 60));
+    return workTimer.seconds(getTaskKey(currentTask));
 }
 
 function showHint(){

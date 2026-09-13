@@ -15,6 +15,7 @@ const overlay = elements.homeworkSummaryOverlay;
 overlay.dataset = {};
 overlay.querySelector = () => dialog;
 const ctx = vm.createContext({
+  workTimer:{finish(){}},
   tasks, selectedSource:sourceId, selectedCategory:'kurs', selectedLevel:'matura_podstawowa',
   STUDENT_WORK_COURSE_PARTS:['praca_domowa', 'zadania_powtorkowe'],
   sessionResults:new Map(), sessionScores:new Map(), sessionDurations:new Map(), sessionHints:new Map(),

@@ -3,6 +3,7 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
 const ctx = vm.createContext({
+  DeltaSigmaCourseVideos:require('../static/course-videos.js'),
   sessionHints:new Map(), sessionResults:new Map(), sessionScores:new Map(),
   getSavedProgressItem:task => task?.saved || null,
   isLoggedInStudent:false, GUEST_PROGRESS_STORAGE_KEY:'fixture-progress',
@@ -51,6 +52,10 @@ const ids = ['F--EfH1oOnE', 'P4f9hTNHzOI', 'zyHpSu21XwM', 'z36E8at2ZRk', 'AqwufB
 for (const [index, id] of ids.entries()) {
   const task = {...tasks.find(task => task.file === `zd${index + 1}.png`), category:'kurs'};
   assert.equal(ctx.taskVideoUrl(task), `https://youtu.be/${id}`);
+  const staleTask = {...task, sourceId:'zadania/kurs/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json'};
+  delete staleTask.videoUrl;
+  assert.equal(ctx.taskVideoUrl(staleTask), `https://youtu.be/${id}`, 'Videos work with an older course server');
+  assert.equal(ctx.taskVideoUrl({...staleTask, sourceId:'zadania/kurs/mp/lekcja_2/lekcja_2_logarytmy.json'}), '');
   for (const invalid of ['javascript:alert(1)', 'https://youtu.be.evil.test/abc', 'http://youtu.be/' + id]) {
     assert.equal(ctx.taskVideoUrl({...task, videoUrl:invalid}), '');
   }

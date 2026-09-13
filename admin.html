@@ -352,18 +352,76 @@ th {
     font-weight: 600;
 }
 
-.student-row {
+.student-list { min-width: 0; }
+.student-entry { border-top: 1px solid var(--line); }
+.student-entry:last-child { border-bottom: 1px solid var(--line); }
+.student-toggle {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px 145px 130px 12px;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 46px;
+    padding: 8px 10px;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: left;
     cursor: pointer;
-    transition: background 0.18s ease, box-shadow 0.18s ease;
 }
-
-.student-row:hover {
-    background: #f8fafc;
+.student-toggle:hover { background: #f8fafc; }
+.student-toggle[aria-expanded="true"] { background: #edf4fb; }
+.student-toggle:focus-visible { outline: 2px solid #24527a; outline-offset: -2px; }
+.student-toggle::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    justify-self: center;
 }
-
-.student-row.active {
-    background: #edf4fb;
-    box-shadow: inset 3px 0 0 #24527a;
+.student-toggle[aria-expanded="true"]::after { transform: rotate(225deg); }
+.student-summary-name { font-weight: 600; overflow-wrap: anywhere; }
+.student-summary-level, .student-summary-activity { color: var(--muted); font-size: 11px; }
+.student-summary-state { font-size: 11px; color: var(--green-text); }
+.student-summary-state.blocked { color: var(--red-text); }
+.student-summary-state.review { color: #87621d; }
+.student-expanded { padding: 14px 10px; min-width: 0; }
+.student-overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+.student-overview > section { min-width: 0; }
+.student-overview h3 { margin: 0 0 10px; font-size: 13px; font-weight: 600; }
+.student-overview .login-line strong, .student-overview .credential-value,
+.student-overview .credential-url { font-size: 12px; }
+.student-overview .login-line span, .student-overview .credential-label { font-size: 10px; }
+.student-overview .mini-link { font-size: 12px; min-height: 28px; }
+.student-overview .progress-mini-head, .student-overview .progress-text,
+.student-overview .work-time { font-size: 11px; line-height: 1.4; }
+.student-overview .progress-cell { gap: 10px; }
+.student-account-dates { margin: 12px 0; font-size: 11px; line-height: 1.6; color: var(--muted); }
+.student-account-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.student-account-actions .btn { width: auto; min-height: 32px; padding: 5px 9px; font-size: 11px; }
+.student-load-status { margin: 0; font-size: 12px; color: var(--muted); }
+@media (max-width: 1200px) {
+    .student-toggle { grid-template-columns: minmax(0, 1fr) 40px 120px 12px; gap: 8px; }
+    .student-summary-activity { display: none; }
+}
+@media (max-width: 600px) {
+    .student-toggle { grid-template-columns: minmax(0, 1fr) 40px 12px; gap: 2px 8px; }
+    .student-summary-name { grid-column: 1; }
+    .student-summary-level { grid-column: 2; grid-row: 1; text-align: right; }
+    .student-summary-state { grid-column: 1 / 3; grid-row: 2; }
+    .student-toggle::after { grid-column: 3; grid-row: 1 / 3; }
+    .student-overview { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .student-expanded { padding: 14px 0; }
 }
 
 .index-cell {
@@ -1821,35 +1879,7 @@ footer {
                     </select>
                 </div>
             </div>
-            <div class="table-wrap">
-                <table>
-                    <colgroup>
-                        <col class="col-index">
-                        <col class="col-student">
-                        <col class="col-login">
-                        <col class="col-created">
-                        <col class="col-level">
-                        <col class="col-status">
-                        <col class="col-progress">
-                        <col class="col-activity">
-                        <col class="col-actions">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>Nr</th>
-                            <th>Uczeń</th>
-                            <th>Dane logowania</th>
-                            <th>Dodano</th>
-                            <th>Poziom</th>
-                            <th>Status</th>
-                            <th>Postęp</th>
-                            <th>Ostatnia aktywność</th>
-                            <th>Akcje</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentTable"></tbody>
-                </table>
-            </div>
+            <div class="student-list" id="studentTable"></div>
 
             <div class="progress-detail" id="progressDetail" aria-live="polite">
                 <div class="progress-heading">
@@ -1857,6 +1887,7 @@ footer {
                     <button class="btn secondary" type="button" id="closeProgressBtn">Zamknij</button>
                 </div>
 
+                <p class="student-load-status" id="studentLoadStatus" role="status" hidden></p>
                 <div class="chart-legend">
                     <span class="legend-item"><span class="legend-dot good"></span>Dobrze</span>
                     <span class="legend-item"><span class="legend-dot medium"></span>Z pomocą</span>
@@ -2183,6 +2214,7 @@ let lastCredentialsText = "";
 let adminTaskCatalog = [];
 let studentProgressCache = new Map();
 let activeProgressStudentId = null;
+let progressRequestId = 0;
 let activeSourceDetailKey = "";
 let analyticsLoadedPeriod = 0;
 const reviewImageClipboardCache = new Map();
@@ -2855,9 +2887,10 @@ function buildProgressCell(student){
     const wrap = document.createElement("div");
     const bars = document.createElement("div");
     const meta = document.createElement("div");
-    const progress = studentProgressCache.get(student.id) || [];
-    const totalDuration = progress.length ? sumDuration(progress) : Number(student.total_duration_seconds) || 0;
-    const attempts = progress.length || Number(student.attempts) || 0;
+    const hasProgress = studentProgressCache.has(student.id);
+    const progress = (studentProgressCache.get(student.id) || []).filter(isIndependentWorkProgress);
+    const totalDuration = hasProgress ? sumDuration(progress) : Number(student.total_duration_seconds) || 0;
+    const attempts = hasProgress ? progress.length : Number(student.attempts) || 0;
     const averageDuration = attempts ? Math.round(totalDuration / attempts) : 0;
     const pace = paceState(attempts, totalDuration);
     const courseStats = calculateStudentProgressStats(
@@ -2885,7 +2918,7 @@ function buildProgressCell(student){
     time.className = "work-time";
     badge.className = `pace-badge ${pace.className}`;
 
-    text.innerText = `${student.attempts || 0} prób • ${student.accuracy || 0}%`;
+    text.innerText = `${attempts} prób`;
     time.innerText = `${formatDuration(totalDuration)} • śr. ${formatDuration(averageDuration)}`;
     badge.innerText = pace.label;
 
@@ -2941,90 +2974,92 @@ function getSortedStudents(){
     return sorted;
 }
 
-function isInteractiveTableClick(event){
-    return Boolean(event.target.closest(
-        "button, a, input, select, textarea, label, [role='button']"
-    ));
-}
-
 function renderStudents(){
-    studentTable.innerHTML = "";
+    // Keep the shared progress view and its listeners when credentials or sorting change.
+    const focusedToggleId = document.activeElement?.classList.contains("student-toggle")
+        ? document.activeElement.id : "";
+    progressDetail.remove();
+    studentTable.replaceChildren();
 
     if(!students.length){
-        const row = document.createElement("tr");
-        const cell = document.createElement("td");
-
-        cell.colSpan = 9;
-        cell.innerText = "Brak uczniów.";
-        row.appendChild(cell);
-        studentTable.appendChild(row);
+        studentTable.textContent = "Brak uczniów.";
+        activeProgressStudentId = null;
+        progressRequestId++;
         return;
     }
 
-    getSortedStudents().forEach((student, index) => {
-        const row = document.createElement("tr");
-        const indexCell = document.createElement("td");
-        const userCell = document.createElement("td");
-        const credentialsCell = buildCredentialsCell(student);
-        const levelCell = document.createElement("td");
-        const statusCell = document.createElement("td");
-        const progressCell = buildProgressCell(student);
-        const createdCell = document.createElement("td");
-        const activityCell = document.createElement("td");
-        const actionsCell = document.createElement("td");
-        const statusBadge = document.createElement("span");
+    if(!students.some(student => student.id === activeProgressStudentId)){
+        activeProgressStudentId = null;
+        progressRequestId++;
+    }
+
+    const shortLevels = { matura_podstawowa: "MP", matura_rozszerzona: "MR", egzamin_osmoklasisty: "EO" };
+    getSortedStudents().forEach(student => {
+        const row = document.createElement("article");
+        const toggle = button("", "student-toggle", () => showProgress(student));
+        const name = document.createElement("span");
+        const level = document.createElement("span");
+        const state = document.createElement("span");
+        const activity = document.createElement("span");
+        const expanded = document.createElement("div");
+        const open = activeProgressStudentId === student.id;
+        const reviewCount = Number(student.review_count) || 0;
+
+        row.className = "student-entry";
+        row.dataset.studentId = student.id;
+        toggle.id = `student-toggle-${student.id}`;
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-controls", `student-details-${student.id}`);
+        name.className = "student-summary-name";
+        name.textContent = student.display_name;
+        level.className = "student-summary-level";
+        level.textContent = shortLevels[student.level] || levelLabels[student.level] || "-";
+        level.title = levelLabels[student.level] || student.level || "";
+        level.setAttribute("aria-label", level.title);
+        state.className = `student-summary-state ${!student.is_active ? "blocked" : reviewCount ? "review" : ""}`;
+        state.textContent = [student.is_active ? "Aktywny" : "Zablokowany", reviewCount ? `Do omówienia: ${reviewCount}` : ""].filter(Boolean).join(" · ");
+        activity.className = "student-summary-activity";
+        activity.textContent = formatDateOnly(student.last_activity_at || student.last_login_at);
+        activity.title = `Ostatnia aktywność: ${formatDate(student.last_activity_at || student.last_login_at)}`;
+        toggle.append(name, level, state, activity);
+        expanded.id = `student-details-${student.id}`;
+        expanded.className = "student-expanded";
+        expanded.hidden = !open;
+        expanded.setAttribute("aria-labelledby", toggle.id);
+        row.append(toggle, expanded);
+        studentTable.appendChild(row);
+        if(!open) return;
+
+        const overview = document.createElement("div");
+        const credentials = document.createElement("section");
+        const account = document.createElement("section");
+        const credentialsHeading = document.createElement("h3");
+        const accountHeading = document.createElement("h3");
+        const dates = document.createElement("div");
         const actions = document.createElement("div");
-        const primaryActions = document.createElement("div");
-        const dangerActions = document.createElement("div");
-
-        row.className = "student-row";
-        row.classList.toggle("active", activeProgressStudentId === student.id);
-        row.title = "Kliknij wiersz, aby pokazać albo ukryć postępy ucznia.";
-        row.addEventListener("click", event => {
-            if(isInteractiveTableClick(event)) return;
-
-            showProgress(student);
-        });
-
-        indexCell.className = "index-cell";
-        indexCell.innerText = String(index + 1);
-        userCell.innerText = student.display_name;
-        levelCell.innerText = levelLabels[student.level] || student.level || "-";
-        createdCell.innerText = formatDateOnly(student.created_at);
-        activityCell.innerText = formatDate(student.last_activity_at || student.last_login_at);
-
-        statusBadge.className = student.is_active ? "badge active" : "badge inactive";
-        statusBadge.innerText = student.is_active ? "Aktywny" : "Zablokowany";
-        statusCell.appendChild(statusBadge);
-
-        actions.className = "actions";
-        primaryActions.className = "action-primary";
-        dangerActions.className = "action-danger-group";
-
-        primaryActions.appendChild(button("Postęp", "btn secondary", () => showProgress(student)));
-        dangerActions.appendChild(button(
+        overview.className = "student-overview";
+        credentialsHeading.textContent = "Dane logowania";
+        accountHeading.textContent = "Postęp i konto";
+        credentials.append(credentialsHeading, buildCredentialsCell(student).firstElementChild);
+        dates.className = "student-account-dates";
+        const created = document.createElement("div");
+        const lastActive = document.createElement("div");
+        created.textContent = `Dodano: ${formatDateOnly(student.created_at)}`;
+        lastActive.textContent = `Ostatnia aktywność: ${formatDate(student.last_activity_at || student.last_login_at)}`;
+        dates.append(created, lastActive);
+        actions.className = "student-account-actions";
+        actions.appendChild(button(
             student.is_active ? "Blokuj" : "Aktywuj",
             student.is_active ? "btn danger" : "btn secondary",
             () => toggleStudent(student)
         ));
-        dangerActions.appendChild(button("Nowe hasło", "btn secondary", () => resetPassword(student)));
-        dangerActions.appendChild(button("Usuń", "btn danger", () => deleteStudent(student)));
-        actions.appendChild(primaryActions);
-        actions.appendChild(dangerActions);
-        actionsCell.appendChild(actions);
-
-        row.appendChild(indexCell);
-        row.appendChild(userCell);
-        row.appendChild(credentialsCell);
-        row.appendChild(createdCell);
-        row.appendChild(levelCell);
-        row.appendChild(statusCell);
-        row.appendChild(progressCell);
-        row.appendChild(activityCell);
-        row.appendChild(actionsCell);
-        studentTable.appendChild(row);
+        actions.appendChild(button("Nowe hasło", "btn secondary", () => resetPassword(student)));
+        actions.appendChild(button("Usuń", "btn danger", () => deleteStudent(student)));
+        account.append(accountHeading, buildProgressCell(student).firstElementChild, dates, actions);
+        overview.append(credentials, account);
+        expanded.append(overview, progressDetail);
     });
-
+    if(focusedToggleId) document.getElementById(focusedToggleId)?.focus({ preventScroll: true });
 }
 
 async function loadStudents(){
@@ -4834,7 +4869,7 @@ async function resolveReviewTask(item, student){
 
     const items = await loadReviewTasks(student);
 
-    renderReviewTasks(items, student);
+    if(activeProgressStudentId === student.id) renderReviewTasks(items, student);
     showStatus(`Odznaczono: ${reviewTaskTitle(item)}.`);
     await loadStudents();
 }
@@ -4868,46 +4903,58 @@ function renderRecentProgress(progress){
 }
 
 async function showProgress(student){
-    if(activeProgressStudentId === student.id && progressDetail.classList.contains("active")){
-        progressDetail.classList.remove("active");
-        activeProgressStudentId = null;
-        activeSourceDetailKey = "";
-        showStatus(`Schowano postępy ucznia ${student.display_name}.`);
+    if(activeProgressStudentId === student.id){
+        closeStudentDetails();
         return;
     }
 
-    const [data, allReviewItems] = await Promise.all([
-        apiFetch(`/api/admin/students/${student.id}/progress`),
-        loadReviewTasks(student)
-    ]);
-    const progress = data.progress.filter(isIndependentWorkProgress);
-    const reviewItems = allReviewItems.filter(isIndependentWorkProgress);
-
-    progressTitle.innerText = `Postępy: ${student.display_name}`;
-    progressDetail.classList.add("active");
+    const requestId = ++progressRequestId;
     activeProgressStudentId = student.id;
     activeSourceDetailKey = "";
-    studentProgressCache.set(student.id, data.progress);
+    progressTitle.innerText = `Postępy: ${student.display_name}`;
+    progressDetail.classList.add("active");
+    const loading = progressDetail.querySelector("#studentLoadStatus");
+    loading.hidden = false;
+    loading.textContent = "Wczytywanie postępów…";
+    for(const element of [workSummary, reviewTasks, sourceProgress, activityChart, recentProgress]) element.replaceChildren();
     renderStudents();
-    renderWorkSummary(progress);
-    renderReviewTasks(reviewItems, student);
-    renderSourceProgress(progress, student);
-    renderActivityChart(progress);
-    renderRecentProgress(progress);
-
-    if(!progress.length && !reviewItems.length){
-        showStatus(`${student.display_name}: brak zapisanych prób i zadań do omówienia.`);
-        return;
+    try {
+        const [data, allReviewItems] = await Promise.all([
+            apiFetch(`/api/admin/students/${student.id}/progress`),
+            loadReviewTasks(student)
+        ]);
+        if(requestId !== progressRequestId || activeProgressStudentId !== student.id) return;
+        const progress = data.progress.filter(isIndependentWorkProgress);
+        const reviewItems = allReviewItems.filter(isIndependentWorkProgress);
+        studentProgressCache.set(student.id, data.progress);
+        renderStudents();
+        loading.hidden = true;
+        renderWorkSummary(progress);
+        renderReviewTasks(reviewItems, student);
+        renderSourceProgress(progress, student);
+        renderActivityChart(progress);
+        renderRecentProgress(progress);
+    } catch(error) {
+        if(requestId !== progressRequestId || activeProgressStudentId !== student.id) return;
+        loading.textContent = "Nie udało się wczytać postępów. ";
+        loading.appendChild(button("Spróbuj ponownie", "mini-link", () => {
+            activeProgressStudentId = null;
+            showProgress(student);
+        }));
     }
-
-    showStatus(`Wczytano dane ucznia ${student.display_name}: ${progress.length} prób, ${reviewItems.length} do omówienia.`);
 }
 
-document.getElementById("closeProgressBtn").addEventListener("click", () => {
+function closeStudentDetails(){
+    const id = activeProgressStudentId;
+    progressRequestId++;
     progressDetail.classList.remove("active");
     activeProgressStudentId = null;
     activeSourceDetailKey = "";
-});
+    renderStudents();
+    document.getElementById(`student-toggle-${id}`)?.focus();
+}
+
+document.getElementById("closeProgressBtn").addEventListener("click", closeStudentDetails);
 
 adminTabButtons.forEach(button => {
     button.addEventListener("click", () => setAdminTab(button.dataset.adminTab));

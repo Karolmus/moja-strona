@@ -8,6 +8,7 @@ const cardClasses = new Set();
 let selectorRenders = 0;
 let drawnIndex = null;
 const ctx = vm.createContext({
+  workTimer:{pause(){}},
   console: {warn() {}}, isLoggedInStudent: true, selectedLevel: 'matura_podstawowa',
   selectedSource: 'mp-lesson1', selectedCategory: 'kurs',
   document: {
