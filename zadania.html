@@ -2889,8 +2889,8 @@ footer {
 
             <div class="side-section" id="formulaSection" style="display:none">
                 <div class="side-title">Materiały</div>
-                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Tablice matematyczne CKE, otwiera się w nowej karcie">
-                    <strong>Tablice matematyczne CKE</strong>
+                <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Karta wzorów, otwiera się w nowej karcie">
+                    <strong>Karta wzorów</strong>
                 </a>
                 <a class="formula-card" id="extraFormulaCard" href="wzory_spoza_tablic_mp.pdf" target="_blank" rel="noopener noreferrer" aria-label="Wzory spoza tablic, otwiera się w nowej karcie" hidden>
                     <strong>Wzory spoza tablic</strong>
@@ -3120,7 +3120,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260820-mobile-call-footer"></script>
+<script src="static/auth.js?v=20260913-remember"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
 <script src="static/math-answer-input.js?v=20260907"></script>
@@ -3144,6 +3144,7 @@ let randomHistoryIndex = -1;
 let multiSelection = new Set();
 let groupedMultiSelection = new Map();
 let trueFalseSelection = [];
+let submittedChoice = "";
 let savedProgress = [];
 let sessionScores = new Map();
 let sessionDurations = new Map();
@@ -3499,7 +3500,7 @@ const FORMULA_SHEETS = {
         href: "wzory_matura.pdf"
     },
     egzamin_osmoklasisty: {
-        label: "Tablice matematyczne CKE",
+        label: "Karta wzorów",
         href: "wzory_eo.pdf"
     }
 };
@@ -3898,7 +3899,7 @@ function loadTaskSource(sourceConfig){
 
         return items.filter(task =>
             sourceMeta.category !== "kurs" ||
-            STUDENT_WORK_COURSE_PARTS.includes(task.coursePart || task.section || "zadania")
+            canAccessCoursePart(task.coursePart || task.section || "zadania")
         ).map(task => ({
             ...task,
             path: basePath + task.file,
@@ -4444,7 +4445,7 @@ function pool(){
         taskMatchesTagFilters(t) &&
         (
             selectedCategory !== "kurs" ||
-            STUDENT_WORK_COURSE_PARTS.includes(t.coursePart)
+            canAccessCoursePart(t.coursePart)
         )
     );
 }
@@ -4499,7 +4500,7 @@ function ensureSelectedSource(){
 
 function ensureSelectedCoursePart(){
     if(selectedCategory !== "kurs") return;
-    if(!STUDENT_WORK_COURSE_PARTS.includes(selectedCoursePart)){
+    if(!canAccessCoursePart(selectedCoursePart)){
         selectedCoursePart = STUDENT_WORK_COURSE_PART;
     }
 }
@@ -4508,11 +4509,16 @@ function defaultCoursePart(){
     return STUDENT_WORK_COURSE_PART;
 }
 
+function canAccessCoursePart(part){
+    return STUDENT_WORK_COURSE_PARTS.includes(part) ||
+        Boolean(loggedUser?.role === "admin" || loggedUser?.full_course_access === true);
+}
+
 function isCoursePreviewMode(task = currentTask){
     return Boolean(
         isLoggedInStudent &&
         task?.category === "kurs" &&
-        !STUDENT_WORK_COURSE_PARTS.includes(task.coursePart)
+        !canAccessCoursePart(task.coursePart)
     );
 }
 
@@ -4852,7 +4858,7 @@ function isSourceComplete(source){
 }
 
 function getCoursePartTasks(part){
-    if(!STUDENT_WORK_COURSE_PARTS.includes(part)) return [];
+    if(!canAccessCoursePart(part)) return [];
     return tasks.filter(task =>
         task.category === "kurs" &&
         task.level === selectedLevel &&
@@ -4873,7 +4879,7 @@ function getCourseNavigatorItems(){
 
     return tasks.filter(task =>
         task.category === "kurs" &&
-        STUDENT_WORK_COURSE_PARTS.includes(task.coursePart) &&
+        canAccessCoursePart(task.coursePart) &&
         task.level === selectedLevel &&
         task.sourceId === selectedSource &&
         taskMatchesTagFilters(task)
@@ -4889,7 +4895,7 @@ function getCourseNavigatorItems(){
 }
 
 function selectCoursePartTask(part, file = ""){
-    if(!STUDENT_WORK_COURSE_PARTS.includes(part)) return;
+    if(!canAccessCoursePart(part)) return;
     selectedCoursePart = part;
 
     resetSession();
@@ -5941,7 +5947,7 @@ function addNavigatorSectionLabel(progress, section){
     const label = document.createElement("span");
 
     label.className = "nav-section-label";
-    label.innerText = isLoggedInStudent && !STUDENT_WORK_COURSE_PARTS.includes(section)
+    label.innerText = isLoggedInStudent && !canAccessCoursePart(section)
         ? `${COURSE_PART_LABELS[section] || "Część kursu"} · podgląd`
         : COURSE_PART_LABELS[section] || "Część kursu";
 
@@ -7112,6 +7118,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
     });
 
     hintUsed = taskUsedHint(taskToRender);
+    submittedChoice = "";
     answerShown = false;
     currentTaskAnswered = false;
 
@@ -8027,6 +8034,7 @@ function choose(opt, btn){
     }
 
     const correct = String(currentTask.answer);
+    submittedChoice = opt;
 
     disableMCQ();
 
@@ -8397,6 +8405,20 @@ function addProgress(type, scoreData = null){
     return true;
 }
 
+function submittedAnswerText(){
+    if(isInputTask(currentTask)){
+        const fields = getInputFields(currentTask);
+        return [...document.querySelectorAll("#mcq input[data-index], #mcq select[data-index]")]
+            .map(input => `${fields[Number(input.dataset.index)]?.label || "Odpowiedź"}: ${input.value.trim()}`)
+            .join("\n");
+    }
+    if(isTrueFalseSequenceTask(currentTask)) return trueFalseSelection.join(", ");
+    if(isGroupedChoiceTask(currentTask)) return [...groupedMultiSelection].sort((a,b) => a[0]-b[0]).map(item => item[1]).join("");
+    if(isGroupedMultiTask(currentTask)) return [...groupedMultiSelection].sort((a,b) => a[0]-b[0]).map(item => item[1]).join(", ");
+    if(currentTask?.type === "multi") return [...multiSelection].join(", ");
+    return String(submittedChoice || "");
+}
+
 async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds()){
     if(isCoursePreviewMode()) return;
     if(!isLoggedInStudent) return;
@@ -8409,6 +8431,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
     ));
     const usedHint = hintUsed;
     const revealedAnswer = answerShown;
+    const submittedAnswer = submittedAnswerText().slice(0, 2000);
 
     try {
         const automaticScore = automaticScoreForResult(type, task);
@@ -8426,6 +8449,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
                 result: type,
                 hint_used: usedHint,
                 answer_shown: revealedAnswer,
+                submitted_answer: submittedAnswer,
                 source_category: task.category,
                 task_mode: taskMode,
                 duration_seconds: taskDuration,

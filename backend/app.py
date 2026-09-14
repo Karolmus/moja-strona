@@ -4,6 +4,7 @@ import gzip
 import hashlib
 import ipaddress
 import io
+import json
 import math
 import re
 import secrets
@@ -108,6 +109,8 @@ app.config.update(
     SESSION_COOKIE_SAMESITE=os.environ.get("SESSION_COOKIE_SAMESITE", "Lax"),
     SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "false").lower() == "true",
     AUTH_TOKEN_MAX_AGE=int(os.environ.get("AUTH_TOKEN_MAX_AGE", str(60 * 60 * 24))),
+    AUTH_REMEMBER_MAX_AGE=60 * 60 * 24 * 30,
+    PERMANENT_SESSION_LIFETIME=timedelta(days=30),
     MAX_CONTENT_LENGTH=int(os.environ.get("MAX_CONTENT_LENGTH", str(32 * 1024))),
 )
 register_auth_db(app)
@@ -450,11 +453,12 @@ def training_attempt_serializer():
     )
 
 
-def create_auth_token(user):
+def create_auth_token(user, remember=False):
     return auth_serializer().dumps({
         "user_id": user["id"],
         "role": user["role"],
         "auth_version": int(user.get("auth_version") or 1),
+        "remember": remember is True,
     })
 
 
@@ -472,7 +476,11 @@ def user_from_token(token):
         return None
 
     try:
-        data = auth_serializer().loads(token, max_age=app.config["AUTH_TOKEN_MAX_AGE"])
+        data = auth_serializer().loads(token, max_age=max(
+            app.config["AUTH_TOKEN_MAX_AGE"], app.config["AUTH_REMEMBER_MAX_AGE"]
+        ))
+        max_age = app.config["AUTH_REMEMBER_MAX_AGE"] if data.get("remember") is True else app.config["AUTH_TOKEN_MAX_AGE"]
+        auth_serializer().loads(token, max_age=max_age)
     except (BadSignature, SignatureExpired):
         return None
 
@@ -615,13 +623,74 @@ def validated_task_data(data, user):
     item["file"] = file_name
     item["task_id"] = task_id
 
+    if source_id.startswith("zadania/kurs/") and not has_full_course_access(user):
+        manifest = read_course_json(source_id.removeprefix("zadania/kurs/"))
+        if not isinstance(manifest, list) or not any(
+            task.get("file") == file_name and is_homework_task(task) for task in manifest
+        ):
+            raise ValueError("Brak dostępu do części głównej kursu.")
+
     return item
+
+
+def has_full_course_access(user):
+    return user.get("role") == "admin" or bool(user.get("full_course_access"))
+
+
+def is_homework_task(task):
+    return isinstance(task, dict) and (task.get("coursePart") or task.get("section")) in {
+        "praca_domowa", "zadania_powtorkowe"
+    }
+
+
+def read_course_json(asset_path):
+    path = os.path.realpath(os.path.join(COURSE_ASSET_ROOT, asset_path))
+    if not path.startswith(COURSE_ASSET_ROOT + os.sep) or not path.endswith(".json"):
+        return None
+    try:
+        with open(path, encoding="utf-8") as source:
+            return json.load(source)
+    except (OSError, ValueError):
+        return None
+
+
+def homework_asset_references(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, list):
+        for item in value:
+            yield from homework_asset_references(item)
+    elif isinstance(value, dict):
+        for item in value.values():
+            yield from homework_asset_references(item)
+
+
+def homework_asset_allowed(asset_path):
+    directory, name = os.path.split(asset_path)
+    # Only files referenced by homework metadata are accessible, including image alternatives.
+    names = {name}
+    if name.endswith(".webp"):
+        names.add(name[:-5] + ".png")
+    try:
+        manifests = os.listdir(os.path.join(COURSE_ASSET_ROOT, directory))
+    except OSError:
+        return False
+    for manifest_name in manifests:
+        if not manifest_name.endswith(".json"):
+            continue
+        tasks = read_course_json(f"{directory}/{manifest_name}")
+        if isinstance(tasks, list) and any(
+            is_homework_task(task) and names.intersection(homework_asset_references(task))
+            for task in tasks
+        ):
+            return True
+    return False
 
 
 def course_asset_allowed_for_user(asset_path, user):
     parts = [part for part in str(asset_path or "").split("/") if part]
 
-    if not parts or any(part in {".", ".."} for part in parts):
+    if not parts or str(asset_path).startswith("/") or "\\" in str(asset_path) or any(part in {".", ".."} for part in parts):
         return False
 
     if user.get("role") == "admin":
@@ -629,7 +698,9 @@ def course_asset_allowed_for_user(asset_path, user):
 
     expected_segment = TASK_PATH_SEGMENT_BY_STUDENT_LEVEL.get(user.get("level"))
 
-    return bool(expected_segment and parts[0] == expected_segment)
+    if not expected_segment or parts[0] != expected_segment:
+        return False
+    return has_full_course_access(user) or asset_path.endswith(".json") or homework_asset_allowed(asset_path)
 
 
 def student_payload(user):
@@ -1008,14 +1079,14 @@ def api_login():
         session["user_id"] = user["id"]
         session["role"] = user["role"]
         session["auth_version"] = int(user.get("auth_version") or 1)
-        session.permanent = bool(data.get("remember"))
+        session.permanent = data.get("remember") is True
         touch_last_login(user["id"])
 
         refreshed_user = get_user_by_id(user["id"])
 
         return jsonify({
             "user": public_user(refreshed_user),
-            "token": create_auth_token(refreshed_user),
+            "token": create_auth_token(refreshed_user, remember=session.permanent),
         })
 
     return safe(handler)
@@ -1525,6 +1596,26 @@ def api_course_asset(user, asset_path):
     if not course_asset_allowed_for_user(asset_path, user):
         return api_error("Brak dostępu do tego materiału.", 403)
 
+    if asset_path.endswith(".json") and not has_full_course_access(user):
+        data = read_course_json(asset_path)
+        if isinstance(data, list):
+            response = jsonify([task for task in data if is_homework_task(task)])
+        elif isinstance(data, dict) and isinstance(data.get("items"), list):
+            items = []
+            for item in data["items"]:
+                source = str(item.get("sourceFile") or "").removeprefix("zadania/kurs/")
+                tasks = read_course_json(source)
+                if isinstance(tasks, list) and any(
+                    task.get("file") == item.get("taskFile") and is_homework_task(task) for task in tasks
+                ):
+                    items.append(item)
+            response = jsonify({**data, "items": items})
+        else:
+            response = jsonify({"error": "Nie znaleziono materiału kursowego na serwerze."})
+            response.status_code = 404
+        response.headers["Cache-Control"] = "private, no-store"
+        return response
+
     try:
         response = send_from_directory(COURSE_ASSET_ROOT, asset_path, conditional=True)
     except NotFound:
@@ -1534,7 +1625,7 @@ def api_course_asset(user, asset_path):
         return response
 
     response.headers["Cache-Control"] = (
-        "private, no-cache" if asset_path.lower().endswith(".json") else "private, max-age=3600"
+        "private, no-store"
     )
 
     return response

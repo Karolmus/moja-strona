@@ -554,6 +554,12 @@ def init_auth_db():
                 ADD COLUMN IF NOT EXISTS max_points DOUBLE PRECISION
             """,
             """
+            ALTER TABLE task_progress ADD COLUMN IF NOT EXISTS submitted_answer TEXT
+            """,
+            """
+            ALTER TABLE users ADD COLUMN IF NOT EXISTS full_course_access BOOLEAN NOT NULL DEFAULT FALSE
+            """,
+            """
             ALTER TABLE contact_messages
                 ADD COLUMN IF NOT EXISTS deleted_at TEXT
             """,
@@ -830,6 +836,9 @@ def init_auth_db():
         if "max_points" not in columns:
             db.execute("ALTER TABLE task_progress ADD COLUMN max_points REAL")
 
+        if "submitted_answer" not in columns:
+            db.execute("ALTER TABLE task_progress ADD COLUMN submitted_answer TEXT")
+
         contact_columns = {
             row["name"]
             for row in db.execute("PRAGMA table_info(contact_messages)").fetchall()
@@ -854,6 +863,9 @@ def init_auth_db():
 
         if "password_ciphertext" not in user_columns:
             db.execute("ALTER TABLE users ADD COLUMN password_ciphertext TEXT")
+
+        if "full_course_access" not in user_columns:
+            db.execute("ALTER TABLE users ADD COLUMN full_course_access INTEGER NOT NULL DEFAULT 0")
 
         parent_access_columns = {
             row["name"]
@@ -1323,6 +1335,7 @@ def public_user(row):
     user.pop("password_ciphertext", None)
     user.pop("auth_version", None)
     user["is_active"] = bool(user["is_active"])
+    user["full_course_access"] = bool(user.get("full_course_access"))
 
     return user
 
@@ -1457,6 +1470,7 @@ def list_students():
             u.is_active,
             u.created_at,
             u.last_login_at,
+            u.full_course_access,
             u.password_ciphertext,
             EXISTS (
                 SELECT 1
@@ -1481,7 +1495,7 @@ def list_students():
             GROUP BY user_id
         ) r ON r.user_id = u.id
         WHERE u.role = 'student'
-        GROUP BY u.id, u.email, u.display_name, u.role, u.level, u.is_active, u.created_at, u.last_login_at, u.password_ciphertext, r.review_count
+        GROUP BY u.id, u.email, u.display_name, u.role, u.level, u.is_active, u.created_at, u.last_login_at, u.full_course_access, u.password_ciphertext, r.review_count
         ORDER BY u.created_at DESC
         """,
         (db_bool(True), now_iso(), db_bool(False)),
@@ -1492,6 +1506,7 @@ def list_students():
     for row in rows:
         student = dict(row)
         student["is_active"] = bool(student["is_active"])
+        student["full_course_access"] = bool(student["full_course_access"])
         student["has_stored_password"] = bool(student.pop("password_ciphertext", None))
         student["has_parent_access"] = bool(student["has_parent_access"])
         student["accuracy"] = round((student["good_count"] / student["attempts"]) * 100, 1) if student["attempts"] else 0
@@ -1506,6 +1521,7 @@ def update_student(user_id, fields):
         "display_name": "display_name",
         "level": "level",
         "is_active": "is_active",
+        "full_course_access": "full_course_access",
     }
     assignments = []
     values = []
@@ -1516,7 +1532,10 @@ def update_student(user_id, fields):
 
         value = fields[key]
 
-        if key == "is_active":
+        if key == "full_course_access" and not isinstance(value, bool):
+            raise ValueError("Nieprawidłowe ustawienie dostępu do kursu.")
+
+        if key in {"is_active", "full_course_access"}:
             value = db_bool(value)
 
         assignments.append(f"{column} = ?")
@@ -1853,6 +1872,7 @@ def record_progress(user_id, data):
         duration_seconds(data.get("duration_seconds")),
         earned_points,
         max_points,
+        bounded_text(data.get("submitted_answer"), 2000),
         created_at,
     )
 
@@ -1875,9 +1895,10 @@ def record_progress(user_id, data):
                     duration_seconds,
                     earned_points,
                     max_points,
+                    submitted_answer,
                     created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 RETURNING *
                 """
             ),
@@ -1902,9 +1923,10 @@ def record_progress(user_id, data):
                 duration_seconds,
                 earned_points,
                 max_points,
+                submitted_answer,
                 created_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             values,
         )

@@ -320,6 +320,10 @@ footer {
             </div>
 
             <div class="form-row">
+                <label class="checkbox" for="remember">
+                    <input id="remember" name="remember" type="checkbox">
+                    <span>Zapamiętaj mnie</span>
+                </label>
                 <a class="forgot-link" href="mailto:kontakt@deltasigma.pl?subject=Reset%20has%C5%82a">
                     Nie pamiętam hasła
                 </a>
@@ -347,7 +351,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260820-mobile-call-footer"></script>
+<script src="static/auth.js?v=20260913-remember"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script>
 const form = document.getElementById("loginForm");
@@ -357,6 +361,7 @@ const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
 const formStatus = document.getElementById("formStatus");
 const togglePassword = document.getElementById("togglePassword");
+const remember = document.getElementById("remember");
 
 function setFieldError(field, target, message){
     field.setAttribute("aria-invalid", message ? "true" : "false");
@@ -370,13 +375,15 @@ function showStatus(message, type){
 
 function persistAuthToken(token){
     if(window.saveAuthToken){
-        window.saveAuthToken(token);
+        window.saveAuthToken(token, remember.checked);
         return;
     }
 
     if(token){
         window.localStorage.removeItem("deltaSigmaAuthToken");
-        window.sessionStorage.setItem("deltaSigmaAuthToken", token);
+        window.sessionStorage.removeItem("deltaSigmaAuthToken");
+        const storage = remember.checked ? window.localStorage : window.sessionStorage;
+        storage.setItem("deltaSigmaAuthToken", token);
     }
 }
 
@@ -432,7 +439,7 @@ form.addEventListener("submit", async event => {
             body: JSON.stringify({
                 email: email.value.trim(),
                 password: password.value,
-                remember: false
+                remember: remember.checked
             })
         });
 

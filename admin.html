@@ -361,8 +361,8 @@ th {
     align-items: center;
     gap: 12px;
     width: 100%;
-    min-height: 46px;
-    padding: 8px 10px;
+    min-height: 36px;
+    padding: 4px 10px;
     border: 0;
     background: transparent;
     color: var(--text);
@@ -410,6 +410,11 @@ th {
 .student-account-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 .student-account-actions .btn { width: auto; min-height: 32px; padding: 5px 9px; font-size: 11px; }
 .student-load-status { margin: 0; font-size: 12px; color: var(--muted); }
+.student-course-access { display: flex; gap: 8px; align-items: center; margin: 12px 0; font-size: 12px; font-weight: 400; }
+.student-course-access input { width: 17px; height: 17px; margin: 0; accent-color: var(--navy); flex: none; }
+.answer-comparison { font-size: 11px; font-weight: 400; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.45; }
+.answer-comparison.student { color: var(--red-text); }
+.answer-comparison.expected { color: var(--green-text); }
 @media (max-width: 1200px) {
     .student-toggle { grid-template-columns: minmax(0, 1fr) 40px 120px 12px; gap: 8px; }
     .student-summary-activity { display: none; }
@@ -1881,6 +1886,7 @@ footer {
             </div>
             <div class="student-list" id="studentTable"></div>
 
+            <template id="studentProgressTemplate">
             <div class="progress-detail" id="progressDetail" aria-live="polite">
                 <div class="progress-heading">
                     <h3 id="progressTitle">Postępy ucznia</h3>
@@ -1900,6 +1906,7 @@ footer {
                 <div class="activity-chart" id="activityChart"></div>
                 <div class="recent-progress" id="recentProgress"></div>
             </div>
+            </template>
         </section>
     </div>
     </div>
@@ -2042,7 +2049,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260820-mobile-call-footer"></script>
+<script src="static/auth.js?v=20260913-remember"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -2148,13 +2155,13 @@ const adminEmail = document.getElementById("adminEmail");
 const studentForm = document.getElementById("studentForm");
 const studentTable = document.getElementById("studentTable");
 const adminStatus = document.getElementById("adminStatus");
-const progressDetail = document.getElementById("progressDetail");
-const progressTitle = document.getElementById("progressTitle");
-const workSummary = document.getElementById("workSummary");
-const reviewTasks = document.getElementById("reviewTasks");
-const sourceProgress = document.getElementById("sourceProgress");
-const activityChart = document.getElementById("activityChart");
-const recentProgress = document.getElementById("recentProgress");
+const progressDetail = document.getElementById("studentProgressTemplate").content.firstElementChild.cloneNode(true);
+const progressTitle = progressDetail.querySelector("#progressTitle");
+const workSummary = progressDetail.querySelector("#workSummary");
+const reviewTasks = progressDetail.querySelector("#reviewTasks");
+const sourceProgress = progressDetail.querySelector("#sourceProgress");
+const activityChart = progressDetail.querySelector("#activityChart");
+const recentProgress = progressDetail.querySelector("#recentProgress");
 const credentialsBox = document.getElementById("credentialsBox");
 const credentialsTitle = document.getElementById("credentialsTitle");
 const credentialsLogin = document.getElementById("credentialsLogin");
@@ -2258,10 +2265,6 @@ function showCredentials(title, student, password, parentAccessToken = ""){
     const parentLink = parentLinkFromToken(parentAccessToken);
 
     lastCredentialsText = `Login: ${student.email}\nHasło: ${password}`;
-
-    if(parentLink){
-        lastCredentialsText += `\nLink rodzica: ${parentLink}`;
-    }
 
     credentialsTitle.innerText = title;
     credentialsLogin.innerText = student.email;
@@ -2587,31 +2590,27 @@ function confirmStudentAction(action, student, details = ""){
 
 async function copyStudentCredentials(student){
     let password = getIssuedPassword(student);
-    let parentToken = getIssuedParentAccessToken(student);
 
     try {
-        if(!password || !parentToken){
+        if(!password){
             const credentials = await fetchStudentCredentials(student);
 
             password = password || credentials.password || "";
-            parentToken = parentToken || credentials.parent_access_token || "";
         }
     } catch(error) {
         showStatus(error.message || "Nie udało się pobrać danych ucznia.");
         return;
     }
 
-    const parentLink = parentLinkFromToken(parentToken);
     const text = password
         ? `Login: ${student.email}\nHasło: ${password}`
         : `Login: ${student.email}\nHasło: niedostępne - nadaj nowe`;
-    const fullText = parentLink ? `${text}\nLink rodzica: ${parentLink}` : text;
 
     try {
-        await navigator.clipboard.writeText(fullText);
+        await navigator.clipboard.writeText(text);
         showStatus("Skopiowano dane logowania ucznia.");
     } catch(error) {
-        showStatus(fullText);
+        showStatus(text);
     }
 }
 
@@ -2785,7 +2784,7 @@ function buildCredentialsCell(student){
     loginActions.className = "login-actions";
     copyButton.type = "button";
     copyButton.className = "mini-link";
-    copyButton.innerText = "Kopiuj dostępne dane";
+    copyButton.innerText = "Kopiuj login i hasło";
     copyButton.addEventListener("click", () => copyStudentCredentials(student));
 
     loginLabel.innerText = "Login";
@@ -2974,6 +2973,33 @@ function getSortedStudents(){
     return sorted;
 }
 
+function studentLastActivity(student){
+    const dates = [student.last_activity_at, student.last_login_at,
+        ...(studentProgressCache.get(student.id) || []).map(item => item.created_at)];
+    return dates.filter(value => value && Number.isFinite(Date.parse(value)))
+        .sort((a, b) => Date.parse(b) - Date.parse(a))[0] || null;
+}
+
+async function setFullCourseAccess(student, input){
+    const previous = Boolean(student.full_course_access);
+    input.disabled = true;
+    try {
+        const data = await apiFetch(`/api/admin/students/${student.id}`, {
+            method: "PATCH", body: JSON.stringify({ full_course_access: input.checked })
+        });
+        if(typeof data.student?.full_course_access !== "boolean"){
+            throw new Error("Serwer wymaga aktualizacji, aby zmienić dostęp do części głównej.");
+        }
+        student.full_course_access = data.student.full_course_access;
+        input.checked = student.full_course_access;
+    } catch(error) {
+        input.checked = previous;
+        showStatus(error.message || "Nie udało się zmienić dostępu.");
+    } finally {
+        input.disabled = false;
+    }
+}
+
 function renderStudents(){
     // Keep the shared progress view and its listeners when credentials or sorting change.
     const focusedToggleId = document.activeElement?.classList.contains("student-toggle")
@@ -3019,8 +3045,8 @@ function renderStudents(){
         state.className = `student-summary-state ${!student.is_active ? "blocked" : reviewCount ? "review" : ""}`;
         state.textContent = [student.is_active ? "Aktywny" : "Zablokowany", reviewCount ? `Do omówienia: ${reviewCount}` : ""].filter(Boolean).join(" · ");
         activity.className = "student-summary-activity";
-        activity.textContent = formatDateOnly(student.last_activity_at || student.last_login_at);
-        activity.title = `Ostatnia aktywność: ${formatDate(student.last_activity_at || student.last_login_at)}`;
+        activity.textContent = formatDateOnly(studentLastActivity(student));
+        activity.title = `Ostatnia aktywność: ${formatDate(studentLastActivity(student))}`;
         toggle.append(name, level, state, activity);
         expanded.id = `student-details-${student.id}`;
         expanded.className = "student-expanded";
@@ -3045,7 +3071,8 @@ function renderStudents(){
         const created = document.createElement("div");
         const lastActive = document.createElement("div");
         created.textContent = `Dodano: ${formatDateOnly(student.created_at)}`;
-        lastActive.textContent = `Ostatnia aktywność: ${formatDate(student.last_activity_at || student.last_login_at)}`;
+        lastActive.className = "student-last-activity";
+        lastActive.textContent = `Ostatnia aktywność: ${formatDate(studentLastActivity(student))}`;
         dates.append(created, lastActive);
         actions.className = "student-account-actions";
         actions.appendChild(button(
@@ -3055,7 +3082,16 @@ function renderStudents(){
         ));
         actions.appendChild(button("Nowe hasło", "btn secondary", () => resetPassword(student)));
         actions.appendChild(button("Usuń", "btn danger", () => deleteStudent(student)));
-        account.append(accountHeading, buildProgressCell(student).firstElementChild, dates, actions);
+        const access = document.createElement("label");
+        const checkbox = document.createElement("input");
+        const accessLabel = document.createElement("span");
+        access.className = "student-course-access";
+        checkbox.type = "checkbox";
+        checkbox.checked = Boolean(student.full_course_access);
+        checkbox.addEventListener("change", () => setFullCourseAccess(student, checkbox));
+        accessLabel.textContent = "Udostępnij część główną kursu ze sprawdzaniem odpowiedzi";
+        access.append(checkbox, accessLabel);
+        account.append(accountHeading, dates, buildProgressCell(student).firstElementChild, access, actions);
         overview.append(credentials, account);
         expanded.append(overview, progressDetail);
     });
@@ -4375,6 +4411,20 @@ function renderCourseHistory(courseGroups){
     return section;
 }
 
+function expectedCourseAnswer(task){
+    if(Array.isArray(task.inputs) && task.inputs.length){
+        return task.inputs.map((input, index) =>
+            `${input.label || `Odpowiedź ${index + 1}`}: ${input.answers?.[0] ?? input.answer ?? "-"}`
+        ).join("\n");
+    }
+    const answer = task.acceptedAnswers?.[0] ?? task.answer;
+    if(answer == null || answer === "") return "Według zasad oceniania";
+    if(task.type === "input") return `Odpowiedź: ${answer}`;
+    if(Array.isArray(answer)) return answer.join(", ");
+    if(task.type === "true_false") return String(answer).split("").join(", ");
+    return String(answer);
+}
+
 function renderSourceDetail(group){
     const detail = document.createElement("div");
     const heading = document.createElement("h4");
@@ -4451,6 +4501,16 @@ function renderSourceDetail(group){
         if(!isCourse && meta.innerText) titleWrap.appendChild(meta);
         titleCell.appendChild(titleWrap);
         resultCell.appendChild(result);
+        if(isCourse && progressItem && (progressItem.result === "bad" ||
+            (progressItem.result === "medium" && score.earned !== null && score.earned < score.max))){
+            const submitted = document.createElement("div");
+            const expected = document.createElement("div");
+            submitted.className = "answer-comparison student";
+            expected.className = "answer-comparison expected";
+            submitted.textContent = `Uczeń: ${progressItem.submitted_answer || "nie zapisano odpowiedzi"}`;
+            expected.textContent = `Poprawna: ${expectedCourseAnswer(task)}`;
+            titleWrap.append(submitted, expected);
+        }
         row.appendChild(titleCell);
         row.appendChild(resultCell);
         row.appendChild(pointsCell);
@@ -4954,7 +5014,7 @@ function closeStudentDetails(){
     document.getElementById(`student-toggle-${id}`)?.focus();
 }
 
-document.getElementById("closeProgressBtn").addEventListener("click", closeStudentDetails);
+progressDetail.querySelector("#closeProgressBtn").addEventListener("click", closeStudentDetails);
 
 adminTabButtons.forEach(button => {
     button.addEventListener("click", () => setAdminTab(button.dataset.adminTab));

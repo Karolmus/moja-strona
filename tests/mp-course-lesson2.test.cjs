@@ -109,6 +109,7 @@ for (const [text, name] of [[html, 'TASK_SOURCES'], [profileHtml, 'PROFILE_SOURC
 (async () => {
   const source = {id:sourcePath, path:sourcePath, category:'kurs', level:'matura_podstawowa', label:'Lekcja 2'};
   const ctx = vm.createContext({
+    loggedUser:null,
     STUDENT_WORK_COURSE_PART:workParts[0], STUDENT_WORK_COURSE_PARTS:workParts,
     COURSE_PART_ORDER:{zadania:1, praca_domowa:2, zadania_powtorkowe:3},
     getSourceMeta:() => source, loadJsonSource:async () => tasks,
@@ -119,7 +120,7 @@ for (const [text, name] of [[html, 'TASK_SOURCES'], [profileHtml, 'PROFILE_SOURC
     taskMatchesTagFilters:() => true, tagFiltersSearchAllSources:() => false,
     resetSession() {}, renderTagSearch() {}, drawTask(i) {ctx.drawnIndex = i;}
   });
-  for (const name of ['loadTaskSource', 'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems',
+  for (const name of ['canAccessCoursePart', 'loadTaskSource', 'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems',
     'pool', 'selectCoursePartTask', 'isCoursePreviewMode', 'ensureSelectedCoursePart', 'coursePartOrdinalNumber',
     'coursePartDisplayTitle', 'taskThemeClass']) vm.runInContext(functionSource(html, name), ctx);
   ctx.tasks = await ctx.loadTaskSource(source);

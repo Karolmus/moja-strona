@@ -2,9 +2,10 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
-const names = ['loadTaskSource', 'pool', 'ensureSelectedCoursePart', 'defaultCoursePart',
+const names = ['canAccessCoursePart', 'loadTaskSource', 'pool', 'ensureSelectedCoursePart', 'defaultCoursePart',
   'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems', 'sourceSummaryTasks'];
 const ctx = vm.createContext({
+  loggedUser:null,
   STUDENT_WORK_COURSE_PART: 'praca_domowa', COURSE_PART_ORDER: {praca_domowa: 2},
   STUDENT_WORK_COURSE_PARTS: ['praca_domowa', 'zadania_powtorkowe'],
   selectedCategory: 'kurs', selectedSource: 'lesson1', selectedLevel: 'matura_podstawowa',

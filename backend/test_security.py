@@ -718,9 +718,9 @@ class SecurityTests(unittest.TestCase):
         headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
         source_id = "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
         task = {
-            "task_id": f"{source_id}:1.png",
+            "task_id": f"{source_id}:zd_1.png",
             "source_id": source_id,
-            "file": "1.png",
+            "file": "zd_1.png",
             "topic": "Procenty",
             "result": "good",
             "earned_points": 1,
@@ -821,9 +821,9 @@ class SecurityTests(unittest.TestCase):
 
         with self.client.get(path, headers=headers) as response:
             self.assertEqual(response.status_code, 200)
-            self.assertEqual(response.headers["Cache-Control"], "private, no-cache")
+            self.assertEqual(response.headers["Cache-Control"], "private, no-store")
             tasks = response.get_json()
-            self.assertEqual(len(tasks), 29)
+            self.assertEqual(len(tasks), 11)
             self.assertEqual(sum(task["coursePart"] == "praca_domowa" for task in tasks), 11)
 
         with self.client.get("/api/course-assets/mp/lekcja_1/zd1.png", headers=headers) as image:
@@ -840,7 +840,7 @@ class SecurityTests(unittest.TestCase):
                 missing = self.client.get(path, headers=headers)
         self.assertEqual(missing.status_code, 404)
         self.assertEqual(missing.mimetype, "application/json")
-        self.assertEqual(missing.headers["Cache-Control"], "no-store")
+        self.assertEqual(missing.headers["Cache-Control"], "private, no-store")
 
     def test_mp_student_can_load_second_lesson_and_save_revision(self):
         source_id = "zadania/kurs/mp/lekcja_2/lekcja_2_logarytmy.json"
@@ -861,7 +861,7 @@ class SecurityTests(unittest.TestCase):
         with self.client.get(path, headers=headers) as response:
             self.assertEqual(response.status_code, 200)
             tasks = response.get_json()
-            self.assertEqual(len(tasks), 33)
+            self.assertEqual(len(tasks), 15)
             self.assertEqual(sum(t["coursePart"] == "praca_domowa" for t in tasks), 12)
             self.assertEqual(sum(t["coursePart"] == "zadania_powtorkowe" for t in tasks), 3)
         for file in ["zd12.png", "zp1.png", "zp3.png"]:
@@ -880,6 +880,105 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(self.client.post("/api/review-tasks", headers=headers, json=task).status_code, 201)
         review = self.client.get("/api/review-tasks/me", headers=headers).get_json()["review_tasks"]
         self.assertEqual(review[0]["course_part"], "zadania_powtorkowe")
+
+    def test_remembered_auth_expires_after_thirty_days(self):
+        with app.app_context():
+            student = create_user("remember@example.test", "Remember", "bezpieczne-haslo")
+            now = time.time()
+            with patch("time.time", return_value=now - 2 * 86400):
+                ordinary = app_module.create_auth_token(student)
+                remembered = app_module.create_auth_token(student, remember=True)
+            self.assertIsNone(app_module.user_from_token(ordinary))
+            self.assertEqual(app_module.user_from_token(remembered)["id"], student["id"])
+            with patch("time.time", return_value=now + 30 * 86400):
+                self.assertIsNone(app_module.user_from_token(remembered))
+            login = self.client.post("/api/auth/login", json={
+                "email":student["email"], "password":"bezpieczne-haslo", "remember":True
+            })
+            signed = app_module.auth_serializer().loads(login.get_json()["token"])
+            self.assertIs(signed["remember"], True)
+            self.assertIn("Expires=", login.headers.get("Set-Cookie", ""))
+            app_module.revoke_user_auth(student["id"])
+            self.assertIsNone(app_module.user_from_token(remembered))
+
+    def test_only_admin_can_enable_full_course_and_revoke_access(self):
+        with app.app_context():
+            student = create_user("access@example.test", "Access", "bezpieczne-haslo")
+            other = create_user("other@example.test", "Other", "bezpieczne-haslo")
+            admin = create_user("admin-access@example.test", "Admin", "bezpieczne-haslo", role="admin")
+            student_headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            other_headers = {"Authorization": "Bearer " + app_module.create_auth_token(other)}
+            admin_headers = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        root = "/api/course-assets/mp/lekcja_1/"
+        manifest = root + "lekcja_1_potegi_i_pierwiastki.json"
+        endpoint = f"/api/admin/students/{student['id']}"
+        self.assertIs(self.client.get("/api/auth/me", headers=student_headers).get_json()["user"]["full_course_access"], False)
+        self.assertEqual(self.client.get(root + "1.png", headers=student_headers).status_code, 403)
+        self.assertEqual(self.client.get(root + "lekcja_1_potegi_i_pierwiastki.pdf", headers=student_headers).status_code, 403)
+        self.assertEqual(len(self.client.get(manifest, headers=student_headers).get_json()), 11)
+        self.assertEqual(self.client.patch(endpoint, headers=student_headers, json={"full_course_access": True}).status_code, 403)
+        self.assertEqual(self.client.patch(endpoint, headers=admin_headers, json={"full_course_access": "true"}).status_code, 400)
+        updated = self.client.patch(endpoint, headers=admin_headers, json={"full_course_access": True})
+        self.assertIs(updated.get_json()["student"]["full_course_access"], True)
+        with self.client.get(manifest, headers=student_headers) as response:
+            self.assertEqual(len(response.get_json()), 29)
+        with self.client.get(root + "1.png", headers=student_headers) as response:
+            self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.client.get(root + "1.png", headers=other_headers).status_code, 403)
+        source = "zadania/kurs/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json"
+        task = {"source_id":source, "file":"1.png", "task_id":source+":1.png", "result":"bad", "course_part":"praca_domowa"}
+        self.assertEqual(self.client.post("/api/progress", headers=student_headers, json=task).status_code, 201)
+        self.client.patch(endpoint, headers=admin_headers, json={"full_course_access":False})
+        self.assertEqual(self.client.get(root + "1.png", headers=student_headers).status_code, 403)
+        self.assertEqual(self.client.post("/api/progress", headers=student_headers, json=task).status_code, 400)
+        self.assertEqual(self.client.post("/api/review-tasks", headers=student_headers, json=task).status_code, 400)
+        with self.client.get(root + "zd1.png", headers=student_headers) as response:
+            self.assertEqual(response.status_code, 200)
+
+    def test_submitted_answers_are_saved_with_progress(self):
+        with app.app_context():
+            student = create_user("answer@example.test", "Answer", "bezpieczne-haslo")
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+        source = "zadania/kurs/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json"
+        task = {"source_id":source, "file":"zd1.png", "task_id":source+":zd1.png", "result":"bad", "submitted_answer":"A"}
+        response = self.client.post("/api/progress", headers=headers, json=task)
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.get_json()["progress"]["submitted_answer"], "A")
+        saved = self.client.get("/api/progress/me", headers=headers).get_json()["progress"]
+        self.assertEqual(saved[0]["submitted_answer"], "A")
+
+    def test_all_homework_assets_and_eo_grading_remain_accessible(self):
+        root = app_module.COURSE_ASSET_ROOT
+        tested = 0
+        for directory, _dirs, files in os.walk(root):
+            for filename in files:
+                if not filename.endswith(".json"):
+                    continue
+                relative = os.path.relpath(os.path.join(directory, filename), root)
+                tasks = app_module.read_course_json(relative)
+                if not isinstance(tasks, list):
+                    continue
+                for task in tasks:
+                    if not app_module.is_homework_task(task):
+                        continue
+                    for reference in app_module.homework_asset_references(task):
+                        if not reference.endswith((".png", ".webp", ".jpg")):
+                            continue
+                        asset = os.path.join(os.path.dirname(relative), reference)
+                        with self.subTest(asset=asset):
+                            self.assertTrue(app_module.homework_asset_allowed(asset))
+                        tested += 1
+        self.assertGreater(tested, 190)
+        with app.app_context():
+            student = create_user("grading@example.test", "Grading", "bezpieczne-haslo", level="egzamin_osmoklasisty")
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+        response = self.client.get("/api/course-assets/eo/odpowiedzi_kurs_eo.json", headers=headers)
+        self.assertEqual(response.status_code, 200)
+        items = response.get_json()["items"]
+        self.assertGreater(len(items), 0)
+        for item in items:
+            self.assertTrue(app_module.is_homework_task(item))
+        self.assertTrue(any(item["taskFile"] == "zd_1.png" for item in items))
 
     def test_parent_access_token_expires(self):
         with app.app_context():

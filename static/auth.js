@@ -14,14 +14,15 @@
     ).replace(/\/$/, "");
 
     window.getAuthToken = function(){
-        return window.sessionStorage.getItem(TOKEN_KEY);
+        return window.sessionStorage.getItem(TOKEN_KEY) || window.localStorage.getItem(TOKEN_KEY);
     };
 
-    window.saveAuthToken = function(token){
+    window.saveAuthToken = function(token, remember = false){
         if(token){
             window.sessionStorage.removeItem(TOKEN_KEY);
             window.localStorage.removeItem(TOKEN_KEY);
-            window.sessionStorage.setItem(TOKEN_KEY, token);
+            const storage = remember ? window.localStorage : window.sessionStorage;
+            storage.setItem(TOKEN_KEY, token);
             cachedAuthUser = null;
             cachedAuthAt = 0;
         }
@@ -248,9 +249,9 @@
                 window.updateAuthNav(user);
                 return user;
             } catch(error) {
-                window.clearAuthToken();
-                window.updateAuthNav(null);
-                return null;
+                if(error.status === 401 || error.status === 403) window.clearAuthToken();
+                window.updateAuthNav(cachedAuthUser);
+                return cachedAuthUser;
             } finally {
                 authRefreshPromise = null;
             }

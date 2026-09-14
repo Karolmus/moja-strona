@@ -69,8 +69,7 @@ body {
 .training-panel,
 .training-overview,
 .problem-card,
-.progress-panel,
-.leaderboard-panel {
+.progress-panel {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface);
@@ -261,9 +260,7 @@ body {
 .control-btn:focus-visible,
 .secondary-btn:focus-visible,
 .key-btn:focus-visible,
-.yes-no-btn:focus-visible,
-.leaderboard-period:focus-visible,
-.leaderboard-refresh:focus-visible {
+.yes-no-btn:focus-visible {
     outline: 3px solid rgba(88, 101, 242, 0.24);
     outline-offset: 2px;
 }
@@ -897,203 +894,7 @@ body {
     background: #3b8f4f;
 }
 
-.leaderboard-panel {
-    display: grid;
-    gap: 10px;
-    padding: 12px;
-}
-
-.leaderboard-head {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.leaderboard-scope {
-    margin: 3px 0 0;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.leaderboard-refresh {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface-soft);
-    color: var(--text);
-    cursor: pointer;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 7px 9px;
-}
-
-.leaderboard-actions {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.leaderboard-tabs {
-    display: inline-grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4px;
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    background: var(--surface-soft);
-    padding: 3px;
-}
-
-.leaderboard-period {
-    border: 0;
-    border-radius: 7px;
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-    font: inherit;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 6px 8px;
-}
-
-.leaderboard-period.active {
-    background: white;
-    color: var(--blue-text);
-    box-shadow: 0 1px 5px rgba(15, 23, 42, 0.08);
-}
-
-.podium {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: end;
-    gap: 8px;
-    min-height: 142px;
-}
-
-.podium:empty {
-    display: none;
-}
-
-.podium-item {
-    display: grid;
-    align-items: end;
-    gap: 6px;
-    min-width: 0;
-}
-
-.podium-item.rank-1 {
-    order: 2;
-}
-
-.podium-item.rank-2 {
-    order: 1;
-}
-
-.podium-item.rank-3 {
-    order: 3;
-}
-
-.podium-person {
-    min-width: 0;
-    color: var(--text);
-    font-size: 12px;
-    font-weight: 600;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.podium-bar {
-    display: grid;
-    align-content: end;
-    gap: 4px;
-    border: 1px solid rgba(142, 181, 222, 0.7);
-    border-radius: 9px 9px 7px 7px;
-    background: linear-gradient(180deg, #ffffff 0%, #e8f1fb 100%);
-    color: var(--blue-text);
-    min-height: 72px;
-    padding: 9px 6px;
-    text-align: center;
-}
-
-.rank-1 .podium-bar {
-    min-height: 118px;
-    border-color: rgba(216, 174, 64, 0.62);
-    background: linear-gradient(180deg, #fff8db 0%, #f1d77a 100%);
-    color: #6b4c05;
-}
-
-.rank-2 .podium-bar {
-    min-height: 92px;
-}
-
-.rank-3 .podium-bar {
-    min-height: 76px;
-}
-
-.podium-rank {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.podium-score {
-    color: inherit;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.leaderboard-list {
-    display: grid;
-    gap: 7px;
-}
-
-.leaderboard-row {
-    display: grid;
-    grid-template-columns: 34px minmax(0, 1fr) 64px 64px 64px;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface-soft);
-    padding: 8px 9px;
-    font-size: 12px;
-}
-
-.leaderboard-row.current {
-    border-color: rgba(142, 181, 222, 0.9);
-    background: var(--blue-soft);
-}
-
-.leaderboard-rank {
-    color: var(--blue-text);
-    font-weight: 700;
-}
-
-.leaderboard-name {
-    min-width: 0;
-    overflow: hidden;
-    color: var(--text);
-    font-weight: 600;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.leaderboard-stat {
-    color: var(--muted);
-    font-weight: 600;
-    text-align: right;
-}
-
-.leaderboard-stat strong {
-    color: var(--text);
-    display: block;
-    font-size: 14px;
-    line-height: 1.1;
-}
-
-.leaderboard-empty {
+.training-empty {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
@@ -1221,8 +1022,7 @@ body {
 
     .training-overview,
     .problem-card,
-    .progress-panel,
-    .leaderboard-panel {
+    .progress-panel {
         padding: 10px;
     }
 
@@ -1303,35 +1103,10 @@ body {
         gap: 5px;
     }
 
-    .leaderboard-head {
-        flex-direction: column;
-    }
-
-    .leaderboard-actions {
-        width: 100%;
-        align-items: stretch;
-        flex-direction: row;
-    }
-
-    .leaderboard-tabs {
-        flex: 1 1 auto;
-    }
-
-    .leaderboard-refresh {
-        flex: 0 0 auto;
-    }
-
     .summary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .leaderboard-row {
-        grid-template-columns: 30px minmax(0, 1fr) 54px 54px;
-    }
-
-    .leaderboard-stat.streak {
-        display: none;
-    }
 }
 </style>
 </head>
@@ -1468,23 +1243,6 @@ body {
                 </div>
             </div>
 
-            <div class="leaderboard-panel" aria-live="polite">
-                <div class="leaderboard-head">
-                    <div>
-                        <div class="section-label">Ranking uczniów</div>
-                        <p class="leaderboard-scope" id="leaderboardScope"></p>
-                    </div>
-                    <div class="leaderboard-actions">
-                        <div class="leaderboard-tabs" aria-label="Zakres rankingu">
-                            <button class="leaderboard-period active" id="leaderboardWeekButton" type="button">Tydzień</button>
-                            <button class="leaderboard-period" id="leaderboardAllButton" type="button">Całość</button>
-                        </div>
-                        <button class="leaderboard-refresh" id="leaderboardRefreshButton" type="button">Odśwież</button>
-                    </div>
-                </div>
-                <div class="podium" id="leaderboardPodium"></div>
-                <div class="leaderboard-list" id="leaderboardList"></div>
-            </div>
         </section>
     </div>
 </main>
@@ -1580,7 +1338,7 @@ const state = {
     reviewTopic: "",
     seenTaskKeys: new Set(),
     taskMemory: [],
-    leaderboardPeriod: "week",
+    progressPeriod: "week",
     attemptToken: ""
 };
 
@@ -1619,14 +1377,7 @@ const resetButton = document.getElementById("resetButton");
 const keypad = document.getElementById("keypad");
 const progressScope = document.getElementById("progressScope");
 const progressChart = document.getElementById("progressChart");
-const leaderboardScope = document.getElementById("leaderboardScope");
-const leaderboardList = document.getElementById("leaderboardList");
-const leaderboardPodium = document.getElementById("leaderboardPodium");
-const leaderboardWeekButton = document.getElementById("leaderboardWeekButton");
-const leaderboardAllButton = document.getElementById("leaderboardAllButton");
-const leaderboardRefreshButton = document.getElementById("leaderboardRefreshButton");
 
-let leaderboardRequestId = 0;
 let progressRequestId = 0;
 
 const GENERATORS = [
@@ -3474,14 +3225,8 @@ function escapeHtml(value){
         .replace(/'/g, "&#039;");
 }
 
-function formatLeaderboardAverage(value){
-    const numeric = Number(value);
-
-    return Number.isFinite(numeric) && numeric > 0 ? `${numeric.toFixed(1)}s` : "-";
-}
-
 function progressScopeLabel(){
-    const periodLabel = state.leaderboardPeriod === "week" ? "ostatnie 7 dni" : "całość";
+    const periodLabel = state.progressPeriod === "week" ? "ostatnie 7 dni" : "całość";
 
     return `${periodLabel} · ${LEVELS[state.level].label} · ${activeTopicLabel()} · ${state.roundSeconds}s`;
 }
@@ -3492,7 +3237,7 @@ function progressParams(){
         topic: trainingScopeTopic(),
         difficulty: String(state.difficulty),
         round_seconds: String(state.roundSeconds),
-        period: state.leaderboardPeriod,
+        period: state.progressPeriod,
         limit: "12"
     });
 }
@@ -3500,7 +3245,7 @@ function progressParams(){
 function renderProgressMessage(message){
     if(!progressChart) return;
 
-    progressChart.innerHTML = `<div class="leaderboard-empty">${escapeHtml(message)}</div>`;
+    progressChart.innerHTML = `<div class="training-empty">${escapeHtml(message)}</div>`;
 }
 
 function renderProgressChart(items){
@@ -3632,126 +3377,8 @@ function saveBestScore(){
     return true;
 }
 
-function leaderboardScopeLabel(){
-    const periodLabel = state.leaderboardPeriod === "week" ? "ostatnie 7 dni" : "całość";
-
-    return `${periodLabel} · ${LEVELS[state.level].label} · ${activeTopicLabel()} · ${activeDifficultyLabel()} · ${state.roundSeconds}s`;
-}
-
-function leaderboardParams(){
-    return new URLSearchParams({
-        level: state.level,
-        topic: trainingScopeTopic(),
-        difficulty: String(state.difficulty),
-        round_seconds: String(state.roundSeconds),
-        period: state.leaderboardPeriod,
-        limit: "3"
-    });
-}
-
-function renderLeaderboardMessage(message){
-    if(!leaderboardList) return;
-
-    if(leaderboardPodium){
-        leaderboardPodium.innerHTML = "";
-    }
-
-    leaderboardList.innerHTML = `<div class="leaderboard-empty">${escapeHtml(message)}</div>`;
-}
-
-function renderLeaderboardPeriod(){
-    if(leaderboardWeekButton){
-        leaderboardWeekButton.className = state.leaderboardPeriod === "week"
-            ? "leaderboard-period active"
-            : "leaderboard-period";
-    }
-
-    if(leaderboardAllButton){
-        leaderboardAllButton.className = state.leaderboardPeriod === "all"
-            ? "leaderboard-period active"
-            : "leaderboard-period";
-    }
-}
-
-function renderPodium(items){
-    if(!leaderboardPodium) return;
-
-    const podiumItems = items.slice(0, 3);
-
-    leaderboardPodium.innerHTML = podiumItems.map(item => `
-        <div class="podium-item rank-${Number(item.rank || 0)}">
-            <div class="podium-person" title="${escapeHtml(item.display_name)}">${escapeHtml(item.display_name || "Uczeń")}</div>
-            <div class="podium-bar">
-                <span class="podium-rank">#${Number(item.rank || 0)}</span>
-                <span class="podium-score">${Number(item.correct_count || 0)} pkt</span>
-            </div>
-        </div>
-    `).join("");
-}
-
-function renderLeaderboard(items){
-    if(!leaderboardList) return;
-
-    if(!items.length){
-        renderLeaderboardMessage("Brak zapisanych wyników dla tego ustawienia.");
-        return;
-    }
-
-    renderPodium(items);
-
-    leaderboardList.innerHTML = items.map(item => `
-        <div class="leaderboard-row${item.is_current_user ? " current" : ""}">
-            <span class="leaderboard-rank">#${item.rank}</span>
-            <span class="leaderboard-name" title="${escapeHtml(item.display_name)}">${escapeHtml(item.display_name || "Uczeń")}</span>
-            <span class="leaderboard-stat"><strong>${Number(item.correct_count || 0)}</strong>pkt</span>
-            <span class="leaderboard-stat"><strong>${Number(item.mistake_count || 0)}</strong>bł.</span>
-            <span class="leaderboard-stat streak"><strong>${Number(item.best_streak || 0)}</strong>seria</span>
-        </div>
-    `).join("");
-}
-
-async function loadLeaderboard(){
-    renderLeaderboardPeriod();
-
-    if(leaderboardScope){
-        leaderboardScope.innerText = leaderboardScopeLabel();
-    }
-
-    if(!leaderboardList) return;
-
-    if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
-        renderLeaderboardMessage("Ranking działa po zalogowaniu ucznia.");
-        return;
-    }
-
-    const requestId = ++leaderboardRequestId;
-
-    renderLeaderboardMessage("Ładowanie rankingu...");
-
-    try {
-        const data = await window.apiFetch(`/api/speed-training/leaderboard?${leaderboardParams().toString()}`);
-
-        if(requestId !== leaderboardRequestId) return;
-
-        renderLeaderboard(Array.isArray(data?.leaderboard) ? data.leaderboard : []);
-    } catch(error) {
-        if(requestId !== leaderboardRequestId) return;
-
-        renderLeaderboardMessage(error.status === 401
-            ? "Ranking działa po zalogowaniu ucznia."
-            : "Nie udało się pobrać rankingu.");
-    }
-}
-
-function setLeaderboardPeriod(period){
-    state.leaderboardPeriod = period === "all" ? "all" : "week";
-    loadLeaderboard();
-    loadProgress();
-}
-
 async function saveSpeedTrainingResult(){
     if(!state.attemptToken || !window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
-        loadLeaderboard();
         loadProgress();
         return;
     }
@@ -3776,7 +3403,6 @@ async function saveSpeedTrainingResult(){
     } catch(error) {
         console.warn("Nie udało się zapisać wyniku treningu.", error);
     } finally {
-        loadLeaderboard();
         loadProgress();
     }
 }
@@ -3874,7 +3500,7 @@ async function startRound(){
                 state.attemptToken = attempt.attempt_token || "";
             } catch(error) {
                 // Trening pozostaje dostępny również przy chwilowym problemie z serwerem.
-                console.warn("Runda będzie działać lokalnie bez zapisu do rankingu.", error);
+                console.warn("Runda będzie działać lokalnie bez zapisu wyniku.", error);
             }
         }
 
@@ -3967,7 +3593,6 @@ function resetRound(){
     setStatus("Gotowy", "");
     startButton.innerText = "Start rundy";
     updateStats();
-    loadLeaderboard();
     loadProgress();
 }
 
@@ -4178,10 +3803,6 @@ noButton.addEventListener("click", () => submitYesNoAnswer(false));
 startButton.addEventListener("click", startRound);
 problemStartPrompt.addEventListener("click", startRound);
 resetButton.addEventListener("click", resetRound);
-leaderboardRefreshButton.addEventListener("click", loadLeaderboard);
-leaderboardWeekButton.addEventListener("click", () => setLeaderboardPeriod("week"));
-leaderboardAllButton.addEventListener("click", () => setLeaderboardPeriod("all"));
-window.addEventListener("load", loadLeaderboard);
 window.addEventListener("load", loadProgress);
 window.addEventListener("load", syncTrainingLevelFromAuth);
 
@@ -4209,7 +3830,7 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
         document.getElementById("nav").innerHTML = html;
     });
 </script>
-<script src="static/auth.js?v=20260820-mobile-call-footer"></script>
+<script src="static/auth.js?v=20260913-remember"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 </body>
 </html>

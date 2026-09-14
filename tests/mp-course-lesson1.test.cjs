@@ -61,13 +61,14 @@ for (const [file, name] of [
 (async () => {
   const source = {id: sourcePath, path: sourcePath, category: 'kurs', level: 'matura_podstawowa'};
   const ctx = vm.createContext({
+    loggedUser:null,
     STUDENT_WORK_COURSE_PART: 'praca_domowa', getSourceMeta: () => source,
     STUDENT_WORK_COURSE_PARTS: ['praca_domowa', 'zadania_powtorkowe'],
     loadJsonSource: async () => tasks,
     normalizeTaskSolutions: () => [], normalizeTaskGradingCriteria: () => [],
     normalizeCourseTextGradingCriteria: () => [], normalizeTaskTags: task => task.tags
   });
-  for (const name of ['loadTaskSource', 'getSourceCompletionTasks', 'choose']) {
+  for (const name of ['canAccessCoursePart', 'loadTaskSource', 'getSourceCompletionTasks', 'choose']) {
     vm.runInContext(functionSource(html, name), ctx);
   }
   ctx.tasks = await ctx.loadTaskSource(source);
