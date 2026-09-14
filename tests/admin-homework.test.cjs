@@ -15,7 +15,7 @@ for (const name of ['progressSourceId', 'progressFile', 'progressTaskKey', 'isPr
 }
 const progress = catalog.map(task => ({source_id:task.sourceId, file:task.file, result:'good', created_at:'2026-09-10T10:00:00Z'}));
 const visible = progress.filter(ctx.isIndependentWorkProgress);
-assert.equal(visible.length, 16, 'Twelve homework, three review exercises and one exam task remain');
+assert.equal(visible.length, 19, 'Fourteen homework, four review exercises and one exam task remain');
 assert(!ctx.isIndependentWorkProgress({source_id:source, file:'1.png', course_part:'praca_domowa'}), 'The catalog is authoritative');
 assert(ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', file:'zd1.png'}));
 assert(ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', file:'zp1.png'}));
@@ -24,12 +24,12 @@ assert(!ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', fi
 assert(ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', file:'custom.png', course_part:'praca_domowa'}));
 const groups = ctx.sourceProgressGroups(progress, {level:'matura_podstawowa'});
 const course = groups.find(group => group.category === 'kurs');
-assert.equal(course.total, 15);
-assert.equal(course.attempted, 15);
-assert.equal(course.totalPoints, 15);
+assert.equal(course.total, 18);
+assert.equal(course.attempted, 18);
+assert.equal(course.totalPoints, 18);
 assert(course.completed);
 assert.deepEqual(Array.from(course.tasks, task => task.file), [
-  ...Array.from({length:12}, (_, index) => `zd${index+1}.png`), 'zp1.png', 'zp2.png', 'zp3.png'
+  ...Array.from({length:14}, (_, index) => `zd${index+1}.png`), 'zp1.png', 'zp2.png', 'zp3.png', 'zp4.png'
 ], 'Review exercises follow the homework, without interleaving task numbers');
 assert.equal(groups.find(group => group.category === 'egzaminy').total, 1);
 const onlyMain = progress.filter(item => /^\d/.test(item.file) && item.source_id === source);

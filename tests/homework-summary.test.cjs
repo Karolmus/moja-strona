@@ -39,7 +39,7 @@ for (const name of ['getTaskKey', 'getProgressSourceId', 'getProgressFile', 'pro
   assert(match, name);
   vm.runInContext(html.slice(match.index, html.indexOf('\n}', match.index)+2), ctx);
 }
-assert.equal(ctx.getHomeworkSummaryTasks().length, 15);
+assert.equal(ctx.getHomeworkSummaryTasks().length, 18);
 assert(!html.includes('id="homeworkSummaryMedium"'));
 assert.match(html, /Zadania wykonane poprawnie/);
 assert.match(html, /Zadania wykonane błędnie/);
@@ -61,14 +61,14 @@ ctx.savedProgress.push({source_id:sourceId, file:'1.png', result:'bad', hint_use
 ctx.savedProgress.push({source_id:'other', file:'zd1.png', result:'bad', hint_used:true, duration_seconds:999});
 ctx.reviewTaskKeys = new Set([`${sourceId}:zd2.png`, `${sourceId}:zp1.png`, `${sourceId}:zp2.png`, `${sourceId}:1.png`, 'other:zd1.png']);
 const summary = ctx.calculateHomeworkSummary();
-for (const [key, value] of Object.entries({good:12, bad:3, goodHints:3, badHints:2, review:3, durationSeconds:120})) {
+for (const [key, value] of Object.entries({good:15, bad:3, goodHints:3, badHints:2, review:3, durationSeconds:171})) {
   assert.equal(summary[key], value, key);
 }
-assert.equal(summary.good + summary.bad, 15);
+assert.equal(summary.good + summary.bad, 18);
 ctx.sessionHints.set(`${sourceId}:zd2.png`, false);
 ctx.sessionDurations.set(`${sourceId}:zd1.png`, 17);
 assert.equal(ctx.calculateHomeworkSummary().goodHints, 2, 'Current attempt flags override saved history');
-assert.equal(ctx.calculateHomeworkSummary().durationSeconds, 136);
+assert.equal(ctx.calculateHomeworkSummary().durationSeconds, 187);
 ctx.sessionHints.clear();
 ctx.sessionDurations.clear();
 assert(ctx.isHomeworkComplete());
@@ -98,11 +98,11 @@ ctx.sessionResults.clear();
   assert(ctx.advanceToHomeworkSummaryIfComplete());
   assert(!ctx.advanceToHomeworkSummaryIfComplete(), 'Open the summary once per completion');
   assert.equal(overlay.hidden, false);
-  assert.equal(elements.homeworkSummaryGood.innerText, 12);
+  assert.equal(elements.homeworkSummaryGood.innerText, 15);
   assert.equal(elements.homeworkSummaryGoodHints.innerText, '(w tym 3 ze wskazówką)');
   assert.equal(elements.homeworkSummaryBad.innerText, 3);
   assert.equal(elements.homeworkSummaryBadHints.innerText, '(w tym 2 ze wskazówką)');
-  assert.equal(elements.homeworkSummaryDuration.innerText, '2 min');
+  assert.equal(elements.homeworkSummaryDuration.innerText, '2 min 51 s');
   assert.equal(elements.homeworkSummaryReview.innerText, '...');
   assert.equal(fetched, 0, 'Wait for outstanding discussion requests before fetching the count');
   release();

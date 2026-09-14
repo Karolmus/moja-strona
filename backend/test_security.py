@@ -861,10 +861,10 @@ class SecurityTests(unittest.TestCase):
         with self.client.get(path, headers=headers) as response:
             self.assertEqual(response.status_code, 200)
             tasks = response.get_json()
-            self.assertEqual(len(tasks), 15)
-            self.assertEqual(sum(t["coursePart"] == "praca_domowa" for t in tasks), 12)
-            self.assertEqual(sum(t["coursePart"] == "zadania_powtorkowe" for t in tasks), 3)
-        for file in ["zd12.png", "zp1.png", "zp3.png"]:
+            self.assertEqual(len(tasks), 18)
+            self.assertEqual(sum(t["coursePart"] == "praca_domowa" for t in tasks), 14)
+            self.assertEqual(sum(t["coursePart"] == "zadania_powtorkowe" for t in tasks), 4)
+        for file in ["zd12.png", "zd13.png", "zd14.png", "zp1.png", "zp4.png"]:
             with self.client.get(f"/api/course-assets/mp/lekcja_2/{file}", headers=headers) as response:
                 self.assertEqual(response.status_code, 200)
                 self.assertEqual(response.mimetype, "image/png")

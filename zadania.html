@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://www.youtube-nocookie.com">
 <meta name="referrer" content="no-referrer">
 <script src="static/security.js?v=2"></script>
 <meta charset="UTF-8">
@@ -1303,6 +1303,102 @@ button {
 
 .video-link[hidden] {
     display: none !important;
+}
+
+html.task-video-open {
+    overflow: hidden;
+}
+
+.task-video-dialog {
+    width: min(960px, calc(100vw - 24px), calc((100dvh - 136px) * 16 / 9));
+    min-width: min(296px, calc(100vw - 24px));
+    max-width: none;
+    max-height: calc(100dvh - 24px);
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.3);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.task-video-dialog::backdrop {
+    background: rgba(15, 23, 42, 0.68);
+}
+
+.task-video-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+}
+
+.task-video-head h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.task-video-head p {
+    margin: 3px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.task-video-close {
+    display: grid;
+    place-items: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    cursor: pointer;
+}
+
+.task-video-close:hover {
+    background: #eaf0f6;
+}
+
+.task-video-close:focus-visible,
+.task-video-footer a:focus-visible {
+    outline: 2px solid var(--blue-text);
+    outline-offset: 3px;
+}
+
+.task-video-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
+    background: #111;
+}
+
+.task-video-player iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.task-video-footer {
+    padding: 10px 16px;
+    text-align: right;
+    font-size: 12px;
+}
+
+.task-video-footer a {
+    color: var(--blue-text);
+    text-underline-offset: 3px;
 }
 
 .action-group.tools .box {
@@ -2979,7 +3075,7 @@ footer {
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
-                        <a class="action-btn solution video-link" id="taskVideoLink" target="_blank" rel="noopener noreferrer" aria-label="Zobacz film, otwiera się w nowej karcie" hidden>Zobacz film</a>
+                        <a class="action-btn solution video-link" id="taskVideoLink" target="_blank" rel="noopener noreferrer" aria-haspopup="dialog" aria-controls="taskVideoDialog" hidden>Zobacz film z rozwiązaniem</a>
                         <div id="answer" class="box" aria-live="polite"></div>
                     </div>
 
@@ -3015,6 +3111,22 @@ footer {
         </div>
     </div>
 </div>
+
+<dialog class="task-video-dialog" id="taskVideoDialog" aria-labelledby="taskVideoTitle" aria-describedby="taskVideoTask">
+    <div class="task-video-head">
+        <div>
+            <h2 id="taskVideoTitle">Film z rozwiązaniem</h2>
+            <p id="taskVideoTask"></p>
+        </div>
+        <button class="task-video-close" id="taskVideoClose" type="button" aria-label="Zamknij film" title="Zamknij film" autofocus>
+            <img src="static/icons/x.svg" width="18" height="18" alt="">
+        </button>
+    </div>
+    <div class="task-video-player" id="taskVideoPlayer"></div>
+    <div class="task-video-footer">
+        <a id="taskVideoExternal" target="_blank" rel="noopener noreferrer">Otwórz w YouTube</a>
+    </div>
+</dialog>
 
 <div class="exam-summary-overlay" id="examSummaryOverlay" hidden>
     <section class="exam-summary-dialog" role="dialog" aria-modal="true" aria-labelledby="examSummaryTitle" tabindex="-1">
@@ -6913,6 +7025,7 @@ function setTaskLoading(loading){
 }
 
 function clearTaskInteraction(){
+    closeTaskVideo();
     document.getElementById("manualScoreNotice").hidden = true;
     document.getElementById("taskInstruction").hidden = true;
     document.getElementById("taskInstruction").textContent = "";
@@ -7529,6 +7642,69 @@ function taskVideoUrl(task){
     const url = String(DeltaSigmaCourseVideos[task.sourceId]?.[task.file] || task.videoUrl || "");
     return /^https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}$/.test(url) ? url : "";
 }
+
+function taskVideoEmbedUrl(task){
+    const url = taskVideoUrl(task);
+    if(!url) return "";
+
+    const videoId = new URL(url).pathname.slice(1);
+    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`;
+}
+
+function openTaskVideo(event){
+    if(event && (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) return;
+    event?.preventDefault();
+
+    const dialog = document.getElementById("taskVideoDialog");
+    const embedUrl = taskVideoEmbedUrl(currentTask);
+    if(!embedUrl || isTaskLoading || dialog.open) return;
+
+    const label = coursePartDisplayTitle(currentTask) || currentTask.title || "Rozwiązanie zadania";
+    document.getElementById("taskVideoTask").textContent = label;
+    document.getElementById("taskVideoExternal").href = taskVideoUrl(currentTask);
+
+    const frame = document.createElement("iframe");
+    frame.title = `Film: ${label}`;
+    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.src = embedUrl;
+
+    dialog.showModal();
+    document.documentElement.classList.add("task-video-open");
+    document.getElementById("taskVideoPlayer").replaceChildren(frame);
+}
+
+function resetTaskVideo(){
+    // Removing the iframe also stops playback and releases the player.
+    document.getElementById("taskVideoPlayer").replaceChildren();
+    document.getElementById("taskVideoExternal").removeAttribute("href");
+    document.documentElement.classList.remove("task-video-open");
+}
+
+function closeTaskVideo(){
+    const dialog = document.getElementById("taskVideoDialog");
+    if(dialog.open) dialog.close();
+    resetTaskVideo();
+}
+
+document.getElementById("taskVideoLink").addEventListener("click", openTaskVideo);
+document.getElementById("taskVideoClose").addEventListener("click", closeTaskVideo);
+document.getElementById("taskVideoDialog").addEventListener("cancel", event => {
+    event.preventDefault();
+    closeTaskVideo();
+});
+document.getElementById("taskVideoDialog").addEventListener("close", event => {
+    if(!event.currentTarget.open) resetTaskVideo();
+});
+document.getElementById("taskVideoDialog").addEventListener("click", event => {
+    if(event.target !== event.currentTarget) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    if(event.clientX < bounds.left || event.clientX > bounds.right ||
+        event.clientY < bounds.top || event.clientY > bounds.bottom){
+        closeTaskVideo();
+    }
+});
 
 function setResultButtonsEnabled(enabled){
     document.querySelectorAll("#resultButtons button")

@@ -472,7 +472,7 @@
     "topic": "logarytmy",
     "tags": [
       "logarytmy",
-      "potęgi",
+      "logarytm ilorazu",
       "ułamki"
     ],
     "difficulty": 1,
@@ -485,7 +485,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Oblicz osobno logarytm w liczniku i w mianowniku, uwzględniając ich różne podstawy."
+    "hint": "Różnicę logarytmów dziesiętnych zapisz jako logarytm ilorazu. Uprość ułamek i zapisz go jako potęgę liczby 10."
   },
   {
     "file": "zd4.png",
@@ -495,8 +495,8 @@
     "topic": "logarytmy",
     "tags": [
       "logarytmy",
-      "potęgi",
-      "wykładnik wymierny"
+      "pierwiastki",
+      "zmiana podstawy logarytmu"
     ],
     "difficulty": 1,
     "maxPoints": 1,
@@ -507,8 +507,8 @@
       "C",
       "D"
     ],
-    "answer": "A",
-    "hint": "Zapisz 9, 3 i 27 jako potęgi liczby 3. Następnie uwzględnij współczynniki stojące przed logarytmami."
+    "answer": "C",
+    "hint": "Zapisz pierwiastek z 7 jako potęgę o wykładniku 1/2. Następnie sprowadź logarytmy z odpowiedzi do podstawy 10."
   },
   {
     "file": "zd5.png",
@@ -541,7 +541,8 @@
     "topic": "logarytmy",
     "tags": [
       "logarytmy",
-      "logarytm ilorazu"
+      "definicja logarytmu",
+      "równania wykładnicze"
     ],
     "difficulty": 1,
     "maxPoints": 1,
@@ -552,8 +553,8 @@
       "C",
       "D"
     ],
-    "answer": "C",
-    "hint": "Różnicę logarytmów zamień na logarytm ilorazu. Otrzymaną liczbę zapisz jako potęgę liczby 5."
+    "answer": "A",
+    "hint": "Z definicji logarytmu zapisz równanie 11^x = 4. Następnie podnieś obie strony do potęgi 1/x i porównaj otrzymaną postać z odpowiedziami."
   },
   {
     "file": "zd7.png",
@@ -598,8 +599,8 @@
       "C",
       "D"
     ],
-    "answer": "C",
-    "hint": "Najpierw oblicz pierwiastek trzeciego stopnia z 343. Potem zastosuj definicję logarytmu."
+    "answer": "B",
+    "hint": "Zapisz 49 jako potęgę liczby 7 i uwzględnij pierwiastek trzeciego stopnia. Następnie zastosuj definicję logarytmu."
   },
   {
     "file": "zd9.png",
@@ -697,6 +698,53 @@
     "instruction": "Przyjmij, że podstawy wszystkich występujących logarytmów są dodatnie i różne od 1."
   },
   {
+    "file": "zd13.png",
+    "title": "Lekcja 2 - praca domowa 13",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "zmiana podstawy logarytmu",
+      "logarytm ilorazu"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ],
+    "hint": "W pierwszym zdaniu sprowadź oba logarytmy do podstawy 3. W drugim zapisz liczbę 1 jako logarytm przy podstawie 4, a następnie połącz różnicę."
+  },
+  {
+    "file": "zd14.png",
+    "title": "Lekcja 2 - praca domowa 14",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "trygonometria",
+      "jedynka trygonometryczna"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Zastosuj jedynkę trygonometryczną do wyrażenia pod logarytmem. Następnie oblicz logarytm otrzymanej liczby."
+  },
+  {
     "file": "zp1.png",
     "title": "Lekcja 2 - zadanie powtórkowe 1",
     "coursePart": "zadania_powtorkowe",
@@ -764,5 +812,29 @@
     ],
     "answer": "C",
     "hint": "Zapisz 8 i 125 jako potęgi liczb 2 i 5. Połącz pary czynników 2 i 5 w potęgi liczby 10, a następnie policz cyfry."
+  },
+  {
+    "file": "zp4.png",
+    "title": "Lekcja 2 - zadanie powtórkowe 4",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "potęgi i pierwiastki",
+    "tags": [
+      "potęgi",
+      "działania na potęgach",
+      "wyłączanie wspólnego czynnika",
+      "ułamki"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Wyłącz w liczniku wspólny czynnik 6^19. Zapisz go jako iloczyn potęg liczb 2 i 3, a następnie skróć ułamek."
   }
 ]

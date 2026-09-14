@@ -11,15 +11,15 @@ const adminHtml = fs.readFileSync('admin.html', 'utf8');
 const workParts = ['praca_domowa', 'zadania_powtorkowe'];
 const homework = tasks.filter(t => t.coursePart === workParts[0]);
 const revision = tasks.filter(t => t.coursePart === workParts[1]);
-assert.equal(tasks.length, 33);
-assert.equal(homework.length, 12);
-assert.equal(revision.length, 3);
-assert.equal(new Set(tasks.map(t => t.file)).size, 33);
+assert.equal(tasks.length, 36);
+assert.equal(homework.length, 14);
+assert.equal(revision.length, 4);
+assert.equal(new Set(tasks.map(t => t.file)).size, 36);
 
 for (const [part, prefix, key] of [
   ['zadania', '', 'B D A C B C A C D B D C A B B A PF FP'],
-  [workParts[0], 'zd', 'B C B A D C A C B D C FP'],
-  [workParts[1], 'zp', 'B D C']
+  [workParts[0], 'zd', 'B C B C D A A B B D C FP PF A'],
+  [workParts[1], 'zp', 'B D C A']
 ]) {
   tasks.filter(t => t.coursePart === part).forEach((task, i) => {
     assert.equal(task.file, `${prefix}${i + 1}.png`);
@@ -39,12 +39,13 @@ for (const [part, prefix, key] of [
     assert(png.readUInt32BE(20) > 200 && png.readUInt32BE(20) < 500);
   });
 }
-assert.match(homework.at(-1).instruction, /dodatnie i różne od 1/);
+assert.match(homework.find(t => t.file === 'zd12.png').instruction, /dodatnie i różne od 1/);
 
 // Independently evaluate the expressions and all options transcribed from the PDF.
 const log = (base, x) => Math.log(x) / Math.log(base);
 const root = Math.sqrt;
 const a = log(0.5, 8), b = log(2, 8), c = log(2, 0.25), d = log(2, 12);
+const x = log(11, 4);
 const cases = [
   ['1.png', log(4, 2) - log(4, 32), [-3, -2, -1, 2]],
   ['2.png', log(root(5), 125), [3, 4, 5, 6]],
@@ -64,18 +65,21 @@ const cases = [
   ['16.png', log(root(5), 5), [2, 4, root(5), 1/2]],
   ['zd1.png', -1/16*log(0.5, 16)*log(0.25, 64), [-3, -3/4, 3/4, 3]],
   ['zd2.png', log(5, 25)+2*log(5, root(5)), [log(5, 5), 2, 3, log(5, 625)]],
-  ['zd3.png', log(2, 64)/log(4, 16), [2, 3, 4, 3/2]],
-  ['zd4.png', 6*log(9, 3)+2*log(9, 27), [6, 3, 9, 12]],
+  ['zd3.png', Math.log10(1/8)-Math.log10(125), [-2, -3, -4, -5]],
+  ['zd4.png', Math.log10(root(7)), [log(root(10),7), log(7,root(10)), log(100,7), log(7,100)]],
   ['zd5.png', log(9, 27)+5*log(9, 3), [2, 2+log(9, 3), 1+log(9, 27), 4]],
-  ['zd6.png', log(5, 375)-log(5, 3), [log(5, 372), log(3, 375), 3, 2]],
+  ['zd6.png', 1, [Math.abs(4**(1/x)-11) < 1e-9, Math.abs(4**x-11) < 1e-9,
+    Math.abs(x-11**(1/4)) < 1e-9, Math.abs(x-4**(1/11)) < 1e-9].map(Number)],
   ['zd7.png', log(2, 72)-2*log(2, 3), [3, 8, log(2, 66), 2*log(2, 36)]],
-  ['zd8.png', log(7, Math.cbrt(343)), [1/3, 2/3, 1, 3]],
+  ['zd8.png', log(7, Math.cbrt(49)), [1/3, 2/3, 1, 3]],
   ['zd9.png', 2*log(5, 10)-log(5, 4), [4, 2, 2*log(5, 2), log(5, 8)]],
   ['zd10.png', log(27, 3)-log(27, 729), [-2, -4/3, 5/3, -5/3]],
   ['zd11.png', log(Math.cbrt(2), 16), [4, 8, 12, 16]],
+  ['zd14.png', Math.log10(Math.sin(0.7)**2+Math.cos(0.7)**2), [0, 1, root(2)/2, root(3)/2]],
   ['zp1.png', (1/8)**4 * 4**9, [2**10, 2**6, 2**8, 2**-6]],
   ['zp2.png', Math.cbrt(7*root(7)), [7**(1/6), 7**(1/4), Math.cbrt(7), root(7)]],
-  ['zp3.png', String(8n**6n * 125n**4n).length, [12, 13, 14, 15]]
+  ['zp3.png', String(8n**6n * 125n**4n).length, [12, 13, 14, 15]],
+  ['zp4.png', (6**19+6**20)/(2**20*3**21), [7/18, 3**18, 21/36, 6**18]]
 ];
 assert.equal(cases.length, tasks.filter(t => t.type === 'closed').length);
 for (const [file, value, options] of cases) {
@@ -90,7 +94,10 @@ assert(Math.log10(2)+Math.log10(25) > 1 && Math.log10(2)+Math.log10(25) < 2);
 assert(Math.abs(log(11, Math.cbrt(121))-2/3) < 1e-12);
 assert.notEqual(log(2, 1)*log(2, 1), log(2, 1+1));
 // The second homework statement is the definition of log_b(a), for b > 0, b != 1.
-assert.deepEqual(homework.at(-1).answer, ['F', 'P']);
+assert.deepEqual(homework.find(t => t.file === 'zd12.png').answer, ['F', 'P']);
+assert(Math.abs(log(3,6)-log(9,36)) < 1e-12);
+assert(Math.abs((1-log(4,15))-log(4,1/15)) > 0.1);
+assert.deepEqual(homework.find(t => t.file === 'zd13.png').answer, ['P', 'F']);
 
 function functionSource(text, name) {
   const start = text.indexOf(`function ${name}(`);
@@ -124,17 +131,17 @@ for (const [text, name] of [[html, 'TASK_SOURCES'], [profileHtml, 'PROFILE_SOURC
     'pool', 'selectCoursePartTask', 'isCoursePreviewMode', 'ensureSelectedCoursePart', 'coursePartOrdinalNumber',
     'coursePartDisplayTitle', 'taskThemeClass']) vm.runInContext(functionSource(html, name), ctx);
   ctx.tasks = await ctx.loadTaskSource(source);
-  assert.equal(ctx.tasks.length, 15);
-  assert.equal(ctx.pool().length, 15);
-  assert.equal(ctx.getSourceCompletionTasks(source).length, 15);
+  assert.equal(ctx.tasks.length, 18);
+  assert.equal(ctx.pool().length, 18);
+  assert.equal(ctx.getSourceCompletionTasks(source).length, 18);
   assert.equal(ctx.getCoursePartTasks('zadania').length, 0);
   assert.deepEqual(Array.from(ctx.getCourseNavigatorItems(), t => t.file), [...homework, ...revision].map(t => t.file));
   ctx.selectCoursePartTask(workParts[1]);
-  assert.equal(ctx.drawnIndex, 12);
+  assert.equal(ctx.drawnIndex, 14);
   ctx.ensureSelectedCoursePart();
   assert.equal(ctx.selectedCoursePart, workParts[1]);
   ctx.selectCoursePartTask(workParts[1], 'zp3.png');
-  assert.equal(ctx.drawnIndex, 14);
+  assert.equal(ctx.drawnIndex, 16);
   for (const [i, task] of ctx.tasks.filter(t => t.coursePart === workParts[1]).entries()) {
     assert(!ctx.isCoursePreviewMode(task));
     assert.equal(ctx.coursePartOrdinalNumber(task), String(i+1));
@@ -153,17 +160,17 @@ for (const [text, name] of [[html, 'TASK_SOURCES'], [profileHtml, 'PROFILE_SOURC
     vm.runInContext(functionSource(profileHtml, name), profile);
   }
   const progress = [...homework, ...revision].map(t => ({source_id:sourcePath, file:t.file, result:'good'}));
-  assert(!profile.courseCompletion(progress.slice(0, 12)).complete, 'Homework alone does not complete the review part');
-  assert(!profile.courseCompletion(progress.slice(0, 14)).complete);
+  assert(!profile.courseCompletion(progress.slice(0, homework.length)).complete, 'Homework alone does not complete the review part');
+  assert(!profile.courseCompletion(progress.slice(0, -1)).complete);
   assert(profile.courseCompletion(progress).complete);
-  assert.equal(profile.sourceCompletionFiles(catalog).size, 15);
-  assert.equal(profile.calculateProgress(progress.slice(0, 12), 'kurs', workParts[0]).percent, 100);
-  assert.equal(profile.calculateProgress(progress.slice(0, 12), 'kurs', workParts[1]).percent, 0);
+  assert.equal(profile.sourceCompletionFiles(catalog).size, 18);
+  assert.equal(profile.calculateProgress(progress.slice(0, homework.length), 'kurs', workParts[0]).percent, 100);
+  assert.equal(profile.calculateProgress(progress.slice(0, homework.length), 'kurs', workParts[1]).percent, 0);
   assert.equal(profile.calculateProgress(progress, 'kurs', workParts[1]).percent, 100);
   const admin = vm.createContext({adminTaskCatalog:tasks.map(t => ({...t, category:'kurs', sourceId:sourcePath}))});
   vm.runInContext(functionSource(adminHtml, 'getCatalogSources'), admin);
-  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {courseParts:workParts})[0].totalTasks, 15);
-  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {coursePart:workParts[1]})[0].totalTasks, 3);
+  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {courseParts:workParts})[0].totalTasks, 18);
+  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {coursePart:workParts[1]})[0].totalTasks, 4);
   assert.equal(admin.getCatalogSources('kurs', 'egzamin_osmoklasisty', {courseParts:workParts}).length, 0);
-  console.log('PASS: lesson 2, 33 audited tasks, 12 homework + 3 review tasks, review navigation, profile/admin completion');
+  console.log('PASS: lesson 2, 36 audited tasks, 14 homework + 4 review tasks, review navigation, profile/admin completion');
 })().catch(error => {console.error(error); process.exitCode = 1;});
