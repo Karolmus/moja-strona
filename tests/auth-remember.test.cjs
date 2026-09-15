@@ -7,6 +7,7 @@ const localStorage = storage();
 function boot(sessionStorage = storage()) {
   const window = {location:{hostname:'example.test'},localStorage,sessionStorage};
   const ctx = vm.createContext({window});
+  vm.runInContext(fs.readFileSync('static/security.js','utf8'),ctx);
   vm.runInContext(source.slice(0,source.indexOf('    window.logoutCurrentUser'))+'})();',ctx);
   return window;
 }
@@ -29,4 +30,8 @@ const login = fs.readFileSync('login.html','utf8');
 assert.match(login,/id="remember" name="remember" type="checkbox"/);
 assert.match(login,/remember: remember.checked/);
 assert.match(login,/saveAuthToken\(token, remember.checked\)/);
+for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
+  const page = fs.readFileSync(file,'utf8');
+  assert(!page.includes('static/security.js?v=2"'), `${file}: must not use the old token-removing security script`);
+}
 console.log('PASS: optional persistent login, new-tab restoration, session-only default and logout cleanup');

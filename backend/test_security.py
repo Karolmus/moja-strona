@@ -797,7 +797,40 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(unauthenticated.status_code, 401)
         self.assertEqual(assigned.status_code, 200)
         self.assertEqual(other_level.status_code, 403)
+        self.assertEqual(
+            [task["taskNumber"] for task in assigned.get_json()],
+            ["1", "2.1", "2.2", "3", "4.1", "4.2", "5.1", "5.2", "6.1", "6.2", "7.1", "7.2"],
+        )
         assigned.close()
+
+    def test_admin_can_preview_courses_without_level_assignment(self):
+        with app.app_context():
+            admin = create_user(
+                "course-admin@example.test", "Admin", "bezpieczne-haslo", role="admin"
+            )
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        for folder, manifest in [
+            ("eo/lekcja_1", "lekcja_1_odczytywanie_danych_i_procenty.json"),
+            ("mp/lekcja_1", "lekcja_1_potegi_i_pierwiastki.json"),
+            ("mp/lekcja_2", "lekcja_2_logarytmy.json"),
+        ]:
+            root = f"/api/course-assets/{folder}/"
+            with self.subTest(folder=folder):
+                with self.client.get(root + manifest, headers=headers) as response:
+                    self.assertEqual(response.status_code, 200)
+                    parts = {task["coursePart"] for task in response.get_json()}
+                    self.assertIn("zadania", parts)
+                    self.assertIn("praca_domowa", parts)
+                with self.client.get(root + "1.png", headers=headers) as response:
+                    self.assertEqual(response.status_code, 200)
+        with tempfile.TemporaryDirectory() as assets:
+            os.makedirs(os.path.join(assets, "mr"))
+            with open(os.path.join(assets, "mr", "lesson.json"), "w") as fixture:
+                json.dump([{"file":"1.png", "coursePart":"zadania"}], fixture)
+            with patch.object(app_module, "COURSE_ASSET_ROOT", assets):
+                with self.client.get("/api/course-assets/mr/lesson.json", headers=headers) as response:
+                    self.assertEqual(response.status_code, 200)
+                    self.assertEqual(len(response.get_json()), 1)
 
     def test_mp_student_can_load_first_lesson_and_images(self):
         path = "/api/course-assets/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json"

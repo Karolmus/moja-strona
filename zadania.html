@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://www.youtube-nocookie.com">
 <meta name="referrer" content="no-referrer">
-<script src="static/security.js?v=2"></script>
+<script src="static/security.js?v=20260914-remember"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -305,6 +305,18 @@ body:not(.guest-exam-mode) .selector-grid {
     background: white;
     color: var(--text);
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+body.admin-preview .level-selector {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+}
+
+body.admin-preview .level-btn {
+    min-height: 48px;
+    font-size: 12px;
+    line-height: 1.2;
 }
 
 .source-list,
@@ -3833,7 +3845,11 @@ async function loadAssignedCourse(){
         isLoggedInStudent = true;
         loggedUser = session.user || null;
 
-        if(session.user?.level){
+        if(session.user?.role === "admin"){
+            const requestedLevel = new URLSearchParams(window.location.search).get("level");
+            selectedLevel = hasSourcesForCategory("kurs", requestedLevel)
+                ? requestedLevel : "egzamin_osmoklasisty";
+        } else if(session.user?.level){
             selectedLevel = session.user.level;
         }
 
@@ -3870,6 +3886,7 @@ function setPanelSectionVisible(id, isVisible){
 
 function updateAccessModeUI(){
     document.body.classList.toggle("guest-exam-mode", !isLoggedInStudent);
+    document.body.classList.toggle("admin-preview", loggedUser?.role === "admin");
     setTimerVisible(!isLoggedInStudent);
     setPanelSectionVisible("formulaSection", isLoggedInStudent && Boolean(FORMULA_SHEETS[selectedLevel]));
     setPanelSectionVisible("categorySection", isLoggedInStudent);
@@ -3883,13 +3900,13 @@ function updateAccessModeUI(){
     const levelSection = document.getElementById("guestLevelWrapper");
 
     if(levelSection){
-        levelSection.style.display = isLoggedInStudent ? "none" : "grid";
+        levelSection.style.display = !isLoggedInStudent || loggedUser?.role === "admin" ? "grid" : "none";
     }
 
     const reviewButton = document.getElementById("reviewButton");
 
     if(reviewButton){
-        reviewButton.hidden = !isLoggedInStudent;
+        reviewButton.hidden = !isLoggedInStudent || loggedUser?.role === "admin";
     }
 
     const focusButton = document.getElementById("focusToggle");
@@ -4661,10 +4678,16 @@ async function setCategory(btn, category){
         selectedCoursePart = defaultCoursePart();
     }
 
-    ensureSelectedSource();
-    ensureSelectedCoursePart();
     updateCategoryButtons();
     updateModeButtons();
+    if(loggedUser?.role === "admin" && !hasSourcesForCategory(category)){
+        const availableLevel = Object.keys(LEVEL_LABELS).find(level => hasSourcesForCategory(category, level));
+        if(availableLevel) return setLevel(null, availableLevel);
+    }
+
+    ensureSelectedSource();
+    ensureSelectedCoursePart();
+    updateLevelButtons();
     resetSession();
     renderSourceSelector();
     await loadSelectedSourceAndDraw();
@@ -4678,6 +4701,8 @@ function updateCategoryUrl(category){
 }
 
 async function setLevel(btn, level){
+    if(!LEVEL_LABELS[level] || !hasSourcesForCategory(selectedCategory, level)) return;
+    if(isLoggedInStudent && loggedUser?.role !== "admin" && level !== loggedUser?.level) return;
     selectedLevel = level;
     taskMode = "ordered";
 
@@ -4692,6 +4717,10 @@ async function setLevel(btn, level){
     updateLevelButtons();
     updateMetaTheme();
     updateFormulaSection();
+    updateAssignedCourseName(loggedUser);
+    if(isLoggedInStudent && level === "egzamin_osmoklasisty" && !courseGradingCriteriaLoaded){
+        await loadCourseGradingCriteria();
+    }
     resetSession();
     renderSourceSelector();
     await loadSelectedSourceAndDraw();
@@ -4750,6 +4779,8 @@ function updateLevelButtons(){
     document.querySelectorAll(".level-btn")
         .forEach(b => {
             b.classList.toggle("active", b.dataset.level === selectedLevel);
+            b.hidden = loggedUser?.role === "admin" && !hasSourcesForCategory(selectedCategory, b.dataset.level);
+            b.setAttribute("aria-pressed", String(b.dataset.level === selectedLevel));
         });
 }
 
@@ -5026,6 +5057,7 @@ function refreshTaskNavigator(){
 }
 
 async function loadStudentProgress(options = {}){
+    if(loggedUser?.role === "admin") return savedProgress = [];
     const shouldRender = options.render !== false;
 
     if(!window.apiFetch){
@@ -5480,6 +5512,7 @@ function calculateHomeworkSummary(sourceId = selectedSource){
 }
 
 async function loadStudentReviewTasks(){
+    if(loggedUser?.role === "admin") return;
     if(!isLoggedInStudent || !window.apiFetch) return;
     if(reviewTasksLoadPromise) return reviewTasksLoadPromise;
 
@@ -5952,6 +5985,9 @@ function coursePartOrdinalNumber(task){
     if(!task?.sourceId || ![...STUDENT_WORK_COURSE_PARTS, "zadania_praktyczne"].includes(task.coursePart)){
         return "";
     }
+
+    const explicitNumber = String(task.taskNumber || "");
+    if(/^\d+(?:\.\d+)*$/.test(explicitNumber)) return explicitNumber;
 
     if(task.coursePart === "zadania_praktyczne"){
         const practicalNumber = courseTaskNumberFromTitle(task);
@@ -7331,6 +7367,7 @@ function shouldIgnoreKeyboardNavigation(event){
 }
 
 function handleKeyboardNavigation(event){
+    if(document.getElementById("taskVideoDialog").open) return;
     if(shouldIgnoreKeyboardNavigation(event)) return;
 
     if(event.key === "ArrowRight"){
@@ -7617,7 +7654,7 @@ function updateAnswerTools(){
     }
 
     if(reviewButton){
-        reviewButton.hidden = !isLoggedInStudent || isPreview;
+        reviewButton.hidden = !isLoggedInStudent || isPreview || loggedUser?.role === "admin";
     }
 
     if(skipButton){
@@ -7690,6 +7727,12 @@ function closeTaskVideo(){
 
 document.getElementById("taskVideoLink").addEventListener("click", openTaskVideo);
 document.getElementById("taskVideoClose").addEventListener("click", closeTaskVideo);
+document.addEventListener("keydown", event => {
+    if(event.key !== "Escape" || !document.getElementById("taskVideoDialog").open) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    closeTaskVideo();
+}, true);
 document.getElementById("taskVideoDialog").addEventListener("cancel", event => {
     event.preventDefault();
     closeTaskVideo();
@@ -8596,6 +8639,7 @@ function submittedAnswerText(){
 }
 
 async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds()){
+    if(loggedUser?.role === "admin") return;
     if(isCoursePreviewMode()) return;
     if(!isLoggedInStudent) return;
     if(!currentTask || !window.apiFetch) return;
@@ -8945,6 +8989,7 @@ function resetReviewButton(){
 }
 
 async function markForReview(){
+    if(loggedUser?.role === "admin") return;
     if(!isLoggedInStudent) return;
     if(isCoursePreviewMode()) return;
     if(!currentTask || !window.apiFetch) return;

@@ -9,6 +9,7 @@ const meta = {innerHTML:'', classList:{toggle() {}}};
 const instruction = {};
 const counter = {};
 const ctx = vm.createContext({
+  loggedUser:{role:'student'},
   document:{getElementById:id => ({reviewButton:button, metaBox:meta, taskInstruction:instruction, taskCounter:counter})[id]},
   currentIndex:0, isLoggedInStudent:true, isCoursePreviewMode:() => false,
   currentTask:{sourceId:'lesson', file:'zp1.png', category:'kurs', coursePart:'zadania_powtorkowe'},

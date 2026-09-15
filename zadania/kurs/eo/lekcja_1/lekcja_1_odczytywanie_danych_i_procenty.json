@@ -301,6 +301,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd_1.png",
     "title": "Lekcja 1 - zadanie domowe 1",
+    "taskNumber": "1",
     "type": "input",
     "inputs": [
       {
@@ -340,6 +341,7 @@
     "file": "zd_2.1.png",
     "contextFile": "zd_2_info.png",
     "title": "Lekcja 1 - zadanie domowe 2.1",
+    "taskNumber": "2.1",
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "hint": "Dla każdego sera oblicz procentowy ubytek masy: ubytek masy podziel przez masę początkową.",
@@ -362,6 +364,7 @@
     "file": "zd_2.2.png",
     "contextFile": "zd_2_info.png",
     "title": "Lekcja 1 - zadanie domowe 2.2",
+    "taskNumber": "2.2",
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "hint": "Oblicz 25% każdej masy początkowej i porównaj wynik z ubytkiem masy.",
@@ -383,6 +386,7 @@
     "level": "egzamin_osmoklasisty",
     "file": "zd_3.png",
     "title": "Lekcja 1 - zadanie domowe 3",
+    "taskNumber": "3",
     "type": "true_false",
     "statements": [
       "Stwierdzenie 1",
@@ -411,6 +415,7 @@
     "file": "zd_4.1.png",
     "contextFile": "zd_4_info.png",
     "title": "Lekcja 1 - zadanie domowe 4.1",
+    "taskNumber": "4.1",
     "type": "input",
     "inputs": [
       {
@@ -439,6 +444,7 @@
     "file": "zd_4.2.png",
     "contextFile": "zd_4_info.png",
     "title": "Lekcja 1 - zadanie domowe 4.2",
+    "taskNumber": "4.2",
     "type": "input",
     "inputs": [
       {
@@ -467,6 +473,7 @@
     "file": "zd_5.1.png",
     "contextFile": "zd_5_info.png",
     "title": "Lekcja 1 - zadanie domowe 5.1",
+    "taskNumber": "5.1",
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "hint": "Oblicz 60% i 24% z 500 butelek, a następnie odejmij otrzymane liczby.",
@@ -489,6 +496,7 @@
     "file": "zd_5.2.png",
     "contextFile": "zd_5_info.png",
     "title": "Lekcja 1 - zadanie domowe 5.2",
+    "taskNumber": "5.2",
     "type": "true_false",
     "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
     "hint": "Woda kosztuje 1,50 zł, sok jabłkowy 3 zł, a sok pomarańczowy 3,45 zł. Pomnóż ceny przez liczbę butelek.",
@@ -512,6 +520,7 @@
     "file": "zd_6.1.png",
     "contextFile": "zd_6_info.png",
     "title": "Lekcja 1 - zadanie domowe 6.1",
+    "taskNumber": "6.1",
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "hint": "Dodaj godziny dla każdej aplikacji ze wszystkich dni tygodnia.",
@@ -535,6 +544,7 @@
     "file": "zd_6.2.png",
     "contextFile": "zd_6_info.png",
     "title": "Lekcja 1 - zadanie domowe 6.2",
+    "taskNumber": "6.2",
     "instruction": "Podaj wynik w procentach, zaokrąglony do jednego miejsca po przecinku.",
     "type": "input",
     "inputs": [
@@ -564,6 +574,7 @@
     "file": "zd_7.1.png",
     "contextFile": "zd_7_info.png",
     "title": "Lekcja 1 - zadanie domowe 7.1",
+    "taskNumber": "7.1",
     "type": "input",
     "inputs": [
       {
@@ -592,6 +603,7 @@
     "file": "zd_7.2.png",
     "contextFile": "zd_7_info.png",
     "title": "Lekcja 1 - zadanie domowe 7.2",
+    "taskNumber": "7.2",
     "type": "input",
     "inputs": [
       {

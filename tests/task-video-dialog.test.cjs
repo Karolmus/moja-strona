@@ -5,6 +5,8 @@ const html = fs.readFileSync('zadania.html', 'utf8');
 const nodes = new Map();
 const classes = new Set();
 const document = {
+  listeners:{},
+  addEventListener(type, listener, capture) {this.listeners[type] = {listener,capture};},
   documentElement:{classList:{add:value => classes.add(value), remove:value => classes.delete(value)}},
   createElement:tagName => ({tagName}),
   getElementById(id) {
@@ -34,7 +36,7 @@ vm.runInContext(html.slice(start, end), ctx);
 const dialog = document.getElementById('taskVideoDialog');
 const player = document.getElementById('taskVideoPlayer');
 const external = document.getElementById('taskVideoExternal');
-const event = extra => ({button:0, preventDefault() {this.prevented = true;}, ...extra});
+const event = extra => ({button:0, preventDefault() {this.prevented = true;}, stopImmediatePropagation() {this.stopped = true;}, ...extra});
 assert.equal(player.children.length, 0, 'No player is loaded before opening');
 const click = event();
 document.getElementById('taskVideoLink').listeners.click(click);
@@ -65,6 +67,14 @@ ctx.isTaskLoading = true;
 ctx.openTaskVideo(event());
 assert(!dialog.open);
 ctx.isTaskLoading = false;
+ctx.openTaskVideo(event());
+const escape = event({key:'Escape'});
+document.listeners.keydown.listener(escape);
+assert(document.listeners.keydown.capture);
+assert(escape.prevented && escape.stopped && !dialog.open && player.children.length === 0);
+const inactiveEscape = event({key:'Escape'});
+document.listeners.keydown.listener(inactiveEscape);
+assert(!inactiveEscape.prevented, 'Do not intercept Escape when the video is closed');
 ctx.openTaskVideo(event());
 dialog.listeners.cancel(event());
 assert(!dialog.open && player.children.length === 0, 'Escape stops playback');

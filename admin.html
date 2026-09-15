@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
 <meta name="referrer" content="no-referrer">
-<script src="static/security.js?v=2"></script>
+<script src="static/security.js?v=20260914-remember"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -66,6 +66,19 @@ body {
     margin: 0;
     font-size: 28px;
     line-height: 1.2;
+}
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.admin-header-actions a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .admin-email {
@@ -1809,7 +1822,10 @@ footer {
             <h1>Panel Admina</h1>
             <div class="admin-email" id="adminEmail">Sprawdzam sesję...</div>
         </div>
-        <button class="btn secondary" type="button" id="logoutBtn">Wyloguj</button>
+        <div class="admin-header-actions">
+            <a class="btn secondary" href="zadania.html?category=kurs">Podgląd kursów</a>
+            <button class="btn secondary" type="button" id="logoutBtn">Wyloguj</button>
+        </div>
     </header>
 
     <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">

@@ -1,7 +1,6 @@
 (function(){
     try {
         window.localStorage.removeItem("deltaSigmaIssuedStudentCredentials");
-        window.localStorage.removeItem("deltaSigmaAuthToken");
     } catch(error) {
         // Oczyszczanie starszych wpisów nie może blokować strony.
     }
