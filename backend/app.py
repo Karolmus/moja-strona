@@ -1420,8 +1420,19 @@ def api_save_progress(user):
     def handler():
         data = validated_task_data(payload(), user)
 
-        if data["result"] not in {"good", "medium", "bad"}:
+        if data["result"] not in {"good", "medium", "bad", "video"}:
             return api_error("Nieprawidłowy wynik zadania.")
+
+        if data["result"] == "video":
+            if not data["source_id"].startswith("zadania/kurs/"):
+                return api_error("Film z rozwiązaniem dotyczy zadań kursowych.")
+            manifest = read_course_json(data["source_id"].removeprefix("zadania/kurs/"))
+            items = manifest if isinstance(manifest, list) else []
+            task = next((task for task in items if isinstance(task, dict) and task.get("file") == data["file"]), None)
+            if not task:
+                return api_error("Nie znaleziono zadania.")
+            data["max_points"] = task.get("maxPoints") or 1
+            data["earned_points"] = 0
 
         progress = record_progress(user["id"], data)
 

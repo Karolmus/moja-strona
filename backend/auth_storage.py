@@ -557,6 +557,9 @@ def init_auth_db():
             ALTER TABLE task_progress ADD COLUMN IF NOT EXISTS submitted_answer TEXT
             """,
             """
+            ALTER TABLE task_progress ADD COLUMN IF NOT EXISTS video_viewed BOOLEAN NOT NULL DEFAULT FALSE
+            """,
+            """
             ALTER TABLE users ADD COLUMN IF NOT EXISTS full_course_access BOOLEAN NOT NULL DEFAULT FALSE
             """,
             """
@@ -838,6 +841,9 @@ def init_auth_db():
 
         if "submitted_answer" not in columns:
             db.execute("ALTER TABLE task_progress ADD COLUMN submitted_answer TEXT")
+
+        if "video_viewed" not in columns:
+            db.execute("ALTER TABLE task_progress ADD COLUMN video_viewed INTEGER NOT NULL DEFAULT 0")
 
         contact_columns = {
             row["name"]
@@ -1481,7 +1487,7 @@ def list_students():
             ) AS has_parent_access,
             COUNT(p.id) AS attempts,
             COALESCE(SUM(CASE WHEN p.result = 'good' THEN 1 ELSE 0 END), 0) AS good_count,
-            COALESCE(SUM(CASE WHEN p.result = 'medium' THEN 1 ELSE 0 END), 0) AS medium_count,
+            COALESCE(SUM(CASE WHEN p.result = 'medium' AND NOT p.video_viewed THEN 1 ELSE 0 END), 0) AS medium_count,
             COALESCE(SUM(CASE WHEN p.result = 'bad' THEN 1 ELSE 0 END), 0) AS bad_count,
             COALESCE(SUM(COALESCE(p.duration_seconds, 0)), 0) AS total_duration_seconds,
             COALESCE(r.review_count, 0) AS review_count,
@@ -1851,8 +1857,36 @@ def record_progress(user_id, data):
     if not task_id:
         raise ValueError("Brakuje identyfikatora zadania.")
 
+    # Serialize answer/video writes so a delayed answer cannot restore points after a film.
+    if database_engine() == "postgres":
+        db.execute(prepare_sql("SELECT id FROM users WHERE id = ? FOR UPDATE"), (user_id,))
+    elif not db.in_transaction:
+        db.execute("BEGIN IMMEDIATE")
+    previous_video = db.execute(prepare_sql(
+        "SELECT id FROM task_progress WHERE user_id = ? AND task_id = ? AND video_viewed = ? LIMIT 1"
+    ), (user_id, task_id, db_bool(True))).fetchone()
+    video_viewed = data.get("result") == "video" or bool(previous_video)
+    if video_viewed:
+        db.execute(prepare_sql(
+            "UPDATE task_progress SET video_viewed = ?, result = 'medium', earned_points = 0 "
+            "WHERE user_id = ? AND task_id = ?"
+        ), (db_bool(True), user_id, task_id))
+        existing = db.execute(prepare_sql(
+            "SELECT * FROM task_progress WHERE user_id = ? AND task_id = ? ORDER BY id DESC LIMIT 1"
+        ), (user_id, task_id)).fetchone()
+        if existing:
+            # A film updates the existing attempt; it does not add its work time again.
+            duration = max(existing["duration_seconds"] or 0, duration_seconds(data.get("duration_seconds")))
+            db.execute(prepare_sql(
+                "UPDATE task_progress SET duration_seconds = ?, created_at = ? WHERE id = ?"
+            ), (duration, created_at, existing["id"]))
+            progress = dict(existing)
+            progress.update(duration_seconds=duration, created_at=created_at)
+            db.commit()
+            return progress_to_dict(progress)
+
     max_points = point_value(data.get("max_points"))
-    earned_points = point_value(data.get("earned_points"))
+    earned_points = 0 if video_viewed else point_value(data.get("earned_points"))
 
     if max_points is not None and earned_points is not None:
         earned_points = min(earned_points, max_points)
@@ -1865,7 +1899,7 @@ def record_progress(user_id, data):
         bounded_text(data.get("level"), 40),
         bounded_text(data.get("topic"), 160),
         bounded_int(data.get("difficulty"), 0, 10),
-        data["result"],
+        "medium" if video_viewed else data["result"],
         db_bool(data.get("hint_used")),
         db_bool(data.get("answer_shown")),
         bounded_text(data.get("task_mode"), 40),
@@ -1873,6 +1907,7 @@ def record_progress(user_id, data):
         earned_points,
         max_points,
         bounded_text(data.get("submitted_answer"), 2000),
+        db_bool(video_viewed),
         created_at,
     )
 
@@ -1896,9 +1931,10 @@ def record_progress(user_id, data):
                     earned_points,
                     max_points,
                     submitted_answer,
+                    video_viewed,
                     created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 RETURNING *
                 """
             ),
@@ -1924,9 +1960,10 @@ def record_progress(user_id, data):
                 earned_points,
                 max_points,
                 submitted_answer,
+                video_viewed,
                 created_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             values,
         )
@@ -1939,12 +1976,20 @@ def record_progress(user_id, data):
 
     db.commit()
 
-    return progress
+    return progress_to_dict(progress)
+
+
+def progress_to_dict(row):
+    item = dict(row)
+    if item.get("video_viewed"):
+        item["result"] = "video"
+        item["earned_points"] = 0
+    return item
 
 
 def progress_for_user(user_id, limit=2000):
     return [
-        dict(row)
+        progress_to_dict(row)
         for row in execute(
             """
             SELECT *

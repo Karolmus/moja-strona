@@ -968,6 +968,42 @@ class SecurityTests(unittest.TestCase):
         with self.client.get(root + "zd1.png", headers=student_headers) as response:
             self.assertEqual(response.status_code, 200)
 
+    def test_solution_video_is_persisted_as_zero_without_a_wrong_answer(self):
+        with app.app_context():
+            student = create_user("video@example.test", "Video", "bezpieczne-haslo")
+            other = create_user("video-other@example.test", "Other", "bezpieczne-haslo")
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            other_headers = {"Authorization": "Bearer " + app_module.create_auth_token(other)}
+        source = "zadania/kurs/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json"
+        task = {"source_id":source, "file":"zd1.png", "task_id":source+":zd1.png",
+                "result":"good", "earned_points":1, "max_points":1, "submitted_answer":"B", "duration_seconds":20}
+        self.assertEqual(self.client.post("/api/progress", headers=headers, json=task).status_code, 201)
+        self.client.post("/api/progress", headers=other_headers, json=task)
+        watched = self.client.post("/api/progress", headers=headers, json={**task, "result":"video", "earned_points":99})
+        self.assertEqual(watched.status_code, 201)
+        self.assertEqual(watched.get_json()["progress"]["result"], "video")
+        self.assertEqual(watched.get_json()["progress"]["earned_points"], 0)
+        self.assertEqual(watched.get_json()["progress"]["max_points"], 1)
+        late = self.client.post("/api/progress", headers=headers, json=task).get_json()["progress"]
+        self.assertEqual(late["result"], "video")
+        self.assertEqual(late["earned_points"], 0)
+        history = self.client.get("/api/progress/me", headers=headers).get_json()["progress"]
+        self.assertTrue(all(row["result"] == "video" and row["earned_points"] == 0 for row in history))
+        self.assertEqual(len(history), 1)
+        self.assertEqual(sum(row["duration_seconds"] for row in history), 20)
+        self.assertEqual(history[0]["submitted_answer"], "B")
+        unseen_task = {**task, "file":"zd2.png", "task_id":source+":zd2.png", "result":"video"}
+        first_video = self.client.post("/api/progress", headers=headers, json=unseen_task).get_json()["progress"]
+        self.assertEqual(first_video["result"], "video")
+        self.assertEqual(first_video["earned_points"], 0)
+        untouched = self.client.get("/api/progress/me", headers=other_headers).get_json()["progress"]
+        self.assertEqual(untouched[0]["result"], "good")
+        with app.app_context():
+            init_auth_db()
+            self.assertTrue(all(row["result"] == "video" for row in app_module.progress_for_user(student["id"])))
+        invalid = {**task, "source_id":"zadania/mp/exam.json", "task_id":"zadania/mp/exam.json:zd1.png", "result":"video"}
+        self.assertEqual(self.client.post("/api/progress", headers=headers, json=invalid).status_code, 400)
+
     def test_submitted_answers_are_saved_with_progress(self):
         with app.app_context():
             student = create_user("answer@example.test", "Answer", "bezpieczne-haslo")

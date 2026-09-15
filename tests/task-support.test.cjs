@@ -65,6 +65,6 @@ for (const [index, id] of ids.entries()) {
 }
 assert.equal(tasks.filter(task => task.videoUrl).length, 10);
 assert(!tasks.find(task => task.file === 'zd11.png').videoUrl);
-assert.match(html, /id="taskVideoLink"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
-assert.match(html, /else videoLink\.removeAttribute\("href"\);/, 'No stale link on the next task');
+assert.match(html, /<button[^>]*id="taskVideoLink"[^>]*aria-haspopup="dialog"/);
+assert.match(html, /videoLink.hidden = !videoUrl;/, 'Hide the video command on tasks without a film');
 console.log('PASS: hint flags, guest persistence, student restore, mode ordering and ten exact lesson video links');

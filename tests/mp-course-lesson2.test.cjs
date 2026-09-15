@@ -125,7 +125,8 @@ for (const [text, name] of [[html, 'TASK_SOURCES'], [profileHtml, 'PROFILE_SOURC
     selectedCategory:'kurs', selectedLevel:'matura_podstawowa', selectedSource:sourcePath,
     selectedCoursePart:workParts[0], isLoggedInStudent:true,
     taskMatchesTagFilters:() => true, tagFiltersSearchAllSources:() => false,
-    resetSession() {}, renderTagSearch() {}, drawTask(i) {ctx.drawnIndex = i;}
+    resetSession() {throw new Error('Navigating within a lesson must preserve progress and the completion marker');},
+    renderTagSearch() {}, drawTask(i) {ctx.drawnIndex = i;}
   });
   for (const name of ['canAccessCoursePart', 'loadTaskSource', 'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems',
     'pool', 'selectCoursePartTask', 'isCoursePreviewMode', 'ensureSelectedCoursePart', 'coursePartOrdinalNumber',

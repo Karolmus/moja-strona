@@ -8,7 +8,7 @@ const buttons = levels.map(level => ({dataset:{level}, hidden:false,
 const elements = Object.fromEntries(['guestLevelWrapper', 'reviewButton', 'focusToggle']
   .map(id => [id, {style:{}}]));
 let loads = 0, requests = 0;
-const ctx = vm.createContext({URLSearchParams, loggedUser:{role:'admin'},
+const ctx = vm.createContext({URLSearchParams, loggedUser:{role:'admin'}, currentTask:null,
   isLoggedInStudent:true, selectedCategory:'kurs', selectedLevel:levels[0],
   selectedSource:'all', selectedCoursePart:'praca_domowa', courseGradingCriteriaLoaded:true,
   LEVEL_LABELS:Object.fromEntries(levels.map(level => [level, level])), FORMULA_SHEETS:{},

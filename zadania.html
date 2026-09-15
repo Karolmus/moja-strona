@@ -935,6 +935,22 @@ body.focus-mode .task-card {
     --status-icon: url("static/icons/skip-forward.svg");
 }
 
+.tile.video {
+    --tile-bg: #f4f0f5;
+    --status-color: #633857;
+}
+
+.tile.video::after {
+    content: "🎬";
+    background: transparent;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.tile.video.review-requested::after {
+    right: 13px;
+}
+
 .tile.nav-tile:hover {
     border-color: #8b9baa;
     box-shadow: 0 2px 5px rgba(38, 53, 69, 0.08);
@@ -1229,8 +1245,7 @@ body.focus-mode .task-card {
     display: grid;
     grid-template-columns: repeat(2, minmax(112px, 1fr));
     grid-template-areas:
-        "previous next"
-        "skip skip";
+        "previous next";
     gap: 6px;
     align-items: stretch;
     align-content: start;
@@ -1253,10 +1268,6 @@ body.focus-mode .task-card {
 
 .action-group.navigation .next-task-btn {
     grid-area: next;
-}
-
-.action-group.navigation .skip {
-    grid-area: skip;
 }
 
 .action-group.navigation .action-btn {
@@ -1306,12 +1317,27 @@ button {
 }
 
 .action-group.tools .video-link {
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     grid-column: 1 / -1;
     min-height: 36px;
     text-decoration: none;
+    background: #8b2332;
+    border-color: #8b2332;
+    color: #fff;
 }
+
+.action-group.tools .video-link:hover { background: #701927; }
+.action-group.tools .skip { grid-column: 1 / -1; }
+.task-video-consent { padding: 20px; }
+.task-video-consent p { margin: 0 0 18px; line-height: 1.5; }
+.task-video-consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.task-video-consent .action-btn { min-height: 44px; }
+.task-video-consent #taskVideoConfirm { background: #8b2332; color: #fff; }
+.task-video-player[hidden], .task-video-footer[hidden] { display: none; }
+#taskVideoError { color: #8b2332; }
 
 .video-link[hidden] {
     display: none !important;
@@ -1578,7 +1604,7 @@ html.task-video-open {
     color: #8b2119;
 }
 
-.choice-btn.selected {
+.choice-btn.selected:not(.correct):not(.wrong) {
     background: #e8f1fb;
     border-color: #8eb5de;
     color: var(--blue-text);
@@ -2398,7 +2424,7 @@ html.task-video-open {
 }
 
 .homework-summary-dialog {
-    width: min(480px, 100%);
+    width: min(760px, 100%);
     max-height: calc(100dvh - 40px);
     overflow-y: auto;
     border: 1px solid var(--line);
@@ -2408,57 +2434,36 @@ html.task-video-open {
     padding: 18px;
 }
 
-.homework-summary-eyebrow {
-    color: #9b4a4a;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
 .homework-summary-title {
-    margin: 3px 0 0;
+    margin: 0;
     font-size: 22px;
     line-height: 1.2;
 }
 
-.homework-summary-lesson {
-    margin: 12px 0 0;
-    color: var(--muted);
-    font-size: 13px;
-}
-
 .homework-summary-stats {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    margin-top: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 20px 0;
+    padding: 14px 0;
+    border-block: 1px solid var(--line);
 }
 
 .homework-summary-stat {
     display: grid;
-    min-height: 86px;
-    align-content: space-between;
-    gap: 10px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #fbfcfe;
-    padding: 11px;
+    grid-template-rows: 1fr auto;
+    gap: 8px;
+    padding: 0 10px;
+    text-align: center;
+    min-width: 0;
 }
+
+.homework-summary-stat + .homework-summary-stat { border-left: 1px solid var(--line); }
 
 .homework-summary-stat span {
     color: var(--muted);
     font-size: 12px;
     line-height: 1.4;
-}
-
-.homework-summary-stat .summary-note {
-    display: block;
-    margin-top: 6px;
-    font-size: 11px;
-}
-
-.homework-summary-stat .summary-note[hidden] {
-    display: none;
+    overflow-wrap: anywhere;
 }
 
 .homework-summary-stat strong {
@@ -2468,37 +2473,20 @@ html.task-video-open {
     line-height: 1;
 }
 
-.homework-summary-stat.good {
-    border-color: #b9dcb3;
-    background: #f4fbf2;
-}
-
 .homework-summary-stat.good strong {
     color: #287942;
-}
-
-.homework-summary-stat.review {
-    border-color: #e7d6a5;
-    background: #fffdf5;
 }
 
 .homework-summary-stat.review strong {
     color: #927000;
 }
 
-.homework-summary-stat.bad {
-    border-color: #e3bcbc;
-    background: #fff7f7;
-}
-
 .homework-summary-stat.bad strong {
     color: #a64545;
 }
 
-.homework-summary-stat.time strong {
-    color: var(--navy);
-    font-size: 21px;
-}
+#homeworkSummaryTasks { margin: 0; }
+#homeworkSummaryReviewStatus { font-size: 12px; color: var(--muted); }
 
 footer {
     text-align: center;
@@ -2697,18 +2685,20 @@ footer {
         width: 100%;
     }
 
-    .homework-summary-stat {
-        min-height: 78px;
-        padding: 10px;
+    .homework-summary-stats {
+        grid-template-columns: minmax(0, .9fr) minmax(0, 1.15fr) minmax(0, 1.1fr) minmax(0, 1.05fr);
     }
+
+    .homework-summary-stat {
+        padding: 0;
+    }
+
+    .homework-summary-stat span { font-size: 11px; }
 
     .homework-summary-stat strong {
         font-size: 22px;
     }
 
-    .homework-summary-stat.time strong {
-        font-size: 18px;
-    }
 
     .assigned-course-card {
         padding: 7px 9px;
@@ -3087,13 +3077,13 @@ footer {
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
-                        <a class="action-btn solution video-link" id="taskVideoLink" target="_blank" rel="noopener noreferrer" aria-haspopup="dialog" aria-controls="taskVideoDialog" hidden>Zobacz film z rozwiązaniem</a>
+                        <button class="action-btn solution video-link" id="taskVideoLink" type="button" aria-haspopup="dialog" aria-controls="taskVideoDialog" hidden><span aria-hidden="true">🎬</span> Zobacz film z rozwiązaniem</button>
+                        <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
                         <div id="answer" class="box" aria-live="polite"></div>
                     </div>
 
                     <div class="action-group navigation" role="group" aria-label="Nawigacja po zadaniach">
                         <button class="action-btn nav previous-task-btn" onclick="prevTask()">← Poprzednie zadanie</button>
-                        <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
                         <button class="action-btn nav next-task-btn" onclick="nextTask()">Kolejne zadanie →</button>
                     </div>
 
@@ -3134,8 +3124,16 @@ footer {
             <img src="static/icons/x.svg" width="18" height="18" alt="">
         </button>
     </div>
-    <div class="task-video-player" id="taskVideoPlayer"></div>
-    <div class="task-video-footer">
+    <div class="task-video-consent" id="taskVideoConsent">
+        <p>Po otwarciu filmu zadanie zostanie oznaczone ikoną 🎬 i otrzyma 0 punktów w wyniku końcowym. Nie zaliczymy go do błędnych odpowiedzi.</p>
+        <p id="taskVideoError" role="alert" hidden></p>
+        <div class="task-video-consent-actions">
+            <button class="action-btn" id="taskVideoCancel" type="button">Wróć do zadania</button>
+            <button class="action-btn next" id="taskVideoConfirm" type="button">Otwórz film</button>
+        </div>
+    </div>
+    <div class="task-video-player" id="taskVideoPlayer" hidden></div>
+    <div class="task-video-footer" id="taskVideoFooter" hidden>
         <a id="taskVideoExternal" target="_blank" rel="noopener noreferrer">Otwórz w YouTube</a>
     </div>
 </dialog>
@@ -3191,45 +3189,32 @@ footer {
     <section class="homework-summary-dialog" role="dialog" aria-modal="true" aria-labelledby="homeworkSummaryTitle" tabindex="-1">
         <div class="exam-summary-head">
             <div>
-                <div class="homework-summary-eyebrow">Praca domowa ukończona</div>
-                <h2 class="homework-summary-title" id="homeworkSummaryTitle">Podsumowanie pracy domowej</h2>
+                <h2 class="homework-summary-title" id="homeworkSummaryTitle">Podsumowanie zadania domowego</h2>
             </div>
             <button class="exam-summary-close" id="homeworkSummaryClose" type="button" aria-label="Zamknij podsumowanie">×</button>
         </div>
 
-        <p class="homework-summary-lesson" id="homeworkSummaryLesson"></p>
-
         <div class="homework-summary-stats">
             <div class="homework-summary-stat good">
-                <span>Zadania wykonane poprawnie</span>
-                <div>
-                    <strong id="homeworkSummaryGood">0</strong>
-                    <span class="summary-note" id="homeworkSummaryGoodHints">(w tym 0 ze wskazówką)</span>
-                </div>
+                <span>Zadania poprawne</span>
+                <strong id="homeworkSummaryGood">0</strong>
             </div>
             <div class="homework-summary-stat bad">
-                <span>Zadania wykonane błędnie</span>
-                <div>
-                    <strong id="homeworkSummaryBad">0</strong>
-                    <span class="summary-note" id="homeworkSummaryBadHints">(w tym 0 ze wskazówką)</span>
-                </div>
+                <span>Zadania niepoprawne</span>
+                <strong id="homeworkSummaryBad">0</strong>
             </div>
             <div class="homework-summary-stat review">
-                <span>Zadania zgłoszone do omówienia na zajęciach</span>
-                <div aria-live="polite">
-                    <strong id="homeworkSummaryReview">0</strong>
-                    <span class="summary-note" id="homeworkSummaryReviewStatus" hidden></span>
-                </div>
+                <span>Dodane do omówienia</span>
+                <strong id="homeworkSummaryReview" aria-live="polite">0</strong>
             </div>
-            <div class="homework-summary-stat time">
-                <span>Czas pracy</span>
-                <strong id="homeworkSummaryDuration">0 s</strong>
+            <div class="homework-summary-stat">
+                <span>Wynik</span>
+                <strong id="homeworkSummaryPercent">0%</strong>
             </div>
         </div>
 
-        <div class="exam-summary-actions single">
-            <button class="exam-summary-btn primary" id="homeworkSummaryDismiss" type="button">Zamknij</button>
-        </div>
+        <p id="homeworkSummaryReviewStatus" role="status" hidden></p>
+        <div class="progress-grid" id="homeworkSummaryTasks" aria-label="Wykonane zadania"></div>
     </section>
 </div>
 
@@ -3254,6 +3239,7 @@ footer {
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
 let currentTask = null;
+let pendingVideoTask = null;
 let hintUsed = false;
 let answerShown = false;
 let examScoreUnlocked = false;
@@ -5041,7 +5027,6 @@ function selectCoursePartTask(part, file = ""){
     if(!canAccessCoursePart(part)) return;
     selectedCoursePart = part;
 
-    resetSession();
     renderTagSearch();
 
     const items = pool();
@@ -5215,6 +5200,7 @@ function getTaskScore(task){
     const maxPoints = taskPointValue(task);
 
     if(!key || !maxPoints) return null;
+    if(getSavedResult(task) === "video") return { earnedPoints: 0, maxPoints };
 
     const sessionScore = sessionScores.get(key);
     const sessionEarned = normalizeScoreValue(sessionScore?.earnedPoints);
@@ -5319,6 +5305,7 @@ function updateSourceSummary(){
     const summary = calculateSourceSummary(summaryTasks);
 
     points.innerText = `${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt`;
+    percent.hidden = true;
     percent.innerText = percentLabel(summary.percent);
     fill.style.width = `${Math.max(0, Math.min(100, summary.percent))}%`;
     if(summaryButton){
@@ -5329,15 +5316,8 @@ function updateSourceSummary(){
         );
     }
 
-    if(!summary.totalPoints){
-        detail.innerText = "Ten zestaw nie ma jeszcze wpisanej punktacji.";
-        return;
-    }
-
-    detail.innerText =
-        `Punkty zapisane dla ${summary.scoredTasks}/${summaryTasks.length} zadań. ` +
-        `Rozwiązane: ${summary.attemptedTasks}/${summaryTasks.length}.` +
-        (summary.skippedTasks.length ? ` Pominięte: ${summary.skippedTasks.length}.` : "");
+    detail.hidden = true;
+    detail.innerText = "";
 }
 
 function resetSession(){
@@ -5458,7 +5438,7 @@ function isHomeworkComplete(sourceId = selectedSource){
     const homeworkTasks = getHomeworkSummaryTasks(sourceId);
 
     return homeworkTasks.length > 0 && homeworkTasks.every(task =>
-        ["good", "medium", "bad"].includes(getSavedResult(task))
+        ["good", "medium", "bad", "video"].includes(getSavedResult(task))
     );
 }
 
@@ -5484,6 +5464,7 @@ function calculateHomeworkSummary(sourceId = selectedSource){
         bad: 0,
         goodHints: 0,
         badHints: 0,
+        video: 0,
         review: 0,
         durationSeconds: 0
     };
@@ -5504,10 +5485,12 @@ function calculateHomeworkSummary(sourceId = selectedSource){
             if(usedHint) summary[`${group}Hints`]++;
         }
         if(reviewTaskKeys.has(key)) summary.review++;
+        if(result === "video") summary.video++;
 
         summary.durationSeconds += getTaskDurationSeconds(task);
     });
 
+    summary.percent = calculateSourceSummary(summary.tasks).percent;
     return summary;
 }
 
@@ -5548,6 +5531,7 @@ async function updateHomeworkReviewCount(sourceId){
         if(!isCurrentSummary()) return;
         count.innerText = calculateHomeworkSummary(sourceId).review;
         status.hidden = true;
+        renderHomeworkSummaryTasks(sourceId);
     } catch(error) {
         if(!isCurrentSummary()) return;
         count.innerText = "-";
@@ -5845,7 +5829,6 @@ function closeHomeworkCompletionSummary(restoreFocus = true){
 
 function showHomeworkCompletionSummary(sourceId = selectedSource){
     const summary = calculateHomeworkSummary(sourceId);
-    const source = getSourceMetaById(sourceId);
     const overlay = document.getElementById("homeworkSummaryOverlay");
     const dialog = overlay?.querySelector(".homework-summary-dialog");
 
@@ -5861,15 +5844,10 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
         return;
     }
 
-    document.getElementById("homeworkSummaryLesson").innerText = source
-        ? `${source.label}${source.detail ? ` · ${source.detail}` : ""}`
-        : "Praca domowa";
     document.getElementById("homeworkSummaryGood").innerText = summary.good;
-    document.getElementById("homeworkSummaryGoodHints").innerText = `(w tym ${summary.goodHints} ze wskazówką)`;
     document.getElementById("homeworkSummaryBad").innerText = summary.bad;
-    document.getElementById("homeworkSummaryBadHints").innerText = `(w tym ${summary.badHints} ze wskazówką)`;
-    document.getElementById("homeworkSummaryDuration").innerText =
-        formatHomeworkDuration(summary.durationSeconds);
+    document.getElementById("homeworkSummaryPercent").innerText = percentLabel(summary.percent);
+    renderHomeworkSummaryTasks(sourceId);
 
     homeworkSummaryPreviousFocus = document.activeElement;
     overlay.dataset.sourceId = sourceId;
@@ -5877,6 +5855,23 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     document.body.style.overflow = "hidden";
     requestAnimationFrame(() => dialog.focus());
     updateHomeworkReviewCount(sourceId);
+}
+
+function renderHomeworkSummaryTasks(sourceId){
+    const tiles = document.getElementById("homeworkSummaryTasks");
+    tiles.replaceChildren();
+    let part = "";
+    getHomeworkSummaryTasks(sourceId).forEach((task, index) => {
+        if(part !== task.coursePart){
+            part = task.coursePart;
+            addNavigatorSectionLabel(tiles, part);
+        }
+        addNavigatorTaskButton(tiles, task, index);
+        tiles.lastElementChild.onclick = () => {
+            closeHomeworkCompletionSummary(false);
+            openNavigatorTask(task, index);
+        };
+    });
 }
 
 document.getElementById("examSummaryClose")
@@ -5895,14 +5890,29 @@ document.getElementById("examSummaryOverlay")
     });
 document.getElementById("homeworkSummaryClose")
     ?.addEventListener("click", () => closeHomeworkCompletionSummary());
-document.getElementById("homeworkSummaryDismiss")
-    ?.addEventListener("click", () => closeHomeworkCompletionSummary());
 document.getElementById("homeworkSummaryOverlay")
     ?.addEventListener("click", event => {
         if(event.target === event.currentTarget){
             closeHomeworkCompletionSummary();
         }
     });
+for(const id of ["homeworkSummaryOverlay", "examSummaryOverlay"]){
+    document.getElementById(id).addEventListener("keydown", event => {
+        if(event.key !== "Tab") return;
+        const controls = [...event.currentTarget.querySelectorAll("button, a[href], [tabindex='0']")]
+            .filter(control => !control.disabled && control.getClientRects().length);
+        const first = controls[0];
+        const last = controls.at(-1);
+        if(!first) return;
+        if(event.shiftKey && (document.activeElement === first || !controls.includes(document.activeElement))){
+            event.preventDefault();
+            last.focus();
+        } else if(!event.shiftKey && document.activeElement === last){
+            event.preventDefault();
+            first.focus();
+        }
+    });
+}
 document.addEventListener("keydown", event => {
     if(event.key === "Escape"){
         closeExamCompletionSummary();
@@ -5911,6 +5921,8 @@ document.addEventListener("keydown", event => {
 });
 
 function advanceToHomeworkSummaryIfComplete(){
+    if(isTaskLoading) return false;
+    if(document.getElementById("taskVideoDialog")?.open) return false;
     if(currentTask?.category !== "kurs" || !STUDENT_WORK_COURSE_PARTS.includes(currentTask.coursePart)){
         return false;
     }
@@ -5922,6 +5934,18 @@ function advanceToHomeworkSummaryIfComplete(){
     showHomeworkCompletionSummary(currentTask.sourceId);
 
     return true;
+}
+
+function scheduleCompletionSummary(){
+    const sourceId = currentTask?.sourceId;
+    setTimeout(() => {
+        if(currentTask?.sourceId !== sourceId || isTaskLoading || document.getElementById("taskVideoDialog")?.open) return;
+        if(advanceToHomeworkSummaryIfComplete()) return;
+        if(isExamSourceComplete() && completedExamSummarySource !== selectedSource){
+            completedExamSummarySource = selectedSource;
+            showExamCompletionSummary();
+        }
+    }, 0);
 }
 
 function updateNextTaskButton(){
@@ -6048,6 +6072,7 @@ function resultLabel(result){
         good: "dobrze",
         medium: "z pomocą",
         bad: "źle",
+        video: "Obejrzano film z rozwiązaniem (0 pkt)",
         [SKIPPED_RESULT]: "pominięte"
     };
 
@@ -7287,6 +7312,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
         workTimer.start(getTaskKey(taskToRender));
     }
     updateNextTaskButton();
+    scheduleCompletionSummary();
 }
 
 function nextTask(){
@@ -7342,6 +7368,10 @@ function prevTask(){
 function skipTask(){
     if(!currentTask || isTaskLoading) return;
     if(isCoursePreviewMode()) return;
+    if(currentTaskAnswered){
+        nextTask();
+        return;
+    }
 
     const key = getTaskKey(currentTask);
 
@@ -7368,6 +7398,7 @@ function shouldIgnoreKeyboardNavigation(event){
 
 function handleKeyboardNavigation(event){
     if(document.getElementById("taskVideoDialog").open) return;
+    if(!document.getElementById("homeworkSummaryOverlay").hidden || !document.getElementById("examSummaryOverlay").hidden) return;
     if(shouldIgnoreKeyboardNavigation(event)) return;
 
     if(event.key === "ArrowRight"){
@@ -7455,7 +7486,8 @@ function isCourseTask(task = currentTask){
 function getLockedCourseResult(task = currentTask){
     if(!isCourseTask(task)) return "";
 
-    return getSavedResult(task);
+    const result = getSavedResult(task);
+    return result === SKIPPED_RESULT ? "" : result;
 }
 
 function isCourseTaskLocked(task = currentTask){
@@ -7603,9 +7635,6 @@ function updateScorePanel(){
     } else if(storedScore){
         input.value = String(storedScore.earnedPoints);
         status.innerText = `Zapisano: ${formatPoints(storedScore.earnedPoints)} / ${formatPoints(storedScore.maxPoints)} pkt.`;
-        if(lockedScore){
-            status.innerText += " W trybie kursu nie można poprawiać zapisanego wyniku.";
-        }
     } else {
         input.value = "0";
         status.innerText = "";
@@ -7623,7 +7652,7 @@ function updateAnswerTools(){
     const gradingButton = document.getElementById("gradingButton");
     const videoLink = document.getElementById("taskVideoLink");
     const skipButton = document.getElementById("skipButton");
-    const navigationGroup = skipButton?.closest(".action-group.navigation");
+    const navigationGroup = document.querySelector(".action-group.navigation");
 
     if(!currentTask || !answerButton || !resultButtons) return;
 
@@ -7636,7 +7665,7 @@ function updateAnswerTools(){
         hintButton.hidden = isOpenExam;
     }
 
-    answerButton.hidden = isOpenExam || (!isPreview && isCourse && requiresSubmittedAnswer(currentTask));
+    answerButton.hidden = isOpenExam || (!isCourse && isClosed) || (!isPreview && isCourse && requiresSubmittedAnswer(currentTask));
 
     if(solutionButton){
         solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
@@ -7649,8 +7678,6 @@ function updateAnswerTools(){
     if(videoLink){
         const videoUrl = taskVideoUrl(currentTask);
         videoLink.hidden = !videoUrl;
-        if(videoUrl) videoLink.href = videoUrl;
-        else videoLink.removeAttribute("href");
     }
 
     if(reviewButton){
@@ -7689,7 +7716,6 @@ function taskVideoEmbedUrl(task){
 }
 
 function openTaskVideo(event){
-    if(event && (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) return;
     event?.preventDefault();
 
     const dialog = document.getElementById("taskVideoDialog");
@@ -7698,23 +7724,74 @@ function openTaskVideo(event){
 
     const label = coursePartDisplayTitle(currentTask) || currentTask.title || "Rozwiązanie zadania";
     document.getElementById("taskVideoTask").textContent = label;
-    document.getElementById("taskVideoExternal").href = taskVideoUrl(currentTask);
-
-    const frame = document.createElement("iframe");
-    frame.title = `Film: ${label}`;
-    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-    frame.allowFullscreen = true;
-    frame.referrerPolicy = "strict-origin-when-cross-origin";
-    frame.src = embedUrl;
-
+    pendingVideoTask = currentTask;
+    document.getElementById("taskVideoConsent").hidden = false;
+    document.getElementById("taskVideoError").hidden = true;
+    document.getElementById("taskVideoConfirm").disabled = false;
     dialog.showModal();
     document.documentElement.classList.add("task-video-open");
-    document.getElementById("taskVideoPlayer").replaceChildren(frame);
+    document.getElementById("taskVideoCancel").focus();
+}
+
+async function confirmTaskVideo(){
+    const task = pendingVideoTask;
+    const button = document.getElementById("taskVideoConfirm");
+    if(!task || button.disabled) return;
+    button.disabled = true;
+    const key = getTaskKey(task);
+    const duration = currentTaskAnswered ? getTaskDurationSeconds(task) : getCurrentTaskDurationSeconds();
+    const score = {earnedPoints: 0, maxPoints: taskPointValue(task)};
+    try {
+        if(getSavedResult(task) !== "video"){
+            await saveProgress("video", score, duration, task);
+            completedHomeworkSummarySource = "";
+        }
+        sessionResults.set(key, "video");
+        sessionScores.set(key, score);
+        setSessionDuration(task, duration);
+        saveGuestSessionProgress();
+        if(currentTask === task){
+            currentTaskAnswered = true;
+            workTimer.finish(key);
+            disableMCQ();
+            renderTaskNavigator();
+            renderSourceSelector();
+            updateSourceSummary();
+            updateScorePanel();
+        }
+        if(pendingVideoTask !== task || !document.getElementById("taskVideoDialog").open){
+            scheduleCompletionSummary();
+            return;
+        }
+        const frame = document.createElement("iframe");
+        frame.title = `Film: ${taskLabel(task)}`;
+        frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
+        frame.src = taskVideoEmbedUrl(task);
+        document.getElementById("taskVideoConsent").hidden = true;
+        const player = document.getElementById("taskVideoPlayer");
+        player.hidden = false;
+        player.replaceChildren(frame);
+        document.getElementById("taskVideoFooter").hidden = false;
+        document.getElementById("taskVideoExternal").href = taskVideoUrl(task);
+        document.getElementById("taskVideoClose").focus();
+    } catch(error){
+        if(pendingVideoTask !== task) return;
+        const message = document.getElementById("taskVideoError");
+        message.textContent = "Nie udało się potwierdzić zapisu oznaczenia filmu. Sprawdź połączenie i spróbuj ponownie.";
+        message.hidden = false;
+    } finally {
+        if(pendingVideoTask === task) button.disabled = false;
+    }
 }
 
 function resetTaskVideo(){
     // Removing the iframe also stops playback and releases the player.
     document.getElementById("taskVideoPlayer").replaceChildren();
+    document.getElementById("taskVideoPlayer").hidden = true;
+    document.getElementById("taskVideoFooter").hidden = true;
+    pendingVideoTask = null;
     document.getElementById("taskVideoExternal").removeAttribute("href");
     document.documentElement.classList.remove("task-video-open");
 }
@@ -7723,10 +7800,13 @@ function closeTaskVideo(){
     const dialog = document.getElementById("taskVideoDialog");
     if(dialog.open) dialog.close();
     resetTaskVideo();
+    scheduleCompletionSummary();
 }
 
 document.getElementById("taskVideoLink").addEventListener("click", openTaskVideo);
 document.getElementById("taskVideoClose").addEventListener("click", closeTaskVideo);
+document.getElementById("taskVideoCancel").addEventListener("click", closeTaskVideo);
+document.getElementById("taskVideoConfirm").addEventListener("click", confirmTaskVideo);
 document.addEventListener("keydown", event => {
     if(event.key !== "Escape" || !document.getElementById("taskVideoDialog").open) return;
     event.preventDefault();
@@ -8217,11 +8297,16 @@ function applyCourseAnswerLock(){
     currentTaskAnswered = true;
     disableMCQ();
     setResultButtonsEnabled(false);
+    if(lockedResult === "video") return;
 
     if(isClosedTask(currentTask)){
         const correctAnswers = getCorrectAnswers(currentTask);
 
         if(isTrueFalseSequenceTask(currentTask)){
+            const savedAnswers = String(getSavedProgressItem(currentTask)?.submitted_answer || "").split(/,\s*/);
+            if(savedAnswers.length === correctAnswers.length && savedAnswers.every(answer => ["P", "F"].includes(answer))){
+                trueFalseSelection = savedAnswers;
+            }
             revealTrueFalseAnswers(correctAnswers);
         } else if(isGroupedChoiceTask(currentTask)){
             revealGroupedChoiceAnswers(getGroupedChoiceOptions(currentTask), String(currentTask.answer || ""));
@@ -8240,9 +8325,20 @@ function applyCourseAnswerLock(){
         revealInputAnswers();
     }
 
-    showMessage("W trybie kursu nie można poprawiać odpowiedzi po jej zapisaniu.");
     updateScorePanel();
 }
+
+function notifyLockedAnswerAttempt(event){
+    const control = event.target.closest("button, input, select, textarea");
+    if(!control || !isCourseTask() || isTaskLoading) return;
+    const selectedStatement = isTrueFalseSequenceTask(currentTask) && trueFalseSelection[Number(control.dataset.index)];
+    if(currentTaskAnswered || selectedStatement){
+        showMessage("W kursie odpowiedź możesz wprowadzić tylko raz.");
+    }
+}
+
+document.getElementById("mcq").addEventListener("pointerdown", notifyLockedAnswerAttempt, true);
+document.getElementById("scorePanel").addEventListener("pointerdown", notifyLockedAnswerAttempt, true);
 
 function choose(opt, btn){
     if(currentTaskAnswered) return;
@@ -8393,7 +8489,7 @@ function chooseGroupedChoice(index, value, btn){
 }
 
 function chooseTrueFalse(index, opt, btn){
-    if(currentTaskAnswered) return;
+    if(currentTaskAnswered || trueFalseSelection[index]) return;
 
     const row = btn.closest(".tf-row");
 
@@ -8402,12 +8498,13 @@ function chooseTrueFalse(index, opt, btn){
             button.classList.remove("selected");
         });
 
-    btn.classList.add("selected");
+    const correctAnswers = getCorrectAnswers(currentTask);
+    btn.classList.add(correctAnswers[index] === opt ? "correct" : "wrong");
     trueFalseSelection[index] = opt;
+    row?.querySelectorAll(".choice-btn").forEach(button => { button.disabled = true; });
 
     if(trueFalseSelection.some(answer => !answer)) return;
 
-    const correctAnswers = getCorrectAnswers(currentTask);
     const isCorrect = correctAnswers.every((answer, answerIndex) =>
         trueFalseSelection[answerIndex] === answer
     );
@@ -8448,6 +8545,7 @@ function revealTrueFalseAnswers(correctAnswers){
             const wasSelected = trueFalseSelection[index] === value;
             const isCorrect = correctAnswers[index] === value;
 
+            button.classList.remove("selected");
             if(isCorrect) button.classList.add("correct");
             if(wasSelected && !isCorrect) button.classList.add("wrong");
         });
@@ -8601,6 +8699,7 @@ function addProgress(type, scoreData = null){
         updateScorePanel();
         updateSourceSummary();
         updateNextTaskButton();
+        scheduleCompletionSummary();
         return true;
     }
 
@@ -8620,6 +8719,7 @@ function addProgress(type, scoreData = null){
     updateScorePanel();
     updateSourceSummary();
     updateNextTaskButton();
+    scheduleCompletionSummary();
 
     return true;
 }
@@ -8638,20 +8738,21 @@ function submittedAnswerText(){
     return String(submittedChoice || "");
 }
 
-async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds()){
+async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds(), task = currentTask){
     if(loggedUser?.role === "admin") return;
     if(isCoursePreviewMode()) return;
     if(!isLoggedInStudent) return;
-    if(!currentTask || !window.apiFetch) return;
-
-    const task = currentTask;
+    if(!task || !window.apiFetch){
+        if(type === "video") throw new Error("Nie można zapisać oznaczenia filmu.");
+        return;
+    }
     const taskDuration = Math.max(0, Math.min(
         Math.round(Number(durationSeconds) || 0),
         4 * 60 * 60
     ));
     const usedHint = hintUsed;
     const revealedAnswer = answerShown;
-    const submittedAnswer = submittedAnswerText().slice(0, 2000);
+    const submittedAnswer = (task === currentTask ? submittedAnswerText() : getSavedProgressItem(task)?.submitted_answer || "").slice(0, 2000);
 
     try {
         const automaticScore = automaticScoreForResult(type, task);
@@ -8680,14 +8781,21 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
 
         if(data?.progress){
             savedProgress.unshift(data.progress);
+            if(data.progress.result === "video"){
+                sessionResults.set(getTaskKey(task), "video");
+                sessionScores.set(getTaskKey(task), {earnedPoints: 0, maxPoints: taskPointValue(task)});
+            }
             renderSourceSelector();
             updateScorePanel();
             updateSourceSummary();
         }
+        if(type === "video" && data?.progress?.result !== "video") throw new Error("Nie potwierdzono oznaczenia filmu.");
+        return data?.progress;
     } catch(error) {
         if(error.status !== 401){
             console.warn("Nie udało się zapisać postępu.", error);
         }
+        if(type === "video") throw error;
     }
 }
 
@@ -8740,6 +8848,7 @@ async function submitScore(event){
         renderTaskNavigator();
         updateSourceSummary();
         updateNextTaskButton();
+        scheduleCompletionSummary();
     } else {
         addProgress(result, scoreData);
     }
@@ -8771,6 +8880,7 @@ function showHint(){
 
 function showAnswer(){
     if(!currentTask) return;
+    if(currentTask.category === "egzaminy" && isClosedTask(currentTask)) return;
 
     if(isCourseTask() && !isCoursePreviewMode() && requiresSubmittedAnswer(currentTask)){
         showMessage("Najpierw podaj odpowiedź. Jeśli będzie błędna, pokażę poprawną odpowiedź ze wskazówką.");

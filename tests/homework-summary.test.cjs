@@ -8,7 +8,8 @@ const source = {id:sourceId, label:'Lekcja 2', detail:'Logarytmy'};
 const work = tasks.filter(t => ['praca_domowa', 'zadania_powtorkowe'].includes(t.coursePart));
 const elements = Object.fromEntries(['homeworkSummaryOverlay', 'homeworkSummaryLesson', 'homeworkSummaryGood',
   'homeworkSummaryGoodHints', 'homeworkSummaryBad', 'homeworkSummaryBadHints', 'homeworkSummaryDuration',
-  'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'progress'].map(id => [id, {hidden:true, innerText:'', innerHTML:''}]));
+  'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'homeworkSummaryPercent', 'homeworkSummaryTasks', 'progress']
+  .map(id => [id, {hidden:true, innerText:'', innerHTML:'', children:[], replaceChildren(){this.children=[];}}]));
 const nextButton = {innerText:''};
 const dialog = {focus() {}};
 const overlay = elements.homeworkSummaryOverlay;
@@ -19,10 +20,13 @@ const ctx = vm.createContext({
   workTimer:{finish(){}},
   tasks, selectedSource:sourceId, selectedCategory:'kurs', selectedLevel:'matura_podstawowa',
   STUDENT_WORK_COURSE_PARTS:['praca_domowa', 'zadania_powtorkowe'],
+  SKIPPED_RESULT:'skipped', percentLabel:value=>`${Math.round(value*10)/10}%`, scheduleCompletionSummary(){},
+  addNavigatorSectionLabel(){},
+  addNavigatorTaskButton(container, task){container.children.push(task);container.lastElementChild={};},
   sessionResults:new Map(), sessionScores:new Map(), sessionDurations:new Map(), sessionHints:new Map(),
   savedProgress:[], reviewTaskKeys:new Set(), pendingReviewRequests:new Set(), reviewTasksLoadPromise:null,
   isLoggedInStudent:true, window:{apiFetch:true}, currentTask:work.at(-1), completedHomeworkSummarySource:'',
-  currentTaskAnswered:false, hintUsed:false, answerShown:false,
+  currentTaskAnswered:false, isTaskLoading:false, hintUsed:false, answerShown:false,
   document:{getElementById:id => elements[id], activeElement:null, querySelector:() => nextButton, body:{style:{}}},
   getSourceMetaById:() => source, isClosedTask:() => true, requestAnimationFrame:fn => fn(),
   showMessage:message => {ctx.message = message;},
@@ -33,8 +37,8 @@ const ctx = vm.createContext({
 });
 for (const name of ['getTaskKey', 'getProgressSourceId', 'getProgressFile', 'progressTaskKey', 'getSavedResult',
   'getSavedProgressItem', 'taskUsedHint', 'getHomeworkSummaryTasks', 'isHomeworkComplete', 'getTaskDurationSeconds', 'taskMaxPoints',
-  'taskPointValue', 'normalizeScoreValue', 'automaticScoreForResult', 'getTaskScore', 'calculateHomeworkSummary',
-  'formatHomeworkDuration', 'loadStudentReviewTasks', 'updateHomeworkReviewCount', 'showHomeworkCompletionSummary',
+  'taskPointValue', 'normalizeScoreValue', 'automaticScoreForResult', 'getTaskScore', 'calculateSourceSummary', 'calculateHomeworkSummary',
+  'formatHomeworkDuration', 'loadStudentReviewTasks', 'updateHomeworkReviewCount', 'showHomeworkCompletionSummary', 'renderHomeworkSummaryTasks',
   'advanceToHomeworkSummaryIfComplete', 'updateNextTaskButton', 'addProgress']) {
   const match = new RegExp(`(?:async )?function ${name}\\(`).exec(html);
   assert(match, name);
@@ -44,7 +48,9 @@ assert.equal(ctx.getHomeworkSummaryTasks().length, 18);
 assert(!html.includes('id="homeworkSummaryMedium"'));
 assert.match(html, /Zadania wykonane poprawnie/);
 assert.match(html, /Zadania wykonane błędnie/);
-assert.match(html, /Zadania zgłoszone do omówienia na zajęciach/);
+assert.match(html, /Dodane do omówienia/);
+assert(!html.includes('id="homeworkSummaryDuration"'));
+assert(!html.includes('id="homeworkSummaryGoodHints"'));
 
 const overrides = {
   'zd2.png':{result:'medium', hint_used:true},
@@ -100,10 +106,9 @@ ctx.sessionResults.clear();
   assert(!ctx.advanceToHomeworkSummaryIfComplete(), 'Open the summary once per completion');
   assert.equal(overlay.hidden, false);
   assert.equal(elements.homeworkSummaryGood.innerText, 15);
-  assert.equal(elements.homeworkSummaryGoodHints.innerText, '(w tym 3 ze wskazówką)');
   assert.equal(elements.homeworkSummaryBad.innerText, 3);
-  assert.equal(elements.homeworkSummaryBadHints.innerText, '(w tym 2 ze wskazówką)');
-  assert.equal(elements.homeworkSummaryDuration.innerText, '2 min 51 s');
+  assert.equal(elements.homeworkSummaryPercent.innerText, ctx.percentLabel(summary.percent));
+  assert.equal(elements.homeworkSummaryTasks.children.length, 18);
   assert.equal(elements.homeworkSummaryReview.innerText, '...');
   assert.equal(fetched, 0, 'Wait for outstanding discussion requests before fetching the count');
   release();
@@ -138,5 +143,12 @@ ctx.sessionResults.clear();
   ctx.hintUsed = false;
   assert.equal(ctx.sessionHints.get(`${sourceId}:zd1.png`), true, 'Capture hint usage when the answer is submitted');
   assert.equal(ctx.calculateHomeworkSummary().badHints, 3);
+  ctx.sessionResults.set(`${sourceId}:zd1.png`, 'video');
+  ctx.sessionScores.set(`${sourceId}:zd1.png`, {earnedPoints:1,maxPoints:1});
+  const videoSummary = ctx.calculateHomeworkSummary();
+  assert.equal(videoSummary.video, 1);
+  assert.equal(videoSummary.good + videoSummary.bad, 17, 'A film is neither a good nor a bad answer');
+  assert.equal(ctx.getTaskScore(work[0]).earnedPoints, 0, 'A film overrides any earlier score');
+  assert(ctx.isHomeworkComplete(), 'A film counts as completed for the mandatory summary');
   console.log('PASS: homework + review totals, correct/incorrect hinted answers, partial scores, time, unique discussion counts, refresh and pending/failed requests');
 })().catch(error => {console.error(error); process.exitCode = 1;});
