@@ -3449,6 +3449,13 @@ const TASK_SOURCES = [
         detail: "Logarytmy"
     },
     {
+        path: "zadania/kurs/mp/lekcja_3/lekcja_3_wzory_skroconego_mnozenia.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Lekcja 3",
+        detail: "Wzory skróconego mnożenia"
+    },
+    {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
@@ -3733,6 +3740,9 @@ async function bootStudentPanel(){
         updateMetaTheme();
         renderSourceSelector();
         setSourceLoadState("loading");
+        if(typeof preloadCourseSourcesForCounts === "function"){
+            await preloadCourseSourcesForCounts();
+        }
         await ensureTaskSourceLoaded(selectedSource);
         ensureSelectedCoursePart();
 
@@ -4096,6 +4106,20 @@ async function ensureTaskSourceLoaded(sourceId = selectedSource){
 
     taskSourceLoadPromises.set(sourceId, loadPromise);
     await loadPromise;
+}
+
+async function preloadCourseSourcesForCounts(){
+    if(selectedCategory !== "kurs") return;
+
+    const sources = getAvailableSources();
+
+    await Promise.all(sources.map(async source => {
+        try {
+            await ensureTaskSourceLoaded(source.id);
+        } catch(error) {
+            console.warn("Nie udało się wczytać licznika lekcji.", source.id, error);
+        }
+    }));
 }
 
 function normalizeTaskSolutions(task, basePath){
@@ -4659,6 +4683,9 @@ async function loadSelectedSourceAndDraw(index = null){
     try {
         await ensureTaskSourceLoaded(selectedSource);
         await ensureTagFilteredSourcesLoaded();
+        if(typeof preloadCourseSourcesForCounts === "function"){
+            await preloadCourseSourcesForCounts();
+        }
         ensureSelectedCoursePart();
         renderSourceSelector();
         refreshTaskNavigator();
