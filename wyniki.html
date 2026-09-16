@@ -139,13 +139,6 @@ body{
     border-bottom:0;
 }
 
-.results-table td.difference-cell{
-    color:var(--green);
-    background:#f0fbf4;
-    font-weight:500;
-    line-height:1.45;
-}
-
 .score-bars{
     display:grid;
     gap:10px;
@@ -377,10 +370,6 @@ body{
         margin-bottom:6px;
     }
 
-    .results-table td.difference-cell{
-        line-height:1.25;
-    }
-
     .score-bar-item,
     .score-scale{
         grid-template-columns:108px minmax(0, 1fr) 42px;
@@ -401,15 +390,13 @@ body{
         <table class="results-table">
             <colgroup>
                 <col style="width:23%">
-                <col style="width:39%">
-                <col style="width:19%">
+                <col style="width:58%">
                 <col style="width:19%">
             </colgroup>
             <thead>
                 <tr>
                     <th scope="col">Egzamin</th>
                     <th scope="col"></th>
-                    <th scope="col">Różnica względem średniego wyniku w skali kraju</th>
                     <th scope="col">Rozpiętość wyników moich uczniów</th>
                 </tr>
             </thead>
@@ -441,7 +428,6 @@ body{
                             </div>
                         </div>
                     </td>
-                    <td class="difference-cell" data-label="O ile lepiej niż średni wynik w skali kraju">+35,0 p.p.</td>
                     <td data-label="Rozpiętość">najmniejszy 80%, największy 97%</td>
                 </tr>
                 <tr>
@@ -471,7 +457,6 @@ body{
                             </div>
                         </div>
                     </td>
-                    <td class="difference-cell" data-label="O ile lepiej niż średni wynik w skali kraju">+30,5 p.p.</td>
                     <td data-label="Rozpiętość">najmniejszy 78%, największy 100%</td>
                 </tr>
                 <tr>
@@ -501,7 +486,6 @@ body{
                             </div>
                         </div>
                     </td>
-                    <td class="difference-cell" data-label="O ile lepiej niż średni wynik w skali kraju">+35,3 p.p.</td>
                     <td data-label="Rozpiętość">najmniejszy 30%, największy 98%</td>
                 </tr>
             </tbody>

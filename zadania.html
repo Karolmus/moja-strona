@@ -1321,16 +1321,31 @@ button {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    grid-column: 1 / -1;
     min-height: 36px;
     text-decoration: none;
-    background: #8b2332;
+    background: white;
     border-color: #8b2332;
-    color: #fff;
+    color: #8b2332;
 }
 
-.action-group.tools .video-link:hover { background: #701927; }
-.action-group.tools .skip { grid-column: 1 / -1; }
+.action-group.tools .video-link:hover {
+    background: #fff5f6;
+    border-color: #701927;
+    color: #701927;
+}
+.video-skip-actions {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+}
+.video-skip-actions:has(.video-link[hidden]),
+.video-skip-actions:has(.skip[hidden]) {
+    grid-template-columns: 1fr;
+}
+.video-skip-actions:has(.video-link[hidden]):has(.skip[hidden]) {
+    display: none;
+}
 .task-video-consent { padding: 20px; }
 .task-video-consent p { margin: 0 0 18px; line-height: 1.5; }
 .task-video-consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -3077,8 +3092,10 @@ footer {
                         <button class="action-btn answer" id="answerButton" onclick="showAnswer()">Odpowiedź</button>
                         <button class="action-btn solution" id="solutionButton" onclick="showSolution()" hidden>Rozwiązanie</button>
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
-                        <button class="action-btn solution video-link" id="taskVideoLink" type="button" aria-haspopup="dialog" aria-controls="taskVideoDialog" hidden><span aria-hidden="true">🎬</span> Zobacz film z rozwiązaniem</button>
-                        <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
+                        <div class="video-skip-actions">
+                            <button class="action-btn solution video-link" id="taskVideoLink" type="button" aria-haspopup="dialog" aria-controls="taskVideoDialog" hidden><span aria-hidden="true">🎬</span> Zobacz nagranie</button>
+                            <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
+                        </div>
                         <div id="answer" class="box" aria-live="polite"></div>
                     </div>
 
