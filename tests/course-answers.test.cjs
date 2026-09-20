@@ -51,6 +51,14 @@ const cases = [
   [task(4, 'zd7.png'), ['II','III','IV','I'], ['I','II','III','IV']],
   [task(4, 'zd8.png'), ['=','<','<','<'], ['>','>','>','>']],
   [task(4, '11.png'), ['II','I','III'], ['I','II','III']],
+  ...JSON.parse(fs.readFileSync('zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json'))
+    .filter(task => task.type === 'input')
+    .map(task => [task, task.inputs.map(field => field.answer),
+      task.inputs.map(field => field.options ? field.options.find(value => value !== field.answer) : '999')]),
+  ...JSON.parse(fs.readFileSync('zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json'))
+    .filter(task => task.type === 'input')
+    .map(task => [task, task.inputs.map(field => field.answer),
+      task.inputs.map(field => field.options ? field.options.find(value => value !== field.answer) : '999')]),
 ];
 function render(task) {
   ctx.currentTask = task; ctx.currentTaskAnswered = false;
@@ -91,4 +99,11 @@ assert.equal(render(cases[3][0]).inputs[0].inputMode, 'text');
 assert(ctx.isTypedAnswerCorrect('1/2', ['0,5']));
 assert(ctx.isTypedAnswerCorrect('1 1/2', ['1,5']));
 assert(!ctx.isTypedAnswerCorrect('1 2', ['12']));
-console.log('PASS: ten corrected tasks, selectors, math input, validation, locking, decimal separators and strict rounding');
+assert(ctx.isTypedAnswerCorrect('2/6', ctx.getInputFields(task(5, 'zd4.png'))[0].answers));
+assert(ctx.isTypedAnswerCorrect('-sqrt(4)', ctx.getInputFields(task(5, 'zd5.png'))[0].answers));
+assert(ctx.isTypedAnswerCorrect('−12,0', ctx.getInputFields(task(5, 'zd3.png'))[0].answers));
+assert(!ctx.isTypedAnswerCorrect('0,333', ctx.getInputFields(task(5, 'zd4.png'))[0].answers));
+assert(ctx.isTypedAnswerCorrect('-3 1/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
+assert(ctx.isTypedAnswerCorrect('-sqrt(100)/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
+assert(!ctx.isTypedAnswerCorrect('10/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
+console.log(`PASS: ${cases.length} tasks, selectors, math input, validation, locking, decimal separators and strict rounding`);

@@ -334,7 +334,7 @@ body.admin-preview .level-btn {
 }
 
 .source-list.course-source-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 3px;
     max-height: none;
     overflow-y: visible;
@@ -441,10 +441,10 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .course-source-list .source-btn {
-    min-height: 25px;
+    min-height: 72px;
     align-content: center;
-    gap: 1px;
-    padding: 3px 4px;
+    gap: 4px;
+    padding: 7px 8px;
     text-align: center;
 }
 
@@ -465,8 +465,8 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .course-source-list .source-btn span {
-    font-size: 9.5px;
-    line-height: 1.05;
+    font-size: 12px;
+    line-height: 1.2;
 }
 
 .source-btn small {
@@ -488,11 +488,15 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .course-source-list .source-btn small {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 8.5px;
-    line-height: 1.1;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-size: 11px;
+    line-height: 1.25;
+}
+
+.course-source-list .source-btn .source-subtitle {
+    color: inherit;
 }
 
 .mode-btn,
@@ -2643,23 +2647,23 @@ footer {
     }
 
     .source-list.course-source-list {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         max-height: none;
         overflow-y: visible;
     }
 
     .course-source-list .source-btn {
-        min-height: 23px;
-        padding: 2px 3px;
+        min-height: 72px;
+        padding: 6px;
     }
 
     .course-source-list .source-btn span {
-        font-size: 8.5px;
-        line-height: 1;
+        font-size: 12px;
+        line-height: 1.2;
     }
 
     .course-source-list .source-btn small {
-        display: none;
+        display: block;
     }
 
     .exam-summary-overlay,
@@ -3251,7 +3255,7 @@ footer {
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
 <script src="static/math-answer-input.js?v=20260907"></script>
 <script src="static/active-work-time.js?v=20260910"></script>
-<script src="static/course-videos.js?v=20260916-mp1-mp2"></script>
+<script src="static/course-videos.js?v=20260920-mp3"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -4943,7 +4947,8 @@ function renderSourceSelector(){
             detail,
             selectedSource === source.id,
             titleDetail,
-            isSourceComplete(source)
+            isSourceComplete(source),
+            selectedCategory === "kurs" ? source.detail : ""
         );
     });
 
@@ -4985,7 +4990,7 @@ function getExamSourceTileContent(detail){
     };
 }
 
-function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false){
+function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = ""){
     const button = document.createElement("button");
     const name = document.createElement("span");
     const meta = document.createElement("small");
@@ -5004,6 +5009,12 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     meta.innerText = detail;
 
     button.appendChild(name);
+    if(subtitle){
+        const description = document.createElement("small");
+        description.className = "source-subtitle";
+        description.innerText = subtitle;
+        button.appendChild(description);
+    }
     if(detail){
         button.appendChild(meta);
     }

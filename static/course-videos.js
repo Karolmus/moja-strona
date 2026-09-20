@@ -33,6 +33,25 @@
             "zp2.png": "https://youtu.be/7DmXDqnsiOU",
             "zp3.png": "https://youtu.be/mfuIhxDVwgA",
             "zp4.png": "https://youtu.be/r8gCPmYQ388"
+        },
+        "zadania/kurs/mp/lekcja_3/lekcja_3_wzory_skroconego_mnozenia.json": {
+            "zd1.png": "https://youtu.be/oHWXfdLMmx8",
+            "zd2.png": "https://youtu.be/z1VpLPA5PkU",
+            "zd3.png": "https://youtu.be/PJywJC0R_aQ",
+            "zd4.png": "https://youtu.be/6PyCuDHS4iE",
+            "zd5.png": "https://youtu.be/gdXiU3ogdfk",
+            "zd6.png": "https://youtu.be/wWnkzCfjvd0",
+            "zd7.png": "https://youtu.be/4fOoF4GhO8g",
+            "zd8.png": "https://youtu.be/G5Gu7oTzob0",
+            "zd9.png": "https://youtu.be/0nP8y4zV74s",
+            "zd10.png": "https://youtu.be/S4rxTwPNf20",
+            "zd11.png": "https://youtu.be/K4lhtbIboRc",
+            "zd12.png": "https://youtu.be/HmjNXvZbsBw",
+            "zp1.png": "https://youtu.be/UgDApo5UMwQ",
+            "zp2.png": "https://youtu.be/KaIiFYdbPZc",
+            "zp3.png": "https://youtu.be/edBlUxBUNwA",
+            "zp4.png": "https://youtu.be/voM4o3tYY84",
+            "zp5.png": "https://youtu.be/vH7t4wwZeWs"
         }
     };
     if (typeof module !== "undefined" && module.exports) module.exports = videos;

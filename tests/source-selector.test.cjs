@@ -64,6 +64,13 @@ assert(list.classes.has('course-source-list'));
 assert(!list.classes.has('exam-source-list'));
 assert.equal(brand.hidden, false);
 assert.equal(title.innerText, 'Wybór lekcji');
+sources[0].label = 'Lekcja 1';
+sources[0].detail = 'Potęgi i pierwiastki';
+ctx.isTaskSourceLoaded = () => true;
+ctx.tasks = Array.from({length:29}, () => ({sourceId:sources[0].id, category:'kurs', level:ctx.selectedLevel}));
+ctx.renderSourceSelector();
+assert.deepEqual(list.children[0].children.map(child => child.innerText),
+  ['Lekcja 1', 'Potęgi i pierwiastki', '29 zadań']);
 sources.length = 0;
 ctx.selectedCategory = 'egzaminy';
 ctx.renderSourceSelector();

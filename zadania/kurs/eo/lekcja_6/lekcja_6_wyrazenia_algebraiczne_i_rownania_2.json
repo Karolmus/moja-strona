@@ -57,22 +57,16 @@
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Pomnóż równanie przez 6 i przenieś wyrazy z x na jedną stronę.",
-    "answer": "B",
+    "answer": "-10/3",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
-      "zadania",
-      "zadanie zamknięte"
+      "zadania"
     ],
-    "type": "closed",
-    "options": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
+    "type": "input",
+    "inputs": [{ "label": "x", "answer": "-10/3" }],
     "maxPoints": 1
   },
   {
@@ -218,22 +212,16 @@
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Równanie x^2 = 25 ma dwa całkowite rozwiązania: -5 i 5.",
-    "answer": "C",
+    "answer": "2",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
-      "zadania",
-      "zadanie zamknięte"
+      "zadania"
     ],
-    "type": "closed",
-    "options": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
+    "type": "input",
+    "inputs": [{ "label": "Liczba rozwiązań całkowitych", "answer": "2" }],
     "maxPoints": 1
   },
   {
@@ -243,22 +231,16 @@
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Kwadrat liczby całkowitej nie może być ujemny.",
-    "answer": "A",
+    "answer": "0",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
-      "zadania",
-      "zadanie zamknięte"
+      "zadania"
     ],
-    "type": "closed",
-    "options": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
+    "type": "input",
+    "inputs": [{ "label": "Liczba rozwiązań całkowitych", "answer": "0" }],
     "maxPoints": 1
   },
   {
@@ -268,22 +250,16 @@
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Równanie x^2 = 0 ma jedno rozwiązanie: 0.",
-    "answer": "B",
+    "answer": "1",
     "coursePart": "zadania",
     "tags": [
       "kurs",
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
-      "zadania",
-      "zadanie zamknięte"
+      "zadania"
     ],
-    "type": "closed",
-    "options": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
+    "type": "input",
+    "inputs": [{ "label": "Liczba rozwiązań całkowitych", "answer": "1" }],
     "maxPoints": 1
   },
   {
@@ -531,7 +507,9 @@
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Po uproszczeniu obie strony równania są identyczne.",
-    "answer": "Równanie ma nieskończenie wiele rozwiązań.",
+    "answer": "nieskończenie wiele rozwiązań",
+    "type": "input",
+    "inputs": [{ "label": "Liczba rozwiązań równania", "answer": "nieskończenie wiele rozwiązań", "options": ["brak rozwiązań", "jedno rozwiązanie", "dwa rozwiązania", "nieskończenie wiele rozwiązań"] }],
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",

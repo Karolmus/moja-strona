@@ -1287,6 +1287,46 @@ th {
     border-bottom: 0;
 }
 
+.source-task-row {
+    cursor: pointer;
+}
+
+.source-task-row:hover td,
+.source-task-row[aria-expanded="true"] td {
+    background: #f5f9fd;
+}
+
+.source-task-row:focus-visible {
+    outline: 2px solid #24527a;
+    outline-offset: -2px;
+}
+
+.source-task-preview td {
+    background: #f5f9fd;
+    padding: 0 8px 10px;
+}
+
+.task-image-preview {
+    display: grid;
+    gap: 8px;
+    border-left: 3px solid #8eb8dc;
+    background: white;
+    padding: 10px;
+}
+
+.task-image-preview img {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.task-image-preview-status {
+    color: var(--muted);
+    font-size: 11px;
+}
+
 .task-title-cell {
     display: grid;
     gap: 2px;
@@ -4545,6 +4585,61 @@ function expectedCourseAnswer(task){
     return String(answer);
 }
 
+function taskPreviewImagePaths(task){
+    const source = String(task?.sourceId || "");
+    const files = [task?.contextFile, task?.file]
+        .filter(Boolean)
+        .map(String);
+
+    if(!ADMIN_TASK_SOURCES.some(candidate => candidate.path === source)) return [];
+    if(!source.includes("/") || files.some(file => !/^[A-Za-z0-9_.-]+$/.test(file))) return [];
+
+    const basePath = source.slice(0, source.lastIndexOf("/") + 1);
+
+    return [...new Set(files.map(file => basePath + file))];
+}
+
+async function loadTaskImagePreview(task, container){
+    const paths = taskPreviewImagePaths(task);
+
+    container.innerHTML = "";
+
+    if(!paths.length){
+        const message = document.createElement("span");
+
+        message.className = "task-image-preview-status";
+        message.innerText = "Brak obrazu tego zadania.";
+        container.appendChild(message);
+        return;
+    }
+
+    const status = document.createElement("span");
+
+    status.className = "task-image-preview-status";
+    status.innerText = "Wczytywanie zadania...";
+    container.appendChild(status);
+
+    try {
+        const blobs = await Promise.all(paths.map(fetchImageBlob));
+
+        container.innerHTML = "";
+        blobs.forEach((blob, index) => {
+            const image = document.createElement("img");
+            const objectUrl = URL.createObjectURL(blob);
+
+            image.alt = index === blobs.length - 1
+                ? `Treść: ${taskDisplayTitle(task)}`
+                : `Kontekst: ${taskDisplayTitle(task)}`;
+            image.onload = () => URL.revokeObjectURL(objectUrl);
+            image.onerror = () => URL.revokeObjectURL(objectUrl);
+            image.src = objectUrl;
+            container.appendChild(image);
+        });
+    } catch(error) {
+        status.innerText = error.message || "Nie udało się wczytać obrazu zadania.";
+    }
+}
+
 function renderSourceDetail(group){
     const detail = document.createElement("div");
     const heading = document.createElement("h4");
@@ -4597,7 +4692,17 @@ function renderSourceDetail(group){
         const pointsCell = document.createElement("td");
         const percentCell = document.createElement("td");
         const timeCell = document.createElement("td");
+        const previewRow = document.createElement("tr");
+        const previewCell = document.createElement("td");
+        const preview = document.createElement("div");
+        let previewLoaded = false;
 
+        row.className = "source-task-row";
+        row.tabIndex = 0;
+        row.setAttribute("role", "button");
+        row.setAttribute("aria-expanded", "false");
+        row.setAttribute("aria-label", `Pokaż treść: ${taskDisplayTitle(task)}`);
+        row.title = "Kliknij, aby wyświetlić treść zadania.";
         titleWrap.className = "task-title-cell";
         result.className = `result-pill ${progressItem?.result || "missing"}`;
         title.innerText = isCourse
@@ -4636,7 +4741,34 @@ function renderSourceDetail(group){
         row.appendChild(pointsCell);
         if(!isCourse) row.appendChild(percentCell);
         row.appendChild(timeCell);
+        previewRow.className = "source-task-preview";
+        previewRow.hidden = true;
+        previewCell.colSpan = isCourse ? 4 : 5;
+        preview.className = "task-image-preview";
+        previewCell.appendChild(preview);
+        previewRow.appendChild(previewCell);
+
+        const togglePreview = () => {
+            const expanded = row.getAttribute("aria-expanded") === "true";
+
+            row.setAttribute("aria-expanded", String(!expanded));
+            previewRow.hidden = expanded;
+
+            if(!expanded && !previewLoaded){
+                previewLoaded = true;
+                loadTaskImagePreview(task, preview);
+            }
+        };
+
+        row.addEventListener("click", togglePreview);
+        row.addEventListener("keydown", event => {
+            if(event.key === "Enter" || event.key === " "){
+                event.preventDefault();
+                togglePreview();
+            }
+        });
         tbody.appendChild(row);
+        tbody.appendChild(previewRow);
     });
 
     detail.appendChild(heading);
