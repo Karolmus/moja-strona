@@ -12,6 +12,8 @@ function functionSource(name) {
 
 assert.match(html, /class="panel course-progress-panel"/);
 assert.match(html, /matura_podstawowa: 25/);
+assert.match(html, /const COURSE_REVISION_TARGETS = \{\s*matura_podstawowa: 24\s*\};/);
+assert.match(html, /calculateProgress\(latest, "kurs", "zadania_powtorkowe", revisionTarget\)/);
 assert.match(html, />Zadania do poprawy</);
 assert.match(html, />Wyniki z pracy domowej</);
 assert(!html.includes('Wyniki każdej pracy domowej względem wszystkich zadań z danej lekcji.'));

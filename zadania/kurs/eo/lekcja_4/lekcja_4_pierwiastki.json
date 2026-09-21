@@ -498,10 +498,10 @@
     "title": "Lekcja 4 - Zadanie domowe 8",
     "type": "input",
     "inputs": [
-      { "label": "Wiersz 1", "options": ["<", "=", ">"], "answer": "=" },
-      { "label": "Wiersz 2", "options": ["<", "=", ">"], "answer": "<" },
-      { "label": "Wiersz 3", "options": ["<", "=", ">"], "answer": "<" },
-      { "label": "Wiersz 4", "options": ["<", "=", ">"], "answer": "<" }
+      { "label": "Wiersz 1", "options": ["<", "=", ">"], "answer": "=", "control": "comparison", "position": { "x": 48.5, "y": 27.5 } },
+      { "label": "Wiersz 2", "options": ["<", "=", ">"], "answer": "<", "control": "comparison", "position": { "x": 48.5, "y": 48 } },
+      { "label": "Wiersz 3", "options": ["<", "=", ">"], "answer": "<", "control": "comparison", "position": { "x": 48.5, "y": 69.5 } },
+      { "label": "Wiersz 4", "options": ["<", "=", ">"], "answer": "<", "control": "comparison", "position": { "x": 48.5, "y": 91 } }
     ],
     "hint": "W każdym wierszu uprość pierwiastki albo porównaj przybliżenia. Wstaw kolejno znaki między lewą a prawą stroną.",
     "answer": "=, <, <, <",

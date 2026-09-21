@@ -30,6 +30,8 @@ assert.match(html, /id="reviewButton"[^>]*>Chcę omówić to zadanie na zajęcia
 assert(!html.includes('Dodaj do omówienia'));
 assert.match(html, /zadania: "Część główna"/);
 assert(!html.includes('zadania: "1. Część główna"'));
+assert.match(html, /body\.focus-mode\s*\{[^}]*min-height:\s*100vh;[^}]*background:\s*#000000;/s,
+  'Focus mode fills the area outside the task with black');
 assert.match(html, /id="courseBrand"[\s\S]*?<img[^>]*>[\s\S]*?<p>Karol Musioł Delta Sigma<\/p>/);
 assert.match(html, /\.course-brand\[hidden\]\s*\{\s*display: none;/);
 assert(html.indexOf('id="taskImage"') < html.indexOf('id="mcq"'));

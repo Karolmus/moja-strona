@@ -939,6 +939,10 @@ const COURSE_LESSON_TARGETS = {
     matura_podstawowa: 25
 };
 
+const COURSE_REVISION_TARGETS = {
+    matura_podstawowa: 24
+};
+
 const PROFILE_WORK_PARTS = new Set(["praca_domowa", "zadania_powtorkowe"]);
 
 const PROFILE_SOURCES = [
@@ -1689,9 +1693,10 @@ function renderHomeworkChart(progress, reviewTasks){
 function renderProfile(user, progress, reviewTasks){
     const latest = latestTaskProgress(progress);
     const courseTarget = COURSE_LESSON_TARGETS[user.level] || 0;
+    const revisionTarget = COURSE_REVISION_TARGETS[user.level] || 0;
     const lessonStats = calculateProgress(latest, "kurs", "zadania", courseTarget);
     const homeworkStats = calculateProgress(latest, "kurs", "praca_domowa", courseTarget);
-    const revisionStats = calculateProgress(latest, "kurs", "zadania_powtorkowe");
+    const revisionStats = calculateProgress(latest, "kurs", "zadania_powtorkowe", revisionTarget);
     const completion = courseCompletion(latest, courseTarget);
     const examSection = document.getElementById("examSection");
     const continueButton = document.querySelector(".continue-button");

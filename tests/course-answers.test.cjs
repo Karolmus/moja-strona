@@ -3,6 +3,7 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
 const names = ['getInputFields', 'normalizeTypedAnswer', 'isTypedAnswerCorrect',
+  'isComparisonField', 'setupComparisonControl', 'setComparisonControlResult',
   'setupInputTask', 'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask'];
 function source(name) {
   const start = html.indexOf(`function ${name}(`);
@@ -12,13 +13,16 @@ function source(name) {
 class Element {
   constructor(tag) {
     this.tagName = tag; this.children = []; this.dataset = {}; this.value = '';
+    this.attributes = {}; this.style = {};
     this.classes = new Set();
     this.classList = {
-      add: value => this.classes.add(value),
+      add: (...values) => values.forEach(value => this.classes.add(value)),
+      remove: (...values) => values.forEach(value => this.classes.delete(value)),
       toggle: (value, state) => state ? this.classes.add(value) : this.classes.delete(value),
     };
   }
   appendChild(child) {this.children.push(child);}
+  setAttribute(name, value) {this.attributes[name] = String(value);}
   querySelectorAll(selector) {
     const tags = selector.split(',').map(value => value.trim().split(' ').at(-1));
     return this.children.flatMap(child => [...(tags.includes(child.tagName) ? [child] : []), ...child.querySelectorAll(selector)]);
@@ -26,9 +30,14 @@ class Element {
   reportValidity() {this.validationReported = true; return false;}
 }
 let mcq;
+const comparisonOverlay = new Element('div');
 const result = [];
 const ctx = vm.createContext({
-  document: {createElement: tag => new Element(tag), querySelectorAll: selector => mcq.querySelectorAll(selector)},
+  document: {
+    createElement: tag => new Element(tag),
+    getElementById: id => id === 'comparisonOverlay' ? comparisonOverlay : null,
+    querySelectorAll: selector => mcq.querySelectorAll(selector)
+  },
   currentTaskAnswered: false, isCourseTask: () => true, hasGradingCriteria: () => false,
   taskMaxPoints: task => task.maxPoints, showCorrection: () => {},
   addProgress: (status, score) => {result.push({status, score}); ctx.currentTaskAnswered = true;},
@@ -62,6 +71,7 @@ const cases = [
 ];
 function render(task) {
   ctx.currentTask = task; ctx.currentTaskAnswered = false;
+  comparisonOverlay.children = [];
   mcq = new Element('div'); ctx.setupInputTask(mcq);
   const form = mcq.children[0];
   return {form, inputs: form.querySelectorAll('input, select')};
@@ -95,6 +105,15 @@ for (const value of ['40', '40%', '39.73', '39,73%', '0.397', '39.70000001', '',
 assert(!ctx.isTypedAnswerCorrect('', ['0']));
 assert(task(1, 'zd_6.2.png').instruction.includes('jednego miejsca'));
 assert(render(cases[0][0]).inputs.every(input => input.tagName === 'select'));
+const comparisonTask = task(4, 'zd8.png');
+const comparisonFields = ctx.getInputFields(comparisonTask);
+assert(comparisonFields.every(field => ctx.isComparisonField(field) && Number.isFinite(field.position.x) && Number.isFinite(field.position.y)));
+const comparisonRender = render(comparisonTask);
+assert(comparisonRender.inputs.every(input => input.tagName === 'input' && input.type === 'hidden'));
+assert.equal(comparisonOverlay.children.length, 4);
+assert(comparisonOverlay.children.every(control => control.children.length === 3));
+comparisonOverlay.children[0].children[0].onclick();
+assert.equal(comparisonRender.inputs[0].value, '<');
 assert.equal(render(cases[3][0]).inputs[0].inputMode, 'text');
 assert(ctx.isTypedAnswerCorrect('1/2', ['0,5']));
 assert(ctx.isTypedAnswerCorrect('1 1/2', ['1,5']));

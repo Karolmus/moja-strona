@@ -99,6 +99,8 @@ test('students are grouped by assigned course and task previews stay compact', (
   }
 
   assert.match(html, /student-level-group/);
+  assert.match(html, /\.student-level-eo \.student-level-heading\s*\{[^}]*background:\s*linear-gradient\(90deg, #b2d699, #ffffff\);/s);
+  assert.match(html, /\.student-level-mp \.student-level-heading,[\s\S]*?background:\s*linear-gradient\(90deg, #d5b8ea, #ffffff\);/);
   assert.match(html, /\.task-image-preview img\s*\{[^}]*width:\s*50%;[^}]*max-height:\s*210px;/s);
   assert.match(html, /function taskPreviewVideoUrl\(/);
   assert.match(html, /video\.textContent = "Wyświetl nagranie"/);

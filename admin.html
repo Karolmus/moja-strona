@@ -381,6 +381,15 @@ th {
     font-size: 12px;
     font-weight: 600;
 }
+.student-level-eo .student-level-heading {
+    border-color: #9fc982;
+    background: linear-gradient(90deg, #b2d699, #ffffff);
+}
+.student-level-mp .student-level-heading,
+.student-level-mr .student-level-heading {
+    border-color: #c7a6df;
+    background: linear-gradient(90deg, #d5b8ea, #ffffff);
+}
 .student-level-count {
     color: var(--muted);
     font-size: 10px;
@@ -4386,6 +4395,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 lastActivity,
                 firstActivityTime,
                 lastActivityTime,
+                correctPercent: attempted ? Math.round((good / attempted) * 1000) / 10 : null,
                 percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
             };
         })
@@ -4618,6 +4628,7 @@ function renderCourseHistory(courseGroups){
                 <th>Lekcja</th>
                 <th>Postęp</th>
                 <th>Wyniki zadań</th>
+                <th>Poprawne odpowiedzi</th>
                 <th>Ostatnia praca</th>
             </tr>
         </thead>
@@ -4630,7 +4641,7 @@ function renderCourseHistory(courseGroups){
         const row = document.createElement("tr");
         const cell = document.createElement("td");
 
-        cell.colSpan = 4;
+        cell.colSpan = 5;
         cell.className = "source-detail-empty";
         cell.innerText = "Uczeń nie rozpoczął jeszcze kursu.";
         row.appendChild(cell);
@@ -4642,16 +4653,21 @@ function renderCourseHistory(courseGroups){
         const lesson = document.createElement("td");
         const progress = document.createElement("td");
         const segments = document.createElement("td");
+        const correct = document.createElement("td");
         const date = document.createElement("td");
 
         lesson.innerHTML = `<strong>${group.label}</strong><br><span class="source-card-meta">${group.detail || ""}</span>`;
         progress.innerHTML = `<span class="result-pill ${group.completed ? "good" : "missing"}">${group.completed ? "Ukończona" : `${group.attempted}/${group.total}`}</span>`;
         segments.appendChild(renderProgressSegments(group));
+        correct.innerHTML = group.correctPercent === null
+            ? `<span class="source-card-meta">-</span>`
+            : `<strong>${formatPoints(group.correctPercent)}%</strong>`;
         date.innerText = formatDate(group.lastActivity);
 
         row.appendChild(lesson);
         row.appendChild(progress);
         row.appendChild(segments);
+        row.appendChild(correct);
         row.appendChild(date);
         tbody.appendChild(row);
     });
@@ -4978,6 +4994,7 @@ function renderSourceProgress(progress, student, reviewItems = []){
         status.innerText = group.completed ? "Ukończone" : "Rozpoczęte";
         progressFill.style.width = `${group.percent}%`;
         meta.innerText = `${group.attempted}/${group.total} zadań • dobrze ${group.good}, z pomocą ${group.medium}, źle ${group.bad}` +
+            (group.category === "kurs" && group.correctPercent !== null ? ` • poprawne ${formatPoints(group.correctPercent)}%` : "") +
             (group.reviewRequested ? ` • do omówienia ${group.reviewRequested}` : "");
 
         titleWrap.appendChild(title);

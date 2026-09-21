@@ -706,7 +706,8 @@ body.guest-exam-mode .source-summary-row {
 }
 
 body.focus-mode {
-    background: white;
+    min-height: 100vh;
+    background: #000000;
 }
 
 body.focus-mode #nav,
@@ -1129,6 +1130,81 @@ body.focus-mode .task-card {
 .task-image-stack {
     display: grid;
     gap: 12px;
+}
+
+.task-image-frame {
+    position: relative;
+    min-width: 0;
+}
+
+.comparison-overlay {
+    position: absolute;
+    z-index: 3;
+    inset: 11px;
+    pointer-events: none;
+}
+
+.comparison-overlay[hidden] {
+    display: none;
+}
+
+.comparison-control {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 26px);
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid #b9c6d4;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+}
+
+.comparison-control.unanswered {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 2px rgba(220, 52, 42, 0.14);
+}
+
+.comparison-control.correct {
+    border-color: var(--success);
+    background: #eff9f1;
+}
+
+.comparison-control.wrong {
+    border-color: var(--danger);
+    background: #fff1ef;
+}
+
+.comparison-option {
+    display: grid;
+    width: 26px;
+    height: 28px;
+    place-items: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0;
+}
+
+.comparison-option:hover,
+.comparison-option:focus-visible,
+.comparison-option.selected {
+    border-color: #8eb5de;
+    background: var(--blue-soft);
+    color: var(--blue-text);
+}
+
+.comparison-option:disabled {
+    cursor: default;
+    opacity: 1;
 }
 
 .source-load-status {
@@ -1647,6 +1723,10 @@ html.task-video-open {
 .input-answer-field {
     display: grid;
     gap: 5px;
+}
+
+.input-answer-field.comparison-answer-field {
+    display: none;
 }
 
 .input-answer-grid.math-fields {
@@ -2911,6 +2991,24 @@ footer {
         gap: 10px;
     }
 
+    .comparison-overlay {
+        inset: 7px;
+    }
+
+    .comparison-control {
+        grid-template-columns: repeat(3, 20px);
+        gap: 1px;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .comparison-option {
+        width: 20px;
+        height: 22px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+
     .task-image {
         padding: 6px;
     }
@@ -3076,7 +3174,10 @@ footer {
 
             <div class="task-image-stack">
                 <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania" decoding="async">
-                <img id="taskImage" class="task-image" src="" alt="zadanie" decoding="async" fetchpriority="high">
+                <div class="task-image-frame">
+                    <img id="taskImage" class="task-image" src="" alt="zadanie" decoding="async" fetchpriority="high">
+                    <div class="comparison-overlay" id="comparisonOverlay" aria-label="Wybór znaków porównania" hidden></div>
+                </div>
             </div>
             <p class="task-instruction" id="taskInstruction" hidden></p>
 
@@ -6723,6 +6824,8 @@ function getInputFields(task){
             return {
                 label: input.label || `Odpowiedź ${index + 1}`,
                 options: Array.isArray(input.options) ? input.options : null,
+                control: input.control || "",
+                position: input.position || null,
                 inputMode: input.inputMode || "decimal",
                 exact: input.exact === true,
                 math: input.math === true || (!input.options && !input.exact &&
@@ -7130,7 +7233,7 @@ function setTaskLoading(loading){
     isTaskLoading = loading;
 
     document.querySelectorAll(
-        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #skipButton, #resultButtons button, #mcq button, #mcq input, #mcq textarea, #mcq select, #solutionSwitcher button, #scoreInput, #scoreSaveButton"
+        "#hintButton, #answerButton, #solutionButton, #gradingButton, #reviewButton, #skipButton, #resultButtons button, #mcq button, #mcq input, #mcq textarea, #mcq select, #comparisonOverlay button, #solutionSwitcher button, #scoreInput, #scoreSaveButton"
     ).forEach(button => {
         button.disabled = loading;
     });
@@ -7152,6 +7255,7 @@ function clearTaskInteraction(){
     const scoreStatus = document.getElementById("scoreStatus");
     const scoreInput = document.getElementById("scoreInput");
     const videoLink = document.getElementById("taskVideoLink");
+    const comparisonOverlay = document.getElementById("comparisonOverlay");
 
     examScoreUnlocked = false;
 
@@ -7163,6 +7267,11 @@ function clearTaskInteraction(){
     if(mcq){
         mcq.innerHTML = "";
         mcq.className = "mcq";
+    }
+
+    if(comparisonOverlay){
+        comparisonOverlay.innerHTML = "";
+        comparisonOverlay.hidden = true;
     }
 
     if(resultButtons){
@@ -7978,9 +8087,76 @@ function setupGroupedChoiceTask(mcq){
     });
 }
 
+function isComparisonField(field){
+    return field?.control === "comparison" &&
+        Array.isArray(field.options) &&
+        field.options.length === 3 &&
+        field.options.every(value => ["<", "=", ">"].includes(String(value)));
+}
+
+function setupComparisonControl(overlay, field, index, input){
+    const position = field.position || {};
+    const x = Math.max(0, Math.min(100, Number(position.x) || 50));
+    const y = Math.max(0, Math.min(100, Number(position.y) || 50));
+    const control = document.createElement("div");
+
+    control.className = "comparison-control";
+    control.dataset.index = String(index);
+    control.style.left = `${x}%`;
+    control.style.top = `${y}%`;
+    control.setAttribute("role", "group");
+    control.setAttribute("aria-label", field.label);
+
+    field.options.forEach(value => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "comparison-option";
+        button.dataset.value = String(value);
+        button.innerText = String(value);
+        button.setAttribute("aria-pressed", "false");
+        button.onclick = () => {
+            input.value = String(value);
+            control.classList.remove("unanswered", "correct", "wrong");
+            control.querySelectorAll("button").forEach(option => {
+                const selected = option === button;
+
+                option.classList.toggle("selected", selected);
+                option.setAttribute("aria-pressed", String(selected));
+            });
+        };
+
+        control.appendChild(button);
+    });
+
+    overlay.hidden = false;
+    overlay.appendChild(control);
+}
+
+function setComparisonControlResult(index, value, state = "", disabled = false){
+    if(typeof document.querySelector !== "function") return;
+
+    const control = document.querySelector(`#comparisonOverlay .comparison-control[data-index="${index}"]`);
+
+    if(!control) return;
+
+    control.classList.remove("unanswered", "correct", "wrong");
+    if(state) control.classList.add(state);
+    control.querySelectorAll("button").forEach(button => {
+        const selected = button.dataset.value === String(value);
+
+        button.classList.toggle("selected", selected);
+        button.setAttribute("aria-pressed", String(selected));
+        button.disabled = disabled;
+    });
+}
+
 function setupInputTask(mcq){
     const form = document.createElement("form");
     const grid = document.createElement("div");
+    const comparisonOverlay = typeof document.getElementById === "function"
+        ? document.getElementById("comparisonOverlay")
+        : null;
 
     form.className = "input-answer-form";
     grid.className = "input-answer-grid";
@@ -7988,14 +8164,19 @@ function setupInputTask(mcq){
     getInputFields(currentTask).forEach((field, index) => {
         const wrapper = document.createElement("div");
         const label = document.createElement("label");
-        const input = document.createElement(field.options ? "select" : "input");
+        const useComparisonOverlay = Boolean(comparisonOverlay && isComparisonField(field));
+        const input = document.createElement(useComparisonOverlay ? "input" : field.options ? "select" : "input");
         const inputId = `input-answer-${index}`;
 
         wrapper.className = "input-answer-field";
         label.htmlFor = inputId;
         label.innerText = field.label;
         input.id = inputId;
-        if(field.options){
+        if(useComparisonOverlay){
+            wrapper.classList.add("comparison-answer-field");
+            input.type = "hidden";
+            setupComparisonControl(comparisonOverlay, field, index, input);
+        } else if(field.options){
             const empty = document.createElement("option");
             empty.value = "";
             empty.textContent = "Wybierz";
@@ -8573,7 +8754,7 @@ function chooseTrueFalse(index, opt, btn){
 }
 
 function disableMCQ(){
-    document.querySelectorAll("#mcq button, #mcq input, #mcq textarea, #mcq select")
+    document.querySelectorAll("#mcq button, #mcq input, #mcq textarea, #mcq select, #comparisonOverlay button")
         .forEach(b => {
             b.disabled = true;
         });
@@ -8639,6 +8820,7 @@ function revealInputAnswers(){
             input.value = expected;
             input.classList.add("correct");
             input.disabled = true;
+            setComparisonControlResult(index, expected, "correct", true);
             if(typeof DeltaSigmaMathInput !== "undefined") DeltaSigmaMathInput.refresh(input);
         });
 
@@ -8654,6 +8836,11 @@ function checkInputAnswer(form){
     const fields = getInputFields(currentTask);
     const inputs = [...form.querySelectorAll("input, select")];
     if(inputs.length !== fields.length || inputs.some(input => !input.value.trim())){
+        inputs.forEach(input => {
+            if(!input.value.trim()){
+                setComparisonControlResult(Number(input.dataset.index), "", "unanswered");
+            }
+        });
         form.reportValidity();
         return;
     }
@@ -8671,6 +8858,7 @@ function checkInputAnswer(form){
 
         input.classList.toggle("correct", Boolean(fieldCorrect));
         input.classList.toggle("wrong", !fieldCorrect);
+        setComparisonControlResult(index, input.value, fieldCorrect ? "correct" : "wrong", true);
 
         if(!fieldCorrect) isCorrect = false;
     });
