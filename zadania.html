@@ -1241,10 +1241,6 @@ body.focus-mode .task-card {
     padding: 7px;
 }
 
-.action-group.tools:has(.review:not([hidden])) {
-    grid-template-columns: minmax(72px, 1fr) minmax(0, 2fr);
-}
-
 .action-group.navigation {
     display: grid;
     grid-template-columns: repeat(2, minmax(112px, 1fr));
@@ -1255,11 +1251,10 @@ body.focus-mode .task-card {
     align-content: start;
     justify-content: center;
     min-width: 0;
-    padding: 6px;
-    border: 1px solid #1f2d3a;
-    border-radius: 8px;
-    background: linear-gradient(145deg, #263545 0%, #33475b 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 .action-group.navigation.preview {
@@ -1312,6 +1307,7 @@ button {
 .action-group.tools .action-btn {
     width: 100%;
     min-width: 0;
+    min-height: 60px;
     padding: 5px 8px;
     font-size: 12px;
 }
@@ -1325,7 +1321,6 @@ button {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-height: 36px;
     text-decoration: none;
     background: white;
     border-color: #8b2332;
@@ -1341,6 +1336,7 @@ button {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
     gap: 6px;
 }
 .video-skip-actions:has(.video-link[hidden]),
@@ -3321,7 +3317,7 @@ const COURSE_PART_ORDER = {
     zadania_praktyczne: 4
 };
 const COURSE_PART_LABELS = {
-    zadania: "1. Część główna",
+    zadania: "Część główna",
     praca_domowa: "Praca domowa",
     zadania_powtorkowe: "Zadania powtórkowe",
     zadania_praktyczne: "3. Zadania praktyczne"
@@ -8938,7 +8934,7 @@ function showAnswer(){
     if(currentTask.category === "egzaminy" && isClosedTask(currentTask)) return;
 
     if(isCourseTask() && !isCoursePreviewMode() && requiresSubmittedAnswer(currentTask)){
-        showMessage("Najpierw podaj odpowiedź. Jeśli będzie błędna, pokażę poprawną odpowiedź ze wskazówką.");
+        showMessage("Najpierw podaj odpowiedź. Jeśli będzie błędna, pokażę poprawną odpowiedź.");
         return;
     }
 
@@ -9224,9 +9220,7 @@ function showCorrection(correctAnswers = null){
         correct = formatAnswer(currentTask.answer, currentTask);
     }
 
-    const hint = currentTask.hint || "Wróć do treści zadania i sprawdź, który warunek nie został spełniony.";
-
-    showMessage(`Poprawna odpowiedź: ${correct}\n\nWskazówka: ${hint}`);
+    showMessage(`Poprawna odpowiedź: ${correct}`);
 }
 
 function showMessage(text){

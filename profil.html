@@ -350,6 +350,37 @@ body {
     line-height: 1.45;
 }
 
+.course-progress-panel {
+    padding: 13px 16px;
+}
+
+.course-progress-panel .section-title {
+    margin-bottom: 7px;
+    font-size: 15px;
+}
+
+.course-progress-panel .progress-row {
+    grid-template-columns: minmax(150px, 0.65fr) minmax(170px, 1fr) minmax(230px, 1.15fr);
+    align-items: center;
+    gap: 12px;
+    padding: 7px 0;
+}
+
+.course-progress-panel .progress-head span,
+.course-progress-panel .progress-head strong {
+    font-size: 12px;
+}
+
+.course-progress-panel .progress-track {
+    height: 9px;
+}
+
+.course-progress-panel .progress-detail {
+    font-size: 9.5px;
+    line-height: 1.3;
+    text-align: right;
+}
+
 .source-results {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -417,7 +448,8 @@ body {
 
 .profile-task-panel {
     display: grid;
-    gap: 10px;
+    gap: 6px;
+    padding: 13px 15px;
 }
 
 .profile-task-heading {
@@ -439,7 +471,7 @@ body {
 
 .profile-task-groups {
     display: grid;
-    gap: 6px;
+    gap: 4px;
 }
 
 .profile-task-group {
@@ -452,8 +484,8 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto 18px;
     align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
+    gap: 8px;
+    padding: 6px 9px;
     cursor: pointer;
     list-style: none;
 }
@@ -477,8 +509,9 @@ body {
 }
 
 .profile-task-group-summary {
-    display: grid;
-    gap: 2px;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
     min-width: 0;
 }
 
@@ -508,9 +541,9 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto auto;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     min-width: 0;
-    padding: 6px 10px;
+    padding: 4px 9px;
     border-bottom: 1px solid #e8edf3;
 }
 
@@ -700,6 +733,20 @@ body {
         line-height: 1.35;
     }
 
+    .course-progress-panel {
+        padding: 12px;
+    }
+
+    .course-progress-panel .progress-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 8px 0;
+    }
+
+    .course-progress-panel .progress-detail {
+        text-align: left;
+    }
+
     .source-result {
         gap: 6px;
         padding: 10px 0;
@@ -778,7 +825,7 @@ body {
                 </div>
             </div>
 
-            <section class="panel">
+            <section class="panel course-progress-panel">
                 <h3 class="section-title">Postęp kursu</h3>
                 <div class="progress-list">
                     <div class="progress-row">
@@ -812,18 +859,17 @@ body {
 
             <section class="panel profile-task-panel" aria-labelledby="courseTaskDetailsTitle">
                 <div class="profile-task-heading">
-                    <h3 class="section-title" id="courseTaskDetailsTitle">Wykonane zadania</h3>
+                    <h3 class="section-title" id="courseTaskDetailsTitle">Zadania do poprawy</h3>
                     <span class="profile-task-summary" id="courseTaskSummary">Wczytywanie...</span>
                 </div>
                 <div class="profile-task-groups" id="courseTaskDetails"></div>
-                <p class="profile-task-empty" id="courseTaskEmpty" hidden>Nie ma jeszcze zapisanych odpowiedzi.</p>
+                <p class="profile-task-empty" id="courseTaskEmpty" hidden>Brak zadań do poprawy.</p>
             </section>
 
             <section class="panel homework-chart-panel" aria-labelledby="homeworkChartTitle">
                 <div class="chart-heading">
                     <div>
-                        <h3 class="section-title" id="homeworkChartTitle">Prace domowe</h3>
-                        <p class="section-lead">Wyniki każdej pracy domowej względem wszystkich zadań z danej lekcji.</p>
+                        <h3 class="section-title" id="homeworkChartTitle">Wyniki z pracy domowej</h3>
                     </div>
                     <div class="chart-legend" aria-label="Legenda wykresu">
                         <span class="chart-key good">Dobrze</span>
@@ -887,6 +933,10 @@ const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
     matura_rozszerzona: "Matura rozszerzona",
     egzamin_osmoklasisty: "Egzamin ósmoklasisty"
+};
+
+const COURSE_LESSON_TARGETS = {
+    matura_podstawowa: 25
 };
 
 const PROFILE_WORK_PARTS = new Set(["praca_domowa", "zadania_powtorkowe"]);
@@ -1294,12 +1344,13 @@ function renderCourseTaskDetails(progress, reviewTasks){
         .map(source => ({
             source,
             tasks: source.tasks.filter(task =>
-                task.file && PROFILE_WORK_PARTS.has(coursePartOf(task))
+                task.file &&
+                PROFILE_WORK_PARTS.has(coursePartOf(task)) &&
+                latestByKey.get(`${source.path}:${task.file}`)?.result === "bad"
             )
         }))
         .filter(group => group.tasks.length);
-    let attemptedTotal = 0;
-    let taskTotal = 0;
+    let failedTotal = 0;
 
     list.innerHTML = "";
 
@@ -1312,23 +1363,19 @@ function renderCourseTaskDetails(progress, reviewTasks){
         const detail = document.createElement("span");
         const score = document.createElement("span");
         const taskList = document.createElement("div");
-        const attempted = tasks.filter(task => latestByKey.has(`${source.path}:${task.file}`)).length;
-        const hasReview = tasks.some(task => reviewKeys.has(`${source.path}:${task.file}`));
-
-        attemptedTotal += attempted;
-        taskTotal += tasks.length;
+        failedTotal += tasks.length;
         group.className = "profile-task-group";
-        group.open = attempted > 0 || hasReview;
+        group.open = true;
         groupSummary.className = "profile-task-group-summary";
         title.textContent = labels.title;
-        detail.textContent = labels.detail || "Praca domowa";
+        detail.textContent = labels.detail ? ` - ${labels.detail}` : "";
         score.className = "profile-task-group-score";
-        score.textContent = `${attempted}/${tasks.length}`;
+        score.textContent = `${tasks.length} do poprawy`;
         taskList.className = "profile-task-list";
         summaryCopy.append(title, detail);
         groupSummary.appendChild(summaryCopy);
         groupSummary.appendChild(score);
-        groupSummary.setAttribute("aria-label", `${labels.title}: ${attempted} z ${tasks.length} zadań wykonanych`);
+        groupSummary.setAttribute("aria-label", `${labels.title}: ${tasks.length} zadań do poprawy`);
         group.appendChild(groupSummary);
 
         tasks.forEach((task, index) => {
@@ -1365,11 +1412,11 @@ function renderCourseTaskDetails(progress, reviewTasks){
 
     empty.hidden = groups.length > 0;
     summary.textContent = groups.length
-        ? `${attemptedTotal}/${taskTotal} zadań wykonanych`
-        : "Brak zadań do pokazania";
+        ? `${failedTotal} do poprawy`
+        : "Wszystkie wykonane poprawnie";
 }
 
-function calculateProgress(progress, category, part){
+function calculateProgress(progress, category, part, targetOverride = 0){
     const attempted = new Set(progress.map(progressKey).filter(Boolean));
     const sources = sourceCatalog.filter(source => source.category === category);
     let completed = 0;
@@ -1401,7 +1448,7 @@ function calculateProgress(progress, category, part){
     });
 
     const available = sources.filter(source => (source.filesByPart.get(part)?.size || 0) > 0).length;
-    const target = available;
+    const target = Math.max(available, Number(targetOverride) || 0);
     const percentBasis = visualUnits;
     const percent = target
         ? Math.min(100, Math.round((percentBasis / target) * 1000) / 10)
@@ -1426,7 +1473,7 @@ function renderProgress(prefix, stats, unit, emptyText){
     document.getElementById(`${prefix}Fill`).style.width = `${stats.percent}%`;
     document.getElementById(`${prefix}Track`).setAttribute("aria-valuenow", String(stats.percent));
     document.getElementById(`${prefix}Detail`).innerText = stats.available
-        ? `${stats.completed}/${stats.available} ukończonych • ${inProgress} w trakcie • ${stats.attemptedTasks}/${stats.totalTasks} zadań`
+        ? `${inProgress ? `${inProgress} w trakcie • ` : ""}${stats.attemptedTasks}/${stats.totalTasks} zadań`
         : emptyText;
 }
 
@@ -1440,7 +1487,7 @@ function sourceCompletionFiles(source){
     return source.filesByPart.get("zadania") || new Set();
 }
 
-function courseCompletion(progress){
+function courseCompletion(progress, targetOverride = 0){
     const attempted = new Set(progress.map(progressKey).filter(Boolean));
     const sources = sourceCatalog
         .filter(source => source.category === "kurs" && sourceCompletionFiles(source).size);
@@ -1449,10 +1496,12 @@ function courseCompletion(progress){
             .every(file => attempted.has(`${source.path}:${file}`))
     ).length;
 
+    const total = Math.max(sources.length, Number(targetOverride) || 0);
+
     return {
         completed,
-        total: sources.length,
-        complete: sources.length > 0 && completed === sources.length
+        total,
+        complete: total > 0 && completed >= total
     };
 }
 
@@ -1639,10 +1688,11 @@ function renderHomeworkChart(progress, reviewTasks){
 
 function renderProfile(user, progress, reviewTasks){
     const latest = latestTaskProgress(progress);
-    const lessonStats = calculateProgress(latest, "kurs", "zadania");
-    const homeworkStats = calculateProgress(latest, "kurs", "praca_domowa");
+    const courseTarget = COURSE_LESSON_TARGETS[user.level] || 0;
+    const lessonStats = calculateProgress(latest, "kurs", "zadania", courseTarget);
+    const homeworkStats = calculateProgress(latest, "kurs", "praca_domowa", courseTarget);
     const revisionStats = calculateProgress(latest, "kurs", "zadania_powtorkowe");
-    const completion = courseCompletion(latest);
+    const completion = courseCompletion(latest, courseTarget);
     const examSection = document.getElementById("examSection");
     const continueButton = document.querySelector(".continue-button");
     const completionNote = document.getElementById("courseCompletionNote");

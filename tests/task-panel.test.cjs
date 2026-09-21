@@ -28,12 +28,28 @@ for (const name of ['getTaskKey', 'stars', 'difficultyFromCompletionPercent', 't
 }
 assert.match(html, /id="reviewButton"[^>]*>Chcę omówić to zadanie na zajęciach<\/button>/);
 assert(!html.includes('Dodaj do omówienia'));
+assert.match(html, /zadania: "Część główna"/);
+assert(!html.includes('zadania: "1. Część główna"'));
 assert.match(html, /id="courseBrand"[\s\S]*?<img[^>]*>[\s\S]*?<p>Karol Musioł Delta Sigma<\/p>/);
 assert.match(html, /\.course-brand\[hidden\]\s*\{\s*display: none;/);
 assert(html.indexOf('id="taskImage"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="taskInstruction"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="mcq"') < html.indexOf('class="interaction-panel"'), 'Answers precede help and navigation in DOM order');
 assert.match(html, /\.source-load-pending > \.mcq/);
+const toolGridStyle = html.match(/\.action-group\.tools \{([^}]+)\}/)[1];
+assert.match(toolGridStyle, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/,
+  'Task tools use two equal columns');
+assert(!html.includes('.action-group.tools:has(.review:not([hidden]))'),
+  'The discussion action does not receive a wider column');
+const toolButtonStyle = html.match(/\.action-group\.tools \.action-btn \{([^}]+)\}/)[1];
+assert.match(toolButtonStyle, /min-height: 60px;/, 'All four task actions have the same minimum height');
+const navigationStyle = html.match(/\.action-group\.navigation \{([^}]+)\}/)[1];
+assert.match(navigationStyle, /background: transparent;/, 'Navigation buttons do not sit on a dark panel');
+assert.match(navigationStyle, /border: 0;/);
+assert.match(navigationStyle, /box-shadow: none;/);
+const correctionSource = html.slice(html.indexOf('function showCorrection('), html.indexOf('\n}', html.indexOf('function showCorrection(')) + 2);
+assert(!correctionSource.includes('Wskazówka:'), 'An incorrect answer does not open the hint automatically');
+assert.match(correctionSource, /showMessage\(`Poprawna odpowiedź: \$\{correct\}`\);/);
 assert(!html.includes('--tile-result-band'), 'Status no longer uses thick inset bands');
 const tileStyle = html.match(/\.tile \{([^}]+)\}/)[1];
 assert.match(tileStyle, /min-width: 32px;/);
@@ -68,9 +84,8 @@ assert.match(html, /\.tile\.review-requested:is\(\.good, \.medium, \.bad, \.skip
 for (const selector of ['.action-btn.nav', '.action-btn.nav:hover']) {
   const style = html.slice(html.indexOf(`${selector} {`)).split('}')[0];
   const background = style.match(/background: (#[a-f0-9]{6});/)[1];
-  const border = style.match(/border-color: (#[a-f0-9]{6});/)[1];
   assert(contrast(background, '#ffffff') >= 4.5, 'White navigation labels remain readable');
-  assert(contrast(border, '#33475b') >= 3, 'Navigation boundaries are visible against the panel');
+  assert.match(style, /border-color: #[a-f0-9]{6};/, 'Navigation buttons retain their own border');
 }
 for (const icon of ['check', 'x', 'minus', 'skip-forward', 'message-circle']) {
   const path = `static/icons/${icon}.svg`;
