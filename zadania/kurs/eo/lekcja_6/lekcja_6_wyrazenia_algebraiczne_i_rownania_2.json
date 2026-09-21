@@ -84,6 +84,17 @@
       "wyrażenia algebraiczne i równania",
       "zadania"
     ],
+    "type": "input",
+    "instruction": "Wpisz otrzymane wyrażenie algebraiczne.",
+    "inputs": [
+      {
+        "label": "Łączna liczba roślin",
+        "answers": [
+          "2/3*(p+6)+4*w-3",
+          "2/3*p+4*w+1"
+        ]
+      }
+    ],
     "maxPoints": 2
   },
   {
@@ -203,6 +214,15 @@
       "wyrażenia algebraiczne i równania",
       "zadania"
     ],
+    "type": "input",
+    "instruction": "Wpisz wszystkie liczby w kolejności rosnącej.",
+    "inputs": [
+      { "label": "Liczba 1", "answer": "15" },
+      { "label": "Liczba 2", "answer": "26" },
+      { "label": "Liczba 3", "answer": "37" },
+      { "label": "Liczba 4", "answer": "48" },
+      { "label": "Liczba 5", "answer": "59" }
+    ],
     "maxPoints": 3
   },
   {
@@ -276,6 +296,11 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "zadania"
+    ],
+    "type": "input",
+    "instruction": "Wpisz, ile razy cena biletu normalnego była wyższa od ceny biletu ulgowego.",
+    "inputs": [
+      { "label": "Liczba razy", "answer": "2" }
     ],
     "maxPoints": 3
   },
@@ -446,6 +471,17 @@
       "wyrażenia algebraiczne i równania",
       "Zadanie domowe"
     ],
+    "type": "input",
+    "instruction": "Wpisz wyrażenie opisujące końcową objętość benzyny.",
+    "inputs": [
+      {
+        "label": "Końcowa objętość benzyny",
+        "answers": [
+          "3*V/10",
+          "0.3*V"
+        ]
+      }
+    ],
     "maxPoints": 1
   },
   {
@@ -533,6 +569,17 @@
       "lekcja 6",
       "wyrażenia algebraiczne i równania",
       "Zadanie domowe"
+    ],
+    "type": "input",
+    "instruction": "Rozwiąż równanie i wpisz wartość x.",
+    "inputs": [
+      {
+        "label": "x",
+        "answers": [
+          "75/11",
+          "6.(81)"
+        ]
+      }
     ],
     "maxPoints": 4
   }

@@ -45,6 +45,10 @@ assert(!html.includes('.action-group.tools:has(.review:not([hidden]))'),
   'The discussion action does not receive a wider column');
 const toolButtonStyle = html.match(/\.action-group\.tools \.action-btn \{([^}]+)\}/)[1];
 assert.match(toolButtonStyle, /min-height: 60px;/, 'All four task actions have the same minimum height');
+assert.match(html, /\.action-group\.tools #gradingButton \{[^}]*grid-column: 1 \/ -1;/,
+  'A lone grading button fills the tools row instead of leaving a crooked empty cell');
+assert.match(html, /gradingButton\.hidden = isClosed \|\| !hasGradingCriteria\(currentTask\) \|\| !evaluationMaterialsUnlocked;/,
+  'Automatically checked tasks hide grading criteria until the answer is assessed');
 const navigationStyle = html.match(/\.action-group\.navigation \{([^}]+)\}/)[1];
 assert.match(navigationStyle, /background: transparent;/, 'Navigation buttons do not sit on a dark panel');
 assert.match(navigationStyle, /border: 0;/);

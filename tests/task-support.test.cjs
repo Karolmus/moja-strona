@@ -5,6 +5,7 @@ const html = fs.readFileSync('zadania.html', 'utf8');
 const ctx = vm.createContext({
   DeltaSigmaCourseVideos:require('../static/course-videos.js'),
   sessionHints:new Map(), sessionResults:new Map(), sessionScores:new Map(),
+  sessionSubmittedAnswers:new Map(),
   getSavedProgressItem:task => task?.saved || null,
   isLoggedInStudent:false, GUEST_PROGRESS_STORAGE_KEY:'fixture-progress',
   currentTask:{sourceId:'lesson', file:'zd1.png', hint:'Hint'},
@@ -26,6 +27,7 @@ assert.equal(ctx.message, 'Hint');
 ctx.sessionHints.clear();
 ctx.loadGuestSessionProgress();
 assert(ctx.taskUsedHint(ctx.currentTask), 'Guest reload retains hint usage');
+assert.equal(ctx.sessionSubmittedAnswers.size, 0, 'Guest reload accepts sessions without submitted text answers');
 assert(!ctx.taskUsedHint({sourceId:'other', file:'zd1.png'}), 'Hint usage is isolated by source');
 ctx.sessionHints.clear();
 ctx.currentTask.saved = {hint_used:true};

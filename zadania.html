@@ -1392,6 +1392,10 @@ button {
     white-space: normal;
 }
 
+.action-group.tools #gradingButton {
+    grid-column: 1 / -1;
+}
+
 .action-group.tools .video-link {
     display: flex;
     align-items: center;
@@ -3377,6 +3381,7 @@ let savedProgress = [];
 let sessionScores = new Map();
 let sessionDurations = new Map();
 let sessionHints = new Map();
+let sessionSubmittedAnswers = new Map();
 const reviewTaskKeys = new Set();
 const pendingReviewRequests = new Set();
 let reviewTasksLoadPromise = null;
@@ -5483,6 +5488,7 @@ function resetSession(){
         sessionScores = new Map();
         sessionDurations = new Map();
         sessionHints = new Map();
+        sessionSubmittedAnswers = new Map();
     }
 
     completedExamSummarySource = "";
@@ -5519,6 +5525,27 @@ function getSavedProgressItem(task){
     return savedProgress.find(item => progressTaskKey(item) === key) || null;
 }
 
+function inputAnswerValuesFromText(task, text){
+    const fields = getInputFields(task);
+    const raw = String(text || "");
+    const lines = raw.split(/\r?\n/);
+
+    return fields.map((field, index) => {
+        const line = lines[index] ?? (fields.length === 1 ? raw : "");
+        const separator = line.indexOf(":");
+
+        return (separator >= 0 ? line.slice(separator + 1) : line).trim();
+    });
+}
+
+function getSubmittedInputAnswerValues(task = currentTask){
+    const key = getTaskKey(task);
+    const sessionAnswer = key ? sessionSubmittedAnswers.get(key) : "";
+    const savedAnswer = getSavedProgressItem(task)?.submitted_answer || "";
+
+    return inputAnswerValuesFromText(task, sessionAnswer || savedAnswer);
+}
+
 function taskUsedHint(task){
     const key = getTaskKey(task);
 
@@ -5537,10 +5564,12 @@ function loadGuestSessionProgress(){
         sessionResults = new Map(Array.isArray(data?.results) ? data.results : []);
         sessionScores = new Map(Array.isArray(data?.scores) ? data.scores : []);
         sessionHints = new Map(Array.isArray(data?.hints) ? data.hints : []);
+        sessionSubmittedAnswers = new Map(Array.isArray(data?.submittedAnswers) ? data.submittedAnswers : []);
     } catch(error) {
         sessionResults = new Map();
         sessionScores = new Map();
         sessionHints = new Map();
+        sessionSubmittedAnswers = new Map();
     }
 }
 
@@ -5551,7 +5580,8 @@ function saveGuestSessionProgress(){
         sessionStorage.setItem(GUEST_PROGRESS_STORAGE_KEY, JSON.stringify({
             results: [...sessionResults],
             scores: [...sessionScores],
-            hints: [...sessionHints]
+            hints: [...sessionHints],
+            submittedAnswers: [...sessionSubmittedAnswers]
         }));
     } catch(error) {
         // Brak zapisu w sessionStorage nie powinien blokować rozwiązywania zadań.
@@ -7106,6 +7136,22 @@ function formatInputAnswer(task){
         .join(", ");
 }
 
+function formatSubmittedInputAnswer(task, values){
+    const fields = getInputFields(task);
+
+    return fields
+        .map((field, index) => `${field.label} = ${values[index] || "brak odpowiedzi"}`)
+        .join("\n");
+}
+
+function showInputCorrection(values, task = currentTask){
+    answerShown = true;
+    showMessage(
+        `Twoja odpowiedź:\n${formatSubmittedInputAnswer(task, values)}\n\n` +
+        `Poprawna odpowiedź:\n${formatInputAnswer(task)}`
+    );
+}
+
 function wait(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -7703,6 +7749,17 @@ function shouldShowScorePanel(task = currentTask){
     return false;
 }
 
+function canRevealEvaluationMaterials(task = currentTask){
+    if(!task) return false;
+    if(isCoursePreviewMode()) return true;
+    if(isManualScoreTask(task)) return true;
+    if(!requiresSubmittedAnswer(task)) return true;
+
+    const savedResult = getSavedResult(task);
+
+    return currentTaskAnswered || Boolean(savedResult && savedResult !== SKIPPED_RESULT);
+}
+
 function scoreResultType(earnedPoints, maxPoints){
     if(earnedPoints >= maxPoints) return "good";
     if(earnedPoints > 0) return "medium";
@@ -7820,6 +7877,7 @@ function updateAnswerTools(){
     const isClosed = isClosedTask(currentTask);
     const isOpenExam = isExamManualScoreTask(currentTask);
     const isPreview = isCoursePreviewMode();
+    const evaluationMaterialsUnlocked = canRevealEvaluationMaterials(currentTask);
 
     if(hintButton){
         hintButton.hidden = isOpenExam;
@@ -7828,11 +7886,11 @@ function updateAnswerTools(){
     answerButton.hidden = isOpenExam || (!isCourse && isClosed) || (!isPreview && isCourse && requiresSubmittedAnswer(currentTask));
 
     if(solutionButton){
-        solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask);
+        solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask) || !evaluationMaterialsUnlocked;
     }
 
     if(gradingButton){
-        gradingButton.hidden = isClosed || !hasGradingCriteria(currentTask);
+        gradingButton.hidden = isClosed || !hasGradingCriteria(currentTask) || !evaluationMaterialsUnlocked;
     }
 
     if(videoLink){
@@ -8554,7 +8612,7 @@ function applyCourseAnswerLock(){
     }
 
     if(isInputTask(currentTask)){
-        revealInputAnswers();
+        restoreInputAnswerState(lockedResult);
     }
 
     updateScorePanel();
@@ -8830,6 +8888,33 @@ function revealInputAnswers(){
         });
 }
 
+function restoreInputAnswerState(result){
+    const fields = getInputFields(currentTask);
+    const values = getSubmittedInputAnswerValues(currentTask);
+
+    document.querySelectorAll("#mcq input, #mcq select")
+        .forEach(input => {
+            const index = Number(input.dataset.index);
+            const field = fields[index];
+            const value = values[index] || (result === "bad" ? "" : field?.answers?.[0] || "");
+            const fieldCorrect = Boolean(value && field && isTypedAnswerCorrect(value, field.answers, field.exact));
+
+            input.value = value;
+            input.classList.toggle("correct", fieldCorrect);
+            input.classList.toggle("wrong", Boolean(value && !fieldCorrect));
+            input.disabled = true;
+            setComparisonControlResult(index, value, fieldCorrect ? "correct" : value ? "wrong" : "", true);
+            if(typeof DeltaSigmaMathInput !== "undefined") DeltaSigmaMathInput.refresh(input);
+        });
+
+    document.querySelectorAll("#mcq button")
+        .forEach(button => {
+            button.disabled = true;
+        });
+
+    if(result === "bad") showInputCorrection(values);
+}
+
 function checkInputAnswer(form){
     if(currentTaskAnswered) return;
 
@@ -8877,11 +8962,7 @@ function checkInputAnswer(form){
     }
 
     if(isCourseTask()){
-        if(hasGradingCriteria(currentTask)){
-            showGradingCriteria();
-        } else {
-            showCorrection(getInputFields(currentTask).map(field => field.answers[0]));
-        }
+        showInputCorrection(inputs.map(input => input.value.trim()));
         addProgress("bad");
         return;
     }
@@ -8928,8 +9009,13 @@ function addProgress(type, scoreData = null){
         setSessionScore(currentTask, type, scoreData);
         setSessionDuration(currentTask, taskDuration);
         sessionHints.set(key, hintUsed);
+        if(isInputTask(currentTask)){
+            sessionSubmittedAnswers.set(key, submittedAnswerText());
+        }
         saveGuestSessionProgress();
     }
+
+    if(typeof updateAnswerTools === "function") updateAnswerTools();
 
     if(shouldShowTaskNavigator()){
         renderTaskNavigator();
@@ -8991,7 +9077,12 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
     ));
     const usedHint = hintUsed;
     const revealedAnswer = answerShown;
-    const submittedAnswer = (task === currentTask ? submittedAnswerText() : getSavedProgressItem(task)?.submitted_answer || "").slice(0, 2000);
+    const taskKey = getTaskKey(task);
+    const sessionSubmittedAnswer = taskKey ? sessionSubmittedAnswers.get(taskKey) : "";
+    const submittedAnswer = (
+        sessionSubmittedAnswer ||
+        (task === currentTask ? submittedAnswerText() : getSavedProgressItem(task)?.submitted_answer || "")
+    ).slice(0, 2000);
 
     try {
         const automaticScore = automaticScoreForResult(type, task);
@@ -9142,6 +9233,10 @@ function showAnswer(){
 function showSolution(index = selectedSolutionIndex){
     if(!currentTask || !hasTaskSolutions(currentTask)) return;
     if(isClosedTask(currentTask)) return;
+    if(!canRevealEvaluationMaterials(currentTask)){
+        showMessage("Najpierw podaj i zatwierdź odpowiedź do zadania.");
+        return;
+    }
 
     const solutions = currentTask.solutions;
     const safeIndex = Math.min(Math.max(Number(index) || 0, 0), solutions.length - 1);
@@ -9258,6 +9353,10 @@ function renderGradingCriteriaText(item, container){
 function showGradingCriteria(index = selectedGradingIndex){
     if(!currentTask || !hasGradingCriteria(currentTask)) return;
     if(isClosedTask(currentTask)) return;
+    if(!canRevealEvaluationMaterials(currentTask)){
+        showMessage("Najpierw podaj i zatwierdź odpowiedź do zadania.");
+        return;
+    }
 
     const criteria = Array.isArray(currentTask.gradingCriteria) && currentTask.gradingCriteria.length
         ? currentTask.gradingCriteria

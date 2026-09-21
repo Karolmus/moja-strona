@@ -4,6 +4,8 @@ const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
 const names = ['getInputFields', 'normalizeTypedAnswer', 'isTypedAnswerCorrect',
   'isComparisonField', 'setupComparisonControl', 'setComparisonControlResult',
+  'formatInputAnswer', 'formatSubmittedInputAnswer', 'showInputCorrection',
+  'inputAnswerValuesFromText', 'getSubmittedInputAnswerValues', 'restoreInputAnswerState',
   'setupInputTask', 'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask'];
 function source(name) {
   const start = html.indexOf(`function ${name}(`);
@@ -40,6 +42,10 @@ const ctx = vm.createContext({
   },
   currentTaskAnswered: false, isCourseTask: () => true, hasGradingCriteria: () => false,
   taskMaxPoints: task => task.maxPoints, showCorrection: () => {},
+  answerShown: false, feedback: '', sessionSubmittedAnswers: new Map(), saved: null,
+  getTaskKey: task => task.file,
+  getSavedProgressItem: () => ctx.saved,
+  showMessage: text => {ctx.feedback = text;},
   addProgress: (status, score) => {result.push({status, score}); ctx.currentTaskAnswered = true;},
 });
 vm.runInContext(fs.readFileSync('static/lib/mathjs/answers.min.js', 'utf8'), ctx);
@@ -62,13 +68,22 @@ const cases = [
   [task(4, '11.png'), ['II','I','III'], ['I','II','III']],
   ...JSON.parse(fs.readFileSync('zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json'))
     .filter(task => task.type === 'input')
-    .map(task => [task, task.inputs.map(field => field.answer),
+    .map(task => [task, task.inputs.map(field => field.answer ?? field.answers?.[0]),
       task.inputs.map(field => field.options ? field.options.find(value => value !== field.answer) : '999')]),
   ...JSON.parse(fs.readFileSync('zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json'))
     .filter(task => task.type === 'input')
-    .map(task => [task, task.inputs.map(field => field.answer),
+    .map(task => [task, task.inputs.map(field => field.answer ?? field.answers?.[0]),
       task.inputs.map(field => field.options ? field.options.find(value => value !== field.answer) : '999')]),
 ];
+for (const lesson of [5, 6]) {
+  const dir = `zadania/kurs/eo/lekcja_${lesson}`;
+  const name = fs.readdirSync(dir).find(name => name.endsWith('.json'));
+  const lessonTasks = JSON.parse(fs.readFileSync(`${dir}/${name}`));
+  const manuallyScored = lessonTasks.filter(task =>
+    !['closed', 'multi', 'true_false', 'input', 'fill', 'short_answer', 'numeric', 'practical'].includes(task.type)
+  );
+  assert.deepEqual(manuallyScored.map(task => task.file), [], `Lesson ${lesson} must not use point-only answers`);
+}
 function render(task) {
   ctx.currentTask = task; ctx.currentTaskAnswered = false;
   comparisonOverlay.children = [];
@@ -92,9 +107,25 @@ for (const [task, good, bad] of cases) {
   inputs.forEach((input, index) => {input.value = bad[index];});
   ctx.checkInputAnswer(form);
   assert.equal(result.at(-1).status, 'bad', task.file);
+  assert.match(ctx.feedback, /Twoja odpowiedź:/);
+  assert.match(ctx.feedback, /Poprawna odpowiedź:/);
   ctx.revealInputAnswers();
   assert(inputs.every(input => input.disabled && input.classes.has('correct')));
 }
+const restoredTask = task(5, 'zd2.png');
+const restored = render(restoredTask);
+ctx.saved = {submitted_answer: 'x: 999'};
+ctx.restoreInputAnswerState('bad');
+assert.equal(restored.inputs[0].value, '999');
+assert(restored.inputs[0].disabled && restored.inputs[0].classes.has('wrong'));
+assert.match(ctx.feedback, /Twoja odpowiedź:\nx = 999/);
+assert.match(ctx.feedback, /Poprawna odpowiedź:\nx = 2/);
+ctx.saved = null;
+ctx.sessionSubmittedAnswers.set(restoredTask.file, 'x: 888');
+const sessionRestored = render(restoredTask);
+ctx.restoreInputAnswerState('bad');
+assert.equal(sessionRestored.inputs[0].value, '888', 'Immediate return uses the answer kept in session memory');
+ctx.sessionSubmittedAnswers.clear();
 const percentage = ctx.getInputFields(task(1, 'zd_6.2.png'))[0];
 for (const value of ['39,7%', '39.7%', '39,7', '39.7', '39.70 %']) {
   assert(ctx.isTypedAnswerCorrect(value, percentage.answers, percentage.exact), value);

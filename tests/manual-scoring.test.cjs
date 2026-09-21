@@ -13,15 +13,18 @@ const context = vm.createContext({
   currentTask:{category:'egzaminy', maxPoints:5, gradingCriteria:['rubric.webp']},
   examScoreUnlocked:false, answerShown:false, preview:false, saved:null, storedScore:null,
   currentTaskAnswered:false, submissions:[],
+  SKIPPED_RESULT:'skipped', savedResult:'',
   isClosedTask:task => task?.type === 'closed', isInputTask:task => task?.type === 'input',
   isPracticalTask:() => false, isCoursePreviewMode:() => context.preview,
   isCourseTask:task => (task || context.currentTask)?.category === 'kurs',
+  requiresSubmittedAnswer:task => task?.type === 'input',
+  getSavedResult:() => context.savedResult,
   getSavedProgressItem:() => context.saved, getTaskScore:() => context.storedScore,
   updateSourceSummary() {},
   addProgress(type, score) {context.submissions.push({type, ...score});}
 });
 for (const name of ['hasGradingCriteria', 'hasSavedPoints', 'isManualScoreTask', 'isExamManualScoreTask',
-  'isCourseManualScoreTask', 'shouldShowScorePanel', 'scoreRangeStep', 'formatPoints', 'taskMaxPoints',
+  'isCourseManualScoreTask', 'shouldShowScorePanel', 'canRevealEvaluationMaterials', 'scoreRangeStep', 'formatPoints', 'taskMaxPoints',
   'scoreResultType', 'updateScoreRangePresentation', 'updateScorePanel', 'submitScore']) {
   const start = html.indexOf(`function ${name}(`);
   assert(start >= 0, name);
@@ -33,6 +36,14 @@ assert(html.includes(`id="manualScoreNotice" hidden>${notice}</p>`));
 assert.match(html, /\.manual-score-notice \{[^}]*color: #000;/);
 assert.match(html, /id="scoreInput"[^>]*type="range"/);
 assert.match(html, /id="scoreSaveButton"[^>]*>Zapisz wynik<\/button>/);
+context.currentTask = {category:'kurs', maxPoints:1, type:'input'};
+assert(!context.canRevealEvaluationMaterials(), 'An input task keeps assessment materials locked before submission');
+context.currentTaskAnswered = true;
+assert(context.canRevealEvaluationMaterials(), 'Submitting an input answer unlocks assessment materials');
+context.currentTaskAnswered = false;
+context.currentTask = {category:'kurs', maxPoints:2};
+assert(context.canRevealEvaluationMaterials(), 'A manually scored task exposes criteria needed for self-assessment');
+context.currentTask = {category:'egzaminy', maxPoints:5, gradingCriteria:['rubric.webp']};
 for (const removed of ['scoreMaxButton', 'scoreMaxLabel', 'scoreRangeScale', 'score-panel-head']) {
   assert(!html.includes(removed), removed);
 }
