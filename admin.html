@@ -366,6 +366,26 @@ th {
 }
 
 .student-list { min-width: 0; }
+.student-level-group + .student-level-group { margin-top: 14px; }
+.student-level-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 30px;
+    margin: 0;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-soft);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+}
+.student-level-count {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 500;
+}
 .student-entry { border-top: 1px solid var(--line); }
 .student-entry:last-child { border-bottom: 1px solid var(--line); }
 .student-toggle {
@@ -1158,6 +1178,10 @@ th {
     background: #d95b50;
 }
 
+.progress-segment.review {
+    background: #d49a35;
+}
+
 .source-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1316,10 +1340,29 @@ th {
 
 .task-image-preview img {
     display: block;
-    width: 100%;
-    max-height: 420px;
+    width: 50%;
+    max-height: 210px;
     object-fit: contain;
     object-position: left center;
+}
+
+.task-image-preview-video {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    border: 1px solid #b94b57;
+    border-radius: 7px;
+    padding: 5px 10px;
+    color: #7f2630;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.task-image-preview-video:hover,
+.task-image-preview-video:focus-visible {
+    background: #fff5f6;
 }
 
 .task-image-preview-status {
@@ -1384,6 +1427,20 @@ th {
 .result-pill.bad {
     background: var(--red-soft);
     color: var(--red-text);
+}
+
+.result-pill.review,
+.task-review-badge {
+    background: #fff4cf;
+    color: #765a12;
+}
+
+.task-review-badge {
+    justify-self: start;
+    border-radius: 999px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 600;
 }
 
 .messages-panel {
@@ -1857,6 +1914,10 @@ footer {
 }
 
 @media(max-width: 760px) {
+    .task-image-preview img {
+        width: 100%;
+    }
+
     .campaign-link-row {
         grid-template-columns: minmax(0, 1fr) auto;
     }
@@ -2185,6 +2246,7 @@ footer {
 </footer>
 
 <script src="static/auth.js?v=20260913-remember"></script>
+<script src="static/course-videos.js?v=20260920-mp3"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -3163,7 +3225,31 @@ function renderStudents(){
     }
 
     const shortLevels = { matura_podstawowa: "MP", matura_rozszerzona: "MR", egzamin_osmoklasisty: "EO" };
-    getSortedStudents().forEach(student => {
+    const sortedStudents = getSortedStudents();
+    const studentGroups = [
+        ["egzamin_osmoklasisty", "Egzamin ósmoklasisty"],
+        ["matura_podstawowa", "Matura podstawowa"],
+        ["matura_rozszerzona", "Matura rozszerzona"]
+    ];
+
+    studentGroups.forEach(([groupLevel, groupLabel]) => {
+        const groupStudents = sortedStudents.filter(student => student.level === groupLevel);
+
+        if(!groupStudents.length) return;
+
+        const group = document.createElement("section");
+        const heading = document.createElement("h3");
+        const count = document.createElement("span");
+
+        group.className = `student-level-group student-level-${shortLevels[groupLevel].toLowerCase()}`;
+        heading.className = "student-level-heading";
+        count.className = "student-level-count";
+        count.textContent = `${groupStudents.length} ${groupStudents.length === 1 ? "uczeń" : "uczniów"}`;
+        heading.append(document.createTextNode(groupLabel), count);
+        group.appendChild(heading);
+        studentTable.appendChild(group);
+
+        groupStudents.forEach(student => {
         const row = document.createElement("article");
         const toggle = button("", "student-toggle", () => showProgress(student));
         const name = document.createElement("span");
@@ -3196,7 +3282,7 @@ function renderStudents(){
         expanded.hidden = !open;
         expanded.setAttribute("aria-labelledby", toggle.id);
         row.append(toggle, expanded);
-        studentTable.appendChild(row);
+        group.appendChild(row);
         if(!open) return;
 
         const overview = document.createElement("details");
@@ -3254,6 +3340,7 @@ function renderStudents(){
         overviewGrid.append(credentials, account);
         overview.append(overviewSummary, overviewGrid);
         expanded.append(overview, progressDetail);
+        });
     });
     if(focusedToggleId) document.getElementById(focusedToggleId)?.focus({ preventScroll: true });
 }
@@ -4201,8 +4288,9 @@ function predictedRaschPercent(theta, level){
     };
 }
 
-function sourceProgressGroups(progress, student){
+function sourceProgressGroups(progress, student, reviewItems = []){
     const latest = latestProgressMap(progress);
+    const reviewKeys = new Set(reviewItems.map(progressTaskKey).filter(Boolean));
     const groups = new Map();
 
     adminTaskCatalog
@@ -4238,6 +4326,7 @@ function sourceProgressGroups(progress, student){
             let earnedPoints = 0;
             let attemptedMaxPoints = 0;
             let estimatedPoints = false;
+            let reviewRequested = 0;
             let firstActivity = null;
             let lastActivity = null;
             let firstActivityTime = null;
@@ -4248,6 +4337,8 @@ function sourceProgressGroups(progress, student){
                 const progressItem = latest.get(`${task.sourceId}:${task.file}`);
 
                 task.latestProgress = progressItem || null;
+                task.reviewRequested = reviewKeys.has(`${task.sourceId}:${task.file}`);
+                if(task.reviewRequested) reviewRequested++;
 
                 if(!progressItem) return;
 
@@ -4290,6 +4381,7 @@ function sourceProgressGroups(progress, student){
                 attemptedMaxPoints,
                 totalPoints,
                 estimatedPoints,
+                reviewRequested,
                 firstActivity,
                 lastActivity,
                 firstActivityTime,
@@ -4297,7 +4389,7 @@ function sourceProgressGroups(progress, student){
                 percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
             };
         })
-        .filter(group => group.attempted > 0)
+        .filter(group => group.attempted > 0 || group.reviewRequested > 0)
         .sort((a, b) => a.sourceIndex - b.sourceIndex);
 }
 
@@ -4358,14 +4450,14 @@ function groupScorePercent(group){
 }
 
 function courseTaskSegment(task){
-    return task.latestProgress?.result || "missing";
+    return task.latestProgress?.result || (task.reviewRequested ? "review" : "missing");
 }
 
 function renderProgressSegments(group){
     const track = document.createElement("div");
 
     track.className = "progress-segments";
-    track.title = `${group.good} dobrze, ${group.medium} z pomocą, ${group.bad} źle, ${Math.max(0, group.total - group.attempted)} niewykonanych`;
+    track.title = `${group.good} dobrze, ${group.medium} z pomocą, ${group.bad} źle, ${group.reviewRequested} do omówienia, ${Math.max(0, group.total - group.attempted)} niewykonanych`;
 
     group.tasks.forEach(task => {
         const segment = document.createElement("span");
@@ -4599,6 +4691,31 @@ function taskPreviewImagePaths(task){
     return [...new Set(files.map(file => basePath + file))];
 }
 
+function taskPreviewVideoUrl(task){
+    if(task?.category !== "kurs" || task?.level !== "matura_podstawowa") return "";
+
+    const mappedUrl = globalThis.DeltaSigmaCourseVideos?.[task.sourceId]?.[task.file];
+    const url = String(mappedUrl || task.videoUrl || "");
+
+    return /^https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}$/.test(url) ? url : "";
+}
+
+function appendTaskPreviewVideo(task, container){
+    const videoUrl = taskPreviewVideoUrl(task);
+
+    if(!videoUrl) return;
+
+    const video = document.createElement("a");
+
+    video.className = "task-image-preview-video";
+    video.href = videoUrl;
+    video.target = "_blank";
+    video.rel = "noopener noreferrer";
+    video.textContent = "Wyświetl nagranie";
+    video.addEventListener("click", event => event.stopPropagation());
+    container.appendChild(video);
+}
+
 async function loadTaskImagePreview(task, container){
     const paths = taskPreviewImagePaths(task);
 
@@ -4610,6 +4727,7 @@ async function loadTaskImagePreview(task, container){
         message.className = "task-image-preview-status";
         message.innerText = "Brak obrazu tego zadania.";
         container.appendChild(message);
+        appendTaskPreviewVideo(task, container);
         return;
     }
 
@@ -4635,9 +4753,12 @@ async function loadTaskImagePreview(task, container){
             image.src = objectUrl;
             container.appendChild(image);
         });
+
     } catch(error) {
         status.innerText = error.message || "Nie udało się wczytać obrazu zadania.";
     }
+
+    appendTaskPreviewVideo(task, container);
 }
 
 function renderSourceDetail(group){
@@ -4704,7 +4825,9 @@ function renderSourceDetail(group){
         row.setAttribute("aria-label", `Pokaż treść: ${taskDisplayTitle(task)}`);
         row.title = "Kliknij, aby wyświetlić treść zadania.";
         titleWrap.className = "task-title-cell";
-        result.className = `result-pill ${progressItem?.result || "missing"}`;
+        const reviewRequested = Boolean(task.reviewRequested);
+
+        result.className = `result-pill ${progressItem?.result || (reviewRequested ? "review" : "missing")}`;
         title.innerText = isCourse
             ? taskDisplayTitle(task).replace(/^Lekcja\s+\d+\s*-\s*/i, "")
                 .replace(/^(?:praca domowa|zadanie domowe)\s+/i, "Zadanie ")
@@ -4714,7 +4837,7 @@ function renderSourceDetail(group){
         meta.innerText = task.topic || "";
         result.innerText = progressItem
             ? `${resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
-            : "Nie wykonano";
+            : reviewRequested ? "Do omówienia" : "Nie wykonano";
         if(progressItem?.hint_used) result.title = "Użyto wskazówki";
         pointsCell.innerText = score.earned === null
             ? `- / ${formatPoints(score.max)}`
@@ -4724,6 +4847,13 @@ function renderSourceDetail(group){
 
         titleWrap.appendChild(title);
         if(!isCourse && meta.innerText) titleWrap.appendChild(meta);
+        if(reviewRequested){
+            const reviewBadge = document.createElement("span");
+
+            reviewBadge.className = "task-review-badge";
+            reviewBadge.textContent = "Dodano do omówienia";
+            titleWrap.appendChild(reviewBadge);
+        }
         titleCell.appendChild(titleWrap);
         resultCell.appendChild(result);
         if(isCourse && progressItem && (progressItem.result === "bad" ||
@@ -4794,8 +4924,8 @@ function renderSourceDetail(group){
     return detail;
 }
 
-function renderSourceProgress(progress, student){
-    const groups = sourceProgressGroups(progress, student);
+function renderSourceProgress(progress, student, reviewItems = []){
+    const groups = sourceProgressGroups(progress, student, reviewItems);
     const examGroups = groups.filter(group => group.category === "egzaminy");
     const courseGroups = groups.filter(group => group.category === "kurs");
     const heading = document.createElement("h4");
@@ -4847,7 +4977,8 @@ function renderSourceProgress(progress, student){
         detail.innerText = group.detail || (group.category === "egzaminy" ? "Arkusz" : "Lekcja");
         status.innerText = group.completed ? "Ukończone" : "Rozpoczęte";
         progressFill.style.width = `${group.percent}%`;
-        meta.innerText = `${group.attempted}/${group.total} zadań • dobrze ${group.good}, z pomocą ${group.medium}, źle ${group.bad}`;
+        meta.innerText = `${group.attempted}/${group.total} zadań • dobrze ${group.good}, z pomocą ${group.medium}, źle ${group.bad}` +
+            (group.reviewRequested ? ` • do omówienia ${group.reviewRequested}` : "");
 
         titleWrap.appendChild(title);
         titleWrap.appendChild(detail);
@@ -5181,7 +5312,10 @@ async function resolveReviewTask(item, student){
 
     const items = await loadReviewTasks(student);
 
-    if(activeProgressStudentId === student.id) renderReviewTasks(items, student);
+    if(activeProgressStudentId === student.id){
+        renderReviewTasks(items, student);
+        renderSourceProgress(studentProgressCache.get(student.id) || [], student, items);
+    }
     showStatus(`Odznaczono: ${reviewTaskTitle(item)}.`);
     await loadStudents();
 }
@@ -5243,7 +5377,7 @@ async function showProgress(student){
         loading.hidden = true;
         renderWorkSummary(progress);
         renderReviewTasks(reviewItems, student);
-        renderSourceProgress(progress, student);
+        renderSourceProgress(progress, student, reviewItems);
         renderActivityChart(progress);
         renderRecentProgress(progress);
     } catch(error) {

@@ -35,6 +35,13 @@ assert.deepEqual(Array.from(course.tasks, task => task.file), [
 assert.equal(groups.find(group => group.category === 'egzaminy').total, 1);
 const onlyMain = progress.filter(item => /^\d/.test(item.file) && item.source_id === source);
 assert.equal(ctx.sourceProgressGroups(onlyMain, {level:'matura_podstawowa'}).length, 0, 'Main lesson work cannot start homework progress');
+const reviewOnlyGroups = ctx.sourceProgressGroups([], {level:'matura_podstawowa'}, [
+  {source_id:source, file:'zd2.png'}
+]);
+assert.equal(reviewOnlyGroups.length, 1, 'A review request opens the lesson even without a submitted answer');
+assert.equal(reviewOnlyGroups[0].attempted, 0);
+assert.equal(reviewOnlyGroups[0].reviewRequested, 1);
+assert.equal(reviewOnlyGroups[0].tasks.find(task => task.file === 'zd2.png').reviewRequested, true);
 assert.match(html, /function renderReviewTasks\(items, student\)\{\s*items = items.filter\(isIndependentWorkProgress\);/);
 assert.match(html, /progress.filter\(isIndependentWorkProgress\).slice\(0, 12\)/);
 assert.match(html, /\.review-task-list \{[^}]*max-height: 224px;[^}]*overflow-y: auto;/);
@@ -46,6 +53,7 @@ assert.deepEqual(Array.from(ctx.taskPreviewImagePaths({sourceId:source, contextF
 assert.equal(ctx.taskPreviewImagePaths({sourceId:source, file:'../secret.png'}).length, 0);
 assert.match(html, /row\.addEventListener\("click", togglePreview\)/);
 assert.match(html, /loadTaskImagePreview\(task, preview\)/);
+assert.match(html, /reviewBadge\.textContent = "Dodano do omówienia"/);
 assert(!html.includes('review-copy-hint'), 'Repeated copy instructions no longer inflate every row');
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
 console.log('PASS: homework-only course details, review exercises, exam retention, fallback metadata and compact list limits');

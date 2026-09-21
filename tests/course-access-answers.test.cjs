@@ -5,6 +5,7 @@ const tasks = fs.readFileSync('zadania.html','utf8');
 const admin = fs.readFileSync('admin.html','utf8');
 const training = fs.readFileSync('trening.html','utf8');
 const ctx = vm.createContext({loggedUser:null, STUDENT_WORK_COURSE_PARTS:['praca_domowa','zadania_powtorkowe'],
+  DeltaSigmaCourseVideos:require('../static/course-videos.js'),
   isLoggedInStudent:true, currentTask:null, submittedChoice:'B', multiSelection:new Set(['A','D']),
   groupedMultiSelection:new Map([[1,'2'],[0,'C']]), trueFalseSelection:['P','F'],
   isInputTask:t=>t.type==='input', isTrueFalseSequenceTask:t=>t.type==='true_false',
@@ -12,7 +13,7 @@ const ctx = vm.createContext({loggedUser:null, STUDENT_WORK_COURSE_PARTS:['praca
   document:{querySelectorAll:()=>[{dataset:{index:'0'},value:'3/4'},{dataset:{index:'1'},value:'sqrt(2)'}]}
 });
 for (const [html,names] of [[tasks,['canAccessCoursePart','isCoursePreviewMode','submittedAnswerText','getInputFields']],
-  [admin,['expectedCourseAnswer','studentLastActivity']]]) {
+  [admin,['expectedCourseAnswer','studentLastActivity','taskPreviewVideoUrl']]]) {
   for(const name of names){const start=html.indexOf(`function ${name}(`); assert(start>=0); vm.runInContext(html.slice(start,html.indexOf('\n}',start)+2),ctx);}
 }
 assert(ctx.canAccessCoursePart('praca_domowa'));
@@ -33,6 +34,11 @@ assert.equal(ctx.expectedCourseAnswer(ctx.currentTask),'a): 1/4\nb): sqrt(3)');
 assert.equal(ctx.expectedCourseAnswer({type:'true_false',answer:'FP'}),'F, P');
 assert.equal(ctx.expectedCourseAnswer({type:'closed',answer:'D'}),'D');
 assert.equal(ctx.expectedCourseAnswer({type:'input',acceptedAnswers:['39.7%','39,7%']}),'Odpowiedź: 39.7%');
+assert.equal(ctx.taskPreviewVideoUrl({
+  category:'kurs', level:'matura_podstawowa',
+  sourceId:'zadania/kurs/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json', file:'zd1.png'
+}), 'https://youtu.be/aPCigoGzueA');
+assert.equal(ctx.taskPreviewVideoUrl({category:'egzaminy',level:'matura_podstawowa',videoUrl:'https://youtu.be/aPCigoGzueA'}), '');
 ctx.studentProgressCache=new Map([[1,[{created_at:'2026-09-12T10:00:00Z'}]]]);
 assert.equal(ctx.studentLastActivity({id:1,last_login_at:'2026-09-13T10:00:00Z',last_activity_at:'2026-09-01T10:00:00Z'}),'2026-09-13T10:00:00Z');
 assert.match(admin,/<template id="studentProgressTemplate">/);

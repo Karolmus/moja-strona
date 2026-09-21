@@ -79,7 +79,27 @@ test('compact accessible rows only build account details when expanded', () => {
   assert(render.indexOf('if(!open) return') < render.indexOf('buildCredentialsCell(student)'));
   assert.match(render, /progressDetail.remove\(\)/);
   assert.match(render, /expanded.append\(overview, progressDetail\)/);
-  assert.match(html, /if\(activeProgressStudentId === student.id\) renderReviewTasks\(items, student\)/);
+  assert.match(html, /if\(activeProgressStudentId === student.id\)\{\s*renderReviewTasks\(items, student\);\s*renderSourceProgress/);
   assert.match(html, /const progress = \(studentProgressCache.get\(student.id\) \|\| \[\]\).filter\(isIndependentWorkProgress\)/);
   assert.match(html, /const totalDuration = hasProgress \? sumDuration\(progress\)/);
+});
+
+test('students are grouped by assigned course and task previews stay compact', () => {
+  const groupOrder = [
+    'egzamin_osmoklasisty',
+    'matura_podstawowa',
+    'matura_rozszerzona'
+  ];
+  let previousIndex = -1;
+
+  for (const level of groupOrder) {
+    const index = html.indexOf(`["${level}",`);
+    assert(index > previousIndex, `${level} group should be present in the expected order`);
+    previousIndex = index;
+  }
+
+  assert.match(html, /student-level-group/);
+  assert.match(html, /\.task-image-preview img\s*\{[^}]*width:\s*50%;[^}]*max-height:\s*210px;/s);
+  assert.match(html, /function taskPreviewVideoUrl\(/);
+  assert.match(html, /video\.textContent = "Wyświetl nagranie"/);
 });

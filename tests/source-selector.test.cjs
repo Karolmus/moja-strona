@@ -61,6 +61,7 @@ assert.equal(list.scrollTop, 0);
 assert.equal(list.children.length, 12, 'Course buttons remain flat, without year groups');
 assert.equal(list.children[0].children[0].innerText, 'Lesson 0');
 assert(list.classes.has('course-source-list'));
+assert.match(html, /\.course-source-list \.source-btn\s*\{[^}]*min-height:\s*58px;/s);
 assert(!list.classes.has('exam-source-list'));
 assert.equal(brand.hidden, false);
 assert.equal(title.innerText, 'Wybór lekcji');

@@ -480,11 +480,24 @@ body {
 
 .math-expression {
     display: inline;
-    flex-wrap: wrap;
     font-family: var(--math-font);
     font-weight: 400;
-    font-feature-settings: "kern", "lnum", "tnum";
-    font-variant-numeric: lining-nums tabular-nums;
+}
+
+.math-atom {
+    display: inline-block;
+    margin: 0 0.035em;
+    font-family: var(--math-font);
+    font-size: 1em;
+    vertical-align: -0.18em;
+}
+
+.math-atom mfrac {
+    font-size: 0.96em;
+}
+
+.math-atom menclose[notation="box"] {
+    padding: 0.04em 0.13em;
 }
 
 .math-token {
@@ -1502,6 +1515,136 @@ function absExpr(value){
 
 function limitTo(target, body){
     return `<span class="lim"><span>lim</span><sub>x→${target}</sub></span>${body}`;
+}
+
+const MATHML_NAMESPACE = "http://www.w3.org/1998/Math/MathML";
+const MATH_OPERATOR_TOKENS = new Set(["+", "-", "−", "·", ":", "×", "=", "<", ">", "→", "∞", "°", "(", ")", ",", "|", "'"]);
+
+function mathElement(name, text = ""){
+    const element = document.createElementNS(MATHML_NAMESPACE, name);
+
+    if(text !== "") element.textContent = text;
+    return element;
+}
+
+function appendMathText(target, value){
+    const tokens = String(value || "").match(/[A-Za-z]+|[0-9]+(?:[.,][0-9]+)?|[+\-−·:×=<>→∞°(),'|]|\S+/g) || [];
+
+    tokens.forEach(tokenValue => {
+        let tokenName = "mtext";
+
+        if(/^\d/.test(tokenValue)) tokenName = "mn";
+        else if(MATH_OPERATOR_TOKENS.has(tokenValue)) tokenName = "mo";
+        else if(/^[A-Za-z]$/.test(tokenValue)) tokenName = "mi";
+
+        target.appendChild(mathElement(tokenName, tokenValue));
+    });
+}
+
+function appendMathNode(target, source){
+    if(source.nodeType === Node.TEXT_NODE){
+        appendMathText(target, source.textContent);
+        return;
+    }
+
+    if(source.nodeType !== Node.ELEMENT_NODE) return;
+
+    if(source.classList.contains("blank")){
+        const box = mathElement("menclose");
+
+        box.setAttribute("notation", "box");
+        box.appendChild(mathElement("mtext", "?"));
+        target.appendChild(box);
+        return;
+    }
+
+    if(source.classList.contains("math-sup")){
+        const superscript = mathElement("msup");
+        const base = mathElement("mrow");
+        const exponent = mathElement("mrow");
+        const parts = [...source.children];
+
+        [...(parts[0]?.childNodes || [])].forEach(node => appendMathNode(base, node));
+        [...(parts[1]?.childNodes || [])].forEach(node => appendMathNode(exponent, node));
+        superscript.append(base, exponent);
+        target.appendChild(superscript);
+        return;
+    }
+
+    if(source.classList.contains("math-sub")){
+        const subscript = mathElement("msub");
+        const base = mathElement("mrow");
+        const index = mathElement("mrow");
+        const parts = [...source.children];
+
+        [...(parts[0]?.childNodes || [])].forEach(node => appendMathNode(base, node));
+        [...(parts[1]?.childNodes || [])].forEach(node => appendMathNode(index, node));
+        subscript.append(base, index);
+        target.appendChild(subscript);
+        return;
+    }
+
+    if(source.classList.contains("frac")){
+        const fraction = mathElement("mfrac");
+        const numerator = mathElement("mrow");
+        const denominator = mathElement("mrow");
+        const parts = [...source.children];
+
+        [...(parts[0]?.childNodes || [])].forEach(node => appendMathNode(numerator, node));
+        [...(parts[1]?.childNodes || [])].forEach(node => appendMathNode(denominator, node));
+        fraction.append(numerator, denominator);
+        target.appendChild(fraction);
+        return;
+    }
+
+    if(source.classList.contains("sqrt")){
+        const squareRoot = mathElement("msqrt");
+        const radicand = source.querySelector(":scope > .sqrt-radicand");
+
+        [...(radicand?.childNodes || [])].forEach(node => appendMathNode(squareRoot, node));
+        target.appendChild(squareRoot);
+        return;
+    }
+
+    if(source.classList.contains("abs")){
+        const absolute = mathElement("mrow");
+
+        absolute.appendChild(mathElement("mo", "|"));
+        [...source.childNodes].forEach(node => appendMathNode(absolute, node));
+        absolute.appendChild(mathElement("mo", "|"));
+        target.appendChild(absolute);
+        return;
+    }
+
+    if(source.classList.contains("lim")){
+        const limit = mathElement("munder");
+        const lower = source.querySelector(":scope > sub");
+
+        limit.append(mathElement("mo", "lim"), mathElement("mrow"));
+        [...(lower?.childNodes || [])].forEach(node => appendMathNode(limit.lastElementChild, node));
+        target.appendChild(limit);
+        return;
+    }
+
+    [...source.childNodes].forEach(node => appendMathNode(target, node));
+}
+
+function upgradeMathNotation(container){
+    const selector = ".frac, .sqrt, .math-sup, .math-sub, .lim, .abs";
+    const candidates = [...container.querySelectorAll(selector)]
+        .filter(element => !element.parentElement?.closest(selector));
+
+    candidates.forEach(source => {
+        const mathNode = mathElement("math");
+        const row = mathElement("mrow");
+
+        mathNode.classList.add("math-atom");
+        mathNode.setAttribute("display", "inline");
+        mathNode.setAttribute("aria-label", source.textContent.trim());
+        appendMathNode(row, source);
+        mathNode.appendChild(row);
+        source.replaceWith(mathNode);
+    });
 }
 
 function parens(value){
@@ -3021,6 +3164,7 @@ function showStartPrompt(){
 function showTask(taskItem){
     problemStartPrompt.hidden = true;
     problemText.innerHTML = taskItem.html;
+    upgradeMathNotation(problemText);
     calculatorIndicator.hidden = !taskItem.calculator;
 }
 
