@@ -502,7 +502,6 @@ th {
     margin-top: 10px;
     padding-top: 10px;
 }
-.progress-heading h3 { font-size: 14px; }
 .progress-primary {
     display: grid;
     grid-template-columns: minmax(240px, 0.38fr) minmax(0, 1fr);
@@ -510,27 +509,6 @@ th {
     align-items: start;
 }
 .progress-primary > * { min-width: 0; }
-.progress-secondary {
-    border-top: 1px solid var(--line);
-    padding-top: 8px;
-}
-.progress-secondary > summary {
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    list-style: none;
-}
-.progress-secondary > summary::-webkit-details-marker { display: none; }
-.progress-secondary > summary::before { content: "+"; display: inline-block; width: 16px; color: var(--navy); }
-.progress-secondary[open] > summary::before { content: "−"; }
-.progress-secondary > .work-summary,
-.progress-secondary > .activity-chart,
-.progress-secondary > .recent-progress { margin-top: 8px; }
-.progress-secondary > .activity-chart { min-height: 150px; }
-.progress-secondary > .recent-progress { max-height: 150px; }
-.progress-secondary .work-summary-item { padding: 7px 9px; }
-.progress-secondary .work-summary-item strong { font-size: 13px; }
 @media (max-width: 1200px) {
     .student-toggle { grid-template-columns: minmax(0, 1fr) 40px 120px 12px; gap: 8px; }
     .student-summary-activity { display: none; }
@@ -878,52 +856,24 @@ th {
 .progress-heading {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 12px;
     flex-wrap: wrap;
 }
 
-.progress-heading h3 {
-    margin: 0;
-    font-size: 16px;
-}
-
-.chart-legend {
+.lesson-activity {
     display: flex;
-    align-items: center;
-    gap: 12px;
     flex-wrap: wrap;
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.work-summary {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-}
-
-.work-summary-item {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 10px;
-    background: var(--surface-soft);
-}
-
-.work-summary-item span {
-    display: block;
+    gap: 4px 16px;
+    margin-bottom: 8px;
     color: var(--muted);
     font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
+    line-height: 1.4;
 }
 
-.work-summary-item strong {
-    display: block;
-    margin-top: 3px;
+.lesson-activity strong {
     color: var(--text);
-    font-size: 15px;
+    font-weight: 600;
 }
 
 .review-tasks {
@@ -993,87 +943,6 @@ th {
     color: var(--muted);
     font-size: 11px;
     line-height: 1.35;
-}
-
-.legend-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.legend-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-}
-
-.legend-dot.good,
-.bar-segment.good {
-    background: #57a663;
-}
-
-.legend-dot.medium,
-.bar-segment.medium {
-    background: #e3bd41;
-}
-
-.legend-dot.bad,
-.bar-segment.bad {
-    background: #d95b50;
-}
-
-.activity-chart {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(54px, 1fr);
-    align-items: end;
-    gap: 10px;
-    min-height: 210px;
-    overflow-x: auto;
-    padding: 10px 2px 4px;
-}
-
-.day-column {
-    display: grid;
-    justify-items: center;
-    align-items: end;
-    gap: 6px;
-    min-width: 54px;
-}
-
-.stacked-bar {
-    width: 32px;
-    display: flex;
-    flex-direction: column-reverse;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 7px 7px 4px 4px;
-    background: #eef2f7;
-}
-
-.bar-segment {
-    width: 100%;
-    min-height: 2px;
-}
-
-.day-total {
-    color: var(--text);
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.day-label {
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.15;
-    text-align: center;
-}
-
-.recent-progress {
-    display: grid;
-    gap: 3px;
-    max-height: 200px;
-    overflow: auto;
 }
 
 .source-progress {
@@ -1456,28 +1325,6 @@ th {
 .result-pill.missing {
     background: #e2e8f0;
     color: var(--muted);
-}
-
-.recent-row {
-    display: grid;
-    grid-template-columns: 120px minmax(0, 1fr) auto;
-    gap: 8px;
-    align-items: center;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 5px 8px;
-    font-size: 12px;
-}
-
-.recent-task-label {
-    display: grid;
-    gap: 2px;
-}
-
-.recent-task-label small {
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.3;
 }
 
 .result-pill {
@@ -2018,14 +1865,6 @@ footer {
         font-size: 24px;
     }
 
-    .recent-row {
-        grid-template-columns: 1fr;
-    }
-
-    .work-summary {
-        grid-template-columns: 1fr;
-    }
-
     .review-item {
         grid-template-columns: minmax(0, 1fr) auto;
     }
@@ -2158,27 +1997,15 @@ footer {
             <template id="studentProgressTemplate">
             <div class="progress-detail" id="progressDetail" aria-live="polite">
                 <div class="progress-heading">
-                    <h3 id="progressTitle">Postępy ucznia</h3>
                     <button class="btn secondary" type="button" id="closeProgressBtn">Zamknij</button>
                 </div>
 
                 <p class="student-load-status" id="studentLoadStatus" role="status" hidden></p>
-                <div class="chart-legend">
-                    <span class="legend-item"><span class="legend-dot good"></span>Dobrze</span>
-                    <span class="legend-item"><span class="legend-dot medium"></span>Z pomocą</span>
-                    <span class="legend-item"><span class="legend-dot bad"></span>Źle</span>
-                </div>
 
                 <div class="progress-primary">
                     <div class="review-tasks" id="reviewTasks"></div>
                     <div class="source-progress" id="sourceProgress"></div>
                 </div>
-                <details class="progress-secondary">
-                    <summary>Postęp i aktywność</summary>
-                    <div class="work-summary" id="workSummary"></div>
-                    <div class="activity-chart" id="activityChart"></div>
-                    <div class="recent-progress" id="recentProgress"></div>
-                </details>
             </div>
             </template>
         </section>
@@ -2432,12 +2259,8 @@ const studentForm = document.getElementById("studentForm");
 const studentTable = document.getElementById("studentTable");
 const adminStatus = document.getElementById("adminStatus");
 const progressDetail = document.getElementById("studentProgressTemplate").content.firstElementChild.cloneNode(true);
-const progressTitle = progressDetail.querySelector("#progressTitle");
-const workSummary = progressDetail.querySelector("#workSummary");
 const reviewTasks = progressDetail.querySelector("#reviewTasks");
 const sourceProgress = progressDetail.querySelector("#sourceProgress");
-const activityChart = progressDetail.querySelector("#activityChart");
-const recentProgress = progressDetail.querySelector("#recentProgress");
 const credentialsBox = document.getElementById("credentialsBox");
 const credentialsTitle = document.getElementById("credentialsTitle");
 const credentialsLogin = document.getElementById("credentialsLogin");
@@ -2621,13 +2444,6 @@ function formatDate(value){
     });
 }
 
-function formatShortDate(value){
-    return new Date(value).toLocaleDateString("pl-PL", {
-        day: "2-digit",
-        month: "2-digit"
-    });
-}
-
 function formatDateOnly(value){
     if(!value) return "brak";
 
@@ -2636,15 +2452,6 @@ function formatDateOnly(value){
         month: "2-digit",
         day: "2-digit"
     });
-}
-
-function dayKey(value){
-    const date = new Date(value);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
 }
 
 function resultLabel(result){
@@ -4025,110 +3832,6 @@ async function deleteStudent(student){
     await loadStudents();
 }
 
-function groupProgressByDay(progress){
-    const days = new Map();
-
-    progress.forEach(item => {
-        const key = dayKey(item.created_at);
-
-        if(!days.has(key)){
-            days.set(key, {
-                key,
-                date: item.created_at,
-                good: 0,
-                medium: 0,
-                bad: 0,
-                total: 0
-            });
-        }
-
-        const day = days.get(key);
-        const result = ["good", "medium", "bad"].includes(item.result) ? item.result : "bad";
-
-        day[result]++;
-        day.total++;
-    });
-
-    return [...days.values()].sort((a, b) => a.key.localeCompare(b.key));
-}
-
-function renderActivityChart(progress){
-    const days = groupProgressByDay(progress).slice(-21);
-    const maxTotal = Math.max(1, ...days.map(day => day.total));
-
-    activityChart.innerHTML = "";
-
-    if(!days.length){
-        const empty = document.createElement("div");
-
-        empty.className = "day-label";
-        empty.innerText = "Brak zapisanych prób.";
-        activityChart.appendChild(empty);
-        return;
-    }
-
-    days.forEach(day => {
-        const column = document.createElement("div");
-        const total = document.createElement("div");
-        const bar = document.createElement("div");
-        const label = document.createElement("div");
-
-        column.className = "day-column";
-        total.className = "day-total";
-        bar.className = "stacked-bar";
-        label.className = "day-label";
-
-        total.innerText = day.total;
-        bar.style.height = `${Math.max(24, Math.round((day.total / maxTotal) * 150))}px`;
-        label.innerText = formatShortDate(day.date);
-        bar.title = `${formatDate(day.date)}: ${day.total} prób`;
-
-        ["good", "medium", "bad"].forEach(result => {
-            if(!day[result]) return;
-
-            const segment = document.createElement("div");
-
-            segment.className = `bar-segment ${result}`;
-            segment.style.height = `${(day[result] / day.total) * 100}%`;
-            segment.title = `${resultLabel(result)}: ${day[result]}`;
-            bar.appendChild(segment);
-        });
-
-        column.appendChild(total);
-        column.appendChild(bar);
-        column.appendChild(label);
-        activityChart.appendChild(column);
-    });
-}
-
-function renderWorkSummary(progress){
-    const attempts = progress.length;
-    const totalDuration = sumDuration(progress);
-    const averageDuration = attempts ? Math.round(totalDuration / attempts) : 0;
-    const pace = paceState(attempts, totalDuration);
-    const items = [
-        ["Łączny czas", formatDuration(totalDuration)],
-        ["Średnio na próbę", formatDuration(averageDuration)],
-        ["Kontrola tempa", pace.label]
-    ];
-
-    workSummary.innerHTML = "";
-
-    items.forEach(([label, value]) => {
-        const box = document.createElement("div");
-        const title = document.createElement("span");
-        const content = document.createElement("strong");
-
-        box.className = "work-summary-item";
-        title.innerText = label;
-        content.innerText = value;
-
-        box.appendChild(title);
-        box.appendChild(content);
-        workSummary.appendChild(box);
-    });
-}
-
 function numberValue(value){
     if(value === null || value === undefined || value === "") return null;
 
@@ -4240,28 +3943,6 @@ function isIndependentWorkProgress(item){
 
     if(item.course_part) return ["praca_domowa", "zadania_powtorkowe"].includes(item.course_part);
     return /^(?:zd|zp)\d/i.test(progressFile(item));
-}
-
-function progressTaskDisplayTitle(item){
-    const task = catalogTaskForProgress(item);
-
-    if(task) return taskDisplayTitle(task);
-
-    const number = taskNumberFromFile(progressFile(item), progressSourceId(item));
-
-    return number ? `Zadanie ${number}` : progressFile(item) || item.task_id || "Zadanie";
-}
-
-function progressTaskDisplayMeta(item){
-    const task = catalogTaskForProgress(item);
-
-    if(task) return taskDisplayMeta(task);
-
-    const source = ADMIN_TASK_SOURCES.find(candidate => candidate.path === progressSourceId(item));
-
-    return source
-        ? [source.label, source.detail].filter(Boolean).join(" • ")
-        : progressSourceId(item);
 }
 
 function latestProgressMap(progress){
@@ -5010,7 +4691,9 @@ function renderSourceDetail(group){
                 .replace(/^zadanie powtórkowe\s+/i, "Powtórka ")
             : taskDisplayTitle(task);
         title.title = taskDisplayTitle(task);
-        meta.innerText = task.topic || "";
+        meta.innerText = isCourse
+            ? (progressItem?.created_at ? formatDate(progressItem.created_at) : "")
+            : task.topic || "";
         result.innerText = progressItem
             ? `${resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
             : reviewRequested ? "Do omówienia" : "Nie wykonano";
@@ -5022,7 +4705,7 @@ function renderSourceDetail(group){
         timeCell.innerText = progressItem ? formatDuration(progressItem.duration_seconds || 0) : "-";
 
         titleWrap.appendChild(title);
-        if(!isCourse && meta.innerText) titleWrap.appendChild(meta);
+        if(meta.innerText) titleWrap.appendChild(meta);
         if(reviewRequested){
             const reviewBadge = document.createElement("span");
 
@@ -5079,6 +4762,30 @@ function renderSourceDetail(group){
 
     if(!isCourse){
         detail.append(heading, summary);
+    } else if(group.attempted){
+        const activity = document.createElement("div");
+        const items = group.tasks.map(task => task.latestProgress).filter(Boolean);
+        const totalDuration = sumDuration(items);
+        const averageDuration = Math.round(totalDuration / group.attempted);
+        const facts = [
+            ["Wykonane", `${group.attempted}/${group.total}`],
+            ["Łączny czas", formatDuration(totalDuration)],
+            ["Średnio na zadanie", formatDuration(averageDuration)],
+            ...(totalDuration ? [["Tempo", paceState(group.attempted, totalDuration).label]] : []),
+            ...(group.firstActivity ? [["Pierwsza praca", formatDate(group.firstActivity)]] : []),
+            ...(group.lastActivity ? [["Ostatnia praca", formatDate(group.lastActivity)]] : [])
+        ];
+
+        activity.className = "lesson-activity";
+        facts.forEach(([label, value]) => {
+            const fact = document.createElement("span");
+            const name = document.createElement("strong");
+
+            name.textContent = `${label}: `;
+            fact.append(name, document.createTextNode(value));
+            activity.appendChild(fact);
+        });
+        detail.appendChild(activity);
     }
 
     if(rasch?.unavailable){
@@ -5507,34 +5214,6 @@ async function resolveReviewTask(item, student){
     await loadStudents();
 }
 
-function renderRecentProgress(progress){
-    recentProgress.innerHTML = "";
-
-    progress.filter(isIndependentWorkProgress).slice(0, 12).forEach(item => {
-        const row = document.createElement("div");
-        const date = document.createElement("span");
-        const task = document.createElement("span");
-        const result = document.createElement("span");
-        const title = document.createElement("strong");
-        const meta = document.createElement("small");
-
-        row.className = "recent-row";
-        task.className = "recent-task-label";
-        date.innerText = formatDate(item.created_at);
-        title.innerText = progressTaskDisplayTitle(item);
-        meta.innerText = progressTaskDisplayMeta(item);
-        result.className = `result-pill ${item.result}`;
-        result.innerText = `${resultLabel(item.result)} • ${formatDuration(item.duration_seconds || 0)}`;
-
-        task.appendChild(title);
-        task.appendChild(meta);
-        row.appendChild(date);
-        row.appendChild(task);
-        row.appendChild(result);
-        recentProgress.appendChild(row);
-    });
-}
-
 async function showProgress(student){
     if(activeProgressStudentId === student.id){
         closeStudentDetails();
@@ -5544,12 +5223,11 @@ async function showProgress(student){
     const requestId = ++progressRequestId;
     activeProgressStudentId = student.id;
     activeSourceDetailKey = "";
-    progressTitle.innerText = `Postępy: ${student.display_name}`;
     progressDetail.classList.add("active");
     const loading = progressDetail.querySelector("#studentLoadStatus");
     loading.hidden = false;
     loading.textContent = "Wczytywanie postępów…";
-    for(const element of [workSummary, reviewTasks, sourceProgress, activityChart, recentProgress]) element.replaceChildren();
+    for(const element of [reviewTasks, sourceProgress]) element.replaceChildren();
     renderStudents();
     try {
         const [data, allReviewItems] = await Promise.all([
@@ -5562,11 +5240,8 @@ async function showProgress(student){
         studentProgressCache.set(student.id, data.progress);
         renderStudents();
         loading.hidden = true;
-        renderWorkSummary(progress);
         renderReviewTasks(reviewItems, student);
         renderSourceProgress(progress, student, reviewItems);
-        renderActivityChart(progress);
-        renderRecentProgress(progress);
     } catch(error) {
         if(requestId !== progressRequestId || activeProgressStudentId !== student.id) return;
         loading.textContent = "Nie udało się wczytać postępów. ";

@@ -65,7 +65,14 @@ assert.equal(reviewOnlyGroups[0].correctPercent, null);
 assert.equal(reviewOnlyGroups[0].reviewRequested, 1);
 assert.equal(reviewOnlyGroups[0].tasks.find(task => task.file === 'zd2.png').reviewRequested, true);
 assert.match(html, /function renderReviewTasks\(items, student\)\{\s*items = items.filter\(isIndependentWorkProgress\);/);
-assert.match(html, /progress.filter\(isIndependentWorkProgress\).slice\(0, 12\)/);
+assert(!html.includes('Postęp i aktywność'), 'The separate activity panel is removed');
+assert(!html.includes('id="progressTitle"'), 'The redundant student progress heading is removed');
+assert(!html.includes('class="chart-legend"'), 'The result legend is removed');
+assert.match(html, /activity\.className = "lesson-activity"/);
+assert.match(html, /\["Łączny czas", formatDuration\(totalDuration\)\]/);
+assert.match(html, /\["Średnio na zadanie", formatDuration\(averageDuration\)\]/);
+assert.match(html, /\["Ostatnia praca", formatDate\(group\.lastActivity\)\]/);
+assert.match(html, /progressItem\?\.created_at \? formatDate\(progressItem\.created_at\)/);
 assert.match(html, /\.review-task-list \{[^}]*max-height: 224px;[^}]*overflow-y: auto;/);
 assert.match(html, /\.source-task-table-wrap \{[^}]*max-height: 300px;[^}]*overflow: auto;/);
 assert.deepEqual(Array.from(ctx.taskPreviewImagePaths({sourceId:source, file:'zd1.png'})),
@@ -132,6 +139,34 @@ assert.equal(expandedRows.length, 2);
 assert.equal(expandedRows[0].attributes['aria-expanded'], 'true');
 assert.equal(expandedRows[1].children[0].children[0].sourceKey, course.key,
   'The task details are rendered immediately below the selected lesson');
+const detailUi = vm.createContext({
+  document:{createElement:tag => new Element(tag), createTextNode:textContent => ({textContent})},
+  raschEstimateForGroup:() => null,
+  formatPoints:value => String(value),
+  formatDate:() => '10.09.2026',
+  formatDuration:value => `${value} s`,
+  sumDuration:items => items.reduce((sum, item) => sum + item.duration_seconds, 0),
+  paceState:() => ({label:'tempo OK'}),
+  inferredTaskScore:() => ({earned:1, max:1}),
+  taskCompletionPercent:() => 100,
+  taskDisplayTitle:() => 'Zadanie 1',
+  resultLabel:() => 'Dobrze'
+});
+const detailStart = html.indexOf('function renderSourceDetail(');
+vm.runInContext(html.slice(detailStart, html.indexOf('\n}', detailStart) + 2), detailUi);
+const detail = detailUi.renderSourceDetail({
+  category:'kurs', label:'Lekcja 1', detail:'Potęgi', attempted:1, total:1,
+  attemptedMaxPoints:1, earnedPoints:1, totalPoints:1,
+  firstActivity:'2026-09-10T10:00:00Z', lastActivity:'2026-09-10T10:00:00Z',
+  tasks:[{sourceId:source, file:'zd1.png', coursePart:'praca_domowa',
+    latestProgress:{result:'good', duration_seconds:40, created_at:'2026-09-10T10:00:00Z'}}]
+});
+const activity = detail.children.find(child => child.className === 'lesson-activity');
+assert(activity, 'Lesson detail contains its own compact activity summary');
+assert.deepEqual(Array.from(activity.children, fact => fact.children[0].textContent), [
+  'Wykonane: ', 'Łączny czas: ', 'Średnio na zadanie: ', 'Tempo: ', 'Pierwsza praca: ', 'Ostatnia praca: '
+]);
+assert.equal(activity.children[1].children[1].textContent, '40 s');
 assert(!html.includes('review-copy-hint'), 'Repeated copy instructions no longer inflate every row');
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
 console.log('PASS: separate homework and revision results, inline lesson details, exam retention and compact list limits');

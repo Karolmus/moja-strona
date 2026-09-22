@@ -15,14 +15,13 @@ function setup() {
   const classes = new Set();
   const context = vm.createContext({
     activeProgressStudentId:null, activeSourceDetailKey:'', progressRequestId:0,
-    progressTitle:element(), workSummary:element(), reviewTasks:element(), sourceProgress:element(),
-    activityChart:element(), recentProgress:element(), studentProgressCache:new Map(),
+    reviewTasks:element(), sourceProgress:element(), studentProgressCache:new Map(),
     progressDetail:{querySelector:() => loading, classList:{add:c => classes.add(c), remove:c => classes.delete(c)}},
     apiFetch:path => new Promise((resolve,reject) => pending.set(Number(path.split('/')[4]), {resolve,reject})),
     loadReviewTasks:async student => [{owner:student.id}],
     isIndependentWorkProgress:item => item.course_part !== 'zadania',
-    renderStudents:() => {}, renderWorkSummary:() => {}, renderReviewTasks:() => {},
-    renderSourceProgress:(progress, student) => rendered.push(student.id), renderActivityChart:() => {}, renderRecentProgress:() => {},
+    renderStudents:() => {}, renderReviewTasks:() => {},
+    renderSourceProgress:(progress, student) => rendered.push(student.id),
     document:{getElementById:id => ({focus:() => {context.focused=id;}})},
     button:(label, css, click) => ({label, click})
   });
@@ -43,7 +42,7 @@ test('only the latest expanded student can receive asynchronous progress', async
   pending.get(1).resolve({progress:[]}); await first;
   assert.deepEqual(rendered, [2]);
   assert.equal(c.activeProgressStudentId, 2);
-  assert.equal(c.progressTitle.innerText, 'Postępy: Second');
+  assert(!html.includes('id="progressTitle"'));
 });
 
 test('closing cancels pending display and restores keyboard focus', async () => {
