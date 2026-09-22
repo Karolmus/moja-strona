@@ -23,7 +23,7 @@ assert(math.preview('√(1/2)').includes('<msqrt><mfrac>'));
 assert(math.preview('∛8').includes('<mroot>'));
 
 const html = fs.readFileSync('zadania.html', 'utf8');
-for (const name of ['isClosedTask', 'isInputTask', 'isPracticalTask', 'getInputFields']) {
+for (const name of ['isClosedTask', 'isInputTask', 'isPracticalTask', 'isEquationSolutionInput', 'getInputFields']) {
   const start = html.indexOf(`function ${name}(`);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ctx);
 }
@@ -38,4 +38,26 @@ for (const task of tasks) {
   }
 }
 new vm.Script(fs.readFileSync('static/math-answer-input.js', 'utf8'));
+class FakeElement {
+  constructor(tag) {this.tagName = tag; this.children = []; this.value = ''; this.style = {};
+    this.classList = {add() {}};}
+  appendChild(child) {this.children.push(child);}
+  append(...children) {children.forEach(child => this.appendChild(child));}
+  replaceChildren() {this.children = []; this.innerHTML = '';}
+  setAttribute() {}
+  addEventListener() {}
+}
+const inputContext = vm.createContext({
+  DeltaSigmaMath:math, window:{}, document:{createElement:tag => new FakeElement(tag)}
+});
+vm.runInContext(fs.readFileSync('static/math-answer-input.js', 'utf8'), inputContext);
+const input = new FakeElement('input');
+input.id = 'equation-answer';
+const wrapper = new FakeElement('div');
+inputContext.window.DeltaSigmaMathInput.attach(input, wrapper, {multiple:true});
+input.value = 'root(256;4); 2';
+assert(inputContext.window.DeltaSigmaMathInput.validate(input));
+assert(wrapper.children[1].innerHTML.includes(' ; '));
+input.value = '1;';
+assert(!inputContext.window.DeltaSigmaMathInput.validate(input));
 console.log('PASS: all 22 lesson-4 tasks have controls; fractions, roots, equivalent expressions, MathML and unsafe input checks');

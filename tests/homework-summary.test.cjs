@@ -10,7 +10,9 @@ const elements = Object.fromEntries(['homeworkSummaryOverlay', 'homeworkSummaryL
   'homeworkSummaryGoodHints', 'homeworkSummaryBad', 'homeworkSummaryBadHints', 'homeworkSummaryDuration',
   'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'homeworkSummaryPercent', 'homeworkSummaryTasks', 'progress']
   .map(id => [id, {hidden:true, innerText:'', innerHTML:'', children:[], replaceChildren(){this.children=[];}}]));
-const nextButton = {innerText:''};
+const nextButton = {innerText:'', classes:new Set()};
+nextButton.classList = {toggle:(name, selected) => selected
+  ? nextButton.classes.add(name) : nextButton.classes.delete(name)};
 const dialog = {focus() {}};
 const overlay = elements.homeworkSummaryOverlay;
 overlay.dataset = {};
@@ -89,6 +91,26 @@ assert.equal(nextButton.innerText, 'Kolejne zadanie →');
 ctx.savedProgress = completeProgress;
 ctx.updateNextTaskButton();
 assert.equal(nextButton.innerText, 'Zobacz podsumowanie →');
+ctx.currentTask = work[0];
+ctx.currentTaskAnswered = true;
+ctx.updateNextTaskButton();
+assert(nextButton.classes.has('ready-next'), 'A correct answer highlights the next-task action');
+ctx.sessionResults.set(`${sourceId}:${work[0].file}`, 'bad');
+ctx.updateNextTaskButton();
+assert(!nextButton.classes.has('ready-next'), 'An incorrect answer clears the highlight');
+ctx.sessionResults.set(`${sourceId}:${work[0].file}`, 'medium');
+ctx.sessionScores.set(`${sourceId}:${work[0].file}`, {earnedPoints:0.5, maxPoints:1});
+ctx.updateNextTaskButton();
+assert(!nextButton.classes.has('ready-next'), 'Partial credit is not treated as a fully correct answer');
+ctx.sessionScores.set(`${sourceId}:${work[0].file}`, {earnedPoints:1, maxPoints:1});
+ctx.updateNextTaskButton();
+assert(nextButton.classes.has('ready-next'), 'Full credit after help also highlights the action');
+ctx.sessionScores.delete(`${sourceId}:${work[0].file}`);
+ctx.sessionResults.delete(`${sourceId}:${work[0].file}`);
+ctx.currentTask = work.at(-1);
+ctx.currentTaskAnswered = false;
+ctx.updateNextTaskButton();
+assert(!nextButton.classes.has('ready-next'), 'The highlight does not carry over to another task');
 ctx.sessionResults.set(`${sourceId}:zp3.png`, 'skipped');
 assert(!ctx.isHomeworkComplete(), 'Skipped exercises do not trigger a completion summary');
 ctx.sessionResults.clear();

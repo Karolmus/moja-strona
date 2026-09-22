@@ -8,13 +8,31 @@
         { symbol: "x²", title: "Potęga", before: "(", after: ")^()" }
     ];
 
+    function splitValues(text) {
+        const values = [];
+        let depth = 0;
+        let start = 0;
+        for (let index = 0; index < text.length; index++) {
+            if (text[index] === "(") depth++;
+            if (text[index] === ")") depth--;
+            if (text[index] === ";" && depth === 0) {
+                values.push(text.slice(start, index));
+                start = index + 1;
+            }
+        }
+        values.push(text.slice(start));
+        return values;
+    }
+
     function update(input, report = false) {
         const parts = controls.get(input);
         if (!parts) return true;
         parts.preview.replaceChildren();
         let valid = false;
         try {
-            parts.preview.innerHTML = DeltaSigmaMath.preview(input.value);
+            const values = parts.multiple ? splitValues(input.value) : [input.value];
+            if(values.some(value => !value.trim())) throw new Error("Empty expression");
+            parts.preview.innerHTML = values.map(value => DeltaSigmaMath.preview(value.trim())).join(" ; ");
             valid = true;
         } catch {}
         parts.error.hidden = !report || valid;
@@ -22,7 +40,7 @@
         return valid;
     }
 
-    function attach(input, wrapper) {
+    function attach(input, wrapper, options = {}) {
         wrapper.classList.add("math-answer-field");
         input.maxLength = 200;
         const toolbar = document.createElement("div");
@@ -63,7 +81,7 @@
         error.textContent = "Sprawdź zapis odpowiedzi: nawiasy, pierwiastki i mianownik ułamka.";
         error.hidden = true;
         input.setAttribute("aria-describedby", error.id);
-        controls.set(input, { preview, error });
+        controls.set(input, { preview, error, multiple: options.multiple === true });
         input.addEventListener("input", () => update(input));
         input.addEventListener("blur", () => { if (input.value.trim()) update(input, true); });
         wrapper.append(toolbar, preview, error);

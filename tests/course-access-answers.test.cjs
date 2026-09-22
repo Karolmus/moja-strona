@@ -12,7 +12,7 @@ const ctx = vm.createContext({loggedUser:null, STUDENT_WORK_COURSE_PARTS:['praca
   isGroupedChoiceTask:t=>t.type==='grouped_choice', isGroupedMultiTask:t=>t.type==='grouped_multi',
   document:{querySelectorAll:()=>[{dataset:{index:'0'},value:'3/4'},{dataset:{index:'1'},value:'sqrt(2)'}]}
 });
-for (const [html,names] of [[tasks,['canAccessCoursePart','isCoursePreviewMode','submittedAnswerText','getInputFields']],
+for (const [html,names] of [[tasks,['canAccessCoursePart','isCoursePreviewMode','submittedAnswerText','isEquationSolutionInput','getInputFields']],
   [admin,['expectedCourseAnswer','studentLastActivity','taskPreviewVideoUrl']]]) {
   for(const name of names){const start=html.indexOf(`function ${name}(`); assert(start>=0); vm.runInContext(html.slice(start,html.indexOf('\n}',start)+2),ctx);}
 }

@@ -168,18 +168,11 @@ body {
     font-size: 16px;
 }
 
-.small-note {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.45;
-}
-
 .course-overview {
     gap: 10px;
 }
 
-.overview-heading,
-.section-heading {
+.overview-heading {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -253,7 +246,10 @@ body {
     overflow: hidden;
 }
 
-.lesson-panel > .section-heading,
+.lesson-results {
+    padding-top: 0;
+}
+
 .lesson-panel > .section-title {
     margin: 0 14px 12px;
 }
@@ -501,7 +497,6 @@ body {
 
     .task-points { grid-column: 1 / -1; }
 
-    .section-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
 }
 
 @media(max-width: 480px) {
@@ -510,7 +505,6 @@ body {
     .student-strip strong { font-size: 17px; }
     .last-sync { font-size: 11px; }
     .overview-heading strong { font-size: 16px; }
-    .lesson-panel > .section-heading { margin-bottom: 10px; }
 }
 </style>
 </head>
@@ -561,11 +555,7 @@ body {
             <div class="review-list" id="parentReviewList"></div>
         </section>
 
-        <section class="panel lesson-panel" aria-labelledby="lessonsTitle">
-            <div class="section-heading">
-                <h2 class="section-title" id="lessonsTitle">Lekcje kursu</h2>
-                <span class="small-note">Wyniki pracy domowej i powtórek</span>
-            </div>
+        <section class="panel lesson-panel lesson-results" aria-label="Wyniki lekcji">
             <div class="lesson-header" aria-hidden="true">
                 <span>Lekcja</span><span>Praca domowa</span><span>Zadania powtórkowe</span><span>Ostatnia praca</span>
             </div>
@@ -593,5 +583,12 @@ body {
 <script src="static/auth.js?v=20260922-signup-badges"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/parent-progress.js?v=20260922-course-view"></script>
+<script>
+fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("nav").innerHTML = html;
+    });
+</script>
 </body>
 </html>

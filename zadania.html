@@ -1645,6 +1645,16 @@ html.task-video-open {
     border-color: #aebcc8;
 }
 
+.action-btn.nav.next-task-btn.ready-next {
+    background: #386b53;
+    border-color: #a8d2b2;
+    box-shadow: 0 0 0 3px rgba(117, 185, 136, 0.2);
+}
+
+.action-btn.nav.next-task-btn.ready-next:hover {
+    background: #2e5d47;
+}
+
 .action-btn.nav:focus-visible {
     outline-color: #d4e3ef;
 }
@@ -1742,6 +1752,56 @@ html.task-video-open {
     display: none;
 }
 
+.input-answer-field.equation-answer-field {
+    grid-column: 1 / -1;
+}
+
+.equation-answer-modes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.equation-mode-btn {
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.equation-mode-btn:hover,
+.equation-mode-btn:focus-visible {
+    border-color: var(--blue-text);
+}
+
+.equation-mode-btn.selected {
+    border-color: var(--blue-text);
+    background: var(--blue-soft);
+    color: var(--blue-text);
+}
+
+.equation-answer-value {
+    display: grid;
+    gap: 5px;
+}
+
+.equation-answer-value .math-input-preview:empty {
+    min-height: 0;
+    padding: 0;
+}
+
+.equation-answer-note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
 .input-answer-grid.math-fields {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1794,6 +1854,7 @@ html.task-video-open {
     .input-answer-grid.math-fields {
         grid-template-columns: 1fr;
     }
+
 }
 
 .input-answer-field label {
@@ -3365,7 +3426,7 @@ footer {
 <script src="static/auth.js?v=20260922-signup-badges"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
-<script src="static/math-answer-input.js?v=20260907"></script>
+<script src="static/math-answer-input.js?v=20260922-equation-input"></script>
 <script src="static/active-work-time.js?v=20260910"></script>
 <script src="static/course-videos.js?v=20260920-mp3"></script>
 <script>
@@ -6152,6 +6213,17 @@ function updateNextTaskButton(){
         button.innerText = shouldShowHomeworkSummary
             ? "Zobacz podsumowanie →"
             : "Kolejne zadanie →";
+        const result = currentTaskAnswered && currentTask ? getSavedResult(currentTask) : "";
+        const score = result === "medium" ? getTaskScore(currentTask) : null;
+        const correct = result === "good" || (
+            result === "medium" && (
+                score?.earnedPoints != null
+                    ? score.earnedPoints >= score.maxPoints
+                    : isClosedTask(currentTask) && (hintUsed || answerShown ||
+                        taskUsedHint(currentTask) || getSavedProgressItem(currentTask)?.answer_shown)
+            )
+        );
+        button.classList.toggle("ready-next", correct);
     }
 }
 
@@ -6858,19 +6930,31 @@ function getCorrectAnswers(task){
     return [String(task.answer)];
 }
 
+function isEquationSolutionInput(task, input){
+    if(input.control === "equation") return true;
+    if(input.control || !Array.isArray(task.inputs) || task.inputs.length !== 1) return false;
+
+    const label = String(input.label || "").trim();
+    if(/^(?:rozwiązania|liczba rozwiązań) równania$/i.test(label)) return true;
+
+    return /^[a-z](?:_\d+)?$/i.test(label) &&
+        Array.isArray(task.tags) && task.tags.some(tag => /równani[ae]|równanie/i.test(tag));
+}
+
 function getInputFields(task){
     if(Array.isArray(task.inputs) && task.inputs.length){
         return task.inputs.map((input, index) => {
             const answers = Array.isArray(input.answers) ? input.answers : [input.answer ?? ""];
+            const equation = isEquationSolutionInput(task, input);
             return {
                 label: input.label || `Odpowiedź ${index + 1}`,
                 prompt: String(input.prompt || "").trim(),
-                options: Array.isArray(input.options) ? input.options : null,
-                control: input.control || "",
+                options: equation ? null : Array.isArray(input.options) ? input.options : null,
+                control: equation ? "equation" : input.control || "",
                 position: input.position || null,
                 inputMode: input.inputMode || "decimal",
                 exact: input.exact === true,
-                math: input.math === true || (!input.options && !input.exact &&
+                math: equation || input.math === true || (!input.options && !input.exact &&
                     typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid)),
                 answers
             };
@@ -6891,6 +6975,7 @@ function getInputPrompt(field){
 
     if(explicitPrompt) return explicitPrompt;
     if(field?.control === "comparison") return "Wybierz właściwy znak: <, = albo >.";
+    if(field?.control === "equation") return "Podaj rozwiązanie równania lub wybierz jego typ.";
     if(field?.options) return "Wybierz rodzaj rozwiązania równania.";
     if(/^[a-z](?:_\d+)?$/i.test(label)) return `Wpisz obliczoną wartość ${label}.`;
     if(/^masa ananasa/i.test(label)) return "Wpisz obliczoną masę ananasa (w kg).";
@@ -6959,6 +7044,24 @@ function normalizeTypedAnswer(value){
         .replace(/,/g, ".")
         .replace(/−/g, "-")
         .replace(/%/g, "");
+}
+
+function splitEquationValues(value){
+    const parts = [];
+    let depth = 0;
+    let start = 0;
+    const text = String(value);
+
+    for(let index = 0; index < text.length; index++){
+        if(text[index] === "(") depth++;
+        if(text[index] === ")") depth--;
+        if(text[index] === ";" && depth === 0){
+            parts.push(text.slice(start, index).trim());
+            start = index + 1;
+        }
+    }
+    parts.push(text.slice(start).trim());
+    return parts;
 }
 
 function parsePracticalNumber(value){
@@ -7170,6 +7273,40 @@ function isTypedAnswerCorrect(value, answers, exact = false){
             && (exact
                 ? expectedNumber === typedNumber
                 : Math.abs(expectedNumber - typedNumber) < 0.0000001);
+    });
+}
+
+function isEquationSpecialAnswer(value){
+    return ["brakrozwiązań", "nieskończeniewielerozwiązań"]
+        .includes(normalizeTypedAnswer(value));
+}
+
+function isInputFieldAnswerCorrect(value, field){
+    if(field.control !== "equation"){
+        return isTypedAnswerCorrect(value, field.answers, field.exact);
+    }
+
+    if(isEquationSpecialAnswer(value)){
+        return field.answers.some(answer => normalizeTypedAnswer(answer) === normalizeTypedAnswer(value));
+    }
+
+    const submitted = splitEquationValues(value);
+    if(submitted.some(part => !part)) return false;
+
+    return field.answers.some(answer => {
+        if(isEquationSpecialAnswer(answer)) return false;
+        const expected = splitEquationValues(answer);
+        if(expected.length !== submitted.length || expected.some(part => !part)) return false;
+
+        const matched = new Set();
+        return submitted.every(part => {
+            const index = expected.findIndex((candidate, candidateIndex) =>
+                !matched.has(candidateIndex) && isTypedAnswerCorrect(part, [candidate], field.exact)
+            );
+            if(index < 0) return false;
+            matched.add(index);
+            return true;
+        });
     });
 }
 
@@ -8253,6 +8390,70 @@ function setComparisonControlResult(index, value, state = "", disabled = false){
     });
 }
 
+function syncEquationAnswerMode(input, value, disabled = false){
+    const wrapper = input.closest(".equation-answer-field");
+    if(!wrapper) return;
+
+    const special = isEquationSpecialAnswer(value);
+    input.value = String(value ?? "");
+    if(!special) wrapper.dataset.numericValue = input.value;
+    wrapper.querySelector(".equation-answer-value").hidden = special;
+    wrapper.querySelectorAll(".equation-mode-btn").forEach(button => {
+        const selected = button.dataset.value === "number"
+            ? !special
+            : special && normalizeTypedAnswer(button.dataset.value) === normalizeTypedAnswer(input.value);
+        button.classList.toggle("selected", selected);
+        button.setAttribute("aria-pressed", String(selected));
+        button.disabled = disabled;
+    });
+    if(typeof DeltaSigmaMathInput !== "undefined" && !special) DeltaSigmaMathInput.refresh(input);
+}
+
+function setupEquationAnswerControl(wrapper, label, input){
+    const modes = document.createElement("div");
+    const valueBox = document.createElement("div");
+    const note = document.createElement("p");
+
+    wrapper.classList.add("equation-answer-field");
+    wrapper.dataset.numericValue = "";
+    modes.className = "equation-answer-modes";
+    modes.setAttribute("role", "group");
+    modes.setAttribute("aria-label", "Rodzaj rozwiązania równania");
+    valueBox.className = "equation-answer-value";
+    note.className = "equation-answer-note";
+    note.textContent = "Jeśli rozwiązań jest więcej niż jedno, oddziel liczby średnikiem, np. 2; 5.";
+
+    for(const [value, text] of [
+        ["number", "Liczba lub liczby"],
+        ["brak rozwiązań", "Sprzeczne"],
+        ["nieskończenie wiele rozwiązań", "Nieoznaczone"]
+    ]){
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "equation-mode-btn";
+        button.dataset.value = value;
+        button.textContent = text;
+        button.onclick = () => {
+            const nextValue = value === "number" ? wrapper.dataset.numericValue || "" : value;
+            syncEquationAnswerMode(input, nextValue);
+            if(value === "number") input.focus();
+        };
+        modes.appendChild(button);
+    }
+
+    input.type = "text";
+    input.inputMode = "text";
+    input.placeholder = "np. 2; 5";
+    input.addEventListener("input", () => { wrapper.dataset.numericValue = input.value; });
+    valueBox.appendChild(input);
+    if(typeof DeltaSigmaMathInput !== "undefined"){
+        DeltaSigmaMathInput.attach(input, valueBox, {multiple: true});
+    }
+    valueBox.appendChild(note);
+    wrapper.append(label, modes, valueBox);
+    syncEquationAnswerMode(input, "");
+}
+
 function setupInputTask(mcq){
     const form = document.createElement("form");
     const grid = document.createElement("div");
@@ -8274,7 +8475,10 @@ function setupInputTask(mcq){
         label.htmlFor = inputId;
         label.innerText = getInputPrompt(field);
         input.id = inputId;
-        if(useComparisonOverlay){
+        if(field.control === "equation"){
+            grid.classList.add("math-fields");
+            setupEquationAnswerControl(wrapper, label, input);
+        } else if(useComparisonOverlay){
             wrapper.classList.add("comparison-answer-field");
             input.type = "hidden";
             setupComparisonControl(comparisonOverlay, field, index, input);
@@ -8298,11 +8502,13 @@ function setupInputTask(mcq){
         input.autocomplete = "off";
         input.dataset.index = String(index);
 
-        wrapper.appendChild(label);
-        wrapper.appendChild(input);
-        if(field.math && !field.options && typeof DeltaSigmaMathInput !== "undefined"){
-            grid.classList.add("math-fields");
-            DeltaSigmaMathInput.attach(input, wrapper);
+        if(field.control !== "equation"){
+            wrapper.appendChild(label);
+            wrapper.appendChild(input);
+            if(field.math && !field.options && typeof DeltaSigmaMathInput !== "undefined"){
+                grid.classList.add("math-fields");
+                DeltaSigmaMathInput.attach(input, wrapper);
+            }
         }
         grid.appendChild(wrapper);
     });
@@ -8311,7 +8517,7 @@ function setupInputTask(mcq){
 
     button.type = "submit";
     button.className = "action-btn answer input-check-btn";
-    button.innerText = "Sprawdź";
+    button.innerText = "Zatwierdź odpowiedź";
 
     form.appendChild(grid);
     form.appendChild(button);
@@ -8919,7 +9125,11 @@ function revealInputAnswers(){
             const index = Number(input.dataset.index);
             const expected = fields[index]?.answers?.[0] || "";
 
-            input.value = expected;
+            if(fields[index]?.control === "equation"){
+                syncEquationAnswerMode(input, expected, true);
+            } else {
+                input.value = expected;
+            }
             input.classList.add("correct");
             input.disabled = true;
             setComparisonControlResult(index, expected, "correct", true);
@@ -8941,9 +9151,13 @@ function restoreInputAnswerState(result){
             const index = Number(input.dataset.index);
             const field = fields[index];
             const value = values[index] || (result === "bad" ? "" : field?.answers?.[0] || "");
-            const fieldCorrect = Boolean(value && field && isTypedAnswerCorrect(value, field.answers, field.exact));
+            const fieldCorrect = Boolean(value && field && isInputFieldAnswerCorrect(value, field));
 
-            input.value = value;
+            if(field?.control === "equation"){
+                syncEquationAnswerMode(input, value, true);
+            } else {
+                input.value = value;
+            }
             input.classList.toggle("correct", fieldCorrect);
             input.classList.toggle("wrong", Boolean(value && !fieldCorrect));
             input.disabled = true;
@@ -8975,6 +9189,7 @@ function checkInputAnswer(form){
     }
     const validExpressions = inputs.map(input => {
         const field = fields[Number(input.dataset.index)];
+        if(field?.control === "equation" && isEquationSpecialAnswer(input.value)) return true;
         return !field?.math || typeof DeltaSigmaMathInput === "undefined" || DeltaSigmaMathInput.validate(input);
     });
     if(validExpressions.includes(false)) return;
@@ -8983,7 +9198,7 @@ function checkInputAnswer(form){
     inputs.forEach(input => {
         const index = Number(input.dataset.index);
         const field = fields[index];
-        const fieldCorrect = field && isTypedAnswerCorrect(input.value, field.answers, field.exact);
+        const fieldCorrect = field && isInputFieldAnswerCorrect(input.value, field);
 
         input.classList.toggle("correct", Boolean(fieldCorrect));
         input.classList.toggle("wrong", !fieldCorrect);

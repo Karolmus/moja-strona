@@ -39,6 +39,11 @@ assert.equal(logic.examSourceAllowed('zadania/eo/2025/maj/exam.json', 'matura_po
 assert.equal(logic.examSourceAllowed('zadania/mp/../secret.json', 'matura_podstawowa'), false);
 
 assert.match(html, /id="parentLessons"/);
+assert.match(html, /<div id="nav"><\/div>/);
+assert.match(html, /fetch\("nav\.html\?v=20260827-shared", \{ cache: "no-cache" \}\)/);
+assert.match(html, /document\.getElementById\("nav"\)\.innerHTML = html/);
+assert.match(html, /class="panel lesson-panel lesson-results" aria-label="Wyniki lekcji"/);
+assert.doesNotMatch(html, /Lekcje kursu|Wyniki pracy domowej i powtórek/);
 assert.match(html, /id="parentReviewSection"/);
 assert.match(html, /id="parentExamsSection"/);
 assert.doesNotMatch(html, /Organizacja i płatności|Pytania do nauczyciela|Ostatnie zadania/);

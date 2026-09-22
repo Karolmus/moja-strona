@@ -2,11 +2,14 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
-const names = ['getInputFields', 'getInputPrompt', 'normalizeTypedAnswer', 'isTypedAnswerCorrect',
+const names = ['isEquationSolutionInput', 'getInputFields', 'getInputPrompt', 'normalizeTypedAnswer',
+  'splitEquationValues',
+  'isTypedAnswerCorrect', 'isEquationSpecialAnswer', 'isInputFieldAnswerCorrect',
   'isComparisonField', 'setupComparisonControl', 'setComparisonControlResult',
   'formatInputAnswer', 'formatSubmittedInputAnswer', 'showInputCorrection',
   'inputAnswerValuesFromText', 'getSubmittedInputAnswerValues', 'restoreInputAnswerState',
-  'setupInputTask', 'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask'];
+  'syncEquationAnswerMode', 'setupEquationAnswerControl', 'setupInputTask',
+  'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask'];
 function source(name) {
   const start = html.indexOf(`function ${name}(`);
   assert(start >= 0);
@@ -15,7 +18,7 @@ function source(name) {
 class Element {
   constructor(tag) {
     this.tagName = tag; this.children = []; this.dataset = {}; this.value = '';
-    this.attributes = {}; this.style = {};
+    this.attributes = {}; this.style = {}; this.listeners = {};
     this.classes = new Set();
     this.classList = {
       add: (...values) => values.forEach(value => this.classes.add(value)),
@@ -23,11 +26,28 @@ class Element {
       toggle: (value, state) => state ? this.classes.add(value) : this.classes.delete(value),
     };
   }
-  appendChild(child) {this.children.push(child);}
+  appendChild(child) {child.parentElement = this; this.children.push(child); return child;}
+  append(...children) {children.forEach(child => this.appendChild(child));}
   setAttribute(name, value) {this.attributes[name] = String(value);}
+  addEventListener(name, listener) {(this.listeners[name] ||= []).push(listener);}
+  dispatchEvent(event) {(this.listeners[event.type] || []).forEach(listener => listener(event));}
+  focus() {}
+  closest(selector) {
+    for(let node = this; node; node = node.parentElement) {
+      if(selector.startsWith('.') && (node.classes.has(selector.slice(1)) ||
+        String(node.className || '').split(/\s+/).includes(selector.slice(1)))) return node;
+    }
+    return null;
+  }
+  querySelector(selector) {return this.querySelectorAll(selector)[0] || null;}
   querySelectorAll(selector) {
     const tags = selector.split(',').map(value => value.trim().split(' ').at(-1));
-    return this.children.flatMap(child => [...(tags.includes(child.tagName) ? [child] : []), ...child.querySelectorAll(selector)]);
+    return this.children.flatMap(child => {
+      const matches = tags.some(tag => tag.startsWith('.')
+        ? child.classes.has(tag.slice(1)) || String(child.className || '').split(/\s+/).includes(tag.slice(1))
+        : tag === child.tagName);
+      return [...(matches ? [child] : []), ...child.querySelectorAll(selector)];
+    });
   }
   reportValidity() {this.validationReported = true; return false;}
 }
@@ -156,10 +176,53 @@ assert(!ctx.isTypedAnswerCorrect('0,333', ctx.getInputFields(task(5, 'zd4.png'))
 assert(ctx.isTypedAnswerCorrect('-3 1/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
 assert(ctx.isTypedAnswerCorrect('-sqrt(100)/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
 assert(!ctx.isTypedAnswerCorrect('10/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
-assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd2.png'))[0]), 'Wpisz obliczoną wartość x.');
-assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd8.png'))[0]), 'Wybierz rodzaj rozwiązania równania.');
+assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd2.png'))[0]), 'Podaj rozwiązanie równania lub wybierz jego typ.');
+assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd8.png'))[0]), 'Podaj rozwiązanie równania lub wybierz jego typ.');
 assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, '11.png'))[0]), 'Wpisz obliczoną masę ananasa (w kg).');
 assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(6, 'zd7.png'))[0]), 'Wpisz wyrażenie opisujące końcową objętość benzyny.');
 const promptRender = render(task(5, 'zd2.png'));
-assert.equal(promptRender.form.children[0].children[0].children[0].innerText, 'Wpisz obliczoną wartość x.');
+assert.equal(promptRender.form.children[0].children[0].children[0].innerText, 'Podaj rozwiązanie równania lub wybierz jego typ.');
+assert.equal(promptRender.form.children[1].innerText, 'Zatwierdź odpowiedź');
+const numeric = render(task(5, 'zd2.png'));
+const numericWrapper = numeric.form.children[0].children[0];
+const numericModes = numericWrapper.children[1].children;
+assert.deepEqual(numericModes.map(button => button.textContent), ['Liczba lub liczby', 'Sprzeczne', 'Nieoznaczone']);
+assert.match(numericWrapper.children[2].children.at(-1).textContent, /oddziel liczby średnikiem/);
+numeric.inputs[0].value = '2';
+numeric.inputs[0].dispatchEvent({type:'input'});
+numericModes[1].onclick();
+assert.equal(numeric.inputs[0].value, 'brak rozwiązań');
+assert(numericWrapper.children[2].hidden);
+numericModes[0].onclick();
+assert.equal(numeric.inputs[0].value, '2', 'Switching back restores the typed result');
+assert(!numericWrapper.children[2].hidden);
+const indefinite = render(task(5, 'zd8.png'));
+indefinite.form.children[0].children[0].children[1].children[2].onclick();
+assert.equal(indefinite.inputs[0].value, 'nieskończenie wiele rozwiązań');
+ctx.checkInputAnswer(indefinite.form);
+assert.equal(result.at(-1).status, 'good');
+ctx.saved = {submitted_answer:'Rozwiązania równania: nieskończenie wiele rozwiązań'};
+const revisited = render(task(5, 'zd8.png'));
+ctx.restoreInputAnswerState('good');
+assert(revisited.form.children[0].children[0].children[2].hidden);
+assert(revisited.form.children[0].children[0].children[1].children[2].classes.has('selected'));
+assert(revisited.form.children[0].children[0].children[1].children.every(button => button.disabled));
+ctx.syncEquationAnswerMode(revisited.inputs[0], 'Brak rozwiązań', true);
+assert(revisited.form.children[0].children[0].children[1].children[1].classes.has('selected'));
+ctx.syncEquationAnswerMode(revisited.inputs[0], 0, true);
+assert.equal(revisited.inputs[0].value, '0');
+assert(revisited.form.children[0].children[0].children[1].children[0].classes.has('selected'));
+ctx.saved = null;
+const multiRoot = {type:'input', tags:['równania'], inputs:[{label:'x', answer:'1; sqrt(4)'}]};
+const multiField = ctx.getInputFields(multiRoot)[0];
+assert(ctx.isInputFieldAnswerCorrect('2; 1', multiField), 'Multiple roots are order independent');
+assert(ctx.isInputFieldAnswerCorrect('1; √4', multiField));
+assert(!ctx.isInputFieldAnswerCorrect('1; 3', multiField));
+assert(!ctx.isInputFieldAnswerCorrect('1; 2; 3', multiField));
+assert(!ctx.isInputFieldAnswerCorrect('1;', multiField));
+assert(!ctx.isInputFieldAnswerCorrect('brak rozwiązań', multiField));
+assert.deepEqual(Array.from(ctx.splitEquationValues('root(256;4); 2')), ['root(256;4)', '2']);
+assert.equal(ctx.getInputFields(task(1, 'zd_7.1.png'))[0].control, 'equation');
+assert.equal(ctx.getInputFields(task(6, 'zd10.png'))[0].control, 'equation');
+assert.equal(ctx.getInputFields(task(6, '10.png'))[0].control, '');
 console.log(`PASS: ${cases.length} tasks, selectors, math input, validation, locking, decimal separators and strict rounding`);
