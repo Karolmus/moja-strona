@@ -14,7 +14,7 @@
 <title>Panel Admina</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260820-mobile-call-footer">
+<link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
 
 <style>
 :root {
@@ -95,7 +95,9 @@ body {
 }
 
 .admin-tabs {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
     gap: 8px;
     margin-bottom: 14px;
     padding: 4px;
@@ -1115,8 +1117,8 @@ th {
 
 .exam-history-table th,
 .exam-history-table td,
-.course-history-table th,
-.course-history-table td {
+.course-history-table > thead > tr > th,
+.course-history-table > tbody > tr > td {
     border-bottom: 1px solid var(--line);
     padding: 7px 8px;
     text-align: left;
@@ -1125,14 +1127,76 @@ th {
 }
 
 .exam-history-table th,
-.course-history-table th {
+.course-history-table > thead > tr > th {
     color: var(--muted);
     font-size: 11px;
 }
 
 .exam-history-table tr:last-child td,
-.course-history-table tr:last-child td {
+.course-history-table > tbody > tr:last-child > td {
     border-bottom: 0;
+}
+
+.course-history-table {
+    min-width: 760px;
+}
+
+.course-history-table > tbody > .course-history-row > td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.course-history-row {
+    cursor: pointer;
+}
+
+.course-history-row:hover td,
+.course-history-row[aria-expanded="true"] td {
+    background: #f5f9fd;
+}
+
+.course-history-row:focus-visible {
+    outline: 2px solid #24527a;
+    outline-offset: -2px;
+}
+
+.course-history-detail > td {
+    background: #f8fbff;
+    padding: 8px;
+}
+
+.course-history-detail .source-detail {
+    border: 0;
+    padding: 0;
+}
+
+.course-part-summary {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.course-part-summary strong {
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.course-part-summary .source-card-meta {
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+.course-part-summary .progress-segments {
+    width: 100%;
+    height: 6px;
+}
+
+.source-task-table .source-task-part-row th {
+    position: static;
+    background: #edf3f9;
+    color: var(--navy);
+    font-size: 11px;
 }
 
 .rasch-chart {
@@ -1526,6 +1590,10 @@ th {
 
 .message-card.parent-message {
     border-left: 4px solid #5d8fbd;
+}
+
+.message-card.failed-signup {
+    border-left: 4px solid #d49a35;
 }
 
 .message-card.deleted {
@@ -2015,6 +2083,7 @@ footer {
     <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">
         <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
         <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge"></span></button>
+        <button class="admin-tab-btn" type="button" data-admin-tab="messages-failed">Nieudane próby zapisania się <span id="failedSignupBadge"></span></button>
         <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
         <button class="admin-tab-btn" type="button" data-admin-tab="prices">Ceny</button>
         <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie</button>
@@ -2254,7 +2323,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260913-remember"></script>
+<script src="static/auth.js?v=20260922-signup-badges"></script>
 <script src="static/course-videos.js?v=20260920-mp3"></script>
 <script>
 const levelLabels = {
@@ -2385,6 +2454,7 @@ const pricesTab = document.getElementById("pricesTab");
 const analyticsTab = document.getElementById("analyticsTab");
 const messageList = document.getElementById("messageList");
 const prospectMessageBadge = document.getElementById("prospectMessageBadge");
+const failedSignupBadge = document.getElementById("failedSignupBadge");
 const parentMessageBadge = document.getElementById("parentMessageBadge");
 const messagePanelTitle = document.getElementById("messagePanelTitle");
 const messagePanelSubtitle = document.getElementById("messagePanelSubtitle");
@@ -2421,6 +2491,7 @@ let currentMessageOrigin = "prospect";
 let messageCounts = {
     all: { inbox: 0, trash: 0, unread: 0 },
     prospect: { inbox: 0, trash: 0, unread: 0 },
+    failed_signup: { inbox: 0, trash: 0, unread: 0 },
     parent: { inbox: 0, trash: 0, unread: 0 }
 };
 let currentStudentSort = "created_desc";
@@ -3407,13 +3478,15 @@ async function saveSitePrices(event){
 }
 
 function setAdminTab(tab){
-    const showMessages = tab === "messages-prospect" || tab === "messages-parent";
+    const showMessages = ["messages-prospect", "messages-failed", "messages-parent"].includes(tab);
     const showPrices = tab === "prices";
     const showAnalytics = tab === "analytics";
     const showStudents = tab === "students";
 
     if(tab === "messages-parent"){
         currentMessageOrigin = "parent";
+    } else if(tab === "messages-failed"){
+        currentMessageOrigin = "failed_signup";
     } else if(tab === "messages-prospect"){
         currentMessageOrigin = "prospect";
     }
@@ -3429,11 +3502,16 @@ function setAdminTab(tab){
 
     if(showMessages){
         const parentMessages = currentMessageOrigin === "parent";
+        const failedSignups = currentMessageOrigin === "failed_signup";
 
-        messagePanelTitle.innerText = parentMessages ? "Wiadomości od rodziców" : "Nowe zapisy";
+        messagePanelTitle.innerText = parentMessages
+            ? "Wiadomości od rodziców"
+            : failedSignups ? "Nieudane próby zapisania się" : "Nowe zapisy";
         messagePanelSubtitle.innerText = parentMessages
             ? "Pytania przesłane z paneli rodziców obecnych uczniów."
-            : "Wiadomości od osób zainteresowanych zapisaniem się na kurs.";
+            : failedSignups
+                ? "Próby wysłania formularza z brakującymi danymi."
+                : "Wiadomości od osób zainteresowanych zapisaniem się na kurs.";
         loadMessages(currentMailbox);
     }
 
@@ -3684,11 +3762,14 @@ async function loadAnalytics(force = false){
 function updateMailboxCounts(){
     const currentCounts = messageCounts[currentMessageOrigin] || {};
     const prospectUnread = Number(messageCounts.prospect?.unread || 0);
+    const failedUnread = Number(messageCounts.failed_signup?.unread || 0);
     const parentUnread = Number(messageCounts.parent?.unread || 0);
     const inbox = Number(currentCounts.inbox || 0);
     const trash = Number(currentCounts.trash || 0);
 
     prospectMessageBadge.innerText = prospectUnread ? String(prospectUnread) : "";
+    window.setAdminProspectBadge?.(prospectUnread);
+    failedSignupBadge.innerText = failedUnread ? String(failedUnread) : "";
     parentMessageBadge.innerText = parentUnread ? String(parentUnread) : "";
     inboxCount.innerText = inbox ? `(${inbox})` : "";
     trashCount.innerText = trash ? `(${trash})` : "";
@@ -3716,7 +3797,9 @@ function renderMessages(){
             ? "Kosz jest pusty."
             : currentMessageOrigin === "parent"
                 ? "Brak wiadomości od rodziców uczniów."
-                : "Brak wiadomości dotyczących nowych zapisów.";
+                : currentMessageOrigin === "failed_signup"
+                    ? "Brak nieudanych prób zapisania się."
+                    : "Brak wiadomości dotyczących nowych zapisów.";
         messageList.appendChild(empty);
         return;
     }
@@ -3744,6 +3827,7 @@ function renderMessages(){
 
         card.className = message.is_read ? "message-card" : "message-card unread";
         card.classList.toggle("parent-message", message.origin === "parent");
+        card.classList.toggle("failed-signup", message.origin === "failed_signup");
         card.classList.toggle("deleted", currentMailbox === "trash");
         main.className = "message-main";
         contact.className = "message-contact";
@@ -3752,8 +3836,10 @@ function renderMessages(){
         body.className = "message-body";
         actions.className = "message-actions";
 
-        contact.innerText = message.contact;
-        origin.innerText = message.origin === "parent" ? "Rodzic ucznia" : "Nowy zapis";
+        contact.innerText = message.contact || "Nie podano numeru telefonu";
+        origin.innerText = message.origin === "parent"
+            ? "Rodzic ucznia"
+            : message.origin === "failed_signup" ? "Nieudana próba" : "Nowy zapis";
         meta.innerText = `${formatDate(message.created_at)}${term}${reservation}${deleted}`;
         body.innerText = message.message;
 
@@ -4480,6 +4566,46 @@ function renderProgressSegments(group){
     return track;
 }
 
+function coursePartProgress(group, coursePart){
+    const tasks = group.tasks.filter(task => task.coursePart === coursePart);
+    const attemptedTasks = tasks.filter(task => task.latestProgress);
+    const good = attemptedTasks.filter(task => task.latestProgress.result === "good").length;
+    const medium = attemptedTasks.filter(task => task.latestProgress.result === "medium").length;
+    const bad = attemptedTasks.filter(task => task.latestProgress.result === "bad").length;
+
+    return {
+        tasks,
+        total: tasks.length,
+        attempted: attemptedTasks.length,
+        good,
+        medium,
+        bad,
+        reviewRequested: tasks.filter(task => task.reviewRequested).length,
+        correctPercent: attemptedTasks.length ? Math.round(good / attemptedTasks.length * 1000) / 10 : null
+    };
+}
+
+function renderCoursePartSummary(group, coursePart){
+    const part = coursePartProgress(group, coursePart);
+    const summary = document.createElement("div");
+    const result = document.createElement("strong");
+    const counts = document.createElement("span");
+
+    summary.className = "course-part-summary";
+    counts.className = "source-card-meta";
+    result.textContent = part.total
+        ? `${part.attempted}/${part.total} zadań · ${part.correctPercent === null ? "-" : `${formatPoints(part.correctPercent)}%`} poprawnych`
+        : "Brak zadań";
+    counts.textContent = `${part.good} dobrze · ${part.medium} z pomocą · ${part.bad} źle` +
+        (part.reviewRequested ? ` · ${part.reviewRequested} do omówienia` : "");
+    summary.appendChild(result);
+    if(part.total){
+        summary.append(counts, renderProgressSegments(part));
+    }
+
+    return summary;
+}
+
 function renderRaschChart(examGroups){
     const values = examGroups
         .map(group => ({
@@ -4611,7 +4737,7 @@ function renderExamHistory(examGroups){
     return section;
 }
 
-function renderCourseHistory(courseGroups){
+function renderCourseHistory(courseGroups, onSelect){
     const section = document.createElement("div");
     const heading = document.createElement("h4");
     const tableWrap = document.createElement("div");
@@ -4621,14 +4747,13 @@ function renderCourseHistory(courseGroups){
     section.className = "source-progress-section";
     tableWrap.className = "course-history-table-wrap";
     table.className = "course-history-table";
-    heading.innerText = "Kurs - praca domowa";
+    heading.innerText = "Kurs - praca domowa i powtórki";
     table.innerHTML = `
         <thead>
             <tr>
                 <th>Lekcja</th>
-                <th>Postęp</th>
-                <th>Wyniki zadań</th>
-                <th>Poprawne odpowiedzi</th>
+                <th>Praca domowa</th>
+                <th>Zadania powtórkowe</th>
                 <th>Ostatnia praca</th>
             </tr>
         </thead>
@@ -4641,7 +4766,7 @@ function renderCourseHistory(courseGroups){
         const row = document.createElement("tr");
         const cell = document.createElement("td");
 
-        cell.colSpan = 5;
+        cell.colSpan = 4;
         cell.className = "source-detail-empty";
         cell.innerText = "Uczeń nie rozpoczął jeszcze kursu.";
         row.appendChild(cell);
@@ -4651,25 +4776,45 @@ function renderCourseHistory(courseGroups){
     sorted.forEach(group => {
         const row = document.createElement("tr");
         const lesson = document.createElement("td");
-        const progress = document.createElement("td");
-        const segments = document.createElement("td");
-        const correct = document.createElement("td");
+        const homework = document.createElement("td");
+        const revision = document.createElement("td");
         const date = document.createElement("td");
+        const expanded = activeSourceDetailKey === group.key;
 
         lesson.innerHTML = `<strong>${group.label}</strong><br><span class="source-card-meta">${group.detail || ""}</span>`;
-        progress.innerHTML = `<span class="result-pill ${group.completed ? "good" : "missing"}">${group.completed ? "Ukończona" : `${group.attempted}/${group.total}`}</span>`;
-        segments.appendChild(renderProgressSegments(group));
-        correct.innerHTML = group.correctPercent === null
-            ? `<span class="source-card-meta">-</span>`
-            : `<strong>${formatPoints(group.correctPercent)}%</strong>`;
+        homework.appendChild(renderCoursePartSummary(group, "praca_domowa"));
+        revision.appendChild(renderCoursePartSummary(group, "zadania_powtorkowe"));
         date.innerText = formatDate(group.lastActivity);
 
+        row.className = "course-history-row";
+        row.dataset.sourceKey = group.key;
+        row.tabIndex = 0;
+        row.setAttribute("role", "button");
+        row.setAttribute("aria-expanded", String(expanded));
+        row.setAttribute("aria-label", `${expanded ? "Ukryj" : "Pokaż"} zadania: ${group.label} ${group.detail || ""}`);
+        row.addEventListener("click", () => onSelect(group.key));
+        row.addEventListener("keydown", event => {
+            if(event.key === "Enter" || event.key === " "){
+                event.preventDefault();
+                onSelect(group.key, true);
+            }
+        });
         row.appendChild(lesson);
-        row.appendChild(progress);
-        row.appendChild(segments);
-        row.appendChild(correct);
+        row.appendChild(homework);
+        row.appendChild(revision);
         row.appendChild(date);
         tbody.appendChild(row);
+
+        if(expanded){
+            const detailRow = document.createElement("tr");
+            const detailCell = document.createElement("td");
+
+            detailRow.className = "course-history-detail";
+            detailCell.colSpan = 4;
+            detailCell.appendChild(renderSourceDetail(group));
+            detailRow.appendChild(detailCell);
+            tbody.appendChild(detailRow);
+        }
     });
 
     tableWrap.appendChild(table);
@@ -4815,7 +4960,22 @@ function renderSourceDetail(group){
 
     const tbody = table.querySelector("tbody");
 
+    let previousCoursePart = "";
     group.tasks.forEach(task => {
+        if(isCourse && task.coursePart !== previousCoursePart){
+            const partRow = document.createElement("tr");
+            const partHeading = document.createElement("th");
+
+            partRow.className = "source-task-part-row";
+            partHeading.colSpan = 4;
+            partHeading.scope = "colgroup";
+            partHeading.textContent = task.coursePart === "zadania_powtorkowe"
+                ? "Zadania powtórkowe"
+                : "Praca domowa";
+            partRow.appendChild(partHeading);
+            tbody.appendChild(partRow);
+            previousCoursePart = task.coursePart;
+        }
         const progressItem = task.latestProgress;
         const score = inferredTaskScore(progressItem, task);
         const percent = taskCompletionPercent(task);
@@ -4917,8 +5077,9 @@ function renderSourceDetail(group){
         tbody.appendChild(previewRow);
     });
 
-    detail.appendChild(heading);
-    detail.appendChild(summary);
+    if(!isCourse){
+        detail.append(heading, summary);
+    }
 
     if(rasch?.unavailable){
         const note = document.createElement("div");
@@ -4944,12 +5105,8 @@ function renderSourceProgress(progress, student, reviewItems = []){
     const groups = sourceProgressGroups(progress, student, reviewItems);
     const examGroups = groups.filter(group => group.category === "egzaminy");
     const courseGroups = groups.filter(group => group.category === "kurs");
-    const heading = document.createElement("h4");
-    const grid = document.createElement("div");
 
     sourceProgress.innerHTML = "";
-    heading.innerText = "Szczegóły zadań";
-    grid.className = "source-card-grid";
 
     if(!groups.length){
         const empty = document.createElement("div");
@@ -4960,15 +5117,32 @@ function renderSourceProgress(progress, student, reviewItems = []){
         return;
     }
 
-    if(examGroups.length) sourceProgress.appendChild(renderExamHistory(examGroups));
-    if(courseGroups.length) sourceProgress.appendChild(renderCourseHistory(courseGroups));
-    sourceProgress.appendChild(heading);
-
     if(activeSourceDetailKey && !groups.some(group => group.key === activeSourceDetailKey)){
         activeSourceDetailKey = "";
     }
 
-    groups.forEach(group => {
+    const selectSource = (key, restoreFocus = false) => {
+        activeSourceDetailKey = activeSourceDetailKey === key ? "" : key;
+        renderSourceProgress(progress, student, reviewItems);
+        if(restoreFocus){
+            [...sourceProgress.querySelectorAll(".course-history-row")]
+                .find(row => row.dataset.sourceKey === key)?.focus({preventScroll: true});
+        }
+    };
+
+    if(examGroups.length) sourceProgress.appendChild(renderExamHistory(examGroups));
+    if(courseGroups.length) sourceProgress.appendChild(renderCourseHistory(courseGroups, selectSource));
+
+    if(!examGroups.length) return;
+
+    const heading = document.createElement("h4");
+    const grid = document.createElement("div");
+
+    heading.innerText = "Szczegóły egzaminów";
+    grid.className = "source-card-grid";
+    sourceProgress.appendChild(heading);
+
+    examGroups.forEach(group => {
         const card = document.createElement("button");
         const head = document.createElement("div");
         const titleWrap = document.createElement("div");
@@ -4981,7 +5155,7 @@ function renderSourceProgress(progress, student, reviewItems = []){
         const rasch = raschEstimateForGroup(group);
 
         card.type = "button";
-        card.className = `source-card ${group.category === "egzaminy" ? "exam" : "course"}`;
+        card.className = "source-card exam";
         card.classList.toggle("active", activeSourceDetailKey === group.key);
         head.className = "source-card-head";
         titleWrap.className = "source-card-title";
@@ -4990,11 +5164,10 @@ function renderSourceProgress(progress, student, reviewItems = []){
         meta.className = "source-card-meta";
 
         title.innerText = group.label;
-        detail.innerText = group.detail || (group.category === "egzaminy" ? "Arkusz" : "Lekcja");
+        detail.innerText = group.detail || "Arkusz";
         status.innerText = group.completed ? "Ukończone" : "Rozpoczęte";
         progressFill.style.width = `${group.percent}%`;
         meta.innerText = `${group.attempted}/${group.total} zadań • dobrze ${group.good}, z pomocą ${group.medium}, źle ${group.bad}` +
-            (group.category === "kurs" && group.correctPercent !== null ? ` • poprawne ${formatPoints(group.correctPercent)}%` : "") +
             (group.reviewRequested ? ` • do omówienia ${group.reviewRequested}` : "");
 
         titleWrap.appendChild(title);
@@ -5014,17 +5187,14 @@ function renderSourceProgress(progress, student, reviewItems = []){
             card.appendChild(chip);
         }
 
-        card.addEventListener("click", () => {
-            activeSourceDetailKey = activeSourceDetailKey === group.key ? "" : group.key;
-            renderSourceProgress(progress, student);
-        });
+        card.addEventListener("click", () => selectSource(group.key));
 
         grid.appendChild(card);
     });
 
     sourceProgress.appendChild(grid);
 
-    const activeGroup = groups.find(group => group.key === activeSourceDetailKey);
+    const activeGroup = examGroups.find(group => group.key === activeSourceDetailKey);
 
     if(activeGroup){
         sourceProgress.appendChild(renderSourceDetail(activeGroup));

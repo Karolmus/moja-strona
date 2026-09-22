@@ -13,6 +13,13 @@ assert.equal([...html.matchAll(/class="booking-step-content(?: signup-contact-fi
 assert.deepEqual([...html.matchAll(/class="booking-step-number"[^>]*>(\d)<\/span>/g)].map(match => match[1]), ['1', '2', '3', '4', '5']);
 assert(!html.includes('class="booking-step-description"><br>'), 'Spacing uses CSS, not empty descriptions');
 assert.match(html, /<img class="booking-logo"[^>]*src="img\/logo3.png"/);
+for (const count of [1, 2, 3]) {
+  assert.match(html, new RegExp(`name="sessions_per_week" value="${count}"`));
+}
+assert.match(html, /<dt>Liczba zajęć w tygodniu:<\/dt><dd id="signupSummaryFrequency">/);
+assert.match(html, /document\.getElementById\("signupSummaryFrequency"\)\.textContent = frequency/);
+assert.match(html, /`Liczba zajęć w tygodniu: \$\{sessionsPerWeek\}`/);
+assert(!html.includes('value="1 zajęcie tygodniowo"'));
 for (const id of ['schedule', 'scheduleMobile', 'contactForm', 'signupConfirmation']) {
   assert(html.includes(`id="${id}"`), id);
 }

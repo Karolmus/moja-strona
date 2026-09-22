@@ -4,9 +4,13 @@
     const TOKEN_KEY = "deltaSigmaAuthToken";
     const PRIVACY_POLICY_ACCEPTED_PREFIX = "deltaSigmaPrivacyPolicyAccepted:";
     const AUTH_REFRESH_TTL_MS = 30000;
+    const BADGE_REFRESH_TTL_MS = 30000;
     let authRefreshPromise = null;
     let cachedAuthUser = null;
     let cachedAuthAt = 0;
+    let prospectUnreadCount = null;
+    let prospectBadgeAt = 0;
+    let prospectBadgePromise = null;
 
     window.DS_API_BASE_URL = (
         window.DS_API_BASE_URL ||
@@ -25,6 +29,9 @@
             storage.setItem(TOKEN_KEY, token);
             cachedAuthUser = null;
             cachedAuthAt = 0;
+            prospectUnreadCount = null;
+            prospectBadgeAt = 0;
+            prospectBadgePromise = null;
         }
     };
 
@@ -33,6 +40,49 @@
         window.localStorage.removeItem(TOKEN_KEY);
         cachedAuthUser = null;
         cachedAuthAt = 0;
+        prospectUnreadCount = null;
+        prospectBadgeAt = 0;
+        prospectBadgePromise = null;
+    };
+
+    function applyProspectBadge(){
+        const badge = document.querySelector(".main-nav [data-auth-prospect-badge]");
+
+        if(!badge) return;
+        const count = Number(prospectUnreadCount || 0);
+
+        badge.hidden = !count;
+        badge.textContent = count ? String(count) : "";
+        badge.setAttribute("aria-label", count ? `Nowe zapisy: ${count}` : "");
+    }
+
+    window.setAdminProspectBadge = function(count){
+        prospectUnreadCount = Math.max(0, Number(count) || 0);
+        prospectBadgeAt = Date.now();
+        applyProspectBadge();
+        const adminTabBadge = document.getElementById("prospectMessageBadge");
+        if(adminTabBadge){
+            adminTabBadge.textContent = prospectUnreadCount ? String(prospectUnreadCount) : "";
+        }
+    };
+
+    window.refreshAdminProspectBadge = async function(){
+        if(Date.now() - prospectBadgeAt < BADGE_REFRESH_TTL_MS) return;
+        if(prospectBadgePromise) return prospectBadgePromise;
+        const token = window.getAuthToken();
+
+        const request = window.apiFetch("/api/admin/contact-message-counts")
+            .then(data => {
+                if(token === window.getAuthToken()){
+                    window.setAdminProspectBadge(data.counts?.prospect?.unread);
+                }
+            })
+            .catch(() => {});
+        prospectBadgePromise = request;
+        request.finally(() => {
+            if(prospectBadgePromise === request) prospectBadgePromise = null;
+        });
+        return prospectBadgePromise;
     };
 
     window.logoutCurrentUser = async function(){
@@ -180,6 +230,15 @@
 
             panelLink.hidden = !isAuthenticated || (!isAdmin && !isStudent);
             panelLink.innerText = isAdmin ? "Mój panel" : "Mój profil";
+            if(isAdmin){
+                const badge = document.createElement("span");
+
+                badge.dataset.authProspectBadge = "";
+                badge.hidden = true;
+                panelLink.appendChild(badge);
+                applyProspectBadge();
+                window.refreshAdminProspectBadge();
+            }
             panelLink.href = isAdmin ? "admin.html" : "profil.html";
             panelLink.title = isAdmin ? "Przejdź do panelu admina" : "Przejdź do profilu ucznia";
             panelLink.classList.toggle(
@@ -344,7 +403,18 @@
         updateMobileCallVisibility();
         window.updateAuthNav(null);
         window.refreshAuthNav();
+        window.setInterval(() => {
+            if(!document.hidden && cachedAuthUser?.role === "admin"){
+                window.refreshAdminProspectBadge();
+            }
+        }, 60000);
     }
+
+    document.addEventListener("visibilitychange", () => {
+        if(!document.hidden && cachedAuthUser?.role === "admin"){
+            window.refreshAdminProspectBadge();
+        }
+    });
 
     if(document.readyState === "loading"){
         document.addEventListener("DOMContentLoaded", bootAuthNav);

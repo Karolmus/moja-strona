@@ -55,7 +55,11 @@ assert.match(navigationStyle, /border: 0;/);
 assert.match(navigationStyle, /box-shadow: none;/);
 const correctionSource = html.slice(html.indexOf('function showCorrection('), html.indexOf('\n}', html.indexOf('function showCorrection(')) + 2);
 assert(!correctionSource.includes('Wskazówka:'), 'An incorrect answer does not open the hint automatically');
+assert.match(correctionSource, /if\(isClosedTask\(currentTask\)\)\{\s*showIncorrectAnswerSuggestion\(\);\s*return;/,
+  'Closed tasks use a retry suggestion instead of revealing the correct answer in a message box');
 assert.match(correctionSource, /showMessage\(`Poprawna odpowiedź: \$\{correct\}`\);/);
+assert.match(html, /id="incorrectAnswerSuggestion"[^>]*hidden/);
+assert.match(html, /Spróbuj jeszcze raz przeanalizować zadanie lub obejrzyj nagranie z rozwiązaniem\./);
 assert(!html.includes('--tile-result-band'), 'Status no longer uses thick inset bands');
 const tileStyle = html.match(/\.tile \{([^}]+)\}/)[1];
 assert.match(tileStyle, /min-width: 32px;/);

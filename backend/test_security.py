@@ -345,6 +345,67 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(self.contact_count(), 0)
 
+    def test_incomplete_signup_is_a_separate_admin_category(self):
+        payload = {
+            "course": "Matura podstawowa",
+            "sessions_per_week": "2",
+            "contact": "",
+            "preferred_term": "Wtorek po 16:00",
+            "student_discord": "uczen123",
+            "selected_terms": ["Wt. 17:00"],
+            "missing": ["contact"],
+            "form_started_at": int((time.time() - 5) * 1000),
+            "website": "",
+        }
+        response = self.client.post("/api/signup-attempts", json=payload)
+        self.assertEqual(response.status_code, 201, response.get_json())
+        self.assertEqual(self.reserved_terms(), [])
+        with sqlite3.connect(TEST_DB) as connection:
+            row = connection.execute(
+                "SELECT origin, contact, preferred_term, message, created_at FROM contact_messages"
+            ).fetchone()
+        self.assertEqual(row[0], "failed_signup")
+        self.assertEqual(row[1], "")
+        self.assertEqual(row[2], "Wtorek po 16:00")
+        self.assertIn("Brakujące lub błędne: numer telefonu", row[3])
+        self.assertIn("Liczba zajęć w tygodniu: 2", row[3])
+        self.assertIn("Discord ucznia: uczen123", row[3])
+        self.assertTrue(row[4])
+
+        self.assertEqual(self.client.get("/api/admin/contact-message-counts").status_code, 401)
+        with app.app_context():
+            admin = create_user("signup-admin@example.test", "Admin", "bezpieczne-haslo", role="admin")
+            student = create_user("signup-student@example.test", "Uczeń", "bezpieczne-haslo")
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+            student_headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+        self.assertEqual(self.client.get("/api/admin/contact-message-counts", headers=student_headers).status_code, 403)
+        counts = self.client.get("/api/admin/contact-message-counts", headers=headers)
+        self.assertEqual(counts.status_code, 200)
+        self.assertEqual(counts.get_json()["counts"]["failed_signup"]["unread"], 1)
+        self.assertEqual(counts.get_json()["counts"]["prospect"]["unread"], 0)
+        failed = self.client.get("/api/admin/contact-messages?origin=failed_signup", headers=headers)
+        prospects = self.client.get("/api/admin/contact-messages?origin=prospect", headers=headers)
+        self.assertEqual(len(failed.get_json()["messages"]), 1)
+        self.assertEqual(prospects.get_json()["messages"], [])
+
+        submitted = self.client.post("/api/contact-messages", json=self.valid_contact_payload())
+        self.assertEqual(submitted.status_code, 201)
+        counts = self.client.get("/api/admin/contact-message-counts", headers=headers).get_json()["counts"]
+        self.assertEqual(counts["prospect"]["unread"], 1)
+        self.assertEqual(counts["failed_signup"]["unread"], 1)
+
+    def test_incomplete_signup_rejects_empty_fast_and_honeypot_attempts(self):
+        payload = {
+            "course": "Matura podstawowa",
+            "missing": ["contact"],
+            "form_started_at": int((time.time() - 5) * 1000),
+        }
+        self.assertEqual(self.client.post("/api/signup-attempts", json={**payload, "course": ""}).status_code, 400)
+        self.assertEqual(self.client.post("/api/signup-attempts", json={**payload, "missing": []}).status_code, 400)
+        self.assertEqual(self.client.post("/api/signup-attempts", json={**payload, "form_started_at": int(time.time() * 1000)}).status_code, 400)
+        self.assertEqual(self.client.post("/api/signup-attempts", json={**payload, "website": "spam"}).status_code, 201)
+        self.assertEqual(self.contact_count(), 0)
+
     def test_public_contact_form_rejects_non_phone_contact(self):
         payload = self.valid_contact_payload()
         payload["contact"] = "test@example.com"
@@ -1070,6 +1131,47 @@ class SecurityTests(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 401)
+
+    def test_parent_course_progress_and_images_are_limited_to_homework(self):
+        with app.app_context():
+            student = create_user(
+                "parent-course-mp@example.test", "Uczeń MP", "bezpieczne-haslo",
+                level="matura_podstawowa",
+            )
+            _access, token = create_parent_access_token(student["id"])
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+
+        source = "zadania/kurs/mp/lekcja_1/lekcja_1_potegi_i_pierwiastki.json"
+        task = {
+            "source_id": source, "file": "zd1.png", "task_id": source + ":zd1.png",
+            "result": "bad", "submitted_answer": "A", "course_part": "praca_domowa",
+        }
+        self.assertEqual(self.client.post("/api/progress", headers=headers, json=task).status_code, 201)
+        self.assertEqual(self.client.post("/api/review-tasks", headers=headers, json=task).status_code, 201)
+
+        data = self.client.post("/api/parent/progress", json={"token": token}).get_json()
+        self.assertEqual(data["student"]["display_name"], "Uczeń MP")
+        self.assertNotIn("id", data["student"])
+        self.assertEqual(data["progress"][0]["submitted_answer"], "A")
+        self.assertNotIn("duration_seconds", data["progress"][0])
+        self.assertEqual(data["review_tasks"][0]["file"], "zd1.png")
+        first = next(lesson for lesson in data["course_lessons"] if lesson["number"] == 1)
+        self.assertEqual(first["source_id"], source)
+        self.assertTrue(any(item["file"] == "zd1.png" for item in first["tasks"]))
+        self.assertTrue(all(app_module.is_homework_task(item) for item in first["tasks"]))
+        self.assertFalse(any(item["file"] == "1.png" for item in first["tasks"]))
+        self.assertEqual(next(item for item in first["tasks"] if item["file"] == "zd1.png")["answer"], "C")
+        self.assertNotIn("answer", next(item for item in first["tasks"] if item["file"] == "zd2.png"))
+
+        base = "/api/parent/course-assets/mp/lekcja_1/"
+        with self.client.post(base + "zd1.png", json={"token": token}) as valid:
+            self.assertEqual(valid.status_code, 200)
+            self.assertTrue(valid.mimetype.startswith("image/"))
+            self.assertIn("no-store", valid.headers["Cache-Control"])
+        self.assertEqual(self.client.post(base + "1.png", json={"token": token}).status_code, 403)
+        self.assertEqual(self.client.post(base + "lekcja_1_potegi_i_pierwiastki.json", json={"token": token}).status_code, 403)
+        self.assertEqual(self.client.post("/api/parent/course-assets/eo/lekcja_1/zd_1.png", json={"token": token}).status_code, 403)
+        self.assertEqual(self.client.post(base + "zd1.png", json={"token": "wrong"}).status_code, 401)
 
     def test_admin_can_reveal_persisted_student_credentials(self):
         with app.app_context():

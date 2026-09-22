@@ -2503,7 +2503,7 @@ def create_contact_message(data, schedule_reservations=()):
     if origin == "parent" and not message:
         raise ValueError("Kontakt i treść wiadomości są wymagane.")
 
-    if origin not in {"prospect", "parent"}:
+    if origin not in {"prospect", "parent", "failed_signup"}:
         origin = "prospect"
 
     try:
@@ -2616,7 +2616,7 @@ def list_contact_messages(limit=200, box="inbox", origin=None):
     where = ["deleted_at IS NOT NULL" if show_trash else "deleted_at IS NULL"]
     values = []
 
-    if origin in {"prospect", "parent"}:
+    if origin in {"prospect", "parent", "failed_signup"}:
         where.append("origin = ?")
         values.append(origin)
 
@@ -2651,7 +2651,7 @@ def contact_message_counts(origin=None):
     where = ""
     values = [db_bool(False)]
 
-    if origin in {"prospect", "parent"}:
+    if origin in {"prospect", "parent", "failed_signup"}:
         where = "WHERE origin = ?"
         values.append(origin)
 

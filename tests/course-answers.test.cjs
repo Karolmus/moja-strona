@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
-const names = ['getInputFields', 'normalizeTypedAnswer', 'isTypedAnswerCorrect',
+const names = ['getInputFields', 'getInputPrompt', 'normalizeTypedAnswer', 'isTypedAnswerCorrect',
   'isComparisonField', 'setupComparisonControl', 'setComparisonControlResult',
   'formatInputAnswer', 'formatSubmittedInputAnswer', 'showInputCorrection',
   'inputAnswerValuesFromText', 'getSubmittedInputAnswerValues', 'restoreInputAnswerState',
@@ -156,4 +156,10 @@ assert(!ctx.isTypedAnswerCorrect('0,333', ctx.getInputFields(task(5, 'zd4.png'))
 assert(ctx.isTypedAnswerCorrect('-3 1/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
 assert(ctx.isTypedAnswerCorrect('-sqrt(100)/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
 assert(!ctx.isTypedAnswerCorrect('10/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
+assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd2.png'))[0]), 'Wpisz obliczoną wartość x.');
+assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd8.png'))[0]), 'Wybierz rodzaj rozwiązania równania.');
+assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, '11.png'))[0]), 'Wpisz obliczoną masę ananasa (w kg).');
+assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(6, 'zd7.png'))[0]), 'Wpisz wyrażenie opisujące końcową objętość benzyny.');
+const promptRender = render(task(5, 'zd2.png'));
+assert.equal(promptRender.form.children[0].children[0].children[0].innerText, 'Wpisz obliczoną wartość x.');
 console.log(`PASS: ${cases.length} tasks, selectors, math input, validation, locking, decimal separators and strict rounding`);

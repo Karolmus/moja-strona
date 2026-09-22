@@ -23,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260820-mobile-call-footer">
+<link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
 <style>
 
 *{
@@ -2119,17 +2119,17 @@ footer{
                             <div class="booking-step-content">
                                 <div class="weekly-frequency-options" id="sessionsPerWeekOptions" role="radiogroup" aria-label="Liczba zajęć w tygodniu" aria-describedby="sessionsPerWeekError">
                                     <label class="frequency-option">
-                                        <input type="radio" name="sessions_per_week" value="1 zajęcie tygodniowo" aria-label="1 zajęcie tygodniowo" required>
+                                        <input type="radio" name="sessions_per_week" value="1" aria-label="1 zajęcie tygodniowo" required>
                                         <span class="frequency-choice" aria-hidden="true"><strong>1</strong></span>
                                     </label>
 
                                     <label class="frequency-option">
-                                        <input type="radio" name="sessions_per_week" value="2 zajęcia tygodniowo" aria-label="2 zajęcia tygodniowo">
+                                        <input type="radio" name="sessions_per_week" value="2" aria-label="2 zajęcia tygodniowo">
                                         <span class="frequency-choice" aria-hidden="true"><strong>2</strong></span>
                                     </label>
 
                                     <label class="frequency-option">
-                                        <input type="radio" name="sessions_per_week" value="3 zajęcia tygodniowo" aria-label="3 zajęcia tygodniowo">
+                                        <input type="radio" name="sessions_per_week" value="3" aria-label="3 zajęcia tygodniowo">
                                         <span class="frequency-choice" aria-hidden="true"><strong>3</strong></span>
                                     </label>
                                 </div>
@@ -2189,7 +2189,7 @@ footer{
                                 <div class="signup-review" id="signupReview">
                                     <dl class="signup-summary" aria-live="polite">
                                         <div><dt>Poziom i cena</dt><dd id="signupSummaryCourse">Nie wybrano poziomu.</dd></div>
-                                        <div><dt>Zajęcia w tygodniu</dt><dd id="signupSummaryFrequency">Nie wybrano liczby zajęć.</dd></div>
+                                        <div><dt>Liczba zajęć w tygodniu:</dt><dd id="signupSummaryFrequency">Nie wybrano liczby zajęć.</dd></div>
                                         <div><dt>Wybrane terminy</dt><dd id="signupSummaryTerms">Brak wybranych terminów.</dd></div>
                                         <div id="signupSummaryAvailabilityRow" hidden><dt>Preferowany termin</dt><dd id="signupSummaryAvailability"></dd></div>
                                         <div><dt>Numer telefonu</dt><dd id="signupSummaryPhone">Nie podano numeru.</dd></div>
@@ -2197,6 +2197,7 @@ footer{
                                     </dl>
                                     <p id="signupSummaryPending" hidden></p>
                                     <p class="signup-response-time">Odpowiem na zgłoszenie w ciągu 24 godzin.</p>
+                                    <p class="booking-copy">Jeśli spróbujesz wysłać niekompletny formularz, zapiszę godzinę próby i wpisane dane, aby móc pomóc w dokończeniu zapisów.</p>
                                     <button type="submit">Wyślij zgłoszenie</button>
                                 </div>
                                 <div class="signup-confirmation" id="signupConfirmation" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="signupConfirmationTitle" tabindex="-1" hidden>
@@ -2613,7 +2614,7 @@ fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
         document.getElementById("nav").innerHTML = data;
     });
 </script>
-<script src="static/auth.js?v=20260913-remember"></script>
+<script src="static/auth.js?v=20260922-signup-badges"></script>
 <script>
 async function loadSignupPrices(){
     try {
@@ -2705,7 +2706,7 @@ function showSignupConfirmation(reservedTerms, sessionsPerWeekCount){
 function updateSignupSummary(){
     const formData = new FormData(contactForm);
     const frequency = String(formData.get("sessions_per_week") || "");
-    const sessionsPerWeekCount = Number(frequency.match(/^[1-3]/)?.[0] || 0);
+    const sessionsPerWeekCount = Number(frequency);
     const availability = String(formData.get("preferred_term") || "").trim();
     const discord = String(formData.get("student_discord") || "").trim();
     const pending = pendingSignupTermsMessage(sessionsPerWeekCount, selectedTerms.length);
@@ -2774,8 +2775,10 @@ function focusSignupField(field){
 function validateSignupForm(formData){
     clearSignupFieldErrors();
     let firstInvalidField = "";
-    const report = (field, message) => {
+    const missing = [];
+    const report = (field, message, reason = field) => {
         showSignupFieldError(field, message);
+        missing.push(reason);
 
         if(!firstInvalidField){
             firstInvalidField = field;
@@ -2795,15 +2798,33 @@ function validateSignupForm(formData){
     if(!contact){
         report("contact", "Podaj numer telefonu.");
     } else if(!contactInput.validity.valid){
-        report("contact", "Podaj prawidłowy numer telefonu.");
+        report("contact", "Podaj prawidłowy numer telefonu.", "invalidContact");
     }
 
     if(firstInvalidField){
         focusSignupField(firstInvalidField);
-        return false;
     }
 
-    return true;
+    return missing;
+}
+
+function recordFailedSignup(formData, missing){
+    apiFetch("/api/signup-attempts", {
+        method: "POST",
+        keepalive: true,
+        body: JSON.stringify({
+            course: formData.get("course"),
+            sessions_per_week: formData.get("sessions_per_week"),
+            contact: formData.get("contact"),
+            preferred_term: formData.get("preferred_term"),
+            student_discord: formData.get("student_discord"),
+            message: formData.get("message"),
+            selected_terms: [...selectedTerms],
+            missing,
+            website: formData.get("website"),
+            form_started_at: contactFormStartedAt
+        })
+    }).catch(() => {});
 }
 
 function showContactStatus(message){
@@ -2852,20 +2873,21 @@ contactForm.addEventListener("submit", async event => {
 
     if(button.disabled || document.getElementById("signupReview").hidden) return;
 
-    if(!validateSignupForm(formData)){
+    const missing = validateSignupForm(formData);
+    if(missing.length){
+        recordFailedSignup(formData, missing);
         return;
     }
 
     const selectedCourse = formData.get("course") || "";
     const sessionsPerWeek = formData.get("sessions_per_week") || "";
     const studentDiscord = String(formData.get("student_discord") || "").trim();
-    const sessionsPerWeekCount = Number(
-        String(sessionsPerWeek).match(/^[1-3]/)?.[0] || 0
-    );
+    const sessionsPerWeekCount = Number(sessionsPerWeek);
     const submittedTerms = [...selectedTerms];
     const message = String(formData.get("message") || "").trim();
 
     if(submittedTerms.length > sessionsPerWeekCount){
+        recordFailedSignup(formData, ["tooManyTerms"]);
         showSignupFieldError(
             "sessionsPerWeek",
             "Wybrano więcej terminów niż zajęć w tygodniu. Zwiększ liczbę zajęć lub usuń nadmiarowe terminy w kroku 1."

@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260820-mobile-call-footer">
+<link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
 
 <style>
 :root {
@@ -1542,6 +1542,15 @@ html.task-video-open {
     line-height: 1.45;
 }
 
+.incorrect-answer-suggestion {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
 .action-btn:hover,
 .choice-btn:hover {
     transform: translateY(-1px);
@@ -1788,9 +1797,10 @@ html.task-video-open {
 }
 
 .input-answer-field label {
-    color: var(--muted);
-    font-size: 12px;
+    color: var(--text);
+    font-size: 13px;
     font-weight: 700;
+    line-height: 1.4;
 }
 
 .input-answer-field input,
@@ -3201,6 +3211,7 @@ footer {
                             <button class="action-btn solution video-link" id="taskVideoLink" type="button" aria-haspopup="dialog" aria-controls="taskVideoDialog" hidden><span aria-hidden="true">🎬</span> Zobacz nagranie</button>
                             <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
                         </div>
+                        <p class="incorrect-answer-suggestion" id="incorrectAnswerSuggestion" role="status" aria-live="polite" hidden></p>
                         <div id="answer" class="box" aria-live="polite"></div>
                     </div>
 
@@ -3351,7 +3362,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260913-remember"></script>
+<script src="static/auth.js?v=20260922-signup-badges"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
 <script src="static/math-answer-input.js?v=20260907"></script>
@@ -6853,6 +6864,7 @@ function getInputFields(task){
             const answers = Array.isArray(input.answers) ? input.answers : [input.answer ?? ""];
             return {
                 label: input.label || `Odpowiedź ${index + 1}`,
+                prompt: String(input.prompt || "").trim(),
                 options: Array.isArray(input.options) ? input.options : null,
                 control: input.control || "",
                 position: input.position || null,
@@ -6869,8 +6881,39 @@ function getInputFields(task){
         ? task.acceptedAnswers
         : [task.answer ?? ""];
 
-    return [{ label: "Odpowiedź", answers,
+    return [{ label: "Odpowiedź", prompt: "", answers,
         math: typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid) }];
+}
+
+function getInputPrompt(field){
+    const explicitPrompt = String(field?.prompt || "").trim();
+    const label = String(field?.label || "Odpowiedź").trim();
+
+    if(explicitPrompt) return explicitPrompt;
+    if(field?.control === "comparison") return "Wybierz właściwy znak: <, = albo >.";
+    if(field?.options) return "Wybierz rodzaj rozwiązania równania.";
+    if(/^[a-z](?:_\d+)?$/i.test(label)) return `Wpisz obliczoną wartość ${label}.`;
+    if(/^masa ananasa/i.test(label)) return "Wpisz obliczoną masę ananasa (w kg).";
+    if(/^pierwiastek z szukanej liczby$/i.test(label))
+        return "Wpisz obliczoną wartość pierwiastka z szukanej liczby.";
+    if(/^szukana liczba$/i.test(label)) return "Wpisz obliczoną liczbę.";
+    if(/^współczynnik przy /i.test(label))
+        return `Wpisz obliczony ${label.toLocaleLowerCase("pl-PL")}.`;
+    if(/^łączna liczba roślin$/i.test(label))
+        return "Wpisz wyrażenie opisujące łączną liczbę roślin.";
+    if(/^liczba ([1-5])$/i.test(label)){
+        const ordinal = ["pierwszą", "drugą", "trzecią", "czwartą", "piątą"][Number(RegExp.$1) - 1];
+        return `Wpisz ${ordinal} obliczoną liczbę.`;
+    }
+    if(/^liczba rozwiązań całkowitych$/i.test(label))
+        return "Wpisz liczbę całkowitych rozwiązań równania.";
+    if(/^liczba razy$/i.test(label))
+        return "Wpisz, ile razy cena biletu normalnego była wyższa.";
+    if(/^końcowa objętość benzyny$/i.test(label))
+        return "Wpisz wyrażenie opisujące końcową objętość benzyny.";
+    if(/^odpowiedź(?: \d+)?$/i.test(label)) return "Wpisz obliczony wynik.";
+
+    return `Wpisz: ${label.toLocaleLowerCase("pl-PL")}.`;
 }
 
 function getPracticalConfig(task = currentTask){
@@ -7287,6 +7330,7 @@ function setTaskLoading(loading){
 
 function clearTaskInteraction(){
     closeTaskVideo();
+    hideIncorrectAnswerSuggestion();
     document.getElementById("manualScoreNotice").hidden = true;
     document.getElementById("taskInstruction").hidden = true;
     document.getElementById("taskInstruction").textContent = "";
@@ -8228,7 +8272,7 @@ function setupInputTask(mcq){
 
         wrapper.className = "input-answer-field";
         label.htmlFor = inputId;
-        label.innerText = field.label;
+        label.innerText = getInputPrompt(field);
         input.id = inputId;
         if(useComparisonOverlay){
             wrapper.classList.add("comparison-answer-field");
@@ -9491,6 +9535,11 @@ async function markForReview(){
 function showCorrection(correctAnswers = null){
     answerShown = true;
 
+    if(isClosedTask(currentTask)){
+        showIncorrectAnswerSuggestion();
+        return;
+    }
+
     let correct;
 
     if(isPracticalTask(currentTask)){
@@ -9510,9 +9559,30 @@ function showCorrection(correctAnswers = null){
     showMessage(`Poprawna odpowiedź: ${correct}`);
 }
 
+function showIncorrectAnswerSuggestion(){
+    const suggestion = document.getElementById("incorrectAnswerSuggestion");
+
+    hideMessage();
+    if(!suggestion) return;
+
+    suggestion.textContent = taskVideoUrl(currentTask)
+        ? "Spróbuj jeszcze raz przeanalizować zadanie lub obejrzyj nagranie z rozwiązaniem."
+        : "Spróbuj jeszcze raz przeanalizować zadanie.";
+    suggestion.hidden = false;
+}
+
+function hideIncorrectAnswerSuggestion(){
+    const suggestion = document.getElementById("incorrectAnswerSuggestion");
+
+    if(!suggestion) return;
+    suggestion.hidden = true;
+    suggestion.textContent = "";
+}
+
 function showMessage(text){
     const box = document.getElementById("answer");
 
+    hideIncorrectAnswerSuggestion();
     box.style.display = "block";
     box.innerText = text;
 }

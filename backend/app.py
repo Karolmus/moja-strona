@@ -421,6 +421,7 @@ def message_counts_payload():
         "all": contact_message_counts(),
         "prospect": contact_message_counts("prospect"),
         "parent": contact_message_counts("parent"),
+        "failed_signup": contact_message_counts("failed_signup"),
     }
 
 
@@ -652,6 +653,62 @@ def read_course_json(asset_path):
             return json.load(source)
     except (OSError, ValueError):
         return None
+
+
+def parent_course_lessons(level, progress):
+    segment = TASK_PATH_SEGMENT_BY_STUDENT_LEVEL.get(level)
+    if not segment:
+        return []
+
+    latest_results = {}
+    for item in progress:
+        key = (item.get("source_id"), item.get("file"))
+        if key not in latest_results:
+            latest_results[key] = item.get("result")
+
+    level_root = os.path.join(COURSE_ASSET_ROOT, segment)
+    try:
+        lesson_directories = [
+            entry for entry in os.scandir(level_root)
+            if entry.is_dir() and re.fullmatch(r"lekcja_(\d+)", entry.name)
+        ]
+    except OSError:
+        return []
+
+    lessons = []
+    for directory in sorted(lesson_directories, key=lambda entry: int(entry.name.split("_")[-1])):
+        for manifest_name in sorted(os.listdir(directory.path)):
+            if not manifest_name.endswith(".json"):
+                continue
+            asset_path = f"{segment}/{directory.name}/{manifest_name}"
+            manifest = read_course_json(asset_path)
+            if not isinstance(manifest, list):
+                continue
+
+            tasks = []
+            for task in manifest:
+                if not is_homework_task(task) or not SAFE_TASK_FILE_RE.fullmatch(str(task.get("file") or "")):
+                    continue
+                item = {key: task[key] for key in (
+                    "file", "title", "topic", "coursePart", "maxPoints", "contextFile", "type",
+                ) if key in task}
+                source_id = f"zadania/kurs/{asset_path}"
+                if latest_results.get((source_id, item["file"])) in {"bad", "medium"}:
+                    item.update({key: task[key] for key in ("answer", "acceptedAnswers", "inputs") if key in task})
+                item["coursePart"] = task.get("coursePart") or task.get("section")
+                tasks.append(item)
+            if not tasks:
+                continue
+
+            lessons.append({
+                "number": int(directory.name.split("_")[-1]),
+                "title": str(tasks[0].get("topic") or "").capitalize(),
+                "source_id": f"zadania/kurs/{asset_path}",
+                "tasks": tasks,
+            })
+            break
+
+    return lessons
 
 
 def homework_asset_references(value):
@@ -1188,13 +1245,19 @@ def api_admin_contact_messages(_admin):
     if box not in ("inbox", "trash"):
         box = "inbox"
 
-    if origin not in ("prospect", "parent"):
+    if origin not in ("prospect", "parent", "failed_signup"):
         origin = "prospect"
 
     return jsonify({
         "messages": list_contact_messages(box=box, origin=origin),
         "counts": message_counts_payload(),
     })
+
+
+@app.get("/api/admin/contact-message-counts")
+@require_admin
+def api_admin_contact_message_counts(_admin):
+    return jsonify({"counts": message_counts_payload()})
 
 
 @app.patch("/api/admin/contact-messages/<int:message_id>")
@@ -1546,6 +1609,71 @@ def api_create_contact_message():
     return safe(handler)
 
 
+@app.post("/api/signup-attempts")
+@persistent_rate_limit(10, 60 * 60, "signup-attempt-hour", contact_rate_limit_key)
+@persistent_rate_limit(30, 24 * 60 * 60, "signup-attempt-day", contact_rate_limit_key)
+def api_create_failed_signup_attempt():
+    def handler():
+        data = payload()
+        if str(data.get("website") or "").strip():
+            return jsonify({"accepted": True}), 201
+
+        try:
+            elapsed_seconds = (time.time() * 1000 - float(data.get("form_started_at"))) / 1000
+        except (TypeError, ValueError):
+            return api_error("Nieprawidłowa próba zgłoszenia.", 400)
+        if not math.isfinite(elapsed_seconds) or elapsed_seconds < CONTACT_FORM_MIN_SECONDS:
+            return api_error("Nieprawidłowa próba zgłoszenia.", 400)
+
+        fields = {
+            "course": ("Poziom", 120),
+            "sessions_per_week": ("Liczba zajęć w tygodniu", 1),
+            "student_discord": ("Discord ucznia", 80),
+            "message": ("Dodatkowe informacje", 500),
+        }
+        details = []
+        for key, (label, limit) in fields.items():
+            value = str(data.get(key) or "").strip()[:limit]
+            if value:
+                details.append(f"{label}: {value}")
+
+        selected_terms = data.get("selected_terms")
+        if isinstance(selected_terms, list):
+            terms = [str(term).strip()[:80] for term in selected_terms[:3] if str(term).strip()]
+            if terms:
+                details.append(f"Wybrane terminy: {', '.join(terms)}")
+
+        contact = str(data.get("contact") or "").strip()[:25]
+        preferred_term = str(data.get("preferred_term") or "").strip()[:160]
+        if not (details or contact or preferred_term):
+            return api_error("Brak danych próby zgłoszenia.", 400)
+
+        missing_labels = {
+            "course": "poziom",
+            "sessionsPerWeek": "liczba zajęć w tygodniu",
+            "contact": "numer telefonu",
+            "invalidContact": "prawidłowy numer telefonu",
+            "tooManyTerms": "zgodna liczba terminów",
+        }
+        missing = data.get("missing")
+        if not isinstance(missing, list):
+            return api_error("Brak przyczyny nieudanej próby.", 400)
+        missing = [missing_labels[key] for key in missing[:5] if isinstance(key, str) and key in missing_labels]
+        if not missing:
+            return api_error("Brak przyczyny nieudanej próby.", 400)
+
+        details.insert(0, f"Brakujące lub błędne: {', '.join(missing)}")
+        item = create_contact_message({
+            "contact": contact,
+            "preferred_term": preferred_term,
+            "message": "\n".join(details),
+            "origin": "failed_signup",
+        })
+        return jsonify({"id": item["id"]}), 201
+
+    return safe(handler)
+
+
 @app.post("/api/parent/messages")
 @persistent_rate_limit(10, 60 * 60, "parent-message-hour", parent_rate_limit_key)
 @persistent_rate_limit(40, 24 * 60 * 60, "parent-message-day", parent_rate_limit_key)
@@ -1794,10 +1922,58 @@ def api_parent_progress():
 
         touch_parent_access(session_data["access"]["id"])
 
+        progress = [
+            {key: item[key] for key in (
+                "source_id", "file", "task_id", "result", "submitted_answer",
+                "earned_points", "max_points", "hint_used", "created_at",
+            ) if key in item}
+            for item in progress_for_user(student["id"])
+        ]
+        review_tasks = [
+            {key: item[key] for key in ("source_id", "file", "task_id", "title") if key in item}
+            for item in review_tasks_for_user(student["id"])
+        ]
         return jsonify({
-            "student": student_payload(student),
-            "progress": progress_for_user(student["id"]),
+            "student": {key: student.get(key) for key in (
+                "display_name", "email", "level", "last_login_at",
+            )},
+            "progress": progress,
+            "review_tasks": review_tasks,
+            "course_lessons": parent_course_lessons(student["level"], progress),
         })
+
+    return safe(handler)
+
+
+@app.post("/api/parent/course-assets/<path:asset_path>")
+@persistent_rate_limit(120, 60, "parent-course-asset", parent_rate_limit_key)
+def api_parent_course_asset(asset_path):
+    def handler():
+        session_data = parent_access_by_token(payload().get("token"))
+        if not session_data:
+            return api_error("Link rodzica jest nieprawidłowy albo wygasł.", 401)
+
+        student = session_data["student"]
+        if not student["is_active"]:
+            return api_error("Konto ucznia jest nieaktywne.", 403)
+
+        parts = asset_path.split("/")
+        segment = TASK_PATH_SEGMENT_BY_STUDENT_LEVEL.get(student["level"])
+        if (
+            len(parts) != 3 or parts[0] != segment
+            or not re.fullmatch(r"lekcja_\d+", parts[1])
+            or not SAFE_TASK_FILE_RE.fullmatch(parts[2])
+            or not parts[2].lower().endswith((".png", ".webp", ".jpg", ".jpeg"))
+            or not homework_asset_allowed(asset_path)
+        ):
+            return api_error("Brak dostępu do tego materiału.", 403)
+
+        try:
+            response = send_from_directory(COURSE_ASSET_ROOT, asset_path, conditional=True)
+        except NotFound:
+            return api_error("Nie znaleziono materiału kursowego na serwerze.", 404)
+        response.headers["Cache-Control"] = "private, no-store"
+        return response
 
     return safe(handler)
 

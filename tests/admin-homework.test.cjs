@@ -9,6 +9,7 @@ const ctx = vm.createContext({adminTaskCatalog:catalog, ADMIN_TASK_SOURCES:[{pat
 for (const name of ['progressSourceId', 'progressFile', 'progressTaskKey', 'isProtectedCoursePath', 'catalogTaskForProgress',
   'isIndependentWorkTask', 'isIndependentWorkProgress', 'latestProgressMap', 'numberValue', 'taskMaxPoints',
   'inferredTaskScore', 'sourceYear', 'taskNumberFromFile', 'taskOrderValue', 'timestamp', 'sourceProgressGroups',
+  'coursePartProgress',
   'taskPreviewImagePaths']) {
   const start = html.indexOf(`function ${name}(`);
   assert(start >= 0, name);
@@ -30,6 +31,12 @@ assert.equal(course.attempted, 18);
 assert.equal(course.totalPoints, 18);
 assert.equal(course.correctPercent, 100);
 assert(course.completed);
+const homeworkPart = ctx.coursePartProgress(course, 'praca_domowa');
+const revisionPart = ctx.coursePartProgress(course, 'zadania_powtorkowe');
+assert.equal(homeworkPart.total, 14);
+assert.equal(revisionPart.total, 4);
+assert.equal(homeworkPart.correctPercent, 100);
+assert.equal(revisionPart.correctPercent, 100);
 assert.deepEqual(Array.from(course.tasks, task => task.file), [
   ...Array.from({length:14}, (_, index) => `zd${index+1}.png`), 'zp1.png', 'zp2.png', 'zp3.png', 'zp4.png'
 ], 'Review exercises follow the homework, without interleaving task numbers');
@@ -41,6 +48,11 @@ const mixedProgress = course.tasks.slice(0, 3).map((task, index) => ({
 }));
 const mixedCourse = ctx.sourceProgressGroups(mixedProgress, {level:'matura_podstawowa'})[0];
 assert.equal(mixedCourse.correctPercent, 33.3, 'Correct rate uses submitted answers, not every task in the lesson');
+assert.equal(ctx.coursePartProgress(mixedCourse, 'praca_domowa').correctPercent, 33.3);
+assert.equal(ctx.coursePartProgress(mixedCourse, 'zadania_powtorkowe').correctPercent, null);
+const revisionOnly = ctx.sourceProgressGroups([{source_id:source, file:'zp1.png', result:'bad'}], {level:'matura_podstawowa'})[0];
+assert.equal(ctx.coursePartProgress(revisionOnly, 'praca_domowa').attempted, 0);
+assert.equal(ctx.coursePartProgress(revisionOnly, 'zadania_powtorkowe').bad, 1);
 assert.equal(groups.find(group => group.category === 'egzaminy').total, 1);
 const onlyMain = progress.filter(item => /^\d/.test(item.file) && item.source_id === source);
 assert.equal(ctx.sourceProgressGroups(onlyMain, {level:'matura_podstawowa'}).length, 0, 'Main lesson work cannot start homework progress');
@@ -64,8 +76,62 @@ assert.equal(ctx.taskPreviewImagePaths({sourceId:source, file:'../secret.png'}).
 assert.match(html, /row\.addEventListener\("click", togglePreview\)/);
 assert.match(html, /loadTaskImagePreview\(task, preview\)/);
 assert.match(html, /reviewBadge\.textContent = "Dodano do omówienia"/);
-assert.match(html, /<th>Poprawne odpowiedzi<\/th>/);
-assert.match(html, /formatPoints\(group\.correctPercent\)/);
+assert.match(html, /<th>Praca domowa<\/th>[\s\S]*?<th>Zadania powtórkowe<\/th>/);
+assert.match(html, /homework\.appendChild\(renderCoursePartSummary\(group, "praca_domowa"\)\)/);
+assert.match(html, /revision\.appendChild\(renderCoursePartSummary\(group, "zadania_powtorkowe"\)\)/);
+assert.match(html, /detailCell\.appendChild\(renderSourceDetail\(group\)\)/);
+assert.match(html, /partHeading\.textContent = task\.coursePart === "zadania_powtorkowe"/);
+assert.match(html, /examGroups\.forEach\(group => \{/);
+assert(!html.includes('heading.innerText = "Szczegóły zadań"'), 'The duplicate course cards are removed');
+
+class Element {
+  constructor(tagName) {
+    this.tagName = tagName;
+    this.children = [];
+    this.attributes = {};
+    this.dataset = {};
+    this.listeners = {};
+    this.style = {};
+  }
+  set innerHTML(value) {
+    this._innerHTML = value;
+    if (this.tagName === 'table' && value.includes('<tbody>')) this.tbody = new Element('tbody');
+  }
+  get innerHTML() {return this._innerHTML;}
+  appendChild(child) {this.children.push(child); return child;}
+  append(...children) {children.forEach(child => this.appendChild(child));}
+  querySelector(selector) {return selector === 'tbody' ? this.tbody : null;}
+  setAttribute(name, value) {this.attributes[name] = String(value);}
+  addEventListener(name, callback) {this.listeners[name] = callback;}
+}
+const ui = vm.createContext({
+  document:{createElement:tag => new Element(tag)},
+  activeSourceDetailKey:'',
+  formatPoints:value => String(value),
+  formatDate:() => '10.09.2026',
+  renderSourceDetail:group => ({sourceKey:group.key})
+});
+for (const name of ['courseTaskSegment', 'coursePartProgress', 'renderProgressSegments',
+  'renderCoursePartSummary', 'renderCourseHistory']) {
+  const start = html.indexOf(`function ${name}(`);
+  vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ui);
+}
+const selected = [];
+const courseSection = ui.renderCourseHistory([course], key => selected.push(key));
+const collapsedRows = courseSection.children[1].children[0].tbody.children;
+assert.equal(collapsedRows.length, 1, 'One compact row represents the whole lesson');
+assert.equal(collapsedRows[0].children[1].children[0].children[2].children.length, 14,
+  'Homework has its own segmented bar');
+assert.equal(collapsedRows[0].children[2].children[0].children[2].children.length, 4,
+  'Revision has a separate segmented bar');
+collapsedRows[0].listeners.click();
+assert.deepEqual(selected, [course.key]);
+ui.activeSourceDetailKey = course.key;
+const expandedRows = ui.renderCourseHistory([course], () => {}).children[1].children[0].tbody.children;
+assert.equal(expandedRows.length, 2);
+assert.equal(expandedRows[0].attributes['aria-expanded'], 'true');
+assert.equal(expandedRows[1].children[0].children[0].sourceKey, course.key,
+  'The task details are rendered immediately below the selected lesson');
 assert(!html.includes('review-copy-hint'), 'Repeated copy instructions no longer inflate every row');
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
-console.log('PASS: homework-only course details, review exercises, exam retention, fallback metadata and compact list limits');
+console.log('PASS: separate homework and revision results, inline lesson details, exam retention and compact list limits');

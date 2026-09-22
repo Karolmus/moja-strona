@@ -99,6 +99,23 @@
     font-weight: 700;
 }
 
+.main-nav .my-panel-link [data-auth-prospect-badge]:not([hidden]) {
+    display: inline-grid;
+    min-width: 20px;
+    min-height: 20px;
+    margin-left: 6px;
+    place-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    padding: 2px 5px;
+    background: #d92d20;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(217, 45, 32, 0.38);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
 .main-nav .signup-link {
     color: #102033;
     background: linear-gradient(135deg, #edf4fb, #ffffff);
@@ -252,6 +269,17 @@
 
 /* MOBILE */
 @media (max-width: 760px){
+    .main-nav .my-panel-link [data-auth-prospect-badge]:not([hidden]) {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        min-width: 17px;
+        min-height: 17px;
+        margin: 0;
+        padding: 1px 3px;
+        font-size: 9px;
+    }
+
     .mobile-call-cta:not([hidden]) {
         position: fixed;
         right: 12px;
