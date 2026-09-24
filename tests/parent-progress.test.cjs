@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 
 const html = fs.readFileSync('rodzic.html', 'utf8');
 const script = fs.readFileSync('static/parent-progress.js', 'utf8');
-const testableScript = script.replace(/\}\)\(\);\s*$/, 'return { latestProgressMap, lessonState, partStats, examSourceAllowed }; })();');
+const testableScript = script.replace(/\}\)\(\);\s*$/, 'return { latestProgressMap, lessonState, partStats, partsForLevel, examSourceAllowed }; })();');
 const logic = vm.runInNewContext(testableScript, {
     document: { readyState: 'loading', addEventListener() {} }
 });
@@ -36,6 +36,8 @@ assert.equal(completed.complete, true);
 assert.equal(logic.partStats(completed.entries).attempted, 3);
 assert.equal(logic.partStats(completed.entries).percent, 67);
 assert.equal(logic.partStats(completed.entries).medium, 1);
+assert.deepEqual(Array.from(logic.partsForLevel('egzamin_osmoklasisty'), part => part[0]), ['praca_domowa']);
+assert.deepEqual(Array.from(logic.partsForLevel('matura_podstawowa'), part => part[0]), ['praca_domowa', 'zadania_powtorkowe']);
 assert.equal(logic.examSourceAllowed('zadania/mp/2025/maj/exam.json', 'matura_podstawowa'), true);
 assert.equal(logic.examSourceAllowed('zadania/eo/2025/maj/exam.json', 'matura_podstawowa'), false);
 assert.equal(logic.examSourceAllowed('zadania/mp/../secret.json', 'matura_podstawowa'), false);
@@ -45,6 +47,10 @@ assert.match(html, /<div id="nav"><\/div>/);
 assert.match(html, /fetch\("nav\.html\?v=20260827-shared", \{ cache: "no-cache" \}\)/);
 assert.match(html, /document\.getElementById\("nav"\)\.innerHTML = html/);
 assert.match(html, /class="panel lesson-panel lesson-results" aria-label="Wyniki lekcji"/);
+assert.match(html, /<h2 id="courseOverviewTitle">Postęp prac domowych<\/h2>/);
+assert.match(html, /class="revision-column">Zadania powtórkowe<\/span>/);
+assert.match(html, /\.lesson-results\.homework-only \.lesson-header/);
+assert.match(html, /\.lesson-results\.homework-only \.revision-column\s*\{\s*display: none;/);
 assert.doesNotMatch(html, /Lekcje kursu|Wyniki pracy domowej i powtórek/);
 assert.match(html, /id="parentReviewSection"/);
 assert.match(html, /id="parentExamsSection"/);

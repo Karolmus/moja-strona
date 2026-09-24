@@ -92,6 +92,10 @@
         return latest;
     }
 
+    function partsForLevel(level) {
+        return level === "egzamin_osmoklasisty" ? PARTS.slice(0, 1) : PARTS;
+    }
+
     function lessonState(lesson, latest, reviewKeys) {
         const tasks = Array.isArray(lesson.tasks) ? lesson.tasks : [];
         const entries = tasks.map(task => ({
@@ -278,7 +282,7 @@
         return summary;
     }
 
-    function renderLesson(lesson) {
+    function renderLesson(lesson, visibleParts = PARTS) {
         const entry = element("div", "lesson-entry");
         entry.id = `parent-lesson-${lesson.number}`;
         const row = element("button", "lesson-row");
@@ -289,14 +293,14 @@
         name.append(element("strong", "", `Lekcja ${lesson.number} · ${lesson.title || "Kurs"}`),
             element("span", "", lesson.complete ? "Ukończona" : lesson.attempted ? "Rozpoczęta" : "Nierozpoczęta"));
         row.appendChild(name);
-        for (const [part, label] of PARTS) {
+        for (const [part, label] of visibleParts) {
             row.appendChild(partSummary(lesson.entries.filter(item => item.task.coursePart === part), label));
         }
         row.appendChild(element("span", "lesson-date", formatDate(lesson.lastActivity)));
         const details = element("div", "lesson-detail");
         details.id = `parent-lesson-detail-${lesson.number}`;
         details.hidden = true;
-        for (const [part, label] of PARTS) {
+        for (const [part, label] of visibleParts) {
             const tasks = lesson.entries.filter(item => item.task.coursePart === part);
             if (!tasks.length) continue;
             const group = element("div", "task-group");
@@ -390,8 +394,23 @@
         const review = Array.isArray(data.review_tasks) ? data.review_tasks : [];
         const latest = latestProgressMap(progress);
         const reviewKeys = new Set(review.map(taskKey).filter(Boolean));
+        const visibleParts = partsForLevel(student.level);
+        const visiblePartNames = new Set(visibleParts.map(([part]) => part));
         const lessons = (Array.isArray(data.course_lessons) ? data.course_lessons : [])
-            .map(lesson => lessonState(lesson, latest, reviewKeys));
+            .map(lesson => {
+                const state = lessonState(lesson, latest, reviewKeys);
+                const entries = state.entries.filter(entry => visiblePartNames.has(entry.task.coursePart));
+                const attempted = entries.filter(entry => entry.progress);
+
+                return {
+                    ...state,
+                    entries,
+                    attempted: attempted.length,
+                    complete: entries.length > 0 && attempted.length === entries.length,
+                    lastActivity: attempted.map(entry => entry.progress.created_at)
+                        .filter(Boolean).sort().at(-1) || null
+                };
+            });
         const target = COURSE_TARGETS[student.level] || lessons.length || 20;
         const completed = lessons.filter(lesson => lesson.complete).length;
         const allEntries = lessons.flatMap(lesson => lesson.entries);
@@ -407,6 +426,7 @@
         track.setAttribute("aria-valuemax", String(target));
         track.setAttribute("aria-valuenow", String(completed));
         const totalBox = document.getElementById("courseTotals");
+        document.querySelector(".lesson-results")?.classList.toggle("homework-only", visibleParts.length === 1);
         totalBox.replaceChildren();
         for (const value of [
             `Zadania: ${totals.attempted}/${totals.total}`,
@@ -418,7 +438,7 @@
         const list = document.getElementById("parentLessons");
         list.replaceChildren();
         if (!lessons.length) list.appendChild(element("p", "empty-note", "Materiały kursu nie są jeszcze dostępne."));
-        for (const lesson of lessons) list.appendChild(renderLesson(lesson));
+        for (const lesson of lessons) list.appendChild(renderLesson(lesson, visibleParts));
         renderReviewItems(review, lessons);
         renderExams(progress, latest, catalog);
         document.getElementById("statusPanel").hidden = true;

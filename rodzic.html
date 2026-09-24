@@ -263,6 +263,15 @@ body {
     text-align: left;
 }
 
+.lesson-results.homework-only .lesson-header,
+.lesson-results.homework-only .lesson-row {
+    grid-template-columns: minmax(180px, 1.2fr) minmax(210px, 1fr) minmax(125px, .7fr);
+}
+
+.lesson-results.homework-only .revision-column {
+    display: none;
+}
+
 .lesson-header {
     padding: 7px 14px;
     border-top: 1px solid var(--line);
@@ -483,6 +492,10 @@ body {
 
     .lesson-date { grid-column: 1 / -1; }
 
+    .lesson-results.homework-only .lesson-row {
+        grid-template-columns: 1fr;
+    }
+
     .part-label {
         display: block;
         color: var(--muted);
@@ -539,12 +552,12 @@ body {
         <section class="panel course-overview" aria-labelledby="courseOverviewTitle">
             <div class="overview-heading">
                 <div>
-                    <h2 id="courseOverviewTitle">Postęp kursu</h2>
-                    <p id="courseOverviewDescription">Praca domowa i zadania powtórkowe</p>
+                    <h2 id="courseOverviewTitle">Postęp prac domowych</h2>
+                    <p id="courseOverviewDescription">Wyniki zadań wykonywanych w domu</p>
                 </div>
                 <strong id="courseProgressText">0/20 lekcji</strong>
             </div>
-            <div class="progress-track" role="progressbar" aria-label="Ukończone lekcje kursu" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="courseProgressTrack">
+            <div class="progress-track" role="progressbar" aria-label="Ukończone prace domowe" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="courseProgressTrack">
                 <span class="progress-fill" id="courseProgressFill"></span>
             </div>
             <div class="course-totals" id="courseTotals"></div>
@@ -557,7 +570,7 @@ body {
 
         <section class="panel lesson-panel lesson-results" aria-label="Wyniki lekcji">
             <div class="lesson-header" aria-hidden="true">
-                <span>Lekcja</span><span>Praca domowa</span><span>Zadania powtórkowe</span><span>Ostatnia praca</span>
+                <span>Lekcja</span><span>Praca domowa</span><span class="revision-column">Zadania powtórkowe</span><span>Ostatnia praca</span>
             </div>
             <div class="lesson-list" id="parentLessons"></div>
         </section>
