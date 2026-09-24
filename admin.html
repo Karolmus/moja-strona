@@ -1116,6 +1116,10 @@ th {
     background: #e3bd41;
 }
 
+.progress-segment.video {
+    background: #6f83a6;
+}
+
 .progress-segment.bad {
     background: #d95b50;
 }
@@ -1980,10 +1984,11 @@ footer {
 
         <section class="panel">
             <div class="panel-heading">
-                <h2>Uczniowie i postępy</h2>
+                <h2>Uczniowie</h2>
                 <div class="sort-control">
                     <label for="studentSort">Sortuj</label>
                     <select id="studentSort">
+                        <option value="activity_desc">Ostatnia aktywność</option>
                         <option value="created_desc">Dodano: najnowsi</option>
                         <option value="created_asc">Dodano: najstarsi</option>
                         <option value="name_asc">Uczeń: A-Z</option>
@@ -2317,7 +2322,7 @@ let messageCounts = {
     failed_signup: { inbox: 0, trash: 0, unread: 0 },
     parent: { inbox: 0, trash: 0, unread: 0 }
 };
-let currentStudentSort = "created_desc";
+let currentStudentSort = "activity_desc";
 let lastCredentialsText = "";
 let adminTaskCatalog = [];
 let studentProgressCache = new Map();
@@ -3032,6 +3037,15 @@ function getSortedStudents(){
     const sorted = [...students];
 
     sorted.sort((a, b) => {
+        if(currentStudentSort === "activity_desc"){
+            const activityCompare = (Date.parse(studentLastActivity(b)) || 0) -
+                (Date.parse(studentLastActivity(a)) || 0);
+
+            if(activityCompare) return activityCompare;
+
+            return String(a.display_name || "").localeCompare(String(b.display_name || ""), "pl");
+        }
+
         if(currentStudentSort === "name_desc"){
             return String(b.display_name || "").localeCompare(String(a.display_name || ""), "pl");
         }
@@ -3979,17 +3993,9 @@ function inferredTaskScore(progressItem, task){
         };
     }
 
-    if(progressItem.result === "good"){
+    if(progressItem.result === "good" || progressItem.result === "medium"){
         return {
             earned: maxPoints,
-            max: maxPoints,
-            estimated: true
-        };
-    }
-
-    if(progressItem.result === "medium"){
-        return {
-            earned: maxPoints / 2,
             max: maxPoints,
             estimated: true
         };
@@ -4099,6 +4105,8 @@ function sourceProgressGroups(progress, student, reviewItems = []){
             let good = 0;
             let medium = 0;
             let bad = 0;
+            let video = 0;
+            let correct = 0;
             let earnedPoints = 0;
             let attemptedMaxPoints = 0;
             let estimatedPoints = false;
@@ -4135,6 +4143,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 if(progressItem.result === "good") good++;
                 if(progressItem.result === "medium") medium++;
                 if(progressItem.result === "bad") bad++;
+                if(progressItem.result === "video") video++;
 
                 const score = inferredTaskScore(progressItem, task);
 
@@ -4142,6 +4151,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                     earnedPoints += score.earned;
                     attemptedMaxPoints += score.max;
                     estimatedPoints = estimatedPoints || score.estimated;
+                    if(score.max > 0 && score.earned >= score.max) correct++;
                 }
             });
 
@@ -4151,6 +4161,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 good,
                 medium,
                 bad,
+                video,
                 total: group.tasks.length,
                 completed: attempted > 0 && attempted >= group.tasks.length,
                 earnedPoints,
@@ -4162,7 +4173,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 lastActivity,
                 firstActivityTime,
                 lastActivityTime,
-                correctPercent: attempted ? Math.round((good / attempted) * 1000) / 10 : null,
+                correctPercent: attempted ? Math.round((correct / attempted) * 1000) / 10 : null,
                 percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
             };
         })
@@ -4227,14 +4238,21 @@ function groupScorePercent(group){
 }
 
 function courseTaskSegment(task){
-    return task.latestProgress?.result || (task.reviewRequested ? "review" : "missing");
+    const progress = task.latestProgress;
+
+    if(!progress) return task.reviewRequested ? "review" : "missing";
+    if(progress.result === "video") return "video";
+    if(progress.result === "medium" || (progress.result === "good" && progress.hint_used)) return "medium";
+    if(["good", "bad"].includes(progress.result)) return progress.result;
+
+    return "missing";
 }
 
 function renderProgressSegments(group){
     const track = document.createElement("div");
 
     track.className = "progress-segments";
-    track.title = `${group.good} dobrze, ${group.medium} z pomocą, ${group.bad} źle, ${group.reviewRequested} do omówienia, ${Math.max(0, group.total - group.attempted)} niewykonanych`;
+    track.title = `${group.good} dobrze, ${group.medium} z pomocą, ${group.bad} źle, ${group.video || 0} z nagraniem, ${group.reviewRequested} do omówienia, ${Math.max(0, group.total - group.attempted)} niewykonanych`;
 
     group.tasks.forEach(task => {
         const segment = document.createElement("span");
@@ -4253,6 +4271,12 @@ function coursePartProgress(group, coursePart){
     const good = attemptedTasks.filter(task => task.latestProgress.result === "good").length;
     const medium = attemptedTasks.filter(task => task.latestProgress.result === "medium").length;
     const bad = attemptedTasks.filter(task => task.latestProgress.result === "bad").length;
+    const video = attemptedTasks.filter(task => task.latestProgress.result === "video").length;
+    const correct = attemptedTasks.filter(task => {
+        const score = inferredTaskScore(task.latestProgress, task);
+
+        return score.earned !== null && score.max > 0 && score.earned >= score.max;
+    }).length;
 
     return {
         tasks,
@@ -4261,8 +4285,9 @@ function coursePartProgress(group, coursePart){
         good,
         medium,
         bad,
+        video,
         reviewRequested: tasks.filter(task => task.reviewRequested).length,
-        correctPercent: attemptedTasks.length ? Math.round(good / attemptedTasks.length * 1000) / 10 : null
+        correctPercent: attemptedTasks.length ? Math.round(correct / attemptedTasks.length * 1000) / 10 : null
     };
 }
 
@@ -4278,6 +4303,7 @@ function renderCoursePartSummary(group, coursePart){
         ? `${part.attempted}/${part.total} zadań · ${part.correctPercent === null ? "-" : `${formatPoints(part.correctPercent)}%`} poprawnych`
         : "Brak zadań";
     counts.textContent = `${part.good} dobrze · ${part.medium} z pomocą · ${part.bad} źle` +
+        (part.video ? ` · ${part.video} nagranie` : "") +
         (part.reviewRequested ? ` · ${part.reviewRequested} do omówienia` : "");
     summary.appendChild(result);
     if(part.total){

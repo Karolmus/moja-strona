@@ -21,6 +21,9 @@ assert.match(html, /latestByKey\.get\(`\$\{source\.path\}:\$\{task\.file\}`\)\?\
   'Only unsuccessful tasks are listed');
 assert.match(html, /detail\.textContent = labels\.detail \? ` - \$\{labels\.detail\}` : "";/,
   'Lesson number and title have a visible separator');
+assert.match(html, /progressItem\.result === "good" \|\| progressItem\.result === "medium"\) return maxPoints;/,
+  'A helped answer without an explicit partial score receives full points');
+assert.match(html, /\.profile-task-status\.video/);
 
 const sourcePath = 'zadania/kurs/mp/lekcja_1/test.json';
 const sourceCatalog = [{

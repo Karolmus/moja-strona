@@ -47,8 +47,8 @@ const mixedProgress = course.tasks.slice(0, 3).map((task, index) => ({
   created_at: '2026-09-10T10:00:00Z'
 }));
 const mixedCourse = ctx.sourceProgressGroups(mixedProgress, {level:'matura_podstawowa'})[0];
-assert.equal(mixedCourse.correctPercent, 33.3, 'Correct rate uses submitted answers, not every task in the lesson');
-assert.equal(ctx.coursePartProgress(mixedCourse, 'praca_domowa').correctPercent, 33.3);
+assert.equal(mixedCourse.correctPercent, 66.7, 'A correct answer completed with help counts as fully correct');
+assert.equal(ctx.coursePartProgress(mixedCourse, 'praca_domowa').correctPercent, 66.7);
 assert.equal(ctx.coursePartProgress(mixedCourse, 'zadania_powtorkowe').correctPercent, null);
 const revisionOnly = ctx.sourceProgressGroups([{source_id:source, file:'zp1.png', result:'bad'}], {level:'matura_podstawowa'})[0];
 assert.equal(ctx.coursePartProgress(revisionOnly, 'praca_domowa').attempted, 0);
@@ -116,6 +116,10 @@ const ui = vm.createContext({
   activeSourceDetailKey:'',
   formatPoints:value => String(value),
   formatDate:() => '10.09.2026',
+  inferredTaskScore:(progress, task) => ({
+    earned: progress?.earned_points ?? (['good', 'medium'].includes(progress?.result) ? 1 : 0),
+    max: progress?.max_points || task.maxPoints || 1
+  }),
   renderSourceDetail:group => ({sourceKey:group.key})
 });
 for (const name of ['courseTaskSegment', 'coursePartProgress', 'renderProgressSegments',
@@ -123,6 +127,8 @@ for (const name of ['courseTaskSegment', 'coursePartProgress', 'renderProgressSe
   const start = html.indexOf(`function ${name}(`);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ui);
 }
+assert.equal(ui.courseTaskSegment({latestProgress:{result:'good', hint_used:true}}), 'medium');
+assert.equal(ui.courseTaskSegment({latestProgress:{result:'video'}}), 'video');
 const selected = [];
 const courseSection = ui.renderCourseHistory([course], key => selected.push(key));
 const collapsedRows = courseSection.children[1].children[0].tbody.children;

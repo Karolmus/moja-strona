@@ -116,12 +116,17 @@
         const good = attempted.filter(entry => entry.progress.result === "good").length;
         const medium = attempted.filter(entry => entry.progress.result === "medium").length;
         const bad = attempted.filter(entry => entry.progress.result === "bad").length;
+        const video = attempted.filter(entry => entry.progress.result === "video").length;
+        const correct = attempted.filter(entry => {
+            const { earned, max } = taskScore(entry);
+            return max > 0 && earned >= max;
+        }).length;
         return {
             total: entries.length,
             attempted: attempted.length,
-            good, medium, bad,
+            good, medium, bad, video,
             review: entries.filter(entry => entry.review).length,
-            percent: attempted.length ? Math.round(good / attempted.length * 100) : null
+            percent: attempted.length ? Math.round(correct / attempted.length * 100) : null
         };
     }
 
@@ -130,17 +135,24 @@
         return Number.isFinite(number) ? String(Math.round(number * 10) / 10).replace(".", ",") : "-";
     }
 
-    function taskPoints(entry) {
+    function taskScore(entry) {
         const savedMax = entry.progress?.max_points;
         const max = Number(savedMax ?? entry.task.maxPoints ?? 1) || 1;
         const saved = entry.progress?.earned_points;
-        if (!entry.progress) return `- / ${formatPoints(max)}`;
+        if (!entry.progress) return { earned: null, max, estimated: false };
         if (saved !== null && saved !== undefined && Number.isFinite(Number(saved))) {
-            return `${formatPoints(saved)} / ${formatPoints(max)}`;
+            return { earned: Number(saved), max, estimated: false };
         }
         const result = entry.progress.result;
-        const earned = result === "good" ? max : result === "medium" ? max / 2 : 0;
-        return `~${formatPoints(earned)} / ${formatPoints(max)}`;
+        const earned = result === "good" || result === "medium" ? max : 0;
+        return { earned, max, estimated: true };
+    }
+
+    function taskPoints(entry) {
+        const score = taskScore(entry);
+
+        if (score.earned === null) return `- / ${formatPoints(score.max)}`;
+        return `${score.estimated ? "~" : ""}${formatPoints(score.earned)} / ${formatPoints(score.max)}`;
     }
 
     function expectedAnswer(task) {
@@ -248,11 +260,18 @@
             ? `${stats.attempted}/${stats.total} · ${stats.percent === null ? "-" : `${stats.percent}%`} poprawnych`
             : "Brak zadań"));
         if (stats.total) {
-            summary.appendChild(element("small", "", `${stats.good} dobrze · ${stats.medium} z pomocą · ${stats.bad} źle`));
+            summary.appendChild(element("small", "", `${stats.good} dobrze · ${stats.medium} z pomocą · ${stats.bad} źle` +
+                (stats.video ? ` · ${stats.video} nagranie` : "")));
             const segments = element("div", "segments");
             segments.title = `${stats.review} do omówienia`;
             for (const entry of entries) {
-                segments.appendChild(element("span", entry.progress?.result || (entry.review ? "review" : "missing")));
+                const result = entry.progress?.result;
+                const status = result === "video"
+                    ? "video"
+                    : result === "medium" || (result === "good" && entry.progress?.hint_used)
+                        ? "medium"
+                        : result || (entry.review ? "review" : "missing");
+                segments.appendChild(element("span", status));
             }
             summary.appendChild(segments);
         }

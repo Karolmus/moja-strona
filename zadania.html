@@ -7952,7 +7952,7 @@ function automaticScoreForResult(type, task = currentTask){
     const maxPoints = taskMaxPoints(task);
 
     if(!maxPoints) return null;
-    if(type === "good") return { earnedPoints: maxPoints, maxPoints };
+    if(type === "good" || type === "medium") return { earnedPoints: maxPoints, maxPoints };
     if(type === "bad") return { earnedPoints: 0, maxPoints };
 
     return { earnedPoints: null, maxPoints };

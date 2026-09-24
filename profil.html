@@ -599,6 +599,11 @@ body {
     color: #a33b3b;
 }
 
+.profile-task-status.video {
+    background: #e8edf6;
+    color: #405778;
+}
+
 .profile-task-status.missing {
     background: #eef2f7;
     color: #718096;
@@ -1154,8 +1159,7 @@ function earnedPointsForProgress(progressItem, maxPoints){
         return Math.max(0, Math.min(maxPoints, savedPoints));
     }
 
-    if(progressItem.result === "good") return maxPoints;
-    if(progressItem.result === "medium") return maxPoints / 2;
+    if(progressItem.result === "good" || progressItem.result === "medium") return maxPoints;
 
     return 0;
 }
@@ -1328,7 +1332,7 @@ function profileTaskStatus(progressItem, isReview){
 
     return {
         label: labels[progressItem.result] || "Wykonano",
-        className: ["good", "medium", "bad"].includes(progressItem.result)
+        className: ["good", "medium", "bad", "video"].includes(progressItem.result)
             ? progressItem.result : "missing"
     };
 }

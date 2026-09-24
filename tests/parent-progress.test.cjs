@@ -29,11 +29,13 @@ assert.equal(logic.partStats(started.entries).total, 3);
 assert.equal(logic.partStats(started.entries).review, 1);
 assert.equal(logic.partStats(started.entries).percent, 0);
 
-for (const file of ['zd2.png', 'zp1.png']) latest.set(`${source}:${file}`, { result: 'good' });
+latest.set(`${source}:zd2.png`, { result: 'medium', hint_used: true });
+latest.set(`${source}:zp1.png`, { result: 'good' });
 const completed = logic.lessonState(lesson, latest, review);
 assert.equal(completed.complete, true);
 assert.equal(logic.partStats(completed.entries).attempted, 3);
 assert.equal(logic.partStats(completed.entries).percent, 67);
+assert.equal(logic.partStats(completed.entries).medium, 1);
 assert.equal(logic.examSourceAllowed('zadania/mp/2025/maj/exam.json', 'matura_podstawowa'), true);
 assert.equal(logic.examSourceAllowed('zadania/eo/2025/maj/exam.json', 'matura_podstawowa'), false);
 assert.equal(logic.examSourceAllowed('zadania/mp/../secret.json', 'matura_podstawowa'), false);

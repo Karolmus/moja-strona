@@ -54,6 +54,11 @@ assert.match(html, /Zadania wykonane błędnie/);
 assert.match(html, /Dodane do omówienia/);
 assert(!html.includes('id="homeworkSummaryDuration"'));
 assert(!html.includes('id="homeworkSummaryGoodHints"'));
+assert.deepEqual(
+  JSON.parse(JSON.stringify(ctx.automaticScoreForResult('medium', work[0]))),
+  {earnedPoints:1, maxPoints:1},
+  'A correct answer completed with a hint receives full points'
+);
 
 const overrides = {
   'zd2.png':{result:'medium', hint_used:true},

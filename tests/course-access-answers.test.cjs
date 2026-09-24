@@ -13,7 +13,7 @@ const ctx = vm.createContext({loggedUser:null, STUDENT_WORK_COURSE_PARTS:['praca
   document:{querySelectorAll:()=>[{dataset:{index:'0'},value:'3/4'},{dataset:{index:'1'},value:'sqrt(2)'}]}
 });
 for (const [html,names] of [[tasks,['canAccessCoursePart','isCoursePreviewMode','submittedAnswerText','isEquationSolutionInput','getInputFields']],
-  [admin,['expectedCourseAnswer','studentLastActivity','taskPreviewVideoUrl']]]) {
+  [admin,['expectedCourseAnswer','studentLastActivity','getSortedStudents','taskPreviewVideoUrl']]]) {
   for(const name of names){const start=html.indexOf(`function ${name}(`); assert(start>=0); vm.runInContext(html.slice(start,html.indexOf('\n}',start)+2),ctx);}
 }
 assert(ctx.canAccessCoursePart('praca_domowa'));
@@ -41,6 +41,14 @@ assert.equal(ctx.taskPreviewVideoUrl({
 assert.equal(ctx.taskPreviewVideoUrl({category:'egzaminy',level:'matura_podstawowa',videoUrl:'https://youtu.be/aPCigoGzueA'}), '');
 ctx.studentProgressCache=new Map([[1,[{created_at:'2026-09-12T10:00:00Z'}]]]);
 assert.equal(ctx.studentLastActivity({id:1,last_login_at:'2026-09-13T10:00:00Z',last_activity_at:'2026-09-01T10:00:00Z'}),'2026-09-13T10:00:00Z');
+ctx.students = [
+  {id:1,display_name:'Starsza aktywność',last_activity_at:'2026-09-10T10:00:00Z'},
+  {id:2,display_name:'Nowsza aktywność',last_activity_at:'2026-09-14T10:00:00Z'}
+];
+ctx.currentStudentSort = 'activity_desc';
+assert.deepEqual(Array.from(ctx.getSortedStudents(), student => student.id), [2, 1]);
+assert.match(admin, /<h2>Uczniowie<\/h2>/);
+assert.match(admin, /<option value="activity_desc">Ostatnia aktywność<\/option>/);
 assert.match(admin,/<template id="studentProgressTemplate">/);
 assert(!admin.includes('lastCredentialsText +='));
 assert(!admin.includes('const fullText = parentLink'));
