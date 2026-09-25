@@ -1,0 +1,830 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 4 - zadanie 1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "suma rozwiązań",
+      "parametr"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Wyznacz trzy miejsca zerowe kolejnych czynników, a następnie wykorzystaj informację o ich sumie."
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 4 - zadanie 2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "liczby rzeczywiste",
+      "suma rozwiązań"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Czynnik x² + 9 nie ma rzeczywistych miejsc zerowych. Dodaj rozwiązania pochodzące z pozostałych czynników."
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 4 - zadanie 3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "wyrażenia wymierne",
+      "dziedzina",
+      "różnica kwadratów"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Mianownik nie może być równy zero. Rozwiąż osobno x² − 5 = 0 oraz x + 2 = 0."
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 4 - zadanie 4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "wyrażenia wymierne",
+      "dziedzina",
+      "pierwiastki"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Pierwiastek w liczniku wymaga nieujemnego wyrażenia podpierwiastkowego, a pierwiastek w mianowniku musi być dodatni."
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 4 - zadanie 5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "wyrażenia wymierne",
+      "dziedzina",
+      "pierwiastki"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Ponieważ pierwiastek znajduje się w mianowniku, x + 2 musi być dodatnie. Wyklucz również miejsca zerowe x² − 3."
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 4 - zadanie 6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "wyrażenia wymierne",
+      "skracanie ułamków algebraicznych",
+      "rozkład na czynniki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Rozłóż licznik na x(x − 3), a trójmian w mianowniku zapisz jako (x + 5)²."
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 4 - zadanie 7",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "liczba rozwiązań",
+      "dziedzina"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Najpierw wyklucz wartości zerujące mianowniki. Dopiero potem sprawdź miejsca zerowe licznika."
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 4 - zadanie 8",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "wyrażenia wymierne",
+      "dziedzina",
+      "dzielenie ułamków algebraicznych"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Przy dzieleniu przez ułamek jego mianownik musi być różny od zera, ale cały dzielnik również nie może być równy zero."
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 4 - zadanie 9",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "dziedzina",
+      "skracanie ułamków algebraicznych"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Ułamek jest równy zero, gdy licznik jest równy zero i jednocześnie mianownik jest różny od zera."
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 4 - zadanie 10",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "iloczyn rozwiązań",
+      "różnica kwadratów"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Jednym z rozwiązań jest zero, więc iloczyn wszystkich rozwiązań można ustalić bez obliczania pozostałych."
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 4 - zadanie 11",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "dziedzina",
+      "różnica kwadratów"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Rozłóż licznik i mianownik na czynniki. Jedno z miejsc zerowych licznika jest wykluczone z dziedziny."
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 4 - zadanie 12",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "suma rozwiązań",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Przyrównaj każdy z trzech czynników do zera, a następnie dodaj otrzymane rozwiązania."
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 4 - zadanie 13",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "różnica kwadratów",
+      "kwadrat sumy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Rozłóż oba nawiasy na czynniki: zastosuj różnicę kwadratów oraz wzór na kwadrat sumy."
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 4 - zadanie 14",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "dziedzina",
+      "rozkład na czynniki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Wyłącz x przed nawias w liczniku i mianowniku. Pamiętaj, że skrócona wartość nadal może być wykluczona z dziedziny."
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 4 - zadanie 15",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "dziedzina",
+      "skracanie ułamków algebraicznych"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Wartość −3 zeruje także mianownik, dlatego nie jest rozwiązaniem równania."
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 4 - zadanie 16",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "liczba rozwiązań",
+      "iloczyn czynników"
+    ],
+    "difficulty": 3,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Mianownik wyklucza zero oraz liczby od 1 do n. Policz niewykluczone miejsca zerowe licznika."
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 4 - praca domowa 1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "suma rozwiązań",
+      "parametr"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Wyznacz rozwiązania z każdego czynnika, zapisz ich sumę i przyrównaj ją do 4."
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 4 - praca domowa 2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "liczba rozwiązań",
+      "liczby rzeczywiste"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Czynnik x² + 49 nie zeruje się w zbiorze liczb rzeczywistych."
+  },
+  {
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "file": "zd3.png",
+    "title": "Lekcja 4 - praca domowa 3",
+    "tags": [
+      "wyrażenia wymierne",
+      "dziedzina",
+      "dzielenie ułamków algebraicznych"
+    ],
+    "difficulty": 2,
+    "answer": "D",
+    "hint": "Wyklucz wartości zerujące oba mianowniki oraz licznik dzielnika, ponieważ nie wolno dzielić przez zero."
+  },
+  {
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "file": "zd4.png",
+    "title": "Lekcja 4 - praca domowa 4",
+    "tags": [
+      "wyrażenia wymierne",
+      "dziedzina",
+      "pierwiastki"
+    ],
+    "difficulty": 1,
+    "answer": "C",
+    "hint": "Pierwiastek znajduje się w mianowniku, dlatego wyrażenie 3x + 2 musi być dodatnie."
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 4 - praca domowa 5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "wyrażenia wymierne",
+      "dzielenie ułamków algebraicznych",
+      "skracanie"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Rozłóż x² − 4 i x² + 4x + 4 na czynniki, a dzielenie zamień na mnożenie przez odwrotność."
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 4 - praca domowa 6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "dziedzina",
+      "miejsce zerowe licznika"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Przyrównaj licznik do zera i sprawdź, czy otrzymana wartość nie zeruje mianownika."
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 4 - praca domowa 7",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "iloczyn rozwiązań",
+      "ułamki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Wyznacz trzy rozwiązania z kolejnych czynników, a następnie oblicz ich iloczyn."
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 4 - praca domowa 8",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "liczba rozwiązań",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Rozłóż licznik i mianownik na czynniki. Jedno miejsce zerowe licznika jest wykluczone z dziedziny."
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 4 - praca domowa 9",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "suma rozwiązań",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Pomiń rozwiązanie zerowe i dodaj dwa pozostałe miejsca zerowe."
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 4 - praca domowa 10",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania iloczynowe",
+      "różnica kwadratów",
+      "rozkład na czynniki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Rozłóż oba czynniki na iloczyny i zbierz wszystkie różne miejsca zerowe."
+  },
+  {
+    "file": "zd11.png",
+    "title": "Lekcja 4 - praca domowa 11",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "liczba rozwiązań",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Rozłóż licznik i mianownik na czynniki. Wspólny czynnik nie daje rozwiązania, ponieważ zeruje mianownik."
+  },
+  {
+    "file": "zd12.png",
+    "title": "Lekcja 4 - praca domowa 12",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "tags": [
+      "równania wymierne",
+      "dziedzina",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Wyznacz miejsca zerowe licznika i sprawdź, czy żadne z nich nie zeruje mianownika."
+  },
+  {
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "file": "zd13.png",
+    "title": "Lekcja 4 - praca domowa 13",
+    "tags": [
+      "równania wymierne",
+      "dziedzina",
+      "miejsca zerowe"
+    ],
+    "difficulty": 2,
+    "answer": "D",
+    "hint": "Wyznacz miejsca zerowe licznika, a następnie odrzuć liczby, które zerują mianownik."
+  },
+  {
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe i wymierne",
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "file": "zd14.png",
+    "title": "Lekcja 4 - praca domowa 14",
+    "tags": [
+      "wyrażenia wymierne",
+      "dzielenie ułamków algebraicznych",
+      "rozkład na czynniki"
+    ],
+    "difficulty": 2,
+    "answer": "C",
+    "hint": "Rozłóż oba wielomiany na czynniki, zamień dzielenie na mnożenie przez odwrotność i skróć wspólne czynniki."
+  },
+  {
+    "file": "zp1.png",
+    "title": "Lekcja 4 - zadanie powtórkowe 1",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wzory skróconego mnożenia",
+    "tags": [
+      "wzory skróconego mnożenia",
+      "różnica kwadratów",
+      "upraszczanie wyrażeń"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Zastosuj wzór na różnicę kwadratów do dwóch podniesionych do kwadratu nawiasów."
+  },
+  {
+    "file": "zp2.png",
+    "title": "Lekcja 4 - zadanie powtórkowe 2",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "logarytm potęgi",
+      "logarytm dziesiętny"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Zapisz √100 oraz 1/1000 jako potęgi liczby 10 i oblicz oba logarytmy."
+  },
+  {
+    "file": "zp3.png",
+    "title": "Lekcja 4 - zadanie powtórkowe 3",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "potęgi i pierwiastki",
+    "tags": [
+      "potęgi",
+      "wykładnik wymierny",
+      "pierwiastki"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Odejmij ułamki w wykładniku, a potem porównaj wynik z potęgową postacią każdej odpowiedzi."
+  },
+  {
+    "file": "zp4.png",
+    "title": "Lekcja 4 - zadanie powtórkowe 4",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wzory skróconego mnożenia",
+    "tags": [
+      "wzory skróconego mnożenia",
+      "pierwiastki",
+      "kwadrat różnicy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Wyłącz czynnik przed pierwiastek z 27, uprość nawias i podnieś wynik do kwadratu."
+  },
+  {
+    "file": "zp5.png",
+    "title": "Lekcja 4 - zadanie powtórkowe 5",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "porównywanie liczb",
+      "logarytm dziesiętny"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Wyznacz znak i przybliżony przedział każdej liczby: a jest ujemne, a b oraz c są dodatnie."
+  },
+  {
+    "file": "zp6.png",
+    "title": "Lekcja 4 - zadanie powtórkowe 6",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wzory skróconego mnożenia",
+    "tags": [
+      "wzory skróconego mnożenia",
+      "kwadrat sumy",
+      "pierwiastki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Rozwiń kwadrat sumy i porównaj osobno część wymierną oraz współczynnik przy √2."
+  }
+]

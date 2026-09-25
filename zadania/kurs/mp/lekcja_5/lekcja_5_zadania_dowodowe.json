@@ -1,0 +1,612 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 5 - zadanie 1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "liczby całkowite",
+      "iloczyn kolejnych liczb"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz przed nawias 15n i uzasadnij, dlaczego iloczyn n(n + 1) jest parzysty."
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 5 - zadanie 2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "potęgi",
+      "wyłączanie wspólnego czynnika"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz 3ⁿ przed nawias, a sumę pozostałych potęg oblicz jako liczbę."
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 5 - zadanie 3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "liczby nieparzyste",
+      "wyrażenia algebraiczne"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz liczbę nieparzystą w postaci n = 2k + 1 i uprość wyrażenie."
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 5 - zadanie 4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "reszta z dzielenia",
+      "kwadrat liczby",
+      "liczby całkowite"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Przedstaw liczbę w postaci 9k + 7, podnieś ją do kwadratu i wyodrębnij wielokrotność 3."
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 5 - zadanie 5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "różnica potęg",
+      "potęgi"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Sprowadź obie potęgi do wspólnej podstawy i wyłącz mniejszą potęgę przed nawias."
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 5 - zadanie 6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "reszta z dzielenia",
+      "suma kwadratów",
+      "kolejne liczby"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz cztery kolejne liczby jako n, n + 1, n + 2, n + 3 i uprość sumę ich kwadratów."
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 5 - zadanie 7",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "iloczyn kolejnych liczb",
+      "rozkład na czynniki"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz 7n i zastosuj wzór na różnicę kwadratów. Otrzymasz iloczyn trzech kolejnych liczb."
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 5 - zadanie 8",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "wzory skróconego mnożenia",
+      "liczby całkowite"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Rozwiń kwadrat dwumianu i wyłącz 8 przed nawias."
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 5 - zadanie 9",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "różnica kwadratów",
+      "liczby całkowite"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Potraktuj wyrażenie jako różnicę kwadratów i sprawdź parzystość kolejnych czynników."
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 5 - zadanie 10",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "reszta z dzielenia",
+      "parzystość",
+      "kwadraty liczb"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz a = 4n + 1 oraz b = 2k + 1, a następnie uporządkuj sumę kwadratów względem wielokrotności 8."
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 5 - zadanie 11",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "rozkład na czynniki",
+      "liczby całkowite"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz 4n. W pozostałym iloczynie wskaż czynnik parzysty i czynnik podzielny przez 3."
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 5 - zadanie 12",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "nierówności",
+      "kwadrat różnicy",
+      "liczby rzeczywiste"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Przenieś lewą stronę nierówności na prawą i zapisz różnicę jako kwadrat."
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 5 - zadanie domowe 1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "liczby całkowite",
+      "parzystość"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz 9n i zbadaj parzystość iloczynu n(n + 3)."
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 5 - zadanie domowe 2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "potęgi",
+      "wyłączanie wspólnego czynnika"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz 5ⁿ przed nawias i rozłóż otrzymany współczynnik na czynniki."
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 5 - zadanie domowe 3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "liczby nieparzyste",
+      "kwadrat sumy"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz 3 i zauważ, że dla nieparzystego n liczba n + 1 jest parzysta."
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 5 - zadanie domowe 4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "reszta z dzielenia",
+      "różnica kwadratów"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz a = 8k + 3 oraz b = 8m + 5, a potem uporządkuj różnicę kwadratów."
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 5 - zadanie domowe 5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "różnica potęg",
+      "potęgi"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz obie liczby jako potęgi liczby 3 i wyłącz wspólną potęgę przed nawias."
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 5 - zadanie domowe 6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "reszta z dzielenia",
+      "liczby nieparzyste",
+      "suma kwadratów"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz trzy kolejne liczby nieparzyste jako 2k + 1, 2k + 3 i 2k + 5, a następnie uprość sumę."
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 5 - zadanie domowe 7",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "iloczyn kolejnych liczb",
+      "różnica kwadratów"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Rozłóż n³ − n na iloczyn trzech kolejnych liczb całkowitych."
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 5 - zadanie domowe 8",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "wzory skróconego mnożenia",
+      "liczby całkowite"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Rozwiń kwadrat i wyłącz 4 przed nawias."
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 5 - zadanie domowe 9",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "różnica kwadratów",
+      "potęgi"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Dwa razy zastosuj wzór na różnicę kwadratów i zbadaj parzystość czynników."
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 5 - zadanie domowe 10",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "reszta z dzielenia",
+      "liczby całkowite",
+      "wyrażenia algebraiczne"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz wyrażenie w postaci 8k + 5."
+  },
+  {
+    "file": "zd11.png",
+    "title": "Lekcja 5 - zadanie domowe 11",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "podzielność",
+      "rozkład na czynniki",
+      "liczby całkowite"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Wyłącz 6n i w iloczynie pozostałych czynników znajdź wielokrotność 3."
+  },
+  {
+    "file": "zd12.png",
+    "title": "Lekcja 5 - zadanie domowe 12",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": [
+      "nierówności",
+      "kwadrat różnicy",
+      "liczby rzeczywiste"
+    ],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Przenieś 4ab na lewą stronę i zapisz otrzymane wyrażenie jako (2a − b)²."
+  },
+  {
+    "file": "zp1.png",
+    "title": "Lekcja 5 - zadanie powtórkowe 1",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe",
+    "tags": [
+      "równania iloczynowe",
+      "suma rozwiązań"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Czynnik x² + 25 nie ma rzeczywistych miejsc zerowych."
+  },
+  {
+    "file": "zp2.png",
+    "title": "Lekcja 5 - zadanie powtórkowe 2",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wzory skróconego mnożenia",
+    "tags": [
+      "wzory skróconego mnożenia",
+      "różnica kwadratów"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "hint": "Rozwiń oba kwadraty i zredukuj wyrazy podobne."
+  },
+  {
+    "file": "zp3.png",
+    "title": "Lekcja 5 - zadanie powtórkowe 3",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "potęgi"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "hint": "Zapisz podstawę i argument jako potęgi liczby 2."
+  },
+  {
+    "file": "zp4.png",
+    "title": "Lekcja 5 - zadanie powtórkowe 4",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "równania iloczynowe",
+    "tags": [
+      "równania iloczynowe",
+      "iloczyn rozwiązań"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "hint": "Wyznacz rozwiązania każdego czynnika, pomijając zero przy obliczaniu iloczynu."
+  },
+  {
+    "file": "zp5.png",
+    "title": "Lekcja 5 - zadanie powtórkowe 5",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "pierwiastki",
+    "tags": [
+      "pierwiastki",
+      "działania na pierwiastkach"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Zapisz wszystkie pierwiastki jako wielokrotności pierwiastka sześciennego z 8."
+  },
+  {
+    "file": "zp6.png",
+    "title": "Lekcja 5 - zadanie powtórkowe 6",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wzory skróconego mnożenia",
+    "tags": [
+      "wzory skróconego mnożenia",
+      "sześcian różnicy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Porównaj wyrażenie ze wzorem (a − b)³."
+  },
+  {
+    "file": "zp7.png",
+    "title": "Lekcja 5 - zadanie powtórkowe 7",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "równania wymierne",
+    "tags": [
+      "równania wymierne",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "hint": "Najpierw określ dziedzinę, a potem przyrównaj licznik do zera."
+  }
+]

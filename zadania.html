@@ -1945,6 +1945,13 @@ html.task-video-open {
     color: var(--text);
 }
 
+.task-instruction.external-submission {
+    padding: 11px 14px;
+    border-left: 4px solid #6f91b4;
+    background: #f2f7fb;
+    font-weight: 700;
+}
+
 .mcq.practical-task {
     grid-template-columns: 1fr;
 }
@@ -3632,6 +3639,20 @@ const TASK_SOURCES = [
         level: "matura_podstawowa",
         label: "Lekcja 3",
         detail: "Wzory skróconego mnożenia"
+    },
+    {
+        path: "zadania/kurs/mp/lekcja_4/lekcja_4_rownania_iloczynowe_i_wymierne.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Lekcja 4",
+        detail: "Równania iloczynowe i wymierne"
+    },
+    {
+        path: "zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Lekcja 5",
+        detail: "Zadania dowodowe"
     },
     {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
@@ -7471,6 +7492,7 @@ function clearTaskInteraction(){
     document.getElementById("manualScoreNotice").hidden = true;
     document.getElementById("taskInstruction").hidden = true;
     document.getElementById("taskInstruction").textContent = "";
+    document.getElementById("taskInstruction").classList?.remove("external-submission");
     const mcq = document.getElementById("mcq");
     const resultButtons = document.getElementById("resultButtons");
     const solutionBox = document.getElementById("solutionBox");
@@ -7547,8 +7569,13 @@ function clearTaskInteraction(){
 
 function updateTaskDetails(task, total){
     const instruction = document.getElementById("taskInstruction");
-    instruction.textContent = task.instruction || "";
-    instruction.hidden = !task.instruction;
+    const isExternalSubmission = task?.type === "external_submission" || task?.externalSubmission === true;
+    const instructionText = task.instruction || (isExternalSubmission
+        ? "Rozwiązanie zadania wyślij na platformie Discord."
+        : "");
+    instruction.textContent = instructionText;
+    instruction.hidden = !instructionText;
+    instruction.classList?.toggle("external-submission", isExternalSubmission);
     const taskCounter = document.getElementById("taskCounter");
     const metaBox = document.getElementById("metaBox");
     const isHomework = task.coursePart === "praca_domowa";
@@ -7900,6 +7927,8 @@ function hasSavedPoints(progressItem){
 function isManualScoreTask(task = currentTask){
     return Boolean(
         task &&
+        task.type !== "external_submission" &&
+        task.externalSubmission !== true &&
         !isClosedTask(task) &&
         !isInputTask(task) &&
         !isPracticalTask(task) &&
@@ -8059,12 +8088,13 @@ function updateAnswerTools(){
     const isOpenExam = isExamManualScoreTask(currentTask);
     const isPreview = isCoursePreviewMode();
     const evaluationMaterialsUnlocked = canRevealEvaluationMaterials(currentTask);
+    const isExternalSubmission = currentTask.type === "external_submission" || currentTask.externalSubmission === true;
 
     if(hintButton){
         hintButton.hidden = isOpenExam;
     }
 
-    answerButton.hidden = isOpenExam || (!isCourse && isClosed) || (!isPreview && isCourse && requiresSubmittedAnswer(currentTask));
+    answerButton.hidden = isExternalSubmission || isOpenExam || (!isCourse && isClosed) || (!isPreview && isCourse && requiresSubmittedAnswer(currentTask));
 
     if(solutionButton){
         solutionButton.hidden = isClosed || !hasTaskSolutions(currentTask) || !evaluationMaterialsUnlocked;
