@@ -36,8 +36,14 @@ assert.match(html, /zadania: "Część główna"/);
 assert(!html.includes('zadania: "1. Część główna"'));
 assert.match(html, /body\.focus-mode\s*\{[^}]*min-height:\s*100vh;[^}]*background:\s*#000000;/s,
   'Focus mode fills the area outside the task with black');
+assert.match(html, /@media\(max-width: 760px\)[\s\S]*?body\.focus-mode\s*\{[^}]*min-height: 100dvh;[^}]*background: #ffffff;/,
+  'Mobile focus mode fills the viewport with white');
 assert.match(html, /id="courseBrand"[\s\S]*?<img[^>]*>[\s\S]*?<p>Karol Musioł Delta Sigma<\/p>/);
 assert.match(html, /\.course-brand\[hidden\]\s*\{\s*display: none;/);
+assert(!html.includes('<div class="side-title">Materiały</div>'), 'Formula buttons do not need a redundant heading');
+assert.match(html, /id="mobileCourseFooter"[^>]*hidden[\s\S]*?id="mobileSourceSummaryPoints"/);
+assert.match(html, /function updateMobileCourseFooter\(summary = null\)/);
+assert.match(html, /document\.body\.classList\.toggle\("course-view", selectedCategory === "kurs"\)/);
 assert(html.indexOf('id="taskImage"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="taskInstruction"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="mcq"') < html.indexOf('class="interaction-panel"'), 'Answers precede help and navigation in DOM order');
@@ -66,6 +72,8 @@ assert.match(correctionSource, /if\(isClosedTask\(currentTask\)\)\{\s*showIncorr
 assert.match(correctionSource, /showMessage\(`Poprawna odpowiedź: \$\{correct\}`\);/);
 assert.match(html, /id="incorrectAnswerSuggestion"[^>]*hidden/);
 assert.match(html, /Spróbuj jeszcze raz przeanalizować zadanie lub obejrzyj nagranie z rozwiązaniem\./);
+assert.match(html, /\.choice-btn\.correct \{\s*background: #cdebd4;\s*border-color: #3f9a59;/);
+assert.match(html, /\.choice-btn\.wrong \{\s*background: #f9d3cf;\s*border-color: #d35247;/);
 assert(!html.includes('--tile-result-band'), 'Status no longer uses thick inset bands');
 const tileStyle = html.match(/\.tile \{([^}]+)\}/)[1];
 assert.match(tileStyle, /min-width: 32px;/);

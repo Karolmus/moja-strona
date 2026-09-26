@@ -14,16 +14,17 @@ assert.match(html, /class="panel course-progress-panel"/);
 assert.match(html, /matura_podstawowa: 25/);
 assert.match(html, /const COURSE_REVISION_TARGETS = \{\s*matura_podstawowa: 24\s*\};/);
 assert.match(html, /calculateProgress\(latest, "kurs", "zadania_powtorkowe", revisionTarget\)/);
-assert.match(html, />Zadania do poprawy</);
 assert.match(html, />Wyniki z pracy domowej</);
 assert(!html.includes('Wyniki każdej pracy domowej względem wszystkich zadań z danej lekcji.'));
-assert.match(html, /latestByKey\.get\(`\$\{source\.path\}:\$\{task\.file\}`\)\?\.result === "bad"/,
-  'Only unsuccessful tasks are listed');
-assert.match(html, /detail\.textContent = labels\.detail \? ` - \$\{labels\.detail\}` : "";/,
-  'Lesson number and title have a visible separator');
+assert(!html.includes('id="courseTaskDetails"'), 'The profile does not repeat individual task details');
+assert(!html.includes('function renderCourseTaskDetails('));
+assert(!html.includes('class="panel profile-task-panel"'));
 assert.match(html, /progressItem\.result === "good" \|\| progressItem\.result === "medium"\) return maxPoints;/,
   'A helped answer without an explicit partial score receives full points');
-assert.match(html, /\.profile-task-status\.video/);
+assert.match(html, /\.homework-chart-series \{[^}]*fill: none;[^}]*stroke-width: 3;/s);
+assert.match(html, /path \+= hasPoint \? ` L \$\{point\}` : `M \$\{point\}`;/,
+  'Available homework points are connected even when an intermediate lesson has no activity');
+assert(!html.includes('previousValue = null'), 'An empty lesson does not break the chart line');
 
 const sourcePath = 'zadania/kurs/mp/lekcja_1/test.json';
 const sourceCatalog = [{
@@ -49,4 +50,4 @@ assert.equal(ctx.courseCompletion(progress, 25).total, 25);
 assert.equal(ctx.courseCompletion(progress, 25).complete, false);
 assert.equal(ctx.courseCompletion(progress).complete, true, 'Other levels retain catalog-based completion');
 
-console.log('PASS: compact student profile, 25-lesson MP target, failed-only details and clear lesson labels');
+console.log('PASS: compact student profile, 25-lesson MP target and connected homework chart');

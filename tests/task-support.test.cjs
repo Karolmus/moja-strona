@@ -93,5 +93,5 @@ for(const task of lesson2Tasks){
 }
 assert.equal(Object.keys(ctx.DeltaSigmaCourseVideos[lesson2Source]).length, 18);
 assert.match(html, /<button[^>]*id="taskVideoLink"[^>]*aria-haspopup="dialog"/);
-assert.match(html, /videoLink.hidden = !videoUrl;/, 'Hide the video command on tasks without a film');
+assert.match(html, /videoLink.hidden = isTest \|\| !videoUrl;/, 'Hide the video command on tests and tasks without a film');
 console.log('PASS: hint flags, guest persistence, student restore, mode ordering and 29 exact lesson video links');

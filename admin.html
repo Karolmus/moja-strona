@@ -2204,6 +2204,7 @@ const ADMIN_TASK_SOURCES = [
     { path: "zadania/kurs/eo/lekcja_4/lekcja_4_pierwiastki.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 4", detail: "Pierwiastki" },
     { path: "zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 5", detail: "Wyrażenia algebraiczne i równania" },
     { path: "zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 6", detail: "Wyrażenia algebraiczne i równania II" },
+    { path: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Powtórka 1-6", detail: "Test sprawdzający po lekcjach 1-6", kind: "test" },
     { path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 7", detail: "Czas i odległość" },
     { path: "zadania/kurs/eo/lekcja_8/lekcja_8_predkosc.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 8", detail: "Prędkość" },
     { path: "zadania/kurs/eo/lekcja_9/lekcja_9_pola_powierzchni_trojkatow_i_czworokatow.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 9", detail: "Pola powierzchni trójkątów i czworokątów" },
@@ -2570,6 +2571,7 @@ async function loadAdminTaskCatalog(){
                     sourceId: source.path,
                     sourceLabel: source.label,
                     sourceDetail: source.detail,
+                    sourceKind: source.kind || "",
                     sourceIndex
                 }));
             } catch(error) {
@@ -2589,7 +2591,8 @@ function getCatalogSources(category, level, options = {}){
             task.category === category &&
             task.level === level &&
             (!options.coursePart || task.coursePart === options.coursePart) &&
-            (!options.courseParts || options.courseParts.includes(task.coursePart))
+            (!options.courseParts || options.courseParts.includes(task.coursePart)) &&
+            (!options.excludeKinds || !options.excludeKinds.includes(task.sourceKind))
         )
         .forEach(task => {
             if(!sourceMap.has(task.sourceId)){
@@ -3004,7 +3007,7 @@ function buildProgressCell(student){
         student.level,
         "kurs",
         COURSE_TARGETS[student.level] || 20,
-        { courseParts: ["praca_domowa", "zadania_powtorkowe"] }
+        { courseParts: ["praca_domowa", "zadania_powtorkowe"], excludeKinds: ["test"] }
     );
     const examStats = calculateStudentProgressStats(
         progress,

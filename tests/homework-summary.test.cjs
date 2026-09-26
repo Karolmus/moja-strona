@@ -8,7 +8,7 @@ const source = {id:sourceId, label:'Lekcja 2', detail:'Logarytmy'};
 const work = tasks.filter(t => ['praca_domowa', 'zadania_powtorkowe'].includes(t.coursePart));
 const elements = Object.fromEntries(['homeworkSummaryOverlay', 'homeworkSummaryLesson', 'homeworkSummaryGood',
   'homeworkSummaryGoodHints', 'homeworkSummaryBad', 'homeworkSummaryBadHints', 'homeworkSummaryDuration',
-  'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'homeworkSummaryPercent', 'homeworkSummaryTasks', 'progress']
+  'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'homeworkSummaryVideo', 'homeworkSummaryPercent', 'progress']
   .map(id => [id, {hidden:true, innerText:'', innerHTML:'', children:[], replaceChildren(){this.children=[];}}]));
 for (const id of ['reviewButton', 'taskVideoLink']) {
   const element = {hidden:false, classes:new Set()};
@@ -47,7 +47,7 @@ const ctx = vm.createContext({
 for (const name of ['getTaskKey', 'getProgressSourceId', 'getProgressFile', 'progressTaskKey', 'getSavedResult',
   'getSavedProgressItem', 'taskUsedHint', 'getHomeworkSummaryTasks', 'isHomeworkComplete', 'getTaskDurationSeconds', 'taskMaxPoints',
   'taskPointValue', 'normalizeScoreValue', 'automaticScoreForResult', 'getTaskScore', 'calculateSourceSummary', 'calculateHomeworkSummary',
-  'formatHomeworkDuration', 'loadStudentReviewTasks', 'updateHomeworkReviewCount', 'showHomeworkCompletionSummary', 'renderHomeworkSummaryTasks',
+  'formatHomeworkDuration', 'loadStudentReviewTasks', 'updateHomeworkReviewCount', 'showHomeworkCompletionSummary',
   'advanceToHomeworkSummaryIfComplete', 'updateNextTaskButton', 'updateSupportActionHighlights', 'addProgress']) {
   const match = new RegExp(`(?:async )?function ${name}\\(`).exec(html);
   assert(match, name);
@@ -55,11 +55,14 @@ for (const name of ['getTaskKey', 'getProgressSourceId', 'getProgressFile', 'pro
 }
 assert.equal(ctx.getHomeworkSummaryTasks().length, 18);
 assert(!html.includes('id="homeworkSummaryMedium"'));
-assert.match(html, /Zadania wykonane poprawnie/);
-assert.match(html, /Zadania wykonane błędnie/);
-assert.match(html, /Dodane do omówienia/);
+assert.match(html, /Odpowiedzi poprawne/);
+assert.match(html, /Odpowiedzi niepoprawne/);
+assert.match(html, /Zadania dodane do omówienia na lekcji/);
+assert.match(html, /Zadania z obejrzanym nagraniem/);
 assert(!html.includes('id="homeworkSummaryDuration"'));
 assert(!html.includes('id="homeworkSummaryGoodHints"'));
+assert(!html.includes('id="homeworkSummaryTasks"'), 'The summary no longer repeats every task tile');
+assert(!html.includes('function renderHomeworkSummaryTasks('));
 assert.deepEqual(
   JSON.parse(JSON.stringify(ctx.automaticScoreForResult('medium', work[0]))),
   {earnedPoints:1, maxPoints:1},
@@ -153,8 +156,8 @@ ctx.sessionResults.clear();
   assert.equal(overlay.hidden, false);
   assert.equal(elements.homeworkSummaryGood.innerText, 15);
   assert.equal(elements.homeworkSummaryBad.innerText, 3);
-  assert.equal(elements.homeworkSummaryPercent.innerText, ctx.percentLabel(summary.percent));
-  assert.equal(elements.homeworkSummaryTasks.children.length, 18);
+  assert.equal(elements.homeworkSummaryVideo.innerText, 0);
+  assert.equal(elements.homeworkSummaryPercent.innerText, `${Math.round(summary.percent)}%`);
   assert.equal(elements.homeworkSummaryReview.innerText, '...');
   assert.equal(fetched, 0, 'Wait for outstanding discussion requests before fetching the count');
   release();

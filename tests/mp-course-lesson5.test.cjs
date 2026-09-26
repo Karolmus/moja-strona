@@ -56,7 +56,7 @@ for(const task of tasks){
 assert(fs.statSync('zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.pdf').size > 1000000);
 assert(html.includes(discordInstruction));
 assert(html.includes('.task-instruction.external-submission'));
-assert(html.includes('answerButton.hidden = isExternalSubmission || isOpenExam'));
+assert(html.includes('answerButton.hidden = isTest || isExternalSubmission || isOpenExam'));
 
 function functionSource(text, name) {
   const start = text.indexOf(`function ${name}(`);

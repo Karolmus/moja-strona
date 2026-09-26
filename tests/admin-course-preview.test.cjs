@@ -17,7 +17,8 @@ const ctx = vm.createContext({URLSearchParams, loggedUser:{role:'admin'}, curren
     ...(index < 2 ? [{id:`course-${index}`, category:'kurs', level}] : [])
   ]),
   STUDENT_WORK_COURSE_PARTS:['praca_domowa', 'zadania_powtorkowe'],
-  getSourceMeta:source => source, getCurrentTaskDurationSeconds:() => 0,
+  getSourceMeta:source => source, isCourseSourceVisible:() => true,
+  getCurrentTaskDurationSeconds:() => 0,
   apiFetch:async () => {requests++; return {authenticated:true, user:ctx.loggedUser};},
   window:{apiFetch:true, location:{search:''}},
   document:{querySelectorAll:() => buttons, getElementById:id => elements[id],
