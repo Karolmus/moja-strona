@@ -33,6 +33,7 @@ const ctx = vm.createContext({document, URL, isTaskLoading:false, currentTaskAns
   taskPointValue:()=>1, getTaskDurationSeconds:()=>12, getCurrentTaskDurationSeconds:()=>12,
   setSessionDuration(){}, saveGuestSessionProgress(){}, workTimer:{finish(){}}, disableMCQ(){},
   renderTaskNavigator(){}, renderSourceSelector(){}, updateSourceSummary(){}, updateScorePanel(){},
+  updateSupportActionHighlights(){},
   scheduleCompletionSummary(){}, saveProgress:async(type,score)=>{
     writes++; assert.equal(type,'video'); assert.equal(score.earnedPoints,0);
   }

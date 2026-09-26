@@ -895,6 +895,20 @@ th {
     font-size: 14px;
 }
 
+.review-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.review-heading .btn {
+    min-height: 30px;
+    padding: 4px 9px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
 .review-empty {
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -5138,6 +5152,74 @@ function prefetchReviewTaskImage(item){
     clipboardImageBlob(item).catch(() => {});
 }
 
+async function reviewTasksClipboardBlob(items){
+    const blobs = await Promise.all(items.map(clipboardImageBlob));
+    const images = await Promise.all(blobs.map(blobToImage));
+    const padding = 24;
+    const gap = 28;
+    const headingHeight = 54;
+    const maxContentWidth = 1400;
+    const entries = images.map((image, index) => {
+        const naturalWidth = image.naturalWidth || image.width;
+        const naturalHeight = image.naturalHeight || image.height;
+        const scale = Math.min(1, maxContentWidth / naturalWidth);
+
+        return {
+            image,
+            item: items[index],
+            width: Math.round(naturalWidth * scale),
+            height: Math.round(naturalHeight * scale)
+        };
+    });
+    const contentWidth = Math.max(...entries.map(entry => entry.width));
+    const width = contentWidth + padding * 2;
+    const height = padding * 2
+        + entries.reduce((sum, entry) => sum + headingHeight + entry.height, 0)
+        + gap * Math.max(0, entries.length - 1);
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    let y = padding;
+
+    canvas.width = width;
+    canvas.height = height;
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, width, height);
+
+    entries.forEach((entry, index) => {
+        const meta = reviewTaskMeta(entry.item);
+
+        context.fillStyle = "#1f2a36";
+        context.font = "700 22px Arial, sans-serif";
+        context.textBaseline = "top";
+        context.fillText(reviewTaskTitle(entry.item), padding, y, contentWidth);
+
+        if(meta){
+            context.fillStyle = "#64748b";
+            context.font = "16px Arial, sans-serif";
+            context.fillText(meta, padding, y + 28, contentWidth);
+        }
+
+        y += headingHeight;
+        context.drawImage(
+            entry.image,
+            Math.round((width - entry.width) / 2),
+            y,
+            entry.width,
+            entry.height
+        );
+        y += entry.height;
+
+        if(index < entries.length - 1){
+            y += Math.round(gap / 2);
+            context.fillStyle = "#dbe3ec";
+            context.fillRect(padding, y, contentWidth, 1);
+            y += Math.round(gap / 2);
+        }
+    });
+
+    return canvasToPngBlob(canvas);
+}
+
 async function copyReviewTaskImage(item){
     if(!navigator.clipboard?.write || !window.ClipboardItem){
         showStatus("Ta przeglądarka nie pozwala skopiować obrazu do schowka z poziomu strony.");
@@ -5158,13 +5240,45 @@ async function copyReviewTaskImage(item){
     }
 }
 
+async function copyAllReviewTaskImages(items, control){
+    if(!navigator.clipboard?.write || !window.ClipboardItem){
+        showStatus("Ta przeglądarka nie pozwala skopiować obrazów do schowka z poziomu strony.");
+        return;
+    }
+
+    const originalLabel = control.innerText;
+
+    control.disabled = true;
+    control.innerText = "Kopiuję…";
+
+    try {
+        const pngBlob = await reviewTasksClipboardBlob(items);
+
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                "image/png": pngBlob
+            })
+        ]);
+        showStatus(`Skopiowano ${items.length} ${items.length === 1 ? "zadanie" : "zadań"} do omówienia jako jeden obraz.`);
+    } catch(error) {
+        showStatus(error.message || "Nie udało się skopiować zadań do schowka.");
+    } finally {
+        control.disabled = false;
+        control.innerText = originalLabel;
+    }
+}
+
 function renderReviewTasks(items, student){
     items = items.filter(isIndependentWorkProgress);
     reviewTasks.innerHTML = "";
 
+    const headingRow = document.createElement("div");
     const heading = document.createElement("h4");
+
+    headingRow.className = "review-heading";
     heading.innerText = "Zadania do omówienia";
-    reviewTasks.appendChild(heading);
+    headingRow.appendChild(heading);
+    reviewTasks.appendChild(headingRow);
 
     if(!items.length){
         const empty = document.createElement("div");
@@ -5174,6 +5288,11 @@ function renderReviewTasks(items, student){
         reviewTasks.appendChild(empty);
         return;
     }
+
+    const copyAll = button("Kopiuj wszystkie", "btn secondary", () => copyAllReviewTaskImages(items, copyAll));
+
+    copyAll.title = "Skopiuj wszystkie zadania do omówienia jako jeden obraz.";
+    headingRow.appendChild(copyAll);
 
     const list = document.createElement("div");
     list.className = "review-task-list";

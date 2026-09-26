@@ -74,6 +74,7 @@ assert.match(html, /\["Średnio na zadanie", formatDuration\(averageDuration\)\]
 assert.match(html, /\["Ostatnia praca", formatDate\(group\.lastActivity\)\]/);
 assert.match(html, /progressItem\?\.created_at \? formatDate\(progressItem\.created_at\)/);
 assert.match(html, /\.review-task-list \{[^}]*max-height: 224px;[^}]*overflow-y: auto;/);
+assert.match(html, /\.review-heading \{[^}]*justify-content: space-between;/);
 assert.match(html, /\.source-task-table-wrap \{[^}]*max-height: 300px;[^}]*overflow: auto;/);
 assert.deepEqual(Array.from(ctx.taskPreviewImagePaths({sourceId:source, file:'zd1.png'})),
   ['zadania/kurs/mp/lekcja_2/zd1.png']);
@@ -174,5 +175,10 @@ assert.deepEqual(Array.from(activity.children, fact => fact.children[0].textCont
 ]);
 assert.equal(activity.children[1].children[1].textContent, '40 s');
 assert(!html.includes('review-copy-hint'), 'Repeated copy instructions no longer inflate every row');
+assert.match(html, /async function reviewTasksClipboardBlob\(items\)/);
+assert.match(html, /const blobs = await Promise\.all\(items\.map\(clipboardImageBlob\)\)/,
+  'Every review task image is included in the combined clipboard image');
+assert.match(html, /button\("Kopiuj wszystkie", "btn secondary", \(\) => copyAllReviewTaskImages\(items, copyAll\)\)/);
+assert.match(html, /Skopiowano \$\{items\.length\} .*do omówienia jako jeden obraz/);
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
 console.log('PASS: separate homework and revision results, inline lesson details, exam retention and compact list limits');

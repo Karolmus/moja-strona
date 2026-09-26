@@ -1327,7 +1327,7 @@ body.focus-mode .task-card {
     align-content: start;
     justify-content: center;
     min-width: 0;
-    padding: 0;
+    padding: 7px 0 0;
     border: 0;
     background: transparent;
     box-shadow: none;
@@ -1412,6 +1412,49 @@ button {
     border-color: #701927;
     color: #701927;
 }
+
+.action-btn.support-suggested {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.action-btn.review.support-suggested {
+    --support-highlight-rgb: 217, 173, 37;
+    background: linear-gradient(135deg, #fff4cf, #fffdf5);
+    border-color: #d9ad25;
+    box-shadow: 0 4px 14px rgba(217, 173, 37, 0.26);
+}
+
+.action-group.tools .video-link.support-suggested {
+    --support-highlight-rgb: 180, 35, 53;
+    background: linear-gradient(135deg, #fff0f2, #fffafa);
+    border-color: #b42335;
+    box-shadow: 0 4px 14px rgba(180, 35, 53, 0.22);
+}
+
+.action-btn.support-suggested::after {
+    content: "";
+    position: absolute;
+    top: -45%;
+    bottom: -45%;
+    left: -70%;
+    width: 50%;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--support-highlight-rgb), 0.08),
+        rgba(var(--support-highlight-rgb), 0.34),
+        rgba(var(--support-highlight-rgb), 0.14),
+        transparent
+    );
+    filter: blur(5px);
+    pointer-events: none;
+    transform: translateX(0) skewX(-18deg);
+    animation: signup-shadow-sweep 3.6s ease-in-out infinite;
+}
+
 .video-skip-actions {
     display: grid;
     grid-column: 1 / -1;
@@ -2751,6 +2794,7 @@ footer {
         grid-template-areas:
             "previous next"
             "skip skip";
+        padding-top: 0;
     }
 
     .action-group.navigation.preview {
@@ -6277,6 +6321,22 @@ function updateNextTaskButton(){
     }
 }
 
+function updateSupportActionHighlights(){
+    const reviewButton = document.getElementById("reviewButton");
+    const videoLink = document.getElementById("taskVideoLink");
+    const incorrect = Boolean(currentTask && getSavedResult(currentTask) === "bad");
+    const reviewPending = currentTask && reviewTaskKeys.has(getTaskKey(currentTask));
+
+    reviewButton?.classList.toggle(
+        "support-suggested",
+        incorrect && !reviewButton.hidden && !reviewPending
+    );
+    videoLink?.classList.toggle(
+        "support-suggested",
+        incorrect && !videoLink.hidden
+    );
+}
+
 function advanceToNextExamIfComplete(){
     if(!isExamSourceComplete()) return false;
 
@@ -8154,6 +8214,7 @@ function updateAnswerTools(){
         setResultButtonsEnabled(false);
     }
 
+    updateSupportActionHighlights();
     updateScorePanel();
 }
 
@@ -8216,6 +8277,7 @@ async function confirmTaskVideo(){
             renderSourceSelector();
             updateSourceSummary();
             updateScorePanel();
+            updateSupportActionHighlights();
         }
         if(pendingVideoTask !== task || !document.getElementById("taskVideoDialog").open){
             scheduleCompletionSummary();
@@ -9792,6 +9854,8 @@ async function markForReview(){
         if(reviewButton){
             reviewButton.innerText = data?.created ? "Dodano do omówienia" : "Już na liście";
         }
+
+        updateSupportActionHighlights();
 
         showMessage(data?.created
             ? "Dodałem to zadanie do listy do omówienia."

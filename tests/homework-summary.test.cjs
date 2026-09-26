@@ -10,6 +10,12 @@ const elements = Object.fromEntries(['homeworkSummaryOverlay', 'homeworkSummaryL
   'homeworkSummaryGoodHints', 'homeworkSummaryBad', 'homeworkSummaryBadHints', 'homeworkSummaryDuration',
   'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'homeworkSummaryPercent', 'homeworkSummaryTasks', 'progress']
   .map(id => [id, {hidden:true, innerText:'', innerHTML:'', children:[], replaceChildren(){this.children=[];}}]));
+for (const id of ['reviewButton', 'taskVideoLink']) {
+  const element = {hidden:false, classes:new Set()};
+  element.classList = {toggle:(name, selected) => selected
+    ? element.classes.add(name) : element.classes.delete(name)};
+  elements[id] = element;
+}
 const nextButton = {innerText:'', classes:new Set()};
 nextButton.classList = {toggle:(name, selected) => selected
   ? nextButton.classes.add(name) : nextButton.classes.delete(name)};
@@ -42,7 +48,7 @@ for (const name of ['getTaskKey', 'getProgressSourceId', 'getProgressFile', 'pro
   'getSavedProgressItem', 'taskUsedHint', 'getHomeworkSummaryTasks', 'isHomeworkComplete', 'getTaskDurationSeconds', 'taskMaxPoints',
   'taskPointValue', 'normalizeScoreValue', 'automaticScoreForResult', 'getTaskScore', 'calculateSourceSummary', 'calculateHomeworkSummary',
   'formatHomeworkDuration', 'loadStudentReviewTasks', 'updateHomeworkReviewCount', 'showHomeworkCompletionSummary', 'renderHomeworkSummaryTasks',
-  'advanceToHomeworkSummaryIfComplete', 'updateNextTaskButton', 'addProgress']) {
+  'advanceToHomeworkSummaryIfComplete', 'updateNextTaskButton', 'updateSupportActionHighlights', 'addProgress']) {
   const match = new RegExp(`(?:async )?function ${name}\\(`).exec(html);
   assert(match, name);
   vm.runInContext(html.slice(match.index, html.indexOf('\n}', match.index)+2), ctx);
@@ -103,10 +109,22 @@ assert(nextButton.classes.has('ready-next'), 'A correct answer highlights the ne
 ctx.sessionResults.set(`${sourceId}:${work[0].file}`, 'bad');
 ctx.updateNextTaskButton();
 assert(!nextButton.classes.has('ready-next'), 'An incorrect answer clears the highlight');
+ctx.updateSupportActionHighlights();
+assert(elements.reviewButton.classes.has('support-suggested'), 'An incorrect answer highlights discussion');
+assert(elements.taskVideoLink.classes.has('support-suggested'), 'An incorrect answer highlights the recording');
+const highlightedTaskKey = `${sourceId}:${work[0].file}`;
+ctx.reviewTaskKeys.add(highlightedTaskKey);
+ctx.updateSupportActionHighlights();
+assert(!elements.reviewButton.classes.has('support-suggested'), 'Discussion stops glowing after it is selected');
+assert(elements.taskVideoLink.classes.has('support-suggested'), 'The recording remains suggested');
+ctx.reviewTaskKeys.delete(highlightedTaskKey);
 ctx.sessionResults.set(`${sourceId}:${work[0].file}`, 'medium');
 ctx.sessionScores.set(`${sourceId}:${work[0].file}`, {earnedPoints:0.5, maxPoints:1});
 ctx.updateNextTaskButton();
 assert(!nextButton.classes.has('ready-next'), 'Partial credit is not treated as a fully correct answer');
+ctx.updateSupportActionHighlights();
+assert(!elements.reviewButton.classes.has('support-suggested'));
+assert(!elements.taskVideoLink.classes.has('support-suggested'));
 ctx.sessionScores.set(`${sourceId}:${work[0].file}`, {earnedPoints:1, maxPoints:1});
 ctx.updateNextTaskButton();
 assert(nextButton.classes.has('ready-next'), 'Full credit after help also highlights the action');

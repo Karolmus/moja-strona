@@ -4,7 +4,9 @@ const assert = require('node:assert/strict');
 
 const html = fs.readFileSync('zadania.html', 'utf8');
 const reviewLabel = 'Chcę omówić to zadanie na zajęciach';
-const button = {innerText:'', disabled:true};
+const button = {innerText:'', disabled:true, hidden:false, classes:new Set()};
+button.classList = {toggle:(name, selected) => selected
+  ? button.classes.add(name) : button.classes.delete(name)};
 const meta = {innerHTML:'', classList:{toggle() {}}};
 const instruction = {};
 const counter = {};
@@ -15,12 +17,14 @@ const ctx = vm.createContext({
   currentTask:{sourceId:'lesson', file:'zp1.png', category:'kurs', coursePart:'zadania_powtorkowe'},
   window:{apiFetch:true}, selectedCoursePart:'zadania_powtorkowe',
   pendingReviewRequests:new Set(), reviewTaskKeys:new Set(),
+  getSavedResult:() => 'bad',
   renderTaskNavigator:() => {ctx.navigatorRenders = (ctx.navigatorRenders || 0) + 1;},
   taskLabel:() => 'Zadanie', formatTagLabel:text => text, isPracticalTask:() => false,
   showMessage:message => {ctx.message = message;}
 });
 for (const name of ['getTaskKey', 'stars', 'difficultyFromCompletionPercent', 'taskDifficulty', 'taskMaxPoints', 'formatPoints',
-  'pointsBadgeMarkup', 'completionTooltip', 'difficultyStarsMarkup', 'updateTaskDetails', 'resetReviewButton', 'markForReview']) {
+  'pointsBadgeMarkup', 'completionTooltip', 'difficultyStarsMarkup', 'updateTaskDetails', 'updateSupportActionHighlights',
+  'resetReviewButton', 'markForReview']) {
   const start = html.indexOf(`function ${name}(`);
   assert(start >= 0, name);
   const body = html.slice(start, html.indexOf('\n}', start)+2);
@@ -53,6 +57,8 @@ const navigationStyle = html.match(/\.action-group\.navigation \{([^}]+)\}/)[1];
 assert.match(navigationStyle, /background: transparent;/, 'Navigation buttons do not sit on a dark panel');
 assert.match(navigationStyle, /border: 0;/);
 assert.match(navigationStyle, /box-shadow: none;/);
+assert.match(navigationStyle, /padding: 7px 0 0;/,
+  'Desktop navigation buttons align with the padded functional button grid');
 const correctionSource = html.slice(html.indexOf('function showCorrection('), html.indexOf('\n}', html.indexOf('function showCorrection(')) + 2);
 assert(!correctionSource.includes('Wskazówka:'), 'An incorrect answer does not open the hint automatically');
 assert.match(correctionSource, /if\(isClosedTask\(currentTask\)\)\{\s*showIncorrectAnswerSuggestion\(\);\s*return;/,
@@ -104,6 +110,12 @@ assert.match(readyNextStyle, /background: linear-gradient\(135deg, #edf4fb, #fff
   'A correct answer gives the next-task button the signup-style highlight');
 assert.match(html, /\.action-btn\.nav\.next-task-btn\.ready-next::after\s*\{[\s\S]*animation: signup-shadow-sweep 3\.6s ease-in-out infinite;/,
   'The ready next-task action reuses the signup shimmer');
+assert.match(html, /\.action-btn\.review\.support-suggested\s*\{[\s\S]*background: linear-gradient\(135deg, #fff4cf, #fffdf5\);/,
+  'An incorrect answer gives the discussion action an amber highlight');
+assert.match(html, /\.action-group\.tools \.video-link\.support-suggested\s*\{[\s\S]*background: linear-gradient\(135deg, #fff0f2, #fffafa\);/,
+  'An incorrect answer gives the recording action a red highlight');
+assert.match(html, /updateSupportActionHighlights\(\);\s*updateScorePanel\(\);/,
+  'Support highlights refresh whenever task actions are rendered');
 for (const icon of ['check', 'x', 'minus', 'skip-forward', 'message-circle']) {
   const path = `static/icons/${icon}.svg`;
   assert.match(fs.readFileSync(path, 'utf8'), /viewBox="0 0 24 24"/);
