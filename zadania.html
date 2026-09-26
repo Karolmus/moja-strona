@@ -1633,7 +1633,7 @@ html.task-video-open {
 }
 
 .action-btn.nav {
-    background: #4d6478;
+    background: #222a35;
     color: white;
     border-color: #8da1b2;
     min-width: 112px;
@@ -1641,18 +1641,47 @@ html.task-video-open {
 }
 
 .action-btn.nav:hover {
-    background: #597286;
+    background: #303b49;
     border-color: #aebcc8;
 }
 
 .action-btn.nav.next-task-btn.ready-next {
-    background: #386b53;
-    border-color: #a8d2b2;
-    box-shadow: 0 0 0 3px rgba(117, 185, 136, 0.2);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: #102033;
+    background: linear-gradient(135deg, #edf4fb, #ffffff);
+    border-color: #8eb5de;
+    box-shadow: 0 4px 14px rgba(142, 181, 222, 0.28);
+}
+
+.action-btn.nav.next-task-btn.ready-next::after {
+    content: "";
+    position: absolute;
+    top: -45%;
+    bottom: -45%;
+    left: -70%;
+    width: 50%;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(88, 101, 242, 0.08),
+        rgba(88, 101, 242, 0.34),
+        rgba(142, 181, 222, 0.18),
+        transparent
+    );
+    filter: blur(5px);
+    pointer-events: none;
+    transform: translateX(0) skewX(-18deg);
+    animation: signup-shadow-sweep 3.6s ease-in-out infinite;
 }
 
 .action-btn.nav.next-task-btn.ready-next:hover {
-    background: #2e5d47;
+    color: #102033;
+    background: linear-gradient(135deg, #dbeaf8, #ffffff);
+    border-color: #8eb5de;
+    box-shadow: 0 6px 18px rgba(142, 181, 222, 0.32);
 }
 
 .action-btn.nav:focus-visible {

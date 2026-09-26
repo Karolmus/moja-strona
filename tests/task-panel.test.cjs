@@ -97,6 +97,13 @@ for (const selector of ['.action-btn.nav', '.action-btn.nav:hover']) {
   assert(contrast(background, '#ffffff') >= 4.5, 'White navigation labels remain readable');
   assert.match(style, /border-color: #[a-f0-9]{6};/, 'Navigation buttons retain their own border');
 }
+const navigationButtonStyle = html.slice(html.indexOf('.action-btn.nav {')).split('}')[0];
+assert.match(navigationButtonStyle, /background: #222a35;/, 'Navigation buttons use the supplied navy color');
+const readyNextStyle = html.slice(html.indexOf('.action-btn.nav.next-task-btn.ready-next {')).split('}')[0];
+assert.match(readyNextStyle, /background: linear-gradient\(135deg, #edf4fb, #ffffff\);/,
+  'A correct answer gives the next-task button the signup-style highlight');
+assert.match(html, /\.action-btn\.nav\.next-task-btn\.ready-next::after\s*\{[\s\S]*animation: signup-shadow-sweep 3\.6s ease-in-out infinite;/,
+  'The ready next-task action reuses the signup shimmer');
 for (const icon of ['check', 'x', 'minus', 'skip-forward', 'message-circle']) {
   const path = `static/icons/${icon}.svg`;
   assert.match(fs.readFileSync(path, 'utf8'), /viewBox="0 0 24 24"/);

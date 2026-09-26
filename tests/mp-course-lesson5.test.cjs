@@ -10,6 +10,7 @@ const profileHtml = fs.readFileSync('profil.html', 'utf8');
 const adminHtml = fs.readFileSync('admin.html', 'utf8');
 const revisionKey = 'B C B A D D D'.split(' ');
 const discordInstruction = 'Rozwiązanie zadania wyślij na platformie Discord.';
+const proofReminder = 'Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą.';
 
 assert.equal(tasks.length, 31);
 assert.equal(new Set(tasks.map(task => task.file)).size, 31);
@@ -27,6 +28,7 @@ for(const [part, count, prefix] of [
     assert.equal(task.isProof, true);
     assert.equal(task.maxPoints, 2);
     assert.equal(task.instruction, discordInstruction);
+    assert(task.hint.endsWith(proofReminder));
     assert(!('answer' in task));
     assert(!('options' in task));
   });
