@@ -72,6 +72,10 @@ ctx.tasks = Array.from({length:29}, () => ({sourceId:sources[0].id, category:'ku
 ctx.renderSourceSelector();
 assert.deepEqual(list.children[0].children.map(child => child.innerText),
   ['Lekcja 1', 'Potęgi i pierwiastki', '29 zadań']);
+sources[1].kind = 'test';
+ctx.renderSourceSelector();
+assert(list.children[1].classes.has('test-source'));
+assert.match(html, /\.course-source-list \.source-btn\.test-source\s*\{[^}]*grid-column:\s*1 \/ -1;/s);
 sources.length = 0;
 ctx.selectedCategory = 'egzaminy';
 ctx.renderSourceSelector();

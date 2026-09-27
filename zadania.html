@@ -613,6 +613,34 @@ body.guest-exam-mode .source-summary-row {
     color: #4f7f4f;
 }
 
+.course-source-list .source-btn.test-source {
+    grid-column: 1 / -1;
+    min-height: 52px;
+    padding: 7px 11px;
+    border-color: #58a8c8;
+    background: #eaf7fc;
+    color: #173f56;
+    text-align: left;
+    box-shadow: inset 4px 0 0 #2589b3;
+}
+
+.course-source-list .source-btn.test-source:hover {
+    border-color: #287da1;
+    background: #ddf1f9;
+}
+
+.course-source-list .source-btn.test-source.active {
+    border-color: #1f6f93;
+    background: #d3ebf5;
+    color: #133a50;
+    box-shadow: inset 4px 0 0 #1f6f93, 0 2px 8px rgba(31, 111, 147, 0.2);
+}
+
+.course-source-list .source-btn.test-source small,
+.course-source-list .source-btn.test-source.active small {
+    color: #37667c;
+}
+
 .tag-search-input {
     width: 100%;
     min-height: 34px;
@@ -1554,6 +1582,86 @@ html.task-video-open {
 
 .task-video-dialog::backdrop {
     background: rgba(15, 23, 42, 0.68);
+}
+
+.test-start-dialog {
+    width: min(520px, calc(100vw - 24px));
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.3);
+}
+
+.test-start-dialog::backdrop {
+    background: rgba(15, 23, 42, 0.72);
+}
+
+.test-start-content {
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+}
+
+.test-start-content h2,
+.test-start-content p {
+    margin: 0;
+}
+
+.test-start-content h2 {
+    font-size: 21px;
+    line-height: 1.25;
+}
+
+.test-start-name {
+    color: var(--blue-text);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.test-start-warning {
+    padding: 12px 14px;
+    border-left: 4px solid #2589b3;
+    background: #eef8fc;
+    color: #173f56;
+    line-height: 1.5;
+}
+
+.test-start-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.test-start-btn {
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.test-start-btn:hover,
+.test-start-btn:focus-visible {
+    background: var(--surface-soft);
+    outline: none;
+}
+
+.test-start-btn.primary {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+}
+
+.test-start-btn.primary:hover,
+.test-start-btn.primary:focus-visible {
+    background: var(--navy-hover);
 }
 
 .task-video-head {
@@ -3614,6 +3722,20 @@ footer {
     </div>
 </dialog>
 
+<dialog class="test-start-dialog" id="testStartDialog" aria-labelledby="testStartTitle" aria-describedby="testStartWarning">
+    <div class="test-start-content">
+        <div>
+            <h2 id="testStartTitle">Rozpocząć test?</h2>
+            <p class="test-start-name" id="testStartName"></p>
+        </div>
+        <p class="test-start-warning" id="testStartWarning"><strong>Po potwierdzeniu rozpocznie się odliczanie 60 minut.</strong> Tego licznika nie można zatrzymać. Rozpocznij test tylko wtedy, gdy wiesz, że masz godzinę wolnego czasu, aby go wykonać.</p>
+        <div class="test-start-actions">
+            <button class="test-start-btn" id="testStartCancel" type="button">Wróć</button>
+            <button class="test-start-btn primary" id="testStartConfirm" type="button">Rozpocznij test</button>
+        </div>
+    </div>
+</dialog>
+
 <div class="exam-summary-overlay" id="examSummaryOverlay" hidden>
     <section class="exam-summary-dialog" role="dialog" aria-modal="true" aria-labelledby="examSummaryTitle" tabindex="-1">
         <div class="exam-summary-head">
@@ -3762,6 +3884,8 @@ let selectedGradingIndex = 0;
 let examSummaryNextSource = "";
 let examSummaryPreviousFocus = null;
 let homeworkSummaryPreviousFocus = null;
+let testStartPreviousFocus = null;
+let testStartResolver = null;
 let courseGradingCriteriaByTask = new Map();
 let courseGradingCriteriaLoaded = false;
 const loadedTaskSourceIds = new Set();
@@ -3948,8 +4072,8 @@ const TASK_SOURCES = [
         path: "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json",
         category: "kurs",
         level: "matura_podstawowa",
-        label: "Test sprawdzający z lekcji 1 - 6",
-        detail: "Arkusz A",
+        label: "Test sprawdzający z tematów 1-6, wersja A.",
+        detail: "60 minut",
         kind: "test"
     },
     {
@@ -4195,7 +4319,9 @@ function timerClock(value){
 }
 
 function testTimerStorageKey(task = currentTask){
-    const sourceId = task?.sourceId || selectedSource;
+    const sourceId = typeof task === "string"
+        ? task
+        : task?.sourceId || selectedSource;
     const userId = loggedUser?.id || loggedUser?.username || "guest";
 
     return sourceId && sourceId !== "all"
@@ -4203,9 +4329,9 @@ function testTimerStorageKey(task = currentTask){
         : "";
 }
 
-function testDeadline(task = currentTask){
+function storedTestDeadline(task = currentTask){
     const key = testTimerStorageKey(task);
-    if(!key) return Date.now() + TEST_DURATION_SECONDS * 1000;
+    if(!key) return 0;
 
     let deadline = 0;
     try {
@@ -4214,9 +4340,17 @@ function testDeadline(task = currentTask){
         deadline = Number(testDeadlineFallbacks.get(key)) || 0;
     }
 
-    if(deadline > 0) return deadline;
+    return deadline;
+}
 
-    deadline = Date.now() + TEST_DURATION_SECONDS * 1000;
+function startTestTimer(task = currentTask){
+    const key = testTimerStorageKey(task);
+    if(!key) return 0;
+
+    const storedDeadline = storedTestDeadline(task);
+    if(storedDeadline > 0) return storedDeadline;
+
+    const deadline = Date.now() + TEST_DURATION_SECONDS * 1000;
     testDeadlineFallbacks.set(key, deadline);
     try {
         localStorage.setItem(key, String(deadline));
@@ -4227,10 +4361,63 @@ function testDeadline(task = currentTask){
     return deadline;
 }
 
+function testDeadline(task = currentTask){
+    return storedTestDeadline(task);
+}
+
 function testRemainingSeconds(task = currentTask){
     if(task?.activityType !== "test") return null;
 
-    return Math.max(0, Math.ceil((testDeadline(task) - Date.now()) / 1000));
+    const deadline = testDeadline(task);
+
+    return deadline > 0
+        ? Math.max(0, Math.ceil((deadline - Date.now()) / 1000))
+        : TEST_DURATION_SECONDS;
+}
+
+function finishTestStartDialog(confirmed){
+    const dialog = document.getElementById("testStartDialog");
+    const resolver = testStartResolver;
+
+    testStartResolver = null;
+    if(dialog?.open) dialog.close();
+    if(!confirmed && testStartPreviousFocus instanceof HTMLElement){
+        testStartPreviousFocus.focus();
+    }
+    testStartPreviousFocus = null;
+    resolver?.(Boolean(confirmed));
+}
+
+function confirmTestStart(source){
+    if(storedTestDeadline(source.id) > 0) return Promise.resolve(true);
+
+    const dialog = document.getElementById("testStartDialog");
+    const sourceName = document.getElementById("testStartName");
+
+    if(!dialog || typeof dialog.showModal !== "function"){
+        return Promise.resolve(window.confirm(
+            "Po potwierdzeniu rozpocznie się odliczanie 60 minut. Tego licznika nie można zatrzymać. Rozpocznij test tylko wtedy, gdy masz godzinę wolnego czasu."
+        ));
+    }
+
+    sourceName.textContent = source.label;
+    testStartPreviousFocus = document.activeElement;
+
+    return new Promise(resolve => {
+        testStartResolver = resolve;
+        dialog.showModal();
+        document.getElementById("testStartConfirm")?.focus();
+    });
+}
+
+async function ensureTestSourceStarted(sourceId){
+    const source = getSourceMetaById(sourceId);
+
+    if(source?.kind !== "test" || storedTestDeadline(sourceId) > 0) return true;
+    if(!await confirmTestStart(source)) return false;
+
+    startTestTimer(sourceId);
+    return true;
 }
 
 function applyTestTimeLimit(remainingSeconds){
@@ -4337,6 +4524,17 @@ async function bootStudentPanel(){
 
             if(Number.isInteger(resumeIndex)){
                 initialIndex = resumeIndex;
+            }
+        }
+
+        if(!await ensureTestSourceStarted(selectedSource)){
+            const fallbackSource = getAvailableSources().find(source => source.kind !== "test");
+
+            if(fallbackSource){
+                selectedSource = fallbackSource.id;
+                await ensureTaskSourceLoaded(selectedSource);
+                ensureSelectedCoursePart();
+                initialIndex = getInitialIndex();
             }
         }
 
@@ -5418,6 +5616,8 @@ async function setLevel(btn, level){
 }
 
 async function setSource(sourceId){
+    if(sourceId !== "all" && !await ensureTestSourceStarted(sourceId)) return;
+
     selectedSource = sourceId;
     taskMode = "ordered";
 
@@ -5608,7 +5808,8 @@ function renderSourceSelector(){
             selectedSource === source.id,
             titleDetail,
             isSourceComplete(source),
-            selectedCategory === "kurs" ? source.detail : ""
+            selectedCategory === "kurs" ? source.detail : "",
+            source.kind
         );
     });
 
@@ -5650,13 +5851,14 @@ function getExamSourceTileContent(detail){
     };
 }
 
-function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = ""){
+function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = "", sourceKind = ""){
     const button = document.createElement("button");
     const name = document.createElement("span");
     const meta = document.createElement("small");
 
     button.type = "button";
     button.className = active ? "source-btn active" : "source-btn";
+    button.classList.toggle("test-source", sourceKind === "test");
     if(complete){
         button.classList.add("complete");
     }
@@ -6648,6 +6850,15 @@ document.getElementById("homeworkSummaryOverlay")
         if(event.target === event.currentTarget){
             closeHomeworkCompletionSummary();
         }
+    });
+document.getElementById("testStartCancel")
+    ?.addEventListener("click", () => finishTestStartDialog(false));
+document.getElementById("testStartConfirm")
+    ?.addEventListener("click", () => finishTestStartDialog(true));
+document.getElementById("testStartDialog")
+    ?.addEventListener("cancel", event => {
+        event.preventDefault();
+        finishTestStartDialog(false);
     });
 for(const id of ["homeworkSummaryOverlay", "examSummaryOverlay"]){
     document.getElementById(id).addEventListener("keydown", event => {

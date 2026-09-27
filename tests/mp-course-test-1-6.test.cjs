@@ -19,7 +19,8 @@ function config(text, name) {
 function functionSource(text, name) {
   const start = text.indexOf(`function ${name}(`);
   assert(start >= 0, name);
-  return text.slice(start, text.indexOf('\n}', start) + 2);
+  const body = text.slice(start, text.indexOf('\n}', start) + 2);
+  return text.slice(start - 6, start) === 'async ' ? `async ${body}` : body;
 }
 
 assert.equal(tasks.length, 10);
@@ -63,12 +64,14 @@ for (const [text, name] of [
   assert.equal(entries[0].category, 'kurs');
   assert.equal(entries[0].level, 'matura_podstawowa');
   assert.equal(entries[0].kind, 'test');
+  assert.equal(entries[0].label, 'Test sprawdzający z tematów 1-6, wersja A.');
+  assert.equal(entries[0].detail, '60 minut');
 }
 
 const taskSources = config(html, 'TASK_SOURCES');
-const lesson5Index = taskSources.findIndex(source => source.path.includes('/mp/lekcja_5/'));
+const lesson6Index = taskSources.findIndex(source => source.path.includes('/mp/lekcja_6/'));
 const testIndex = taskSources.findIndex(source => source.path === sourcePath);
-assert(lesson5Index >= 0 && lesson5Index < testIndex);
+assert(lesson6Index >= 0 && lesson6Index < testIndex);
 
 const storage = new Map();
 let now = 1_800_000_000_000;
@@ -88,19 +91,50 @@ const timer = vm.createContext({
   String,
   Map
 });
-for (const name of ['timerClock', 'testTimerStorageKey', 'testDeadline', 'testRemainingSeconds']) {
+for (const name of ['timerClock', 'testTimerStorageKey', 'storedTestDeadline', 'startTestTimer', 'testDeadline', 'testRemainingSeconds']) {
   vm.runInContext(functionSource(html, name), timer);
 }
 assert.equal(timer.timerClock(3600), '60:00');
 assert.equal(timer.testRemainingSeconds(), 3600);
+assert.equal(storage.size, 0, 'Viewing the unconfirmed test does not start the timer');
+timer.startTestTimer(sourcePath);
+assert.equal(storage.size, 1, 'Confirmation persists one fixed deadline');
+assert.equal(timer.testRemainingSeconds(), 3600);
 now += 15_000;
 assert.equal(timer.testRemainingSeconds(), 3585, 'Countdown keeps the original deadline');
-assert.equal(storage.size, 1, 'Deadline is persisted for refreshes and task changes');
+timer.startTestTimer(sourcePath);
+assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset the deadline');
 
-assert.match(html, /const TEST_DURATION_SECONDS = 60 \* 60;/);
-assert.match(html, /timer\.innerText = `Pozostało \$\{timerClock\(remainingSeconds\)\}`;/);
-assert.match(html, /setTimerVisible\(!isLoggedInStudent \|\| isTest\);/);
-assert.match(html, /\.timer\.countdown\.expired/);
-assert(fs.statSync(path.join(sourceDir, 'Kurs matura podstawowa test A lekcje 1-6.pdf')).size > 400000);
+(async () => {
+  let confirmed = false;
+  let startCalls = 0;
+  const gate = vm.createContext({
+    getSourceMetaById: () => ({id: sourcePath, kind: 'test'}),
+    storedTestDeadline: () => 0,
+    confirmTestStart: async () => confirmed,
+    startTestTimer: () => {startCalls++;}
+  });
+  vm.runInContext(functionSource(html, 'ensureTestSourceStarted'), gate);
+  assert.equal(await gate.ensureTestSourceStarted(sourcePath), false);
+  assert.equal(startCalls, 0, 'Cancellation cannot start the timer');
+  confirmed = true;
+  assert.equal(await gate.ensureTestSourceStarted(sourcePath), true);
+  assert.equal(startCalls, 1, 'Confirmation starts the timer exactly once');
 
-console.log('PASS: MP test 1-6, clean crops, answers and persistent 60-minute countdown');
+  assert.match(html, /const TEST_DURATION_SECONDS = 60 \* 60;/);
+  assert.match(html, /timer\.innerText = `Pozostało \$\{timerClock\(remainingSeconds\)\}`;/);
+  assert.match(html, /setTimerVisible\(!isLoggedInStudent \|\| isTest\);/);
+  assert.match(html, /\.timer\.countdown\.expired/);
+  assert.match(html, /id="testStartDialog"/);
+  assert.match(html, /Po potwierdzeniu rozpocznie się odliczanie 60 minut\./);
+  assert.match(html, /Tego licznika nie można zatrzymać\./);
+  assert.match(html, /Rozpocznij test tylko wtedy, gdy wiesz, że masz godzinę wolnego czasu/);
+  assert.match(html, /if\(sourceId !== "all" && !await ensureTestSourceStarted\(sourceId\)\) return;/);
+  assert.match(html, /\.course-source-list \.source-btn\.test-source/);
+  assert(fs.statSync(path.join(sourceDir, 'Kurs matura podstawowa test A lekcje 1-6.pdf')).size > 400000);
+
+  console.log('PASS: MP test 1-6, clean crops, confirmation gate and persistent 60-minute countdown');
+})().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

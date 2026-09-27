@@ -20,6 +20,7 @@ const ctx = vm.createContext({
   loadAssignedCourse: async () => {}, getRequestedCategory: () => '',
   defaultCoursePart: () => 'praca_domowa', getInitialIndex: () => 3,
   loadStudentProgress: async () => [], restoreLastStudentLocation: async () => 4,
+  ensureTestSourceStarted: async () => true,
   loadStudentReviewTasks: async () => [],
   renderSourceSelector: () => {selectorRenders++;},
   drawTask: async index => {drawnIndex = index;},
