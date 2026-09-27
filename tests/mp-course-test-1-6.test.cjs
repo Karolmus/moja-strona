@@ -27,13 +27,20 @@ assert.equal(tasks.length, 10);
 assert.deepEqual(tasks.map(task => task.taskNumber), ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
 assert.equal(tasks.reduce((total, task) => total + task.maxPoints, 0), 14);
 assert.deepEqual(tasks.filter(task => task.type === 'closed').map(task => task.answer), ['C', 'B', 'C', 'A', 'A', 'D']);
-assert.deepEqual(tasks.filter(task => task.type === 'input').map(task => task.inputs[0].answer), [
-  '43 + 30sqrt(2)', '-3 - 2sqrt(2)', '4', '31'
-]);
+assert.deepEqual(tasks.map(task => task.title), tasks.map(task => `Zadanie ${task.taskNumber}`));
+assert(tasks.every(task => !/test sprawdzający/i.test(task.topic)));
+assert.equal(tasks[8].inputs.length, 2);
+assert.match(tasks[8].inputExample, /2\(3n² \+ n\) \+ 1 = 2m \+ 1/);
+assert(tasks[8].inputs[0].answers.includes('14(7n^2+8n+2)+4'));
+assert(tasks[8].inputs[1].answers.includes('14m+4'));
+assert.equal(tasks[9].inputs.length, 1);
+assert.equal(tasks[9].inputs[0].prompt, 'Wpisz trzeci dzielnik pierwszy.');
+assert.equal(tasks[9].inputs[0].answer, '31');
+assert(tasks.slice(6).every(task => !('instruction' in task)), 'Input prompts are not duplicated above the fields');
 
 const expectedHeights = {
   '1.png': 103, '2.png': 156, '3.png': 175, '4.png': 183, '5.png': 191,
-  '6.png': 158, '7.png': 225, '8.png': 175, '9.png': 73, '10.png': 73
+  '6.png': 158, '7.png': 225, '8.png': 175, '9.png': 73, '10.png': 86
 };
 
 for (const task of tasks) {
@@ -129,6 +136,16 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   assert.match(html, /Po potwierdzeniu rozpocznie się odliczanie 60 minut\./);
   assert.match(html, /Tego licznika nie można zatrzymać\./);
   assert.match(html, /Rozpocznij test tylko wtedy, gdy wiesz, że masz godzinę wolnego czasu/);
+  assert.match(html, /currentTask\?\.activityType === "test"/,
+    'A wrong test input reveals the submitted and correct answers');
+  assert.match(html, /className = "input-answer-example"/);
+  assert.match(html, /@media \(orientation: landscape\) and \(max-height: 560px\) and \(max-width: 1000px\)/);
+  assert.match(html, /body\.focus-mode \.focus-toggle::after\s*\{[^}]*content: "×";/s);
+  const pointsBadgeStyle = html.match(/\.points-badge\s*\{([^}]+)\}/)[1];
+  assert.match(pointsBadgeStyle, /align-items: center;/);
+  assert.match(pointsBadgeStyle, /justify-content: center;/);
+  assert.match(pointsBadgeStyle, /height: 28px;/);
+  assert.match(pointsBadgeStyle, /line-height: 1;/);
   assert.match(html, /if\(sourceId !== "all" && !await ensureTestSourceStarted\(sourceId\)\) return;/);
   assert.match(html, /\.course-source-list \.source-btn\.test-source/);
   assert(fs.statSync(path.join(sourceDir, 'Kurs matura podstawowa test A lekcje 1-6.pdf')).size > 400000);
