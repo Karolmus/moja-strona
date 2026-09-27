@@ -24,7 +24,7 @@ sources.splice(6, 0, {
   path: checkpointPath,
   category: 'kurs',
   level: 'egzamin_osmoklasisty',
-  label: 'Powtórka 1-6',
+  label: 'Test sprawdzający z lekcji 1 - 6',
   kind: 'test'
 });
 
@@ -62,7 +62,7 @@ for (const name of [
 const visibleLabels = () => ctx.getAvailableSources().map(source => source.label);
 
 assert.deepEqual(visibleLabels(), [
-  'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6', 'Powtórka 1-6'
+  'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6', 'Test sprawdzający z lekcji 1 - 6'
 ]);
 assert.equal(ctx.eoFirstCheckpointComplete(), false);
 

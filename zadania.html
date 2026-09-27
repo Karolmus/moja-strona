@@ -683,6 +683,22 @@ body.guest-exam-mode .source-summary-row {
     border: 1px solid var(--line);
 }
 
+.test-mode-notice {
+    margin: 0 0 10px;
+    padding: 10px 13px;
+    border: 1px solid #8bc8e2;
+    border-radius: 7px;
+    background: #eef8fc;
+    color: #214d63;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.test-mode-notice[hidden] {
+    display: none;
+}
+
 .focus-toggle {
     position: fixed;
     right: 16px;
@@ -1001,6 +1017,19 @@ body.focus-mode .task-card {
     min-width: 58px;
     text-align: center;
     color: var(--muted);
+}
+
+.timer.countdown {
+    min-width: 132px;
+    color: #1f5675;
+    border-color: #8fc7df;
+    background: #eef9fd;
+}
+
+.timer.countdown.expired {
+    color: #8f2430;
+    border-color: #df9da5;
+    background: #fff1f2;
 }
 
 .timer.hidden {
@@ -1837,9 +1866,51 @@ html.task-video-open {
     gap: 10px;
 }
 
+.input-answer-grid.assignment-fields {
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
 .input-answer-field {
     display: grid;
     gap: 5px;
+}
+
+.assignment-answer-field {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(var(--assignment-option-count, 3), minmax(80px, 120px));
+    gap: 8px;
+    align-items: stretch;
+}
+
+.assignment-native-control {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.assignment-answer-label {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 9px 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.assignment-answer-field.unanswered .assignment-answer-label,
+.assignment-answer-field.unanswered .assignment-choice-btn {
+    border-color: #d35247;
 }
 
 .input-answer-field.comparison-answer-field {
@@ -3224,6 +3295,11 @@ footer {
         gap: 6px;
     }
 
+    .assignment-answer-field {
+        grid-template-columns: minmax(54px, 0.7fr) repeat(var(--assignment-option-count, 3), minmax(52px, 1fr));
+        gap: 6px;
+    }
+
     .grouped-choice-row {
         grid-template-columns: minmax(0, 1fr) repeat(2, minmax(56px, 72px));
         gap: 6px;
@@ -3244,7 +3320,8 @@ footer {
     }
 
     .tf-label,
-    .grouped-choice-label {
+    .grouped-choice-label,
+    .assignment-answer-label {
         min-height: 42px;
         padding: 8px 10px;
         font-size: 13px;
@@ -3418,6 +3495,8 @@ footer {
         </aside>
 
         <div class="task-card">
+
+            <p class="test-mode-notice" id="testModeNotice" role="note" hidden>W trybie testu nie możesz korzystać ze wskazówek ani dodawać zadań do omówienia.</p>
 
             <div class="source-load-status" id="sourceLoadStatus" role="status" aria-live="polite" hidden>
                 <p id="sourceLoadMessage"></p>
@@ -3690,12 +3769,14 @@ const taskSourceLoadPromises = new Map();
 let practicalValueStore = new Map();
 
 const IMAGE_FADE_MS = 220;
-const TASK_IMAGE_CACHE_VERSION = "20260907-eo-crops";
+const TASK_IMAGE_CACHE_VERSION = "20260927-eo-test-crops";
 const SKIPPED_RESULT = "skipped";
 const STUDENT_WORK_COURSE_PART = "praca_domowa";
 const STUDENT_WORK_COURSE_PARTS = ["praca_domowa", "zadania_powtorkowe"];
 const EO_FIRST_CHECKPOINT_SOURCE = "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json";
 const COURSE_COMPLETION_RESULTS = new Set(["good", "medium", "bad", "video"]);
+const TEST_DURATION_SECONDS = 60 * 60;
+const testDeadlineFallbacks = new Map();
 let eoUnlockedSourcesPreloadPromise = null;
 const COURSE_PART_ORDER = {
     zadania: 1,
@@ -3857,6 +3938,21 @@ const TASK_SOURCES = [
         detail: "Zadania dowodowe"
     },
     {
+        path: "zadania/kurs/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Lekcja 6",
+        detail: "Procenty i lokaty"
+    },
+    {
+        path: "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Test sprawdzający z lekcji 1 - 6",
+        detail: "Arkusz A",
+        kind: "test"
+    },
+    {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
@@ -3902,8 +3998,8 @@ const TASK_SOURCES = [
         path: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
-        label: "Powtórka 1-6",
-        detail: "Test sprawdzający po lekcjach 1-6",
+        label: "Test sprawdzający z lekcji 1 - 6",
+        detail: "Sprawdź wiedzę z lekcji 1 - 6",
         kind: "test"
     },
     {
@@ -4092,9 +4188,87 @@ setInterval(() => {
 
 const assignedCourseName = document.getElementById("assignedCourseName");
 
+function timerClock(value){
+    const safeValue = Math.max(0, Math.floor(Number(value) || 0));
+
+    return `${String(Math.floor(safeValue / 60)).padStart(2, "0")}:${String(safeValue % 60).padStart(2, "0")}`;
+}
+
+function testTimerStorageKey(task = currentTask){
+    const sourceId = task?.sourceId || selectedSource;
+    const userId = loggedUser?.id || loggedUser?.username || "guest";
+
+    return sourceId && sourceId !== "all"
+        ? `deltaSigmaTestDeadline:${userId}:${sourceId}`
+        : "";
+}
+
+function testDeadline(task = currentTask){
+    const key = testTimerStorageKey(task);
+    if(!key) return Date.now() + TEST_DURATION_SECONDS * 1000;
+
+    let deadline = 0;
+    try {
+        deadline = Number(localStorage.getItem(key)) || 0;
+    } catch(error) {
+        deadline = Number(testDeadlineFallbacks.get(key)) || 0;
+    }
+
+    if(deadline > 0) return deadline;
+
+    deadline = Date.now() + TEST_DURATION_SECONDS * 1000;
+    testDeadlineFallbacks.set(key, deadline);
+    try {
+        localStorage.setItem(key, String(deadline));
+    } catch(error) {
+        // Pamięć zastępcza zachowuje licznik w bieżącej karcie.
+    }
+
+    return deadline;
+}
+
+function testRemainingSeconds(task = currentTask){
+    if(task?.activityType !== "test") return null;
+
+    return Math.max(0, Math.ceil((testDeadline(task) - Date.now()) / 1000));
+}
+
+function applyTestTimeLimit(remainingSeconds){
+    const expired = remainingSeconds === 0;
+    const taskCard = document.querySelector(".task-card");
+
+    taskCard?.classList.toggle("test-time-expired", expired);
+    if(!expired) return;
+
+    document.querySelectorAll("#mcq button, #mcq input, #mcq textarea, #mcq select, #comparisonOverlay button")
+        .forEach(control => { control.disabled = true; });
+}
+
 function updateTimer(){
-    document.getElementById("timer").innerText =
-        `${String(Math.floor(seconds / 60)).padStart(2,'0')}:${String(seconds % 60).padStart(2,'0')}`;
+    const timer = document.getElementById("timer");
+    if(!timer) return;
+
+    const remainingSeconds = testRemainingSeconds();
+    const isTest = remainingSeconds !== null;
+
+    setTimerVisible(!isLoggedInStudent || isTest);
+    timer.classList.toggle("countdown", isTest);
+    timer.classList.toggle("expired", isTest && remainingSeconds === 0);
+
+    if(isTest){
+        timer.innerText = `Pozostało ${timerClock(remainingSeconds)}`;
+        timer.title = remainingSeconds === 0
+            ? "Czas przeznaczony na test minął."
+            : "Czas pozostały do końca testu.";
+        timer.setAttribute("aria-label", timer.title);
+        applyTestTimeLimit(remainingSeconds);
+        return;
+    }
+
+    timer.innerText = timerClock(seconds);
+    timer.title = "Czas aktywnej pracy.";
+    timer.setAttribute("aria-label", timer.title);
+    document.querySelector(".task-card")?.classList.remove("test-time-expired");
 }
 
 function setTimerVisible(isVisible){
@@ -7822,6 +7996,7 @@ function clearTaskInteraction(){
     document.getElementById("taskInstruction").hidden = true;
     document.getElementById("taskInstruction").textContent = "";
     document.getElementById("taskInstruction").classList?.remove("external-submission");
+    document.getElementById("testModeNotice").hidden = true;
     const mcq = document.getElementById("mcq");
     const resultButtons = document.getElementById("resultButtons");
     const solutionBox = document.getElementById("solutionBox");
@@ -7898,16 +8073,16 @@ function clearTaskInteraction(){
 
 function updateTaskDetails(task, total){
     const instruction = document.getElementById("taskInstruction");
+    const testModeNotice = document.getElementById("testModeNotice");
     const isExternalSubmission = task?.type === "external_submission" || task?.externalSubmission === true;
     const isTest = task?.activityType === "test";
     const instructionText = task.instruction || (isExternalSubmission
         ? "Rozwiązanie zadania wyślij na platformie Discord."
-        : isTest
-            ? "Zaznacz odpowiedź, aby ukończyć zadanie."
-            : "");
+        : "");
     instruction.textContent = instructionText;
     instruction.hidden = !instructionText;
     instruction.classList?.toggle("external-submission", isExternalSubmission);
+    testModeNotice.hidden = !isTest;
     const taskCounter = document.getElementById("taskCounter");
     const metaBox = document.getElementById("metaBox");
     const isHomework = task.coursePart === "praca_domowa";
@@ -7946,6 +8121,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
 
     if(!p.length){
         document.getElementById("taskInstruction").hidden = true;
+        document.getElementById("testModeNotice").hidden = true;
         drawTaskRequestId++;
         currentTask = null;
         document.getElementById("taskCounter").innerText = "0 / 0";
@@ -7972,6 +8148,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
 
     currentIndex = index;
     currentTask = p[currentIndex];
+    updateTimer();
     renderTaskNavigator(p);
     currentTaskAnswered = true;
     setTaskLoading(true);
@@ -8049,6 +8226,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
     setupMCQ();
     updateAnswerTools();
     setTaskLoading(false);
+    updateTimer();
 
     if(loadMessages.length){
         showMessage(loadMessages.join(" "));
@@ -8611,9 +8789,7 @@ function setResultButtonsEnabled(enabled){
 
 function setupTrueFalseTask(mcq){
     const correctAnswers = getCorrectAnswers(currentTask);
-    const labels = currentTask.statements?.length
-        ? currentTask.statements
-        : correctAnswers.map((_, index) => `Stwierdzenie ${index + 1}`);
+    const labels = correctAnswers.map((_, index) => `Stwierdzenie ${index + 1}`);
 
     mcq.classList.add("true-false");
     trueFalseSelection = new Array(correctAnswers.length).fill(null);
@@ -8828,17 +9004,61 @@ function setupEquationAnswerControl(wrapper, label, input){
     syncEquationAnswerMode(input, "");
 }
 
+function isAssignmentInputFields(fields){
+    return fields.length > 1 && fields.every(field =>
+        !isComparisonField(field) && Array.isArray(field.options) && field.options.length > 1
+    );
+}
+
+function assignmentFieldLabel(field, index){
+    const label = String(field?.label || index + 1).trim();
+
+    return /^[a-z]$/i.test(label) ? label.toLocaleUpperCase("pl-PL") : label;
+}
+
+function syncAssignmentControl(index, value, field, revealResult = false, disabled = false){
+    const wrapper = document.querySelector(`.assignment-answer-field[data-index="${index}"]`);
+
+    if(!wrapper) return;
+
+    wrapper.classList.remove("unanswered");
+    wrapper.querySelectorAll(".assignment-choice-btn").forEach(button => {
+        const selected = String(button.dataset.value) === String(value || "");
+        const correct = isInputFieldAnswerCorrect(button.dataset.value, field);
+
+        button.classList.toggle("selected", selected && !revealResult);
+        button.classList.toggle("correct", revealResult && correct);
+        button.classList.toggle("wrong", revealResult && selected && !correct);
+        button.disabled = disabled;
+    });
+}
+
+function chooseAssignmentAnswer(index, value, button, field){
+    if(currentTaskAnswered) return;
+
+    const input = document.getElementById(`input-answer-${index}`);
+
+    if(!input) return;
+
+    input.value = String(value);
+    syncAssignmentControl(index, input.value, field);
+    button.focus();
+}
+
 function setupInputTask(mcq){
     const form = document.createElement("form");
     const grid = document.createElement("div");
+    const fields = getInputFields(currentTask);
+    const assignmentMode = isAssignmentInputFields(fields);
     const comparisonOverlay = typeof document.getElementById === "function"
         ? document.getElementById("comparisonOverlay")
         : null;
 
     form.className = "input-answer-form";
     grid.className = "input-answer-grid";
+    grid.classList.toggle("assignment-fields", assignmentMode);
 
-    getInputFields(currentTask).forEach((field, index) => {
+    fields.forEach((field, index) => {
         const wrapper = document.createElement("div");
         const label = document.createElement("label");
         const useComparisonOverlay = Boolean(comparisonOverlay && isComparisonField(field));
@@ -8867,6 +9087,16 @@ function setupInputTask(mcq){
                 option.textContent = String(value);
                 input.appendChild(option);
             });
+            if(assignmentMode){
+                wrapper.classList.add("assignment-answer-field");
+                wrapper.dataset.index = String(index);
+                wrapper.style.setProperty("--assignment-option-count", String(field.options.length));
+                label.className = "assignment-answer-label";
+                label.innerText = assignmentFieldLabel(field, index);
+                input.classList.add("assignment-native-control");
+                input.setAttribute("aria-hidden", "true");
+                input.tabIndex = -1;
+            }
         } else {
             input.type = "text";
             input.inputMode = field.math ? "text" : field.inputMode || "decimal";
@@ -8876,7 +9106,22 @@ function setupInputTask(mcq){
         input.autocomplete = "off";
         input.dataset.index = String(index);
 
-        if(field.control !== "equation"){
+        if(assignmentMode && field.options){
+            wrapper.appendChild(label);
+            wrapper.appendChild(input);
+            field.options.forEach(value => {
+                const optionButton = document.createElement("button");
+
+                optionButton.type = "button";
+                optionButton.className = "choice-btn assignment-choice-btn";
+                optionButton.dataset.value = String(value);
+                optionButton.dataset.index = String(index);
+                optionButton.textContent = String(value);
+                optionButton.setAttribute("aria-label", `${assignmentFieldLabel(field, index)} - ${value}`);
+                optionButton.onclick = () => chooseAssignmentAnswer(index, value, optionButton, field);
+                wrapper.appendChild(optionButton);
+            });
+        } else if(field.control !== "equation"){
             wrapper.appendChild(label);
             wrapper.appendChild(input);
             if(field.math && !field.options && typeof DeltaSigmaMathInput !== "undefined"){
@@ -9506,6 +9751,7 @@ function revealInputAnswers(){
             }
             input.classList.add("correct");
             input.disabled = true;
+            syncAssignmentControl(index, expected, fields[index], true, true);
             setComparisonControlResult(index, expected, "correct", true);
             if(typeof DeltaSigmaMathInput !== "undefined") DeltaSigmaMathInput.refresh(input);
         });
@@ -9535,6 +9781,7 @@ function restoreInputAnswerState(result){
             input.classList.toggle("correct", fieldCorrect);
             input.classList.toggle("wrong", Boolean(value && !fieldCorrect));
             input.disabled = true;
+            syncAssignmentControl(index, value, field, true, true);
             setComparisonControlResult(index, value, fieldCorrect ? "correct" : value ? "wrong" : "", true);
             if(typeof DeltaSigmaMathInput !== "undefined") DeltaSigmaMathInput.refresh(input);
         });
@@ -9555,10 +9802,20 @@ function checkInputAnswer(form){
     if(inputs.length !== fields.length || inputs.some(input => !input.value.trim())){
         inputs.forEach(input => {
             if(!input.value.trim()){
-                setComparisonControlResult(Number(input.dataset.index), "", "unanswered");
+                const index = Number(input.dataset.index);
+                const assignmentWrapper = input.closest(".assignment-answer-field");
+
+                assignmentWrapper?.classList.add("unanswered");
+                setComparisonControlResult(index, "", "unanswered");
             }
         });
-        form.reportValidity();
+        const firstAssignment = form.querySelector(".assignment-answer-field.unanswered .assignment-choice-btn");
+
+        if(firstAssignment){
+            firstAssignment.focus();
+        } else {
+            form.reportValidity();
+        }
         return;
     }
     const validExpressions = inputs.map(input => {
@@ -9576,6 +9833,7 @@ function checkInputAnswer(form){
 
         input.classList.toggle("correct", Boolean(fieldCorrect));
         input.classList.toggle("wrong", !fieldCorrect);
+        syncAssignmentControl(index, input.value, field, true, true);
         setComparisonControlResult(index, input.value, fieldCorrect ? "correct" : "wrong", true);
 
         if(!fieldCorrect) isCorrect = false;

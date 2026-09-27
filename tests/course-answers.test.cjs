@@ -8,7 +8,8 @@ const names = ['isEquationSolutionInput', 'getInputFields', 'getInputPrompt', 'n
   'isComparisonField', 'setupComparisonControl', 'setComparisonControlResult',
   'formatInputAnswer', 'formatSubmittedInputAnswer', 'showInputCorrection',
   'inputAnswerValuesFromText', 'getSubmittedInputAnswerValues', 'restoreInputAnswerState',
-  'syncEquationAnswerMode', 'setupEquationAnswerControl', 'setupInputTask',
+  'syncEquationAnswerMode', 'setupEquationAnswerControl', 'isAssignmentInputFields',
+  'assignmentFieldLabel', 'syncAssignmentControl', 'chooseAssignmentAnswer', 'setupInputTask',
   'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask'];
 function source(name) {
   const start = html.indexOf(`function ${name}(`);
@@ -18,7 +19,7 @@ function source(name) {
 class Element {
   constructor(tag) {
     this.tagName = tag; this.children = []; this.dataset = {}; this.value = '';
-    this.attributes = {}; this.style = {}; this.listeners = {};
+    this.attributes = {}; this.style = {setProperty:(name, value) => {this.style[name] = value;}}; this.listeners = {};
     this.classes = new Set();
     this.classList = {
       add: (...values) => values.forEach(value => this.classes.add(value)),
@@ -57,7 +58,15 @@ const result = [];
 const ctx = vm.createContext({
   document: {
     createElement: tag => new Element(tag),
-    getElementById: id => id === 'comparisonOverlay' ? comparisonOverlay : null,
+    getElementById: id => id === 'comparisonOverlay'
+      ? comparisonOverlay
+      : mcq?.querySelectorAll('input, select, button, div, label, form').find(element => element.id === id) || null,
+    querySelector: selector => {
+      const assignment = selector.match(/^\.assignment-answer-field\[data-index="(\d+)"\]$/);
+      if(assignment) return mcq.querySelectorAll('.assignment-answer-field')
+        .find(element => element.dataset.index === assignment[1]) || null;
+      return mcq.querySelector(selector);
+    },
     querySelectorAll: selector => mcq.querySelectorAll(selector)
   },
   currentTaskAnswered: false, isCourseTask: () => true, hasGradingCriteria: () => false,
@@ -117,7 +126,12 @@ for (const [task, good, bad] of cases) {
   const before = result.length;
   ctx.checkInputAnswer(form);
   assert.equal(result.length, before, 'Blank form must not consume an attempt');
-  assert(form.validationReported);
+  if(ctx.isAssignmentInputFields(ctx.getInputFields(task))){
+    const assignmentRow = form.children[0].children.find(row => row.classes.has('assignment-answer-field'));
+    assert(assignmentRow?.classes.has('unanswered'), `${task.file}: blank assignment is highlighted`);
+  } else {
+    assert(form.validationReported);
+  }
   inputs.forEach((input, index) => {input.value = good[index]; assert(input.required);});
   ctx.checkInputAnswer(form);
   assert.equal(result.at(-1).status, 'good', task.file);
@@ -225,4 +239,32 @@ assert.deepEqual(Array.from(ctx.splitEquationValues('root(256;4); 2')), ['root(2
 assert.equal(ctx.getInputFields(task(1, 'zd_7.1.png'))[0].control, 'equation');
 assert.equal(ctx.getInputFields(task(6, 'zd10.png'))[0].control, 'equation');
 assert.equal(ctx.getInputFields(task(6, '10.png'))[0].control, '');
+const checkpointTasks = JSON.parse(fs.readFileSync(
+  'zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json'
+));
+const assignmentTask = checkpointTasks.find(item => item.taskNumber === '11');
+const assignment = render(assignmentTask);
+const assignmentGrid = assignment.form.children[0];
+assert(assignmentGrid.classes.has('assignment-fields'));
+assert.deepEqual(assignmentGrid.children.map(row => row.children[0].innerText), ['A', 'B', 'C']);
+assert.deepEqual(assignmentGrid.children[0].children.slice(2).map(button => button.textContent), ['I', 'II', 'III']);
+const resultCountBeforeBlankAssignment = result.length;
+ctx.checkInputAnswer(assignment.form);
+assert.equal(result.length, resultCountBeforeBlankAssignment, 'Blank assignment must not consume an attempt');
+assert(assignmentGrid.children[0].classes.has('unanswered'));
+for(const [row, value] of [['A', 'II'], ['B', 'I'], ['C', 'III']]){
+  const fieldRow = assignmentGrid.children.find(item => item.children[0].innerText === row);
+  fieldRow.children.find(button => button.textContent === value).onclick();
+}
+assert.deepEqual(assignment.inputs.map(input => input.value), ['II', 'I', 'III']);
+ctx.checkInputAnswer(assignment.form);
+assert.equal(result.at(-1).status, 'good');
+assert(assignmentGrid.querySelectorAll('.assignment-choice-btn').every(button => button.disabled));
+ctx.saved = {submitted_answer:'a: II\nb: I\nc: III'};
+const restoredAssignment = render(assignmentTask);
+ctx.restoreInputAnswerState('good');
+assert.deepEqual(restoredAssignment.inputs.map(input => input.value), ['II', 'I', 'III']);
+assert(restoredAssignment.form.querySelectorAll('.assignment-choice-btn')
+  .filter(button => button.classes.has('correct')).length === 3);
+ctx.saved = null;
 console.log(`PASS: ${cases.length} tasks, selectors, math input, validation, locking, decimal separators and strict rounding`);

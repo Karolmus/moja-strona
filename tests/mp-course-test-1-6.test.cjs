@@ -1,0 +1,106 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+
+const sourcePath = 'zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json';
+const sourceDir = path.dirname(sourcePath);
+const tasks = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+const html = fs.readFileSync('zadania.html', 'utf8');
+const profileHtml = fs.readFileSync('profil.html', 'utf8');
+const adminHtml = fs.readFileSync('admin.html', 'utf8');
+
+function config(text, name) {
+  const value = text.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n\\]);`));
+  assert(value, name);
+  return vm.runInNewContext(value[1]);
+}
+
+function functionSource(text, name) {
+  const start = text.indexOf(`function ${name}(`);
+  assert(start >= 0, name);
+  return text.slice(start, text.indexOf('\n}', start) + 2);
+}
+
+assert.equal(tasks.length, 10);
+assert.deepEqual(tasks.map(task => task.taskNumber), ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
+assert.equal(tasks.reduce((total, task) => total + task.maxPoints, 0), 14);
+assert.deepEqual(tasks.filter(task => task.type === 'closed').map(task => task.answer), ['C', 'B', 'C', 'A', 'A', 'D']);
+assert.deepEqual(tasks.filter(task => task.type === 'input').map(task => task.inputs[0].answer), [
+  '43 + 30sqrt(2)', '-3 - 2sqrt(2)', '4', '31'
+]);
+
+const expectedHeights = {
+  '1.png': 103, '2.png': 156, '3.png': 175, '4.png': 183, '5.png': 191,
+  '6.png': 158, '7.png': 225, '8.png': 175, '9.png': 73, '10.png': 73
+};
+
+for (const task of tasks) {
+  assert.equal(task.level, 'matura_podstawowa');
+  assert.equal(task.coursePart, 'praca_domowa');
+  assert.equal(task.activityType, 'test');
+  assert.equal(task.theme, 'checkpoint-blue');
+  assert(!('hint' in task));
+  assert(!('videoUrl' in task));
+  assert(task.tags.includes('test 1-6'));
+
+  const png = fs.readFileSync(path.join(sourceDir, task.file));
+  const webp = fs.readFileSync(path.join(sourceDir, task.file.replace(/\.png$/, '.webp')));
+  assert.equal(png.subarray(1, 4).toString(), 'PNG');
+  assert.equal(png.readUInt32BE(16), 950);
+  assert.equal(png.readUInt32BE(20), expectedHeights[task.file]);
+  assert.equal(webp.subarray(0, 4).toString(), 'RIFF');
+  assert.equal(webp.subarray(8, 12).toString(), 'WEBP');
+}
+
+for (const [text, name] of [
+  [html, 'TASK_SOURCES'],
+  [profileHtml, 'PROFILE_SOURCES'],
+  [adminHtml, 'ADMIN_TASK_SOURCES']
+]) {
+  const entries = config(text, name).filter(source => source.path === sourcePath);
+  assert.equal(entries.length, 1, `${name}: MP test registered once`);
+  assert.equal(entries[0].category, 'kurs');
+  assert.equal(entries[0].level, 'matura_podstawowa');
+  assert.equal(entries[0].kind, 'test');
+}
+
+const taskSources = config(html, 'TASK_SOURCES');
+const lesson5Index = taskSources.findIndex(source => source.path.includes('/mp/lekcja_5/'));
+const testIndex = taskSources.findIndex(source => source.path === sourcePath);
+assert(lesson5Index >= 0 && lesson5Index < testIndex);
+
+const storage = new Map();
+let now = 1_800_000_000_000;
+const timer = vm.createContext({
+  currentTask: {activityType: 'test', sourceId: sourcePath},
+  selectedSource: sourcePath,
+  loggedUser: {id: 17},
+  TEST_DURATION_SECONDS: 60 * 60,
+  testDeadlineFallbacks: new Map(),
+  localStorage: {
+    getItem: key => storage.get(key) || null,
+    setItem: (key, value) => storage.set(key, value)
+  },
+  Date: {now: () => now},
+  Math,
+  Number,
+  String,
+  Map
+});
+for (const name of ['timerClock', 'testTimerStorageKey', 'testDeadline', 'testRemainingSeconds']) {
+  vm.runInContext(functionSource(html, name), timer);
+}
+assert.equal(timer.timerClock(3600), '60:00');
+assert.equal(timer.testRemainingSeconds(), 3600);
+now += 15_000;
+assert.equal(timer.testRemainingSeconds(), 3585, 'Countdown keeps the original deadline');
+assert.equal(storage.size, 1, 'Deadline is persisted for refreshes and task changes');
+
+assert.match(html, /const TEST_DURATION_SECONDS = 60 \* 60;/);
+assert.match(html, /timer\.innerText = `Pozostało \$\{timerClock\(remainingSeconds\)\}`;/);
+assert.match(html, /setTimerVisible\(!isLoggedInStudent \|\| isTest\);/);
+assert.match(html, /\.timer\.countdown\.expired/);
+assert(fs.statSync(path.join(sourceDir, 'Kurs matura podstawowa test A lekcje 1-6.pdf')).size > 400000);
+
+console.log('PASS: MP test 1-6, clean crops, answers and persistent 60-minute countdown');

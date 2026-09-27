@@ -21,6 +21,12 @@ assert.deepEqual(tasks.map(task => task.taskNumber), [
   '1.1', '1.2', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'
 ]);
 assert.equal(new Set(tasks.map(task => task.file)).size, 14);
+const expectedCropHeights = {
+  '1_1.png': 118, '1_2.png': 122, '2.png': 270, '3.png': 184,
+  '4.png': 265, '5.png': 311, '6.png': 265, '7.png': 267,
+  '8.png': 354, '9.png': 312, '10.png': 138, '11.png': 431,
+  '12.png': 256, '13.png': 63
+};
 
 for (const task of tasks) {
   assert.equal(task.level, 'egzamin_osmoklasisty');
@@ -34,11 +40,12 @@ for (const task of tasks) {
   const image = fs.readFileSync(path.join(sourceDir, task.file));
   assert.equal(image.subarray(1, 4).toString(), 'PNG');
   assert(image.readUInt32BE(16) >= 900 && image.readUInt32BE(16) <= 1000, task.file);
-  assert(image.readUInt32BE(20) >= 90 && image.readUInt32BE(20) <= 520, task.file);
+  assert.equal(image.readUInt32BE(20), expectedCropHeights[task.file], `${task.file}: clean crop height`);
 }
 
 const context = fs.readFileSync(path.join(sourceDir, 'context_1.png'));
 assert.equal(context.subarray(1, 4).toString(), 'PNG');
+assert.equal(context.readUInt32BE(20), 193);
 assert.equal(tasks[0].contextFile, 'context_1.png');
 assert.equal(tasks[1].contextFile, 'context_1.png');
 
@@ -81,7 +88,7 @@ for (const [text, name] of [
   assert.equal(entries[0].category, 'kurs');
   assert.equal(entries[0].level, 'egzamin_osmoklasisty');
   assert.equal(entries[0].kind, 'test');
-  assert.equal(entries[0].label, 'Powtórka 1-6');
+  assert.equal(entries[0].label, 'Test sprawdzający z lekcji 1 - 6');
 }
 
 const taskSources = config(html, 'TASK_SOURCES');
@@ -103,7 +110,9 @@ assert.match(html, /if\(currentTask\.activityType === "test"\) return;/);
 assert.match(html, /if\(currentTask\?\.activityType === "test"\) return;/);
 assert.match(html, /\.action-group\.tools\.test-mode\s*\{\s*display: none;/);
 assert.match(html, /\.action-group\.navigation\.test-mode\s*\{\s*grid-column: 1 \/ -1;/);
-assert.match(html, /Zaznacz odpowiedź, aby ukończyć zadanie\./);
+assert(!html.includes('Zaznacz odpowiedź, aby ukończyć zadanie.'));
+assert.match(html, /id="testModeNotice"[^>]*hidden>W trybie testu nie możesz korzystać ze wskazówek ani dodawać zadań do omówienia\.<\/p>/);
+assert.match(html, /testModeNotice\.hidden = !isTest;/);
 assert.match(profileHtml, /source\.category === category && source\.kind !== "test"/);
 assert.match(adminHtml, /excludeKinds: \["test"\]/);
 assert(fs.statSync(path.join(sourceDir, 'Test lekcje 1-6.pdf')).size > 400000);

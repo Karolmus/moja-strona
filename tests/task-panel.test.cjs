@@ -10,9 +10,11 @@ button.classList = {toggle:(name, selected) => selected
 const meta = {innerHTML:'', classList:{toggle() {}}};
 const instruction = {};
 const counter = {};
+const testNotice = {hidden:true};
 const ctx = vm.createContext({
   loggedUser:{role:'student'},
-  document:{getElementById:id => ({reviewButton:button, metaBox:meta, taskInstruction:instruction, taskCounter:counter})[id]},
+  document:{getElementById:id => ({reviewButton:button, metaBox:meta, taskInstruction:instruction,
+    taskCounter:counter, testModeNotice:testNotice})[id]},
   currentIndex:0, isLoggedInStudent:true, isCoursePreviewMode:() => false,
   currentTask:{sourceId:'lesson', file:'zp1.png', category:'kurs', coursePart:'zadania_powtorkowe'},
   window:{apiFetch:true}, selectedCoursePart:'zadania_powtorkowe',
@@ -32,6 +34,11 @@ for (const name of ['getTaskKey', 'stars', 'difficultyFromCompletionPercent', 't
 }
 assert.match(html, /id="reviewButton"[^>]*>Chcę omówić to zadanie na zajęciach<\/button>/);
 assert(!html.includes('Dodaj do omówienia'));
+const trueFalseSource = html.slice(html.indexOf('function setupTrueFalseTask('), html.indexOf('\n}', html.indexOf('function setupTrueFalseTask(')) + 2);
+assert.match(trueFalseSource, /const labels = correctAnswers\.map\(\(_, index\) => `Stwierdzenie \$\{index \+ 1\}`\);/,
+  'Prawda/Fałsz uses neutral statement labels');
+assert(!trueFalseSource.includes('currentTask.statements'),
+  'Prawda/Fałsz does not copy statement text from the task data');
 assert.match(html, /zadania: "Część główna"/);
 assert(!html.includes('zadania: "1. Część główna"'));
 assert.match(html, /body\.focus-mode\s*\{[^}]*min-height:\s*100vh;[^}]*background:\s*#000000;/s,
