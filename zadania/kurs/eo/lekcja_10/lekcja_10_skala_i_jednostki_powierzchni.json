@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "120 cm na mapie w skali 1:1000 to 120000 cm, czyli 1,2 km.",
+    "hint": "Pomnóż długość z mapy przez mianownik skali. Otrzymaną długość rzeczywistą zamień z centymetrów na kilometry.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -30,7 +30,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "15 km to 1 500 000 cm. Podziel przez 5 cm na mapie.",
+    "hint": "Zamień odległość rzeczywistą na centymetry. Mianownik skali otrzymasz, dzieląc ją przez długość na mapie.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -55,7 +55,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "8 cm i 12 cm w skali 1:15000 odpowiadają 1,2 km i 1,8 km.",
+    "hint": "Każdy wymiar z mapy pomnóż przez mianownik skali, a następnie zamień jednostki długości.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -80,7 +80,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skala 1:20000 jest liniowo 5 razy większa od 1:100000, więc pole na mapie jest 25 razy większe.",
+    "hint": "Porównaj mianowniki obu skal, aby znaleźć skalę długości. Dla pól podnieś ten stosunek do kwadratu.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -105,7 +105,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "40 cm · 8 = 320 cm = 3,2 m.",
+    "hint": "Pomnóż długość modelu przez współczynnik skali, a następnie zamień centymetry na metry.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -172,7 +172,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "17 ha to 170000 m². Przy skali 1:10000 pole dzielimy przez 10000².",
+    "hint": "Zamień hektary na m². Przy przejściu od pola rzeczywistego do pola na mapie uwzględnij kwadrat mianownika skali.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -197,7 +197,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Bok ogrodu w rzeczywistości ma 45 m, więc pole to 2025 m². Podziel przez 12 m²/min.",
+    "hint": "Wyznacz rzeczywistą długość boku ze skali, oblicz pole ogrodu, a następnie podziel je przez wydajność pracy.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -222,7 +222,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "4/9 cm/s na minimapie w skali 1:50000 daje 800 km/h w rzeczywistości.",
+    "hint": "Prędkość z minimapy pomnóż przez mianownik skali. Następnie zamień cm/s na km/h.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -247,7 +247,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pan Marek przejechał 600 km, co na ekranie odpowiada 6 cm.",
+    "hint": "Oblicz rzeczywisty dystans, a następnie porównaj go z długością odcinka na ekranie. Sprowadź obie długości do tej samej jednostki.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -272,7 +272,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pole rzeczywiste to 450 · 20² cm² = 18 m². Jeśli długość jest dwa razy większa od szerokości, to 2x² = 18.",
+    "hint": "Pole z planu pomnóż przez kwadrat skali i zamień na m². Oznacz szerokość przez x, a długość zapisz jako 2x.",
     "answer": "Pokój ma wymiary 3 m × 6 m.",
     "coursePart": "zadania",
     "tags": [
@@ -289,7 +289,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "0,004 mm to 0,0004 cm. Porównaj 8 cm z 0,0004 cm.",
+    "hint": "Sprowadź rzeczywistą długość i długość na rysunku do tej samej jednostki. Ich iloraz wyznaczy skalę.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -404,7 +404,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "72 cm² w skali 1:50000 odpowiada 18 km², czyli 1800 ha.",
+    "hint": "W skali pola mnożą się przez kwadrat skali. Oblicz rzeczywiste pole w cm², a następnie zamień jednostki.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
@@ -429,7 +429,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "32 cm · 800 = 25600 cm = 256 m.",
+    "hint": "Pomnóż długość z planu przez mianownik skali i zamień centymetry na metry.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -454,7 +454,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "37,95 cm · 2 000 000 = 75 900 000 cm = 759 km.",
+    "hint": "Pomnóż długość z mapy przez mianownik skali i zamień centymetry na kilometry.",
     "answer": "759 km",
     "coursePart": "praca_domowa",
     "tags": [
@@ -471,7 +471,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "129 arów to 12900 m². W skali 1:5000 pole dzielimy przez 5000².",
+    "hint": "Zamień ary na metry kwadratowe, a następnie podziel rzeczywiste pole przez kwadrat mianownika skali.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
@@ -496,7 +496,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pokój ma rzeczywiste wymiary 7,5 m i 10 m, czyli pole 75 m². Podziel przez 8 m²/h.",
+    "hint": "Ze skali wyznacz rzeczywiste wymiary pokoju, oblicz jego pole i podziel przez wydajność pracy.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [

@@ -22,7 +22,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z obwodu 16 cm wyznacz bok 4 cm, a potem policz pole.",
+    "hint": "Podziel obwód kwadratu przez 4, aby wyznaczyć bok. Następnie podnieś długość boku do kwadratu.",
     "answer": "16 cm²",
     "coursePart": "zadania",
     "tags": [
@@ -39,7 +39,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Jeśli pole to 12 m², bok ma długość √12 = 2√3 m.",
+    "hint": "Długość boku kwadratu jest pierwiastkiem z jego pola. Wyłącz pełny kwadrat przed znak pierwiastka.",
     "answer": "8√3 m",
     "coursePart": "zadania",
     "tags": [
@@ -56,7 +56,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "200 cm · 60 cm = 12000 cm² = 1,2 m².",
+    "hint": "Oblicz pole prostokąta w cm², a następnie zamień jednostkę pola na m². Pamiętaj, że jednostki pola przelicza się kwadratowo.",
     "answer": "1,2 m²",
     "coursePart": "zadania",
     "tags": [
@@ -73,7 +73,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "12 mm to 1,2 cm. Użyj wzoru P = a · h / 2.",
+    "hint": "Sprowadź podstawę i wysokość do tej samej jednostki. Następnie użyj wzoru P = a · h / 2.",
     "answer": "1,8 cm²",
     "coursePart": "zadania",
     "tags": [
@@ -90,7 +90,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "800 mm to 80 cm. Pole wynosi 80 · 16 / 2 = 640 cm² = 6,4 dm².",
+    "hint": "Sprowadź podstawę i wysokość do tej samej jednostki, oblicz pole trójkąta, a na końcu zamień cm² na dm².",
     "answer": "6,4 dm²",
     "coursePart": "zadania",
     "tags": [
@@ -124,7 +124,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wysokość jest o 2 cm krótsza od podstawy, czyli ma 8 cm.",
+    "hint": "Wyznacz wysokość z informacji, o ile jest krótsza od podstawy. Potem zastosuj wzór na pole trójkąta.",
     "answer": "80 cm²",
     "coursePart": "zadania",
     "tags": [
@@ -141,7 +141,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pole jest takie samo: 80 cm². Druga podstawa ma 20 cm, więc wysokość to 4 cm.",
+    "hint": "Najpierw oblicz pole pierwszego trójkąta. Dla drugiego użyj tego samego pola oraz podanej podstawy, aby wyznaczyć wysokość.",
     "answer": "4 cm",
     "coursePart": "zadania",
     "tags": [
@@ -277,7 +277,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Po opuszczeniu wysokości powstaje trójkąt prostokątny 3-4-5, więc wysokość trapezu to 3.",
+    "hint": "Opuść wysokość trapezu. W powstałym trójkącie prostokątnym zastosuj twierdzenie Pitagorasa, a potem wzór na pole trapezu.",
     "answer": "42",
     "coursePart": "zadania",
     "tags": [
@@ -294,7 +294,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Nowe działki mają wymiary 20 × 15 oraz 15 × 15. Policz ich przekątne z twierdzenia Pitagorasa.",
+    "hint": "Wyznacz wymiary obu nowych działek. Ich przekątne oblicz osobno z twierdzenia Pitagorasa.",
     "answer": "25 - 15√2 m, czyli około 3,79 m",
     "coursePart": "zadania",
     "tags": [
@@ -312,7 +312,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pola nowych działek to 300 m² i 225 m².",
+    "hint": "Wyznacz wymiary obu nowych działek, a następnie oblicz ich pola. Porównaj otrzymane wartości.",
     "answer": "4 : 3",
     "coursePart": "zadania",
     "tags": [
@@ -407,7 +407,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pole działki wynosi 130 · 25 = 3250 m², a 1 ar = 100 m².",
+    "hint": "Oblicz pole działki w m². Wynik zamień na ary, korzystając z zależności między tymi jednostkami.",
     "answer": "32,5 ara",
     "coursePart": "zadania",
     "tags": [
@@ -458,7 +458,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Kwadrat o obwodzie 20 cm ma bok 5 cm. Dwa takie kwadraty tworzą prostokąt 10 cm × 5 cm.",
+    "hint": "Z obwodu wyznacz bok kwadratu. Po połączeniu figur ustal wymiary powstałego prostokąta.",
     "answer": "50 cm²",
     "coursePart": "praca_domowa",
     "tags": [
@@ -475,7 +475,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Kwadrat ma pole 10000 cm², a prostokąt 99 · 101 = 9999 cm².",
+    "hint": "Sprowadź oba pola do tych samych jednostek i porównaj ich wartości.",
     "answer": "Większą powierzchnię ma kwadrat o boku 100 cm.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -492,7 +492,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Jeśli boki to x i 3x, to 3x² = 12, więc x = 2.",
+    "hint": "Oznacz krótszy bok przez x, a dłuższy przez 3x. Ułóż równanie wynikające z pola.",
     "answer": "16 m",
     "coursePart": "praca_domowa",
     "tags": [
@@ -509,7 +509,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Podstawa jest równa wysokości, więc h² = 200.",
+    "hint": "Skoro podstawa i wysokość są równe, zapisz wzór na pole za pomocą jednej niewiadomej.",
     "answer": "10√2 cm",
     "coursePart": "praca_domowa",
     "tags": [
@@ -526,7 +526,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień 4√5 mm na 0,4√5 cm i policz pole trójkąta.",
+    "hint": "Zamień milimetry na centymetry przed obliczeniem pola trójkąta.",
     "answer": "0,01 dm²",
     "coursePart": "praca_domowa",
     "tags": [
@@ -543,7 +543,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "7 ha = 700 a, 4000 m² = 40 a, razem z 15 a daje 755 a.",
+    "hint": "Sprowadź hektary, ary i metry kwadratowe do jednej jednostki.",
     "answer": "755 arów",
     "coursePart": "praca_domowa",
     "tags": [
@@ -560,7 +560,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pole trapezu to ((3x + 5x) / 2) · 3x = 12x² = 432.",
+    "hint": "Zapisz podstawy i wysokość trapezu za pomocą x, a następnie ułóż równanie wynikające z pola.",
     "answer": "Podstawy mają długości 18 m i 30 m.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -577,7 +577,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź pola do metrów kwadratowych: 200 m², 126 m², 118 m².",
+    "hint": "Sprowadź wszystkie pola do metrów kwadratowych przed ich porównaniem.",
     "answer": "Ogród III, Ogród I, Ogród II",
     "coursePart": "praca_domowa",
     "tags": [

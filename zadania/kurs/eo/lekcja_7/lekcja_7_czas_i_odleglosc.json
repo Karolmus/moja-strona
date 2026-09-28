@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "40 milionów kroków po 1 metr to 40 milionów metrów, czyli 40 000 km.",
+    "hint": "Pomnóż liczbę kroków przez długość jednego kroku. Otrzymany wynik w metrach zamień na kilometry.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -30,7 +30,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "5 · 10^-2 km to 50 m. Podziel długość przewodu przez odległość między atomami: 50 : 10^-11.",
+    "hint": "Sprowadź długość przewodu i odległość między atomami do tej samej jednostki. Następnie podziel całkowitą długość przez odległość między sąsiednimi atomami.",
     "answer": "5 · 10^12 atomów",
     "coursePart": "zadania",
     "tags": [
@@ -89,7 +89,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "21 dni to 504 godziny, a 12 minut to 0,2 godziny.",
+    "hint": "Zamień dni i minuty na godziny. Dopiero wtedy wykonaj działania na czasach zapisanych w tej samej jednostce.",
     "answer": "510,2 godziny",
     "coursePart": "zadania",
     "tags": [
@@ -106,7 +106,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Cztery dni ze średnią 160 km dają łącznie 640 km.",
+    "hint": "Pomnóż średni dzienny dystans przez liczbę dni. Otrzymany wynik porównaj z wartością podaną w stwierdzeniu.",
     "answer": "150 km",
     "coursePart": "zadania",
     "tags": [
@@ -167,7 +167,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz dni od 6 stycznia do 27 marca 2032 roku. Rok 2032 jest przestępny.",
+    "hint": "Policz dni w kolejnych fragmentach stycznia, lutego i marca. Sprawdź wcześniej, ile dni ma luty w podanym roku.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -217,7 +217,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Jeśli 24/9 km to 1/3 całego dystansu, to cały dystans jest trzy razy większy.",
+    "hint": "Ustal, jaką częścią całej drogi jest podany odcinek. Cały dystans oblicz, dzieląc długość odcinka przez tę część.",
     "answer": "8000 m",
     "coursePart": "zadania",
     "tags": [
@@ -251,7 +251,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Od 1991 do 2025 jest 35 lat, z czego 9 było przestępnych.",
+    "hint": "Policz liczbę pełnych lat w podanym przedziale. Osobno zlicz lata przestępne i uwzględnij dodatkowe dni.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -276,7 +276,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rok 2026 nie jest przestępny, więc następny 1 stycznia wypada dzień tygodnia później.",
+    "hint": "Sprawdź, czy dany rok jest przestępny. Zwykły rok przesuwa ten sam dzień następnego roku o jeden dzień tygodnia, a przestępny o dwa.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -301,7 +301,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pamiętaj, że rok 2000 był przestępny.",
+    "hint": "Przy liczeniu dni uwzględnij lata przestępne. Rok 2000 był przestępny.",
     "answer": [
       "F",
       "P"
@@ -327,7 +327,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "5,6 godziny zamień na sekundy i dodaj kwadrans, czyli 900 sekund.",
+    "hint": "Zamień godziny i kwadrans na sekundy, a następnie dodaj otrzymane wartości.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -352,7 +352,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pomnóż 2,71 przez 3600.",
+    "hint": "Zamień godziny na sekundy, mnożąc przez 3600.",
     "answer": "9756 sekund; wynik jest liczbą całkowitą.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -369,7 +369,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "366 dni to 52 tygodnie i 2 dni. Od 21 mają do 13 września mija 115 dni, czyli 3 dni ponad pełne tygodnie.",
+    "hint": "Rozdziel okres na pełne tygodnie i pozostałe dni. Uwzględnij rok przestępny.",
     "answer": [
       "P",
       "P"
@@ -395,7 +395,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rok nieprzestępny ma 365 dni, a po przejściu z 5.10 na 14.10 pominięto 8 dni.",
+    "hint": "Porównując daty, uwzględnij długość roku i liczbę dni pominiętych przy zmianie kalendarza.",
     "answer": "51 tygodni",
     "coursePart": "praca_domowa",
     "tags": [
@@ -455,7 +455,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "800 km to 800 000 m. Jedna cegła ma 0,2 m szerokości, więc w jednym rzędzie mieści się 4 000 000 cegieł. Pomnóż przez 70 rzędów.",
+    "hint": "Zamień długość muru i szerokość cegły na metry. Oblicz liczbę cegieł w jednym rzędzie, a następnie uwzględnij liczbę rzędów.",
     "answer": "280 000 000 cegieł",
     "coursePart": "praca_domowa",
     "tags": [

@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Z pola prostokąta i długości jednego boku wyznacz drugi bok. Przekątną oblicz z twierdzenia Pitagorasa.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -29,7 +29,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Przekątna jest przeciwprostokątną trójkąta utworzonego przez boki prostokąta. Porównaj ją z bokiem oraz z sumą obu przyprostokątnych.",
     "answer": [
       "P",
       "F"
@@ -50,7 +50,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Obwód prostokąta jest dwukrotnością sumy długości sąsiednich boków.",
     "answer": "Obwód wynosi 6x.",
     "coursePart": "zadania",
     "tags": [
@@ -68,7 +68,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Pole prostokąta oblicz jako iloczyn boków x i 2x.",
     "answer": "Pole wynosi 2x².",
     "coursePart": "zadania",
     "tags": [
@@ -86,7 +86,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Boki x i 2x są przyprostokątnymi trójkąta, którego przeciwprostokątną jest przekątna prostokąta.",
     "answer": "Przekątna ma długość x√5.",
     "coursePart": "zadania",
     "tags": [
@@ -104,7 +104,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Przekątna tworzy z bokami trójkąt 30°–60°–90°. Zapisz długości boków w odpowiedniej proporcji i wykorzystaj podane pole.",
     "answer": "Obwód prostokąta wynosi 18 + 18√3 m.",
     "coursePart": "zadania",
     "tags": [
@@ -121,7 +121,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Bok wewnętrznego kwadratu jest przeciwprostokątną trójkąta o przyprostokątnych 3x i 4x. Bok zewnętrznego kwadratu ma długość 3x + 4x.",
     "answer": "Skala podobieństwa mniejszego kwadratu do większego wynosi 5:7; odwrotnie 7:5.",
     "coursePart": "zadania",
     "tags": [
@@ -138,7 +138,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Sprawdź, czy przekątna zawsze dzieli kąt figury na dwie równe części. Zwróć uwagę, czym różni się kwadrat od dowolnego prostokąta.",
     "answer": [
       "P",
       "F"
@@ -159,7 +159,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Trójkąty i prostokąt mają tę samą wysokość. Porównaj sumę długości podstaw trójkątów z długością podstawy całego prostokąta.",
     "answer": "Suma pól trójkątów T1 i T2 stanowi 13% pola prostokąta.",
     "coursePart": "zadania",
     "tags": [
@@ -176,7 +176,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Przekątne rombu są prostopadłe i dzielą jego kąty. Wykorzystaj trójkąty 30°–60°–90° do wyznaczenia boku i drugiej przekątnej.",
     "answer": "Pole rombu wynosi 32√3 dm², a wysokość 4√3 dm.",
     "coursePart": "zadania",
     "tags": [
@@ -193,7 +193,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "To samo pole równoległoboku zapisz dwa razy: P = a · hₐ oraz P = b · hᵦ.",
     "answer": "Wysokości mają długości 14 i 8.",
     "coursePart": "zadania",
     "tags": [
@@ -210,7 +210,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Pole rombu zapisz jako iloczyn boku i wysokości oraz jako połowę iloczynu przekątnych. Bok wyraź z połówek przekątnych za pomocą twierdzenia Pitagorasa.",
     "answer": "Druga przekątna powinna mieć długość 10√3/3 dm.",
     "coursePart": "zadania",
     "tags": [
@@ -227,7 +227,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Poprowadź odcinek dzielący czworokąt wklęsły na prostsze figury. Zapisz sumy ich kątów i uwzględnij kąt przy wklęsłym wierzchołku.",
     "answer": "Suma kątów wynosi 360°, bo po poprowadzeniu przekątnej czworokąt można podzielić na dwa trójkąty, a każdy z nich ma sumę kątów 180°.",
     "coursePart": "zadania",
     "tags": [
@@ -244,7 +244,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Dla każdego stwierdzenia porównaj definicje figur. Sprawdź, czy własności figury szczególnej spełniają warunki figury bardziej ogólnej.",
     "answer": [
       "P",
       "P",
@@ -267,7 +267,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Z twierdzenia Pitagorasa wyznacz drugi bok prostokąta, a następnie oblicz jego pole.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -291,7 +291,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Przyjmij bok kwadratu równy a i porównaj długości 1,5a oraz 7a/5 z przekątną a√2.",
     "answer": [
       "F",
       "F"
@@ -312,7 +312,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "Ustal wymiary obu powstałych prostokątów, a następnie porównaj kwadraty długości ich przekątnych.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -336,7 +336,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z własności prostokątów, kwadratów, rombów i równoległoboków oraz z twierdzenia Pitagorasa.",
+    "hint": "W rombie przekątne połowią się i przecinają pod kątem prostym. Najpierw wyznacz drugą przekątną, a potem wykorzystaj równość pól trzech równoległoboków.",
     "answer": "Obwód całej figury wynosi 120 dm, a pole powierzchni całej figury wynosi 288 dm².",
     "coursePart": "praca_domowa",
     "tags": [

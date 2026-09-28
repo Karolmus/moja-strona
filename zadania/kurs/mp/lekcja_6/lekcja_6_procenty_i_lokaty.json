@@ -25,7 +25,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Po dwóch obniżkach cena wynosi 6400 · 0,8². Od ceny początkowej odejmij otrzymany wynik."
+    "hint": "Każdą obniżkę o 20% zapisz jako mnożenie przez 0,8. Od ceny początkowej odejmij cenę po dwóch obniżkach."
   },
   {
     "file": "3.png",
@@ -40,7 +40,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Różnicę 6% − 3% podziel przez wynik Andrzeja Leppera, czyli 3%."
+    "hint": "Oblicz różnicę wyników w punktach procentowych, a następnie odnieś ją do mniejszego wyniku."
   },
   {
     "file": "4.png",
@@ -55,7 +55,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Różnica 10 punktów procentowych odpowiada 1,7 miliona głosów. Najpierw wyznacz 100% oddanych głosów, a potem oblicz 54%."
+    "hint": "Ustal, ilu głosom odpowiada 1 punkt procentowy. Następnie oblicz liczbę głosów dla wskazanego wyniku procentowego."
   },
   {
     "file": "5.png",
@@ -97,7 +97,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Oblicz kapitał po dwóch latach ze wzoru 60000 · 1,04², a następnie odejmij wpłaconą kwotę."
+    "hint": "Każdy rok lokaty zapisz jako mnożenie kapitału przez 1,04. Od kwoty końcowej odejmij wpłacony kapitał."
   },
   {
     "file": "8.png",
@@ -111,7 +111,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Kapitał końcowy wynosi 14 641 zł. Sprawdź, dla jakiej liczby kapitalizacji wzór 10000 · (1 + 0,2/n)^(2n) daje tę kwotę."
+    "hint": "We wzorze na procent składany liczba kapitalizacji w roku występuje w podstawie i wykładniku. Sprawdź kolejne dopuszczalne wartości tej liczby."
   },
   {
     "file": "9.png",
@@ -139,7 +139,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Ułóż równanie 10000 · (1 + r/2)² = 10816. Wartość r jest roczną stopą nominalną."
+    "hint": "Dla kapitalizacji półrocznej zastosuj wzór 10 000 · (1 + r/2)². Rozwiąż równanie z podanym kapitałem końcowym."
   },
   {
     "file": "zd1.png",
@@ -153,7 +153,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Przyjmij cenę początkową równą 1 i rozwiąż równanie (1 − p/100)(1 + p/100) = 0,96."
+    "hint": "Przyjmij cenę początkową równą 1. Zapisz kolejną obniżkę i podwyżkę jako mnożniki zależne od p."
   },
   {
     "file": "zd2.png",
@@ -167,7 +167,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Po obu obniżkach pozostaje 0,8 · 0,85 = 0,68 ceny, więc ubytek stanowi 32% ceny początkowej."
+    "hint": "Zamień obniżki na mnożniki 0,8 i 0,85, a następnie oblicz, jaka część ceny początkowej pozostała."
   },
   {
     "file": "zd3.png",
@@ -181,7 +181,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Podziel 35% w stosunku 1,5 : 1, czyli 3 : 2. Kandydat A otrzymał trzy z pięciu równych części."
+    "hint": "Zamień stosunek 1,5 : 1 na 3 : 2 i podziel między kandydatów łączny procent głosów."
   },
   {
     "file": "zd4.png",
@@ -195,7 +195,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Różnica 15 punktów procentowych odpowiada 2400 głosom. Pozostali kandydaci otrzymali 25% wszystkich głosów."
+    "hint": "Różnicę poparcia zapisz w punktach procentowych. Ustal, jaki procent wszystkich głosów odpowiada 2400 głosom."
   },
   {
     "file": "zd5.png",
@@ -223,7 +223,7 @@
     "type": "true_false",
     "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
     "answer": ["P", "F"],
-    "hint": "Po obniżce o 50% pozostaje połowa ceny. Dwie podwyżki o 10% odpowiadają mnożeniu przez 1,1²."
+    "hint": "Zamień obniżkę i obie podwyżki na kolejne mnożniki ceny początkowej."
   },
   {
     "file": "zd7.png",
@@ -237,7 +237,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zapisz równanie ((Kp · 1,05) + 2000) · 1,05 = 13125 i wyznacz Kp."
+    "hint": "Oznacz kapitał początkowy przez K. Zapisz kolejno pierwsze oprocentowanie, dopłatę 2000 zł i drugie oprocentowanie."
   },
   {
     "file": "zd8.png",
@@ -251,7 +251,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Dla lokaty A oblicz 8% z 10 000 zł. Dla lokaty B dwukrotnie zastosuj stopę półroczną 3,95%, zaokrąglając odsetki do grosza."
+    "hint": "Dla lokaty A oblicz odsetki po roku. Dla lokaty B dwukrotnie zastosuj półroczną stopę procentową, za każdym razem zaokrąglając odsetki do grosza."
   },
   {
     "file": "zd9.png",
@@ -265,7 +265,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Szukasz najmniejszej liczby całkowitej n, dla której 10000 · 1,1ⁿ > 20000. Sprawdź kolejne potęgi w pobliżu otrzymanego wyniku."
+    "hint": "Porównaj kolejne wartości 10 000 · 1,1ⁿ z 20 000 i znajdź najmniejszą całkowitą wartość n."
   },
   {
     "file": "zp1.png",

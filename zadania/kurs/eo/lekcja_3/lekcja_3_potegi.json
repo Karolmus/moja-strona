@@ -12,7 +12,7 @@
       "C",
       "D"
     ],
-    "hint": "Porównaj każdą liczbę z 10^100. Przy mnożeniu potęg o tej samej podstawie dodajesz wykładniki, a przy potędze potęgi mnożysz wykładniki.",
+    "hint": "Porównaj każdą liczbę z 10¹⁰⁰. Przy mnożeniu potęg o tej samej podstawie dodaj wykładniki, a przy potęgowaniu potęgi pomnóż je.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -60,7 +60,7 @@
       "C",
       "D"
     ],
-    "hint": "Licznik 2^7 razy 5^7 zapisz jako 10^7, a potem podziel przez 10^5.",
+    "hint": "Połącz 2⁷ · 5⁷ w potęgę liczby 10, a następnie wykonaj dzielenie potęg o tej samej podstawie.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -82,7 +82,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "W pierwszym zdaniu porównaj 11^12 z 11^12. W drugim uprość ułamek, pamiętając o potędze iloczynu.",
+    "hint": "W pierwszym stwierdzeniu sprowadź oba wyrażenia do tej samej potęgi. W drugim uprość ułamek, korzystając z potęgi iloczynu.",
     "answer": [
       "F",
       "P"
@@ -110,7 +110,7 @@
       "C",
       "D"
     ],
-    "hint": "Zlicz, ile razy dodano 5^3. Sumę jednakowych składników zamień na mnożenie.",
+    "hint": "Zlicz, ile razy dodano 5³. Sumę jednakowych składników zamień na iloczyn.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -186,7 +186,7 @@
       "C",
       "D"
     ],
-    "hint": "Zwróć uwagę na znak liczby z nieparzystym wykładnikiem. Potem porównaj 1/2, 1, 5^10 i 5^12.",
+    "hint": "Najpierw ustal znaki liczb. Następnie porównaj wartości dodatnie, sprowadzając potęgi do wspólnej podstawy.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -260,7 +260,7 @@
       "C",
       "D"
     ],
-    "hint": "Ustal znak iloczynu, a potem zapisz 4 jako 2^2 i połącz czynniki 2 oraz 5 w potęgi liczby 10.",
+    "hint": "Ustal znak iloczynu, zapisz 4 jako 2² i połącz czynniki 2 oraz 5 w potęgi liczby 10.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -282,7 +282,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Dla podstawy 1/5 większy wykładnik daje mniejszą liczbę. W drugim zdaniu porównaj (-3)^10 z 9^5.",
+    "hint": "Dla podstawy 1/5 większy wykładnik daje mniejszą wartość. W drugim stwierdzeniu zapisz obie potęgi przy tej samej dodatniej podstawie.",
     "answer": [
       "F",
       "P"
@@ -356,7 +356,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Sprawdź parzystość wykładnika i pamiętaj, że minus przed potęgą nie jest tym samym co nawias.",
+    "hint": "Sprawdź parzystość wykładnika. Pamiętaj, że minus przed potęgą nie należy do jej podstawy.",
     "answer": [
       "P",
       "P"
@@ -385,7 +385,7 @@
       "C",
       "D"
     ],
-    "hint": "Zamień 32 i 4 na potęgi liczby 2, uprość ułamek i dopiero potem dodaj 2^17.",
+    "hint": "Zamień 32 i 4 na potęgi liczby 2, uprość ułamek, a następnie wykonaj dodawanie.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
@@ -410,7 +410,7 @@
       "C",
       "D"
     ],
-    "hint": "Ustal znak wyniku oraz sprawdź, czy po skróceniu zostaje liczba całkowita.",
+    "hint": "Najpierw ustal znak wyniku, a następnie uprość potęgi.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -433,7 +433,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "W pierwszym zdaniu porównaj znak obu liczb. W drugim zapisz 125 jako 5^3.",
+    "hint": "Stwierdzenie 1: porównaj znaki obu liczb.\nStwierdzenie 2: zapisz 125 jako 5³.",
     "answer": [
       "F",
       "P"
@@ -487,7 +487,7 @@
       "C",
       "D"
     ],
-    "hint": "Zapisz 35^6 jako 5^6 razy 7^6 i skróć z mianownikiem.",
+    "hint": "Zapisz 35⁶ jako 5⁶ · 7⁶ i skróć wspólne czynniki.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -569,7 +569,7 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdź, czy liczba ma czynniki potrzebne do podzielności przez 75 oraz przez 10^5.",
+    "hint": "Sprawdź, czy rozkład liczby zawiera czynniki potrzebne do podzielności przez 75 i przez 10⁵.",
     "answer": "A2",
     "coursePart": "praca_domowa",
     "tags": [
@@ -597,7 +597,7 @@
       "B2",
       "B3"
     ],
-    "hint": "Pomnożenie przez 2,1 przesuwa przecinek, ale jedna cyfra trafia przed przecinek.",
+    "hint": "Zapisz wynik w notacji naukowej, pilnując, aby przed przecinkiem była jedna niezerowa cyfra.",
     "answer": "B1",
     "coursePart": "praca_domowa",
     "tags": [
@@ -623,7 +623,7 @@
       "C",
       "D"
     ],
-    "hint": "Zapisz 7,3 razy 10^11 jako 0,73 razy 10^12 i dodaj wspólne potęgi dziesiątki.",
+    "hint": "Sprowadź oba składniki do tej samej potęgi liczby 10, a następnie dodaj współczynniki.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -648,7 +648,7 @@
       "C",
       "D"
     ],
-    "hint": "Sprowadź oba składniki do potęgi 10^-6 albo 10^-5, a potem odejmij współczynniki.",
+    "hint": "Sprowadź oba składniki do tej samej potęgi liczby 10, a następnie odejmij współczynniki.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [

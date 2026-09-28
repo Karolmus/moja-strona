@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Dla każdego z trzech miejsc na kartkówce wybór odbywa się z innej puli. Zastosuj regułę mnożenia.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -31,7 +31,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Sprawdź, która zmiana nie wpływa na liczbę wyborów z żadnej puli. Sama zamiana kolejności już wybranych zadań nie tworzy nowych zestawów.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -57,7 +57,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Liczbę zestawów zapisz jako 8 · 4 · 2 · n, gdzie n oznacza liczbę naszyjników. Przyrównaj iloczyn do podanej liczby zestawów.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -82,7 +82,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Miejsca są ponumerowane, a osoby różne. Pierwsza osoba ma 5 możliwości, druga o jedną mniej, a trzecia o kolejną mniej.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -107,7 +107,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "W każdym rzędzie policz pary sąsiednich miejsc. Pomnóż przez liczbę rzędów oraz przez dwie możliwe kolejności dziewczyn.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -132,7 +132,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Wypisz uporządkowane pary wyników dwóch rzutów, których suma jest większa od 9. Wszystkich równoprawdopodobnych par jest 6 · 6.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -157,7 +157,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Moneta jest symetryczna, więc zamiana wszystkich orłów na reszki nie zmienia prawdopodobieństwa. Drugie stwierdzenie przepisz, używając liczby orłów i zależności O + R = 4.",
     "answer": [
       "F",
       "P"
@@ -183,7 +183,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Dodaj liczby osób uprawiających oba sporty, odejmij osoby policzone podwójnie, a na końcu dodaj osoby nieuprawiające żadnego sportu.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -208,7 +208,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Narysuj diagram Venna dla trzech języków. Wpisywanie zacznij od części wspólnej wszystkich trzech zbiorów, a potem uzupełniaj części wspólne par.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -233,7 +233,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Rzut kostką ma 6 wyników, a każdy rzut monetą po 2. Zastosuj regułę mnożenia dla trzech kolejnych etapów doświadczenia.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -258,7 +258,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Sprawdź, czy istnieje liczba spełniająca jednocześnie oba warunki dotyczące sumy oczek. Jeśli zdarzenie jest niemożliwe, nie ma wyników sprzyjających.",
     "answer": "Prawdopodobieństwo wynosi 0, bo suma nie może być jednocześnie większa niż 8 i mniejszą niż 4.",
     "coursePart": "zadania",
     "tags": [
@@ -276,7 +276,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Wybierz 3 spośród 5 pozycji, na których wypadnie orzeł. Wszystkich równoprawdopodobnych ciągów pięciu rzutów jest 2⁵.",
     "answer": "Prawdopodobieństwo wynosi 5/16.",
     "coursePart": "zadania",
     "tags": [
@@ -294,7 +294,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Rozpatrz osobno dokładnie 3 reszki i dokładnie 4 reszki. Policz ciągi w obu przypadkach i podziel ich sumę przez 2⁴.",
     "answer": "Prawdopodobieństwo wynosi 5/16.",
     "coursePart": "zadania",
     "tags": [
@@ -312,7 +312,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Z prawdopodobieństwa białej kuli wyznacz liczbę białych kul. Liczbę czarnych otrzymasz, odejmując ją od liczby wszystkich kul.",
     "answer": "W pudełku jest 12 kul czarnych.",
     "coursePart": "zadania",
     "tags": [
@@ -330,7 +330,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "W sześciu rzutach jest 2⁶ równoprawdopodobnych wyników. Zlicz przypadki z 4, 5 lub 6 reszkami.",
     "answer": "Prawdopodobieństwo wynosi 11/32.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -348,7 +348,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Początkowo szansa wygranej wynosi 3/60. Po usunięciu n losów i jednego losu wygrywającego zapisz nowe prawdopodobieństwo.",
     "answer": "n = 40.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -366,7 +366,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Pomnóż prawdopodobieństwa kolejnych losowań bez zwracania, aktualizując liczbę kul po każdym losowaniu.",
     "answer": "Prawdopodobieństwo wynosi 2/39.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -384,7 +384,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Imię czteroliterowe spełnia oba podane warunki. Zastosuj zasadę włączeń i wyłączeń dla tych zdarzeń.",
     "answer": "Prawdopodobieństwo wynosi 15%.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -402,7 +402,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Pomnóż prawdopodobieństwa poprawnej odpowiedzi w trzech pytaniach ABCD i dwóch pytaniach P/F.",
     "answer": "Prawdopodobieństwo wynosi 1/256.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -421,7 +421,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Pomnóż prawdopodobieństwa błędnej odpowiedzi w trzech pytaniach ABCD i dwóch pytaniach P/F.",
     "answer": "Prawdopodobieństwo wynosi 27/256.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -440,7 +440,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Dodaj liczby wszystkich kul, a następnie podziel liczbę kul czerwonych przez liczbę wszystkich kul.",
     "answer": "Prawdopodobieństwo wynosi 1/4.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -458,7 +458,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Skorzystaj ze zdarzenia przeciwnego: od 1 odejmij prawdopodobieństwo dwukrotnego wylosowania tego samego symbolu.",
     "answer": "Prawdopodobieństwo wynosi 11/18.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -476,7 +476,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Zastosuj regułę mnożenia: pomnóż liczbę możliwości wyboru każdego elementu menu.",
     "answer": "Można utworzyć 1200 menu.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -494,7 +494,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Najpierw wybierz przewodniczącego, a potem skarbnika. Kolejność pełnionych funkcji ma znaczenie.",
     "answer": "Można wybrać 600 uporządkowanych dwójek.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -512,7 +512,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę wszystkich możliwości i liczbę wyników sprzyjających. W kombinatoryce pilnuj, czy kolejność ma znaczenie.",
+    "hint": "Policz uporządkowane wybory dwóch osób, a następnie podziel wynik przez 2, ponieważ kolejność nie ma znaczenia.",
     "answer": "Można wybrać 171 par osób.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -530,7 +530,7 @@
     "difficulty": 1,
     "topic": "kombinatoryka i prawdopodobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw oblicz liczbę osób lubiących jazdę na rowerze i pływanie z zasady włączeń i wyłączeń, a potem policz część „tylko rower”.",
+    "hint": "Uzupełnij diagram Venna, zaczynając od części wspólnej trzech sportów. Szukana grupa nie należy do zbioru biegających ani pływających.",
     "answer": "9 osób nie lubi ani biegać, ani pływać.",
     "coursePart": "praca_domowa",
     "tags": [

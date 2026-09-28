@@ -31,7 +31,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wyłącz przed nawias największy wspólny czynnik: 3ab^2.",
+    "hint": "Znajdź największy wspólny czynnik liczbowy i najmniejsze potęgi wspólnych zmiennych. Wyłącz otrzymany jednomian przed nawias.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -128,7 +128,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pierwsze równanie po pomnożeniu przez 2 daje sprzeczność. Drugie ma rozwiązanie 11/5.",
+    "hint": "Usuń ułamki i uprość każde równanie osobno. Sprawdź, czy otrzymujesz fałszywą równość, czy konkretną wartość niewiadomej.",
     "answer": [
       "F",
       "F"
@@ -154,7 +154,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzoru (a + c)(a - c) = a^2 - c^2.",
+    "hint": "Użyj wzoru (a + c)(a − c) = a² − c².",
     "answer": [
       "F",
       "P"
@@ -180,7 +180,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Dla dodatnich liczb a < b < c największe jest 2b + 2c, potem a + 2b + c, potem 3b.",
+    "hint": "Porównuj wyrażenia parami, odejmując jedno od drugiego. Wykorzystaj informację a < b < c do ustalenia znaku różnicy.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -205,7 +205,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Jeśli cyfra dziesiątek to d, to cyfra jedności to d + 4. Dopuszczalne są d = 1, 2, 3, 4, 5.",
+    "hint": "Oznacz cyfrę dziesiątek przez d, a cyfrę jedności zapisz za pomocą d. Pamiętaj o ograniczeniach dotyczących cyfr.",
     "answer": "15, 26, 37, 48, 59",
     "coursePart": "zadania",
     "tags": [
@@ -231,7 +231,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Równanie x^2 = 25 ma dwa całkowite rozwiązania: -5 i 5.",
+    "hint": "Jeśli x² jest równe dodatniej liczbie, rozważ zarówno dodatni, jak i ujemny pierwiastek tej liczby.",
     "answer": "2",
     "coursePart": "zadania",
     "tags": [
@@ -269,7 +269,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Równanie x^2 = 0 ma jedno rozwiązanie: 0.",
+    "hint": "Zastanów się, ile liczb ma kwadrat równy zeru.",
     "answer": "1",
     "coursePart": "zadania",
     "tags": [
@@ -310,7 +310,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Kwadrat sumy to x^2 + 2xy + y^2.",
+    "hint": "Zastosuj wzór na kwadrat sumy: (x + y)² = x² + 2xy + y².",
     "answer": [
       "F",
       "F"
@@ -336,7 +336,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozwiń x(1 - x), potem odejmij 2(x - 7/2).",
+    "hint": "Rozwiń x(1 − x), a następnie odejmij 2(x − 7/2).",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -361,7 +361,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Po rozwinięciu nawiasów dostaniesz równanie liniowe z rozwiązaniem -5/2.",
+    "hint": "Rozwiń nawiasy i zredukuj wyrazy podobne. Otrzymasz równanie liniowe.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -386,7 +386,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pierwsze zdanie jest prawdziwe, bo 2ab > 0. Drugie nie zawsze, np. gdy a jest dużo większe od b.",
+    "hint": "Stwierdzenie 1: porównaj wyrażenia po odjęciu mniejszego od większego.\nStwierdzenie 2: sprawdź nierówność dla bardzo różnych dodatnich wartości a i b.",
     "answer": [
       "P",
       "F"
@@ -412,7 +412,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zostaje połowa książek, 2/5 zeszytów oraz z - 5 gier.",
+    "hint": "Zapisz liczbę przedmiotów pozostałych po każdej opisanej zmianie.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -437,7 +437,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Dla liczby ujemnej porządek potęg zależy od wartości bezwzględnej liczby a.",
+    "hint": "Rozważ osobno przypadki −1 < a < 0 oraz a < −1, a następnie porównaj potęgi.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -462,7 +462,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw jest 3V/4. Po zużyciu 1/3 zostaje V/2, a po zużyciu 40% z tego zostaje 60%, czyli 3V/10.",
+    "hint": "Po każdej zmianie zapisz, jaka część objętości początkowej pozostała.",
     "answer": "3V/10",
     "coursePart": "praca_domowa",
     "tags": [
@@ -490,7 +490,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw powstaje 3x - 3. Powiększenie o 40% oznacza pomnożenie przez 1,4.",
+    "hint": "Najpierw zapisz wynik pierwszej zmiany. Wzrost o 40% przedstaw jako mnożenie przez 1,4.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -515,7 +515,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "W obu składnikach można wyłączyć wspólny czynnik a^3b^3.",
+    "hint": "Wyłącz z obu składników wspólny czynnik a³b³.",
     "answer": "A1",
     "coursePart": "praca_domowa",
     "tags": [
@@ -542,7 +542,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Po uproszczeniu obie strony równania są identyczne.",
+    "hint": "Rozwiń obie strony równania i zredukuj wyrazy podobne.",
     "answer": "nieskończenie wiele rozwiązań",
     "type": "input",
     "inputs": [{ "label": "Liczba rozwiązań równania", "answer": "nieskończenie wiele rozwiązań", "options": ["brak rozwiązań", "jedno rozwiązanie", "dwa rozwiązania", "nieskończenie wiele rozwiązań"] }],

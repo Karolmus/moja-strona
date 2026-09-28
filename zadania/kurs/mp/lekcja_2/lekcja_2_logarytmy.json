@@ -88,7 +88,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Zapisz pierwiastek z 10 jako potęgę z wykładnikiem 1/2. Logarytm dziesiętny potęgi liczby 10 jest równy jej wykładnikowi."
+    "hint": "Zapisz √10 jako potęgę o wykładniku 1/2. Logarytm dziesiętny potęgi liczby 10 jest równy jej wykładnikowi."
   },
   {
     "file": "5.png",
@@ -203,7 +203,7 @@
       "D"
     ],
     "answer": "D",
-    "hint": "Zapisz pierwiastek z 3 i iloczyn 3 razy pierwiastek z 3 jako potęgi tej samej liczby."
+    "hint": "Zapisz √3 oraz 3 · √3 jako potęgi liczby 3."
   },
   {
     "file": "10.png",
@@ -440,7 +440,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Oblicz osobno b i c, korzystając z definicji logarytmu. Przy mnożeniu przez a zwróć uwagę na znaki wszystkich trzech czynników."
+    "hint": "Zastanów się, do jakiej potęgi należy podnieść ½, aby otrzymać 16. Wynik będzie ujemny, ponieważ trzeba odwrócić liczbę ½."
   },
   {
     "file": "zd2.png",
@@ -464,7 +464,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Zapisz 25 i pierwiastek z 5 jako potęgi liczby 5. Najpierw oblicz logarytmy, potem wykonaj mnożenie i dodawanie."
+    "hint": "Wciągnij współczynnik 2 stojący przed drugim logarytmem do wykładnika liczby logarytmowanej."
   },
   {
     "file": "zd3.png",
@@ -488,7 +488,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Różnicę logarytmów dziesiętnych zapisz jako logarytm ilorazu. Uprość ułamek i zapisz go jako potęgę liczby 10."
+    "hint": "Wykorzystaj wzór na różnicę logarytmów o tych samych podstawach. Pamiętaj, że podstawą obu logarytmów jest 10."
   },
   {
     "file": "zd4.png",
@@ -512,7 +512,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Zapisz pierwiastek z 7 jako potęgę o wykładniku 1/2. Następnie sprowadź logarytmy z odpowiedzi do podstawy 10."
+    "hint": "Zamień logarytm na równanie wykładnicze: 10ˣ = √7. Sprawdź, która odpowiedź prowadzi do tego samego równania."
   },
   {
     "file": "zd5.png",
@@ -536,7 +536,7 @@
       "D"
     ],
     "answer": "D",
-    "hint": "Oblicz oba logarytmy przy podstawie 9 albo przenieś współczynnik do wykładnika i połącz sumę."
+    "hint": "Oblicz osobno oba logarytmy o podstawie 9."
   },
   {
     "file": "zd6.png",
@@ -560,7 +560,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Z definicji logarytmu zapisz równanie 11^x = 4. Następnie podnieś obie strony do potęgi 1/x i porównaj otrzymaną postać z odpowiedziami."
+    "hint": "Z definicji logarytmu zapisz równanie 11ˣ = 4. Sprawdź, która odpowiedź prowadzi do tego samego równania."
   },
   {
     "file": "zd7.png",
@@ -584,7 +584,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Najpierw zapisz podwojony logarytm jako logarytm kwadratu, a następnie podziel argumenty."
+    "hint": "Wciągnij współczynnik 2 stojący przed drugim logarytmem do wykładnika liczby logarytmowanej."
   },
   {
     "file": "zd8.png",
@@ -608,7 +608,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Zapisz 49 jako potęgę liczby 7 i uwzględnij pierwiastek trzeciego stopnia. Następnie zastosuj definicję logarytmu."
+    "hint": "Zapisz 49 jako potęgę liczby 7, a następnie zamień pierwiastek na potęgę."
   },
   {
     "file": "zd9.png",
@@ -632,7 +632,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Przenieś liczbę 2 do wykładnika, połącz różnicę logarytmów i uprość argument."
+    "hint": "Wciągnij współczynnik 2 stojący przed pierwszym logarytmem do wykładnika liczby logarytmowanej."
   },
   {
     "file": "zd10.png",
@@ -656,7 +656,7 @@
       "D"
     ],
     "answer": "D",
-    "hint": "Zapisz 27, 3 i 729 jako potęgi liczby 3. Przy odejmowaniu sprowadź wartości do wspólnego mianownika."
+    "hint": "Zapisz 27, 3 i 729 jako potęgi liczby 3."
   },
   {
     "file": "zd11.png",
@@ -680,7 +680,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Podstawa jest pierwiastkiem trzeciego stopnia z 2. Zapisz ją i liczbę 16 jako potęgi liczby 2."
+    "hint": "Zapisz podstawę logarytmu i liczbę logarytmowaną jako potęgi liczby 2."
   },
   {
     "file": "zd12.png",
@@ -706,7 +706,7 @@
       "F",
       "P"
     ],
-    "hint": "Pierwsze zdanie sprawdź dla x = y = 1. W drugim porównaj zapis potęgowy z definicją logarytmu.",
+    "hint": "Stwierdzenie 1: sprawdź, czy log₂ 4 + log₂ 8 = log₂(4 + 8).\nStwierdzenie 2: skorzystaj z definicji logarytmu z tablic matematycznych.",
     "instruction": "Przyjmij, że podstawy wszystkich występujących logarytmów są dodatnie i różne od 1."
   },
   {
@@ -732,7 +732,7 @@
       "P",
       "F"
     ],
-    "hint": "W pierwszym zdaniu sprowadź oba logarytmy do podstawy 3. W drugim zapisz liczbę 1 jako logarytm przy podstawie 4, a następnie połącz różnicę."
+    "hint": "Stwierdzenie 1: zapisz logarytmy w postaci równań wykładniczych.\nStwierdzenie 2: zapisz 1 jako log₄ 4 i wykonaj działanie."
   },
   {
     "file": "zd14.png",
@@ -756,7 +756,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Zastosuj jedynkę trygonometryczną do wyrażenia pod logarytmem. Następnie oblicz logarytm otrzymanej liczby."
+    "hint": "Zastosuj jedynkę trygonometryczną: sin² α + cos² α = 1."
   },
   {
     "file": "zp1.png",
@@ -853,6 +853,6 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Wyłącz w liczniku wspólny czynnik 6^19. Zapisz go jako iloczyn potęg liczb 2 i 3, a następnie skróć ułamek."
+    "hint": "Wyłącz w liczniku wspólny czynnik 6¹⁹. Zapisz go jako iloczyn potęg liczb 2 i 3, a następnie skróć ułamek."
   }
 ]

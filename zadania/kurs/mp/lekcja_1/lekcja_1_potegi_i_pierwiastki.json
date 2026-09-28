@@ -264,7 +264,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zapisz 25 jako potęgę liczby 5. Pomnóż wykładniki potęgi potęgi, a następnie dodaj wykładniki przy mnożeniu."
+    "hint": "Zapisz 25 jako potęgę liczby 5."
   },
   {
     "file": "zd2.png",
@@ -279,7 +279,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Sumę trzech takich samych składników zapisz jako iloczyn. Następnie zamień 27 na potęgę liczby 3."
+    "hint": "Zamień sumę jednakowych składników na iloczyn."
   },
   {
     "file": "zd3.png",
@@ -294,7 +294,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Potęga z wykładnikiem -1 to odwrotność liczby. Zapisz 64 jako potęgę liczby 2 i połącz potęgi o jednakowym wykładniku."
+    "hint": "Potęga o wykładniku −1 oznacza odwrotność liczby. Zapisz 64 jako potęgę liczby 2."
   },
   {
     "file": "zd4.png",
@@ -309,7 +309,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zapisz 27 i 9 jako potęgi liczby 3. Podziel każdy składnik licznika przez mianownik osobno."
+    "hint": "Zapisz 27 i 9 jako potęgi liczby 3. Wyłącz przed nawias największy wspólny czynnik licznika."
   },
   {
     "file": "zd5.png",
@@ -324,7 +324,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Podziel współczynniki dziesiętne, a następnie odejmij wykładniki potęg liczby 10. Uważaj na odejmowanie liczby ujemnej."
+    "hint": "Rozdziel iloraz na dzielenie 4,8 przez 1,6 oraz osobne dzielenie potęg liczby 10."
   },
   {
     "file": "zd6.png",
@@ -339,7 +339,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Połącz pary czynników 2 i 5 w potęgę liczby 10. Do liczby zer dodaj liczbę cyfr pozostałego czynnika."
+    "hint": "Zapisz 5¹³ jako 5² · 5¹¹."
   },
   {
     "file": "zd7.png",
@@ -354,7 +354,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Wyłącz czynnik przed pierwiastek z 75, a następnie wykonaj odejmowanie w nawiasie i podnieś wynik do kwadratu."
+    "hint": "Wyłącz czynnik przed pierwiastek z 75."
   },
   {
     "file": "zd8.png",
@@ -369,7 +369,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Połącz pierwiastki trzeciego stopnia w jeden pierwiastek z iloczynu. Skróć ułamek pod pierwiastkiem i pamiętaj o znaku wyniku."
+    "hint": "Połącz pierwiastki trzeciego stopnia w jeden pierwiastek z iloczynu, a następnie skróć ułamek pod pierwiastkiem."
   },
   {
     "file": "zd9.png",
@@ -384,7 +384,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Zapisz oba pierwiastki jako potęgi liczby 5, a następnie dodaj ich wykładniki."
+    "hint": "Zamień pierwiastki na potęgi."
   },
   {
     "file": "zd10.png",
@@ -399,7 +399,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Pomnóż ułamki pod jednym pierwiastkiem trzeciego stopnia. Licznik i mianownik otrzymanego ułamka są sześcianami liczb całkowitych."
+    "hint": "Pomnóż ułamki pod jednym pierwiastkiem trzeciego stopnia."
   },
   {
     "file": "zd11.png",
@@ -414,6 +414,6 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Pierwiastek z liczby ujemnej istnieje w zbiorze liczb rzeczywistych wtedy, gdy jego stopień jest nieparzysty."
+    "hint": "Parzysta potęga liczby rzeczywistej jest zawsze nieujemna."
   }
 ]

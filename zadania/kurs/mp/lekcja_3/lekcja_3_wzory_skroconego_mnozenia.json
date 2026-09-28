@@ -236,7 +236,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Podstaw x = √2 + 5 i rozpoznaj kwadrat różnicy."
+    "hint": "Przekształć x² − 10x + 25 do postaci (a − b)²."
   },
   {
     "file": "zd2.png",
@@ -251,7 +251,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zastosuj różnicę kwadratów dla dwóch nawiasów."
+    "hint": "Zastosuj wzory na kwadrat sumy i kwadrat różnicy. Możesz też użyć wzoru na różnicę kwadratów: a² − b²."
   },
   {
     "file": "zd3.png",
@@ -266,7 +266,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Rozwiń oba kwadraty i odejmij wyrazy podobne."
+    "hint": "Zastosuj wzory na kwadrat sumy i kwadrat różnicy. Możesz też użyć wzoru na różnicę kwadratów: a² − b²."
   },
   {
     "file": "zd4.png",
@@ -281,7 +281,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Rozwiń kwadrat sumy i oblicz iloczyn pierwiastków."
+    "hint": "Zastosuj wzór (a + b)² = a² + 2ab + b²."
   },
   {
     "file": "zd5.png",
@@ -296,7 +296,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zapisz a i b w prostszej postaci, a potem oblicz kwadrat różnicy."
+    "hint": "Wyłącz czynnik przed pierwiastek w wyrażeniu b, a następnie oblicz b − a."
   },
   {
     "file": "zd6.png",
@@ -311,7 +311,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Rozwiń oba kwadraty i porównaj współczynniki przy x oraz wyrazy wolne."
+    "hint": "Rozwiń oba kwadraty i porównaj współczynniki przy x i wyrazy wolne."
   },
   {
     "file": "zd7.png",
@@ -341,7 +341,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Podnieś różnicę do kwadratu i skorzystaj z warunku a² + b² = 1."
+    "hint": "Rozwiń (a + b)² oraz (a − b)². W obu wyrażeniach pojawi się suma a² + b², która jest równa 1."
   },
   {
     "file": "zd9.png",
@@ -356,7 +356,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zastosuj różnicę kwadratów dwukrotnie."
+    "hint": "Skorzystaj z zależności aⁿ · bⁿ = (ab)ⁿ, a następnie oblicz ab."
   },
   {
     "file": "zd10.png",
@@ -371,7 +371,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Rozłóż licznik i mianownik na różnicę kwadratów, a następnie skróć."
+    "hint": "Przekształć licznik do postaci (a + b)(a − b)."
   },
   {
     "file": "zd11.png",
@@ -386,7 +386,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Uzupełnij kwadrat, porównując x² + 8x + 20 z (x + a)² + b."
+    "hint": "Znajdź wzór skróconego mnożenia, którego rozwinięcie zaczyna się od x² + 8x."
   },
   {
     "file": "zd12.png",
@@ -401,7 +401,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zauważ, że pierwszy czynnik jest przeciwny do a² − b², a następnie zastosuj różnicę kwadratów."
+    "hint": "(−a)² = a². Zauważ też, że pierwszy czynnik jest liczbą przeciwną do a² − b², więc możesz zastosować wzór na różnicę kwadratów."
   },
   {
     "file": "zp1.png",

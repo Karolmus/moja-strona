@@ -2390,9 +2390,10 @@ html.task-video-open {
 
 .grouped-choice-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) repeat(var(--grouped-option-count, 2), minmax(80px, 120px));
+    grid-template-columns: 56px repeat(var(--grouped-option-count, 2), minmax(80px, 120px));
     gap: 8px;
     align-items: stretch;
+    justify-content: start;
 }
 
 .tf-label {
@@ -2410,13 +2411,14 @@ html.task-video-open {
 .grouped-choice-label {
     display: flex;
     align-items: center;
+    justify-content: center;
     min-height: 48px;
-    padding: 9px 13px;
+    padding: 9px 8px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
-    color: var(--muted);
-    font-weight: 600;
+    color: var(--text);
+    font-weight: 800;
 }
 
 .box {
@@ -3447,7 +3449,7 @@ footer {
     }
 
     .grouped-choice-row {
-        grid-template-columns: minmax(0, 1fr) repeat(2, minmax(56px, 72px));
+        grid-template-columns: 44px repeat(var(--grouped-option-count, 2), minmax(56px, 72px));
         gap: 6px;
     }
 
@@ -4078,11 +4080,10 @@ const TASK_IMAGE_CACHE_VERSION = "20260927-eo-test-crops";
 const SKIPPED_RESULT = "skipped";
 const STUDENT_WORK_COURSE_PART = "praca_domowa";
 const STUDENT_WORK_COURSE_PARTS = ["praca_domowa", "zadania_powtorkowe"];
-const EO_FIRST_CHECKPOINT_SOURCE = "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json";
 const COURSE_COMPLETION_RESULTS = new Set(["good", "medium", "bad", "video"]);
 const TEST_DURATION_SECONDS = 60 * 60;
 const testDeadlineFallbacks = new Map();
-let eoUnlockedSourcesPreloadPromise = null;
+let unlockedCourseSourcesPreloadPromise = null;
 const COURSE_PART_ORDER = {
     zadania: 1,
     praca_domowa: 2,
@@ -5268,32 +5269,48 @@ function getSourceMeta(sourceConfig){
     };
 }
 
-function eoCourseLessonNumber(source){
-    const match = String(source?.path || source?.id || "").match(/\/eo\/lekcja_(\d+)\//i);
-
-    return match ? Number(match[1]) : 0;
-}
-
-function isEoFirstCheckpointSource(source){
-    return String(source?.path || source?.id || "") === EO_FIRST_CHECKPOINT_SOURCE;
-}
-
-function isEoInitialCourseSource(source){
-    const lessonNumber = eoCourseLessonNumber(source);
-
-    return isEoFirstCheckpointSource(source) || (lessonNumber >= 1 && lessonNumber <= 6);
-}
-
-function eoFirstCheckpointComplete(){
-    const requiredSources = TASK_SOURCES
+function getCourseSourceSequence(level){
+    return TASK_SOURCES
         .map(getSourceMeta)
         .filter(source =>
             source.category === "kurs" &&
-            source.level === "egzamin_osmoklasisty" &&
-            isEoInitialCourseSource(source)
+            source.level === level
         );
+}
 
-    return requiredSources.length === 7 && requiredSources.every(source => {
+function getPreviousCourseCheckpoint(source, sources = getCourseSourceSequence(source?.level)){
+    const sourceIndex = sources.findIndex(item => item.id === source?.id);
+
+    if(sourceIndex <= 0) return null;
+
+    for(let index = sourceIndex - 1; index >= 0; index--){
+        if(sources[index].kind === "test") return sources[index];
+    }
+
+    return null;
+}
+
+function getCheckpointStageSources(checkpoint, sources = getCourseSourceSequence(checkpoint?.level)){
+    const checkpointIndex = sources.findIndex(source => source.id === checkpoint?.id);
+
+    if(checkpointIndex < 0 || sources[checkpointIndex]?.kind !== "test") return [];
+
+    let previousCheckpointIndex = -1;
+
+    for(let index = checkpointIndex - 1; index >= 0; index--){
+        if(sources[index].kind === "test"){
+            previousCheckpointIndex = index;
+            break;
+        }
+    }
+
+    return sources.slice(previousCheckpointIndex + 1, checkpointIndex + 1);
+}
+
+function isCheckpointStageComplete(checkpoint, sources = getCourseSourceSequence(checkpoint?.level)){
+    const requiredSources = getCheckpointStageSources(checkpoint, sources);
+
+    return requiredSources.length > 0 && requiredSources.every(source => {
         if(!isTaskSourceLoaded(source.id)) return false;
 
         const requiredTasks = getSourceCompletionTasks(source);
@@ -5305,43 +5322,44 @@ function eoFirstCheckpointComplete(){
 }
 
 function isCourseSourceVisible(source){
-    if(source.category !== "kurs" || source.level !== "egzamin_osmoklasisty") return true;
+    if(source.category !== "kurs") return true;
     if(!isLoggedInStudent || loggedUser?.role !== "student") return true;
-    if(isEoInitialCourseSource(source)) return true;
 
-    return eoFirstCheckpointComplete();
+    const sources = getCourseSourceSequence(source.level);
+    const previousCheckpoint = getPreviousCourseCheckpoint(source, sources);
+
+    return !previousCheckpoint || isCheckpointStageComplete(previousCheckpoint, sources);
 }
 
-function preloadUnlockedEoCourseSources(){
-    if(!eoFirstCheckpointComplete()) return Promise.resolve();
-    if(eoUnlockedSourcesPreloadPromise) return eoUnlockedSourcesPreloadPromise;
+function preloadUnlockedCourseSources(){
+    if(unlockedCourseSourcesPreloadPromise) return unlockedCourseSourcesPreloadPromise;
 
     const sources = TASK_SOURCES
         .map(getSourceMeta)
         .filter(source =>
             source.category === "kurs" &&
-            source.level === "egzamin_osmoklasisty" &&
+            source.level === selectedLevel &&
             isCourseSourceVisible(source) &&
             !isTaskSourceLoaded(source.id)
         );
 
     if(!sources.length) return Promise.resolve();
 
-    eoUnlockedSourcesPreloadPromise = Promise.all(sources.map(async source => {
+    unlockedCourseSourcesPreloadPromise = Promise.all(sources.map(async source => {
         try {
             await ensureTaskSourceLoaded(source.id);
         } catch(error) {
             console.warn("Nie udało się wczytać odblokowanej lekcji.", source.id, error);
         }
     })).then(() => {
-        if(selectedCategory === "kurs" && selectedLevel === "egzamin_osmoklasisty"){
+        if(selectedCategory === "kurs"){
             renderSourceSelector();
         }
     }).finally(() => {
-        eoUnlockedSourcesPreloadPromise = null;
+        unlockedCourseSourcesPreloadPromise = null;
     });
 
-    return eoUnlockedSourcesPreloadPromise;
+    return unlockedCourseSourcesPreloadPromise;
 }
 
 const TAG_ALIASES = {
@@ -6159,7 +6177,7 @@ async function loadStudentProgress(options = {}){
         const data = await apiFetch("/api/progress/me");
 
         savedProgress = Array.isArray(data.progress) ? data.progress : [];
-        await preloadUnlockedEoCourseSources();
+        await preloadUnlockedCourseSources();
         if(shouldRender){
             renderSourceSelector();
             renderTaskNavigator();
@@ -7693,7 +7711,7 @@ function getGroupedMultiOptions(task){
 
             if(!group){
                 group = {
-                    label: `Podpunkt ${label}`,
+                    label,
                     options: []
                 };
                 groups.push(group);
@@ -10413,7 +10431,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
             renderSourceSelector();
             updateScorePanel();
             updateSourceSummary();
-            preloadUnlockedEoCourseSources();
+            preloadUnlockedCourseSources();
         }
         if(type === "video" && data?.progress?.result !== "video") throw new Error("Nie potwierdzono oznaczenia filmu.");
         return data?.progress;

@@ -339,7 +339,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Zapisz trzy kolejne liczby nieparzyste jako 2k + 1, 2k + 3 i 2k + 5, a następnie uprość sumę. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Zapisz trzy kolejne liczby nieparzyste jako 2k + 1, 2k + 3 i 2k + 5, a następnie uprość sumę. Zacznij od zbadania podzielności przez 12. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "zd7.png",
@@ -396,7 +396,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Dwa razy zastosuj wzór na różnicę kwadratów i zbadaj parzystość czynników. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Zastosuj wzór na różnicę kwadratów. Skup się na parzystości składników i czynników wyniku. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "zd10.png",
@@ -415,7 +415,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Zapisz wyrażenie w postaci 8k + 5. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Zapisz wyrażenie w postaci 64k² + 8k − 8 + 5. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "zd11.png",
@@ -434,7 +434,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Wyłącz 6n i w iloczynie pozostałych czynników znajdź wielokrotność 3. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Wyłącz 6n przed nawias. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "zd12.png",
@@ -453,7 +453,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Przenieś 4ab na lewą stronę i zapisz otrzymane wyrażenie jako (2a − b)². Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Przenieś 4ab na lewą stronę i zwiń lewą stronę we wzór skróconego mnożenia."
   },
   {
     "file": "zp1.png",

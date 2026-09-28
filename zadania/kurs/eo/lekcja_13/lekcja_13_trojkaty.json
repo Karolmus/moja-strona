@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Sprawdź, czy suma długości dwóch krótszych boków jest większa od długości najdłuższego boku.",
     "answer": "Nie. Suma dwóch krótszych boków jest równa trzeciemu bokowi: 7 + 14 = 21, więc taki trójkąt byłby zdegenerowany.",
     "coursePart": "zadania",
     "tags": [
@@ -22,7 +22,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Sprawdź nierówność trójkąta, porównując sumę długości dwóch krótszych boków z najdłuższym bokiem.",
     "answer": "Tak. Każda suma dwóch boków jest większa od trzeciego boku, np. 7 + 11 > 13.",
     "coursePart": "zadania",
     "tags": [
@@ -39,7 +39,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Najdłuższy bok potraktuj jako przeciwprostokątną. Sprawdź, czy kwadrat jego długości jest równy sumie kwadratów pozostałych boków.",
     "answer": "Tak. Boki 8, 15 i 17 spełniają twierdzenie Pitagorasa: 8² + 15² = 17².",
     "coursePart": "zadania",
     "tags": [
@@ -104,7 +104,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Rozpoznaj trójkąt 30°–60°–90°. Korzystając z proporcji jego boków, wyznacz brakujące długości i dodaj je.",
     "answer": "Obwód wynosi 6 + 2√3 cm.",
     "coursePart": "zadania",
     "tags": [
@@ -145,7 +145,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Oznacz długość przyprostokątnej przez a i zapisz obwód trójkąta równoramiennego prostokątnego. Potem wyznacz wysokość opuszczoną na przeciwprostokątną.",
     "answer": "h = 3√2/20 dm.",
     "coursePart": "zadania",
     "tags": [
@@ -162,7 +162,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Z równania α + 2α + 3α = 180° rozpoznaj typ trójkąta. Użyj proporcji boków trójkąta 30°–60°–90° oraz podanego obwodu.",
     "answer": "Pole trójkąta wynosi 25√3/2 cm².",
     "coursePart": "zadania",
     "tags": [
@@ -205,7 +205,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Oznacz dłuższą przyprostokątną przez x, a przeciwprostokątną przez x + 1. Ułóż równanie z twierdzenia Pitagorasa.",
     "answer": "Pole wynosi 84 cm².",
     "coursePart": "zadania",
     "tags": [
@@ -222,7 +222,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Podziel sześciokąt foremny na sześć trójkątów równobocznych. Oblicz pole jednego z nich i pomnóż przez 6.",
     "answer": "Pole wynosi 75√3/2.",
     "coursePart": "zadania",
     "tags": [
@@ -240,7 +240,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Krótsza przekątna sześciokąta jest wysokością dwóch sąsiednich trójkątów równobocznych. Zastosuj zależność d = a√3.",
     "answer": "Krótsza przekątna ma długość 12.",
     "coursePart": "zadania",
     "tags": [
@@ -258,7 +258,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "W pierwszym trójkącie prostokątnym wyznacz wspólny bok z twierdzenia Pitagorasa. Następnie użyj go w drugim trójkącie do obliczenia a.",
     "answer": "a = 7.",
     "coursePart": "zadania",
     "tags": [
@@ -275,7 +275,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Zastosuj wzór na pole trójkąta równobocznego, aby wyznaczyć bok. Następnie oblicz wysokość i obwód oraz zamień jednostki.",
     "answer": "Wysokość wynosi 40√3 cm, a obwód 240 cm.",
     "coursePart": "zadania",
     "tags": [
@@ -292,7 +292,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Z obwodu wyznacz długość podstawy. Wysokość dzieli trójkąt równoramienny na dwa trójkąty prostokątne, więc zastosuj twierdzenie Pitagorasa.",
     "answer": "Pole wynosi 60.",
     "coursePart": "zadania",
     "tags": [
@@ -333,7 +333,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Przekątna dzieli prostokąt na trójkąty prostokątne. Wyznacz kolejno brakujące odcinki, stosując twierdzenie Pitagorasa.",
     "answer": "x = 24 m.",
     "coursePart": "zadania",
     "tags": [
@@ -350,7 +350,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Rozpoznaj trójkąt 30°–60°–90°. Bok naprzeciw 60° ma długość a√3, a przeciwprostokątna 2a.",
     "answer": "Obwód wynosi 15 + 5√3.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -367,7 +367,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Dodaj trzy podane kąty i przyrównaj ich sumę do 180°. Sprawdź, czy otrzymana wartość α może być miarą kąta.",
     "answer": "Nie jest możliwe. Suma kątów daje 3α + 194° = 180°, czyli α = -14/3°, a kąt nie może mieć ujemnej miary.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -384,7 +384,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Sprawdź nierówność trójkąta: suma długości dwóch krótszych boków musi być większa od długości najdłuższego boku.",
     "answer": "Nie jest możliwe. Dwa krótsze boki mają 3/4 cm i 6/7 cm, a ich suma 45/28 cm jest mniejszą niż 5/2 cm.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -401,7 +401,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Skorzystaj z proporcji boków w trójkątach 45°–45°–90° oraz 30°–60°–90°, aby wyznaczyć podstawę i wysokość trójkąta T₁.",
     "answer": "Pole trójkąta T1 wynosi 25(1 + √3)/2 cm².",
     "coursePart": "praca_domowa",
     "tags": [
@@ -418,7 +418,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Podstaw m = 3 i n = 2 do wzorów na a, b i c, a następnie dodaj długości otrzymanych boków.",
     "answer": "Obwód trójkąta wynosi 30.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -436,7 +436,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Z równania m² + n² = 25 wyznacz dodatnie liczby m > n, a następnie sprawdź warunek 2mn = 24.",
     "answer": "m = 4, n = 3.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -454,7 +454,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj własności trójkątów: nierówność trójkąta, sumę kątów, twierdzenie Pitagorasa, pola i proporcje w trójkątach szczególnych.",
+    "hint": "Oblicz półobwód trójkąta, a następnie podstaw długości boków do wzoru Herona.",
     "answer": "Pole wynosi 84.",
     "coursePart": "praca_domowa",
     "tags": [

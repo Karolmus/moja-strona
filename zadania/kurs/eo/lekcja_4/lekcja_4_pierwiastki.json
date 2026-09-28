@@ -60,7 +60,7 @@
       "C",
       "D"
     ],
-    "hint": "Oszacuj pierwiastki: sqrt(15) jest między 3 i 4, a sqrt(150) między 12 i 13.",
+    "hint": "Znajdź kolejne kwadraty liczb całkowitych, między którymi leżą liczby pod pierwiastkami.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -109,7 +109,7 @@
       "C",
       "D"
     ],
-    "hint": "Pięciokrotne dodanie sqrt(2) to 5sqrt(2), czyli sqrt(50).",
+    "hint": "Sumę jednakowych pierwiastków zapisz jako iloczyn. Jeśli potrzebujesz, wciągnij współczynnik pod pierwiastek.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -184,7 +184,7 @@
       "C",
       "D"
     ],
-    "hint": "Przybliż wartości: 3, cbrt(30), 3sqrt(3), sqrt(30), a potem ustaw je rosnąco.",
+    "hint": "Oszacuj każdą wartość, porównując liczby pod pierwiastkami z najbliższymi pełnymi potęgami. Następnie ustaw wyniki rosnąco.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -208,7 +208,7 @@
       "C",
       "D"
     ],
-    "hint": "Warunek 8 < sqrt(n) < 9 oznacza 64 < n < 81. Wypisz liczby dwucyfrowe, w których cyfra jedności jest o 2 większa od cyfry dziesiątek.",
+    "hint": "Podnieś wszystkie strony nierówności do kwadratu. Następnie wypisz liczby z otrzymanego przedziału spełniające warunek dotyczący cyfr.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -256,7 +256,7 @@
       { "label": "b", "options": ["I", "II", "III"], "answer": "I" },
       { "label": "c", "options": ["I", "II", "III"], "answer": "III" }
     ],
-    "hint": "Oszacuj przybliżenia liczb: sqrt(13), 1 + sqrt(3) oraz 2 + sqrt(10), a potem dopasuj je do położenia na osi.",
+    "hint": "Oszacuj każdy pierwiastek między dwiema kolejnymi liczbami całkowitymi. Potem dopasuj otrzymane sumy do punktów na osi.",
     "answer": "a = II, b = I, c = III",
     "coursePart": "zadania",
     "tags": [
@@ -305,7 +305,7 @@
       "C",
       "D"
     ],
-    "hint": "Użyj wzoru (a + b)^2 = a^2 + 2ab + b^2 dla a = sqrt(2) i b = 2sqrt(3).",
+    "hint": "Użyj wzoru (a + b)² = a² + 2ab + b² dla a = √2 i b = 2√3.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -329,7 +329,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw wymnóż sqrt(6) przez nawias. Iloczyn sqrt(6) i sqrt(150) to sqrt(900).",
+    "hint": "Wymnóż √6 przez nawias i połącz pierwiastki występujące w iloczynach.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -374,7 +374,7 @@
     "inputs": [
       { "label": "Wynik", "answer": "-15", "inputMode": "text" }
     ],
-    "hint": "Rozwiń oba kwadraty ze wzoru (a + b)^2, a potem odejmij wyrażenia podobne.",
+    "hint": "Rozwiń oba kwadraty ze wzoru (a + b)², a następnie zredukuj wyrazy podobne.",
     "answer": "-15",
     "coursePart": "praca_domowa",
     "tags": [
@@ -428,7 +428,7 @@
     "inputs": [
       { "label": "Wynik", "answer": "(sqrt(2) - 21) / 5", "math": true }
     ],
-    "hint": "Pierwszy ułamek podnieś do trzeciej potęgi, pamiętając, że (cbrt(10))^3 = 10. W drugim składniku najpierw podnieś pierwiastek do kwadratu.",
+    "hint": "W pierwszym składniku usuń pierwiastek trzeciego stopnia przez potęgowanie. W drugim najpierw podnieś pierwiastek do kwadratu.",
     "answer": "(sqrt(2) - 21) / 5",
     "coursePart": "praca_domowa",
     "tags": [
@@ -453,7 +453,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw uprość sqrt(24) = 2sqrt(6), a potem podnieś 3sqrt(6) do kwadratu.",
+    "hint": "Wyłącz czynnik przed pierwiastek z 24, a następnie podnieś otrzymane wyrażenie do kwadratu.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -478,7 +478,7 @@
       { "label": "3. miejsce", "options": ["I", "II", "III", "IV"], "answer": "IV" },
       { "label": "4. miejsce", "options": ["I", "II", "III", "IV"], "answer": "I" }
     ],
-    "hint": "Oszacuj każdą liczbę: jedna jest ujemna duża co do wartości, jedna równa -3, jedna równa 4, a jedna dodatnia około 6,7.",
+    "hint": "Oszacuj każdą liczbę między kolejnymi liczbami całkowitymi, a następnie ustaw wyniki rosnąco.",
     "answer": "II, III, IV, I",
     "coursePart": "praca_domowa",
     "tags": [

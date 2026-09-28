@@ -28,7 +28,11 @@ for(const [part, count, prefix] of [
     assert.equal(task.isProof, true);
     assert.equal(task.maxPoints, 2);
     assert.equal(task.instruction, discordInstruction);
-    assert(task.hint.endsWith(proofReminder));
+    if(task.file === 'zd12.png'){
+      assert(!task.hint.includes(proofReminder), 'The non-divisibility proof does not show a divisibility reminder');
+    } else {
+      assert(task.hint.endsWith(proofReminder));
+    }
     assert(!('answer' in task));
     assert(!('options' in task));
   });

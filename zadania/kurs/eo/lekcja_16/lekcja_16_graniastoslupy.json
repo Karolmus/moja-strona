@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Sześcian ma sześć kwadratowych ścian. Oblicz pole jednej ściany i pomnóż je przez 6.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -29,7 +29,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Objętość sześcianu jest trzecą potęgą długości jego krawędzi. Pamiętaj o potęgowaniu pierwiastka.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -53,7 +53,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Zamień litry na m³ i wyznacz krawędź sześcianu z jego objętości. Dno akwarium jest kwadratem.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -77,7 +77,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Oblicz pole całkowite bryły przed przecięciem. Po przecięciu do łącznego pola dochodzą dwa pola nowo powstałego przekroju.",
     "answer": "Łączna powierzchnia całkowita powstałych brył wynosi 124 dm².",
     "coursePart": "zadania",
     "tags": [
@@ -94,7 +94,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Z pola sześcianu wyznacz jego krawędź i objętość. Oznacz wspólną długość w nowej bryle przez x i z równości objętości oblicz x.",
     "answer": "Pole powierzchni całkowitej nowej bryły wynosi 800 + 250√2 cm².",
     "coursePart": "zadania",
     "tags": [
@@ -111,7 +111,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Pomnóż trzy długości krawędzi. Iloczyn (x − y)(x + y) uprość za pomocą wzoru na różnicę kwadratów.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -135,7 +135,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "W pierwszym stwierdzeniu porównaj objętość basenu z pojemnością wiadra. W drugim podziel objętość basenu przez jego głębokość.",
     "answer": [
       "P",
       "F"
@@ -160,7 +160,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Przecięcie tworzy po jednej nowej ścianie w każdej bryle. Dla graniastosłupa o podstawie n-kąta porównaj n ścian bocznych z 3n krawędziami.",
     "answer": [
       "P",
       "P"
@@ -185,7 +185,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Graniastosłup o podstawie n-kąta ma 3n krawędzi oraz n + 2 ściany.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -209,7 +209,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Wypisz całkowite pary boków podstawy o iloczynie 36. Dla każdej pary użyj pola bocznego 2(a + b)h = 192 i sprawdź warunki zadania.",
     "answer": "Jedyny przypadek spełniający warunki to podstawa 6 cm × 6 cm i wysokość 8 cm. Pole całkowite wynosi 264 cm², a objętość 288 cm³.",
     "coursePart": "zadania",
     "tags": [
@@ -226,7 +226,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Krawędź sześcianu jest pierwiastkiem trzeciego stopnia z objętości. Wybierz objętość będącą pełnym sześcianem liczby naturalnej.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -250,7 +250,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Dla każdej objętości wyznacz krawędź a = ∛V, a następnie sprawdź, czy 6a² jest liczbą naturalną.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -274,7 +274,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Dla każdego obiektu podstaw zmierzone długości do wzorów V = abc oraz P꜀ = 2(ab + ac + bc). Zadbaj o jednakowe jednostki.",
     "answer": "Dla prostopadłościanu o wymiarach a, b, c: V = abc oraz Pc = 2(ab + ac + bc). Oblicz osobno dla obiektu 1 i 2.",
     "coursePart": "zadania_praktyczne",
     "tags": [
@@ -469,7 +469,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Podziel większą objętość przez mniejszą. Otrzymany iloraz mówi, ile razy jedna objętość jest większa od drugiej.",
     "answer": "Porównanie objętości: oblicz iloraz V2/V1 albo V1/V2, zależnie od tego, który obiekt ma większą objętość.",
     "coursePart": "zadania_praktyczne",
     "tags": [
@@ -637,7 +637,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Podziel większe pole całkowite przez mniejsze. Porównuj wartości zapisane w tej samej jednostce pola.",
     "answer": "Porównanie pól całkowitych: oblicz iloraz Pc2/Pc1 albo Pc1/Pc2, zależnie od tego, który obiekt ma większe pole.",
     "coursePart": "zadania_praktyczne",
     "tags": [
@@ -805,7 +805,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Przekątna sześcianu o krawędzi a ma długość a√3. Podstaw podaną długość krawędzi i uprość iloczyn pierwiastków.",
     "answer": "Przekątna sześcianu ma długość 15 m.",
     "coursePart": "zadania",
     "tags": [
@@ -822,7 +822,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Pole boczne tworzą trzy prostokąty o bokach a i a. Z niego wyznacz krawędź, a następnie oblicz pole trójkąta równobocznego w podstawie.",
     "answer": "Objętość graniastosłupa wynosi 54√3.",
     "coursePart": "zadania",
     "tags": [
@@ -839,7 +839,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "W sześciokącie foremnym dłuższa przekątna ma długość 2a. Zapisz wysokość jako 2a i użyj wzoru na pole sześciokąta w równaniu na objętość.",
     "answer": "Pole całkowite wynosi (12 + 3√3) · (64/(3√3))^(2/3).",
     "coursePart": "zadania",
     "tags": [
@@ -856,7 +856,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Oblicz objętość prostopadłościanu i przyrównaj ją do a³, gdzie a jest krawędzią sześcianu.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -880,7 +880,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Oblicz pola trzech różnych ścian prostopadłościanu, dodaj je i pomnóż wynik przez 2.",
     "answer": "Pole powierzchni całkowitej wynosi 768 m².",
     "coursePart": "praca_domowa",
     "tags": [
@@ -898,7 +898,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Objętość prostopadłościanu jest iloczynem długości trzech krawędzi wychodzących z jednego wierzchołka.",
     "answer": "Objętość wynosi 1152 m³.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -916,7 +916,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Porównaj przekątne trzech rodzajów ścian. Każdą oblicz z twierdzenia Pitagorasa.",
     "answer": "Najkrótsza przekątna ściany bocznej ma długość 10 m.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -934,7 +934,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Skorzystaj ze wzoru d² = a² + b² + c² na przekątną prostopadłościanu.",
     "answer": "Przekątna bryły ma długość 26 m.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -952,7 +952,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Najpierw wyznacz krawędź sześcianu, dzieląc sumę długości wszystkich krawędzi przez 12.",
     "answer": "Pole powierzchni całkowitej wynosi 54 cm².",
     "coursePart": "praca_domowa",
     "tags": [
@@ -970,7 +970,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Najpierw wyznacz krawędź sześcianu, a następnie zastosuj wzór V = a³.",
     "answer": "Objętość wynosi 27 cm³.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -988,7 +988,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Najpierw wyznacz krawędź sześcianu. Przekątna jego ściany ma długość a√2.",
     "answer": "Przekątna ściany bocznej ma długość 3√2 cm.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -1006,7 +1006,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Najpierw wyznacz krawędź sześcianu. Przekątna bryły ma długość a√3.",
     "answer": "Przekątna sześcianu ma długość 3√3 cm.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -1024,7 +1024,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Podstaw P₍c₎ = 6a² oraz d = a√3 do podanej zależności i wyznacz krawędź a.",
     "answer": "Objętość sześcianu wynosi 27 m³.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -1041,7 +1041,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Z równania 4(a + b + c) = 40 wypisz wszystkie trójki różnych dodatnich liczb naturalnych, a następnie oblicz ich iloczyny.",
     "answer": "Możliwe trójki krawędzi to (1,2,7), (1,3,6), (1,4,5), (2,3,5). Suma objętości: 14 + 18 + 20 + 30 = 82.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -1058,7 +1058,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Dla graniastosłupa o podstawie n-kąta zapisz liczbę krawędzi jako 3n, liczbę ścian jako n + 2, a liczbę wierzchołków jako 2n.",
     "answer": "Bryła ma 22 wierzchołki.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -1075,7 +1075,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Zapisz objętość graniastosłupa przez a, korzystając z H = a√3/2, i przyrównaj ją do 37,5% objętości sześcianu.",
     "answer": "Pole powierzchni całkowitej wynosi 50√3.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -1092,7 +1092,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Zapisz pole sześciokątnej podstawy jako 6 · a²√3/4, a pole jednej ściany bocznej jako aH. Przyrównaj te pola.",
     "answer": "Pole powierzchni całkowitej wynosi 12√3, a objętość 27/4.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -1109,7 +1109,7 @@
     "difficulty": 1,
     "topic": "graniastosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na pole powierzchni, objętość oraz przekątne sześcianu, prostopadłościanu i graniastosłupów prawidłowych.",
+    "hint": "Wyznacz odpowiednie przekątne sześciokąta foremnego, a następnie zastosuj twierdzenie Pitagorasa z wysokością graniastosłupa.",
     "answer": "Krótsza przekątna ma długość 4, a dłuższa przekątna ma długość 2√5.",
     "coursePart": "praca_domowa",
     "tags": [

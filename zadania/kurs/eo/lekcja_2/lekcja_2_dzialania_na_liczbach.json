@@ -58,7 +58,7 @@
       "C",
       "D"
     ],
-    "hint": "Odległość od -11 do -32 wynosi 21. Szukana liczba leży o 21 jednostek po drugiej stronie liczby -11.",
+    "hint": "Oblicz odległość między liczbami −11 i −32. Od liczby −11 przesuń się o tę samą odległość w przeciwną stronę osi.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -330,7 +330,7 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdź, czy 30 dzieli obie liczby i czy ilorazy 7 oraz 6 nie mają wspólnego dzielnika większego od 1.",
+    "hint": "Sprawdź, czy wskazana liczba dzieli obie liczby. Następnie podziel przez nią obie liczby i zbadaj, czy otrzymane ilorazy mają wspólny dzielnik większy od 1.",
     "answer": "A2",
     "coursePart": "zadania",
     "tags": [
@@ -428,7 +428,7 @@
       "C",
       "D"
     ],
-    "hint": "Zamień liczby rzymskie na arabskie: LXXII i XLIX.",
+    "hint": "Rozbij każdą liczbę rzymską na symbole o znanych wartościach. Pamiętaj, że mniejszy symbol zapisany przed większym oznacza odejmowanie.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -450,7 +450,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Wypisz wszystkie poprawne liczby trzycyfrowe i policz ich średnią.",
+    "hint": "Wypisz liczby spełniające wszystkie warunki, a następnie oblicz ich średnią.",
     "answer": [
       "P",
       "P"
@@ -506,7 +506,7 @@
       "b) C",
       "b) D"
     ],
-    "hint": "Podpunkt a) potraktuj jako działanie na potęgach liczby 1/4. W podpunkcie b) policz NWW i NWD.",
+    "hint": "W podpunkcie a sprowadź potęgi do wspólnej podstawy. W podpunkcie b oblicz NWW i NWD.",
     "answer": [
       "a) A",
       "b) D"
@@ -586,7 +586,7 @@
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ola ma 4 banany, Antek ma 8 bananów. Do średniej uwzględnij Kubę, Olę i Antka.",
+    "hint": "Wyznacz liczbę bananów Oli i Antka z treści zadania, a następnie oblicz średnią dla trzech osób.",
     "answer": "a) 12, b) 8",
     "coursePart": "praca_domowa",
     "tags": [
@@ -612,7 +612,7 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdź sumę cyfr liczby 38754 oraz dwie ostatnie cyfry.",
+    "hint": "Zastosuj cechy podzielności przez 3 i przez 4.",
     "answer": "A3",
     "coursePart": "praca_domowa",
     "tags": [
@@ -659,7 +659,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Znajdź środek odcinka od -10 do 8 i policz odległość od końców odcinka.",
+    "hint": "Wyznacz środek odcinka, a następnie oblicz jego odległość od obu końców.",
     "answer": [
       "P",
       "P"
@@ -687,7 +687,7 @@
       "C",
       "D"
     ],
-    "hint": "Sprawdź podzielność liczby 9660 przez 5, 8, 3 i 6.",
+    "hint": "Zastosuj kolejno cechy podzielności przez 5, 8, 3 i 6.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [

@@ -43,7 +43,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Czynnik x² + 9 nie ma rzeczywistych miejsc zerowych. Dodaj rozwiązania pochodzące z pozostałych czynników."
+    "hint": "Czynnik x² + 9 nie ma rzeczywistych miejsc zerowych. Przyrównaj pozostałe czynniki do zera."
   },
   {
     "file": "3.png",
@@ -227,7 +227,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Jednym z rozwiązań jest zero, więc iloczyn wszystkich rozwiązań można ustalić bez obliczania pozostałych."
+    "hint": "Sprawdź, czy któryś czynnik zeruje się dla x = 0. Zastanów się, jak wpływa to na iloczyn wszystkich rozwiązań."
   },
   {
     "file": "11.png",
@@ -342,7 +342,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Wartość −3 zeruje także mianownik, dlatego nie jest rozwiązaniem równania."
+    "hint": "Najpierw wyznacz dziedzinę. Rozwiązanie zerujące również mianownik trzeba odrzucić."
   },
   {
     "file": "16.png",
@@ -388,7 +388,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Wyznacz rozwiązania z każdego czynnika, zapisz ich sumę i przyrównaj ją do 4."
+    "hint": "Przyrównaj każdy czynnik do 0 i oblicz rozwiązania."
   },
   {
     "file": "zd2.png",
@@ -411,7 +411,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Czynnik x² + 49 nie zeruje się w zbiorze liczb rzeczywistych."
+    "hint": "Przyrównaj każdy czynnik do 0 i oblicz rozwiązania."
   },
   {
     "coursePart": "praca_domowa",
@@ -434,7 +434,7 @@
     ],
     "difficulty": 2,
     "answer": "D",
-    "hint": "Wyklucz wartości zerujące oba mianowniki oraz licznik dzielnika, ponieważ nie wolno dzielić przez zero."
+    "hint": "Wyklucz wartości zerujące dzielniki. Uwaga: aż trzy wyrażenia nie mogą być równe zeru."
   },
   {
     "coursePart": "praca_domowa",
@@ -480,7 +480,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Rozłóż x² − 4 i x² + 4x + 4 na czynniki, a dzielenie zamień na mnożenie przez odwrotność."
+    "hint": "Rozłóż x² − 4 i x² + 4x + 4 na czynniki, wykorzystując wzory skróconego mnożenia. Następnie skróć wspólne czynniki."
   },
   {
     "file": "zd6.png",
@@ -503,7 +503,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Przyrównaj licznik do zera i sprawdź, czy otrzymana wartość nie zeruje mianownika."
+    "hint": "Wyznacz dziedzinę, a następnie sprawdź, dla jakiej liczby zeruje się całe wyrażenie."
   },
   {
     "file": "zd7.png",
@@ -526,7 +526,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Wyznacz trzy rozwiązania z kolejnych czynników, a następnie oblicz ich iloczyn."
+    "hint": "Przyrównaj każdy czynnik do 0 i oblicz rozwiązania."
   },
   {
     "file": "zd8.png",
@@ -549,7 +549,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Rozłóż licznik i mianownik na czynniki. Jedno miejsce zerowe licznika jest wykluczone z dziedziny."
+    "hint": "Wyznacz dziedzinę, a następnie sprawdź, dla jakiej liczby zeruje się całe wyrażenie."
   },
   {
     "file": "zd9.png",
@@ -572,7 +572,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Pomiń rozwiązanie zerowe i dodaj dwa pozostałe miejsca zerowe."
+    "hint": "Przyrównaj każdy czynnik do 0 i oblicz rozwiązania. Pomiń ewentualne rozwiązanie zerowe."
   },
   {
     "file": "zd10.png",
@@ -595,7 +595,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Rozłóż oba czynniki na iloczyny i zbierz wszystkie różne miejsca zerowe."
+    "hint": "Przyrównaj każdy czynnik do 0 i oblicz rozwiązania."
   },
   {
     "file": "zd11.png",
@@ -618,7 +618,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Rozłóż licznik i mianownik na czynniki. Wspólny czynnik nie daje rozwiązania, ponieważ zeruje mianownik."
+    "hint": "Wyznacz dziedzinę, a następnie sprawdź, dla jakiej liczby zeruje się całe wyrażenie."
   },
   {
     "file": "zd12.png",
@@ -641,7 +641,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Wyznacz miejsca zerowe licznika i sprawdź, czy żadne z nich nie zeruje mianownika."
+    "hint": "Wyznacz dziedzinę, a następnie sprawdź, dla jakiej liczby zeruje się całe wyrażenie."
   },
   {
     "coursePart": "praca_domowa",
@@ -664,7 +664,7 @@
     ],
     "difficulty": 2,
     "answer": "D",
-    "hint": "Wyznacz miejsca zerowe licznika, a następnie odrzuć liczby, które zerują mianownik."
+    "hint": "Wyznacz dziedzinę, a następnie sprawdź, dla jakiej liczby zeruje się całe wyrażenie."
   },
   {
     "coursePart": "praca_domowa",
@@ -687,7 +687,7 @@
     ],
     "difficulty": 2,
     "answer": "C",
-    "hint": "Rozłóż oba wielomiany na czynniki, zamień dzielenie na mnożenie przez odwrotność i skróć wspólne czynniki."
+    "hint": "Rozłóż wyrażenia na czynniki. Użyj wzorów skróconego mnożenia albo delty i wzorów na miejsca zerowe funkcji kwadratowej."
   },
   {
     "file": "zp1.png",

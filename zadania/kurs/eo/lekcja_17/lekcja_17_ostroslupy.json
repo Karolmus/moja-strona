@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Ostrosłup ma sześć ścian bocznych. Dodaj pole podstawy i pola wszystkich ścian bocznych.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -29,7 +29,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Podstawa jest kwadratem, a cztery ściany boczne są trójkątami równobocznymi. Oblicz ich pola osobno i dodaj.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -53,7 +53,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Krawędź podstawy ma długość 2x, a wysokość jest od niej trzykrotnie dłuższa. Podstaw te wartości do wzoru V = 1/3 · Pₚ · H.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -77,7 +77,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Z pola kwadratu wyznacz połowę jego przekątnej. W trójkącie 30°–60°–90° rozważ oba możliwe położenia wysokości względem krótszej przyprostokątnej.",
     "answer": "Możliwe objętości to 16 cm³ albo 48 cm³.",
     "coursePart": "zadania",
     "tags": [
@@ -94,7 +94,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Pole sześciokąta foremnego o boku x wynosi 3√3x²/2. Pomnóż je przez wysokość i przez 1/3.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -118,7 +118,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Porównaj wzory V = PₚH dla graniastosłupa i V = 1/3 · PₚH dla ostrosłupa. Dla podstawy n-kąta zapisz liczby ścian, krawędzi i wierzchołków.",
     "answer": [
       "P",
       "F",
@@ -147,7 +147,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Ostrosłup o podstawie n-kąta ma 2n krawędzi i n + 1 wierzchołków.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -171,7 +171,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Dla podstawy n-kąta ostrosłup ma n + 1 ścian i 2n krawędzi. Ułóż równanie z podanej różnicy.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -195,7 +195,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Pole równobocznej podstawy i wysokość zapisz za pomocą x, a następnie użyj wzoru na objętość. Pozostałe krawędzie boczne wyznacz z twierdzenia Pitagorasa.",
     "answer": "Suma długości wszystkich krawędzi wynosi 1,6 + 0,8√2 m.",
     "coursePart": "zadania",
     "tags": [
@@ -213,7 +213,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Każdą ścianę potraktuj kolejno jako podstawę ostrosłupa. Z równania V = 1/3 · P · h wyznacz wysokość opuszczoną na tę ścianę.",
     "answer": "Wysokości wynoszą: do podstawy 9, do ścian bocznych 4,5; 6; 3.",
     "coursePart": "zadania",
     "tags": [
@@ -230,7 +230,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Narysuj kwadratową podstawę i do każdego jej boku dołącz przystający trójkąt. Wierzchołki tych trójkątów odpowiadają wierzchołkowi W.",
     "answer": "Poprawna siatka: kwadrat jako podstawa i cztery przystające trójkąty boczne, z wierzchołkiem W przy wierzchołkach trójkątów.",
     "coursePart": "zadania",
     "tags": [
@@ -247,7 +247,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Z obwodu kwadratowej podstawy wyznacz jej bok. Zamień kilometry na metry i zastosuj wzór V = 1/3 · Pₚ · H.",
     "answer": "Objętość piramidy Cheopsa wynosi 2 531 250 m³.",
     "coursePart": "zadania",
     "tags": [
@@ -264,7 +264,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Z pola sześciokąta wyznacz bok podstawy. Wysokość ostrosłupa wychodzi z jednego wierzchołka, więc każdą krawędź boczną oblicz z wysokości i odpowiedniej przekątnej podstawy.",
     "answer": "Pozostałe krawędzie boczne mają długości: 6 cm, 2√13 cm, 2√13 cm, 2√21 cm, 2√21 cm.",
     "coursePart": "zadania",
     "tags": [
@@ -281,7 +281,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Do prostokątnej podstawy dołącz cztery trójkąty boczne. Uwzględnij, że jedna krawędź boczna jest prostopadła do podstawy i oznacz odpowiadające sobie krawędzie symbolem k.",
     "answer": "Poprawna siatka: prostokąt jako podstawa oraz cztery trójkąty boczne, z jedną krawędzią boczną prostopadłą do podstawy jako wysokością ostrosłupa.",
     "coursePart": "zadania",
     "tags": [
@@ -298,7 +298,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Przypomnij sobie definicję ostrosłupa prawidłowego. Rozróżnij równość ścian bocznych od równości wszystkich krawędzi bryły.",
     "answer": [
       "P",
       "F"
@@ -340,7 +340,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Do pola podstawy dodaj pola 11 jednakowych ścian bocznych.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -364,7 +364,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Zapisz pole kwadratowej podstawy i czterech trójkątów równobocznych za pomocą a². Potem wyznacz a i uwzględnij wszystkie krawędzie.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -388,7 +388,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Podstaw pole trójkąta równobocznego i wysokość a/√3 do wzoru V = 1/3 · Pₚ · H.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -412,7 +412,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "Dla ostrosłupa o podstawie n-kąta zapisz: n + 1 wierzchołków, 2n krawędzi i n + 1 ścian.",
     "answer": [
       "F",
       "P"
@@ -437,7 +437,7 @@
     "difficulty": 1,
     "topic": "ostrosłupy",
     "level": "egzamin_osmoklasisty",
-    "hint": "Użyj wzorów na objętość ostrosłupa, pole ścian bocznych oraz zależności w trójkątach prostokątnych powstających z wysokości bryły.",
+    "hint": "W ścianie bocznej wyznacz jej wysokość z krawędzi √31 i połowy boku podstawy. W drugim przekroju wyznacz wysokość ostrosłupa.",
     "answer": "Objętość wynosi 12√13, a pole jednej ściany bocznej wynosi 3√22.",
     "coursePart": "praca_domowa",
     "tags": [

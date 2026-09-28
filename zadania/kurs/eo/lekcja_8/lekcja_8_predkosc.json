@@ -55,7 +55,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pociągi zbliżają się z prędkością 200 km/h, więc w 2 godziny pokonują razem 400 km.",
+    "hint": "Dodaj prędkości pociągów, ponieważ jadą naprzeciw siebie. Pomnóż prędkość zbliżania przez czas.",
     "answer": "1 godzina 20 minut",
     "coursePart": "zadania",
     "tags": [
@@ -72,7 +72,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zsumuj dystanse i czasy. 96 km w 32 h to 3 km/h, czyli 5/6 m/s.",
+    "hint": "Zsumuj dystanse i czasy wszystkich etapów. Średnią prędkość oblicz jako całkowitą drogę podzieloną przez całkowity czas, a potem zamień jednostkę.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -97,7 +97,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "7,92 km/h to 2,2 m/s. Czas na 50 m wynosi około 22,73 s.",
+    "hint": "Zamień prędkość z km/h na m/s. Następnie oblicz czas jako drogę podzieloną przez prędkość.",
     "answer": [
       "P",
       "F"
@@ -123,7 +123,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "400 m w 12 sekund to 120 km/h, czyli mniej niż początkowe 160 km/h.",
+    "hint": "Oblicz średnią prędkość na podanym odcinku i zamień ją na km/h. Porównaj ją z prędkością początkową.",
     "answer": [
       "P",
       "P"
@@ -149,7 +149,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Między 16.09.2027 a 27.06.2029 mija 650 dni, a 65000 : 650 = 100.",
+    "hint": "Policz dokładną liczbę dni między datami. Średnią dzienną drogę otrzymasz, dzieląc cały dystans przez liczbę dni.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -199,7 +199,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "36 000 gwoździ w 8 godzin to 4500 gwoździ na godzinę.",
+    "hint": "Podziel liczbę wykonanych elementów przez czas pracy. Otrzymasz wydajność w jednej godzinie.",
     "answer": "75 gwoździ na minutę",
     "coursePart": "zadania",
     "tags": [
@@ -216,7 +216,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "30 km/h to 30 000 m w 3600 s. Podziel 800 m przez tę prędkość.",
+    "hint": "Zamień prędkość na m/s. Czas oblicz jako długość odcinka podzieloną przez prędkość.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -241,7 +241,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "48 minut to 0,8 godziny. Pomnóż 13 km/h przez 0,8 h.",
+    "hint": "Zamień minuty na godziny. Drogę oblicz ze wzoru s = v · t.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -266,7 +266,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "170 m/min to 10 200 m/h, czyli 10,2 km/h.",
+    "hint": "Najpierw przelicz metry na godzinę, a następnie zamień metry na kilometry.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -308,7 +308,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Porównaj 7,5 m/s z około 7,14 m/s oraz 7 m/s z 420 m/min.",
+    "hint": "Sprowadź obie prędkości w każdym stwierdzeniu do tych samych jednostek.",
     "answer": [
       "P",
       "P"
@@ -334,7 +334,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "400 m w 50 s to 8 m/s. Zamień na km/h, mnożąc przez 3,6.",
+    "hint": "Oblicz prędkość w m/s, a następnie pomnóż ją przez 3,6.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -376,7 +376,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rok 2024 ma 366 dni. 480 km na dobę to 20 km/h.",
+    "hint": "Uwzględnij liczbę dni w roku 2024, a otrzymaną prędkość dobową zamień na km/h.",
     "answer": [
       "P",
       "F"
@@ -419,7 +419,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Podziel 4 · 10^5 km przez 2 km/s.",
+    "hint": "Zapisz czas jako iloraz drogi 4 · 10⁵ km i prędkości 2 km/s.",
     "answer": "200 000 sekund, czyli 55 godzin 33 minuty 20 sekund",
     "coursePart": "praca_domowa",
     "tags": [
@@ -462,7 +462,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Całe 20 km przy średniej 12 km/h ma zająć 100 minut. Po pierwszych 90 minutach zostaje 10 minut na 5 km.",
+    "hint": "Oblicz czas całej trasy wynikający ze średniej prędkości. Odejmij czas i drogę pierwszego etapu.",
     "answer": "30 km/h",
     "coursePart": "praca_domowa",
     "tags": [
