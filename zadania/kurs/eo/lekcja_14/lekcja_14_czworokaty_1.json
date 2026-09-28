@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z pola prostokąta i długości jednego boku wyznacz drugi bok. Przekątną oblicz z twierdzenia Pitagorasa.",
+    "hint": "Z pola prostokąta i długości jednego boku wyznacz drugi bok.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -29,7 +29,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przekątna jest przeciwprostokątną trójkąta utworzonego przez boki prostokąta. Porównaj ją z bokiem oraz z sumą obu przyprostokątnych.",
+    "hint": "Przekątna jest przeciwprostokątną trójkąta utworzonego przez boki prostokąta.",
     "answer": [
       "P",
       "F"
@@ -104,7 +104,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przekątna tworzy z bokami trójkąt 30°–60°–90°. Zapisz długości boków w odpowiedniej proporcji i wykorzystaj podane pole.",
+    "hint": "Przekątna tworzy z bokami trójkąt 30°–60°–90°.",
     "answer": "Obwód prostokąta wynosi 18 + 18√3 m.",
     "coursePart": "zadania",
     "tags": [
@@ -121,7 +121,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Bok wewnętrznego kwadratu jest przeciwprostokątną trójkąta o przyprostokątnych 3x i 4x. Bok zewnętrznego kwadratu ma długość 3x + 4x.",
+    "hint": "Bok wewnętrznego kwadratu jest przeciwprostokątną trójkąta o przyprostokątnych 3x i 4x.",
     "answer": "Skala podobieństwa mniejszego kwadratu do większego wynosi 5:7; odwrotnie 7:5.",
     "coursePart": "zadania",
     "tags": [
@@ -138,7 +138,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprawdź, czy przekątna zawsze dzieli kąt figury na dwie równe części. Zwróć uwagę, czym różni się kwadrat od dowolnego prostokąta.",
+    "hint": "Sprawdź, czy przekątna zawsze dzieli kąt figury na dwie równe części.",
     "answer": [
       "P",
       "F"
@@ -159,7 +159,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Trójkąty i prostokąt mają tę samą wysokość. Porównaj sumę długości podstaw trójkątów z długością podstawy całego prostokąta.",
+    "hint": "Trójkąty i prostokąt mają tę samą wysokość.",
     "answer": "Suma pól trójkątów T1 i T2 stanowi 13% pola prostokąta.",
     "coursePart": "zadania",
     "tags": [
@@ -176,7 +176,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przekątne rombu są prostopadłe i dzielą jego kąty. Wykorzystaj trójkąty 30°–60°–90° do wyznaczenia boku i drugiej przekątnej.",
+    "hint": "Przekątne rombu są prostopadłe i dzielą jego kąty.",
     "answer": "Pole rombu wynosi 32√3 dm², a wysokość 4√3 dm.",
     "coursePart": "zadania",
     "tags": [
@@ -210,7 +210,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pole rombu zapisz jako iloczyn boku i wysokości oraz jako połowę iloczynu przekątnych. Bok wyraź z połówek przekątnych za pomocą twierdzenia Pitagorasa.",
+    "hint": "Pole rombu zapisz jako iloczyn boku i wysokości oraz jako połowę iloczynu przekątnych.",
     "answer": "Druga przekątna powinna mieć długość 10√3/3 dm.",
     "coursePart": "zadania",
     "tags": [
@@ -227,7 +227,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Poprowadź odcinek dzielący czworokąt wklęsły na prostsze figury. Zapisz sumy ich kątów i uwzględnij kąt przy wklęsłym wierzchołku.",
+    "hint": "Poprowadź odcinek dzielący czworokąt wklęsły na prostsze figury.",
     "answer": "Suma kątów wynosi 360°, bo po poprowadzeniu przekątnej czworokąt można podzielić na dwa trójkąty, a każdy z nich ma sumę kątów 180°.",
     "coursePart": "zadania",
     "tags": [
@@ -244,7 +244,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Dla każdego stwierdzenia porównaj definicje figur. Sprawdź, czy własności figury szczególnej spełniają warunki figury bardziej ogólnej.",
+    "hint": "Dla każdego stwierdzenia porównaj definicje figur.",
     "answer": [
       "P",
       "P",
@@ -267,7 +267,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z twierdzenia Pitagorasa wyznacz drugi bok prostokąta, a następnie oblicz jego pole.",
+    "hint": "Z twierdzenia Pitagorasa wyznacz drugi bok prostokąta.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -291,7 +291,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przyjmij bok kwadratu równy a i porównaj długości 1,5a oraz 7a/5 z przekątną a√2.",
+    "hint": "Przyjmij bok kwadratu równy a.",
     "answer": [
       "F",
       "F"
@@ -312,7 +312,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal wymiary obu powstałych prostokątów, a następnie porównaj kwadraty długości ich przekątnych.",
+    "hint": "Ustal wymiary obu powstałych prostokątów.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -336,7 +336,7 @@
     "difficulty": 1,
     "topic": "czworokąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "W rombie przekątne połowią się i przecinają pod kątem prostym. Najpierw wyznacz drugą przekątną, a potem wykorzystaj równość pól trzech równoległoboków.",
+    "hint": "W rombie przekątne połowią się i przecinają pod kątem prostym.",
     "answer": "Obwód całej figury wynosi 120 dm, a pole powierzchni całej figury wynosi 288 dm².",
     "coursePart": "praca_domowa",
     "tags": [

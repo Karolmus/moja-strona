@@ -8,7 +8,7 @@ catalog.push({sourceId:'exam.json', file:'1.png', category:'egzaminy', level:'ma
 const ctx = vm.createContext({adminTaskCatalog:catalog, ADMIN_TASK_SOURCES:[{path:source}]});
 for (const name of ['progressSourceId', 'progressFile', 'progressTaskKey', 'isProtectedCoursePath', 'catalogTaskForProgress',
   'isIndependentWorkTask', 'isIndependentWorkProgress', 'latestProgressMap', 'numberValue', 'taskMaxPoints',
-  'inferredTaskScore', 'sourceYear', 'taskNumberFromFile', 'taskOrderValue', 'timestamp', 'sourceProgressGroups',
+  'isTeacherReviewPending', 'inferredTaskScore', 'sourceYear', 'taskNumberFromFile', 'taskOrderValue', 'timestamp', 'sourceProgressGroups',
   'coursePartProgress',
   'taskPreviewImagePaths']) {
   const start = html.indexOf(`function ${name}(`);
@@ -24,6 +24,9 @@ assert(ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', fil
 assert(!ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', file:'1.png'}));
 assert(!ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', file:'zd1.png', course_part:'zadania'}));
 assert(ctx.isIndependentWorkProgress({source_id:'zadania/kurs/unknown.json', file:'custom.png', course_part:'praca_domowa'}));
+const teacherTask = {category:'kurs', coursePart:'zadania', teacherGraded:true, maxPoints:3};
+assert(ctx.isIndependentWorkTask(teacherTask), 'Teacher-graded main tasks are visible in the admin panel');
+assert.equal(ctx.inferredTaskScore({teacher_review_pending:true, result:'bad', max_points:3}, teacherTask).earned, null);
 const groups = ctx.sourceProgressGroups(progress, {level:'matura_podstawowa'});
 const course = groups.find(group => group.category === 'kurs');
 assert.equal(course.total, 18);
@@ -88,7 +91,9 @@ assert.match(html, /<th>Praca domowa<\/th>[\s\S]*?<th>Zadania powtórkowe<\/th>/
 assert.match(html, /homework\.appendChild\(renderCoursePartSummary\(group, "praca_domowa"\)\)/);
 assert.match(html, /revision\.appendChild\(renderCoursePartSummary\(group, "zadania_powtorkowe"\)\)/);
 assert.match(html, /detailCell\.appendChild\(renderSourceDetail\(group\)\)/);
-assert.match(html, /partHeading\.textContent = task\.coursePart === "zadania_powtorkowe"/);
+assert.match(html, /partHeading\.textContent = task\.teacherGraded === true/);
+assert.match(html, /Uzasadnienie ucznia:/);
+assert.match(html, /\/api\/admin\/progress\/\$\{progressItem\.id\}\/score/);
 assert.match(html, /examGroups\.forEach\(group => \{/);
 assert(!html.includes('heading.innerText = "Szczegóły zadań"'), 'The duplicate course cards are removed');
 
@@ -117,6 +122,7 @@ const ui = vm.createContext({
   activeSourceDetailKey:'',
   formatPoints:value => String(value),
   formatDate:() => '10.09.2026',
+  isTeacherReviewPending:() => false,
   inferredTaskScore:(progress, task) => ({
     earned: progress?.earned_points ?? (['good', 'medium'].includes(progress?.result) ? 1 : 0),
     max: progress?.max_points || task.maxPoints || 1
@@ -157,7 +163,9 @@ const detailUi = vm.createContext({
   inferredTaskScore:() => ({earned:1, max:1}),
   taskCompletionPercent:() => 100,
   taskDisplayTitle:() => 'Zadanie 1',
-  resultLabel:() => 'Dobrze'
+  resultLabel:() => 'Dobrze',
+  isTeacherReviewPending:() => false,
+  teacherScoreControl:() => new Element('div')
 });
 const detailStart = html.indexOf('function renderSourceDetail(');
 vm.runInContext(html.slice(detailStart, html.indexOf('\n}', detailStart) + 2), detailUi);

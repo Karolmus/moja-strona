@@ -78,7 +78,7 @@ test('compact accessible rows only build account details when expanded', () => {
   assert(render.indexOf('if(!open) return') < render.indexOf('buildCredentialsCell(student)'));
   assert.match(render, /progressDetail.remove\(\)/);
   assert.match(render, /expanded.append\(overview, progressDetail\)/);
-  assert.match(html, /if\(activeProgressStudentId === student.id\)\{\s*renderReviewTasks\(items, student\);\s*renderSourceProgress/);
+  assert.match(html, /if\(activeProgressStudentId === student.id\)\{\s*activeReviewItems = items\.filter\(isIndependentWorkProgress\);\s*renderReviewTasks\(items, student\);\s*renderSourceProgress/);
   assert.match(html, /const progress = \(studentProgressCache.get\(student.id\) \|\| \[\]\).filter\(isIndependentWorkProgress\)/);
   assert.match(html, /const totalDuration = hasProgress \? sumDuration\(progress\)/);
 });

@@ -109,7 +109,7 @@
       "C",
       "D"
     ],
-    "hint": "Sumę jednakowych pierwiastków zapisz jako iloczyn. Jeśli potrzebujesz, wciągnij współczynnik pod pierwiastek.",
+    "hint": "Sumę jednakowych pierwiastków zapisz jako iloczyn.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -156,7 +156,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Pierwszy ułamek jest dodatni i mniejszy od 1. W drugim porównaj kwadraty obu dodatnich liczb.",
+    "hint": "Pierwszy ułamek jest dodatni i mniejszy od 1.",
     "answer": [
       "P",
       "F"
@@ -184,7 +184,7 @@
       "C",
       "D"
     ],
-    "hint": "Oszacuj każdą wartość, porównując liczby pod pierwiastkami z najbliższymi pełnymi potęgami. Następnie ustaw wyniki rosnąco.",
+    "hint": "Oszacuj każdą wartość, porównując liczby pod pierwiastkami z najbliższymi pełnymi potęgami.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -208,7 +208,7 @@
       "C",
       "D"
     ],
-    "hint": "Podnieś wszystkie strony nierówności do kwadratu. Następnie wypisz liczby z otrzymanego przedziału spełniające warunek dotyczący cyfr.",
+    "hint": "Podnieś wszystkie strony nierówności do kwadratu.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -233,7 +233,7 @@
       "C",
       "D"
     ],
-    "hint": "Uprość każdą liczbę osobno. Pierwiastki z ułamków będących kwadratami oraz pierwiastki trzeciego stopnia z sześcianów dają liczby wymierne.",
+    "hint": "Uprość każdą liczbę osobno.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -256,7 +256,7 @@
       { "label": "b", "options": ["I", "II", "III"], "answer": "I" },
       { "label": "c", "options": ["I", "II", "III"], "answer": "III" }
     ],
-    "hint": "Oszacuj każdy pierwiastek między dwiema kolejnymi liczbami całkowitymi. Potem dopasuj otrzymane sumy do punktów na osi.",
+    "hint": "Oszacuj każdy pierwiastek między dwiema kolejnymi liczbami całkowitymi.",
     "answer": "a = II, b = I, c = III",
     "coursePart": "zadania",
     "tags": [
@@ -281,7 +281,7 @@
       "C",
       "D"
     ],
-    "hint": "Rozłóż 54 jako 27 razy 2 oraz 16 jako 8 razy 2, a potem wyłącz czynniki przed pierwiastek trzeciego stopnia.",
+    "hint": "Rozłóż 54 jako 27 razy 2 oraz 16 jako 8 razy 2.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -352,7 +352,7 @@
       { "label": "Pierwsze zdanie", "options": ["A", "B"], "answer": "A" },
       { "label": "Drugie zdanie", "options": ["C", "D"], "answer": "D" }
     ],
-    "hint": "Każda nierówność sprawdź osobno. Dla liczb dodatnich możesz porównać kwadraty.",
+    "hint": "Każda nierówność sprawdź osobno.",
     "answer": "AD",
     "coursePart": "praca_domowa",
     "tags": [
@@ -374,7 +374,7 @@
     "inputs": [
       { "label": "Wynik", "answer": "-15", "inputMode": "text" }
     ],
-    "hint": "Rozwiń oba kwadraty ze wzoru (a + b)², a następnie zredukuj wyrazy podobne.",
+    "hint": "Rozwiń oba kwadraty ze wzoru (a + b)².",
     "answer": "-15",
     "coursePart": "praca_domowa",
     "tags": [
@@ -401,7 +401,7 @@
       "E",
       "F"
     ],
-    "hint": "Zamień każdy przedział pierwiastkowy na przybliżony przedział liczbowy i policz liczby naturalne, które do niego należą.",
+    "hint": "Zamień każdy przedział pierwiastkowy na przybliżony przedział liczbowy.",
     "answer": [
       "B",
       "D",
@@ -428,7 +428,7 @@
     "inputs": [
       { "label": "Wynik", "answer": "(sqrt(2) - 21) / 5", "math": true }
     ],
-    "hint": "W pierwszym składniku usuń pierwiastek trzeciego stopnia przez potęgowanie. W drugim najpierw podnieś pierwiastek do kwadratu.",
+    "hint": "W pierwszym składniku usuń pierwiastek trzeciego stopnia przez potęgowanie.",
     "answer": "(sqrt(2) - 21) / 5",
     "coursePart": "praca_domowa",
     "tags": [
@@ -453,7 +453,7 @@
       "C",
       "D"
     ],
-    "hint": "Wyłącz czynnik przed pierwiastek z 24, a następnie podnieś otrzymane wyrażenie do kwadratu.",
+    "hint": "Wyłącz czynnik przed pierwiastek z 24.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -478,7 +478,7 @@
       { "label": "3. miejsce", "options": ["I", "II", "III", "IV"], "answer": "IV" },
       { "label": "4. miejsce", "options": ["I", "II", "III", "IV"], "answer": "I" }
     ],
-    "hint": "Oszacuj każdą liczbę między kolejnymi liczbami całkowitymi, a następnie ustaw wyniki rosnąco.",
+    "hint": "Oszacuj każdą liczbę między kolejnymi liczbami całkowitymi.",
     "answer": "II, III, IV, I",
     "coursePart": "praca_domowa",
     "tags": [
@@ -503,7 +503,7 @@
       { "label": "Wiersz 3", "options": ["<", "=", ">"], "answer": "<", "control": "comparison", "position": { "x": 48.5, "y": 69.5 } },
       { "label": "Wiersz 4", "options": ["<", "=", ">"], "answer": "<", "control": "comparison", "position": { "x": 48.5, "y": 91 } }
     ],
-    "hint": "W każdym wierszu uprość pierwiastki albo porównaj przybliżenia. Wstaw kolejno znaki między lewą a prawą stroną.",
+    "hint": "W każdym wierszu uprość pierwiastki albo porównaj przybliżenia.",
     "answer": "=, <, <, <",
     "coursePart": "praca_domowa",
     "tags": [
@@ -528,7 +528,7 @@
       "C",
       "D"
     ],
-    "hint": "Uprość każdą odpowiedź. Tylko jedna z nich zostawia składnik niewymierny.",
+    "hint": "Uprość każdą odpowiedź.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [

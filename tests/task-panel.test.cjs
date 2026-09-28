@@ -20,6 +20,7 @@ const ctx = vm.createContext({
   window:{apiFetch:true}, selectedCoursePart:'zadania_powtorkowe',
   pendingReviewRequests:new Set(), reviewTaskKeys:new Set(),
   getSavedResult:() => 'bad',
+  getSavedProgressItem:() => null,
   renderTaskNavigator:() => {ctx.navigatorRenders = (ctx.navigatorRenders || 0) + 1;},
   taskLabel:() => 'Zadanie', formatTagLabel:text => text, isPracticalTask:() => false,
   showMessage:message => {ctx.message = message;}
@@ -144,6 +145,7 @@ const navContext = vm.createContext({
     attributes:{}, setAttribute(key, value) {this.attributes[key] = value;}
   })},
   getSavedResult:task => task.result, taskThemeClass:() => 'nav-theme-revision',
+  isTeacherReviewPending:() => false,
   taskUsedHint:task => Boolean(task.hint_used),
   navigatorTaskLabel:() => '12', taskLabel:() => 'Zadanie powtórkowe 12',
   resultLabel:result => result || 'nierozwiązane', isActiveNavigatorTask:task => task.active,

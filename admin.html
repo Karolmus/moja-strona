@@ -497,6 +497,18 @@ th {
 .answer-comparison { font-size: 11px; font-weight: 400; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.45; }
 .answer-comparison.student { color: var(--red-text); }
 .answer-comparison.expected { color: var(--green-text); }
+.answer-comparison.teacher-submission { color: var(--text); margin-top: 3px; }
+.teacher-score-control { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+.teacher-score-control input {
+    width: 58px;
+    min-height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 3px 6px;
+    font: inherit;
+}
+.teacher-score-control .mini-link { min-height: 28px; padding: 3px 8px; }
+.teacher-score-status { color: var(--muted); font-size: 10px; }
 .progress-detail {
     gap: 10px;
     margin-top: 10px;
@@ -1142,6 +1154,10 @@ th {
     background: #d49a35;
 }
 
+.progress-segment.teacher-pending {
+    background: #5d8fbd;
+}
+
 .source-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1365,6 +1381,11 @@ th {
 .result-pill.bad {
     background: var(--red-soft);
     color: var(--red-text);
+}
+
+.result-pill.teacher-pending {
+    background: #e8f2fb;
+    color: #24527a;
 }
 
 .result-pill.review,
@@ -2348,6 +2369,7 @@ let studentProgressCache = new Map();
 let activeProgressStudentId = null;
 let progressRequestId = 0;
 let activeSourceDetailKey = "";
+let activeReviewItems = [];
 let analyticsLoadedPeriod = 0;
 const reviewImageClipboardCache = new Map();
 const reviewSourceTaskCache = new Map();
@@ -3965,8 +3987,13 @@ function catalogTaskForProgress(item){
 }
 
 function isIndependentWorkTask(task){
-    return task.category !== "kurs" ||
+    return task.teacherGraded === true || task.category !== "kurs" ||
         ["praca_domowa", "zadania_powtorkowe"].includes(task.coursePart);
+}
+
+function isTeacherReviewPending(progressItem, task){
+    return Boolean(task?.teacherGraded === true &&
+        (progressItem?.teacher_review_pending === true || progressItem?.teacher_review_pending === 1));
 }
 
 function isIndependentWorkProgress(item){
@@ -3997,6 +4024,14 @@ function latestProgressMap(progress){
 function inferredTaskScore(progressItem, task){
     const maxPoints = numberValue(progressItem?.max_points) || taskMaxPoints(task);
     const savedEarned = numberValue(progressItem?.earned_points);
+
+    if(isTeacherReviewPending(progressItem, task)){
+        return {
+            earned: null,
+            max: maxPoints,
+            estimated: false
+        };
+    }
 
     if(savedEarned !== null){
         return {
@@ -4118,7 +4153,8 @@ function sourceProgressGroups(progress, student, reviewItems = []){
     return [...groups.values()]
         .map(group => {
             group.tasks.sort((a, b) =>
-                Number(a.coursePart === "zadania_powtorkowe") - Number(b.coursePart === "zadania_powtorkowe") ||
+                (a.teacherGraded === true ? 0 : a.coursePart === "praca_domowa" ? 1 : 2) -
+                (b.teacherGraded === true ? 0 : b.coursePart === "praca_domowa" ? 1 : 2) ||
                 taskOrderValue(a) - taskOrderValue(b)
             );
 
@@ -4127,7 +4163,9 @@ function sourceProgressGroups(progress, student, reviewItems = []){
             let medium = 0;
             let bad = 0;
             let video = 0;
+            let pendingReview = 0;
             let correct = 0;
+            let scored = 0;
             let earnedPoints = 0;
             let attemptedMaxPoints = 0;
             let estimatedPoints = false;
@@ -4163,12 +4201,14 @@ function sourceProgressGroups(progress, student, reviewItems = []){
 
                 if(progressItem.result === "good") good++;
                 if(progressItem.result === "medium") medium++;
-                if(progressItem.result === "bad") bad++;
+                if(progressItem.result === "bad" && !isTeacherReviewPending(progressItem, task)) bad++;
                 if(progressItem.result === "video") video++;
+                if(isTeacherReviewPending(progressItem, task)) pendingReview++;
 
                 const score = inferredTaskScore(progressItem, task);
 
                 if(score.earned !== null){
+                    scored++;
                     earnedPoints += score.earned;
                     attemptedMaxPoints += score.max;
                     estimatedPoints = estimatedPoints || score.estimated;
@@ -4183,6 +4223,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 medium,
                 bad,
                 video,
+                pendingReview,
                 total: group.tasks.length,
                 completed: attempted > 0 && attempted >= group.tasks.length,
                 earnedPoints,
@@ -4194,7 +4235,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 lastActivity,
                 firstActivityTime,
                 lastActivityTime,
-                correctPercent: attempted ? Math.round((correct / attempted) * 1000) / 10 : null,
+                correctPercent: scored ? Math.round((correct / scored) * 1000) / 10 : null,
                 percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
             };
         })
@@ -4262,6 +4303,7 @@ function courseTaskSegment(task){
     const progress = task.latestProgress;
 
     if(!progress) return task.reviewRequested ? "review" : "missing";
+    if(isTeacherReviewPending(progress, task)) return "teacher-pending";
     if(progress.result === "video") return "video";
     if(progress.result === "medium" || (progress.result === "good" && progress.hint_used)) return "medium";
     if(["good", "bad"].includes(progress.result)) return progress.result;
@@ -4273,7 +4315,7 @@ function renderProgressSegments(group){
     const track = document.createElement("div");
 
     track.className = "progress-segments";
-    track.title = `${group.good} dobrze, ${group.medium} z pomocą, ${group.bad} źle, ${group.video || 0} z nagraniem, ${group.reviewRequested} do omówienia, ${Math.max(0, group.total - group.attempted)} niewykonanych`;
+    track.title = `${group.good} dobrze, ${group.medium} z pomocą, ${group.bad} źle, ${group.video || 0} z nagraniem, ${group.pendingReview || 0} oczekuje na ocenę, ${group.reviewRequested} do omówienia, ${Math.max(0, group.total - group.attempted)} niewykonanych`;
 
     group.tasks.forEach(task => {
         const segment = document.createElement("span");
@@ -4650,6 +4692,72 @@ async function loadTaskImagePreview(task, container){
     appendTaskPreviewVideo(task, container);
 }
 
+async function saveTeacherReviewedScore(progressItem, task, input, button, status){
+    if(!String(input.value || "").trim()){
+        status.textContent = "Wpisz liczbę punktów.";
+        return;
+    }
+
+    const earnedPoints = Number(input.value);
+    const maxPoints = taskMaxPoints(task);
+
+    if(!Number.isFinite(earnedPoints) || earnedPoints < 0 || earnedPoints > maxPoints){
+        status.textContent = `Wpisz od 0 do ${formatPoints(maxPoints)} pkt.`;
+        return;
+    }
+
+    button.disabled = true;
+    status.textContent = "Zapisywanie…";
+    try {
+        const data = await apiFetch(`/api/admin/progress/${progressItem.id}/score`, {
+            method: "PATCH",
+            body: JSON.stringify({earned_points: earnedPoints})
+        });
+        const cached = studentProgressCache.get(activeProgressStudentId) || [];
+        const item = cached.find(entry => entry.id === progressItem.id);
+
+        if(item) Object.assign(item, data.progress);
+
+        const student = students.find(entry => entry.id === activeProgressStudentId);
+        if(student){
+            renderSourceProgress(cached.filter(isIndependentWorkProgress), student, activeReviewItems);
+        }
+        showStatus(`Zapisano ocenę: ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt.`);
+    } catch(error) {
+        button.disabled = false;
+        status.textContent = error.message || "Nie udało się zapisać oceny.";
+    }
+}
+
+function teacherScoreControl(progressItem, task){
+    const control = document.createElement("div");
+    const input = document.createElement("input");
+    const button = document.createElement("button");
+    const status = document.createElement("span");
+    const maxPoints = taskMaxPoints(task);
+
+    control.className = "teacher-score-control";
+    input.type = "number";
+    input.min = "0";
+    input.max = String(maxPoints);
+    input.step = Number.isInteger(maxPoints) ? "1" : "0.5";
+    input.placeholder = `0–${formatPoints(maxPoints)}`;
+    input.setAttribute("aria-label", `Punkty od 0 do ${formatPoints(maxPoints)}`);
+    button.type = "button";
+    button.className = "mini-link";
+    button.textContent = "Zapisz wynik";
+    status.className = "teacher-score-status";
+    status.setAttribute("aria-live", "polite");
+    control.addEventListener("click", event => event.stopPropagation());
+    control.addEventListener("keydown", event => event.stopPropagation());
+    button.addEventListener("click", () =>
+        saveTeacherReviewedScore(progressItem, task, input, button, status)
+    );
+    control.append(input, button, status);
+
+    return control;
+}
+
 function renderSourceDetail(group){
     const detail = document.createElement("div");
     const heading = document.createElement("h4");
@@ -4672,7 +4780,8 @@ function renderSourceDetail(group){
         ? ` • Prognoza Rascha: ${rasch.percent}%`
         : "";
 
-    summary.innerText = `Wykonane: ${group.attempted}/${group.total}. Punkty: ${scoreText}.${raschText}`;
+    const pendingText = group.pendingReview ? ` Do oceny: ${group.pendingReview}.` : "";
+    summary.innerText = `Wykonane: ${group.attempted}/${group.total}. Punkty: ${scoreText}.${pendingText}${raschText}`;
     table.innerHTML = `
         <thead>
             <tr>
@@ -4697,9 +4806,11 @@ function renderSourceDetail(group){
             partRow.className = "source-task-part-row";
             partHeading.colSpan = 4;
             partHeading.scope = "colgroup";
-            partHeading.textContent = task.coursePart === "zadania_powtorkowe"
-                ? "Zadania powtórkowe"
-                : "Praca domowa";
+            partHeading.textContent = task.teacherGraded === true
+                ? "Zadania oceniane przez nauczyciela"
+                : task.coursePart === "zadania_powtorkowe"
+                    ? "Zadania powtórkowe"
+                    : "Praca domowa";
             partRow.appendChild(partHeading);
             tbody.appendChild(partRow);
             previousCoursePart = task.coursePart;
@@ -4730,8 +4841,9 @@ function renderSourceDetail(group){
         row.title = "Kliknij, aby wyświetlić treść zadania.";
         titleWrap.className = "task-title-cell";
         const reviewRequested = Boolean(task.reviewRequested);
+        const teacherPending = isTeacherReviewPending(progressItem, task);
 
-        result.className = `result-pill ${progressItem?.result || (reviewRequested ? "review" : "missing")}`;
+        result.className = `result-pill ${teacherPending ? "teacher-pending" : progressItem?.result || (reviewRequested ? "review" : "missing")}`;
         title.innerText = isCourse
             ? taskDisplayTitle(task).replace(/^Lekcja\s+\d+\s*-\s*/i, "")
                 .replace(/^(?:praca domowa|zadanie domowe)\s+/i, "Zadanie ")
@@ -4742,7 +4854,7 @@ function renderSourceDetail(group){
             ? (progressItem?.created_at ? formatDate(progressItem.created_at) : "")
             : task.topic || "";
         result.innerText = progressItem
-            ? `${resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
+            ? `${teacherPending ? "Do oceny" : resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
             : reviewRequested ? "Do omówienia" : "Nie wykonano";
         if(progressItem?.hint_used) result.title = "Użyto wskazówki";
         pointsCell.innerText = score.earned === null
@@ -4762,7 +4874,14 @@ function renderSourceDetail(group){
         }
         titleCell.appendChild(titleWrap);
         resultCell.appendChild(result);
-        if(isCourse && progressItem && (progressItem.result === "bad" ||
+        if(isCourse && task.teacherGraded === true && progressItem){
+            const submitted = document.createElement("div");
+
+            submitted.className = "answer-comparison teacher-submission";
+            submitted.textContent = `Uzasadnienie ucznia: ${progressItem.submitted_answer || "nie zapisano odpowiedzi"}`;
+            titleWrap.appendChild(submitted);
+            if(teacherPending) titleWrap.appendChild(teacherScoreControl(progressItem, task));
+        } else if(isCourse && progressItem && (progressItem.result === "bad" ||
             (progressItem.result === "medium" && score.earned !== null && score.earned < score.max))){
             const submitted = document.createElement("div");
             const expected = document.createElement("div");
@@ -5359,8 +5478,9 @@ async function resolveReviewTask(item, student){
     const items = await loadReviewTasks(student);
 
     if(activeProgressStudentId === student.id){
+        activeReviewItems = items.filter(isIndependentWorkProgress);
         renderReviewTasks(items, student);
-        renderSourceProgress(studentProgressCache.get(student.id) || [], student, items);
+        renderSourceProgress(studentProgressCache.get(student.id) || [], student, activeReviewItems);
     }
     showStatus(`Odznaczono: ${reviewTaskTitle(item)}.`);
     await loadStudents();
@@ -5389,6 +5509,7 @@ async function showProgress(student){
         if(requestId !== progressRequestId || activeProgressStudentId !== student.id) return;
         const progress = data.progress.filter(isIndependentWorkProgress);
         const reviewItems = allReviewItems.filter(isIndependentWorkProgress);
+        activeReviewItems = reviewItems;
         studentProgressCache.set(student.id, data.progress);
         renderStudents();
         loading.hidden = true;
@@ -5409,6 +5530,7 @@ function closeStudentDetails(){
     progressRequestId++;
     progressDetail.classList.remove("active");
     activeProgressStudentId = null;
+    activeReviewItems = [];
     activeSourceDetailKey = "";
     renderStudents();
     document.getElementById(`student-toggle-${id}`)?.focus();

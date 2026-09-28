@@ -94,7 +94,7 @@
     "difficulty": 1,
     "topic": "układ współrzędnych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Odczytaj współrzędne A, B, C z rysunku, policz środki AB i BC, a potem środek między tymi punktami.",
+    "hint": "Odczytaj współrzędne A, B, C z rysunku.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -119,7 +119,7 @@
     "difficulty": 1,
     "topic": "układ współrzędnych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Odczytaj współrzędne wierzchołków z układu. Pole oblicz, dzieląc figurę na prostsze części albo korzystając ze wzoru z wyznacznikiem.",
+    "hint": "Odczytaj współrzędne wierzchołków z układu.",
     "answer": "29",
     "coursePart": "zadania",
     "tags": [
@@ -155,7 +155,7 @@
     "difficulty": 1,
     "topic": "układ współrzędnych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz kwadraty długości wszystkich trzech boków. Równe wartości wskażą boki tej samej długości, bez konieczności wyciągania pierwiastków.",
+    "hint": "Oblicz kwadraty długości wszystkich trzech boków.",
     "answer": "B3",
     "coursePart": "zadania",
     "tags": [
@@ -181,7 +181,7 @@
     "difficulty": 1,
     "topic": "układ współrzędnych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz długość przekątnej kwadratu ze współrzędnych jej końców. Następnie użyj zależności d = a√2.",
+    "hint": "Oblicz długość przekątnej kwadratu ze współrzędnych jej końców.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -205,7 +205,7 @@
     "difficulty": 1,
     "topic": "układ współrzędnych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zastosuj wzór na środek odcinka osobno dla współrzędnych x i y. Rozwiąż dwa otrzymane równania względem współrzędnych punktu B.",
+    "hint": "Zastosuj wzór na środek odcinka osobno dla współrzędnych x i y.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -229,7 +229,7 @@
     "difficulty": 2,
     "topic": "układ współrzędnych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Współrzędne środka odcinka są średnimi odpowiednich współrzędnych końców. Długość odcinka oblicz z różnic współrzędnych.",
+    "hint": "Współrzędne środka odcinka są średnimi odpowiednich współrzędnych końców.",
     "answer": [
       "F",
       "P"
@@ -301,7 +301,7 @@
     "difficulty": 2,
     "topic": "układ współrzędnych",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wyznacz wektor od A do B i podziel obie jego współrzędne przez 4.",
+    "hint": "Wyznacz wektor od A do B.",
     "answer": "(6, 20), (10, 23), (14, 26)",
     "coursePart": "praca_domowa",
     "tags": [

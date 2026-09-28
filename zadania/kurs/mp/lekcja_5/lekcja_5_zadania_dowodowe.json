@@ -16,7 +16,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Wyłącz przed nawias 15n i uzasadnij, dlaczego iloczyn n(n + 1) jest parzysty. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Wyłącz przed nawias 15n. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "2.png",
@@ -35,7 +35,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Wyłącz 3ⁿ przed nawias, a sumę pozostałych potęg oblicz jako liczbę. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Wyłącz 3ⁿ przed nawias. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "3.png",
@@ -54,7 +54,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Zapisz liczbę nieparzystą w postaci n = 2k + 1 i uprość wyrażenie. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Zapisz liczbę nieparzystą w postaci n = 2k + 1. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "4.png",
@@ -73,7 +73,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Przedstaw liczbę w postaci 9k + 7, podnieś ją do kwadratu i wyodrębnij wielokrotność 3. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Przedstaw liczbę w postaci 9k + 7. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "5.png",
@@ -92,7 +92,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Sprowadź obie potęgi do wspólnej podstawy i wyłącz mniejszą potęgę przed nawias. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Sprowadź obie potęgi do wspólnej podstawy. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "6.png",
@@ -111,7 +111,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Zapisz cztery kolejne liczby jako n, n + 1, n + 2, n + 3 i uprość sumę ich kwadratów. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Zapisz cztery kolejne liczby jako n, n + 1, n + 2 i n + 3. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "7.png",
@@ -130,7 +130,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Wyłącz 7n i zastosuj wzór na różnicę kwadratów. Otrzymasz iloczyn trzech kolejnych liczb. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Wyłącz 7n. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "8.png",
@@ -149,7 +149,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Rozwiń kwadrat dwumianu i wyłącz 8 przed nawias. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Rozwiń kwadrat dwumianu. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "9.png",
@@ -168,7 +168,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Potraktuj wyrażenie jako różnicę kwadratów i sprawdź parzystość kolejnych czynników. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Potraktuj wyrażenie jako różnicę kwadratów. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "10.png",
@@ -187,7 +187,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Zapisz a = 4n + 1 oraz b = 2k + 1, a następnie uporządkuj sumę kwadratów względem wielokrotności 8. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Zapisz a = 4n + 1 oraz b = 2k + 1. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "11.png",
@@ -206,7 +206,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Wyłącz 4n. W pozostałym iloczynie wskaż czynnik parzysty i czynnik podzielny przez 3. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Wyłącz 4n. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "12.png",
@@ -225,7 +225,7 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Przenieś lewą stronę nierówności na prawą i zapisz różnicę jako kwadrat. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Przenieś 4ab na lewą stronę nierówności. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
   },
   {
     "file": "zd1.png",
@@ -607,6 +607,6 @@
       "D"
     ],
     "answer": "D",
-    "hint": "Najpierw określ dziedzinę, a potem przyrównaj licznik do zera."
+    "hint": "Najpierw określ dziedzinę."
   }
 ]

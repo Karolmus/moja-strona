@@ -22,7 +22,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Podziel obwód kwadratu przez 4, aby wyznaczyć bok. Następnie podnieś długość boku do kwadratu.",
+    "hint": "Podziel obwód kwadratu przez 4, aby wyznaczyć bok.",
     "answer": "16 cm²",
     "coursePart": "zadania",
     "tags": [
@@ -39,7 +39,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Długość boku kwadratu jest pierwiastkiem z jego pola. Wyłącz pełny kwadrat przed znak pierwiastka.",
+    "hint": "Długość boku kwadratu jest pierwiastkiem z jego pola.",
     "answer": "8√3 m",
     "coursePart": "zadania",
     "tags": [
@@ -56,7 +56,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz pole prostokąta w cm², a następnie zamień jednostkę pola na m². Pamiętaj, że jednostki pola przelicza się kwadratowo.",
+    "hint": "Oblicz pole prostokąta w cm².",
     "answer": "1,2 m²",
     "coursePart": "zadania",
     "tags": [
@@ -73,7 +73,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź podstawę i wysokość do tej samej jednostki. Następnie użyj wzoru P = a · h / 2.",
+    "hint": "Sprowadź podstawę i wysokość do tej samej jednostki.",
     "answer": "1,8 cm²",
     "coursePart": "zadania",
     "tags": [
@@ -90,7 +90,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź podstawę i wysokość do tej samej jednostki, oblicz pole trójkąta, a na końcu zamień cm² na dm².",
+    "hint": "Sprowadź podstawę i wysokość do tej samej jednostki.",
     "answer": "6,4 dm²",
     "coursePart": "zadania",
     "tags": [
@@ -124,7 +124,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wyznacz wysokość z informacji, o ile jest krótsza od podstawy. Potem zastosuj wzór na pole trójkąta.",
+    "hint": "Wyznacz wysokość z informacji, o ile jest krótsza od podstawy.",
     "answer": "80 cm²",
     "coursePart": "zadania",
     "tags": [
@@ -141,7 +141,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw oblicz pole pierwszego trójkąta. Dla drugiego użyj tego samego pola oraz podanej podstawy, aby wyznaczyć wysokość.",
+    "hint": "Najpierw oblicz pole pierwszego trójkąta.",
     "answer": "4 cm",
     "coursePart": "zadania",
     "tags": [
@@ -277,7 +277,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Opuść wysokość trapezu. W powstałym trójkącie prostokątnym zastosuj twierdzenie Pitagorasa, a potem wzór na pole trapezu.",
+    "hint": "Opuść wysokość trapezu.",
     "answer": "42",
     "coursePart": "zadania",
     "tags": [
@@ -294,7 +294,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wyznacz wymiary obu nowych działek. Ich przekątne oblicz osobno z twierdzenia Pitagorasa.",
+    "hint": "Wyznacz wymiary obu nowych działek.",
     "answer": "25 - 15√2 m, czyli około 3,79 m",
     "coursePart": "zadania",
     "tags": [
@@ -312,7 +312,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wyznacz wymiary obu nowych działek, a następnie oblicz ich pola. Porównaj otrzymane wartości.",
+    "hint": "Wyznacz wymiary obu nowych działek.",
     "answer": "4 : 3",
     "coursePart": "zadania",
     "tags": [
@@ -407,7 +407,7 @@
     "difficulty": 1,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz pole działki w m². Wynik zamień na ary, korzystając z zależności między tymi jednostkami.",
+    "hint": "Oblicz pole działki w m².",
     "answer": "32,5 ara",
     "coursePart": "zadania",
     "tags": [
@@ -458,7 +458,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z obwodu wyznacz bok kwadratu. Po połączeniu figur ustal wymiary powstałego prostokąta.",
+    "hint": "Z obwodu wyznacz bok kwadratu.",
     "answer": "50 cm²",
     "coursePart": "praca_domowa",
     "tags": [
@@ -475,7 +475,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź oba pola do tych samych jednostek i porównaj ich wartości.",
+    "hint": "Sprowadź oba pola do tych samych jednostek.",
     "answer": "Większą powierzchnię ma kwadrat o boku 100 cm.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -492,7 +492,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oznacz krótszy bok przez x, a dłuższy przez 3x. Ułóż równanie wynikające z pola.",
+    "hint": "Oznacz krótszy bok przez x, a dłuższy przez 3x.",
     "answer": "16 m",
     "coursePart": "praca_domowa",
     "tags": [
@@ -509,7 +509,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skoro podstawa i wysokość są równe, zapisz wzór na pole za pomocą jednej niewiadomej.",
+    "hint": "Skoro podstawa i wysokość są równe.",
     "answer": "10√2 cm",
     "coursePart": "praca_domowa",
     "tags": [
@@ -560,7 +560,7 @@
     "difficulty": 2,
     "topic": "pola powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zapisz podstawy i wysokość trapezu za pomocą x, a następnie ułóż równanie wynikające z pola.",
+    "hint": "Zapisz podstawy i wysokość trapezu za pomocą x.",
     "answer": "Podstawy mają długości 18 m i 30 m.",
     "coursePart": "praca_domowa",
     "tags": [

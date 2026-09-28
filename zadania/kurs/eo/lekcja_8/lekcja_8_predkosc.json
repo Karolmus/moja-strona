@@ -55,7 +55,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Dodaj prędkości pociągów, ponieważ jadą naprzeciw siebie. Pomnóż prędkość zbliżania przez czas.",
+    "hint": "Dodaj prędkości pociągów, ponieważ jadą naprzeciw siebie.",
     "answer": "1 godzina 20 minut",
     "coursePart": "zadania",
     "tags": [
@@ -72,7 +72,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zsumuj dystanse i czasy wszystkich etapów. Średnią prędkość oblicz jako całkowitą drogę podzieloną przez całkowity czas, a potem zamień jednostkę.",
+    "hint": "Zsumuj dystanse i czasy wszystkich etapów.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -97,7 +97,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień prędkość z km/h na m/s. Następnie oblicz czas jako drogę podzieloną przez prędkość.",
+    "hint": "Zamień prędkość z km/h na m/s.",
     "answer": [
       "P",
       "F"
@@ -123,7 +123,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz średnią prędkość na podanym odcinku i zamień ją na km/h. Porównaj ją z prędkością początkową.",
+    "hint": "Oblicz średnią prędkość na podanym odcinku i zamień ją na km/h.",
     "answer": [
       "P",
       "P"
@@ -149,7 +149,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz dokładną liczbę dni między datami. Średnią dzienną drogę otrzymasz, dzieląc cały dystans przez liczbę dni.",
+    "hint": "Policz dokładną liczbę dni między datami.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -199,7 +199,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Podziel liczbę wykonanych elementów przez czas pracy. Otrzymasz wydajność w jednej godzinie.",
+    "hint": "Podziel liczbę wykonanych elementów przez czas pracy.",
     "answer": "75 gwoździ na minutę",
     "coursePart": "zadania",
     "tags": [
@@ -216,7 +216,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień prędkość na m/s. Czas oblicz jako długość odcinka podzieloną przez prędkość.",
+    "hint": "Zamień prędkość na m/s.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -241,7 +241,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień minuty na godziny. Drogę oblicz ze wzoru s = v · t.",
+    "hint": "Zamień minuty na godziny.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -266,7 +266,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw przelicz metry na godzinę, a następnie zamień metry na kilometry.",
+    "hint": "Najpierw przelicz metry na godzinę.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -291,7 +291,7 @@
     "difficulty": 1,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz czas każdego etapu osobno, a potem podziel łączny dystans przez łączny czas.",
+    "hint": "Policz czas każdego etapu osobno.",
     "answer": "84 km/h",
     "coursePart": "zadania",
     "tags": [
@@ -334,7 +334,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz prędkość w m/s, a następnie pomnóż ją przez 3,6.",
+    "hint": "Oblicz prędkość w m/s.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -359,7 +359,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Aby zamienić km/h na m/s, podziel przez 3,6.",
+    "hint": "Aby zamienić km/h na m/s.",
     "answer": "350/9 m/s, czyli około 38,9 m/s",
     "coursePart": "praca_domowa",
     "tags": [
@@ -402,7 +402,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Do czasu jazdy dolicz godzinny postój. Średnia prędkość to całkowity dystans przez całkowity czas.",
+    "hint": "Do czasu jazdy dolicz godzinny postój.",
     "answer": "Cała podróż trwała 1 godzinę 52 minuty, a średnia prędkość wyniosła 37,5 km/h.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -462,7 +462,7 @@
     "difficulty": 2,
     "topic": "prędkość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz czas całej trasy wynikający ze średniej prędkości. Odejmij czas i drogę pierwszego etapu.",
+    "hint": "Oblicz czas całej trasy wynikający ze średniej prędkości.",
     "answer": "30 km/h",
     "coursePart": "praca_domowa",
     "tags": [

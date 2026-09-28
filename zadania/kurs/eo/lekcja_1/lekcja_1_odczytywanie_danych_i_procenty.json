@@ -12,7 +12,7 @@
       "BC",
       "BD"
     ],
-    "hint": "W 200 g produktu jest dwa razy więcej białka niż w 100 g. Stosunek tłuszczu do soli oblicz z danych dla 100 g.",
+    "hint": "Porównaj masę 200 g ze 100 g.",
     "answer": "AD",
     "coursePart": "zadania",
     "tags": [
@@ -36,7 +36,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Dodaj minuty od poniedziałku do czwartku. W drugim stwierdzeniu podziel czas z soboty przez czas z piątku i zamień wynik na procent.",
+    "hint": "Dodaj minuty od poniedziałku do czwartku.",
     "answer": [
       "P",
       "P"
@@ -64,7 +64,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Dla każdego stwierdzenia podziel większą liczbę gofrów przez mniejszą i porównaj otrzymany iloraz z treścią.",
+    "hint": "Dla każdego stwierdzenia podziel większą liczbę gofrów przez mniejszą.",
     "answer": [
       "P",
       "P"
@@ -91,7 +91,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Zsumuj sprzedaż z trzech dni. W drugim zdaniu porównaj 45 z 60.",
+    "hint": "Zsumuj sprzedaż z trzech dni.",
     "answer": [
       "P",
       "P"
@@ -119,7 +119,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Skoro podany procent odpowiada 4 osobom, wyznacz liczbę wszystkich ankietowanych. Następnie oblicz wskazane części tej liczby.",
+    "hint": "Skoro podany procent odpowiada 4 osobom.",
     "answer": [
       "P",
       "P"
@@ -146,7 +146,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Najpierw zsumuj wszystkie osoby przedstawione na wykresie. Następnie odczytaj liczebności wskazanych kategorii i zamień je na procent całości.",
+    "hint": "Najpierw zsumuj wszystkie osoby przedstawione na wykresie.",
     "answer": [
       "F",
       "P"
@@ -174,7 +174,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Zsumuj medale złote i wszystkie medale. Średnią liczbę złotych medali policz z czterech igrzysk.",
+    "hint": "Zsumuj medale złote i wszystkie medale.",
     "answer": [
       "F",
       "P"
@@ -204,7 +204,7 @@
       "C",
       "D"
     ],
-    "hint": "Sześciu niezdecydowanych to 4% ankietowanych. Technikum i szkoła branżowa dają razem 40%.",
+    "hint": "Sześciu niezdecydowanych to 4% ankietowanych.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -230,7 +230,7 @@
       "C",
       "D"
     ],
-    "hint": "Na podstawie informacji, ilu uczniów stanowi podany procent, oblicz liczebność całej grupy. Potem wyznacz liczbę uczniów dla drugiej kategorii.",
+    "hint": "Na podstawie informacji, ilu uczniów stanowi podany procent.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -255,7 +255,7 @@
       "BC",
       "BD"
     ],
-    "hint": "Dodaj długości wszystkich etapów trasy. Każde stwierdzenie sprawdź, porównując odpowiednią część drogi z całością.",
+    "hint": "Dodaj długości wszystkich etapów trasy.",
     "answer": "AD",
     "coursePart": "zadania",
     "tags": [
@@ -279,7 +279,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Oblicz brakujący udział procentowy soku pomidorowego. Następnie ułóż proporcję między tym udziałem a liczbą kartonów.",
+    "hint": "Oblicz brakujący udział procentowy soku pomidorowego.",
     "answer": [
       "F",
       "P"
@@ -321,7 +321,7 @@
         "answers": ["15", "15%"]
       }
     ],
-    "hint": "Oblicz osobno liczbę chłopców i dziewcząt, a następnie odpowiednią część każdej grupy.",
+    "hint": "Oblicz osobno liczbę chłopców i dziewcząt.",
     "answer": "a = 15%, b = 30%, c = 40%, d = 15%",
     "coursePart": "praca_domowa",
     "tags": [
@@ -394,7 +394,7 @@
       "Stwierdzenie 3",
       "Stwierdzenie 4"
     ],
-    "hint": "Odczytaj z wykresu sprzedaż dla każdego dnia. Pamiętaj, że „o 300% więcej” oznacza czterokrotność wartości początkowej.",
+    "hint": "Odczytaj z wykresu sprzedaż dla każdego dnia.",
     "answer": ["F", "P", "F", "F"],
     "coursePart": "praca_domowa",
     "tags": [
@@ -476,7 +476,7 @@
     "taskNumber": "5.1",
     "type": "closed",
     "options": ["A", "B", "C", "D"],
-    "hint": "Oblicz osobno 60% i 24% wszystkich butelek, a następnie znajdź różnicę.",
+    "hint": "Oblicz osobno 60% i 24% wszystkich butelek.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -499,7 +499,7 @@
     "taskNumber": "5.2",
     "type": "true_false",
     "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
-    "hint": "Najpierw wyznacz ceny soków z podanych zależności. Potem oblicz wartość każdego rodzaju napoju.",
+    "hint": "Najpierw wyznacz ceny soków z podanych zależności.",
     "answer": ["F", "F"],
     "coursePart": "praca_domowa",
     "tags": [
@@ -554,7 +554,7 @@
         "exact": true
       }
     ],
-    "hint": "Zsumuj czas spędzony w aplikacjach i porównaj go z całym czasem czuwania w tygodniu.",
+    "hint": "Zsumuj czas spędzony w aplikacjach.",
     "answer": "39,7%",
     "coursePart": "praca_domowa",
     "tags": [
@@ -582,7 +582,7 @@
         "answers": ["5"]
       }
     ],
-    "hint": "Oznacz jednakową liczbę godzin w piątek i sobotę przez x. Ułóż równanie opisujące średnią.",
+    "hint": "Oznacz jednakową liczbę godzin w piątek i sobotę przez x.",
     "answer": "x = 5",
     "coursePart": "praca_domowa",
     "tags": [
@@ -611,7 +611,7 @@
         "answers": ["3", "3,0", "3.0"]
       }
     ],
-    "hint": "Najpierw wyznacz brakujące oceny z podanych zależności, a następnie oblicz średnią.",
+    "hint": "Najpierw wyznacz brakujące oceny z podanych zależności.",
     "answer": "3,0",
     "coursePart": "praca_domowa",
     "tags": [

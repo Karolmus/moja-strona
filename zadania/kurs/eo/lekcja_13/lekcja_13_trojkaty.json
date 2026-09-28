@@ -39,7 +39,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najdłuższy bok potraktuj jako przeciwprostokątną. Sprawdź, czy kwadrat jego długości jest równy sumie kwadratów pozostałych boków.",
+    "hint": "Najdłuższy bok potraktuj jako przeciwprostokątną.",
     "answer": "Tak. Boki 8, 15 i 17 spełniają twierdzenie Pitagorasa: 8² + 15² = 17².",
     "coursePart": "zadania",
     "tags": [
@@ -56,7 +56,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw oblicz pole trójkąta 13-14-15, a potem użyj wzoru P = a·h/2 dla kolejnych boków.",
+    "hint": "Najpierw oblicz pole trójkąta 13-14-15.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -80,7 +80,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Duży trójkąt jest równoramienny. Oblicz kąt przy prawej podstawie dużego trójkąta, a potem kąt przy podstawie trójkąta z odcinkiem wewnętrznym.",
+    "hint": "Duży trójkąt jest równoramienny.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -104,7 +104,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozpoznaj trójkąt 30°–60°–90°. Korzystając z proporcji jego boków, wyznacz brakujące długości i dodaj je.",
+    "hint": "Rozpoznaj trójkąt 30°–60°–90°.",
     "answer": "Obwód wynosi 6 + 2√3 cm.",
     "coursePart": "zadania",
     "tags": [
@@ -145,7 +145,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oznacz długość przyprostokątnej przez a i zapisz obwód trójkąta równoramiennego prostokątnego. Potem wyznacz wysokość opuszczoną na przeciwprostokątną.",
+    "hint": "Oznacz długość przyprostokątnej przez a.",
     "answer": "h = 3√2/20 dm.",
     "coursePart": "zadania",
     "tags": [
@@ -162,7 +162,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z równania α + 2α + 3α = 180° rozpoznaj typ trójkąta. Użyj proporcji boków trójkąta 30°–60°–90° oraz podanego obwodu.",
+    "hint": "Z równania α + 2α + 3α = 180° rozpoznaj typ trójkąta.",
     "answer": "Pole trójkąta wynosi 25√3/2 cm².",
     "coursePart": "zadania",
     "tags": [
@@ -179,7 +179,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wysokość trójkąta równobocznego ma długość a√3/2, czyli jest krótsza od boku a.",
+    "hint": "Zapisz wzór na wysokość trójkąta równobocznego.",
     "answer": "B3",
     "coursePart": "zadania",
     "tags": [
@@ -205,7 +205,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oznacz dłuższą przyprostokątną przez x, a przeciwprostokątną przez x + 1. Ułóż równanie z twierdzenia Pitagorasa.",
+    "hint": "Oznacz dłuższą przyprostokątną przez x, a przeciwprostokątną przez x + 1.",
     "answer": "Pole wynosi 84 cm².",
     "coursePart": "zadania",
     "tags": [
@@ -222,7 +222,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Podziel sześciokąt foremny na sześć trójkątów równobocznych. Oblicz pole jednego z nich i pomnóż przez 6.",
+    "hint": "Podziel sześciokąt foremny na sześć trójkątów równobocznych.",
     "answer": "Pole wynosi 75√3/2.",
     "coursePart": "zadania",
     "tags": [
@@ -240,7 +240,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Krótsza przekątna sześciokąta jest wysokością dwóch sąsiednich trójkątów równobocznych. Zastosuj zależność d = a√3.",
+    "hint": "Krótsza przekątna sześciokąta jest wysokością dwóch sąsiednich trójkątów równobocznych.",
     "answer": "Krótsza przekątna ma długość 12.",
     "coursePart": "zadania",
     "tags": [
@@ -258,7 +258,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "W pierwszym trójkącie prostokątnym wyznacz wspólny bok z twierdzenia Pitagorasa. Następnie użyj go w drugim trójkącie do obliczenia a.",
+    "hint": "W pierwszym trójkącie prostokątnym wyznacz wspólny bok z twierdzenia Pitagorasa.",
     "answer": "a = 7.",
     "coursePart": "zadania",
     "tags": [
@@ -275,7 +275,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zastosuj wzór na pole trójkąta równobocznego, aby wyznaczyć bok. Następnie oblicz wysokość i obwód oraz zamień jednostki.",
+    "hint": "Zastosuj wzór na pole trójkąta równobocznego, aby wyznaczyć bok.",
     "answer": "Wysokość wynosi 40√3 cm, a obwód 240 cm.",
     "coursePart": "zadania",
     "tags": [
@@ -292,7 +292,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z obwodu wyznacz długość podstawy. Wysokość dzieli trójkąt równoramienny na dwa trójkąty prostokątne, więc zastosuj twierdzenie Pitagorasa.",
+    "hint": "Z obwodu wyznacz długość podstawy.",
     "answer": "Pole wynosi 60.",
     "coursePart": "zadania",
     "tags": [
@@ -333,7 +333,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przekątna dzieli prostokąt na trójkąty prostokątne. Wyznacz kolejno brakujące odcinki, stosując twierdzenie Pitagorasa.",
+    "hint": "Przekątna dzieli prostokąt na trójkąty prostokątne.",
     "answer": "x = 24 m.",
     "coursePart": "zadania",
     "tags": [
@@ -350,7 +350,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozpoznaj trójkąt 30°–60°–90°. Bok naprzeciw 60° ma długość a√3, a przeciwprostokątna 2a.",
+    "hint": "Rozpoznaj trójkąt 30°–60°–90°.",
     "answer": "Obwód wynosi 15 + 5√3.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -367,7 +367,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Dodaj trzy podane kąty i przyrównaj ich sumę do 180°. Sprawdź, czy otrzymana wartość α może być miarą kąta.",
+    "hint": "Dodaj trzy podane kąty.",
     "answer": "Nie jest możliwe. Suma kątów daje 3α + 194° = 180°, czyli α = -14/3°, a kąt nie może mieć ujemnej miary.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -418,7 +418,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Podstaw m = 3 i n = 2 do wzorów na a, b i c, a następnie dodaj długości otrzymanych boków.",
+    "hint": "Podstaw m = 3 i n = 2 do wzorów na a, b i c.",
     "answer": "Obwód trójkąta wynosi 30.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -436,7 +436,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z równania m² + n² = 25 wyznacz dodatnie liczby m > n, a następnie sprawdź warunek 2mn = 24.",
+    "hint": "Z równania m² + n² = 25 wyznacz dodatnie liczby m > n.",
     "answer": "m = 4, n = 3.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -454,7 +454,7 @@
     "difficulty": 1,
     "topic": "trójkąty",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz półobwód trójkąta, a następnie podstaw długości boków do wzoru Herona.",
+    "hint": "Oblicz półobwód trójkąta.",
     "answer": "Pole wynosi 84.",
     "coursePart": "praca_domowa",
     "tags": [

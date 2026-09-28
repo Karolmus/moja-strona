@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zapisz pole trójkąta na dwa sposoby: za pomocą przyprostokątnych oraz za pomocą przeciwprostokątnej i opuszczonej na nią wysokości. Porównaj wzory.",
+    "hint": "Zapisz pole trójkąta na dwa sposoby: za pomocą przyprostokątnych oraz za pomocą przeciwprostokątnej i opuszczonej na nią wysokości.",
     "answer": "Pole trójkąta prostokątnego można zapisać jako ab/2 oraz jako ch_c/2. Po porównaniu pól: ab/2 = ch_c/2, więc h_c = ab/c.",
     "coursePart": "zadania",
     "tags": [
@@ -23,7 +23,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "W wielokącie o parzystej liczbie wierzchołków każdy wierzchołek ma dokładnie jeden przeciwległy. Od liczby wszystkich przekątnych odejmij liczbę najdłuższych.",
+    "hint": "W wielokącie o parzystej liczbie wierzchołków każdy wierzchołek ma dokładnie jeden przeciwległy.",
     "answer": "W n-kącie jest n(n-3)/2 przekątnych. Gdy n jest parzyste, najdłuższe przekątne łączą przeciwległe wierzchołki i jest ich n/2. Krótszych przekątnych jest więc n(n-3)/2 - n/2 = n(n-4)/2.",
     "coursePart": "zadania",
     "tags": [
@@ -41,7 +41,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z zależności h꜀ = ab/c. Odwróć i podnieś ją do kwadratu, a następnie zastąp c² sumą a² + b².",
+    "hint": "Skorzystaj z zależności h꜀ = ab/c.",
     "answer": "Z h_c = ab/c mamy 1/h_c² = c²/(a²b²). Ponieważ c² = a² + b², to 1/h_c² = (a²+b²)/(a²b²) = 1/a² + 1/b².",
     "coursePart": "zadania",
     "tags": [
@@ -59,7 +59,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "W trójkącie równobocznym wysokości są jednocześnie medianami. Zastosuj twierdzenie o punkcie przecięcia median.",
+    "hint": "W trójkącie równobocznym wysokości są jednocześnie medianami.",
     "answer": "W trójkącie równobocznym wysokości są jednocześnie medianami. Punkt przecięcia median dzieli każdą medianę w stosunku 2:1, licząc od wierzchołka, więc tak samo dzieli wysokości.",
     "coursePart": "zadania",
     "tags": [
@@ -77,7 +77,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przekątne są cięciwami okręgu przecinającymi się w punkcie P. Zastosuj twierdzenie o iloczynach odcinków przecinających się cięciw.",
+    "hint": "Przekątne są cięciwami okręgu przecinającymi się w punkcie P.",
     "answer": "To twierdzenie o przecinających się cięciwach. Przekątne AC i BD są cięciwami okręgu i przecinają się w P, więc |AP|·|CP| = |BP|·|DP|.",
     "coursePart": "zadania",
     "tags": [
@@ -95,7 +95,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Każdy z trzech odpowiadających wymiarów prostopadłościanów jest w stosunku k. Zapisz iloraz objętości jako iloczyn trzech takich ilorazów.",
+    "hint": "Każdy z trzech odpowiadających wymiarów prostopadłościanów jest w stosunku k.",
     "answer": "Jeżeli prostopadłościany są podobne w skali k, to ich odpowiednie krawędzie są w stosunku k. Objętość jest iloczynem trzech wymiarów, więc stosunek objętości wynosi k·k·k = k³.",
     "coursePart": "zadania",
     "tags": [
@@ -113,7 +113,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Po opuszczeniu wysokości na przeciwprostokątną wskaż dwa podobne trójkąty i zapisz proporcję zawierającą h₍c₎, k oraz l.",
+    "hint": "Po opuszczeniu wysokości na przeciwprostokątną wskaż dwa podobne trójkąty.",
     "answer": "Z podobieństwa trójkątów powstałych po opuszczeniu wysokości na przeciwprostokątną wynika h_c/k = l/h_c, czyli h_c² = kl, więc h_c = √kl.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -131,7 +131,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oznacz wysokość trapezu przez d. Z twierdzenia Pitagorasa zapisz kwadraty obu przekątnych za pomocą podstaw i d.",
+    "hint": "Oznacz wysokość trapezu przez d.",
     "answer": "W trapezie prostokątnym przyjmij wysokość d. Dłuższa przekątna spełnia e² = a² + d², a krótsza f² = b² + d². Zatem e² + b² = a² + d² + b² = a² + f².",
     "coursePart": "praca_domowa",
     "tags": [
@@ -149,7 +149,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj ze wzoru P = r · s, gdzie s jest połową obwodu trójkąta. Zapisz s za pomocą a i c.",
+    "hint": "Skorzystaj ze wzoru P = r · s, gdzie s jest połową obwodu trójkąta.",
     "answer": "Dla dowolnego trójkąta P = r·s, gdzie s jest połową obwodu. W trójkącie równoramiennym s = (a+2c)/2 = c + 0,5a, więc r = P/(c + 0,5a).",
     "coursePart": "praca_domowa",
     "tags": [
@@ -167,7 +167,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "W czworokącie wpisanym w okrąg kąty przeciwległe sumują się do 180°. Porównaj ten warunek z własnościami kątów rombu.",
+    "hint": "W czworokącie wpisanym w okrąg kąty przeciwległe sumują się do 180°.",
     "answer": "W czworokącie wpisanym w okrąg suma kątów przeciwległych wynosi 180°. W rombie kąty przeciwległe są równe, więc musiałyby mieć po 90°. Romb z kątem ostrym nie spełnia tego warunku, więc nie można opisać na nim okręgu.",
     "coursePart": "praca_domowa",
     "tags": [
@@ -203,7 +203,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zastosuj twierdzenie cosinusów dla kąta naprzeciw najdłuższego boku. W trójkącie ostrokątnym cosinus tego kąta jest dodatni.",
+    "hint": "Zastosuj twierdzenie cosinusów dla kąta naprzeciw najdłuższego boku.",
     "answer": "Niech γ będzie kątem naprzeciw boku c. W trójkącie ostrokątnym cos γ > 0, więc z twierdzenia cosinusów c² = a² + b² - 2ab cos γ < a² + b².",
     "coursePart": "praca_domowa",
     "tags": [
@@ -221,7 +221,7 @@
     "difficulty": 1,
     "topic": "logika i dowodzenie w geometrii",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zastosuj twierdzenie cosinusów dla kąta rozwartego naprzeciw najdłuższego boku. Cosinus tego kąta jest ujemny.",
+    "hint": "Zastosuj twierdzenie cosinusów dla kąta rozwartego naprzeciw najdłuższego boku.",
     "answer": "Niech γ będzie kątem rozwartym naprzeciw boku c. Wtedy cos γ < 0, więc z twierdzenia cosinusów c² = a² + b² - 2ab cos γ > a² + b².",
     "coursePart": "praca_domowa",
     "tags": [

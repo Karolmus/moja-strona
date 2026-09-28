@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pomnóż liczbę kroków przez długość jednego kroku. Otrzymany wynik w metrach zamień na kilometry.",
+    "hint": "Pomnóż liczbę kroków przez długość jednego kroku.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -30,7 +30,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź długość przewodu i odległość między atomami do tej samej jednostki. Następnie podziel całkowitą długość przez odległość między sąsiednimi atomami.",
+    "hint": "Sprowadź długość przewodu i odległość między atomami do tej samej jednostki.",
     "answer": "5 · 10^12 atomów",
     "coursePart": "zadania",
     "tags": [
@@ -72,7 +72,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pomnóż 32 przez 2,54 cm, a potem zamień centymetry na metry.",
+    "hint": "Pomnóż 32 przez 2,54 cm.",
     "answer": "0,8128 m",
     "coursePart": "zadania",
     "tags": [
@@ -89,7 +89,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień dni i minuty na godziny. Dopiero wtedy wykonaj działania na czasach zapisanych w tej samej jednostce.",
+    "hint": "Zamień dni i minuty na godziny.",
     "answer": "510,2 godziny",
     "coursePart": "zadania",
     "tags": [
@@ -106,7 +106,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pomnóż średni dzienny dystans przez liczbę dni. Otrzymany wynik porównaj z wartością podaną w stwierdzeniu.",
+    "hint": "Pomnóż średni dzienny dystans przez liczbę dni.",
     "answer": "150 km",
     "coursePart": "zadania",
     "tags": [
@@ -167,7 +167,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz dni w kolejnych fragmentach stycznia, lutego i marca. Sprawdź wcześniej, ile dni ma luty w podanym roku.",
+    "hint": "Policz dni w kolejnych fragmentach stycznia, lutego i marca.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -217,7 +217,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal, jaką częścią całej drogi jest podany odcinek. Cały dystans oblicz, dzieląc długość odcinka przez tę część.",
+    "hint": "Ustal, jaką częścią całej drogi jest podany odcinek.",
     "answer": "8000 m",
     "coursePart": "zadania",
     "tags": [
@@ -251,7 +251,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Policz liczbę pełnych lat w podanym przedziale. Osobno zlicz lata przestępne i uwzględnij dodatkowe dni.",
+    "hint": "Policz liczbę pełnych lat w podanym przedziale.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -276,7 +276,7 @@
     "difficulty": 1,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprawdź, czy dany rok jest przestępny. Zwykły rok przesuwa ten sam dzień następnego roku o jeden dzień tygodnia, a przestępny o dwa.",
+    "hint": "Sprawdź, czy dany rok jest przestępny.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -301,7 +301,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przy liczeniu dni uwzględnij lata przestępne. Rok 2000 był przestępny.",
+    "hint": "Przy liczeniu dni uwzględnij lata przestępne.",
     "answer": [
       "F",
       "P"
@@ -327,7 +327,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień godziny i kwadrans na sekundy, a następnie dodaj otrzymane wartości.",
+    "hint": "Zamień godziny i kwadrans na sekundy.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -369,7 +369,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozdziel okres na pełne tygodnie i pozostałe dni. Uwzględnij rok przestępny.",
+    "hint": "Rozdziel okres na pełne tygodnie i pozostałe dni.",
     "answer": [
       "P",
       "P"
@@ -455,7 +455,7 @@
     "difficulty": 2,
     "topic": "czas i odległość",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień długość muru i szerokość cegły na metry. Oblicz liczbę cegieł w jednym rzędzie, a następnie uwzględnij liczbę rzędów.",
+    "hint": "Zamień długość muru i szerokość cegły na metry.",
     "answer": "280 000 000 cegieł",
     "coursePart": "praca_domowa",
     "tags": [

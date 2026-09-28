@@ -31,7 +31,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Znajdź największy wspólny czynnik liczbowy i najmniejsze potęgi wspólnych zmiennych. Wyłącz otrzymany jednomian przed nawias.",
+    "hint": "Znajdź największy wspólny czynnik liczbowy i najmniejsze potęgi wspólnych zmiennych.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -75,7 +75,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Po dosadzeniu piwonii jest p + 6, a po przymrozku zostaje 2/3 tej liczby. Winogron jest 4w - 3.",
+    "hint": "Po dosadzeniu piwonii jest p + 6, a po przymrozku zostaje 2/3 tej liczby.",
     "answer": "(2/3)(p + 6) + 4w - 3, czyli po uproszczeniu: (2/3)p + 4w + 1",
     "coursePart": "zadania",
     "tags": [
@@ -128,7 +128,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Usuń ułamki i uprość każde równanie osobno. Sprawdź, czy otrzymujesz fałszywą równość, czy konkretną wartość niewiadomej.",
+    "hint": "Usuń ułamki i uprość każde równanie osobno.",
     "answer": [
       "F",
       "F"
@@ -180,7 +180,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Porównuj wyrażenia parami, odejmując jedno od drugiego. Wykorzystaj informację a < b < c do ustalenia znaku różnicy.",
+    "hint": "Porównuj wyrażenia parami, odejmując jedno od drugiego.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -205,7 +205,7 @@
     "difficulty": 1,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oznacz cyfrę dziesiątek przez d, a cyfrę jedności zapisz za pomocą d. Pamiętaj o ograniczeniach dotyczących cyfr.",
+    "hint": "Oznacz cyfrę dziesiątek przez d, a cyfrę jedności zapisz za pomocą d.",
     "answer": "15, 26, 37, 48, 59",
     "coursePart": "zadania",
     "tags": [
@@ -289,7 +289,6 @@
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
     "hint": "Ułóż układ równań: 50u + 4n = 870 oraz 80u + 8n = 1440.",
-    "answer": "Cena biletu normalnego była 2 razy wyższa od ceny biletu ulgowego.",
     "coursePart": "zadania",
     "tags": [
       "kurs",
@@ -298,9 +297,16 @@
       "zadania"
     ],
     "type": "input",
-    "instruction": "Wpisz, ile razy cena biletu normalnego była wyższa od ceny biletu ulgowego.",
+    "teacherGraded": true,
+    "instruction": "Wpisz własne słowne uzasadnienie. Powinno ono wynikać z obliczeń, które wcześniej wykonasz samodzielnie.",
     "inputs": [
-      { "label": "Liczba razy", "answer": "2" }
+      {
+        "label": "Uzasadnienie",
+        "prompt": "Wpisz słowne uzasadnienie wynikające z Twoich obliczeń.",
+        "control": "textarea",
+        "minLength": 20,
+        "maxLength": 2000
+      }
     ],
     "maxPoints": 3
   },
@@ -336,7 +342,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozwiń x(1 − x), a następnie odejmij 2(x − 7/2).",
+    "hint": "Rozwiń x(1 − x).",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -361,7 +367,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozwiń nawiasy i zredukuj wyrazy podobne. Otrzymasz równanie liniowe.",
+    "hint": "Rozwiń nawiasy i zredukuj wyrazy podobne.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -437,7 +443,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Rozważ osobno przypadki −1 < a < 0 oraz a < −1, a następnie porównaj potęgi.",
+    "hint": "Rozważ osobno przypadki −1 < a < 0 oraz a < −1.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -490,7 +496,7 @@
     "difficulty": 2,
     "topic": "wyrażenia algebraiczne i równania",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw zapisz wynik pierwszej zmiany. Wzrost o 40% przedstaw jako mnożenie przez 1,4.",
+    "hint": "Najpierw zapisz wynik pierwszej zmiany.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [

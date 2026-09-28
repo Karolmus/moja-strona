@@ -331,6 +331,10 @@ def init_auth_db():
                 duration_seconds INTEGER NOT NULL DEFAULT 0,
                 earned_points DOUBLE PRECISION,
                 max_points DOUBLE PRECISION,
+                submitted_answer TEXT,
+                video_viewed BOOLEAN NOT NULL DEFAULT FALSE,
+                teacher_review_pending BOOLEAN NOT NULL DEFAULT FALSE,
+                teacher_graded_at TEXT,
                 created_at TEXT NOT NULL
             )
             """,
@@ -560,6 +564,12 @@ def init_auth_db():
             ALTER TABLE task_progress ADD COLUMN IF NOT EXISTS video_viewed BOOLEAN NOT NULL DEFAULT FALSE
             """,
             """
+            ALTER TABLE task_progress ADD COLUMN IF NOT EXISTS teacher_review_pending BOOLEAN NOT NULL DEFAULT FALSE
+            """,
+            """
+            ALTER TABLE task_progress ADD COLUMN IF NOT EXISTS teacher_graded_at TEXT
+            """,
+            """
             ALTER TABLE users ADD COLUMN IF NOT EXISTS full_course_access BOOLEAN NOT NULL DEFAULT FALSE
             """,
             """
@@ -635,6 +645,10 @@ def init_auth_db():
             duration_seconds INTEGER NOT NULL DEFAULT 0,
             earned_points REAL,
             max_points REAL,
+            submitted_answer TEXT,
+            video_viewed INTEGER NOT NULL DEFAULT 0,
+            teacher_review_pending INTEGER NOT NULL DEFAULT 0,
+            teacher_graded_at TEXT,
             created_at TEXT NOT NULL,
             FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
         );
@@ -844,6 +858,12 @@ def init_auth_db():
 
         if "video_viewed" not in columns:
             db.execute("ALTER TABLE task_progress ADD COLUMN video_viewed INTEGER NOT NULL DEFAULT 0")
+
+        if "teacher_review_pending" not in columns:
+            db.execute("ALTER TABLE task_progress ADD COLUMN teacher_review_pending INTEGER NOT NULL DEFAULT 0")
+
+        if "teacher_graded_at" not in columns:
+            db.execute("ALTER TABLE task_progress ADD COLUMN teacher_graded_at TEXT")
 
         contact_columns = {
             row["name"]
@@ -1485,11 +1505,11 @@ def list_students():
                     AND parent_access.is_active = ?
                     AND parent_access.expires_at > ?
             ) AS has_parent_access,
-            COUNT(p.id) AS attempts,
+            COUNT(CASE WHEN NOT p.teacher_review_pending THEN p.id END) AS attempts,
             COALESCE(SUM(CASE WHEN p.result = 'good' THEN 1 ELSE 0 END), 0) AS good_count,
             COALESCE(SUM(CASE WHEN p.result = 'medium' AND NOT p.video_viewed THEN 1 ELSE 0 END), 0) AS medium_count,
-            COALESCE(SUM(CASE WHEN p.result = 'bad' THEN 1 ELSE 0 END), 0) AS bad_count,
-            COALESCE(SUM(COALESCE(p.duration_seconds, 0)), 0) AS total_duration_seconds,
+            COALESCE(SUM(CASE WHEN p.result = 'bad' AND NOT p.teacher_review_pending THEN 1 ELSE 0 END), 0) AS bad_count,
+            COALESCE(SUM(CASE WHEN NOT p.teacher_review_pending THEN COALESCE(p.duration_seconds, 0) ELSE 0 END), 0) AS total_duration_seconds,
             COALESCE(r.review_count, 0) AS review_count,
             MAX(p.created_at) AS last_activity_at
         FROM users u
@@ -1908,6 +1928,8 @@ def record_progress(user_id, data):
         max_points,
         bounded_text(data.get("submitted_answer"), 2000),
         db_bool(video_viewed),
+        db_bool(data.get("teacher_review_pending")),
+        bounded_text(data.get("teacher_graded_at"), 80),
         created_at,
     )
 
@@ -1932,9 +1954,11 @@ def record_progress(user_id, data):
                     max_points,
                     submitted_answer,
                     video_viewed,
+                    teacher_review_pending,
+                    teacher_graded_at,
                     created_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 RETURNING *
                 """
             ),
@@ -1961,9 +1985,11 @@ def record_progress(user_id, data):
                 max_points,
                 submitted_answer,
                 video_viewed,
+                teacher_review_pending,
+                teacher_graded_at,
                 created_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             values,
         )
@@ -1981,10 +2007,52 @@ def record_progress(user_id, data):
 
 def progress_to_dict(row):
     item = dict(row)
+    item["teacher_review_pending"] = bool(item.get("teacher_review_pending"))
     if item.get("video_viewed"):
         item["result"] = "video"
         item["earned_points"] = 0
     return item
+
+
+def score_teacher_reviewed_progress(item_id, earned_points):
+    db = get_db()
+    row = db.execute(
+        prepare_sql("SELECT * FROM task_progress WHERE id = ?"),
+        (item_id,),
+    ).fetchone()
+
+    if not row or not bool(row["teacher_review_pending"]):
+        return None
+
+    try:
+        score = float(earned_points)
+    except (TypeError, ValueError):
+        raise ValueError("Podaj liczbę punktów.")
+
+    max_points = point_value(row["max_points"]) or 1.0
+    if not math.isfinite(score) or score < 0 or score > max_points:
+        raise ValueError("Liczba punktów jest poza dozwolonym zakresem.")
+
+    score = round(score, 2)
+    result = "good" if score >= max_points else "medium" if score > 0 else "bad"
+    graded_at = now_iso()
+    db.execute(
+        prepare_sql(
+            """
+            UPDATE task_progress
+            SET earned_points = ?, result = ?, teacher_review_pending = ?, teacher_graded_at = ?
+            WHERE id = ? AND teacher_review_pending = ?
+            """
+        ),
+        (score, result, db_bool(False), graded_at, item_id, db_bool(True)),
+    )
+    db.commit()
+    updated = db.execute(
+        prepare_sql("SELECT * FROM task_progress WHERE id = ?"),
+        (item_id,),
+    ).fetchone()
+
+    return progress_to_dict(updated)
 
 
 def progress_for_user(user_id, limit=2000):

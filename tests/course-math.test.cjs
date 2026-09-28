@@ -23,7 +23,9 @@ assert(math.preview('√(1/2)').includes('<msqrt><mfrac>'));
 assert(math.preview('∛8').includes('<mroot>'));
 
 const html = fs.readFileSync('zadania.html', 'utf8');
-for (const name of ['isClosedTask', 'isInputTask', 'isPracticalTask', 'isEquationSolutionInput', 'getInputFields']) {
+for (const name of ['isClosedTask', 'isInputTask', 'isPracticalTask', 'isEquationSolutionInput',
+  'normalizeSymbolicExpression', 'tokenizeSymbolicExpression', 'symbolicExpressionVariables',
+  'getInputFields']) {
   const start = html.indexOf(`function ${name}(`);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ctx);
 }

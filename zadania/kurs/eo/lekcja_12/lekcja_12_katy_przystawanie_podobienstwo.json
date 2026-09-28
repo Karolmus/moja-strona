@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj równość kątów odpowiadających przy prostych równoległych. Następnie zastosuj sumę kątów przyległych.",
+    "hint": "Wykorzystaj równość kątów odpowiadających przy prostych równoległych.",
     "answer": "155°",
     "coursePart": "zadania",
     "tags": [
@@ -41,7 +41,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zapisz równanie, korzystając z tego, że suma kątów wokół punktu wynosi 360°. Następnie rozwiąż je względem γ.",
+    "hint": "Zapisz równanie, korzystając z tego, że suma kątów wokół punktu wynosi 360°.",
     "answer": "40°",
     "coursePart": "zadania",
     "tags": [
@@ -59,7 +59,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw wyznacz brakujący kąt w wewnętrznym trójkącie. Potem zastosuj sumę kątów w drugim trójkącie.",
+    "hint": "Najpierw wyznacz brakujący kąt w wewnętrznym trójkącie.",
     "answer": "Kąty wewnętrzne trapezu: 90°, 90°, 100°, 80°",
     "coursePart": "zadania",
     "tags": [
@@ -77,7 +77,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wykorzystaj kąty odpowiadające lub naprzemianległe, aby przenieść znane miary do trójkąta. Następnie zastosuj sumę 180°.",
+    "hint": "Wykorzystaj kąty odpowiadające lub naprzemianległe, aby przenieść znane miary do trójkąta.",
     "answer": "β = 65°",
     "coursePart": "zadania",
     "tags": [
@@ -96,7 +96,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "W trójkącie zawierającym wysokość wyznacz brakujący kąt z sumy 180°. Odejmij go od kąta przy wierzchołku.",
+    "hint": "W trójkącie zawierającym wysokość wyznacz brakujący kąt z sumy 180°.",
     "answer": "7 : 6",
     "coursePart": "zadania",
     "tags": [
@@ -133,7 +133,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Skorzystaj z tego, że kąty przyległe sumują się do 180°. Sprawdź, co wynika z założenia, że mają równe miary.",
+    "hint": "Skorzystaj z tego, że kąty przyległe sumują się do 180°.",
     "answer": "A2",
     "coursePart": "zadania",
     "tags": [
@@ -160,7 +160,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Przy każdym wierzchołku zapisz kąt zewnętrzny jako dopełnienie kąta wewnętrznego do 180°. Dodaj trzy otrzymane wyrażenia.",
+    "hint": "Przy każdym wierzchołku zapisz kąt zewnętrzny jako dopełnienie kąta wewnętrznego do 180°.",
     "answer": "B2",
     "coursePart": "zadania",
     "tags": [
@@ -187,7 +187,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Z sumy kątów trójkąta wyznacz α. Następnie porównaj dwa boki i kąt zawarty między nimi w obu trójkątach.",
+    "hint": "Z sumy kątów trójkąta wyznacz α.",
     "answer": "Trójkąty są przystające z cechy bok-kąt-bok.",
     "coursePart": "zadania",
     "tags": [
@@ -205,7 +205,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ustal odpowiadające sobie boki i oblicz skalę podobieństwa z jednej znanej pary. Zastosuj tę samą skalę do boku x.",
+    "hint": "Ustal odpowiadające sobie boki.",
     "answer": "Skala podobieństwa większego trójkąta do mniejszego wynosi 2,5, a x = 4.",
     "coursePart": "zadania",
     "tags": [
@@ -223,7 +223,7 @@
     "difficulty": 1,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Porównaj odpowiadające sobie boki obu trójkątów. Sprawdź, czy każdy iloraz ma tę samą wartość.",
+    "hint": "Porównaj odpowiadające sobie boki obu trójkątów.",
     "answer": "Trójkąty są podobne; skala trójkąta T1 względem T2 wynosi 2.",
     "coursePart": "zadania",
     "tags": [
@@ -342,7 +342,7 @@
     "difficulty": 2,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprawdź stosunki odpowiednich boków. Pamiętaj, że obwody figur podobnych zmieniają się w tej samej skali co boki.",
+    "hint": "Sprawdź stosunki odpowiednich boków.",
     "answer": [
       "F",
       "P"
@@ -418,7 +418,7 @@
     "difficulty": 2,
     "topic": "kąty przystawanie podobieństwo",
     "level": "egzamin_osmoklasisty",
-    "hint": "Najpierw wyznacz γ z kątów przyległych. Następnie wykorzystaj dwusieczną i kąty przy prostych równoległych.",
+    "hint": "Najpierw wyznacz γ z kątów przyległych.",
     "answer": "β = 140°",
     "coursePart": "praca_domowa",
     "tags": [

@@ -89,6 +89,7 @@ for (const [text, name] of [
   assert.equal(entries[0].level, 'egzamin_osmoklasisty');
   assert.equal(entries[0].kind, 'test');
   assert.equal(entries[0].label, 'Test sprawdzający z lekcji 1 - 6');
+  if(name === 'TASK_SOURCES') assert.equal(entries[0].unlocksNextSources, 4);
 }
 
 const taskSources = config(html, 'TASK_SOURCES');
@@ -100,7 +101,7 @@ assert(lesson6Index < testIndex && testIndex < lesson7Index);
 assert.match(html, /\.meta-checkpoint\s*\{\s*background: linear-gradient\(90deg, #49add6 0%, #a8daee 42%, #ffffff 100%\);/);
 assert.match(html, /\.tile\.nav-theme-checkpoint\s*\{\s*--tile-bg: linear-gradient\(135deg, #49add6 0%, #eaf7fc 100%\);/);
 assert.match(html, /if\(task\.theme === "checkpoint-blue"\) return "nav-theme-checkpoint";/);
-assert.match(html, /summaryTitle\.innerText = isCheckpoint\s*\? "Podsumowanie testu"/);
+assert.match(html, /\? timedOut \? "Test zakończony - czas minął" : "Test zakończony"/);
 assert.match(html, /hintButton\.hidden = isOpenExam \|\| isTest;/);
 assert.match(html, /videoLink\.hidden = isTest \|\| !videoUrl;/);
 assert.match(html, /reviewButton\.hidden = isTest \|\| !isLoggedInStudent/);

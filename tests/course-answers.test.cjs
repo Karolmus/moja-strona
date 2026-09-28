@@ -3,6 +3,8 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
 const names = ['isEquationSolutionInput', 'getInputFields', 'getInputPrompt', 'normalizeTypedAnswer',
+  'normalizeSymbolicExpression', 'tokenizeSymbolicExpression', 'symbolicExpressionVariables',
+  'evaluateSymbolicExpression', 'areSymbolicExpressionsEquivalent',
   'splitEquationValues',
   'isTypedAnswerCorrect', 'isEquationSpecialAnswer', 'isInputFieldAnswerCorrect',
   'isComparisonField', 'setupComparisonControl', 'setComparisonControlResult',
@@ -10,7 +12,8 @@ const names = ['isEquationSolutionInput', 'getInputFields', 'getInputPrompt', 'n
   'inputAnswerValuesFromText', 'getSubmittedInputAnswerValues', 'restoreInputAnswerState',
   'syncEquationAnswerMode', 'setupEquationAnswerControl', 'isAssignmentInputFields',
   'assignmentFieldLabel', 'syncAssignmentControl', 'chooseAssignmentAnswer', 'setupInputTask',
-  'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask'];
+  'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask',
+  'isTeacherGradedTask', 'isTeacherReviewPending'];
 function source(name) {
   const start = html.indexOf(`function ${name}(`);
   assert(start >= 0);
@@ -60,7 +63,7 @@ const ctx = vm.createContext({
     createElement: tag => new Element(tag),
     getElementById: id => id === 'comparisonOverlay'
       ? comparisonOverlay
-      : mcq?.querySelectorAll('input, select, button, div, label, form').find(element => element.id === id) || null,
+      : mcq?.querySelectorAll('input, select, textarea, button, div, label, form').find(element => element.id === id) || null,
     querySelector: selector => {
       const assignment = selector.match(/^\.assignment-answer-field\[data-index="(\d+)"\]$/);
       if(assignment) return mcq.querySelectorAll('.assignment-answer-field')
@@ -72,8 +75,11 @@ const ctx = vm.createContext({
   currentTaskAnswered: false, isCourseTask: () => true, hasGradingCriteria: () => false,
   taskMaxPoints: task => task.maxPoints, showCorrection: () => {},
   answerShown: false, feedback: '', sessionSubmittedAnswers: new Map(), saved: null,
+  sessionResults: new Map(),
   getTaskKey: task => task.file,
   getSavedProgressItem: () => ctx.saved,
+  getTaskScore: () => null,
+  formatPoints: value => String(value),
   showMessage: text => {ctx.feedback = text;},
   addProgress: (status, score) => {result.push({status, score}); ctx.currentTaskAnswered = true;},
 });
@@ -100,7 +106,7 @@ const cases = [
     .map(task => [task, task.inputs.map(field => field.answer ?? field.answers?.[0]),
       task.inputs.map(field => field.options ? field.options.find(value => value !== field.answer) : '999')]),
   ...JSON.parse(fs.readFileSync('zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json'))
-    .filter(task => task.type === 'input')
+    .filter(task => task.type === 'input' && task.teacherGraded !== true)
     .map(task => [task, task.inputs.map(field => field.answer ?? field.answers?.[0]),
       task.inputs.map(field => field.options ? field.options.find(value => value !== field.answer) : '999')]),
 ];
@@ -118,7 +124,7 @@ function render(task) {
   comparisonOverlay.children = [];
   mcq = new Element('div'); ctx.setupInputTask(mcq);
   const form = mcq.children[0];
-  return {form, inputs: form.querySelectorAll('input, select')};
+  return {form, inputs: form.querySelectorAll('input, select, textarea')};
 }
 for (const [task, good, bad] of cases) {
   assert(ctx.isInputTask(task));
@@ -176,9 +182,39 @@ assert(comparisonFields.every(field => ctx.isComparisonField(field) && Number.is
 const comparisonRender = render(comparisonTask);
 assert(comparisonRender.inputs.every(input => input.tagName === 'input' && input.type === 'hidden'));
 assert.equal(comparisonOverlay.children.length, 4);
+
+const teacherTask = task(6, '13.png');
+assert.equal(teacherTask.teacherGraded, true);
+assert.equal(teacherTask.inputs[0].control, 'textarea');
+assert.match(teacherTask.instruction, /wcześniej wykonasz samodzielnie/i);
+let teacherRender = render(teacherTask);
+assert.equal(teacherRender.inputs[0].tagName, 'textarea');
+teacherRender.inputs[0].value = 'Za krótko';
+let teacherBefore = result.length;
+ctx.checkInputAnswer(teacherRender.form);
+assert.equal(result.length, teacherBefore, 'A too short justification is not submitted');
+assert.match(ctx.feedback, /co najmniej 20 znaków/);
+teacherRender.inputs[0].value = 'Z obliczeń otrzymałem ceny 15 zł i 30 zł, więc cena normalna jest dwa razy wyższa.';
+ctx.checkInputAnswer(teacherRender.form);
+assert.equal(result.at(-1).status, 'bad', 'Pending review uses the persisted result value without automatic grading');
+assert.equal(result.at(-1).score.earnedPoints, null);
+assert.equal(result.at(-1).score.maxPoints, 3);
+assert(teacherRender.inputs[0].disabled);
+assert.match(ctx.feedback, /oczekuje na ocenę nauczyciela/i);
+ctx.saved = {
+  submitted_answer: 'Uzasadnienie: Z obliczeń otrzymałem ceny 15 zł i 30 zł.',
+  teacher_review_pending: true
+};
+teacherRender = render(teacherTask);
+ctx.restoreInputAnswerState('bad');
+assert.equal(teacherRender.inputs[0].value, 'Z obliczeń otrzymałem ceny 15 zł i 30 zł.');
+assert(!teacherRender.inputs[0].classes.has('wrong'));
+assert.match(ctx.feedback, /oczekuje na ocenę nauczyciela/i);
+ctx.saved = null;
+const restoredComparisonRender = render(comparisonTask);
 assert(comparisonOverlay.children.every(control => control.children.length === 3));
 comparisonOverlay.children[0].children[0].onclick();
-assert.equal(comparisonRender.inputs[0].value, '<');
+assert.equal(restoredComparisonRender.inputs[0].value, '<');
 assert.equal(render(cases[3][0]).inputs[0].inputMode, 'text');
 assert(ctx.isTypedAnswerCorrect('1/2', ['0,5']));
 assert(ctx.isTypedAnswerCorrect('1 1/2', ['1,5']));
@@ -190,6 +226,29 @@ assert(!ctx.isTypedAnswerCorrect('0,333', ctx.getInputFields(task(5, 'zd4.png'))
 assert(ctx.isTypedAnswerCorrect('-3 1/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
 assert(ctx.isTypedAnswerCorrect('-sqrt(100)/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
 assert(!ctx.isTypedAnswerCorrect('10/3', ctx.getInputFields(task(6, '3.png'))[0].answers));
+const fuelExpression = ctx.getInputFields(task(6, 'zd7.png'))[0];
+for(const value of ['3V/10', '3*V/10', '3/10*V', '3/10·V', 'V*3/10', '0.3V', '0,3V', '(3V)/10', 'V/(10/3)']){
+  assert(ctx.isTypedAnswerCorrect(value, fuelExpression.answers), value);
+}
+for(const value of ['3V/11', 'V/10', '0.03V', '3V/10+1', '3VW/10', '3/10']){
+  assert(!ctx.isTypedAnswerCorrect(value, fuelExpression.answers), value);
+}
+assert.equal(fuelExpression.inputMode, 'text');
+const plantsExpression = ctx.getInputFields(task(6, '4.png'))[0];
+assert(ctx.isTypedAnswerCorrect('2(p+6)/3+4w-3', plantsExpression.answers));
+assert(ctx.isTypedAnswerCorrect('4w+2p/3+1', plantsExpression.answers));
+assert(!ctx.isTypedAnswerCorrect('4w+2p/3+2', plantsExpression.answers));
+const mpCheckpoint = JSON.parse(fs.readFileSync('zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json'));
+const proofFields = ctx.getInputFields(mpCheckpoint.find(item => item.file === '9.png'));
+const proofExpression = proofFields[0];
+assert(ctx.isTypedAnswerCorrect('14*(2+8n+7n^2)+4', proofExpression.answers));
+assert(ctx.isTypedAnswerCorrect('14(7n²+8n+2)+4', proofExpression.answers));
+assert(!ctx.isTypedAnswerCorrect('14(7n^2+8n+2)+5', proofExpression.answers));
+assert(ctx.isTypedAnswerCorrect('4+14m', proofFields[1].answers));
+assert(!ctx.isTypedAnswerCorrect('4+13m', proofFields[1].answers));
+assert(proofFields.every(field => field.inputMode === 'text'));
+assert(!ctx.areSymbolicExpressionsEquivalent('A', 'A'));
+assert(!ctx.areSymbolicExpressionsEquivalent('37h30min', '37 h 30 min'));
 assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd2.png'))[0]), 'Podaj rozwiązanie równania lub wybierz jego typ.');
 assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd8.png'))[0]), 'Podaj rozwiązanie równania lub wybierz jego typ.');
 assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, '11.png'))[0]), 'Wpisz obliczoną masę ananasa (w kg).');

@@ -11,7 +11,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zapisz kolejne zmiany ceny jako mnożenie przez 0,9, a następnie przez 1,1."
+    "hint": "Zapisz kolejne zmiany ceny jako mnożenie przez 0,9."
   },
   {
     "file": "2.png",
@@ -25,7 +25,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Każdą obniżkę o 20% zapisz jako mnożenie przez 0,8. Od ceny początkowej odejmij cenę po dwóch obniżkach."
+    "hint": "Każdą obniżkę o 20% zapisz jako mnożenie przez 0,8."
   },
   {
     "file": "3.png",
@@ -40,7 +40,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Oblicz różnicę wyników w punktach procentowych, a następnie odnieś ją do mniejszego wyniku."
+    "hint": "Oblicz różnicę wyników w punktach procentowych."
   },
   {
     "file": "4.png",
@@ -55,7 +55,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Ustal, ilu głosom odpowiada 1 punkt procentowy. Następnie oblicz liczbę głosów dla wskazanego wyniku procentowego."
+    "hint": "Ustal, ilu głosom odpowiada 1 punkt procentowy."
   },
   {
     "file": "5.png",
@@ -69,7 +69,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Zapisz x = 0,24y oraz x = 1,32z, a następnie porównaj prawe strony obu równań."
+    "hint": "Zapisz x = 0,24y oraz x = 1,32z."
   },
   {
     "file": "6.png",
@@ -83,7 +83,7 @@
     "type": "true_false",
     "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
     "answer": ["P", "P"],
-    "hint": "W pierwszym stwierdzeniu zapisz oba procenty jako iloczyny. W drugim przelicz wzrost o a% na procent wartości początkowej."
+    "hint": "W pierwszym stwierdzeniu zapisz oba procenty jako iloczyny."
   },
   {
     "file": "7.png",
@@ -97,7 +97,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Każdy rok lokaty zapisz jako mnożenie kapitału przez 1,04. Od kwoty końcowej odejmij wpłacony kapitał."
+    "hint": "Każdy rok lokaty zapisz jako mnożenie kapitału przez 1,04."
   },
   {
     "file": "8.png",
@@ -111,7 +111,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "We wzorze na procent składany liczba kapitalizacji w roku występuje w podstawie i wykładniku. Sprawdź kolejne dopuszczalne wartości tej liczby."
+    "hint": "We wzorze na procent składany liczba kapitalizacji w roku występuje w podstawie i wykładniku."
   },
   {
     "file": "9.png",
@@ -125,7 +125,7 @@
     "type": "true_false",
     "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
     "answer": ["F", "F"],
-    "hint": "Sprawdź oba stwierdzenia osobno. Częstsza kapitalizacja zwiększa zysk przy tej samej stopie nominalnej, a samą wysokość oprocentowania trzeba oceniać razem z liczbą kapitalizacji."
+    "hint": "Sprawdź oba stwierdzenia osobno."
   },
   {
     "file": "10.png",
@@ -139,7 +139,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Dla kapitalizacji półrocznej zastosuj wzór 10 000 · (1 + r/2)². Rozwiąż równanie z podanym kapitałem końcowym."
+    "hint": "Dla kapitalizacji półrocznej zastosuj wzór 10 000 · (1 + r/2)²."
   },
   {
     "file": "zd1.png",
@@ -153,7 +153,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Przyjmij cenę początkową równą 1. Zapisz kolejną obniżkę i podwyżkę jako mnożniki zależne od p."
+    "hint": "Przyjmij cenę początkową równą 1."
   },
   {
     "file": "zd2.png",
@@ -167,7 +167,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zamień obniżki na mnożniki 0,8 i 0,85, a następnie oblicz, jaka część ceny początkowej pozostała."
+    "hint": "Zamień obniżki na mnożniki 0,8 i 0,85."
   },
   {
     "file": "zd3.png",
@@ -181,7 +181,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zamień stosunek 1,5 : 1 na 3 : 2 i podziel między kandydatów łączny procent głosów."
+    "hint": "Zamień stosunek 1,5 : 1 na 3 : 2."
   },
   {
     "file": "zd4.png",
@@ -195,7 +195,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Różnicę poparcia zapisz w punktach procentowych. Ustal, jaki procent wszystkich głosów odpowiada 2400 głosom."
+    "hint": "Różnicę poparcia zapisz w punktach procentowych."
   },
   {
     "file": "zd5.png",
@@ -209,7 +209,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zapisz y = 1,25z, a następnie oblicz x = 0,8y."
+    "hint": "Zapisz y = 1,25z."
   },
   {
     "file": "zd6.png",
@@ -237,7 +237,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Oznacz kapitał początkowy przez K. Zapisz kolejno pierwsze oprocentowanie, dopłatę 2000 zł i drugie oprocentowanie."
+    "hint": "Oznacz kapitał początkowy przez K."
   },
   {
     "file": "zd8.png",
@@ -251,7 +251,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Dla lokaty A oblicz odsetki po roku. Dla lokaty B dwukrotnie zastosuj półroczną stopę procentową, za każdym razem zaokrąglając odsetki do grosza."
+    "hint": "Dla lokaty A oblicz odsetki po roku."
   },
   {
     "file": "zd9.png",
@@ -293,7 +293,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zapisz 0,001 oraz √10 jako potęgi liczby 10, a potem oblicz oba logarytmy."
+    "hint": "Zapisz 0,001 oraz √10 jako potęgi liczby 10."
   },
   {
     "file": "zp3.png",
@@ -321,7 +321,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Najpierw zapisz dziedzinę. Po skróceniu ułamków porównaj 1/(x + 3) oraz 1/(x + 2)."
+    "hint": "Najpierw zapisz dziedzinę."
   },
   {
     "file": "zp5.png",
@@ -336,6 +336,6 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
-    "hint": "Zapisz n = 2k + 1, rozwiń (3n + 2)² i przedstaw wynik w postaci 12m + 1. Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą."
+    "hint": "Zapisz n = 2k + 1, rozwiń (3n + 2)² i przedstaw wynik w postaci 12m + 1."
   }
 ]

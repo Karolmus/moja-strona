@@ -1077,6 +1077,59 @@ class SecurityTests(unittest.TestCase):
         saved = self.client.get("/api/progress/me", headers=headers).get_json()["progress"]
         self.assertEqual(saved[0]["submitted_answer"], "A")
 
+    def test_teacher_graded_course_answer_waits_for_admin_score(self):
+        with app.app_context():
+            student = create_user(
+                "teacher-review@example.test", "Uczeń", "bezpieczne-haslo",
+                level="egzamin_osmoklasisty",
+            )
+            admin = create_user(
+                "teacher-review-admin@example.test", "Admin", "bezpieczne-haslo",
+                role="admin",
+            )
+            app_module.update_student(student["id"], {"full_course_access": True})
+            student_headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            admin_headers = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+
+        source = "zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json"
+        task = {
+            "source_id": source,
+            "file": "13.png",
+            "task_id": source + ":13.png",
+            "result": "good",
+            "earned_points": 3,
+            "max_points": 3,
+            "submitted_answer": (
+                "Uzasadnienie: Z własnych obliczeń otrzymałem ceny 15 zł i 30 zł, "
+                "więc cena normalna była dwa razy wyższa."
+            ),
+        }
+        saved = self.client.post("/api/progress", headers=student_headers, json=task)
+
+        self.assertEqual(saved.status_code, 201)
+        pending = saved.get_json()["progress"]
+        self.assertEqual(pending["result"], "bad")
+        self.assertIsNone(pending["earned_points"])
+        self.assertEqual(pending["max_points"], 3)
+        self.assertIs(pending["teacher_review_pending"], True)
+
+        endpoint = f"/api/admin/progress/{pending['id']}/score"
+        self.assertEqual(
+            self.client.patch(endpoint, headers=student_headers, json={"earned_points": 3}).status_code,
+            403,
+        )
+        graded = self.client.patch(endpoint, headers=admin_headers, json={"earned_points": 2})
+        self.assertEqual(graded.status_code, 200)
+        graded_progress = graded.get_json()["progress"]
+        self.assertEqual(graded_progress["result"], "medium")
+        self.assertEqual(graded_progress["earned_points"], 2)
+        self.assertIs(graded_progress["teacher_review_pending"], False)
+        self.assertTrue(graded_progress["teacher_graded_at"])
+        self.assertEqual(
+            self.client.patch(endpoint, headers=admin_headers, json={"earned_points": 3}).status_code,
+            404,
+        )
+
     def test_all_homework_assets_and_eo_grading_remain_accessible(self):
         root = app_module.COURSE_ASSET_ROOT
         tested = 0

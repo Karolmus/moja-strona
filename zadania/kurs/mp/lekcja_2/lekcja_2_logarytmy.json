@@ -19,7 +19,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Połącz różnicę logarytmów w logarytm ilorazu i zapisz otrzymany ułamek jako potęgę liczby 4."
+    "hint": "Połącz różnicę logarytmów w logarytm ilorazu."
   },
   {
     "file": "2.png",
@@ -42,7 +42,7 @@
       "D"
     ],
     "answer": "D",
-    "hint": "Zapisz podstawę i liczbę logarytmowaną jako potęgi liczby 5. Szukany wykładnik ma spełniać definicję logarytmu."
+    "hint": "Zapisz podstawę i liczbę logarytmowaną jako potęgi liczby 5."
   },
   {
     "file": "3.png",
@@ -65,7 +65,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Przenieś współczynniki przed logarytmami do wykładników, a następnie zastosuj wzór na logarytm ilorazu."
+    "hint": "Przenieś współczynniki przed logarytmami do wykładników."
   },
   {
     "file": "4.png",
@@ -88,7 +88,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Zapisz √10 jako potęgę o wykładniku 1/2. Logarytm dziesiętny potęgi liczby 10 jest równy jej wykładnikowi."
+    "hint": "Zapisz √10 jako potęgę o wykładniku 1/2."
   },
   {
     "file": "5.png",
@@ -111,7 +111,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Sumę logarytmów zapisz jako logarytm iloczynu. Przed obliczeniem skróć ułamki."
+    "hint": "Sumę logarytmów zapisz jako logarytm iloczynu."
   },
   {
     "file": "6.png",
@@ -134,7 +134,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Podstawę i argument logarytmu zapisz jako potęgi liczby 3, a potem porównaj wykładniki."
+    "hint": "Podstawę i argument logarytmu zapisz jako potęgi liczby 3."
   },
   {
     "file": "7.png",
@@ -158,7 +158,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Najpierw oblicz a, korzystając z własności logarytmów. Przy obliczaniu b zastosuj wzór na różnicę kwadratów."
+    "hint": "Najpierw oblicz a, korzystając z własności logarytmów."
   },
   {
     "file": "8.png",
@@ -226,7 +226,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Liczby przed logarytmami przenieś do wykładników. Przy dodawaniu logarytmów mnożymy ich argumenty."
+    "hint": "Liczby przed logarytmami przenieś do wykładników."
   },
   {
     "file": "11.png",
@@ -272,7 +272,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Oblicz osobno a, b i c. Pamiętaj, że logarytm przy podstawie mniejszej od 1 może mieć ujemną wartość."
+    "hint": "Oblicz osobno a, b i c."
   },
   {
     "file": "13.png",
@@ -295,7 +295,7 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Rozłóż 48 na iloczyn liczby 12 i potęgi liczby 2. Następnie rozdziel logarytm iloczynu."
+    "hint": "Rozłóż 48 na iloczyn liczby 12 i potęgi liczby 2."
   },
   {
     "file": "14.png",
@@ -318,7 +318,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Najpierw zauważ, ile wynosi logarytm liczby 1. Potem oblicz pozostały logarytm."
+    "hint": "Oblicz logarytm liczby 1."
   },
   {
     "file": "15.png",
@@ -341,7 +341,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Zapisz pierwiastek z 32 jako potęgę liczby 2. Oblicz licznik i mianownik osobno."
+    "hint": "Zapisz pierwiastek z 32 jako potęgę liczby 2."
   },
   {
     "file": "16.png",
@@ -389,7 +389,7 @@
       "P",
       "F"
     ],
-    "hint": "Przy porównaniu logarytmów możesz użyć wzoru na zmianę podstawy. W drugim zdaniu rozważ, czy równość 6^p = 66^q jest możliwa dla dodatnich liczb całkowitych p i q."
+    "hint": "Przy porównaniu logarytmów możesz użyć wzoru na zmianę podstawy."
   },
   {
     "file": "18.png",
@@ -415,7 +415,7 @@
       "F",
       "P"
     ],
-    "hint": "Połącz sumę logarytmów i porównaj argument z kolejnymi potęgami liczby 10. W drugim zdaniu zapisz pierwiastek jako potęgę liczby 11."
+    "hint": "Połącz sumę logarytmów."
   },
   {
     "file": "zd1.png",
@@ -780,7 +780,7 @@
       "D"
     ],
     "answer": "B",
-    "hint": "Wszystkie czynniki zapisz jako potęgi liczby 2. Przy mnożeniu potęg o tej samej podstawie dodajemy wykładniki."
+    "hint": "Wszystkie czynniki zapisz jako potęgi liczby 2."
   },
   {
     "file": "zp2.png",
@@ -804,7 +804,7 @@
       "D"
     ],
     "answer": "D",
-    "hint": "Zapisz 7 razy pierwiastek z 7 jako potęgę liczby 7, a następnie uwzględnij pierwiastek trzeciego stopnia."
+    "hint": "Zapisz 7 razy pierwiastek z 7 jako potęgę liczby 7."
   },
   {
     "file": "zp3.png",
@@ -828,7 +828,7 @@
       "D"
     ],
     "answer": "C",
-    "hint": "Zapisz 8 i 125 jako potęgi liczb 2 i 5. Połącz pary czynników 2 i 5 w potęgi liczby 10, a następnie policz cyfry."
+    "hint": "Zapisz 8 i 125 jako potęgi liczb 2 i 5."
   },
   {
     "file": "zp4.png",
@@ -853,6 +853,6 @@
       "D"
     ],
     "answer": "A",
-    "hint": "Wyłącz w liczniku wspólny czynnik 6¹⁹. Zapisz go jako iloczyn potęg liczb 2 i 3, a następnie skróć ułamek."
+    "hint": "Wyłącz w liczniku wspólny czynnik 6¹⁹."
   }
 ]

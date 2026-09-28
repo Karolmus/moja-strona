@@ -35,7 +35,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw policz nawias, potem pomnóż przez 1/3 i odejmij od 2/3.",
+    "hint": "Najpierw policz nawias.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -58,7 +58,7 @@
       "C",
       "D"
     ],
-    "hint": "Oblicz odległość między liczbami −11 i −32. Od liczby −11 przesuń się o tę samą odległość w przeciwną stronę osi.",
+    "hint": "Oblicz odległość między liczbami −11 i −32.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -80,7 +80,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Wypisz liczby trzycyfrowe, które nie zaczynają się od zera, a potem porównaj największą i najmniejszą.",
+    "hint": "Wypisz liczby trzycyfrowe, które nie zaczynają się od zera.",
     "answer": [
       "F",
       "P"
@@ -125,7 +125,7 @@
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
-    "hint": "Po wypiciu zostaje 1/3 pełnej szklanki. Odejmij to od 9/10.",
+    "hint": "Po wypiciu zostaje 1/3 pełnej szklanki.",
     "answer": "17/30",
     "coursePart": "zadania",
     "tags": [
@@ -222,7 +222,7 @@
       "E",
       "F"
     ],
-    "hint": "Sprawdź cechy podzielności liczby 1962. W tym zadaniu trzeba zaznaczyć dwie odpowiedzi.",
+    "hint": "Sprawdź cechy podzielności liczby 1962.",
     "answer": [
       "C",
       "F"
@@ -276,7 +276,7 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdź podzielność przez 4 i 6, a potem dobierz uzasadnienie.",
+    "hint": "Sprawdź podzielność przez 4 i 6.",
     "answer": "B3",
     "coursePart": "zadania",
     "tags": [
@@ -330,7 +330,7 @@
       "B2",
       "B3"
     ],
-    "hint": "Sprawdź, czy wskazana liczba dzieli obie liczby. Następnie podziel przez nią obie liczby i zbadaj, czy otrzymane ilorazy mają wspólny dzielnik większy od 1.",
+    "hint": "Sprawdź, czy wskazana liczba dzieli obie liczby.",
     "answer": "A2",
     "coursePart": "zadania",
     "tags": [
@@ -380,7 +380,7 @@
       "C",
       "D"
     ],
-    "hint": "Zaokrąglij liczbę 61,302 do dziesiątek, a potem dodaj cyfry otrzymanej liczby.",
+    "hint": "Zaokrąglij liczbę 61,302 do dziesiątek.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -404,7 +404,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw wykonaj odejmowanie 5,6329 - 3,0152, a potem zaokrąglij wynik do części dziesiętnych.",
+    "hint": "Najpierw wykonaj odejmowanie 5,6329 - 3,0152.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -428,7 +428,7 @@
       "C",
       "D"
     ],
-    "hint": "Rozbij każdą liczbę rzymską na symbole o znanych wartościach. Pamiętaj, że mniejszy symbol zapisany przed większym oznacza odejmowanie.",
+    "hint": "Rozbij każdą liczbę rzymską na symbole o znanych wartościach.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -450,7 +450,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Wypisz liczby spełniające wszystkie warunki, a następnie oblicz ich średnią.",
+    "hint": "Wypisz liczby spełniające wszystkie warunki.",
     "answer": [
       "P",
       "P"
@@ -478,7 +478,7 @@
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz wartość każdego wyrażenia osobno, a potem ustaw wyniki malejąco.",
+    "hint": "Oblicz wartość każdego wyrażenia osobno.",
     "answer": "b > a > c > d",
     "coursePart": "praca_domowa",
     "tags": [
@@ -506,7 +506,7 @@
       "b) C",
       "b) D"
     ],
-    "hint": "W podpunkcie a sprowadź potęgi do wspólnej podstawy. W podpunkcie b oblicz NWW i NWD.",
+    "hint": "W podpunkcie a sprowadź potęgi do wspólnej podstawy.\nW podpunkcie b oblicz NWW i NWD.",
     "answer": [
       "a) A",
       "b) D"
@@ -558,7 +558,7 @@
       "Stwierdzenie 3",
       "Stwierdzenie 4"
     ],
-    "hint": "Najpierw oblicz wartości wyrażeń I-VI, dopiero potem oceniaj zdania.",
+    "hint": "Najpierw oblicz wartości wyrażeń I-VI, dopiero.",
     "answer": [
       "P",
       "F",
@@ -586,7 +586,7 @@
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wyznacz liczbę bananów Oli i Antka z treści zadania, a następnie oblicz średnią dla trzech osób.",
+    "hint": "Wyznacz liczbę bananów Oli i Antka z treści zadania.",
     "answer": "a) 12, b) 8",
     "coursePart": "praca_domowa",
     "tags": [
@@ -659,7 +659,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Wyznacz środek odcinka, a następnie oblicz jego odległość od obu końców.",
+    "hint": "Wyznacz środek odcinka.",
     "answer": [
       "P",
       "P"
@@ -708,7 +708,7 @@
     "difficulty": 2,
     "topic": "działania na liczbach",
     "level": "egzamin_osmoklasisty",
-    "hint": "Dodaj kilometry z pięciu dni i podziel przez 5.",
+    "hint": "Dodaj kilometry z pięciu dni.",
     "answer": "68,8",
     "coursePart": "praca_domowa",
     "tags": [

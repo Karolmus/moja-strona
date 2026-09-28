@@ -71,6 +71,7 @@ for (const [text, name] of [
   assert.equal(entries[0].category, 'kurs');
   assert.equal(entries[0].level, 'matura_podstawowa');
   assert.equal(entries[0].kind, 'test');
+  if(name === 'TASK_SOURCES') assert.equal(entries[0].unlocksNextSources, 4);
   assert.equal(entries[0].label, 'Test sprawdzający z tematów 1-6, wersja A.');
   assert.equal(entries[0].detail, '60 minut');
 }
@@ -128,8 +129,62 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   assert.equal(await gate.ensureTestSourceStarted(sourcePath), true);
   assert.equal(startCalls, 1, 'Confirmation starts the timer exactly once');
 
+  const testTasks = [
+    {sourceId: sourcePath, file: '1.png', category: 'kurs', activityType: 'test'},
+    {sourceId: sourcePath, file: '2.png', category: 'kurs', activityType: 'test'}
+  ];
+  const savedResults = new Map([[`${sourcePath}:1.png`, {result: 'good'}]]);
+  const savedAsBad = [];
+  let summaryShown = 0;
+  const expiration = vm.createContext({
+    selectedSource: sourcePath,
+    currentTask: testTasks[1],
+    currentTaskAnswered: false,
+    completedHomeworkSummarySource: '',
+    isLoggedInStudent: true,
+    loggedUser: {role: 'student'},
+    testFinalizationPromises: new Map(),
+    pendingProgressSaveRequests: new Set(),
+    COURSE_COMPLETION_RESULTS: new Set(['good', 'medium', 'bad', 'video']),
+    sessionResults: new Map(),
+    sessionScores: new Map(),
+    getSourceMetaById: () => ({id: sourcePath, kind: 'test'}),
+    markTestTimedOut: () => {},
+    ensureTaskSourceLoaded: async () => {},
+    loadStudentProgress: async () => {},
+    getHomeworkSummaryTasks: () => testTasks,
+    getSavedProgressItem: task => savedResults.get(`${task.sourceId}:${task.file}`) || null,
+    saveProgress: async (result, score, duration, task) => {
+      savedAsBad.push(task.file);
+      const progress = {result};
+      savedResults.set(`${task.sourceId}:${task.file}`, progress);
+      return progress;
+    },
+    getTaskDurationSeconds: () => 0,
+    taskPointValue: () => 1,
+    taskUsedHint: () => false,
+    getTaskKey: task => `${task.sourceId}:${task.file}`,
+    preloadUnlockedCourseSources: async () => {},
+    renderSourceSelector: () => {},
+    applyCourseAnswerLock: () => {},
+    renderTaskNavigator: () => {},
+    updateSourceSummary: () => {},
+    showHomeworkCompletionSummary: () => {summaryShown++;},
+    showMessage: () => {},
+    console,
+    Promise,
+    Map,
+    Set,
+    Error
+  });
+  vm.runInContext(functionSource(html, 'finishExpiredTest'), expiration);
+  assert.equal(await expiration.finishExpiredTest(sourcePath), true);
+  assert.deepEqual(savedAsBad, ['2.png'], 'Only unanswered tasks receive zero points after timeout');
+  assert.equal(summaryShown, 1, 'Timeout immediately opens the saved test result');
+  assert.equal(expiration.sessionResults.get(`${sourcePath}:2.png`), 'bad');
+
   assert.match(html, /const TEST_DURATION_SECONDS = 60 \* 60;/);
-  assert.match(html, /timer\.innerText = `Pozostało \$\{timerClock\(remainingSeconds\)\}`;/);
+  assert.match(html, /: `Pozostało \$\{timerClock\(remainingSeconds\)\}`;/);
   assert.match(html, /setTimerVisible\(!isLoggedInStudent \|\| isTest\);/);
   assert.match(html, /\.timer\.countdown\.expired/);
   assert.match(html, /id="testStartDialog"/);
@@ -147,6 +202,9 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   assert.match(pointsBadgeStyle, /height: 28px;/);
   assert.match(pointsBadgeStyle, /line-height: 1;/);
   assert.match(html, /if\(sourceId !== "all" && !await ensureTestSourceStarted\(sourceId\)\) return;/);
+  assert.match(html, /Test zakończony - czas minął/);
+  assert.match(html, /await Promise\.allSettled\(\[\.\.\.pendingProgressSaveRequests\]\)/);
+  assert.match(html, /const unfinishedTasks = getHomeworkSummaryTasks\(sourceId\)/);
   assert.match(html, /\.course-source-list \.source-btn\.test-source/);
   assert(fs.statSync(path.join(sourceDir, 'Kurs matura podstawowa test A lekcje 1-6.pdf')).size > 400000);
 

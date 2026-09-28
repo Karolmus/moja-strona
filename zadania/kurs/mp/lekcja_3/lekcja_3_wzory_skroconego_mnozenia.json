@@ -11,7 +11,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Wyłącz x przed nawias, a następnie rozpoznaj kwadrat różnicy w otrzymanym trójmianie."
+    "hint": "Wyłącz x przed nawias."
   },
   {
     "file": "2.png",
@@ -39,7 +39,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Rozwiń oba kwadraty, a następnie odejmij wyrażenia podobne."
+    "hint": "Rozwiń oba kwadraty."
   },
   {
     "file": "4.png",
@@ -53,7 +53,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Rozłóż licznik i mianownik na czynniki, a potem skróć wspólne czynniki."
+    "hint": "Rozłóż licznik i mianownik na czynniki."
   },
   {
     "file": "5.png",
@@ -81,7 +81,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Rozpoznaj kwadrat różnicy i oblicz wartość wyrażenia pod nawiasem."
+    "hint": "Rozpoznaj kwadrat różnicy."
   },
   {
     "file": "7.png",
@@ -109,7 +109,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Rozwiń kwadrat różnicy oraz iloczyn dwóch nawiasów, a następnie połącz wyrazy podobne."
+    "hint": "Rozwiń kwadrat różnicy oraz iloczyn dwóch nawiasów."
   },
   {
     "file": "9.png",
@@ -137,7 +137,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Rozwiń kwadrat sumy po lewej stronie i porównaj wyrazy podobne."
+    "hint": "Rozwiń kwadrat sumy po lewej stronie."
   },
   {
     "file": "11.png",
@@ -207,7 +207,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Zastosuj różnicę kwadratów i wykonaj mnożenie liczb w postaci dziesiętnej."
+    "hint": "Zastosuj różnicę kwadratów."
   },
   {
     "file": "16.png",
@@ -221,7 +221,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Połącz oba kwadraty w iloczyn i zastosuj różnicę kwadratów."
+    "hint": "Połącz oba kwadraty w iloczyn."
   },
   {
     "file": "zd1.png",
@@ -431,7 +431,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Rozdziel potęgi liczby 2 i 3, a następnie podziel przez 6⁴."
+    "hint": "Rozdziel potęgi liczby 2 i 3."
   },
   {
     "file": "zp3.png",
@@ -476,6 +476,6 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Oblicz logarytm ułamka i wykorzystaj wartości log₂2 oraz log₈1."
+    "hint": "Oblicz logarytm ułamka."
   }
 ]

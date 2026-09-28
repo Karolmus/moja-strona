@@ -56,6 +56,7 @@ from auth_storage import (
     register_speed_training_attempt,
     register_auth_db,
     review_tasks_for_user,
+    score_teacher_reviewed_progress,
     reset_user_password,
     revoke_user_auth,
     speed_training_leaderboard,
@@ -1475,6 +1476,22 @@ def api_admin_update_review_task(_admin, item_id):
     return safe(handler)
 
 
+@app.patch("/api/admin/progress/<int:item_id>/score")
+@require_admin
+def api_admin_score_teacher_reviewed_progress(_admin, item_id):
+    def handler():
+        item = score_teacher_reviewed_progress(item_id, payload().get("earned_points"))
+
+        if not item:
+            return api_error("Nie znaleziono odpowiedzi oczekującej na ocenę.", 404)
+
+        return jsonify({
+            "progress": item,
+        })
+
+    return safe(handler)
+
+
 @app.post("/api/progress")
 @rate_limit(90, 60, "progress-write")
 @rate_limit(1500, 24 * 60 * 60, "progress-write-day")
@@ -1482,20 +1499,43 @@ def api_admin_update_review_task(_admin, item_id):
 def api_save_progress(user):
     def handler():
         data = validated_task_data(payload(), user)
+        task = None
 
         if data["result"] not in {"good", "medium", "bad", "video"}:
             return api_error("Nieprawidłowy wynik zadania.")
 
-        if data["result"] == "video":
-            if not data["source_id"].startswith("zadania/kurs/"):
-                return api_error("Film z rozwiązaniem dotyczy zadań kursowych.")
+        if data["source_id"].startswith("zadania/kurs/"):
             manifest = read_course_json(data["source_id"].removeprefix("zadania/kurs/"))
             items = manifest if isinstance(manifest, list) else []
-            task = next((task for task in items if isinstance(task, dict) and task.get("file") == data["file"]), None)
+            task = next((item for item in items if isinstance(item, dict) and item.get("file") == data["file"]), None)
+
             if not task:
                 return api_error("Nie znaleziono zadania.")
+
+        if data["result"] == "video":
+            if not task:
+                return api_error("Film z rozwiązaniem dotyczy zadań kursowych.")
             data["max_points"] = task.get("maxPoints") or 1
             data["earned_points"] = 0
+
+        if task and task.get("teacherGraded") is True:
+            if data["result"] == "video":
+                return api_error("Odpowiedź opisowa wymaga oceny nauczyciela.")
+
+            submitted_answer = str(data.get("submitted_answer") or "").strip()
+            submitted_body = submitted_answer.split(":", 1)[-1].strip()
+            inputs = task.get("inputs") if isinstance(task.get("inputs"), list) else []
+            minimum_length = max(
+                (int(item.get("minLength") or 1) for item in inputs if isinstance(item, dict)),
+                default=1,
+            )
+            if len(submitted_body) < minimum_length:
+                return api_error("Wpisz pełne uzasadnienie przed wysłaniem odpowiedzi.")
+
+            data["result"] = "bad"
+            data["earned_points"] = None
+            data["max_points"] = task.get("maxPoints") or 1
+            data["teacher_review_pending"] = True
 
         progress = record_progress(user["id"], data)
 

@@ -5,7 +5,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pomnóż długość z mapy przez mianownik skali. Otrzymaną długość rzeczywistą zamień z centymetrów na kilometry.",
+    "hint": "Pomnóż długość z mapy przez mianownik skali.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -30,7 +30,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień odległość rzeczywistą na centymetry. Mianownik skali otrzymasz, dzieląc ją przez długość na mapie.",
+    "hint": "Zamień odległość rzeczywistą na centymetry.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -55,7 +55,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Każdy wymiar z mapy pomnóż przez mianownik skali, a następnie zamień jednostki długości.",
+    "hint": "Każdy wymiar z mapy pomnóż przez mianownik skali.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -80,7 +80,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Porównaj mianowniki obu skal, aby znaleźć skalę długości. Dla pól podnieś ten stosunek do kwadratu.",
+    "hint": "Porównaj mianowniki obu skal, aby znaleźć skalę długości.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -105,7 +105,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pomnóż długość modelu przez współczynnik skali, a następnie zamień centymetry na metry.",
+    "hint": "Pomnóż długość modelu przez współczynnik skali.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -130,7 +130,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Porównaj skale liniowe 1:5 i 1:3. Pole zmienia się jak kwadrat skali.",
+    "hint": "Porównaj skale liniowe 1:5 i 1:3.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -172,7 +172,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień hektary na m². Przy przejściu od pola rzeczywistego do pola na mapie uwzględnij kwadrat mianownika skali.",
+    "hint": "Zamień hektary na m².",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -197,7 +197,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Wyznacz rzeczywistą długość boku ze skali, oblicz pole ogrodu, a następnie podziel je przez wydajność pracy.",
+    "hint": "Wyznacz rzeczywistą długość boku ze skali.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -222,7 +222,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Prędkość z minimapy pomnóż przez mianownik skali. Następnie zamień cm/s na km/h.",
+    "hint": "Prędkość z minimapy pomnóż przez mianownik skali.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -247,7 +247,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Oblicz rzeczywisty dystans, a następnie porównaj go z długością odcinka na ekranie. Sprowadź obie długości do tej samej jednostki.",
+    "hint": "Oblicz rzeczywisty dystans.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -272,7 +272,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Pole z planu pomnóż przez kwadrat skali i zamień na m². Oznacz szerokość przez x, a długość zapisz jako 2x.",
+    "hint": "Pole z planu pomnóż przez kwadrat skali i zamień na m².",
     "answer": "Pokój ma wymiary 3 m × 6 m.",
     "coursePart": "zadania",
     "tags": [
@@ -289,7 +289,7 @@
     "difficulty": 1,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Sprowadź rzeczywistą długość i długość na rysunku do tej samej jednostki. Ich iloraz wyznaczy skalę.",
+    "hint": "Sprowadź rzeczywistą długość i długość na rysunku do tej samej jednostki.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -404,7 +404,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "W skali pola mnożą się przez kwadrat skali. Oblicz rzeczywiste pole w cm², a następnie zamień jednostki.",
+    "hint": "W skali pola mnożą się przez kwadrat skali.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
@@ -471,7 +471,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Zamień ary na metry kwadratowe, a następnie podziel rzeczywiste pole przez kwadrat mianownika skali.",
+    "hint": "Zamień ary na metry kwadratowe.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
@@ -496,7 +496,7 @@
     "difficulty": 2,
     "topic": "skala i jednostki powierzchni",
     "level": "egzamin_osmoklasisty",
-    "hint": "Ze skali wyznacz rzeczywiste wymiary pokoju, oblicz jego pole i podziel przez wydajność pracy.",
+    "hint": "Ze skali wyznacz rzeczywiste wymiary pokoju.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [

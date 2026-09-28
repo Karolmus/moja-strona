@@ -11,7 +11,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Podziel każdy składnik licznika przez potęgę z mianownika. Przy dzieleniu potęg o tej samej podstawie odejmujemy wykładniki."
+    "hint": "Podziel każdy składnik licznika przez potęgę z mianownika."
   },
   {
     "file": "2.png",
@@ -25,7 +25,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Zapisz 16 jako potęgę liczby 4. Przy potęgowaniu potęgi mnożymy wykładniki."
+    "hint": "Zapisz 16 jako potęgę liczby 4."
   },
   {
     "file": "3.png",
@@ -39,7 +39,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zapisz ułamek 1/27 oraz liczbę 9 jako potęgi liczby 3. Następnie uporządkuj wykładniki."
+    "hint": "Zapisz ułamek 1/27 oraz liczbę 9 jako potęgi liczby 3."
   },
   {
     "file": "4.png",
@@ -53,7 +53,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Sprowadź licznik i mianownik do potęg liczby 5. Odejmując ujemny wykładnik mianownika, zmieniasz jego znak."
+    "hint": "Sprowadź licznik i mianownik do potęg liczby 5."
   },
   {
     "file": "5.png",
@@ -67,7 +67,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Rozpisz potęgę liczby 6 jako iloczyn potęg liczb 2 i 3. Oddzielnie wykonaj dzielenie dla każdej podstawy."
+    "hint": "Rozpisz potęgę liczby 6 jako iloczyn potęg liczb 2 i 3."
   },
   {
     "file": "6.png",
@@ -95,7 +95,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zapisz 40 jako iloczyn 5 i 8, a następnie skróć jednakowe potęgi w liczniku i mianowniku."
+    "hint": "Zapisz 40 jako iloczyn 5 i 8."
   },
   {
     "file": "8.png",
@@ -109,7 +109,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Potęgę z sumą w wykładniku zapisz jako iloczyn dwóch potęg. Wykładnik 1/5 odpowiada pierwiastkowi piątego stopnia."
+    "hint": "Potęgę z sumą w wykładniku zapisz jako iloczyn dwóch potęg."
   },
   {
     "file": "9.png",
@@ -137,7 +137,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "D",
-    "hint": "Zapisz iloczyn pod pierwiastkiem jako potęgę liczby 5, a następnie uwzględnij pierwiastek trzeciego stopnia."
+    "hint": "Zapisz iloczyn pod pierwiastkiem jako potęgę liczby 5."
   },
   {
     "file": "11.png",
@@ -151,7 +151,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Połącz iloczyn pierwiastków w jeden pierwiastek. Pamiętaj, że wykładnik -1 oznacza odwrotność liczby."
+    "hint": "Połącz iloczyn pierwiastków w jeden pierwiastek."
   },
   {
     "file": "12.png",
@@ -165,7 +165,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "A",
-    "hint": "Pierwiastkowanie odpowiada potęgowaniu z wykładnikiem ułamkowym. Przy pierwiastku z pierwiastka pomnóż odpowiednie wykładniki."
+    "hint": "Pierwiastkowanie odpowiada potęgowaniu z wykładnikiem ułamkowym."
   },
   {
     "file": "13.png",
@@ -179,7 +179,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Rozłóż 128 na iloczyn sześcianu liczby całkowitej i liczby 2. Wyłącz czynnik przed pierwiastek, a następnie wykonaj odejmowanie."
+    "hint": "Rozłóż 128 na iloczyn sześcianu liczby całkowitej i liczby 2."
   },
   {
     "file": "14.png",
@@ -193,7 +193,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Oblicz osobno trzy pierwiastki. Pierwiastek nieparzystego stopnia z liczby ujemnej jest ujemny."
+    "hint": "Oblicz osobno trzy pierwiastki."
   },
   {
     "file": "15.png",
@@ -207,7 +207,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Sprowadź każdy pierwiastek do wielokrotności pierwiastka z 3. Wykonaj działania w liczniku i mianowniku, a następnie skróć ułamek."
+    "hint": "Sprowadź każdy pierwiastek do wielokrotności pierwiastka z 3."
   },
   {
     "file": "16.png",
@@ -221,7 +221,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Zamień 4 i 25 na potęgi liczb 2 i 5. Połącz pary czynników 2 i 5 w dziesiątki, uwzględniając pozostały czynnik."
+    "hint": "Zamień 4 i 25 na potęgi liczb 2 i 5."
   },
   {
     "file": "17.png",
@@ -235,7 +235,7 @@
     "type": "true_false",
     "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
     "answer": ["F", "P"],
-    "hint": "Sprawdź, czy iloczyn zawiera czynniki potrzebne do podzielności przez 55 i 100. W drugim zdaniu połącz czynniki 2 i 5 w potęgę liczby 10."
+    "hint": "Sprawdź, czy iloczyn zawiera czynniki potrzebne do podzielności przez 55 i 100."
   },
   {
     "file": "18.png",
@@ -249,7 +249,7 @@
     "type": "true_false",
     "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
     "answer": ["P", "P"],
-    "hint": "Dla podstawy między 0 a 1 większy wykładnik daje mniejszą wartość potęgi. Przy jednakowym dodatnim wykładniku porównaj dodatnie podstawy."
+    "hint": "Dla podstawy między 0 a 1 większy wykładnik daje mniejszą wartość potęgi."
   },
   {
     "file": "zd1.png",

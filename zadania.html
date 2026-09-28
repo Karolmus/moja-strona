@@ -1007,6 +1007,11 @@ body.focus-mode .task-card {
     --status-icon: url("static/icons/x.svg");
 }
 
+.tile.pending {
+    --tile-bg: #edf5fc;
+    --tile-border: #79a7ce;
+}
+
 .tile.skipped {
     --tile-bg: #edf4fb;
     --status-color: #4077a3;
@@ -4083,6 +4088,9 @@ const STUDENT_WORK_COURSE_PARTS = ["praca_domowa", "zadania_powtorkowe"];
 const COURSE_COMPLETION_RESULTS = new Set(["good", "medium", "bad", "video"]);
 const TEST_DURATION_SECONDS = 60 * 60;
 const testDeadlineFallbacks = new Map();
+const testTimeoutFallbacks = new Set();
+const testFinalizationPromises = new Map();
+const pendingProgressSaveRequests = new Set();
 let unlockedCourseSourcesPreloadPromise = null;
 const COURSE_PART_ORDER = {
     zadania: 1,
@@ -4256,7 +4264,8 @@ const TASK_SOURCES = [
         level: "matura_podstawowa",
         label: "Test sprawdzający z tematów 1-6, wersja A.",
         detail: "60 minut",
-        kind: "test"
+        kind: "test",
+        unlocksNextSources: 4
     },
     {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
@@ -4306,7 +4315,8 @@ const TASK_SOURCES = [
         level: "egzamin_osmoklasisty",
         label: "Test sprawdzający z lekcji 1 - 6",
         detail: "Sprawdź wiedzę z lekcji 1 - 6",
-        kind: "test"
+        kind: "test",
+        unlocksNextSources: 4
     },
     {
         path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json",
@@ -4525,6 +4535,35 @@ function storedTestDeadline(task = currentTask){
     return deadline;
 }
 
+function testTimeoutStorageKey(task = currentTask){
+    const deadlineKey = testTimerStorageKey(task);
+
+    return deadlineKey ? `${deadlineKey}:timedOut` : "";
+}
+
+function markTestTimedOut(task = currentTask){
+    const key = testTimeoutStorageKey(task);
+    if(!key) return;
+
+    testTimeoutFallbacks.add(key);
+    try {
+        localStorage.setItem(key, "1");
+    } catch(error) {
+        // Pamięć zastępcza zachowuje informację w bieżącej karcie.
+    }
+}
+
+function wasTestTimedOut(task = currentTask){
+    const key = testTimeoutStorageKey(task);
+    if(!key) return false;
+
+    try {
+        return localStorage.getItem(key) === "1" || testTimeoutFallbacks.has(key);
+    } catch(error) {
+        return testTimeoutFallbacks.has(key);
+    }
+}
+
 function startTestTimer(task = currentTask){
     const key = testTimerStorageKey(task);
     if(!key) return 0;
@@ -4595,14 +4634,90 @@ function confirmTestStart(source){
 async function ensureTestSourceStarted(sourceId){
     const source = getSourceMetaById(sourceId);
 
-    if(source?.kind !== "test" || storedTestDeadline(sourceId) > 0) return true;
+    if(source?.kind !== "test") return true;
+    if(typeof ensureTaskSourceLoaded === "function"){
+        await ensureTaskSourceLoaded(sourceId);
+    }
+    if(typeof isHomeworkComplete === "function" && isHomeworkComplete(sourceId)) return true;
+
+    const deadline = storedTestDeadline(sourceId);
+    if(deadline > 0){
+        if(deadline <= Date.now() && typeof finishExpiredTest === "function"){
+            await finishExpiredTest(sourceId);
+        }
+        return true;
+    }
     if(!await confirmTestStart(source)) return false;
 
     startTestTimer(sourceId);
     return true;
 }
 
-function applyTestTimeLimit(remainingSeconds){
+async function finishExpiredTest(sourceId = selectedSource){
+    const source = getSourceMetaById(sourceId);
+
+    if(source?.kind !== "test" || !isLoggedInStudent || loggedUser?.role !== "student") return false;
+    if(testFinalizationPromises.has(sourceId)) return testFinalizationPromises.get(sourceId);
+
+    const finalization = (async () => {
+        markTestTimedOut(sourceId);
+        await ensureTaskSourceLoaded(sourceId);
+
+        if(pendingProgressSaveRequests.size){
+            await Promise.allSettled([...pendingProgressSaveRequests]);
+        }
+        await loadStudentProgress({ render: false });
+
+        const unfinishedTasks = getHomeworkSummaryTasks(sourceId).filter(task =>
+            !COURSE_COMPLETION_RESULTS.has(getSavedProgressItem(task)?.result)
+        );
+
+        for(const task of unfinishedTasks){
+            const score = { earnedPoints: 0, maxPoints: taskPointValue(task) };
+            const progress = await saveProgress(
+                "bad",
+                score,
+                getTaskDurationSeconds(task),
+                task,
+                {
+                    throwOnError: true,
+                    hintUsed: taskUsedHint(task),
+                    answerShown: false
+                }
+            );
+
+            if(!progress) throw new Error("Nie potwierdzono zakończenia zadania testowego.");
+            sessionResults.set(getTaskKey(task), "bad");
+            sessionScores.set(getTaskKey(task), score);
+        }
+
+        await loadStudentProgress({ render: false });
+        await preloadUnlockedCourseSources();
+        renderSourceSelector();
+
+        if(selectedSource === sourceId){
+            currentTaskAnswered = true;
+            applyCourseAnswerLock();
+            renderTaskNavigator();
+            updateSourceSummary();
+            completedHomeworkSummarySource = sourceId;
+            showHomeworkCompletionSummary(sourceId);
+        }
+
+        return true;
+    })().catch(error => {
+        console.warn("Nie udało się automatycznie zakończyć testu.", error);
+        showMessage("Czas testu minął. Nie udało się jeszcze zapisać wyniku. Sprawdź połączenie i spróbuj ponownie.");
+        return false;
+    }).finally(() => {
+        testFinalizationPromises.delete(sourceId);
+    });
+
+    testFinalizationPromises.set(sourceId, finalization);
+    return finalization;
+}
+
+function applyTestTimeLimit(remainingSeconds, timedOut = remainingSeconds === 0){
     const expired = remainingSeconds === 0;
     const taskCard = document.querySelector(".task-card");
 
@@ -4611,6 +4726,10 @@ function applyTestTimeLimit(remainingSeconds){
 
     document.querySelectorAll("#mcq button, #mcq input, #mcq textarea, #mcq select, #comparisonOverlay button")
         .forEach(control => { control.disabled = true; });
+
+    if(timedOut && currentTask?.activityType === "test" && !isHomeworkCompleteOnServer(currentTask.sourceId)){
+        void finishExpiredTest(currentTask.sourceId);
+    }
 }
 
 function updateTimer(){
@@ -4619,18 +4738,23 @@ function updateTimer(){
 
     const remainingSeconds = testRemainingSeconds();
     const isTest = remainingSeconds !== null;
+    const testComplete = isTest && isHomeworkComplete(currentTask?.sourceId || selectedSource);
 
     setTimerVisible(!isLoggedInStudent || isTest);
     timer.classList.toggle("countdown", isTest);
-    timer.classList.toggle("expired", isTest && remainingSeconds === 0);
+    timer.classList.toggle("expired", isTest && remainingSeconds === 0 && !testComplete);
 
     if(isTest){
-        timer.innerText = `Pozostało ${timerClock(remainingSeconds)}`;
-        timer.title = remainingSeconds === 0
-            ? "Czas przeznaczony na test minął."
-            : "Czas pozostały do końca testu.";
+        timer.innerText = testComplete
+            ? "Test zakończony"
+            : `Pozostało ${timerClock(remainingSeconds)}`;
+        timer.title = testComplete
+            ? "Test został zakończony."
+            : remainingSeconds === 0
+                ? "Czas przeznaczony na test minął."
+                : "Czas pozostały do końca testu.";
         timer.setAttribute("aria-label", timer.title);
-        applyTestTimeLimit(remainingSeconds);
+        applyTestTimeLimit(testComplete ? 0 : remainingSeconds, remainingSeconds === 0);
         return;
     }
 
@@ -5265,7 +5389,8 @@ function getSourceMeta(sourceConfig){
         level: sourceConfig.level || SOURCE_LEVELS[type],
         label,
         detail,
-        kind: sourceConfig.kind || ""
+        kind: sourceConfig.kind || "",
+        unlocksNextSources: Math.max(0, Number(sourceConfig.unlocksNextSources) || 0)
     };
 }
 
@@ -5328,7 +5453,23 @@ function isCourseSourceVisible(source){
     const sources = getCourseSourceSequence(source.level);
     const previousCheckpoint = getPreviousCourseCheckpoint(source, sources);
 
-    return !previousCheckpoint || isCheckpointStageComplete(previousCheckpoint, sources);
+    if(!previousCheckpoint) return true;
+    if(!isCheckpointStageComplete(previousCheckpoint, sources)) return false;
+
+    const checkpointIndex = sources.findIndex(item => item.id === previousCheckpoint.id);
+    const sourceIndex = sources.findIndex(item => item.id === source.id);
+    const nextCheckpointIndex = sources.findIndex((item, index) =>
+        index > checkpointIndex && item.kind === "test"
+    );
+
+    if(nextCheckpointIndex >= 0) return sourceIndex <= nextCheckpointIndex;
+    if(previousCheckpoint.unlocksNextSources <= 0) return true;
+
+    const unlockedSources = sources
+        .slice(checkpointIndex + 1, sourceIndex + 1)
+        .filter(item => item.kind !== "test");
+
+    return unlockedSources.length <= previousCheckpoint.unlocksNextSources;
 }
 
 function preloadUnlockedCourseSources(){
@@ -6494,9 +6635,11 @@ function getSavedResult(task){
 
     if(!key) return "";
 
-    if(sessionResults.has(key)) return sessionResults.get(key);
-
     const saved = savedProgress.find(item => progressTaskKey(item) === key);
+
+    if(task?.teacherGraded === true && saved) return saved.result || "";
+
+    if(sessionResults.has(key)) return sessionResults.get(key);
 
     return saved?.result || "";
 }
@@ -6507,6 +6650,19 @@ function getSavedProgressItem(task){
     if(!key) return null;
 
     return savedProgress.find(item => progressTaskKey(item) === key) || null;
+}
+
+function isTeacherGradedTask(task = currentTask){
+    return Boolean(task?.teacherGraded === true);
+}
+
+function isTeacherReviewPending(task = currentTask){
+    if(!isTeacherGradedTask(task)) return false;
+
+    const saved = getSavedProgressItem(task);
+    if(saved) return saved.teacher_review_pending === true || saved.teacher_review_pending === 1;
+
+    return sessionResults.has(getTaskKey(task));
 }
 
 function inputAnswerValuesFromText(task, text){
@@ -6605,6 +6761,14 @@ function isHomeworkComplete(sourceId = selectedSource){
 
     return homeworkTasks.length > 0 && homeworkTasks.every(task =>
         ["good", "medium", "bad", "video"].includes(getSavedResult(task))
+    );
+}
+
+function isHomeworkCompleteOnServer(sourceId = selectedSource){
+    const homeworkTasks = getHomeworkSummaryTasks(sourceId);
+
+    return homeworkTasks.length > 0 && homeworkTasks.every(task =>
+        COURSE_COMPLETION_RESULTS.has(getSavedProgressItem(task)?.result)
     );
 }
 
@@ -6997,7 +7161,10 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     const overlay = document.getElementById("homeworkSummaryOverlay");
     const dialog = overlay?.querySelector(".homework-summary-dialog");
     const isCheckpoint = getSourceMetaById(sourceId)?.kind === "test";
-    const completionLabel = isCheckpoint ? "Test ukończony" : "Praca domowa ukończona";
+    const timedOut = isCheckpoint && wasTestTimedOut(sourceId);
+    const completionLabel = timedOut
+        ? "Czas minął. Test został zakończony"
+        : isCheckpoint ? "Test ukończony" : "Praca domowa ukończona";
 
     if(!summary.tasks.length) return;
 
@@ -7015,7 +7182,7 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     const summaryTitle = document.getElementById("homeworkSummaryTitle");
     if(summaryTitle){
         summaryTitle.innerText = isCheckpoint
-            ? "Podsumowanie testu"
+            ? timedOut ? "Test zakończony - czas minął" : "Test zakończony"
             : "Podsumowanie zadania domowego";
     }
 
@@ -7143,7 +7310,11 @@ function updateNextTaskButton(){
 function updateSupportActionHighlights(){
     const reviewButton = document.getElementById("reviewButton");
     const videoLink = document.getElementById("taskVideoLink");
-    const incorrect = Boolean(currentTask && getSavedResult(currentTask) === "bad");
+    const saved = currentTask ? getSavedProgressItem(currentTask) : null;
+    const teacherPending = currentTask?.teacherGraded === true && (
+        saved?.teacher_review_pending === true || saved?.teacher_review_pending === 1 || !saved
+    );
+    const incorrect = Boolean(currentTask && getSavedResult(currentTask) === "bad" && !teacherPending);
     const reviewPending = currentTask && reviewTaskKeys.has(getTaskKey(currentTask));
 
     reviewButton?.classList.toggle(
@@ -7391,13 +7562,14 @@ function addExamNavigatorGroup(progress, label){
 function addNavigatorTaskButton(container, task, index){
     const button = document.createElement("button");
     const result = getSavedResult(task);
+    const teacherReviewPending = isTeacherReviewPending(task);
     const themeClass = taskThemeClass(task);
 
     button.type = "button";
     button.className = "tile nav-tile";
     if(themeClass) button.classList.add(themeClass);
     button.innerText = navigatorTaskLabel(task);
-    button.title = `${taskLabel(task)} • ${resultLabel(result)}`;
+    button.title = `${taskLabel(task)} • ${teacherReviewPending ? "oczekuje na ocenę" : resultLabel(result)}`;
     if(reviewTaskKeys.has(getTaskKey(task))){
         const marker = document.createElement("span");
         marker.className = "nav-review-mark";
@@ -7417,7 +7589,7 @@ function addNavigatorTaskButton(container, task, index){
     button.setAttribute("aria-label", button.title);
     button.onclick = () => openNavigatorTask(task, index);
 
-    if(result) button.classList.add(result);
+    if(result) button.classList.add(teacherReviewPending ? "pending" : result);
     if(isActiveNavigatorTask(task, index)){
         button.classList.add("active");
         button.setAttribute("aria-current", "step");
@@ -7884,13 +8056,18 @@ function getInputFields(task){
         return task.inputs.map((input, index) => {
             const answers = Array.isArray(input.answers) ? input.answers : [input.answer ?? ""];
             const equation = isEquationSolutionInput(task, input);
+            const symbolic = !input.options && answers.some(answer =>
+                symbolicExpressionVariables(answer).length
+            );
             return {
                 label: input.label || `Odpowiedź ${index + 1}`,
                 prompt: String(input.prompt || "").trim(),
                 options: equation ? null : Array.isArray(input.options) ? input.options : null,
                 control: equation ? "equation" : input.control || "",
                 position: input.position || null,
-                inputMode: input.inputMode || "decimal",
+                inputMode: input.inputMode || (symbolic ? "text" : "decimal"),
+                minLength: Number(input.minLength) || 0,
+                maxLength: Number(input.maxLength) || 0,
                 exact: input.exact === true,
                 math: equation || input.math === true || (!input.options && !input.exact &&
                     typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid)),
@@ -7982,6 +8159,159 @@ function normalizeTypedAnswer(value){
         .replace(/,/g, ".")
         .replace(/−/g, "-")
         .replace(/%/g, "");
+}
+
+function normalizeSymbolicExpression(value){
+    return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/(\d),(\d)/g, "$1.$2")
+        .replace(/[−–—]/g, "-")
+        .replace(/[·×]/g, "*")
+        .replace(/√/g, "sqrt")
+        .replace(/²/g, "^2")
+        .replace(/³/g, "^3");
+}
+
+function tokenizeSymbolicExpression(value){
+    const expression = normalizeSymbolicExpression(value);
+    if(!expression || expression.length > 200) return null;
+
+    const withoutFunctions = expression.replace(/sqrt/g, "");
+    if(/[a-z]{2,}/.test(withoutFunctions)) return null;
+
+    const rawTokens = expression.match(/sqrt|(?:\d+(?:\.\d*)?|\.\d+)|[a-z]|[()+\-*/^]/g) || [];
+    if(rawTokens.join("") !== expression) return null;
+
+    const tokens = [];
+    const endsValue = token => /^(?:\d|\.)/.test(token || "") || /^[a-z]$/.test(token || "") || token === ")";
+    const startsValue = token => /^(?:\d|\.)/.test(token || "") || /^[a-z]$/.test(token || "") || token === "(" || token === "sqrt";
+
+    rawTokens.forEach(token => {
+        const previous = tokens.at(-1);
+        if(endsValue(previous) && startsValue(token) && !(previous === "sqrt" && token === "(")){
+            tokens.push("*");
+        }
+        tokens.push(token);
+    });
+
+    return tokens;
+}
+
+function symbolicExpressionVariables(value){
+    const expression = normalizeSymbolicExpression(value);
+    if(!/[\d()+\-*/^]/.test(expression)) return [];
+
+    const tokens = tokenizeSymbolicExpression(value);
+    if(!tokens) return [];
+
+    return [...new Set(tokens.filter(token => /^[a-z]$/.test(token)))].sort();
+}
+
+function evaluateSymbolicExpression(value, variables){
+    const tokens = tokenizeSymbolicExpression(value);
+    if(!tokens) return NaN;
+
+    let index = 0;
+
+    function parsePrimary(){
+        const token = tokens[index++];
+
+        if(token === "("){
+            const result = parseExpression();
+            if(tokens[index++] !== ")") throw new Error("Brakuje nawiasu.");
+            return result;
+        }
+
+        if(token === "sqrt"){
+            if(tokens[index++] !== "(") throw new Error("Brakuje nawiasu pierwiastka.");
+            const result = parseExpression();
+            if(tokens[index++] !== ")") throw new Error("Brakuje nawiasu pierwiastka.");
+            return Math.sqrt(result);
+        }
+
+        if(/^(?:\d|\.)/.test(token || "")) return Number(token);
+        if(/^[a-z]$/.test(token || "") && Object.prototype.hasOwnProperty.call(variables, token)){
+            return Number(variables[token]);
+        }
+
+        throw new Error("Nieprawidłowy symbol.");
+    }
+
+    function parsePower(){
+        let result = parsePrimary();
+        if(tokens[index] === "^"){
+            index++;
+            result **= parseUnary();
+        }
+        return result;
+    }
+
+    function parseUnary(){
+        if(tokens[index] === "+"){
+            index++;
+            return parseUnary();
+        }
+        if(tokens[index] === "-"){
+            index++;
+            return -parseUnary();
+        }
+        return parsePower();
+    }
+
+    function parseTerm(){
+        let result = parseUnary();
+        while(tokens[index] === "*" || tokens[index] === "/"){
+            const operator = tokens[index++];
+            const right = parseUnary();
+            result = operator === "*" ? result * right : result / right;
+        }
+        return result;
+    }
+
+    function parseExpression(){
+        let result = parseTerm();
+        while(tokens[index] === "+" || tokens[index] === "-"){
+            const operator = tokens[index++];
+            const right = parseTerm();
+            result = operator === "+" ? result + right : result - right;
+        }
+        return result;
+    }
+
+    try {
+        const result = parseExpression();
+        return index === tokens.length && Number.isFinite(result) ? result : NaN;
+    } catch(error) {
+        return NaN;
+    }
+}
+
+function areSymbolicExpressionsEquivalent(value, expected){
+    const typedVariables = symbolicExpressionVariables(value);
+    const expectedVariables = symbolicExpressionVariables(expected);
+    if(!typedVariables.length || typedVariables.join(",") !== expectedVariables.join(",")) return false;
+
+    const samples = [2, 3, 5, 7, -2, 11];
+    let comparisons = 0;
+
+    for(let sampleIndex = 0; sampleIndex < samples.length; sampleIndex++){
+        const variables = {};
+        expectedVariables.forEach((name, variableIndex) => {
+            variables[name] = samples[(sampleIndex + variableIndex) % samples.length];
+        });
+
+        const typed = evaluateSymbolicExpression(value, variables);
+        const correct = evaluateSymbolicExpression(expected, variables);
+        if(!Number.isFinite(typed) || !Number.isFinite(correct)) continue;
+
+        comparisons++;
+        const tolerance = 1e-9 * Math.max(1, Math.abs(typed), Math.abs(correct));
+        if(Math.abs(typed - correct) > tolerance) return false;
+    }
+
+    return comparisons >= 3;
 }
 
 function splitEquationValues(value){
@@ -8196,6 +8526,9 @@ function isTypedAnswerCorrect(value, answers, exact = false){
     return answers.some(answer => {
         const typedExpression = String(value).trim().replace(/%$/, "");
         const expectedExpression = String(answer).trim().replace(/%$/, "");
+        if(!exact && areSymbolicExpressionsEquivalent(typedExpression, expectedExpression)){
+            return true;
+        }
         if(!exact && typeof DeltaSigmaMath !== "undefined" && DeltaSigmaMath.isValid(expectedExpression)){
             return DeltaSigmaMath.equivalent(typedExpression, expectedExpression);
         }
@@ -8909,6 +9242,7 @@ function automaticScoreForResult(type, task = currentTask){
     const maxPoints = taskMaxPoints(task);
 
     if(!maxPoints) return null;
+    if(task?.teacherGraded === true) return { earnedPoints: null, maxPoints };
     if(type === "good" || type === "medium") return { earnedPoints: maxPoints, maxPoints };
     if(type === "bad") return { earnedPoints: 0, maxPoints };
 
@@ -9476,7 +9810,9 @@ function setupInputTask(mcq){
         const wrapper = document.createElement("div");
         const label = document.createElement("label");
         const useComparisonOverlay = Boolean(comparisonOverlay && isComparisonField(field));
-        const input = document.createElement(useComparisonOverlay ? "input" : field.options ? "select" : "input");
+        const input = document.createElement(
+            useComparisonOverlay ? "input" : field.options ? "select" : field.control === "textarea" ? "textarea" : "input"
+        );
         const inputId = `input-answer-${index}`;
 
         wrapper.className = "input-answer-field";
@@ -9511,6 +9847,11 @@ function setupInputTask(mcq){
                 input.setAttribute("aria-hidden", "true");
                 input.tabIndex = -1;
             }
+        } else if(field.control === "textarea"){
+            input.rows = 6;
+            input.placeholder = "Wpisz uzasadnienie";
+            if(field.minLength) input.minLength = field.minLength;
+            if(field.maxLength) input.maxLength = field.maxLength;
         } else {
             input.type = "text";
             input.inputMode = field.math ? "text" : field.inputMode || "decimal";
@@ -10159,9 +10500,11 @@ function revealGroupedChoiceAnswers(groups, correctAnswer){
 }
 
 function revealInputAnswers(){
+    if(isTeacherGradedTask()) return;
+
     const fields = getInputFields(currentTask);
 
-    document.querySelectorAll("#mcq input, #mcq select")
+    document.querySelectorAll("#mcq input, #mcq select, #mcq textarea")
         .forEach(input => {
             const index = Number(input.dataset.index);
             const expected = fields[index]?.answers?.[0] || "";
@@ -10187,13 +10530,15 @@ function revealInputAnswers(){
 function restoreInputAnswerState(result){
     const fields = getInputFields(currentTask);
     const values = getSubmittedInputAnswerValues(currentTask);
+    const teacherGraded = isTeacherGradedTask();
+    const teacherPending = isTeacherReviewPending();
 
-    document.querySelectorAll("#mcq input, #mcq select")
+    document.querySelectorAll("#mcq input, #mcq select, #mcq textarea")
         .forEach(input => {
             const index = Number(input.dataset.index);
             const field = fields[index];
             const value = values[index] || (result === "bad" ? "" : field?.answers?.[0] || "");
-            const fieldCorrect = Boolean(value && field && isInputFieldAnswerCorrect(value, field));
+            const fieldCorrect = !teacherGraded && Boolean(value && field && isInputFieldAnswerCorrect(value, field));
 
             if(field?.control === "equation"){
                 syncEquationAnswerMode(input, value, true);
@@ -10201,7 +10546,7 @@ function restoreInputAnswerState(result){
                 input.value = value;
             }
             input.classList.toggle("correct", fieldCorrect);
-            input.classList.toggle("wrong", Boolean(value && !fieldCorrect));
+            input.classList.toggle("wrong", Boolean(!teacherGraded && value && !fieldCorrect));
             input.disabled = true;
             syncAssignmentControl(index, value, field, true, true);
             setComparisonControlResult(index, value, fieldCorrect ? "correct" : value ? "wrong" : "", true);
@@ -10213,14 +10558,23 @@ function restoreInputAnswerState(result){
             button.disabled = true;
         });
 
-    if(result === "bad") showInputCorrection(values);
+    if(teacherGraded){
+        const score = getTaskScore(currentTask);
+        showMessage(teacherPending
+            ? "Uzasadnienie zapisano. Oczekuje na ocenę nauczyciela."
+            : score
+                ? `Nauczyciel przyznał ${formatPoints(score.earnedPoints)} / ${formatPoints(score.maxPoints)} pkt.`
+                : "Uzasadnienie zostało ocenione przez nauczyciela.");
+    } else if(result === "bad"){
+        showInputCorrection(values);
+    }
 }
 
 function checkInputAnswer(form){
     if(currentTaskAnswered) return;
 
     const fields = getInputFields(currentTask);
-    const inputs = [...form.querySelectorAll("input, select")];
+    const inputs = [...form.querySelectorAll("input, select, textarea")];
     if(inputs.length !== fields.length || inputs.some(input => !input.value.trim())){
         inputs.forEach(input => {
             if(!input.value.trim()){
@@ -10238,6 +10592,24 @@ function checkInputAnswer(form){
         } else {
             form.reportValidity();
         }
+        return;
+    }
+    if(isTeacherGradedTask()){
+        const tooShort = inputs.find(input => {
+            const field = fields[Number(input.dataset.index)];
+            return field?.minLength && input.value.trim().length < field.minLength;
+        });
+
+        if(tooShort){
+            const field = fields[Number(tooShort.dataset.index)];
+            showMessage(`Uzasadnienie powinno mieć co najmniej ${field.minLength} znaków.`);
+            tooShort.focus();
+            return;
+        }
+
+        disableMCQ();
+        addProgress("bad", {earnedPoints: null, maxPoints: taskMaxPoints(currentTask)});
+        showMessage("Uzasadnienie zapisano. Oczekuje na ocenę nauczyciela.");
         return;
     }
     const validExpressions = inputs.map(input => {
@@ -10365,7 +10737,7 @@ function addProgress(type, scoreData = null){
 function submittedAnswerText(){
     if(isInputTask(currentTask)){
         const fields = getInputFields(currentTask);
-        return [...document.querySelectorAll("#mcq input[data-index], #mcq select[data-index]")]
+        return [...document.querySelectorAll("#mcq input[data-index], #mcq select[data-index], #mcq textarea[data-index]")]
             .map(input => `${fields[Number(input.dataset.index)]?.label || "Odpowiedź"}: ${input.value.trim()}`)
             .join("\n");
     }
@@ -10376,7 +10748,7 @@ function submittedAnswerText(){
     return String(submittedChoice || "");
 }
 
-async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds(), task = currentTask){
+async function saveProgress(type, scoreData = null, durationSeconds = getCurrentTaskDurationSeconds(), task = currentTask, options = {}){
     if(loggedUser?.role === "admin") return;
     if(isCoursePreviewMode()) return;
     if(!isLoggedInStudent) return;
@@ -10388,8 +10760,10 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
         Math.round(Number(durationSeconds) || 0),
         4 * 60 * 60
     ));
-    const usedHint = hintUsed;
-    const revealedAnswer = answerShown;
+    const usedHint = options.hintUsed ?? (task === currentTask ? hintUsed : taskUsedHint(task));
+    const revealedAnswer = options.answerShown ?? (task === currentTask
+        ? answerShown
+        : Boolean(getSavedProgressItem(task)?.answer_shown));
     const taskKey = getTaskKey(task);
     const sessionSubmittedAnswer = taskKey ? sessionSubmittedAnswers.get(taskKey) : "";
     const submittedAnswer = (
@@ -10400,7 +10774,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
     try {
         const automaticScore = automaticScoreForResult(type, task);
         const score = scoreData || automaticScore || {};
-        const data = await apiFetch("/api/progress", {
+        const request = apiFetch("/api/progress", {
             method: "POST",
             keepalive: true,
             body: JSON.stringify({
@@ -10421,6 +10795,14 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
                 max_points: (score.maxPoints ?? taskMaxPoints(task)) || undefined
             })
         });
+        pendingProgressSaveRequests.add(request);
+        let data;
+
+        try {
+            data = await request;
+        } finally {
+            pendingProgressSaveRequests.delete(request);
+        }
 
         if(data?.progress){
             savedProgress.unshift(data.progress);
@@ -10439,7 +10821,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
         if(error.status !== 401){
             console.warn("Nie udało się zapisać postępu.", error);
         }
-        if(type === "video") throw error;
+        if(type === "video" || options.throwOnError) throw error;
     }
 }
 

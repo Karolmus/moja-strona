@@ -12,7 +12,7 @@
       "C",
       "D"
     ],
-    "hint": "Porównaj każdą liczbę z 10¹⁰⁰. Przy mnożeniu potęg o tej samej podstawie dodaj wykładniki, a przy potęgowaniu potęgi pomnóż je.",
+    "hint": "Porównaj każdą liczbę z 10¹⁰⁰.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -36,7 +36,7 @@
       "C",
       "D"
     ],
-    "hint": "Zamień 9 i 27 na potęgi liczby 3, a potem wykonaj działania na wykładnikach.",
+    "hint": "Zamień 9 i 27 na potęgi liczby 3.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -60,7 +60,7 @@
       "C",
       "D"
     ],
-    "hint": "Połącz 2⁷ · 5⁷ w potęgę liczby 10, a następnie wykonaj dzielenie potęg o tej samej podstawie.",
+    "hint": "Połącz 2⁷ · 5⁷ w potęgę liczby 10.",
     "answer": "B",
     "coursePart": "zadania",
     "tags": [
@@ -82,7 +82,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "W pierwszym stwierdzeniu sprowadź oba wyrażenia do tej samej potęgi. W drugim uprość ułamek, korzystając z potęgi iloczynu.",
+    "hint": "W pierwszym stwierdzeniu sprowadź oba wyrażenia do tej samej potęgi.",
     "answer": [
       "F",
       "P"
@@ -110,7 +110,7 @@
       "C",
       "D"
     ],
-    "hint": "Zlicz, ile razy dodano 5³. Sumę jednakowych składników zamień na iloczyn.",
+    "hint": "Zlicz, ile razy dodano 5³.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -132,7 +132,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Nieparzysty wykładnik przy liczbie ujemnej daje wynik ujemny. Pamiętaj też, że liczba niezerowa do potęgi zerowej jest równa 1.",
+    "hint": "Sprawdź parzystość wykładnika potęgi.",
     "answer": [
       "P",
       "P"
@@ -186,7 +186,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw ustal znaki liczb. Następnie porównaj wartości dodatnie, sprowadzając potęgi do wspólnej podstawy.",
+    "hint": "Najpierw ustal znaki liczb.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -211,7 +211,7 @@
       "C",
       "D"
     ],
-    "hint": "Zamień wszystkie składniki na potęgi liczby 2. Dzielenie oznacza odejmowanie wykładników.",
+    "hint": "Zamień wszystkie składniki na potęgi liczby 2.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -236,7 +236,7 @@
       "C",
       "D"
     ],
-    "hint": "Rozłóż 15 i 18 na czynniki pierwsze, a do NWW weź najwyższe potęgi wszystkich czynników.",
+    "hint": "Rozłóż 15 i 18 na czynniki pierwsze.",
     "answer": "C",
     "coursePart": "zadania",
     "tags": [
@@ -260,7 +260,7 @@
       "C",
       "D"
     ],
-    "hint": "Ustal znak iloczynu, zapisz 4 jako 2² i połącz czynniki 2 oraz 5 w potęgi liczby 10.",
+    "hint": "Ustal znak iloczynu.",
     "answer": "A",
     "coursePart": "zadania",
     "tags": [
@@ -282,7 +282,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Dla podstawy 1/5 większy wykładnik daje mniejszą wartość. W drugim stwierdzeniu zapisz obie potęgi przy tej samej dodatniej podstawie.",
+    "hint": "Dla podstawy 1/5 większy wykładnik daje mniejszą wartość.",
     "answer": [
       "F",
       "P"
@@ -334,7 +334,7 @@
       "C",
       "D"
     ],
-    "hint": "Dla liczby mniejszej od 1 wykładnik przy 10 będzie ujemny. Przesuwasz przecinek o 6 miejsc.",
+    "hint": "Dla liczby mniejszej od 1 wykładnik przy 10 będzie ujemny.",
     "answer": "D",
     "coursePart": "zadania",
     "tags": [
@@ -356,7 +356,7 @@
       "Stwierdzenie 1",
       "Stwierdzenie 2"
     ],
-    "hint": "Sprawdź parzystość wykładnika. Pamiętaj, że minus przed potęgą nie należy do jej podstawy.",
+    "hint": "Sprawdź parzystość wykładnika.",
     "answer": [
       "P",
       "P"
@@ -385,7 +385,7 @@
       "C",
       "D"
     ],
-    "hint": "Zamień 32 i 4 na potęgi liczby 2, uprość ułamek, a następnie wykonaj dodawanie.",
+    "hint": "Zamień 32 i 4 na potęgi liczby 2, uprość ułamek.",
     "answer": "A",
     "coursePart": "praca_domowa",
     "tags": [
@@ -410,7 +410,7 @@
       "C",
       "D"
     ],
-    "hint": "Najpierw ustal znak wyniku, a następnie uprość potęgi.",
+    "hint": "Najpierw ustal znak wyniku.",
     "answer": "C",
     "coursePart": "praca_domowa",
     "tags": [
@@ -513,7 +513,7 @@
       "C",
       "D"
     ],
-    "hint": "Oblicz osobno NWD(14,70) oraz NWW(12,9), a potem policz odległość na osi.",
+    "hint": "Oblicz osobno NWD(14,70) oraz NWW(12,9).",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
@@ -623,7 +623,7 @@
       "C",
       "D"
     ],
-    "hint": "Sprowadź oba składniki do tej samej potęgi liczby 10, a następnie dodaj współczynniki.",
+    "hint": "Sprowadź oba składniki do tej samej potęgi liczby 10.",
     "answer": "D",
     "coursePart": "praca_domowa",
     "tags": [
@@ -648,7 +648,7 @@
       "C",
       "D"
     ],
-    "hint": "Sprowadź oba składniki do tej samej potęgi liczby 10, a następnie odejmij współczynniki.",
+    "hint": "Sprowadź oba składniki do tej samej potęgi liczby 10.",
     "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
