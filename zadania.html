@@ -5415,35 +5415,14 @@ function getPreviousCourseCheckpoint(source, sources = getCourseSourceSequence(s
     return null;
 }
 
-function getCheckpointStageSources(checkpoint, sources = getCourseSourceSequence(checkpoint?.level)){
-    const checkpointIndex = sources.findIndex(source => source.id === checkpoint?.id);
+function isCheckpointStageComplete(checkpoint){
+    if(checkpoint?.kind !== "test" || !isTaskSourceLoaded(checkpoint.id)) return false;
 
-    if(checkpointIndex < 0 || sources[checkpointIndex]?.kind !== "test") return [];
+    const requiredTasks = getSourceCompletionTasks(checkpoint);
 
-    let previousCheckpointIndex = -1;
-
-    for(let index = checkpointIndex - 1; index >= 0; index--){
-        if(sources[index].kind === "test"){
-            previousCheckpointIndex = index;
-            break;
-        }
-    }
-
-    return sources.slice(previousCheckpointIndex + 1, checkpointIndex + 1);
-}
-
-function isCheckpointStageComplete(checkpoint, sources = getCourseSourceSequence(checkpoint?.level)){
-    const requiredSources = getCheckpointStageSources(checkpoint, sources);
-
-    return requiredSources.length > 0 && requiredSources.every(source => {
-        if(!isTaskSourceLoaded(source.id)) return false;
-
-        const requiredTasks = getSourceCompletionTasks(source);
-
-        return requiredTasks.length > 0 && requiredTasks.every(task =>
-            COURSE_COMPLETION_RESULTS.has(getSavedProgressItem(task)?.result)
-        );
-    });
+    return requiredTasks.length > 0 && requiredTasks.every(task =>
+        COURSE_COMPLETION_RESULTS.has(getSavedProgressItem(task)?.result)
+    );
 }
 
 function isCourseSourceVisible(source){

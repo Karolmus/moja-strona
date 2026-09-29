@@ -71,7 +71,6 @@ const ctx = vm.createContext({
 for (const name of [
   'getCourseSourceSequence',
   'getPreviousCourseCheckpoint',
-  'getCheckpointStageSources',
   'isCheckpointStageComplete',
   'isCourseSourceVisible',
   'getAvailableSources'
@@ -93,26 +92,22 @@ assert.deepEqual(visibleLabels(eoLevel), [
 ]);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'));
 
-eoSources.slice(0, 7).forEach(source => complete(source));
-complete(eoSources[2], 'skipped');
-assert(!visibleLabels(eoLevel).includes('Lekcja 7'), 'Skipping one task keeps the next stage locked');
-complete(eoSources[2], 'bad');
-assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'A completed incorrect answer counts as work done');
+complete(eoSources[6], 'skipped');
+assert(!visibleLabels(eoLevel).includes('Lekcja 7'), 'An unfinished test keeps the next lessons locked');
+complete(eoSources[6], 'bad');
+assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'A completed test unlocks the next lessons regardless of its score');
 assert(visibleLabels(eoLevel).includes('Lekcja 10'), 'The checkpoint unlocks lessons 7-10');
 assert(!visibleLabels(eoLevel).includes('Lekcja 11'), 'Lessons after the unlocked block stay hidden until the next checkpoint is added');
 
 assert.deepEqual(visibleLabels(mpLevel), [
   'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6', 'Test 1-6'
 ]);
-mpSources.slice(0, 7).forEach(source => complete(source));
+complete(mpSources[6]);
 assert(visibleLabels(mpLevel).includes('Lekcja 7'), 'Completing the first MP checkpoint unlocks the next lessons');
 assert(visibleLabels(mpLevel).includes('Test 7-12'), 'The next checkpoint is available with its lesson stage');
 assert(!visibleLabels(mpLevel).includes('Lekcja 13'));
 
-mpSources.slice(7, 14).forEach(source => complete(source));
-complete(mpSources[9], 'skipped');
-assert(!visibleLabels(mpLevel).includes('Lekcja 13'), 'Every task in the second stage is required');
-complete(mpSources[9], 'medium');
+complete(mpSources[13], 'medium');
 assert(visibleLabels(mpLevel).includes('Lekcja 13'), 'Completing the second checkpoint unlocks the following stage');
 
 progress.clear();
@@ -127,4 +122,4 @@ assert.match(html, /await preloadUnlockedCourseSources\(\);/,
   'A returning student gets counts for newly unlocked lessons during startup');
 assert(!html.includes('EO_FIRST_CHECKPOINT_SOURCE'), 'Checkpoint gating is no longer tied to one EO test');
 
-console.log('PASS: every course stage unlocks only after its preceding lessons and checkpoint are complete');
+console.log('PASS: completing each checkpoint unlocks only its following course stage');
