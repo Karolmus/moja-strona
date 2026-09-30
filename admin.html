@@ -1970,7 +1970,6 @@ footer {
         </div>
         <div class="admin-header-actions">
             <a class="btn secondary" id="coursePreviewLink" href="zadania.html?category=kurs">Podgląd kursów</a>
-            <button class="btn secondary" type="button" id="logoutBtn">Wyloguj</button>
         </div>
     </div>
 
@@ -5606,20 +5605,6 @@ reloadPricesBtn.addEventListener("click", () => {
     loadSitePrices()
         .then(() => showPricesStatus("Ceny zostały odświeżone."))
         .catch(error => showPricesStatus(error.message));
-});
-
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-    try {
-        await apiFetch("/api/auth/logout", { method: "POST" });
-    } finally {
-        if(window.clearAuthToken){
-            window.clearAuthToken();
-        } else {
-            window.localStorage.removeItem("deltaSigmaAuthToken");
-        }
-    }
-
-    window.location.href = "login.html";
 });
 
 fetch("nav.html?v=20260827-shared", { cache: "no-cache" })

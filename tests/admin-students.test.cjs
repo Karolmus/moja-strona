@@ -87,6 +87,8 @@ test('mobile view shows students before the add-student form and keeps the toolb
   assert.match(html, /class="admin-toolbar"/);
   assert.doesNotMatch(html, /<h1>Panel Admina<\/h1>/);
   assert.doesNotMatch(html, /id="adminEmail"/);
+  assert.doesNotMatch(html, /id="logoutBtn"/);
+  assert.match(fs.readFileSync('nav.html', 'utf8'), /data-auth-logout[^>]*>Wyloguj<\/button>/);
   assert.match(html, /\.admin-toolbar\s*\{[^}]*display:\s*flex;[^}]*margin-bottom:\s*10px;/s);
   assert.match(html, /@media\(max-width:\s*760px\)[\s\S]*?\.admin-layout > #studentForm\s*\{[^}]*order:\s*2;/s);
   assert.match(html, /@media\(max-width:\s*760px\)[\s\S]*?\.admin-layout > \.students-panel\s*\{[^}]*order:\s*1;/s);
