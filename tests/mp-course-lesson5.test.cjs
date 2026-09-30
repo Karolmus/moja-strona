@@ -8,6 +8,7 @@ const tasks = JSON.parse(fs.readFileSync(sourcePath));
 const html = fs.readFileSync('zadania.html', 'utf8');
 const profileHtml = fs.readFileSync('profil.html', 'utf8');
 const adminHtml = fs.readFileSync('admin.html', 'utf8');
+const courseVideos = require('../static/course-videos.js');
 const revisionKey = 'B C B A D D D'.split(' ');
 const discordInstruction = 'Rozwiązanie zadania wyślij na platformie Discord.';
 const proofReminder = 'Pamiętaj o pełnym uzasadnieniu: jeśli dowodzisz podzielności, wykaż, że czynnik stojący przy wskazanym dzielniku jest liczbą całkowitą.';
@@ -61,6 +62,17 @@ assert(fs.statSync('zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.pdf').siz
 assert(html.includes(discordInstruction));
 assert(html.includes('.task-instruction.external-submission'));
 assert(html.includes('answerButton.hidden = isTest || isExternalSubmission || isOpenExam'));
+
+const lessonVideos = courseVideos[sourcePath];
+const supportedTasks = tasks.filter(task => ['praca_domowa', 'zadania_powtorkowe'].includes(task.coursePart));
+assert.equal(Object.keys(lessonVideos).length, 19);
+for(const task of supportedTasks){
+  assert.match(lessonVideos[task.file], /^https:\/\/youtu\.be\/[\w-]{11}$/);
+}
+assert.equal(lessonVideos['zd1.png'], 'https://youtu.be/V0tUGgG_EPo');
+assert.equal(lessonVideos['zd12.png'], 'https://youtu.be/dJHQShECT00');
+assert.equal(lessonVideos['zp1.png'], 'https://youtu.be/K0f8e393BF8');
+assert.equal(lessonVideos['zp7.png'], 'https://youtu.be/R1adEVz_3V4');
 
 function functionSource(text, name) {
   const start = text.indexOf(`function ${name}(`);

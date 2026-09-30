@@ -74,6 +74,27 @@
             "zp4.png": "https://youtu.be/AaYPcmkEQ3I",
             "zp5.png": "https://youtu.be/umvs0g3WPQA",
             "zp6.png": "https://youtu.be/HZEQZN40Od0"
+        },
+        "zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.json": {
+            "zd1.png": "https://youtu.be/V0tUGgG_EPo",
+            "zd2.png": "https://youtu.be/a7bvJSW_Ecw",
+            "zd3.png": "https://youtu.be/UfoJdJSTZVI",
+            "zd4.png": "https://youtu.be/RFgJs4IyGF4",
+            "zd5.png": "https://youtu.be/JnecTKTUB3k",
+            "zd6.png": "https://youtu.be/gUhYORfe-0o",
+            "zd7.png": "https://youtu.be/PW89t6B5SKE",
+            "zd8.png": "https://youtu.be/vRgz0ON66Sc",
+            "zd9.png": "https://youtu.be/8Tb_owBSEEA",
+            "zd10.png": "https://youtu.be/UX9iTeLSfmU",
+            "zd11.png": "https://youtu.be/kgDEVDoYRz4",
+            "zd12.png": "https://youtu.be/dJHQShECT00",
+            "zp1.png": "https://youtu.be/K0f8e393BF8",
+            "zp2.png": "https://youtu.be/M1lJFTOiO3U",
+            "zp3.png": "https://youtu.be/Pl6ytdtiyOE",
+            "zp4.png": "https://youtu.be/xMs8vy63EFI",
+            "zp5.png": "https://youtu.be/eU_flJcot6Q",
+            "zp6.png": "https://youtu.be/jxr-9CiwmWA",
+            "zp7.png": "https://youtu.be/R1adEVz_3V4"
         }
     };
     if (typeof module !== "undefined" && module.exports) module.exports = videos;
