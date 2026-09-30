@@ -8,6 +8,7 @@ const tasks = JSON.parse(fs.readFileSync(sourcePath));
 const html = fs.readFileSync('zadania.html', 'utf8');
 const profileHtml = fs.readFileSync('profil.html', 'utf8');
 const adminHtml = fs.readFileSync('admin.html', 'utf8');
+const courseVideos = require('../static/course-videos.js');
 const keys = {
   zadania: 'C B D A B A B D B B C C A D C C'.split(' '),
   praca_domowa: 'C A D C B B A A B A B A D C'.split(' '),
@@ -39,6 +40,17 @@ assert.equal(tasks.find(task => task.file === '5.png').answer, 'B', 'Corrected d
 assert.equal(tasks.find(task => task.file === '8.png').answer, 'D', 'A rational divisor must also be nonzero');
 assert.equal(tasks.find(task => task.file === 'zd14.png').answer, 'C', 'The simplified expression is (x + 5) / (2x - 12)');
 assert(fs.statSync('zadania/kurs/mp/lekcja_4/lekcja_4_rownania_iloczynowe_i_wymierne.pdf').size > 750000);
+
+const lessonVideos = courseVideos[sourcePath];
+const supportedTasks = tasks.filter(task => ['praca_domowa', 'zadania_powtorkowe'].includes(task.coursePart));
+assert.equal(Object.keys(lessonVideos).length, 20);
+for (const task of supportedTasks) {
+  assert.match(lessonVideos[task.file], /^https:\/\/youtu\.be\/[\w-]{11}$/);
+}
+assert.equal(lessonVideos['zd1.png'], 'https://youtu.be/IjEujJUpjVI');
+assert.equal(lessonVideos['zd14.png'], 'https://youtu.be/qDjdslLARfE');
+assert.equal(lessonVideos['zp1.png'], 'https://youtu.be/E18TcTAR_VQ');
+assert.equal(lessonVideos['zp6.png'], 'https://youtu.be/HZEQZN40Od0');
 
 function functionSource(text, name) {
   const start = text.indexOf(`function ${name}(`);

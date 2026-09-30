@@ -52,6 +52,28 @@
             "zp3.png": "https://youtu.be/edBlUxBUNwA",
             "zp4.png": "https://youtu.be/voM4o3tYY84",
             "zp5.png": "https://youtu.be/vH7t4wwZeWs"
+        },
+        "zadania/kurs/mp/lekcja_4/lekcja_4_rownania_iloczynowe_i_wymierne.json": {
+            "zd1.png": "https://youtu.be/IjEujJUpjVI",
+            "zd2.png": "https://youtu.be/7zp2Pkpu93o",
+            "zd3.png": "https://youtu.be/lnrty8bujJk",
+            "zd4.png": "https://youtu.be/YufsoZ_mwZs",
+            "zd5.png": "https://youtu.be/BqV6rNP83h8",
+            "zd6.png": "https://youtu.be/DFL4ONcSJlM",
+            "zd7.png": "https://youtu.be/nESqVKZH414",
+            "zd8.png": "https://youtu.be/XeYLUvlaeQ8",
+            "zd9.png": "https://youtu.be/6MmBemIFITw",
+            "zd10.png": "https://youtu.be/4EbYrzikw_U",
+            "zd11.png": "https://youtu.be/xdvKuhwFa6w",
+            "zd12.png": "https://youtu.be/xJuvgyHbfYg",
+            "zd13.png": "https://youtu.be/P58gKMXea60",
+            "zd14.png": "https://youtu.be/qDjdslLARfE",
+            "zp1.png": "https://youtu.be/E18TcTAR_VQ",
+            "zp2.png": "https://youtu.be/Z-SDBo1gcEA",
+            "zp3.png": "https://youtu.be/USS6PyjSuw8",
+            "zp4.png": "https://youtu.be/AaYPcmkEQ3I",
+            "zp5.png": "https://youtu.be/umvs0g3WPQA",
+            "zp6.png": "https://youtu.be/HZEQZN40Od0"
         }
     };
     if (typeof module !== "undefined" && module.exports) module.exports = videos;

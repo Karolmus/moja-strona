@@ -53,25 +53,17 @@ body {
     padding: 16px;
 }
 
-.page-header {
+.admin-toolbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-}
-
-.page-header h1 {
-    margin: 0;
-    font-size: 28px;
-    line-height: 1.2;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
 .admin-header-actions {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex: 0 0 auto;
     gap: 8px;
 }
 
@@ -81,10 +73,15 @@ body {
     text-decoration: none;
 }
 
-.admin-email {
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 600;
+.admin-header-actions a[aria-busy="true"] {
+    cursor: wait;
+    opacity: 0.72;
+}
+
+.admin-header-actions .btn {
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 12px;
 }
 
 .admin-layout {
@@ -97,13 +94,10 @@ body {
 .admin-tabs {
     display: flex;
     flex-wrap: wrap;
+    flex: 1 1 auto;
     max-width: 100%;
     gap: 8px;
-    margin-bottom: 14px;
-    padding: 4px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--surface);
+    margin: 0;
 }
 
 .admin-tab-btn {
@@ -1877,6 +1871,28 @@ footer {
 }
 
 @media(max-width: 760px) {
+    .admin-toolbar {
+        display: grid;
+        gap: 6px;
+    }
+
+    .admin-header-actions {
+        grid-row: 1;
+        justify-content: flex-end;
+    }
+
+    .admin-tabs {
+        grid-row: 2;
+    }
+
+    .admin-layout > #studentForm {
+        order: 2;
+    }
+
+    .admin-layout > .students-panel {
+        order: 1;
+    }
+
     .task-image-preview img {
         width: 100%;
     }
@@ -1898,10 +1914,6 @@ footer {
     .container {
         margin: 24px auto;
         padding: 5px;
-    }
-
-    .page-header h1 {
-        font-size: 24px;
     }
 
     .review-item {
@@ -1947,24 +1959,19 @@ footer {
 <div id="nav"></div>
 
 <main class="container">
-    <header class="page-header">
-        <div>
-            <h1>Panel Admina</h1>
-            <div class="admin-email" id="adminEmail">Sprawdzam sesję...</div>
+    <div class="admin-toolbar">
+        <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">
+            <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge"></span></button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="messages-failed">Nieudane próby zapisania się <span id="failedSignupBadge"></span></button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="prices">Ceny</button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie</button>
         </div>
         <div class="admin-header-actions">
-            <a class="btn secondary" href="zadania.html?category=kurs">Podgląd kursów</a>
+            <a class="btn secondary" id="coursePreviewLink" href="zadania.html?category=kurs">Podgląd kursów</a>
             <button class="btn secondary" type="button" id="logoutBtn">Wyloguj</button>
         </div>
-    </header>
-
-    <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">
-        <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
-        <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge"></span></button>
-        <button class="admin-tab-btn" type="button" data-admin-tab="messages-failed">Nieudane próby zapisania się <span id="failedSignupBadge"></span></button>
-        <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
-        <button class="admin-tab-btn" type="button" data-admin-tab="prices">Ceny</button>
-        <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie</button>
     </div>
 
     <div class="admin-tab-panel active" id="studentsTab">
@@ -2017,7 +2024,7 @@ footer {
             <div class="status-box" id="adminStatus" role="status" aria-live="polite"></div>
         </form>
 
-        <section class="panel">
+        <section class="panel students-panel">
             <div class="panel-heading">
                 <h2>Uczniowie</h2>
                 <div class="sort-control">
@@ -2191,7 +2198,7 @@ footer {
 </footer>
 
 <script src="static/auth.js?v=20260922-signup-badges"></script>
-<script src="static/course-videos.js?v=20260920-mp3"></script>
+<script src="static/course-videos.js?v=20260930-mp4"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -2299,7 +2306,7 @@ const RECRUITMENT_CAMPAIGN_LINKS = [
     }
 ];
 
-const adminEmail = document.getElementById("adminEmail");
+const coursePreviewLink = document.getElementById("coursePreviewLink");
 const studentForm = document.getElementById("studentForm");
 const studentTable = document.getElementById("studentTable");
 const adminStatus = document.getElementById("adminStatus");
@@ -5621,23 +5628,67 @@ fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
         document.getElementById("nav").innerHTML = html;
     });
 
-async function boot(){
-    try {
-        const session = await apiFetch("/api/auth/me");
+let adminSessionVerified = false;
+let settleAdminSession;
+const adminSessionReady = new Promise(resolve => {
+    settleAdminSession = resolve;
+});
 
-        if(!session.authenticated || session.user.role !== "admin"){
+coursePreviewLink.addEventListener("click", async event => {
+    if(adminSessionVerified) return;
+
+    event.preventDefault();
+    const originalLabel = coursePreviewLink.textContent;
+    coursePreviewLink.setAttribute("aria-busy", "true");
+    coursePreviewLink.textContent = "Sprawdzam sesję...";
+
+    const sessionReady = await adminSessionReady;
+
+    coursePreviewLink.removeAttribute("aria-busy");
+    coursePreviewLink.textContent = originalLabel;
+
+    if(sessionReady){
+        window.location.assign(coursePreviewLink.href);
+    }
+});
+
+async function boot(){
+    let session;
+
+    try {
+        session = await apiFetch("/api/auth/me");
+    } catch(error) {
+        settleAdminSession(false);
+        if(error?.status === 401 || error?.status === 403){
             window.location.href = "login.html";
-            return;
+            return false;
         }
 
-        adminEmail.innerText = session.user.email;
+        showStatus("Nie udało się połączyć z serwerem. Odśwież stronę i spróbuj ponownie.");
+        return false;
+    }
+
+    if(!session.authenticated || session.user.role !== "admin"){
+        settleAdminSession(false);
+        window.location.href = "login.html";
+        return false;
+    }
+
+    adminSessionVerified = true;
+    settleAdminSession(true);
+
+    try {
         await loadAdminTaskCatalog();
         await loadStudents();
         await loadSitePrices();
         await loadMessages();
     } catch(error) {
-        window.location.href = "login.html";
+        if(error?.name !== "AbortError"){
+            showStatus(error.message || "Nie udało się wczytać części danych panelu.");
+        }
     }
+
+    return true;
 }
 
 boot();

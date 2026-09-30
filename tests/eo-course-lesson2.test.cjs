@@ -31,8 +31,9 @@ assert.deepEqual(groups.map(group => group.options.map(option => option.value)),
 ]);
 
 const groupedStyle = html.match(/\.grouped-choice-row \{([^}]+)\}/)[1];
-assert.match(groupedStyle, /grid-template-columns: 56px repeat\(var\(--grouped-option-count, 2\), minmax\(80px, 120px\)\);/);
-assert.match(groupedStyle, /justify-content: start;/);
+assert.match(groupedStyle, /grid-template-columns: minmax\(140px, 1fr\) repeat\(var\(--grouped-option-count, 2\), minmax\(80px, 120px\)\);/);
+assert.match(groupedStyle, /width: 100%;/);
+assert.doesNotMatch(groupedStyle, /justify-content: start;/);
 
 const png = fs.readFileSync('zadania/kurs/eo/lekcja_2/zd3.png');
 const webp = fs.readFileSync('zadania/kurs/eo/lekcja_2/zd3.webp');
