@@ -73,8 +73,12 @@ ctx.renderSourceSelector();
 assert.deepEqual(list.children[0].children.map(child => child.innerText),
   ['Lekcja 1', 'Potęgi i pierwiastki', '29 zadań']);
 sources[1].kind = 'test';
+sources[1].unlocksNextSources = 4;
 ctx.renderSourceSelector();
 assert(list.children[1].classes.has('test-source'));
+const unlockNotice = list.children[1].children.find(child => child.className === 'source-unlock-note');
+assert.equal(unlockNotice.innerText, 'Ukończenie testu odblokuje kolejne materiały.');
+assert.match(list.children[1].title, /Ukończenie testu odblokuje kolejne materiały\./);
 assert.match(html, /\.course-source-list \.source-btn\.test-source\s*\{[^}]*grid-column:\s*1 \/ -1;/s);
 sources.length = 0;
 ctx.selectedCategory = 'egzaminy';

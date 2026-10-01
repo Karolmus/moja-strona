@@ -46,7 +46,12 @@ assert.match(html, /body\.focus-mode\s*\{[^}]*min-height:\s*100vh;[^}]*backgroun
   'Focus mode fills the area outside the task with black');
 assert.match(html, /@media\(max-width: 760px\)[\s\S]*?body\.focus-mode\s*\{[^}]*min-height: 100dvh;[^}]*background: #ffffff;/,
   'Mobile focus mode fills the viewport with white');
-assert.match(html, /id="courseBrand"[\s\S]*?<img[^>]*>[\s\S]*?<p>Karol Musioł Delta Sigma<\/p>/);
+assert.match(html, /id="courseBrand"[\s\S]*?class="course-brand-tile course-brand-logo"[\s\S]*?src="img\/logo3\.png"/);
+assert.match(html, /id="courseBrand"[\s\S]*?class="course-brand-tile course-brand-photo"[\s\S]*?src="img\/me6\.webp"/);
+assert.match(html, /<p>Karol Musioł, korepetycje z matematyki<\/p>/);
+assert.match(html, /id="mobileCourseFooter"[\s\S]*?src="img\/me6\.webp"[\s\S]*?Karol Musioł,<br>korepetycje z matematyki/);
+assert.match(html, /\.course-brand-media\s*\{[^}]*grid-template-columns:\s*repeat\(2, 82px\);/s);
+assert.match(html, /\.course-brand-photo img\s*\{[^}]*object-fit:\s*cover;/s);
 assert.match(html, /\.course-brand\[hidden\]\s*\{\s*display: none;/);
 assert(!html.includes('<div class="side-title">Materiały</div>'), 'Formula buttons do not need a redundant heading');
 assert.match(html, /id="mobileCourseFooter"[^>]*hidden[\s\S]*?id="mobileSourceSummaryPoints"/);

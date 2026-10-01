@@ -641,6 +641,11 @@ body.guest-exam-mode .source-summary-row {
     color: #37667c;
 }
 
+.course-source-list .source-btn.test-source .source-unlock-note {
+    margin-top: 3px;
+    font-weight: 600;
+}
+
 .tag-search-input {
     width: 100%;
     min-height: 34px;
@@ -2245,11 +2250,37 @@ html.task-video-open {
     text-align: center;
 }
 
-.course-brand img {
+.course-brand-media {
+    display: grid;
+    grid-template-columns: repeat(2, 82px);
+    gap: 8px;
+}
+
+.course-brand-tile {
+    display: grid;
+    width: 82px;
+    height: 82px;
+    overflow: hidden;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.course-brand-tile img {
     display: block;
-    width: 96px;
-    height: 96px;
+    width: 100%;
+    height: 100%;
+}
+
+.course-brand-logo img {
     object-fit: contain;
+    padding: 6px;
+}
+
+.course-brand-photo img {
+    object-fit: cover;
+    object-position: center 35%;
 }
 
 .task-instruction {
@@ -3323,7 +3354,7 @@ footer {
 
     .mobile-course-footer {
         grid-column: 1 / -1;
-        grid-template-columns: 88px minmax(0, 1fr);
+        grid-template-columns: 112px minmax(0, 1fr);
         align-items: center;
         gap: 10px;
         border: 1px solid var(--line);
@@ -3344,14 +3375,17 @@ footer {
         min-width: 0;
     }
 
-    .mobile-course-brand img {
-        display: block;
-        width: 62px;
-        height: 62px;
-        object-fit: contain;
+    .mobile-course-brand .course-brand-media {
+        grid-template-columns: repeat(2, 42px);
+        gap: 4px;
     }
 
-    .mobile-course-brand span {
+    .mobile-course-brand .course-brand-tile {
+        width: 42px;
+        height: 42px;
+    }
+
+    .mobile-course-brand > span {
         color: var(--muted);
         font-size: 8px;
         line-height: 1.2;
@@ -3788,8 +3822,15 @@ footer {
             </div>
 
             <div class="course-brand" id="courseBrand" hidden>
-                <img src="img/logo3.png" width="96" height="96" alt="Delta Sigma" decoding="async">
-                <p>Karol Musioł Delta Sigma</p>
+                <div class="course-brand-media">
+                    <div class="course-brand-tile course-brand-logo">
+                        <img src="img/logo3.png" width="82" height="82" alt="Delta Sigma" decoding="async">
+                    </div>
+                    <div class="course-brand-tile course-brand-photo">
+                        <img src="img/me6.webp" width="82" height="82" alt="Karol Musioł" decoding="async">
+                    </div>
+                </div>
+                <p>Karol Musioł, korepetycje z matematyki</p>
             </div>
         </aside>
 
@@ -3873,8 +3914,15 @@ footer {
 
         <div class="mobile-course-footer" id="mobileCourseFooter" hidden>
             <div class="mobile-course-brand">
-                <img src="img/logo3.png" width="62" height="62" alt="Delta Sigma" decoding="async">
-                <span>Karol Musioł<br>Delta Sigma</span>
+                <div class="course-brand-media">
+                    <div class="course-brand-tile course-brand-logo">
+                        <img src="img/logo3.png" width="42" height="42" alt="Delta Sigma" decoding="async">
+                    </div>
+                    <div class="course-brand-tile course-brand-photo">
+                        <img src="img/me6.webp" width="42" height="42" alt="Karol Musioł" decoding="async">
+                    </div>
+                </div>
+                <span>Karol Musioł,<br>korepetycje z matematyki</span>
             </div>
             <div class="source-summary-card mobile-course-result">
                 <div class="source-summary-main">
@@ -6104,6 +6152,9 @@ function renderSourceSelector(){
             ? source.detail
             : `${examTile.label} · ${examTile.detail}`;
         const titleDetail = `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
+        const unlockNotice = source.kind === "test" && source.unlocksNextSources > 0
+            ? "Ukończenie testu odblokuje kolejne materiały."
+            : "";
 
         let targetList = list;
         if(examTile){
@@ -6135,7 +6186,8 @@ function renderSourceSelector(){
             titleDetail,
             isSourceComplete(source),
             selectedCategory === "kurs" ? source.detail : "",
-            source.kind
+            source.kind,
+            unlockNotice
         );
     });
 
@@ -6177,7 +6229,7 @@ function getExamSourceTileContent(detail){
     };
 }
 
-function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = "", sourceKind = ""){
+function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = "", sourceKind = "", unlockNotice = ""){
     const button = document.createElement("button");
     const name = document.createElement("span");
     const meta = document.createElement("small");
@@ -6188,7 +6240,7 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     if(complete){
         button.classList.add("complete");
     }
-    button.title = titleDetail ? `${label} • ${titleDetail}` : label;
+    button.title = [label, titleDetail, unlockNotice].filter(Boolean).join(" • ");
     button.setAttribute("aria-label", button.title);
     button.setAttribute("aria-pressed", String(active));
     button.onclick = () => setSource(sourceId);
@@ -6205,6 +6257,12 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     }
     if(detail){
         button.appendChild(meta);
+    }
+    if(unlockNotice){
+        const notice = document.createElement("small");
+        notice.className = "source-unlock-note";
+        notice.innerText = unlockNotice;
+        button.appendChild(notice);
     }
     list.appendChild(button);
 }
