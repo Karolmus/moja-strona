@@ -11,6 +11,7 @@ const ctx = vm.createContext({
   selectedCategory: 'kurs', selectedSource: 'lesson1', selectedLevel: 'matura_podstawowa',
   selectedCoursePart: 'zadania', isLoggedInStudent: true,
   tagFiltersSearchAllSources: () => false, taskMatchesTagFilters: () => true,
+  sortExamTasksForNavigation: items => items,
   normalizeTaskSolutions: () => [], normalizeTaskGradingCriteria: () => [],
   normalizeCourseTextGradingCriteria: () => [], normalizeTaskTags: () => [],
   getSourceMeta: source => source,
