@@ -71,7 +71,8 @@ ctx.isTaskSourceLoaded = () => true;
 ctx.tasks = Array.from({length:29}, () => ({sourceId:sources[0].id, category:'kurs', level:ctx.selectedLevel}));
 ctx.renderSourceSelector();
 assert.deepEqual(list.children[0].children.map(child => child.innerText),
-  ['Lekcja 1', 'Potęgi i pierwiastki', '29 zadań']);
+  ['Lekcja 1', 'Potęgi i pierwiastki']);
+assert(!list.children[0].title.includes('zadań'));
 sources[1].kind = 'test';
 sources[1].unlocksNextSources = 4;
 ctx.renderSourceSelector();

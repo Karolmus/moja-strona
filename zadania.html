@@ -6188,12 +6188,14 @@ function renderSourceSelector(){
         const examDetails = examTile?.detail.split(" · ") || [];
         const label = examTile ? examDetails.shift() || "Arkusz" : source.label;
         const detail = selectedCategory === "kurs"
-            ? (isLoaded ? `${count} zadań` : "")
+            ? ""
             : examDetails.join(" · ");
         const sourceTitle = selectedCategory === "kurs"
             ? source.detail
             : `${examTile.label} · ${examTile.detail}`;
-        const titleDetail = `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
+        const titleDetail = selectedCategory === "kurs"
+            ? sourceTitle
+            : `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
         const unlockNotice = source.kind === "test" && source.unlocksNextSources > 0
             ? "Ukończenie testu odblokuje kolejne materiały."
             : "";
@@ -8151,6 +8153,7 @@ function getInputFields(task){
                 minLength: Number(input.minLength) || 0,
                 maxLength: Number(input.maxLength) || 0,
                 exact: input.exact === true,
+                acceptedFormsOnly: input.acceptedFormsOnly === true,
                 math: equation || input.math === true || (!input.options && !input.exact &&
                     typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid)),
                 answers
@@ -8241,6 +8244,13 @@ function normalizeTypedAnswer(value){
         .replace(/,/g, ".")
         .replace(/−/g, "-")
         .replace(/%/g, "");
+}
+
+function normalizeAcceptedMathForm(value){
+    return normalizeSymbolicExpression(value)
+        .replace(/sqrt([+-]?\d+(?:\.\d+)?)/g, "sqrt($1)")
+        .replace(/\^\(([+-]?\d+)\)/g, "^$1")
+        .replace(/\*/g, "");
 }
 
 function normalizeSymbolicExpression(value){
@@ -8600,10 +8610,18 @@ function formatPracticalAnswer(task = currentTask, computed = null){
     return task?.answer || "Wynik zależy od wpisanych danych.";
 }
 
-function isTypedAnswerCorrect(value, answers, exact = false){
+function isTypedAnswerCorrect(value, answers, exact = false, acceptedFormsOnly = false){
     const normalized = normalizeTypedAnswer(value);
     if(!normalized) return false;
     if(exact && !/^[+-]?\d+(?:[.,]\d+)?\s*%?$/.test(String(value).trim())) return false;
+
+    if(acceptedFormsOnly){
+        const typedForm = normalizeAcceptedMathForm(value);
+
+        return Boolean(typedForm) && answers.some(answer =>
+            normalizeAcceptedMathForm(answer) === typedForm
+        );
+    }
 
     return answers.some(answer => {
         const typedExpression = String(value).trim().replace(/%$/, "");
@@ -8636,7 +8654,7 @@ function isEquationSpecialAnswer(value){
 
 function isInputFieldAnswerCorrect(value, field){
     if(field.control !== "equation"){
-        return isTypedAnswerCorrect(value, field.answers, field.exact);
+        return isTypedAnswerCorrect(value, field.answers, field.exact, field.acceptedFormsOnly);
     }
 
     if(isEquationSpecialAnswer(value)){

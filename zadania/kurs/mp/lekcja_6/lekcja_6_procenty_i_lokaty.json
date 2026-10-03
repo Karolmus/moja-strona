@@ -80,9 +80,18 @@
     "tags": ["procenty", "procent liczby", "zmiana procentowa"],
     "difficulty": 1,
     "maxPoints": 1,
-    "type": "true_false",
-    "statements": ["Stwierdzenie 1", "Stwierdzenie 2"],
-    "answer": ["P", "P"],
+    "type": "input",
+    "teacherGraded": true,
+    "instruction": "Określ, czy każde stwierdzenie jest prawdziwe (P), czy fałszywe (F), a następnie uzasadnij obie odpowiedzi. Zadanie oceni nauczyciel.",
+    "inputs": [
+      {
+        "label": "Ocena stwierdzeń i uzasadnienie",
+        "prompt": "Wpisz oceny P/F obu stwierdzeń i uzasadnij swój wybór.",
+        "control": "textarea",
+        "minLength": 20,
+        "maxLength": 2000
+      }
+    ],
     "hint": "W pierwszym stwierdzeniu zapisz oba procenty jako iloczyny."
   },
   {

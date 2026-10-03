@@ -27,20 +27,71 @@ assert.equal(tasks.length, 10);
 assert.deepEqual(tasks.map(task => task.taskNumber), ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
 assert.equal(tasks.reduce((total, task) => total + task.maxPoints, 0), 14);
 assert.deepEqual(tasks.filter(task => task.type === 'closed').map(task => task.answer), ['C', 'B', 'C', 'A', 'A', 'D']);
+assert.equal(tasks[6].inputs[0].answer, '32');
+assert.equal(tasks[6].answer, '32');
+assert.equal(tasks[7].inputs[0].acceptedFormsOnly, true);
+assert.deepEqual(tasks[7].inputs[0].answers, [
+  '-3-2√2',
+  '-2√2-3',
+  '-3-√8',
+  '-√8-3',
+  '-(3+2√2)',
+  '-(1+√2)²'
+]);
 assert.deepEqual(tasks.map(task => task.title), tasks.map(task => `Zadanie ${task.taskNumber}`));
 assert(tasks.every(task => !/test sprawdzający/i.test(task.topic)));
-assert.equal(tasks[8].inputs.length, 2);
-assert.match(tasks[8].inputExample, /2\(3n² \+ n\) \+ 1 = 2m \+ 1/);
-assert(tasks[8].inputs[0].answers.includes('14(7n^2+8n+2)+4'));
-assert(tasks[8].inputs[1].answers.includes('14m+4'));
+assert.equal(tasks[8].topic, 'Reszta z dzielenia');
+assert.equal(tasks[8].inputs.length, 1);
+assert.equal(tasks[8].inputs[0].prompt, 'Wpisz obliczoną resztę z dzielenia liczby 2k² przez 14.');
+assert.equal(tasks[8].inputs[0].answer, '4');
+assert.equal(tasks[8].inputs[0].exact, true);
+assert.equal(tasks[8].inputs[0].acceptedFormsOnly, true);
+assert.equal(tasks[8].answer, '4');
+assert(!('inputExample' in tasks[8]));
 assert.equal(tasks[9].inputs.length, 1);
 assert.equal(tasks[9].inputs[0].prompt, 'Wpisz trzeci dzielnik pierwszy.');
 assert.equal(tasks[9].inputs[0].answer, '31');
 assert(tasks.slice(6).every(task => !('instruction' in task)), 'Input prompts are not duplicated above the fields');
 
+const answerContext = vm.createContext({});
+for (const name of ['normalizeTypedAnswer', 'normalizeSymbolicExpression', 'normalizeAcceptedMathForm',
+  'isTypedAnswerCorrect', 'isInputFieldAnswerCorrect']) {
+  vm.runInContext(functionSource(html, name), answerContext);
+}
+const strictField = {
+  control: '',
+  answers: tasks[7].inputs[0].answers,
+  exact: false,
+  acceptedFormsOnly: true
+};
+for (const answer of [
+  '-3-2√2',
+  '-2√(2)-3',
+  '-3-√8',
+  '-√(8)-3',
+  '-(3+2*√2)',
+  '-(1+√(2))²',
+  '-(1+sqrt(2))^(2)'
+]) {
+  assert(answerContext.isInputFieldAnswerCorrect(answer, strictField), answer);
+}
+for (const answer of ['-5.828427125', '-3+2√2', '3-2√2', '-(√2+1)^2']) {
+  assert(!answerContext.isInputFieldAnswerCorrect(answer, strictField), answer);
+}
+const strictFourField = {
+  control: '',
+  answers: [tasks[8].inputs[0].answer],
+  exact: tasks[8].inputs[0].exact,
+  acceptedFormsOnly: tasks[8].inputs[0].acceptedFormsOnly
+};
+assert(answerContext.isInputFieldAnswerCorrect('4', strictFourField));
+for (const answer of ['04', '4.0', '4,0']) {
+  assert(!answerContext.isInputFieldAnswerCorrect(answer, strictFourField), answer);
+}
+
 const expectedHeights = {
   '1.png': 103, '2.png': 156, '3.png': 175, '4.png': 183, '5.png': 191,
-  '6.png': 158, '7.png': 225, '8.png': 175, '9.png': 73, '10.png': 86
+  '6.png': 158, '7.png': 225, '8.png': 175, '9.png': 59, '10.png': 86
 };
 
 for (const task of tasks) {

@@ -3,7 +3,7 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
 const names = ['isEquationSolutionInput', 'getInputFields', 'getInputPrompt', 'normalizeTypedAnswer',
-  'normalizeSymbolicExpression', 'tokenizeSymbolicExpression', 'symbolicExpressionVariables',
+  'normalizeSymbolicExpression', 'normalizeAcceptedMathForm', 'tokenizeSymbolicExpression', 'symbolicExpressionVariables',
   'evaluateSymbolicExpression', 'areSymbolicExpressionsEquivalent',
   'splitEquationValues',
   'isTypedAnswerCorrect', 'isEquationSpecialAnswer', 'isInputFieldAnswerCorrect',
@@ -239,14 +239,14 @@ assert(ctx.isTypedAnswerCorrect('2(p+6)/3+4w-3', plantsExpression.answers));
 assert(ctx.isTypedAnswerCorrect('4w+2p/3+1', plantsExpression.answers));
 assert(!ctx.isTypedAnswerCorrect('4w+2p/3+2', plantsExpression.answers));
 const mpCheckpoint = JSON.parse(fs.readFileSync('zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json'));
-const proofFields = ctx.getInputFields(mpCheckpoint.find(item => item.file === '9.png'));
-const proofExpression = proofFields[0];
-assert(ctx.isTypedAnswerCorrect('14*(2+8n+7n^2)+4', proofExpression.answers));
-assert(ctx.isTypedAnswerCorrect('14(7n²+8n+2)+4', proofExpression.answers));
-assert(!ctx.isTypedAnswerCorrect('14(7n^2+8n+2)+5', proofExpression.answers));
-assert(ctx.isTypedAnswerCorrect('4+14m', proofFields[1].answers));
-assert(!ctx.isTypedAnswerCorrect('4+13m', proofFields[1].answers));
-assert(proofFields.every(field => field.inputMode === 'text'));
+const remainderFields = ctx.getInputFields(mpCheckpoint.find(item => item.file === '9.png'));
+assert.equal(remainderFields.length, 1);
+assert.equal(remainderFields[0].prompt, 'Wpisz obliczoną resztę z dzielenia liczby 2k² przez 14.');
+assert(ctx.isInputFieldAnswerCorrect('4', remainderFields[0]));
+for(const value of ['04', '4.0', '4,0', '5']){
+  assert(!ctx.isInputFieldAnswerCorrect(value, remainderFields[0]), value);
+}
+assert.equal(remainderFields[0].inputMode, 'decimal');
 assert(!ctx.areSymbolicExpressionsEquivalent('A', 'A'));
 assert(!ctx.areSymbolicExpressionsEquivalent('37h30min', '37 h 30 min'));
 assert.equal(ctx.getInputPrompt(ctx.getInputFields(task(5, 'zd2.png'))[0]), 'Podaj rozwiązanie równania lub wybierz jego typ.');

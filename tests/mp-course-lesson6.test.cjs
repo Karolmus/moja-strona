@@ -10,7 +10,7 @@ const html = fs.readFileSync('zadania.html', 'utf8');
 const profileHtml = fs.readFileSync('profil.html', 'utf8');
 const adminHtml = fs.readFileSync('admin.html', 'utf8');
 const keys = {
-  zadania: ['B', 'A', 'C', 'D', 'A', ['P', 'P'], 'C', 'C', ['F', 'F'], 'B'],
+  zadania: ['B', 'A', 'C', 'D', 'A', 'C', 'C', ['F', 'F'], 'B'],
   praca_domowa: ['B', 'C', 'C', 'C', 'C', ['P', 'F'], 'B', 'B', 'D'],
   zadania_powtorkowe: ['C', 'B', 'B', 'D']
 };
@@ -20,10 +20,14 @@ assert.equal(tasks.length, 24);
 assert.equal(new Set(tasks.map(task => task.file)).size, 24);
 
 for (const [part, key] of Object.entries(keys)) {
-  const items = tasks.filter(task => task.coursePart === part && task.type !== 'external_submission');
+  const items = tasks.filter(task => task.coursePart === part &&
+    task.type !== 'external_submission' && task.teacherGraded !== true);
+  const expectedFiles = part === 'zadania'
+    ? ['1.png', '2.png', '3.png', '4.png', '5.png', '7.png', '8.png', '9.png', '10.png']
+    : key.map((_, index) => `${prefixes[part]}${index + 1}.png`);
   assert.equal(items.length, key.length, part);
   items.forEach((task, index) => {
-    assert.equal(task.file, `${prefixes[part]}${index + 1}.png`);
+    assert.equal(task.file, expectedFiles[index]);
     assert.deepEqual(task.answer, key[index], task.file);
     if (Array.isArray(key[index])) {
       assert.equal(task.type, 'true_false');
@@ -38,6 +42,21 @@ for (const [part, key] of Object.entries(keys)) {
     assert(task.hint && task.tags.length >= 2);
   });
 }
+
+const teacherGraded = tasks.find(task => task.file === '6.png');
+assert(teacherGraded);
+assert.equal(teacherGraded.coursePart, 'zadania');
+assert.equal(teacherGraded.type, 'input');
+assert.equal(teacherGraded.teacherGraded, true);
+assert.equal(teacherGraded.maxPoints, 1);
+assert.equal(teacherGraded.inputs.length, 1);
+assert.equal(teacherGraded.inputs[0].control, 'textarea');
+assert.equal(teacherGraded.inputs[0].minLength, 20);
+assert.match(teacherGraded.inputs[0].prompt, /P\/F obu stwierdzeń/i);
+assert.match(teacherGraded.instruction, /zadanie oceni nauczyciel/i);
+assert(!('answer' in teacherGraded));
+assert(!('options' in teacherGraded));
+assert(!('statements' in teacherGraded));
 
 assert.equal(tasks.find(task => task.file === '3.png').contextFile, 'context_3_4.png');
 assert.equal(tasks.find(task => task.file === '4.png').contextFile, 'context_3_4.png');
@@ -59,11 +78,13 @@ for (const file of [...tasks.map(task => task.file), 'context_3_4.png']) {
   assert.equal(image.subarray(1, 4).toString(), 'PNG', file);
   assert.equal(image.readUInt32BE(16), 1396, file);
   assert(image.readUInt32BE(20) >= 140 && image.readUInt32BE(20) <= 584, file);
-
-  const webp = fs.readFileSync(path.join(sourceDir, file.replace(/\.png$/, '.webp')));
-  assert.equal(webp.subarray(0, 4).toString(), 'RIFF', file);
-  assert.equal(webp.subarray(8, 12).toString(), 'WEBP', file);
 }
+
+assert.equal(
+  fs.readdirSync(sourceDir).filter(file => file.endsWith('.webp')).length,
+  0,
+  'Lesson 6 keeps one image format only'
+);
 
 assert(fs.statSync(path.join(sourceDir, 'lekcja_6_procenty_i_lokaty.pdf')).size > 300000);
 
