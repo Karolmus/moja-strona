@@ -52,6 +52,7 @@ from auth_storage import (
     record_site_pageview,
     record_speed_training_result,
     record_progress,
+    reset_course_task_records,
     release_schedule_reservations,
     register_speed_training_attempt,
     register_auth_db,
@@ -110,8 +111,8 @@ app.config.update(
     SESSION_COOKIE_SAMESITE=os.environ.get("SESSION_COOKIE_SAMESITE", "Lax"),
     SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "false").lower() == "true",
     AUTH_TOKEN_MAX_AGE=int(os.environ.get("AUTH_TOKEN_MAX_AGE", str(60 * 60 * 24))),
-    AUTH_REMEMBER_MAX_AGE=60 * 60 * 24 * 30,
-    PERMANENT_SESSION_LIFETIME=timedelta(days=30),
+    AUTH_REMEMBER_MAX_AGE=int(os.environ.get("AUTH_REMEMBER_MAX_AGE", str(60 * 60 * 24 * 300))),
+    PERMANENT_SESSION_LIFETIME=timedelta(days=300),
     MAX_CONTENT_LENGTH=int(os.environ.get("MAX_CONTENT_LENGTH", str(32 * 1024))),
 )
 register_auth_db(app)
@@ -1456,6 +1457,47 @@ def api_admin_student_review_tasks(_admin, user_id):
         "student": student_payload(student),
         "review_tasks": review_tasks_for_user(user_id),
     })
+
+
+@app.delete("/api/admin/students/<int:user_id>/progress")
+@require_admin
+def api_admin_reset_student_progress(_admin, user_id):
+    def handler():
+        student = get_user_by_id(user_id)
+
+        if not student or student["role"] != "student":
+            return api_error("Nie znaleziono ucznia.", 404)
+
+        data = payload()
+        source_id = str(data.get("source_id") or "").strip()
+        files = data.get("files")
+
+        if not source_id.startswith("zadania/kurs/") or not source_id.endswith(".json"):
+            return api_error("Nieprawidłowy identyfikator lekcji.")
+        if not isinstance(files, list) or not files or len(files) > 100:
+            return api_error("Podaj listę zadań do zresetowania.")
+
+        manifest = read_course_json(source_id.removeprefix("zadania/kurs/"))
+        available_files = {
+            str(item.get("file") or "")
+            for item in (manifest if isinstance(manifest, list) else [])
+            if isinstance(item, dict)
+        }
+        normalized_files = list(dict.fromkeys(str(file_name or "").strip() for file_name in files))
+
+        if any(not file_name or file_name not in available_files for file_name in normalized_files):
+            return api_error("Lista zawiera zadanie spoza wskazanej lekcji.")
+
+        deleted = reset_course_task_records(user_id, source_id, normalized_files)
+
+        return jsonify({
+            "student": student_payload(student),
+            "source_id": source_id,
+            "files": normalized_files,
+            "deleted": deleted,
+        })
+
+    return safe(handler)
 
 
 @app.patch("/api/admin/review-tasks/<int:item_id>")

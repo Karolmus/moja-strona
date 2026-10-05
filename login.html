@@ -351,7 +351,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260922-signup-badges"></script>
+<script src="static/auth.js?v=20261005-remember-session"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script>
 const form = document.getElementById("loginForm");
@@ -362,6 +362,8 @@ const passwordError = document.getElementById("passwordError");
 const formStatus = document.getElementById("formStatus");
 const togglePassword = document.getElementById("togglePassword");
 const remember = document.getElementById("remember");
+const submitButton = form.querySelector('.submit-btn[type="submit"]');
+const REMEMBERED_LOGIN_KEY = "deltaSigmaRememberedLogin";
 
 function setFieldError(field, target, message){
     field.setAttribute("aria-invalid", message ? "true" : "false");
@@ -371,6 +373,60 @@ function setFieldError(field, target, message){
 function showStatus(message, type){
     formStatus.className = `status-box ${type}`;
     formStatus.innerText = message;
+}
+
+function restoreRememberPreference(){
+    try {
+        const rememberedLogin = window.localStorage.getItem(REMEMBERED_LOGIN_KEY) || "";
+
+        if(rememberedLogin || window.isAuthRemembered?.()){
+            remember.checked = true;
+            email.value = rememberedLogin;
+        }
+    } catch(error) {
+        // Formularz nadal działa, gdy przeglądarka blokuje pamięć trwałą.
+    }
+}
+
+function saveRememberPreference(){
+    try {
+        if(remember.checked){
+            window.localStorage.setItem(REMEMBERED_LOGIN_KEY, email.value.trim());
+        } else {
+            window.localStorage.removeItem(REMEMBERED_LOGIN_KEY);
+        }
+    } catch(error) {
+        // Brak zapisu loginu nie może zablokować poprawnego logowania.
+    }
+}
+
+async function restoreRememberedSession(){
+    if(!window.getAuthToken?.()) return;
+
+    form.setAttribute("aria-busy", "true");
+    submitButton.disabled = true;
+    showStatus("Przywracam zapamiętaną sesję...", "success");
+
+    try {
+        const session = await apiFetch("/api/auth/me");
+
+        if(session.authenticated && session.user){
+            const destination = session.user.role === "admin" ? "admin.html" : "zadania.html";
+            window.location.replace(destination);
+            return;
+        }
+
+        window.clearAuthToken?.();
+    } catch(error) {
+        if(error.status === 401 || error.status === 403){
+            window.clearAuthToken?.();
+        }
+    }
+
+    form.removeAttribute("aria-busy");
+    submitButton.disabled = false;
+    formStatus.className = "status-box";
+    formStatus.innerText = "";
 }
 
 function persistAuthToken(token){
@@ -419,6 +475,16 @@ togglePassword.addEventListener("click", () => {
     togglePassword.setAttribute("aria-pressed", String(!visible));
 });
 
+remember.addEventListener("change", () => {
+    if(remember.checked) return;
+
+    try {
+        window.localStorage.removeItem(REMEMBERED_LOGIN_KEY);
+    } catch(error) {
+        // Formularz nadal działa bez dostępu do pamięci trwałej.
+    }
+});
+
 fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
     .then(response => response.text())
     .then(html => {
@@ -444,6 +510,7 @@ form.addEventListener("submit", async event => {
         });
 
         persistAuthToken(result.token);
+        saveRememberPreference();
         showStatus("Zalogowano poprawnie. Przekierowuję...", "success");
 
         window.location.href = result.user.role === "admin" ? "admin.html" : "zadania.html";
@@ -451,6 +518,9 @@ form.addEventListener("submit", async event => {
         showStatus(error.message || "Nie udało się zalogować.", "error");
     }
 });
+
+restoreRememberPreference();
+restoreRememberedSession();
 </script>
 
 </body>

@@ -18,6 +18,7 @@ assert.equal(localStorage.getItem('deltaSigmaAuthToken'),null);
 assert.equal(boot().getAuthToken(),null);
 window.saveAuthToken('persistent',true);
 assert.equal(window.sessionStorage.getItem('deltaSigmaAuthToken'),null);
+assert.equal(window.isAuthRemembered(),true);
 window = boot();
 assert.equal(window.getAuthToken(),'persistent');
 window.saveAuthToken('new temporary',false);
@@ -30,6 +31,9 @@ const login = fs.readFileSync('login.html','utf8');
 assert.match(login,/id="remember" name="remember" type="checkbox"/);
 assert.match(login,/remember: remember.checked/);
 assert.match(login,/saveAuthToken\(token, remember.checked\)/);
+assert.match(login,/restoreRememberedSession\(\)/);
+assert.match(login,/window\.location\.replace\(destination\)/);
+assert.match(login,/deltaSigmaRememberedLogin/);
 for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
   const page = fs.readFileSync(file,'utf8');
   assert(!page.includes('static/security.js?v=2"'), `${file}: must not use the old token-removing security script`);

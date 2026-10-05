@@ -17,27 +17,59 @@
         (["localhost", "127.0.0.1"].includes(window.location.hostname) ? LOCAL_API_URL : RENDER_API_URL)
     ).replace(/\/$/, "");
 
+    function readStorage(storage, key){
+        try {
+            return storage.getItem(key);
+        } catch(error) {
+            return null;
+        }
+    }
+
+    function removeStorage(storage, key){
+        try {
+            storage.removeItem(key);
+        } catch(error) {
+            // Niedostępna pamięć przeglądarki nie może zablokować logowania.
+        }
+    }
+
     window.getAuthToken = function(){
-        return window.sessionStorage.getItem(TOKEN_KEY) || window.localStorage.getItem(TOKEN_KEY);
+        return readStorage(window.localStorage, TOKEN_KEY) || readStorage(window.sessionStorage, TOKEN_KEY);
+    };
+
+    window.isAuthRemembered = function(){
+        return Boolean(readStorage(window.localStorage, TOKEN_KEY));
     };
 
     window.saveAuthToken = function(token, remember = false){
-        if(token){
-            window.sessionStorage.removeItem(TOKEN_KEY);
-            window.localStorage.removeItem(TOKEN_KEY);
-            const storage = remember ? window.localStorage : window.sessionStorage;
+        if(!token) return false;
+
+        removeStorage(window.sessionStorage, TOKEN_KEY);
+        removeStorage(window.localStorage, TOKEN_KEY);
+        const storage = remember ? window.localStorage : window.sessionStorage;
+
+        try {
             storage.setItem(TOKEN_KEY, token);
-            cachedAuthUser = null;
-            cachedAuthAt = 0;
-            prospectUnreadCount = null;
-            prospectBadgeAt = 0;
-            prospectBadgePromise = null;
+        } catch(error) {
+            if(!remember) return false;
+            try {
+                window.sessionStorage.setItem(TOKEN_KEY, token);
+            } catch(fallbackError) {
+                return false;
+            }
         }
+
+        cachedAuthUser = null;
+        cachedAuthAt = 0;
+        prospectUnreadCount = null;
+        prospectBadgeAt = 0;
+        prospectBadgePromise = null;
+        return remember ? window.isAuthRemembered() : Boolean(readStorage(window.sessionStorage, TOKEN_KEY));
     };
 
     window.clearAuthToken = function(){
-        window.sessionStorage.removeItem(TOKEN_KEY);
-        window.localStorage.removeItem(TOKEN_KEY);
+        removeStorage(window.sessionStorage, TOKEN_KEY);
+        removeStorage(window.localStorage, TOKEN_KEY);
         cachedAuthUser = null;
         cachedAuthAt = 0;
         prospectUnreadCount = null;

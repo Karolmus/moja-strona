@@ -2072,6 +2072,43 @@ def progress_for_user(user_id, limit=2000):
     ]
 
 
+def reset_course_task_records(user_id, source_id, files):
+    normalized_files = tuple(dict.fromkeys(
+        str(file_name or "").strip() for file_name in files if str(file_name or "").strip()
+    ))
+
+    if not normalized_files:
+        return {"progress": 0, "review_tasks": 0}
+
+    placeholders = ", ".join("?" for _ in normalized_files)
+    params = (user_id, source_id, *normalized_files)
+    db = get_db()
+    review_cursor = db.execute(
+        prepare_sql(
+            f"""
+            DELETE FROM task_review_items
+            WHERE user_id = ? AND source_id = ? AND file IN ({placeholders})
+            """
+        ),
+        params,
+    )
+    progress_cursor = db.execute(
+        prepare_sql(
+            f"""
+            DELETE FROM task_progress
+            WHERE user_id = ? AND source_id = ? AND file IN ({placeholders})
+            """
+        ),
+        params,
+    )
+    db.commit()
+
+    return {
+        "progress": max(0, progress_cursor.rowcount),
+        "review_tasks": max(0, review_cursor.rowcount),
+    }
+
+
 def speed_training_result_to_dict(row, viewer_user_id=None):
     item = row_to_dict(row)
 

@@ -1589,7 +1589,7 @@ button {
 .task-video-consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .task-video-consent .action-btn { min-height: 44px; }
 .task-video-consent #taskVideoConfirm { background: #8b2332; color: #fff; }
-.task-video-player[hidden], .task-video-footer[hidden] { display: none; }
+.task-video-player[hidden] { display: none; }
 #taskVideoError { color: #8b2332; }
 
 .video-link[hidden] {
@@ -1738,8 +1738,7 @@ html.task-video-open {
     background: #eaf0f6;
 }
 
-.task-video-close:focus-visible,
-.task-video-footer a:focus-visible {
+.task-video-close:focus-visible {
     outline: 2px solid var(--blue-text);
     outline-offset: 3px;
 }
@@ -1759,17 +1758,6 @@ html.task-video-open {
     width: 100%;
     height: 100%;
     border: 0;
-}
-
-.task-video-footer {
-    padding: 10px 16px;
-    text-align: right;
-    font-size: 12px;
-}
-
-.task-video-footer a {
-    color: var(--blue-text);
-    text-underline-offset: 3px;
 }
 
 .action-group.tools .box {
@@ -3956,9 +3944,6 @@ footer {
         </div>
     </div>
     <div class="task-video-player" id="taskVideoPlayer" hidden></div>
-    <div class="task-video-footer" id="taskVideoFooter" hidden>
-        <a id="taskVideoExternal" target="_blank" rel="noopener noreferrer">Otwórz w YouTube</a>
-    </div>
 </dialog>
 
 <dialog class="test-start-dialog" id="testStartDialog" aria-labelledby="testStartTitle" aria-describedby="testStartWarning">
@@ -4069,7 +4054,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20260922-signup-badges"></script>
+<script src="static/auth.js?v=20261005-remember-session"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
 <script src="static/math-answer-input.js?v=20260922-equation-input"></script>
@@ -4317,6 +4302,13 @@ const TASK_SOURCES = [
         detail: "60 minut",
         kind: "test",
         unlocksNextSources: 4
+    },
+    {
+        path: "zadania/kurs/mp/lekcja_8/lekcja_8_funkcja_liniowa.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Lekcja 8",
+        detail: "Funkcja liniowa"
     },
     {
         path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json",
@@ -9508,7 +9500,22 @@ function taskVideoEmbedUrl(task){
     if(!url) return "";
 
     const videoId = new URL(url).pathname.slice(1);
-    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`;
+    return `https://www.youtube-nocookie.com/embed/${videoId}` +
+        "?autoplay=1&playsinline=1&controls=0&rel=0&iv_load_policy=3&modestbranding=1&fs=0";
+}
+
+function startTaskVideoPlayback(task){
+    const frame = document.createElement("iframe");
+    frame.title = `Film: ${taskLabel(task)}`;
+    frame.allow = "autoplay; encrypted-media; picture-in-picture";
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.src = taskVideoEmbedUrl(task);
+
+    document.getElementById("taskVideoConsent").hidden = true;
+    const player = document.getElementById("taskVideoPlayer");
+    player.hidden = false;
+    player.replaceChildren(frame);
+    document.getElementById("taskVideoClose").focus();
 }
 
 function openTaskVideo(event){
@@ -9539,6 +9546,8 @@ async function confirmTaskVideo(){
     const key = getTaskKey(task);
     const duration = currentTaskAnswered ? getTaskDurationSeconds(task) : getCurrentTaskDurationSeconds();
     const score = {earnedPoints: 0, maxPoints: taskPointValue(task)};
+    // Create the player synchronously from the click so browsers allow autoplay with sound.
+    startTaskVideoPlayback(task);
     try {
         if(getSavedResult(task) !== "video"){
             await saveProgress("video", score, duration, task);
@@ -9562,21 +9571,11 @@ async function confirmTaskVideo(){
             scheduleCompletionSummary();
             return;
         }
-        const frame = document.createElement("iframe");
-        frame.title = `Film: ${taskLabel(task)}`;
-        frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-        frame.allowFullscreen = true;
-        frame.referrerPolicy = "strict-origin-when-cross-origin";
-        frame.src = taskVideoEmbedUrl(task);
-        document.getElementById("taskVideoConsent").hidden = true;
-        const player = document.getElementById("taskVideoPlayer");
-        player.hidden = false;
-        player.replaceChildren(frame);
-        document.getElementById("taskVideoFooter").hidden = false;
-        document.getElementById("taskVideoExternal").href = taskVideoUrl(task);
-        document.getElementById("taskVideoClose").focus();
     } catch(error){
         if(pendingVideoTask !== task) return;
+        document.getElementById("taskVideoPlayer").replaceChildren();
+        document.getElementById("taskVideoPlayer").hidden = true;
+        document.getElementById("taskVideoConsent").hidden = false;
         const message = document.getElementById("taskVideoError");
         message.textContent = "Nie udało się potwierdzić zapisu oznaczenia filmu. Sprawdź połączenie i spróbuj ponownie.";
         message.hidden = false;
@@ -9589,9 +9588,7 @@ function resetTaskVideo(){
     // Removing the iframe also stops playback and releases the player.
     document.getElementById("taskVideoPlayer").replaceChildren();
     document.getElementById("taskVideoPlayer").hidden = true;
-    document.getElementById("taskVideoFooter").hidden = true;
     pendingVideoTask = null;
-    document.getElementById("taskVideoExternal").removeAttribute("href");
     document.documentElement.classList.remove("task-video-open");
 }
 

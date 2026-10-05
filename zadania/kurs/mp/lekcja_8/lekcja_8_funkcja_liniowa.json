@@ -1,0 +1,1271 @@
+[
+  {
+    "file": "1.png",
+    "title": "Lekcja 8 - zadanie 1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja liniowa",
+      "wykres",
+      "wzór funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj z wykresu wyraz wolny i zmianę wartości y przy wzroście x o 1.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "2.png",
+    "title": "Lekcja 8 - zadanie 2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja liniowa",
+      "miejsce zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw przyrównaj wzór funkcji do zera.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "3.png",
+    "title": "Lekcja 8 - zadanie 3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja liniowa",
+      "współczynniki",
+      "wykres"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, czy wykres rośnie czy maleje, oraz po której stronie zera przecina oś Oy.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "4.png",
+    "title": "Lekcja 8 - zadanie 4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste równoległe",
+      "równanie prostej"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Proste równoległe mają taki sam współczynnik kierunkowy.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "5.png",
+    "title": "Lekcja 8 - zadanie 5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja liniowa",
+      "wyraz wolny",
+      "kąt nachylenia"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź osobno znaczenie wyrazu wolnego i współczynnika kierunkowego.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "F",
+      "P"
+    ]
+  },
+  {
+    "file": "6.png",
+    "title": "Lekcja 8 - zadanie 6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja liniowa",
+      "współczynnik kierunkowy",
+      "tangens"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Odczytaj z wykresu dwa punkty o całkowitych współrzędnych i oblicz współczynnik kierunkowy.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "7.png",
+    "title": "Lekcja 8 - zadanie 7",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "przesunięcie wykresu",
+      "funkcja liniowa"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Dla przesunięcia wykresu w prawo podstaw w miejsce x wyrażenie x - p.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "P"
+    ]
+  },
+  {
+    "file": "8.png",
+    "title": "Lekcja 8 - zadanie 8",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste prostopadłe",
+      "współczynnik kierunkowy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Współczynniki kierunkowe prostych prostopadłych spełniają warunek a₁ · a₂ = -1.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "9.png",
+    "title": "Lekcja 8 - zadanie 9",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "punkt przecięcia",
+      "równanie prostej"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Najpierw wyznacz wzór funkcji przechodzącej przez A = (-2, 7) i mającej wyraz wolny 8.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "10.png",
+    "title": "Lekcja 8 - zadanie 10",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "przesunięcie wykresu",
+      "funkcja liniowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Przesunięcie o p w prawo i q w górę opisuje zależność g(x) = f(x - p) + q.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "11.png",
+    "title": "Lekcja 8 - zadanie 11",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste prostopadłe",
+      "funkcja liniowa"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Prosta y = 0 jest osią Ox; zastanów się, jak wygląda prosta do niej prostopadła.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "12.png",
+    "title": "Lekcja 8 - zadanie 12",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "monotoniczność",
+      "punkt na wykresie"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "O znaku monotoniczności decyduje współczynnik kierunkowy.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "F",
+      "F"
+    ]
+  },
+  {
+    "file": "13.png",
+    "title": "Lekcja 8 - zadanie 13",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja liniowa",
+      "tangens",
+      "początek układu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw sprawdź wartość f(0).",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "14.png",
+    "title": "Lekcja 8 - zadanie 14",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja stała",
+      "miejsce zerowe",
+      "przesunięcie wykresu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, dla ilu argumentów funkcja stała y = 0 przyjmuje wartość zero.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "F",
+      "F"
+    ]
+  },
+  {
+    "file": "15.png",
+    "title": "Lekcja 8 - zadanie 15",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "postać kierunkowa",
+      "współczynniki"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprowadź wzór funkcji do postaci ax + b.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "P"
+    ]
+  },
+  {
+    "file": "16.png",
+    "title": "Lekcja 8 - zadanie 16",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "monotoniczność",
+      "punkty kratowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprowadź wzór do postaci ax + b i oceń znak współczynnika a.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "F",
+      "P"
+    ]
+  },
+  {
+    "file": "17.png",
+    "title": "Lekcja 8 - zadanie 17",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste równoległe",
+      "proste prostopadłe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przypomnij sobie zależności między prostymi równoległymi i prostopadłymi.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "P"
+    ]
+  },
+  {
+    "file": "18.png",
+    "title": "Lekcja 8 - zadanie 18",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "miejsce zerowe",
+      "postać ogólna"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Aby znaleźć miejsce zerowe, podstaw y = 0 do równania.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "19.png",
+    "title": "Lekcja 8 - zadanie 19",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "położenie punktu",
+      "wykres funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Dla każdego punktu porównaj jego rzędną z wartością funkcji dla tej samej odciętej.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "20.png",
+    "title": "Lekcja 8 - zadanie 20",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste równoległe",
+      "parametr"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Dwie funkcje liniowe są równoległe, gdy ich współczynniki kierunkowe są równe.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "21.png",
+    "title": "Lekcja 8 - zadanie 21",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "punkt przecięcia",
+      "układ równań"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Przyrównaj do siebie wartości f(x) i g(x).",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "22.png",
+    "title": "Lekcja 8 - zadanie 22",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "układ równań",
+      "interpretacja geometryczna"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Odczytaj z wykresu współczynniki kierunkowe i wspólny wyraz wolny obu prostych.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "23.png",
+    "title": "Lekcja 8 - zadanie 23",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "nierówność liniowa",
+      "porównanie funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Zacznij od nierówności 5x - 2 ≥ 2x + 3.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "24.png",
+    "title": "Lekcja 8 - zadanie 24",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "równanie prostej",
+      "dwa punkty"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Wyznacz współczynnik kierunkowy z punktów K i L.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "25.png",
+    "title": "Lekcja 8 - zadanie 25",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "ćwiartki układu",
+      "monotoniczność"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Z warunku f(2) < f(-1) określ znak współczynnika kierunkowego.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "26.png",
+    "title": "Lekcja 8 - zadanie 26",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "kąt nachylenia",
+      "tangens"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Współczynnik kierunkowy prostej jest równy tangensowi kąta z dodatnią częścią osi Ox.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "27.png",
+    "title": "Lekcja 8 - zadanie 27",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "kąt z osią Oy",
+      "współczynnik kierunkowy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw zamień kąt z osią Oy na kąt z osią Ox.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "28.png",
+    "title": "Lekcja 8 - zadanie 28",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "odbicie wykresu",
+      "przesunięcie wykresu"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Najpierw zapisz wzór funkcji f z wykresu, a następnie odbij go względem osi Ox.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "29.png",
+    "title": "Lekcja 8 - zadanie 29",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "punkt przecięcia",
+      "parametr"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Wyznacz x punktu przecięcia, przyrównując prawe strony równań.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "30.png",
+    "title": "Lekcja 8 - zadanie 30",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "nierówność liniowa",
+      "zbiór rozwiązań"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Zacznij od nierówności 5x - 3 < 2.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd1.png",
+    "title": "Lekcja 8 - praca domowa 1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "wykres funkcji",
+      "przecięcie z osiami"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj z wykresu oba punkty przecięcia z osiami.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd2.png",
+    "title": "Lekcja 8 - praca domowa 2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "miejsce zerowe",
+      "parametr",
+      "nierówność"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Wyznacz miejsce zerowe w zależności od m i uwzględnij znak mianownika.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd3.png",
+    "title": "Lekcja 8 - praca domowa 3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste równoległe",
+      "pole trójkąta"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Najpierw wyznacz równanie prostej k.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd4.png",
+    "title": "Lekcja 8 - praca domowa 4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste prostopadłe",
+      "miejsce zerowe"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Współczynnik kierunkowy prostej prostopadłej jest ujemną odwrotnością danego współczynnika.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd5.png",
+    "title": "Lekcja 8 - praca domowa 5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "punkt przecięcia",
+      "układ równań"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przyrównaj 2x - 3 do -x + 6.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd6.png",
+    "title": "Lekcja 8 - praca domowa 6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "miejsce zerowe",
+      "wyraz wolny"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Miejsce zerowe funkcji ax + b ma postać -b/a.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "zd7.png",
+    "title": "Lekcja 8 - praca domowa 7",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "odbicie wykresu",
+      "przesunięcie wykresu"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Po odbiciu względem osi Oy zastąp x przez -x.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd8.png",
+    "title": "Lekcja 8 - praca domowa 8",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "przesunięcie wykresu",
+      "miejsce zerowe"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Zapisz zależność g(x) = f(x - 3) - 1 i wyznacz f.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd9.png",
+    "title": "Lekcja 8 - praca domowa 9",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "nierówność liniowa",
+      "porównanie funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Zacznij od nierówności -2x + 5 < x - 1.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd10.png",
+    "title": "Lekcja 8 - praca domowa 10",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "położenie punktu",
+      "wykres funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Oblicz wartość funkcji dla odciętej każdego punktu.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd11.png",
+    "title": "Lekcja 8 - praca domowa 11",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste równoległe",
+      "parametr"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przyrównaj współczynniki kierunkowe obu funkcji.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd12.png",
+    "title": "Lekcja 8 - praca domowa 12",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "proste prostopadłe",
+      "parametr"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Iloczyn współczynników kierunkowych prostych prostopadłych wynosi -1.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd13.png",
+    "title": "Lekcja 8 - praca domowa 13",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "funkcja stała",
+      "prosta pionowa"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Prosta prostopadła do poziomej jest pionowa; sprawdź, czy jest wykresem funkcji.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "zd14.png",
+    "title": "Lekcja 8 - praca domowa 14",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "pole trójkąta",
+      "przecięcie z osiami"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Wyznacz punkty przecięcia prostej z obiema osiami.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd15.png",
+    "title": "Lekcja 8 - praca domowa 15",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "kąt nachylenia",
+      "tangens"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Współczynnik kierunkowy jest równy tan 30°.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd16.png",
+    "title": "Lekcja 8 - praca domowa 16",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "odbicie wykresu",
+      "przesunięcie wykresu"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Najpierw odczytaj wzór funkcji f z wykresu.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd17.png",
+    "title": "Lekcja 8 - praca domowa 17",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "układ równań",
+      "interpretacja geometryczna"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Dla każdej prostej odczytaj współczynnik kierunkowy i wyraz wolny.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd18.png",
+    "title": "Lekcja 8 - praca domowa 18",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcja liniowa",
+    "tags": [
+      "nierówności",
+      "wykresy funkcji"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Wyznacz osobno warunki f(x) ≥ 0 oraz f(x) < g(x), a następnie ich część wspólną.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zp1.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 1",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "dziedzina",
+    "tags": [
+      "dziedzina",
+      "funkcja wymierna"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Dziedzinę wyznaczają wartości, dla których mianownik jest różny od zera.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zp2.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 2",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "funkcja przedziałami",
+    "tags": [
+      "funkcja przedziałami",
+      "miejsca zerowe"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Miejsca zerowe wyznacz osobno dla każdej części funkcji i sprawdź warunki przedziałów.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zp3.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 3",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wartość bezwzględna",
+    "tags": [
+      "wartość bezwzględna",
+      "wartość funkcji"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Podstaw x = -3 do obu wartości bezwzględnych.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zp4.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 4",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "równanie iloczynowe",
+    "tags": [
+      "równanie iloczynowe",
+      "zbiór rozwiązań"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Przyrównaj każdy czynnik do zera.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zp5.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 5",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "równanie iloczynowe",
+    "tags": [
+      "równanie iloczynowe",
+      "parametr"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Równanie ma dwa różne rozwiązania, gdy 2 i 3m są różne.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zp6.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 6",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wzory skróconego mnożenia",
+    "tags": [
+      "wzory skróconego mnożenia",
+      "wyrażenia algebraiczne"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Rozwiń oba kwadraty i zredukuj wyrazy podobne.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zp7.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 7",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "równanie wymierne",
+    "tags": [
+      "równanie wymierne",
+      "dziedzina"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Najpierw zapisz dziedzinę równania, a potem znajdź zera licznika.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zp8.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 8",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "lokata",
+    "tags": [
+      "lokata",
+      "procent składany"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Oznacz wypłaconą kwotę przez x i zapisz stan lokaty po każdej kapitalizacji.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zp9.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 9",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "dowód",
+    "tags": [
+      "dowód",
+      "reszta z dzielenia",
+      "liczby całkowite"
+    ],
+    "difficulty": 1,
+    "maxPoints": 2,
+    "hint": "Zapisz kolejne liczby dające resztę 1 z dzielenia przez 3 jako 3k + 1 oraz 3k + 4.",
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord."
+  }
+]

@@ -975,16 +975,80 @@ class SecurityTests(unittest.TestCase):
         review = self.client.get("/api/review-tasks/me", headers=headers).get_json()["review_tasks"]
         self.assertEqual(review[0]["course_part"], "zadania_powtorkowe")
 
-    def test_remembered_auth_expires_after_thirty_days(self):
+    def test_admin_can_reset_only_selected_course_tasks(self):
+        with app.app_context():
+            student = create_user(
+                "reset-progress@example.test", "Gabrysia Szubert", "bezpieczne-haslo",
+                level="matura_podstawowa",
+            )
+            admin = create_user(
+                "reset-progress-admin@example.test", "Admin", "bezpieczne-haslo",
+                role="admin",
+            )
+            student_headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            admin_headers = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+
+        source = "zadania/kurs/mp/lekcja_3/lekcja_3_wzory_skroconego_mnozenia.json"
+
+        for file_name in ("zd5.png", "zd6.png", "zd7.png"):
+            task = {
+                "source_id": source,
+                "file": file_name,
+                "task_id": f"{source}:{file_name}",
+                "result": "good",
+                "course_part": "praca_domowa",
+            }
+            self.assertEqual(
+                self.client.post("/api/progress", headers=student_headers, json=task).status_code,
+                201,
+            )
+
+        review_task = {
+            "source_id": source,
+            "file": "zd7.png",
+            "task_id": f"{source}:zd7.png",
+            "course_part": "praca_domowa",
+        }
+        self.assertEqual(
+            self.client.post("/api/review-tasks", headers=student_headers, json=review_task).status_code,
+            201,
+        )
+        endpoint = f"/api/admin/students/{student['id']}/progress"
+        reset_payload = {"source_id": source, "files": ["zd6.png", "zd7.png"]}
+
+        self.assertEqual(
+            self.client.delete(endpoint, headers=student_headers, json=reset_payload).status_code,
+            403,
+        )
+        reset = self.client.delete(endpoint, headers=admin_headers, json=reset_payload)
+
+        self.assertEqual(reset.status_code, 200)
+        self.assertEqual(reset.get_json()["deleted"], {"progress": 2, "review_tasks": 1})
+        remaining = self.client.get("/api/progress/me", headers=student_headers).get_json()["progress"]
+        self.assertEqual([item["file"] for item in remaining], ["zd5.png"])
+        self.assertEqual(
+            self.client.get("/api/review-tasks/me", headers=student_headers).get_json()["review_tasks"],
+            [],
+        )
+        invalid = self.client.delete(
+            endpoint,
+            headers=admin_headers,
+            json={"source_id": source, "files": ["nie-istnieje.png"]},
+        )
+        self.assertEqual(invalid.status_code, 400)
+
+    def test_remembered_auth_expires_after_three_hundred_days(self):
         with app.app_context():
             student = create_user("remember@example.test", "Remember", "bezpieczne-haslo")
             now = time.time()
-            with patch("time.time", return_value=now - 2 * 86400):
+            with patch("time.time", return_value=now):
                 ordinary = app_module.create_auth_token(student)
                 remembered = app_module.create_auth_token(student, remember=True)
-            self.assertIsNone(app_module.user_from_token(ordinary))
-            self.assertEqual(app_module.user_from_token(remembered)["id"], student["id"])
-            with patch("time.time", return_value=now + 30 * 86400):
+            with patch("time.time", return_value=now + 2 * 86400):
+                self.assertIsNone(app_module.user_from_token(ordinary))
+            with patch("time.time", return_value=now + 299 * 86400):
+                self.assertEqual(app_module.user_from_token(remembered)["id"], student["id"])
+            with patch("time.time", return_value=now + 301 * 86400):
                 self.assertIsNone(app_module.user_from_token(remembered))
             login = self.client.post("/api/auth/login", json={
                 "email":student["email"], "password":"bezpieczne-haslo", "remember":True

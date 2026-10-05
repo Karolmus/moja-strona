@@ -41,13 +41,12 @@ const ctx = vm.createContext({document, URL, isTaskLoading:false, currentTaskAns
 const start = html.indexOf('function taskVideoUrl('), end = html.indexOf('function setResultButtonsEnabled(', start);
 vm.runInContext(html.slice(start, end), ctx);
 const dialog=document.getElementById('taskVideoDialog'), player=document.getElementById('taskVideoPlayer');
-const external=document.getElementById('taskVideoExternal'), consent=document.getElementById('taskVideoConsent');
+const consent=document.getElementById('taskVideoConsent');
 const event=extra=>({preventDefault(){this.prevented=true;},stopImmediatePropagation(){this.stopped=true;},...extra});
 (async()=>{
   ctx.openTaskVideo(event());
   assert(dialog.open && !consent.hidden);
   assert.equal(player.children.length,0,'No player or external URL before confirmation');
-  assert.equal(external.href,undefined);
   document.getElementById('taskVideoCancel').listeners.click();
   assert(!dialog.open); assert.equal(writes,0); assert.equal(ctx.sessionResults.size,0);
   ctx.openTaskVideo(event());
@@ -55,10 +54,9 @@ const event=extra=>({preventDefault(){this.prevented=true;},stopImmediatePropaga
   assert.equal(writes,1); assert.equal(ctx.sessionResults.get('lesson1:zd1.png'),'video');
   assert.equal(player.children.length,1);
   const frame=player.children[0];
-  assert.equal(frame.src,'https://www.youtube-nocookie.com/embed/F--EfH1oOnE?autoplay=1&playsinline=1&rel=0');
+  assert.equal(frame.src,'https://www.youtube-nocookie.com/embed/F--EfH1oOnE?autoplay=1&playsinline=1&controls=0&rel=0&iv_load_policy=3&modestbranding=1&fs=0');
   assert.equal(frame.referrerPolicy,'strict-origin-when-cross-origin');
-  assert.equal(frame.allowFullscreen,true);
-  assert.equal(external.href,ctx.currentTask.videoUrl);
+  assert.equal(frame.allow,'autoplay; encrypted-media; picture-in-picture');
   const escape=event({key:'Escape'});
   document.listeners.keydown.listener(escape);
   assert(document.listeners.keydown.capture && escape.prevented && escape.stopped);
@@ -81,6 +79,7 @@ const event=extra=>({preventDefault(){this.prevented=true;},stopImmediatePropaga
   ctx.saveProgress=()=>new Promise(resolve=>{finish=resolve;});
   ctx.openTaskVideo(event());
   const pending=ctx.confirmTaskVideo();
+  assert.equal(player.children.length,1,'The player starts synchronously from the confirmation click');
   await ctx.confirmTaskVideo();
   ctx.closeTaskVideo();
   ctx.currentTask={...ctx.currentTask,file:'zd2.png'};

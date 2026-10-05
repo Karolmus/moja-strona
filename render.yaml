@@ -19,3 +19,5 @@ services:
         value: "true"
       - key: AUTH_TOKEN_MAX_AGE
         value: "86400"
+      - key: AUTH_REMEMBER_MAX_AGE
+        value: "25920000"
