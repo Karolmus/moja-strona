@@ -16,16 +16,17 @@ function config(text, name) {
   return vm.runInNewContext(value[1]);
 }
 
-assert.equal(tasks.length, 14);
+assert.equal(tasks.length, 15);
 assert.deepEqual(tasks.map(task => task.taskNumber), [
-  '1.1', '1.2', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'
+  '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'
 ]);
-assert.equal(new Set(tasks.map(task => task.file)).size, 14);
+assert.equal(new Set(tasks.map(task => task.file)).size, 15);
+assert.equal(tasks.reduce((sum, task) => sum + task.maxPoints, 0), 18);
+
 const expectedCropHeights = {
-  '1_1.png': 118, '1_2.png': 122, '2.png': 270, '3.png': 184,
-  '4.png': 265, '5.png': 311, '6.png': 265, '7.png': 267,
-  '8.png': 354, '9.png': 312, '10.png': 138, '11.png': 431,
-  '12.png': 256, '13.png': 63
+  '1.png': 299, '2.png': 317, '3.png': 776, '4.png': 263, '5.png': 195,
+  '6.png': 272, '7.png': 342, '8.png': 263, '9.png': 263, '10.png': 303,
+  '11.png': 213, '12.png': 99, '13.png': 125, '14.png': 263, '15.png': 47
 };
 
 for (const task of tasks) {
@@ -39,44 +40,43 @@ for (const task of tasks) {
 
   const image = fs.readFileSync(path.join(sourceDir, task.file));
   assert.equal(image.subarray(1, 4).toString(), 'PNG');
-  assert(image.readUInt32BE(16) >= 900 && image.readUInt32BE(16) <= 1000, task.file);
-  assert.equal(image.readUInt32BE(20), expectedCropHeights[task.file], `${task.file}: clean crop height`);
+  assert.equal(image.readUInt32BE(16), 970, `${task.file}: crop width`);
+  assert.equal(image.readUInt32BE(20), expectedCropHeights[task.file], `${task.file}: crop height`);
 }
 
-const context = fs.readFileSync(path.join(sourceDir, 'context_1.png'));
-assert.equal(context.subarray(1, 4).toString(), 'PNG');
-assert.equal(context.readUInt32BE(20), 193);
-assert.equal(tasks[0].contextFile, 'context_1.png');
-assert.equal(tasks[1].contextFile, 'context_1.png');
-
 assert.deepEqual(tasks.filter(task => task.type === 'closed').map(task => task.answer), [
-  'A', 'D', 'D', 'D', 'A', 'C', 'B', 'C'
+  'A', 'B', 'D', 'B', 'C', 'D', 'A'
 ]);
-assert.deepEqual(tasks.find(task => task.taskNumber === '4').answer, ['F', 'F']);
-assert.deepEqual(tasks.find(task => task.taskNumber === '6').answer, ['P', 'F']);
-assert.deepEqual(tasks.find(task => task.taskNumber === '7').answer, ['P', 'F']);
-
-const task10 = tasks.find(task => task.taskNumber === '10');
-assert.equal(task10.type, 'input');
-assert.equal(task10.maxPoints, 2);
-assert.equal(task10.inputs[0].answer, '80');
-assert.equal(task10.inputs[0].suffix, 'zł');
+assert.deepEqual(tasks.find(task => task.taskNumber === '3').answer, ['F', 'P']);
+assert.deepEqual(tasks.find(task => task.taskNumber === '6').answer, ['P', 'P']);
+assert.deepEqual(tasks.find(task => task.taskNumber === '8').answer, ['F', 'P']);
+assert.deepEqual(tasks.find(task => task.taskNumber === '9').answer, ['F', 'P']);
+for (const taskNumber of ['3', '6', '8', '9']) {
+  assert.deepEqual(tasks.find(task => task.taskNumber === taskNumber).statements,
+    ['Stwierdzenie 1', 'Stwierdzenie 2']);
+}
 
 const task11 = tasks.find(task => task.taskNumber === '11');
 assert.equal(task11.type, 'input');
-assert.deepEqual(task11.inputs, [
-  {label: 'a', options: ['I', 'II', 'III'], answer: 'II'},
-  {label: 'b', options: ['I', 'II', 'III'], answer: 'I'},
-  {label: 'c', options: ['I', 'II', 'III'], answer: 'III'}
-]);
+assert.equal(task11.maxPoints, 1);
+assert.equal(task11.inputs[0].answer, '8');
+assert.equal(task11.inputs[0].exact, true);
+
+const task12 = tasks.find(task => task.taskNumber === '12');
+assert.equal(task12.type, 'input');
+assert.equal(task12.maxPoints, 2);
+assert.equal(task12.inputs[0].answer, '12240');
+assert.equal(task12.inputs[0].suffix, 'zł');
 
 const task13 = tasks.find(task => task.taskNumber === '13');
 assert.equal(task13.type, 'input');
 assert.equal(task13.maxPoints, 2);
-assert.deepEqual(task13.inputs, [
-  {label: 'a', answer: '80'},
-  {label: 'b', answer: '5'}
-]);
+assert.deepEqual(task13.inputs[0].answers, ['-1/20', '-0,05', '-0.05']);
+
+const task15 = tasks.find(task => task.taskNumber === '15');
+assert.equal(task15.type, 'input');
+assert.equal(task15.maxPoints, 2);
+assert.deepEqual(task15.inputs[0].answers, ['14√2', '14sqrt(2)']);
 
 for (const [text, name] of [
   [html, 'TASK_SOURCES'],
@@ -89,7 +89,7 @@ for (const [text, name] of [
   assert.equal(entries[0].level, 'egzamin_osmoklasisty');
   assert.equal(entries[0].kind, 'test');
   assert.equal(entries[0].label, 'Test sprawdzający z lekcji 1 - 6');
-  if(name === 'TASK_SOURCES') assert.equal(entries[0].unlocksNextSources, 4);
+  if (name === 'TASK_SOURCES') assert.equal(entries[0].unlocksNextSources, 4);
 }
 
 const taskSources = config(html, 'TASK_SOURCES');
@@ -118,4 +118,4 @@ assert.match(profileHtml, /source\.category === category && source\.kind !== "te
 assert.match(adminHtml, /excludeKinds: \["test"\]/);
 assert(fs.statSync(path.join(sourceDir, 'Test lekcje 1-6.pdf')).size > 400000);
 
-console.log('PASS: EO checkpoint after lessons 1-6, clean crops, answers and blue theme');
+console.log('PASS: new EO checkpoint after lessons 1-6, clean crops, answer key and blue theme');

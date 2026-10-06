@@ -298,10 +298,10 @@ assert.deepEqual(Array.from(ctx.splitEquationValues('root(256;4); 2')), ['root(2
 assert.equal(ctx.getInputFields(task(1, 'zd_7.1.png'))[0].control, 'equation');
 assert.equal(ctx.getInputFields(task(6, 'zd10.png'))[0].control, 'equation');
 assert.equal(ctx.getInputFields(task(6, '10.png'))[0].control, '');
-const checkpointTasks = JSON.parse(fs.readFileSync(
-  'zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json'
+const lesson4Tasks = JSON.parse(fs.readFileSync(
+  'zadania/kurs/eo/lekcja_4/lekcja_4_pierwiastki.json'
 ));
-const assignmentTask = checkpointTasks.find(item => item.taskNumber === '11');
+const assignmentTask = lesson4Tasks.find(item => item.file === '11.png');
 const assignment = render(assignmentTask);
 const assignmentGrid = assignment.form.children[0];
 assert(assignmentGrid.classes.has('assignment-fields'));
