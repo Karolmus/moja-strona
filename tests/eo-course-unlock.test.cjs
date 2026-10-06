@@ -32,11 +32,26 @@ function checkpoint(level, range, unlocksNextSources = 0) {
   };
 }
 
+function optionalCheckpoint(level, prerequisite) {
+  return {
+    path: 'zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test.json',
+    category: 'kurs',
+    level,
+    label: 'Test trudniejszy 1-6',
+    kind: 'test',
+    optional: true,
+    requiresSource: prerequisite.path,
+    minScorePercent: 80
+  };
+}
+
 const eoLevel = 'egzamin_osmoklasisty';
 const mpLevel = 'matura_podstawowa';
+const eoCheckpoint = checkpoint(eoLevel, '1-6', 4);
 const eoSources = [
   ...Array.from({length: 6}, (_, index) => lesson(eoLevel, index + 1)),
-  checkpoint(eoLevel, '1-6', 4),
+  eoCheckpoint,
+  optionalCheckpoint(eoLevel, eoCheckpoint),
   ...Array.from({length: 5}, (_, index) => lesson(eoLevel, index + 7))
 ];
 const mpSources = [
@@ -52,7 +67,8 @@ const tasks = sources.map(source => ({
   file: 'zd1.png',
   category: 'kurs',
   level: source.level,
-  coursePart: 'praca_domowa'
+  coursePart: 'praca_domowa',
+  maxPoints: 10
 }));
 const progress = new Map();
 const ctx = vm.createContext({
@@ -65,13 +81,20 @@ const ctx = vm.createContext({
   getSourceMeta: source => ({...source, id: source.path}),
   isTaskSourceLoaded: sourceId => tasks.some(task => task.sourceId === sourceId),
   getSourceCompletionTasks: source => tasks.filter(task => task.sourceId === source.id),
-  getSavedProgressItem: task => progress.get(`${task.sourceId}:${task.file}`) || null
+  getSavedProgressItem: task => progress.get(`${task.sourceId}:${task.file}`) || null,
+  taskPointValue: task => task.maxPoints,
+  getTaskScore: task => {
+    const saved = progress.get(`${task.sourceId}:${task.file}`);
+    return saved ? {earnedPoints: saved.earned_points, maxPoints: saved.max_points} : null;
+  }
 });
 
 for (const name of [
   'getCourseSourceSequence',
   'getPreviousCourseCheckpoint',
   'isCheckpointStageComplete',
+  'getCheckpointScorePercent',
+  'isOptionalCourseTestUnlocked',
   'isCourseSourceVisible',
   'getAvailableSources'
 ]) {
@@ -82,9 +105,13 @@ const visibleLabels = level => {
   ctx.selectedLevel = level;
   return ctx.getAvailableSources().map(source => source.label);
 };
-const complete = (source, result = 'good') => {
+const complete = (source, result = 'good', earnedPoints = 10) => {
   const task = tasks.find(item => item.sourceId === source.path);
-  progress.set(`${task.sourceId}:${task.file}`, {result});
+  progress.set(`${task.sourceId}:${task.file}`, {
+    result,
+    earned_points: earnedPoints,
+    max_points: task.maxPoints
+  });
 };
 
 assert.deepEqual(visibleLabels(eoLevel), [
@@ -92,12 +119,16 @@ assert.deepEqual(visibleLabels(eoLevel), [
 ]);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'));
 
-complete(eoSources[6], 'skipped');
+complete(eoSources[6], 'skipped', 0);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'), 'An unfinished test keeps the next lessons locked');
-complete(eoSources[6], 'bad');
+complete(eoSources[6], 'medium', 8);
 assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'A completed test unlocks the next lessons regardless of its score');
+assert(!visibleLabels(eoLevel).includes('Test trudniejszy 1-6'), 'A score of exactly 80% does not unlock the harder test');
 assert(visibleLabels(eoLevel).includes('Lekcja 10'), 'The checkpoint unlocks lessons 7-10');
 assert(!visibleLabels(eoLevel).includes('Lekcja 11'), 'Lessons after the unlocked block stay hidden until the next checkpoint is added');
+complete(eoSources[6], 'medium', 9);
+assert(visibleLabels(eoLevel).includes('Test trudniejszy 1-6'), 'A score above 80% unlocks the optional harder test');
+assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'The optional test never blocks the next lesson stage');
 
 assert.deepEqual(visibleLabels(mpLevel), [
   'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6', 'Test 1-6'

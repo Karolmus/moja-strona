@@ -4362,6 +4362,17 @@ const TASK_SOURCES = [
         unlocksNextSources: 4
     },
     {
+        path: "zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test_lekcje_1_6_trudniejszy.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Test trudniejszy z lekcji 1 - 6",
+        detail: "Opcjonalny · wymagany wynik powyżej 80%",
+        kind: "test",
+        optional: true,
+        requiresSource: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
+        minScorePercent: 80
+    },
+    {
         path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
@@ -5433,7 +5444,10 @@ function getSourceMeta(sourceConfig){
         label,
         detail,
         kind: sourceConfig.kind || "",
-        unlocksNextSources: Math.max(0, Number(sourceConfig.unlocksNextSources) || 0)
+        unlocksNextSources: Math.max(0, Number(sourceConfig.unlocksNextSources) || 0),
+        optional: sourceConfig.optional === true,
+        requiresSource: sourceConfig.requiresSource || "",
+        minScorePercent: Math.max(0, Number(sourceConfig.minScorePercent) || 0)
     };
 }
 
@@ -5452,7 +5466,7 @@ function getPreviousCourseCheckpoint(source, sources = getCourseSourceSequence(s
     if(sourceIndex <= 0) return null;
 
     for(let index = sourceIndex - 1; index >= 0; index--){
-        if(sources[index].kind === "test") return sources[index];
+        if(sources[index].kind === "test" && !sources[index].optional) return sources[index];
     }
 
     return null;
@@ -5468,11 +5482,42 @@ function isCheckpointStageComplete(checkpoint){
     );
 }
 
+function getCheckpointScorePercent(checkpoint){
+    if(checkpoint?.kind !== "test" || !isTaskSourceLoaded(checkpoint.id)) return 0;
+
+    const requiredTasks = getSourceCompletionTasks(checkpoint);
+    let earnedPoints = 0;
+    let totalPoints = 0;
+
+    requiredTasks.forEach(task => {
+        const maxPoints = taskPointValue(task);
+        const score = getTaskScore(task);
+
+        totalPoints += maxPoints;
+        earnedPoints += Math.max(0, Math.min(maxPoints, Number(score?.earnedPoints) || 0));
+    });
+
+    return totalPoints ? earnedPoints / totalPoints * 100 : 0;
+}
+
+function isOptionalCourseTestUnlocked(source, sources = getCourseSourceSequence(source?.level)){
+    if(!source?.optional) return true;
+
+    const prerequisite = sources.find(item => item.id === source.requiresSource);
+
+    if(!prerequisite || !isCheckpointStageComplete(prerequisite)) return false;
+
+    return getCheckpointScorePercent(prerequisite) > source.minScorePercent;
+}
+
 function isCourseSourceVisible(source){
     if(source.category !== "kurs") return true;
     if(!isLoggedInStudent || loggedUser?.role !== "student") return true;
 
     const sources = getCourseSourceSequence(source.level);
+
+    if(source.optional) return isOptionalCourseTestUnlocked(source, sources);
+
     const previousCheckpoint = getPreviousCourseCheckpoint(source, sources);
 
     if(!previousCheckpoint) return true;
@@ -5481,7 +5526,7 @@ function isCourseSourceVisible(source){
     const checkpointIndex = sources.findIndex(item => item.id === previousCheckpoint.id);
     const sourceIndex = sources.findIndex(item => item.id === source.id);
     const nextCheckpointIndex = sources.findIndex((item, index) =>
-        index > checkpointIndex && item.kind === "test"
+        index > checkpointIndex && item.kind === "test" && !item.optional
     );
 
     if(nextCheckpointIndex >= 0) return sourceIndex <= nextCheckpointIndex;
@@ -6188,9 +6233,11 @@ function renderSourceSelector(){
         const titleDetail = selectedCategory === "kurs"
             ? sourceTitle
             : `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
-        const unlockNotice = source.kind === "test" && source.unlocksNextSources > 0
-            ? "Ukończenie testu odblokuje kolejne materiały."
-            : "";
+        const unlockNotice = source.optional
+            ? "Test opcjonalny. Nie blokuje dostępu do kolejnych lekcji."
+            : source.kind === "test" && source.unlocksNextSources > 0
+                ? "Ukończenie testu odblokuje kolejne materiały."
+                : "";
 
         let targetList = list;
         if(examTile){
