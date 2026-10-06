@@ -32,7 +32,7 @@
         try {
             const values = parts.multiple ? splitValues(input.value) : [input.value];
             if(values.some(value => !value.trim())) throw new Error("Empty expression");
-            parts.preview.innerHTML = values.map(value => DeltaSigmaMath.preview(value.trim())).join(" ; ");
+            parts.preview.innerHTML = values.map(value => DeltaSigmaMath.preview(value.trim().replace(/[:⁄∕]/g, "/"))).join(" ; ");
             valid = true;
         } catch {}
         parts.error.hidden = !report || valid;

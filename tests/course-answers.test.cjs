@@ -239,6 +239,17 @@ assert(ctx.isTypedAnswerCorrect('2(p+6)/3+4w-3', plantsExpression.answers));
 assert(ctx.isTypedAnswerCorrect('4w+2p/3+1', plantsExpression.answers));
 assert(!ctx.isTypedAnswerCorrect('4w+2p/3+2', plantsExpression.answers));
 const mpCheckpoint = JSON.parse(fs.readFileSync('zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json'));
+const eoCheckpoint = JSON.parse(fs.readFileSync('zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json'));
+const priceField = ctx.getInputFields(eoCheckpoint.find(item => item.file === '12.png'))[0];
+assert.equal(priceField.math, false, 'A declared plain numeric field does not enable a math toolbar');
+assert.equal(priceField.suffix, 'zł');
+for(const value of ['12240', '12 240', '12\u00a0240 zł', '12 240,00 zł', '12240.00', '12240 ZŁ',
+  '12 240 PLN', '12240 zl', '12240 złotych', '12000*0,85*1,2 zł']){
+  assert(ctx.isInputFieldAnswerCorrect(value, priceField), value);
+}
+for(const value of ['10200', '12240abc', '12240 euro', '12,240', '']){
+  assert(!ctx.isInputFieldAnswerCorrect(value, priceField), value);
+}
 const remainderFields = ctx.getInputFields(mpCheckpoint.find(item => item.file === '9.png'));
 assert.equal(remainderFields.length, 1);
 assert.equal(remainderFields[0].prompt, 'Wpisz obliczoną resztę z dzielenia liczby 2k² przez 14.');

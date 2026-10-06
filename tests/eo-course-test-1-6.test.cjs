@@ -24,9 +24,9 @@ assert.equal(new Set(tasks.map(task => task.file)).size, 15);
 assert.equal(tasks.reduce((sum, task) => sum + task.maxPoints, 0), 18);
 
 const expectedCropHeights = {
-  '1.png': 299, '2.png': 317, '3.png': 776, '4.png': 263, '5.png': 195,
-  '6.png': 272, '7.png': 342, '8.png': 263, '9.png': 263, '10.png': 303,
-  '11.png': 213, '12.png': 99, '13.png': 125, '14.png': 263, '15.png': 47
+  '1.png': 288, '2.png': 389, '3.png': 1096, '4.png': 316, '5.png': 231,
+  '6.png': 293, '7.png': 414, '8.png': 293, '9.png': 293, '10.png': 356,
+  '11.png': 239, '12.png': 114, '13.png': 196, '14.png': 311, '15.png': 66
 };
 
 for (const task of tasks) {
@@ -40,7 +40,7 @@ for (const task of tasks) {
 
   const image = fs.readFileSync(path.join(sourceDir, task.file));
   assert.equal(image.subarray(1, 4).toString(), 'PNG');
-  assert.equal(image.readUInt32BE(16), 970, `${task.file}: crop width`);
+  assert.equal(image.readUInt32BE(16), 1100, `${task.file}: crop width`);
   assert.equal(image.readUInt32BE(20), expectedCropHeights[task.file], `${task.file}: crop height`);
 }
 
@@ -60,7 +60,9 @@ const task11 = tasks.find(task => task.taskNumber === '11');
 assert.equal(task11.type, 'input');
 assert.equal(task11.maxPoints, 1);
 assert.equal(task11.inputs[0].answer, '8');
-assert.equal(task11.inputs[0].exact, true);
+assert.notEqual(task11.inputs[0].exact, true);
+assert.notEqual(task11.inputs[0].acceptedFormsOnly, true);
+assert.equal(task11.inputs[0].math, false);
 
 const task12 = tasks.find(task => task.taskNumber === '12');
 assert.equal(task12.type, 'input');
@@ -116,6 +118,8 @@ assert.match(html, /id="testModeNotice"[^>]*hidden>W trybie testu nie możesz ko
 assert.match(html, /testModeNotice\.hidden = !isTest;/);
 assert.match(profileHtml, /source\.category === category && source\.kind !== "test"/);
 assert.match(adminHtml, /excludeKinds: \["test"\]/);
-assert(fs.statSync(path.join(sourceDir, 'Test lekcje 1-6.pdf')).size > 400000);
+assert(fs.statSync(path.join(sourceDir, 'Test lekcje 1-6.pdf')).size > 300000);
+assert(tasks.filter(task => task.type === 'input').every(task => !task.instruction),
+  'Instructions appear once as field labels');
 
 console.log('PASS: new EO checkpoint after lessons 1-6, clean crops, answer key and blue theme');

@@ -168,6 +168,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   let confirmed = false;
   let startCalls = 0;
   const gate = vm.createContext({
+    loggedUser: {role: 'student'},
     getSourceMetaById: () => ({id: sourcePath, kind: 'test'}),
     storedTestDeadline: () => 0,
     confirmTestStart: async () => confirmed,
@@ -196,6 +197,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
     loggedUser: {role: 'student'},
     testFinalizationPromises: new Map(),
     pendingProgressSaveRequests: new Set(),
+    failedProgressSaves: new Map(),
     COURSE_COMPLETION_RESULTS: new Set(['good', 'medium', 'bad', 'video']),
     sessionResults: new Map(),
     sessionScores: new Map(),

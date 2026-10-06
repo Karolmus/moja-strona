@@ -62,4 +62,8 @@ assert(inputContext.window.DeltaSigmaMathInput.validate(input));
 assert(wrapper.children[1].innerHTML.includes(' ; '));
 input.value = '1;';
 assert(!inputContext.window.DeltaSigmaMathInput.validate(input));
+for(const value of ['−1:20', '−1⁄20', '−1∕20', '7√8']) {
+  input.value = value;
+  assert(inputContext.window.DeltaSigmaMathInput.validate(input), value);
+}
 console.log('PASS: all 22 lesson-4 tasks have controls; fractions, roots, equivalent expressions, MathML and unsafe input checks');

@@ -2460,6 +2460,29 @@ html.task-video-open {
     color: var(--text);
 }
 
+.progress-save-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 12px 0 0;
+    color: #9b2035;
+    font-size: 13px;
+}
+
+.progress-save-status[hidden] { display: none; }
+
+.progress-save-status button {
+    border: 1px solid #9b2035;
+    border-radius: 6px;
+    background: #fff;
+    color: inherit;
+    padding: 7px 12px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .manual-score-notice {
     margin: 12px 0;
     color: #000;
@@ -3624,6 +3647,12 @@ footer {
         flex: 0 0 auto;
     }
 
+    .progress-grid > .nav-section-label {
+        flex: 0 0 auto;
+        align-self: center;
+        margin: 0 6px 0 0;
+    }
+
     .top-row {
         margin-bottom: 4px;
     }
@@ -3851,6 +3880,11 @@ footer {
             <p class="task-instruction" id="taskInstruction" hidden></p>
 
             <div class="mcq" id="mcq"></div>
+            <div id="answer" class="box" aria-live="polite"></div>
+            <div class="progress-save-status" id="progressSaveStatus" role="alert" hidden>
+                <span>Nie udało się zapisać odpowiedzi. Ponów zapis przed opuszczeniem strony.</span>
+                <button id="progressSaveRetry" type="button" onclick="retryFailedProgressSaves()">Ponów zapis</button>
+            </div>
 
             <p class="manual-score-notice" id="manualScoreNotice" hidden>To zadanie oceniasz samodzielnie. Rozwiąż je, a następnie otwórz zasady oceniania, aby przyznać sobie punkty.</p>
 
@@ -3867,7 +3901,6 @@ footer {
                             <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
                         </div>
                         <p class="incorrect-answer-suggestion" id="incorrectAnswerSuggestion" role="status" aria-live="polite" hidden></p>
-                        <div id="answer" class="box" aria-live="polite"></div>
                     </div>
 
                     <div class="action-group navigation" role="group" aria-label="Nawigacja po zadaniach">
@@ -4057,7 +4090,7 @@ footer {
 <script src="static/auth.js?v=20261005-remember-session"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
-<script src="static/math-answer-input.js?v=20260922-equation-input"></script>
+<script src="static/math-answer-input.js?v=20261006-equivalent-answers"></script>
 <script src="static/active-work-time.js?v=20260910"></script>
 <script src="static/course-videos.js?v=20260930-mp5"></script>
 <script>
@@ -4127,6 +4160,7 @@ const testDeadlineFallbacks = new Map();
 const testTimeoutFallbacks = new Set();
 const testFinalizationPromises = new Map();
 const pendingProgressSaveRequests = new Set();
+const failedProgressSaves = new Map();
 let unlockedCourseSourcesPreloadPromise = null;
 const COURSE_PART_ORDER = {
     zadania: 1,
@@ -4642,6 +4676,7 @@ function testDeadline(task = currentTask){
 
 function testRemainingSeconds(task = currentTask){
     if(task?.activityType !== "test") return null;
+    if(loggedUser?.role === "admin") return null;
 
     const deadline = testDeadline(task);
 
@@ -4689,6 +4724,7 @@ async function ensureTestSourceStarted(sourceId){
     const source = getSourceMetaById(sourceId);
 
     if(source?.kind !== "test") return true;
+    if(loggedUser?.role === "admin") return true;
     if(typeof ensureTaskSourceLoaded === "function"){
         await ensureTaskSourceLoaded(sourceId);
     }
@@ -4719,6 +4755,12 @@ async function finishExpiredTest(sourceId = selectedSource){
 
         if(pendingProgressSaveRequests.size){
             await Promise.allSettled([...pendingProgressSaveRequests]);
+        }
+        if([...failedProgressSaves.values()].some(request => request.task.sourceId === sourceId)){
+            await retryFailedProgressSaves();
+            if([...failedProgressSaves.values()].some(request => request.task.sourceId === sourceId)){
+                throw new Error("Odpowiedzi wymagają ponowienia zapisu.");
+            }
         }
         await loadStudentProgress({ render: false });
 
@@ -7385,6 +7427,8 @@ function advanceToHomeworkSummaryIfComplete(){
     }
 
     if(!isHomeworkComplete(currentTask.sourceId)) return false;
+    if(currentTask.activityType === "test" && loggedUser?.role === "student" &&
+        !isHomeworkCompleteOnServer(currentTask.sourceId)) return false;
     if(completedHomeworkSummarySource === currentTask.sourceId) return false;
 
     completedHomeworkSummarySource = currentTask.sourceId;
@@ -8185,6 +8229,9 @@ function getInputFields(task){
             return {
                 label: input.label || `Odpowiedź ${index + 1}`,
                 prompt: String(input.prompt || "").trim(),
+                suffix: String(input.suffix || "").trim(),
+                suffixAliases: Array.isArray(input.suffixAliases) ? input.suffixAliases : [],
+                numericAnswer: input.numericAnswer === true,
                 options: equation ? null : Array.isArray(input.options) ? input.options : null,
                 control: equation ? "equation" : input.control || "",
                 position: input.position || null,
@@ -8193,8 +8240,8 @@ function getInputFields(task){
                 maxLength: Number(input.maxLength) || 0,
                 exact: input.exact === true,
                 acceptedFormsOnly: input.acceptedFormsOnly === true,
-                math: equation || input.math === true || (!input.options && !input.exact &&
-                    typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid)),
+                math: equation || (input.math !== false && (input.math === true || (!input.options && !input.exact &&
+                    typeof DeltaSigmaMath !== "undefined" && answers.every(DeltaSigmaMath.isValid)))),
                 answers
             };
         });
@@ -8663,7 +8710,7 @@ function isTypedAnswerCorrect(value, answers, exact = false, acceptedFormsOnly =
     }
 
     return answers.some(answer => {
-        const typedExpression = String(value).trim().replace(/%$/, "");
+        const typedExpression = String(value).trim().replace(/%$/, "").replace(/[:⁄∕]/g, "/");
         const expectedExpression = String(answer).trim().replace(/%$/, "");
         if(!exact && areSymbolicExpressionsEquivalent(typedExpression, expectedExpression)){
             return true;
@@ -8692,6 +8739,23 @@ function isEquationSpecialAnswer(value){
 }
 
 function isInputFieldAnswerCorrect(value, field){
+    if(field?.suffix){
+        const typed = String(value).trim();
+        const suffix = [field.suffix, ...(field.suffixAliases || [])]
+            .filter(unit => typeof unit === "string" && unit)
+            .sort((a, b) => b.length - a.length)
+            .find(unit => typed.toLocaleLowerCase("pl-PL").endsWith(unit.toLocaleLowerCase("pl-PL")));
+        if(suffix){
+            value = typed.slice(0, -suffix.length).trim();
+        }
+        if(field.math === false && /^[+-]?\d[\d\s]*(?:[.,]\d+)?$/.test(String(value).trim())){
+            value = String(value).replace(/\s+/g, "");
+        }
+    }
+    if(field.numericAnswer && !field.exact && !field.acceptedFormsOnly && typeof DeltaSigmaMath !== "undefined"){
+        const expression = String(value).trim().replace(/[:⁄∕]/g, "/");
+        return field.answers.some(answer => DeltaSigmaMath.equivalent(expression, answer));
+    }
     if(field.control !== "equation"){
         return isTypedAnswerCorrect(value, field.answers, field.exact, field.acceptedFormsOnly);
     }
@@ -8773,6 +8837,8 @@ function optimizedImageCandidate(src){
 }
 
 function imageCandidates(src){
+    if(isProtectedCoursePath(src)) return [src];
+
     const optimized = optimizedImageCandidate(src);
 
     return optimized && optimized !== src
@@ -10367,9 +10433,11 @@ function applyCourseAnswerLock(){
 
     if(isClosedTask(currentTask)){
         const correctAnswers = getCorrectAnswers(currentTask);
+        const submittedAnswer = sessionSubmittedAnswers.get(getTaskKey(currentTask)) ||
+            getSavedProgressItem(currentTask)?.submitted_answer || "";
 
         if(isTrueFalseSequenceTask(currentTask)){
-            const savedAnswers = String(getSavedProgressItem(currentTask)?.submitted_answer || "").split(/,\s*/);
+            const savedAnswers = String(submittedAnswer).split(/,\s*/);
             if(savedAnswers.length === correctAnswers.length && savedAnswers.every(answer => ["P", "F"].includes(answer))){
                 trueFalseSelection = savedAnswers;
             }
@@ -10380,6 +10448,12 @@ function applyCourseAnswerLock(){
             revealGroupedMultiAnswers(getGroupedMultiOptions(currentTask), correctAnswers);
         } else {
             revealCorrectAnswer(correctAnswers);
+            submittedChoice = String(submittedAnswer);
+            document.querySelectorAll("#mcq button").forEach(button => {
+                if(button.dataset.value === submittedChoice && !correctAnswers.includes(submittedChoice)){
+                    button.classList.add("wrong");
+                }
+            });
         }
     }
 
@@ -10826,6 +10900,11 @@ function setSessionDuration(task, durationSeconds){
 function addProgress(type, scoreData = null){
     if(isCoursePreviewMode()) return false;
     if(currentTaskAnswered) return false;
+    if(currentTask?.activityType === "test" && loggedUser?.role === "student" &&
+        testRemainingSeconds(currentTask) === 0){
+        applyTestTimeLimit(0);
+        return false;
+    }
 
     currentTaskAnswered = true;
 
@@ -10838,9 +10917,7 @@ function addProgress(type, scoreData = null){
         setSessionScore(currentTask, type, scoreData);
         setSessionDuration(currentTask, taskDuration);
         sessionHints.set(key, hintUsed);
-        if(isInputTask(currentTask)){
-            sessionSubmittedAnswers.set(key, submittedAnswerText());
-        }
+        sessionSubmittedAnswers.set(key, submittedAnswerText());
         saveGuestSessionProgress();
     }
 
@@ -10910,10 +10987,10 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
         : Boolean(getSavedProgressItem(task)?.answer_shown));
     const taskKey = getTaskKey(task);
     const sessionSubmittedAnswer = taskKey ? sessionSubmittedAnswers.get(taskKey) : "";
-    const submittedAnswer = (
+    const submittedAnswer = (options.submittedAnswer ?? (
         sessionSubmittedAnswer ||
         (task === currentTask ? submittedAnswerText() : getSavedProgressItem(task)?.submitted_answer || "")
-    ).slice(0, 2000);
+    )).slice(0, 2000);
 
     try {
         const automaticScore = automaticScoreForResult(type, task);
@@ -10948,6 +11025,9 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
             pendingProgressSaveRequests.delete(request);
         }
 
+        if(!data?.progress) throw new Error("Nie potwierdzono zapisu odpowiedzi.");
+        failedProgressSaves.delete(taskKey);
+        updateProgressSaveStatus();
         if(data?.progress){
             savedProgress.unshift(data.progress);
             if(data.progress.result === "video"){
@@ -10958,6 +11038,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
             updateScorePanel();
             updateSourceSummary();
             preloadUnlockedCourseSources();
+            scheduleCompletionSummary();
         }
         if(type === "video" && data?.progress?.result !== "video") throw new Error("Nie potwierdzono oznaczenia filmu.");
         return data?.progress;
@@ -10965,7 +11046,39 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
         if(error.status !== 401){
             console.warn("Nie udało się zapisać postępu.", error);
         }
+        if(type !== "video"){
+            failedProgressSaves.set(taskKey, {
+                type, scoreData, durationSeconds: taskDuration, task,
+                options: {hintUsed: usedHint, answerShown: revealedAnswer, submittedAnswer}
+            });
+            updateProgressSaveStatus();
+        }
         if(type === "video" || options.throwOnError) throw error;
+    }
+}
+
+function updateProgressSaveStatus(){
+    const status = document.getElementById("progressSaveStatus");
+    if(status) status.hidden = failedProgressSaves.size === 0;
+}
+
+async function retryFailedProgressSaves(){
+    const button = document.getElementById("progressSaveRetry");
+    if(button) button.disabled = true;
+    try {
+        await loadStudentProgress({render: false});
+        for(const request of [...failedProgressSaves.values()]){
+            const saved = getSavedProgressItem(request.task);
+            if(saved?.submitted_answer === request.options.submittedAnswer && saved.result === request.type){
+                failedProgressSaves.delete(getTaskKey(request.task));
+                continue;
+            }
+            await saveProgress(request.type, request.scoreData, request.durationSeconds, request.task, request.options);
+        }
+        scheduleCompletionSummary();
+    } finally {
+        if(button) button.disabled = false;
+        updateProgressSaveStatus();
     }
 }
 

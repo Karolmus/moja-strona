@@ -156,14 +156,13 @@
     "topic": "Cechy podzielności",
     "level": "egzamin_osmoklasisty",
     "type": "input",
-    "instruction": "Wpisz liczbę z podanej listy, przez którą wskazana liczba się nie dzieli.",
     "inputs": [
       {
         "label": "Liczba",
         "prompt": "Wpisz liczbę, przez którą wskazana liczba się nie dzieli.",
         "answer": "8",
-        "exact": true,
-        "acceptedFormsOnly": true
+        "numericAnswer": true,
+        "math": false
       }
     ],
     "answer": "8",
@@ -180,12 +179,14 @@
     "topic": "Procenty",
     "level": "egzamin_osmoklasisty",
     "type": "input",
-    "instruction": "Wpisz obliczoną cenę zegarka po zakończeniu promocji.",
     "inputs": [
       {
         "label": "Cena zegarka",
         "prompt": "Wpisz obliczoną cenę zegarka po zakończeniu promocji.",
         "suffix": "zł",
+        "suffixAliases": ["zl", "PLN", "złotych"],
+        "numericAnswer": true,
+        "math": false,
         "answer": "12240"
       }
     ],
@@ -203,12 +204,12 @@
     "topic": "Potęgi",
     "level": "egzamin_osmoklasisty",
     "type": "input",
-    "instruction": "Wpisz obliczoną wartość wyrażenia.",
     "inputs": [
       {
         "label": "Wynik",
         "prompt": "Wpisz obliczoną wartość wyrażenia.",
         "answers": ["-1/20", "-0,05", "-0.05"],
+        "numericAnswer": true,
         "math": true
       }
     ],
@@ -241,12 +242,12 @@
     "topic": "Pierwiastki i potęgi",
     "level": "egzamin_osmoklasisty",
     "type": "input",
-    "instruction": "Wpisz wynik w postaci a√b.",
     "inputs": [
       {
         "label": "Wynik",
         "prompt": "Wpisz wynik w postaci a√b.",
         "answers": ["14√2", "14sqrt(2)"],
+        "numericAnswer": true,
         "math": true
       }
     ],

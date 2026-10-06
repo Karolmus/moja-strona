@@ -40,6 +40,7 @@ const ctx = vm.createContext({
   getSourceMetaById:() => source, isClosedTask:() => true, requestAnimationFrame:fn => fn(),
   showMessage:message => {ctx.message = message;},
   isCoursePreviewMode:() => false, isInputTask:() => false, getCurrentTaskDurationSeconds:() => 10,
+  submittedAnswerText:() => 'A',
   setSessionScore() {}, setSessionDuration() {}, saveGuestSessionProgress() {},
   shouldShowTaskNavigator:() => true, renderTaskNavigator() {}, renderSourceSelector() {},
   updateScorePanel() {}, updateSourceSummary() {}, saveProgress() {}
