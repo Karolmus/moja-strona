@@ -124,6 +124,11 @@ async function main() {
       }
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
       assert.equal(await page.locator('#homeworkSummaryPercent').innerText(),'100%');
+      assert.equal(await page.locator('#homeworkSummaryTitle').innerText(), 'Test zakończony');
+      assert.equal(await page.locator('#testSummaryPercent').innerText(), '100%');
+      assert.match(await page.locator('#testSummaryTime').innerText(), /^\d{2}:\d{2}$/);
+      assert.equal(await page.locator('.homework-summary-stats').isVisible(), false);
+      assert.equal(await page.locator('#sourceSummaryPoints').innerText(), '100%');
       assert.deepEqual(await page.evaluate(() => {
         const s=calculateSourceSummary(); return [s.earnedPoints,s.totalPoints,s.scoredTasks];
       }),[18,18,15]);
@@ -195,7 +200,9 @@ async function main() {
       await page.evaluate(source=>localStorage.setItem(testTimerStorageKey(source),String(Date.now()-1000)),SOURCE);
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
-      assert.match(await page.locator('#homeworkSummaryTitle').innerText(),/czas minął/);
+      assert.equal(await page.locator('#homeworkSummaryTitle').innerText(), 'Test zakończony');
+      assert.equal(await page.locator('#testSummaryTime').innerText(), '60:00');
+      assert.equal(await page.locator('#testSummaryPercent').innerText(), '6%');
       assert.equal(await page.locator('#homeworkSummaryPercent').innerText(),'6%');
       assert.deepEqual(await page.evaluate(()=>{const s=calculateSourceSummary();return[s.earnedPoints,s.totalPoints,s.scoredTasks]}),[1,18,15]);
       await page.locator('#homeworkSummaryClose').click();

@@ -10,13 +10,13 @@ TASKS = json.loads((ROOT / "test_lekcje_1_6.json").read_text())
 
 
 class NormalEoAssetsTests(unittest.TestCase):
-    def test_every_optimized_image_matches_the_canonical_task_pixel_for_pixel(self):
+    def test_every_task_has_one_canonical_image_format(self):
         for task in TASKS:
             with self.subTest(task=task["taskNumber"]):
                 png = Image.open(ROOT / task["file"]).convert("RGB")
-                webp = Image.open(ROOT / Path(task["file"]).with_suffix(".webp")).convert("RGB")
-                self.assertEqual(png.size, webp.size)
-                self.assertIsNone(ImageChops.difference(png, webp).getbbox())
+                self.assertFalse((ROOT / Path(task["file"]).with_suffix(".webp")).exists())
+                self.assertGreater(png.width, 0)
+                self.assertGreater(png.height, 0)
                 for box in [(0, 0, png.width, 4), (0, png.height-4, png.width, png.height)]:
                     edge = png.crop(box)
                     self.assertIsNone(ImageChops.difference(edge, Image.new("RGB", edge.size, "white")).getbbox())

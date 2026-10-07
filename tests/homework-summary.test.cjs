@@ -8,7 +8,8 @@ const source = {id:sourceId, label:'Lekcja 2', detail:'Logarytmy'};
 const work = tasks.filter(t => ['praca_domowa', 'zadania_powtorkowe'].includes(t.coursePart));
 const elements = Object.fromEntries(['homeworkSummaryOverlay', 'homeworkSummaryLesson', 'homeworkSummaryGood',
   'homeworkSummaryGoodHints', 'homeworkSummaryBad', 'homeworkSummaryBadHints', 'homeworkSummaryDuration',
-  'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'homeworkSummaryVideo', 'homeworkSummaryPercent', 'progress']
+  'homeworkSummaryReview', 'homeworkSummaryReviewStatus', 'homeworkSummaryVideo', 'homeworkSummaryPercent',
+  'testSummaryResult', 'progress']
   .map(id => [id, {hidden:true, innerText:'', innerHTML:'', children:[], replaceChildren(){this.children=[];}}]));
 for (const id of ['reviewButton', 'taskVideoLink']) {
   const element = {hidden:false, classes:new Set()};
@@ -22,6 +23,7 @@ nextButton.classList = {toggle:(name, selected) => selected
 const dialog = {focus() {}};
 const overlay = elements.homeworkSummaryOverlay;
 overlay.dataset = {};
+overlay.classList = {toggle(){}};
 overlay.querySelector = () => dialog;
 const ctx = vm.createContext({
   loggedUser:{role:'student'},

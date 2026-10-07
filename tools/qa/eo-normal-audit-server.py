@@ -18,6 +18,17 @@ from werkzeug.serving import make_server
 
 app.static_folder = str(ROOT / "static")
 
+@app.after_request
+def audit_api_origin(response):
+    if response.mimetype == "text/html":
+        response.direct_passthrough = False
+        response.set_data(response.get_data().replace(
+            b"<head>",
+            b"<head><script>window.DS_API_BASE_URL = window.location.origin;</script>",
+            1,
+        ))
+    return response
+
 with app.app_context():
     for number in range(1, 15):
         create_user(f"eo-audit-{number}@example.test", f"EO audit {number}", "local-audit-password", level="egzamin_osmoklasisty")

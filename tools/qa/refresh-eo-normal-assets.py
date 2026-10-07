@@ -32,8 +32,6 @@ def refresh(source, output):
                     height = round(crop.height * 1100 / crop.width)
                     crop = crop.resize((1100, height), Image.Resampling.LANCZOS)
                     crop.save(output / f"{number}.png", optimize=True)
-                    # The web version must always match the canonical PNG, even for older cached pages.
-                    crop.save(output / f"{number}.webp", lossless=True, method=6)
                     crops.append(number)
         assert sorted(crops) == list(range(1, 16)), crops
         reader = PdfReader(source)
@@ -41,7 +39,7 @@ def refresh(source, output):
         for page in reader.pages[:8]:
             writer.add_page(page)
         writer.write(output / "Test lekcje 1-6.pdf")
-        print("Updated 15 PNGs, 15 matching lossless WebPs and the student PDF without its answer key.")
+        print("Updated 15 canonical PNGs and the student PDF without its answer key.")
 
 
 if __name__ == "__main__":

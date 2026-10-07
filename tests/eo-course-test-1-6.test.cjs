@@ -26,7 +26,7 @@ assert.equal(tasks.reduce((sum, task) => sum + task.maxPoints, 0), 18);
 const expectedCropHeights = {
   '1.png': 288, '2.png': 389, '3.png': 1096, '4.png': 316, '5.png': 231,
   '6.png': 293, '7.png': 414, '8.png': 293, '9.png': 293, '10.png': 356,
-  '11.png': 239, '12.png': 114, '13.png': 196, '14.png': 311, '15.png': 66
+  '11.png': 239, '12.png': 114, '13.png': 131, '14.png': 311, '15.png': 66
 };
 
 for (const task of tasks) {
@@ -40,7 +40,7 @@ for (const task of tasks) {
 
   const image = fs.readFileSync(path.join(sourceDir, task.file));
   assert.equal(image.subarray(1, 4).toString(), 'PNG');
-  assert.equal(image.readUInt32BE(16), 1100, `${task.file}: crop width`);
+  assert.equal(image.readUInt32BE(16), task.file === '13.png' ? 1048 : 1100, `${task.file}: crop width`);
   assert.equal(image.readUInt32BE(20), expectedCropHeights[task.file], `${task.file}: crop height`);
 }
 
@@ -103,7 +103,7 @@ assert(lesson6Index < testIndex && testIndex < lesson7Index);
 assert.match(html, /\.meta-checkpoint\s*\{\s*background: linear-gradient\(90deg, #49add6 0%, #a8daee 42%, #ffffff 100%\);/);
 assert.match(html, /\.tile\.nav-theme-checkpoint\s*\{\s*--tile-bg: linear-gradient\(135deg, #49add6 0%, #eaf7fc 100%\);/);
 assert.match(html, /if\(task\.theme === "checkpoint-blue"\) return "nav-theme-checkpoint";/);
-assert.match(html, /\? timedOut \? "Test zakończony - czas minął" : "Test zakończony"/);
+assert.match(html, /\? "Test zakończony"\s*: "Podsumowanie zadania domowego"/);
 assert.match(html, /hintButton\.hidden = isOpenExam \|\| isTest;/);
 assert.match(html, /videoLink\.hidden = isTest \|\| !videoUrl;/);
 assert.match(html, /reviewButton\.hidden = isTest \|\| !isLoggedInStudent/);

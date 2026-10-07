@@ -12,7 +12,8 @@ for (const name of ['TASK_SOURCES', 'MONTH_LABELS', 'SOURCE_TYPE_LABELS', 'SOURC
   vm.runInContext(html.slice(start, end), context);
 }
 for (const name of ['getSourceMeta', 'getSourceMetaById', 'getExamSourceTileContent',
-  'getExamNavigatorGroup', 'getGroupedExamNavigatorItems']) {
+  'getExamNavigatorGroup', 'getGroupedExamNavigatorItems', 'isProtectedCoursePath',
+  'optimizedImageCandidate', 'imageCandidates']) {
   const start = html.indexOf(`function ${name}(`);
   assert(start >= 0, name);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), context);
@@ -52,7 +53,10 @@ for (const source of added) {
     for (const field of ['solutions', 'gradingCriteriaFiles']) {
       for (const asset of task[field] || []) assets.push(typeof asset === 'string' ? asset : asset.file);
     }
-    for (const asset of assets) assert(fs.existsSync(path.join(path.dirname(source.path), asset)), asset);
+    for (const asset of assets) {
+      const candidates = context.imageCandidates(path.join(path.dirname(source.path), asset));
+      assert(candidates.some(candidate => fs.existsSync(candidate)), asset);
+    }
     if (task.options) assert.match(task.answer, /^[ABCD]$/, task.file);
     else assert(task.solutions.length && task.gradingCriteriaFiles.length, task.file);
   }

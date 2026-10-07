@@ -5181,13 +5181,16 @@ async function fetchImageBlob(path){
         return window.apiFetchBlob(courseAssetApiPath(path));
     }
 
-    const response = await fetch(path);
+    const optimized = path.replace(/\.(png|jpe?g)([?#].*)?$/i, ".webp$2");
+    const candidates = optimized === path ? [path] : [optimized, path];
 
-    if(!response.ok){
-        throw new Error("Nie udało się pobrać obrazka zadania.");
+    for(const candidate of candidates){
+        const response = await fetch(candidate);
+
+        if(response.ok) return response.blob();
     }
 
-    return response.blob();
+    throw new Error("Nie udało się pobrać obrazka zadania.");
 }
 
 async function combineImagePaths(paths){

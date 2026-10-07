@@ -2978,6 +2978,95 @@ html.task-video-open {
     line-height: 1.2;
 }
 
+.test-summary .homework-summary-dialog {
+    width: min(420px, 100%);
+    border-top: 3px solid #49add6;
+    padding: 22px;
+    outline: none;
+}
+
+.test-summary .exam-summary-head {
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.test-summary .homework-summary-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.test-summary .homework-summary-title::before {
+    content: "";
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    background: #247fa3;
+    mask: url("static/icons/check.svg") center / contain no-repeat;
+}
+
+.test-summary-result[hidden] {
+    display: none;
+}
+
+.test-summary-values {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 18px;
+}
+
+.test-summary-values span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.test-summary-percent {
+    display: block;
+    color: var(--text);
+    font-size: 48px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.test-summary-time {
+    padding: 0 0 4px 24px;
+    border-left: 1px solid var(--line);
+}
+
+.test-summary-time strong {
+    display: block;
+    color: var(--text);
+    font-size: 22px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.test-summary-track {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #e9eff3;
+}
+
+.test-summary-fill {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #247fa3, #49add6);
+}
+
+.test-summary .homework-summary-stats,
+.test-summary #homeworkSummaryReviewStatus {
+    display: none;
+}
+
 .homework-summary-stats {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -3409,6 +3498,10 @@ footer {
 
     .mobile-course-result .source-summary-percent {
         display: inline;
+    }
+
+    .mobile-course-result .source-summary-percent[hidden] {
+        display: none;
     }
 
     body.guest-exam-mode .progress-grid {
@@ -4047,6 +4140,22 @@ footer {
                 <h2 class="homework-summary-title" id="homeworkSummaryTitle">Podsumowanie zadania domowego</h2>
             </div>
             <button class="exam-summary-close" id="homeworkSummaryClose" type="button" aria-label="Zamknij podsumowanie">×</button>
+        </div>
+
+        <div class="test-summary-result" id="testSummaryResult" hidden>
+            <div class="test-summary-values">
+                <div>
+                    <span>Wynik</span>
+                    <strong class="test-summary-percent" id="testSummaryPercent">0%</strong>
+                </div>
+                <div class="test-summary-time">
+                    <span>Czas</span>
+                    <strong id="testSummaryTime">00:00</strong>
+                </div>
+            </div>
+            <div class="test-summary-track" aria-hidden="true">
+                <span class="test-summary-fill" id="testSummaryFill"></span>
+            </div>
         </div>
 
         <div class="homework-summary-stats">
@@ -6704,6 +6813,12 @@ function calculateSourceSummary(tasksToSummarize = sourceSummaryTasks()){
     };
 }
 
+function sourceScoreLabel(summary, sourceId = selectedSource){
+    return getSourceMetaById(sourceId)?.kind === "test"
+        ? `${Math.round(summary.percent)}%`
+        : `${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt`;
+}
+
 function updateMobileCourseFooter(summary = null){
     const footer = document.getElementById("mobileCourseFooter");
 
@@ -6714,9 +6829,10 @@ function updateMobileCourseFooter(summary = null){
     footer.hidden = !visible;
     if(!visible) return;
 
-    document.getElementById("mobileSourceSummaryPoints").innerText =
-        `${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt`;
-    document.getElementById("mobileSourceSummaryPercent").innerText = percentLabel(summary.percent);
+    document.getElementById("mobileSourceSummaryPoints").innerText = sourceScoreLabel(summary);
+    const percent = document.getElementById("mobileSourceSummaryPercent");
+    percent.innerText = percentLabel(summary.percent);
+    percent.hidden = getSourceMetaById(selectedSource)?.kind === "test";
     document.getElementById("mobileSourceSummaryFill").style.width =
         `${Math.max(0, Math.min(100, summary.percent))}%`;
 }
@@ -6751,7 +6867,7 @@ function updateSourceSummary(){
 
     updateMobileCourseFooter(summary);
 
-    points.innerText = `${formatPoints(summary.earnedPoints)} / ${formatPoints(summary.totalPoints)} pkt`;
+    points.innerText = sourceScoreLabel(summary);
     percent.hidden = true;
     percent.innerText = percentLabel(summary.percent);
     fill.style.width = `${Math.max(0, Math.min(100, summary.percent))}%`;
@@ -7321,21 +7437,45 @@ function closeHomeworkCompletionSummary(restoreFocus = true){
     }
 }
 
+function testCompletionDuration(sourceId, summary){
+    let duration = summary.durationSeconds;
+
+    if(wasTestTimedOut(sourceId)){
+        duration = TEST_DURATION_SECONDS;
+    } else {
+        const deadline = storedTestDeadline(sourceId);
+        const completedAt = Math.max(0, ...summary.tasks.map(task =>
+            Date.parse(getSavedProgressItem(task)?.created_at) || 0
+        ));
+
+        if(deadline > 0 && completedAt > 0){
+            duration = Math.round((completedAt - (deadline - TEST_DURATION_SECONDS * 1000)) / 1000);
+        }
+    }
+
+    return Math.max(0, Math.min(TEST_DURATION_SECONDS, duration));
+}
+
+function testCompletionText(sourceId, summary){
+    const elapsed = testCompletionDuration(sourceId, summary);
+    return `Test zakończony: Czas ${timerClock(elapsed)}, Wynik ${Math.round(summary.percent)}%`;
+}
+
 function showHomeworkCompletionSummary(sourceId = selectedSource){
     const summary = calculateHomeworkSummary(sourceId);
     const overlay = document.getElementById("homeworkSummaryOverlay");
     const dialog = overlay?.querySelector(".homework-summary-dialog");
     const isCheckpoint = getSourceMetaById(sourceId)?.kind === "test";
-    const timedOut = isCheckpoint && wasTestTimedOut(sourceId);
-    const completionLabel = timedOut
-        ? "Czas minął. Test został zakończony"
-        : isCheckpoint ? "Test ukończony" : "Praca domowa ukończona";
 
     if(!summary.tasks.length) return;
 
     if(!overlay || !dialog){
+        if(isCheckpoint){
+            showMessage(testCompletionText(sourceId, summary));
+            return;
+        }
         showMessage(
-            `${completionLabel}.\n` +
+            "Praca domowa ukończona.\n" +
             `Odpowiedzi poprawne: ${summary.good} (w tym ${summary.goodHints} ze wskazówką). ` +
             `Odpowiedzi niepoprawne: ${summary.bad} (w tym ${summary.badHints} ze wskazówką). ` +
             `Zadania z obejrzanym nagraniem: ${summary.video}. ` +
@@ -7347,8 +7487,16 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     const summaryTitle = document.getElementById("homeworkSummaryTitle");
     if(summaryTitle){
         summaryTitle.innerText = isCheckpoint
-            ? timedOut ? "Test zakończony - czas minął" : "Test zakończony"
+            ? "Test zakończony"
             : "Podsumowanie zadania domowego";
+    }
+    overlay.classList.toggle("test-summary", isCheckpoint);
+
+    document.getElementById("testSummaryResult").hidden = !isCheckpoint;
+    if(isCheckpoint){
+        document.getElementById("testSummaryPercent").innerText = `${Math.round(summary.percent)}%`;
+        document.getElementById("testSummaryTime").innerText = timerClock(testCompletionDuration(sourceId, summary));
+        document.getElementById("testSummaryFill").style.width = `${Math.max(0, Math.min(100, summary.percent))}%`;
     }
 
     document.getElementById("homeworkSummaryGood").innerText = summary.good;
@@ -7361,7 +7509,7 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     overlay.hidden = false;
     document.body.style.overflow = "hidden";
     requestAnimationFrame(() => dialog.focus());
-    updateHomeworkReviewCount(sourceId);
+    if(!isCheckpoint) updateHomeworkReviewCount(sourceId);
 }
 
 document.getElementById("examSummaryClose")

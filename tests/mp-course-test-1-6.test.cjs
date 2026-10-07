@@ -104,12 +104,11 @@ for (const task of tasks) {
   assert(task.tags.includes('test 1-6'));
 
   const png = fs.readFileSync(path.join(sourceDir, task.file));
-  const webp = fs.readFileSync(path.join(sourceDir, task.file.replace(/\.png$/, '.webp')));
   assert.equal(png.subarray(1, 4).toString(), 'PNG');
   assert.equal(png.readUInt32BE(16), 950);
   assert.equal(png.readUInt32BE(20), expectedHeights[task.file]);
-  assert.equal(webp.subarray(0, 4).toString(), 'RIFF');
-  assert.equal(webp.subarray(8, 12).toString(), 'WEBP');
+  assert(!fs.existsSync(path.join(sourceDir, task.file.replace(/\.png$/, '.webp'))),
+    'Keep only the canonical test image');
 }
 
 for (const [text, name] of [
@@ -255,7 +254,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   assert.match(pointsBadgeStyle, /height: 28px;/);
   assert.match(pointsBadgeStyle, /line-height: 1;/);
   assert.match(html, /if\(sourceId !== "all" && !await ensureTestSourceStarted\(sourceId\)\) return;/);
-  assert.match(html, /Test zakończony - czas minął/);
+  assert.match(html, /Test zakończony: Czas \$\{timerClock\(elapsed\)\}, Wynik \$\{Math\.round\(summary\.percent\)\}%/);
   assert.match(html, /await Promise\.allSettled\(\[\.\.\.pendingProgressSaveRequests\]\)/);
   assert.match(html, /const unfinishedTasks = getHomeworkSummaryTasks\(sourceId\)/);
   assert.match(html, /\.course-source-list \.source-btn\.test-source/);

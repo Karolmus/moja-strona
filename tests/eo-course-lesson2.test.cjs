@@ -36,11 +36,9 @@ assert.match(groupedStyle, /width: 100%;/);
 assert.doesNotMatch(groupedStyle, /justify-content: start;/);
 
 const png = fs.readFileSync('zadania/kurs/eo/lekcja_2/zd3.png');
-const webp = fs.readFileSync('zadania/kurs/eo/lekcja_2/zd3.webp');
 assert.equal(png.subarray(1, 4).toString(), 'PNG');
 assert(png.readUInt32BE(16) >= 1100, 'The task image remains legible');
 assert(png.readUInt32BE(20) >= 400 && png.readUInt32BE(20) <= 500, 'The crop contains only the task');
-assert.equal(webp.subarray(0, 4).toString(), 'RIFF');
-assert.equal(webp.subarray(8, 12).toString(), 'WEBP');
+assert(!fs.existsSync('zadania/kurs/eo/lekcja_2/zd3.webp'), 'Keep only the canonical course image');
 
 console.log('PASS: EO lesson 2 clean homework crop and grouped subpoint answers');
