@@ -11,7 +11,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "B",
-    "hint": "Zapisz kolejne zmiany ceny jako mnożenie przez 0,9."
+    "hint": "Obniżka o 10% oznacza mnożenie ceny przez 0,9."
   },
   {
     "file": "2.png",
@@ -40,7 +40,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "answer": "C",
-    "hint": "Oblicz różnicę wyników w punktach procentowych."
+    "hint": "Przyjmij wynik Andrzeja Leppera jako podstawę obliczenia procentu."
   },
   {
     "file": "4.png",
@@ -151,8 +151,24 @@
     "hint": "Dla kapitalizacji półrocznej zastosuj wzór 10 000 · (1 + r/2)²."
   },
   {
-    "file": "zd1.png",
+    "file": "zd10.png",
+    "taskNumber": "1",
     "title": "Lekcja 6 - praca domowa 1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "procenty i lokaty",
+    "tags": ["procenty", "obniżki", "zmiany procentowe"],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "type": "closed",
+    "options": ["A", "B", "C", "D"],
+    "answer": "A",
+    "hint": "Obniżka o 15% oznacza pozostawienie 85% ceny."
+  },
+  {
+    "file": "zd1.png",
+    "taskNumber": "2",
+    "title": "Lekcja 6 - praca domowa 2",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -166,7 +182,8 @@
   },
   {
     "file": "zd2.png",
-    "title": "Lekcja 6 - praca domowa 2",
+    "taskNumber": "3",
+    "title": "Lekcja 6 - praca domowa 3",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -180,7 +197,8 @@
   },
   {
     "file": "zd3.png",
-    "title": "Lekcja 6 - praca domowa 3",
+    "taskNumber": "4",
+    "title": "Lekcja 6 - praca domowa 4",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -189,12 +207,13 @@
     "maxPoints": 1,
     "type": "closed",
     "options": ["A", "B", "C", "D"],
-    "answer": "C",
+    "answer": "D",
     "hint": "Zamień stosunek 1,5 : 1 na 3 : 2."
   },
   {
     "file": "zd4.png",
-    "title": "Lekcja 6 - praca domowa 4",
+    "taskNumber": "5",
+    "title": "Lekcja 6 - praca domowa 5",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -208,7 +227,8 @@
   },
   {
     "file": "zd5.png",
-    "title": "Lekcja 6 - praca domowa 5",
+    "taskNumber": "6",
+    "title": "Lekcja 6 - praca domowa 6",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -217,12 +237,13 @@
     "maxPoints": 1,
     "type": "closed",
     "options": ["A", "B", "C", "D"],
-    "answer": "C",
+    "answer": "A",
     "hint": "Zapisz y = 1,25z."
   },
   {
     "file": "zd6.png",
-    "title": "Lekcja 6 - praca domowa 6",
+    "taskNumber": "7",
+    "title": "Lekcja 6 - praca domowa 7",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -236,7 +257,8 @@
   },
   {
     "file": "zd7.png",
-    "title": "Lekcja 6 - praca domowa 7",
+    "taskNumber": "8",
+    "title": "Lekcja 6 - praca domowa 8",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -250,7 +272,8 @@
   },
   {
     "file": "zd8.png",
-    "title": "Lekcja 6 - praca domowa 8",
+    "taskNumber": "9",
+    "title": "Lekcja 6 - praca domowa 9",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
@@ -264,7 +287,8 @@
   },
   {
     "file": "zd9.png",
-    "title": "Lekcja 6 - praca domowa 9",
+    "taskNumber": "10",
+    "title": "Lekcja 6 - praca domowa 10",
     "coursePart": "praca_domowa",
     "level": "matura_podstawowa",
     "topic": "procenty i lokaty",
