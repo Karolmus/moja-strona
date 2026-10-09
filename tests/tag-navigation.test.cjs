@@ -86,4 +86,34 @@ assert.match(
   'The random-mode control is disabled while tags are active'
 );
 
-console.log('PASS: alphabetical tags and stable ordered navigation across filtered exam sources');
+const accessContext = vm.createContext({
+  isLoggedInStudent: true,
+  loggedUser: {role: 'admin'},
+  selectedCategory: 'egzaminy',
+  selectedTags: new Set(['potegi']),
+  tagSearchTerm: '',
+  normalizeTag: value => value,
+});
+for(const name of ['canFilterExamTasksByTags', 'taskMatchesTagFilters', 'tagFiltersSearchAllSources']){
+  vm.runInContext(functionSource(name), accessContext);
+}
+assert(accessContext.canFilterExamTasksByTags(), 'Admin can use exam tags');
+assert(accessContext.tagFiltersSearchAllSources(), 'Admin filters include every matching exam');
+assert(accessContext.taskMatchesTagFilters({tags: ['potegi']}));
+assert(!accessContext.taskMatchesTagFilters({tags: ['procenty']}));
+accessContext.tagSearchTerm = 'pierw';
+assert(!accessContext.taskMatchesTagFilters({tags: ['potegi']}));
+assert(accessContext.taskMatchesTagFilters({tags: ['potegi', 'pierwiastki']}));
+accessContext.selectedCategory = 'kurs';
+assert(!accessContext.canFilterExamTasksByTags(), 'Course selection remains separate');
+assert(accessContext.taskMatchesTagFilters({tags: []}));
+accessContext.selectedCategory = 'egzaminy';
+accessContext.loggedUser = {role: 'student'};
+assert(!accessContext.canFilterExamTasksByTags(), 'Student access stays unchanged');
+assert(accessContext.taskMatchesTagFilters({tags: []}));
+accessContext.isLoggedInStudent = false;
+accessContext.loggedUser = null;
+assert(accessContext.canFilterExamTasksByTags(), 'Guest access stays unchanged');
+assert.match(functionSource('renderTagSearch'), /const shouldShow = canFilterExamTasksByTags\(\);/);
+
+console.log('PASS: alphabetical tags, stable navigation and admin exam filtering');

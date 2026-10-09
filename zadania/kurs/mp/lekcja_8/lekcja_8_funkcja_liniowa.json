@@ -1267,5 +1267,27 @@
     "externalSubmission": true,
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord."
+  },
+  {
+    "file": "zp10.png",
+    "title": "Lekcja 8 - zadanie powtórkowe 10",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "dziedzina funkcji",
+    "tags": [
+      "dziedzina",
+      "przekształcenia wykresu"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które przekształcenie zmienia argumenty funkcji.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
   }
 ]

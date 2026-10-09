@@ -5787,8 +5787,13 @@ function normalizeTaskTags(task){
     return [...unique.values()];
 }
 
+function canFilterExamTasksByTags(){
+    return selectedCategory === "egzaminy" &&
+        (!isLoggedInStudent || loggedUser?.role === "admin");
+}
+
 function taskMatchesTagFilters(task){
-    if(isLoggedInStudent || selectedCategory !== "egzaminy") return true;
+    if(!canFilterExamTasksByTags()) return true;
 
     const tags = (task.tags || []).map(normalizeTag).filter(Boolean);
     const term = normalizeTag(tagSearchTerm);
@@ -5801,8 +5806,7 @@ function taskMatchesTagFilters(task){
 }
 
 function tagFiltersSearchAllSources(){
-    return !isLoggedInStudent &&
-        selectedCategory === "egzaminy" &&
+    return canFilterExamTasksByTags() &&
         Boolean(selectedTags.size || tagSearchTerm);
 }
 
@@ -5922,7 +5926,7 @@ function renderTagSearch(){
 
     if(!section || !toggleSection || !toggleButton || !input || !list || !clearButton || !helper) return;
 
-    const shouldShow = !isLoggedInStudent && selectedCategory === "egzaminy";
+    const shouldShow = canFilterExamTasksByTags();
 
     toggleSection.style.display = shouldShow ? "grid" : "none";
     section.style.display = shouldShow && tagPanelOpen ? "grid" : "none";
@@ -9236,7 +9240,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("metaBox").classList.remove("meta-checkpoint");
         document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
-        const tagSuffix = !isLoggedInStudent && (selectedTags.size || tagSearchTerm)
+        const tagSuffix = tagFiltersSearchAllSources()
             ? " i wybranych tagów"
             : "";
         showMessage(`Brak zadań w części ${CATEGORY_LABELS[selectedCategory].toLowerCase()} dla wybranego poziomu${tagSuffix}.`);
