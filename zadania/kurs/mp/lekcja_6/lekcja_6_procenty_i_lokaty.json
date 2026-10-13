@@ -370,5 +370,20 @@
     "isProof": true,
     "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
     "hint": "Zapisz n = 2k + 1, rozwiń (3n + 2)² i przedstaw wynik w postaci 12m + 1."
+  },
+  {
+    "file": "zp6.png",
+    "title": "Lekcja 6 - zadanie powtórkowe 6",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "zadania dowodowe",
+    "tags": ["podzielność", "potęgi", "wyłączanie wspólnego czynnika"],
+    "difficulty": 2,
+    "maxPoints": 2,
+    "type": "external_submission",
+    "externalSubmission": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie zadania wyślij na platformie Discord.",
+    "hint": "Zapisz 16 i 64 jako potęgi liczby 4. Pamiętaj, aby uzasadnić całkowitość czynnika stojącego przy udowadnianym dzielniku."
   }
 ]

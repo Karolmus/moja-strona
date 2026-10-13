@@ -15,6 +15,7 @@ function setup() {
   const classes = new Set();
   const context = vm.createContext({
     activeProgressStudentId:null, activeSourceDetailKey:'', progressRequestId:0,
+    activeIncorrectTaskItems:[], copyIncorrectTasksBtn:{dataset:{}, disabled:false},
     reviewTasks:element(), sourceProgress:element(), studentProgressCache:new Map(),
     progressDetail:{querySelector:() => loading, classList:{add:c => classes.add(c), remove:c => classes.delete(c)}},
     apiFetch:path => new Promise((resolve,reject) => pending.set(Number(path.split('/')[4]), {resolve,reject})),
@@ -38,6 +39,7 @@ test('only the latest expanded student can receive asynchronous progress', async
   const {context:c, pending, rendered} = setup();
   const first = c.showProgress({id:1, display_name:'First'});
   const second = c.showProgress({id:2, display_name:'Second'});
+  assert(c.copyIncorrectTasksBtn.disabled, 'Copying is disabled until current student results load');
   pending.get(2).resolve({progress:[]}); await second;
   pending.get(1).resolve({progress:[]}); await first;
   assert.deepEqual(rendered, [2]);
@@ -53,6 +55,8 @@ test('closing cancels pending display and restores keyboard focus', async () => 
   assert.equal(c.activeProgressStudentId, null);
   assert.equal(c.focused, 'student-toggle-1');
   assert(!classes.has('active'));
+  assert(c.copyIncorrectTasksBtn.disabled);
+  assert.equal(c.activeIncorrectTaskItems.length, 0);
   assert.deepEqual(rendered, []);
 });
 

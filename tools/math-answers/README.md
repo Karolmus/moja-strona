@@ -9,6 +9,9 @@ square roots, cube roots and nth roots. The application validates the AST before
 evaluation. Assignments, symbols, property access, arrays and other functions
 are not accepted. Expressions are limited to 200 characters, 80 nodes and
 16 nested levels. The answer preview uses MathML from the same validated tree.
+Decimal commas and dots, mixed fractions and repeating decimals such as
+`6,(81)` or `0.4(09)` are normalized before parsing. Repeating decimals are
+converted to fractions rather than interpreted as implicit multiplication.
 
 Official references:
 - https://mathjs.org/docs/custom_bundling.html

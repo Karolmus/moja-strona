@@ -15,6 +15,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
+<link rel="stylesheet" href="static/course-tests.css?v=20261012">
 
 <style>
 :root {
@@ -621,6 +622,8 @@ body {
             <a class="continue-button" href="zadania.html">Kontynuuj pracę</a>
         </section>
 
+        <div class="course-test-notice" id="profileTestNotice" role="status" aria-live="polite" hidden></div>
+
         <section class="profile-area" aria-labelledby="courseSectionTitle">
             <div class="profile-area-heading">
                 <span class="profile-area-index" aria-hidden="true">1</span>
@@ -723,6 +726,7 @@ body {
 </footer>
 
 <script src="static/auth.js?v=20261005-remember-session"></script>
+<script src="static/course-tests.js?v=20261012"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script>
 const levelLabels = {
@@ -767,7 +771,8 @@ const PROFILE_SOURCES = [
     { path: "zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json", category: "kurs", level: "egzamin_osmoklasisty" },
     { path: "zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json", category: "kurs", level: "egzamin_osmoklasisty" },
     { path: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Test sprawdzający z lekcji 1 - 6", detail: "Sprawdź wiedzę z lekcji 1 - 6", kind: "test" },
-    { path: "zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test_lekcje_1_6_trudniejszy.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Test trudniejszy z lekcji 1 - 6", detail: "Opcjonalny", kind: "test" },
+    { path: "zadania/kurs/eo/test_lekcje_1_6_b/test_lekcje_1_6_b.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Test sprawdzający z lekcji 1 - 6, wersja B", detail: "Opcjonalny", kind: "test", optional: true },
+    { path: "zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test_lekcje_1_6_trudniejszy.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Test trudniejszy z lekcji 1 - 6", detail: "Opcjonalny", kind: "test", optional: true },
     { path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json", category: "kurs", level: "egzamin_osmoklasisty" },
     { path: "zadania/kurs/eo/lekcja_8/lekcja_8_predkosc.json", category: "kurs", level: "egzamin_osmoklasisty" },
     { path: "zadania/kurs/eo/lekcja_9/lekcja_9_pola_powierzchni_trojkatow_i_czworokatow.json", category: "kurs", level: "egzamin_osmoklasisty" },
@@ -1378,6 +1383,24 @@ function renderHomeworkChart(progress, reviewTasks){
     });
 }
 
+function renderProfileTestNotice(user, progress){
+    const sources = sourceCatalog.filter(source => source.category === "kurs" && source.level === user.level);
+    const latest = new Map(progress.map(item => [progressKey(item), item]));
+    const completedResults = new Set(["good", "medium", "bad", "video"]);
+    const isComplete = source => {
+        const files = sourceCompletionFiles(source);
+
+        return files.size > 0 && [...files].every(file =>
+            completedResults.has(latest.get(`${source.path}:${file}`)?.result)
+        );
+    };
+    const hasStarted = source => [...sourceCompletionFiles(source)]
+        .some(file => latest.has(`${source.path}:${file}`));
+    const pendingTests = window.DSCourseTests.pendingTests(sources, isComplete, hasStarted);
+
+    window.DSCourseTests.renderNotice(document.getElementById("profileTestNotice"), pendingTests);
+}
+
 function renderProfile(user, progress, reviewTasks){
     const latest = latestTaskProgress(progress);
     const courseTarget = COURSE_LESSON_TARGETS[user.level] || 0;
@@ -1397,6 +1420,7 @@ function renderProfile(user, progress, reviewTasks){
     document.getElementById("revisionProgressRow").hidden = !revisionStats.available;
     renderProgress("revision", revisionStats, "lekcji", "Brak zadań powtórkowych dla tego poziomu.");
     renderHomeworkChart(latest, reviewTasks);
+    renderProfileTestNotice(user, latest);
 
     if(completion.complete){
         const examStats = calculateProgress(latest, "egzaminy", "egzaminy");

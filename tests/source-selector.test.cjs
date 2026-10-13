@@ -22,6 +22,7 @@ const ctx = vm.createContext({
   selectedCategory:'egzaminy', selectedLevel:'matura_podstawowa', selectedSource:'exam-9',
   LEVEL_LABELS:{matura_podstawowa:'Matura podstawowa'},
   updateTrainingLink() {}, updateSourceSummary() {}, setSource:id => {ctx.selectedSource = id;},
+  getPendingCourseTests:() => [], renderCourseTestNotice() {},
   getAvailableSources:() => sources, isTaskSourceLoaded:() => false, isSourceComplete:() => false
 });
 for (const name of ['getExamSourceTileContent', 'renderSourceSelector', 'addSourceButton']) {
@@ -76,10 +77,15 @@ assert(!list.children[0].title.includes('zadań'));
 sources[1].kind = 'test';
 sources[1].unlocksNextSources = 4;
 ctx.renderSourceSelector();
-assert(list.children[1].classes.has('test-source'));
-const unlockNotice = list.children[1].children.find(child => child.className === 'source-unlock-note');
+const testGroup = list.children.at(-1);
+assert.equal(testGroup.className, 'course-test-group');
+assert.equal(testGroup.children[0].innerText, 'Testy');
+const testButton = testGroup.children[1].children[0];
+assert(testButton.classes.has('test-source'));
+assert.equal(list.children.length, 12, 'Eleven lesson buttons and one separate test section');
+const unlockNotice = testButton.children.find(child => child.className === 'source-unlock-note');
 assert.equal(unlockNotice.innerText, 'Ukończenie testu odblokuje kolejne materiały.');
-assert.match(list.children[1].title, /Ukończenie testu odblokuje kolejne materiały\./);
+assert.match(testButton.title, /Ukończenie testu odblokuje kolejne materiały\./);
 assert.match(html, /\.course-source-list \.source-btn\.test-source\s*\{[^}]*grid-column:\s*1 \/ -1;/s);
 sources.length = 0;
 ctx.selectedCategory = 'egzaminy';

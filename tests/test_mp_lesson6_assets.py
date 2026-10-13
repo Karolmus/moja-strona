@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import re
 import unittest
+import unicodedata
 
 import pdfplumber
 from PIL import Image, ImageChops
@@ -30,7 +31,7 @@ class MpLesson6AssetsTests(unittest.TestCase):
             lines = [line for page in pdf.pages for line in page.extract_text_lines()]
             for prefix, part, expected in [('Zadanie ', 'zadania', 10),
                                            ('Zadanie domowe ', 'praca_domowa', 10),
-                                           ('Zadanie powtórkowe ', 'zadania_powtorkowe', 5)]:
+                                           ('Zadanie powtórkowe ', 'zadania_powtorkowe', 6)]:
                 header = re.compile(r'^' + prefix + r'(\d+)\.')
                 numbers = [int(header.match(line['text'])[1]) for line in lines if header.match(line['text'])]
                 self.assertEqual(numbers, list(range(1, expected + 1)))
@@ -41,14 +42,28 @@ class MpLesson6AssetsTests(unittest.TestCase):
             homework_key = ' '.join(''.join(task['answer']) for task in TASKS if task['coursePart'] == 'praca_domowa')
             self.assertIn(main_key, key_lines)
             self.assertIn(homework_key, key_lines)
-            key_text = re.sub(r'\s+', '', '\n'.join(key_lines))
+            key_text = re.sub(r'\s+', '', unicodedata.normalize('NFKC', '\n'.join(key_lines)))
             self.assertIn('36k', key_text)
             self.assertNotIn('36n', key_text)
             self.assertIn('3k', key_text)
-            text = '\n'.join(line['text'] for line in lines)
+            text = ' '.join(unicodedata.normalize('NFKC', '\n'.join(line['text'] for line in lines)).split())
             self.assertIn('kapitału na koniec każdego roku', text)
             self.assertIn('w równych odstępach czasu', text)
             self.assertIn('Dodatnia liczba x', text)
+
+    def test_new_review_proof_has_correct_divisor(self):
+        task = next(task for task in TASKS if task['file'] == 'zp6.png')
+        self.assertEqual(task['coursePart'], 'zadania_powtorkowe')
+        self.assertEqual(task['type'], 'external_submission')
+        self.assertEqual(task['maxPoints'], 2)
+        self.assertEqual(4**28 - 16**13 + 64**8, 241 * 4**24)
+
+    def test_proof_crops_do_not_include_colored_header(self):
+        for filename in ['zp5.png', 'zp6.png']:
+            with self.subTest(file=filename):
+                red, green, blue = Image.open(ROOT / filename).convert('RGB').split()
+                self.assertIsNone(ImageChops.difference(red, green).getbbox())
+                self.assertIsNone(ImageChops.difference(green, blue).getbbox())
 
 
 if __name__ == '__main__':

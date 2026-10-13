@@ -16,8 +16,8 @@ const keys = {
 };
 const prefixes = {zadania: '', praca_domowa: 'zd', zadania_powtorkowe: 'zp'};
 
-assert.equal(tasks.length, 25);
-assert.equal(new Set(tasks.map(task => task.file)).size, 25);
+assert.equal(tasks.length, 26);
+assert.equal(new Set(tasks.map(task => task.file)).size, 26);
 
 for (const [part, key] of Object.entries(keys)) {
   const items = tasks.filter(task => task.coursePart === part &&
@@ -78,6 +78,18 @@ assert.equal(proof.instruction, 'Rozwiązanie zadania wyślij na platformie Disc
 assert(proof.hint.includes('12m + 1'));
 assert(!('answer' in proof));
 assert(!('options' in proof));
+
+const powerProof = tasks.find(task => task.file === 'zp6.png');
+assert(powerProof);
+assert.equal(powerProof.coursePart, 'zadania_powtorkowe');
+assert.equal(powerProof.type, 'external_submission');
+assert.equal(powerProof.externalSubmission, true);
+assert.equal(powerProof.isProof, true);
+assert.equal(powerProof.maxPoints, 2);
+assert.equal(powerProof.instruction, 'Rozwiązanie zadania wyślij na platformie Discord.');
+assert(!('answer' in powerProof));
+assert(!('options' in powerProof));
+assert.equal(4n ** 28n - 16n ** 13n + 64n ** 8n, 241n * 4n ** 24n);
 
 for (const file of [...tasks.map(task => task.file), 'context_3_4.png']) {
   const image = fs.readFileSync(path.join(sourceDir, file));
@@ -189,9 +201,9 @@ for (const [file, name] of [
     vm.runInContext(functionSource(html, name), ctx);
   }
   ctx.tasks = await ctx.loadTaskSource(source);
-  assert.equal(ctx.tasks.length, 15, 'Student receives homework and review tasks by default');
+  assert.equal(ctx.tasks.length, 16, 'Student receives homework and review tasks by default');
   assert(ctx.tasks.every(task => workParts.includes(task.coursePart)));
-  assert.equal(ctx.getSourceCompletionTasks(source).length, 15);
+  assert.equal(ctx.getSourceCompletionTasks(source).length, 16);
 
   for(const name of ['coursePartOrdinalNumber', 'taskNumberLabel']){
     vm.runInContext(functionSource(html, name), ctx);
@@ -203,10 +215,10 @@ for (const [file, name] of [
     adminTaskCatalog: tasks.map(task => ({...task, category: 'kurs', sourceId: sourcePath}))
   });
   vm.runInContext(functionSource(adminHtml, 'getCatalogSources'), admin);
-  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {courseParts: workParts})[0].totalTasks, 15);
+  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {courseParts: workParts})[0].totalTasks, 16);
   assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {coursePart: 'praca_domowa'})[0].totalTasks, 10);
-  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {coursePart: 'zadania_powtorkowe'})[0].totalTasks, 5);
-  console.log('PASS: MP lesson 6, 25 audited tasks, balanced homework key, stable IDs, clean crops and all catalogs');
+  assert.equal(admin.getCatalogSources('kurs', 'matura_podstawowa', {coursePart: 'zadania_powtorkowe'})[0].totalTasks, 6);
+  console.log('PASS: MP lesson 6, 26 audited tasks, balanced homework key, stable IDs, clean crops and all catalogs');
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;

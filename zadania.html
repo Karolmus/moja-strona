@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://www.youtube-nocookie.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' http://127.0.0.1:5000 http://localhost:5000 https://deltasigma-calculators.onrender.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://www.youtube-nocookie.com">
 <meta name="referrer" content="no-referrer">
 <script src="static/security.js?v=20260914-remember"></script>
 <meta charset="UTF-8">
@@ -23,6 +23,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
+<link rel="stylesheet" href="static/course-tests.css?v=20261012">
 
 <style>
 :root {
@@ -338,6 +339,44 @@ body.admin-preview .level-btn {
     gap: 3px;
     max-height: none;
     overflow-y: visible;
+}
+
+.course-test-group {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    margin-top: 9px;
+    padding-top: 9px;
+    border-top: 1px solid var(--line);
+}
+
+.course-test-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.course-test-badge {
+    display: inline-grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 50%;
+    background: #b84141;
+    color: white;
+    font-size: 10px;
+    line-height: 1;
+}
+
+.course-test-list {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
 }
 
 .source-list.exam-source-list {
@@ -1586,6 +1625,8 @@ button {
 }
 .task-video-consent { padding: 20px; }
 .task-video-consent p { margin: 0 0 18px; line-height: 1.5; }
+.task-video-remember { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 18px; font-size: 14px; cursor: pointer; }
+.task-video-remember input { flex: 0 0 18px; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--navy); }
 .task-video-consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .task-video-consent .action-btn { min-height: 44px; }
 .task-video-consent #taskVideoConfirm { background: #8b2332; color: #fff; }
@@ -1720,6 +1761,24 @@ html.task-video-open {
     font-size: 12px;
     color: var(--muted);
     overflow-wrap: anywhere;
+}
+
+.task-video-head-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-video-sound {
+    min-height: 40px;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
 }
 
 .task-video-close {
@@ -1933,11 +1992,12 @@ html.task-video-open {
     display: grid;
 }
 
-.mcq.six-options {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+.mcq.many-options {
+    grid-template-columns: repeat(var(--mcq-option-count, 4), minmax(0, 1fr));
 }
 
-.mcq.six-options .choice-btn {
+.mcq.many-options .choice-btn {
+    min-width: 0;
     padding-left: 8px;
     padding-right: 8px;
 }
@@ -3573,12 +3633,12 @@ footer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .mcq.six-options {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+    .mcq.many-options {
+        grid-template-columns: repeat(var(--mcq-option-count, 4), minmax(0, 1fr));
         gap: 6px;
     }
 
-    .mcq.six-options .choice-btn {
+    .mcq.many-options .choice-btn {
         min-height: 42px;
         padding: 8px 4px;
         font-size: 15px;
@@ -3865,6 +3925,8 @@ footer {
                 </div>
             </div>
 
+            <div class="course-test-notice" id="courseTestNotice" role="status" aria-live="polite" hidden></div>
+
             <div class="selector-grid">
                 <div class="side-section" id="guestLevelWrapper">
                     <div class="side-title">Poziom</div>
@@ -4057,12 +4119,16 @@ footer {
             <h2 id="taskVideoTitle">Film z rozwiązaniem</h2>
             <p id="taskVideoTask"></p>
         </div>
-        <button class="task-video-close" id="taskVideoClose" type="button" aria-label="Zamknij film" title="Zamknij film" autofocus>
-            <img src="static/icons/x.svg" width="18" height="18" alt="">
-        </button>
+        <div class="task-video-head-actions">
+            <button class="task-video-sound" id="taskVideoSound" type="button" hidden>Włącz dźwięk</button>
+            <button class="task-video-close" id="taskVideoClose" type="button" aria-label="Zamknij film" title="Zamknij film" autofocus>
+                <img src="static/icons/x.svg" width="18" height="18" alt="">
+            </button>
+        </div>
     </div>
     <div class="task-video-consent" id="taskVideoConsent">
         <p>Po otwarciu filmu zadanie zostanie oznaczone ikoną 🎬 i otrzyma 0 punktów w wyniku końcowym. Nie zaliczymy go do błędnych odpowiedzi.</p>
+        <label class="task-video-remember"><input id="taskVideoRemember" type="checkbox">Nie wyświetlaj tego komunikatu ponownie</label>
         <p id="taskVideoError" role="alert" hidden></p>
         <div class="task-video-consent-actions">
             <button class="action-btn" id="taskVideoCancel" type="button">Wróć do zadania</button>
@@ -4198,10 +4264,11 @@ footer {
 
 <script src="static/auth.js?v=20261005-remember-session"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
-<script src="static/lib/mathjs/answers.min.js?v=15.2.0-1"></script>
+<script src="static/lib/mathjs/answers.min.js?v=15.2.0-2-periodic"></script>
 <script src="static/math-answer-input.js?v=20261006-equivalent-answers"></script>
 <script src="static/active-work-time.js?v=20260910"></script>
 <script src="static/course-videos.js?v=20260930-mp5"></script>
+<script src="static/course-tests.js?v=20261012"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -4259,7 +4326,7 @@ const taskSourceLoadPromises = new Map();
 let practicalValueStore = new Map();
 
 const IMAGE_FADE_MS = 220;
-const TASK_IMAGE_CACHE_VERSION = "20261007-mp-lesson6";
+const TASK_IMAGE_CACHE_VERSION = "20261011-mp-lesson6";
 const SKIPPED_RESULT = "skipped";
 const STUDENT_WORK_COURSE_PART = "praca_domowa";
 const STUDENT_WORK_COURSE_PARTS = ["praca_domowa", "zadania_powtorkowe"];
@@ -4503,6 +4570,17 @@ const TASK_SOURCES = [
         detail: "Sprawdź wiedzę z lekcji 1 - 6",
         kind: "test",
         unlocksNextSources: 4
+    },
+    {
+        path: "zadania/kurs/eo/test_lekcje_1_6_b/test_lekcje_1_6_b.json",
+        category: "kurs",
+        level: "egzamin_osmoklasisty",
+        label: "Test sprawdzający z lekcji 1 - 6, wersja B",
+        detail: "Dodatkowy test · wynik testu A poniżej 80%",
+        kind: "test",
+        optional: true,
+        requiresSource: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
+        maxScorePercent: 80
     },
     {
         path: "zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test_lekcje_1_6_trudniejszy.json",
@@ -5042,6 +5120,19 @@ async function bootStudentPanel(){
             }
         }
 
+        const requestedTest = getRequestedTestSource();
+        if(requestedTest){
+            selectedSource = requestedTest.id;
+            selectedCategory = "kurs";
+            selectedCoursePart = defaultCoursePart();
+            const url = new URL(window.location.href);
+            url.searchParams.delete("test");
+            window.history.replaceState({}, "", url);
+            await ensureTaskSourceLoaded(selectedSource);
+            ensureSelectedCoursePart();
+            initialIndex = getInitialIndex();
+        }
+
         if(!await ensureTestSourceStarted(selectedSource)){
             const fallbackSource = getAvailableSources().find(source => source.kind !== "test");
 
@@ -5120,6 +5211,15 @@ async function retrySourceLoad(){
     setSourceLoadState("loading");
     await loadStudentProgress({ render: false });
     await loadSelectedSourceAndDraw();
+}
+
+function getRequestedTestSource(){
+    const sourceId = new URLSearchParams(window.location.search).get("test");
+    const source = getSourceMetaById(sourceId);
+
+    if(!isLoggedInStudent || !source || source.kind !== "test" || source.level !== selectedLevel) return null;
+
+    return isCourseSourceVisible(source) ? source : null;
 }
 
 function getRequestedCategory(){
@@ -5598,7 +5698,9 @@ function getSourceMeta(sourceConfig){
         unlocksNextSources: Math.max(0, Number(sourceConfig.unlocksNextSources) || 0),
         optional: sourceConfig.optional === true,
         requiresSource: sourceConfig.requiresSource || "",
-        minScorePercent: Math.max(0, Number(sourceConfig.minScorePercent) || 0)
+        minScorePercent: Math.max(0, Number(sourceConfig.minScorePercent) || 0),
+        maxScorePercent: Number.isFinite(sourceConfig.maxScorePercent)
+            ? sourceConfig.maxScorePercent : null
     };
 }
 
@@ -5657,6 +5759,10 @@ function isOptionalCourseTestUnlocked(source, sources = getCourseSourceSequence(
     const prerequisite = sources.find(item => item.id === source.requiresSource);
 
     if(!prerequisite || !isCheckpointStageComplete(prerequisite)) return false;
+
+    if(Number.isFinite(source.maxScorePercent)){
+        return getCheckpointScorePercent(prerequisite) < source.maxScorePercent;
+    }
 
     return getCheckpointScorePercent(prerequisite) > source.minScorePercent;
 }
@@ -6216,6 +6322,8 @@ async function setLevel(btn, level){
 }
 
 async function setSource(sourceId){
+    const requestedSource = getSourceMetaById(sourceId);
+    if(requestedSource?.category === "kurs" && !isCourseSourceVisible(requestedSource)) return;
     if(sourceId !== "all" && !await ensureTestSourceStarted(sourceId)) return;
 
     selectedSource = sourceId;
@@ -6329,6 +6437,30 @@ function updateMetaTheme(){
         meta.classList.add("meta-osmoklasista");
 }
 
+function getPendingCourseTests(){
+    if(!isLoggedInStudent || loggedUser?.role !== "student") return [];
+
+    const sources = getCourseSourceSequence(selectedLevel).filter(isCourseSourceVisible);
+    const isComplete = source => {
+        const required = getSourceCompletionTasks(source);
+
+        return isTaskSourceLoaded(source.id) && required.length > 0 && required.every(task =>
+            COURSE_COMPLETION_RESULTS.has(getSavedProgressItem(task)?.result)
+        );
+    };
+    const hasStarted = source => storedTestDeadline(source.id) > 0 ||
+        getSourceCompletionTasks(source).some(task => getSavedProgressItem(task));
+
+    return window.DSCourseTests.pendingTests(sources, isComplete, hasStarted);
+}
+
+function renderCourseTestNotice(pendingTests){
+    const notice = document.getElementById("courseTestNotice");
+    const visibleTests = pendingTests.filter(source => source.id !== selectedSource);
+
+    window.DSCourseTests.renderNotice(notice, visibleTests, sourceId => setSource(sourceId));
+}
+
 function renderSourceSelector(){
     const list = document.getElementById("sourceList");
     const title = document.getElementById("sourceTitle");
@@ -6340,6 +6472,8 @@ function renderSourceSelector(){
     document.getElementById("courseBrand").hidden = selectedCategory !== "kurs";
 
     updateTrainingLink();
+    const pendingTests = getPendingCourseTests();
+    renderCourseTestNotice(pendingTests);
     list.innerHTML = "";
     list.classList.toggle("course-source-list", selectedCategory === "kurs");
     list.classList.toggle("exam-source-list", selectedCategory !== "kurs");
@@ -6365,6 +6499,8 @@ function renderSourceSelector(){
     }
 
     const yearLists = new Map();
+    let testGroup = null;
+    let testList = null;
     availableSources.forEach(source => {
         const isLoaded = isTaskSourceLoaded(source.id);
         const count = isLoaded
@@ -6395,6 +6531,31 @@ function renderSourceSelector(){
                 : "";
 
         let targetList = list;
+        if(selectedCategory === "kurs" && source.kind === "test"){
+            if(!testGroup){
+                testGroup = document.createElement("section");
+                const heading = document.createElement("h3");
+
+                testGroup.className = "course-test-group";
+                heading.className = "course-test-heading";
+                heading.id = "courseTestsHeading";
+                heading.innerText = "Testy";
+                if(pendingTests.length){
+                    const badge = document.createElement("span");
+
+                    badge.className = "course-test-badge";
+                    badge.textContent = String(pendingTests.length);
+                    badge.setAttribute("aria-label", `Testy do wykonania: ${pendingTests.length}`);
+                    heading.appendChild(badge);
+                }
+                testGroup.setAttribute("aria-labelledby", heading.id);
+                testList = document.createElement("div");
+                testList.className = "course-test-list";
+                testGroup.appendChild(heading);
+                testGroup.appendChild(testList);
+            }
+            targetList = testList;
+        }
         if(examTile){
             if(!yearLists.has(source.year)){
                 const group = document.createElement("section");
@@ -6429,6 +6590,7 @@ function renderSourceSelector(){
         );
     });
 
+    if(testGroup) list.appendChild(testGroup);
     list.scrollTop = scrollTop;
     updateSourceSummary();
 }
@@ -8492,7 +8654,9 @@ function normalizeAcceptedMathForm(value){
 }
 
 function normalizeSymbolicExpression(value){
-    return String(value || "")
+    const text = String(value || "");
+    return (typeof DeltaSigmaMath !== "undefined" && DeltaSigmaMath.normalizeRepeatingDecimals
+        ? DeltaSigmaMath.normalizeRepeatingDecimals(text) : text)
         .trim()
         .toLowerCase()
         .replace(/\s+/g, "")
@@ -8890,7 +9054,27 @@ function isEquationSpecialAnswer(value){
         .includes(normalizeTypedAnswer(value));
 }
 
+function parseIntegerAnswerSet(value){
+    const text = String(value).trim().replace(/^\{(.*)\}$/, "$1").trim();
+    if(!/^[+-]?\d+(?:(?:\s*[;,]\s*|\s+)[+-]?\d+)*$/.test(text)) return null;
+
+    const values = text.split(/[;,\s]+/).map(Number);
+    if(values.some(number => !Number.isSafeInteger(number)) || new Set(values).size !== values.length){
+        return null;
+    }
+    return values.sort((a, b) => a - b);
+}
+
 function isInputFieldAnswerCorrect(value, field){
+    if(field.control === "set"){
+        const submitted = parseIntegerAnswerSet(value);
+        if(!submitted) return false;
+        return field.answers.some(answer => {
+            const expected = parseIntegerAnswerSet(answer);
+            return expected && expected.length === submitted.length &&
+                expected.every((number, index) => number === submitted[index]);
+        });
+    }
     if(field?.suffix){
         const typed = String(value).trim();
         const suffix = [field.suffix, ...(field.suffixAliases || [])]
@@ -9454,6 +9638,7 @@ function setupMCQ(){
 
     mcq.innerHTML = "";
     mcq.className = "mcq";
+    mcq.style.removeProperty("--mcq-option-count");
     resultButtons.classList.remove("active");
     setResultButtonsEnabled(true);
     multiSelection = new Set();
@@ -9484,8 +9669,9 @@ function setupMCQ(){
 
         const options = getOptions(currentTask);
 
-        if(options.length === 6){
-            mcq.classList.add("six-options");
+        if(options.length > 4){
+            mcq.classList.add("many-options");
+            mcq.style.setProperty("--mcq-option-count", String(options.length));
         }
 
         options.forEach(option => {
@@ -9752,6 +9938,108 @@ function updateAnswerTools(){
     updateScorePanel();
 }
 
+const taskVideoConsentFallbacks = new Set();
+let taskVideoApiPromise = null;
+let taskVideoController = null;
+
+function taskVideoConsentKey(){
+    const userId = loggedUser?.id || loggedUser?.username || "guest";
+    return `deltaSigmaTaskVideoConsent:v1:${userId}`;
+}
+
+function hasTaskVideoConsent(){
+    const key = taskVideoConsentKey();
+    try {
+        return taskVideoConsentFallbacks.has(key) || localStorage.getItem(key) === "1";
+    } catch(error) {
+        return taskVideoConsentFallbacks.has(key);
+    }
+}
+
+function rememberTaskVideoConsent(key){
+    taskVideoConsentFallbacks.add(key);
+    try {
+        localStorage.setItem(key, "1");
+    } catch(error) {
+        // Storage restrictions must not interrupt playback.
+    }
+}
+
+function loadTaskVideoApi(){
+    if(window.YT?.Player) return Promise.resolve(window.YT);
+    if(taskVideoApiPromise) return taskVideoApiPromise;
+
+    taskVideoApiPromise = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        script.async = true;
+        const timeout = setTimeout(() => {
+            script.remove();
+            reject(new Error("Nie udało się wczytać odtwarzacza."));
+        }, 15000);
+        window.onYouTubeIframeAPIReady = () => {
+            clearTimeout(timeout);
+            resolve(window.YT);
+        };
+        script.onerror = () => {
+            clearTimeout(timeout);
+            script.remove();
+            reject(new Error("Nie udało się wczytać odtwarzacza."));
+        };
+        document.head.appendChild(script);
+    }).catch(error => {
+        taskVideoApiPromise = null;
+        throw error;
+    });
+    return taskVideoApiPromise;
+}
+
+function setupTaskVideoAutoplay(frame, task){
+    const isCurrent = () => pendingVideoTask === task && frame.isConnected;
+    let mutedRetry = false;
+    loadTaskVideoApi().then(api => {
+        if(!isCurrent()) return;
+        taskVideoController = new api.Player(frame, {
+            host: "https://www.youtube-nocookie.com",
+            events: {
+                onReady: event => {
+                    if(isCurrent()) event.target.playVideo();
+                },
+                onAutoplayBlocked: event => {
+                    if(!isCurrent() || mutedRetry) return;
+                    // Browsers can permit muted playback while blocking autoplay with sound.
+                    mutedRetry = true;
+                    event.target.mute();
+                    document.getElementById("taskVideoSound").hidden = false;
+                    event.target.playVideo();
+                },
+                onStateChange: event => {
+                    if(isCurrent() && event.data === 1){
+                        document.getElementById("taskVideoSound").hidden = !event.target.isMuted();
+                    }
+                }
+            }
+        });
+    }).catch(() => {
+        // Native YouTube controls remain available even when the API cannot load.
+    });
+}
+
+function enableTaskVideoSound(){
+    if(!taskVideoController) return;
+    taskVideoController.unMute();
+    taskVideoController.playVideo();
+    document.getElementById("taskVideoSound").hidden = true;
+}
+
+function stopTaskVideoPlayback(){
+    taskVideoController?.destroy();
+    taskVideoController = null;
+    document.getElementById("taskVideoPlayer").replaceChildren();
+    document.getElementById("taskVideoPlayer").hidden = true;
+    document.getElementById("taskVideoSound").hidden = true;
+}
+
 function taskVideoUrl(task){
     if(task?.category !== "kurs" || task.level !== "matura_podstawowa") return "";
     if(!STUDENT_WORK_COURSE_PARTS.includes(task.coursePart)) return "";
@@ -9765,14 +10053,18 @@ function taskVideoEmbedUrl(task){
     if(!url) return "";
 
     const videoId = new URL(url).pathname.slice(1);
+    const origin = /^https?:$/.test(window.location.protocol)
+        ? `&origin=${encodeURIComponent(window.location.origin)}`
+        : "";
     return `https://www.youtube-nocookie.com/embed/${videoId}` +
-        "?autoplay=1&playsinline=1&controls=0&rel=0&iv_load_policy=3&modestbranding=1&fs=0";
+        "?autoplay=1&playsinline=1&controls=1&rel=0&iv_load_policy=3&fs=1&enablejsapi=1" + origin;
 }
 
 function startTaskVideoPlayback(task){
     const frame = document.createElement("iframe");
     frame.title = `Film: ${taskLabel(task)}`;
-    frame.allow = "autoplay; encrypted-media; picture-in-picture";
+    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    frame.allowFullscreen = true;
     frame.referrerPolicy = "strict-origin-when-cross-origin";
     frame.src = taskVideoEmbedUrl(task);
 
@@ -9780,6 +10072,7 @@ function startTaskVideoPlayback(task){
     const player = document.getElementById("taskVideoPlayer");
     player.hidden = false;
     player.replaceChildren(frame);
+    setupTaskVideoAutoplay(frame, task);
     document.getElementById("taskVideoClose").focus();
 }
 
@@ -9798,20 +10091,27 @@ function openTaskVideo(event){
     document.getElementById("taskVideoConsent").hidden = false;
     document.getElementById("taskVideoError").hidden = true;
     document.getElementById("taskVideoConfirm").disabled = false;
+    document.getElementById("taskVideoRemember").checked = false;
+    document.getElementById("taskVideoSound").hidden = true;
     dialog.showModal();
     document.documentElement.classList.add("task-video-open");
+    if(hasTaskVideoConsent()){
+        void confirmTaskVideo();
+        return;
+    }
     document.getElementById("taskVideoCancel").focus();
 }
 
 async function confirmTaskVideo(){
     const task = pendingVideoTask;
     const button = document.getElementById("taskVideoConfirm");
-    if(!task || button.disabled) return;
+    if(!task || button.disabled || !document.getElementById("taskVideoDialog").open) return;
     button.disabled = true;
+    const consentKey = document.getElementById("taskVideoRemember").checked ? taskVideoConsentKey() : "";
     const key = getTaskKey(task);
     const duration = currentTaskAnswered ? getTaskDurationSeconds(task) : getCurrentTaskDurationSeconds();
     const score = {earnedPoints: 0, maxPoints: taskPointValue(task)};
-    // Create the player synchronously from the click so browsers allow autoplay with sound.
+    // Request playback during the click, without waiting for the progress save.
     startTaskVideoPlayback(task);
     try {
         if(getSavedResult(task) !== "video"){
@@ -9822,6 +10122,7 @@ async function confirmTaskVideo(){
         sessionScores.set(key, score);
         setSessionDuration(task, duration);
         saveGuestSessionProgress();
+        if(consentKey) rememberTaskVideoConsent(consentKey);
         if(currentTask === task){
             currentTaskAnswered = true;
             workTimer.finish(key);
@@ -9838,8 +10139,7 @@ async function confirmTaskVideo(){
         }
     } catch(error){
         if(pendingVideoTask !== task) return;
-        document.getElementById("taskVideoPlayer").replaceChildren();
-        document.getElementById("taskVideoPlayer").hidden = true;
+        stopTaskVideoPlayback();
         document.getElementById("taskVideoConsent").hidden = false;
         const message = document.getElementById("taskVideoError");
         message.textContent = "Nie udało się potwierdzić zapisu oznaczenia filmu. Sprawdź połączenie i spróbuj ponownie.";
@@ -9851,8 +10151,7 @@ async function confirmTaskVideo(){
 
 function resetTaskVideo(){
     // Removing the iframe also stops playback and releases the player.
-    document.getElementById("taskVideoPlayer").replaceChildren();
-    document.getElementById("taskVideoPlayer").hidden = true;
+    stopTaskVideoPlayback();
     pendingVideoTask = null;
     document.documentElement.classList.remove("task-video-open");
 }
@@ -9868,6 +10167,7 @@ document.getElementById("taskVideoLink").addEventListener("click", openTaskVideo
 document.getElementById("taskVideoClose").addEventListener("click", closeTaskVideo);
 document.getElementById("taskVideoCancel").addEventListener("click", closeTaskVideo);
 document.getElementById("taskVideoConfirm").addEventListener("click", confirmTaskVideo);
+document.getElementById("taskVideoSound").addEventListener("click", enableTaskVideoSound);
 document.addEventListener("keydown", event => {
     if(event.key !== "Escape" || !document.getElementById("taskVideoDialog").open) return;
     event.preventDefault();

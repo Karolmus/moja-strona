@@ -867,6 +867,13 @@ th {
     flex-wrap: wrap;
 }
 
+.progress-heading .btn {
+    min-height: 30px;
+    max-width: 100%;
+    padding: 4px 9px;
+    font-size: 11px;
+}
+
 .lesson-activity {
     display: flex;
     flex-wrap: wrap;
@@ -1028,6 +1035,10 @@ th {
 
 .course-history-table {
     min-width: 760px;
+}
+
+.course-history-table.test-history-table {
+    min-width: 520px;
 }
 
 .course-history-table > tbody > .course-history-row > td {
@@ -2043,6 +2054,7 @@ footer {
             <template id="studentProgressTemplate">
             <div class="progress-detail" id="progressDetail" aria-live="polite">
                 <div class="progress-heading">
+                    <button class="btn secondary" type="button" id="copyIncorrectTasksBtn" disabled>Skopiuj wszystkie błędne zadania</button>
                     <button class="btn secondary" type="button" id="closeProgressBtn">Zamknij</button>
                 </div>
 
@@ -2234,6 +2246,7 @@ const ADMIN_TASK_SOURCES = [
     { path: "zadania/kurs/eo/lekcja_5/lekcja_5_wyrazenia_algebraiczne_i_rownania.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 5", detail: "Wyrażenia algebraiczne i równania" },
     { path: "zadania/kurs/eo/lekcja_6/lekcja_6_wyrazenia_algebraiczne_i_rownania_2.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 6", detail: "Wyrażenia algebraiczne i równania II" },
     { path: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Test sprawdzający z lekcji 1 - 6", detail: "Sprawdź wiedzę z lekcji 1 - 6", kind: "test" },
+    { path: "zadania/kurs/eo/test_lekcje_1_6_b/test_lekcje_1_6_b.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Test sprawdzający z lekcji 1 - 6, wersja B", detail: "Dodatkowy test", kind: "test" },
     { path: "zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test_lekcje_1_6_trudniejszy.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Test trudniejszy z lekcji 1 - 6", detail: "Opcjonalny", kind: "test" },
     { path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 7", detail: "Czas i odległość" },
     { path: "zadania/kurs/eo/lekcja_8/lekcja_8_predkosc.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 8", detail: "Prędkość" },
@@ -2281,6 +2294,7 @@ const adminStatus = document.getElementById("adminStatus");
 const progressDetail = document.getElementById("studentProgressTemplate").content.firstElementChild.cloneNode(true);
 const reviewTasks = progressDetail.querySelector("#reviewTasks");
 const sourceProgress = progressDetail.querySelector("#sourceProgress");
+const copyIncorrectTasksBtn = progressDetail.querySelector("#copyIncorrectTasksBtn");
 const credentialsBox = document.getElementById("credentialsBox");
 const credentialsTitle = document.getElementById("credentialsTitle");
 const credentialsLogin = document.getElementById("credentialsLogin");
@@ -2345,6 +2359,7 @@ let activeProgressStudentId = null;
 let progressRequestId = 0;
 let activeSourceDetailKey = "";
 let activeReviewItems = [];
+let activeIncorrectTaskItems = [];
 let analyticsLoadedPeriod = 0;
 const reviewImageClipboardCache = new Map();
 const reviewSourceTaskCache = new Map();
@@ -4116,6 +4131,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                     label: task.sourceLabel || "Materiał",
                     detail: task.sourceDetail || "",
                     category: task.category,
+                    kind: task.sourceKind || "",
                     level: task.level,
                     sourceIndex: task.sourceIndex || 0,
                     tasks: []
@@ -4214,7 +4230,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
             };
         })
-        .filter(group => group.attempted > 0 || group.reviewRequested > 0)
+        .filter(group => group.attempted > 0 || group.reviewRequested > 0 || group.kind === "test")
         .sort((a, b) => a.sourceIndex - b.sourceIndex);
 }
 
@@ -4569,6 +4585,69 @@ function renderCourseHistory(courseGroups, onSelect){
     return section;
 }
 
+function renderTestHistory(testGroups, onSelect){
+    const section = document.createElement("div");
+    const heading = document.createElement("h4");
+    const tableWrap = document.createElement("div");
+    const table = document.createElement("table");
+
+    section.className = "source-progress-section";
+    heading.innerText = "Testy";
+    tableWrap.className = "course-history-table-wrap";
+    table.className = "course-history-table test-history-table";
+    table.innerHTML = "<thead><tr><th>Test</th><th>Status</th><th>Wynik</th><th>Ostatnia praca</th></tr></thead><tbody></tbody>";
+
+    const tbody = table.querySelector("tbody");
+    testGroups.forEach(group => {
+        const row = document.createElement("tr");
+        const name = document.createElement("td");
+        const title = document.createElement("strong");
+        const state = document.createElement("td");
+        const status = document.createElement("span");
+        const result = document.createElement("td");
+        const date = document.createElement("td");
+        const expanded = activeSourceDetailKey === group.key;
+        const percent = groupScorePercent(group);
+
+        title.textContent = group.label;
+        name.appendChild(title);
+        status.className = `result-pill ${group.completed ? "good" : "missing"}`;
+        status.textContent = group.completed ? "Ukończony" : group.attempted ? `W trakcie · ${group.attempted}/${group.total}` : "Nie rozpoczęto";
+        state.appendChild(status);
+        result.textContent = group.attempted && percent !== null ? `${Math.round(percent)}%` : "-";
+        date.textContent = formatDate(group.lastActivity);
+        row.className = "course-history-row";
+        row.dataset.sourceKey = group.key;
+        row.tabIndex = 0;
+        row.setAttribute("role", "button");
+        row.setAttribute("aria-expanded", String(expanded));
+        row.setAttribute("aria-label", `${expanded ? "Ukryj" : "Pokaż"} zadania: ${group.label}`);
+        row.addEventListener("click", () => onSelect(group.key));
+        row.addEventListener("keydown", event => {
+            if(event.key === "Enter" || event.key === " "){
+                event.preventDefault();
+                onSelect(group.key, true);
+            }
+        });
+        row.append(name, state, result, date);
+        tbody.appendChild(row);
+        if(expanded){
+            const detailRow = document.createElement("tr");
+            const detailCell = document.createElement("td");
+
+            detailRow.className = "course-history-detail";
+            detailCell.colSpan = 4;
+            detailCell.appendChild(renderSourceDetail(group));
+            detailRow.appendChild(detailCell);
+            tbody.appendChild(detailRow);
+        }
+    });
+    tableWrap.appendChild(table);
+    section.append(heading, tableWrap);
+
+    return section;
+}
+
 function expectedCourseAnswer(task){
     if(Array.isArray(task.inputs) && task.inputs.length){
         return task.inputs.map((input, index) =>
@@ -4741,6 +4820,7 @@ function renderSourceDetail(group){
     const table = document.createElement("table");
     const rasch = raschEstimateForGroup(group);
     const isCourse = group.category === "kurs";
+    const isCourseTest = group.kind === "test";
 
     detail.className = "source-detail";
     summary.className = "source-card-meta";
@@ -4774,7 +4854,7 @@ function renderSourceDetail(group){
 
     let previousCoursePart = "";
     group.tasks.forEach(task => {
-        if(isCourse && task.coursePart !== previousCoursePart){
+        if(isCourse && !isCourseTest && task.coursePart !== previousCoursePart){
             const partRow = document.createElement("tr");
             const partHeading = document.createElement("th");
 
@@ -4949,11 +5029,40 @@ function renderSourceDetail(group){
     return detail;
 }
 
+function incorrectTaskClipboardItems(groups){
+    return groups.flatMap(group => group.tasks)
+        .filter(task => {
+            const progress = task.latestProgress;
+
+            if(!progress || progress.result === "video" || isTeacherReviewPending(progress, task)) return false;
+            if(progress.result === "bad") return true;
+            if(progress.result !== "medium") return false;
+
+            const score = inferredTaskScore(progress, task);
+
+            return score.earned !== null && score.earned < score.max;
+        })
+        .map(task => ({
+            source_id: task.sourceId,
+            file: task.file,
+            title: taskDisplayTitle(task),
+            topic: task.topic,
+            created_at: task.latestProgress.created_at
+        }));
+}
+
 function renderSourceProgress(progress, student, reviewItems = []){
     const groups = sourceProgressGroups(progress, student, reviewItems);
     const examGroups = groups.filter(group => group.category === "egzaminy");
-    const courseGroups = groups.filter(group => group.category === "kurs");
+    const courseGroups = groups.filter(group => group.category === "kurs" && group.kind !== "test");
+    const testGroups = groups.filter(group => group.kind === "test");
 
+    activeIncorrectTaskItems = incorrectTaskClipboardItems(groups);
+    copyIncorrectTasksBtn.dataset.taskCount = String(activeIncorrectTaskItems.length);
+    copyIncorrectTasksBtn.disabled = !activeIncorrectTaskItems.length;
+    copyIncorrectTasksBtn.title = activeIncorrectTaskItems.length
+        ? `Zadania z błędną odpowiedzią: ${activeIncorrectTaskItems.length}. Skopiuj jako jeden obraz.`
+        : "Brak błędnie wykonanych zadań.";
     sourceProgress.innerHTML = "";
 
     if(!groups.length){
@@ -4980,6 +5089,7 @@ function renderSourceProgress(progress, student, reviewItems = []){
 
     if(examGroups.length) sourceProgress.appendChild(renderExamHistory(examGroups));
     if(courseGroups.length) sourceProgress.appendChild(renderCourseHistory(courseGroups, selectSource));
+    if(testGroups.length) sourceProgress.appendChild(renderTestHistory(testGroups, selectSource));
 
     if(!examGroups.length) return;
 
@@ -5342,7 +5452,9 @@ async function copyReviewTaskImage(item){
     }
 }
 
-async function copyAllReviewTaskImages(items, control){
+async function copyAllReviewTaskImages(items, control, description = "do omówienia"){
+    if(!items.length) return;
+
     if(!navigator.clipboard?.write || !window.ClipboardItem){
         showStatus("Ta przeglądarka nie pozwala skopiować obrazów do schowka z poziomu strony.");
         return;
@@ -5361,11 +5473,11 @@ async function copyAllReviewTaskImages(items, control){
                 "image/png": pngBlob
             })
         ]);
-        showStatus(`Skopiowano ${items.length} ${items.length === 1 ? "zadanie" : "zadań"} do omówienia jako jeden obraz.`);
+        showStatus(`Skopiowano ${items.length} ${items.length === 1 ? "zadanie" : "zadań"} ${description} jako jeden obraz.`);
     } catch(error) {
         showStatus(error.message || "Nie udało się skopiować zadań do schowka.");
     } finally {
-        control.disabled = false;
+        control.disabled = control.dataset.taskCount === "0";
         control.innerText = originalLabel;
     }
 }
@@ -5473,6 +5585,9 @@ async function showProgress(student){
     const requestId = ++progressRequestId;
     activeProgressStudentId = student.id;
     activeSourceDetailKey = "";
+    activeIncorrectTaskItems = [];
+    copyIncorrectTasksBtn.dataset.taskCount = "0";
+    copyIncorrectTasksBtn.disabled = true;
     progressDetail.classList.add("active");
     const loading = progressDetail.querySelector("#studentLoadStatus");
     loading.hidden = false;
@@ -5509,12 +5624,18 @@ function closeStudentDetails(){
     progressDetail.classList.remove("active");
     activeProgressStudentId = null;
     activeReviewItems = [];
+    activeIncorrectTaskItems = [];
+    copyIncorrectTasksBtn.dataset.taskCount = "0";
+    copyIncorrectTasksBtn.disabled = true;
     activeSourceDetailKey = "";
     renderStudents();
     document.getElementById(`student-toggle-${id}`)?.focus();
 }
 
 progressDetail.querySelector("#closeProgressBtn").addEventListener("click", closeStudentDetails);
+copyIncorrectTasksBtn.addEventListener("click", () =>
+    copyAllReviewTaskImages(activeIncorrectTaskItems, copyIncorrectTasksBtn, "z błędną odpowiedzią")
+);
 
 adminTabButtons.forEach(button => {
     button.addEventListener("click", () => setAdminTab(button.dataset.adminTab));

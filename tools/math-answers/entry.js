@@ -14,9 +14,26 @@ const math = create({
 const functions = {sqrt: 1, cbrt: 1, nthRoot: 2};
 const operators = new Set(['+', '-', '*', '/', '^']);
 
+export function normalizeRepeatingDecimals(value) {
+  const text = String(value);
+  if (text.length > 200) return text;
+  return text.replace(/(\d+)[.,](\d*)\s*\((\d+)\)/g, (_, whole, prefix, period) => {
+    // Convert the complete repeating decimal to a fraction before parsing implicit multiplication.
+    let numerator = BigInt(whole + prefix + period) - BigInt(whole + prefix);
+    let denominator = 10n ** BigInt(prefix.length) * (10n ** BigInt(period.length) - 1n);
+    let a = numerator;
+    let b = denominator;
+    while (b) [a, b] = [b, a % b];
+    numerator /= a;
+    denominator /= a;
+    return `(${numerator}/${denominator})`;
+  });
+}
+
 function normalize(value) {
   let text = String(value).trim();
   if (!text || text.length > 200) throw new Error('Invalid expression length');
+  text = normalizeRepeatingDecimals(text);
   text = text.replace(/,/g, '.').replace(/[−–]/g, '-').replace(/[×·]/g, '*').replace(/÷/g, '/');
   text = text.replace(/²/g, '^2').replace(/³/g, '^3');
   text = text.replace(/√\s*(\d+(?:\.\d+)?)/g, 'sqrt($1)')

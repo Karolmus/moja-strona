@@ -24,8 +24,9 @@ def task_filename(part, number):
 def save_crop(page, image, lines, start, stop, path):
     content = [line for line in lines if line['top'] >= start and line['bottom'] < stop]
     assert content, path
-    top = min(line['top'] for line in content) - 4
-    bottom = max(line['bottom'] for line in content) + 4
+    # Tight spacing in the PDF must not bring a colored task header into the crop.
+    top = max(start, min(line['top'] for line in content) - 4)
+    bottom = min(stop, max(line['bottom'] for line in content) + 4)
     for table in page.find_tables():
         if table.bbox[1] >= top - 10 and table.bbox[3] < stop:
             top = min(top, table.bbox[1] - 4)
@@ -58,6 +59,8 @@ def save_crop(page, image, lines, start, stop, path):
 
 def refresh(source, output, audit_path):
     output.mkdir(parents=True, exist_ok=True)
+    manifest = json.loads((output / 'lekcja_6_procenty_i_lokaty.json').read_text())
+    expected = {task['file'] for task in manifest} | {'context_3_4.png'}
     records = []
     with tempfile.TemporaryDirectory(prefix='mp-lesson6-') as directory:
         rendered = Path(directory)
@@ -85,15 +88,11 @@ def refresh(source, output, audit_path):
                     assert len(contexts) == 1
                     context = contexts[0]
                     first_header = min(line['top'] for line in headers)
-                    record = save_crop(page, image, lines, context['top'] - 1, first_header - 4, output / 'context_3_4.png')
+                    record = save_crop(page, image, lines, context['top'] - 4, first_header - 4, output / 'context_3_4.png')
                     record.update(page=page_number, part='context')
                     records.append(record)
-    expected = {*(f'{i}.png' for i in range(1, 11)), *(f'zd{i}.png' for i in range(1, 11)),
-                *(f'zp{i}.png' for i in range(1, 6)), 'context_3_4.png'}
     assert {record['file'] for record in records} == expected
     assert len(records) == len(expected)
-    manifest = json.loads((output / 'lekcja_6_procenty_i_lokaty.json').read_text())
-    assert {task['file'] for task in manifest} == expected - {'context_3_4.png'}
     for task in manifest:
         if task['coursePart'] == 'praca_domowa':
             record = next(record for record in records if record['file'] == task['file'])

@@ -187,6 +187,7 @@ assert.match(html, /async function reviewTasksClipboardBlob\(items\)/);
 assert.match(html, /const blobs = await Promise\.all\(items\.map\(clipboardImageBlob\)\)/,
   'Every review task image is included in the combined clipboard image');
 assert.match(html, /button\("Kopiuj wszystkie", "btn secondary", \(\) => copyAllReviewTaskImages\(items, copyAll\)\)/);
-assert.match(html, /Skopiowano \$\{items\.length\} .*do omówienia jako jeden obraz/);
+assert.match(html, /description = "do omówienia"/);
+assert.match(html, /Skopiowano \$\{items\.length\} .*\$\{description\} jako jeden obraz/);
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
 console.log('PASS: separate homework and revision results, inline lesson details, exam retention and compact list limits');
