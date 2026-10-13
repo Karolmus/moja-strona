@@ -362,6 +362,9 @@ th {
 }
 
 .student-list { min-width: 0; }
+.student-level-group { --student-accent: #6d8ca8; --student-selected: #edf3f8; }
+.student-level-eo { --student-accent: #7ba25c; --student-selected: #edf5e7; }
+.student-level-mp, .student-level-mr { --student-accent: #9c79b7; --student-selected: #f0eaf6; }
 .student-level-group + .student-level-group { margin-top: 14px; }
 .student-level-heading {
     display: flex;
@@ -393,6 +396,11 @@ th {
 }
 .student-entry { border-top: 1px solid var(--line); }
 .student-entry:last-child { border-bottom: 1px solid var(--line); }
+.student-entry.student-entry--expanded {
+    margin: 6px 0;
+    border: 1px solid var(--student-accent);
+    border-left-width: 4px;
+}
 .student-toggle {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 48px 145px 130px 12px;
@@ -412,6 +420,11 @@ th {
 }
 .student-toggle:hover { background: #f8fafc; }
 .student-toggle[aria-expanded="true"] { background: #edf4fb; }
+.student-entry--expanded > .student-toggle {
+    border-bottom: 1px solid #c4cfda;
+    background: var(--student-selected);
+}
+.student-entry--expanded .student-summary-name { font-size: 13px; }
 .student-toggle:focus-visible { outline: 2px solid #24527a; outline-offset: -2px; }
 .student-toggle::after {
     content: "";
@@ -428,7 +441,30 @@ th {
 .student-summary-state { font-size: 11px; color: var(--green-text); }
 .student-summary-state.blocked { color: var(--red-text); }
 .student-summary-state.review { color: #87621d; }
-.student-expanded { padding: 14px 10px; min-width: 0; }
+.student-expanded { padding: 10px 8px; min-width: 0; background: #f1f4f7; }
+.student-expanded .progress-heading {
+    padding: 5px 6px;
+    border-bottom: 1px solid #c4cfda;
+    background: white;
+}
+.student-expanded .source-progress { gap: 10px; }
+.student-expanded .source-progress-section,
+.student-expanded .review-tasks {
+    padding: 8px;
+    border-top: 2px solid #c4cfda;
+    background: white;
+}
+.student-expanded .review-heading {
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+}
+.student-expanded .student-account-panel {
+    margin-top: 12px;
+    border: 0;
+    border-top: 2px solid #bdcbd8;
+    border-radius: 0;
+    background: white;
+}
 .student-account-panel {
     display: block;
     border: 1px solid var(--line);
@@ -528,7 +564,9 @@ th {
     .student-summary-state { grid-column: 1 / 3; grid-row: 2; }
     .student-toggle::after { grid-column: 3; grid-row: 1 / 3; }
     .student-overview { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-    .student-expanded { padding: 14px 0; }
+    .student-expanded { padding: 8px 4px; }
+    .student-expanded .source-progress-section,
+    .student-expanded .review-tasks { padding: 6px 4px; }
     .student-account-summary-meta { overflow: hidden; text-overflow: ellipsis; }
     .progress-primary { grid-template-columns: minmax(0, 1fr); gap: 10px; }
 }
@@ -1043,6 +1081,17 @@ th {
     min-width: 520px;
 }
 
+.source-activity {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    align-items: center;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+}
+.source-activity > span { white-space: nowrap; }
+.source-activity-duration { color: var(--muted); }
+
 .course-history-table > tbody > .course-history-row > td {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -1057,6 +1106,14 @@ th {
     background: #f5f9fd;
 }
 
+.student-expanded .course-history-row[aria-expanded="true"] > td {
+    border-bottom-color: #b3c4d5;
+    background: #e7eef5;
+}
+.student-expanded .course-history-row[aria-expanded="true"] > td:first-child {
+    box-shadow: inset 3px 0 0 #6d8ca8;
+}
+
 .course-history-row:focus-visible {
     outline: 2px solid #24527a;
     outline-offset: -2px;
@@ -1065,6 +1122,17 @@ th {
 .course-history-detail > td {
     background: #f8fbff;
     padding: 8px;
+}
+
+.student-expanded .course-history-detail > td {
+    border-bottom: 2px solid #c4cfda;
+    background: #f1f4f7;
+}
+.student-expanded .source-task-table-wrap { background: white; }
+.student-expanded .lesson-work-actions {
+    padding: 6px;
+    border-bottom: 1px solid #c4cfda;
+    background: #e7edf3;
 }
 
 .course-history-detail .source-detail {
@@ -1099,6 +1167,11 @@ th {
     background: #edf3f9;
     color: var(--navy);
     font-size: 11px;
+}
+
+.student-expanded .source-task-table .source-task-part-row th {
+    border-top: 2px solid white;
+    background: #dce7f0;
 }
 
 .rasch-chart {
@@ -3206,7 +3279,7 @@ function renderStudents(){
         const open = activeProgressStudentId === student.id;
         const reviewCount = Number(student.review_count) || 0;
 
-        row.className = "student-entry";
+        row.className = `student-entry${open ? " student-entry--expanded" : ""}`;
         row.dataset.studentId = student.id;
         toggle.id = `student-toggle-${student.id}`;
         toggle.setAttribute("aria-expanded", String(open));
@@ -3220,7 +3293,7 @@ function renderStudents(){
         state.className = `student-summary-state ${!student.is_active ? "blocked" : reviewCount ? "review" : ""}`;
         state.textContent = [student.is_active ? "Aktywny" : "Zablokowany", reviewCount ? `Do omówienia: ${reviewCount}` : ""].filter(Boolean).join(" · ");
         activity.className = "student-summary-activity";
-        activity.textContent = formatDateOnly(studentLastActivity(student));
+        activity.textContent = formatDate(studentLastActivity(student));
         activity.title = `Ostatnia aktywność: ${formatDate(studentLastActivity(student))}`;
         toggle.append(name, level, state, activity);
         expanded.id = `student-details-${student.id}`;
@@ -4451,6 +4524,21 @@ function renderRaschChart(examGroups){
     return chart;
 }
 
+function renderSourceActivity(group){
+    const activity = document.createElement("div");
+    const date = document.createElement("span");
+    const duration = document.createElement("span");
+    const items = group.tasks.map(task => task.latestProgress).filter(Boolean);
+
+    activity.className = "source-activity";
+    date.textContent = formatDate(group.lastActivity);
+    duration.className = "source-activity-duration";
+    duration.textContent = `Łącznie: ${formatDuration(sumDuration(items))}`;
+    activity.append(date, duration);
+
+    return activity;
+}
+
 function renderExamHistory(examGroups){
     const section = document.createElement("div");
     const heading = document.createElement("h4");
@@ -4469,7 +4557,7 @@ function renderExamHistory(examGroups){
     table.innerHTML = `
         <thead>
             <tr>
-                <th>Data</th>
+                <th>Ostatnia aktywność / czas pracy</th>
                 <th>Arkusz</th>
                 <th>Status</th>
                 <th>Punkty</th>
@@ -4498,12 +4586,13 @@ function renderExamHistory(examGroups){
         const scorePercent = groupScorePercent(group);
 
         row.innerHTML = `
-            <td>${formatDate(group.lastActivity)}</td>
+            <td></td>
             <td><strong>${group.label}</strong><br><span class="source-card-meta">${group.detail || ""}</span></td>
             <td><span class="result-pill ${group.completed ? "good" : "missing"}">${group.completed ? "Ukończony" : `${group.attempted}/${group.total}`}</span></td>
             <td>${groupScoreText(group)}${scorePercent !== null ? `<br><span class="source-card-meta">${scorePercent}% punktów</span>` : ""}</td>
             <td>${rasch && !rasch.unavailable ? `<strong>${rasch.percent}%</strong>` : `<span class="source-card-meta">${rasch?.reason || "brak danych"}</span>`}</td>
         `;
+        row.querySelector("td").appendChild(renderSourceActivity(group));
         tbody.appendChild(row);
     });
 
@@ -4532,7 +4621,7 @@ function renderCourseHistory(courseGroups, onSelect){
                 <th>Lekcja</th>
                 <th>Praca domowa</th>
                 <th>Zadania powtórkowe</th>
-                <th>Ostatnia praca</th>
+                <th>Ostatnia aktywność / czas pracy</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -4562,7 +4651,7 @@ function renderCourseHistory(courseGroups, onSelect){
         lesson.innerHTML = `<strong>${group.label}</strong><br><span class="source-card-meta">${group.detail || ""}</span>`;
         homework.appendChild(renderCoursePartSummary(group, "praca_domowa"));
         revision.appendChild(renderCoursePartSummary(group, "zadania_powtorkowe"));
-        date.innerText = formatDate(group.lastActivity);
+        date.appendChild(renderSourceActivity(group));
 
         row.className = "course-history-row";
         row.dataset.sourceKey = group.key;
@@ -4611,7 +4700,7 @@ function renderTestHistory(testGroups, onSelect){
     heading.innerText = "Testy";
     tableWrap.className = "course-history-table-wrap";
     table.className = "course-history-table test-history-table";
-    table.innerHTML = "<thead><tr><th>Test</th><th>Status</th><th>Wynik</th><th>Ostatnia praca</th></tr></thead><tbody></tbody>";
+    table.innerHTML = "<thead><tr><th>Test</th><th>Status</th><th>Wynik</th><th>Ostatnia aktywność / czas pracy</th></tr></thead><tbody></tbody>";
 
     const tbody = table.querySelector("tbody");
     testGroups.forEach(group => {
@@ -4631,7 +4720,7 @@ function renderTestHistory(testGroups, onSelect){
         status.textContent = group.completed ? "Ukończony" : group.attempted ? `W trakcie · ${group.attempted}/${group.total}` : "Nie rozpoczęto";
         state.appendChild(status);
         result.textContent = group.attempted && percent !== null ? `${Math.round(percent)}%` : "-";
-        date.textContent = formatDate(group.lastActivity);
+        date.appendChild(renderSourceActivity(group));
         row.className = "course-history-row";
         row.dataset.sourceKey = group.key;
         row.tabIndex = 0;
@@ -5255,6 +5344,7 @@ function renderSourceProgress(progress, student, reviewItems = []){
         card.appendChild(head);
         card.appendChild(progressTrack);
         card.appendChild(meta);
+        card.appendChild(renderSourceActivity(group));
 
         if(rasch && !rasch.unavailable){
             const chip = document.createElement("span");

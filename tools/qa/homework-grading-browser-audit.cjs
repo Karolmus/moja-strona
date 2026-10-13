@@ -39,7 +39,7 @@ async function snapshot(page, name){
 
 async function main(){
     fs.mkdirSync(OUT, {recursive:true});
-    const browser = await chromium.launch({headless:true});
+    const browser = await chromium.launch({headless:true, executablePath:process.env.DS_QA_BROWSER_EXECUTABLE || undefined});
     try {
         const ac = await browser.newContext({viewport:{width:1440, height:1000}});
         const admin = await auth(ac, 'eo-admin@example.test');
@@ -86,6 +86,10 @@ async function main(){
         await ap.locator(`#student-toggle-${student.id}`).click();
         await ap.locator('#studentLoadStatus').waitFor({state:'hidden'});
         assert.equal(await ap.locator('#progressDetail').evaluate(element => element.nextElementSibling.className), 'student-account-panel');
+        assert.equal(await ap.locator('.student-entry--expanded').count(), 1);
+        assert.equal(await ap.locator('.student-entry--expanded').evaluate(element => getComputedStyle(element).borderLeftWidth), '4px');
+        assert.equal(await ap.locator('.student-expanded:not([hidden])').evaluate(element => getComputedStyle(element).backgroundColor), 'rgb(241, 244, 247)');
+        assert.equal(await ap.locator('.student-expanded:not([hidden]) .review-tasks').evaluate(element => getComputedStyle(element).borderTopWidth), '2px');
         assert.equal(await ap.getByText('Kurs - praca domowa i powtórki', {exact:true}).count(), 0);
         await ap.locator('#sourceProgress .course-history-row').filter({hasText:'Lekcja 5'}).click();
         const table = ap.locator('.source-task-table-wrap');
@@ -109,6 +113,7 @@ async function main(){
         const firstImage = await ap.evaluate(() => window.auditCopiedImage);
         assert(firstImage.width > 300 && firstImage.height > 100);
         await snapshot(ap, 'admin-desktop');
+        await ap.locator('.student-entry--expanded').screenshot({path:`${OUT}/student-expanded-desktop.png`});
         await sp.locator('.notification-toggle').click();
         await sp.waitForFunction(() => document.querySelectorAll('.notification-panel li').length === 3);
         await sp.waitForFunction(() => document.querySelector('.teacher-submission-status')?.textContent.includes('2 / 2 pkt'));
@@ -131,6 +136,7 @@ async function main(){
         await ap.setViewportSize({width:390, height:844});
         assert.equal(await table.evaluate(element => getComputedStyle(element).maxHeight), '300px');
         await snapshot(ap, 'admin-mobile');
+        await ap.locator('.student-entry--expanded').screenshot({path:`${OUT}/student-expanded-mobile.png`});
         await sp.setViewportSize({width:390, height:844});
         await sp.locator('.notification-toggle').click();
         await snapshot(sp, 'student-notifications-mobile');
@@ -162,6 +168,13 @@ async function main(){
         await ap.waitForFunction(() => document.querySelectorAll('.source-task-row')[3]?.textContent.includes('Dobrze'));
         assert.equal((await (await sc.request.get(BASE + '/api/progress/me', {headers:sh})).json()).progress.find(item => item.file === 'zd4.png').earned_points, 2);
         await snapshot(ap, 'admin-complete-controls-desktop');
+        const eoStudent = await ap.locator('.student-level-eo .student-toggle').first().getAttribute('id');
+        await ap.locator('#' + eoStudent).click();
+        await ap.locator('#studentLoadStatus').waitFor({state:'hidden'});
+        assert.equal(await ap.locator('.student-entry--expanded').count(), 1, 'Only the current student has an expanded work area');
+        assert.equal(await ap.locator('.student-entry--expanded').evaluate(element => getComputedStyle(element).borderLeftColor), 'rgb(123, 162, 92)');
+        await ap.locator('#closeProgressBtn').click();
+        assert.equal(await ap.locator('.student-entry--expanded').count(), 0, 'Closing restores the compact student list');
         console.log('PASS: Discord hand-in, pending state, 0/1/2 grades, grade amendment, student notifications/read/history, reload, desktop full list, mobile scrolling, lesson clipboard, single/bulk reset, resubmission and review cleanup');
         assert.deepEqual(errors, []);
         await ac.close();

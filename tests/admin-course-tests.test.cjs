@@ -47,8 +47,10 @@ class Element {
 }
 const ui = vm.createContext({activeSourceDetailKey:'',document:{createElement:tag => new Element(tag)},
   groupScorePercent:context.groupScorePercent,formatDate:value => value || '-',
+  formatDuration:seconds => `${seconds} s`,
+  sumDuration:items => items.reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0),
   renderSourceDetail:group => ({key:group.key})});
-load(ui,['renderTestHistory']);
+load(ui,['renderSourceActivity','renderTestHistory']);
 const test = started.find(group => group.kind === 'test');
 const selected=[];
 const section = ui.renderTestHistory([test,groups[0]],(key,focus) => selected.push([key,focus]));

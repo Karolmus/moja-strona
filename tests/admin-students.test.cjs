@@ -87,6 +87,20 @@ test('compact accessible rows only build account details when expanded', () => {
   assert.match(html, /const totalDuration = hasProgress \? sumDuration\(progress\)/);
 });
 
+test('expanded student work is visibly separate without changing compact rows or content order', () => {
+  assert.match(html, /row\.className = `student-entry\$\{open \? " student-entry--expanded" : ""\}`/);
+  assert.match(html, /\.student-entry\.student-entry--expanded\s*\{[^}]*border: 1px solid var\(--student-accent\);[^}]*border-left-width: 4px;/s);
+  assert.match(html, /\.student-entry--expanded > \.student-toggle\s*\{[^}]*background: var\(--student-selected\);/s);
+  assert.match(html, /\.student-expanded\s*\{[^}]*background: #f1f4f7;/);
+  assert.match(html, /\.student-expanded \.source-progress-section,\s*\.student-expanded \.review-tasks\s*\{[^}]*border-top: 2px solid #c4cfda;[^}]*background: white;/s);
+  assert.match(html, /\.student-expanded \.student-account-panel\s*\{[^}]*margin-top: 12px;[^}]*border-radius: 0;/s);
+  assert.match(html, /\.student-level-eo \{ --student-accent: #7ba25c;/);
+  assert.match(html, /\.student-level-mp, \.student-level-mr \{ --student-accent: #9c79b7;/);
+  assert.match(html, /\.student-expanded \.course-history-row\[aria-expanded="true"\] > td:first-child\s*\{[^}]*box-shadow: inset 3px 0 0 #6d8ca8;/s);
+  assert.match(html, /\.student-toggle\s*\{[^}]*min-height: 36px;/s);
+  assert.match(html, /expanded.append\(progressDetail, overview\)/);
+});
+
 test('mobile view shows students before the add-student form and keeps the toolbar compact', () => {
   assert.match(html, /class="admin-toolbar"/);
   assert.doesNotMatch(html, /<h1>Panel Admina<\/h1>/);

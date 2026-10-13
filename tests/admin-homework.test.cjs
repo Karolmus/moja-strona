@@ -122,6 +122,8 @@ const ui = vm.createContext({
   activeSourceDetailKey:'',
   formatPoints:value => String(value),
   formatDate:() => '10.09.2026',
+  formatDuration:seconds => `${seconds} s`,
+  sumDuration:items => items.reduce((sum, item) => sum + (Number(item.duration_seconds) || 0), 0),
   isTeacherReviewPending:() => false,
   inferredTaskScore:(progress, task) => ({
     earned: progress?.earned_points ?? (['good', 'medium'].includes(progress?.result) ? 1 : 0),
@@ -129,7 +131,7 @@ const ui = vm.createContext({
   }),
   renderSourceDetail:group => ({sourceKey:group.key})
 });
-for (const name of ['courseTaskSegment', 'coursePartProgress', 'renderProgressSegments',
+for (const name of ['renderSourceActivity', 'courseTaskSegment', 'coursePartProgress', 'renderProgressSegments',
   'renderCoursePartSummary', 'renderCourseHistory']) {
   const start = html.indexOf(`function ${name}(`);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ui);
