@@ -101,15 +101,53 @@ test('expanded student work is visibly separate without changing compact rows or
   assert.match(html, /expanded.append\(progressDetail, overview\)/);
 });
 
-test('mobile view shows students before the add-student form and keeps the toolbar compact', () => {
+test('all screen sizes show students before the add-student form and keep the toolbar compact', () => {
   assert.match(html, /class="admin-toolbar"/);
   assert.doesNotMatch(html, /<h1>Panel Admina<\/h1>/);
   assert.doesNotMatch(html, /id="adminEmail"/);
   assert.doesNotMatch(html, /id="logoutBtn"/);
   assert.match(fs.readFileSync('nav.html', 'utf8'), /data-auth-logout[^>]*>Wyloguj<\/button>/);
   assert.match(html, /\.admin-toolbar\s*\{[^}]*display:\s*flex;[^}]*margin-bottom:\s*10px;/s);
-  assert.match(html, /@media\(max-width:\s*760px\)[\s\S]*?\.admin-layout > #studentForm\s*\{[^}]*order:\s*2;/s);
-  assert.match(html, /@media\(max-width:\s*760px\)[\s\S]*?\.admin-layout > \.students-panel\s*\{[^}]*order:\s*1;/s);
+  assert.match(html, /\.admin-layout\s*\{[^}]*grid-template-columns: minmax\(0, 1fr\);/s);
+  assert(html.indexOf('class="panel students-panel"') < html.indexOf('<form class="panel" id="studentForm">'));
+  assert(html.indexOf('id="studentTable"') < html.indexOf('id="studentForm"'));
+  assert.match(html, /\.student-form-fields\s*\{[^}]*grid-template-columns: minmax\(0, 1\.4fr\) repeat\(2, minmax\(0, 1fr\)\) auto;[^}]*align-items: end;/s);
+  assert.match(html, /@media\(max-width:\s*760px\)[\s\S]*?\.student-form-fields \{ grid-template-columns: minmax\(0, 1fr\);/s);
+  assert.equal((html.match(/id="studentForm"/g) || []).length, 1);
+});
+
+test('add-student submit shares the fields row while blank passwords still generate automatically', () => {
+  const form = html.slice(html.indexOf('<form class="panel" id="studentForm">'), html.indexOf('</form>', html.indexOf('<form class="panel" id="studentForm">')));
+  assert.match(form, /id="studentPassword"[^>]*>\s*<\/div>\s*<button class="btn" type="submit">Dodaj ucznia<\/button>\s*<\/div>/);
+  const password = form.match(/<input id="studentPassword"[^>]*>/)[0];
+  assert.doesNotMatch(password, /placeholder=|\brequired\b/);
+  assert.match(html, /\.student-form-fields > \.btn \{ height: 40px; min-height: 40px;/);
+  assert.match(html, /password: formData.get\("password"\)/);
+  assert.match(fs.readFileSync('backend/app.py', 'utf8'), /password = data.get\("password"\) or generate_temporary_password\(\)/);
+});
+
+test('last activity stays visible next to the student name on narrow screens', () => {
+  const tablet = html.slice(html.indexOf('@media (max-width: 1200px)'), html.indexOf('@media (max-width: 600px)', html.indexOf('@media (max-width: 1200px)')));
+  const mobile = html.slice(html.indexOf('@media (max-width: 600px)', html.indexOf('@media (max-width: 1200px)')), html.indexOf('.index-cell'));
+  assert.doesNotMatch(html, /\.student-summary-activity\s*\{[^}]*display:\s*none/);
+  assert.match(tablet, /\.student-summary-activity\s*\{[^}]*color: var\(--text\);[^}]*font-weight: 600;[^}]*white-space: nowrap;/s);
+  assert.match(mobile, /\.student-summary-activity\s*\{[^}]*grid-column: 2;[^}]*grid-row: 1;/s);
+  assert.match(mobile, /\.student-summary-state\s*\{[^}]*grid-column: 1;[^}]*grid-row: 2;/s);
+  assert.match(mobile, /\.student-summary-level\s*\{[^}]*grid-column: 2;[^}]*grid-row: 2;/s);
+  assert.match(html, /activity\.setAttribute\("aria-label", activity\.title\)/);
+});
+
+test('compact course toggles sit beside the name and preserve full labels and submitted values', () => {
+  const form = html.slice(html.indexOf('<form class="panel" id="studentForm">'), html.indexOf('</form>', html.indexOf('<form class="panel" id="studentForm">')));
+  assert.match(form, /class="student-form-identity"[\s\S]*?id="displayName"[\s\S]*?class="field student-form-level"[\s\S]*?id="studentEmail"/);
+  for (const [level, label, short] of [
+    ['matura_podstawowa', 'Matura podstawowa', 'MP'],
+    ['matura_rozszerzona', 'Matura rozszerzona', 'MR'],
+    ['egzamin_osmoklasisty', 'Egzamin ósmoklasisty', 'EO']
+  ]) assert.match(form, new RegExp(`data-level="${level}"[^>]*title="${label}"[^>]*aria-label="${label}"[^>]*>${short}</button>`));
+  assert.match(html, /\.student-form-identity\s*\{[^}]*grid-template-columns: minmax\(0, 1fr\) auto;/s);
+  assert.match(html, /\.student-form-level \.level-cards \{ grid-template-columns: repeat\(3, 34px\);/);
+  assert.match(html, /card\.setAttribute\("aria-pressed", String\(card\.dataset\.level === level\)\)/);
 });
 
 test('students are grouped by assigned course and task previews stay compact', () => {

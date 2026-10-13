@@ -15,6 +15,7 @@ assert.match(html, /const adminSessionReady = new Promise/);
 
 async function runBoot(apiFetch, catalogLoader) {
   let sessionResult;
+  let analyticsLoads = 0;
   const statusMessages = [];
   const context = vm.createContext({
     adminSessionVerified: false,
@@ -25,13 +26,14 @@ async function runBoot(apiFetch, catalogLoader) {
     loadStudents: async () => {},
     loadSitePrices: async () => {},
     loadMessages: async () => {},
+    loadAnalytics: () => { analyticsLoads += 1; return new Promise(() => {}); },
     showStatus(message) { statusMessages.push(message); },
     window: {location: {href: 'admin.html'}}
   });
 
   vm.runInContext(source('boot'), context);
   const result = await context.boot();
-  return {context, result, sessionResult, statusMessages};
+  return {context, result, sessionResult, statusMessages, analyticsLoads};
 }
 
 (async () => {
@@ -49,6 +51,7 @@ async function runBoot(apiFetch, catalogLoader) {
   assert.equal(interruptedLoad.context.adminSessionVerified, true);
   assert.equal(interruptedLoad.context.window.location.href, 'admin.html');
   assert.deepEqual(interruptedLoad.statusMessages, []);
+  assert.equal(interruptedLoad.analyticsLoads, 1, 'Analytics does not block panel loading');
 
   const expiredSession = await runBoot(
     async () => { throw Object.assign(new Error('unauthorized'), {status: 401}); },
@@ -58,6 +61,7 @@ async function runBoot(apiFetch, catalogLoader) {
   assert.equal(expiredSession.result, false);
   assert.equal(expiredSession.sessionResult, false);
   assert.equal(expiredSession.context.window.location.href, 'login.html');
+  assert.equal(expiredSession.analyticsLoads, 0, 'Analytics starts only after admin authentication');
 
   console.log('PASS: admin course preview waits for auth and canceled panel loads do not log out');
 })().catch(error => {

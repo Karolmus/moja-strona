@@ -86,10 +86,36 @@ body {
 
 .admin-layout {
     display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 14px;
     align-items: start;
 }
+
+.student-form-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)) auto;
+    align-items: end;
+    gap: 10px;
+}
+.student-form-fields .field { min-width: 0; }
+.student-form-fields input:not([type="hidden"]) { height: 40px; min-height: 40px; }
+.student-form-identity {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 8px;
+    min-width: 0;
+}
+.student-form-level .level-cards { grid-template-columns: repeat(3, 34px); gap: 4px; }
+.student-form-level .level-card {
+    height: 40px;
+    min-height: 40px;
+    padding: 4px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+}
+.student-form-fields > .btn { height: 40px; min-height: 40px; min-width: 140px; }
 
 .admin-tabs {
     display: flex;
@@ -554,14 +580,26 @@ th {
 }
 .progress-primary > * { min-width: 0; }
 @media (max-width: 1200px) {
-    .student-toggle { grid-template-columns: minmax(0, 1fr) 40px 120px 12px; gap: 8px; }
-    .student-summary-activity { display: none; }
+    .student-toggle { grid-template-columns: minmax(0, 1fr) 40px 130px 12px; gap: 2px 8px; }
+    .student-summary-name { grid-column: 1; grid-row: 1; }
+    .student-summary-level { grid-column: 2; grid-row: 1; }
+    .student-summary-state { grid-column: 1 / 3; grid-row: 2; }
+    .student-summary-activity {
+        grid-column: 3;
+        grid-row: 1 / 3;
+        color: var(--text);
+        font-weight: 600;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .student-toggle::after { grid-column: 4; grid-row: 1 / 3; }
 }
 @media (max-width: 600px) {
-    .student-toggle { grid-template-columns: minmax(0, 1fr) 40px 12px; gap: 2px 8px; }
+    .student-toggle { grid-template-columns: minmax(0, 1fr) max-content 12px; gap: 2px 8px; }
     .student-summary-name { grid-column: 1; }
-    .student-summary-level { grid-column: 2; grid-row: 1; text-align: right; }
-    .student-summary-state { grid-column: 1 / 3; grid-row: 2; }
+    .student-summary-level { grid-column: 2; grid-row: 2; text-align: right; }
+    .student-summary-state { grid-column: 1; grid-row: 2; }
+    .student-summary-activity { grid-column: 2; grid-row: 1; }
     .student-toggle::after { grid-column: 3; grid-row: 1 / 3; }
     .student-overview { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .student-expanded { padding: 8px 4px; }
@@ -1436,6 +1474,37 @@ th {
     font-size: 11px;
 }
 
+.task-preview-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 6px;
+}
+.task-preview-tool {
+    min-height: 32px;
+    padding: 5px 10px;
+    border: 1px solid #b8cde1;
+    border-radius: 7px;
+    background: white;
+    color: #24527a;
+    font: 600 11px/1.35 'Poppins', sans-serif;
+    cursor: pointer;
+}
+.task-preview-tool:hover,
+.task-preview-tool[aria-expanded="true"] { background: #edf4fb; }
+.task-preview-tool:focus-visible { outline: 2px solid #24527a; outline-offset: 2px; }
+.task-preview-content {
+    margin: 0;
+    padding: 8px 0;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+.task-preview-content[hidden] { display: none; }
+
 .task-title-cell {
     display: grid;
     gap: 2px;
@@ -1964,6 +2033,141 @@ footer {
     .analytics-card-wide {
         grid-column: auto;
     }
+
+    .student-expanded .source-progress,
+    .student-expanded .source-progress-section,
+    .student-expanded .source-detail { min-width: 0; }
+
+    .student-expanded .exam-history-grid,
+    .student-expanded .source-card-grid { grid-template-columns: minmax(0, 1fr); }
+
+    .student-expanded .course-history-table,
+    .student-expanded .exam-history-table,
+    .student-expanded .source-task-table {
+        display: block;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .student-expanded .course-history-table > thead,
+    .student-expanded .exam-history-table > thead,
+    .student-expanded .source-task-table > thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    .student-expanded .course-history-table > tbody,
+    .student-expanded .exam-history-table > tbody,
+    .student-expanded .source-task-table > tbody { display: block; width: 100%; }
+
+    .student-expanded .course-history-row,
+    .student-expanded .exam-history-row,
+    .student-expanded .source-task-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px 10px;
+        border-bottom: 1px solid var(--line);
+        padding: 8px;
+    }
+
+    .student-expanded .course-history-row > td,
+    .student-expanded .exam-history-row > td,
+    .student-expanded .source-task-row > td {
+        display: block;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .student-expanded td[data-label]::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 2px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    .student-expanded .course-history-row > td:first-child,
+    .student-expanded .course-history-row > td:last-child,
+    .student-expanded .exam-history-row > td:first-child,
+    .student-expanded .exam-history-row > td:nth-child(2),
+    .student-expanded .source-task-title,
+    .student-expanded .source-task-points { grid-column: 1 / -1; }
+
+    .student-expanded .course-history-row[aria-expanded="true"] {
+        background: #e7eef5;
+        box-shadow: inset 3px 0 0 #6d8ca8;
+    }
+    .student-expanded .course-history-row[aria-expanded="true"] > td:first-child { box-shadow: none; }
+
+    .student-expanded .source-activity { padding-top: 3px; }
+    .student-expanded .source-activity > span { white-space: normal; }
+    .student-expanded .exam-history-row > td:nth-child(2) { order: -1; }
+    .student-expanded .exam-history-row > td:first-child { order: 1; }
+
+    .student-expanded .course-history-detail,
+    .student-expanded .course-history-detail > td,
+    .student-expanded .source-task-part-row,
+    .student-expanded .source-task-part-row > th,
+    .student-expanded .source-task-preview,
+    .student-expanded .source-task-preview > td { display: block; width: 100%; }
+    .student-expanded .source-task-preview[hidden] { display: none; }
+    .student-expanded .course-history-detail > td { padding: 6px; }
+    .student-expanded .source-task-table-wrap { overflow-x: hidden; }
+    .student-expanded .source-task-result { grid-column: 1; grid-row: 2; }
+    .student-expanded .source-task-time { grid-column: 2; grid-row: 2; text-align: right; }
+    .student-expanded .source-task-points::before,
+    .student-expanded .source-task-time::before,
+    .student-expanded .source-task-percent::before { display: inline; margin-right: 4px; }
+    .student-expanded .source-task-time { color: var(--muted); font-size: 11px; }
+    .student-expanded .source-task-row:hover,
+    .student-expanded .source-task-row[aria-expanded="true"] { background: #f5f9fd; }
+    .student-expanded .source-task-row .teacher-score-control { max-width: 100%; }
+    .student-expanded .task-edit-actions label { margin: 0; white-space: nowrap; }
+    .student-expanded .task-reset-selection {
+        width: 16px;
+        height: 16px;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+        flex: 0 0 auto;
+    }
+    .student-expanded .task-image-preview { min-width: 0; padding: 6px; }
+    .student-expanded .task-image-preview img { width: 100%; max-width: 100%; }
+    .student-expanded .task-preview-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .student-expanded .task-preview-actions > .task-image-preview-video {
+        grid-column: 1 / -1;
+        justify-content: center;
+        text-align: center;
+    }
+    .student-expanded .task-preview-tool { min-width: 0; white-space: normal; }
+
+    .student-expanded .lesson-work-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .student-expanded .lesson-work-actions > button {
+        min-width: 0;
+        width: 100%;
+        min-height: 36px;
+        white-space: normal;
+    }
+    .student-expanded .review-heading,
+    .student-expanded .student-account-panel > summary { flex-wrap: wrap; }
+    .student-expanded .student-account-summary-meta { margin-left: 0; white-space: normal; }
+}
+
+@media(max-width: 900px) {
+    .student-form-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media(max-width: 760px) {
@@ -1981,13 +2185,7 @@ footer {
         grid-row: 2;
     }
 
-    .admin-layout > #studentForm {
-        order: 2;
-    }
-
-    .admin-layout > .students-panel {
-        order: 1;
-    }
+    .student-form-fields { grid-template-columns: minmax(0, 1fr); }
 
     .task-image-preview img {
         width: 100%;
@@ -2062,7 +2260,7 @@ footer {
             <button class="admin-tab-btn" type="button" data-admin-tab="messages-failed">Nieudane próby zapisania się <span id="failedSignupBadge"></span></button>
             <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
             <button class="admin-tab-btn" type="button" data-admin-tab="prices">Ceny</button>
-            <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie</button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie <span id="analyticsTodayBadge" title="Użytkownicy dzisiaj"></span></button>
         </div>
         <div class="admin-header-actions">
             <a class="btn secondary" id="coursePreviewLink" href="zadania.html?category=kurs">Podgląd kursów</a>
@@ -2071,54 +2269,6 @@ footer {
 
     <div class="admin-tab-panel active" id="studentsTab">
     <div class="admin-layout">
-        <form class="panel" id="studentForm">
-            <h2>Dodaj ucznia</h2>
-
-            <div class="field">
-                <label for="displayName">Imię i nazwisko</label>
-                <input id="displayName" name="display_name" required maxlength="120">
-            </div>
-
-            <div class="field">
-                <label for="studentEmail">E-mail / login</label>
-                <input id="studentEmail" name="email" type="text" inputmode="text" required maxlength="254" autocomplete="username" spellcheck="false">
-            </div>
-
-            <div class="field">
-                <label>Poziom</label>
-                <input type="hidden" id="studentLevel" name="level" value="matura_podstawowa">
-                <div class="level-cards" aria-label="Poziom ucznia">
-                    <button class="level-card active" type="button" data-level="matura_podstawowa">Matura podstawowa</button>
-                    <button class="level-card" type="button" data-level="matura_rozszerzona">Matura rozszerzona</button>
-                    <button class="level-card" type="button" data-level="egzamin_osmoklasisty">Egzamin ósmoklasisty</button>
-                </div>
-            </div>
-
-            <div class="field">
-                <label for="studentPassword">Hasło startowe</label>
-                <input id="studentPassword" name="password" minlength="8" maxlength="128" autocomplete="new-password" placeholder="Puste = wygeneruj automatycznie">
-            </div>
-
-            <button class="btn" type="submit">Dodaj ucznia</button>
-            <div class="credentials-box" id="credentialsBox" aria-live="polite">
-                <h3 id="credentialsTitle">Dane logowania ucznia</h3>
-                <div class="credential-row">
-                    <span>Login</span>
-                    <strong id="credentialsLogin"></strong>
-                </div>
-                <div class="credential-row">
-                    <span>Hasło</span>
-                    <strong id="credentialsPassword"></strong>
-                </div>
-                <div class="credential-row">
-                    <span>Link rodzica</span>
-                    <strong id="credentialsParentLink"></strong>
-                </div>
-                <button class="btn secondary" type="button" id="copyCredentialsBtn">Kopiuj dane</button>
-            </div>
-            <div class="status-box" id="adminStatus" role="status" aria-live="polite"></div>
-        </form>
-
         <section class="panel students-panel">
             <div class="panel-heading">
                 <h2>Uczniowie</h2>
@@ -2152,6 +2302,53 @@ footer {
             </div>
             </template>
         </section>
+
+        <form class="panel" id="studentForm">
+            <h2>Dodaj ucznia</h2>
+            <div class="student-form-fields">
+                <div class="student-form-identity">
+                    <div class="field">
+                        <label for="displayName">Imię i nazwisko</label>
+                        <input id="displayName" name="display_name" required maxlength="120">
+                    </div>
+                    <div class="field student-form-level">
+                        <label>Poziom</label>
+                        <input type="hidden" id="studentLevel" name="level" value="matura_podstawowa">
+                        <div class="level-cards" aria-label="Poziom ucznia">
+                            <button class="level-card active" type="button" data-level="matura_podstawowa" title="Matura podstawowa" aria-label="Matura podstawowa" aria-pressed="true">MP</button>
+                            <button class="level-card" type="button" data-level="matura_rozszerzona" title="Matura rozszerzona" aria-label="Matura rozszerzona" aria-pressed="false">MR</button>
+                            <button class="level-card" type="button" data-level="egzamin_osmoklasisty" title="Egzamin ósmoklasisty" aria-label="Egzamin ósmoklasisty" aria-pressed="false">EO</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="studentEmail">E-mail / login</label>
+                    <input id="studentEmail" name="email" type="text" inputmode="text" required maxlength="254" autocomplete="username" spellcheck="false">
+                </div>
+                <div class="field">
+                    <label for="studentPassword">Hasło startowe</label>
+                    <input id="studentPassword" name="password" minlength="8" maxlength="128" autocomplete="new-password">
+                </div>
+                <button class="btn" type="submit">Dodaj ucznia</button>
+            </div>
+            <div class="credentials-box" id="credentialsBox" aria-live="polite">
+                <h3 id="credentialsTitle">Dane logowania ucznia</h3>
+                <div class="credential-row">
+                    <span>Login</span>
+                    <strong id="credentialsLogin"></strong>
+                </div>
+                <div class="credential-row">
+                    <span>Hasło</span>
+                    <strong id="credentialsPassword"></strong>
+                </div>
+                <div class="credential-row">
+                    <span>Link rodzica</span>
+                    <strong id="credentialsParentLink"></strong>
+                </div>
+                <button class="btn secondary" type="button" id="copyCredentialsBtn">Kopiuj dane</button>
+            </div>
+            <div class="status-box" id="adminStatus" role="status" aria-live="polite"></div>
+        </form>
     </div>
     </div>
 
@@ -2394,6 +2591,7 @@ const studentsTab = document.getElementById("studentsTab");
 const messagesTab = document.getElementById("messagesTab");
 const pricesTab = document.getElementById("pricesTab");
 const analyticsTab = document.getElementById("analyticsTab");
+const analyticsTodayBadge = document.getElementById("analyticsTodayBadge");
 const messageList = document.getElementById("messageList");
 const prospectMessageBadge = document.getElementById("prospectMessageBadge");
 const failedSignupBadge = document.getElementById("failedSignupBadge");
@@ -2788,6 +2986,7 @@ function setStudentLevel(level){
 
     levelCards.forEach(card => {
         card.classList.toggle("active", card.dataset.level === level);
+        card.setAttribute("aria-pressed", String(card.dataset.level === level));
     });
 }
 
@@ -3295,6 +3494,7 @@ function renderStudents(){
         activity.className = "student-summary-activity";
         activity.textContent = formatDate(studentLastActivity(student));
         activity.title = `Ostatnia aktywność: ${formatDate(studentLastActivity(student))}`;
+        activity.setAttribute("aria-label", activity.title);
         toggle.append(name, level, state, activity);
         expanded.id = `student-details-${student.id}`;
         expanded.className = "student-expanded";
@@ -3455,7 +3655,7 @@ function setAdminTab(tab){
     }
 
     if(showAnalytics){
-        loadAnalytics();
+        loadAnalytics(true);
     }
 
     if(showPrices){
@@ -3590,6 +3790,20 @@ function renderCampaignLinks(items){
     });
 }
 
+function updateAnalyticsTodayBadge(data){
+    const today = (Array.isArray(data.daily) ? data.daily : [])
+        .find(item => item.day === data.range_end);
+
+    if(!today || !Number.isInteger(today.visitors) || today.visitors < 0) return;
+
+    const count = formatAnalyticsNumber(today.visitors);
+    const label = `Użytkownicy dzisiaj: ${count}`;
+
+    analyticsTodayBadge.innerText = count;
+    analyticsTodayBadge.title = label;
+    analyticsTodayBadge.setAttribute("aria-label", label);
+}
+
 function renderAnalytics(data){
     const overview = data.overview || {};
     const daily = Array.isArray(data.daily) ? data.daily : [];
@@ -3598,6 +3812,7 @@ function renderAnalytics(data){
     const devices = Array.isArray(data.devices) ? data.devices : [];
     const campaigns = Array.isArray(data.campaigns) ? data.campaigns : [];
 
+    updateAnalyticsTodayBadge(data);
     analyticsRange.innerText = `${data.range_start || ""} – ${data.range_end || ""} • bez zapisywania adresów IP`;
     analyticsViews.innerText = formatAnalyticsNumber(overview.views);
     analyticsVisitors.innerText = formatAnalyticsNumber(overview.visitors);
@@ -4588,10 +4803,11 @@ function renderExamHistory(examGroups){
         row.innerHTML = `
             <td></td>
             <td><strong>${group.label}</strong><br><span class="source-card-meta">${group.detail || ""}</span></td>
-            <td><span class="result-pill ${group.completed ? "good" : "missing"}">${group.completed ? "Ukończony" : `${group.attempted}/${group.total}`}</span></td>
-            <td>${groupScoreText(group)}${scorePercent !== null ? `<br><span class="source-card-meta">${scorePercent}% punktów</span>` : ""}</td>
-            <td>${rasch && !rasch.unavailable ? `<strong>${rasch.percent}%</strong>` : `<span class="source-card-meta">${rasch?.reason || "brak danych"}</span>`}</td>
+            <td data-label="Status"><span class="result-pill ${group.completed ? "good" : "missing"}">${group.completed ? "Ukończony" : `${group.attempted}/${group.total}`}</span></td>
+            <td data-label="Punkty">${groupScoreText(group)}${scorePercent !== null ? `<br><span class="source-card-meta">${scorePercent}% punktów</span>` : ""}</td>
+            <td data-label="Rasch">${rasch && !rasch.unavailable ? `<strong>${rasch.percent}%</strong>` : `<span class="source-card-meta">${rasch?.reason || "brak danych"}</span>`}</td>
         `;
+        row.className = "exam-history-row";
         row.querySelector("td").appendChild(renderSourceActivity(group));
         tbody.appendChild(row);
     });
@@ -4649,6 +4865,8 @@ function renderCourseHistory(courseGroups, onSelect){
         const expanded = activeSourceDetailKey === group.key;
 
         lesson.innerHTML = `<strong>${group.label}</strong><br><span class="source-card-meta">${group.detail || ""}</span>`;
+        homework.dataset.label = "Praca domowa";
+        revision.dataset.label = "Powtórki";
         homework.appendChild(renderCoursePartSummary(group, "praca_domowa"));
         revision.appendChild(renderCoursePartSummary(group, "zadania_powtorkowe"));
         date.appendChild(renderSourceActivity(group));
@@ -4718,6 +4936,8 @@ function renderTestHistory(testGroups, onSelect){
         name.appendChild(title);
         status.className = `result-pill ${group.completed ? "good" : "missing"}`;
         status.textContent = group.completed ? "Ukończony" : group.attempted ? `W trakcie · ${group.attempted}/${group.total}` : "Nie rozpoczęto";
+        state.dataset.label = "Status";
+        result.dataset.label = "Wynik";
         state.appendChild(status);
         result.textContent = group.attempted && percent !== null ? `${Math.round(percent)}%` : "-";
         date.appendChild(renderSourceActivity(group));
@@ -4806,6 +5026,57 @@ function appendTaskPreviewVideo(task, container){
     container.appendChild(video);
 }
 
+let taskPreviewSequence = 0;
+
+function taskPreviewAnswer(task){
+    if(task.answer == null && !task.acceptedAnswers?.length && !task.inputs?.length){
+        return task.teacherGraded || task.externalSubmission
+            ? "Nie zapisano wzorcowej odpowiedzi. Pełne rozwiązanie wymaga oceny nauczyciela."
+            : "Nie zapisano odpowiedzi w kluczu tego zadania.";
+    }
+    return expectedCourseAnswer(task);
+}
+
+function appendTaskPreviewTools(task, container){
+    const actions = document.createElement("div");
+    const content = document.createElement("div");
+    const toggles = [];
+    let active = null;
+
+    actions.className = "task-preview-actions";
+    content.className = "task-preview-content";
+    content.id = `task-preview-content-${++taskPreviewSequence}`;
+    content.hidden = true;
+    content.setAttribute("role", "region");
+    appendTaskPreviewVideo(task, actions);
+
+    for(const [label, text] of [
+        ["Wskazówka", task.hint || "Brak wskazówki do tego zadania."],
+        ["Odpowiedź", taskPreviewAnswer(task)]
+    ]){
+        const toggle = document.createElement("button");
+
+        toggle.type = "button";
+        toggle.className = "task-preview-tool";
+        toggle.textContent = label;
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-controls", content.id);
+        toggle.addEventListener("click", event => {
+            event.stopPropagation();
+            active = active === toggle ? null : toggle;
+            content.hidden = !active;
+            content.textContent = active ? String(text) : "";
+            content.setAttribute("aria-label", label);
+            toggles.forEach(button => button.setAttribute("aria-expanded", String(button === active)));
+        });
+        toggle.addEventListener("keydown", event => event.stopPropagation());
+        toggles.push(toggle);
+        actions.appendChild(toggle);
+    }
+
+    container.append(actions, content);
+}
+
 async function loadTaskImagePreview(task, container){
     const paths = taskPreviewImagePaths(task);
 
@@ -4817,7 +5088,7 @@ async function loadTaskImagePreview(task, container){
         message.className = "task-image-preview-status";
         message.innerText = "Brak obrazu tego zadania.";
         container.appendChild(message);
-        appendTaskPreviewVideo(task, container);
+        appendTaskPreviewTools(task, container);
         return;
     }
 
@@ -4848,7 +5119,7 @@ async function loadTaskImagePreview(task, container){
         status.innerText = error.message || "Nie udało się wczytać obrazu zadania.";
     }
 
-    appendTaskPreviewVideo(task, container);
+    appendTaskPreviewTools(task, container);
 }
 
 async function saveTeacherReviewedScore(progressItem, task, input, button, status){
@@ -5070,6 +5341,14 @@ function renderSourceDetail(group){
         let previewLoaded = false;
 
         row.className = "source-task-row";
+        titleCell.className = "source-task-title";
+        resultCell.className = "source-task-result";
+        pointsCell.className = "source-task-points";
+        percentCell.className = "source-task-percent";
+        timeCell.className = "source-task-time";
+        pointsCell.dataset.label = "Punkty:";
+        percentCell.dataset.label = "% CKE:";
+        timeCell.dataset.label = "Czas:";
         row.tabIndex = 0;
         row.setAttribute("role", "button");
         row.setAttribute("aria-expanded", "false");
@@ -5963,6 +6242,7 @@ async function boot(){
 
     adminSessionVerified = true;
     settleAdminSession(true);
+    void loadAnalytics();
 
     try {
         await loadAdminTaskCatalog();
