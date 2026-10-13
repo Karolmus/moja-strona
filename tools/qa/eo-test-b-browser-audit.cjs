@@ -142,7 +142,7 @@ async function main() {
       assert.equal(await page.locator('#testStartDialog').isVisible(), false);
       await page.locator('#homeworkSummaryClose').click();
       assert.equal(await bButton(page).count(),1, 'B result never replaces the prerequisite A score');
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Test trudniejszy'}).count(),0);
+      assert.equal(await page.locator('.source-btn').filter({hasText:'Test C'}).count(),0);
       assert.equal(await page.evaluate(() => getCourseSourceSequence(selectedLevel)
         .some(source => source.label === 'Lekcja 7' && isCourseSourceVisible(source))),true);
       const progress = await context.request.get(BASE+'/api/progress/me',{headers:{Authorization:`Bearer ${token}`}});

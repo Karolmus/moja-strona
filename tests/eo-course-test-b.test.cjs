@@ -39,6 +39,9 @@ assert(b && b.optional && b.kind === 'test');
 assert.equal(b.requiresSource, sourceA);
 assert.equal(b.maxScorePercent, 80);
 assert.equal(harder.maxScorePercent, null);
+assert.equal(harder.minScorePercent, 90);
+assert(!course.find(source => source.id === sourceA).optional, 'Test A remains the default mandatory checkpoint');
+assert.equal(course.filter(source => source.kind === 'test' && !source.optional).length, 1);
 assert.equal(context.getPreviousCourseCheckpoint(lesson7).id, sourceA, 'B is not a new lesson checkpoint');
 assert(!context.isCourseSourceVisible(b), 'An untouched test A does not expose B');
 assert(!context.isCourseSourceVisible(lesson7));
@@ -54,19 +57,23 @@ assert(!context.isCourseSourceVisible(b), 'Skipping A is not completing A');
 
 checkpointTasks = [{file: 'boundary', maxPoints: 100}];
 for(const [score, visibleB, visibleHarder] of [[0, true, false], [79.99, true, false],
-  [80, false, false], [80.01, false, true], [100, false, true]]) {
+  [80, false, false], [80.01, false, false], [89.99, false, false],
+  [90, false, false], [90.01, false, true], [100, false, true]]) {
   progress.set('boundary', {result: 'good', earned_points: score});
   assert.equal(context.isCourseSourceVisible(b), visibleB, `B visibility at raw ${score}%`);
-  assert.equal(context.isCourseSourceVisible(harder), visibleHarder, `Harder visibility at raw ${score}%`);
+  assert.equal(context.isCourseSourceVisible(harder), visibleHarder, `C visibility at raw ${score}%`);
 }
 loaded = false;
 assert(!context.isCourseSourceVisible(b), 'An unloaded prerequisite is not treated as a completed 0% test');
+assert(!context.isCourseSourceVisible(harder), 'An unloaded prerequisite never unlocks C');
 loaded = true;
 checkpointTasks = [];
 assert(!context.isCourseSourceVisible(b), 'An empty prerequisite is not completed');
+assert(!context.isCourseSourceVisible(harder), 'An empty prerequisite never unlocks C');
 assert(!context.isOptionalCourseTestUnlocked({...b, requiresSource: 'missing'}, course));
 context.loggedUser = {role: 'admin'};
 assert(context.isCourseSourceVisible(b), 'Admin can preview B without a test score');
+assert(context.isCourseSourceVisible(harder), 'Admin can preview C without a test score');
 assert(fs.readFileSync('admin.html', 'utf8').includes(sourceB), 'Admin result details include B');
 assert.match(html, /requestedSource\?\.category === "kurs" && !isCourseSourceVisible\(requestedSource\)\) return;/,
   'Direct selection of a hidden course source is stopped before opening its start dialog');

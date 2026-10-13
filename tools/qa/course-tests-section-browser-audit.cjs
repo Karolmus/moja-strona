@@ -123,7 +123,7 @@ async function main() {
     await context.close();
     console.log('PASS: separate tabs, confirmation/cancellation, unchanged save, reload, running countdown and responsive layout');
 
-    for (const [number,correct,optional] of [[2,true,'trudniejszy'],[3,false,'Test B']]) {
+    for (const [number,correct,optional] of [[2,true,'Test C'],[3,false,'Test B']]) {
       const {context,token} = await login(browser,number,{width:390,height:844});
       for (const lesson of [1,2,3,4,5,6]) {
         const dir = `zadania/kurs/eo/lekcja_${lesson}`;

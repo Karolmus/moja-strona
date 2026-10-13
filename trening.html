@@ -162,6 +162,10 @@ body {
     grid-template-columns: 1fr;
 }
 
+.level-tabs--selectable {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .level-locked {
     min-height: 38px;
     border: 1px solid var(--line);
@@ -209,6 +213,9 @@ body {
 
 .level-btn {
     text-align: center;
+    min-width: 0;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
 }
 
 .level-btn.active,
@@ -241,6 +248,7 @@ body {
     background: #f3f6fa;
 }
 
+.level-btn.active:hover,
 .topic-btn.active:hover {
     border-color: var(--navy);
     background: var(--navy);
@@ -1147,7 +1155,7 @@ body {
 
                     <div class="training-side-section">
                         <div class="panel-title">Poziom</div>
-                        <div class="level-tabs" id="levelTabs"></div>
+                        <div class="level-tabs" id="levelTabs" role="group" aria-label="Poziom treningu"></div>
                     </div>
 
                     <div class="training-side-section">
@@ -1392,6 +1400,7 @@ const progressScope = document.getElementById("progressScope");
 const progressChart = document.getElementById("progressChart");
 
 let progressRequestId = 0;
+let trainingUser = null;
 
 const GENERATORS = [
     { level: "eo", lesson: "lesson_4", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
@@ -3763,7 +3772,27 @@ function applyAssignedLevel(level, shouldReset = true){
 }
 
 function trainingLevelFromUser(user){
+    if(user?.role === "admin") return requestedTrainingLevel() || state.level || "eo";
+
     return STUDENT_LEVEL_TO_TRAINING[user?.level] || state.level || "eo";
+}
+
+function requestedTrainingLevel(){
+    const requested = new URLSearchParams(window.location.search).get("level");
+    const level = STUDENT_LEVEL_TO_TRAINING[requested] || requested;
+
+    return Object.hasOwn(LEVELS, level) ? level : "";
+}
+
+function canSelectTrainingLevel(){
+    return trainingUser?.role === "admin";
+}
+
+function setTrainingLevel(level){
+    if(!canSelectTrainingLevel() || !Object.hasOwn(LEVELS, level) || state.starting || state.level === level) return;
+
+    updateTrainingLessonUrl("all", level);
+    applyAssignedLevel(level, true);
 }
 
 function requestedTrainingLesson(level = state.level){
@@ -3776,16 +3805,18 @@ function requestedTrainingLesson(level = state.level){
 
 async function syncTrainingLevelFromAuth(){
     if(!window.apiFetch || !window.getAuthToken || !window.getAuthToken()){
+        trainingUser = null;
         renderControls();
         return;
     }
 
     try {
         const session = await window.apiFetch("/api/auth/me");
-        const user = session.authenticated ? session.user : null;
+        trainingUser = session.authenticated ? session.user : null;
 
-        applyAssignedLevel(trainingLevelFromUser(user), true);
+        applyAssignedLevel(trainingLevelFromUser(trainingUser), true);
     } catch(error) {
+        trainingUser = null;
         renderControls();
     }
 }
@@ -3802,9 +3833,10 @@ function setTopic(topic){
     }
 }
 
-function updateTrainingLessonUrl(lesson){
+function updateTrainingLessonUrl(lesson, level = state.level){
     const url = new URL(window.location.href);
 
+    if(canSelectTrainingLevel()) url.searchParams.set("level", level);
     if(lesson === "all"){
         url.searchParams.delete("lesson");
     } else {
@@ -3826,13 +3858,28 @@ function renderControls(){
     stageSubtitle.innerText = LEVELS[state.level].label;
     trainingSettingsValue.innerText = `${LEVELS[state.level].shortLabel || LEVELS[state.level].label} · ${activeTopicLabel()}`;
     levelTabs.innerHTML = "";
+    levelTabs.classList.toggle("level-tabs--selectable", canSelectTrainingLevel());
     topicList.innerHTML = "";
 
-    const lockedLevel = document.createElement("div");
+    if(canSelectTrainingLevel()){
+        Object.entries(LEVELS).forEach(([level, details]) => {
+            const button = document.createElement("button");
 
-    lockedLevel.className = `level-locked level-locked-${state.level}`;
-    lockedLevel.innerText = LEVELS[state.level].shortLabel || LEVELS[state.level].label;
-    levelTabs.appendChild(lockedLevel);
+            button.type = "button";
+            button.className = level === state.level ? "level-btn active" : "level-btn";
+            button.dataset.level = level;
+            button.innerText = details.shortLabel || details.label;
+            button.setAttribute("aria-pressed", String(level === state.level));
+            button.onclick = () => setTrainingLevel(level);
+            levelTabs.appendChild(button);
+        });
+    } else {
+        const lockedLevel = document.createElement("div");
+
+        lockedLevel.className = `level-locked level-locked-${state.level}`;
+        lockedLevel.innerText = LEVELS[state.level].shortLabel || LEVELS[state.level].label;
+        levelTabs.appendChild(lockedLevel);
+    }
 
     LEVELS[state.level].lessons.forEach(lesson => {
         const button = document.createElement("button");

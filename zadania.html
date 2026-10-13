@@ -347,18 +347,8 @@ body.admin-preview .level-btn {
     font-size: 12px;
     line-height: 1.45;
 }
-.test-range-group { min-width: 0; }
-.test-range-label { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
-.test-range-sources { display: grid; gap: 6px; }
 .mcq.external-submission-task { grid-template-columns: minmax(0, 1fr); }
 .teacher-submission-status { margin: 0; font-size: 13px; }
-
-.source-list.test-source-list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
-    max-height: none;
-    overflow-y: visible;
-}
 
 .category-btn[data-category="testy"] {
     display: flex;
@@ -404,6 +394,7 @@ body.admin-preview .level-btn {
     color: var(--muted);
 }
 
+.source-list.test-source-list,
 .source-list.exam-source-list {
     grid-template-columns: minmax(0, 1fr);
     gap: 6px;
@@ -415,19 +406,23 @@ body.admin-preview .level-btn {
     scrollbar-color: #b9c6d4 transparent;
 }
 
+.source-list.test-source-list::-webkit-scrollbar,
 .source-list.exam-source-list::-webkit-scrollbar {
     width: 5px;
 }
 
+.source-list.test-source-list::-webkit-scrollbar-thumb,
 .source-list.exam-source-list::-webkit-scrollbar-thumb {
     background: #b9c6d4;
     border-radius: 999px;
 }
 
+.test-range-group,
 .exam-year-group {
     min-width: 0;
 }
 
+.test-range-label,
 .exam-year-label {
     margin: 0 0 2px;
     padding-bottom: 1px;
@@ -438,6 +433,7 @@ body.admin-preview .level-btn {
     line-height: 1.1;
 }
 
+.test-range-sources,
 .exam-year-sources {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -512,6 +508,7 @@ body.guest-exam-mode .source-summary-row {
     text-align: center;
 }
 
+.test-source-list .source-btn,
 .exam-source-list .source-btn {
     min-height: 28px;
     align-content: center;
@@ -520,6 +517,7 @@ body.guest-exam-mode .source-summary-row {
     text-align: center;
 }
 
+.test-source-list .source-btn span,
 .exam-source-list .source-btn span {
     min-width: 0;
     font-size: 12px;
@@ -540,6 +538,7 @@ body.guest-exam-mode .source-summary-row {
     line-height: 1.1;
 }
 
+.test-source-list .source-btn small,
 .exam-source-list .source-btn small {
     min-width: 0;
     overflow: hidden;
@@ -675,39 +674,6 @@ body.guest-exam-mode .source-summary-row {
 
 .source-btn.active.complete small {
     color: #4f7f4f;
-}
-
-.test-source-list .source-btn.test-source {
-    grid-column: 1 / -1;
-    min-height: 52px;
-    padding: 7px 11px;
-    border-color: #58a8c8;
-    background: #eaf7fc;
-    color: #173f56;
-    text-align: left;
-    box-shadow: inset 4px 0 0 #2589b3;
-}
-
-.test-source-list .source-btn.test-source:hover {
-    border-color: #287da1;
-    background: #ddf1f9;
-}
-
-.test-source-list .source-btn.test-source.active {
-    border-color: #1f6f93;
-    background: #d3ebf5;
-    color: #133a50;
-    box-shadow: inset 4px 0 0 #1f6f93, 0 2px 8px rgba(31, 111, 147, 0.2);
-}
-
-.test-source-list .source-btn.test-source small,
-.test-source-list .source-btn.test-source.active small {
-    color: #37667c;
-}
-
-.test-source-list .source-btn.test-source .source-unlock-note {
-    margin-top: 3px;
-    font-weight: 600;
 }
 
 .tag-search-input {
@@ -3228,23 +3194,27 @@ footer {
         position: static;
     }
 
+    .source-list.test-source-list,
     .source-list.exam-source-list {
         width: 100%;
         min-width: 0;
         max-height: min(340px, 42dvh);
     }
 
+    .test-source-list .source-btn,
     .exam-source-list .source-btn {
         min-height: 32px;
         padding: 3px 4px;
         gap: 1px;
     }
 
+    .test-source-list .source-btn span,
     .exam-source-list .source-btn span {
         font-size: 13px;
         line-height: 1.2;
     }
 
+    .test-source-list .source-btn small,
     .exam-source-list .source-btn small {
         font-size: 11px;
         line-height: 1.25;
@@ -4600,7 +4570,7 @@ const TASK_SOURCES = [
         path: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
-        label: "Test sprawdzający z lekcji 1 - 6",
+        label: "Test sprawdzający z lekcji 1 - 6, wersja A",
         detail: "Sprawdź wiedzę z lekcji 1 - 6",
         kind: "test",
         unlocksNextSources: 4
@@ -4620,12 +4590,12 @@ const TASK_SOURCES = [
         path: "zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test_lekcje_1_6_trudniejszy.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
-        label: "Test trudniejszy z lekcji 1 - 6",
-        detail: "Opcjonalny · wymagany wynik powyżej 80%",
+        label: "Test sprawdzający z lekcji 1 - 6, wersja C",
+        detail: "Opcjonalny · wynik testu A powyżej 90%",
         kind: "test",
         optional: true,
         requiresSource: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
-        minScorePercent: 80
+        minScorePercent: 90
     },
     {
         path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json",
@@ -6608,7 +6578,9 @@ function renderSourceSelector(){
                 const variants = document.createElement("div");
                 group.className = "test-range-group";
                 heading.className = "test-range-label";
+                heading.id = `test-range-${selectedLevel}-${testRange.replace(/\s+/g, "")}`;
                 heading.textContent = `Lekcje ${testRange}`;
+                group.setAttribute("aria-labelledby", heading.id);
                 variants.className = "test-range-sources";
                 group.append(heading, variants);
                 list.appendChild(group);
@@ -6661,9 +6633,8 @@ function courseTestRange(source){
 
 function courseTestVariant(source){
     const text = `${source.label || ""} ${source.detail || ""} ${source.id || ""}`;
-    if(/trudniejszy/i.test(text)) return "Test trudniejszy";
     const variant = text.match(/(?:wersja|arkusz)\s+([A-Z])\b/i) || text.match(/test_lekcje_\d+_\d+_([a-z])(?:\/|\.)/i);
-    return `Test ${variant ? variant[1].toUpperCase() : "A"}`;
+    return `Test ${variant ? variant[1].toUpperCase() : /trudniejszy/i.test(text) ? "C" : "A"}`;
 }
 
 function updateTrainingLink(){
@@ -6675,9 +6646,11 @@ function updateTrainingLink(){
         ? String(selectedSource || "").match(/\/lekcja_(\d+)\//)
         : null;
 
-    link.href = match
-        ? `trening.html?lesson=lesson_${match[1]}`
-        : "trening.html";
+    const params = new URLSearchParams();
+
+    if(loggedUser?.role === "admin") params.set("level", selectedLevel);
+    if(match) params.set("lesson", `lesson_${match[1]}`);
+    link.href = `trening.html${params.size ? `?${params.toString()}` : ""}`;
 }
 
 function updateModeSection(){

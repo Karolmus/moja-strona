@@ -257,7 +257,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   assert.match(html, /Test zakończony: Czas \$\{timerClock\(elapsed\)\}, Wynik \$\{Math\.round\(summary\.percent\)\}%/);
   assert.match(html, /await Promise\.allSettled\(\[\.\.\.pendingProgressSaveRequests\]\)/);
   assert.match(html, /const unfinishedTasks = getHomeworkSummaryTasks\(sourceId\)/);
-  assert.match(html, /\.test-source-list \.source-btn\.test-source/);
+  assert.match(html, /\.test-source-list \.source-btn,\s*\.exam-source-list \.source-btn/);
   assert(fs.statSync(path.join(sourceDir, 'Kurs matura podstawowa test A lekcje 1-6.pdf')).size > 400000);
 
   console.log('PASS: MP test 1-6, clean crops, confirmation gate and persistent 60-minute countdown');

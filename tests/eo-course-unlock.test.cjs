@@ -37,11 +37,11 @@ function optionalCheckpoint(level, prerequisite) {
     path: 'zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test.json',
     category: 'kurs',
     level,
-    label: 'Test trudniejszy 1-6',
+    label: 'Test C 1-6',
     kind: 'test',
     optional: true,
     requiresSource: prerequisite.path,
-    minScorePercent: 80
+    minScorePercent: 90
   };
 }
 
@@ -126,11 +126,13 @@ complete(eoSources[6], 'skipped', 0);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'), 'An unfinished test keeps the next lessons locked');
 complete(eoSources[6], 'medium', 8);
 assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'A completed test unlocks the next lessons regardless of its score');
-assert(!visibleLabels(eoLevel, 'testy').includes('Test trudniejszy 1-6'), 'A score of exactly 80% does not unlock the harder test');
+assert(!visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'A score of exactly 80% does not unlock C');
 assert(visibleLabels(eoLevel).includes('Lekcja 10'), 'The checkpoint unlocks lessons 7-10');
 assert(!visibleLabels(eoLevel).includes('Lekcja 11'), 'Lessons after the unlocked block stay hidden until the next checkpoint is added');
 complete(eoSources[6], 'medium', 9);
-assert(visibleLabels(eoLevel, 'testy').includes('Test trudniejszy 1-6'), 'A score above 80% unlocks the optional harder test');
+assert(!visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'A score of exactly 90% does not unlock C');
+complete(eoSources[6], 'good', 10);
+assert(visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'A score above 90% unlocks the optional C test');
 assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'The optional test never blocks the next lesson stage');
 
 assert.deepEqual(visibleLabels(mpLevel), [

@@ -141,7 +141,7 @@ async function main() {
       }),[18,18,15]);
       assert.equal(await page.evaluate(source => isHomeworkCompleteOnServer(source),SOURCE),true);
       await page.locator('#homeworkSummaryClose').click();
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Test trudniejszy z lekcji 1 - 6'}).count(),1);
+      assert.equal(await page.locator('.source-btn').filter({hasText:'Test C'}).count(),1);
       assert(await lessonUnlocked(page,7));
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
@@ -172,7 +172,7 @@ async function main() {
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
       assert.equal(await page.locator('#homeworkSummaryPercent').innerText(),'0%');
       await page.locator('#homeworkSummaryClose').click();
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Test trudniejszy z lekcji 1 - 6'}).count(),0);
+      assert.equal(await page.locator('.source-btn').filter({hasText:'Test C'}).count(),0);
       assert(await lessonUnlocked(page,7));
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});

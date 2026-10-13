@@ -27,7 +27,9 @@ for (const task of tasks) {
   assert.equal(task.level, 'egzamin_osmoklasisty');
   assert.equal(task.activityType, 'test');
   assert.equal(task.theme, 'checkpoint-blue');
-  assert(task.tags.includes('test trudniejszy'));
+  assert(task.tags.includes('test C'));
+  assert.equal(task.title, `Test sprawdzający z lekcji 1 - 6, wersja C. Zadanie ${task.taskNumber}`);
+  assert.equal(task.topic, 'Zadanie z testu C z lekcji 1 - 6');
   assert(!('hint' in task));
   assert(!('videoUrl' in task));
   assert(fs.existsSync(path.join(sourceDir, task.file)), task.file);
@@ -50,7 +52,8 @@ assert(optionalSource);
 assert.equal(optionalSource.kind, 'test');
 assert.equal(optionalSource.optional, true);
 assert.equal(optionalSource.requiresSource, prerequisitePath);
-assert.equal(optionalSource.minScorePercent, 80);
+assert.equal(optionalSource.minScorePercent, 90);
+assert.equal(optionalSource.label, 'Test sprawdzający z lekcji 1 - 6, wersja C');
 assert.equal(optionalSource.unlocksNextSources, undefined);
 
 const normalIndex = taskSources.findIndex(source => source.path === prerequisitePath);
@@ -61,10 +64,11 @@ assert(normalIndex < optionalIndex && optionalIndex < lesson7Index);
 for (const [text, name] of [[profileHtml, 'PROFILE_SOURCES'], [adminHtml, 'ADMIN_TASK_SOURCES']]) {
   const entries = config(text, name).filter(source => source.path === sourcePath);
   assert.equal(entries.length, 1, `${name}: optional test registered once`);
+  assert.equal(entries[0].label, optionalSource.label);
 }
 
 assert.match(html, /getCheckpointScorePercent\(prerequisite\) > source\.minScorePercent/);
 assert.match(html, /item\.kind === "test" && !item\.optional/);
 assert.match(html, /Test opcjonalny\. Nie blokuje dostępu do kolejnych lekcji\./);
 
-console.log('PASS: harder EO test unlocks only above 80% and remains optional');
+console.log('PASS: EO test C unlocks only above 90% and remains optional');
