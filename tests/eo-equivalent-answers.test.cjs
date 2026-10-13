@@ -136,5 +136,7 @@ test('symbolic answers, equation modes and teacher assessment stay distinct', ()
   }
   const justification = tasks.find(task => task.file === '13.png');
   assert(justification.teacherGraded);
-  assert.equal(justification.inputs[0].control, 'textarea');
+  assert.equal(justification.inputs[0].answer, '2');
+  assert.equal(justification.inputs[0].math, false);
+  assert.equal(justification.inputs[1].control, 'textarea');
 });

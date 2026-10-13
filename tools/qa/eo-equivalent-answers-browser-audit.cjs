@@ -18,7 +18,7 @@ const cases = [
   [6, 'zd11.png', ['486'], false],
   [6, 'zd7.png', ['3/10*V'], true],
   [6, '4.png', ['0,(6)p+4w+1'], true],
-  [6, '13.png', ['Moje uzasadnienie wynika z obliczen zapisanych samodzielnie.'], 'pending']
+  [6, '13.png', ['2', 'Z obliczen otrzymalem ceny 15 zl i 30 zl.\n30 : 15 = 2, wiec cena normalna byla dwa razy wyzsza.'], 'pending']
 ];
 
 async function main() {
@@ -73,15 +73,30 @@ async function main() {
         const earned = await page.evaluate(() => getTaskScore(currentTask)?.earnedPoints ?? null);
         assert.equal(earned, correct === 'pending' ? null : correct ? task.maxPoints : 0);
         if (correct !== 'pending') assert.equal(await fields.first().evaluate(input => input.classList.contains('correct')), correct);
-        if (index === 7 || index === 8) {
-          await page.screenshot({path: `${OUT}/${index === 7 ? 'periodic-mobile' : 'incorrect-desktop'}.png`, fullPage: true});
+        if (index === 7 || index === 8 || correct === 'pending') {
+          const screenshot = correct === 'pending' ? 'teacher-answer-desktop'
+            : index === 7 ? 'periodic-mobile' : 'incorrect-desktop';
+          await page.screenshot({path: `${OUT}/${screenshot}.png`, fullPage: true});
           await page.reload({waitUntil: 'domcontentloaded'});
           await page.waitForFunction(() => !isTaskLoading && currentTask);
           await page.evaluate(source => setSource(source), source);
           await page.evaluate(({part, file}) => selectCoursePartTask(part, file), {part: task.coursePart, file});
           await page.waitForFunction(file => !isTaskLoading && currentTask?.file === file && currentTaskAnswered, file);
-          assert.equal(await fields.first().inputValue(), values[0], 'Submitted answer survives reload');
-          assert.equal(await page.evaluate(() => getTaskScore(currentTask).earnedPoints), correct ? task.maxPoints : 0);
+          for (const [field, value] of values.entries()) {
+            assert.equal(await fields.nth(field).inputValue(), value, 'Every submitted field survives reload');
+          }
+          assert.equal(await page.evaluate(() => getTaskScore(currentTask)?.earnedPoints ?? null),
+            correct === 'pending' ? null : correct ? task.maxPoints : 0);
+          if (correct === 'pending') {
+            await page.setViewportSize({width: 390, height: 844});
+            const bounds = await fields.evaluateAll(inputs => inputs.map(input => {
+              const {left, right, top, bottom} = input.getBoundingClientRect();
+              return {left, right, top, bottom};
+            }));
+            assert(bounds.every(input => input.left >= 0 && input.right <= 390));
+            assert(bounds[1].top > bounds[0].bottom, 'Justification appears below numeric answer');
+            await page.screenshot({path: `${OUT}/teacher-answer-mobile.png`, fullPage: true});
+          }
         }
         console.log(`PASS: EO ${number} ${file}: ${values.join(' | ')} -> ${earned}`);
       } finally {

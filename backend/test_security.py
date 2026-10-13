@@ -1165,8 +1165,9 @@ class SecurityTests(unittest.TestCase):
             "earned_points": 3,
             "max_points": 3,
             "submitted_answer": (
+                "Liczba razy: 2\n"
                 "Uzasadnienie: Z własnych obliczeń otrzymałem ceny 15 zł i 30 zł, "
-                "więc cena normalna była dwa razy wyższa."
+                "więc cena normalna była dwa razy wyższa.\n30 : 15 = 2."
             ),
         }
         saved = self.client.post("/api/progress", headers=student_headers, json=task)
@@ -1176,6 +1177,7 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(pending["result"], "bad")
         self.assertIsNone(pending["earned_points"])
         self.assertEqual(pending["max_points"], 3)
+        self.assertEqual(pending["submitted_answer"], task["submitted_answer"])
         self.assertIs(pending["teacher_review_pending"], True)
 
         endpoint = f"/api/admin/progress/{pending['id']}/score"
@@ -1188,6 +1190,7 @@ class SecurityTests(unittest.TestCase):
         graded_progress = graded.get_json()["progress"]
         self.assertEqual(graded_progress["result"], "medium")
         self.assertEqual(graded_progress["earned_points"], 2)
+        self.assertEqual(graded_progress["submitted_answer"], task["submitted_answer"])
         self.assertIs(graded_progress["teacher_review_pending"], False)
         self.assertTrue(graded_progress["teacher_graded_at"])
         self.assertEqual(

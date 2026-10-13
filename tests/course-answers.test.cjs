@@ -185,31 +185,59 @@ assert.equal(comparisonOverlay.children.length, 4);
 
 const teacherTask = task(6, '13.png');
 assert.equal(teacherTask.teacherGraded, true);
-assert.equal(teacherTask.inputs[0].control, 'textarea');
+assert.equal(teacherTask.inputs[0].answer, '2');
+assert.equal(teacherTask.inputs[1].control, 'textarea');
 assert.match(teacherTask.instruction, /wcześniej wykonasz samodzielnie/i);
 let teacherRender = render(teacherTask);
-assert.equal(teacherRender.inputs[0].tagName, 'textarea');
-teacherRender.inputs[0].value = 'Za krótko';
+assert(teacherRender.form.children[0].classes.has('teacher-reviewed-fields'));
+assert.equal(teacherRender.inputs[0].tagName, 'input');
+assert.equal(teacherRender.inputs[0].inputMode, 'decimal');
+assert.equal(teacherRender.inputs[1].tagName, 'textarea');
+teacherRender.inputs[1].value = 'Z obliczeń otrzymałem ceny 15 zł i 30 zł, więc cena normalna jest dwa razy wyższa.';
 let teacherBefore = result.length;
+ctx.checkInputAnswer(teacherRender.form);
+assert.equal(result.length, teacherBefore, 'The numeric answer is required as well as justification');
+teacherRender.inputs[0].value = '2';
+teacherRender.inputs[1].value = 'Za krótko';
 ctx.checkInputAnswer(teacherRender.form);
 assert.equal(result.length, teacherBefore, 'A too short justification is not submitted');
 assert.match(ctx.feedback, /co najmniej 20 znaków/);
-teacherRender.inputs[0].value = 'Z obliczeń otrzymałem ceny 15 zł i 30 zł, więc cena normalna jest dwa razy wyższa.';
+teacherRender.inputs[1].value = 'Z obliczeń otrzymałem ceny 15 zł i 30 zł, więc cena normalna jest dwa razy wyższa.';
 ctx.checkInputAnswer(teacherRender.form);
 assert.equal(result.at(-1).status, 'bad', 'Pending review uses the persisted result value without automatic grading');
 assert.equal(result.at(-1).score.earnedPoints, null);
 assert.equal(result.at(-1).score.maxPoints, 3);
-assert(teacherRender.inputs[0].disabled);
+assert(teacherRender.inputs.every(input => input.disabled && !input.classes.has('wrong')));
 assert.match(ctx.feedback, /oczekuje na ocenę nauczyciela/i);
+const justification = 'Z obliczeń otrzymałem ceny 15 zł i 30 zł.\nStąd 30 : 15 = 2.\nLiczba razy: to wynik dzielenia cen.';
 ctx.saved = {
-  submitted_answer: 'Uzasadnienie: Z obliczeń otrzymałem ceny 15 zł i 30 zł.',
+  submitted_answer: `Liczba razy: 2\nUzasadnienie: ${justification}`,
   teacher_review_pending: true
 };
 teacherRender = render(teacherTask);
 ctx.restoreInputAnswerState('bad');
-assert.equal(teacherRender.inputs[0].value, 'Z obliczeń otrzymałem ceny 15 zł i 30 zł.');
-assert(!teacherRender.inputs[0].classes.has('wrong'));
+assert.equal(teacherRender.inputs[0].value, '2');
+assert.equal(teacherRender.inputs[1].value, justification, 'Multiline justification survives reload');
+assert(teacherRender.inputs.every(input => input.disabled && !input.classes.has('wrong')));
+ctx.saved = {
+  submitted_answer: `Uzasadnienie: ${justification}`,
+  teacher_review_pending: true
+};
+teacherRender = render(teacherTask);
+ctx.restoreInputAnswerState('bad');
+assert.equal(teacherRender.inputs[0].value, '', 'Legacy answers do not become numeric answers');
+assert.equal(teacherRender.inputs[1].value, justification);
+assert(teacherRender.inputs.every(input => !input.classes.has('wrong')));
 assert.match(ctx.feedback, /oczekuje na ocenę nauczyciela/i);
+ctx.saved.teacher_review_pending = false;
+ctx.restoreInputAnswerState('good');
+assert.equal(teacherRender.inputs[0].value, '', 'Teacher grading does not invent a previously missing numeric answer');
+assert.equal(teacherRender.inputs[1].value, justification);
+assert.deepEqual(Array.from(ctx.inputAnswerValuesFromText(teacherTask, justification)), ['', justification]);
+const mpTeacherTask = JSON.parse(fs.readFileSync('zadania/kurs/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json'))
+  .find(task => task.file === '6.png');
+assert.deepEqual(Array.from(ctx.inputAnswerValuesFromText(mpTeacherTask,
+  'Ocena stwierdzeń i uzasadnienie: 1. P\nUzasadnienie: własne obliczenia\n2. F')), ['1. P\nUzasadnienie: własne obliczenia\n2. F']);
 ctx.saved = null;
 const restoredComparisonRender = render(comparisonTask);
 assert(comparisonOverlay.children.every(control => control.children.length === 3));

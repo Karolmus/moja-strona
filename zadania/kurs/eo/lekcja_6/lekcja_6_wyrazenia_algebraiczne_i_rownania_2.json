@@ -298,8 +298,14 @@
     ],
     "type": "input",
     "teacherGraded": true,
-    "instruction": "Wpisz własne słowne uzasadnienie. Powinno ono wynikać z obliczeń, które wcześniej wykonasz samodzielnie.",
+    "instruction": "Uzasadnij wynik na podstawie obliczeń, które wcześniej wykonasz samodzielnie. Zadanie oceni nauczyciel.",
     "inputs": [
+      {
+        "label": "Liczba razy",
+        "prompt": "Wpisz, ile razy cena biletu normalnego była wyższa od ceny biletu ulgowego.",
+        "answer": "2",
+        "math": false
+      },
       {
         "label": "Uzasadnienie",
         "prompt": "Wpisz słowne uzasadnienie wynikające z Twoich obliczeń.",

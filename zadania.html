@@ -2098,6 +2098,10 @@ html.task-video-open {
     gap: 8px;
 }
 
+.input-answer-grid.teacher-reviewed-fields {
+    grid-template-columns: minmax(0, 1fr);
+}
+
 .input-answer-field {
     display: grid;
     gap: 5px;
@@ -7211,8 +7215,30 @@ function isTeacherReviewPending(task = currentTask){
 
 function inputAnswerValuesFromText(task, text){
     const fields = getInputFields(task);
-    const raw = String(text || "");
+    const raw = String(text || "").trim();
     const lines = raw.split(/\r?\n/);
+
+    if(fields.some(field => field.control === "textarea")){
+        // Match labels so older justification-only answers survive added fields.
+        const values = fields.map(() => "");
+        let currentIndex = -1;
+
+        if(!fields.some(field => lines[0].startsWith(`${field.label}:`))){
+            values[fields.findIndex(field => field.control === "textarea")] = raw;
+            return values;
+        }
+        lines.forEach(line => {
+            const fieldIndex = fields.findIndex(field => line.startsWith(`${field.label}:`));
+
+            if(fieldIndex > currentIndex){
+                currentIndex = fieldIndex;
+                values[currentIndex] = line.slice(fields[currentIndex].label.length + 1).trim();
+            } else if(currentIndex >= 0){
+                values[currentIndex] += `\n${line}`;
+            }
+        });
+        return values.map(value => value.trim());
+    }
 
     return fields.map((field, index) => {
         const line = lines[index] ?? (fields.length === 1 ? raw : "");
@@ -10603,6 +10629,7 @@ function setupInputTask(mcq){
     form.className = "input-answer-form";
     grid.className = "input-answer-grid";
     grid.classList.toggle("assignment-fields", assignmentMode);
+    grid.classList.toggle("teacher-reviewed-fields", isTeacherGradedTask());
 
     fields.forEach((field, index) => {
         const wrapper = document.createElement("div");
@@ -11343,7 +11370,7 @@ function restoreInputAnswerState(result){
         .forEach(input => {
             const index = Number(input.dataset.index);
             const field = fields[index];
-            const value = values[index] || (result === "bad" ? "" : field?.answers?.[0] || "");
+            const value = values[index] || (teacherGraded || result === "bad" ? "" : field?.answers?.[0] || "");
             const fieldCorrect = !teacherGraded && Boolean(value && field && isInputFieldAnswerCorrect(value, field));
 
             if(field?.control === "equation"){
@@ -11367,10 +11394,10 @@ function restoreInputAnswerState(result){
     if(teacherGraded){
         const score = getTaskScore(currentTask);
         showMessage(teacherPending
-            ? "Uzasadnienie zapisano. Oczekuje na ocenę nauczyciela."
+            ? "Odpowiedź zapisano. Oczekuje na ocenę nauczyciela."
             : score
                 ? `Nauczyciel przyznał ${formatPoints(score.earnedPoints)} / ${formatPoints(score.maxPoints)} pkt.`
-                : "Uzasadnienie zostało ocenione przez nauczyciela.");
+                : "Odpowiedź została oceniona przez nauczyciela.");
     } else if(result === "bad"){
         showInputCorrection(values);
     }
@@ -11415,7 +11442,7 @@ function checkInputAnswer(form){
 
         disableMCQ();
         addProgress("bad", {earnedPoints: null, maxPoints: taskMaxPoints(currentTask)});
-        showMessage("Uzasadnienie zapisano. Oczekuje na ocenę nauczyciela.");
+        showMessage("Odpowiedź zapisano. Oczekuje na ocenę nauczyciela.");
         return;
     }
     const validExpressions = inputs.map(input => {
