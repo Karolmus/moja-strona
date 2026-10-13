@@ -22,8 +22,8 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
-<link rel="stylesheet" href="static/course-tests.css?v=20261012">
+<link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
+<link rel="stylesheet" href="static/course-tests.css?v=20261013">
 
 <style>
 :root {
@@ -341,26 +341,33 @@ body.admin-preview .level-btn {
     overflow-y: visible;
 }
 
-.course-test-group {
-    grid-column: 1 / -1;
-    display: grid;
+.notebook-work-notice {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+}
+.test-range-group { min-width: 0; }
+.test-range-label { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
+.test-range-sources { display: grid; gap: 6px; }
+.mcq.external-submission-task { grid-template-columns: minmax(0, 1fr); }
+.teacher-submission-status { margin: 0; font-size: 13px; }
+
+.source-list.test-source-list {
+    grid-template-columns: minmax(0, 1fr);
     gap: 6px;
-    min-width: 0;
-    margin-top: 9px;
-    padding-top: 9px;
-    border-top: 1px solid var(--line);
+    max-height: none;
+    overflow-y: visible;
 }
 
-.course-test-heading {
+.category-btn[data-category="testy"] {
     display: flex;
     align-items: center;
-    gap: 7px;
-    margin: 0;
-    font-size: 12px;
-    color: var(--muted);
+    justify-content: center;
+    gap: 4px;
 }
 
-.course-test-badge {
+.test-category-badge {
     display: inline-grid;
     place-items: center;
     min-width: 18px;
@@ -373,10 +380,28 @@ body.admin-preview .level-btn {
     line-height: 1;
 }
 
-.course-test-list {
+.test-category-badge[hidden] {
+    display: none;
+}
+
+.task-card.test-selection-idle {
     display: grid;
-    gap: 4px;
-    min-width: 0;
+    min-height: 120px;
+    align-self: start;
+    place-items: center;
+}
+
+.task-card.test-selection-idle > :not(#testSelectionEmpty):not(#sourceLoadStatus) {
+    display: none !important;
+}
+
+.task-card.test-selection-idle.source-load-pending #testSelectionEmpty {
+    display: none;
+}
+
+.test-selection-empty {
+    margin: 0;
+    color: var(--muted);
 }
 
 .source-list.exam-source-list {
@@ -459,7 +484,7 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .category-toggle {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .category-btn.training-card {
@@ -652,7 +677,7 @@ body.guest-exam-mode .source-summary-row {
     color: #4f7f4f;
 }
 
-.course-source-list .source-btn.test-source {
+.test-source-list .source-btn.test-source {
     grid-column: 1 / -1;
     min-height: 52px;
     padding: 7px 11px;
@@ -663,24 +688,24 @@ body.guest-exam-mode .source-summary-row {
     box-shadow: inset 4px 0 0 #2589b3;
 }
 
-.course-source-list .source-btn.test-source:hover {
+.test-source-list .source-btn.test-source:hover {
     border-color: #287da1;
     background: #ddf1f9;
 }
 
-.course-source-list .source-btn.test-source.active {
+.test-source-list .source-btn.test-source.active {
     border-color: #1f6f93;
     background: #d3ebf5;
     color: #133a50;
     box-shadow: inset 4px 0 0 #1f6f93, 0 2px 8px rgba(31, 111, 147, 0.2);
 }
 
-.course-source-list .source-btn.test-source small,
-.course-source-list .source-btn.test-source.active small {
+.test-source-list .source-btn.test-source small,
+.test-source-list .source-btn.test-source.active small {
     color: #37667c;
 }
 
-.course-source-list .source-btn.test-source .source-unlock-note {
+.test-source-list .source-btn.test-source .source-unlock-note {
     margin-top: 3px;
     font-weight: 600;
 }
@@ -3920,6 +3945,7 @@ footer {
             <div class="side-section" id="categorySection" style="display:none">
                 <div class="category-toggle">
                     <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
+                    <button class="category-btn" data-category="testy" onclick="setCategory(this,'testy')"><span>Testy</span><span class="test-category-badge" id="testCategoryBadge" hidden></span></button>
                     <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
                     <a class="category-btn training-card" id="trainingLink" href="trening.html">Trening szybkości</a>
                 </div>
@@ -4008,7 +4034,11 @@ footer {
 
         <div class="task-card">
 
+            <p class="test-selection-empty" id="testSelectionEmpty" role="status" hidden>Wybierz test sprawdzający.</p>
+
             <p class="test-mode-notice" id="testModeNotice" role="note" hidden>W trybie testu nie możesz korzystać ze wskazówek ani dodawać zadań do omówienia.</p>
+
+            <p class="notebook-work-notice" role="note">Rozwiąż zadanie w zeszycie. Na stronie wprowadź tylko końcową odpowiedź. Zapisuj obliczenia, zamiast rozwiązywać zadanie wyłącznie w pamięci.</p>
 
             <div class="source-load-status" id="sourceLoadStatus" role="status" aria-live="polite" hidden>
                 <p id="sourceLoadMessage"></p>
@@ -4262,13 +4292,13 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20261005-remember-session"></script>
+<script src="static/auth.js?v=20261013-student-notifications"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-2-periodic"></script>
 <script src="static/math-answer-input.js?v=20261006-equivalent-answers"></script>
 <script src="static/active-work-time.js?v=20260910"></script>
 <script src="static/course-videos.js?v=20260930-mp5"></script>
-<script src="static/course-tests.js?v=20261012"></script>
+<script src="static/course-tests.js?v=20261013"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -4707,6 +4737,7 @@ const SOURCE_LEVELS = {
 
 const CATEGORY_LABELS = {
     kurs: "Kurs",
+    testy: "Testy",
     egzaminy: "Egzaminy"
 };
 
@@ -5083,7 +5114,7 @@ async function bootStudentPanel(){
                 await loadCourseGradingCriteria();
             }
             selectedCategory = requestedCategory || "kurs";
-            if(selectedCategory === "kurs"){
+            if(isCourseCategory()){
                 selectedCoursePart = defaultCoursePart();
             }
             taskMode = "ordered";
@@ -5123,10 +5154,11 @@ async function bootStudentPanel(){
         const requestedTest = getRequestedTestSource();
         if(requestedTest){
             selectedSource = requestedTest.id;
-            selectedCategory = "kurs";
+            selectedCategory = "testy";
             selectedCoursePart = defaultCoursePart();
             const url = new URL(window.location.href);
             url.searchParams.delete("test");
+            url.searchParams.set("category", "testy");
             window.history.replaceState({}, "", url);
             await ensureTaskSourceLoaded(selectedSource);
             ensureSelectedCoursePart();
@@ -5134,6 +5166,7 @@ async function bootStudentPanel(){
         }
 
         if(!await ensureTestSourceStarted(selectedSource)){
+            if(selectedCategory === "testy") selectedSource = "all";
             const fallbackSource = getAvailableSources().find(source => source.kind !== "test");
 
             if(fallbackSource){
@@ -5225,7 +5258,7 @@ function getRequestedTestSource(){
 function getRequestedCategory(){
     const category = new URLSearchParams(window.location.search).get("category");
 
-    if(!["kurs", "egzaminy"].includes(category)) return "";
+    if(!["kurs", "testy", "egzaminy"].includes(category)) return "";
     if(!hasSourcesForCategory(category, selectedLevel)) return "";
 
     return category;
@@ -5450,6 +5483,7 @@ function loadTaskSource(sourceConfig){
             gradingCriteriaPath: task.gradingCriteriaFile ? basePath + task.gradingCriteriaFile : null,
             tags: normalizeTaskTags(task),
             category: sourceMeta.category,
+            sourceKind: sourceMeta.kind,
             coursePart: task.coursePart || task.section || "zadania",
             level: task.level || sourceMeta.level,
             sourceId: sourceMeta.id,
@@ -5817,7 +5851,7 @@ function preloadUnlockedCourseSources(){
             console.warn("Nie udało się wczytać odblokowanej lekcji.", source.id, error);
         }
     })).then(() => {
-        if(selectedCategory === "kurs"){
+        if(isCourseCategory()){
             renderSourceSelector();
         }
     }).finally(() => {
@@ -6138,14 +6172,15 @@ function clearTagFilters(){
 }
 
 function pool(){
+    if(selectedCategory === "testy" && selectedSource === "all") return [];
     const includeAllMatchingTagSources = tagFiltersSearchAllSources();
     const matchingTasks = tasks.filter(t =>
-        t.category === selectedCategory &&
+        sourceDisplayCategory(t) === selectedCategory &&
         t.level === selectedLevel &&
         (includeAllMatchingTagSources || selectedSource === "all" || t.sourceId === selectedSource) &&
         taskMatchesTagFilters(t) &&
         (
-            selectedCategory !== "kurs" ||
+            !isCourseCategory() ||
             canAccessCoursePart(t.coursePart)
         )
     );
@@ -6174,11 +6209,22 @@ function getSourceMetaById(sourceId){
     return TASK_SOURCES.map(getSourceMeta).find(source => source.id === sourceId);
 }
 
+function sourceDisplayCategory(source){
+    // Separate the picker tabs without changing course IDs or saved results.
+    return source.category === "kurs" &&
+        (source.kind === "test" || source.sourceKind === "test" || source.activityType === "test")
+        ? "testy" : source.category;
+}
+
+function isCourseCategory(category = selectedCategory){
+    return category === "kurs" || category === "testy";
+}
+
 function getAvailableSources(){
     const availableSources = TASK_SOURCES
         .map(getSourceMeta)
         .filter(source =>
-            source.category === selectedCategory &&
+            sourceDisplayCategory(source) === selectedCategory &&
             source.level === selectedLevel &&
             isCourseSourceVisible(source)
         );
@@ -6194,7 +6240,7 @@ function hasSourcesForCategory(category, level = selectedLevel){
     return TASK_SOURCES
         .map(getSourceMeta)
         .some(source =>
-            source.category === category &&
+            sourceDisplayCategory(source) === category &&
             source.level === level
         );
 }
@@ -6214,13 +6260,15 @@ function ensureSelectedSource(){
         return;
     }
 
+    if(selectedCategory === "testy" && selectedSource === "all") return;
+
     if(!availableSources.some(source => source.id === selectedSource)){
         selectedSource = availableSources[0].id;
     }
 }
 
 function ensureSelectedCoursePart(){
-    if(selectedCategory !== "kurs") return;
+    if(!isCourseCategory()) return;
     if(!canAccessCoursePart(selectedCoursePart)){
         selectedCoursePart = STUDENT_WORK_COURSE_PART;
     }
@@ -6269,7 +6317,7 @@ async function setCategory(btn, category){
     taskMode = "ordered";
     updateCategoryUrl(category);
 
-    if(selectedCategory === "kurs"){
+    if(isCourseCategory()){
         selectedCoursePart = defaultCoursePart();
     }
 
@@ -6334,11 +6382,12 @@ async function setSource(sourceId){
 
         if(sourceMeta){
             selectedLevel = sourceMeta.level || selectedLevel;
-            selectedCategory = sourceMeta.category || selectedCategory;
+            selectedCategory = sourceDisplayCategory(sourceMeta) || selectedCategory;
+            updateCategoryUrl(selectedCategory);
         }
     }
 
-    if(selectedCategory === "kurs"){
+    if(isCourseCategory()){
         selectedCoursePart = defaultCoursePart();
     }
 
@@ -6405,11 +6454,12 @@ function updateModeButtons(){
 }
 
 function updateCategoryButtons(){
-    document.body.classList.toggle("course-view", selectedCategory === "kurs");
+    document.body.classList.toggle("course-view", isCourseCategory());
 
     document.querySelectorAll(".category-btn")
         .forEach(b => {
             b.classList.toggle("active", b.dataset.category === selectedCategory);
+            if(b.dataset.category) b.setAttribute("aria-pressed", String(b.dataset.category === selectedCategory));
         });
 }
 
@@ -6461,6 +6511,14 @@ function renderCourseTestNotice(pendingTests){
     window.DSCourseTests.renderNotice(notice, visibleTests, sourceId => setSource(sourceId));
 }
 
+function updateTestCategoryBadge(pendingTests){
+    const badge = document.getElementById("testCategoryBadge");
+    if(!badge) return;
+    badge.hidden = !pendingTests.length;
+    badge.textContent = String(pendingTests.length);
+    badge.setAttribute("aria-label", `Testy do wykonania: ${pendingTests.length}`);
+}
+
 function renderSourceSelector(){
     const list = document.getElementById("sourceList");
     const title = document.getElementById("sourceTitle");
@@ -6469,18 +6527,21 @@ function renderSourceSelector(){
     const scrollKey = `${selectedCategory}:${selectedLevel}`;
     const scrollTop = list.dataset.scrollKey === scrollKey ? list.scrollTop : 0;
     list.dataset.scrollKey = scrollKey;
-    document.getElementById("courseBrand").hidden = selectedCategory !== "kurs";
+    document.getElementById("courseBrand").hidden = !isCourseCategory();
 
     updateTrainingLink();
     const pendingTests = getPendingCourseTests();
     renderCourseTestNotice(pendingTests);
+    updateTestCategoryBadge(pendingTests);
     list.innerHTML = "";
     list.classList.toggle("course-source-list", selectedCategory === "kurs");
-    list.classList.toggle("exam-source-list", selectedCategory !== "kurs");
+    list.classList.toggle("test-source-list", selectedCategory === "testy");
+    list.classList.toggle("exam-source-list", selectedCategory === "egzaminy");
 
     if(title){
         title.innerText = selectedCategory === "kurs"
             ? "Wybór lekcji"
+            : selectedCategory === "testy" ? "Wybór testu"
             : LEVEL_LABELS[selectedLevel] || "Arkusze";
     }
 
@@ -6492,36 +6553,41 @@ function renderSourceSelector(){
         return;
     }
 
-    if(selectedCategory !== "kurs" && !availableSources.length){
+    if(selectedCategory === "testy" && !availableSources.length){
+        addSourceButton(list, "all", "Brak testów", "", true);
+        updateSourceSummary();
+        return;
+    }
+
+    if(selectedCategory === "egzaminy" && !availableSources.length){
         addSourceButton(list, "all", "Brak arkuszy", "Dodaj arkusz dla tego poziomu", true);
         updateSourceSummary();
         return;
     }
 
     const yearLists = new Map();
-    let testGroup = null;
-    let testList = null;
+    const testLists = new Map();
     availableSources.forEach(source => {
         const isLoaded = isTaskSourceLoaded(source.id);
         const count = isLoaded
             ? tasks.filter(t =>
                 t.sourceId === source.id &&
-                t.category === selectedCategory &&
+                sourceDisplayCategory(t) === selectedCategory &&
                 t.level === selectedLevel
             ).length
             : null;
-        const examTile = selectedCategory === "kurs"
-            ? null
-            : getExamSourceTileContent(source.detail);
+        const examTile = selectedCategory === "egzaminy"
+            ? getExamSourceTileContent(source.detail) : null;
         const examDetails = examTile?.detail.split(" · ") || [];
-        const label = examTile ? examDetails.shift() || "Arkusz" : source.label;
-        const detail = selectedCategory === "kurs"
+        const testRange = selectedCategory === "testy" ? courseTestRange(source) : "";
+        const label = testRange ? courseTestVariant(source) : examTile ? examDetails.shift() || "Arkusz" : source.label;
+        const detail = isCourseCategory()
             ? ""
             : examDetails.join(" · ");
-        const sourceTitle = selectedCategory === "kurs"
+        const sourceTitle = isCourseCategory()
             ? source.detail
             : `${examTile.label} · ${examTile.detail}`;
-        const titleDetail = selectedCategory === "kurs"
+        const titleDetail = isCourseCategory()
             ? sourceTitle
             : `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
         const unlockNotice = source.optional
@@ -6531,30 +6597,20 @@ function renderSourceSelector(){
                 : "";
 
         let targetList = list;
-        if(selectedCategory === "kurs" && source.kind === "test"){
-            if(!testGroup){
-                testGroup = document.createElement("section");
+        if(testRange){
+            if(!testLists.has(testRange)){
+                const group = document.createElement("section");
                 const heading = document.createElement("h3");
-
-                testGroup.className = "course-test-group";
-                heading.className = "course-test-heading";
-                heading.id = "courseTestsHeading";
-                heading.innerText = "Testy";
-                if(pendingTests.length){
-                    const badge = document.createElement("span");
-
-                    badge.className = "course-test-badge";
-                    badge.textContent = String(pendingTests.length);
-                    badge.setAttribute("aria-label", `Testy do wykonania: ${pendingTests.length}`);
-                    heading.appendChild(badge);
-                }
-                testGroup.setAttribute("aria-labelledby", heading.id);
-                testList = document.createElement("div");
-                testList.className = "course-test-list";
-                testGroup.appendChild(heading);
-                testGroup.appendChild(testList);
+                const variants = document.createElement("div");
+                group.className = "test-range-group";
+                heading.className = "test-range-label";
+                heading.textContent = `Lekcje ${testRange}`;
+                variants.className = "test-range-sources";
+                group.append(heading, variants);
+                list.appendChild(group);
+                testLists.set(testRange, variants);
             }
-            targetList = testList;
+            targetList = testLists.get(testRange);
         }
         if(examTile){
             if(!yearLists.has(source.year)){
@@ -6590,9 +6646,20 @@ function renderSourceSelector(){
         );
     });
 
-    if(testGroup) list.appendChild(testGroup);
     list.scrollTop = scrollTop;
     updateSourceSummary();
+}
+
+function courseTestRange(source){
+    const match = String(source.id || source.path || "").match(/test_lekcje_(\d+)_(\d+)/);
+    return match ? `${match[1]} - ${match[2]}` : "Pozostałe";
+}
+
+function courseTestVariant(source){
+    const text = `${source.label || ""} ${source.detail || ""} ${source.id || ""}`;
+    if(/trudniejszy/i.test(text)) return "Test trudniejszy";
+    const variant = text.match(/(?:wersja|arkusz)\s+([A-Z])\b/i) || text.match(/test_lekcje_\d+_\d+_([a-z])(?:\/|\.)/i);
+    return `Test ${variant ? variant[1].toUpperCase() : "A"}`;
 }
 
 function updateTrainingLink(){
@@ -6776,6 +6843,36 @@ async function loadStudentProgress(options = {}){
     return savedProgress;
 }
 
+window.addEventListener("deltaSigmaStudentWorkChanged", async event => {
+    if(!isLoggedInStudent || loggedUser?.role !== "student" || isTaskLoading) return;
+    const changedKeys = new Set((event.detail || []).map(item => `${item.source_id}:${item.file}`));
+    const resetSources = new Set((event.detail || []).filter(item => item.kind === "reset").map(item => item.source_id));
+    const previousTaskKey = currentTask ? getTaskKey(currentTask) : "";
+    const previousResult = currentTask ? getSavedResult(currentTask) : "";
+    await Promise.allSettled([...pendingProgressSaveRequests]);
+    await loadStudentProgress({render: false});
+    const canonicalKeys = new Set(savedProgress.map(item => `${getProgressSourceId(item)}:${getProgressFile(item)}`));
+    for(const key of sessionResults.keys()){
+        if([...resetSources].some(source => key.startsWith(`${source}:`)) && !canonicalKeys.has(key)) changedKeys.add(key);
+    }
+    if(previousResult && resetSources.has(currentTask?.sourceId) && !canonicalKeys.has(previousTaskKey)) changedKeys.add(previousTaskKey);
+    for(const key of changedKeys){
+        sessionResults.delete(key);
+        sessionScores.delete(key);
+        sessionHints.delete(key);
+        sessionDurations.delete(key);
+        sessionSubmittedAnswers.delete(key);
+        failedProgressSaves.delete(key);
+    }
+    if(currentTask && changedKeys.has(getTaskKey(currentTask)) && !isTaskLoading){
+        await drawTask(currentIndex, false);
+    }
+    renderSourceSelector();
+    renderTaskNavigator();
+    updateSourceSummary();
+    updateProgressSaveStatus();
+});
+
 function getProgressSourceId(item){
     if(item.source_id) return item.source_id;
     if(!item.task_id) return "";
@@ -6813,7 +6910,7 @@ function findLastProgressItem(category = ""){
             source &&
             file &&
             source.level === selectedLevel &&
-            (!category || source.category === category) &&
+            (!category || sourceDisplayCategory(source) === category) &&
             ["kurs", "egzaminy"].includes(source.category)
         );
     }) || null;
@@ -6851,12 +6948,12 @@ async function restoreLastStudentLocation(category = ""){
     if(!source || !isCourseSourceVisible(source)) return null;
 
     selectedLevel = source.level || selectedLevel;
-    selectedCategory = source.category || selectedCategory;
+    selectedCategory = sourceDisplayCategory(source) || selectedCategory;
     selectedSource = sourceId;
     taskMode = "ordered";
     await ensureTaskSourceLoaded(selectedSource);
 
-    if(selectedCategory === "kurs"){
+    if(isCourseCategory()){
         selectedCoursePart = defaultCoursePart();
         ensureSelectedCoursePart();
     }
@@ -6871,12 +6968,12 @@ function sourceSummaryTasks(){
     if(selectedSource === "all") return [];
 
     const sourceTasks = tasks.filter(task =>
-        task.category === selectedCategory &&
+        sourceDisplayCategory(task) === selectedCategory &&
         task.level === selectedLevel &&
         task.sourceId === selectedSource
     );
 
-    return selectedCategory === "kurs"
+    return isCourseCategory()
         ? sourceTasks.filter(task => STUDENT_WORK_COURSE_PARTS.includes(task.coursePart))
         : sourceTasks;
 }
@@ -6990,7 +7087,7 @@ function updateMobileCourseFooter(summary = null){
 
     if(!footer) return;
 
-    const visible = selectedCategory === "kurs" && Boolean(summary?.tasks?.length);
+    const visible = isCourseCategory() && Boolean(summary?.tasks?.length);
 
     footer.hidden = !visible;
     if(!visible) return;
@@ -7026,8 +7123,8 @@ function updateSourceSummary(){
 
     section.style.display = "grid";
     section.parentElement?.classList.remove("summary-hidden");
-    title.hidden = selectedCategory === "kurs";
-    title.innerText = selectedCategory === "kurs" ? "" : "Podsumowanie arkusza";
+    title.hidden = isCourseCategory();
+    title.innerText = isCourseCategory() ? "" : "Podsumowanie arkusza";
 
     const summary = calculateSourceSummary(summaryTasks);
 
@@ -7833,13 +7930,13 @@ function advanceToNextExamIfComplete(){
 }
 
 function taskNavigatorItems(items = pool()){
-    return selectedCategory === "kurs"
+    return isCourseCategory()
         ? getCourseNavigatorItems()
         : items;
 }
 
 function shouldShowTaskNavigator(items = taskNavigatorItems()){
-    return ["egzaminy", "kurs"].includes(selectedCategory) &&
+    return ["egzaminy", "kurs", "testy"].includes(selectedCategory) &&
         selectedSource !== "all" &&
         items.length > 0;
 }
@@ -7952,14 +8049,14 @@ function navigatorTaskLabel(task){
 }
 
 function isActiveNavigatorTask(task, index){
-    if(selectedCategory !== "kurs") return index === currentIndex;
+    if(!isCourseCategory()) return index === currentIndex;
 
     return currentTask?.sourceId === task.sourceId &&
         currentTask?.file === task.file;
 }
 
 function openNavigatorTask(task, index){
-    if(selectedCategory === "kurs"){
+    if(isCourseCategory()){
         selectCoursePartTask(task.coursePart || "zadania", task.file);
         return;
     }
@@ -8111,7 +8208,7 @@ function renderTaskNavigator(items = pool()){
     items.forEach((task, index) => {
         const section = task.coursePart || "zadania";
 
-        if(selectedCategory === "kurs" && section !== currentSection){
+        if(isCourseCategory() && section !== currentSection){
             addNavigatorSectionLabel(progress, section);
             currentSection = section;
         }
@@ -9406,12 +9503,18 @@ function updateTaskDetails(task, total){
 async function drawTask(index = currentIndex, trackHistory = true){
     workTimer.pause();
     const p = pool();
+    const awaitingTest = selectedCategory === "testy" && selectedSource === "all";
+    document.querySelector(".task-card").classList.toggle("test-selection-idle", awaitingTest);
+    document.getElementById("testSelectionEmpty").hidden = !awaitingTest;
 
     if(!p.length){
         document.getElementById("taskInstruction").hidden = true;
         document.getElementById("testModeNotice").hidden = true;
         drawTaskRequestId++;
         currentTask = null;
+        currentTaskAnswered = false;
+        clearTaskInteraction();
+        updateTimer();
         document.getElementById("taskCounter").innerText = "0 / 0";
         renderTaskNavigator([]);
         document.getElementById("taskImage").src = "";
@@ -9424,6 +9527,11 @@ async function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("metaBox").classList.remove("meta-checkpoint");
         document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
+        if(awaitingTest){
+            document.getElementById("testSelectionEmpty").textContent = getAvailableSources().length
+                ? "Wybierz test sprawdzający." : "Brak testów dla tego kursu.";
+            return;
+        }
         const tagSuffix = tagFiltersSearchAllSources()
             ? " i wybranych tagów"
             : "";
@@ -9684,6 +9792,9 @@ function setupMCQ(){
 
             mcq.appendChild(b);
         });
+    } else if(currentTask.teacherGraded === true && currentTask.type === "external_submission"){
+        mcq.classList.add("active", "external-submission-task");
+        setupExternalTeacherSubmission(mcq);
     } else if(isProofTask(currentTask)){
         mcq.classList.remove("active");
     } else if(isPracticalTask(currentTask)){
@@ -9695,6 +9806,31 @@ function setupMCQ(){
     } else {
         mcq.classList.remove("active");
     }
+}
+
+function setupExternalTeacherSubmission(mcq){
+    const saved = getSavedProgressItem(currentTask);
+    const note = document.createElement("p");
+    const button = document.createElement("button");
+    note.className = "teacher-submission-status";
+    note.setAttribute("role", "status");
+    note.textContent = saved?.teacher_graded_at
+        ? `Ocena nauczyciela: ${formatPoints(saved.earned_points)} / ${taskMaxPoints(currentTask)} pkt.`
+        : getSavedResult(currentTask) ? "Rozwiązanie wysłane. Oczekuje na ocenę nauczyciela."
+        : "Po wysłaniu rozwiązania na Discordzie oznacz je jako wysłane. Nauczyciel przyzna od 0 do 2 pkt.";
+    button.type = "button";
+    button.className = "action-btn answer input-check-btn input-submit";
+    button.textContent = "Rozwiązanie wysłane na Discordzie";
+    button.disabled = Boolean(saved || getSavedResult(currentTask));
+    button.addEventListener("click", () => {
+        if(currentTaskAnswered) return;
+        submittedChoice = "Rozwiązanie wysłane na Discordzie.";
+        if(addProgress("bad")){
+            button.disabled = true;
+            note.textContent = "Rozwiązanie wysłane. Oczekuje na ocenę nauczyciela.";
+        }
+    });
+    mcq.append(note, button);
 }
 
 function isCourseTask(task = currentTask){

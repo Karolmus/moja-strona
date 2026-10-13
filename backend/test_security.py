@@ -52,6 +52,7 @@ class SecurityTests(unittest.TestCase):
             connection.execute("DELETE FROM speed_training_attempts")
             connection.execute("DELETE FROM speed_training_results")
             connection.execute("DELETE FROM task_review_items")
+            connection.execute("DELETE FROM student_notifications")
             connection.execute("DELETE FROM task_progress")
             connection.execute("DELETE FROM parent_access_tokens")
             connection.execute("DELETE FROM schedule_reservations")
@@ -1191,8 +1192,89 @@ class SecurityTests(unittest.TestCase):
         self.assertTrue(graded_progress["teacher_graded_at"])
         self.assertEqual(
             self.client.patch(endpoint, headers=admin_headers, json={"earned_points": 3}).status_code,
-            404,
+            200,
         )
+
+    def test_teacher_homework_grading_notifications_and_reset(self):
+        with app.app_context():
+            student = create_user("proof@example.test", "Uczeń MP", "bezpieczne-haslo")
+            other = create_user("proof-other@example.test", "Inny uczeń", "bezpieczne-haslo")
+            admin = create_user("proof-admin@example.test", "Admin", "bezpieczne-haslo", role="admin")
+            headers = lambda user: {"Authorization": "Bearer " + app_module.create_auth_token(user)}
+            sh, oh, ah = headers(student), headers(other), headers(admin)
+        source = "zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.json"
+        task = {"source_id":source, "file":"zd1.png", "task_id":source + ":zd1.png",
+                "result":"good", "earned_points":2, "max_points":999,
+                "submitted_answer":"Rozwiązanie wysłane na Discordzie."}
+        pending = self.client.post("/api/progress", headers=sh, json=task).get_json()["progress"]
+        self.assertTrue(pending["teacher_review_pending"])
+        self.assertIsNone(pending["earned_points"])
+        self.assertEqual(pending["max_points"], 2)
+        self.assertEqual(self.client.post("/api/progress", headers=sh, json=task).get_json()["progress"]["id"], pending["id"])
+        endpoint = f"/api/admin/progress/{pending['id']}/score"
+        for invalid in (-1, 3, 0.5, "abc", None):
+            self.assertEqual(self.client.patch(endpoint, headers=ah, json={"earned_points":invalid}).status_code, 400)
+        self.assertEqual(self.client.patch(endpoint, headers=sh, json={"earned_points":2}).status_code, 403)
+        graded = self.client.patch(endpoint, headers=ah, json={"earned_points":2})
+        self.assertEqual(graded.status_code, 200)
+        self.assertEqual(graded.get_json()["progress"]["result"], "good")
+        notices = self.client.get("/api/notifications/me", headers=sh).get_json()
+        self.assertEqual(notices["unread_count"], 1)
+        notice = notices["notifications"][0]
+        self.assertIn("2/2 pkt", notice["message"])
+        self.assertIn("Lekcja 5", notice["message"])
+        self.assertEqual(self.client.get("/api/notifications/me", headers=oh).get_json()["notifications"], [])
+        self.assertEqual(self.client.get("/api/notifications/me").status_code, 401)
+        self.client.patch("/api/notifications/me/read", headers=oh, json={"through_id":notice["id"]})
+        self.assertEqual(self.client.get("/api/notifications/me", headers=sh).get_json()["unread_count"], 1)
+        read = self.client.patch("/api/notifications/me/read", headers=sh, json={"through_id":notice["id"]})
+        self.assertEqual(read.get_json()["unread_count"], 0)
+        self.assertTrue(read.get_json()["notifications"][0]["read_at"])
+        self.client.patch(endpoint, headers=ah, json={"earned_points":2})
+        self.assertEqual(len(self.client.get("/api/notifications/me", headers=sh).get_json()["notifications"]), 1)
+        for score, result in ((1,"medium"), (0,"bad")):
+            edited = self.client.patch(endpoint, headers=ah, json={"earned_points":score})
+            self.assertEqual(edited.get_json()["progress"]["result"], result)
+        repeated = self.client.post("/api/progress", headers=sh, json=task).get_json()["progress"]
+        self.assertEqual(repeated["earned_points"], 0, "Student cannot overwrite the teacher's grade")
+        self.client.post("/api/review-tasks", headers=sh, json=task)
+        self.client.post("/api/progress", headers=oh, json=task)
+        reset = self.client.delete(f"/api/admin/students/{student['id']}/progress", headers=ah,
+                                  json={"source_id":source, "files":["zd1.png", "zd1.png"]})
+        self.assertEqual(reset.status_code, 200)
+        self.assertEqual(reset.get_json()["deleted"], {"progress":1, "review_tasks":1})
+        self.assertEqual(self.client.get("/api/progress/me", headers=sh).get_json()["progress"], [])
+        self.assertEqual(len(self.client.get("/api/progress/me", headers=oh).get_json()["progress"]), 1)
+        notices = self.client.get("/api/notifications/me", headers=sh).get_json()
+        self.assertEqual([item["kind"] for item in notices["notifications"]], ["reset"])
+        resubmitted = self.client.post("/api/progress", headers=sh, json=task).get_json()["progress"]
+        self.assertTrue(resubmitted["teacher_review_pending"])
+        self.assertIsNone(resubmitted["earned_points"])
+        self.assertEqual(self.client.patch(endpoint, headers=ah, json={"earned_points":2}).status_code, 404)
+        closed = {**task, "file":"zp1.png", "task_id":source+":zp1.png"}
+        closed_id = self.client.post("/api/progress", headers=sh, json=closed).get_json()["progress"]["id"]
+        self.assertEqual(self.client.patch(f"/api/admin/progress/{closed_id}/score", headers=ah, json={"earned_points":1}).status_code, 400)
+        watched = {**task, "file":"zd2.png", "task_id":source+":zd2.png", "result":"video"}
+        video = self.client.post("/api/progress", headers=sh, json=watched).get_json()["progress"]
+        video_endpoint = f"/api/admin/progress/{video['id']}/score"
+        self.assertEqual(self.client.patch(video_endpoint, headers=ah, json={"earned_points":2}).status_code, 400)
+        self.assertEqual(self.client.patch(video_endpoint, headers=ah, json={"earned_points":0}).get_json()["progress"]["result"], "video")
+        direct_endpoint = f"/api/admin/students/{student['id']}/progress/score"
+        direct_task = {"source_id":source, "file":"zd4.png", "earned_points":2}
+        self.assertEqual(self.client.post(direct_endpoint, headers=sh, json=direct_task).status_code, 403)
+        self.assertEqual(self.client.post(direct_endpoint, headers=ah, json={**direct_task, "earned_points":3}).status_code, 400)
+        self.assertEqual(self.client.post(direct_endpoint, headers=ah, json={**direct_task, "file":"zp1.png"}).status_code, 400)
+        direct = self.client.post(direct_endpoint, headers=ah, json=direct_task)
+        self.assertEqual(direct.status_code, 200)
+        self.assertEqual(direct.get_json()["progress"]["earned_points"], 2)
+        self.assertFalse(direct.get_json()["progress"]["teacher_review_pending"])
+        notifications = self.client.get("/api/notifications/me", headers=sh).get_json()["notifications"]
+        self.assertEqual(notifications[0]["file"], "zd4.png")
+        self.assertEqual(notifications[0]["kind"], "grade")
+        self.assertGreater(notifications[0]["id"], notice["id"], "Notification IDs are not reused after reset")
+        with app.app_context():
+            init_auth_db()
+            self.assertEqual(app_module.student_notifications(student["id"])["notifications"], notifications)
 
     def test_all_homework_assets_and_eo_grading_remain_accessible(self):
         root = app_module.COURSE_ASSET_ROOT

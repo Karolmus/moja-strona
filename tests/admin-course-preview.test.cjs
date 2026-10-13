@@ -30,7 +30,7 @@ for(const name of ['setTimerVisible', 'setPanelSectionVisible', 'updateFormulaSe
   'renderTagSearch', 'updateAssignedCourseName', 'updateCategoryUrl', 'updateCategoryButtons',
   'updateModeButtons', 'updateMetaTheme', 'resetSession', 'renderSourceSelector',
   'ensureSelectedCoursePart']) ctx[name] = () => {};
-for(const name of ['loadAssignedCourse', 'hasSourcesForCategory', 'getAvailableSources',
+for(const name of ['sourceDisplayCategory', 'isCourseCategory', 'loadAssignedCourse', 'hasSourcesForCategory', 'getAvailableSources',
   'getSourceMetaById', 'ensureSelectedSource', 'updateLevelButtons', 'updateAccessModeUI',
   'setLevel', 'setCategory', 'canAccessCoursePart', 'loadStudentProgress',
   'loadStudentReviewTasks', 'saveProgress', 'markForReview']){

@@ -48,6 +48,9 @@ from auth_storage import (
     mark_task_for_review,
     parent_access_by_token,
     progress_for_user,
+    progress_by_id,
+    student_notifications,
+    read_student_notifications,
     public_user,
     record_site_pageview,
     record_speed_training_result,
@@ -1522,7 +1525,18 @@ def api_admin_update_review_task(_admin, item_id):
 @require_admin
 def api_admin_score_teacher_reviewed_progress(_admin, item_id):
     def handler():
-        item = score_teacher_reviewed_progress(item_id, payload().get("earned_points"))
+        progress = progress_by_id(item_id)
+        if not progress:
+            return api_error("Nie znaleziono odpowiedzi do oceny.", 404)
+        source = str(progress.get("source_id") or "")
+        manifest = read_course_json(source.removeprefix("zadania/kurs/")) if source.startswith("zadania/kurs/") else []
+        task = next((task for task in manifest if isinstance(task, dict) and task.get("file") == progress["file"]), None) if isinstance(manifest, list) else None
+        if not task or task.get("teacherGraded") is not True:
+            return api_error("To zadanie nie wymaga oceny nauczyciela.")
+        item = score_teacher_reviewed_progress(
+            item_id, payload().get("earned_points"), task.get("maxPoints") or 1,
+            task.get("title") or task.get("label") or progress["file"],
+        )
 
         if not item:
             return api_error("Nie znaleziono odpowiedzi oczekującej na ocenę.", 404)
@@ -1531,6 +1545,52 @@ def api_admin_score_teacher_reviewed_progress(_admin, item_id):
             "progress": item,
         })
 
+    return safe(handler)
+
+
+@app.post("/api/admin/students/<int:user_id>/progress/score")
+@require_admin
+def api_admin_grade_unsubmitted_homework(_admin, user_id):
+    def handler():
+        student = get_user_by_id(user_id)
+        if not student or student["role"] != "student":
+            return api_error("Nie znaleziono ucznia.", 404)
+        data = payload()
+        source = str(data.get("source_id") or "")
+        manifest = read_course_json(source.removeprefix("zadania/kurs/")) if source.startswith("zadania/kurs/") else []
+        task = next((task for task in manifest if isinstance(task, dict) and task.get("file") == data.get("file")), None) if isinstance(manifest, list) else None
+        if not task or task.get("teacherGraded") is not True or task.get("type") != "external_submission" or task.get("level") != student["level"]:
+            return api_error("Nie znaleziono zadania do oceny w kursie ucznia.")
+        score = float(data.get("earned_points"))
+        max_points = float(task.get("maxPoints") or 1)
+        if not math.isfinite(score) or not score.is_integer() or score < 0 or score > max_points:
+            return api_error("Podaj całkowitą liczbę punktów w zakresie zadania.")
+        progress = record_progress(user_id, {
+            "task_id": f"{source}:{task['file']}", "source_id":source, "file":task["file"],
+            "level":task["level"], "topic":task.get("topic"), "difficulty":task.get("difficulty"),
+            "result":"bad", "max_points":max_points, "teacher_review_pending":True,
+            "submitted_answer":"Rozwiązanie przekazane nauczycielowi poza stroną.",
+        })
+        graded = score_teacher_reviewed_progress(progress["id"], score, max_points, task.get("title") or task["file"])
+        return jsonify({"progress":graded})
+    return safe(handler)
+
+
+@app.get("/api/notifications/me")
+@require_auth
+def api_student_notifications(user):
+    return jsonify(student_notifications(user["id"]))
+
+
+@app.patch("/api/notifications/me/read")
+@require_auth
+def api_read_student_notifications(user):
+    def handler():
+        through_id = payload().get("through_id")
+        if not isinstance(through_id, int) or isinstance(through_id, bool) or through_id < 1:
+            return api_error("Nieprawidłowy identyfikator powiadomienia.")
+        read_student_notifications(user["id"], through_id)
+        return jsonify(student_notifications(user["id"]))
     return safe(handler)
 
 
@@ -1560,7 +1620,9 @@ def api_save_progress(user):
             data["max_points"] = task.get("maxPoints") or 1
             data["earned_points"] = 0
 
-        if task and task.get("teacherGraded") is True:
+        if task and task.get("teacherGraded") is True and data["result"] == "video" and task.get("externalSubmission") is True:
+            data["teacher_review_pending"] = True
+        elif task and task.get("teacherGraded") is True:
             if data["result"] == "video":
                 return api_error("Odpowiedź opisowa wymaga oceny nauczyciela.")
 

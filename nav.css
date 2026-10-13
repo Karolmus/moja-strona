@@ -66,6 +66,52 @@
     display: none !important;
 }
 
+.student-notifications { flex: 0 0 auto; }
+.profile-notification-link { display: inline-flex; align-items: center; gap: 5px; flex: 0 0 auto; }
+.notification-toggle {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+.notification-toggle img { width: 21px; height: 21px; filter: brightness(0) invert(1); }
+.notification-count {
+    position: absolute;
+    top: -6px;
+    right: -7px;
+    min-width: 18px;
+    padding: 0 3px;
+    border-radius: 50%;
+    background: #c53742;
+    color: white;
+    font: 600 11px/18px Arial, sans-serif;
+}
+.notification-panel {
+    position: absolute;
+    right: 12px;
+    top: calc(100% + 6px);
+    width: min(360px, calc(100vw - 24px));
+    max-height: min(480px, 70vh);
+    overflow: auto;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    color: #1f2a36;
+    text-align: left;
+    font: 13px/1.45 Poppins, sans-serif;
+}
+.notification-panel ul { list-style: none; padding: 0; margin: 8px 0 0; }
+.notification-panel li { display: grid; gap: 3px; padding: 9px 0; border-top: 1px solid #e4e9ef; }
+.notification-panel li.unread > span { font-weight: 600; }
+.notification-panel time { color: #62738b; font-size: 11px; }
+
 .mobile-call-cta {
     display: none;
 }
@@ -311,7 +357,7 @@
     }
 
     .main-nav{
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 3px;
         min-height: 55px;
@@ -321,7 +367,7 @@
     .main-nav a,
     .nav-logout,
     .nav-user{
-        flex: 0 1 auto;
+        flex: 0 0 auto;
         min-width: 0;
         white-space: nowrap;
         font-size: 10px;

@@ -38,11 +38,18 @@ async function login(browser, number, viewport = {width: 1440, height: 1000}, re
     throw error;
   });
   await page.waitForFunction(() => (!isTaskLoading && currentTask) || document.getElementById('testStartDialog')?.open);
+  await page.locator('[data-category="testy"]').click();
+  await page.locator('#testSelectionEmpty').waitFor({state:'visible'});
   return {context, page, token, user};
 }
 
+async function lessonUnlocked(page, number){
+  return page.evaluate(number => getCourseSourceSequence(selectedLevel)
+    .some(source => source.label === `Lekcja ${number}` && isCourseSourceVisible(source)), number);
+}
+
 async function start(page) {
-  await page.locator('.source-btn').filter({hasText: 'Test sprawdzający z lekcji 1 - 6'}).click();
+  await page.locator('.source-btn').filter({hasText: 'Test sprawdzający z lekcji 1 - 6'}).first().click();
   await page.locator('#testStartDialog').waitFor({state: 'visible'});
   assert.match(await page.locator('#testStartWarning').innerText(), /60 minut/);
   await page.locator('#testStartConfirm').click();
@@ -78,7 +85,7 @@ async function main() {
   try {
     {
       const {context, page} = await login(browser, 2);
-      await page.locator('.source-btn').filter({hasText:'Test sprawdzający z lekcji 1 - 6'}).click();
+      await page.locator('.source-btn').filter({hasText:'Test sprawdzający z lekcji 1 - 6'}).first().click();
       await page.locator('#testStartDialog').waitFor({state:'visible'});
       assert.equal(await page.evaluate(source => storedTestDeadline(source), SOURCE), 0);
       await page.locator('#testStartCancel').click();
@@ -135,7 +142,7 @@ async function main() {
       assert.equal(await page.evaluate(source => isHomeworkCompleteOnServer(source),SOURCE),true);
       await page.locator('#homeworkSummaryClose').click();
       assert.equal(await page.locator('.source-btn').filter({hasText:'Test trudniejszy z lekcji 1 - 6'}).count(),1);
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Lekcja 7'}).count(),1);
+      assert(await lessonUnlocked(page,7));
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
       assert.equal(await page.locator('#testStartDialog').isVisible(),false);
@@ -166,7 +173,7 @@ async function main() {
       assert.equal(await page.locator('#homeworkSummaryPercent').innerText(),'0%');
       await page.locator('#homeworkSummaryClose').click();
       assert.equal(await page.locator('.source-btn').filter({hasText:'Test trudniejszy z lekcji 1 - 6'}).count(),0);
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Lekcja 7'}).count(),1);
+      assert(await lessonUnlocked(page,7));
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
       await page.locator('#homeworkSummaryClose').click();
@@ -206,7 +213,7 @@ async function main() {
       assert.equal(await page.locator('#homeworkSummaryPercent').innerText(),'6%');
       assert.deepEqual(await page.evaluate(()=>{const s=calculateSourceSummary();return[s.earnedPoints,s.totalPoints,s.scoredTasks]}),[1,18,15]);
       await page.locator('#homeworkSummaryClose').click();
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Lekcja 7'}).count(),1);
+      assert(await lessonUnlocked(page,7));
       const before=await page.evaluate(()=>savedProgress.filter(p=>p.source_id===selectedSource).length);
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
@@ -258,14 +265,14 @@ async function main() {
       await page.route('**/api/progress',route=>route.fulfill({status:503,contentType:'application/json',body:'{"error":"Simulated final save failure"}'}));
       await draw(page,15);await submit(page,tasks.at(-1));
       assert.equal(await page.locator('#homeworkSummaryOverlay').isVisible(),false,'A failed final save cannot show a completed test');
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Lekcja 7'}).count(),0,'A failed final save cannot unlock material');
+      assert.equal(await lessonUnlocked(page,7),false,'A failed final save cannot unlock material');
       await page.locator('#progressSaveStatus').waitFor({state:'visible'});
       await page.unroute('**/api/progress');
       await page.locator('#progressSaveRetry').click();
       await page.locator('#homeworkSummaryOverlay').waitFor({state:'visible'});
       assert.equal(await page.locator('#homeworkSummaryPercent').innerText(),'100%');
       await page.locator('#homeworkSummaryClose').click();
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Lekcja 7'}).count(),1);
+      assert(await lessonUnlocked(page,7));
       results.push({case:'last answer save failure blocks summary/unlock until successful retry',passed:true});
       await context.close();
     }
@@ -308,7 +315,7 @@ async function main() {
     }
     {
       const {context,page}=await login(browser,0);
-      await page.locator('.source-btn').filter({hasText:'Test sprawdzający z lekcji 1 - 6'}).click();
+      await page.locator('.source-btn').filter({hasText:'Test sprawdzający z lekcji 1 - 6'}).first().click();
       await page.waitForFunction(source=>selectedSource===source && !isTaskLoading,SOURCE);
       assert.equal(await page.locator('#testStartDialog').isVisible(),false,'Admin preview needs no timed attempt');
       assert.equal(await page.evaluate(()=>testRemainingSeconds(currentTask)),null);
@@ -326,7 +333,7 @@ async function main() {
       const second=await login(browser,10,{width:1440,height:1000},false);
       assert.equal(await second.page.evaluate(source=>storedTestDeadline(source),SOURCE),0);
       if(!await second.page.locator('#testStartDialog').isVisible()) {
-        await second.page.locator('.source-btn').filter({hasText:'Test sprawdzający z lekcji 1 - 6'}).click();
+        await second.page.locator('.source-btn').filter({hasText:'Test sprawdzający z lekcji 1 - 6'}).first().click();
       }
       await second.page.locator('#testStartDialog').waitFor({state:'visible'});
       limitations.push('Confirmed: the same incomplete test on another browser starts without its original deadline; timing is stored locally, not on the server.');

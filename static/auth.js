@@ -294,6 +294,19 @@
             logoutButton.onclick = window.logoutCurrentUser;
         }
 
+        if(window.updateStudentNotifications){
+            window.updateStudentNotifications(user);
+        } else if(user?.role === "student" && !document.querySelector("[data-student-notifications-script]")){
+            const script = document.createElement("script");
+            const notificationToken = window.getAuthToken();
+            script.dataset.studentNotificationsScript = "";
+            script.src = "static/student-notifications.js?v=20261013";
+            script.onload = () => {
+                if(notificationToken === window.getAuthToken()) window.updateStudentNotifications?.(cachedAuthUser || user);
+            };
+            document.head.appendChild(script);
+        }
+
         const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
         nav.querySelectorAll("a[href]").forEach(link => {

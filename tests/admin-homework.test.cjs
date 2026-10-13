@@ -138,7 +138,7 @@ assert.equal(ui.courseTaskSegment({latestProgress:{result:'good', hint_used:true
 assert.equal(ui.courseTaskSegment({latestProgress:{result:'video'}}), 'video');
 const selected = [];
 const courseSection = ui.renderCourseHistory([course], key => selected.push(key));
-const collapsedRows = courseSection.children[1].children[0].tbody.children;
+const collapsedRows = courseSection.children[0].children[0].tbody.children;
 assert.equal(collapsedRows.length, 1, 'One compact row represents the whole lesson');
 assert.equal(collapsedRows[0].children[1].children[0].children[2].children.length, 14,
   'Homework has its own segmented bar');
@@ -147,12 +147,14 @@ assert.equal(collapsedRows[0].children[2].children[0].children[2].children.lengt
 collapsedRows[0].listeners.click();
 assert.deepEqual(selected, [course.key]);
 ui.activeSourceDetailKey = course.key;
-const expandedRows = ui.renderCourseHistory([course], () => {}).children[1].children[0].tbody.children;
+const expandedRows = ui.renderCourseHistory([course], () => {}).children[0].children[0].tbody.children;
 assert.equal(expandedRows.length, 2);
 assert.equal(expandedRows[0].attributes['aria-expanded'], 'true');
 assert.equal(expandedRows[1].children[0].children[0].sourceKey, course.key,
   'The task details are rendered immediately below the selected lesson');
 const detailUi = vm.createContext({
+  activeProgressStudentId:1,
+  incorrectTaskClipboardItems:() => [],
   document:{createElement:tag => new Element(tag), createTextNode:textContent => ({textContent})},
   raschEstimateForGroup:() => null,
   formatPoints:value => String(value),

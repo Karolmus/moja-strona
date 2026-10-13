@@ -90,6 +90,7 @@ const ctx = vm.createContext({
 });
 
 for (const name of [
+  'sourceDisplayCategory',
   'getCourseSourceSequence',
   'getPreviousCourseCheckpoint',
   'isCheckpointStageComplete',
@@ -101,8 +102,9 @@ for (const name of [
   vm.runInContext(functionSource(name), ctx);
 }
 
-const visibleLabels = level => {
+const visibleLabels = (level, category = 'kurs') => {
   ctx.selectedLevel = level;
+  ctx.selectedCategory = category;
   return ctx.getAvailableSources().map(source => source.label);
 };
 const complete = (source, result = 'good', earnedPoints = 10) => {
@@ -115,27 +117,28 @@ const complete = (source, result = 'good', earnedPoints = 10) => {
 };
 
 assert.deepEqual(visibleLabels(eoLevel), [
-  'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6', 'Test 1-6'
+  'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6'
 ]);
+assert.deepEqual(visibleLabels(eoLevel, 'testy'), ['Test 1-6']);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'));
 
 complete(eoSources[6], 'skipped', 0);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'), 'An unfinished test keeps the next lessons locked');
 complete(eoSources[6], 'medium', 8);
 assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'A completed test unlocks the next lessons regardless of its score');
-assert(!visibleLabels(eoLevel).includes('Test trudniejszy 1-6'), 'A score of exactly 80% does not unlock the harder test');
+assert(!visibleLabels(eoLevel, 'testy').includes('Test trudniejszy 1-6'), 'A score of exactly 80% does not unlock the harder test');
 assert(visibleLabels(eoLevel).includes('Lekcja 10'), 'The checkpoint unlocks lessons 7-10');
 assert(!visibleLabels(eoLevel).includes('Lekcja 11'), 'Lessons after the unlocked block stay hidden until the next checkpoint is added');
 complete(eoSources[6], 'medium', 9);
-assert(visibleLabels(eoLevel).includes('Test trudniejszy 1-6'), 'A score above 80% unlocks the optional harder test');
+assert(visibleLabels(eoLevel, 'testy').includes('Test trudniejszy 1-6'), 'A score above 80% unlocks the optional harder test');
 assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'The optional test never blocks the next lesson stage');
 
 assert.deepEqual(visibleLabels(mpLevel), [
-  'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6', 'Test 1-6'
+  'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6'
 ]);
 complete(mpSources[6]);
 assert(visibleLabels(mpLevel).includes('Lekcja 7'), 'Completing the first MP checkpoint unlocks the next lessons');
-assert(visibleLabels(mpLevel).includes('Test 7-12'), 'The next checkpoint is available with its lesson stage');
+assert(visibleLabels(mpLevel, 'testy').includes('Test 7-12'), 'The next checkpoint is available with its lesson stage');
 assert(!visibleLabels(mpLevel).includes('Lekcja 13'));
 
 complete(mpSources[13], 'medium');

@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const html = fs.readFileSync('zadania.html', 'utf8');
-const names = ['canAccessCoursePart', 'loadTaskSource', 'pool', 'ensureSelectedCoursePart', 'defaultCoursePart',
+const names = ['sourceDisplayCategory', 'isCourseCategory', 'canAccessCoursePart', 'loadTaskSource', 'pool', 'ensureSelectedCoursePart', 'defaultCoursePart',
   'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems', 'sourceSummaryTasks'];
 const ctx = vm.createContext({
   loggedUser:null,

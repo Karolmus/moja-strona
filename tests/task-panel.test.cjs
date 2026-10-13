@@ -56,7 +56,7 @@ assert.match(html, /\.course-brand\[hidden\]\s*\{\s*display: none;/);
 assert(!html.includes('<div class="side-title">Materiały</div>'), 'Formula buttons do not need a redundant heading');
 assert.match(html, /id="mobileCourseFooter"[^>]*hidden[\s\S]*?id="mobileSourceSummaryPoints"/);
 assert.match(html, /function updateMobileCourseFooter\(summary = null\)/);
-assert.match(html, /document\.body\.classList\.toggle\("course-view", selectedCategory === "kurs"\)/);
+assert.match(html, /document\.body\.classList\.toggle\("course-view", isCourseCategory\(\)\)/);
 assert(html.indexOf('id="taskImage"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="taskInstruction"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="mcq"') < html.indexOf('class="interaction-panel"'), 'Answers precede help and navigation in DOM order');

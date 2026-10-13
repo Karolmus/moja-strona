@@ -31,7 +31,7 @@ for (const name of ['ensureAvailableCategory', 'updateAccessModeUI', 'ensureSele
   'ensureSelectedCoursePart', 'refreshTaskNavigator', 'renderTagSearch', 'ensureTagFilteredSourcesLoaded']) {
   ctx[name] = () => {};
 }
-for (const name of ['bootStudentPanel', 'sourceLoadErrorMessage', 'setSourceLoadState',
+for (const name of ['isCourseCategory', 'bootStudentPanel', 'sourceLoadErrorMessage', 'setSourceLoadState',
   'retrySourceLoad', 'loadSelectedSourceAndDraw']) {
   const match = new RegExp(`(?:async )?function ${name}\\(`).exec(html);
   assert(match, name);

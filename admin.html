@@ -14,7 +14,7 @@
 <title>Panel Admina</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
+<link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
 
 <style>
 :root {
@@ -492,8 +492,9 @@ th {
 .answer-comparison.student { color: var(--red-text); }
 .answer-comparison.expected { color: var(--green-text); }
 .answer-comparison.teacher-submission { color: var(--text); margin-top: 3px; }
-.teacher-score-control { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
-.teacher-score-control input {
+.teacher-score-control { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 5px; }
+.teacher-score-control input,
+.teacher-score-control select {
     width: 58px;
     min-height: 28px;
     border: 1px solid var(--line);
@@ -502,6 +503,7 @@ th {
     font: inherit;
 }
 .teacher-score-control .mini-link { min-height: 28px; padding: 3px 8px; }
+.teacher-score-control select { width: 92px; }
 .teacher-score-status { color: var(--muted); font-size: 10px; }
 .progress-detail {
     gap: 10px;
@@ -510,7 +512,7 @@ th {
 }
 .progress-primary {
     display: grid;
-    grid-template-columns: minmax(240px, 0.38fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
     align-items: start;
 }
@@ -849,10 +851,10 @@ th {
 
 .progress-detail {
     display: none;
-    gap: 14px;
-    border-top: 1px solid var(--line);
-    margin-top: 8px;
-    padding-top: 14px;
+    gap: 8px;
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .progress-detail.active {
@@ -1258,6 +1260,16 @@ th {
     max-height: 300px;
     overflow: auto;
     scrollbar-width: thin;
+}
+
+.lesson-work-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.lesson-work-actions button { min-height: 32px; padding: 5px 9px; font-size: 11px; }
+.task-edit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 5px; }
+.task-edit-actions label { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; }
+.lesson-action-status { color: var(--muted); font-size: 12px; }
+@media (min-width: 901px) {
+    .source-task-table-wrap { max-height: none; overflow: visible; }
+    .source-task-table th { position: static; }
 }
 
 .source-task-table {
@@ -2061,8 +2073,8 @@ footer {
                 <p class="student-load-status" id="studentLoadStatus" role="status" hidden></p>
 
                 <div class="progress-primary">
-                    <div class="review-tasks" id="reviewTasks"></div>
                     <div class="source-progress" id="sourceProgress"></div>
+                    <div class="review-tasks" id="reviewTasks"></div>
                 </div>
             </div>
             </template>
@@ -2208,7 +2220,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20261005-remember-session"></script>
+<script src="static/auth.js?v=20261013-student-notifications"></script>
 <script src="static/course-videos.js?v=20260930-mp5"></script>
 <script>
 const levelLabels = {
@@ -3273,7 +3285,7 @@ function renderStudents(){
         account.append(accountHeading, dates, buildProgressCell(student).firstElementChild, access, actions);
         overviewGrid.append(credentials, account);
         overview.append(overviewSummary, overviewGrid);
-        expanded.append(overview, progressDetail);
+        expanded.append(progressDetail, overview);
         });
     });
     if(focusedToggleId) document.getElementById(focusedToggleId)?.focus({ preventScroll: true });
@@ -4230,7 +4242,8 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
             };
         })
-        .filter(group => group.attempted > 0 || group.reviewRequested > 0 || group.kind === "test")
+        .filter(group => group.attempted > 0 || group.reviewRequested > 0 || group.kind === "test" ||
+            group.tasks.some(task => task.teacherGraded === true && task.type === "external_submission"))
         .sort((a, b) => a.sourceIndex - b.sourceIndex);
 }
 
@@ -4322,11 +4335,13 @@ function renderProgressSegments(group){
 function coursePartProgress(group, coursePart){
     const tasks = group.tasks.filter(task => task.coursePart === coursePart);
     const attemptedTasks = tasks.filter(task => task.latestProgress);
-    const good = attemptedTasks.filter(task => task.latestProgress.result === "good").length;
-    const medium = attemptedTasks.filter(task => task.latestProgress.result === "medium").length;
-    const bad = attemptedTasks.filter(task => task.latestProgress.result === "bad").length;
+    const gradedTasks = attemptedTasks.filter(task => !isTeacherReviewPending(task.latestProgress, task));
+    const pendingReview = attemptedTasks.length - gradedTasks.length;
+    const good = gradedTasks.filter(task => task.latestProgress.result === "good").length;
+    const medium = gradedTasks.filter(task => task.latestProgress.result === "medium").length;
+    const bad = gradedTasks.filter(task => task.latestProgress.result === "bad").length;
     const video = attemptedTasks.filter(task => task.latestProgress.result === "video").length;
-    const correct = attemptedTasks.filter(task => {
+    const correct = gradedTasks.filter(task => {
         const score = inferredTaskScore(task.latestProgress, task);
 
         return score.earned !== null && score.max > 0 && score.earned >= score.max;
@@ -4340,8 +4355,9 @@ function coursePartProgress(group, coursePart){
         medium,
         bad,
         video,
+        pendingReview,
         reviewRequested: tasks.filter(task => task.reviewRequested).length,
-        correctPercent: attemptedTasks.length ? Math.round(correct / attemptedTasks.length * 1000) / 10 : null
+        correctPercent: gradedTasks.length ? Math.round(correct / gradedTasks.length * 1000) / 10 : null
     };
 }
 
@@ -4356,7 +4372,9 @@ function renderCoursePartSummary(group, coursePart){
     result.textContent = part.total
         ? `${part.attempted}/${part.total} zadań · ${part.correctPercent === null ? "-" : `${formatPoints(part.correctPercent)}%`} poprawnych`
         : "Brak zadań";
-    counts.textContent = `${part.good} dobrze · ${part.medium} z pomocą · ${part.bad} źle` +
+    const middleLabel = part.tasks.length && part.tasks.every(task => task.teacherGraded) ? "częściowo" : "z pomocą";
+    counts.textContent = `${part.good} dobrze · ${part.medium} ${middleLabel} · ${part.bad} źle` +
+        (part.pendingReview ? ` · ${part.pendingReview} do oceny` : "") +
         (part.video ? ` · ${part.video} nagranie` : "") +
         (part.reviewRequested ? ` · ${part.reviewRequested} do omówienia` : "");
     summary.appendChild(result);
@@ -4508,7 +4526,6 @@ function renderCourseHistory(courseGroups, onSelect){
     section.className = "source-progress-section";
     tableWrap.className = "course-history-table-wrap";
     table.className = "course-history-table";
-    heading.innerText = "Kurs - praca domowa i powtórki";
     table.innerHTML = `
         <thead>
             <tr>
@@ -4579,7 +4596,6 @@ function renderCourseHistory(courseGroups, onSelect){
     });
 
     tableWrap.appendChild(table);
-    section.appendChild(heading);
     section.appendChild(tableWrap);
 
     return section;
@@ -4747,6 +4763,7 @@ async function loadTaskImagePreview(task, container){
 }
 
 async function saveTeacherReviewedScore(progressItem, task, input, button, status){
+    const studentId = activeProgressStudentId;
     if(!String(input.value || "").trim()){
         status.textContent = "Wpisz liczbę punktów.";
         return;
@@ -4755,7 +4772,7 @@ async function saveTeacherReviewedScore(progressItem, task, input, button, statu
     const earnedPoints = Number(input.value);
     const maxPoints = taskMaxPoints(task);
 
-    if(!Number.isFinite(earnedPoints) || earnedPoints < 0 || earnedPoints > maxPoints){
+    if(!Number.isInteger(earnedPoints) || earnedPoints < 0 || earnedPoints > maxPoints){
         status.textContent = `Wpisz od 0 do ${formatPoints(maxPoints)} pkt.`;
         return;
     }
@@ -4763,17 +4780,20 @@ async function saveTeacherReviewedScore(progressItem, task, input, button, statu
     button.disabled = true;
     status.textContent = "Zapisywanie…";
     try {
-        const data = await apiFetch(`/api/admin/progress/${progressItem.id}/score`, {
-            method: "PATCH",
-            body: JSON.stringify({earned_points: earnedPoints})
+        const data = await apiFetch(progressItem?.id
+            ? `/api/admin/progress/${progressItem.id}/score`
+            : `/api/admin/students/${studentId}/progress/score`, {
+            method: progressItem?.id ? "PATCH" : "POST",
+            body: JSON.stringify({earned_points: earnedPoints, source_id: task.sourceId, file: task.file})
         });
-        const cached = studentProgressCache.get(activeProgressStudentId) || [];
-        const item = cached.find(entry => entry.id === progressItem.id);
+        const cached = studentProgressCache.get(studentId) || [];
+        const item = cached.find(entry => entry.id === data.progress.id);
 
-        if(item) Object.assign(item, data.progress);
+        if(item) Object.assign(item, data.progress); else cached.unshift(data.progress);
+        studentProgressCache.set(studentId, cached);
 
-        const student = students.find(entry => entry.id === activeProgressStudentId);
-        if(student){
+        const student = students.find(entry => entry.id === studentId);
+        if(student && activeProgressStudentId === studentId){
             renderSourceProgress(cached.filter(isIndependentWorkProgress), student, activeReviewItems);
         }
         showStatus(`Zapisano ocenę: ${formatPoints(earnedPoints)} / ${formatPoints(maxPoints)} pkt.`);
@@ -4785,17 +4805,24 @@ async function saveTeacherReviewedScore(progressItem, task, input, button, statu
 
 function teacherScoreControl(progressItem, task){
     const control = document.createElement("div");
-    const input = document.createElement("input");
+    const input = document.createElement("select");
     const button = document.createElement("button");
     const status = document.createElement("span");
     const maxPoints = taskMaxPoints(task);
 
     control.className = "teacher-score-control";
-    input.type = "number";
-    input.min = "0";
-    input.max = String(maxPoints);
-    input.step = Number.isInteger(maxPoints) ? "1" : "0.5";
-    input.placeholder = `0–${formatPoints(maxPoints)}`;
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Punkty";
+    input.appendChild(placeholder);
+    for(let score = 0; score <= maxPoints; score++){
+        const option = document.createElement("option");
+        option.value = String(score);
+        option.textContent = `${score} / ${maxPoints} pkt`;
+        option.disabled = Boolean(progressItem?.video_viewed && score > 0);
+        input.appendChild(option);
+    }
+    input.value = progressItem?.teacher_graded_at ? String(progressItem.earned_points) : "";
     input.setAttribute("aria-label", `Punkty od 0 do ${formatPoints(maxPoints)}`);
     button.type = "button";
     button.className = "mini-link";
@@ -4812,6 +4839,32 @@ function teacherScoreControl(progressItem, task){
     return control;
 }
 
+async function resetLessonTasks(studentId, sourceId, files, status, control){
+    if(!files.length) return;
+    const student = students.find(item => item.id === studentId);
+    if(!confirm(`Przekazać ${files.length} zadań uczniowi ${student?.display_name || ""} do ponownego wykonania? Dotychczasowe odpowiedzi, oceny i zgłoszenia tych zadań zostaną usunięte.`)) return;
+    control.disabled = true;
+    status.textContent = "Resetowanie…";
+    try {
+        await apiFetch(`/api/admin/students/${studentId}/progress`, {
+            method: "DELETE", body: JSON.stringify({source_id: sourceId, files})
+        });
+        const [data, reviews] = await Promise.all([
+            apiFetch(`/api/admin/students/${studentId}/progress`), loadReviewTasks(student)
+        ]);
+        studentProgressCache.set(studentId, data.progress);
+        if(activeProgressStudentId === studentId){
+            activeReviewItems = reviews.filter(isIndependentWorkProgress);
+            renderReviewTasks(activeReviewItems, student);
+            renderSourceProgress(data.progress.filter(isIndependentWorkProgress), student, activeReviewItems);
+        }
+        showStatus(`Przekazano ${files.length} zadań do ponownego wykonania.`);
+    } catch(error) {
+        control.disabled = false;
+        status.textContent = error.message || "Nie udało się zresetować zadań.";
+    }
+}
+
 function renderSourceDetail(group){
     const detail = document.createElement("div");
     const heading = document.createElement("h4");
@@ -4821,6 +4874,45 @@ function renderSourceDetail(group){
     const rasch = raschEstimateForGroup(group);
     const isCourse = group.category === "kurs";
     const isCourseTest = group.kind === "test";
+    const studentId = activeProgressStudentId;
+    const selectedFiles = new Set();
+    const toolbar = document.createElement("div");
+    const actionStatus = document.createElement("div");
+    const resetSelected = document.createElement("button");
+    toolbar.className = "lesson-work-actions";
+    actionStatus.className = "lesson-action-status";
+    actionStatus.setAttribute("role", "status");
+    for(const [items, label, description] of [
+        [incorrectTaskClipboardItems([group]), "Kopiuj błędne zadania", "błędnie wykonane"],
+        [group.tasks.filter(task => task.reviewRequested).map(task => ({source_id: task.sourceId, file: task.file, title: taskDisplayTitle(task)})), "Kopiuj zadania do omówienia", "do omówienia"]
+    ]){
+        const copy = document.createElement("button");
+        copy.type = "button";
+        copy.className = "btn secondary";
+        copy.textContent = `${label} (${items.length})`;
+        copy.disabled = !items.length;
+        copy.dataset.taskCount = String(items.length);
+        copy.addEventListener("click", () => copyAllReviewTaskImages(items, copy, description));
+        toolbar.appendChild(copy);
+    }
+    resetSelected.type = "button";
+    resetSelected.className = "btn danger";
+    resetSelected.textContent = "Ponów zaznaczone (0)";
+    resetSelected.disabled = true;
+    resetSelected.addEventListener("click", () => resetLessonTasks(studentId, group.key, [...selectedFiles], actionStatus, resetSelected));
+    if(isCourse && !isCourseTest){
+        const selectAll = document.createElement("button");
+        selectAll.type = "button";
+        selectAll.className = "btn secondary";
+        selectAll.textContent = "Zaznacz wykonane";
+        selectAll.addEventListener("click", () => {
+            const boxes = [...table.querySelectorAll(".task-reset-selection")];
+            const select = boxes.some(box => !box.checked);
+            boxes.forEach(box => { box.checked = select; box.dispatchEvent(new Event("change")); });
+            selectAll.textContent = select ? "Odznacz wszystkie" : "Zaznacz wykonane";
+        });
+        toolbar.append(selectAll, resetSelected);
+    }
 
     detail.className = "source-detail";
     summary.className = "source-card-meta";
@@ -4909,7 +5001,7 @@ function renderSourceDetail(group){
             ? (progressItem?.created_at ? formatDate(progressItem.created_at) : "")
             : task.topic || "";
         result.innerText = progressItem
-            ? `${teacherPending ? "Do oceny" : resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
+            ? `${teacherPending ? "Do oceny" : task.teacherGraded && progressItem.result === "medium" && !progressItem.video_viewed ? "Częściowo" : resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
             : reviewRequested ? "Do omówienia" : "Nie wykonano";
         if(progressItem?.hint_used) result.title = "Użyto wskazówki";
         pointsCell.innerText = score.earned === null
@@ -4929,13 +5021,39 @@ function renderSourceDetail(group){
         }
         titleCell.appendChild(titleWrap);
         resultCell.appendChild(result);
-        if(isCourse && task.teacherGraded === true && progressItem){
+        if(isCourse && !isCourseTest && (progressItem || reviewRequested)){
+            const actions = document.createElement("div");
+            const label = document.createElement("label");
+            const checkbox = document.createElement("input");
+            const reset = document.createElement("button");
+            actions.className = "task-edit-actions";
+            checkbox.type = "checkbox";
+            checkbox.className = "task-reset-selection";
+            checkbox.setAttribute("aria-label", `Zaznacz do ponownego wykonania: ${title.innerText}`);
+            checkbox.addEventListener("change", () => {
+                if(checkbox.checked) selectedFiles.add(task.file); else selectedFiles.delete(task.file);
+                resetSelected.disabled = !selectedFiles.size;
+                resetSelected.textContent = `Ponów zaznaczone (${selectedFiles.size})`;
+            });
+            label.append(checkbox, document.createTextNode("Zaznacz"));
+            reset.type = "button";
+            reset.className = "mini-link";
+            reset.textContent = "Wykonaj ponownie";
+            reset.addEventListener("click", () => resetLessonTasks(studentId, group.key, [task.file], actionStatus, reset));
+            actions.addEventListener("click", event => event.stopPropagation());
+            actions.addEventListener("keydown", event => event.stopPropagation());
+            actions.append(label, reset);
+            titleWrap.appendChild(actions);
+        }
+        if(isCourse && task.teacherGraded === true && (progressItem || task.type === "external_submission")){
             const submitted = document.createElement("div");
 
             submitted.className = "answer-comparison teacher-submission";
-            submitted.textContent = `Uzasadnienie ucznia: ${progressItem.submitted_answer || "nie zapisano odpowiedzi"}`;
+            submitted.textContent = task.type === "external_submission"
+                ? "Rozwiązanie na Discordzie"
+                : `Uzasadnienie ucznia: ${progressItem?.submitted_answer || "nie zapisano odpowiedzi"}`;
             titleWrap.appendChild(submitted);
-            if(teacherPending) titleWrap.appendChild(teacherScoreControl(progressItem, task));
+            pointsCell.appendChild(teacherScoreControl(progressItem, task));
         } else if(isCourse && progressItem && (progressItem.result === "bad" ||
             (progressItem.result === "medium" && score.earned !== null && score.earned < score.max))){
             const submitted = document.createElement("div");
@@ -5024,6 +5142,7 @@ function renderSourceDetail(group){
     }
 
     wrap.appendChild(table);
+    detail.append(toolbar, actionStatus);
     detail.appendChild(wrap);
 
     return detail;

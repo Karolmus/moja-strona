@@ -8,6 +8,7 @@ function element() {
     children:[], dataset:{}, scrollTop:0, classes,
     set innerHTML(value) {this.children = []; this.scrollTop = 0;},
     appendChild(child) {this.children.push(child);},
+    append(...children) {this.children.push(...children);},
     setAttribute(name, value) {this[name] = value;},
     classList:{toggle(name, active) {if (active) classes.add(name); else classes.delete(name);}}
   };
@@ -15,6 +16,7 @@ function element() {
 const list = element(), title = {}, brand = {};
 const sources = Array.from({length:12}, (_, index) => ({
   id:`exam-${index}`, year:2026 - Math.floor(index / 3), label:`Lesson ${index}`,
+  category:'egzaminy',
   detail:`${2026 - Math.floor(index / 3)} · ${['maj', 'czerwiec', 'sierpień'][index % 3]}`
 }));
 const ctx = vm.createContext({
@@ -23,9 +25,10 @@ const ctx = vm.createContext({
   LEVEL_LABELS:{matura_podstawowa:'Matura podstawowa'},
   updateTrainingLink() {}, updateSourceSummary() {}, setSource:id => {ctx.selectedSource = id;},
   getPendingCourseTests:() => [], renderCourseTestNotice() {},
-  getAvailableSources:() => sources, isTaskSourceLoaded:() => false, isSourceComplete:() => false
+  getAvailableSources:() => sources.filter(source => ctx.sourceDisplayCategory(source) === ctx.selectedCategory),
+  isTaskSourceLoaded:() => false, isSourceComplete:() => false
 });
-for (const name of ['getExamSourceTileContent', 'renderSourceSelector', 'addSourceButton']) {
+for (const name of ['sourceDisplayCategory', 'isCourseCategory', 'updateTestCategoryBadge', 'getExamSourceTileContent', 'courseTestRange', 'courseTestVariant', 'renderSourceSelector', 'addSourceButton']) {
   const start = html.indexOf(`function ${name}(`);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ctx);
 }
@@ -57,6 +60,7 @@ ctx.renderSourceSelector();
 assert.equal(buttons()[0].children[1].innerText, 'Formuła 2023');
 list.scrollTop = 250;
 ctx.selectedCategory = 'kurs';
+sources.forEach(source => {source.category = 'kurs';});
 ctx.renderSourceSelector();
 assert.equal(list.scrollTop, 0);
 assert.equal(list.children.length, 12, 'Course buttons remain flat, without year groups');
@@ -77,16 +81,25 @@ assert(!list.children[0].title.includes('zadań'));
 sources[1].kind = 'test';
 sources[1].unlocksNextSources = 4;
 ctx.renderSourceSelector();
-const testGroup = list.children.at(-1);
-assert.equal(testGroup.className, 'course-test-group');
-assert.equal(testGroup.children[0].innerText, 'Testy');
-const testButton = testGroup.children[1].children[0];
+assert.equal(list.children.length, 11, 'Tests are not listed among course lessons');
+ctx.selectedCategory = 'testy';
+ctx.renderSourceSelector();
+assert.equal(list.children.length, 1, 'The tests tab contains only tests');
+assert.equal(title.innerText, 'Wybór testu');
+assert(list.classes.has('test-source-list'));
+assert(!list.classes.has('course-source-list') && !list.classes.has('exam-source-list'));
+const testButton = list.children[0].children[1].children[0];
+assert.equal(list.children[0].children[0].textContent, 'Lekcje Pozostałe');
+assert.equal(testButton.children[0].innerText, 'Test A');
+assert.equal(ctx.courseTestRange({id:'zadania/kurs/eo/test_lekcje_1_6_b/test_lekcje_1_6_b.json'}), '1 - 6');
+assert.equal(ctx.courseTestVariant({id:'zadania/kurs/eo/test_lekcje_1_6_b/test_lekcje_1_6_b.json'}), 'Test B');
+assert.equal(ctx.courseTestVariant({label:'Test trudniejszy z lekcji 1 - 6'}), 'Test trudniejszy');
+assert.equal(ctx.courseTestVariant({label:'Test sprawdzający, wersja C.'}), 'Test C');
 assert(testButton.classes.has('test-source'));
-assert.equal(list.children.length, 12, 'Eleven lesson buttons and one separate test section');
 const unlockNotice = testButton.children.find(child => child.className === 'source-unlock-note');
 assert.equal(unlockNotice.innerText, 'Ukończenie testu odblokuje kolejne materiały.');
 assert.match(testButton.title, /Ukończenie testu odblokuje kolejne materiały\./);
-assert.match(html, /\.course-source-list \.source-btn\.test-source\s*\{[^}]*grid-column:\s*1 \/ -1;/s);
+assert.match(html, /\.test-source-list \.source-btn\.test-source\s*\{[^}]*grid-column:\s*1 \/ -1;/s);
 sources.length = 0;
 ctx.selectedCategory = 'egzaminy';
 ctx.renderSourceSelector();

@@ -44,7 +44,7 @@ let opened = null;
 renderNotice(notice,[a],sourceId => {opened = sourceId;});
 assert.equal(notice.hidden,false);
 assert.equal(notice.children[0].children[0].textContent,'Masz test do wykonania');
-assert.equal(notice.children[1].href,'zadania.html?category=kurs&test=test-A');
+assert.equal(notice.children[1].href,'zadania.html?category=testy&test=test-A');
 let prevented = false;
 notice.children[1].listeners.click({preventDefault(){prevented = true;}});
 assert(prevented); assert.equal(opened,a.id);
@@ -110,7 +110,7 @@ tasks.selectedLevel = 'matura_podstawowa'; tasks.isCourseSourceVisible = () => f
 assert.equal(tasks.getRequestedTestSource(),null,'Locked optional tests cannot be opened by editing the URL');
 assert.match(taskHtml,/const requestedTest = getRequestedTestSource\(\);[\s\S]*?if\(!await ensureTestSourceStarted\(selectedSource\)\)/);
 for(const html of [taskHtml,profileHtml]) {
-  assert.match(html,/static\/course-tests.js\?v=20261012/);
+  assert.match(html,/static\/course-tests.js\?v=20261013/);
   for(const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
 }
 console.log('PASS: test reminders, course/profile agreement, optional exclusions, prerequisite failures and guarded test links');

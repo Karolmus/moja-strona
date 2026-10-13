@@ -128,7 +128,7 @@ for (const [text, name] of [[html, 'TASK_SOURCES'], [profileHtml, 'PROFILE_SOURC
     resetSession() {throw new Error('Navigating within a lesson must preserve progress and the completion marker');},
     renderTagSearch() {}, drawTask(i) {ctx.drawnIndex = i;}
   });
-  for (const name of ['canAccessCoursePart', 'loadTaskSource', 'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems',
+  for (const name of ['sourceDisplayCategory', 'isCourseCategory', 'canAccessCoursePart', 'loadTaskSource', 'getSourceCompletionTasks', 'getCoursePartTasks', 'getCourseNavigatorItems',
     'pool', 'selectCoursePartTask', 'isCoursePreviewMode', 'ensureSelectedCoursePart', 'coursePartOrdinalNumber',
     'coursePartDisplayTitle', 'taskThemeClass']) vm.runInContext(functionSource(html, name), ctx);
   ctx.tasks = await ctx.loadTaskSource(source);

@@ -231,6 +231,7 @@
     "file": "zd1.png",
     "title": "Lekcja 5 - zadanie domowe 1",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -250,6 +251,7 @@
     "file": "zd2.png",
     "title": "Lekcja 5 - zadanie domowe 2",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -269,6 +271,7 @@
     "file": "zd3.png",
     "title": "Lekcja 5 - zadanie domowe 3",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -288,6 +291,7 @@
     "file": "zd4.png",
     "title": "Lekcja 5 - zadanie domowe 4",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -307,6 +311,7 @@
     "file": "zd5.png",
     "title": "Lekcja 5 - zadanie domowe 5",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -326,6 +331,7 @@
     "file": "zd6.png",
     "title": "Lekcja 5 - zadanie domowe 6",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -345,6 +351,7 @@
     "file": "zd7.png",
     "title": "Lekcja 5 - zadanie domowe 7",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -364,6 +371,7 @@
     "file": "zd8.png",
     "title": "Lekcja 5 - zadanie domowe 8",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -383,6 +391,7 @@
     "file": "zd9.png",
     "title": "Lekcja 5 - zadanie domowe 9",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -402,6 +411,7 @@
     "file": "zd10.png",
     "title": "Lekcja 5 - zadanie domowe 10",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -421,6 +431,7 @@
     "file": "zd11.png",
     "title": "Lekcja 5 - zadanie domowe 11",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [
@@ -440,6 +451,7 @@
     "file": "zd12.png",
     "title": "Lekcja 5 - zadanie domowe 12",
     "coursePart": "praca_domowa",
+    "teacherGraded": true,
     "level": "matura_podstawowa",
     "topic": "zadania dowodowe",
     "tags": [

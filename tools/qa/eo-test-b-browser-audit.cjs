@@ -50,6 +50,8 @@ async function login(browser, number, score, viewport = {width:1440, height:1000
     await page.locator('.level-btn[data-level="egzamin_osmoklasisty"]').click();
     await page.waitForFunction(() => selectedLevel === 'egzamin_osmoklasisty' && !isTaskLoading);
   }
+  await page.locator('[data-category="testy"]').click();
+  await page.locator('#testSelectionEmpty').waitFor({state:'visible'});
   return {context,page,token};
 }
 
@@ -141,7 +143,8 @@ async function main() {
       await page.locator('#homeworkSummaryClose').click();
       assert.equal(await bButton(page).count(),1, 'B result never replaces the prerequisite A score');
       assert.equal(await page.locator('.source-btn').filter({hasText:'Test trudniejszy'}).count(),0);
-      assert.equal(await page.locator('.source-btn').filter({hasText:'Lekcja 7'}).count(),1);
+      assert.equal(await page.evaluate(() => getCourseSourceSequence(selectedLevel)
+        .some(source => source.label === 'Lekcja 7' && isCourseSourceVisible(source))),true);
       const progress = await context.request.get(BASE+'/api/progress/me',{headers:{Authorization:`Bearer ${token}`}});
       assert(progress.ok());
       cases.push('all 15 tasks: exact WebP pixels, 18 points, fields, confirmation, server save, reload and independent results');

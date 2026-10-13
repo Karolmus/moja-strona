@@ -35,7 +35,7 @@
         detail.textContent = test.label || "Test sprawdzający";
         link.className = "course-test-notice-link";
         link.textContent = "Przejdź do testu";
-        link.href = `zadania.html?category=kurs&test=${encodeURIComponent(sourceId)}`;
+        link.href = `zadania.html?category=testy&test=${encodeURIComponent(sourceId)}`;
         if(onOpen){
             link.addEventListener("click", event => {
                 event.preventDefault();

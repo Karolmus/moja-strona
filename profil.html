@@ -14,8 +14,8 @@
 <title>Mój profil – Delta Sigma</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20260922-signup-badges">
-<link rel="stylesheet" href="static/course-tests.css?v=20261012">
+<link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
+<link rel="stylesheet" href="static/course-tests.css?v=20261013">
 
 <style>
 :root {
@@ -725,8 +725,8 @@ body {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20261005-remember-session"></script>
-<script src="static/course-tests.js?v=20261012"></script>
+<script src="static/auth.js?v=20261013-student-notifications"></script>
+<script src="static/course-tests.js?v=20261013"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script>
 const levelLabels = {
@@ -1235,7 +1235,7 @@ function homeworkChartRows(progress, reviewTasks){
                 label: lesson,
                 shortLabel: lesson.replace(/^Lekcja\s+/i, "L"),
                 good: value(progressItems.filter(item => item?.result === "good").length),
-                bad: value(progressItems.filter(item => item?.result === "bad").length),
+                bad: value(progressItems.filter(item => item?.result === "bad" && !item.teacher_review_pending).length),
                 review: value(reviewCount)
             };
         })
@@ -1490,6 +1490,8 @@ fetch("nav.html?v=20260827-shared", { cache: "no-cache" })
     });
 
 bootProfile();
+
+window.addEventListener("deltaSigmaStudentWorkChanged", () => bootProfile());
 
 window.addEventListener("pageshow", event => {
     if(event.persisted){
