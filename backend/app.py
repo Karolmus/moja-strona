@@ -39,6 +39,7 @@ from auth_storage import (
     disable_parent_access_token,
     generate_temporary_password,
     get_site_prices,
+    get_schedule_snapshot,
     get_student_credentials,
     get_user_by_email,
     get_user_by_id,
@@ -61,11 +62,13 @@ from auth_storage import (
     register_auth_db,
     review_tasks_for_user,
     score_teacher_reviewed_progress,
+    save_schedule_snapshot,
     reset_user_password,
     revoke_user_auth,
     speed_training_leaderboard,
     speed_training_history,
     site_analytics_summary,
+    site_analytics_today,
     sync_admin_user,
     touch_parent_access,
     touch_last_login,
@@ -145,9 +148,12 @@ SCHEDULE_SHEET_URL = (
     "pub?gid=0&single=true&output=csv"
 )
 SCHEDULE_CACHE_TTL_SECONDS = 120
+SCHEDULE_STALE_SECONDS = 15 * 60
+SCHEDULE_RETRY_SECONDS = 30
 SCHEDULE_MAX_BYTES = 64 * 1024
 _schedule_cache_lock = threading.Lock()
-_schedule_cache = {"rows": None, "updated_at": 0.0}
+_schedule_refresh_lock = threading.Lock()
+_schedule_cache = {"rows": None, "updated_at": 0.0, "retry_at": 0.0}
 
 _rate_limit_buckets = defaultdict(deque)
 _rate_limit_lock = threading.Lock()
@@ -1000,20 +1006,7 @@ def normalize_schedule_rows(csv_text):
     return rows
 
 
-def schedule_rows(force_refresh=False, allow_stale=True):
-    now = time.monotonic()
-
-    with _schedule_cache_lock:
-        cached_rows = _schedule_cache["rows"]
-        cached_at = _schedule_cache["updated_at"]
-
-        if (
-            cached_rows
-            and not force_refresh
-            and now - cached_at < SCHEDULE_CACHE_TTL_SECONDS
-        ):
-            return cached_rows
-
+def refresh_schedule_rows():
     try:
         sheet_request = Request(
             SCHEDULE_SHEET_URL,
@@ -1031,18 +1024,82 @@ def schedule_rows(force_refresh=False, allow_stale=True):
 
         rows = normalize_schedule_rows(raw_csv.decode("utf-8-sig"))
     except (OSError, UnicodeDecodeError, ValueError):
-        if allow_stale:
-            with _schedule_cache_lock:
-                if _schedule_cache["rows"]:
-                    return _schedule_cache["rows"]
-
+        with _schedule_cache_lock:
+            _schedule_cache["retry_at"] = time.monotonic() + SCHEDULE_RETRY_SECONDS
         raise
 
+    try:
+        save_schedule_snapshot(rows, time.time())
+    except Exception:
+        app.logger.warning("Nie udało się zapisać kopii terminarza.", exc_info=True)
     with _schedule_cache_lock:
         _schedule_cache["rows"] = rows
-        _schedule_cache["updated_at"] = now
-
+        _schedule_cache["updated_at"] = time.monotonic()
+        _schedule_cache["retry_at"] = 0.0
     return rows
+
+
+def refresh_schedule_in_background():
+    try:
+        with app.app_context():
+            refresh_schedule_rows()
+    except (OSError, UnicodeDecodeError, ValueError):
+        app.logger.warning("Nie udało się odświeżyć terminarza w tle.")
+    finally:
+        _schedule_refresh_lock.release()
+
+
+def restore_schedule_snapshot():
+    try:
+        snapshot = get_schedule_snapshot()
+        if not snapshot:
+            return
+        rows = snapshot.get("rows")
+        age = time.time() - float(snapshot["fetched_at"])
+        if not math.isfinite(age) or not 0 <= age < SCHEDULE_STALE_SECONDS:
+            return
+        if not isinstance(rows, list) or len(rows) < 2 or not isinstance(rows[0], list) or len(rows[0]) < 2:
+            return
+        if any(not isinstance(row, list) or len(row) != len(rows[0]) or
+               any(not isinstance(cell, str) for cell in row) for row in rows):
+            return
+        _schedule_cache["rows"] = rows
+        _schedule_cache["updated_at"] = time.monotonic() - age
+    except Exception:
+        app.logger.warning("Nie udało się odczytać kopii terminarza.", exc_info=True)
+
+
+def schedule_rows(force_refresh=False, allow_stale=True):
+    if not force_refresh:
+        with _schedule_cache_lock:
+            if _schedule_cache["rows"] is None:
+                restore_schedule_snapshot()
+            cached_rows = _schedule_cache["rows"]
+            age = time.monotonic() - _schedule_cache["updated_at"]
+            retry_at = _schedule_cache["retry_at"]
+        if cached_rows and age < SCHEDULE_CACHE_TTL_SECONDS:
+            return cached_rows
+        # Only the public preview may use a recent snapshot; booking always fetches Google.
+        if cached_rows and allow_stale and age < SCHEDULE_STALE_SECONDS:
+            if time.monotonic() >= retry_at and _schedule_refresh_lock.acquire(blocking=False):
+                try:
+                    threading.Thread(target=refresh_schedule_in_background, daemon=True).start()
+                except RuntimeError:
+                    _schedule_refresh_lock.release()
+            return cached_rows
+
+    with _schedule_refresh_lock:
+        with _schedule_cache_lock:
+            cached_rows = _schedule_cache["rows"]
+            age = time.monotonic() - _schedule_cache["updated_at"]
+        if cached_rows and not force_refresh and age < SCHEDULE_CACHE_TTL_SECONDS:
+            return cached_rows
+        try:
+            return refresh_schedule_rows()
+        except (OSError, UnicodeDecodeError, ValueError):
+            if allow_stale and cached_rows:
+                return cached_rows
+            raise
 
 
 @app.get("/")
@@ -1222,6 +1279,13 @@ def api_admin_update_site_prices(_admin):
         })
 
     return safe(handler)
+
+
+@app.get("/api/admin/analytics/today")
+@require_admin
+@rate_limit(60, 60, "admin-analytics")
+def api_admin_analytics_today(_admin):
+    return jsonify(site_analytics_today())
 
 
 @app.get("/api/admin/analytics")

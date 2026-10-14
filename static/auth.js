@@ -182,7 +182,7 @@
             "display:grid",
             "gap:14px",
             "width:min(520px, 100%)",
-            "border-radius:12px",
+            "border-radius:10.2px",
             "background:#ffffff",
             "color:#1f2a36",
             "padding:22px",
@@ -199,11 +199,11 @@
 
         accept.type = "button";
         accept.innerText = "Akceptuję";
-        accept.style.cssText = "border:1px solid #263545;border-radius:8px;background:#263545;color:#ffffff;font:inherit;font-size:14px;font-weight:700;padding:9px 13px;cursor:pointer";
+        accept.style.cssText = "border:1px solid #263545;border-radius:6.8px;background:#263545;color:#ffffff;font:inherit;font-size:14px;font-weight:700;padding:9px 13px;cursor:pointer";
 
         logout.type = "button";
         logout.innerText = "Nie teraz, wyloguj mnie";
-        logout.style.cssText = "border:1px solid #d9e1ea;border-radius:8px;background:#ffffff;color:#1f2a36;font:inherit;font-size:14px;font-weight:700;padding:9px 13px;cursor:pointer";
+        logout.style.cssText = "border:1px solid #d9e1ea;border-radius:6.8px;background:#ffffff;color:#1f2a36;font:inherit;font-size:14px;font-weight:700;padding:9px 13px;cursor:pointer";
 
         accept.addEventListener("click", () => {
             acceptPrivacyPolicy(user);

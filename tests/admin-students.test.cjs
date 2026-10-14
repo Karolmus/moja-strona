@@ -20,6 +20,7 @@ function setup() {
     progressDetail:{querySelector:() => loading, classList:{add:c => classes.add(c), remove:c => classes.delete(c)}},
     apiFetch:path => new Promise((resolve,reject) => pending.set(Number(path.split('/')[4]), {resolve,reject})),
     loadReviewTasks:async student => [{owner:student.id}],
+    loadAdminTaskCatalog:async () => {},
     isIndependentWorkProgress:item => item.course_part !== 'zadania',
     renderStudents:() => {}, renderReviewTasks:() => {},
     renderSourceProgress:(progress, student) => rendered.push(student.id),

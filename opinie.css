@@ -59,7 +59,7 @@
     min-height:100%;
     padding:16px;
     border:1px solid #d8dee9;
-    border-radius:12px;
+    border-radius:10.2px;
     background:#ffffff;
     box-shadow:0 6px 16px rgba(15,23,42,0.055);
     transition:transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
@@ -240,7 +240,7 @@
         min-height:0;
         gap:5px;
         padding:8px;
-        border-radius:10px;
+        border-radius:8.5px;
         border-left:3px solid #2fbd91;
         box-shadow:none;
     }

@@ -48,7 +48,8 @@ test('zero visitors is shown explicitly and invalid responses do not fabricate a
 
 test('badge loads after authentication independently of students and refreshes with analytics', () => {
   assert.match(html, /data-admin-tab="analytics"[^>]*>Ruch na stronie <span id="analyticsTodayBadge"/);
-  assert.match(html, /adminSessionVerified = true;\s*settleAdminSession\(true\);\s*void loadAnalytics\(\);/);
+  assert.match(html, /adminSessionVerified = true;\s*settleAdminSession\(true\);\s*void loadAnalyticsBadge\(\);/);
+  assert.match(html, /updateAnalyticsTodayBadge\(await apiFetch\("\/api\/admin\/analytics\/today"\)\)/);
   assert.match(html, /if\(showAnalytics\)\{\s*loadAnalytics\(true\);/);
   const render = html.slice(html.indexOf('function renderAnalytics(data){'), html.indexOf('async function loadAnalytics('));
   assert.match(render, /updateAnalyticsTodayBadge\(data\)/);

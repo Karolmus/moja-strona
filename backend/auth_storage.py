@@ -2,6 +2,7 @@ import os
 import secrets
 import sqlite3
 import hashlib
+import json
 import math
 from base64 import urlsafe_b64encode
 from datetime import datetime, timedelta, timezone
@@ -1022,6 +1023,31 @@ def consume_security_rate_limit(scope, key, limit, window_seconds):
     return False, retry_after
 
 
+def get_schedule_snapshot():
+    row = execute("SELECT value FROM site_settings WHERE key = ?", ("schedule_snapshot",)).fetchone()
+    if not row:
+        return None
+    try:
+        snapshot = json.loads(row["value"])
+        return snapshot if isinstance(snapshot, dict) else None
+    except (TypeError, ValueError):
+        return None
+
+
+def save_schedule_snapshot(rows, fetched_at):
+    db = get_db()
+    try:
+        db.execute(prepare_sql("""
+            INSERT INTO site_settings (key, value, updated_at)
+            VALUES (?, ?, ?)
+            ON CONFLICT (key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at
+        """), ("schedule_snapshot", json.dumps({"rows": rows, "fetched_at": fetched_at}), now_iso()))
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+
+
 def get_site_prices():
     rows = execute(
         """
@@ -1185,6 +1211,15 @@ def record_site_pageview(
         _last_analytics_cleanup_day = day_text
 
     db.commit()
+
+
+def site_analytics_today():
+    day = analytics_today().isoformat()
+    row = execute("""
+        SELECT COUNT(DISTINCT visitor_hash) AS total
+        FROM site_analytics_visitors WHERE day = ?
+    """, (day,)).fetchone()
+    return {"range_end": day, "daily": [{"day": day, "visitors": int(row["total"] or 0)}]}
 
 
 def site_analytics_summary(days=30):

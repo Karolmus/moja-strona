@@ -154,7 +154,7 @@
             "margin:0 auto",
             "padding:14px 16px",
             "border:1px solid rgba(255,255,255,0.18)",
-            "border-radius:10px",
+            "border-radius:8.5px",
             "background:#1f2a36",
             "color:#ffffff",
             "box-shadow:0 18px 50px rgba(15,23,42,0.28)",
@@ -168,11 +168,11 @@
 
         accept.type = "button";
         accept.innerText = "Akceptuję";
-        accept.style.cssText = "border:0;border-radius:8px;background:#ffffff;color:#1f2a36;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;cursor:pointer";
+        accept.style.cssText = "border:0;border-radius:6.8px;background:#ffffff;color:#1f2a36;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;cursor:pointer";
 
         reject.type = "button";
         reject.innerText = "Tylko niezbędne";
-        reject.style.cssText = "border:1px solid rgba(255,255,255,0.28);border-radius:8px;background:rgba(255,255,255,0.08);color:#ffffff;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;cursor:pointer";
+        reject.style.cssText = "border:1px solid rgba(255,255,255,0.28);border-radius:6.8px;background:rgba(255,255,255,0.08);color:#ffffff;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;cursor:pointer";
 
         accept.addEventListener("click", () => {
             storeValue(CONSENT_KEY, "accepted");

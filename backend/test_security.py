@@ -5,6 +5,7 @@ import os
 import shutil
 import sqlite3
 import tempfile
+import threading
 import time
 import unittest
 from unittest.mock import patch
@@ -42,6 +43,7 @@ class SecurityTests(unittest.TestCase):
         with app_module._schedule_cache_lock:
             app_module._schedule_cache["rows"] = None
             app_module._schedule_cache["updated_at"] = 0.0
+            app_module._schedule_cache["retry_at"] = 0.0
 
         with sqlite3.connect(TEST_DB) as connection:
             connection.execute("DELETE FROM site_analytics_daily")
@@ -58,6 +60,7 @@ class SecurityTests(unittest.TestCase):
             connection.execute("DELETE FROM schedule_reservations")
             connection.execute("DELETE FROM contact_messages")
             connection.execute("DELETE FROM users")
+            connection.execute("DELETE FROM site_settings WHERE key = 'schedule_snapshot'")
             connection.commit()
 
     def contact_count(self):
@@ -77,6 +80,27 @@ class SecurityTests(unittest.TestCase):
             "form_started_at": int((time.time() - 5) * 1000),
             "website": "",
         }
+
+    def test_daily_analytics_badge_is_admin_only_and_does_not_load_the_full_report(self):
+        anonymous = self.client.get("/api/admin/analytics/today")
+        self.assertEqual(anonymous.status_code, 401)
+        with app.app_context():
+            student = create_user("badge-student", "Uczeń", "test-password")
+            admin = create_user("badge-admin", "Admin", "test-password", role="admin", level=None)
+            student_headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            admin_headers = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+            day = app_module.site_analytics_today()["range_end"]
+        self.assertEqual(self.client.get("/api/admin/analytics/today", headers=student_headers).status_code, 403)
+        with sqlite3.connect(TEST_DB) as connection:
+            connection.executemany("INSERT INTO site_analytics_visitors (day, visitor_hash, path) VALUES (?, ?, ?)", [
+                (day, "visitor-1", "/"), (day, "visitor-1", "/zapisy.html"), (day, "visitor-2", "/"),
+                ("2020-01-01", "visitor-3", "/"),
+            ])
+        with patch.object(app_module, "site_analytics_summary") as full_report:
+            response = self.client.get("/api/admin/analytics/today", headers=admin_headers)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["daily"], [{"day": day, "visitors": 2}])
+        full_report.assert_not_called()
 
     def test_calculators_are_disabled_at_api_level(self):
         response = self.client.post(
@@ -133,6 +157,161 @@ class SecurityTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_json()["schedule"], cached_rows)
+
+    def test_schedule_snapshot_survives_a_worker_restart_without_google(self):
+        rows = [["Godz.", "Pn."], ["8:00", ""]]
+        with app.app_context():
+            app_module.save_schedule_snapshot(rows, time.time())
+        with patch.object(app_module, "urlopen") as download:
+            response = self.client.get("/api/schedule")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["schedule"], rows)
+        download.assert_not_called()
+
+    def test_expired_schedule_is_returned_while_one_refresh_runs_in_background(self):
+        rows = [["Godz.", "Pn."], ["8:00", ""]]
+        started, finish = threading.Event(), threading.Event()
+        downloads = []
+
+        class SheetResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self, _size):
+                return b"Godz.,Pn.\n8:00,zajete\n"
+
+        def download(*_args, **_kwargs):
+            downloads.append(True)
+            started.set()
+            if not finish.wait(5):
+                raise OSError("test timeout")
+            return SheetResponse()
+
+        with app_module._schedule_cache_lock:
+            app_module._schedule_cache.update(rows=rows, updated_at=time.monotonic() - 150)
+        with patch.object(app_module, "urlopen", side_effect=download):
+            try:
+                first = self.client.get("/api/schedule")
+                self.assertTrue(started.wait(2))
+                second = self.client.get("/api/schedule")
+                self.assertEqual(first.get_json()["schedule"], rows)
+                self.assertEqual(second.get_json()["schedule"], rows)
+                self.assertEqual(len(downloads), 1)
+            finally:
+                finish.set()
+                self.assertTrue(app_module._schedule_refresh_lock.acquire(timeout=5))
+                app_module._schedule_refresh_lock.release()
+        self.assertEqual(app_module._schedule_cache["rows"][1][1], "zajete")
+
+    def test_schedule_refresh_failure_backs_off_but_booking_still_requires_google(self):
+        rows = [["Godz.", "Pn."], ["8:00", ""]]
+        with app_module._schedule_cache_lock:
+            app_module._schedule_cache.update(rows=rows, updated_at=time.monotonic() - 150,
+                                             retry_at=time.monotonic() + 30)
+        with patch.object(app_module, "urlopen", side_effect=OSError("offline")) as download:
+            preview = self.client.get("/api/schedule")
+            self.assertEqual(preview.get_json()["schedule"], rows)
+            download.assert_not_called()
+            payload = self.valid_contact_payload()
+            payload.update(selected_terms=["Pn. 8:00"], sessions_per_week_count=1)
+            booking = self.client.post("/api/contact-messages", json=payload)
+            self.assertEqual(booking.status_code, 503)
+            self.assertEqual(self.contact_count(), 0)
+            self.assertEqual(download.call_count, 1)
+
+    def test_schedule_rejects_old_or_malformed_persisted_copies(self):
+        cases = [
+            {"rows": [["Godz.", "Pn."], ["8:00", ""]], "fetched_at": time.time() - 901},
+            {"rows": [["Godz.", "Pn."], ["8:00"]], "fetched_at": time.time()},
+            {"rows": [["Godz.", "Pn."], ["8:00", ""]], "fetched_at": float("nan")},
+        ]
+        for snapshot in cases:
+            with self.subTest(snapshot=snapshot), patch.object(app_module, "get_schedule_snapshot", return_value=snapshot), \
+                 patch.object(app_module, "urlopen", side_effect=OSError("offline")):
+                response = self.client.get("/api/schedule")
+                self.assertEqual(response.status_code, 502)
+
+    def test_concurrent_cold_schedule_requests_share_one_google_download(self):
+        started, finish = threading.Event(), threading.Event()
+        results, failures = [], []
+
+        class SheetResponse:
+            def __enter__(self):
+                started.set()
+                if not finish.wait(5):
+                    raise OSError("test timeout")
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self, _size):
+                return b"Godz.,Pn.\n8:00,\n"
+
+        def read_schedule():
+            try:
+                with app.app_context():
+                    results.append(app_module.schedule_rows())
+            except Exception as error:
+                failures.append(error)
+
+        threads = [threading.Thread(target=read_schedule) for _ in range(4)]
+        with patch.object(app_module, "urlopen", return_value=SheetResponse()) as download:
+            try:
+                for thread in threads:
+                    thread.start()
+                self.assertTrue(started.wait(2))
+            finally:
+                finish.set()
+                for thread in threads:
+                    thread.join(5)
+            self.assertFalse(any(thread.is_alive() for thread in threads))
+            self.assertFalse(failures)
+            self.assertEqual(len(results), 4)
+            self.assertEqual(download.call_count, 1)
+
+    def test_cached_schedule_always_overlays_current_local_reservations(self):
+        rows = [["Godz.", "Pn."], ["8:00", ""]]
+        with app.app_context():
+            app_module.save_schedule_snapshot(rows, time.time())
+        payload = self.valid_contact_payload()
+        payload.update(selected_terms=["Pn. 8:00"], sessions_per_week_count=1)
+        with patch.object(app_module, "schedule_rows", return_value=rows):
+            booking = self.client.post("/api/contact-messages", json=payload)
+        self.assertEqual(booking.status_code, 201)
+        with patch.object(app_module, "urlopen") as download:
+            response = self.client.get("/api/schedule")
+        self.assertEqual(response.get_json()["schedule"][1][1], "zarezerwowany")
+        download.assert_not_called()
+
+    def test_booking_rejects_a_term_that_google_changed_since_the_cached_preview(self):
+        rows = [["Godz.", "Pn."], ["8:00", ""]]
+        with app.app_context():
+            app_module.save_schedule_snapshot(rows, time.time())
+
+        class SheetResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self, _size):
+                return b"Godz.,Pn.\n8:00,zajete\n"
+
+        payload = self.valid_contact_payload()
+        payload.update(selected_terms=["Pn. 8:00"], sessions_per_week_count=1)
+        with patch.object(app_module, "urlopen", return_value=SheetResponse()) as download:
+            preview = self.client.get("/api/schedule")
+            download.assert_not_called()
+            booking = self.client.post("/api/contact-messages", json=payload)
+            self.assertEqual(download.call_count, 1)
+        self.assertEqual(preview.get_json()["schedule"][1][1], "")
+        self.assertEqual(booking.status_code, 409)
+        self.assertEqual(self.contact_count(), 0)
 
     def test_contact_form_reserves_a_selected_schedule_term(self):
         class SheetResponse:

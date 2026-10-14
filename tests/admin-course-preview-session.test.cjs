@@ -26,7 +26,7 @@ async function runBoot(apiFetch, catalogLoader) {
     loadStudents: async () => {},
     loadSitePrices: async () => {},
     loadMessages: async () => {},
-    loadAnalytics: () => { analyticsLoads += 1; return new Promise(() => {}); },
+    loadAnalyticsBadge: () => { analyticsLoads += 1; return new Promise(() => {}); },
     showStatus(message) { statusMessages.push(message); },
     window: {location: {href: 'admin.html'}}
   });

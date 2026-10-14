@@ -111,7 +111,7 @@ body {
     height: 40px;
     min-height: 40px;
     padding: 4px;
-    border-radius: 6px;
+    border-radius: 5.1px;
     font-size: 12px;
     text-align: center;
 }
@@ -129,7 +129,7 @@ body {
 .admin-tab-btn {
     min-height: 34px;
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: transparent;
     color: var(--muted);
     cursor: pointer;
@@ -145,7 +145,7 @@ body {
     color: white;
 }
 
-.admin-tab-btn > span:not(:empty) {
+.admin-tab-btn > .admin-tab-badge:not(:empty) {
     display: inline-grid;
     min-width: 21px;
     min-height: 21px;
@@ -161,6 +161,8 @@ body {
     line-height: 1;
     padding: 2px 5px;
 }
+
+.admin-tab-short-label { display: none; }
 
 .admin-tab-panel {
     display: none;
@@ -183,7 +185,7 @@ body {
     gap: 10px;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     padding: 14px;
     box-shadow: var(--shadow);
 }
@@ -236,7 +238,7 @@ select {
     width: 100%;
     min-height: 36px;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     padding: 7px 10px;
     background: white;
     color: var(--text);
@@ -259,7 +261,7 @@ select:focus,
 .level-card {
     min-height: 34px;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: white;
     color: var(--text);
     cursor: pointer;
@@ -280,7 +282,7 @@ select:focus,
 .btn {
     min-height: 34px;
     border: 1px solid var(--navy);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--navy);
     color: white;
     cursor: pointer;
@@ -308,7 +310,7 @@ select:focus,
 
 .status-box {
     display: none;
-    border-radius: 8px;
+    border-radius: 6.8px;
     padding: 10px;
     font-size: 13px;
     line-height: 1.45;
@@ -324,7 +326,7 @@ select:focus,
     display: none;
     gap: 8px;
     border: 1px solid #cce5c9;
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--green-soft);
     padding: 10px;
 }
@@ -415,6 +417,10 @@ th {
     border-color: #c7a6df;
     background: linear-gradient(90deg, #d5b8ea, #ffffff);
 }
+.student-level-test .student-level-heading {
+    border-color: #b6c5d3;
+    background: #e6edf4;
+}
 .student-level-count {
     color: var(--muted);
     font-size: 10px;
@@ -494,7 +500,7 @@ th {
 .student-account-panel {
     display: block;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--surface-soft);
 }
 .student-account-panel > summary {
@@ -560,13 +566,14 @@ th {
     width: 58px;
     min-height: 28px;
     border: 1px solid var(--line);
-    border-radius: 6px;
+    border-radius: 5.1px;
     padding: 3px 6px;
     font: inherit;
 }
 .teacher-score-control .mini-link { min-height: 28px; padding: 3px 8px; }
 .teacher-score-control select { width: 92px; }
 .teacher-score-status { color: var(--muted); font-size: 10px; }
+.teacher-score-status:empty { display: none; }
 .progress-detail {
     gap: 10px;
     margin-top: 10px;
@@ -684,7 +691,7 @@ th {
 .actions .btn {
     width: auto;
     min-height: 21px;
-    border-radius: 6px;
+    border-radius: 5.1px;
     padding: 2px 6px;
     font-size: 10px;
     line-height: 1;
@@ -1002,7 +1009,7 @@ th {
 
 .review-empty {
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--surface-soft);
     color: var(--muted);
     padding: 10px;
@@ -1028,7 +1035,7 @@ th {
 .review-main {
     display: grid;
     gap: 2px;
-    border-radius: 7px;
+    border-radius: 5.95px;
     cursor: copy;
     min-width: 0;
     padding: 0;
@@ -1078,7 +1085,7 @@ th {
 .course-history-table-wrap {
     overflow-x: auto;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: white;
 }
 
@@ -1217,7 +1224,7 @@ th {
     gap: 6px;
     min-height: 190px;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: white;
     padding: 10px;
 }
@@ -1286,7 +1293,7 @@ th {
     display: grid;
     gap: 4px;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--surface-soft);
     padding: 8px;
     text-align: left;
@@ -1357,7 +1364,7 @@ th {
     display: grid;
     gap: 8px;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: white;
     padding: 10px;
 }
@@ -1375,12 +1382,27 @@ th {
 
 .lesson-work-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .lesson-work-actions button { min-height: 32px; padding: 5px 9px; font-size: 11px; }
-.task-edit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 5px; }
-.task-edit-actions label { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; }
+.task-edit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0; min-width: 0; }
+.task-edit-actions label { display: inline-flex; align-items: center; gap: 5px; flex: 0 0 auto; margin: 0; white-space: nowrap; color: var(--muted); font-size: 11px; line-height: 1.3; }
+.task-edit-actions .mini-link { flex: 0 0 auto; min-height: 24px; line-height: 1.3; white-space: nowrap; }
+.task-edit-actions .task-reset-selection { width: 16px; height: 16px; min-height: 0; margin: 0; padding: 0; flex: 0 0 16px; accent-color: var(--navy); }
 .lesson-action-status { color: var(--muted); font-size: 12px; }
 @media (min-width: 901px) {
     .source-task-table-wrap { max-height: none; overflow: visible; }
     .source-task-table th { position: static; }
+    .source-task-table { table-layout: fixed; }
+    .source-task-table th:first-child { width: 46%; }
+    .source-task-table.course-task-table th:first-child { width: 50%; }
+    .source-task-table.course-task-table th:nth-child(2) { width: 14%; }
+    .source-task-table.course-task-table th:nth-child(3) { width: 24%; }
+    .source-task-table.course-task-table th:nth-child(4) { width: 12%; }
+    .source-task-row > td { padding: 4px 8px; line-height: 1.3; overflow-wrap: anywhere; }
+    .source-task-row .task-title-cell { grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: center; }
+    .source-task-row .task-title-cell > strong,
+    .source-task-row .task-title-cell > .task-date { grid-column: 1; }
+    .source-task-row .task-edit-actions { grid-column: 2; grid-row: 1 / 3; }
+    .source-task-row .answer-comparison,
+    .source-task-row .task-review-badge { grid-column: 1 / -1; }
 }
 
 .source-task-table {
@@ -1456,7 +1478,7 @@ th {
     align-items: center;
     min-height: 32px;
     border: 1px solid #b94b57;
-    border-radius: 7px;
+    border-radius: 5.95px;
     padding: 5px 10px;
     color: #7f2630;
     font-size: 11px;
@@ -1484,7 +1506,7 @@ th {
     min-height: 32px;
     padding: 5px 10px;
     border: 1px solid #b8cde1;
-    border-radius: 7px;
+    border-radius: 5.95px;
     background: white;
     color: #24527a;
     font: 600 11px/1.35 'Poppins', sans-serif;
@@ -1583,7 +1605,7 @@ th {
     gap: 6px;
     padding: 4px;
     border: 1px solid var(--line);
-    border-radius: 10px;
+    border-radius: 8.5px;
     background: var(--surface-soft);
     width: fit-content;
 }
@@ -1591,7 +1613,7 @@ th {
 .mailbox-tab {
     min-height: 32px;
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: transparent;
     color: var(--muted);
     cursor: pointer;
@@ -1623,7 +1645,7 @@ th {
     gap: 12px;
     align-items: start;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--surface-soft);
     padding: 12px;
 }
@@ -1690,7 +1712,7 @@ th {
 .message-action-btn {
     min-height: 30px;
     padding: 5px 9px;
-    border-radius: 7px;
+    border-radius: 5.95px;
     font-size: 11px;
     line-height: 1.15;
     white-space: nowrap;
@@ -1698,7 +1720,7 @@ th {
 
 .message-empty {
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--surface-soft);
     color: var(--muted);
     padding: 14px;
@@ -1724,7 +1746,7 @@ th {
 .analytics-controls select {
     min-height: 34px;
     border: 1px solid var(--line);
-    border-radius: 7px;
+    border-radius: 5.95px;
     background: white;
     color: var(--text);
     font: inherit;
@@ -1743,7 +1765,7 @@ th {
     gap: 3px;
     min-width: 0;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--surface-soft);
     padding: 11px;
 }
@@ -1772,7 +1794,7 @@ th {
     gap: 10px;
     min-width: 0;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: var(--surface-soft);
     padding: 12px;
 }
@@ -1963,7 +1985,7 @@ th {
     gap: 10px;
     align-items: center;
     border: 1px solid var(--line);
-    border-radius: 7px;
+    border-radius: 5.95px;
     background: #ffffff;
     padding: 9px 10px;
 }
@@ -2226,6 +2248,29 @@ footer {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
+        gap: 4px;
+    }
+
+    .admin-tab-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        height: 24px;
+        min-height: 24px;
+        padding: 2px 5px;
+        font-size: 11px;
+        line-height: 1.2;
+    }
+    .admin-tab-long-label { display: none; }
+    .admin-tab-short-label { display: inline; }
+    .admin-tab-btn > .admin-tab-badge:not(:empty) {
+        min-width: 16px;
+        min-height: 16px;
+        margin-left: 4px;
+        border-width: 1px;
+        font-size: 10px;
+        padding: 1px 3px;
     }
 
     .prices-grid {
@@ -2256,11 +2301,11 @@ footer {
     <div class="admin-toolbar">
         <div class="admin-tabs" role="tablist" aria-label="Sekcje panelu admina">
             <button class="admin-tab-btn active" type="button" data-admin-tab="students">Uczniowie</button>
-            <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge"></span></button>
-            <button class="admin-tab-btn" type="button" data-admin-tab="messages-failed">Nieudane próby zapisania się <span id="failedSignupBadge"></span></button>
-            <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge"></span></button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="messages-prospect">Nowe zapisy <span id="prospectMessageBadge" class="admin-tab-badge"></span></button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="messages-failed" aria-label="Nieudane próby zapisania się"><span class="admin-tab-long-label" aria-hidden="true">Nieudane próby zapisania się</span><span class="admin-tab-short-label" aria-hidden="true">Nieudane zapisy</span><span id="failedSignupBadge" class="admin-tab-badge"></span></button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="messages-parent">Rodzice uczniów <span id="parentMessageBadge" class="admin-tab-badge"></span></button>
             <button class="admin-tab-btn" type="button" data-admin-tab="prices">Ceny</button>
-            <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie <span id="analyticsTodayBadge" title="Użytkownicy dzisiaj"></span></button>
+            <button class="admin-tab-btn" type="button" data-admin-tab="analytics">Ruch na stronie <span id="analyticsTodayBadge" class="admin-tab-badge" title="Użytkownicy dzisiaj"></span></button>
         </div>
         <div class="admin-header-actions">
             <a class="btn secondary" id="coursePreviewLink" href="zadania.html?category=kurs">Podgląd kursów</a>
@@ -2637,6 +2682,7 @@ let messageCounts = {
 let currentStudentSort = "activity_desc";
 let lastCredentialsText = "";
 let adminTaskCatalog = [];
+let adminTaskCatalogReady = null;
 let studentProgressCache = new Map();
 let activeProgressStudentId = null;
 let progressRequestId = 0;
@@ -2854,7 +2900,17 @@ async function loadAdminJson(path){
     return response.json();
 }
 
-async function loadAdminTaskCatalog(){
+function loadAdminTaskCatalog(){
+    if(!adminTaskCatalogReady){
+        adminTaskCatalogReady = fetchAdminTaskCatalog().catch(error => {
+            adminTaskCatalogReady = null;
+            throw error;
+        });
+    }
+    return adminTaskCatalogReady;
+}
+
+async function fetchAdminTaskCatalog(){
     const groups = await Promise.all(
         ADMIN_TASK_SOURCES.map(async (source, sourceIndex) => {
             try {
@@ -2878,6 +2934,9 @@ async function loadAdminTaskCatalog(){
     );
 
     adminTaskCatalog = groups.flat();
+    if(!adminTaskCatalog.length){
+        throw new Error("Nie udało się wczytać katalogu zadań. Spróbuj ponownie.");
+    }
 }
 
 function getCatalogSources(category, level, options = {}){
@@ -3417,6 +3476,32 @@ async function setFullCourseAccess(student, input){
     }
 }
 
+function isTestStudent(student){
+    return /^test-(eo|mp|mr)-(domowe|pelny)$/.test(String(student.email || "").trim().toLowerCase());
+}
+
+function getStudentGroups(sortedStudents){
+    return [
+        ["egzamin_osmoklasisty", "Egzamin ósmoklasisty"],
+        ["matura_podstawowa", "Matura podstawowa"],
+        ["matura_rozszerzona", "Matura rozszerzona"],
+        ["test_accounts", "Konta testowe"]
+    ].map(([level, label]) => ({
+        level,
+        label,
+        students: sortedStudents.filter(student => level === "test_accounts"
+            ? isTestStudent(student)
+            : student.level === level && !isTestStudent(student))
+    })).filter(group => group.students.length);
+}
+
+function studentGroupCount(count, testAccounts){
+    if(!testAccounts) return `${count} ${count === 1 ? "uczeń" : "uczniów"}`;
+
+    const forms = { one: "konto", few: "konta", many: "kont", other: "konta" };
+    return `${count} ${forms[new Intl.PluralRules("pl").select(count)]}`;
+}
+
 function renderStudents(){
     // Keep the shared progress view and its listeners when credentials or sorting change.
     const focusedToggleId = document.activeElement?.classList.contains("student-toggle")
@@ -3444,25 +3529,18 @@ function renderStudents(){
 
     const shortLevels = { matura_podstawowa: "MP", matura_rozszerzona: "MR", egzamin_osmoklasisty: "EO" };
     const sortedStudents = getSortedStudents();
-    const studentGroups = [
-        ["egzamin_osmoklasisty", "Egzamin ósmoklasisty"],
-        ["matura_podstawowa", "Matura podstawowa"],
-        ["matura_rozszerzona", "Matura rozszerzona"]
-    ];
+    const studentGroups = getStudentGroups(sortedStudents);
 
-    studentGroups.forEach(([groupLevel, groupLabel]) => {
-        const groupStudents = sortedStudents.filter(student => student.level === groupLevel);
-
-        if(!groupStudents.length) return;
+    studentGroups.forEach(({level: groupLevel, label: groupLabel, students: groupStudents}) => {
 
         const group = document.createElement("section");
         const heading = document.createElement("h3");
         const count = document.createElement("span");
 
-        group.className = `student-level-group student-level-${shortLevels[groupLevel].toLowerCase()}`;
+        group.className = `student-level-group student-level-${shortLevels[groupLevel]?.toLowerCase() || "test"}`;
         heading.className = "student-level-heading";
         count.className = "student-level-count";
-        count.textContent = `${groupStudents.length} ${groupStudents.length === 1 ? "uczeń" : "uczniów"}`;
+        count.textContent = studentGroupCount(groupStudents.length, groupLevel === "test_accounts");
         heading.append(document.createTextNode(groupLabel), count);
         group.appendChild(heading);
         studentTable.appendChild(group);
@@ -3569,24 +3647,6 @@ async function loadStudents(){
 
     students = data.students;
     renderStudents();
-    await loadStudentProgressSummaries();
-    renderStudents();
-}
-
-async function loadStudentProgressSummaries(){
-    const pairs = await Promise.all(
-        students.map(async student => {
-            try {
-                const data = await apiFetch(`/api/admin/students/${student.id}/progress`);
-
-                return [student.id, Array.isArray(data.progress) ? data.progress : []];
-            } catch(error) {
-                return [student.id, []];
-            }
-        })
-    );
-
-    studentProgressCache = new Map(pairs);
 }
 
 function fillPriceInputs(prices){
@@ -3889,6 +3949,14 @@ function renderAnalytics(data){
         item => analyticsDeviceLabel(item.type)
     );
     renderCampaignLinks(campaigns);
+}
+
+async function loadAnalyticsBadge(){
+    try {
+        updateAnalyticsTodayBadge(await apiFetch("/api/admin/analytics/today"));
+    } catch(error) {
+        // A missing visitor count must not delay or interrupt the student list.
+    }
 }
 
 async function loadAnalytics(force = false){
@@ -5368,6 +5436,7 @@ function renderSourceDetail(group){
         meta.innerText = isCourse
             ? (progressItem?.created_at ? formatDate(progressItem.created_at) : "")
             : task.topic || "";
+        meta.className = "task-date";
         result.innerText = progressItem
             ? `${teacherPending ? "Do oceny" : task.teacherGraded && progressItem.result === "medium" && !progressItem.video_viewed ? "Częściowo" : resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
             : reviewRequested ? "Do omówienia" : "Nie wykonano";
@@ -6085,7 +6154,8 @@ async function showProgress(student){
     try {
         const [data, allReviewItems] = await Promise.all([
             apiFetch(`/api/admin/students/${student.id}/progress`),
-            loadReviewTasks(student)
+            loadReviewTasks(student),
+            loadAdminTaskCatalog()
         ]);
         if(requestId !== progressRequestId || activeProgressStudentId !== student.id) return;
         const progress = data.progress.filter(isIndependentWorkProgress);
@@ -6242,13 +6312,11 @@ async function boot(){
 
     adminSessionVerified = true;
     settleAdminSession(true);
-    void loadAnalytics();
+    void loadAnalyticsBadge();
 
     try {
-        await loadAdminTaskCatalog();
         await loadStudents();
-        await loadSitePrices();
-        await loadMessages();
+        await Promise.all([loadSitePrices(), loadMessages()]);
     } catch(error) {
         if(error?.name !== "AbortError"){
             showStatus(error.message || "Nie udało się wczytać części danych panelu.");
