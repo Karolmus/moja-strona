@@ -561,18 +561,29 @@ th {
 .answer-comparison.expected { color: var(--green-text); }
 .answer-comparison.teacher-submission { color: var(--text); margin-top: 3px; }
 .teacher-score-control { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 5px; }
-.teacher-score-control input,
-.teacher-score-control select {
-    width: 58px;
-    min-height: 28px;
+.teacher-score-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-width: 32px;
+    height: 28px;
     border: 1px solid var(--line);
     border-radius: 5.1px;
-    padding: 3px 6px;
+    padding: 0 6px;
+    background: white;
+    color: var(--navy);
     font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
 }
-.teacher-score-control .mini-link { min-height: 28px; padding: 3px 8px; }
-.teacher-score-control select { width: 92px; }
-.teacher-score-status { color: var(--muted); font-size: 10px; }
+.teacher-score-option.selected { background: var(--navy); border-color: var(--navy); color: white; }
+.teacher-score-option:not(.selected):hover:not(:disabled) { background: var(--blue-soft); }
+.teacher-score-option:focus-visible { outline: 2px solid var(--blue-text); outline-offset: 1px; }
+.teacher-score-option:disabled { cursor: default; opacity: 0.55; }
+.teacher-score-status { flex-basis: 100%; color: var(--muted); font-size: 10px; }
 .teacher-score-status:empty { display: none; }
 .progress-detail {
     gap: 10px;
@@ -2536,7 +2547,7 @@ footer {
 </footer>
 
 <script src="static/auth.js?v=20261013-student-notifications"></script>
-<script src="static/course-videos.js?v=20260930-mp5"></script>
+<script src="static/course-videos.js?v=20261014-mp6-eq"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -4598,8 +4609,7 @@ function sourceProgressGroups(progress, student, reviewItems = []){
                 percent: group.tasks.length ? Math.round((attempted / group.tasks.length) * 1000) / 10 : 0
             };
         })
-        .filter(group => group.attempted > 0 || group.reviewRequested > 0 || group.kind === "test" ||
-            group.tasks.some(task => task.teacherGraded === true && task.type === "external_submission"))
+        .filter(group => group.attempted > 0 || group.reviewRequested > 0 || group.kind === "test")
         .sort((a, b) => a.sourceIndex - b.sourceIndex);
 }
 
@@ -5233,36 +5243,45 @@ async function saveTeacherReviewedScore(progressItem, task, input, button, statu
 
 function teacherScoreControl(progressItem, task){
     const control = document.createElement("div");
-    const input = document.createElement("select");
-    const button = document.createElement("button");
     const status = document.createElement("span");
     const maxPoints = taskMaxPoints(task);
+    const options = [];
+    let saving = false;
 
     control.className = "teacher-score-control";
-    const placeholder = document.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent = "Punkty";
-    input.appendChild(placeholder);
+    control.setAttribute("role", "group");
+    control.setAttribute("aria-label", `Ocena zadania: od 0 do ${formatPoints(maxPoints)} pkt`);
     for(let score = 0; score <= maxPoints; score++){
-        const option = document.createElement("option");
-        option.value = String(score);
-        option.textContent = `${score} / ${maxPoints} pkt`;
+        const option = document.createElement("button");
+        const selected = Boolean(progressItem?.teacher_graded_at && Number(progressItem.earned_points) === score);
+        option.type = "button";
+        option.className = `teacher-score-option${selected ? " selected" : ""}`;
+        option.textContent = String(score);
+        option.setAttribute("aria-label", `Przyznaj ${score} z ${formatPoints(maxPoints)} pkt`);
+        option.setAttribute("aria-pressed", String(selected));
+        option.title = `${score} / ${formatPoints(maxPoints)} pkt`;
         option.disabled = Boolean(progressItem?.video_viewed && score > 0);
-        input.appendChild(option);
+        option.addEventListener("click", async () => {
+            if(saving || option.disabled) return;
+            saving = true;
+            options.forEach(button => { button.disabled = true; });
+            control.setAttribute("aria-busy", "true");
+            try {
+                await saveTeacherReviewedScore(progressItem, task, {value: String(score)}, option, status);
+            } finally {
+                saving = false;
+                control.removeAttribute("aria-busy");
+                options.forEach((button, value) => { button.disabled = Boolean(progressItem?.video_viewed && value > 0); });
+            }
+        });
+        options.push(option);
+        control.appendChild(option);
     }
-    input.value = progressItem?.teacher_graded_at ? String(progressItem.earned_points) : "";
-    input.setAttribute("aria-label", `Punkty od 0 do ${formatPoints(maxPoints)}`);
-    button.type = "button";
-    button.className = "mini-link";
-    button.textContent = "Zapisz wynik";
     status.className = "teacher-score-status";
     status.setAttribute("aria-live", "polite");
     control.addEventListener("click", event => event.stopPropagation());
     control.addEventListener("keydown", event => event.stopPropagation());
-    button.addEventListener("click", () =>
-        saveTeacherReviewedScore(progressItem, task, input, button, status)
-    );
-    control.append(input, button, status);
+    control.appendChild(status);
 
     return control;
 }

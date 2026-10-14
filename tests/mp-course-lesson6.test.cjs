@@ -9,6 +9,7 @@ const tasks = JSON.parse(fs.readFileSync(sourcePath));
 const html = fs.readFileSync('zadania.html', 'utf8');
 const profileHtml = fs.readFileSync('profil.html', 'utf8');
 const adminHtml = fs.readFileSync('admin.html', 'utf8');
+const courseVideos = require('../static/course-videos.js');
 const keys = {
   zadania: ['B', 'A', 'C', 'D', 'A', 'C', 'C', ['F', 'F'], 'B'],
   praca_domowa: ['A', 'B', 'C', 'D', 'C', 'A', ['P', 'F'], 'B', 'B', 'D'],
@@ -18,6 +19,36 @@ const prefixes = {zadania: '', praca_domowa: 'zd', zadania_powtorkowe: 'zp'};
 
 assert.equal(tasks.length, 26);
 assert.equal(new Set(tasks.map(task => task.file)).size, 26);
+
+// The current first homework exercise was recorded last in the older PDF order.
+const recordedHomework = [
+  'HRWmz6Cezts',
+  'WPruqLUI_cI', 'kHA2EykVe40', '9M7vT4zVMq0', 'QwpDFeH4B9E',
+  'awuWDll6QgQ', 'Rg7u-EBizlg', 'oG_667qSh8E', 'IsbSduo4BGo',
+  'ioOuSS4tnl4'
+];
+const recordedReview = [
+  'LorMxQFJEuU', 'Ou2WCHuWw2g', 'pMFWImeHWfk', 'xUmngTeAA7o',
+  '-Jp76D2ArUY', 'csrCz4V5NyY'
+];
+const lessonVideos = courseVideos[sourcePath];
+const orderedHomework = tasks.filter(task => task.coursePart === 'praca_domowa')
+  .sort((a,b) => Number(a.taskNumber) - Number(b.taskNumber));
+recordedHomework.forEach((id,index) => {
+  assert.equal(lessonVideos[orderedHomework[index].file], `https://youtu.be/${id}`,
+    `Video matches the content of displayed homework task ${index + 1}, not the old recording number`);
+});
+recordedReview.forEach((id,index) => {
+  assert.equal(lessonVideos[`zp${index + 1}.png`], `https://youtu.be/${id}`);
+});
+assert.equal(Object.keys(lessonVideos).length, 16, 'All ten homework and six review recordings are mapped');
+assert.equal(new Set(Object.values(lessonVideos)).size, 16, 'Repeated playlist entries are not mapped twice');
+assert.deepEqual(Object.keys(lessonVideos).sort(), tasks.filter(task =>
+  ['praca_domowa', 'zadania_powtorkowe'].includes(task.coursePart)).map(task => task.file).sort());
+assert(tasks.filter(task => task.coursePart === 'zadania').every(task => !lessonVideos[task.file]));
+assert(!Object.values(lessonVideos).includes('https://youtu.be/2vgKi9eJzoY'), 'The superseded unprocessed recording is not used');
+assert(html.includes('static/course-videos.js?v=20261014-mp6-eq'));
+assert(adminHtml.includes('static/course-videos.js?v=20261014-mp6-eq'));
 
 for (const [part, key] of Object.entries(keys)) {
   const items = tasks.filter(task => task.coursePart === part &&

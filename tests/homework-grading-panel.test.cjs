@@ -68,3 +68,89 @@ test('grade saving targets the original student and never rerenders another stud
     }
     assert.equal(requests.length, 1, 'Invalid scores do not reach the server');
 });
+
+class Element {
+    constructor(tag){ this.tag=tag; this.children=[]; this.attributes={}; this.listeners={}; }
+    appendChild(child){ this.children.push(child); return child; }
+    setAttribute(name, value){ this.attributes[name]=String(value); }
+    removeAttribute(name){ delete this.attributes[name]; }
+    addEventListener(name, handler){ this.listeners[name]=handler; }
+}
+
+function gradingControlContext(save){
+    const context = vm.createContext({document:{createElement:tag => new Element(tag)},
+        taskMaxPoints:task => task.maxPoints, formatPoints:String, saveTeacherReviewedScore:save});
+    vm.runInContext(code(admin, 'teacherScoreControl'), context);
+    return context;
+}
+
+test('numeric grading tiles save on one click and prevent duplicate requests while saving', async () => {
+    let finish;
+    const pending = new Promise(resolve => {finish=resolve;});
+    const requests=[];
+    const context=gradingControlContext(async (...args) => {requests.push(args); await pending;});
+    const progress={id:42, earned_points:1, teacher_graded_at:'2026-10-14T10:00:00Z'};
+    const task={maxPoints:2};
+    const control=context.teacherScoreControl(progress, task);
+    const buttons=control.children.filter(child => child.tag === 'button');
+    assert.deepEqual(buttons.map(button => button.textContent), ['0','1','2']);
+    assert.equal(control.attributes.role, 'group');
+    assert.equal(buttons[1].attributes['aria-pressed'], 'true');
+    assert.equal(buttons[2].attributes['aria-pressed'], 'false');
+    assert(buttons[1].className.includes('selected'));
+    const saving=buttons[2].listeners.click();
+    assert.equal(requests.length, 1);
+    assert.equal(requests[0][0], progress);
+    assert.equal(requests[0][1], task);
+    assert.equal(requests[0][2].value, '2');
+    assert(buttons.every(button => button.disabled));
+    assert.equal(control.attributes['aria-busy'], 'true');
+    await buttons[0].listeners.click();
+    assert.equal(requests.length, 1);
+    finish();
+    await saving;
+    assert(buttons.every(button => !button.disabled));
+    assert.equal(control.attributes['aria-busy'], undefined);
+    let stopped=0;
+    control.listeners.click({stopPropagation(){ stopped++; }});
+    control.listeners.keydown({stopPropagation(){ stopped++; }});
+    assert.equal(stopped, 2, 'Grading controls do not also open the task preview');
+});
+
+test('grading tiles recover after a failed save and only offer zero points after watching a solution', async () => {
+    let requests=0;
+    const context=gradingControlContext(async () => {requests++; throw new Error('Network error');});
+    const control=context.teacherScoreControl({video_viewed:true}, {maxPoints:3});
+    const buttons=control.children.filter(child => child.tag === 'button');
+    assert.deepEqual(buttons.map(button => button.disabled), [false,true,true,true]);
+    await buttons[3].listeners.click();
+    assert.equal(requests, 0);
+    await assert.rejects(buttons[0].listeners.click(), /Network error/);
+    assert.deepEqual(buttons.map(button => button.disabled), [false,true,true,true]);
+    assert.equal(control.attributes['aria-busy'], undefined);
+});
+
+test('teacher-graded MP5 is listed only after a submission or a request to discuss a task', () => {
+    const source='zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.json';
+    const catalog=manifest.map(task => ({...task, sourceId:source, category:'kurs'}));
+    const context=vm.createContext({adminTaskCatalog:catalog});
+    for(const name of ['progressSourceId','progressFile','progressTaskKey','isIndependentWorkTask',
+        'latestProgressMap','numberValue','taskMaxPoints','isTeacherReviewPending','inferredTaskScore',
+        'sourceYear','taskNumberFromFile','taskOrderValue','timestamp','sourceProgressGroups']){
+        vm.runInContext(code(admin, name), context);
+    }
+    const student={level:'matura_podstawowa'};
+    const homework=catalog.find(task => task.coursePart === 'praca_domowa');
+    const main=catalog.find(task => task.coursePart === 'zadania');
+    assert.equal(context.sourceProgressGroups([], student).length, 0);
+    assert.equal(context.sourceProgressGroups([{source_id:source,file:main.file,result:'good'}], student).length, 0);
+    const submitted=context.sourceProgressGroups([{source_id:source,file:homework.file,result:'bad',
+        teacher_review_pending:true}], student);
+    assert.equal(submitted.length, 1);
+    assert.equal(submitted[0].pendingReview, 1);
+    assert.equal(submitted[0].bad, 0);
+    const discussion=context.sourceProgressGroups([], student, [{source_id:source,file:homework.file}]);
+    assert.equal(discussion.length, 1);
+    assert.equal(discussion[0].reviewRequested, 1);
+    assert.equal(discussion[0].attempted, 0);
+});

@@ -95,6 +95,24 @@
             "zp5.png": "https://youtu.be/eU_flJcot6Q",
             "zp6.png": "https://youtu.be/jxr-9CiwmWA",
             "zp7.png": "https://youtu.be/R1adEVz_3V4"
+        },
+        "zadania/kurs/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json": {
+            "zd10.png": "https://youtu.be/HRWmz6Cezts",
+            "zd1.png": "https://youtu.be/WPruqLUI_cI",
+            "zd2.png": "https://youtu.be/kHA2EykVe40",
+            "zd3.png": "https://youtu.be/9M7vT4zVMq0",
+            "zd4.png": "https://youtu.be/QwpDFeH4B9E",
+            "zd5.png": "https://youtu.be/awuWDll6QgQ",
+            "zd6.png": "https://youtu.be/Rg7u-EBizlg",
+            "zd7.png": "https://youtu.be/oG_667qSh8E",
+            "zd8.png": "https://youtu.be/IsbSduo4BGo",
+            "zd9.png": "https://youtu.be/ioOuSS4tnl4",
+            "zp1.png": "https://youtu.be/LorMxQFJEuU",
+            "zp2.png": "https://youtu.be/Ou2WCHuWw2g",
+            "zp3.png": "https://youtu.be/pMFWImeHWfk",
+            "zp4.png": "https://youtu.be/xUmngTeAA7o",
+            "zp5.png": "https://youtu.be/-Jp76D2ArUY",
+            "zp6.png": "https://youtu.be/csrCz4V5NyY"
         }
     };
     if (typeof module !== "undefined" && module.exports) module.exports = videos;
