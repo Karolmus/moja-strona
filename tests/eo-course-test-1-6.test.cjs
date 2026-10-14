@@ -114,7 +114,7 @@ assert.match(html, /if\(currentTask\?\.activityType === "test"\) return;/);
 assert.match(html, /\.action-group\.tools\.test-mode\s*\{\s*display: none;/);
 assert.match(html, /\.action-group\.navigation\.test-mode\s*\{\s*grid-column: 1 \/ -1;/);
 assert(!html.includes('Zaznacz odpowiedź, aby ukończyć zadanie.'));
-assert.match(html, /id="testModeNotice"[^>]*hidden>W trybie testu nie możesz korzystać ze wskazówek ani dodawać zadań do omówienia\.<\/p>/);
+assert.match(html, /id="testModeNotice"[^>]*hidden>Test bez wskazówek, nagrań i omówień\.<\/p>/);
 assert.match(html, /testModeNotice\.hidden = !isTest;/);
 assert.match(profileHtml, /source\.category === category && source\.kind !== "test"/);
 assert.match(adminHtml, /excludeKinds: \["test"\]/);

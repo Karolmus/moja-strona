@@ -23,9 +23,11 @@ const ctx = vm.createContext({
   getSavedProgressItem:() => null,
   renderTaskNavigator:() => {ctx.navigatorRenders = (ctx.navigatorRenders || 0) + 1;},
   taskLabel:() => 'Zadanie', formatTagLabel:text => text, isPracticalTask:() => false,
+  getSourceMetaById:() => ctx.testSource,
+  taskNumberLabel:task => task.taskNumber || '1',
   showMessage:message => {ctx.message = message;}
 });
-for (const name of ['getTaskKey', 'stars', 'difficultyFromCompletionPercent', 'taskDifficulty', 'taskMaxPoints', 'formatPoints',
+for (const name of ['courseTestVariant', 'getTaskKey', 'stars', 'difficultyFromCompletionPercent', 'taskDifficulty', 'taskMaxPoints', 'formatPoints',
   'pointsBadgeMarkup', 'completionTooltip', 'difficultyStarsMarkup', 'updateTaskDetails', 'updateSupportActionHighlights',
   'resetReviewButton', 'markForReview']) {
   const start = html.indexOf(`function ${name}(`);
@@ -206,6 +208,18 @@ assert.match(ctx.difficultyStarsMarkup(exam), /51% uczniów/);
 ctx.updateTaskDetails(exam, 30);
 assert(meta.innerHTML.includes('difficulty-stars'), 'Exam difficulty remains visible');
 assert.equal(exam.difficulty, 3, 'The underlying difficulty data is unchanged');
+
+for(const variant of ['A', 'B', 'C']){
+  ctx.testSource = {label:`Test sprawdzający z lekcji 1 - 6, wersja ${variant}.`};
+  ctx.updateTaskDetails({category:'kurs', activityType:'test', taskNumber:'1.2',
+    topic:'Powielony opis zagadnienia', maxPoints:2}, 15);
+  assert(meta.innerHTML.includes(`Test ${variant} · Zadanie 1.2`));
+  assert(!meta.innerHTML.includes('Powielony opis zagadnienia'), 'Test headers do not repeat the topic');
+  assert(meta.innerHTML.includes('points-badge'), 'Compact test headers retain the points');
+  assert.equal(testNotice.hidden, false);
+}
+ctx.updateTaskDetails(exam, 30);
+assert.equal(testNotice.hidden, true, 'Test-only notes disappear when returning to regular tasks');
 
 (async () => {
   ctx.resetReviewButton();

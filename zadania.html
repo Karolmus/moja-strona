@@ -342,7 +342,7 @@ body.admin-preview .level-btn {
 }
 
 .notebook-work-notice {
-    margin: 0 0 12px;
+    margin: 0 0 8px;
     color: var(--muted);
     font-size: 12px;
     line-height: 1.45;
@@ -747,15 +747,10 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .test-mode-notice {
-    margin: 0 0 10px;
-    padding: 10px 13px;
-    border: 1px solid #8bc8e2;
-    border-radius: 5.95px;
-    background: #eef8fc;
-    color: #214d63;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.45;
+    margin: 0 0 4px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.3;
 }
 
 .test-mode-notice[hidden] {
@@ -1144,6 +1139,16 @@ body.focus-mode .task-card {
     margin-bottom: 8px;
     position: relative;
     z-index: 8;
+}
+
+.meta-box.meta-test {
+    flex-direction: row;
+    align-items: center;
+}
+
+.meta-test .meta-right {
+    margin-left: auto;
+    flex: 0 0 auto;
 }
 
 .meta-podstawowa {
@@ -3762,6 +3767,16 @@ footer {
         padding: 4px;
     }
 
+    body.focus-mode {
+        min-height: 100dvh;
+        background: #ffffff;
+    }
+
+    body.focus-mode .container {
+        margin: 0 auto;
+        padding: 0;
+    }
+
     body.course-view .task-sidebar,
     body.focus-mode .task-sidebar,
     .mobile-course-footer {
@@ -3782,7 +3797,12 @@ footer {
 
     .test-mode-notice {
         margin-bottom: 4px;
-        padding: 4px 8px;
+        font-size: 10px;
+        line-height: 1.25;
+    }
+
+    .notebook-work-notice {
+        margin-bottom: 4px;
         font-size: 10px;
         line-height: 1.25;
     }
@@ -3848,10 +3868,9 @@ footer {
 
     .task-image {
         width: 100%;
-        max-height: 25dvh;
+        height: auto;
+        max-height: none;
         padding: 4px;
-        object-fit: contain;
-        object-position: left center;
     }
 
     .task-instruction {
@@ -4010,9 +4029,9 @@ footer {
 
             <p class="test-selection-empty" id="testSelectionEmpty" role="status" hidden>Wybierz test sprawdzający.</p>
 
-            <p class="test-mode-notice" id="testModeNotice" role="note" hidden>W trybie testu nie możesz korzystać ze wskazówek ani dodawać zadań do omówienia.</p>
+            <p class="test-mode-notice" id="testModeNotice" role="note" hidden>Test bez wskazówek, nagrań i omówień.</p>
 
-            <p class="notebook-work-notice" role="note">Rozwiąż zadanie w zeszycie. Na stronie wprowadź tylko końcową odpowiedź. Zapisuj obliczenia, zamiast rozwiązywać zadanie wyłącznie w pamięci.</p>
+            <p class="notebook-work-notice" role="note">Rozwiązuj w zeszycie. Tu podaj tylko odpowiedź.</p>
 
             <div class="source-load-status" id="sourceLoadStatus" role="status" aria-live="polite" hidden>
                 <p id="sourceLoadMessage"></p>
@@ -6565,9 +6584,9 @@ function renderSourceSelector(){
             ? sourceTitle
             : `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
         const unlockNotice = source.optional
-            ? "Test opcjonalny. Nie blokuje dostępu do kolejnych lekcji."
+            ? "Opcjonalny"
             : source.kind === "test" && source.unlocksNextSources > 0
-                ? "Ukończenie testu odblokuje kolejne materiały."
+                ? "Odblokowuje kolejne lekcje"
                 : "";
 
         let targetList = list;
@@ -9474,23 +9493,27 @@ function updateTaskDetails(task, total){
     const isPractical = task.coursePart === "zadania_praktyczne" || isPracticalTask(task);
     const isCheckpoint = task.theme === "checkpoint-blue";
     const difficultyMarkup = difficultyStarsMarkup(task);
+    const title = isTest
+        ? `${courseTestVariant(getSourceMetaById(task.sourceId) || task)} · Zadanie ${taskNumberLabel(task)}`
+        : taskLabel(task);
 
     taskCounter.innerText = `${currentIndex + 1} / ${total}`;
     metaBox.classList.toggle("meta-homework", isHomework && !isCheckpoint);
     metaBox.classList.toggle("meta-practical", isPractical && !isHomework && !isRevision);
     metaBox.classList.toggle("meta-revision", isRevision);
     metaBox.classList.toggle("meta-checkpoint", isCheckpoint);
+    metaBox.classList.toggle("meta-test", isTest);
 
     metaBox.innerHTML =
     `
     <div class="meta-section task-title ${isHomework ? "homework" : ""}">
-        ${taskLabel(task)}
+        ${title}
     </div>
 
     <div class="meta-right">
-        <div class="meta-section">
+        ${!isTest ? `<div class="meta-section">
             ${formatTagLabel(task.topic)}
-        </div>
+        </div>` : ""}
 
         ${pointsBadgeMarkup(task) ? `<div class="meta-section">${pointsBadgeMarkup(task)}</div>` : ""}
 
@@ -9524,6 +9547,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
         document.getElementById("metaBox").classList.remove("meta-practical");
         document.getElementById("metaBox").classList.remove("meta-revision");
         document.getElementById("metaBox").classList.remove("meta-checkpoint");
+        document.getElementById("metaBox").classList.remove("meta-test");
         document.getElementById("mcq").className = "mcq";
         document.getElementById("resultButtons").classList.remove("active");
         if(awaitingTest){

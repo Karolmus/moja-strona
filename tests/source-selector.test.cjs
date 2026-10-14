@@ -100,8 +100,12 @@ assert.equal(ctx.courseTestVariant({label:'Test sprawdzający, wersja C.', id:'z
 assert.equal(ctx.courseTestVariant({label:'Test sprawdzający, wersja D.', detail:'Test trudniejszy'}), 'Test D');
 assert(testButton.classes.has('test-source'));
 const unlockNotice = testButton.children.find(child => child.className === 'source-unlock-note');
-assert.equal(unlockNotice.innerText, 'Ukończenie testu odblokuje kolejne materiały.');
-assert.match(testButton.title, /Ukończenie testu odblokuje kolejne materiały\./);
+assert.equal(unlockNotice.innerText, 'Odblokowuje kolejne lekcje');
+assert.match(testButton.title, /Odblokowuje kolejne lekcje/);
+sources[1].optional = true;
+ctx.renderSourceSelector();
+const optionalButton = list.children[0].children[1].children[0];
+assert.equal(optionalButton.children.find(child => child.className === 'source-unlock-note').innerText, 'Opcjonalny');
 assert.match(html, /\.test-range-sources,\s*\.exam-year-sources \{[^}]*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
 assert.match(html, /\.test-source-list \.source-btn,\s*\.exam-source-list \.source-btn \{[^}]*min-height: 28px;/);
 assert(!html.includes('.test-source-list .source-btn.test-source {'), 'Tests use the same appearance and selected/completed states as exams');
