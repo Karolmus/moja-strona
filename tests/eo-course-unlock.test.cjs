@@ -156,8 +156,7 @@ assert.match(html, /getSavedProgressItem\(task\)\?\.result/,
   'Unlocking depends on progress confirmed by the server, not unsaved session state');
 assert.match(html, /await preloadUnlockedCourseSources\(\);/,
   'A returning student gets counts for newly unlocked lessons during startup');
-assert.match(html, /Odblokowuje kolejne lekcje/,
-  'Checkpoint tiles explain that completing the test unlocks more course material');
+assert(!html.includes('source-unlock-note'), 'Unlocking logic does not add text to the test tile');
 assert(!html.includes('EO_FIRST_CHECKPOINT_SOURCE'), 'Checkpoint gating is no longer tied to one EO test');
 
 console.log('PASS: completing each checkpoint unlocks only its following course stage');

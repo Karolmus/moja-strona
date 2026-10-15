@@ -66,7 +66,13 @@ assert.equal(list.scrollTop, 0);
 assert.equal(list.children.length, 12, 'Course buttons remain flat, without year groups');
 assert.equal(list.children[0].children[0].innerText, 'Lesson 0');
 assert(list.classes.has('course-source-list'));
-assert.match(html, /\.course-source-list \.source-btn\s*\{[^}]*min-height:\s*58px;/s);
+assert.match(html, /\.course-source-list \.source-btn\s*\{[^}]*min-height:\s*41px;/s);
+assert.match(html, /\.source-list\.course-source-list\s*\{[^}]*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\);/);
+assert.match(html, /\.tasks-layout:has\(\.course-source-list\)\s*\{[^}]*grid-template-columns: minmax\(0, 1fr\);/,
+  'Six lesson columns use the full page width instead of a narrow sidebar');
+const mobileStyle = html.slice(html.lastIndexOf('@media(max-width: 760px) {'));
+assert.match(mobileStyle, /\.source-list\.course-source-list\s*\{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
+assert.match(mobileStyle, /\.course-source-list \.source-btn\s*\{[^}]*min-height: 38px;/);
 assert(!list.classes.has('exam-source-list'));
 assert.equal(brand.hidden, false);
 assert.equal(title.innerText, 'Wybór lekcji');
@@ -99,13 +105,15 @@ assert.equal(ctx.courseTestVariant({label:'Test sprawdzający, wersja C.'}), 'Te
 assert.equal(ctx.courseTestVariant({label:'Test sprawdzający, wersja C.', id:'zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test.json'}), 'Test C');
 assert.equal(ctx.courseTestVariant({label:'Test sprawdzający, wersja D.', detail:'Test trudniejszy'}), 'Test D');
 assert(testButton.classes.has('test-source'));
-const unlockNotice = testButton.children.find(child => child.className === 'source-unlock-note');
-assert.equal(unlockNotice.innerText, 'Odblokowuje kolejne lekcje');
-assert.match(testButton.title, /Odblokowuje kolejne lekcje/);
+assert.deepEqual(testButton.children.map(child => child.innerText), ['Test A'],
+  'Test tiles contain only the name, without unlocking instructions');
+assert(!testButton.title.includes('Odblokowuje kolejne lekcje'));
 sources[1].optional = true;
 ctx.renderSourceSelector();
 const optionalButton = list.children[0].children[1].children[0];
-assert.equal(optionalButton.children.find(child => child.className === 'source-unlock-note').innerText, 'Opcjonalny');
+assert.deepEqual(optionalButton.children.map(child => child.innerText), ['Test A'],
+  'Optional tests also show only their name');
+assert(!html.includes('source-unlock-note'), 'No extra notice is appended to test names');
 assert.match(html, /\.test-range-sources,\s*\.exam-year-sources \{[^}]*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
 assert.match(html, /\.test-source-list \.source-btn,\s*\.exam-source-list \.source-btn \{[^}]*min-height: 28px;/);
 assert(!html.includes('.test-source-list .source-btn.test-source {'), 'Tests use the same appearance and selected/completed states as exams');

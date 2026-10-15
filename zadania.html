@@ -335,7 +335,7 @@ body.admin-preview .level-btn {
 }
 
 .source-list.course-source-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 3px;
     max-height: none;
     overflow-y: visible;
@@ -501,10 +501,10 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .course-source-list .source-btn {
-    min-height: 58px;
+    min-height: 41px;
     align-content: center;
-    gap: 2px;
-    padding: 5px 7px;
+    gap: 0;
+    padding: 2px 5px;
     text-align: center;
 }
 
@@ -528,7 +528,7 @@ body.guest-exam-mode .source-summary-row {
 
 .course-source-list .source-btn span {
     font-size: 12px;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .source-btn small {
@@ -554,8 +554,8 @@ body.guest-exam-mode .source-summary-row {
     min-width: 0;
     white-space: normal;
     overflow-wrap: anywhere;
-    font-size: 11px;
-    line-height: 1.25;
+    font-size: 10px;
+    line-height: 1.1;
 }
 
 .course-source-list .source-btn .source-subtitle {
@@ -947,10 +947,6 @@ body.focus-mode .task-card {
     cursor: pointer;
 }
 
-.tile.review-requested {
-    --tile-border: #d6ba6f;
-}
-
 .nav-review-mark {
     box-sizing: border-box;
     position: absolute;
@@ -958,9 +954,9 @@ body.focus-mode .task-card {
     right: -5px;
     width: 14px;
     height: 14px;
-    border: 1px solid #d6ba6f;
+    border: 1px solid #d78335;
     border-radius: 3.4px;
-    background: #fff6d5;
+    background: #ffe1c2;
     pointer-events: none;
 }
 
@@ -968,7 +964,7 @@ body.focus-mode .task-card {
     content: "";
     position: absolute;
     inset: 1px;
-    background: #8a6413;
+    background: #994614;
     -webkit-mask: url("static/icons/message-circle.svg") center / contain no-repeat;
     mask: url("static/icons/message-circle.svg") center / contain no-repeat;
 }
@@ -1051,6 +1047,14 @@ body.focus-mode .task-card {
 .tile.video {
     --tile-bg: #f4f0f5;
     --status-color: #633857;
+}
+
+.tile.review-requested {
+    --tile-border: #d78335;
+}
+
+.tile.review-requested:not(.good, .medium, .bad, .skipped, .video, .pending) {
+    --tile-bg: #ffe1c2;
 }
 
 .tile.video::after {
@@ -3190,6 +3194,58 @@ footer {
     margin-top: 40px;
 }
 
+@media(min-width: 761px) {
+    .tasks-layout:has(.course-source-list) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tasks-layout:has(.course-source-list) .task-sidebar {
+        position: static;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: center;
+    }
+
+    .task-sidebar:has(.course-source-list) > :is(#categorySection, .course-test-notice, .selector-grid) {
+        grid-column: 1 / -1;
+    }
+
+    .task-sidebar:has(.course-source-list) > #formulaSection {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    .task-sidebar:has(.course-source-list) > .source-summary-row {
+        grid-column: 2;
+    }
+
+    .task-sidebar:has(.course-source-list) > .exam-tools-row {
+        display: none;
+    }
+
+    .task-sidebar:has(.course-source-list) > .course-brand {
+        grid-column: 3;
+        display: flex;
+        gap: 8px;
+        padding: 0;
+    }
+
+    .task-sidebar:has(.course-source-list) .course-brand-media {
+        grid-template-columns: repeat(2, 42px);
+        gap: 4px;
+    }
+
+    .task-sidebar:has(.course-source-list) .course-brand-tile {
+        width: 42px;
+        height: 42px;
+    }
+
+    .task-sidebar:has(.course-source-list) .course-brand p {
+        max-width: 140px;
+        font-size: 10px;
+    }
+}
+
 @media(max-width: 1100px) {
     .tasks-layout {
         grid-template-columns: 1fr;
@@ -3197,6 +3253,10 @@ footer {
 
     .task-sidebar {
         position: static;
+    }
+
+    .source-list.course-source-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .source-list.test-source-list,
@@ -3333,17 +3393,18 @@ footer {
     }
 
     .course-source-list .source-btn {
-        min-height: 54px;
-        padding: 5px;
+        min-height: 38px;
+        padding: 2px 4px;
     }
 
     .course-source-list .source-btn span {
-        font-size: 12px;
-        line-height: 1.2;
+        font-size: 11px;
+        line-height: 12px;
     }
 
     .course-source-list .source-btn small {
         display: block;
+        line-height: 12px;
     }
 
     .exam-summary-overlay,
@@ -5183,6 +5244,7 @@ async function bootStudentPanel(){
 
         if(isLoggedInStudent){
             loadStudentReviewTasks().then(() => {
+                renderSourceSelector();
                 refreshTaskNavigator();
             }).catch(error => {
                 console.warn("Nie udało się pobrać zgłoszeń do omówienia.", error);
@@ -6583,12 +6645,6 @@ function renderSourceSelector(){
         const titleDetail = isCourseCategory()
             ? sourceTitle
             : `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
-        const unlockNotice = source.optional
-            ? "Opcjonalny"
-            : source.kind === "test" && source.unlocksNextSources > 0
-                ? "Odblokowuje kolejne lekcje"
-                : "";
-
         let targetList = list;
         if(testRange){
             if(!testLists.has(testRange)){
@@ -6636,8 +6692,7 @@ function renderSourceSelector(){
             titleDetail,
             isSourceComplete(source),
             selectedCategory === "kurs" ? source.detail : "",
-            source.kind,
-            unlockNotice
+            source.kind
         );
     });
 
@@ -6692,7 +6747,7 @@ function getExamSourceTileContent(detail){
     };
 }
 
-function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = "", sourceKind = "", unlockNotice = ""){
+function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = "", sourceKind = ""){
     const button = document.createElement("button");
     const name = document.createElement("span");
     const meta = document.createElement("small");
@@ -6703,7 +6758,7 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     if(complete){
         button.classList.add("complete");
     }
-    button.title = [label, titleDetail, unlockNotice].filter(Boolean).join(" • ");
+    button.title = [label, titleDetail].filter(Boolean).join(" • ");
     button.setAttribute("aria-label", button.title);
     button.setAttribute("aria-pressed", String(active));
     button.onclick = () => setSource(sourceId);
@@ -6720,12 +6775,6 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     }
     if(detail){
         button.appendChild(meta);
-    }
-    if(unlockNotice){
-        const notice = document.createElement("small");
-        notice.className = "source-unlock-note";
-        notice.innerText = unlockNotice;
-        button.appendChild(notice);
     }
     list.appendChild(button);
 }
@@ -6747,7 +6796,10 @@ function getSourceCompletionTasks(source){
 function isSourceComplete(source){
     const completionTasks = getSourceCompletionTasks(source);
 
-    return completionTasks.length > 0 && completionTasks.every(task => getSavedResult(task));
+    return completionTasks.length > 0 && completionTasks.every(task =>
+        getSavedResult(task) || (source.category === "kurs" && source.kind !== "test" &&
+            task.activityType !== "test" && reviewTaskKeys.has(getTaskKey(task)))
+    );
 }
 
 function getCoursePartTasks(part){
@@ -12034,6 +12086,7 @@ async function markForReview(){
         pendingReviewRequests.add(request);
         const data = await request;
         reviewTaskKeys.add(getTaskKey(task));
+        renderSourceSelector();
         renderTaskNavigator();
 
         if(currentTask !== task) return;

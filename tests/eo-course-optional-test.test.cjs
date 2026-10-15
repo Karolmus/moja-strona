@@ -69,6 +69,6 @@ for (const [text, name] of [[profileHtml, 'PROFILE_SOURCES'], [adminHtml, 'ADMIN
 
 assert.match(html, /getCheckpointScorePercent\(prerequisite\) > source\.minScorePercent/);
 assert.match(html, /item\.kind === "test" && !item\.optional/);
-assert.match(html, /const unlockNotice = source\.optional\s*\? "Opcjonalny"/);
+assert(!html.includes('source-unlock-note'), 'Optional status does not add text to the test tile');
 
 console.log('PASS: EO test C unlocks only above 90% and remains optional');

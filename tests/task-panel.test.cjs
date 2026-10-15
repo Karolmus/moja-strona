@@ -21,6 +21,7 @@ const ctx = vm.createContext({
   pendingReviewRequests:new Set(), reviewTaskKeys:new Set(),
   getSavedResult:() => 'bad',
   getSavedProgressItem:() => null,
+  renderSourceSelector:() => {ctx.sourceRenders = (ctx.sourceRenders || 0) + 1;},
   renderTaskNavigator:() => {ctx.navigatorRenders = (ctx.navigatorRenders || 0) + 1;},
   taskLabel:() => 'Zadanie', formatTagLabel:text => text, isPracticalTask:() => false,
   getSourceMetaById:() => ctx.testSource,
@@ -117,6 +118,11 @@ const reviewMarkStyle = html.match(/\.nav-review-mark \{([^}]+)\}/)[1];
 assert.match(reviewMarkStyle, /right: -5px;/, 'The discussion bubble sits on the right');
 assert(!reviewMarkStyle.includes('left:'), 'No leftover left-side positioning');
 assert.match(reviewMarkStyle, /box-sizing: border-box;/);
+assert.match(reviewMarkStyle, /background: #ffe1c2;/);
+assert.match(html, /\.nav-hint-mark \{[^}]*background: #fff4e6;/);
+assert(contrast('#ffe1c2', '#994614') >= 4.5, 'Discussion badges remain readable');
+assert.match(html, /\.tile\.review-requested:not\(\.good, \.medium, \.bad, \.skipped, \.video, \.pending\) \{\s*--tile-bg: #ffe1c2;/,
+  'Review-only tasks have a distinct orange tint without overriding an existing result');
 assert.match(html, /\.tile\.review-requested:is\(\.good, \.medium, \.bad, \.skipped\)::before\s*\{\s*right: 11px;/);
 assert.match(html, /\.tile\.review-requested:is\(\.good, \.medium, \.bad, \.skipped\)::after\s*\{\s*right: 13px;/,
   'Result icons stay centered while leaving space for a separate discussion bubble');
@@ -232,12 +238,14 @@ assert.equal(testNotice.hidden, true, 'Test-only notes disappear when returning 
   assert.match(ctx.message, /Nie udało się/);
   assert.equal(ctx.reviewTaskKeys.size, 0, 'Failed requests do not count as discussion requests');
   assert.equal(ctx.navigatorRenders || 0, 0, 'Failed requests do not add a marker');
+  assert.equal(ctx.sourceRenders || 0, 0, 'Failed requests do not mark a lesson complete');
   ctx.apiFetch = async () => ({created:true});
   await ctx.markForReview();
   assert.equal(button.innerText, 'Dodano do omówienia');
   assert.equal(button.disabled, true);
   assert.equal(ctx.reviewTaskKeys.size, 1);
   assert.equal(ctx.navigatorRenders, 1, 'Update the task marker immediately after successful submission');
+  assert.equal(ctx.sourceRenders, 1, 'Update lesson completion immediately after a discussion request');
   ctx.resetReviewButton();
   assert.equal(button.innerText, reviewLabel, 'A new task resets the label');
   ctx.apiFetch = async () => ({created:false});
@@ -258,6 +266,9 @@ assert.equal(testNotice.hidden, true, 'Test-only notes disappear when returning 
   assert.equal(button.disabled, false);
   assert.equal(ctx.pendingReviewRequests.size, 0);
   assert.equal(ctx.navigatorRenders, 3, 'A delayed success still updates its original task marker');
+  assert.equal(ctx.sourceRenders, 3, 'A delayed success also updates its original lesson completion');
+  assert.match(html, /loadStudentReviewTasks\(\)\.then\(\(\) => \{\s*renderSourceSelector\(\);\s*refreshTaskNavigator\(\);/,
+    'Saved review-only completion is restored after reloading the page');
   assert(ctx.reviewTaskKeys.has('lesson:zp1.png'));
   assert(!ctx.reviewTaskKeys.has('lesson:zp2.png'));
   console.log('PASS: course-only difficulty hiding, discussion request races, compact materials, answer order, accessible task statuses and logo caption');
