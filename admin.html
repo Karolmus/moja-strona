@@ -1869,10 +1869,10 @@ th {
 .analytics-chart {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(14px, 1fr);
+    grid-auto-columns: minmax(36px, 1fr);
     align-items: end;
     gap: 3px;
-    min-width: 560px;
+    min-width: 100%;
     height: 180px;
     padding-top: 8px;
     border-bottom: 1px solid var(--line);
@@ -1890,12 +1890,35 @@ th {
     display: flex;
     align-items: end;
     justify-content: center;
-    gap: 2px;
+    gap: 3px;
     height: 148px;
+    padding-top: 22px;
+}
+
+.analytics-series {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.analytics-bar-count {
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 
 .analytics-bar {
-    width: min(8px, 42%);
+    width: min(10px, 100%);
+    height: 100%;
     min-height: 0;
     border-radius: 3px 3px 0 0;
     background: #3b82b8;
@@ -1908,7 +1931,7 @@ th {
 .analytics-day-label {
     min-height: 16px;
     color: var(--muted);
-    font-size: 9px;
+    font-size: 11px;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
@@ -2575,6 +2598,7 @@ const ADMIN_TASK_SOURCES = [
     { path: "zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 5", detail: "Zadania dowodowe" },
     { path: "zadania/kurs/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 6", detail: "Procenty i lokaty" },
     { path: "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json", category: "kurs", level: "matura_podstawowa", label: "Test sprawdzający z tematów 1-6, wersja A.", detail: "60 minut", kind: "test" },
+    { path: "zadania/kurs/mp/lekcja_7/lekcja_7_funkcje.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 7", detail: "Funkcje" },
     { path: "zadania/kurs/mr/zadania_kurs_mr.json", category: "kurs", level: "matura_rozszerzona", label: "Kurs", detail: "Matura rozszerzona" },
     { path: "zadania/kurs/eo/zadania_kurs_eo.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Kurs", detail: "Egzamin ósmoklasisty" },
     { path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 1", detail: "Odczytywanie danych i procenty" },
@@ -3430,15 +3454,15 @@ function getSortedStudents(){
 
             if(activityCompare) return activityCompare;
 
-            return String(a.display_name || "").localeCompare(String(b.display_name || ""), "pl");
+            return studentDisplayName(a).localeCompare(studentDisplayName(b), "pl");
         }
 
         if(currentStudentSort === "name_desc"){
-            return String(b.display_name || "").localeCompare(String(a.display_name || ""), "pl");
+            return studentDisplayName(b).localeCompare(studentDisplayName(a), "pl");
         }
 
         if(currentStudentSort === "name_asc"){
-            return String(a.display_name || "").localeCompare(String(b.display_name || ""), "pl");
+            return studentDisplayName(a).localeCompare(studentDisplayName(b), "pl");
         }
 
         if(currentStudentSort === "level_asc"){
@@ -3447,7 +3471,7 @@ function getSortedStudents(){
 
             if(levelCompare) return levelCompare;
 
-            return String(a.display_name || "").localeCompare(String(b.display_name || ""), "pl");
+            return studentDisplayName(a).localeCompare(studentDisplayName(b), "pl");
         }
 
         if(currentStudentSort === "created_asc"){
@@ -3489,6 +3513,14 @@ async function setFullCourseAccess(student, input){
 
 function isTestStudent(student){
     return /^test-(eo|mp|mr)-(domowe|pelny)$/.test(String(student.email || "").trim().toLowerCase());
+}
+
+function studentDisplayName(student){
+    const match = /^test-(eo|mp|mr)-(domowe|pelny)$/.exec(String(student.email || "").trim().toLowerCase());
+    if(!match) return student.display_name || student.email || "";
+
+    const levels = { eo: "egzamin_osmoklasisty", mp: "matura_podstawowa", mr: "matura_rozszerzona" };
+    return `${levelLabels[levels[match[1]]]} - ${match[2] === "pelny" ? "pełny" : "tylko praca domowa"}`;
 }
 
 function getStudentGroups(sortedStudents){
@@ -3573,7 +3605,7 @@ function renderStudents(){
         toggle.setAttribute("aria-expanded", String(open));
         toggle.setAttribute("aria-controls", `student-details-${student.id}`);
         name.className = "student-summary-name";
-        name.textContent = student.display_name;
+        name.textContent = studentDisplayName(student);
         level.className = "student-summary-level";
         level.textContent = shortLevels[student.level] || levelLabels[student.level] || "-";
         level.title = levelLabels[student.level] || student.level || "";
@@ -3875,6 +3907,49 @@ function updateAnalyticsTodayBadge(data){
     analyticsTodayBadge.setAttribute("aria-label", label);
 }
 
+function renderAnalyticsChart(daily){
+    const count = value => Number.isFinite(Number(value)) ? Math.max(0, Math.floor(Number(value))) : 0;
+    const days = daily.map(item => ({ day: item.day, views: count(item.views), visitors: count(item.visitors) }));
+    const maximum = Math.max(1, ...days.flatMap(item => [item.views, item.visitors]));
+    const digits = Math.max(1, ...days.flatMap(item => [item.views, item.visitors])
+        .map(value => formatAnalyticsNumber(value).length));
+    analyticsChart.replaceChildren();
+    analyticsChart.style.gridAutoColumns = `minmax(${Math.max(36, digits * 14 + 10)}px, 1fr)`;
+
+    days.forEach(item => {
+        const day = document.createElement("div");
+        const bars = document.createElement("div");
+        const label = document.createElement("span");
+        const date = String(item.day || "");
+        const details = `${date}: ${formatAnalyticsNumber(item.views)} odsłon, ${formatAnalyticsNumber(item.visitors)} użytkowników`;
+        day.className = "analytics-day";
+        day.title = details;
+        day.setAttribute("role", "img");
+        day.setAttribute("aria-label", details);
+        bars.className = "analytics-bars";
+        bars.setAttribute("aria-hidden", "true");
+        label.className = "analytics-day-label";
+        label.innerText = date.length === 10 ? `${date.slice(8)}.${date.slice(5, 7)}` : date;
+        label.setAttribute("aria-hidden", "true");
+
+        ["views", "visitors"].forEach(key => {
+            const series = document.createElement("div");
+            const bar = document.createElement("span");
+            const total = document.createElement("span");
+            series.className = "analytics-series";
+            series.style.height = `${item[key] / maximum * 100}%`;
+            bar.className = `analytics-bar${key === "visitors" ? " visitors" : ""}`;
+            total.className = "analytics-bar-count";
+            total.innerText = formatAnalyticsNumber(item[key]);
+            series.append(bar, total);
+            bars.appendChild(series);
+        });
+
+        day.append(bars, label);
+        analyticsChart.appendChild(day);
+    });
+}
+
 function renderAnalytics(data){
     const overview = data.overview || {};
     const daily = Array.isArray(data.daily) ? data.daily : [];
@@ -3889,36 +3964,7 @@ function renderAnalytics(data){
     analyticsVisitors.innerText = formatAnalyticsNumber(overview.visitors);
     analyticsSessions.innerText = formatAnalyticsNumber(overview.sessions);
     analyticsViewsPerSession.innerText = formatAnalyticsNumber(overview.views_per_session, 1);
-    analyticsChart.innerHTML = "";
-
-    const maximum = Math.max(...daily.map(item => Number(item.views || 0)), 1);
-    const labelStep = Math.max(1, Math.ceil(daily.length / 8));
-
-    daily.forEach((item, index) => {
-        const day = document.createElement("div");
-        const bars = document.createElement("div");
-        const views = document.createElement("span");
-        const visitors = document.createElement("span");
-        const label = document.createElement("span");
-        const dayLabel = String(item.day || "").slice(5);
-        const details = `${item.day}: ${formatAnalyticsNumber(item.views)} odsłon, ${formatAnalyticsNumber(item.visitors)} użytkowników`;
-
-        day.className = "analytics-day";
-        bars.className = "analytics-bars";
-        views.className = "analytics-bar";
-        visitors.className = "analytics-bar visitors";
-        label.className = "analytics-day-label";
-        day.title = details;
-        views.style.height = `${Number(item.views || 0) / maximum * 100}%`;
-        visitors.style.height = `${Number(item.visitors || 0) / maximum * 100}%`;
-        label.innerText = index % labelStep === 0 || index === daily.length - 1 ? dayLabel : "";
-
-        bars.appendChild(views);
-        bars.appendChild(visitors);
-        day.appendChild(bars);
-        day.appendChild(label);
-        analyticsChart.appendChild(day);
-    });
+    renderAnalyticsChart(daily);
 
     analyticsPages.innerHTML = "";
 

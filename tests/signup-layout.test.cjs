@@ -20,6 +20,11 @@ assert.match(html, /<dt>Liczba zajęć w tygodniu:<\/dt><dd id="signupSummaryFre
 assert.match(html, /document\.getElementById\("signupSummaryFrequency"\)\.textContent = frequency/);
 assert.match(html, /`Liczba zajęć w tygodniu: \$\{sessionsPerWeek\}`/);
 assert(!html.includes('value="1 zajęcie tygodniowo"'));
+assert.match(html, /<button class="signup-submit" type="submit">Wyślij zgłoszenie<\/button>/);
+assert.match(html, /\.contact-form \.signup-submit \{[^}]*width: min\(100%, 340px\);[^}]*min-height: 56px;[^}]*background: #237a46;[^}]*font-size: 18px;/);
+assert.match(html, /\.contact-form \.signup-submit:focus-visible \{[^}]*outline: 3px solid #1d643a;/);
+assert.match(html, /\.contact-form \.signup-submit:disabled \{[^}]*cursor: wait;/);
+assert.match(html, /\.contact-form \.signup-submit\{\s*width:100%;/);
 for (const id of ['schedule', 'scheduleMobile', 'contactForm', 'signupConfirmation']) {
   assert(html.includes(`id="${id}"`), id);
 }

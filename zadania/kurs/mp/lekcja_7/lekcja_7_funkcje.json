@@ -1,0 +1,2032 @@
+[
+  {
+    "file": "1.1.webp",
+    "taskNumber": "1.1",
+    "title": "Lekcja 7 - zadanie 1.1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "1.2.webp",
+    "taskNumber": "1.2",
+    "title": "Lekcja 7 - zadanie 1.2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "1.3.webp",
+    "taskNumber": "1.3",
+    "title": "Lekcja 7 - zadanie 1.3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "1.4.webp",
+    "taskNumber": "1.4",
+    "title": "Lekcja 7 - zadanie 1.4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "1.5.webp",
+    "taskNumber": "1.5",
+    "title": "Lekcja 7 - zadanie 1.5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "równanie"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Porównaj wykres funkcji z poziomą prostą y = 1/2.",
+    "contextFile": "info_1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "1.6.webp",
+    "taskNumber": "1.6",
+    "title": "Lekcja 7 - zadanie 1.6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "monotoniczność"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, na którym przedziale wykres biegnie w górę.",
+    "contextFile": "info_1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "2.1.webp",
+    "taskNumber": "2.1",
+    "title": "Lekcja 7 - zadanie 2.1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "2.2.webp",
+    "taskNumber": "2.2",
+    "title": "Lekcja 7 - zadanie 2.2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "2.3.webp",
+    "taskNumber": "2.3",
+    "title": "Lekcja 7 - zadanie 2.3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "2.4.webp",
+    "taskNumber": "2.4",
+    "title": "Lekcja 7 - zadanie 2.4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "2.5.webp",
+    "taskNumber": "2.5",
+    "title": "Lekcja 7 - zadanie 2.5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "równanie"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przyrównaj każdy wzór składowy do x/2 + 1.",
+    "contextFile": "info_2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "2.6.webp",
+    "taskNumber": "2.6",
+    "title": "Lekcja 7 - zadanie 2.6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "nierówność"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Zaznacz fragmenty wykresu leżące na wysokości 1 lub wyżej.",
+    "contextFile": "info_2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "3.1.webp",
+    "taskNumber": "3.1",
+    "title": "Lekcja 7 - zadanie 3.1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "3.2.webp",
+    "taskNumber": "3.2",
+    "title": "Lekcja 7 - zadanie 3.2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "3.3.webp",
+    "taskNumber": "3.3",
+    "title": "Lekcja 7 - zadanie 3.3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "3.4.webp",
+    "taskNumber": "3.4",
+    "title": "Lekcja 7 - zadanie 3.4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "3.5.webp",
+    "taskNumber": "3.5",
+    "title": "Lekcja 7 - zadanie 3.5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Miejsca zerowe funkcji g odpowiadają punktom, w których f przyjmuje wartość 1.",
+    "contextFile": "info_3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "3.6.webp",
+    "taskNumber": "3.6",
+    "title": "Lekcja 7 - zadanie 3.6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości funkcji w osobnych punktach dla x = 3 i x = 5.",
+    "contextFile": "info_3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "4.1.webp",
+    "taskNumber": "4.1",
+    "title": "Lekcja 7 - zadanie 4.1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_4.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "4.2.webp",
+    "taskNumber": "4.2",
+    "title": "Lekcja 7 - zadanie 4.2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_4.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "4.3.webp",
+    "taskNumber": "4.3",
+    "title": "Lekcja 7 - zadanie 4.3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_4.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "4.4.webp",
+    "taskNumber": "4.4",
+    "title": "Lekcja 7 - zadanie 4.4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_4.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "4.5.webp",
+    "taskNumber": "4.5",
+    "title": "Lekcja 7 - zadanie 4.5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "punkt przecięcia"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Przyrównaj każdy wzór składowy do 2x + 3.",
+    "contextFile": "info_4.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "4.6.webp",
+    "taskNumber": "4.6",
+    "title": "Lekcja 7 - zadanie 4.6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "monotoniczność"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź znak współczynnika przy x w każdym wzorze składowym.",
+    "contextFile": "info_4.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "5.1.webp",
+    "taskNumber": "5.1",
+    "title": "Lekcja 7 - zadanie 5.1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_5.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "5.2.webp",
+    "taskNumber": "5.2",
+    "title": "Lekcja 7 - zadanie 5.2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_5.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "5.3.webp",
+    "taskNumber": "5.3",
+    "title": "Lekcja 7 - zadanie 5.3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_5.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "5.4.webp",
+    "taskNumber": "5.4",
+    "title": "Lekcja 7 - zadanie 5.4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_5.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "5.5.webp",
+    "taskNumber": "5.5",
+    "title": "Lekcja 7 - zadanie 5.5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Miejsca zerowe funkcji g odpowiadają punktom, w których f przyjmuje wartość 1.",
+    "contextFile": "info_5.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "5.6.webp",
+    "taskNumber": "5.6",
+    "title": "Lekcja 7 - zadanie 5.6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Wybierz właściwy wzór osobno dla argumentów -1 i 3.",
+    "contextFile": "info_5.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "6.webp",
+    "taskNumber": "6",
+    "title": "Lekcja 7 - zadanie 6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "przesunięcie wykresu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przesunięcie o 3 w lewo oznacza zastąpienie x przez x + 3.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "7.webp",
+    "taskNumber": "7",
+    "title": "Lekcja 7 - zadanie 7",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "odbicie względem Oy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Po odbiciu względem Oy wartość g(x) jest równa f(-x).",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "8.webp",
+    "taskNumber": "8",
+    "title": "Lekcja 7 - zadanie 8",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "odbicie względem Ox"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odbicie względem Ox zmienia znak całej wartości funkcji.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "9.webp",
+    "taskNumber": "9",
+    "title": "Lekcja 7 - zadanie 9",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "odbicie względem Oy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odbicie względem Oy oznacza zastąpienie x przez -x.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "10.webp",
+    "taskNumber": "10",
+    "title": "Lekcja 7 - zadanie 10",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "przekształcenia wykresu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw zmień znak całego wzoru funkcji f.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "11.webp",
+    "taskNumber": "11",
+    "title": "Lekcja 7 - zadanie 11",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Zacznij od przesunięcia obu końców przedziału o 5 w lewo.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "12.webp",
+    "taskNumber": "12",
+    "title": "Lekcja 7 - zadanie 12",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "funkcja w tabeli"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Porównuj wartości funkcji w kolejności rosnących argumentów.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "13.webp",
+    "taskNumber": "13",
+    "title": "Lekcja 7 - zadanie 13",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "funkcja w tabeli"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw uporządkuj argumenty od najmniejszego do największego.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "14.1.webp",
+    "taskNumber": "14.1",
+    "title": "Lekcja 7 - zadanie 14.1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "14.2.webp",
+    "taskNumber": "14.2",
+    "title": "Lekcja 7 - zadanie 14.2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "14.3.webp",
+    "taskNumber": "14.3",
+    "title": "Lekcja 7 - zadanie 14.3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "14.4.webp",
+    "taskNumber": "14.4",
+    "title": "Lekcja 7 - zadanie 14.4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Dla każdego argumentu wybierz właściwy wzór składowy.",
+    "contextFile": "info_14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "14.5.webp",
+    "taskNumber": "14.5",
+    "title": "Lekcja 7 - zadanie 14.5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "nierówność"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które fragmenty wykresu leżą powyżej osi Ox.",
+    "contextFile": "info_14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "14.6.webp",
+    "taskNumber": "14.6",
+    "title": "Lekcja 7 - zadanie 14.6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "monotoniczność"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Po zmianie znaku wartości funkcji przedziały wzrostu stają się przedziałami spadku.",
+    "contextFile": "info_14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "15.webp",
+    "taskNumber": "15",
+    "title": "Lekcja 7 - zadanie 15",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "definicja funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, czy temu samemu argumentowi przypisano dwie różne wartości.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd1.1.webp",
+    "taskNumber": "1.1",
+    "title": "Lekcja 7 - zadanie domowe 1.1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_zd1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd1.2.webp",
+    "taskNumber": "1.2",
+    "title": "Lekcja 7 - zadanie domowe 1.2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_zd1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd1.3.webp",
+    "taskNumber": "1.3",
+    "title": "Lekcja 7 - zadanie domowe 1.3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_zd1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd1.4.webp",
+    "taskNumber": "1.4",
+    "title": "Lekcja 7 - zadanie domowe 1.4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_zd1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd1.5.webp",
+    "taskNumber": "1.5",
+    "title": "Lekcja 7 - zadanie domowe 1.5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "równanie"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przyrównaj każdy wzór składowy do 1/2.",
+    "contextFile": "info_zd1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd1.6.webp",
+    "taskNumber": "1.6",
+    "title": "Lekcja 7 - zadanie domowe 1.6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "monotoniczność"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, na którym przedziale wykres biegnie w górę.",
+    "contextFile": "info_zd1.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd2.1.webp",
+    "taskNumber": "2.1",
+    "title": "Lekcja 7 - zadanie domowe 2.1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_zd2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd2.2.webp",
+    "taskNumber": "2.2",
+    "title": "Lekcja 7 - zadanie domowe 2.2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_zd2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd2.3.webp",
+    "taskNumber": "2.3",
+    "title": "Lekcja 7 - zadanie domowe 2.3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_zd2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd2.4.webp",
+    "taskNumber": "2.4",
+    "title": "Lekcja 7 - zadanie domowe 2.4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_zd2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd2.5.webp",
+    "taskNumber": "2.5",
+    "title": "Lekcja 7 - zadanie domowe 2.5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "równanie"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przyrównaj każdy wzór składowy do x + 1.",
+    "contextFile": "info_zd2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd2.6.webp",
+    "taskNumber": "2.6",
+    "title": "Lekcja 7 - zadanie domowe 2.6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "nierówność"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Zaznacz fragmenty wykresu leżące na wysokości 1 lub wyżej.",
+    "contextFile": "info_zd2.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd3.1.webp",
+    "taskNumber": "3.1",
+    "title": "Lekcja 7 - zadanie domowe 3.1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_zd3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd3.2.webp",
+    "taskNumber": "3.2",
+    "title": "Lekcja 7 - zadanie domowe 3.2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_zd3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd3.3.webp",
+    "taskNumber": "3.3",
+    "title": "Lekcja 7 - zadanie domowe 3.3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_zd3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd3.4.webp",
+    "taskNumber": "3.4",
+    "title": "Lekcja 7 - zadanie domowe 3.4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Poprowadź poziomą prostą na wysokości podanej w poleceniu.",
+    "contextFile": "info_zd3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd3.5.webp",
+    "taskNumber": "3.5",
+    "title": "Lekcja 7 - zadanie domowe 3.5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Miejsca zerowe funkcji g odpowiadają punktom, w których f przyjmuje wartość -1.",
+    "contextFile": "info_zd3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd3.6.webp",
+    "taskNumber": "3.6",
+    "title": "Lekcja 7 - zadanie domowe 3.6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości w osobnych punktach dla x = 1 i x = 5.",
+    "contextFile": "info_zd3.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd4.webp",
+    "taskNumber": "4",
+    "title": "Lekcja 7 - zadanie domowe 4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "przesunięcie wykresu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przesunięcie o 2 w prawo oznacza zastąpienie x przez x - 2.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd5.webp",
+    "taskNumber": "5",
+    "title": "Lekcja 7 - zadanie domowe 5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "odbicie względem Oy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Po odbiciu względem Oy wartość g(x) jest równa f(-x).",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd6.webp",
+    "taskNumber": "6",
+    "title": "Lekcja 7 - zadanie domowe 6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "odbicie względem Ox"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odbicie względem Ox zmienia znak całej wartości funkcji.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd7.webp",
+    "taskNumber": "7",
+    "title": "Lekcja 7 - zadanie domowe 7",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "odbicie względem Oy"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Odbicie względem Oy oznacza zastąpienie x przez -x.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd8.webp",
+    "taskNumber": "8",
+    "title": "Lekcja 7 - zadanie domowe 8",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "przekształcenia wykresu"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw zmień znak całego wzoru funkcji f.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd9.webp",
+    "taskNumber": "9",
+    "title": "Lekcja 7 - zadanie domowe 9",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Zacznij od przesunięcia obu końców przedziału o 4 w prawo.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd10.webp",
+    "taskNumber": "10",
+    "title": "Lekcja 7 - zadanie domowe 10",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "funkcja w tabeli"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Porównuj wartości funkcji w kolejności rosnących argumentów.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "zd11.webp",
+    "taskNumber": "11",
+    "title": "Lekcja 7 - zadanie domowe 11",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "funkcja wymierna"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Zacznij od wykluczenia argumentu zerującego mianownik.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Argument wykluczony z dziedziny",
+        "prompt": "Wpisz liczbę wykluczoną z dziedziny funkcji.",
+        "answer": "3"
+      },
+      {
+        "label": "Miejsce zerowe",
+        "prompt": "Wpisz miejsce zerowe funkcji.",
+        "answer": "-3"
+      },
+      {
+        "label": "f(1)",
+        "prompt": "Wpisz obliczoną wartość f(1).",
+        "answer": "4"
+      }
+    ]
+  },
+  {
+    "file": "zd12.webp",
+    "taskNumber": "12",
+    "title": "Lekcja 7 - zadanie domowe 12",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "równanie"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przyrównaj każdy wzór składowy do 2.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "x",
+        "prompt": "Podaj rozwiązanie równania.",
+        "control": "equation",
+        "answer": "2"
+      }
+    ]
+  },
+  {
+    "file": "zd13.webp",
+    "taskNumber": "13",
+    "title": "Lekcja 7 - zadanie domowe 13",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "funkcja w tabeli"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw uporządkuj argumenty od najmniejszego do największego.",
+    "type": "true_false",
+    "statements": [
+      "Stwierdzenie 1",
+      "Stwierdzenie 2"
+    ],
+    "answer": [
+      "P",
+      "F"
+    ]
+  },
+  {
+    "file": "zd14.1.webp",
+    "taskNumber": "14.1",
+    "title": "Lekcja 7 - zadanie domowe 14.1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "dziedzina"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Sprawdź, które argumenty należą do wykresu, uwzględniając puste i pełne kropki.",
+    "contextFile": "info_zd14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zd14.2.webp",
+    "taskNumber": "14.2",
+    "title": "Lekcja 7 - zadanie domowe 14.2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "zbiór wartości"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Odczytaj wartości na osi Oy, uwzględniając końce odcinków i osobne punkty.",
+    "contextFile": "info_zd14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd14.3.webp",
+    "taskNumber": "14.3",
+    "title": "Lekcja 7 - zadanie domowe 14.3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "miejsca zerowe"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Sprawdź, w których punktach wykres przecina oś Ox lub jej dotyka.",
+    "contextFile": "info_zd14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd14.4.webp",
+    "taskNumber": "14.4",
+    "title": "Lekcja 7 - zadanie domowe 14.4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "wartość funkcji"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Dla każdego argumentu wybierz właściwy wzór składowy.",
+    "contextFile": "info_zd14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zd14.5.webp",
+    "taskNumber": "14.5",
+    "title": "Lekcja 7 - zadanie domowe 14.5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "nierówność"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Porównaj wykres z poziomą prostą y = 2.",
+    "contextFile": "info_zd14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zd14.6.webp",
+    "taskNumber": "14.6",
+    "title": "Lekcja 7 - zadanie domowe 14.6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "monotoniczność"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Po zmianie znaku wartości funkcji przedziały wzrostu stają się przedziałami spadku.",
+    "contextFile": "info_zd14.webp",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zd15.webp",
+    "taskNumber": "15",
+    "title": "Lekcja 7 - zadanie domowe 15",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "funkcje",
+    "tags": [
+      "funkcje",
+      "definicja funkcji"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Sprawdź, czy temu samemu argumentowi przypisano dwie różne wartości.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zp1.webp",
+    "taskNumber": "1",
+    "title": "Lekcja 7 - zadanie powtórkowe 1",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "logarytmy",
+    "tags": [
+      "logarytmy",
+      "powtórka"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Przedstaw liczbę logarytmowaną jako potęgę podstawy logarytmu.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zp2.webp",
+    "taskNumber": "2",
+    "title": "Lekcja 7 - zadanie powtórkowe 2",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "wzory skróconego mnożenia",
+    "tags": [
+      "wzory skróconego mnożenia",
+      "powtórka"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Zastosuj wzór na różnicę kwadratów.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zp3.webp",
+    "taskNumber": "3",
+    "title": "Lekcja 7 - zadanie powtórkowe 3",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "równanie wymierne",
+    "tags": [
+      "równanie wymierne",
+      "powtórka"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Najpierw wyklucz argument zerujący mianownik.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zp4.webp",
+    "taskNumber": "4",
+    "title": "Lekcja 7 - zadanie powtórkowe 4",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "zmiany procentowe",
+    "tags": [
+      "zmiany procentowe",
+      "powtórka"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Obniżkę o 20% zapisz jako mnożenie przez 0,8.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zp5.webp",
+    "taskNumber": "5",
+    "title": "Lekcja 7 - zadanie powtórkowe 5",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "procent składany",
+    "tags": [
+      "procent składany",
+      "powtórka"
+    ],
+    "difficulty": 1,
+    "maxPoints": 1,
+    "hint": "Po pierwszym roku odsetki powiększają kapitał lokaty.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  }
+]

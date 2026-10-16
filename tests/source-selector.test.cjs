@@ -28,7 +28,7 @@ const ctx = vm.createContext({
   getAvailableSources:() => sources.filter(source => ctx.sourceDisplayCategory(source) === ctx.selectedCategory),
   isTaskSourceLoaded:() => false, isSourceComplete:() => false
 });
-for (const name of ['sourceDisplayCategory', 'isCourseCategory', 'updateTestCategoryBadge', 'getExamSourceTileContent', 'courseTestRange', 'courseTestVariant', 'renderSourceSelector', 'addSourceButton']) {
+for (const name of ['sourceDisplayCategory', 'isCourseCategory', 'updateTestCategoryBadge', 'getExamSourceTileContent', 'courseTestRange', 'courseTestVariant', 'syncCourseWorkspaceLayout', 'renderSourceSelector', 'addSourceButton']) {
   const start = html.indexOf(`function ${name}(`);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ctx);
 }

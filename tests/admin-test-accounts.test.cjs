@@ -5,8 +5,12 @@ const {test} = require('node:test');
 const html = fs.readFileSync('admin.html', 'utf8');
 
 function setup() {
-  const context = vm.createContext({Intl});
-  for (const name of ['isTestStudent', 'getStudentGroups', 'studentGroupCount']) {
+  const context = vm.createContext({Intl, levelLabels: {
+    egzamin_osmoklasisty: 'Egzamin ósmoklasisty',
+    matura_podstawowa: 'Matura podstawowa',
+    matura_rozszerzona: 'Matura rozszerzona'
+  }});
+  for (const name of ['isTestStudent', 'studentDisplayName', 'getStudentGroups', 'studentGroupCount']) {
     const start = html.indexOf(`function ${name}(`);
     assert(start >= 0);
     vm.runInContext(html.slice(start, html.indexOf('\n}', start)+2), context);
@@ -30,6 +34,24 @@ test('all six test accounts belong only to their own category, retaining course 
   assert.deepEqual(Array.from(groups[3].students, item=>item.id), testAccounts.map(item=>item.id).reverse());
   assert.equal(new Set(Array.from(groups).flatMap(group => Array.from(group.students, item=>item.id))).size, 9);
   assert.equal(JSON.stringify(sorted), snapshot, 'Grouping never changes records or access permissions');
+});
+
+test('test accounts show full course and access names without changing logins or real names', () => {
+  const c = setup();
+  for (const [code, label] of [['eo', 'Egzamin ósmoklasisty'], ['mp', 'Matura podstawowa'], ['mr', 'Matura rozszerzona']]) {
+    for (const [mode, suffix] of [['domowe', 'tylko praca domowa'], ['pelny', 'pełny']]) {
+      const student = {email: `test-${code}-${mode}`, display_name: `test-${code}-${mode}`};
+      const original = JSON.stringify(student);
+      assert.equal(c.studentDisplayName(student), `${label} - ${suffix}`);
+      assert.equal(JSON.stringify(student), original);
+    }
+  }
+  assert.equal(c.studentDisplayName({email:' TEST-MP-PELNY '}), 'Matura podstawowa - pełny');
+  assert.equal(c.studentDisplayName({email:'test-mp-pelny@example.test', display_name:'Jan Kowalski'}), 'Jan Kowalski');
+  assert.equal(c.studentDisplayName({email:'student@example.test'}), 'student@example.test');
+  assert.equal(c.studentDisplayName({}), '');
+  assert.match(html, /name\.textContent = studentDisplayName\(student\)/);
+  assert.match(html, /return studentDisplayName\(a\)\.localeCompare\(studentDisplayName\(b\), "pl"\)/);
 });
 
 test('recognition is based on exact canonical logins, not student names or loose prefixes', () => {

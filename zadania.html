@@ -788,7 +788,9 @@ body.focus-mode #nav,
 body.focus-mode footer,
 body.focus-mode .site-footer,
 body.focus-mode .footer-contact,
-body.focus-mode .task-sidebar {
+body.focus-mode .task-sidebar,
+body.focus-mode .course-workspace-toolbar,
+body.focus-mode .course-brand-footer {
     display: none;
 }
 
@@ -3182,7 +3184,9 @@ html.task-video-open {
 
 #homeworkSummaryReviewStatus { font-size: 12px; color: var(--muted); }
 
-.mobile-course-footer {
+.mobile-course-footer,
+.course-workspace-toolbar,
+.course-brand-footer {
     display: none;
 }
 
@@ -3201,48 +3205,89 @@ footer {
 
     .tasks-layout:has(.course-source-list) .task-sidebar {
         position: static;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        align-items: center;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .task-sidebar:has(.course-source-list) > :is(#categorySection, .course-test-notice, .selector-grid) {
         grid-column: 1 / -1;
     }
 
-    .task-sidebar:has(.course-source-list) > #formulaSection {
-        margin: 0;
-        padding: 0;
-        border: 0;
-    }
-
-    .task-sidebar:has(.course-source-list) > .source-summary-row {
-        grid-column: 2;
-    }
-
     .task-sidebar:has(.course-source-list) > .exam-tools-row {
         display: none;
     }
 
-    .task-sidebar:has(.course-source-list) > .course-brand {
-        grid-column: 3;
+    .course-workspace-toolbar:not([hidden]) {
         display: flex;
-        gap: 8px;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 40px;
+        gap: 24px;
+        margin-bottom: 12px;
+    }
+
+    .course-workspace-toolbar > .source-summary-row {
+        flex: 0 1 260px;
+        min-width: 160px;
+    }
+
+    .course-workspace-toolbar .source-summary-card {
+        gap: 4px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        height: auto;
+    }
+
+    .course-workspace-toolbar .source-summary-track {
+        height: 4px;
+    }
+
+    .course-workspace-toolbar > #formulaSection {
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        justify-content: end;
+        gap: 6px;
+        margin-left: auto;
+        margin-top: 0;
+        padding-top: 0;
+        border: 0;
+    }
+
+    .course-workspace-toolbar .formula-card {
+        height: 36px;
+        padding: 0 12px;
+    }
+
+    .course-brand-footer:not([hidden]) {
+        display: flex;
+        grid-column: 1 / -1;
+        justify-content: center;
+        min-width: 0;
+    }
+
+    .course-brand-footer .course-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
         padding: 0;
     }
 
-    .task-sidebar:has(.course-source-list) .course-brand-media {
+    .course-brand-footer .course-brand-media {
         grid-template-columns: repeat(2, 42px);
         gap: 4px;
     }
 
-    .task-sidebar:has(.course-source-list) .course-brand-tile {
+    .course-brand-footer .course-brand-tile {
         width: 42px;
         height: 42px;
     }
 
-    .task-sidebar:has(.course-source-list) .course-brand p {
-        max-width: 140px;
-        font-size: 10px;
+    .course-brand-footer .course-brand p {
+        max-width: 280px;
+        font-size: 11px;
+        text-align: left;
     }
 }
 
@@ -3840,6 +3885,8 @@ footer {
 
     body.course-view .task-sidebar,
     body.focus-mode .task-sidebar,
+    .course-workspace-toolbar,
+    .course-brand-footer,
     .mobile-course-footer {
         display: none !important;
     }
@@ -4023,6 +4070,7 @@ footer {
                 </div>
             </div>
 
+            <template id="formulaSidebarAnchor"></template>
             <div class="side-section" id="formulaSection" style="display:none">
                 <a class="formula-card" id="formulaCard" href="wzory_eo.pdf" target="_blank" rel="noopener noreferrer" aria-label="Karta wzorów, otwiera się w nowej karcie">
                     <strong>Karta wzorów</strong>
@@ -4032,7 +4080,8 @@ footer {
                 </a>
             </div>
 
-            <div class="source-summary-row">
+            <template id="sourceSummarySidebarAnchor"></template>
+            <div class="source-summary-row" id="sourceSummaryRow">
                 <div class="side-section" id="sourceSummarySection">
                     <div class="side-title" id="sourceSummaryTitle">Podsumowanie</div>
                     <div class="source-summary-card">
@@ -4073,6 +4122,7 @@ footer {
                 <div class="tag-helper" id="tagHelper">Wybierz tag albo wpisz fragment nazwy.</div>
             </div>
 
+            <template id="courseBrandSidebarAnchor"></template>
             <div class="course-brand" id="courseBrand" hidden>
                 <div class="course-brand-media">
                     <div class="course-brand-tile course-brand-logo">
@@ -4087,6 +4137,8 @@ footer {
         </aside>
 
         <div class="task-card">
+
+            <div class="course-workspace-toolbar" id="courseWorkspaceToolbar" role="group" aria-label="Wynik lekcji i materiały" hidden></div>
 
             <p class="test-selection-empty" id="testSelectionEmpty" role="status" hidden>Wybierz test sprawdzający.</p>
 
@@ -4171,6 +4223,8 @@ footer {
             </div>
 
         </div>
+
+        <div class="course-brand-footer" id="courseBrandFooter" hidden></div>
 
         <div class="mobile-course-footer" id="mobileCourseFooter" hidden>
             <div class="mobile-course-brand">
@@ -4596,6 +4650,13 @@ const TASK_SOURCES = [
         detail: "60 minut",
         kind: "test",
         unlocksNextSources: 4
+    },
+    {
+        path: "zadania/kurs/mp/lekcja_7/lekcja_7_funkcje.json",
+        category: "kurs",
+        level: "matura_podstawowa",
+        label: "Lekcja 7",
+        detail: "Funkcje"
     },
     {
         path: "zadania/kurs/mp/lekcja_8/lekcja_8_funkcja_liniowa.json",
@@ -6574,6 +6635,37 @@ function updateTestCategoryBadge(pendingTests){
     badge.setAttribute("aria-label", `Testy do wykonania: ${pendingTests.length}`);
 }
 
+function syncCourseWorkspaceLayout(){
+    const toolbar = document.getElementById("courseWorkspaceToolbar");
+    const brandFooter = document.getElementById("courseBrandFooter");
+
+    if(!toolbar || !brandFooter) return;
+
+    const desktopCourse = selectedCategory === "kurs" && window.matchMedia("(min-width: 761px)").matches;
+    const placements = [
+        ["sourceSummaryRow", "sourceSummarySidebarAnchor", toolbar],
+        ["formulaSection", "formulaSidebarAnchor", toolbar],
+        ["courseBrand", "courseBrandSidebarAnchor", brandFooter]
+    ];
+
+    placements.forEach(([id, anchorId, destination]) => {
+        const element = document.getElementById(id);
+        const anchor = document.getElementById(anchorId);
+
+        if(!element || !anchor) return;
+        if(desktopCourse){
+            if(element.parentElement !== destination) destination.appendChild(element);
+        } else if(element.parentElement !== anchor.parentElement){
+            anchor.after(element);
+        }
+    });
+
+    toolbar.hidden = !desktopCourse;
+    brandFooter.hidden = !desktopCourse;
+}
+
+window.matchMedia("(min-width: 761px)").addEventListener("change", syncCourseWorkspaceLayout);
+
 function renderSourceSelector(){
     const list = document.getElementById("sourceList");
     const title = document.getElementById("sourceTitle");
@@ -6592,6 +6684,7 @@ function renderSourceSelector(){
     list.classList.toggle("course-source-list", selectedCategory === "kurs");
     list.classList.toggle("test-source-list", selectedCategory === "testy");
     list.classList.toggle("exam-source-list", selectedCategory === "egzaminy");
+    syncCourseWorkspaceLayout();
 
     if(title){
         title.innerText = selectedCategory === "kurs"

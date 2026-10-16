@@ -240,9 +240,15 @@
             margin:30px auto;
             padding:0 20px;
             display:grid;
-            grid-template-columns:minmax(0,2fr) minmax(260px,420px);
+            grid-template-columns:minmax(0,2fr) minmax(0,420px);
             gap:20px;
             align-items:stretch;
+            transition:grid-template-columns 650ms cubic-bezier(.22,1,.36,1), gap 650ms cubic-bezier(.22,1,.36,1);
+        }
+
+        .home-hero-row.is-brand-dismissed{
+            grid-template-columns:minmax(0,2fr) minmax(0,0px);
+            gap:0;
         }
 
         .home-hero-row #baner{
@@ -264,6 +270,8 @@
             justify-content:center;
             gap:8px;
             min-height:176px;
+            min-width:0;
+            overflow:hidden;
             padding:18px;
             border-radius:10.2px;
             background:#fff;
@@ -278,6 +286,26 @@
         .delta-brand-card:hover{
             transform:translateY(-6px);
             box-shadow:0 22px 46px rgba(0,0,0,0.16);
+        }
+
+        .delta-brand-card[hidden]{
+            display:none;
+        }
+
+        .is-brand-dismissed .delta-brand-card{
+            height:176px;
+            pointer-events:none;
+            animation:brand-card-exit 450ms cubic-bezier(.4,0,.2,1) both;
+        }
+
+        @keyframes brand-card-exit{
+            from{opacity:1; transform:translateY(0) scale(1); filter:blur(0);}
+            to{opacity:0; transform:translateY(-12px) scale(.92); filter:blur(8px);}
+        }
+
+        @media (prefers-reduced-motion:reduce){
+            .home-hero-row{transition:none;}
+            .is-brand-dismissed .delta-brand-card{animation:none;}
         }
 
         .delta-brand-visuals{
@@ -647,6 +675,33 @@
 
 <script src="static/about-slider.js?v=20260819-logo-overlay"></script>
 <script>
+
+function scheduleBrandCardDismissal(){
+    const card = document.querySelector(".delta-brand-card");
+    const row = card?.closest(".home-hero-row");
+    if(!card || !row) return;
+
+    window.setTimeout(() => {
+        const dismiss = () => {
+            if(card.matches(":hover, :focus-within")) return;
+            card.removeEventListener("pointerleave", dismiss);
+            card.removeEventListener("focusout", dismiss);
+            card.inert = true;
+            row.classList.add("is-brand-dismissed");
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            window.setTimeout(() => { card.hidden = true; }, reducedMotion ? 0 : 650);
+        };
+        card.addEventListener("pointerleave", dismiss);
+        card.addEventListener("focusout", dismiss);
+        dismiss();
+    }, 5000);
+}
+
+if(document.readyState === "complete"){
+    scheduleBrandCardDismissal();
+} else {
+    window.addEventListener("load", scheduleBrandCardDismissal, { once: true });
+}
 
 function loadAboutSection(){
     fetch("o-mnie.html?v=20260828-me6", { cache: "no-cache" })
