@@ -81,6 +81,88 @@ class SecurityTests(unittest.TestCase):
             "website": "",
         }
 
+    def test_admin_progress_bundles_discussion_tasks_only_on_request(self):
+        with app.app_context():
+            student = create_user("progress-student", "Uczeń", "test-password")
+            admin = create_user("progress-admin", "Admin", "test-password", role="admin", level=None)
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        endpoint = f"/api/admin/students/{student['id']}/progress"
+        self.assertEqual(self.client.get(endpoint + "?include_review_tasks=1").status_code, 401)
+        self.assertEqual(self.client.get(endpoint + "?include_review_tasks=1", headers=sh).status_code, 403)
+        progress = [{"id": 7, "submitted_answer": "3/4", "earned_points": 1}]
+        reviews = [{"id": 9, "file": "zd1.png"}]
+        with patch.object(app_module, "progress_for_user", return_value=progress) as progress_query, \
+                patch.object(app_module, "review_tasks_for_user", return_value=reviews) as review_query:
+            ordinary = self.client.get(endpoint, headers=ah)
+            self.assertEqual(ordinary.status_code, 200)
+            self.assertNotIn("review_tasks", ordinary.get_json())
+            review_query.assert_not_called()
+            progress_query.reset_mock()
+            bundled = self.client.get(endpoint + "?include_review_tasks=1", headers=ah)
+            self.assertEqual(bundled.status_code, 200)
+            self.assertEqual(bundled.get_json()["progress"], progress)
+            self.assertEqual(bundled.get_json()["review_tasks"], reviews)
+            progress_query.assert_called_once_with(student["id"])
+            review_query.assert_called_once_with(student["id"])
+            self.assertIn("no-store", bundled.headers["Cache-Control"])
+        self.assertEqual(self.client.get(f"/api/admin/students/{admin['id']}/progress?include_review_tasks=1", headers=ah).status_code, 404)
+
+    def test_admin_batch_catalog_is_private_and_returns_only_requested_manifests(self):
+        with app.app_context():
+            student = create_user("catalog-student", "Uczeń", "test-password")
+            admin = create_user("catalog-admin", "Admin", "test-password", role="admin", level=None)
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        endpoint = "/api/admin/task-catalog"
+        sources = ["zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.json",
+                   "zadania/mp/2023/maj/2023_cke_p_m.json"]
+        body = {"sources": sources + sources[:1]}
+        self.assertEqual(self.client.post(endpoint, json=body).status_code, 401)
+        self.assertEqual(self.client.post(endpoint, headers=sh, json=body).status_code, 403)
+        response = self.client.post(endpoint, headers=ah, json=body)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual([group["path"] for group in response.get_json()["catalog"]], sources)
+        for group in response.get_json()["catalog"]:
+            path = os.path.join(os.path.dirname(app_module.COURSE_ASSET_ROOT), group["path"].removeprefix("zadania/"))
+            with open(path, encoding="utf-8") as manifest:
+                self.assertEqual(group["tasks"], json.load(manifest))
+        self.assertIn("no-store", response.headers["Cache-Control"])
+        compressed = self.client.post(endpoint, headers={**ah, "Accept-Encoding": "gzip"}, json=body)
+        self.assertEqual(compressed.headers.get("Content-Encoding"), "gzip")
+        self.assertEqual(json.loads(gzip.decompress(compressed.data)), response.get_json())
+
+    def test_admin_batch_catalog_rejects_invalid_paths_and_malformed_input(self):
+        with app.app_context():
+            admin = create_user("catalog-path-admin", "Admin", "test-password", role="admin", level=None)
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        endpoint = "/api/admin/task-catalog"
+        for body in [[], ["zadania/mp/test.json"], "manifest", 42]:
+            self.assertEqual(self.client.post(endpoint, headers=ah, json=body).status_code, 400)
+        invalid = [None, "file.json", [], [None], [{}], ["file.json"] * 65,
+                   ["backend/instance/deltasigma.sqlite3"], ["/zadania/mp/test.json"],
+                   ["zadania/kurs/mp/../../../backend/secret.json"],
+                   ["zadania/mp/./test.json"], ["zadania/mp/test.json/extra"],
+                   ["zadania/mp/test.json?token=1"], ["zadania/mp/test\\file.json"]]
+        for sources in invalid:
+            with self.subTest(sources=sources):
+                response = self.client.post(endpoint, headers=ah, json={"sources": sources})
+                self.assertEqual(response.status_code, 400)
+        with tempfile.TemporaryDirectory() as assets:
+            os.makedirs(os.path.join(assets, "kurs", "mp"))
+            with patch.object(app_module, "COURSE_ASSET_ROOT", os.path.join(assets, "kurs")):
+                missing = self.client.post(endpoint, headers=ah, json={"sources": ["zadania/kurs/mp/missing.json"]})
+                self.assertEqual(missing.status_code, 404)
+                manifest_path = os.path.join(assets, "kurs", "mp", "invalid.json")
+                with open(manifest_path, "w", encoding="utf-8") as manifest:
+                    json.dump({"secret": "not a task manifest"}, manifest)
+                malformed = self.client.post(endpoint, headers=ah, json={"sources": ["zadania/kurs/mp/invalid.json"]})
+                self.assertEqual(malformed.status_code, 400)
+                with tempfile.NamedTemporaryFile(suffix=".json") as outside:
+                    os.symlink(outside.name, os.path.join(assets, "kurs", "mp", "link.json"))
+                    escaped = self.client.post(endpoint, headers=ah, json={"sources": ["zadania/kurs/mp/link.json"]})
+                    self.assertEqual(escaped.status_code, 400)
+
     def test_daily_analytics_badge_is_admin_only_and_does_not_load_the_full_report(self):
         anonymous = self.client.get("/api/admin/analytics/today")
         self.assertEqual(anonymous.status_code, 401)

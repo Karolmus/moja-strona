@@ -2717,7 +2717,9 @@ let messageCounts = {
 let currentStudentSort = "activity_desc";
 let lastCredentialsText = "";
 let adminTaskCatalog = [];
-let adminTaskCatalogReady = null;
+const adminCatalogCache = new Map();
+const adminCatalogRequests = new Map();
+const studentWorkRequests = new Map();
 let studentProgressCache = new Map();
 let activeProgressStudentId = null;
 let progressRequestId = 0;
@@ -2935,42 +2937,48 @@ async function loadAdminJson(path){
     return response.json();
 }
 
-function loadAdminTaskCatalog(){
-    if(!adminTaskCatalogReady){
-        adminTaskCatalogReady = fetchAdminTaskCatalog().catch(error => {
-            adminTaskCatalogReady = null;
-            throw error;
-        });
-    }
-    return adminTaskCatalogReady;
+function studentCatalogSources(student, progress, reviewItems){
+    const used = new Set([...progress, ...reviewItems].map(progressSourceId).filter(Boolean));
+    const hasExams = ADMIN_TASK_SOURCES.some(source => source.category === "egzaminy" && used.has(source.path));
+    return ADMIN_TASK_SOURCES.filter(source => used.has(source.path) ||
+        (source.level === student.level && (source.kind === "test" || (hasExams && source.category === "egzaminy"))));
 }
 
-async function fetchAdminTaskCatalog(){
-    const groups = await Promise.all(
-        ADMIN_TASK_SOURCES.map(async (source, sourceIndex) => {
-            try {
-                const items = await loadAdminJson(source.path);
-
-                return items.map(task => ({
-                    ...task,
-                    category: source.category,
-                    level: task.level || source.level,
-                    coursePart: task.coursePart || task.section || "zadania",
-                    sourceId: source.path,
-                    sourceLabel: source.label,
-                    sourceDetail: source.detail,
-                    sourceKind: source.kind || "",
-                    sourceIndex
+async function loadAdminTaskCatalog(student, progress, reviewItems){
+    const sources = studentCatalogSources(student, progress, reviewItems);
+    const missing = sources.filter(source => !adminCatalogCache.has(source.path) && !adminCatalogRequests.has(source.path));
+    if(missing.length){
+        const batch = fetchAdminTaskCatalog(missing);
+        missing.forEach(source => {
+            const pending = batch.then(groups => {
+                const items = groups.find(group => group.path === source.path)?.tasks;
+                if(!Array.isArray(items)) throw new Error("Nie udało się wczytać katalogu zadań. Spróbuj ponownie.");
+                const tasks = items.map(task => ({
+                    ...task, category: source.category, level: task.level || source.level,
+                    coursePart: task.coursePart || task.section || "zadania", sourceId: source.path,
+                    sourceLabel: source.label, sourceDetail: source.detail, sourceKind: source.kind || "",
+                    sourceIndex: ADMIN_TASK_SOURCES.indexOf(source)
                 }));
-            } catch(error) {
-                return [];
-            }
-        })
-    );
+                adminCatalogCache.set(source.path, tasks);
+                adminTaskCatalog = [...adminCatalogCache.values()].flat();
+            }).finally(() => adminCatalogRequests.delete(source.path));
+            adminCatalogRequests.set(source.path, pending);
+        });
+    }
+    await Promise.all(sources.map(source => adminCatalogRequests.get(source.path)));
+}
 
-    adminTaskCatalog = groups.flat();
-    if(!adminTaskCatalog.length){
-        throw new Error("Nie udało się wczytać katalogu zadań. Spróbuj ponownie.");
+async function fetchAdminTaskCatalog(sources){
+    try {
+        const data = await apiFetch("/api/admin/task-catalog", {
+            method: "POST", body: JSON.stringify({sources: sources.map(source => source.path)})
+        });
+        if(!Array.isArray(data.catalog)) throw new Error("Nie udało się wczytać katalogu zadań. Spróbuj ponownie.");
+        return data.catalog;
+    } catch(error) {
+        if(![404, 405].includes(error.status)) throw error;
+        // Keep the smaller request set working while the API deployment catches up.
+        return Promise.all(sources.map(async source => ({path: source.path, tasks: await loadAdminJson(source.path)})));
     }
 }
 
@@ -5836,6 +5844,7 @@ function pathFromReviewTaskFile(item, file){
 
 async function reviewSourceTasks(source){
     if(!ADMIN_TASK_SOURCES.some(candidate => candidate.path === source)) return [];
+    if(adminCatalogCache.has(source)) return adminCatalogCache.get(source);
 
     if(!reviewSourceTaskCache.has(source)){
         reviewSourceTaskCache.set(source, loadAdminJson(source)
@@ -6179,6 +6188,19 @@ async function loadReviewTasks(student){
     return Array.isArray(data.review_tasks) ? data.review_tasks : [];
 }
 
+function loadStudentWork(student){
+    if(!studentWorkRequests.has(student.id)){
+        const pending = apiFetch(`/api/admin/students/${student.id}/progress?include_review_tasks=1`)
+            .then(async data => {
+                if(!Array.isArray(data.progress)) throw new Error("Nie udało się wczytać postępów.");
+                const reviews = Array.isArray(data.review_tasks) ? data.review_tasks : await loadReviewTasks(student);
+                return {progress: data.progress, review_tasks: reviews};
+            }).finally(() => studentWorkRequests.delete(student.id));
+        studentWorkRequests.set(student.id, pending);
+    }
+    return studentWorkRequests.get(student.id);
+}
+
 async function resolveReviewTask(item, student){
     await apiFetch(`/api/admin/review-tasks/${item.id}`, {
         method: "PATCH",
@@ -6217,14 +6239,12 @@ async function showProgress(student){
     for(const element of [reviewTasks, sourceProgress]) element.replaceChildren();
     renderStudents();
     try {
-        const [data, allReviewItems] = await Promise.all([
-            apiFetch(`/api/admin/students/${student.id}/progress`),
-            loadReviewTasks(student),
-            loadAdminTaskCatalog()
-        ]);
+        const data = await loadStudentWork(student);
+        if(requestId !== progressRequestId || activeProgressStudentId !== student.id) return;
+        await loadAdminTaskCatalog(student, data.progress, data.review_tasks);
         if(requestId !== progressRequestId || activeProgressStudentId !== student.id) return;
         const progress = data.progress.filter(isIndependentWorkProgress);
-        const reviewItems = allReviewItems.filter(isIndependentWorkProgress);
+        const reviewItems = data.review_tasks.filter(isIndependentWorkProgress);
         activeReviewItems = reviewItems;
         studentProgressCache.set(student.id, data.progress);
         renderStudents();

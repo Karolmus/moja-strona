@@ -16,7 +16,7 @@ function setup() {
   const context = vm.createContext({
     activeProgressStudentId:null, activeSourceDetailKey:'', progressRequestId:0,
     activeIncorrectTaskItems:[], copyIncorrectTasksBtn:{dataset:{}, disabled:false},
-    reviewTasks:element(), sourceProgress:element(), studentProgressCache:new Map(),
+    reviewTasks:element(), sourceProgress:element(), studentProgressCache:new Map(), studentWorkRequests:new Map(),
     progressDetail:{querySelector:() => loading, classList:{add:c => classes.add(c), remove:c => classes.delete(c)}},
     apiFetch:path => new Promise((resolve,reject) => pending.set(Number(path.split('/')[4]), {resolve,reject})),
     loadReviewTasks:async student => [{owner:student.id}],
@@ -27,7 +27,7 @@ function setup() {
     document:{getElementById:id => ({focus:() => {context.focused=id;}})},
     button:(label, css, click) => ({label, click})
   });
-  for (const name of ['showProgress', 'closeStudentDetails']) {
+  for (const name of ['loadStudentWork', 'showProgress', 'closeStudentDetails']) {
     const marker = `${name === 'showProgress' ? 'async ' : ''}function ${name}(`;
     const start = html.indexOf(marker);
     assert(start >= 0);

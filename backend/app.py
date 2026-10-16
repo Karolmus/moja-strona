@@ -1506,10 +1506,46 @@ def api_admin_student_progress(_admin, user_id):
     if not student or student["role"] != "student":
         return api_error("Nie znaleziono ucznia.", 404)
 
-    return jsonify({
+    data = {
         "student": student_payload(student),
         "progress": progress_for_user(user_id),
-    })
+    }
+    if request.args.get("include_review_tasks") == "1":
+        data["review_tasks"] = review_tasks_for_user(user_id)
+    return jsonify(data)
+
+
+@app.post("/api/admin/task-catalog")
+@require_admin
+def api_admin_task_catalog(_admin):
+    data = payload()
+    sources = data.get("sources") if isinstance(data, dict) else None
+    if not isinstance(sources, list) or not sources or len(sources) > 64:
+        return api_error("Podaj od 1 do 64 katalogów zadań.")
+    if any(not isinstance(item, str) for item in sources):
+        return api_error("Nieprawidłowy katalog zadań.")
+
+    root = os.path.realpath(os.path.dirname(COURSE_ASSET_ROOT))
+    catalog = []
+    for source in dict.fromkeys(sources):
+        if not re.fullmatch(r"zadania/(?:kurs/)?(?:mp|mr|eo)/[A-Za-z0-9_./-]+\.json", source):
+            return api_error("Nieprawidłowy katalog zadań.")
+        relative = source.removeprefix("zadania/")
+        if any(part in {".", ".."} for part in relative.split("/")):
+            return api_error("Nieprawidłowy katalog zadań.")
+        path = os.path.realpath(os.path.join(root, relative))
+        if not path.startswith(root + os.sep):
+            return api_error("Nieprawidłowy katalog zadań.")
+        try:
+            with open(path, encoding="utf-8") as manifest:
+                tasks = json.load(manifest)
+        except (OSError, ValueError):
+            return api_error("Nie udało się wczytać katalogu zadań.", 404)
+        if not isinstance(tasks, list) or any(not isinstance(task, dict) for task in tasks):
+            return api_error("Nieprawidłowy format katalogu zadań.")
+        catalog.append({"path": source, "tasks": tasks})
+
+    return jsonify({"catalog": catalog})
 
 
 @app.get("/api/admin/students/<int:user_id>/review-tasks")
