@@ -28,7 +28,7 @@ const context = vm.createContext({
   getTaskScore: task => ({earnedPoints: progress.get(task.file)?.earned_points || 0})
 });
 for (const name of ['getSourceMeta', 'getCourseSourceSequence', 'getPreviousCourseCheckpoint',
-  'isCheckpointStageComplete', 'getCheckpointScorePercent', 'isOptionalCourseTestUnlocked', 'isCourseSourceVisible']) {
+  'isCheckpointStageComplete', 'isCourseSourceVisible']) {
   vm.runInContext(functionSource(name), context);
 }
 const course = context.getCourseSourceSequence('egzamin_osmoklasisty');
@@ -36,41 +36,40 @@ const b = course.find(source => source.id === sourceB);
 const harder = course.find(source => source.id.includes('test_lekcje_1_6_trudniejszy'));
 const lesson7 = course.find(source => source.label === 'Lekcja 7');
 assert(b && b.optional && b.kind === 'test');
-assert.equal(b.requiresSource, sourceA);
-assert.equal(b.maxScorePercent, 80);
-assert.equal(harder.maxScorePercent, null);
-assert.equal(harder.minScorePercent, 90);
+assert.equal(b.requiresSource, undefined);
+assert.equal(b.maxScorePercent, undefined);
+assert.equal(b.difficultyRating, 5);
+assert.equal(harder.minScorePercent, undefined);
+assert.equal(harder.difficultyRating, 8);
 assert(!course.find(source => source.id === sourceA).optional, 'Test A remains the default mandatory checkpoint');
 assert.equal(course.filter(source => source.kind === 'test' && !source.optional).length, 1);
 assert.equal(context.getPreviousCourseCheckpoint(lesson7).id, sourceA, 'B is not a new lesson checkpoint');
-assert(!context.isCourseSourceVisible(b), 'An untouched test A does not expose B');
+assert(context.isCourseSourceVisible(b), 'B is available before starting A');
+assert(context.isCourseSourceVisible(harder), 'C is available before starting A');
 assert(!context.isCourseSourceVisible(lesson7));
 
 for(const task of checkpointTasks) progress.set(task.file, {result: 'bad', earned_points: 0});
 assert(context.isCourseSourceVisible(b), 'Completed A at 0% exposes B');
 assert(context.isCourseSourceVisible(lesson7), 'A still unlocks lessons 7-10 without completing B');
-assert(!context.isCourseSourceVisible(harder));
+assert(context.isCourseSourceVisible(harder));
 progress.delete(checkpointTasks[0].file);
-assert(!context.isCourseSourceVisible(b), 'All answers to A must be saved before B appears');
+assert(context.isCourseSourceVisible(b), 'Partial A does not restrict B');
 progress.set(checkpointTasks[0].file, {result: 'skipped', earned_points: 0});
-assert(!context.isCourseSourceVisible(b), 'Skipping A is not completing A');
+assert(context.isCourseSourceVisible(b), 'Skipping A does not restrict B');
 
 checkpointTasks = [{file: 'boundary', maxPoints: 100}];
-for(const [score, visibleB, visibleHarder] of [[0, true, false], [79.99, true, false],
-  [80, false, false], [80.01, false, false], [89.99, false, false],
-  [90, false, false], [90.01, false, true], [100, false, true]]) {
+for(const score of [0, 49.99, 50, 79.99, 80, 80.01, 89.99, 90, 90.01, 100]) {
   progress.set('boundary', {result: 'good', earned_points: score});
-  assert.equal(context.isCourseSourceVisible(b), visibleB, `B visibility at raw ${score}%`);
-  assert.equal(context.isCourseSourceVisible(harder), visibleHarder, `C visibility at raw ${score}%`);
+  assert.equal(context.isCourseSourceVisible(b), true, `B visibility at raw ${score}%`);
+  assert.equal(context.isCourseSourceVisible(harder), true, `C visibility at raw ${score}%`);
 }
 loaded = false;
-assert(!context.isCourseSourceVisible(b), 'An unloaded prerequisite is not treated as a completed 0% test');
-assert(!context.isCourseSourceVisible(harder), 'An unloaded prerequisite never unlocks C');
+assert(context.isCourseSourceVisible(b), 'B does not need the A catalog');
+assert(context.isCourseSourceVisible(harder), 'C does not need the A catalog');
 loaded = true;
 checkpointTasks = [];
-assert(!context.isCourseSourceVisible(b), 'An empty prerequisite is not completed');
-assert(!context.isCourseSourceVisible(harder), 'An empty prerequisite never unlocks C');
-assert(!context.isOptionalCourseTestUnlocked({...b, requiresSource: 'missing'}, course));
+assert(context.isCourseSourceVisible(b), 'An empty A does not restrict B');
+assert(context.isCourseSourceVisible(harder), 'An empty A does not restrict C');
 context.loggedUser = {role: 'admin'};
 assert(context.isCourseSourceVisible(b), 'Admin can preview B without a test score');
 assert(context.isCourseSourceVisible(harder), 'Admin can preview C without a test score');
@@ -117,4 +116,4 @@ for(const [number, answers] of Object.entries(variants)) {
   for(const value of answers.good) assert(context.isInputFieldAnswerCorrect(value, field), `Task ${number}: ${value}`);
   for(const value of answers.bad) assert(!context.isInputFieldAnswerCorrect(value, field), `Task ${number} rejects ${value}`);
 }
-console.log('PASS: EO test B has the revised key, flexible result fields and strict below-80% gating');
+console.log('PASS: EO optional tests retain their keys and flexible fields without score gating');

@@ -90,7 +90,7 @@ for (const [text, name] of [
   assert.equal(entries[0].category, 'kurs');
   assert.equal(entries[0].level, 'egzamin_osmoklasisty');
   assert.equal(entries[0].kind, 'test');
-  assert.equal(entries[0].label, 'Test sprawdzający z lekcji 1 - 6, wersja A');
+  assert.equal(entries[0].label, 'Test 1-6 (A)');
   if (name === 'TASK_SOURCES') assert.equal(entries[0].unlocksNextSources, 4);
 }
 

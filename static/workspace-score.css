@@ -1,0 +1,81 @@
+.task-workspace,
+.task-content { min-width: 0; }
+.task-content { container-type: inline-size; }
+.task-workspace:has(.task-score-rail:not([hidden])) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 72px;
+    gap: 14px;
+    align-items: stretch;
+}
+.task-score-rail { display: flex; min-width: 0; }
+.task-score-rail[hidden] { display: none; }
+.task-score-rail .source-summary-row,
+.task-score-rail .source-summary-section,
+.task-score-rail #sourceSummarySection { width: 100%; min-height: 0; }
+.task-score-rail .source-summary-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+.task-score-rail .source-summary-main { display: contents; }
+.task-score-rail .source-summary-points {
+    order: 0;
+    margin-left: 24px;
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.3;
+    text-align: center;
+    white-space: normal;
+    font-variant-numeric: tabular-nums;
+}
+.task-score-rail .source-summary-percent {
+    order: 2;
+    margin-left: 24px;
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+.task-score-rail .source-summary-track {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 16px;
+    height: auto;
+    min-height: 48px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+.task-score-rail .source-summary-fill {
+    position: absolute;
+    inset: auto 0 0;
+    display: block;
+    border-radius: inherit;
+    background: #54a468;
+    transition: height 0.45s ease;
+}
+.result-tone-low { background: #fde9e5; color: #972e26; }
+.result-tone-medium { background: #fff1bf; color: #79570b; }
+.result-tone-high { background: #dcf0df; color: #236438; }
+@media(max-width: 760px) {
+    .task-workspace:has(.task-score-rail:not([hidden])) {
+        grid-template-columns: minmax(0, 1fr) 52px;
+        gap: 8px;
+    }
+    .task-score-rail .source-summary-points { font-size: 10px; }
+    .task-score-rail .source-summary-track { width: 12px; }
+    .task-score-rail .source-summary-points,
+    .task-score-rail .source-summary-percent { margin-left: 18px; }
+}
+@media(prefers-reduced-motion: reduce) {
+    .task-score-rail .source-summary-fill { transition: none; }
+}

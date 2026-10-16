@@ -23,6 +23,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=STIX+Two+Math&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
+<link rel="stylesheet" href="static/workspace-score.css?v=20261016">
+<script src="static/workspace-score.js?v=20261016"></script>
 
 <style>
 :root {
@@ -61,7 +63,7 @@ body {
 
 .training-shell {
     display: grid;
-    grid-template-columns: 340px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 14px;
     align-items: start;
 }
@@ -77,8 +79,7 @@ body {
 }
 
 .training-panel {
-    position: sticky;
-    top: 10px;
+    position: static;
     display: grid;
     gap: 6px;
     padding: 8px;
@@ -88,10 +89,6 @@ body {
     min-width: 0;
 }
 
-.training-settings-summary {
-    display: none;
-}
-
 .training-settings-body {
     display: grid;
     gap: 10px;
@@ -99,7 +96,7 @@ body {
 
 .training-mode-nav {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 4px;
 }
 
@@ -107,12 +104,12 @@ body {
     display: grid;
     place-items: center;
     min-width: 0;
-    min-height: 34px;
+    min-height: 28px;
     border: 1px solid var(--line);
     border-radius: 6.8px;
     background: white;
     color: var(--text);
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 600;
     line-height: 1.1;
     padding: 5px 7px;
@@ -262,7 +259,6 @@ body {
 }
 
 .training-mode-link:focus-visible,
-.training-settings-summary:focus-visible,
 .level-btn:focus-visible,
 .topic-btn:focus-visible,
 .control-btn:focus-visible,
@@ -287,8 +283,8 @@ body {
 
 .topic-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 5px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 3px;
 }
 
 .topic-btn {
@@ -297,11 +293,12 @@ body {
     gap: 1px;
     min-width: 0;
     width: 100%;
+    min-height: 41px;
 }
 
 .topic-btn span {
     min-width: 0;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.05;
 }
@@ -310,11 +307,11 @@ body {
     min-width: 0;
     overflow: hidden;
     color: var(--muted);
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 400;
     line-height: 1.1;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .topic-btn.active small {
@@ -428,9 +425,11 @@ body {
     display: grid;
     gap: 10px;
     min-height: 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    background: white;
     padding: 14px;
 }
+
+.training-problem-content { display: grid; gap: 10px; }
 
 .task-topic {
     color: var(--blue-text);
@@ -925,88 +924,30 @@ body {
     padding: 10px;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 1100px) {
     .training-shell {
         grid-template-columns: 1fr;
     }
 
     .training-panel {
         position: static;
-        padding: 0;
+        padding: 8px;
         overflow: hidden;
-    }
-
-    .training-settings-summary {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 8px;
-        min-height: 48px;
-        padding: 8px 11px;
-        cursor: pointer;
-        list-style: none;
-    }
-
-    .training-settings-summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .training-settings-summary::after {
-        content: "+";
-        display: grid;
-        place-items: center;
-        width: 28px;
-        height: 28px;
-        border: 1px solid var(--line);
-        border-radius: 50%;
-        background: var(--surface-soft);
-        color: var(--navy);
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 1;
-    }
-
-    .training-settings[open] .training-settings-summary::after {
-        content: "−";
-    }
-
-    .training-settings-summary-copy {
-        display: grid;
-        gap: 2px;
-        min-width: 0;
-    }
-
-    .training-settings-summary-copy span {
-        color: var(--muted);
-        font-size: 9px;
-        font-weight: 600;
-        line-height: 1;
-        text-transform: uppercase;
-    }
-
-    .training-settings-summary-copy strong {
-        min-width: 0;
-        overflow: hidden;
-        color: var(--text);
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 1.25;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
 
     .training-settings-body {
         gap: 8px;
-        border-top: 1px solid var(--line);
-        padding: 8px;
+        padding: 0;
     }
 
     .training-insights {
         grid-template-columns: 1fr;
     }
+
+    .topic-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 760px) {
     .training-page {
         width: min(100% - 12px, 1180px);
         margin-top: 8px;
@@ -1103,7 +1044,7 @@ body {
     }
 
     .topic-btn {
-        min-height: 42px;
+        min-height: 38px;
         padding: 5px 6px;
     }
 
@@ -1138,17 +1079,11 @@ body {
 <main class="training-page">
     <div class="training-shell">
         <aside class="training-panel" aria-label="Ustawienia treningu">
-            <details class="training-settings" id="trainingSettings" open>
-                <summary class="training-settings-summary">
-                    <span class="training-settings-summary-copy">
-                        <span>Ustawienia treningu</span>
-                        <strong id="trainingSettingsValue">Egzamin ósmoklasisty · Tryb łączny</strong>
-                    </span>
-                </summary>
-
+            <section class="training-settings" id="trainingSettings">
                 <div class="training-settings-body">
                     <nav class="training-mode-nav" aria-label="Wybór trybu pracy">
                         <a class="training-mode-link" href="zadania.html?category=kurs">Kurs</a>
+                        <a class="training-mode-link" href="zadania.html?category=testy">Testy</a>
                         <a class="training-mode-link" href="zadania.html?category=egzaminy">Egzaminy</a>
                         <a class="training-mode-link active" href="trening.html" aria-current="page">Trening szybkości</a>
                     </nav>
@@ -1163,7 +1098,7 @@ body {
                         <div class="topic-list" id="topicList"></div>
                     </div>
                 </div>
-            </details>
+            </section>
         </aside>
 
         <section class="training-stage" aria-label="Trening szybkości">
@@ -1214,6 +1149,8 @@ body {
             </div>
 
             <div class="problem-card">
+                <div class="task-workspace">
+                <div class="task-content training-problem-content">
                 <div class="task-heading">
                     <div class="task-topic" id="taskTopic">Tryb łączny</div>
                     <span class="calculator-indicator" id="calculatorIndicator" title="W tym zadaniu przyda się kalkulator" aria-label="W tym zadaniu przyda się kalkulator" hidden>&#x1F9EE;</span>
@@ -1250,6 +1187,17 @@ body {
                 <div class="yes-no-row" id="yesNoControls" hidden>
                     <button class="yes-no-btn" id="yesButton" type="button">Tak <span>(T)</span></button>
                     <button class="yes-no-btn" id="noButton" type="button">Nie <span>(N)</span></button>
+                </div>
+                </div>
+                <aside class="task-score-rail" id="trainingScoreRail" aria-label="Poprawne odpowiedzi w rundzie">
+                    <div class="source-summary-card">
+                        <strong class="source-summary-points" id="trainingScorePoints">0 / 0</strong>
+                        <div class="source-summary-track" id="trainingScoreTrack" role="progressbar" aria-label="Poprawne odpowiedzi w rundzie" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <span class="source-summary-fill" id="trainingScoreFill" style="height:0%;width:100%"></span>
+                        </div>
+                        <span class="source-summary-percent" id="trainingScorePercent">0%</span>
+                    </div>
+                </aside>
                 </div>
                 <div class="keypad" id="keypad" aria-label="Klawiatura numeryczna"></div>
             </div>
@@ -1365,8 +1313,6 @@ const state = {
 
 const levelTabs = document.getElementById("levelTabs");
 const topicList = document.getElementById("topicList");
-const trainingSettings = document.getElementById("trainingSettings");
-const trainingSettingsValue = document.getElementById("trainingSettingsValue");
 const stageSubtitle = document.getElementById("stageSubtitle");
 const statusPill = document.getElementById("statusPill");
 const timeLeft = document.getElementById("timeLeft");
@@ -3622,6 +3568,19 @@ function updateStats(){
     setTextIfChanged(streakCount, state.streak);
     setTextIfChanged(averageTime, state.correct ? `${(state.totalAnswerTime / state.correct).toFixed(1)}s` : "-");
     setTextIfChanged(bestScore, state.bestScore);
+    updateTrainingScore();
+}
+
+function updateTrainingScore(){
+    const points = document.getElementById("trainingScorePoints");
+    const percentage = document.getElementById("trainingScorePercent");
+    if(!points || !percentage) return;
+    const attempts = state.correct + state.mistakes;
+    const value = attempts ? state.correct / attempts * 100 : 0;
+    points.innerText = `${state.correct} / ${attempts}`;
+    percentage.innerText = `${Math.round(value)}%`;
+    DSWorkspaceScore.update(document.getElementById("trainingScoreTrack"), document.getElementById("trainingScoreFill"),
+        value, "Poprawne odpowiedzi w rundzie", `${state.correct} poprawnych odpowiedzi z ${attempts}, ${Math.round(value)}%`);
 }
 
 async function startRound(){
@@ -3828,9 +3787,6 @@ function setTopic(topic){
     renderControls();
     resetRound();
 
-    if(window.matchMedia("(max-width: 880px)").matches && trainingSettings){
-        trainingSettings.open = false;
-    }
 }
 
 function updateTrainingLessonUrl(lesson, level = state.level){
@@ -3856,7 +3812,6 @@ function activeDifficultyLabel(){
 
 function renderControls(){
     stageSubtitle.innerText = LEVELS[state.level].label;
-    trainingSettingsValue.innerText = `${LEVELS[state.level].shortLabel || LEVELS[state.level].label} · ${activeTopicLabel()}`;
     levelTabs.innerHTML = "";
     levelTabs.classList.toggle("level-tabs--selectable", canSelectTrainingLevel());
     topicList.innerHTML = "";
@@ -3996,17 +3951,6 @@ problemStartPrompt.addEventListener("click", startRound);
 resetButton.addEventListener("click", resetRound);
 window.addEventListener("load", loadProgress);
 window.addEventListener("load", syncTrainingLevelFromAuth);
-
-const trainingSettingsMedia = window.matchMedia("(max-width: 880px)");
-
-function syncTrainingSettingsLayout(event){
-    if(!trainingSettings) return;
-
-    trainingSettings.open = !event.matches;
-}
-
-trainingSettingsMedia.addEventListener?.("change", syncTrainingSettingsLayout);
-syncTrainingSettingsLayout(trainingSettingsMedia);
 
 state.topic = requestedTrainingLesson(state.level) || "all";
 renderControls();

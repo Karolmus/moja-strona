@@ -51,9 +51,10 @@ const optionalSource = taskSources.find(source => source.path === sourcePath);
 assert(optionalSource);
 assert.equal(optionalSource.kind, 'test');
 assert.equal(optionalSource.optional, true);
-assert.equal(optionalSource.requiresSource, prerequisitePath);
-assert.equal(optionalSource.minScorePercent, 90);
-assert.equal(optionalSource.label, 'Test sprawdzający z lekcji 1 - 6, wersja C');
+assert.equal(optionalSource.requiresSource, undefined);
+assert.equal(optionalSource.minScorePercent, undefined);
+assert.equal(optionalSource.difficultyRating, 8);
+assert.equal(optionalSource.label, 'Test 1-6 (C)');
 assert.equal(optionalSource.unlocksNextSources, undefined);
 
 const normalIndex = taskSources.findIndex(source => source.path === prerequisitePath);
@@ -67,8 +68,8 @@ for (const [text, name] of [[profileHtml, 'PROFILE_SOURCES'], [adminHtml, 'ADMIN
   assert.equal(entries[0].label, optionalSource.label);
 }
 
-assert.match(html, /getCheckpointScorePercent\(prerequisite\) > source\.minScorePercent/);
+assert.match(html, /if\(source\.optional\) return true;/);
 assert.match(html, /item\.kind === "test" && !item\.optional/);
 assert(!html.includes('source-unlock-note'), 'Optional status does not add text to the test tile');
 
-console.log('PASS: EO test C unlocks only above 90% and remains optional');
+console.log('PASS: EO test C is available without score restrictions and remains optional');

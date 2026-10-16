@@ -40,8 +40,7 @@ function optionalCheckpoint(level, prerequisite) {
     label: 'Test C 1-6',
     kind: 'test',
     optional: true,
-    requiresSource: prerequisite.path,
-    minScorePercent: 90
+    difficultyRating: 8
   };
 }
 
@@ -94,8 +93,6 @@ for (const name of [
   'getCourseSourceSequence',
   'getPreviousCourseCheckpoint',
   'isCheckpointStageComplete',
-  'getCheckpointScorePercent',
-  'isOptionalCourseTestUnlocked',
   'isCourseSourceVisible',
   'getAvailableSources'
 ]) {
@@ -119,20 +116,20 @@ const complete = (source, result = 'good', earnedPoints = 10) => {
 assert.deepEqual(visibleLabels(eoLevel), [
   'Lekcja 1', 'Lekcja 2', 'Lekcja 3', 'Lekcja 4', 'Lekcja 5', 'Lekcja 6'
 ]);
-assert.deepEqual(visibleLabels(eoLevel, 'testy'), ['Test 1-6']);
+assert.deepEqual(visibleLabels(eoLevel, 'testy'), ['Test 1-6', 'Test C 1-6']);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'));
 
 complete(eoSources[6], 'skipped', 0);
 assert(!visibleLabels(eoLevel).includes('Lekcja 7'), 'An unfinished test keeps the next lessons locked');
 complete(eoSources[6], 'medium', 8);
 assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'A completed test unlocks the next lessons regardless of its score');
-assert(!visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'A score of exactly 80% does not unlock C');
+assert(visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'Optional tests have no score restriction');
 assert(visibleLabels(eoLevel).includes('Lekcja 10'), 'The checkpoint unlocks lessons 7-10');
 assert(!visibleLabels(eoLevel).includes('Lekcja 11'), 'Lessons after the unlocked block stay hidden until the next checkpoint is added');
 complete(eoSources[6], 'medium', 9);
-assert(!visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'A score of exactly 90% does not unlock C');
+assert(visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'Optional tests remain available at 90%');
 complete(eoSources[6], 'good', 10);
-assert(visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'A score above 90% unlocks the optional C test');
+assert(visibleLabels(eoLevel, 'testy').includes('Test C 1-6'), 'Optional tests remain available at 100%');
 assert(visibleLabels(eoLevel).includes('Lekcja 7'), 'The optional test never blocks the next lesson stage');
 
 assert.deepEqual(visibleLabels(mpLevel), [

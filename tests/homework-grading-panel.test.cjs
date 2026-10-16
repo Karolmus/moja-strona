@@ -18,7 +18,8 @@ test('only MP5 homework is teacher-graded, with two points and external Discord 
     assert(homework.every(task => task.teacherGraded === true && task.maxPoints === 2 && task.type === 'external_submission'));
     assert(manifest.filter(task => task.coursePart !== 'praca_domowa').every(task => !task.teacherGraded));
     assert(student.indexOf('setupExternalTeacherSubmission(mcq);') < student.indexOf('} else if(isProofTask(currentTask))'));
-    assert(student.includes('class="notebook-work-notice" role="note"'));
+    assert(student.includes('id="notebookStartDialog"'));
+    assert(student.includes('Tutaj wprowadź tylko uzyskane odpowiedzi.'));
     assert.match(admin, /@media \(min-width: 901px\)\s*\{\s*\.source-task-table-wrap \{ max-height: none;/);
     assert(!admin.includes('Kurs - praca domowa i powtórki'));
 });

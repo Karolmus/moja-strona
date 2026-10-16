@@ -24,7 +24,7 @@ class Node {
 }
 
 function fixture() {
-  const ids = ['courseWorkspaceToolbar', 'courseBrandFooter', 'sourceSummaryRow',
+  const ids = ['courseWorkspaceToolbar', 'courseBrandFooter', 'taskScoreRail', 'sourceSummaryRow',
     'sourceSummarySidebarAnchor', 'formulaSection', 'formulaSidebarAnchor',
     'courseBrand', 'courseBrandSidebarAnchor'];
   const nodes = Object.fromEntries(ids.map(id => [id, new Node(id)]));
@@ -43,23 +43,25 @@ function fixture() {
   return {ctx,nodes,sidebar};
 }
 
-test('desktop course puts the existing score and document links above the navigator and branding below the task', () => {
+test('desktop course puts the score beside the task, document links above and branding below', () => {
   const {ctx,nodes,sidebar} = fixture();
   const originalNodes = Object.values(nodes);
   ctx.syncCourseWorkspaceLayout();
-  assert.deepEqual(nodes.courseWorkspaceToolbar.children.map(node => node.id), ['sourceSummaryRow', 'formulaSection']);
+  assert.deepEqual(nodes.courseWorkspaceToolbar.children.map(node => node.id), ['formulaSection']);
+  assert.deepEqual(nodes.taskScoreRail.children.map(node => node.id), ['sourceSummaryRow']);
   assert.deepEqual(nodes.courseBrandFooter.children.map(node => node.id), ['courseBrand']);
   assert.equal(nodes.courseWorkspaceToolbar.hidden, false);
   assert.equal(nodes.courseBrandFooter.hidden, false);
   assert.equal(sidebar.children.length, 3, 'Only nonvisual anchors stay in the selector');
   ctx.syncCourseWorkspaceLayout();
-  assert.equal(nodes.courseWorkspaceToolbar.children.length, 2, 'Refreshing results does not duplicate controls');
+  assert.equal(nodes.courseWorkspaceToolbar.children.length, 1, 'Refreshing results does not duplicate controls');
+  assert.equal(nodes.taskScoreRail.children.length, 1);
   assert.equal(nodes.formulaSection.href, 'wzory_matura.pdf');
   assert.equal(nodes.sourceSummaryRow.points, '4 / 18 pkt');
   assert.deepEqual(Object.values(nodes), originalNodes, 'Move existing DOM nodes without losing handlers or values');
 });
 
-test('phone widths and other tabs restore the original sidebar order, including repeated resizing', () => {
+test('every category retains the score rail while document links move only on desktop', () => {
   const {ctx,nodes,sidebar} = fixture();
   const order = sidebar.children.map(node => node.id);
   for (const [category,desktop] of [['kurs',true], ['kurs',false], ['kurs',true],
@@ -67,13 +69,18 @@ test('phone widths and other tabs restore the original sidebar order, including 
     ctx.selectedCategory = category;
     ctx.desktop = desktop;
     ctx.syncCourseWorkspaceLayout();
-    const moved = desktop && category === 'kurs';
-    assert.equal(nodes.courseWorkspaceToolbar.hidden, !moved);
+    const course = ['kurs', 'testy'].includes(category);
+    const moved = desktop && course;
+    assert.equal(nodes.courseWorkspaceToolbar.hidden, !desktop);
     assert.equal(nodes.courseBrandFooter.hidden, !moved);
-    if (!moved) {
-      assert.deepEqual(sidebar.children.map(node => node.id), order);
-      assert.equal(nodes.courseWorkspaceToolbar.children.length, 0);
+    assert.equal(nodes.sourceSummaryRow.parentElement, nodes.taskScoreRail);
+    if (!course) {
+      assert.deepEqual(sidebar.children.map(node => node.id), order.filter(id => !['sourceSummaryRow','formulaSection'].includes(id)));
+      assert.equal(nodes.courseWorkspaceToolbar.children.length, 1);
       assert.equal(nodes.courseBrandFooter.children.length, 0);
+      assert.equal(nodes.taskScoreRail.children.length, 1);
+    } else if (!desktop) {
+      assert.deepEqual(sidebar.children.map(node => node.id), order.filter(id => id !== 'sourceSummaryRow'));
     }
   }
   assert.match(html, /matchMedia\("\(min-width: 761px\)"\)\.addEventListener\("change", syncCourseWorkspaceLayout\)/);
@@ -83,11 +90,11 @@ test('phone widths and other tabs restore the original sidebar order, including 
 test('toolbar is compact, has no extra frame, and stays out of focus and phone-landscape views', () => {
   assert(html.indexOf('id="courseWorkspaceToolbar"') < html.indexOf('id="progress"'));
   assert(html.indexOf('id="courseBrandFooter"') > html.indexOf('class="interaction-panel"'));
-  assert.match(html, /id="courseWorkspaceToolbar"[^>]*aria-label="Wynik lekcji i materiały"[^>]*hidden/);
+  assert.match(html, /id="courseWorkspaceToolbar"[^>]*aria-label="Materiały i narzędzia"[^>]*hidden/);
   const desktopStyle = html.split('@media(min-width: 761px) {')[1].split('@media(max-width: 1100px) {')[0];
   assert.match(desktopStyle, /\.course-workspace-toolbar:not\(\[hidden\]\) \{[^}]*align-items: center;[^}]*min-height: 40px;/);
-  assert.match(desktopStyle, /\.course-workspace-toolbar \.source-summary-card \{[^}]*border: 0;[^}]*background: transparent;/);
-  assert.match(desktopStyle, /\.course-workspace-toolbar > #formulaSection \{[^}]*grid-auto-flow: column;[^}]*margin-left: auto;/);
+  assert(!desktopStyle.includes('.course-workspace-toolbar .source-summary-card'), 'The old horizontal score is no longer in the toolbar');
+  assert.match(desktopStyle, /\.course-workspace-toolbar > #formulaSection \{[^}]*grid-auto-flow: column;[^}]*margin-left: 0;/);
   assert.match(desktopStyle, /\.course-workspace-toolbar \.formula-card \{[^}]*height: 36px;/);
   assert.match(html, /body\.focus-mode \.course-workspace-toolbar,\s*body\.focus-mode \.course-brand-footer \{\s*display: none;/);
   const landscape = html.split('@media (orientation: landscape) and (max-height: 560px) and (max-width: 1000px) {')[1];

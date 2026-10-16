@@ -85,6 +85,7 @@ assert.equal(reviewsLoaded, 1);
 assert.equal(context.sourceScoreLabel({earnedPoints: 5, totalPoints: 8, percent: 62.5}), '5 / 8 pkt');
 
 assert.match(html, /\.test-summary \.homework-summary-stats,[\s\S]*?display: none;/);
-assert.match(html, /\.mobile-course-result \.source-summary-percent\[hidden\]\s*\{\s*display: none;/,
-  'The mobile footer cannot display the test percentage twice');
+assert(!html.includes('mobileSourceSummaryPercent'), 'The mobile footer cannot duplicate the vertical test result');
+assert.match(html, /percent\.hidden = getSourceMetaById\(selectedSource\)\?\.kind === "test";/,
+  'The vertical rail displays the test percentage only once');
 console.log('PASS: compact test result, rounded percent, saved elapsed time and unchanged homework summary');

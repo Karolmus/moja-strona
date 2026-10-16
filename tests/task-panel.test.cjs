@@ -28,7 +28,7 @@ const ctx = vm.createContext({
   taskNumberLabel:task => task.taskNumber || '1',
   showMessage:message => {ctx.message = message;}
 });
-for (const name of ['courseTestVariant', 'getTaskKey', 'stars', 'difficultyFromCompletionPercent', 'taskDifficulty', 'taskMaxPoints', 'formatPoints',
+for (const name of ['courseTestRange', 'courseTestVariant', 'getTaskKey', 'stars', 'difficultyFromCompletionPercent', 'taskDifficulty', 'taskMaxPoints', 'formatPoints',
   'pointsBadgeMarkup', 'completionTooltip', 'difficultyStarsMarkup', 'updateTaskDetails', 'updateSupportActionHighlights',
   'resetReviewButton', 'markForReview']) {
   const start = html.indexOf(`function ${name}(`);
@@ -57,13 +57,14 @@ assert.match(html, /\.course-brand-media\s*\{[^}]*grid-template-columns:\s*repea
 assert.match(html, /\.course-brand-photo img\s*\{[^}]*object-fit:\s*cover;/s);
 assert.match(html, /\.course-brand\[hidden\]\s*\{\s*display: none;/);
 assert(!html.includes('<div class="side-title">Materiały</div>'), 'Formula buttons do not need a redundant heading');
-assert.match(html, /id="mobileCourseFooter"[^>]*hidden[\s\S]*?id="mobileSourceSummaryPoints"/);
+assert.match(html, /class="task-score-rail" id="taskScoreRail"[^>]*hidden/);
+assert(!html.includes('id="mobileSourceSummaryPoints"'), 'Mobile does not duplicate the vertical score with an old horizontal bar');
 assert.match(html, /function updateMobileCourseFooter\(summary = null\)/);
 assert.match(html, /document\.body\.classList\.toggle\("course-view", isCourseCategory\(\)\)/);
 assert(html.indexOf('id="taskImage"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="taskInstruction"') < html.indexOf('id="mcq"'));
 assert(html.indexOf('id="mcq"') < html.indexOf('class="interaction-panel"'), 'Answers precede help and navigation in DOM order');
-assert.match(html, /\.source-load-pending > \.mcq/);
+assert.match(html, /\.source-load-pending > \.task-workspace/);
 const toolGridStyle = html.match(/\.action-group\.tools \{([^}]+)\}/)[1];
 assert.match(toolGridStyle, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/,
   'Task tools use two equal columns');
@@ -219,7 +220,7 @@ for(const variant of ['A', 'B', 'C']){
   ctx.testSource = {label:`Test sprawdzający z lekcji 1 - 6, wersja ${variant}.`};
   ctx.updateTaskDetails({category:'kurs', activityType:'test', taskNumber:'1.2',
     topic:'Powielony opis zagadnienia', maxPoints:2}, 15);
-  assert(meta.innerHTML.includes(`Test ${variant} · Zadanie 1.2`));
+  assert(meta.innerHTML.includes(`Test 1-6 (${variant}) · Zadanie 1.2`));
   assert(!meta.innerHTML.includes('Powielony opis zagadnienia'), 'Test headers do not repeat the topic');
   assert(meta.innerHTML.includes('points-badge'), 'Compact test headers retain the points');
   assert.equal(testNotice.hidden, false);

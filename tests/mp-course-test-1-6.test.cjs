@@ -122,8 +122,8 @@ for (const [text, name] of [
   assert.equal(entries[0].level, 'matura_podstawowa');
   assert.equal(entries[0].kind, 'test');
   if(name === 'TASK_SOURCES') assert.equal(entries[0].unlocksNextSources, 4);
-  assert.equal(entries[0].label, 'Test sprawdzający z tematów 1-6, wersja A.');
-  assert.equal(entries[0].detail, '60 minut');
+  assert.equal(entries[0].label, 'Test 1-6 (A)');
+  assert.equal(entries[0].detail, name === 'TASK_SOURCES' ? '60 minut' : 'Trudność 5/10');
 }
 
 const taskSources = config(html, 'TASK_SOURCES');
@@ -170,6 +170,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
     loggedUser: {role: 'student'},
     getSourceMetaById: () => ({id: sourcePath, kind: 'test'}),
     storedTestDeadline: () => 0,
+    confirmNotebookWork: async () => {},
     confirmTestStart: async () => confirmed,
     startTestTimer: () => {startCalls++;}
   });
@@ -257,7 +258,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   assert.match(html, /Test zakończony: Czas \$\{timerClock\(elapsed\)\}, Wynik \$\{Math\.round\(summary\.percent\)\}%/);
   assert.match(html, /await Promise\.allSettled\(\[\.\.\.pendingProgressSaveRequests\]\)/);
   assert.match(html, /const unfinishedTasks = getHomeworkSummaryTasks\(sourceId\)/);
-  assert.match(html, /\.test-source-list \.source-btn,\s*\.exam-source-list \.source-btn/);
+  assert.match(html, /\.course-source-list \.source-btn,\s*\.test-source-list \.source-btn/);
   assert(fs.statSync(path.join(sourceDir, 'Kurs matura podstawowa test A lekcje 1-6.pdf')).size > 400000);
 
   console.log('PASS: MP test 1-6, clean crops, confirmation gate and persistent 60-minute countdown');

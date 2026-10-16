@@ -21,7 +21,7 @@ function setup() {
   const context = vm.createContext({
     TASK_SOURCES:sources, tasks, selectedLevel:level, selectedCategory:'kurs', selectedSource:'all',
     selectedCoursePart:'praca_domowa', loggedUser:{role:'student',level}, isLoggedInStudent:true,
-    getSourceMeta:source => source, isCourseSourceVisible:source => !source.optional,
+    getSourceMeta:source => source, isCourseSourceVisible:() => true,
     STUDENT_WORK_COURSE_PARTS:['praca_domowa','zadania_powtorkowe'],
     COURSE_PART_ORDER:{praca_domowa:2},
     getSavedResult:() => '', taskMatchesTagFilters:() => true, tagFiltersSearchAllSources:() => false,
@@ -36,11 +36,11 @@ function setup() {
     ensureTestSourceStarted:async () => {context.startRequests++; return context.startConfirmed;},
     startRequests:0, startConfirmed:false,
   });
-  for (const name of ['sourceDisplayCategory','isCourseCategory','getSourceMetaById','getAvailableSources',
+  for (const name of ['sourceDisplayCategory','isCourseCategory','getSourceMetaById','getAvailableSources','getSourcePickerSources',
     'hasSourcesForCategory','ensureSelectedSource','canAccessCoursePart','ensureSelectedCoursePart',
     'pool','getSourceCompletionTasks','sourceSummaryTasks','getCourseNavigatorItems','taskNavigatorItems',
     'shouldShowTaskNavigator','getRequestedCategory','getProgressSourceId','getProgressFile',
-    'findLastProgressItem','updateCategoryButtons','updateTestCategoryBadge','setCategory','setSource']) {
+    'findLastProgressItem','updateCategoryButtons','setCategory','setSource']) {
     const match = new RegExp(`(?:async )?function ${name}\\(`).exec(html);
     assert(match, name);
     vm.runInContext(html.slice(match.index, html.indexOf('\n}', match.index) + 2), context);
@@ -53,7 +53,9 @@ test('course lessons and tests have separate tabs while retaining stored course 
   const available = () => Array.from(c.getAvailableSources(), source => source.id);
   assert.deepEqual(available(), ['lesson-1']);
   c.selectedCategory = 'testy';
-  assert.deepEqual(available(), ['test-A']);
+  assert.deepEqual(available(), ['test-A','test-B']);
+  assert.deepEqual(Array.from(c.getSourcePickerSources(), source => source.id), ['test-A','test-B'],
+    'All optional tests are selectable without score restrictions');
   c.loggedUser = {role:'admin'};
   c.isCourseSourceVisible = () => true;
   assert.deepEqual(available(), ['test-A','test-B']);
@@ -79,9 +81,12 @@ test('tab navigation never starts the clock; choosing a test still requires conf
   assert.equal(c.selectedSource, 'all');
   assert.equal(c.drawnSource, 'all');
   assert.equal(c.startRequests, 0);
+  await c.setSource('test-B');
+  assert.equal(c.selectedSource, 'all', 'Cancelling B keeps the selection visible');
+  assert.equal(c.startRequests, 1, 'Optional tests also require explicit confirmation');
   await c.setSource('test-A');
   assert.equal(c.selectedSource, 'all', 'Cancellation leaves the test selection visible');
-  assert.equal(c.startRequests, 1);
+  assert.equal(c.startRequests, 2);
   c.startConfirmed = true;
   await c.setSource('test-A');
   assert.equal(c.selectedSource, 'test-A');
@@ -90,10 +95,10 @@ test('tab navigation never starts the clock; choosing a test still requires conf
   await c.setCategory(null, 'kurs');
   assert.equal(c.selectedSource, 'lesson-1');
   assert.equal(c.selectedCategory, 'kurs');
-  assert.equal(c.startRequests, 2);
+  assert.equal(c.startRequests, 3);
 });
 
-test('course and test resume are independent and the tests tab has an accessible due badge', () => {
+test('course and test resume are independent without a due badge', () => {
   const {context:c, badge, buttons} = setup();
   c.savedProgress = [
     {source_id:'test-A', file:'1.webp', category:'kurs'},
@@ -106,12 +111,7 @@ test('course and test resume are independent and the tests tab has an accessible
   assert.equal(buttons[1]['aria-pressed'], 'true');
   assert.equal(buttons[0]['aria-pressed'], 'false');
   assert(c.document.body.classList['course-view'], 'Tests retain the compact mobile task layout');
-  c.updateTestCategoryBadge([{id:'test-A'}]);
-  assert.equal(badge.hidden, false);
-  assert.equal(badge.textContent, '1');
-  assert.equal(badge['aria-label'], 'Testy do wykonania: 1');
-  c.updateTestCategoryBadge([]);
-  assert.equal(badge.hidden, true);
+  assert(!html.includes('testCategoryBadge'));
   assert(!html.includes('course-test-group'), 'No duplicate tests section remains within the course picker');
   assert.match(html, /data-category="testy"/);
   assert.match(html, /grid-template-columns: repeat\(4, minmax\(0, 1fr\)\)/);

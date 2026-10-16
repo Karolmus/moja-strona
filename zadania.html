@@ -23,7 +23,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
-<link rel="stylesheet" href="static/course-tests.css?v=20261013">
+<link rel="stylesheet" href="static/workspace-score.css?v=20261016">
 
 <style>
 :root {
@@ -341,12 +341,6 @@ body.admin-preview .level-btn {
     overflow-y: visible;
 }
 
-.notebook-work-notice {
-    margin: 0 0 8px;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.45;
-}
 .mcq.external-submission-task { grid-template-columns: minmax(0, 1fr); }
 .teacher-submission-status { margin: 0; font-size: 13px; }
 
@@ -355,23 +349,6 @@ body.admin-preview .level-btn {
     align-items: center;
     justify-content: center;
     gap: 4px;
-}
-
-.test-category-badge {
-    display: inline-grid;
-    place-items: center;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 4px;
-    border-radius: 50%;
-    background: #b84141;
-    color: white;
-    font-size: 10px;
-    line-height: 1;
-}
-
-.test-category-badge[hidden] {
-    display: none;
 }
 
 .task-card.test-selection-idle {
@@ -394,11 +371,10 @@ body.admin-preview .level-btn {
     color: var(--muted);
 }
 
-.source-list.test-source-list,
 .source-list.exam-source-list {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 6px;
-    max-height: 380px;
+    max-height: 270px;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 2px 6px 3px 2px;
@@ -406,39 +382,68 @@ body.admin-preview .level-btn {
     scrollbar-color: #b9c6d4 transparent;
 }
 
-.source-list.test-source-list::-webkit-scrollbar,
 .source-list.exam-source-list::-webkit-scrollbar {
     width: 5px;
 }
 
-.source-list.test-source-list::-webkit-scrollbar-thumb,
 .source-list.exam-source-list::-webkit-scrollbar-thumb {
     background: #b9c6d4;
     border-radius: 999px;
 }
 
-.test-range-group,
-.exam-year-group {
-    min-width: 0;
-}
-
-.test-range-label,
-.exam-year-label {
-    margin: 0 0 2px;
-    padding-bottom: 1px;
-    border-bottom: 1px solid var(--line);
+.exam-picker-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+    font-size: 11px;
     color: var(--muted);
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.1;
 }
 
-.test-range-sources,
-.exam-year-sources {
-    display: grid;
+.exam-picker-filter[hidden] { display: none; }
+.exam-picker-filter select {
+    max-width: 190px;
+    min-height: 32px;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: 5.1px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+}
+
+.source-list.test-source-list {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 3px;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+}
+
+.source-selection-notice {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.source-selection-notice[hidden] {
+    display: none;
+}
+
+.source-btn[aria-disabled="true"] {
+    border-style: dashed;
+    background: var(--surface-soft);
+    color: var(--muted);
+}
+
+.task-sidebar:has(.exam-source-list) .selector-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.task-sidebar:has(.exam-source-list) .level-selector {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px;
-    min-width: 0;
 }
 
 .source-summary-row {
@@ -500,7 +505,8 @@ body.guest-exam-mode .source-summary-row {
     text-align: left;
 }
 
-.course-source-list .source-btn {
+.course-source-list .source-btn,
+.test-source-list .source-btn {
     min-height: 41px;
     align-content: center;
     gap: 0;
@@ -508,16 +514,23 @@ body.guest-exam-mode .source-summary-row {
     text-align: center;
 }
 
-.test-source-list .source-btn,
 .exam-source-list .source-btn {
-    min-height: 28px;
+    min-height: 62px;
     align-content: center;
-    gap: 1px;
-    padding: 3px 4px;
-    text-align: center;
+    gap: 4px;
+    padding: 8px;
+    text-align: left;
 }
 
-.test-source-list .source-btn span,
+.exam-result-badge {
+    justify-self: start;
+    padding: 2px 7px;
+    border-radius: 3.4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+.top-row .source-summary-open { width: auto; min-height: 28px; padding: 4px 8px; }
+
 .exam-source-list .source-btn span {
     min-width: 0;
     font-size: 12px;
@@ -526,7 +539,8 @@ body.guest-exam-mode .source-summary-row {
     word-break: normal;
 }
 
-.course-source-list .source-btn span {
+.course-source-list .source-btn span,
+.test-source-list .source-btn span {
     font-size: 12px;
     line-height: 1.1;
 }
@@ -1367,11 +1381,7 @@ body.focus-mode .task-card {
 
 .source-load-status[hidden],
 .source-load-pending > .top-row,
-.source-load-pending > .meta-box,
-.source-load-pending > .task-image-stack,
-.source-load-pending > .task-instruction,
-.source-load-pending > .manual-score-notice,
-.source-load-pending > .mcq,
+.source-load-pending > .task-workspace,
 .source-load-pending > .interaction-panel {
     display: none;
 }
@@ -1663,7 +1673,8 @@ html.task-video-open {
     background: rgba(15, 23, 42, 0.68);
 }
 
-.test-start-dialog {
+.test-start-dialog,
+.notebook-start-dialog {
     width: min(520px, calc(100vw - 24px));
     margin: auto;
     padding: 0;
@@ -1674,8 +1685,25 @@ html.task-video-open {
     box-shadow: 0 24px 64px rgba(15, 23, 42, 0.3);
 }
 
-.test-start-dialog::backdrop {
+.test-start-dialog::backdrop,
+.notebook-start-dialog::backdrop {
     background: rgba(15, 23, 42, 0.72);
+}
+
+.notebook-start-dialog {
+    max-height: calc(100dvh - 24px);
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.notebook-start-dialog p {
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.notebook-start-dialog button {
+    width: 100%;
 }
 
 .test-start-content {
@@ -3203,16 +3231,46 @@ footer {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .tasks-layout:has(.course-source-list) .task-sidebar {
+    .tasks-layout:has(.test-source-list) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tasks-layout:has(.exam-source-list) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tasks-layout:has(.exam-source-list) .task-sidebar {
         position: static;
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .task-sidebar:has(.course-source-list) > :is(#categorySection, .course-test-notice, .selector-grid) {
+    .task-sidebar:has(.exam-source-list) > :is(#categorySection, .selector-grid, #tagSearchSection) {
         grid-column: 1 / -1;
     }
 
-    .task-sidebar:has(.course-source-list) > .exam-tools-row {
+    .task-sidebar:has(.exam-source-list) > #formulaSection {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    .task-sidebar:has(.exam-source-list) > .exam-tools-row {
+        justify-self: end;
+    }
+
+    .tasks-layout:has(.course-source-list) .task-sidebar,
+    .tasks-layout:has(.test-source-list) .task-sidebar {
+        position: static;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .task-sidebar:has(.course-source-list) > :is(#categorySection, .selector-grid),
+    .task-sidebar:has(.test-source-list) > :is(#categorySection, .selector-grid) {
+        grid-column: 1 / -1;
+    }
+
+    .task-sidebar:has(.course-source-list) > .exam-tools-row,
+    .task-sidebar:has(.test-source-list) > .exam-tools-row {
         display: none;
     }
 
@@ -3225,30 +3283,12 @@ footer {
         margin-bottom: 12px;
     }
 
-    .course-workspace-toolbar > .source-summary-row {
-        flex: 0 1 260px;
-        min-width: 160px;
-    }
-
-    .course-workspace-toolbar .source-summary-card {
-        gap: 4px;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-        height: auto;
-    }
-
-    .course-workspace-toolbar .source-summary-track {
-        height: 4px;
-    }
-
     .course-workspace-toolbar > #formulaSection {
         grid-auto-flow: column;
         grid-auto-columns: max-content;
         justify-content: end;
         gap: 6px;
-        margin-left: auto;
+        margin-left: 0;
         margin-top: 0;
         padding-top: 0;
         border: 0;
@@ -3304,27 +3344,28 @@ footer {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .source-list.test-source-list,
+    .source-list.test-source-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
     .source-list.exam-source-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         width: 100%;
         min-width: 0;
         max-height: min(340px, 42dvh);
     }
 
-    .test-source-list .source-btn,
     .exam-source-list .source-btn {
-        min-height: 32px;
-        padding: 3px 4px;
-        gap: 1px;
+        min-height: 62px;
+        padding: 8px;
+        gap: 4px;
     }
 
-    .test-source-list .source-btn span,
     .exam-source-list .source-btn span {
         font-size: 13px;
         line-height: 1.2;
     }
 
-    .test-source-list .source-btn small,
     .exam-source-list .source-btn small {
         font-size: 11px;
         line-height: 1.25;
@@ -3437,12 +3478,22 @@ footer {
         overflow-y: visible;
     }
 
-    .course-source-list .source-btn {
+    .source-list.test-source-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .source-list.exam-source-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .course-source-list .source-btn,
+    .test-source-list .source-btn {
         min-height: 38px;
         padding: 2px 4px;
     }
 
-    .course-source-list .source-btn span {
+    .course-source-list .source-btn span,
+    .test-source-list .source-btn span {
         font-size: 11px;
         line-height: 12px;
     }
@@ -3624,7 +3675,7 @@ footer {
 
     .mobile-course-footer {
         grid-column: 1 / -1;
-        grid-template-columns: 112px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         align-items: center;
         gap: 10px;
         border: 1px solid var(--line);
@@ -3660,18 +3711,6 @@ footer {
         font-size: 8px;
         line-height: 1.2;
         text-align: center;
-    }
-
-    .mobile-course-result {
-        min-width: 0;
-    }
-
-    .mobile-course-result .source-summary-percent {
-        display: inline;
-    }
-
-    .mobile-course-result .source-summary-percent[hidden] {
-        display: none;
     }
 
     body.guest-exam-mode .progress-grid {
@@ -3909,12 +3948,6 @@ footer {
         line-height: 1.25;
     }
 
-    .notebook-work-notice {
-        margin-bottom: 4px;
-        font-size: 10px;
-        line-height: 1.25;
-    }
-
     .progress-grid {
         flex-wrap: nowrap;
         gap: 4px;
@@ -4029,6 +4062,32 @@ footer {
     .action-group.navigation {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         padding-top: 0;
+        grid-row: 1;
+    }
+
+    .action-group.tools {
+        grid-row: 2;
+    }
+}
+@container (max-width: 360px) {
+    .tf-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tf-label {
+        grid-column: 1 / -1;
+        min-height: 20px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+
+    .grouped-choice-row {
+        grid-template-columns: repeat(var(--grouped-option-count, 2), minmax(0, 1fr));
+    }
+
+    .grouped-choice-label {
+        grid-column: 1 / -1;
     }
 }
 </style>
@@ -4046,13 +4105,12 @@ footer {
             <div class="side-section" id="categorySection" style="display:none">
                 <div class="category-toggle">
                     <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
-                    <button class="category-btn" data-category="testy" onclick="setCategory(this,'testy')"><span>Testy</span><span class="test-category-badge" id="testCategoryBadge" hidden></span></button>
+                    <button class="category-btn" data-category="testy" onclick="setCategory(this,'testy')">Testy</button>
                     <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
                     <a class="category-btn training-card" id="trainingLink" href="trening.html">Trening szybkości</a>
                 </div>
             </div>
 
-            <div class="course-test-notice" id="courseTestNotice" role="status" aria-live="polite" hidden></div>
 
             <div class="selector-grid">
                 <div class="side-section" id="guestLevelWrapper">
@@ -4066,7 +4124,13 @@ footer {
 
                 <div class="side-section source-picker-section">
                     <div class="side-title" id="sourceTitle">Wybór lekcji</div>
+                    <label class="exam-picker-filter" id="examYearFilterRow" hidden>Rocznik
+                        <select id="examYearFilter" aria-label="Rocznik egzaminu" onchange="setExamYear(this.value)">
+                            <option value="all">Wszystkie roczniki</option>
+                        </select>
+                    </label>
                     <div class="source-list" id="sourceList"></div>
+                    <p class="source-selection-notice" id="sourceSelectionNotice" role="status" hidden></p>
                 </div>
             </div>
 
@@ -4093,14 +4157,12 @@ footer {
                             <span class="source-summary-fill" id="sourceSummaryFill"></span>
                         </div>
                         <div class="source-summary-detail" id="sourceSummaryDetail">Wybierz arkusz albo lekcję.</div>
-                        <button class="source-summary-open" id="examSummaryOpen" type="button" hidden>
-                            Wyświetl podsumowanie
-                        </button>
                     </div>
                 </div>
             </div>
 
-            <div class="exam-tools-row">
+            <template id="examToolsSidebarAnchor"></template>
+            <div class="exam-tools-row" id="examToolsRow">
                 <div class="side-section" id="modeSection" style="display:none">
                     <div class="mode-toggle">
                         <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
@@ -4138,13 +4200,11 @@ footer {
 
         <div class="task-card">
 
-            <div class="course-workspace-toolbar" id="courseWorkspaceToolbar" role="group" aria-label="Wynik lekcji i materiały" hidden></div>
+            <div class="course-workspace-toolbar" id="courseWorkspaceToolbar" role="group" aria-label="Materiały i narzędzia" hidden></div>
 
             <p class="test-selection-empty" id="testSelectionEmpty" role="status" hidden>Wybierz test sprawdzający.</p>
 
             <p class="test-mode-notice" id="testModeNotice" role="note" hidden>Test bez wskazówek, nagrań i omówień.</p>
-
-            <p class="notebook-work-notice" role="note">Rozwiązuj w zeszycie. Tu podaj tylko odpowiedź.</p>
 
             <div class="source-load-status" id="sourceLoadStatus" role="status" aria-live="polite" hidden>
                 <p id="sourceLoadMessage"></p>
@@ -4156,28 +4216,34 @@ footer {
             <div class="top-row">
                 <div class="timer hidden" id="timer">00:00</div>
                 <div class="task-counter" id="taskCounter">0 / 0</div>
+                <button class="source-summary-open" id="examSummaryOpen" type="button" hidden>Podsumowanie arkusza</button>
                 <button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()">Tryb skupienia</button>
             </div>
 
-            <div class="meta-box meta-osmoklasista" id="metaBox"></div>
+            <div class="task-workspace">
+                <div class="task-content">
+                    <div class="meta-box meta-osmoklasista" id="metaBox"></div>
 
-            <div class="task-image-stack">
-                <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania" decoding="async">
-                <div class="task-image-frame">
-                    <img id="taskImage" class="task-image" src="" alt="zadanie" decoding="async" fetchpriority="high">
-                    <div class="comparison-overlay" id="comparisonOverlay" aria-label="Wybór znaków porównania" hidden></div>
+                    <div class="task-image-stack">
+                        <img id="contextImage" class="task-image context-image hidden" src="" alt="informacja do zadania" decoding="async">
+                        <div class="task-image-frame">
+                            <img id="taskImage" class="task-image" src="" alt="zadanie" decoding="async" fetchpriority="high">
+                            <div class="comparison-overlay" id="comparisonOverlay" aria-label="Wybór znaków porównania" hidden></div>
+                        </div>
+                    </div>
+                    <p class="task-instruction" id="taskInstruction" hidden></p>
+
+                    <div class="mcq" id="mcq"></div>
+                    <div id="answer" class="box" aria-live="polite"></div>
+                    <div class="progress-save-status" id="progressSaveStatus" role="alert" hidden>
+                        <span>Nie udało się zapisać odpowiedzi. Ponów zapis przed opuszczeniem strony.</span>
+                        <button id="progressSaveRetry" type="button" onclick="retryFailedProgressSaves()">Ponów zapis</button>
+                    </div>
+
+                    <p class="manual-score-notice" id="manualScoreNotice" hidden>To zadanie oceniasz samodzielnie. Rozwiąż je, a następnie otwórz zasady oceniania, aby przyznać sobie punkty.</p>
                 </div>
+                <aside class="task-score-rail" id="taskScoreRail" aria-label="Zdobyte punkty" hidden></aside>
             </div>
-            <p class="task-instruction" id="taskInstruction" hidden></p>
-
-            <div class="mcq" id="mcq"></div>
-            <div id="answer" class="box" aria-live="polite"></div>
-            <div class="progress-save-status" id="progressSaveStatus" role="alert" hidden>
-                <span>Nie udało się zapisać odpowiedzi. Ponów zapis przed opuszczeniem strony.</span>
-                <button id="progressSaveRetry" type="button" onclick="retryFailedProgressSaves()">Ponów zapis</button>
-            </div>
-
-            <p class="manual-score-notice" id="manualScoreNotice" hidden>To zadanie oceniasz samodzielnie. Rozwiąż je, a następnie otwórz zasady oceniania, aby przyznać sobie punkty.</p>
 
             <div class="interaction-panel">
                 <div class="task-actions">
@@ -4238,15 +4304,6 @@ footer {
                 </div>
                 <span>Karol Musioł,<br>korepetycje z matematyki</span>
             </div>
-            <div class="source-summary-card mobile-course-result">
-                <div class="source-summary-main">
-                    <strong class="source-summary-points" id="mobileSourceSummaryPoints">0 / 0 pkt</strong>
-                    <span class="source-summary-percent" id="mobileSourceSummaryPercent">0%</span>
-                </div>
-                <div class="source-summary-track" aria-hidden="true">
-                    <span class="source-summary-fill" id="mobileSourceSummaryFill"></span>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -4274,6 +4331,11 @@ footer {
         </div>
     </div>
     <div class="task-video-player" id="taskVideoPlayer" hidden></div>
+</dialog>
+
+<dialog class="notebook-start-dialog" id="notebookStartDialog" aria-label="Przed rozpoczęciem zadań" aria-describedby="notebookStartMessage">
+    <p id="notebookStartMessage">Rozwiązuj zadania pisemnie w zeszycie. Tutaj wprowadź tylko uzyskane odpowiedzi. Nie rozwiązuj zadań w pamięci - to najczęstsza przyczyna błędów.</p>
+    <button class="test-start-btn primary" id="notebookStartConfirm" type="button" onclick="acceptNotebookWork()" autofocus>Zaczynam</button>
 </dialog>
 
 <dialog class="test-start-dialog" id="testStartDialog" aria-labelledby="testStartTitle" aria-describedby="testStartWarning">
@@ -4406,7 +4468,7 @@ footer {
 <script src="static/math-answer-input.js?v=20261006-equivalent-answers"></script>
 <script src="static/active-work-time.js?v=20260910"></script>
 <script src="static/course-videos.js?v=20261014-mp6-eq"></script>
-<script src="static/course-tests.js?v=20261013"></script>
+<script src="static/workspace-score.js?v=20261016"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -4418,6 +4480,7 @@ let examScoreUnlocked = false;
 let seconds = 0;
 let currentIndex = 0;
 let selectedSource = "all";
+let selectedExamYear = "all";
 let selectedCategory = "kurs";
 let selectedCoursePart = "praca_domowa";
 let taskMode = "ordered";
@@ -4646,9 +4709,10 @@ const TASK_SOURCES = [
         path: "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json",
         category: "kurs",
         level: "matura_podstawowa",
-        label: "Test sprawdzający z tematów 1-6, wersja A.",
+        label: "Test 1-6 (A)",
         detail: "60 minut",
         kind: "test",
+        difficultyRating: 5,
         unlocksNextSources: 4
     },
     {
@@ -4711,32 +4775,31 @@ const TASK_SOURCES = [
         path: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
-        label: "Test sprawdzający z lekcji 1 - 6, wersja A",
-        detail: "Sprawdź wiedzę z lekcji 1 - 6",
+        label: "Test 1-6 (A)",
+        detail: "Trudność 5/10",
         kind: "test",
+        difficultyRating: 5,
         unlocksNextSources: 4
     },
     {
         path: "zadania/kurs/eo/test_lekcje_1_6_b/test_lekcje_1_6_b.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
-        label: "Test sprawdzający z lekcji 1 - 6, wersja B",
-        detail: "Dodatkowy test · wynik testu A poniżej 80%",
+        label: "Test 1-6 (B)",
+        detail: "Trudność 5/10",
         kind: "test",
+        difficultyRating: 5,
         optional: true,
-        requiresSource: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
-        maxScorePercent: 80
     },
     {
         path: "zadania/kurs/eo/test_lekcje_1_6_trudniejszy/test_lekcje_1_6_trudniejszy.json",
         category: "kurs",
         level: "egzamin_osmoklasisty",
-        label: "Test sprawdzający z lekcji 1 - 6, wersja C",
-        detail: "Opcjonalny · wynik testu A powyżej 90%",
+        label: "Test 1-6 (C)",
+        detail: "Trudność 8/10",
         kind: "test",
+        difficultyRating: 8,
         optional: true,
-        requiresSource: "zadania/kurs/eo/test_lekcje_1_6/test_lekcje_1_6.json",
-        minScorePercent: 90
     },
     {
         path: "zadania/kurs/eo/lekcja_7/lekcja_7_czas_i_odleglosc.json",
@@ -4892,6 +4955,50 @@ const MONTH_LABELS = {
 
 const GUEST_PROGRESS_STORAGE_KEY = "deltaSigmaGuestExamProgress";
 const workTimer = new DeltaSigmaActiveWorkTime();
+let notebookWorkAccepted = false;
+let notebookWorkPromise = null;
+let notebookWorkResolver = null;
+
+function notebookWorkStorageKey(){
+    return `deltaSigmaNotebookWork:${loggedUser?.id || loggedUser?.username || "guest"}`;
+}
+
+function confirmNotebookWork(){
+    if(notebookWorkAccepted) return Promise.resolve();
+    try {
+        if(sessionStorage.getItem(notebookWorkStorageKey()) === "1") return Promise.resolve();
+    } catch(error) {
+        // The in-memory flag still avoids repeating the notice if storage is unavailable.
+    }
+    if(notebookWorkPromise) return notebookWorkPromise;
+
+    const dialog = document.getElementById("notebookStartDialog");
+    if(!dialog || typeof dialog.showModal !== "function"){
+        window.alert(document.getElementById("notebookStartMessage")?.textContent || "Rozwiązuj zadania pisemnie w zeszycie.");
+        notebookWorkAccepted = true;
+        return Promise.resolve();
+    }
+
+    workTimer.pause();
+    notebookWorkPromise = new Promise(resolve => { notebookWorkResolver = resolve; });
+    dialog.showModal();
+    document.getElementById("notebookStartConfirm").focus();
+    return notebookWorkPromise;
+}
+
+function acceptNotebookWork(){
+    notebookWorkAccepted = true;
+    try {
+        sessionStorage.setItem(notebookWorkStorageKey(), "1");
+    } catch(error) {
+        // Continue without browser storage.
+    }
+    document.getElementById("notebookStartDialog").close();
+    const resolve = notebookWorkResolver;
+    notebookWorkResolver = null;
+    notebookWorkPromise = null;
+    resolve?.();
+}
 
 function syncWorkTimeVisibility(){
     workTimer.setForeground(document.visibilityState === "visible" && document.hasFocus());
@@ -5043,7 +5150,7 @@ function confirmTestStart(source){
         ));
     }
 
-    sourceName.textContent = source.label;
+    sourceName.textContent = courseTestVariant(source);
     testStartPreviousFocus = document.activeElement;
 
     return new Promise(resolve => {
@@ -5070,6 +5177,7 @@ async function ensureTestSourceStarted(sourceId){
         }
         return true;
     }
+    await confirmNotebookWork();
     if(!await confirmTestStart(source)) return false;
 
     startTestTimer(sourceId);
@@ -5302,6 +5410,7 @@ async function bootStudentPanel(){
 
         setSourceLoadState("ready");
         await drawTask(initialIndex);
+        preloadExamResultSources();
 
         if(isLoggedInStudent){
             loadStudentReviewTasks().then(() => {
@@ -5668,6 +5777,25 @@ async function preloadCourseSourcesForCounts(){
     }));
 }
 
+async function preloadExamResultSources(){
+    if(selectedCategory !== "egzaminy") return;
+    const visited = new Set(savedProgress.map(getProgressSourceId));
+    for(const key of sessionResults.keys()) visited.add(key.slice(0, key.lastIndexOf(":")));
+    const sources = getAvailableSources().filter(source => visited.has(source.id) && !isTaskSourceLoaded(source.id));
+
+    // Only visited papers need their task catalog to verify completion and total points.
+    for(let index = 0; index < sources.length; index += 4){
+        await Promise.all(sources.slice(index, index + 4).map(async source => {
+            try {
+                await ensureTaskSourceLoaded(source.id);
+            } catch(error) {
+                console.warn("Nie udało się wczytać wyniku arkusza.", source.id, error);
+            }
+        }));
+        if(selectedCategory === "egzaminy") renderSourceSelector();
+    }
+}
+
 function normalizeTaskSolutions(task, basePath){
     if(!Array.isArray(task.solutions)) return [];
 
@@ -5847,10 +5975,7 @@ function getSourceMeta(sourceConfig){
         kind: sourceConfig.kind || "",
         unlocksNextSources: Math.max(0, Number(sourceConfig.unlocksNextSources) || 0),
         optional: sourceConfig.optional === true,
-        requiresSource: sourceConfig.requiresSource || "",
-        minScorePercent: Math.max(0, Number(sourceConfig.minScorePercent) || 0),
-        maxScorePercent: Number.isFinite(sourceConfig.maxScorePercent)
-            ? sourceConfig.maxScorePercent : null
+        difficultyRating: Math.max(0, Math.min(10, Number(sourceConfig.difficultyRating) || 0))
     };
 }
 
@@ -5885,45 +6010,13 @@ function isCheckpointStageComplete(checkpoint){
     );
 }
 
-function getCheckpointScorePercent(checkpoint){
-    if(checkpoint?.kind !== "test" || !isTaskSourceLoaded(checkpoint.id)) return 0;
-
-    const requiredTasks = getSourceCompletionTasks(checkpoint);
-    let earnedPoints = 0;
-    let totalPoints = 0;
-
-    requiredTasks.forEach(task => {
-        const maxPoints = taskPointValue(task);
-        const score = getTaskScore(task);
-
-        totalPoints += maxPoints;
-        earnedPoints += Math.max(0, Math.min(maxPoints, Number(score?.earnedPoints) || 0));
-    });
-
-    return totalPoints ? earnedPoints / totalPoints * 100 : 0;
-}
-
-function isOptionalCourseTestUnlocked(source, sources = getCourseSourceSequence(source?.level)){
-    if(!source?.optional) return true;
-
-    const prerequisite = sources.find(item => item.id === source.requiresSource);
-
-    if(!prerequisite || !isCheckpointStageComplete(prerequisite)) return false;
-
-    if(Number.isFinite(source.maxScorePercent)){
-        return getCheckpointScorePercent(prerequisite) < source.maxScorePercent;
-    }
-
-    return getCheckpointScorePercent(prerequisite) > source.minScorePercent;
-}
-
 function isCourseSourceVisible(source){
     if(source.category !== "kurs") return true;
     if(!isLoggedInStudent || loggedUser?.role !== "student") return true;
 
     const sources = getCourseSourceSequence(source.level);
 
-    if(source.optional) return isOptionalCourseTestUnlocked(source, sources);
+    if(source.optional) return true;
 
     const previousCheckpoint = getPreviousCourseCheckpoint(source, sources);
 
@@ -5954,6 +6047,7 @@ function preloadUnlockedCourseSources(){
         .filter(source =>
             source.category === "kurs" &&
             source.level === selectedLevel &&
+            !source.optional &&
             isCourseSourceVisible(source) &&
             !isTaskSourceLoaded(source.id)
         );
@@ -6352,6 +6446,18 @@ function getAvailableSources(){
     return availableSources;
 }
 
+function getSourcePickerSources(){
+    if(selectedCategory !== "testy") return getAvailableSources();
+
+    return TASK_SOURCES.map(getSourceMeta).filter(source =>
+        sourceDisplayCategory(source) === "testy" && source.level === selectedLevel
+    );
+}
+
+function courseTestLockReason(source){
+    return "Najpierw ukończ wcześniejszy test sprawdzający.";
+}
+
 function hasSourcesForCategory(category, level = selectedLevel){
     return TASK_SOURCES
         .map(getSourceMeta)
@@ -6421,6 +6527,7 @@ async function loadSelectedSourceAndDraw(index = null){
         renderTagSearch();
         setSourceLoadState("ready");
         await drawTask(Number.isInteger(index) ? index : getInitialIndex());
+        preloadExamResultSources();
     } catch(error) {
         if(error.redirecting) return;
         setSourceLoadState("error", error);
@@ -6603,64 +6710,36 @@ function updateMetaTheme(){
         meta.classList.add("meta-osmoklasista");
 }
 
-function getPendingCourseTests(){
-    if(!isLoggedInStudent || loggedUser?.role !== "student") return [];
-
-    const sources = getCourseSourceSequence(selectedLevel).filter(isCourseSourceVisible);
-    const isComplete = source => {
-        const required = getSourceCompletionTasks(source);
-
-        return isTaskSourceLoaded(source.id) && required.length > 0 && required.every(task =>
-            COURSE_COMPLETION_RESULTS.has(getSavedProgressItem(task)?.result)
-        );
-    };
-    const hasStarted = source => storedTestDeadline(source.id) > 0 ||
-        getSourceCompletionTasks(source).some(task => getSavedProgressItem(task));
-
-    return window.DSCourseTests.pendingTests(sources, isComplete, hasStarted);
-}
-
-function renderCourseTestNotice(pendingTests){
-    const notice = document.getElementById("courseTestNotice");
-    const visibleTests = pendingTests.filter(source => source.id !== selectedSource);
-
-    window.DSCourseTests.renderNotice(notice, visibleTests, sourceId => setSource(sourceId));
-}
-
-function updateTestCategoryBadge(pendingTests){
-    const badge = document.getElementById("testCategoryBadge");
-    if(!badge) return;
-    badge.hidden = !pendingTests.length;
-    badge.textContent = String(pendingTests.length);
-    badge.setAttribute("aria-label", `Testy do wykonania: ${pendingTests.length}`);
-}
-
 function syncCourseWorkspaceLayout(){
     const toolbar = document.getElementById("courseWorkspaceToolbar");
     const brandFooter = document.getElementById("courseBrandFooter");
+    const scoreRail = document.getElementById("taskScoreRail");
 
-    if(!toolbar || !brandFooter) return;
+    if(!toolbar || !brandFooter || !scoreRail) return;
 
-    const desktopCourse = selectedCategory === "kurs" && window.matchMedia("(min-width: 761px)").matches;
+    const course = ["kurs", "testy"].includes(selectedCategory);
+    const desktop = window.matchMedia("(min-width: 761px)").matches;
+    const desktopCourse = course && desktop;
     const placements = [
-        ["sourceSummaryRow", "sourceSummarySidebarAnchor", toolbar],
-        ["formulaSection", "formulaSidebarAnchor", toolbar],
-        ["courseBrand", "courseBrandSidebarAnchor", brandFooter]
+        ["sourceSummaryRow", "sourceSummarySidebarAnchor", scoreRail, true],
+        ["formulaSection", "formulaSidebarAnchor", toolbar, desktop],
+        ["courseBrand", "courseBrandSidebarAnchor", brandFooter, desktopCourse],
+        ["examToolsRow", "examToolsSidebarAnchor", toolbar, desktop && !course]
     ];
 
-    placements.forEach(([id, anchorId, destination]) => {
+    placements.forEach(([id, anchorId, destination, move]) => {
         const element = document.getElementById(id);
         const anchor = document.getElementById(anchorId);
 
         if(!element || !anchor) return;
-        if(desktopCourse){
+        if(move){
             if(element.parentElement !== destination) destination.appendChild(element);
         } else if(element.parentElement !== anchor.parentElement){
             anchor.after(element);
         }
     });
 
-    toolbar.hidden = !desktopCourse;
+    toolbar.hidden = !desktop;
     brandFooter.hidden = !desktopCourse;
 }
 
@@ -6669,17 +6748,19 @@ window.matchMedia("(min-width: 761px)").addEventListener("change", syncCourseWor
 function renderSourceSelector(){
     const list = document.getElementById("sourceList");
     const title = document.getElementById("sourceTitle");
+    const selectionNotice = document.getElementById("sourceSelectionNotice");
 
     if(!list) return;
+    if(selectionNotice){
+        selectionNotice.hidden = true;
+        selectionNotice.textContent = "";
+    }
     const scrollKey = `${selectedCategory}:${selectedLevel}`;
     const scrollTop = list.dataset.scrollKey === scrollKey ? list.scrollTop : 0;
     list.dataset.scrollKey = scrollKey;
     document.getElementById("courseBrand").hidden = !isCourseCategory();
 
     updateTrainingLink();
-    const pendingTests = getPendingCourseTests();
-    renderCourseTestNotice(pendingTests);
-    updateTestCategoryBadge(pendingTests);
     list.innerHTML = "";
     list.classList.toggle("course-source-list", selectedCategory === "kurs");
     list.classList.toggle("test-source-list", selectedCategory === "testy");
@@ -6690,10 +6771,10 @@ function renderSourceSelector(){
         title.innerText = selectedCategory === "kurs"
             ? "Wybór lekcji"
             : selectedCategory === "testy" ? "Wybór testu"
-            : LEVEL_LABELS[selectedLevel] || "Arkusze";
+            : "Wybór egzaminu";
     }
 
-    const availableSources = getAvailableSources();
+    const availableSources = filterExamPickerSources(getSourcePickerSources());
 
     if(selectedCategory === "kurs" && !availableSources.length){
         addSourceButton(list, "all", "Brak lekcji", "Dodaj zadania dla tego poziomu", true);
@@ -6713,8 +6794,6 @@ function renderSourceSelector(){
         return;
     }
 
-    const yearLists = new Map();
-    const testLists = new Map();
     availableSources.forEach(source => {
         const isLoaded = isTaskSourceLoaded(source.id);
         const count = isLoaded
@@ -6726,67 +6805,25 @@ function renderSourceSelector(){
             : null;
         const examTile = selectedCategory === "egzaminy"
             ? getExamSourceTileContent(source.detail) : null;
-        const examDetails = examTile?.detail.split(" · ") || [];
-        const testRange = selectedCategory === "testy" ? courseTestRange(source) : "";
-        const label = testRange ? courseTestVariant(source) : examTile ? examDetails.shift() || "Arkusz" : source.label;
-        const detail = isCourseCategory()
-            ? ""
-            : examDetails.join(" · ");
-        const sourceTitle = isCourseCategory()
-            ? source.detail
-            : `${examTile.label} · ${examTile.detail}`;
+        const label = selectedCategory === "testy" ? courseTestVariant(source) : examTile ? examTile.label : source.label;
+        const detail = source.kind === "test" && source.difficultyRating
+            ? `Trudność ${source.difficultyRating}/10` : examTile?.detail || "";
         const titleDetail = isCourseCategory()
-            ? sourceTitle
-            : `${sourceTitle}${isLoaded ? ` • ${count} zadań` : ""}`;
-        let targetList = list;
-        if(testRange){
-            if(!testLists.has(testRange)){
-                const group = document.createElement("section");
-                const heading = document.createElement("h3");
-                const variants = document.createElement("div");
-                group.className = "test-range-group";
-                heading.className = "test-range-label";
-                heading.id = `test-range-${selectedLevel}-${testRange.replace(/\s+/g, "")}`;
-                heading.textContent = `Lekcje ${testRange}`;
-                group.setAttribute("aria-labelledby", heading.id);
-                variants.className = "test-range-sources";
-                group.append(heading, variants);
-                list.appendChild(group);
-                testLists.set(testRange, variants);
-            }
-            targetList = testLists.get(testRange);
-        }
-        if(examTile){
-            if(!yearLists.has(source.year)){
-                const group = document.createElement("section");
-                const heading = document.createElement("h3");
-                const months = document.createElement("div");
-
-                group.className = "exam-year-group";
-                heading.className = "exam-year-label";
-                heading.id = `exam-year-${selectedLevel}-${source.year}`;
-                heading.innerText = examTile.label;
-                group.setAttribute("aria-labelledby", heading.id);
-                months.className = "exam-year-sources";
-                group.appendChild(heading);
-                group.appendChild(months);
-                list.appendChild(group);
-                yearLists.set(source.year, months);
-            }
-            targetList = yearLists.get(source.year);
-        }
-
-        addSourceButton(
-            targetList,
+            ? source.detail
+            : [examTile.detail, isLoaded ? `${count} zadań` : ""].filter(Boolean).join(" · ");
+        const button = addSourceButton(
+            list,
             source.id,
             label,
             detail,
             selectedSource === source.id,
             titleDetail,
-            isSourceComplete(source),
+            !examTile && isSourceComplete(source),
             selectedCategory === "kurs" ? source.detail : "",
-            source.kind
+            source.kind,
+            source.kind === "test" && !isCourseSourceVisible(source) ? courseTestLockReason(source) : ""
         );
+        if(examTile) decorateExamResult(button, source);
     });
 
     list.scrollTop = scrollTop;
@@ -6794,14 +6831,18 @@ function renderSourceSelector(){
 }
 
 function courseTestRange(source){
-    const match = String(source.id || source.path || "").match(/test_lekcje_(\d+)_(\d+)/);
-    return match ? `${match[1]} - ${match[2]}` : "Pozostałe";
+    const text = `${source.id || source.path || source.sourceId || ""} ${source.label || source.title || ""} ${source.detail || ""}`;
+    const match = text.match(/test_lekcje_(\d+)_(\d+)/) ||
+        text.match(/(?:lekcj[ei]|temat(?:ów|ow)|test)\s+(\d+)\s*[-–]\s*(\d+)/i);
+    return match ? `${match[1]}-${match[2]}` : "";
 }
 
 function courseTestVariant(source){
     const text = `${source.label || ""} ${source.detail || ""} ${source.id || ""}`;
-    const variant = text.match(/(?:wersja|arkusz)\s+([A-Z])\b/i) || text.match(/test_lekcje_\d+_\d+_([a-z])(?:\/|\.)/i);
-    return `Test ${variant ? variant[1].toUpperCase() : /trudniejszy/i.test(text) ? "C" : "A"}`;
+    const variant = text.match(/(?:wersja|arkusz)\s+([A-Z])\b/i) || text.match(/\(([A-Z])\)/i) ||
+        text.match(/test_lekcje_\d+_\d+_([a-z])(?:\/|\.)/i);
+    const range = courseTestRange(source);
+    return `Test${range ? ` ${range}` : ""} (${variant ? variant[1].toUpperCase() : /trudniejszy/i.test(text) ? "C" : "A"})`;
 }
 
 function updateTrainingLink(){
@@ -6834,13 +6875,59 @@ function getExamSourceTileContent(detail){
         .map(part => part.trim())
         .filter(Boolean);
 
-    return {
-        label: parts.shift() || "Arkusz",
-        detail: parts.join(" · ")
-    };
+    const year = parts.shift() || "";
+    const month = parts.shift() || "Arkusz";
+    return {label: `${month.charAt(0).toUpperCase()}${month.slice(1)} ${year}`.trim(), detail: parts.join(" · ")};
 }
 
-function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = "", sourceKind = ""){
+function filterExamPickerSources(sources){
+    const row = document.getElementById("examYearFilterRow");
+    const select = document.getElementById("examYearFilter");
+    if(!row || !select) return sources;
+    row.hidden = selectedCategory !== "egzaminy";
+    if(row.hidden) return sources;
+
+    const years = [...new Set(sources.map(source => String(source.year)))];
+    if(!years.includes(selectedExamYear)) selectedExamYear = "all";
+    const options = ["all", ...years];
+    if(select.dataset.options !== options.join(",")){
+        select.innerHTML = "";
+        options.forEach(year => {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year === "all" ? "Wszystkie roczniki" : year;
+            select.appendChild(option);
+        });
+        select.dataset.options = options.join(",");
+    }
+    select.value = selectedExamYear;
+    return selectedExamYear === "all" ? sources : sources.filter(source => String(source.year) === selectedExamYear);
+}
+
+function setExamYear(year){
+    selectedExamYear = String(year);
+    renderSourceSelector();
+}
+
+function examSourceResult(source){
+    if(!isTaskSourceLoaded(source.id)) return null;
+    const items = getSourceCompletionTasks(source);
+    if(!items.length || items.some(task => !getSavedResult(task) || getSavedResult(task) === SKIPPED_RESULT || !getTaskScore(task))) return null;
+    return calculateSourceSummary(items);
+}
+
+function decorateExamResult(button, source){
+    const summary = examSourceResult(source);
+    if(!summary || !button) return;
+    const badge = document.createElement("strong");
+    badge.className = `exam-result-badge result-tone-${DSWorkspaceScore.tone(summary.percent)}`;
+    badge.textContent = `${Math.round(summary.percent)}%`;
+    button.appendChild(badge);
+    button.title += ` • Wynik: ${badge.textContent}`;
+    button.setAttribute("aria-label", button.title);
+}
+
+function addSourceButton(list, sourceId, label, detail, active, titleDetail = detail, complete = false, subtitle = "", sourceKind = "", lockedReason = ""){
     const button = document.createElement("button");
     const name = document.createElement("span");
     const meta = document.createElement("small");
@@ -6851,10 +6938,21 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
     if(complete){
         button.classList.add("complete");
     }
-    button.title = [label, titleDetail].filter(Boolean).join(" • ");
+    button.title = [label, titleDetail, lockedReason].filter(Boolean).join(" • ");
     button.setAttribute("aria-label", button.title);
     button.setAttribute("aria-pressed", String(active));
-    button.onclick = () => setSource(sourceId);
+    button.setAttribute("aria-disabled", String(Boolean(lockedReason)));
+    button.onclick = () => {
+        if(lockedReason){
+            const notice = document.getElementById("sourceSelectionNotice");
+            if(notice){
+                notice.textContent = lockedReason;
+                notice.hidden = false;
+            }
+            return;
+        }
+        setSource(sourceId);
+    };
 
     name.innerText = label;
     meta.innerText = detail;
@@ -6870,6 +6968,7 @@ function addSourceButton(list, sourceId, label, detail, active, titleDetail = de
         button.appendChild(meta);
     }
     list.appendChild(button);
+    return button;
 }
 
 function getSourceCompletionTasks(source){
@@ -7231,14 +7330,17 @@ function updateMobileCourseFooter(summary = null){
     const visible = isCourseCategory() && Boolean(summary?.tasks?.length);
 
     footer.hidden = !visible;
-    if(!visible) return;
+}
 
-    document.getElementById("mobileSourceSummaryPoints").innerText = sourceScoreLabel(summary);
-    const percent = document.getElementById("mobileSourceSummaryPercent");
-    percent.innerText = percentLabel(summary.percent);
-    percent.hidden = getSourceMetaById(selectedSource)?.kind === "test";
-    document.getElementById("mobileSourceSummaryFill").style.width =
-        `${Math.max(0, Math.min(100, summary.percent))}%`;
+function updateTaskScoreRail(summary = null){
+    const rail = document.getElementById("taskScoreRail");
+    const fill = document.getElementById("sourceSummaryFill");
+    const track = fill?.parentElement;
+    if(!rail || !track) return;
+
+    rail.hidden = !summary?.tasks?.length;
+    const label = selectedCategory === "testy" ? "Wynik testu" : isCourseCategory() ? "Wynik lekcji" : "Wynik arkusza";
+    DSWorkspaceScore.update(track, fill, summary?.percent, label, summary ? sourceScoreLabel(summary) : "0%");
 }
 
 function updateSourceSummary(){
@@ -7259,22 +7361,23 @@ function updateSourceSummary(){
         section.style.display = "none";
         section.parentElement?.classList.add("summary-hidden");
         updateMobileCourseFooter();
+        updateTaskScoreRail();
         return;
     }
 
     section.style.display = "grid";
     section.parentElement?.classList.remove("summary-hidden");
-    title.hidden = isCourseCategory();
-    title.innerText = isCourseCategory() ? "" : "Podsumowanie arkusza";
+    title.hidden = true;
+    title.innerText = "";
 
     const summary = calculateSourceSummary(summaryTasks);
 
     updateMobileCourseFooter(summary);
+    updateTaskScoreRail(summary);
 
     points.innerText = sourceScoreLabel(summary);
-    percent.hidden = true;
+    percent.hidden = getSourceMetaById(selectedSource)?.kind === "test";
     percent.innerText = percentLabel(summary.percent);
-    fill.style.width = `${Math.max(0, Math.min(100, summary.percent))}%`;
     if(summaryButton){
         summaryButton.hidden = !(
             selectedCategory === "egzaminy" &&
@@ -7969,6 +8072,8 @@ document.getElementById("testStartDialog")
         event.preventDefault();
         finishTestStartDialog(false);
     });
+document.getElementById("notebookStartDialog")
+    ?.addEventListener("cancel", event => event.preventDefault());
 for(const id of ["homeworkSummaryOverlay", "examSummaryOverlay"]){
     document.getElementById(id).addEventListener("keydown", event => {
         if(event.key !== "Tab") return;
@@ -9800,6 +9905,8 @@ async function drawTask(index = currentIndex, trackHistory = true){
 
     applyCourseAnswerLock();
     if(taskPath && !currentTaskAnswered && !isCoursePreviewMode()){
+        await confirmNotebookWork();
+        if(requestId !== drawTaskRequestId || currentTask !== taskToRender || currentTaskAnswered) return;
         workTimer.start(getTaskKey(taskToRender));
     }
     updateNextTaskButton();
@@ -9889,6 +9996,7 @@ function shouldIgnoreKeyboardNavigation(event){
 }
 
 function handleKeyboardNavigation(event){
+    if(document.getElementById("notebookStartDialog")?.open) return;
     if(document.getElementById("taskVideoDialog").open) return;
     if(!document.getElementById("homeworkSummaryOverlay").hidden || !document.getElementById("examSummaryOverlay").hidden) return;
     if(shouldIgnoreKeyboardNavigation(event)) return;

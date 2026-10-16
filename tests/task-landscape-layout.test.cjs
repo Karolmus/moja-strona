@@ -13,13 +13,15 @@ test('phone landscape keeps the task image at full width and its natural aspect 
   assert(!image.includes('object-position: left'), 'Task content is not forced into the left side of a wide box');
   assert.match(landscape, /body\.focus-mode\s*\{[^}]*background: #ffffff;/,
     'Rotating a phone keeps focus mode white instead of restoring the desktop black margins');
+  assert.match(landscape, /\.action-group\.navigation \{[^}]*grid-row: 1;/,
+    'Landscape navigation stays directly below answers, before optional tools');
 });
 
-test('work instructions and test restrictions are short and do not use a large notice panel', () => {
-  for(const name of ['notebook-work-notice', 'test-mode-notice']){
-    const text = html.match(new RegExp(`<p class="${name}"[^>]*>([^<]+)</p>`))[1];
-    assert(text.length <= 55, `${name} should fit in a compact note`);
-  }
+test('work instructions move to a popup and only short test restrictions remain above tasks', () => {
+  assert(!html.includes('notebook-work-notice'));
+  assert(html.includes('id="notebookStartDialog"'));
+  const text = html.match(/<p class="test-mode-notice"[^>]*>([^<]+)<\/p>/)[1];
+  assert(text.length <= 55);
   const notice = html.match(/\.test-mode-notice\s*\{([^}]+)\}/)[1];
   assert(!/padding:|border:|background:/.test(notice), 'No separate colored panel for a short restriction note');
   assert.match(html, /\.meta-box\.meta-test\s*\{[^}]*flex-direction: row;/);

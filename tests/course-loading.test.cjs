@@ -23,6 +23,7 @@ const ctx = vm.createContext({
   loadStudentProgress: async () => [], restoreLastStudentLocation: async () => 4,
   ensureTestSourceStarted: async () => true,
   loadStudentReviewTasks: async () => [],
+  preloadExamResultSources: async () => {},
   renderSourceSelector: () => {selectorRenders++;},
   drawTask: async index => {drawnIndex = index;},
 });
