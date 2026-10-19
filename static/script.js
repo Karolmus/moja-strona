@@ -1,349 +1,163 @@
-const LOCAL_API_URL = "http://127.0.0.1:5000";
-const RENDER_API_URL = "https://deltasigma-calculators.onrender.com";
-
-const API_BASE_URL = (
-    window.CALCULATORS_API_URL ||
-    (["localhost", "127.0.0.1"].includes(window.location.hostname) ? LOCAL_API_URL : RENDER_API_URL)
-).replace(/\/$/, "");
-let mathJaxLoadPromise = null;
-
 function includePlots(){
     return Boolean(document.getElementById("includePlots")?.checked);
 }
 
 async function post(path, data){
-    const response = await fetch(`${API_BASE_URL}${path}`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
-
-    const result = await response.json().catch(() => null);
-
-    if(!response.ok || result?.error){
-        throw new Error(result?.error || "Nie udało się połączyć z kalkulatorem.");
+    if(!window.calculatorsAuthenticated){
+        window.requireCalculatorLogin?.();
+        throw new Error("Zaloguj się, aby korzystać z kalkulatorów.");
     }
-
-    return result;
-}
-
-function ensureMathJax(){
-    if(window.MathJax){
-        return Promise.resolve(window.MathJax);
-    }
-
-    if(mathJaxLoadPromise){
-        return mathJaxLoadPromise;
-    }
-
-    window.MathJax = {
-        startup: {
-            typeset: false
-        }
-    };
-
-    mathJaxLoadPromise = new Promise((resolve, reject) => {
-        const script = document.createElement("script");
-
-        script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
-        script.async = true;
-        script.onload = () => resolve(window.MathJax);
-        script.onerror = () => reject(new Error("Nie udało się wczytać zapisu matematycznego."));
-
-        document.head.appendChild(script);
-    });
-
-    return mathJaxLoadPromise;
-}
-
-async function renderMath(target){
     try {
-        const mathJax = await ensureMathJax();
-        const elements = target ? [target] : undefined;
-
-        if(mathJax.typesetPromise){
-            await mathJax.typesetPromise(elements);
-        } else {
-            mathJax.typeset(elements);
-        }
+        return await window.apiFetch(path, {method: "POST", body: JSON.stringify(data)});
     } catch(error) {
-        console.warn(error.message || "Nie udało się wyrenderować wzoru.");
+        if(error.status === 401 || error.status === 403){
+            window.clearAuthToken?.();
+            window.requireCalculatorLogin?.();
+        }
+        throw error;
     }
 }
 
-function showError(target, error){
-    target.innerText = error.message || "Nie udało się obliczyć wyniku.";
+function renderMath(target = document){
+    if(!target || !window.katex) return;
+    target.querySelectorAll("[data-tex]").forEach(node => {
+        window.katex.render(node.dataset.tex, node, {
+            displayMode: false, output: "htmlAndMathml", throwOnError: false,
+            trust: false, strict: "error", maxExpand: 1000, maxSize: 10
+        });
+    });
+}
+
+function escapeCalculatorHTML(value){
+    return String(value).replace(/[&<>"']/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[character]);
+}
+
+function formula(value){
+    const safe = escapeCalculatorHTML(value);
+    return `<span class="calculator-math" data-tex="${safe}">${safe}</span>`;
 }
 
 function parseUserNumber(value){
-    const normalized = String(value)
-        .trim()
-        .replace(/\s+/g, "")
-        .replace(",", ".");
-
-    if(normalized === ""){
-        return 0;
+    const normalized = String(value).trim().replace(/\s+/g, "").replace(/,/g, ".");
+    if(!normalized) throw new Error("Wpisz wszystkie wymagane wartości.");
+    const parts = normalized.split("/");
+    const numberPattern = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
+    if(parts.length > 2 || parts.some(part => !numberPattern.test(part))){
+        throw new Error("Podaj liczbę, ułamek lub liczbę dziesiętną.");
     }
-
-    return Number(normalized);
+    const result = parts.length === 2 ? Number(parts[0]) / Number(parts[1]) : Number(parts[0]);
+    if(!Number.isFinite(result)) throw new Error("Podaj skończoną liczbę. Nie można dzielić przez zero.");
+    return result;
 }
 
 function readNumber(id){
-    return parseUserNumber(document.getElementById(id).value);
+    const input = document.getElementById(id);
+    try {
+        const value = parseUserNumber(input.value);
+        input.removeAttribute("aria-invalid");
+        return value;
+    } catch(error) {
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        throw error;
+    }
 }
 
 function readNumberList(id){
-    const rawValue = document.getElementById(id).value.trim();
-
-    if(rawValue === ""){
-        return [];
-    }
-
+    const input = document.getElementById(id);
+    const rawValue = input.value.trim();
+    if(!rawValue) throw new Error("Wpisz wartości oddzielone średnikami.");
     const commaCount = (rawValue.match(/,/g) || []).length;
-    const hasStrongSeparators = /[;\n]/.test(rawValue) || /\s/.test(rawValue);
+    const hasStrongSeparators = /[;\n\s]/.test(rawValue);
     const values = hasStrongSeparators
-        ? rawValue.replace(/,\s+/g, ";").split(/[;\s]+/)
-        : rawValue.includes(".") || commaCount > 1
-            ? rawValue.split(",")
-            : [rawValue];
-
-    return values
-        .map(value => parseUserNumber(value))
-        .filter(value => !Number.isNaN(value));
+        ? rawValue.replace(/,\s+/g, ";").split(/[;\s]+/).filter(Boolean)
+        : rawValue.includes(".") || commaCount > 1 ? rawValue.split(",") : [rawValue];
+    return values.map(parseUserNumber);
 }
 
 function renderPlot(plot){
-    if(!plot){
-        return "";
-    }
-
-    return `
-        <div class="plot-card">
-            <div class="plot-title">Wykres</div>
-            ${plot}
-        </div>
-    `;
+    if(!plot) return "";
+    const parsed = new DOMParser().parseFromString(String(plot), "image/svg+xml");
+    const svg = parsed.documentElement;
+    if(svg.localName !== "svg" || parsed.querySelector("parsererror")) return "";
+    const tags = new Set(["svg", "g", "path", "line", "circle", "rect", "text", "polyline", "title"]);
+    const attributes = new Set(["xmlns", "viewBox", "class", "role", "aria-label", "width", "height",
+        "x", "y", "x1", "x2", "y1", "y2", "cx", "cy", "r", "rx", "ry", "d", "points", "fill",
+        "stroke", "stroke-width", "stroke-dasharray", "font-size", "font-family", "text-anchor",
+        "dominant-baseline", "opacity", "fill-opacity", "stroke-opacity", "preserveAspectRatio"]);
+    [svg, ...svg.querySelectorAll("*")].forEach(node => {
+        if(!tags.has(node.localName)){ node.remove(); return; }
+        [...node.attributes].forEach(attribute => {
+            if(!attributes.has(attribute.name) || /url\s*\(|javascript:|data:/i.test(attribute.value)){
+                node.removeAttribute(attribute.name);
+            }
+        });
+    });
+    return `<div class="plot-card">${svg.outerHTML}</div>`;
 }
 
 function renderFormulaList(items, emptyText = "Brak rozwiązań w liczbach rzeczywistych."){
-    if(!Array.isArray(items) || items.length === 0){
-        return emptyText;
-    }
-
-    return items.map(item => `\\(${item}\\)`).join("<br>");
+    return Array.isArray(items) && items.length
+        ? `<div class="result-formulas">${items.map(formula).join("")}</div>` : escapeCalculatorHTML(emptyText);
 }
 
-function formatPolynomialLatex(coeffs){
-    const values = [...coeffs];
-
-    while(values.length > 1 && values[0] === 0){
-        values.shift();
-    }
-
-    const degree = values.length - 1;
-    const terms = [];
-
-    values.forEach((coefficient, index) => {
-        if(coefficient === 0){
-            return;
-        }
-
-        const exponent = degree - index;
-        const sign = coefficient < 0 ? "-" : "+";
-        const absoluteValue = Math.abs(coefficient);
-        const coefficientText = absoluteValue === 1 && exponent > 0 ? "" : String(absoluteValue);
-        const variableText = exponent === 0 ? "" : exponent === 1 ? "x" : `x^{${exponent}}`;
-
-        terms.push({sign, body: `${coefficientText}${variableText}`});
-    });
-
-    if(terms.length === 0){
-        return "0";
-    }
-
-    return terms
-        .map((term, index) => {
-            if(index === 0){
-                return term.sign === "-" ? `-${term.body}` : term.body;
-            }
-
-            return ` ${term.sign} ${term.body}`;
-        })
-        .join("");
-}
-
-function formatDecimalOutput(value){
-    if(value === undefined || value === null || value === ""){
-        return "";
-    }
-
-    return String(value).replace(".", ",");
-}
-
-/* ===== BERNOULLI ===== */
-async function calcBernoulli(){
+async function calculate(targetId, path, readData, output){
+    const target = document.getElementById(targetId);
+    const button = target.closest(".calculator-card").querySelector(".calc-btn");
+    if(button.disabled) return;
+    button.disabled = true;
+    const token = window.getAuthToken?.();
+    target.setAttribute("aria-busy", "true");
+    target.setAttribute("role", "status");
+    target.dataset.state = "loading";
+    target.textContent = "Obliczanie...";
     try {
-        const d = await post("/api/bernoulli", {
-            p: readNumber("p"),
-            n: readNumber("n"),
-            k: readNumberList("k"),
-            include_plot: includePlots()
-        });
-
-        const result = typeof d === "object" && d !== null ? d.result : d;
-        const rounded = typeof d === "object" && d !== null ? formatDecimalOutput(d.rounded) : "";
-
-        res1.innerHTML = `
-            <div class="result-block">
-                <b>Pełny wynik:</b><br>
-                \\(${result}\\)
-                ${rounded ? `<br><br><b>Zaokrąglenie:</b><br>${rounded}` : ""}
-            </div>
-            ${renderPlot(d?.plot)}
-        `;
-        renderMath(res1);
+        const data = readData();
+        const result = await post(path, {...data, include_plot: includePlots()});
+        if(token !== window.getAuthToken?.()) return;
+        target.innerHTML = output(result) + renderPlot(result?.plot);
+        target.dataset.state = "ready";
+        renderMath(target);
     } catch(error) {
-        showError(res1, error);
+        target.dataset.state = "error";
+        target.textContent = error.message || "Nie udało się obliczyć wyniku.";
+    } finally {
+        target.setAttribute("aria-busy", "false");
+        button.disabled = false;
     }
 }
 
-/* ===== POLY ===== */
-async function calcPoly(){
-    try {
-        const coeffs = readNumberList("coeffs");
-        const d = await post("/api/poly", {
-            coeffs,
-            include_plot: includePlots()
-        });
-
-        const zeros = renderFormulaList(d.sol, "Brak miejsc zerowych w liczbach rzeczywistych.");
-        const general = d.general || d.expanded || formatPolynomialLatex(coeffs);
-        const factored = d.factored || d.fac || general;
-
-        const html = `
-            <div class="result-block">
-                <b>Miejsca zerowe:</b><br>
-                ${zeros}
-                <br><br>
-                <b>Postać ogólna:</b><br>
-                \\(f(x)=${general}\\)
-                <br><br>
-                <b>Postać iloczynowa:</b><br>
-                \\(f(x)=${factored}\\)
-            </div>
-            ${renderPlot(d.plot)}
-        `;
-
-        res2.innerHTML = html;
-        renderMath(res2);
-    } catch(error) {
-        showError(res2, error);
-    }
+function calcBernoulli(){
+    return calculate("res1", "/api/bernoulli", () => ({p: readNumber("p"), n: readNumber("n"), k: readNumberList("k")}),
+        result => `<div class="result-block"><b>Prawdopodobieństwo</b>${formula(result.result)}<b>W przybliżeniu</b><span>${escapeCalculatorHTML(String(result.rounded).replace(".", ","))}</span></div>`);
 }
 
-/* ===== STYCZNA ===== */
-async function calcStyczna(){
-    try {
-        const d = await post("/api/styczna", {
-            xa: readNumber("xa"),
-            ya: readNumber("ya"),
-            xs: readNumber("xs"),
-            ys: readNumber("ys"),
-            r: readNumber("r"),
-            include_plot: includePlots()
-        });
-
-        const result = Array.isArray(d) ? d : d.result;
-
-        res_styczna.innerHTML = `
-            <div class="result-block">
-                <b>Równania stycznych:</b><br>
-                ${renderFormulaList(result)}
-            </div>
-            ${renderPlot(d?.plot)}
-        `;
-        renderMath(res_styczna);
-    } catch(error) {
-        showError(res_styczna, error);
-    }
+function calcPoly(){
+    return calculate("res2", "/api/poly", () => ({coeffs: readNumberList("coeffs")}),
+        result => `<div class="result-block"><b>Miejsca zerowe</b>${renderFormulaList(result.sol)}<b>Postać ogólna</b>${formula(`f(x)=${result.general}`)}<b>Postać iloczynowa</b>${formula(`f(x)=${result.factored}`)}</div>`);
 }
 
-/* ===== LINE CIRCLE ===== */
-async function calcLineCircle(){
-    try {
-        const d = await post("/api/line_circle", {
-            A: readNumber("A"),
-            B: readNumber("B"),
-            C: readNumber("C"),
-            p: readNumber("p1"),
-            q: readNumber("q1"),
-            r: readNumber("r1"),
-            include_plot: includePlots()
-        });
-
-        const result = Array.isArray(d) ? d : d.result;
-
-        res_line.innerHTML = `
-            <div class="result-block">
-                <b>Punkty przecięcia:</b><br>
-                ${renderFormulaList(result)}
-            </div>
-            ${renderPlot(d?.plot)}
-        `;
-        renderMath(res_line);
-    } catch(error) {
-        showError(res_line, error);
-    }
+function calcStyczna(){
+    return calculate("res_styczna", "/api/styczna", () => ({
+        xa:readNumber("xa"), ya:readNumber("ya"), xs:readNumber("xs"), ys:readNumber("ys"), r:readNumber("r")
+    }), result => `<div class="result-block"><b>Równania stycznych</b>${renderFormulaList(result.result)}</div>`);
 }
 
-/* ===== TWO CIRCLES ===== */
-async function calcTwoCircles(){
-    try {
-        const d = await post("/api/two_circles", {
-            a: readNumber("a"),
-            b: readNumber("b"),
-            c: readNumber("c"),
-            p: readNumber("p2"),
-            q: readNumber("q2"),
-            r: readNumber("r2"),
-            include_plot: includePlots()
-        });
-
-        const result = Array.isArray(d) ? d : d.result;
-
-        res_circles.innerHTML = `
-            <div class="result-block">
-                <b>Punkty przecięcia:</b><br>
-                ${renderFormulaList(result)}
-            </div>
-            ${renderPlot(d?.plot)}
-        `;
-        renderMath(res_circles);
-    } catch(error) {
-        showError(res_circles, error);
-    }
+function calcLineCircle(){
+    return calculate("res_line", "/api/line_circle", () => ({
+        A:readNumber("A"), B:readNumber("B"), C:readNumber("C"), p:readNumber("p1"), q:readNumber("q1"), r:readNumber("r1")
+    }), result => `<div class="result-block"><b>Punkty przecięcia</b>${renderFormulaList(result.result)}</div>`);
 }
 
-/* ===== ANGLE ===== */
-async function calcAngle(){
-    try {
-        const d = await post("/api/angle", {
-            a1: readNumber("a1"),
-            a2: readNumber("a2"),
-            include_plot: includePlots()
-        });
+function calcTwoCircles(){
+    return calculate("res_circles", "/api/two_circles", () => ({
+        a:readNumber("a"), b:readNumber("b"), c:readNumber("c"), p:readNumber("p2"), q:readNumber("q2"), r:readNumber("r2")
+    }), result => `<div class="result-block"><b>Punkty przecięcia</b>${renderFormulaList(result.result, result.message || "Brak punktów wspólnych.")}</div>`);
+}
 
-        const result = typeof d === "object" && d !== null ? d.result : d;
-
-        res_angle.innerHTML = `
-            <div class="result-block">
-                <b>Kąt:</b><br>
-                \\(${result}^\\circ\\)
-            </div>
-            ${renderPlot(d?.plot)}
-        `;
-        renderMath(res_angle);
-    } catch(error) {
-        showError(res_angle, error);
-    }
+function calcAngle(){
+    return calculate("res_angle", "/api/angle", () => ({a1:readNumber("a1"), a2:readNumber("a2")}),
+        result => `<div class="result-block"><b>Kąt między prostymi</b>${formula(`${result.result}^{\\circ}`)}</div>`);
 }

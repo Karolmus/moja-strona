@@ -233,7 +233,10 @@
         let panelLink = nav.querySelector("[data-auth-panel]");
         const userLabel = nav.querySelector("[data-auth-user]");
         const logoutButton = nav.querySelector("[data-auth-logout]");
+        const calculatorsLink = nav.querySelector("[data-auth-calculators]");
         const isAuthenticated = Boolean(user);
+
+        if(calculatorsLink) calculatorsLink.hidden = !isAuthenticated;
 
         if(!panelLink){
             panelLink = document.createElement("a");

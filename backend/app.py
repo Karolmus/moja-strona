@@ -123,7 +123,7 @@ app.config.update(
 )
 register_auth_db(app)
 
-CALCULATORS_ENABLED = os.environ.get("CALCULATORS_ENABLED", "false").lower() == "true"
+CALCULATORS_ENABLED = os.environ.get("CALCULATORS_ENABLED", "true").lower() == "true"
 RATE_LIMIT_ENABLED = os.environ.get("RATE_LIMIT_ENABLED", "true").lower() == "true"
 CONTACT_FORM_MIN_SECONDS = float(os.environ.get("CONTACT_FORM_MIN_SECONDS", "2"))
 COURSE_ASSET_ROOT = os.path.realpath(
@@ -2228,14 +2228,17 @@ def api_parent_course_asset(asset_path):
 def api_bernoulli(_user):
     def handler():
         data = payload()
-        n = int(data["n"])
-
-        if n < 0 or n > 200:
-            raise ValueError("Liczba prób musi należeć do zakresu 0-200.")
+        raw_n = finite_number(data["n"], 0, 200)
+        if not raw_n.is_integer():
+            raise ValueError("Liczba prób musi być całkowita i należeć do zakresu 0-200.")
+        n = int(raw_n)
 
         p = finite_number(data["p"], 0, 1)
         raw_k = validate_calculator_list(data["k"], maximum_length=201)
-        k_values = [int(value) for value in raw_k]
+        numbers = [finite_number(value, 0, n) for value in raw_k]
+        if any(not value.is_integer() for value in numbers):
+            raise ValueError("Liczba sukcesów musi być całkowita.")
+        k_values = sorted({int(value) for value in numbers})
 
         if any(value < 0 or value > n for value in k_values):
             raise ValueError("Wartości k muszą należeć do zakresu 0-n.")
@@ -2295,7 +2298,7 @@ def api_styczna(_user):
         plot = styczna_plot(xa, ya, xs, ys, radius, result) if wants_plot(data) else None
 
         return jsonify({
-            "result": [sp.latex(item) for item in result],
+            "result": [sp.latex(item) if isinstance(item, sp.Equality) else f"y = {sp.latex(item)}" for item in result],
             "plot": plot,
         })
 
@@ -2371,6 +2374,8 @@ def api_two_circles(_user):
 
         return jsonify({
             "result": [sp.latex(item) for item in result],
+            "message": "Okręgi pokrywają się - mają nieskończenie wiele punktów wspólnych."
+            if (center_a, center_b, radius_c) == (center_p, center_q, radius_r) else "",
             "plot": plot,
         })
 

@@ -8,18 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://deltasigma.pl/">
+<link rel="canonical" href="https://deltasigma.pl/kalkulatory.html">
 <link rel="icon" type="image/webp" href="img/logo3.png">
 <link rel="shortcut icon" type="image/webp" href="img/logo3.png">
 <link rel="apple-touch-icon" href="img/logo3.png">
-<title>Kalkulatory</title>
-<meta http-equiv="refresh" content="0; url=index.html">
-<script>
-window.location.replace("index.html");
-</script>
+<title>Kalkulatory matematyczne | Delta Sigma</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
+<link rel="stylesheet" href="nav.css?v=20261019-calculators">
+<link rel="stylesheet" href="static/lib/katex/katex.min.css?v=0.16.22">
 
 <style>
 :root {
@@ -58,14 +55,13 @@ body {
 
 .calculator-layout {
     display: grid;
-    grid-template-columns: 190px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
     align-items: start;
 }
 
 .calculator-sidebar {
-    position: sticky;
-    top: 16px;
+    position: static;
     display: grid;
     gap: 8px;
     background: var(--surface);
@@ -89,6 +85,7 @@ body {
 
 .category-tabs {
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
 }
 
@@ -102,7 +99,8 @@ body {
     cursor: pointer;
     font: inherit;
     font-weight: 600;
-    text-align: left;
+    text-align: center;
+    overflow-wrap: anywhere;
     padding: 7px 9px;
     transition:
         background 0.2s ease,
@@ -138,7 +136,7 @@ body {
 
 .page-title {
     margin: 0;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1.2;
 }
 
@@ -209,7 +207,6 @@ body {
     align-content: start;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-top: 4px solid #8eb5de;
     border-radius: 6.8px;
     padding: 12px;
     box-shadow: var(--shadow);
@@ -226,7 +223,7 @@ body {
     gap: 10px;
 }
 
-.tool-header h3 {
+.tool-header h2 {
     margin: 0;
     font-size: 15px;
     line-height: 1.25;
@@ -255,11 +252,9 @@ body {
 }
 
 .formula-note {
-    border: 1px solid var(--line);
-    border-radius: 6.8px;
-    background: var(--surface-soft);
+    min-width: 0;
     color: var(--text);
-    padding: 6px 8px;
+    padding: 5px 0;
     font-size: 12px;
     line-height: 1.35;
     overflow-x: auto;
@@ -335,7 +330,6 @@ input:focus {
 .calc-btn:hover {
     background: var(--navy-hover);
     border-color: var(--navy-hover);
-    transform: translateY(-1px);
 }
 
 .calc-btn:focus-visible,
@@ -347,19 +341,27 @@ input:focus {
 .result {
     display: grid;
     gap: 8px;
-    min-height: 36px;
-    border: 1px solid var(--line);
-    border-left: 4px solid #8eb5de;
-    border-radius: 6.8px;
-    padding: 8px 10px;
-    background: var(--surface-soft);
+    border-top: 1px solid var(--line);
+    padding: 10px 0 0;
     color: var(--text);
     overflow-x: auto;
 }
 
 .result:empty {
-    display: block;
+    display: none;
 }
+
+.result[data-state="error"] { color: #8b2119; }
+.calc-btn:disabled { opacity: 0.65; cursor: wait; }
+.calculator-section[hidden], .calculator-shell[hidden], .calculator-access[hidden] { display: none; }
+.calculator-card { min-width: 0; }
+.calculator-math { font-size: 18px; }
+.calculator-math .katex-display { margin: 4px 0; text-align: left; }
+.result-block { display: grid; align-content: start; gap: 5px; }
+.result-formulas { display: flex; flex-wrap: wrap; gap: 6px 24px; }
+.result-value { margin: 0; }
+.calculator-access { border: 1px solid var(--line); border-radius: 6.8px; padding: 14px; background: white; }
+.calculator-access p { margin: 0 0 8px; }
 
 .result-block {
     min-width: 0;
@@ -368,10 +370,8 @@ input:focus {
 .plot-card {
     display: grid;
     gap: 6px;
-    border: 1px solid var(--line);
-    border-radius: 6.8px;
-    background: white;
-    padding: 8px;
+    min-width: 0;
+    padding: 8px 0 0;
 }
 
 .plot-title {
@@ -384,7 +384,8 @@ input:focus {
     display: block;
     width: 100%;
     height: auto;
-    max-height: 240px;
+    max-width: 640px;
+    max-height: none;
 }
 
 footer {
@@ -393,6 +394,15 @@ footer {
     background: #1f2a36;
     color: #aaa;
     margin-top: 20px;
+}
+
+@media(min-width: 761px) {
+    .calculator-card.wide .result:has(.plot-card) {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        align-items: start;
+        gap: 20px;
+    }
+    .calculator-card.wide .plot-card { padding-top: 0; }
 }
 
 @media(max-width: 900px) {
@@ -405,7 +415,7 @@ footer {
     }
 
     .category-tabs {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
@@ -416,28 +426,31 @@ footer {
     }
 
     .page-title {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .tool-count {
         width: auto;
     }
 
-    .tool-grid,
-    .input-grid,
-    .input-grid.three {
+    .tool-grid {
         grid-template-columns: 1fr;
     }
 
+    .input-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .field { min-width: 0; }
+    input { min-width: 0; min-height: 42px; }
+    .calc-btn { min-height: 42px; }
+
     .category-tabs {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr) minmax(0, 0.8fr);
     }
 
     .category-btn {
-        min-height: 32px;
-        padding: 6px 7px;
+        min-height: 38px;
+        padding: 6px 4px;
         text-align: center;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .calculator-card {
@@ -451,15 +464,19 @@ footer {
 
 <div id="nav"></div>
 
-<main class="container">
+<div class="container calculator-access" id="calculatorAccess" role="status">
+    <p id="calculatorAccessMessage">Sprawdzanie dostępu...</p>
+    <button class="calc-btn" id="calculatorAccessRetry" type="button" hidden>Spróbuj ponownie</button>
+</div>
+<main class="container calculator-shell" id="calculatorWorkspace" hidden>
     <div class="calculator-layout">
         <aside class="calculator-sidebar" aria-label="Kategorie kalkulatorów">
             <div class="side-section">
                 <div class="side-title">Dział</div>
                 <div class="category-tabs">
-                    <button class="category-btn active" onclick="setCalculatorCategory(this,'algebra')">Algebra</button>
-                    <button class="category-btn" onclick="setCalculatorCategory(this,'probability')">Prawdopodobieństwo</button>
-                    <button class="category-btn" onclick="setCalculatorCategory(this,'geometry')">Geometria</button>
+                    <button class="category-btn active" type="button" data-category="algebra" aria-pressed="true" onclick="setCalculatorCategory(this,'algebra')">Algebra</button>
+                    <button class="category-btn" type="button" data-category="probability" aria-pressed="false" onclick="setCalculatorCategory(this,'probability')">Prawdopodobieństwo</button>
+                    <button class="category-btn" type="button" data-category="geometry" aria-pressed="false" onclick="setCalculatorCategory(this,'geometry')">Geometria</button>
                 </div>
             </div>
         </aside>
@@ -467,7 +484,6 @@ footer {
         <div class="workspace">
             <header class="page-header">
                 <h1 class="page-title">Kalkulatory</h1>
-                <div class="tool-count" id="toolCount">1 narzędzie</div>
                 <label class="plot-toggle">
                     <input id="includePlots" type="checkbox">
                     Wykres
@@ -475,26 +491,19 @@ footer {
             </header>
 
             <section class="calculator-section" data-category="algebra">
-                <div class="section-heading">
-                    <h2>Algebra</h2>
-                    <span>1 kalkulator</span>
-                </div>
-
                 <div class="tool-grid">
                     <section class="calculator-card wide">
                         <div class="tool-header">
-                            <h3>Równanie wielomianowe</h3>
+                            <h2>Równanie wielomianowe</h2>
                             <span class="tool-badge">Wielomiany</span>
                         </div>
 
                         <div class="field-group">
                             <div class="group-title">Postać równania</div>
-                            <div class="formula-note">
-                                <strong>Wzór:</strong> a_n x^n + ... + a_1 x + a_0 = 0
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="a_n x^n + \cdots + a_1 x + a_0 = 0"></div>
                             <div class="input-grid single">
                                 <div class="field">
-                                    <label for="coeffs">Współczynniki a_n, ..., a_0</label>
+                                    <label for="coeffs">Współczynniki od najwyższej potęgi, po średniku (stopień do 4)</label>
                                     <input id="coeffs" placeholder="1; 0; -1">
                                 </div>
                             </div>
@@ -507,23 +516,16 @@ footer {
             </section>
 
             <section class="calculator-section" data-category="probability" hidden>
-                <div class="section-heading">
-                    <h2>Prawdopodobieństwo</h2>
-                    <span>1 kalkulator</span>
-                </div>
-
                 <div class="tool-grid">
                     <section class="calculator-card wide">
                         <div class="tool-header">
-                            <h3>Schemat Bernoulliego</h3>
+                            <h2>Schemat Bernoulliego</h2>
                             <span class="tool-badge">Dwumian</span>
                         </div>
 
                         <div class="field-group">
                             <div class="group-title">Parametry</div>
-                            <div class="formula-note">
-                                <strong>Model:</strong> X ~ B(n,p), szukamy P(X w K)
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="X \sim B(n,p),\quad P(X\in K)"></div>
                             <div class="input-grid three">
                                 <div class="field">
                                     <label for="p">Prawdopodobieństwo p</label>
@@ -549,23 +551,16 @@ footer {
             </section>
 
             <section class="calculator-section" data-category="geometry" hidden>
-                <div class="section-heading">
-                    <h2>Geometria</h2>
-                    <span>4 kalkulatory</span>
-                </div>
-
                 <div class="tool-grid">
                     <section class="calculator-card">
                         <div class="tool-header">
-                            <h3>Styczne do okręgu</h3>
+                            <h2>Styczne do okręgu</h2>
                             <span class="tool-badge">Okrąg</span>
                         </div>
 
                         <div class="field-group">
                             <div class="group-title">Punkt A</div>
-                            <div class="formula-note">
-                                <strong>Punkt:</strong> A = (x_A, y_A)
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="A=(x_A,y_A)"></div>
                             <div class="input-grid">
                                 <div class="field">
                                     <label for="xa">Współrzędna x_A</label>
@@ -581,9 +576,7 @@ footer {
 
                         <div class="field-group">
                             <div class="group-title">Okrąg</div>
-                            <div class="formula-note">
-                                <strong>Okrąg:</strong> środek S = (x_S, y_S), promień r
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="(x-x_S)^2+(y-y_S)^2=r^2"></div>
                             <div class="input-grid three">
                                 <div class="field">
                                     <label for="xs">Współrzędna x_S</label>
@@ -608,15 +601,13 @@ footer {
 
                     <section class="calculator-card">
                         <div class="tool-header">
-                            <h3>Prosta i okrąg</h3>
+                            <h2>Prosta i okrąg</h2>
                             <span class="tool-badge">Przecięcia</span>
                         </div>
 
                         <div class="field-group">
                             <div class="group-title">Prosta</div>
-                            <div class="formula-note">
-                                <strong>Wzór:</strong> Ax + By + C = 0
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="Ax+By+C=0"></div>
                             <div class="input-grid three">
                                 <div class="field">
                                     <label for="A">Współczynnik A</label>
@@ -637,9 +628,7 @@ footer {
 
                         <div class="field-group">
                             <div class="group-title">Okrąg</div>
-                            <div class="formula-note">
-                                <strong>Wzór:</strong> (x - p)^2 + (y - q)^2 = r^2
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="(x-p)^2+(y-q)^2=r^2"></div>
                             <div class="input-grid three">
                                 <div class="field">
                                     <label for="p1">Środek p</label>
@@ -664,15 +653,13 @@ footer {
 
                     <section class="calculator-card">
                         <div class="tool-header">
-                            <h3>Dwa okręgi</h3>
+                            <h2>Dwa okręgi</h2>
                             <span class="tool-badge">Przecięcia</span>
                         </div>
 
                         <div class="field-group">
                             <div class="group-title">Pierwszy okrąg</div>
-                            <div class="formula-note">
-                                <strong>Wzór:</strong> (x - x_1)^2 + (y - y_1)^2 = r_1^2
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="(x-x_1)^2+(y-y_1)^2=r_1^2"></div>
                             <div class="input-grid three">
                                 <div class="field">
                                     <label for="a">Środek x_1</label>
@@ -693,9 +680,7 @@ footer {
 
                         <div class="field-group">
                             <div class="group-title">Drugi okrąg</div>
-                            <div class="formula-note">
-                                <strong>Wzór:</strong> (x - x_2)^2 + (y - y_2)^2 = r_2^2
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="(x-x_2)^2+(y-y_2)^2=r_2^2"></div>
                             <div class="input-grid three">
                                 <div class="field">
                                     <label for="p2">Środek x_2</label>
@@ -720,15 +705,13 @@ footer {
 
                     <section class="calculator-card">
                         <div class="tool-header">
-                            <h3>Kąt między prostymi</h3>
+                            <h2>Kąt między prostymi</h2>
                             <span class="tool-badge">Nachylenie</span>
                         </div>
 
                         <div class="field-group">
                             <div class="group-title">Współczynniki kierunkowe</div>
-                            <div class="formula-note">
-                                <strong>Proste:</strong> y = a_1 x + b_1, y = a_2 x + b_2
-                            </div>
+                            <div class="formula-note calculator-math" data-tex="y=a_1x+b_1,\quad y=a_2x+b_2"></div>
                             <div class="input-grid">
                                 <div class="field">
                                     <label for="a1">Współczynnik a_1</label>
@@ -761,41 +744,27 @@ footer {
     </nav>
 </footer>
 
-<script src="static/script.js"></script>
+<script src="static/auth.js?v=20261019-calculators"></script>
+<script src="static/lib/katex/katex.min.js?v=0.16.22"></script>
+<script src="static/script.js?v=20261019-calculators"></script>
 <script>
 function setCalculatorCategory(btn, category){
     document.querySelectorAll(".category-btn")
-        .forEach(button => button.classList.remove("active"));
-
-    btn.classList.add("active");
+        .forEach(button => {
+            const active = button === btn;
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
 
     document.querySelectorAll(".calculator-section")
         .forEach(section => {
             section.hidden = section.dataset.category !== category;
         });
 
-    updateToolCount();
-
-    const visibleSection = document.querySelector(".calculator-section:not([hidden])");
-
+    renderMath(document.querySelector(".calculator-section:not([hidden])"));
 }
-
-function updateToolCount(){
-    const visibleSection = document.querySelector(".calculator-section:not([hidden])");
-    const count = visibleSection ? visibleSection.querySelectorAll(".calculator-card").length : 0;
-    const label = count === 1 ? "narzędzie" : "narzędzia";
-
-    document.getElementById("toolCount").innerText = `${count} ${label}`;
-}
-
-fetch("nav.html?v=20260803-mobile-call", { cache: "no-cache" })
-.then(res => res.text())
-.then(data => {
-    document.getElementById("nav").innerHTML = data;
-});
 </script>
-
-<script src="static/auth.js?v=20261013-student-notifications"></script>
+<script src="static/calculator-page.js?v=20261019"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 </body>
 </html>

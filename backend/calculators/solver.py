@@ -272,7 +272,7 @@ def poly_solve(coeffs, include_plot=True):
     f = sum(coefficient * x ** (degree - index) for index, coefficient in enumerate(coeffs))
     expanded = sp.expand(f)
     factored = sp.factor(expanded)
-    roots = sp.solve(expanded, x)
+    roots = [root for root in sp.solve(expanded, x) if _as_real_float(root) is not None]
 
     plot = polynomial_plot(expanded, roots) if include_plot else None
 
@@ -313,10 +313,14 @@ def polynomial_plot(expression, roots):
 
 
 def styczna(xa, ya, xs, ys, r):
+    xa, ya, xs, ys, r = map(_as_expr, (xa, ya, xs, ys, r))
     eq = (a * (xs - xa) + ya - ys) ** 2 / (a**2 + 1) - r**2
     sols = sp.solve(eq, a)
 
-    return tuple(slope * x + ya - slope * xa for slope in sols if _as_real_float(slope) is not None)
+    lines = [slope * x + ya - slope * xa for slope in sols if _as_real_float(slope) is not None]
+    if (xa - xs) ** 2 == r ** 2:
+        lines.append(sp.Eq(x, xa))
+    return tuple(lines)
 
 
 def styczna_plot(xa, ya, xs, ys, r, result):
@@ -331,12 +335,14 @@ def styczna_plot(xa, ya, xs, ys, r, result):
     slopes = []
 
     for function in result:
+        if isinstance(function, sp.Equality):
+            continue
         slope = _as_real_float(sp.diff(function, x))
 
         if slope is not None:
             slopes.append(slope)
 
-    def draw(sx, sy, x_scale, _y_scale, local_x_min, local_x_max, _local_y_min, _local_y_max):
+    def draw(sx, sy, x_scale, _y_scale, local_x_min, local_x_max, local_y_min, local_y_max):
         elements = [_circle(sx, sy, x_scale, xs, ys, r, "#24527a"), _point(sx(xa), sy(ya), "#111827", 5)]
 
         for index, slope in enumerate(slopes):
@@ -344,16 +350,21 @@ def styczna_plot(xa, ya, xs, ys, r, result):
             color = "#2f6b36" if index == 0 else "#b45309"
             elements.append(_path(_line_points_for_slope(slope, intercept, local_x_min, local_x_max, sx, sy), color, 2.5))
 
+        if any(isinstance(function, sp.Equality) for function in result):
+            elements.append(_path([(sx(xa), sy(local_y_min)), (sx(xa), sy(local_y_max))], "#2f6b36", 2.5))
+
         return "".join(elements)
 
     return _svg_canvas((x_min, x_max), (y_min, y_max), draw, "Tangents to circle", equal_aspect=True)
 
 
 def line_and_circle(A, B, C, p, q, r):
+    A, B, C, p, q, r = map(_as_expr, (A, B, C, p, q, r))
     eq1 = A * x + B * y + C
     eq2 = (x - p) ** 2 + (y - q) ** 2 - r**2
 
-    return sp.solve([eq1, eq2], [x, y])
+    return [point for point in sp.solve([eq1, eq2], [x, y])
+            if all(_as_real_float(value) is not None for value in point)]
 
 
 def line_and_circle_plot(A, B, C, p, q, r, result):
@@ -403,10 +414,14 @@ def line_and_circle_plot(A, B, C, p, q, r, result):
 
 
 def two_circles(a1, b1, r1, a2, b2, r2):
+    a1, b1, r1, a2, b2, r2 = map(_as_expr, (a1, b1, r1, a2, b2, r2))
+    if (a1, b1, r1) == (a2, b2, r2):
+        return []
     eq1 = (x - a1) ** 2 + (y - b1) ** 2 - r1**2
     eq2 = (x - a2) ** 2 + (y - b2) ** 2 - r2**2
 
-    return sp.solve([eq1, eq2], [x, y])
+    return [point for point in sp.solve([eq1, eq2], [x, y])
+            if all(_as_real_float(value) is not None for value in point)]
 
 
 def two_circles_plot(a1, b1, r1, a2, b2, r2, result):

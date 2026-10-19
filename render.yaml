@@ -14,7 +14,7 @@ services:
       - key: SESSION_COOKIE_SECURE
         value: "true"
       - key: CALCULATORS_ENABLED
-        value: "false"
+        value: "true"
       - key: RATE_LIMIT_ENABLED
         value: "true"
       - key: AUTH_TOKEN_MAX_AGE

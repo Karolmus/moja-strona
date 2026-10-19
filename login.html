@@ -14,7 +14,7 @@
 <title>Logowanie</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
+<link rel="stylesheet" href="nav.css?v=20261019-calculators">
 
 <style>
 :root {
@@ -351,7 +351,7 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20261013-student-notifications"></script>
+<script src="static/auth.js?v=20261019-calculators"></script>
 <script src="static/analytics.js?v=20260805-short-ref"></script>
 <script>
 const form = document.getElementById("loginForm");
@@ -411,7 +411,7 @@ async function restoreRememberedSession(){
         const session = await apiFetch("/api/auth/me");
 
         if(session.authenticated && session.user){
-            const destination = session.user.role === "admin" ? "admin.html" : "zadania.html";
+            const destination = loginDestination(session.user);
             window.location.replace(destination);
             return;
         }
@@ -427,6 +427,12 @@ async function restoreRememberedSession(){
     submitButton.disabled = false;
     formStatus.className = "status-box";
     formStatus.innerText = "";
+}
+
+function loginDestination(user){
+    const next = new URLSearchParams(window.location.search).get("next");
+    if(next === "kalkulatory.html") return next;
+    return user.role === "admin" ? "admin.html" : "zadania.html";
 }
 
 function persistAuthToken(token){
@@ -513,7 +519,7 @@ form.addEventListener("submit", async event => {
         saveRememberPreference();
         showStatus("Zalogowano poprawnie. Przekierowuję...", "success");
 
-        window.location.href = result.user.role === "admin" ? "admin.html" : "zadania.html";
+        window.location.href = loginDestination(result.user);
     } catch(error) {
         showStatus(error.message || "Nie udało się zalogować.", "error");
     }
