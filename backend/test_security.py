@@ -999,6 +999,30 @@ class SecurityTests(unittest.TestCase):
 
         self.assertEqual(count, 0)
 
+    def test_training_saves_low_accuracy_round_without_weakening_attempt_checks(self):
+        with app.app_context():
+            student = create_user("low-accuracy@example.test", "Training QA", "bezpieczne-haslo")
+        login = self.client.post("/api/auth/login", json={
+            "email": student["email"], "password": "bezpieczne-haslo"})
+        headers = {"Authorization": f"Bearer {login.get_json()['token']}"}
+        params = {"level": "mp", "topic": "formulas-v1-all", "difficulty": "mixed", "round_seconds": 120}
+        attempt = self.client.post("/api/speed-training/attempts", headers=headers, json=params)
+        self.assertEqual(attempt.status_code, 201)
+        result = {**params, "attempt_token": attempt.get_json()["attempt_token"],
+                  "correct_count": 1, "mistake_count": 5, "best_streak": 1, "average_time_seconds": 2}
+        # A genuine completed round can have more mistakes than correct answers.
+        with patch("app.time.time", return_value=time.time() + 121):
+            impossible = self.client.post("/api/speed-training/results", headers=headers,
+                                          json={**result, "mistake_count": 10000})
+            self.assertEqual(impossible.status_code, 400)
+            saved = self.client.post("/api/speed-training/results", headers=headers, json=result)
+            self.assertEqual(saved.status_code, 201, saved.get_json())
+            reused = self.client.post("/api/speed-training/results", headers=headers, json=result)
+            self.assertEqual(reused.status_code, 400)
+        with sqlite3.connect(TEST_DB) as connection:
+            counts = connection.execute("SELECT correct_count, mistake_count FROM speed_training_results").fetchall()
+        self.assertEqual(counts, [(1, 5)])
+
     def test_progress_rejects_external_task_reference(self):
         with app.app_context():
             student = create_user(

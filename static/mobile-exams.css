@@ -1,0 +1,125 @@
+.exam-mobile-toggle { display: none; }
+.task-navigation { display: contents; }
+
+@media (max-width: 760px), (orientation: landscape) and (max-height: 560px) and (max-width: 1000px) {
+    body.mobile-exam-view .selector-grid { grid-template-columns: minmax(0, 1fr); }
+
+    body.mobile-exam-view #guestLevelWrapper > .side-title,
+    body.mobile-exam-view #sourceTitle,
+    body.mobile-exam-view #taskCounter { display: none; }
+
+    body.mobile-exam-view .exam-mobile-toggle {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) 18px;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+        min-height: 38px;
+        padding: 7px 9px;
+        border: 1px solid var(--line);
+        border-radius: 5.1px;
+        background: var(--surface);
+        color: var(--text);
+        text-align: left;
+        font: inherit;
+        font-size: 12px;
+        line-height: 1.25;
+        cursor: pointer;
+    }
+
+    body.mobile-exam-view .exam-mobile-toggle > span:first-child { color: var(--muted); }
+    body.mobile-exam-view .exam-mobile-toggle strong { min-width: 0; overflow-wrap: anywhere; }
+    body.mobile-exam-view .exam-mobile-toggle img { transition: transform 120ms ease-out; }
+    body.mobile-exam-view .exam-mobile-toggle[aria-expanded="true"] img { transform: rotate(180deg); }
+    body.mobile-exam-view .exam-mobile-toggle:focus-visible { outline: 2px solid var(--blue-text); outline-offset: 2px; }
+
+    body.mobile-exam-view #levelPickerToggle[aria-expanded="false"] ~ #guestLevelSection,
+    body.mobile-exam-view #examPickerToggle[aria-expanded="false"] ~ #examYearFilterRow,
+    body.mobile-exam-view #examPickerToggle[aria-expanded="false"] ~ #sourceList,
+    body.mobile-exam-view #examPickerToggle[aria-expanded="false"] ~ #sourceSelectionNotice,
+    body.mobile-exam-view .task-navigation:has(#taskNavigatorToggle[aria-expanded="false"]) > #progress {
+        display: none;
+    }
+
+    body.mobile-exam-view #sourceList { max-height: min(260px, 48dvh); }
+    body.mobile-exam-view #formulaSection {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 0;
+        padding-top: 5px;
+    }
+    body.mobile-exam-view #formulaSection .formula-card { min-height: 32px; padding: 5px 7px; }
+    body.mobile-exam-view #formulaSection .formula-card strong { font-size: 10px; }
+
+    body.mobile-exam-view .task-navigation {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+        scroll-margin-top: 6px;
+    }
+
+    body.mobile-exam-view #taskNavigatorToggle {
+        grid-column: 1;
+        grid-row: 1;
+        grid-template-columns: minmax(0, 1fr) 18px;
+        min-height: 34px;
+        font-size: 11px;
+    }
+    body.mobile-exam-view #taskNavigatorToggle > span { color: var(--text); }
+    body.mobile-exam-view #taskNavigatorToggle[hidden] { display: none; }
+    body.mobile-exam-view .task-navigation > .top-row {
+        grid-column: 2;
+        grid-row: 1;
+        justify-content: end;
+        max-width: 170px;
+        margin: 0;
+    }
+    body.mobile-exam-view .task-navigation .focus-toggle {
+        position: static;
+        min-height: 34px;
+        padding: 5px 8px;
+        font-size: 11px;
+        box-shadow: none;
+    }
+    body.mobile-exam-view.focus-mode .task-navigation .focus-toggle { width: 32px; padding: 0; font-size: 0; }
+
+    body.mobile-exam-view .task-navigation > #progress {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        max-height: min(180px, 36dvh);
+        flex-wrap: wrap;
+        gap: 7px;
+        overflow: auto;
+        overscroll-behavior: contain;
+        margin: 0;
+        padding: 7px 4px;
+        scrollbar-width: thin;
+    }
+    body.mobile-exam-view .task-navigation > #progress.grouped-exam-nav {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+    }
+    body.mobile-exam-view .task-navigation .tile { min-width: 34px; height: 34px; }
+}
+
+@media (max-width: 760px) {
+    body.mobile-exam-view .meta-section { padding: 5px 7px; font-size: 11px; }
+    body.mobile-exam-view .meta-right { gap: 0; }
+    body.mobile-exam-view .meta-right .meta-section { padding: 2px 6px 4px; font-size: 10px; }
+    body.mobile-exam-view .points-badge { min-width: 42px; height: 24px; padding: 0 6px; font-size: 10px; }
+}
+
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 1000px) {
+    body.mobile-exam-view .selector-grid:not(:has(.exam-mobile-toggle[aria-expanded="true"])) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .exam-mobile-toggle img { transition: none !important; }
+}

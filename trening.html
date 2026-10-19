@@ -21,10 +21,13 @@
 <meta property="og:image" content="https://deltasigma.pl/img/logo3.png">
 <meta name="twitter:card" content="summary_large_image">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=STIX+Two+Math&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20261013-student-notifications">
 <link rel="stylesheet" href="static/workspace-score.css?v=20261016">
 <script src="static/workspace-score.js?v=20261016"></script>
+<link rel="stylesheet" href="static/lib/katex/katex.min.css?v=0.16.22">
+<script src="static/lib/katex/katex.min.js?v=0.16.22"></script>
+<script src="static/training-tasks.js?v=20261017"></script>
 
 <style>
 :root {
@@ -42,7 +45,6 @@
     --red-soft: #fdecea;
     --red-text: #8b2119;
     --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-    --math-font: 'STIX Two Math', 'Cambria Math', 'Latin Modern Math', 'Noto Sans Math', math, serif;
 }
 
 * {
@@ -439,15 +441,14 @@ body {
 }
 
 .problem-text {
-    display: flex;
+    display: grid;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.16em;
+    gap: 12px;
     width: 100%;
-    min-height: 54px;
+    min-height: 130px;
     margin: 0;
     padding: 0.1em 0;
-    justify-content: center;
+    justify-items: center;
     color: #111827;
     font-family: 'Poppins', sans-serif;
     font-size: 32px;
@@ -485,138 +486,28 @@ body {
     outline-offset: 2px;
 }
 
-.math-expression {
-    display: inline;
-    font-family: var(--math-font);
+.training-instruction {
+    margin: 0;
+    font-size: 15px;
     font-weight: 400;
+    line-height: 1.5;
+    color: var(--text);
 }
-
-.math-atom {
-    display: inline-block;
-    margin: 0 0.035em;
-    font-family: var(--math-font);
-    font-size: 1em;
-    vertical-align: -0.18em;
+.training-equation {
+    max-width: 100%;
+    padding: 16px 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-size: 28px;
 }
-
-.math-atom mfrac {
-    font-size: 0.96em;
+.training-equation .katex { font-size: 1em; }
+.training-equation .katex-display { margin: 0; }
+@media(max-width: 760px) {
+    .training-equation { font-size: 23px; }
+    .training-instruction { font-size: 13px; }
 }
-
-.math-atom menclose[notation="box"] {
-    padding: 0.04em 0.13em;
-}
-
-.math-token {
-    display: inline-flex;
-    align-items: baseline;
-    font-family: var(--math-font);
-    line-height: 1;
-    white-space: nowrap;
-}
-
-.math-sup {
-    align-items: baseline;
-    vertical-align: middle;
-}
-
-.math-sup sup {
-    position: relative;
-    top: -0.48em;
-    margin-left: 0.03em;
-    font-size: 0.62em;
-    font-family: var(--math-font);
-    line-height: 1;
-}
-
-.math-sub {
-    align-items: baseline;
-    vertical-align: middle;
-}
-
-.math-sub sub {
-    position: relative;
-    bottom: -0.22em;
-    margin-left: 0.03em;
-    font-size: 0.6em;
-    font-family: var(--math-font);
-    line-height: 1;
-}
-
-.frac {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 1.35em;
-    margin: 0 0.05em;
-    font-family: var(--math-font);
-    line-height: 0.96;
-    text-align: center;
-    vertical-align: -0.29em;
-}
-
-.frac > span {
-    display: block;
-    min-width: 100%;
-    padding: 0.02em 0.14em;
-}
-
-.frac .den {
-    border-top: 0.055em solid currentColor;
-    padding-top: 0.12em;
-}
-
-.sqrt {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 0;
-    font-family: var(--math-font);
-    line-height: 1.03;
-    vertical-align: -0.1em;
-    white-space: nowrap;
-}
-
-.sqrt-symbol {
-    position: relative;
-    z-index: 1;
-    margin-right: -0.08em;
-    font-family: var(--math-font);
-    font-size: 1.28em;
-    line-height: 0.9;
-    transform: translateY(0.08em);
-}
-
-.sqrt-radicand {
-    display: inline-flex;
-    align-items: center;
-    min-height: 1em;
-    border-top: 0.055em solid currentColor;
-    padding: 0.08em 0.12em 0.01em 0.1em;
-    font-family: var(--math-font);
-    line-height: 0.98;
-}
-
-.abs {
-    display: inline-block;
-    padding: 0 0.02em;
-    font-family: var(--math-font);
-    white-space: nowrap;
-}
-
-.lim {
-    display: inline-grid;
-    grid-template-rows: auto auto;
-    align-items: center;
-    justify-items: center;
-    font-family: var(--math-font);
-    line-height: 0.86;
-    margin-right: 0.08em;
-    vertical-align: -0.24em;
-}
-
-.lim sub {
-    font-size: 0.48em;
-    line-height: 1;
+@container (max-width: 270px) {
+    .training-equation { font-size: 19px; padding: 16px 4px; }
 }
 
 .task-heading {
@@ -642,21 +533,6 @@ body {
 
 .calculator-indicator[hidden] {
     display: none;
-}
-
-.blank {
-    display: inline-grid;
-    place-items: center;
-    min-width: 1.45em;
-    min-height: 1.02em;
-    margin: 0 0.03em;
-    border: 0.06em solid rgba(142, 181, 222, 0.95);
-    border-radius: 0.16em;
-    background: white;
-    color: var(--blue-text);
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.88em;
-    font-weight: 800;
 }
 
 .answer-row {
@@ -807,7 +683,7 @@ body {
 
 .keypad {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
 }
 
@@ -1229,7 +1105,6 @@ body {
 
 <script>
 const ROUND_SECONDS = 120;
-const MIXED_DIFFICULTIES = [2, 3, 4];
 const MIXED_DIFFICULTY = "mixed";
 const BEST_SCORE_KEY = "deltaSigmaSpeedTrainingBest";
 const TASK_MEMORY_KEY = "deltaSigmaSpeedTrainingTaskMemory";
@@ -1249,7 +1124,10 @@ const LEVELS = {
             { id: "all", label: "Tryb łączny" },
             { id: "lesson_1", label: "Lekcja 1 · Procenty" },
             { id: "lesson_2", label: "Lekcja 2 · Działania na liczbach" },
+            { id: "lesson_3", label: "Lekcja 3 · Potęgi" },
             { id: "lesson_4", label: "Lekcja 4 · Pierwiastki" },
+            { id: "lesson_5", label: "Lekcja 5 · Wyrażenia algebraiczne" },
+            { id: "lesson_6", label: "Lekcja 6 · Równania" },
             { id: "lesson_7", label: "Lekcja 7 · Czas i odległość" },
             { id: "lesson_8", label: "Lekcja 8 · Prędkość" },
             { id: "lesson_9", label: "Lekcja 9 · Pola figur" },
@@ -1263,11 +1141,17 @@ const LEVELS = {
         shortLabel: "Matura podstawowa",
         lessons: [
             { id: "all", label: "Tryb łączny" },
-            { id: "lesson_1", label: "Lekcja 1 · Potęgi" },
-            { id: "lesson_2", label: "Lekcja 2 · Pierwiastki" },
-            { id: "lesson_3", label: "Lekcja 3 · Logarytmy" },
-            { id: "lesson_11", label: "Lekcja 11 · Funkcja liniowa" },
-            { id: "lesson_12", label: "Lekcja 12 · Funkcja kwadratowa" }
+            { id: "lesson_1", label: "Lekcja 1 · Potęgi i pierwiastki" },
+            { id: "lesson_2", label: "Lekcja 2 · Logarytmy" },
+            { id: "lesson_3", label: "Lekcja 3 · Wzory skróconego mnożenia" },
+            { id: "lesson_6", label: "Lekcja 6 · Procenty" },
+            { id: "lesson_7", label: "Lekcja 7 · Funkcje" },
+            { id: "lesson_8", label: "Lekcja 8 · Funkcja liniowa" },
+            { id: "formula_quadratic", label: "Funkcja kwadratowa · Typowe wzory" },
+            { id: "formula_sequences", label: "Ciągi · Typowe wzory" },
+            { id: "formula_geometry", label: "Geometria · Typowe wzory" },
+            { id: "formula_trig", label: "Trygonometria · Typowe wzory" },
+            { id: "formula_probability", label: "Prawdopodobieństwo · Typowe wzory" }
         ]
     },
     mr: {
@@ -1348,81 +1232,7 @@ const progressChart = document.getElementById("progressChart");
 let progressRequestId = 0;
 let trainingUser = null;
 
-const GENERATORS = [
-    { level: "eo", lesson: "lesson_4", topic: "roots", label: "Pierwiastki", make: genEoRootEquations },
-    { level: "eo", lesson: "lesson_4", topic: "roots", label: "Pierwiastki", make: genEoRootSimplify },
-    { level: "eo", lesson: "lesson_4", topic: "roots", label: "Pierwiastki", make: genEoRootCompare },
-    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionAdd },
-    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionCommonDenominator },
-    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMixedConversion },
-    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionOfNumber },
-    { level: "eo", lesson: "lesson_2", topic: "fractions", label: "Ułamki zwykłe", make: genEoFractionMissingPart },
-    { level: "eo", lesson: "lesson_4", topic: "approximations", label: "Przybliżenia", make: genEoRootApproximation },
-    { level: "eo", lesson: "lesson_2", topic: "approximations", label: "Przybliżenia", make: genEoDecimalRounding },
-    { level: "eo", lesson: "lesson_10", topic: "units", label: "Zamiana jednostek", make: genEoLengthUnitConversion },
-    { level: "eo", lesson: "lesson_10", topic: "units", label: "Zamiana jednostek", make: genEoMassUnitConversion },
-    { level: "eo", lesson: "lesson_10", topic: "units", label: "Zamiana jednostek", make: genEoAreaUnitConversion },
-    { level: "eo", lesson: "lesson_16", topic: "units", label: "Zamiana jednostek", make: genEoVolumeUnitConversion },
-    { level: "eo", lesson: "lesson_1", topic: "percents", label: "Procenty", make: genEoPercentOfNumber },
-    { level: "eo", lesson: "lesson_1", topic: "percents", label: "Procenty", make: genEoPercentIncrease },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy2 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy3 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy6 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy8 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy9 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy25 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy50 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy100 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy4 },
-    { level: "eo", lesson: "lesson_2", topic: "divisibility", label: "Cechy podzielności", make: genEoDivisibilityBy5Or10 },
-    { level: "eo", lesson: "lesson_7", topic: "clock", label: "Zegar", make: genEoClockAddMinutes },
-    { level: "eo", lesson: "lesson_7", topic: "clock", label: "Zegar", make: genEoClockElapsedMinutes },
-    { level: "eo", lesson: "lesson_7", topic: "clock", label: "Zegar", make: genEoClockToMinutes },
-    { level: "eo", lesson: "lesson_9", topic: "areas", label: "Pola figur", make: genEoRectangleArea },
-    { level: "eo", lesson: "lesson_9", topic: "areas", label: "Pola figur", make: genEoTriangleArea },
-    { level: "eo", lesson: "lesson_16", topic: "volume", label: "Objętość", make: genEoCuboidVolume },
-    { level: "eo", lesson: "lesson_16", topic: "volume", label: "Objętość", make: genEoCubeVolume },
-    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedDistance },
-    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionTime },
-    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoMotionSpeed },
-    { level: "eo", lesson: "lesson_8", topic: "motion", label: "Prędkość, czas, droga", make: genEoSpeedConversion },
-    { level: "eo", lesson: "lesson_18", topic: "combinatorics", label: "Kombinatoryka", make: genEoMultiplicationRule },
-    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerMultiply },
-    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerDivide },
-    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerPower },
-    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerRoot },
-    { level: "mp", lesson: "lesson_1", topic: "powers", label: "Potęgi", make: genMpPowerAddLikeTerms },
-    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootExtractCoefficient },
-    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootMultiply },
-    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootDivide },
-    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootAddLikeTerms },
-    { level: "mp", lesson: "lesson_2", topic: "roots", label: "Pierwiastki", make: genMpRootMixedSimplify },
-    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogValues },
-    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogAdd },
-    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogSubtract },
-    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogPullInCoefficient },
-    { level: "mp", lesson: "lesson_3", topic: "logs", label: "Logarytmy", make: genMpLogPullOutCoefficient },
-    { level: "mp", lesson: "lesson_11", topic: "functions", label: "Funkcja liniowa", make: genMpLinearSlopeFromFormula },
-    { level: "mp", lesson: "lesson_11", topic: "functions", label: "Funkcja liniowa", make: genMpLineSlopeFromPoints },
-    { level: "mp", lesson: "lesson_11", topic: "functions", label: "Funkcja liniowa", make: genMpLinearTrendSign },
-    { level: "mp", lesson: "lesson_12", topic: "functions", label: "Funkcja kwadratowa", make: genMpQuadraticCoefficientSign },
-    { level: "mp", lesson: "lesson_12", topic: "functions", label: "Funkcja kwadratowa", make: genMpQuadraticCValue },
-    { level: "mr", lesson: "lesson_18", topic: "derivatives", label: "Pochodne", make: genMrDerivativePowerCoefficient },
-    { level: "mr", lesson: "lesson_18", topic: "derivatives", label: "Pochodne", make: genMrDerivativeValue },
-    { level: "mr", lesson: "lesson_18", topic: "derivatives", label: "Pochodne", make: genMrTangentSlope },
-    { level: "mr", lesson: "lesson_16", topic: "limits", label: "Granice", make: genMrLimitDifferenceSquares },
-    { level: "mr", lesson: "lesson_16", topic: "limits", label: "Granice", make: genMrLimitPolynomialValue },
-    { level: "mr", lesson: "lesson_16", topic: "limits", label: "Granice", make: genMrLimitAtInfinity },
-    { level: "mr", lesson: "lesson_21", topic: "trig", label: "Trygonometria", make: genMrTrigExactValue },
-    { level: "mr", lesson: "lesson_21", topic: "trig", label: "Trygonometria", make: genMrTrigIdentity },
-    { level: "mr", lesson: "lesson_21", topic: "trig", label: "Trygonometria", make: genMrTrigSign },
-    { level: "mr", lesson: "lesson_1", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteCompute },
-    { level: "mr", lesson: "lesson_1", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteEquation },
-    { level: "mr", lesson: "lesson_1", topic: "absolute", label: "Wartość bezwzględna", make: genMrAbsoluteInequalityLength },
-    { level: "mr", lesson: "lesson_6", topic: "advanced_functions", label: "Funkcje", make: genMrCompositionValue },
-    { level: "mr", lesson: "lesson_6", topic: "advanced_functions", label: "Funkcje", make: genMrInverseLinearValue },
-    { level: "mr", lesson: "lesson_6", topic: "advanced_functions", label: "Funkcje", make: genMrParameterLinearRoot }
-];
+const GENERATORS = DSSpeedTasks.generators;
 
 function rand(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -1432,258 +1242,8 @@ function choice(items){
     return items[rand(0, items.length - 1)];
 }
 
-function blank(){
-    return `<span class="blank">?</span>`;
-}
-
-function math(html){
-    return `<span class="math-expression">${html}</span>`;
-}
-
-function token(value){
-    return `<span class="math-token">${value}</span>`;
-}
-
-function sup(base, exponent){
-    return `<span class="math-token math-sup"><span>${base}</span><sup>${exponent}</sup></span>`;
-}
-
-function sub(base, index){
-    return `<span class="math-token math-sub"><span>${base}</span><sub>${index}</sub></span>`;
-}
-
-function logBase(base){
-    return `<span class="math-token math-sub"><span>log</span><sub>${base}</sub></span>`;
-}
-
-function frac(numerator, denominator){
-    return `<span class="frac"><span>${numerator}</span><span class="den">${denominator}</span></span>`;
-}
-
-function root(radicand){
-    return `<span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-radicand">${radicand}</span></span>`;
-}
-
-function absExpr(value){
-    return `<span class="abs">|${value}|</span>`;
-}
-
-function limitTo(target, body){
-    return `<span class="lim"><span>lim</span><sub>x→${target}</sub></span>${body}`;
-}
-
-const MATHML_NAMESPACE = "http://www.w3.org/1998/Math/MathML";
-const MATH_OPERATOR_TOKENS = new Set(["+", "-", "−", "·", ":", "×", "=", "<", ">", "→", "∞", "°", "(", ")", ",", "|", "'"]);
-
-function mathElement(name, text = ""){
-    const element = document.createElementNS(MATHML_NAMESPACE, name);
-
-    if(text !== "") element.textContent = text;
-    return element;
-}
-
-function appendMathText(target, value){
-    const tokens = String(value || "").match(/[A-Za-z]+|[0-9]+(?:[.,][0-9]+)?|[+\-−·:×=<>→∞°(),'|]|\S+/g) || [];
-
-    tokens.forEach(tokenValue => {
-        let tokenName = "mtext";
-
-        if(/^\d/.test(tokenValue)) tokenName = "mn";
-        else if(MATH_OPERATOR_TOKENS.has(tokenValue)) tokenName = "mo";
-        else if(/^[A-Za-z]$/.test(tokenValue)) tokenName = "mi";
-
-        target.appendChild(mathElement(tokenName, tokenValue));
-    });
-}
-
-function appendMathNode(target, source){
-    if(source.nodeType === Node.TEXT_NODE){
-        appendMathText(target, source.textContent);
-        return;
-    }
-
-    if(source.nodeType !== Node.ELEMENT_NODE) return;
-
-    if(source.classList.contains("blank")){
-        const box = mathElement("menclose");
-
-        box.setAttribute("notation", "box");
-        box.appendChild(mathElement("mtext", "?"));
-        target.appendChild(box);
-        return;
-    }
-
-    if(source.classList.contains("math-sup")){
-        const superscript = mathElement("msup");
-        const base = mathElement("mrow");
-        const exponent = mathElement("mrow");
-        const parts = [...source.children];
-
-        [...(parts[0]?.childNodes || [])].forEach(node => appendMathNode(base, node));
-        [...(parts[1]?.childNodes || [])].forEach(node => appendMathNode(exponent, node));
-        superscript.append(base, exponent);
-        target.appendChild(superscript);
-        return;
-    }
-
-    if(source.classList.contains("math-sub")){
-        const subscript = mathElement("msub");
-        const base = mathElement("mrow");
-        const index = mathElement("mrow");
-        const parts = [...source.children];
-
-        [...(parts[0]?.childNodes || [])].forEach(node => appendMathNode(base, node));
-        [...(parts[1]?.childNodes || [])].forEach(node => appendMathNode(index, node));
-        subscript.append(base, index);
-        target.appendChild(subscript);
-        return;
-    }
-
-    if(source.classList.contains("frac")){
-        const fraction = mathElement("mfrac");
-        const numerator = mathElement("mrow");
-        const denominator = mathElement("mrow");
-        const parts = [...source.children];
-
-        [...(parts[0]?.childNodes || [])].forEach(node => appendMathNode(numerator, node));
-        [...(parts[1]?.childNodes || [])].forEach(node => appendMathNode(denominator, node));
-        fraction.append(numerator, denominator);
-        target.appendChild(fraction);
-        return;
-    }
-
-    if(source.classList.contains("sqrt")){
-        const squareRoot = mathElement("msqrt");
-        const radicand = source.querySelector(":scope > .sqrt-radicand");
-
-        [...(radicand?.childNodes || [])].forEach(node => appendMathNode(squareRoot, node));
-        target.appendChild(squareRoot);
-        return;
-    }
-
-    if(source.classList.contains("abs")){
-        const absolute = mathElement("mrow");
-
-        absolute.appendChild(mathElement("mo", "|"));
-        [...source.childNodes].forEach(node => appendMathNode(absolute, node));
-        absolute.appendChild(mathElement("mo", "|"));
-        target.appendChild(absolute);
-        return;
-    }
-
-    if(source.classList.contains("lim")){
-        const limit = mathElement("munder");
-        const lower = source.querySelector(":scope > sub");
-
-        limit.append(mathElement("mo", "lim"), mathElement("mrow"));
-        [...(lower?.childNodes || [])].forEach(node => appendMathNode(limit.lastElementChild, node));
-        target.appendChild(limit);
-        return;
-    }
-
-    [...source.childNodes].forEach(node => appendMathNode(target, node));
-}
-
-function upgradeMathNotation(container){
-    const selector = ".frac, .sqrt, .math-sup, .math-sub, .lim, .abs";
-    const candidates = [...container.querySelectorAll(selector)]
-        .filter(element => !element.parentElement?.closest(selector));
-
-    candidates.forEach(source => {
-        const mathNode = mathElement("math");
-        const row = mathElement("mrow");
-
-        mathNode.classList.add("math-atom");
-        mathNode.setAttribute("display", "inline");
-        mathNode.setAttribute("aria-label", source.textContent.trim());
-        appendMathNode(row, source);
-        mathNode.appendChild(row);
-        source.replaceWith(mathNode);
-    });
-}
-
-function parens(value){
-    return `<span class="math-token">(${value})</span>`;
-}
-
-function signed(value){
-    return value >= 0 ? `+ ${value}` : `- ${Math.abs(value)}`;
-}
-
-function coefficientTerm(value, variable){
-    if(value === 1) return variable;
-    if(value === -1) return `-${variable}`;
-
-    return `${value}${variable}`;
-}
-
-function signedCoefficientTerm(value, variable){
-    return value >= 0
-        ? `+ ${coefficientTerm(value, variable)}`
-        : `- ${coefficientTerm(Math.abs(value), variable)}`;
-}
-
-function factorial(n){
-    let value = 1;
-
-    for(let i = 2; i <= n; i++) value *= i;
-
-    return value;
-}
-
-function combination(n, k){
-    return factorial(n) / (factorial(k) * factorial(n - k));
-}
-
-function gcd(a, b){
-    a = Math.abs(a);
-    b = Math.abs(b);
-
-    while(b){
-        const next = a % b;
-        a = b;
-        b = next;
-    }
-
-    return a || 1;
-}
-
-function lcm(a, b){
-    return Math.abs(a * b) / gcd(a, b);
-}
-
-function range(min, max){
-    return Array.from({ length: max - min + 1 }, (_, index) => min + index);
-}
-
-function difficultyTier(){
-    return state.currentDifficulty || 1;
-}
-
-function byDifficulty(values){
-    return values[Math.min(values.length - 1, difficultyTier() - 1)];
-}
-
 function resolveTaskDifficulty(){
-    return choice(MIXED_DIFFICULTIES);
-}
-
-function difficultyLabel(value = state.currentDifficulty){
-    return "Mix";
-}
-
-function task(label, html, answer, meta = {}){
-    return {
-        label,
-        html: math(html),
-        answer,
-        ...meta,
-        calculator: Boolean(meta.calculator)
-    };
-}
-
-function yesNoTask(label, html, condition){
-    return task(label, `${html} ${blank()}`, condition ? 1 : 0, { answerMode: "yes-no" });
+    return 1;
 }
 
 function taskMemoryLimit(){
@@ -1694,8 +1254,12 @@ function trainingScopeTopic(){
     return state.topic || "all";
 }
 
+function trainingResultTopic(){
+    return `${DSSpeedTasks.version}-${trainingScopeTopic()}`;
+}
+
 function taskMemoryKey(){
-    return `${state.level}:${trainingScopeTopic()}`;
+    return `${DSSpeedTasks.version}:${state.level}:${trainingScopeTopic()}`;
 }
 
 function readTaskMemoryStore(){
@@ -1744,1334 +1308,6 @@ function rememberTaskKey(key){
     saveTaskMemory();
 }
 
-function genEoPowerRules(){
-    const base = choice(difficultyTier() >= 4 ? [2, 3, 5, 7, 10] : [2, 3, 5, 7]);
-    const mode = rand(1, 4);
-    const maxExp = byDifficulty([6, 8, 10, 12, 14]);
-
-    if(mode === 1){
-        const a = rand(2, maxExp);
-        const b = rand(2, maxExp);
-        return task("Potęgi", `${sup(base, a)} · ${sup(base, b)} = ${sup(base, blank())}`, a + b);
-    }
-
-    if(mode === 2){
-        const b = rand(2, maxExp - 1);
-        const answer = rand(2, maxExp);
-        return task("Potęgi", `${sup(base, answer + b)} : ${sup(base, b)} = ${sup(base, blank())}`, answer);
-    }
-
-    if(mode === 3){
-        const a = rand(2, byDifficulty([4, 5, 5, 6, 6]));
-        const b = rand(2, byDifficulty([4, 4, 5, 5, 6]));
-        return task("Potęgi", `${sup(parens(sup(base, a)), b)} = ${sup(base, blank())}`, a * b);
-    }
-
-    const exponent = rand(3, maxExp);
-    const factor = rand(1, exponent - 1);
-    return task("Potęgi", `${sup(base, factor)} · ${sup(base, blank())} = ${sup(base, exponent)}`, exponent - factor);
-}
-
-function genEoPowerMissingBase(){
-    const base = choice(range(3, byDifficulty([6, 7, 8, 9, 10])));
-    const exponent = rand(3, byDifficulty([3, 3, 4, 4, 5]));
-
-    return task("Potęgi", `${sup(blank(), exponent)} = ${base ** exponent}`, base);
-}
-
-function genEoRootEquations(){
-    const rootValue = rand(5, byDifficulty([10, 12, 14, 16, 18]));
-    const add = rand(2, byDifficulty([8, 10, 12, 14, 16]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        return task("Pierwiastki", `${root(blank())} = ${rootValue}`, rootValue * rootValue);
-    }
-
-    if(mode === 2){
-        return task("Pierwiastki", `${root(rootValue * rootValue)} + ${blank()} = ${rootValue + add}`, add);
-    }
-
-    return task("Pierwiastki", `${root(rootValue * rootValue)} - ${blank()} = ${rootValue - add}`, add);
-}
-
-function genEoRootSimplify(){
-    const cases = [
-        [12, 3, 2], [20, 5, 2], [27, 3, 3], [28, 7, 2],
-        [45, 5, 3], [48, 3, 4], [50, 2, 5], [63, 7, 3],
-        [72, 2, 6], [75, 3, 5]
-    ];
-    const [inside, simpleInside, coefficient] = choice(cases);
-
-    return task("Pierwiastki", `${root(inside)} = ${blank()}${root(simpleInside)}`, coefficient);
-}
-
-function genEoRootCompare(){
-    const radicand = choice([10, 15, 17, 26, 30, 37, 40, 50, 60, 70]);
-    const answer = Math.floor(Math.sqrt(radicand)) + 1;
-
-    return task("Pierwiastki", `${root(radicand)} < n. Najmniejsze n naturalne = ${blank()}`, answer);
-}
-
-function genEoRootApproximation(){
-    const n = choice([8, 10, 15, 20, 24, 26, 35, 48, 63, 80]);
-    const roundUp = Math.random() < 0.5;
-    const answer = roundUp ? Math.ceil(Math.sqrt(n)) : Math.floor(Math.sqrt(n));
-
-    return task("Przybliżenia", `${root(n)} zaokrąglij ${roundUp ? "w górę" : "w dół"} do liczby całkowitej: ${blank()}`, answer);
-}
-
-function genEoDecimalRounding(){
-    const cases = [
-        [1.24, 1], [1.58, 2], [2.49, 2], [2.51, 3],
-        [3.14, 3], [4.76, 5], [6.49, 6], [7.5, 8]
-    ];
-    const [value, rounded] = choice(cases);
-
-    return task("Przybliżenia", `${String(value).replace(".", ",")} ≈ ${blank()} do jedności`, rounded);
-}
-
-function genEoApproximateProduct(){
-    const cases = [
-        [19, 21, 20, 20], [29, 31, 30, 30], [49, 12, 50, 10],
-        [98, 6, 100, 6], [41, 18, 40, 20], [59, 9, 60, 10]
-    ];
-    const [a, b, approxA, approxB] = choice(cases);
-
-    return task("Przybliżenia", `${a} · ${b} ≈ ${approxA} · ${approxB} = ${blank()}`, approxA * approxB);
-}
-
-function genEoLengthUnitConversion(){
-    const cases = [
-        ["m", "cm", 100, 2], ["m", "cm", 100, 5], ["m", "dm", 10, 7],
-        ["km", "m", 1000, 3], ["dm", "cm", 10, 8], ["cm", "mm", 10, 6],
-        ["cm", "m", 0.01, 250], ["mm", "cm", 0.1, 80]
-    ];
-    const [from, to, multiplier, value] = choice(cases);
-    const converted = value * multiplier;
-
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
-        calculator: converted >= 1000
-    });
-}
-
-function genEoMassUnitConversion(){
-    const cases = [
-        ["kg", "g", 1000, 2], ["kg", "g", 1000, 5], ["dag", "g", 10, 7],
-        ["t", "kg", 1000, 3], ["g", "kg", 0.001, 2500], ["g", "dag", 0.1, 80]
-    ];
-    const [from, to, multiplier, value] = choice(cases);
-    const converted = value * multiplier;
-
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
-        calculator: converted >= 1000
-    });
-}
-
-function genEoAreaUnitConversion(){
-    const cases = [
-        ["dm²", "cm²", 100, 2], ["dm²", "cm²", 100, 7],
-        ["m²", "dm²", 100, 3], ["m²", "cm²", 10000, 1],
-        ["cm²", "dm²", 0.01, 300], ["dm²", "m²", 0.01, 500]
-    ];
-    const [from, to, multiplier, value] = choice(cases);
-    const converted = value * multiplier;
-
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
-        calculator: converted >= 1000
-    });
-}
-
-function genEoVolumeUnitConversion(){
-    const cases = [
-        ["dm³", "cm³", 1000, 2], ["dm³", "cm³", 1000, 5],
-        ["m³", "dm³", 1000, 3], ["cm³", "mm³", 1000, 4],
-        ["cm³", "dm³", 0.001, 2500], ["dm³", "m³", 0.001, 7000],
-        ["l", "cm³", 1000, 2], ["l", "dm³", 1, 6]
-    ];
-    const [from, to, multiplier, value] = choice(cases);
-    const converted = value * multiplier;
-
-    return task("Zamiana jednostek", `${value} ${from} = ${blank()} ${to}`, converted, {
-        calculator: converted >= 1000
-    });
-}
-
-function genEoPercentOfNumber(){
-    const percent = choice(difficultyTier() >= 4 ? [5, 10, 15, 20, 25, 30, 40, 50, 60, 75] : [5, 10, 20, 25, 40, 50, 75]);
-    const number = rand(4, byDifficulty([40, 60, 80, 100, 120])) * 10;
-
-    return task("Procenty", `${percent}% · ${number} = ${blank()}`, number * percent / 100);
-}
-
-function genEoPercentIncrease(){
-    const percent = choice([5, 10, 20, 25, 50]);
-    const number = choice([80, 100, 120, 160, 200, 240, 300, 400, 500]);
-
-    return task("Procenty", `Ile wynosi liczba o ${percent}% większa od ${number}? ${blank()}`, number * (100 + percent) / 100);
-}
-
-function genEoPercentChange(){
-    const percent = choice(difficultyTier() >= 4 ? [5, 10, 15, 20, 25, 30, 40, 50] : [10, 20, 25, 50]);
-    const number = rand(4, byDifficulty([30, 50, 70, 90, 110])) * 10;
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Procenty", `${number} + ${percent}% = ${blank()}`, number * (100 + percent) / 100)
-        : task("Procenty", `${number} - ${percent}% = ${blank()}`, number * (100 - percent) / 100);
-}
-
-function genEoPercentReverse(){
-    const percent = choice(difficultyTier() >= 4 ? [5, 10, 20, 25, 40, 50, 75] : [10, 20, 25, 50]);
-    const answer = rand(3, byDifficulty([18, 30, 42, 54, 66])) * 10;
-    const value = answer * percent / 100;
-
-    return task("Procenty", `${percent}% liczby ${blank()} = ${value}`, answer);
-}
-
-function genEoDivisibilityBy2(){
-    const number = choice([124, 237, 318, 405, 516, 629, 740, 853, 964, 1075]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 2?`, number % 2 === 0);
-}
-
-function genEoDivisibilityBy3(){
-    const number = choice([123, 234, 405, 512, 681, 742, 819, 902, 1116, 1245]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 3?`, number % 3 === 0);
-}
-
-function genEoDivisibilityBy6(){
-    const number = choice([126, 234, 405, 512, 648, 742, 816, 902, 1116, 1245]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 6?`, number % 6 === 0);
-}
-
-function genEoDivisibilityBy8(){
-    const number = choice([128, 216, 304, 512, 624, 732, 816, 928, 1048, 1256]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 8?`, number % 8 === 0);
-}
-
-function genEoDivisibilityBy9(){
-    const number = choice([126, 216, 405, 513, 729, 810, 1008, 1125, 1242, 1350]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 9?`, number % 9 === 0);
-}
-
-function genEoDivisibilityBy25(){
-    const number = choice([125, 250, 375, 412, 625, 760, 875, 1010, 1125, 1340]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 25?`, number % 25 === 0);
-}
-
-function genEoDivisibilityBy50(){
-    const number = choice([150, 225, 300, 425, 550, 675, 800, 925, 1050, 1175]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 50?`, number % 50 === 0);
-}
-
-function genEoDivisibilityBy100(){
-    const number = choice([200, 350, 400, 575, 800, 925, 1000, 1120, 1300, 1450]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 100?`, number % 100 === 0);
-}
-
-function genEoDivisibilityBy4(){
-    const number = choice([124, 236, 318, 420, 516, 634, 728, 812, 936, 1044]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez 4?`, number % 4 === 0);
-}
-
-function genEoDivisibilityBy5Or10(){
-    const number = choice([125, 130, 214, 250, 305, 412, 580, 761, 900, 1015]);
-    const divisor = choice([5, 10]);
-
-    return yesNoTask("Cechy podzielności", `Czy ${number} jest podzielna przez ${divisor}?`, number % divisor === 0);
-}
-
-function genEoClockAddMinutes(){
-    const cases = [
-        ["7:20", "7:55", 35], ["8:15", "9:00", 45], ["9:40", "10:10", 30],
-        ["10:25", "11:15", 50], ["12:10", "12:35", 25], ["14:45", "15:05", 20]
-    ];
-    const [start, end, minutes] = choice(cases);
-
-    return task("Zegar", `Jest godzina ${start}, ile minut upłynie do godziny ${end}? ${blank()}`, minutes);
-}
-
-function genEoClockElapsedMinutes(){
-    const cases = [
-        ["7:30", "8:10", 40], ["8:20", "9:05", 45], ["9:15", "10:00", 45],
-        ["10:40", "11:25", 45], ["12:05", "12:50", 45], ["13:35", "14:20", 45],
-        ["15:10", "15:55", 45], ["16:25", "17:00", 35]
-    ];
-    const [start, end, minutes] = choice(cases);
-
-    return task("Zegar", `Jest godzina ${start}, ile minut upłynie do godziny ${end}? ${blank()}`, minutes);
-}
-
-function genEoClockToMinutes(){
-    const cases = [
-        [1, 15, 75], [1, 30, 90], [1, 45, 105],
-        [2, 0, 120], [2, 15, 135], [2, 30, 150],
-        [3, 20, 200], [4, 10, 250]
-    ];
-    const [hours, minutes, total] = choice(cases);
-
-    return task("Zegar", `${hours} h ${minutes} min = ${blank()} min`, total);
-}
-
-function genEoRectangleArea(){
-    const a = rand(3, byDifficulty([8, 10, 12, 14, 16]));
-    const b = rand(3, byDifficulty([8, 9, 10, 12, 14]));
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Pola figur", `Prostokąt: a = ${a}, b = ${b}, P = ${blank()}`, a * b)
-        : task("Pola figur", `Kwadrat: a = ${a}, P = ${blank()}`, a * a);
-}
-
-function genEoTriangleArea(){
-    const base = rand(4, byDifficulty([10, 12, 14, 16, 18]));
-    const height = rand(3, byDifficulty([8, 10, 12, 14, 16]));
-    const evenBase = base % 2 === 0 ? base : base + 1;
-
-    return task("Pola figur", `Trójkąt: a = ${evenBase}, h = ${height}, P = ${blank()}`, evenBase * height / 2);
-}
-
-function genEoAreaReverse(){
-    const mode = rand(1, 2);
-
-    if(mode === 1){
-        const side = rand(3, byDifficulty([8, 10, 12, 14, 16]));
-        const area = side * rand(3, byDifficulty([8, 9, 10, 12, 14]));
-        return task("Pola figur", `Prostokąt: P = ${area}, a = ${side}, b = ${blank()}`, area / side);
-    }
-
-    const side = rand(3, byDifficulty([8, 10, 12, 14, 16]));
-    const height = rand(3, byDifficulty([8, 10, 12, 14, 16]));
-    return task("Pola figur", `Równoległobok: a = ${side}, h = ${height}, P = ${blank()}`, side * height);
-}
-
-function genEoCuboidVolume(){
-    const cases = [
-        [2, 3, 4], [2, 4, 5], [3, 4, 5], [3, 5, 6],
-        [4, 5, 6], [2, 6, 8], [5, 5, 4]
-    ];
-    const [a, b, c] = choice(cases);
-
-    return task("Objętość", `Prostopadłościan: ${a} × ${b} × ${c}, V = ${blank()}`, a * b * c);
-}
-
-function genEoCubeVolume(){
-    const edge = rand(3, byDifficulty([6, 7, 8, 9, 10]));
-    const volume = edge ** 3;
-
-    return task("Objętość", `Sześcian: a = ${edge}, V = ${blank()}`, volume, {
-        calculator: volume >= 500
-    });
-}
-
-function genEoVolumeMissingEdge(){
-    const cases = [
-        [2, 3, 24], [2, 4, 40], [3, 4, 60], [3, 5, 90],
-        [4, 5, 120], [5, 6, 150], [2, 8, 96]
-    ];
-    const [a, b, volume] = choice(cases);
-
-    return task("Objętość", `Prostopadłościan: V = ${volume}, a = ${a}, b = ${b}, c = ${blank()}`, volume / (a * b));
-}
-
-function genEoLinearEquation(){
-    const x = rand(1, byDifficulty([6, 8, 9, 10, 12]));
-    const a = rand(2, byDifficulty([4, 5, 6, 7, 8]));
-    const b = rand(1, byDifficulty([8, 10, 12, 14, 16]));
-    const right = a * x + b;
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Równania i proporcje", `${a}x + ${b} = ${right}, x = ${blank()}`, x)
-        : task("Równania i proporcje", `${a}x - ${b} = ${a * x - b}, x = ${blank()}`, x);
-}
-
-function genEoProportion(){
-    const x = rand(2, byDifficulty([8, 10, 12, 14, 16]));
-    const a = rand(2, byDifficulty([6, 8, 10, 12, 14]));
-    const b = rand(2, byDifficulty([6, 8, 10, 12, 14]));
-    const c = a * x / b;
-
-    if(Number.isInteger(c)){
-        return task("Równania i proporcje", `${frac(a, b)} = ${frac(blank(), x)}`, c);
-    }
-
-    return task("Równania i proporcje", `${a} · ${blank()} = ${a * x}`, x);
-}
-
-function genEoScaleRatio(){
-    const scale = choice([2, 3, 4, 5, 10]);
-    const real = rand(2, byDifficulty([8, 10, 12, 14, 16])) * scale;
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Równania i proporcje", `Skala 1:${scale}, na rysunku ${real / scale} cm, w rzeczywistości ${blank()} cm`, real)
-        : task("Równania i proporcje", `Stosunek ${scale}:1, ${blank()} · ${scale} = ${real}`, real / scale);
-}
-
-function genEoAngleTriangle(){
-    const pairs = [[40, 60], [45, 45], [50, 60], [35, 65], [30, 80], [70, 40], [55, 55]];
-    const [a, b] = choice(pairs);
-
-    return task("Schematy egzaminacyjne", `Trójkąt: kąty ${a}° i ${b}°, trzeci kąt = ${blank()}°`, 180 - a - b);
-}
-
-function genEoSupplementaryAngles(){
-    const angle = choice([30, 35, 40, 45, 50, 60, 70, 75, 80, 100, 110, 120]);
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Schematy egzaminacyjne", `Kąty przyległe: ${angle}° i ${blank()}°`, 180 - angle)
-        : task("Schematy egzaminacyjne", `Kąt pełny: ${angle}° + ${blank()}° = 360°`, 360 - angle);
-}
-
-function genEoFractionAdd(){
-    const denominators = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15];
-    let a;
-    let b;
-    let c;
-    let d;
-    let denominator;
-    let numerator;
-
-    for(let attempt = 0; attempt < 40; attempt++){
-        b = choice(denominators);
-        d = choice(denominators.filter(item => item !== b));
-        denominator = lcm(b, d);
-        a = rand(1, b - 1);
-        c = rand(1, d - 1);
-        numerator = a * (denominator / b) + c * (denominator / d);
-
-        if(denominator <= 60 && numerator < denominator) break;
-    }
-
-    return task("Ułamki zwykłe", `${frac(a, b)} + ${frac(c, d)} = ${frac(blank(), denominator)}`, numerator);
-}
-
-function genEoFractionCommonDenominator(){
-    const denominator = choice([2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15]);
-    const multiplier = choice([2, 3, 4, 5, 6]);
-    const numerator = rand(1, denominator - 1);
-    const targetDenominator = denominator * multiplier;
-    const targetNumerator = numerator * multiplier;
-
-    return task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${frac(blank(), targetDenominator)}`, targetNumerator);
-}
-
-function genEoFractionMixedConversion(){
-    const denominator = choice([3, 4, 5, 6, 7, 8, 9]);
-    const whole = rand(1, 5);
-    const remainder = rand(1, denominator - 1);
-    const numerator = whole * denominator + remainder;
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${whole} ${frac(blank(), denominator)}`, remainder)
-        : task("Ułamki zwykłe", `${whole} ${frac(remainder, denominator)} = ${frac(blank(), denominator)}`, numerator);
-}
-
-function genEoFractionEquivalent(){
-    const denominator = choice([3, 4, 5, 6, 8]);
-    const numerator = rand(1, denominator - 1);
-    const multiplier = choice([2, 3, 4, 5]);
-
-    return task("Ułamki zwykłe", `${frac(numerator, denominator)} = ${frac(blank(), denominator * multiplier)}`, numerator * multiplier);
-}
-
-function genEoFractionOfNumber(){
-    const denominator = choice([3, 4, 5, 6, 8, 9, 10, 12, 15]);
-    const numerator = rand(1, denominator - 1);
-    const number = denominator * rand(4, 18);
-
-    return task("Ułamki zwykłe", `${frac(numerator, denominator)} liczby ${number} = ${blank()}`, number * numerator / denominator);
-}
-
-function genEoFractionMissingPart(){
-    const denominators = [3, 4, 5, 6, 8, 9, 10, 12, 15];
-    let firstNumerator;
-    let firstDenominator;
-    let missingDenominator;
-    let missingNumerator;
-    let resultNumerator;
-    let resultDenominator;
-
-    for(let attempt = 0; attempt < 40; attempt++){
-        firstDenominator = choice(denominators);
-        missingDenominator = choice(denominators.filter(item => item !== firstDenominator));
-        resultDenominator = lcm(firstDenominator, missingDenominator);
-        firstNumerator = rand(1, firstDenominator - 1);
-        missingNumerator = rand(1, missingDenominator - 1);
-        resultNumerator = firstNumerator * (resultDenominator / firstDenominator) +
-            missingNumerator * (resultDenominator / missingDenominator);
-
-        if(resultDenominator <= 60 && resultNumerator < resultDenominator) break;
-    }
-
-    return task("Ułamki zwykłe", `${frac(firstNumerator, firstDenominator)} + ${frac(blank(), missingDenominator)} = ${frac(resultNumerator, resultDenominator)}`, missingNumerator);
-}
-
-function genEoSpeedDistance(){
-    const cases = [
-        [40, 2], [50, 3], [60, 2], [70, 2], [80, 3],
-        [90, 2], [30, 4], [45, 2]
-    ];
-    const [speed, hours] = choice(cases);
-
-    return task("Prędkość, czas, droga", `v = ${speed} km/h, t = ${hours} h, s = ${blank()} km`, speed * hours);
-}
-
-function genEoMotionTime(){
-    const cases = [
-        [120, 60], [150, 50], [180, 90], [240, 80],
-        [300, 100], [90, 45], [72, 24], [200, 50]
-    ];
-    const [distance, speed] = choice(cases);
-
-    return task("Prędkość, czas, droga", `s = ${distance} km, v = ${speed} km/h, t = ${blank()} h`, distance / speed);
-}
-
-function genEoMotionSpeed(){
-    const cases = [
-        [120, 2], [150, 3], [180, 2], [240, 4],
-        [300, 5], [90, 3], [160, 4], [210, 3]
-    ];
-    const [distance, hours] = choice(cases);
-
-    return task("Prędkość, czas, droga", `s = ${distance} km, t = ${hours} h, v = ${blank()} km/h`, distance / hours);
-}
-
-function genEoSpeedConversion(){
-    const cases = [
-        [5, 18], [10, 36], [15, 54], [20, 72], [25, 90]
-    ];
-    const [metersPerSecond, kilometersPerHour] = choice(cases);
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Prędkość, czas, droga", `${metersPerSecond} m/s = ${blank()} km/h`, kilometersPerHour)
-        : task("Prędkość, czas, droga", `${kilometersPerHour} km/h = ${blank()} m/s`, metersPerSecond);
-}
-
-function genEoMultiplicationRule(){
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        const shirts = rand(2, 6);
-        const pants = rand(2, 5);
-
-        return task("Kombinatoryka", `${shirts} koszulki i ${pants} par spodni: liczba zestawów = ${blank()}`, shirts * pants);
-    }
-
-    if(mode === 2){
-        const soups = rand(2, 4);
-        const mains = rand(3, 6);
-        const drinks = rand(2, 4);
-
-        return task("Kombinatoryka", `${soups} zupy, ${mains} dania i ${drinks} napoje: liczba obiadów = ${blank()}`, soups * mains * drinks);
-    }
-
-    const first = rand(3, 8);
-    const second = rand(2, 6);
-
-    return task("Kombinatoryka", `Kod: ${first} możliwości na pierwszym miejscu i ${second} na drugim. Liczba kodów = ${blank()}`, first * second);
-}
-
-function genEoUnitConversion(){
-    const cases = [
-        ["m", "cm", 100, 2], ["m", "cm", 100, 5], ["m", "dm", 10, 7],
-        ["kg", "g", 1000, 3], ["h", "min", 60, 2], ["min", "s", 60, 5],
-        ["zł", "gr", 100, 4]
-    ];
-    const [from, to, multiplier, value] = choice(cases);
-    const converted = value * multiplier;
-
-    return task("Schematy egzaminacyjne", `${value} ${from} = ${blank()} ${to}`, converted, {
-        calculator: converted >= 1000
-    });
-}
-
-function genEoPythagoreanTriple(){
-    const triples = [[3, 4, 5], [5, 12, 13], [6, 8, 10], [9, 12, 15]];
-    const [a, b, c] = choice(triples);
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Schematy egzaminacyjne", `Trójkąt prostokątny: przyprostokątne ${a} i ${b}, przeciwprostokątna = ${blank()}`, c)
-        : task("Schematy egzaminacyjne", `Trójkąt prostokątny: przeciwprostokątna ${c}, przyprostokątna ${a}, druga = ${blank()}`, b);
-}
-
-function genEoExpressionValue(){
-    const x = rand(2, byDifficulty([6, 8, 10, 12, 14]));
-    const a = rand(2, byDifficulty([4, 5, 6, 7, 8]));
-    const b = rand(1, byDifficulty([8, 10, 12, 14, 16]));
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Schematy egzaminacyjne", `Dla x = ${x}: ${a}x + ${b} = ${blank()}`, a * x + b)
-        : task("Schematy egzaminacyjne", `Dla x = ${x}: ${a}x - ${b} = ${blank()}`, a * x - b);
-}
-
-function genMpFormulaCoefficient(){
-    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        return task("Wzory skróconego mnożenia", `${sup(parens(`x + ${a}`), 2)} = ${sup("x", 2)} + ${blank()}x + ${a * a}`, 2 * a);
-    }
-
-    if(mode === 2){
-        return task("Wzory skróconego mnożenia", `${sup(parens(`x - ${a}`), 2)} = ${sup("x", 2)} - ${blank()}x + ${a * a}`, 2 * a);
-    }
-
-    return task("Wzory skróconego mnożenia", `${sup(parens(`2x + ${a}`), 2)} = 4${sup("x", 2)} + ${blank()}x + ${a * a}`, 4 * a);
-}
-
-function genMpDifferenceSquares(){
-    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
-    const b = rand(1, byDifficulty([5, 6, 7, 8, 9]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        return task("Wzory skróconego mnożenia", `${parens(`x + ${a}`)}${parens(`x - ${a}`)} = ${sup("x", 2)} - ${blank()}`, a * a);
-    }
-
-    if(mode === 2){
-        return task("Wzory skróconego mnożenia", `${sup(parens(`${a}x - ${b}`), 2)} = ${a * a}${sup("x", 2)} - ${blank()}x + ${b * b}`, 2 * a * b);
-    }
-
-    return task("Wzory skróconego mnożenia", `${parens(`${a}x + ${b}`)}${parens(`${a}x - ${b}`)} = ${a * a}${sup("x", 2)} - ${blank()}`, b * b);
-}
-
-function genMpFormulaValue(){
-    const a = rand(2, byDifficulty([8, 10, 12, 14, 16]));
-    const b = rand(1, byDifficulty([6, 7, 8, 9, 10]));
-    const mode = rand(1, 2);
-    const answer = mode === 1 ? (a + b) ** 2 : (a + b) * (a - b);
-    const expression = mode === 1
-        ? `${sup(parens(`${a} + ${b}`), 2)} = ${blank()}`
-        : `${parens(`${a} + ${b}`)}${parens(`${a} - ${b}`)} = ${blank()}`;
-
-    return task("Wzory skróconego mnożenia", expression, answer, {
-        calculator: Math.abs(answer) >= 250
-    });
-}
-
-function genMpPowerRules(){
-    const base = choice(difficultyTier() >= 4 ? [2, 3, 5, 7, 10] : [2, 3, 5, 7]);
-    const mode = rand(1, 4);
-
-    if(mode === 1){
-        const a = rand(2, byDifficulty([7, 8, 9, 10, 11]));
-        const b = rand(2, byDifficulty([5, 6, 7, 8, 9]));
-        return task("Potęgi i pierwiastki", `${sup(base, a)} · ${sup(base, b)} = ${sup(base, blank())}`, a + b);
-    }
-
-    if(mode === 2){
-        const a = rand(2, byDifficulty([5, 5, 6, 6, 7]));
-        const b = rand(2, byDifficulty([4, 5, 5, 6, 6]));
-        return task("Potęgi i pierwiastki", `${sup(parens(sup(base, a)), b)} = ${sup(base, blank())}`, a * b);
-    }
-
-    if(mode === 3){
-        const b = rand(2, byDifficulty([5, 6, 7, 8, 9]));
-        const answer = rand(2, byDifficulty([7, 8, 9, 10, 11]));
-        return task("Potęgi i pierwiastki", `${frac(sup(base, answer + b), sup(base, b))} = ${sup(base, blank())}`, answer);
-    }
-
-    const exponent = rand(3, byDifficulty([5, 5, 6, 6, 7]));
-    return task("Potęgi i pierwiastki", `${sup(blank(), exponent)} = ${base ** exponent}`, base);
-}
-
-function genMpPowerMultiply(){
-    const base = choice([2, 3, 5, 7]);
-    const a = rand(2, byDifficulty([7, 8, 9, 10, 11]));
-    const b = rand(2, byDifficulty([5, 6, 7, 8, 9]));
-
-    return task("Potęgi", `${sup(base, a)} · ${sup(base, b)} = ${sup(base, blank())}`, a + b);
-}
-
-function genMpPowerDivide(){
-    const base = choice([2, 3, 5, 7]);
-    const answer = rand(2, byDifficulty([6, 7, 8, 9, 10]));
-    const divisorExponent = rand(1, byDifficulty([4, 5, 6, 7, 8]));
-
-    return task("Potęgi", `${frac(sup(base, answer + divisorExponent), sup(base, divisorExponent))} = ${sup(base, blank())}`, answer);
-}
-
-function genMpPowerPower(){
-    const base = choice([2, 3, 5]);
-    const a = rand(2, byDifficulty([5, 5, 6, 6, 7]));
-    const b = rand(2, byDifficulty([4, 5, 5, 6, 6]));
-
-    return task("Potęgi", `${sup(parens(sup(base, a)), b)} = ${sup(base, blank())}`, a * b);
-}
-
-function genMpPowerRoot(){
-    const base = choice([2, 3, 5, 7]);
-    const exponent = choice([4, 6, 8, 10, 12]);
-
-    return task("Potęgi", `${root(sup(base, exponent))} = ${sup(base, blank())}`, exponent / 2);
-}
-
-function genMpPowerAddLikeTerms(){
-    const base = choice([2, 3, 5, 7]);
-    const exponent = rand(3, byDifficulty([6, 7, 8, 9, 10]));
-    const a = rand(2, 5);
-    const b = rand(2, 5);
-
-    return task("Potęgi", `${a}·${sup(base, exponent)} + ${b}·${sup(base, exponent)} = ${blank()}·${sup(base, exponent)}`, a + b);
-}
-
-function genMpRootExtractCoefficient(){
-    const cases = [
-        [12, 3, 2], [18, 2, 3], [20, 5, 2], [27, 3, 3],
-        [28, 7, 2], [32, 2, 4], [45, 5, 3], [48, 3, 4],
-        [50, 2, 5], [72, 2, 6], [75, 3, 5], [98, 2, 7]
-    ];
-    const [inside, simpleInside, coefficient] = choice(cases);
-
-    return task("Pierwiastki", `${root(inside)} = ${blank()}${root(simpleInside)}`, coefficient);
-}
-
-function genMpRootMultiply(){
-    const cases = [
-        [2, 8, 4], [3, 12, 6], [5, 20, 10], [6, 24, 12],
-        [8, 18, 12], [12, 27, 18]
-    ];
-    const [a, b, result] = choice(cases);
-
-    return task("Pierwiastki", `${root(a)} · ${root(b)} = ${blank()}`, result);
-}
-
-function genMpRootDivide(){
-    const cases = [
-        [18, 2, 3], [32, 2, 4], [50, 2, 5], [75, 3, 5],
-        [98, 2, 7], [108, 3, 6]
-    ];
-    const [a, b, result] = choice(cases);
-
-    return task("Pierwiastki", `${frac(root(a), root(b))} = ${blank()}`, result);
-}
-
-function genMpRootAddLikeTerms(){
-    const inside = choice([2, 3, 5, 7]);
-    const a = rand(2, 7);
-    const b = rand(2, 7);
-
-    return task("Pierwiastki", `${a}${root(inside)} + ${b}${root(inside)} = ${blank()}${root(inside)}`, a + b);
-}
-
-function genMpRootMixedSimplify(){
-    const cases = [
-        [50, 8, 2, 7], [72, 18, 2, 9], [27, 12, 3, 5],
-        [75, 12, 3, 7], [20, 45, 5, 5], [48, 75, 3, 9]
-    ];
-    const [a, b, simpleInside, coefficientSum] = choice(cases);
-
-    return task("Pierwiastki", `${root(a)} + ${root(b)} = ${blank()}${root(simpleInside)}`, coefficientSum);
-}
-
-function genMpLogValues(){
-    const base = choice(difficultyTier() >= 4 ? [2, 3, 4, 5, 10] : [2, 3, 5, 10]);
-    const exponent = rand(2, byDifficulty([3, 4, 4, 4, 4]));
-    const value = base ** exponent;
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Logarytmy", `${logBase(base)} ${value} = ${blank()}`, exponent)
-        : task("Logarytmy", `${logBase(base)} ${blank()} = ${exponent}`, value);
-}
-
-function genMpLogAdd(){
-    const base = choice([2, 3, 5, 10]);
-    const a = base ** rand(1, 3);
-    const b = base ** rand(1, 3);
-
-    return task("Logarytmy", `${logBase(base)} ${a} + ${logBase(base)} ${b} = ${logBase(base)} ${blank()}`, a * b);
-}
-
-function genMpLogSubtract(){
-    const base = choice([2, 3, 5, 10]);
-    const quotient = base ** rand(1, 3);
-    const divisor = base ** rand(1, 2);
-
-    return task("Logarytmy", `${logBase(base)} ${quotient * divisor} - ${logBase(base)} ${divisor} = ${logBase(base)} ${blank()}`, quotient);
-}
-
-function genMpLogPullInCoefficient(){
-    const base = choice([2, 3, 5]);
-    const argument = choice(base === 5 ? [5, 25] : [base, base ** 2]);
-    const coefficient = choice([2, 3]);
-
-    return task("Logarytmy", `${coefficient}${logBase(base)} ${argument} = ${logBase(base)} ${blank()}`, argument ** coefficient);
-}
-
-function genMpLogPullOutCoefficient(){
-    const cases = [
-        [2, 64, 4, 3], [2, 32, 2, 5], [3, 81, 3, 4],
-        [3, 729, 9, 3], [5, 625, 5, 4], [10, 1000, 10, 3]
-    ];
-    const [base, argument, innerArgument, coefficient] = choice(cases);
-
-    return task("Logarytmy", `${logBase(base)} ${argument} = ${blank()}${logBase(base)} ${innerArgument}`, coefficient);
-}
-
-function genMpLogRules(){
-    const base = choice([2, 3, 5, 10]);
-    const a = rand(1, byDifficulty([3, 4, 4, 4, 4]));
-    const b = rand(1, byDifficulty([3, 3, 4, 4, 4]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        return task("Logarytmy", `${logBase(base)} ${base ** a} + ${logBase(base)} ${base ** b} = ${blank()}`, a + b);
-    }
-
-    if(mode === 2){
-        return task("Logarytmy", `${logBase(base)} ${base ** (a + b)} - ${logBase(base)} ${base ** b} = ${blank()}`, a);
-    }
-
-    return task("Logarytmy", `${logBase(base)} ${sup(base, a)} = ${blank()}`, a);
-}
-
-function genMpLogEquations(){
-    const base = choice([2, 3, 4, 5]);
-    const answer = rand(1, byDifficulty([4, 5, 6, 7, 8]));
-    const right = base ** answer;
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Logarytmy", `${logBase(base)} x = ${answer}, x = ${blank()}`, right)
-        : task("Logarytmy", `${logBase(blank())} ${right} = ${answer}`, base);
-}
-
-function genMpLinearSlopeFromFormula(){
-    const a = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
-    const b = rand(-8, 8);
-
-    return task("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}, współczynnik kierunkowy a = ${blank()}`, a);
-}
-
-function genMpLinearTrendSign(){
-    const a = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
-    const b = rand(-8, 8);
-
-    return yesNoTask("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}. Czy funkcja jest rosnąca?`, a > 0);
-}
-
-function genMpQuadraticCoefficientSign(){
-    const a = choice([-3, -2, -1, 1, 2, 3]);
-    const b = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
-    const c = choice([-9, -7, -5, -3, 3, 5, 7, 9]);
-    const mode = rand(1, 2);
-    const formula = `f(x) = ${coefficientTerm(a, sup("x", 2))} ${signedCoefficientTerm(b, "x")} ${signed(c)}`;
-
-    return mode === 1
-        ? task("Funkcje", `${formula}, znak a: 1 dodatni, -1 ujemny = ${blank()}`, a > 0 ? 1 : -1)
-        : task("Funkcje", `${formula}, znak c: 1 dodatni, -1 ujemny = ${blank()}`, c > 0 ? 1 : -1);
-}
-
-function genMpQuadraticCValue(){
-    const a = choice([-2, -1, 1, 2, 3]);
-    const b = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
-    const c = choice([-12, -9, -6, -3, 3, 6, 9, 12]);
-    const formula = `f(x) = ${coefficientTerm(a, sup("x", 2))} ${signedCoefficientTerm(b, "x")} ${signed(c)}`;
-
-    return task("Funkcje", `${formula}, f(0) = c = ${blank()}`, c);
-}
-
-function genMrDerivativePowerCoefficient(){
-    const a = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
-    const n = rand(2, 5);
-
-    return task("Pochodne", `f(x) = ${coefficientTerm(a, sup("x", n))}, f'(x) = ${blank()}${sup("x", n - 1)}`, a * n);
-}
-
-function genMrDerivativeValue(){
-    const a = choice([-3, -2, -1, 1, 2, 3]);
-    const b = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
-    const c = choice([-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]);
-    const x0 = rand(-4, 4);
-    const formula = `f(x) = ${coefficientTerm(a, sup("x", 2))} ${signedCoefficientTerm(b, "x")} ${signed(c)}`;
-
-    return task("Pochodne", `${formula}, f'(${x0}) = ${blank()}`, 2 * a * x0 + b);
-}
-
-function genMrTangentSlope(){
-    const a = choice([-2, -1, 1, 2, 3]);
-    const x0 = rand(-4, 4);
-
-    return task("Pochodne", `f(x) = ${coefficientTerm(a, sup("x", 3))}, nachylenie stycznej dla x = ${x0}: ${blank()}`, 3 * a * x0 * x0);
-}
-
-function genMrLimitDifferenceSquares(){
-    const a = choice([-5, -4, -3, -2, 2, 3, 4, 5]);
-    const expression = frac(`${sup("x", 2)} - ${a * a}`, `x ${signed(-a)}`);
-
-    return task("Granice", `${limitTo(a, expression)} = ${blank()}`, 2 * a);
-}
-
-function genMrLimitPolynomialValue(){
-    const a = rand(-4, 4);
-    const p = choice([-2, -1, 1, 2, 3]);
-    const q = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
-    const r = choice([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]);
-    const expression = `${coefficientTerm(p, sup("x", 2))} ${signedCoefficientTerm(q, "x")} ${signed(r)}`;
-
-    return task("Granice", `${limitTo(a, expression)} = ${blank()}`, p * a * a + q * a + r);
-}
-
-function genMrLimitAtInfinity(){
-    const pairs = [
-        [2, 1, 2], [4, 2, 2], [6, 3, 2],
-        [9, 3, 3], [10, 5, 2], [12, 4, 3]
-    ];
-    const [a, c, result] = choice(pairs);
-    const b = choice([-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]);
-    const d = choice([-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]);
-    const expression = frac(`${coefficientTerm(a, sup("x", 2))} ${signed(b)}`, `${coefficientTerm(c, sup("x", 2))} ${signed(d)}`);
-
-    return task("Granice", `${limitTo("∞", expression)} = ${blank()}`, result);
-}
-
-function genMrTrigExactValue(){
-    const cases = [
-        task("Trygonometria", `sin 30° = ${frac(blank(), 2)}`, 1),
-        task("Trygonometria", `cos 60° = ${frac(blank(), 2)}`, 1),
-        task("Trygonometria", `tg 45° = ${blank()}`, 1),
-        task("Trygonometria", `sin 90° = ${blank()}`, 1),
-        task("Trygonometria", `cos 180° = ${blank()}`, -1),
-        task("Trygonometria", `sin 60° = ${frac(root(blank()), 2)}`, 3),
-        task("Trygonometria", `cos 45° = ${frac(root(blank()), 2)}`, 2)
-    ];
-
-    return choice(cases);
-}
-
-function genMrTrigIdentity(){
-    const mode = rand(1, 4);
-
-    if(mode === 1){
-        return task("Trygonometria", `${sup("sin", 2)}α + ${sup("cos", 2)}α = ${blank()}`, 1);
-    }
-
-    if(mode === 2){
-        return task("Trygonometria", `1 + ${sup("tg 45°", 2)} = ${blank()}`, 2);
-    }
-
-    if(mode === 3){
-        return task("Trygonometria", `2sin 30° + 2cos 60° = ${blank()}`, 2);
-    }
-
-    return task("Trygonometria", `sin 90° - cos 180° = ${blank()}`, 2);
-}
-
-function genMrTrigSign(){
-    const cases = [
-        ["sin", 120, 1], ["sin", 210, -1], ["sin", 300, -1],
-        ["cos", 135, -1], ["cos", 240, -1], ["cos", 315, 1],
-        ["tg", 150, -1], ["tg", 225, 1], ["tg", 330, -1]
-    ];
-    const [fn, angle, sign] = choice(cases);
-
-    return task("Trygonometria", `${fn} ${angle}° ma znak: 1 dodatni, -1 ujemny = ${blank()}`, sign);
-}
-
-function genMrAbsoluteCompute(){
-    const values = [-9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const a = choice(values);
-    const b = choice(values);
-    const c = choice(values);
-    const d = choice(values);
-
-    return task("Wartość bezwzględna", `${absExpr(`${a} ${signed(-b)}`)} + ${absExpr(`${c} ${signed(-d)}`)} = ${blank()}`, Math.abs(a - b) + Math.abs(c - d));
-}
-
-function genMrAbsoluteEquation(){
-    const a = rand(-8, 8);
-    const distance = rand(2, 9);
-    const askGreater = Math.random() < 0.5;
-
-    return task(
-        "Wartość bezwzględna",
-        `${absExpr(`x ${signed(-a)}`)} = ${distance}, ${askGreater ? "większe" : "mniejsze"} rozwiązanie = ${blank()}`,
-        askGreater ? a + distance : a - distance
-    );
-}
-
-function genMrAbsoluteInequalityLength(){
-    const a = rand(-8, 8);
-    const radius = rand(2, 10);
-
-    return task("Wartość bezwzględna", `${absExpr(`x ${signed(-a)}`)} < ${radius}, długość przedziału = ${blank()}`, 2 * radius);
-}
-
-function genMrCompositionValue(){
-    const a = choice([-3, -2, -1, 1, 2, 3]);
-    const b = rand(-6, 6);
-    const c = choice([-3, -2, -1, 1, 2, 3]);
-    const d = rand(-6, 6);
-    const x0 = rand(-3, 3);
-    const gx = c * x0 + d;
-
-    return task(
-        "Funkcje",
-        `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}, g(x) = ${coefficientTerm(c, "x")} ${signed(d)}, f(g(${x0})) = ${blank()}`,
-        a * gx + b
-    );
-}
-
-function genMrInverseLinearValue(){
-    const a = choice([-4, -3, -2, 2, 3, 4]);
-    const b = rand(-8, 8);
-    const x = rand(-5, 5);
-    const y = a * x + b;
-
-    return task("Funkcje", `f(x) = ${coefficientTerm(a, "x")} ${signed(b)}, ${sup("f", "-1")}(${y}) = ${blank()}`, x);
-}
-
-function genMrParameterLinearRoot(){
-    const slope = choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]);
-    const zero = rand(-5, 5);
-
-    return task("Funkcje", `f(x) = ${coefficientTerm(slope, "x")} + b, miejsce zerowe x = ${zero}. b = ${blank()}`, -slope * zero);
-}
-
-function genMpLinearFunctionValue(){
-    const a = rand(1, byDifficulty([4, 5, 6, 7, 8]));
-    const b = rand(-byDifficulty([6, 8, 10, 12, 14]), byDifficulty([6, 8, 10, 12, 14]));
-    const x = rand(-byDifficulty([4, 5, 6, 7, 8]), byDifficulty([4, 5, 6, 7, 8]));
-    const mode = rand(1, 2);
-
-    if(mode === 1){
-        return task("Funkcje i równania", `f(x) = ${a}x ${signed(b)}, f(${x}) = ${blank()}`, a * x + b);
-    }
-
-    const y = a * x + b;
-    return task("Funkcje i równania", `f(x) = ${a}x ${signed(b)}, f(x) = ${y}, x = ${blank()}`, x);
-}
-
-function genMpQuadraticFunctionValue(){
-    const p = rand(-byDifficulty([3, 4, 5, 6, 6]), byDifficulty([3, 4, 5, 6, 6]));
-    const q = rand(-byDifficulty([5, 6, 8, 10, 10]), byDifficulty([5, 6, 8, 10, 10]));
-    const x = rand(-byDifficulty([4, 5, 6, 7, 7]), byDifficulty([4, 5, 6, 7, 7]));
-    const a = choice([1, 1, 1, -1]);
-    const value = a * ((x - p) ** 2) + q;
-
-    return task("Funkcje i równania", `f(x) = ${a === -1 ? "-" : ""}${sup(parens(`x ${signed(-p)}`), 2)} ${signed(q)}, f(${x}) = ${blank()}`, value);
-}
-
-function genMpLinearEquation(){
-    const x = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
-    const a = rand(2, byDifficulty([5, 6, 7, 8, 9]));
-    const b = rand(-byDifficulty([8, 10, 12, 14, 16]), byDifficulty([8, 10, 12, 14, 16]));
-    let c = rand(1, byDifficulty([4, 5, 6, 7, 8]));
-
-    if(c === a){
-        c = c > 1 ? c - 1 : c + 1;
-    }
-
-    const right = a * x + b - c * x;
-
-    return task("Funkcje i równania", `${a}x ${signed(b)} = ${c}x ${signed(right)}, x = ${blank()}`, x);
-}
-
-function genMpParabolaVertex(){
-    const p = rand(-byDifficulty([4, 5, 6, 7, 8]), byDifficulty([4, 5, 6, 7, 8]));
-    const q = rand(-byDifficulty([8, 10, 12, 14, 16]), byDifficulty([8, 10, 12, 14, 16]));
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Funkcje i równania", `f(x) = ${sup(parens(`x ${signed(-p)}`), 2)} ${signed(q)}, ${sub("x", "w")} = ${blank()}`, p)
-        : task("Funkcje i równania", `f(x) = ${sup(parens(`x ${signed(-p)}`), 2)} ${signed(q)}, ${sub("y", "w")} = ${blank()}`, q);
-}
-
-function genMpLinearZero(){
-    const a = choice([2, 3, 4, 5, 6, 8, 10]);
-    const zero = rand(-byDifficulty([5, 6, 7, 8, 9]), byDifficulty([5, 6, 7, 8, 9]));
-    const b = -a * zero;
-
-    return task("Funkcje i równania", `f(x) = ${a}x ${signed(b)}, miejsce zerowe = ${blank()}`, zero);
-}
-
-function genMpLineSlopeFromPoints(){
-    const slope = rand(-byDifficulty([3, 4, 5, 6, 6]), byDifficulty([3, 4, 5, 6, 6]));
-    const dx = rand(2, byDifficulty([4, 5, 6, 7, 7]));
-    const x1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const y1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const x2 = x1 + dx;
-    const y2 = y1 + slope * dx;
-
-    return task("Funkcje", `A(${x1}, ${y1}), B(${x2}, ${y2}), współczynnik kierunkowy a = ${blank()}`, slope);
-}
-
-function genMpDistanceBetweenPoints(){
-    const triples = [[3, 4, 5], [6, 8, 10], [5, 12, 13]];
-    const [a, b, c] = choice(triples);
-    const signX = choice([-1, 1]);
-    const signY = choice([-1, 1]);
-    const x1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const y1 = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const x2 = x1 + signX * a;
-    const y2 = y1 + signY * b;
-
-    return task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), |AB| = ${blank()}`, c);
-}
-
-function genMpMidpointCoordinate(){
-    const sx = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const sy = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const dx = rand(2, byDifficulty([4, 5, 6, 7, 7]));
-    const dy = rand(2, byDifficulty([4, 5, 6, 7, 7]));
-    const x1 = sx - dx;
-    const y1 = sy - dy;
-    const x2 = sx + dx;
-    const y2 = sy + dy;
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), ${sub("x", "S")} = ${blank()}`, sx)
-        : task("Geometria analityczna", `A(${x1}, ${y1}), B(${x2}, ${y2}), ${sub("y", "S")} = ${blank()}`, sy);
-}
-
-function genMpCircleEquation(){
-    const a = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const b = rand(-byDifficulty([5, 6, 7, 8, 8]), byDifficulty([5, 6, 7, 8, 8]));
-    const r = choice([2, 3, 4, 5, 6, 8, 10]);
-    const mode = rand(1, 3);
-    const equation = `${sup(parens(`x ${signed(-a)}`), 2)} + ${sup(parens(`y ${signed(-b)}`), 2)} = ${r * r}`;
-
-    if(mode === 1){
-        return task("Geometria analityczna", `${equation}, r = ${blank()}`, r);
-    }
-
-    return mode === 2
-        ? task("Geometria analityczna", `${equation}, ${sub("x", "S")} = ${blank()}`, a)
-        : task("Geometria analityczna", `${equation}, ${sub("y", "S")} = ${blank()}`, b);
-}
-
-function genMpArithmeticSequence(){
-    const a1 = rand(1, byDifficulty([8, 10, 12, 14, 16]));
-    const r = rand(2, byDifficulty([5, 6, 7, 8, 9]));
-    const n = rand(4, byDifficulty([8, 9, 10, 11, 12]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        return task("Ciągi", `${sub("a", 1)} = ${a1}, r = ${r}, ${sub("a", n)} = ${blank()}`, a1 + (n - 1) * r);
-    }
-
-    if(mode === 2){
-        const an = a1 + (n - 1) * r;
-        return task("Ciągi", `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, r = ${blank()}`, r);
-    }
-
-    const next = a1 + r;
-    const third = next + r;
-    return task("Ciągi", `${a1}, ${next}, ${third}, ${blank()}`, third + r);
-}
-
-function genMpGeometricSequence(){
-    const a1 = rand(2, byDifficulty([5, 6, 7, 8, 9]));
-    const q = choice(difficultyTier() >= 4 ? [2, 3, 4] : [2, 3]);
-    const n = rand(3, byDifficulty([4, 5, 5, 5, 5]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        const an = a1 * (q ** (n - 1));
-
-        return task("Ciągi", `${sub("a", 1)} = ${a1}, q = ${q}, ${sub("a", n)} = ${blank()}`, an, {
-            calculator: an >= 250
-        });
-    }
-
-    if(mode === 2){
-        const an = a1 * (q ** (n - 1));
-        return task("Ciągi", `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, q = ${blank()}`, q);
-    }
-
-    const second = a1 * q;
-    const third = second * q;
-    const next = third * q;
-
-    return task("Ciągi", `${a1}, ${second}, ${third}, ${blank()}`, next, {
-        calculator: next >= 250
-    });
-}
-
-function genMpSequenceSum(){
-    const n = rand(4, byDifficulty([8, 10, 12, 14, 16]));
-    const a1 = rand(1, byDifficulty([6, 8, 10, 12, 12]));
-    const r = rand(1, byDifficulty([4, 5, 6, 7, 8]));
-    const an = a1 + (n - 1) * r;
-    const mode = rand(1, 2);
-
-    const answer = mode === 1 ? n * (a1 + an) / 2 : n * (n + 1) / 2;
-    const expression = mode === 1
-        ? `${sub("a", 1)} = ${a1}, ${sub("a", n)} = ${an}, n = ${n}, ${sub("S", n)} = ${blank()}`
-        : `1 + 2 + ... + ${n} = ${blank()}`;
-
-    return task("Ciągi", expression, answer, {
-        calculator: answer >= 250
-    });
-}
-
-function genMpExactTrig(){
-    const cases = [
-        task("Trygonometria", `sin 30° = ${frac(blank(), 2)}`, 1),
-        task("Trygonometria", `cos 60° = ${frac(blank(), 2)}`, 1),
-        task("Trygonometria", `tg 45° = ${blank()}`, 1),
-        task("Trygonometria", `cos 30° = ${frac(root(blank()), 2)}`, 3),
-        task("Trygonometria", `sin 60° = ${frac(root(blank()), 2)}`, 3),
-        task("Trygonometria", `tg 60° = ${root(blank())}`, 3),
-        task("Trygonometria", `sin 45° = ${frac(root(blank()), 2)}`, 2),
-        task("Trygonometria", `cos 45° = ${frac(root(blank()), 2)}`, 2)
-    ];
-
-    return choice(cases);
-}
-
-function genMpTrigTriangle(){
-    const scale = rand(2, byDifficulty([5, 8, 10, 12, 14]));
-    const mode = rand(1, 4);
-
-    if(mode === 1){
-        return task("Trygonometria", `Trójkąt 30°-60°-90°: krótsza = ${scale}, przeciwprostokątna = ${blank()}`, 2 * scale);
-    }
-
-    if(mode === 2){
-        return task("Trygonometria", `Trójkąt 30°-60°-90°: przeciwprostokątna = ${2 * scale}, krótsza = ${blank()}`, scale);
-    }
-
-    if(mode === 3){
-        return task("Trygonometria", `sin α = ${frac(scale, 2 * scale)}, licznik = ${blank()}`, scale);
-    }
-
-    return task("Trygonometria", `tg 45° · ${scale} = ${blank()}`, scale);
-}
-
-function genMpTrigComplements(){
-    const angle = choice([20, 25, 30, 35, 40, 50, 55, 60, 65, 70]);
-    const mode = rand(1, 2);
-
-    return mode === 1
-        ? task("Trygonometria", `sin ${angle}° = cos ${blank()}°`, 90 - angle)
-        : task("Trygonometria", `cos ${angle}° = sin ${blank()}°`, 90 - angle);
-}
-
-function genMpFactorials(){
-    const n = rand(3, byDifficulty([6, 7, 7, 8, 8]));
-    const mode = rand(1, 3);
-
-    if(mode === 1){
-        const answer = factorial(n);
-
-        return task("Kombinatoryka", `${n}! = ${blank()}`, answer, {
-            calculator: answer >= 720
-        });
-    }
-
-    if(mode === 2){
-        return task("Kombinatoryka", `${frac(`${n}!`, `${n - 1}!`)} = ${blank()}`, n);
-    }
-
-    return task("Kombinatoryka", `${frac(`${n}!`, `${n - 2}!`)} = ${blank()}`, n * (n - 1));
-}
-
-function genMpCombinations(){
-    const n = rand(5, byDifficulty([8, 10, 12, 14, 16]));
-    const mode = rand(1, 4);
-
-    if(mode === 1){
-        return task("Kombinatoryka", `C(${n}, 2) = ${blank()}`, combination(n, 2));
-    }
-
-    if(mode === 2){
-        return task("Kombinatoryka", `C(${n}, 1) = ${blank()}`, n);
-    }
-
-    if(mode === 3){
-        return task("Kombinatoryka", `C(${n}, ${n - 1}) = ${blank()}`, n);
-    }
-
-    return task("Kombinatoryka", `C(${n}, 0) = ${blank()}`, 1);
-}
-
-function genMpCountingShortcuts(){
-    const mode = rand(1, 4);
-
-    if(mode === 1){
-        const n = rand(4, byDifficulty([7, 9, 11, 13, 15]));
-        return task("Kombinatoryka", `Przekątne w ${n}-kącie: ${blank()}`, n * (n - 3) / 2);
-    }
-
-    if(mode === 2){
-        const n = rand(4, byDifficulty([6, 8, 10, 12, 14]));
-        return task("Kombinatoryka", `${n} · ${n - 1} = ${blank()}`, n * (n - 1));
-    }
-
-    if(mode === 3){
-        const shirts = rand(2, byDifficulty([5, 5, 6, 7, 8]));
-        const pants = rand(2, byDifficulty([5, 5, 6, 7, 8]));
-        return task("Kombinatoryka", `${shirts} koszulki · ${pants} spodnie = ${blank()} zestawów`, shirts * pants);
-    }
-
-    const digits = rand(3, byDifficulty([6, 7, 8, 9, 10]));
-    return task("Kombinatoryka", `${digits} cyfr bez powtórzeń, liczby dwucyfrowe: ${blank()}`, digits * (digits - 1));
-}
-
-function genMpAverageMissingValue(){
-    const count = rand(4, byDifficulty([5, 5, 6, 6, 7]));
-    const average = rand(6, byDifficulty([14, 16, 18, 20, 22]));
-    const values = [];
-    let knownSum = 0;
-
-    for(let i = 0; i < count - 1; i++){
-        const value = rand(3, byDifficulty([16, 18, 20, 22, 24]));
-
-        values.push(value);
-        knownSum += value;
-    }
-
-    const missing = average * count - knownSum;
-
-    if(missing < 0 || missing > 40){
-        return genMpAverageMissingValue();
-    }
-
-    return task("Statystyka", `Średnia liczb: ${values.join(", ")}, ${blank()} wynosi ${average}`, missing);
-}
-
-function genMpWeightedAverage(){
-    const a = rand(2, byDifficulty([6, 8, 10, 12, 14]));
-    const b = rand(a + 1, byDifficulty([12, 14, 16, 18, 20]));
-    const weightA = rand(2, byDifficulty([4, 5, 6, 7, 8]));
-    const weightB = rand(2, byDifficulty([4, 5, 6, 7, 8]));
-    const total = weightA + weightB;
-    const numerator = a * weightA + b * weightB;
-
-    if(numerator % total !== 0){
-        return genMpWeightedAverage();
-    }
-
-    return task("Statystyka", `Średnia ważona: ${a}×${weightA}, ${b}×${weightB}, wynik = ${blank()}`, numerator / total);
-}
-
-function genMpMedianValue(){
-    const start = rand(1, byDifficulty([6, 8, 10, 12, 14]));
-    const step = rand(1, byDifficulty([3, 4, 5, 6, 7]));
-    const count = choice([5, 7]);
-    const values = Array.from({ length: count }, (_, index) => start + index * step);
-
-    return task("Statystyka", `Mediana uporządkowanego zestawu: ${values.join(", ")} = ${blank()}`, values[Math.floor(count / 2)]);
-}
 
 function generatorPool(){
     const basePool = GENERATORS.filter(generator =>
@@ -3085,7 +1321,9 @@ function generatorPool(){
         if(reviewPool.length) return reviewPool;
     }
 
-    return basePool;
+    const topics = [...new Set(basePool.map(generator => generator.topic))];
+    const topic = choice(topics);
+    return basePool.filter(generator => generator.topic === topic);
 }
 
 function createTaskCandidate(generator){
@@ -3104,7 +1342,9 @@ function taskKey(taskItem){
         state.level,
         taskItem.lessonId,
         taskItem.topicId,
-        String(taskItem.html).replace(/\s+/g, " "),
+        taskItem.familyId,
+        taskItem.instruction,
+        taskItem.tex,
         String(taskItem.answer)
     ].join("|");
 }
@@ -3118,9 +1358,20 @@ function showStartPrompt(){
 
 function showTask(taskItem){
     problemStartPrompt.hidden = true;
-    problemText.innerHTML = taskItem.html;
-    upgradeMathNotation(problemText);
-    calculatorIndicator.hidden = !taskItem.calculator;
+    const instruction = document.createElement("p");
+    instruction.className = "training-instruction";
+    instruction.textContent = taskItem.instruction;
+    problemText.replaceChildren(instruction);
+    if(taskItem.tex){
+        const equation = document.createElement("div");
+        equation.className = "training-equation";
+        katex.render(taskItem.tex, equation, {
+            displayMode:true, output:"htmlAndMathml", throwOnError:true, trust:false,
+            strict:"error", maxExpand:1000, maxSize:10
+        });
+        problemText.appendChild(equation);
+    }
+    calculatorIndicator.hidden = true;
 }
 
 function showRoundFinished(message){
@@ -3186,13 +1437,19 @@ function nextTask(){
 }
 
 function normalizeAnswer(value){
-    const normalized = String(value || "")
+    const normalized = String(value ?? "")
         .trim()
-        .replace(",", ".");
+        .replace(/\s+/g, "")
+        .replace(/−/g, "-")
+        .replace(/,/g, ".");
 
     if(!normalized) return null;
 
-    const numeric = Number(normalized);
+    const parts = normalized.split("/");
+    if(parts.length > 2 || parts.some(part => !/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(part))) return null;
+    const denominator = parts.length === 2 ? Number(parts[1]) : 1;
+    if(denominator === 0) return null;
+    const numeric = Number(parts[0]) / denominator;
 
     return Number.isFinite(numeric) ? numeric : null;
 }
@@ -3234,6 +1491,13 @@ function submitYesNoAnswer(isYes){
     submitAnswer();
 }
 
+function advanceAfterAnswer(delay){
+    const answeredTask = state.currentTask;
+    setTimeout(() => {
+        if(state.running && state.currentTask === answeredTask) nextTask();
+    }, delay);
+}
+
 function submitAnswer(){
     if(!state.running || !state.currentTask || state.answerLocked) return;
 
@@ -3257,9 +1521,7 @@ function submitAnswer(){
         setStatus(`Dobrze · ${elapsed.toFixed(1)} s`, "good");
         updateStats();
 
-        setTimeout(() => {
-            if(state.running) nextTask();
-        }, 260);
+        advanceAfterAnswer(260);
 
         return;
     }
@@ -3278,9 +1540,7 @@ function markWrong(){
     setStatus(`Wynik: ${formatTaskAnswer(state.currentTask)}`, "bad");
     updateStats();
 
-    setTimeout(() => {
-        if(state.running) nextTask();
-    }, 650);
+    advanceAfterAnswer(650);
 }
 
 function skipTask(){
@@ -3294,9 +1554,7 @@ function skipTask(){
     setStatus(`Pominięto · ${formatTaskAnswer(state.currentTask)}`, "bad");
     updateStats();
 
-    setTimeout(() => {
-        if(state.running) nextTask();
-    }, 450);
+    advanceAfterAnswer(450);
 }
 
 function formatAnswer(value){
@@ -3312,6 +1570,12 @@ function formatAnswerForMode(value, answerMode = ""){
 }
 
 function formatTaskAnswer(taskItem){
+    if(taskItem?.answerMode !== "yes-no" && Number.isFinite(taskItem?.answer) && !Number.isInteger(taskItem.answer)){
+        for(let denominator = 2; denominator <= 24; denominator++){
+            const numerator = taskItem.answer * denominator;
+            if(Math.abs(numerator - Math.round(numerator)) < 1e-9) return `${Math.round(numerator)}/${denominator}`;
+        }
+    }
     return formatAnswerForMode(taskItem?.answer, taskItem?.answerMode);
 }
 
@@ -3333,7 +1597,7 @@ function progressScopeLabel(){
 function progressParams(){
     return new URLSearchParams({
         level: state.level,
-        topic: trainingScopeTopic(),
+        topic: trainingResultTopic(),
         difficulty: String(state.difficulty),
         round_seconds: String(state.roundSeconds),
         period: state.progressPeriod,
@@ -3440,7 +1704,7 @@ async function loadProgress(){
 }
 
 function bestScoreId(){
-    return `${state.level}:${trainingScopeTopic()}:${state.difficulty}:${state.roundSeconds}`;
+    return `${DSSpeedTasks.version}:${state.level}:${trainingScopeTopic()}:${state.difficulty}:${state.roundSeconds}`;
 }
 
 function getBestScores(){
@@ -3484,7 +1748,7 @@ async function saveSpeedTrainingResult(){
 
     const payload = {
         level: state.level,
-        topic: trainingScopeTopic(),
+        topic: trainingResultTopic(),
         difficulty: String(state.difficulty),
         round_seconds: state.roundSeconds,
         correct_count: state.correct,
@@ -3603,7 +1867,7 @@ async function startRound(){
                     method: "POST",
                     body: JSON.stringify({
                         level: state.level,
-                        topic: trainingScopeTopic(),
+                        topic: trainingResultTopic(),
                         difficulty: String(state.difficulty),
                         round_seconds: state.roundSeconds
                     })
@@ -3698,7 +1962,7 @@ function resetRound(){
     loadTaskMemory();
     showStartPrompt();
     hideRoundSummary();
-    taskTopic.innerText = `${activeTopicLabel()} · ${activeDifficultyLabel()}`;
+    taskTopic.innerText = activeTopicLabel();
     answerInput.value = "";
     answerInput.className = "answer-input";
     updateAnswerMode();
@@ -3806,10 +2070,6 @@ function activeTopicLabel(){
     return LEVELS[state.level].lessons.find(lesson => lesson.id === state.topic)?.label || "Tryb łączny";
 }
 
-function activeDifficultyLabel(){
-    return "Mix";
-}
-
 function renderControls(){
     stageSubtitle.innerText = LEVELS[state.level].label;
     levelTabs.innerHTML = "";
@@ -3869,9 +2129,11 @@ function appendKey(value){
             ? answerInput.value.slice(1)
             : `-${answerInput.value}`;
     } else if(value === "decimal"){
-        if(!/[,.]/.test(answerInput.value)){
+        if(!/[,.]/.test(answerInput.value.split("/").pop())){
             answerInput.value += ",";
         }
+    } else if(value === "fraction"){
+        if(answerInput.value && !answerInput.value.includes("/")) answerInput.value += "/";
     } else {
         answerInput.value += value;
     }
@@ -3881,16 +2143,16 @@ function appendKey(value){
 
 function renderKeypad(){
     const keys = [
-        "7", "8", "9",
-        "4", "5", "6",
-        "1", "2", "3",
-        "minus", "0", "decimal",
-        "backspace", "clear", "enter"
+        "7", "8", "9", "backspace",
+        "4", "5", "6", "clear",
+        "1", "2", "3", "fraction",
+        "minus", "0", "decimal", "enter"
     ];
 
     const labels = {
         minus: "+/-",
         decimal: ",",
+        fraction: "/",
         backspace: "Usuń",
         clear: "C",
         enter: "OK"
@@ -3914,7 +2176,7 @@ function renderKeypad(){
 }
 
 answerInput.addEventListener("input", () => {
-    answerInput.value = answerInput.value.replace(/[^0-9,.\-]/g, "");
+    answerInput.value = answerInput.value.replace(/−/g, "-").replace(/[^0-9,.\-/]/g, "");
     answerInput.classList.remove("good", "bad");
 });
 

@@ -33,14 +33,15 @@ for (const name of ['sourceDisplayCategory', 'isCourseCategory', 'getExamSourceT
   const start = html.indexOf(`function ${name}(`);
   vm.runInContext(html.slice(start, html.indexOf('\n}', start) + 2), ctx);
 }
-const buttons = () => list.children;
+const buttons = () => list.children.flatMap(group => group.children[1].children);
 ctx.renderSourceSelector();
-assert.equal(list.children.length, 12);
+assert.equal(list.children.length, 4);
 assert.equal(buttons().length, 12);
 assert(list.classes.has('exam-source-list'));
 assert.equal(buttons()[9]['aria-pressed'], 'true');
-assert.deepEqual(list.children.slice(0,3).map(button => button.children[0].innerText), ['Maj 2026', 'Czerwiec 2026', 'Sierpień 2026']);
-for (const [index, button] of list.children.entries()) {
+assert.deepEqual(list.children.map(group => group.children[0].textContent), [2026,2025,2024,2023]);
+assert.deepEqual(buttons().slice(0,3).map(button => button.children[0].innerText), ['Maj', 'Czerwiec', 'Sierpień']);
+for (const [index, button] of buttons().entries()) {
   assert(button['aria-label'].includes(String(sources[index].year)));
 }
 buttons()[2].onclick();
@@ -65,13 +66,23 @@ assert.equal(list.scrollTop, 0);
 assert.equal(list.children.length, 12, 'Course buttons remain flat, without year groups');
 assert.equal(list.children[0].children[0].innerText, 'Lesson 0');
 assert(list.classes.has('course-source-list'));
-assert.match(html, /\.course-source-list \.source-btn,\s*\.test-source-list \.source-btn\s*\{[^}]*min-height:\s*41px;/s);
+const sharedTileSelector = /\.course-source-list \.source-btn,\s*\.test-source-list \.source-btn,\s*\.exam-source-list \.source-btn\s*\{([^}]+)\}/;
+const sharedTileStyle = html.match(sharedTileSelector)[1];
+assert.equal(Number(sharedTileStyle.match(/min-height:\s*([\d.]+)px/)[1]), Number((41 * 1.2).toFixed(1)),
+  'Lesson and test tiles are 20% taller, with exams sharing their dimensions');
+assert.match(sharedTileStyle, /align-content: center;/);
+assert.match(sharedTileStyle, /gap: 0;/);
+assert.match(sharedTileStyle, /padding: 2px 5px;/);
+assert.match(sharedTileStyle, /text-align: center;/);
 assert.match(html, /\.source-list\.course-source-list\s*\{[^}]*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\);/);
 assert.match(html, /\.tasks-layout:has\(\.course-source-list\)\s*\{[^}]*grid-template-columns: minmax\(0, 1fr\);/,
   'Six lesson columns use the full page width instead of a narrow sidebar');
 const mobileStyle = html.slice(html.lastIndexOf('@media(max-width: 760px) {'));
 assert.match(mobileStyle, /\.source-list\.course-source-list\s*\{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
-assert.match(mobileStyle, /\.course-source-list \.source-btn,\s*\.test-source-list \.source-btn\s*\{[^}]*min-height: 38px;/);
+const mobileTileStyle = mobileStyle.match(sharedTileSelector)[1];
+assert.equal(Number(mobileTileStyle.match(/min-height:\s*([\d.]+)px/)[1]), Number((38 * 1.2).toFixed(1)),
+  'All three selectors retain the 20% height increase on phones');
+assert.match(mobileTileStyle, /padding: 2px 4px;/);
 assert(!list.classes.has('exam-source-list'));
 assert.equal(brand.hidden, false);
 assert.equal(title.innerText, 'Wybór lekcji');
@@ -137,14 +148,19 @@ assert.equal(list.children[0].children[0].innerText, 'Brak arkuszy');
 
 assert(!html.includes('exam-source-list--slider'), 'No horizontal exam carousel remains');
 const listStyle = html.match(/\.source-list\.exam-source-list \{([^}]+)\}/)[1];
-assert.match(listStyle, /grid-template-columns: repeat\(6, minmax\(0, 1fr\)\);/);
+assert.match(listStyle, /grid-template-columns: repeat\(4, minmax\(0, 1fr\)\);/);
 assert.match(listStyle, /overflow-x: hidden;/);
 assert.match(listStyle, /overflow-y: auto;/);
-assert.match(listStyle, /gap: 6px;/);
-assert(!html.includes('exam-year-group'));
-assert.match(html, /\.exam-source-list \.source-btn \{[^}]*min-height: 62px;/);
+assert.match(listStyle, /gap: 12px;/);
+assert(html.includes('exam-year-group'));
+assert.match(html,/\.exam-year-sources \{[^}]*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/,
+  'Each year has three exam columns so May, June and August share a row');
+assert.match(mobileStyle, /\.exam-year-sources \{ grid-template-columns: minmax\(0, 1fr\); \}/,
+  'Phone year groups keep readable full-width exam tiles');
+assert(!html.includes('min-height: 62px;'), 'Exams no longer use separate oversized tile dimensions');
+assert.match(html, /\.exam-result-badge \{[^}]*justify-self: center;/);
 const tabletStyle = html.split('@media(max-width: 1100px) {')[1];
-assert.match(tabletStyle, /\.source-list\.exam-source-list \{[^}]*grid-template-columns: repeat\(4, minmax\(0, 1fr\)\);/);
+assert.match(tabletStyle, /\.source-list\.exam-source-list \{[^}]*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
 assert.match(mobileStyle, /\.source-list\.exam-source-list \{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
 assert.match(html, /\.tile::before,\s*\.tile::after \{[^}]*box-sizing: border-box;/);
-console.log('PASS: flat full-date exam tiles, selection, scrolling and responsive lesson/test pickers');
+console.log('PASS: packed year groups, accessible dates, selection, scrolling and shared tiles with 20% taller course/test pickers');

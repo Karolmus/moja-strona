@@ -372,14 +372,28 @@ body.admin-preview .level-btn {
 }
 
 .source-list.exam-source-list {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 6px;
-    max-height: 270px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    max-height: 320px;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 2px 6px 3px 2px;
     scrollbar-width: thin;
     scrollbar-color: #b9c6d4 transparent;
+}
+
+.exam-year-group { min-width: 0; }
+.exam-year-label {
+    margin: 0 0 5px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+    font-weight: 600;
+}
+.exam-year-sources {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
 }
 
 .source-list.exam-source-list::-webkit-scrollbar {
@@ -506,24 +520,17 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .course-source-list .source-btn,
-.test-source-list .source-btn {
-    min-height: 41px;
+.test-source-list .source-btn,
+.exam-source-list .source-btn {
+    min-height: 49.2px;
     align-content: center;
     gap: 0;
     padding: 2px 5px;
     text-align: center;
 }
 
-.exam-source-list .source-btn {
-    min-height: 62px;
-    align-content: center;
-    gap: 4px;
-    padding: 8px;
-    text-align: left;
-}
-
 .exam-result-badge {
-    justify-self: start;
+    justify-self: center;
     padding: 2px 7px;
     border-radius: 3.4px;
     font-size: 11px;
@@ -531,18 +538,14 @@ body.guest-exam-mode .source-summary-row {
 }
 .top-row .source-summary-open { width: auto; min-height: 28px; padding: 4px 8px; }
 
+.course-source-list .source-btn span,
+.test-source-list .source-btn span,
 .exam-source-list .source-btn span {
     min-width: 0;
     font-size: 12px;
-    line-height: 1.2;
+    line-height: 1.1;
     overflow-wrap: anywhere;
     word-break: normal;
-}
-
-.course-source-list .source-btn span,
-.test-source-list .source-btn span {
-    font-size: 12px;
-    line-height: 1.1;
 }
 
 .source-btn small {
@@ -1424,11 +1427,6 @@ body.focus-mode .task-card {
 
 .context-image {
     max-height: none;
-}
-
-.task-image.fade-out {
-    opacity: 0;
-    transform: translateY(24px);
 }
 
 .interaction-panel {
@@ -3349,26 +3347,10 @@ footer {
     }
 
     .source-list.exam-source-list {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         width: 100%;
         min-width: 0;
         max-height: min(340px, 42dvh);
-    }
-
-    .exam-source-list .source-btn {
-        min-height: 62px;
-        padding: 8px;
-        gap: 4px;
-    }
-
-    .exam-source-list .source-btn span {
-        font-size: 13px;
-        line-height: 1.2;
-    }
-
-    .exam-source-list .source-btn small {
-        font-size: 11px;
-        line-height: 1.25;
     }
 
     .task-actions {
@@ -3485,15 +3467,18 @@ footer {
     .source-list.exam-source-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .exam-year-sources { grid-template-columns: minmax(0, 1fr); }
 
     .course-source-list .source-btn,
-    .test-source-list .source-btn {
-        min-height: 38px;
+    .test-source-list .source-btn,
+    .exam-source-list .source-btn {
+        min-height: 45.6px;
         padding: 2px 4px;
     }
 
     .course-source-list .source-btn span,
-    .test-source-list .source-btn span {
+    .test-source-list .source-btn span,
+    .exam-source-list .source-btn span {
         font-size: 11px;
         line-height: 12px;
     }
@@ -4091,6 +4076,7 @@ footer {
     }
 }
 </style>
+<link rel="stylesheet" href="static/mobile-exams.css?v=20261019">
 </head>
 
 <body>
@@ -4115,6 +4101,10 @@ footer {
             <div class="selector-grid">
                 <div class="side-section" id="guestLevelWrapper">
                     <div class="side-title">Poziom</div>
+                    <button class="exam-mobile-toggle" id="levelPickerToggle" type="button" aria-expanded="false" aria-controls="guestLevelSection">
+                        <span>Poziom</span><strong id="levelPickerValue">Wybierz poziom</strong>
+                        <img src="static/icons/chevron-down.svg" width="18" height="18" alt="" aria-hidden="true">
+                    </button>
                     <div class="level-selector sidebar-levels" id="guestLevelSection">
                         <button class="level-btn active" data-level="matura_podstawowa" onclick="setLevel(this,'matura_podstawowa')">Matura podstawowa</button>
                         <button class="level-btn" data-level="matura_rozszerzona" onclick="setLevel(this,'matura_rozszerzona')">Matura rozszerzona</button>
@@ -4124,6 +4114,10 @@ footer {
 
                 <div class="side-section source-picker-section">
                     <div class="side-title" id="sourceTitle">Wybór lekcji</div>
+                    <button class="exam-mobile-toggle" id="examPickerToggle" type="button" aria-expanded="false" aria-controls="examYearFilterRow sourceList">
+                        <span>Egzamin</span><strong id="examPickerValue">Wybierz arkusz</strong>
+                        <img src="static/icons/chevron-down.svg" width="18" height="18" alt="" aria-hidden="true">
+                    </button>
                     <label class="exam-picker-filter" id="examYearFilterRow" hidden>Rocznik
                         <select id="examYearFilter" aria-label="Rocznik egzaminu" onchange="setExamYear(this.value)">
                             <option value="all">Wszystkie roczniki</option>
@@ -4211,13 +4205,19 @@ footer {
                 <button id="sourceLoadRetry" type="button" onclick="retrySourceLoad()" hidden>Spróbuj ponownie</button>
             </div>
 
-            <div class="progress-grid" id="progress"></div>
+            <div class="task-navigation">
+                <button class="exam-mobile-toggle" id="taskNavigatorToggle" type="button" aria-expanded="false" aria-controls="progress" hidden>
+                    <span id="taskNavigatorValue">Wybierz zadanie</span>
+                    <img src="static/icons/chevron-down.svg" width="18" height="18" alt="" aria-hidden="true">
+                </button>
+                <div class="progress-grid" id="progress"></div>
 
-            <div class="top-row">
-                <div class="timer hidden" id="timer">00:00</div>
-                <div class="task-counter" id="taskCounter">0 / 0</div>
-                <button class="source-summary-open" id="examSummaryOpen" type="button" hidden>Podsumowanie arkusza</button>
-                <button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()">Tryb skupienia</button>
+                <div class="top-row">
+                    <div class="timer hidden" id="timer">00:00</div>
+                    <div class="task-counter" id="taskCounter">0 / 0</div>
+                    <button class="source-summary-open" id="examSummaryOpen" type="button" hidden>Podsumowanie arkusza</button>
+                    <button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()">Tryb skupienia</button>
+                </div>
             </div>
 
             <div class="task-workspace">
@@ -4469,6 +4469,7 @@ footer {
 <script src="static/active-work-time.js?v=20260910"></script>
 <script src="static/course-videos.js?v=20261014-mp6-eq"></script>
 <script src="static/workspace-score.js?v=20261016"></script>
+<script src="static/mobile-exams.js?v=20261019"></script>
 <script>
 let tasks = [];
 let selectedLevel = "egzamin_osmoklasisty";
@@ -4526,7 +4527,6 @@ const loadedTaskSourceIds = new Set();
 const taskSourceLoadPromises = new Map();
 let practicalValueStore = new Map();
 
-const IMAGE_FADE_MS = 220;
 const TASK_IMAGE_CACHE_VERSION = "20261011-mp-lesson6";
 const SKIPPED_RESULT = "skipped";
 const STUDENT_WORK_COURSE_PART = "praca_domowa";
@@ -6589,6 +6589,7 @@ async function setLevel(btn, level){
     }
     resetSession();
     renderSourceSelector();
+    globalThis.DSMobileExam?.levelSelected();
     await loadSelectedSourceAndDraw();
 }
 
@@ -6621,6 +6622,7 @@ async function setSource(sourceId){
     updateMetaTheme();
     updateFormulaSection();
     resetSession();
+    globalThis.DSMobileExam?.paperSelected();
     renderSourceSelector();
     await loadSelectedSourceAndDraw();
 }
@@ -6751,6 +6753,13 @@ function renderSourceSelector(){
     const selectionNotice = document.getElementById("sourceSelectionNotice");
 
     if(!list) return;
+    globalThis.DSMobileExam?.sync({
+        category: selectedCategory,
+        level: selectedLevel,
+        levelLabel: LEVEL_LABELS[selectedLevel],
+        paperLabel: selectedCategory === "egzaminy" && selectedSource !== "all"
+            ? getExamSourceTileContent(getSourceMetaById(selectedSource)?.detail).label : ""
+    });
     if(selectionNotice){
         selectionNotice.hidden = true;
         selectionNotice.textContent = "";
@@ -6794,6 +6803,7 @@ function renderSourceSelector(){
         return;
     }
 
+    const yearGroups = new Map();
     availableSources.forEach(source => {
         const isLoaded = isTaskSourceLoaded(source.id);
         const count = isLoaded
@@ -6805,14 +6815,32 @@ function renderSourceSelector(){
             : null;
         const examTile = selectedCategory === "egzaminy"
             ? getExamSourceTileContent(source.detail) : null;
-        const label = selectedCategory === "testy" ? courseTestVariant(source) : examTile ? examTile.label : source.label;
+        const label = selectedCategory === "testy" ? courseTestVariant(source) : examTile ? examTile.month : source.label;
         const detail = source.kind === "test" && source.difficultyRating
             ? `Trudność ${source.difficultyRating}/10` : examTile?.detail || "";
         const titleDetail = isCourseCategory()
             ? source.detail
             : [examTile.detail, isLoaded ? `${count} zadań` : ""].filter(Boolean).join(" · ");
+        let targetList = list;
+        if(examTile){
+            if(!yearGroups.has(source.year)){
+                const group = document.createElement("section");
+                const heading = document.createElement("h3");
+                const papers = document.createElement("div");
+                group.className = "exam-year-group";
+                heading.className = "exam-year-label";
+                heading.id = `exam-year-${selectedLevel}-${source.year}`;
+                heading.textContent = source.year;
+                group.setAttribute("aria-labelledby", heading.id);
+                papers.className = "exam-year-sources";
+                group.append(heading, papers);
+                list.appendChild(group);
+                yearGroups.set(source.year, papers);
+            }
+            targetList = yearGroups.get(source.year);
+        }
         const button = addSourceButton(
-            list,
+            targetList,
             source.id,
             label,
             detail,
@@ -6823,7 +6851,11 @@ function renderSourceSelector(){
             source.kind,
             source.kind === "test" && !isCourseSourceVisible(source) ? courseTestLockReason(source) : ""
         );
-        if(examTile) decorateExamResult(button, source);
+        if(examTile){
+            button.title = [examTile.label, titleDetail].filter(Boolean).join(" • ");
+            button.setAttribute("aria-label", button.title);
+            decorateExamResult(button, source);
+        }
     });
 
     list.scrollTop = scrollTop;
@@ -6877,7 +6909,8 @@ function getExamSourceTileContent(detail){
 
     const year = parts.shift() || "";
     const month = parts.shift() || "Arkusz";
-    return {label: `${month.charAt(0).toUpperCase()}${month.slice(1)} ${year}`.trim(), detail: parts.join(" · ")};
+    const monthLabel = `${month.charAt(0).toUpperCase()}${month.slice(1)}`;
+    return {label: `${monthLabel} ${year}`.trim(), month:monthLabel, detail: parts.join(" · ")};
 }
 
 function filterExamPickerSources(sources){
@@ -8451,6 +8484,10 @@ function renderTaskNavigator(items = pool()){
 
     progress.innerHTML = "";
     items = taskNavigatorItems(items);
+    globalThis.DSMobileExam?.navigator({
+        label: currentTask ? navigatorTaskLabel(currentTask) : "",
+        count: items.length
+    });
 
     const groupedExamNavigator = selectedCategory === "egzaminy" &&
         tagFiltersSearchAllSources();
@@ -9507,10 +9544,6 @@ function showInputCorrection(values, task = currentTask){
     );
 }
 
-function wait(ms){
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 const imageLoadPromises = new Map();
 const protectedAssetUrls = new Map();
 
@@ -9773,6 +9806,7 @@ function updateTaskDetails(task, total){
 }
 
 async function drawTask(index = currentIndex, trackHistory = true){
+    globalThis.DSMobileExam?.beginTask();
     workTimer.pause();
     const p = pool();
     const awaitingTest = selectedCategory === "testy" && selectedSource === "all";
@@ -9852,17 +9886,6 @@ async function drawTask(index = currentIndex, trackHistory = true){
 
     if(requestId !== drawTaskRequestId || currentTask !== taskToRender) return;
 
-    const hasVisibleImage = img.getAttribute("src") ||
-        !contextImg.classList.contains("hidden");
-
-    if(hasVisibleImage){
-        img.classList.add("fade-out");
-        contextImg.classList.add("fade-out");
-        await wait(IMAGE_FADE_MS);
-    }
-
-    if(requestId !== drawTaskRequestId || currentTask !== taskToRender) return;
-
     if(contextPath){
         contextImg.src = contextPath;
         contextImg.classList.remove("hidden");
@@ -9878,13 +9901,6 @@ async function drawTask(index = currentIndex, trackHistory = true){
     }
 
     updateTaskDetails(taskToRender, p.length);
-
-    requestAnimationFrame(() => {
-        if(requestId !== drawTaskRequestId || currentTask !== taskToRender) return;
-
-        img.classList.remove("fade-out");
-        contextImg.classList.remove("fade-out");
-    });
 
     hintUsed = taskUsedHint(taskToRender);
     submittedChoice = "";
@@ -9904,6 +9920,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
     }
 
     applyCourseAnswerLock();
+    globalThis.DSMobileExam?.presentTask(getTaskKey(taskToRender));
     if(taskPath && !currentTaskAnswered && !isCoursePreviewMode()){
         await confirmNotebookWork();
         if(requestId !== drawTaskRequestId || currentTask !== taskToRender || currentTaskAnswered) return;

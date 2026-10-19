@@ -2077,7 +2077,6 @@ def api_save_speed_training_result(user):
             correct_count < 0
             or mistake_count < 0
             or best_streak < 0
-            or mistake_count > correct_count
             or best_streak > correct_count
             or correct_count + mistake_count > maximum_attempts
         ):
