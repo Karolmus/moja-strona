@@ -17,9 +17,9 @@ test('phone landscape keeps the task image at full width and its natural aspect 
     'Landscape navigation stays directly below answers, before optional tools');
 });
 
-test('work instructions move to a popup and only short test restrictions remain above tasks', () => {
-  assert(!html.includes('notebook-work-notice'));
-  assert(html.includes('id="notebookStartDialog"'));
+test('work instructions are a dismissible inline note and test restrictions stay short', () => {
+  assert(html.includes('id="notebookWorkNotice" role="note"'));
+  assert(!html.includes('notebookStartDialog'));
   const text = html.match(/<p class="test-mode-notice"[^>]*>([^<]+)<\/p>/)[1];
   assert(text.length <= 55);
   const notice = html.match(/\.test-mode-notice\s*\{([^}]+)\}/)[1];

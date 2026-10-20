@@ -18,7 +18,7 @@ test('only MP5 homework is teacher-graded, with two points and external Discord 
     assert(homework.every(task => task.teacherGraded === true && task.maxPoints === 2 && task.type === 'external_submission'));
     assert(manifest.filter(task => task.coursePart !== 'praca_domowa').every(task => !task.teacherGraded));
     assert(student.indexOf('setupExternalTeacherSubmission(mcq);') < student.indexOf('} else if(isProofTask(currentTask))'));
-    assert(student.includes('id="notebookStartDialog"'));
+    assert(student.includes('id="notebookWorkNotice" role="note"'));
     assert(student.includes('Tutaj wprowadź tylko uzyskane odpowiedzi.'));
     assert.match(admin, /@media \(min-width: 901px\)\s*\{\s*\.source-task-table-wrap \{ max-height: none;/);
     assert(!admin.includes('Kurs - praca domowa i powtórki'));
@@ -84,6 +84,27 @@ function gradingControlContext(save){
     vm.runInContext(code(admin, 'teacherScoreControl'), context);
     return context;
 }
+
+test('MP6 review proofs use the same zero-to-two-point grading tiles as MP5 homework', async () => {
+    const tasks = JSON.parse(fs.readFileSync('zadania/kurs/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json'));
+    const proofs = tasks.filter(task => task.coursePart === 'zadania_powtorkowe' && task.isProof);
+    assert.deepEqual(proofs.map(task => task.file), ['zp5.png', 'zp6.png']);
+    const requests = [];
+    const context = gradingControlContext(async (...args) => requests.push(args));
+    for (const task of proofs) {
+        assert.equal(task.teacherGraded, true);
+        assert.equal(task.type, 'external_submission');
+        assert.equal(task.maxPoints, 2);
+        const control = context.teacherScoreControl(null, task);
+        const buttons = control.children.filter(child => child.tag === 'button');
+        assert.deepEqual(buttons.map(button => button.textContent), ['0', '1', '2']);
+        await buttons[2].listeners.click();
+        assert.equal(requests.at(-1)[0], null, 'Grading is also available without a site submission');
+        assert.equal(requests.at(-1)[1], task);
+        assert.equal(requests.at(-1)[2].value, '2');
+    }
+    assert.equal(requests.length, 2);
+});
 
 test('numeric grading tiles save on one click and prevent duplicate requests while saving', async () => {
     let finish;

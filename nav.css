@@ -10,6 +10,56 @@
     border: 0 !important;
 }
 
+body.site-notices-visible {
+    padding-bottom: var(--site-notice-height, 0px);
+}
+
+.site-notice-stack {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 3000;
+    max-height: 50vh;
+    max-height: 50dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: #ffffff;
+    box-shadow: 0 -3px 16px rgba(15, 23, 42, 0.08);
+}
+
+.site-notice-stack:empty { display: none; }
+.site-notice { border-top: 1px solid #d9e1ea; color: #1f2a36; font-family: 'Poppins', sans-serif; }
+.site-notice-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 10px 16px;
+}
+.site-notice p { margin: 0; font-size: 12px; line-height: 1.5; }
+.site-notice a { color: #24527a; text-decoration: underline; }
+.site-notice-actions { display: flex; flex: 0 0 auto; gap: 8px; }
+.site-notice-button {
+    min-height: 38px;
+    border: 1px solid #b8c7d7;
+    border-radius: 5.1px;
+    padding: 7px 12px;
+    background: #ffffff;
+    color: #1f2a36;
+    font: 600 12px/1.35 'Poppins', sans-serif;
+    cursor: pointer;
+}
+.site-notice-button:hover { background: #edf3f9; }
+.site-notice-button:focus-visible { outline: 2px solid #24527a; outline-offset: 2px; }
+
+@media (max-width: 640px) {
+    .site-notice-content { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 12px; }
+    .site-notice-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .site-notice-button { min-width: 0; padding: 7px 8px; }
+}
+
 .main-nav{
     position: sticky;
     top: 0;
@@ -329,7 +379,7 @@
     .mobile-call-cta:not([hidden]) {
         position: fixed;
         right: 12px;
-        bottom: max(12px, env(safe-area-inset-bottom));
+        bottom: calc(var(--site-notice-height, 0px) + max(12px, env(safe-area-inset-bottom)));
         z-index: 1200;
         display: inline-flex;
         align-items: center;

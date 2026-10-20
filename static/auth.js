@@ -150,64 +150,65 @@
         }
     }
 
+    function updateSiteNoticeSpace(){
+        const height = Math.ceil(document.getElementById("siteNoticeStack")?.getBoundingClientRect().height || 0);
+        document.documentElement.style.setProperty("--site-notice-height", `${height}px`);
+        document.body.classList.toggle("site-notices-visible", height > 0);
+    }
+
+    window.appendSiteNotice = function(notice){
+        let stack = document.getElementById("siteNoticeStack");
+        if(!stack){
+            stack = document.createElement("div");
+            stack.id = "siteNoticeStack";
+            stack.className = "site-notice-stack";
+            document.body.appendChild(stack);
+            if(typeof ResizeObserver === "function"){
+                new ResizeObserver(updateSiteNoticeSpace).observe(stack);
+            } else {
+                window.addEventListener("resize", updateSiteNoticeSpace);
+            }
+        }
+        stack.appendChild(notice);
+        updateSiteNoticeSpace();
+    };
+
+    window.removeSiteNotice = function(notice){
+        notice.remove();
+        updateSiteNoticeSpace();
+    };
+
     function showPrivacyPolicyPrompt(user){
         if(!user || hasAcceptedPrivacyPolicy(user) || document.querySelector("[data-privacy-policy-prompt]")){
             return;
         }
 
-        const overlay = document.createElement("section");
-        const dialog = document.createElement("div");
-        const title = document.createElement("h2");
+        const notice = document.createElement("section");
+        const content = document.createElement("div");
         const copy = document.createElement("p");
         const actions = document.createElement("div");
         const accept = document.createElement("button");
         const logout = document.createElement("button");
 
-        overlay.dataset.privacyPolicyPrompt = "";
-        overlay.setAttribute("role", "dialog");
-        overlay.setAttribute("aria-modal", "true");
-        overlay.setAttribute("aria-label", "Akceptacja polityki prywatności");
-        overlay.style.cssText = [
-            "position:fixed",
-            "inset:0",
-            "z-index:4000",
-            "display:grid",
-            "place-items:center",
-            "padding:20px",
-            "background:rgba(15,23,42,0.48)",
-            "font-family:Poppins, sans-serif"
-        ].join(";");
-
-        dialog.style.cssText = [
-            "display:grid",
-            "gap:14px",
-            "width:min(520px, 100%)",
-            "border-radius:10.2px",
-            "background:#ffffff",
-            "color:#1f2a36",
-            "padding:22px",
-            "box-shadow:0 22px 70px rgba(15,23,42,0.32)"
-        ].join(";");
-
-        title.innerText = "Potwierdź politykę prywatności";
-        title.style.cssText = "margin:0;font-size:22px;line-height:1.2";
-
-        copy.innerHTML = 'Aby korzystać z konta, zaakceptuj aktualną <a href="polityka-prywatnosci.html" style="color:#24527a;font-weight:700">politykę prywatności</a>. Jeśli nie chcesz jej teraz akceptować, spokojnie zakończymy sesję.';
-        copy.style.cssText = "margin:0;color:#475569;font-size:14px;line-height:1.6";
-
-        actions.style.cssText = "display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end";
+        notice.dataset.privacyPolicyPrompt = "";
+        notice.className = "site-notice";
+        notice.setAttribute("role", "region");
+        notice.setAttribute("aria-label", "Polityka prywatności");
+        content.className = "site-notice-content";
+        copy.innerHTML = 'Aby korzystać z konta, zaakceptuj aktualną <a href="polityka-prywatnosci.html">politykę prywatności</a>.';
+        actions.className = "site-notice-actions";
 
         accept.type = "button";
         accept.innerText = "Akceptuję";
-        accept.style.cssText = "border:1px solid #263545;border-radius:6.8px;background:#263545;color:#ffffff;font:inherit;font-size:14px;font-weight:700;padding:9px 13px;cursor:pointer";
+        accept.className = "site-notice-button";
 
         logout.type = "button";
         logout.innerText = "Nie teraz, wyloguj mnie";
-        logout.style.cssText = "border:1px solid #d9e1ea;border-radius:6.8px;background:#ffffff;color:#1f2a36;font:inherit;font-size:14px;font-weight:700;padding:9px 13px;cursor:pointer";
+        logout.className = "site-notice-button";
 
         accept.addEventListener("click", () => {
             acceptPrivacyPolicy(user);
-            overlay.remove();
+            window.removeSiteNotice(notice);
         });
 
         logout.addEventListener("click", () => {
@@ -215,10 +216,9 @@
         });
 
         actions.append(logout, accept);
-        dialog.append(title, copy, actions);
-        overlay.appendChild(dialog);
-        document.body.appendChild(overlay);
-        accept.focus();
+        content.append(copy, actions);
+        notice.appendChild(content);
+        window.appendSiteNotice(notice);
     }
 
     window.updateAuthNav = function(user = null){

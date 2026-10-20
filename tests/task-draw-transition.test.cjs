@@ -25,7 +25,7 @@ test('fast navigation paints only the latest decoded image, answers and transiti
     updateTaskDetails:task => rendered.push(task.file),
     setupMCQ:() => {element('mcq').innerHTML = `answers-${ctx.currentTask.file}`;},
     getTaskKey:task => task.file, taskUsedHint:() => false,
-    isCoursePreviewMode:() => false, confirmNotebookWork:async () => {},
+    isCoursePreviewMode:() => false, showNotebookWorkNotice:() => {},
     DSMobileExam:{beginTask(){}, presentTask:key => presented.push(key)}
   });
   for (const name of ['updateTimer', 'renderTaskNavigator', 'setTaskLoading', 'clearTaskInteraction',

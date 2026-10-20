@@ -3,6 +3,7 @@
     const SESSION_KEY = "deltaSigmaAnalyticsSession";
     const CAMPAIGN_KEY = "deltaSigmaAnalyticsCampaign";
     const CONSENT_KEY = "deltaSigmaCookieConsent";
+    let pageConsent = null;
     const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
     const SHORT_CAMPAIGNS = {
         fb: {
@@ -132,62 +133,45 @@
         }
 
         const banner = document.createElement("section");
+        const content = document.createElement("div");
         const text = document.createElement("p");
         const actions = document.createElement("div");
         const accept = document.createElement("button");
         const reject = document.createElement("button");
 
         banner.dataset.cookieBanner = "";
-        banner.setAttribute("role", "dialog");
+        banner.className = "site-notice";
+        banner.setAttribute("role", "region");
         banner.setAttribute("aria-label", "Informacja o cookies");
-        banner.style.cssText = [
-            "position:fixed",
-            "left:16px",
-            "right:16px",
-            "bottom:16px",
-            "z-index:3000",
-            "display:flex",
-            "gap:12px",
-            "align-items:center",
-            "justify-content:space-between",
-            "max-width:980px",
-            "margin:0 auto",
-            "padding:14px 16px",
-            "border:1px solid rgba(255,255,255,0.18)",
-            "border-radius:8.5px",
-            "background:#1f2a36",
-            "color:#ffffff",
-            "box-shadow:0 18px 50px rgba(15,23,42,0.28)",
-            "font-family:Poppins, sans-serif"
-        ].join(";");
-
-        text.style.cssText = "margin:0;font-size:13px;line-height:1.45;color:rgba(255,255,255,0.86)";
-        text.innerHTML = 'Używamy niezbędnych mechanizmów działania strony oraz opcjonalnych statystyk oglądalności. Szczegóły: <a href="polityka-prywatnosci.html" style="color:#ffffff;font-weight:700">polityka prywatności</a>.';
-
-        actions.style.cssText = "display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end";
+        content.className = "site-notice-content";
+        text.innerHTML = 'Używamy cookies niezbędnych do działania strony. Statystyki włączymy tylko za zgodą. <a href="polityka-prywatnosci.html">Polityka prywatności</a>.';
+        actions.className = "site-notice-actions";
 
         accept.type = "button";
-        accept.innerText = "Akceptuję";
-        accept.style.cssText = "border:0;border-radius:6.8px;background:#ffffff;color:#1f2a36;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;cursor:pointer";
+        accept.innerText = "Zezwól na statystyki";
+        accept.className = "site-notice-button";
 
         reject.type = "button";
         reject.innerText = "Tylko niezbędne";
-        reject.style.cssText = "border:1px solid rgba(255,255,255,0.28);border-radius:6.8px;background:rgba(255,255,255,0.08);color:#ffffff;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;cursor:pointer";
+        reject.className = "site-notice-button";
 
         accept.addEventListener("click", () => {
+            pageConsent = "accepted";
             storeValue(CONSENT_KEY, "accepted");
-            banner.remove();
+            window.removeSiteNotice(banner);
             onAccept();
         });
 
         reject.addEventListener("click", () => {
+            pageConsent = "necessary";
             storeValue(CONSENT_KEY, "necessary");
-            banner.remove();
+            window.removeSiteNotice(banner);
         });
 
         actions.append(reject, accept);
-        banner.append(text, actions);
-        document.body.appendChild(banner);
+        content.append(text, actions);
+        banner.appendChild(content);
+        window.appendSiteNotice(banner);
     }
 
     function visitorId(){
@@ -264,7 +248,7 @@
     }
 
     async function sendPageview(){
-        const consent = storedValue(CONSENT_KEY);
+        const consent = pageConsent || storedValue(CONSENT_KEY);
 
         if(consent !== "accepted"){
             if(!consent){

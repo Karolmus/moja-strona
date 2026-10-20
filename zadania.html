@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="nav.css?v=20261019-calculators">
+<link rel="stylesheet" href="nav.css?v=20261020-passive-notices">
 <link rel="stylesheet" href="static/workspace-score.css?v=20261016">
 
 <style>
@@ -1671,8 +1671,7 @@ html.task-video-open {
     background: rgba(15, 23, 42, 0.68);
 }
 
-.test-start-dialog,
-.notebook-start-dialog {
+.test-start-dialog {
     width: min(520px, calc(100vw - 24px));
     margin: auto;
     padding: 0;
@@ -1683,26 +1682,38 @@ html.task-video-open {
     box-shadow: 0 24px 64px rgba(15, 23, 42, 0.3);
 }
 
-.test-start-dialog::backdrop,
-.notebook-start-dialog::backdrop {
+.test-start-dialog::backdrop {
     background: rgba(15, 23, 42, 0.72);
 }
 
-.notebook-start-dialog {
-    max-height: calc(100dvh - 24px);
-    padding: 24px;
-    overflow-y: auto;
+.notebook-work-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 12px;
+    padding: 8px 10px;
+    border-left: 2px solid #abc2dc;
+    background: #f5f8fb;
+    color: var(--muted);
 }
-
-.notebook-start-dialog p {
-    margin: 0 0 20px;
-    font-size: 15px;
-    line-height: 1.6;
+.notebook-work-notice[hidden] { display: none; }
+.notebook-work-notice p { flex: 1; min-width: 0; margin: 0; font-size: 12px; line-height: 1.5; }
+.notebook-work-notice strong { color: var(--text); font-weight: 600; }
+.notebook-notice-close {
+    display: grid;
+    place-items: center;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 5.1px;
+    padding: 5px;
+    background: transparent;
+    cursor: pointer;
 }
-
-.notebook-start-dialog button {
-    width: 100%;
-}
+.notebook-notice-close:hover { background: #e4edf6; }
+.notebook-notice-close:focus-visible { outline: 2px solid #24527a; outline-offset: 2px; }
+.notebook-notice-close img { width: 16px; height: 16px; }
 
 .test-start-content {
     display: grid;
@@ -4196,6 +4207,11 @@ footer {
 
             <div class="course-workspace-toolbar" id="courseWorkspaceToolbar" role="group" aria-label="Materiały i narzędzia" hidden></div>
 
+            <aside class="notebook-work-notice" id="notebookWorkNotice" role="note" aria-label="Praca w zeszycie" hidden>
+                <p><strong>Rozwiązuj zadania pisemnie w zeszycie.</strong> Tutaj wprowadź tylko uzyskane odpowiedzi. Nie rozwiązuj zadań w pamięci - to najczęstsza przyczyna błędów.</p>
+                <button class="notebook-notice-close" type="button" onclick="dismissNotebookWorkNotice()" aria-label="Ukryj przypomnienie o zeszycie" title="Ukryj przypomnienie o zeszycie"><img src="static/icons/x.svg" width="16" height="16" alt="" aria-hidden="true"></button>
+            </aside>
+
             <p class="test-selection-empty" id="testSelectionEmpty" role="status" hidden>Wybierz test sprawdzający.</p>
 
             <p class="test-mode-notice" id="testModeNotice" role="note" hidden>Test bez wskazówek, nagrań i omówień.</p>
@@ -4255,7 +4271,7 @@ footer {
                         <button class="action-btn solution" id="gradingButton" onclick="showGradingCriteria()" hidden>Zasady oceniania</button>
                         <div class="video-skip-actions">
                             <button class="action-btn solution video-link" id="taskVideoLink" type="button" aria-haspopup="dialog" aria-controls="taskVideoDialog" hidden><span aria-hidden="true">🎬</span> Zobacz nagranie</button>
-                            <button class="action-btn skip" id="skipButton" onclick="skipTask()">Pomiń</button>
+                            <button class="action-btn skip" id="skipButton" onclick="skipTask()">Na razie pomiń</button>
                         </div>
                         <p class="incorrect-answer-suggestion" id="incorrectAnswerSuggestion" role="status" aria-live="polite" hidden></p>
                     </div>
@@ -4331,11 +4347,6 @@ footer {
         </div>
     </div>
     <div class="task-video-player" id="taskVideoPlayer" hidden></div>
-</dialog>
-
-<dialog class="notebook-start-dialog" id="notebookStartDialog" aria-label="Przed rozpoczęciem zadań" aria-describedby="notebookStartMessage">
-    <p id="notebookStartMessage">Rozwiązuj zadania pisemnie w zeszycie. Tutaj wprowadź tylko uzyskane odpowiedzi. Nie rozwiązuj zadań w pamięci - to najczęstsza przyczyna błędów.</p>
-    <button class="test-start-btn primary" id="notebookStartConfirm" type="button" onclick="acceptNotebookWork()" autofocus>Zaczynam</button>
 </dialog>
 
 <dialog class="test-start-dialog" id="testStartDialog" aria-labelledby="testStartTitle" aria-describedby="testStartWarning">
@@ -4462,8 +4473,8 @@ footer {
     </nav>
 </footer>
 
-<script src="static/auth.js?v=20261019-calculators"></script>
-<script src="static/analytics.js?v=20260805-short-ref"></script>
+<script src="static/auth.js?v=20261020-passive-notices"></script>
+<script src="static/analytics.js?v=20261020-passive-notices"></script>
 <script src="static/lib/mathjs/answers.min.js?v=15.2.0-2-periodic"></script>
 <script src="static/math-answer-input.js?v=20261006-equivalent-answers"></script>
 <script src="static/active-work-time.js?v=20260910"></script>
@@ -4955,49 +4966,33 @@ const MONTH_LABELS = {
 
 const GUEST_PROGRESS_STORAGE_KEY = "deltaSigmaGuestExamProgress";
 const workTimer = new DeltaSigmaActiveWorkTime();
-let notebookWorkAccepted = false;
-let notebookWorkPromise = null;
-let notebookWorkResolver = null;
+let notebookNoticeDismissed = false;
 
 function notebookWorkStorageKey(){
-    return `deltaSigmaNotebookWork:${loggedUser?.id || loggedUser?.username || "guest"}`;
+    return `deltaSigmaNotebookWork:v2:${loggedUser?.id || loggedUser?.username || "guest"}`;
 }
 
-function confirmNotebookWork(){
-    if(notebookWorkAccepted) return Promise.resolve();
+function showNotebookWorkNotice(){
+    const notice = document.getElementById("notebookWorkNotice");
+    if(!notice) return;
+    let dismissed = notebookNoticeDismissed;
     try {
-        if(sessionStorage.getItem(notebookWorkStorageKey()) === "1") return Promise.resolve();
+        dismissed = dismissed || sessionStorage.getItem(notebookWorkStorageKey()) === "1";
     } catch(error) {
-        // The in-memory flag still avoids repeating the notice if storage is unavailable.
+        // Keep dismissal working when browser storage is unavailable.
     }
-    if(notebookWorkPromise) return notebookWorkPromise;
-
-    const dialog = document.getElementById("notebookStartDialog");
-    if(!dialog || typeof dialog.showModal !== "function"){
-        window.alert(document.getElementById("notebookStartMessage")?.textContent || "Rozwiązuj zadania pisemnie w zeszycie.");
-        notebookWorkAccepted = true;
-        return Promise.resolve();
-    }
-
-    workTimer.pause();
-    notebookWorkPromise = new Promise(resolve => { notebookWorkResolver = resolve; });
-    dialog.showModal();
-    document.getElementById("notebookStartConfirm").focus();
-    return notebookWorkPromise;
+    notice.hidden = dismissed;
 }
 
-function acceptNotebookWork(){
-    notebookWorkAccepted = true;
+function dismissNotebookWorkNotice(){
+    notebookNoticeDismissed = true;
     try {
         sessionStorage.setItem(notebookWorkStorageKey(), "1");
     } catch(error) {
         // Continue without browser storage.
     }
-    document.getElementById("notebookStartDialog").close();
-    const resolve = notebookWorkResolver;
-    notebookWorkResolver = null;
-    notebookWorkPromise = null;
-    resolve?.();
+    const notice = document.getElementById("notebookWorkNotice");
+    if(notice) notice.hidden = true;
 }
 
 function syncWorkTimeVisibility(){
@@ -5177,7 +5172,7 @@ async function ensureTestSourceStarted(sourceId){
         }
         return true;
     }
-    await confirmNotebookWork();
+    showNotebookWorkNotice();
     if(!await confirmTestStart(source)) return false;
 
     startTestTimer(sourceId);
@@ -8105,8 +8100,6 @@ document.getElementById("testStartDialog")
         event.preventDefault();
         finishTestStartDialog(false);
     });
-document.getElementById("notebookStartDialog")
-    ?.addEventListener("cancel", event => event.preventDefault());
 for(const id of ["homeworkSummaryOverlay", "examSummaryOverlay"]){
     document.getElementById(id).addEventListener("keydown", event => {
         if(event.key !== "Tab") return;
@@ -9922,7 +9915,7 @@ async function drawTask(index = currentIndex, trackHistory = true){
     applyCourseAnswerLock();
     globalThis.DSMobileExam?.presentTask(getTaskKey(taskToRender));
     if(taskPath && !currentTaskAnswered && !isCoursePreviewMode()){
-        await confirmNotebookWork();
+        showNotebookWorkNotice();
         if(requestId !== drawTaskRequestId || currentTask !== taskToRender || currentTaskAnswered) return;
         workTimer.start(getTaskKey(taskToRender));
     }
@@ -10013,7 +10006,6 @@ function shouldIgnoreKeyboardNavigation(event){
 }
 
 function handleKeyboardNavigation(event){
-    if(document.getElementById("notebookStartDialog")?.open) return;
     if(document.getElementById("taskVideoDialog").open) return;
     if(!document.getElementById("homeworkSummaryOverlay").hidden || !document.getElementById("examSummaryOverlay").hidden) return;
     if(shouldIgnoreKeyboardNavigation(event)) return;

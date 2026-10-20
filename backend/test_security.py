@@ -1564,6 +1564,65 @@ class SecurityTests(unittest.TestCase):
             init_auth_db()
             self.assertEqual(app_module.student_notifications(student["id"])["notifications"], notifications)
 
+    def test_mp6_review_proofs_wait_for_teacher_grading(self):
+        with app.app_context():
+            student = create_user("mp6-review", "Uczeń MP", "test-password")
+            admin = create_user("mp6-review-admin", "Admin", "test-password", role="admin")
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        source = "zadania/kurs/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json"
+        response = self.client.get("/api/course-assets/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json", headers=sh)
+        self.assertEqual(response.status_code, 200)
+        tasks = {task["file"]: task for task in response.get_json()}
+        for file in ("zp5.png", "zp6.png"):
+            with self.subTest(file=file):
+                self.assertTrue(tasks[file]["teacherGraded"])
+                payload = {"source_id": source, "file": file, "task_id": f"{source}:{file}",
+                           "result": "good", "earned_points": 2, "max_points": 999,
+                           "submitted_answer": "Rozwiązanie wysłane na Discordzie."}
+                response = self.client.post("/api/progress", headers=sh, json=payload)
+                self.assertEqual(response.status_code, 201)
+                pending = response.get_json()["progress"]
+                self.assertTrue(pending["teacher_review_pending"])
+                self.assertIsNone(pending["earned_points"])
+                self.assertEqual(pending["max_points"], 2)
+                endpoint = f"/api/admin/progress/{pending['id']}/score"
+                self.assertEqual(self.client.patch(endpoint, headers=sh, json={"earned_points": 2}).status_code, 403)
+                self.assertEqual(self.client.patch(endpoint, headers=ah, json={"earned_points": 3}).status_code, 400)
+                for score, result in ((0, "bad"), (1, "medium"), (2, "good")):
+                    response = self.client.patch(endpoint, headers=ah, json={"earned_points": score})
+                    self.assertEqual(response.status_code, 200)
+                    graded = response.get_json()["progress"]
+                    self.assertEqual(graded["earned_points"], score)
+                    self.assertEqual(graded["result"], result)
+                    self.assertFalse(graded["teacher_review_pending"])
+                    self.assertTrue(graded["teacher_graded_at"])
+                notices = self.client.get("/api/notifications/me", headers=sh).get_json()["notifications"]
+                self.assertEqual(notices[0]["file"], file)
+                self.assertIn("2/2 pkt", notices[0]["message"])
+
+    def test_mp6_review_proofs_can_be_graded_without_site_submission(self):
+        with app.app_context():
+            student = create_user("mp6-direct", "Uczeń MP", "test-password")
+            admin = create_user("mp6-direct-admin", "Admin", "test-password", role="admin")
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        endpoint = f"/api/admin/students/{student['id']}/progress/score"
+        source = "zadania/kurs/mp/lekcja_6/lekcja_6_procenty_i_lokaty.json"
+        for file, points in (("zp5.png", 1), ("zp6.png", 2)):
+            with self.subTest(file=file):
+                payload = {"source_id": source, "file": file, "earned_points": points}
+                self.assertEqual(self.client.post(endpoint, headers=sh, json=payload).status_code, 403)
+                response = self.client.post(endpoint, headers=ah, json=payload)
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.get_json()["progress"]["earned_points"], points)
+                self.assertEqual(response.get_json()["progress"]["max_points"], 2)
+                self.assertFalse(response.get_json()["progress"]["teacher_review_pending"])
+        progress = self.client.get("/api/progress/me", headers=sh).get_json()["progress"]
+        self.assertEqual({item["file"] for item in progress}, {"zp5.png", "zp6.png"})
+        notices = self.client.get("/api/notifications/me", headers=sh).get_json()["notifications"]
+        self.assertEqual({notice["file"] for notice in notices}, {"zp5.png", "zp6.png"})
+
     def test_all_homework_assets_and_eo_grading_remain_accessible(self):
         root = app_module.COURSE_ASSET_ROOT
         tested = 0

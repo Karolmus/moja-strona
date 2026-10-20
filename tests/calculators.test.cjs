@@ -112,6 +112,42 @@ test('results have loading and error states, prevent double submits and render l
   assert.match(script, /trust: false/);
 });
 
+test('field variables render as mathematical objects with genuine subscripts and label associations', () => {
+  const katex = require('../static/lib/katex/katex.min.js');
+  const labels = new Map(Array.from(page.matchAll(/<label for="([^"]+)">([\s\S]*?)<\/label>/g),
+    match => [match[1], match[2]]));
+  const symbols = {
+    p: 'p', n: 'n', k: 'K', xa: 'x_A', ya: 'y_A', xs: 'x_S', ys: 'y_S', r: 'r',
+    A: 'A', B: 'B', C: 'C', p1: 'p', q1: 'q', r1: 'r',
+    a: 'x_1', b: 'y_1', c: 'r_1', p2: 'x_2', q2: 'y_2', r2: 'r_2', a1: 'a_1', a2: 'a_2',
+  };
+  for (const [id, tex] of Object.entries(symbols)) {
+    const label = labels.get(id);
+    assert(label, id);
+    assert(label.includes(`class="field-symbol" data-tex="${tex}"`), id);
+    assert(page.includes(`<input id="${id}"`), `The label must still focus ${id}`);
+    const rendered = katex.renderToString(tex, {output: 'htmlAndMathml', throwOnError: true, trust: false, strict: 'error'});
+    assert.match(rendered, /<math\b/, id);
+    if (tex.includes('_')) {
+      assert.match(label, /<sub>[AS12]<\/sub>/, 'Keep real subscripts even before math rendering');
+      assert.match(rendered, /<msub>/, id);
+      assert(!label.replace(/<[^>]+>/g, '').includes('_'), `No literal underscore should be visible in ${id}`);
+    }
+  }
+});
+
+test('each calculator has one short description of its calculation', () => {
+  const cards = Array.from(page.matchAll(/<section class="calculator-card(?: wide)?">([\s\S]*?)<\/section>/g), match => match[1]);
+  assert.equal(cards.length, 6);
+  for (const card of cards) {
+    const descriptions = Array.from(card.matchAll(/<p class="tool-description">([^<]+)<\/p>/g), match => match[1]);
+    assert.equal(descriptions.length, 1);
+    assert(descriptions[0].length < 100, 'Keep the description to a short sentence');
+    assert(card.indexOf('tool-description') > card.indexOf('</h2>'));
+    assert(card.indexOf('tool-description') < card.indexOf('field-group'));
+  }
+});
+
 test('navigation hides calculators from guests and login return destinations cannot redirect outside the site', () => {
   const nav = fs.readFileSync('nav.html','utf8');
   assert.match(nav, /href="kalkulatory.html" data-auth-calculators hidden/);

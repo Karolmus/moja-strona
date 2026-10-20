@@ -170,7 +170,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
     loggedUser: {role: 'student'},
     getSourceMetaById: () => ({id: sourcePath, kind: 'test'}),
     storedTestDeadline: () => 0,
-    confirmNotebookWork: async () => {},
+    showNotebookWorkNotice: () => {},
     confirmTestStart: async () => confirmed,
     startTestTimer: () => {startCalls++;}
   });
