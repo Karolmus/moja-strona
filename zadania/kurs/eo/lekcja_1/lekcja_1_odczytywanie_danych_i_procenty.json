@@ -406,7 +406,7 @@
       "prawda/fałsz",
       "Zadanie domowe"
     ],
-    "maxPoints": 1
+    "maxPoints": 4
   },
   {
     "difficulty": 2,
@@ -524,7 +524,7 @@
     "type": "closed",
     "options": ["A", "B", "C", "D"],
     "hint": "Dodaj godziny dla każdej aplikacji ze wszystkich dni tygodnia.",
-    "answer": "A",
+    "answer": "B",
     "coursePart": "praca_domowa",
     "tags": [
       "kurs",

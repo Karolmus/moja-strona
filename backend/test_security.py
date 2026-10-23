@@ -1564,6 +1564,83 @@ class SecurityTests(unittest.TestCase):
             init_auth_db()
             self.assertEqual(app_module.student_notifications(student["id"])["notifications"], notifications)
 
+    def test_true_false_scoring_counts_each_statement_only_in_longer_tasks(self):
+        with app.app_context():
+            student = create_user("pf-score", "Uczeń EO", "test-password", level="egzamin_osmoklasisty")
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+        source = "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
+        for file, key in (("zd_3.png", "FPFF"), ("zd_5.2.png", "FF")):
+            for correct in range(len(key) + 1):
+                selected = [answer if index < correct else "F" if answer == "P" else "P" for index, answer in enumerate(key)]
+                response = self.client.post("/api/progress", headers=headers, json={
+                    "source_id": source, "file": file, "task_id": f"{source}:{file}",
+                    "result": "good", "submitted_answer": ", ".join(selected),
+                    "earned_points": 999, "max_points": 999,
+                })
+                self.assertEqual(response.status_code, 201)
+                item = response.get_json()["progress"]
+                earned = correct if len(key) > 2 else int(correct == 2)
+                maximum = len(key) if len(key) > 2 else 1
+                self.assertEqual(item["earned_points"], earned)
+                self.assertEqual(item["max_points"], maximum)
+                self.assertEqual(item["result"], "good" if earned == maximum else "medium" if earned else "bad")
+
+    def test_true_false_scoring_rejects_incomplete_answers_preserves_hints_and_video(self):
+        with app.app_context():
+            student = create_user("pf-assistance", "Uczeń EO", "test-password", level="egzamin_osmoklasisty")
+            headers = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+        source = "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
+        task = {"source_id": source, "file": "zd_3.png", "task_id": f"{source}:zd_3.png", "result": "good"}
+        for answer in ("P", "FPF", "FPFFF", "ABCD", "F,P,?,F", ""):
+            self.assertEqual(self.client.post("/api/progress", headers=headers,
+                json={**task, "submitted_answer": answer}).status_code, 400)
+        timed_out = self.client.post("/api/progress", headers=headers, json={**task, "result": "bad"})
+        self.assertEqual(timed_out.status_code, 201)
+        self.assertEqual(timed_out.get_json()["progress"]["earned_points"], 0)
+        for flag in ("hint_used", "answer_shown"):
+            response = self.client.post("/api/progress", headers=headers, json={**task, "submitted_answer": "FPFF", flag: True})
+            self.assertEqual(response.get_json()["progress"]["earned_points"], 4)
+            self.assertEqual(response.get_json()["progress"]["result"], "medium")
+        watched = self.client.post("/api/progress", headers=headers, json={**task, "result": "video"})
+        self.assertEqual(watched.get_json()["progress"]["earned_points"], 0)
+        late = self.client.post("/api/progress", headers=headers, json={**task, "submitted_answer": "FPFF"})
+        self.assertEqual(late.get_json()["progress"]["earned_points"], 0)
+        self.assertEqual(late.get_json()["progress"]["result"], "video")
+
+    def test_true_false_history_is_rescored_for_student_admin_and_parent_without_database_rewrite(self):
+        source = "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json"
+        with app.app_context():
+            student = create_user("pf-history", "Uczeń EO", "test-password", level="egzamin_osmoklasisty")
+            admin = create_user("pf-history-admin", "Admin", "test-password", role="admin")
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+            _access, token = create_parent_access_token(student["id"])
+            legacy = app_module.record_progress(student["id"], {"source_id": source, "file": "zd_3.png",
+                "task_id": f"{source}:zd_3.png", "result": "bad", "submitted_answer": "F, P, P, P",
+                "earned_points": 0, "max_points": 1})
+        responses = [self.client.get("/api/progress/me", headers=sh),
+            self.client.get(f"/api/admin/students/{student['id']}/progress", headers=ah),
+            self.client.post("/api/parent/progress", json={"token": token})]
+        for response in responses:
+            self.assertEqual(response.status_code, 200)
+            score = response.get_json()["progress"][0]
+            self.assertEqual((score["earned_points"], score["max_points"], score["result"]), (2, 4, "medium"))
+        with app.app_context():
+            self.assertEqual(app_module.progress_by_id(legacy["id"])["earned_points"], 0)
+
+    def test_true_false_history_loads_each_manifest_once_and_does_not_guess_missing_answers(self):
+        source = "zadania/kurs/eo/example/tasks.json"
+        task = {"file": "1.png", "type": "true_false", "answer": "PPFF", "maxPoints": 4}
+        items = [{"source_id": source, "file": "1.png", "result": "bad", "submitted_answer": "P P P F"}] * 100
+        unknown = {"source_id": source, "file": "1.png", "result": "bad", "earned_points": 0, "max_points": 1}
+        with patch.object(app_module, "read_course_json", return_value=[task]) as read:
+            scores = app_module.rescore_true_false_progress([*items, unknown])
+            read.assert_called_once_with("eo/example/tasks.json")
+        self.assertTrue(all(item["earned_points"] == 3 for item in scores[:-1]))
+        self.assertEqual(scores[-1], unknown)
+        for task in ({"type": "multi", "answer": ["P", "F"]}, {"type": "closed", "answer": "B"}):
+            self.assertIsNone(app_module.true_false_progress_score(task, {"submitted_answer": "PF"}))
+
     def test_mp6_review_proofs_wait_for_teacher_grading(self):
         with app.app_context():
             student = create_user("mp6-review", "Uczeń MP", "test-password")

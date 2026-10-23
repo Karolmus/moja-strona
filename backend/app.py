@@ -666,6 +666,58 @@ def read_course_json(asset_path):
         return None
 
 
+def true_false_answers(task):
+    if not isinstance(task, dict) or task.get("type") == "multi":
+        return []
+    answer = task.get("answer")
+    text = "".join(map(str, answer)) if isinstance(answer, list) else str(answer or "")
+    options = task.get("options") or []
+    if len(text) < 2 or not re.fullmatch(r"[PF]+", text):
+        return []
+    if task.get("type") != "true_false" and any(not re.fullmatch(r"[PF]+", str(option)) for option in options):
+        return []
+    return list(text)
+
+
+def true_false_progress_score(task, progress):
+    answers = true_false_answers(task)
+    if not answers:
+        return None
+    maximum = len(answers) if len(answers) > 2 else 1
+    if progress.get("result") == "video" or progress.get("video_viewed"):
+        return {"result": "video", "earned_points": 0, "max_points": maximum}
+    submitted = str(progress.get("submitted_answer") or "").strip()
+    if not re.fullmatch(r"[PF,\s]+", submitted):
+        return None
+    selected = re.sub(r"[,\s]", "", submitted)
+    if len(selected) != len(answers):
+        return None
+    correct = sum(actual == expected for actual, expected in zip(selected, answers))
+    earned = correct if len(answers) > 2 else int(correct == len(answers))
+    result = "good" if earned == maximum else "medium" if earned else "bad"
+    if result == "good" and (progress.get("hint_used") or progress.get("answer_shown")):
+        result = "medium"
+    return {"result": result, "earned_points": earned, "max_points": maximum}
+
+
+def rescore_true_false_progress(progress):
+    manifests = {}
+    result = []
+    for item in progress:
+        source = str(item.get("source_id") or "")
+        if not source.startswith("zadania/kurs/"):
+            result.append(item)
+            continue
+        # Load each lesson once, even when its history contains many attempts.
+        if source not in manifests:
+            tasks = read_course_json(source.removeprefix("zadania/kurs/"))
+            manifests[source] = {task.get("file"): task for task in tasks if isinstance(task, dict)} if isinstance(tasks, list) else {}
+        task = manifests[source].get(item.get("file"))
+        score = true_false_progress_score(task, item)
+        result.append({**item, **score} if score else item)
+    return result
+
+
 def parent_course_lessons(level, progress):
     segment = TASK_PATH_SEGMENT_BY_STUDENT_LEVEL.get(level)
     if not segment:
@@ -1508,7 +1560,7 @@ def api_admin_student_progress(_admin, user_id):
 
     data = {
         "student": student_payload(student),
-        "progress": progress_for_user(user_id),
+        "progress": rescore_true_false_progress(progress_for_user(user_id)),
     }
     if request.args.get("include_review_tasks") == "1":
         data["review_tasks"] = review_tasks_for_user(user_id)
@@ -1720,6 +1772,16 @@ def api_save_progress(user):
             data["max_points"] = task.get("maxPoints") or 1
             data["earned_points"] = 0
 
+        answers = true_false_answers(task)
+        if answers:
+            score = true_false_progress_score(task, data)
+            if score:
+                data.update(score)
+            elif not str(data.get("submitted_answer") or "").strip() and data["result"] == "bad":
+                data.update(earned_points=0, max_points=len(answers) if len(answers) > 2 else 1)
+            else:
+                return api_error("Zaznacz P lub F dla każdego stwierdzenia.")
+
         if task and task.get("teacherGraded") is True and data["result"] == "video" and task.get("externalSubmission") is True:
             data["teacher_review_pending"] = True
         elif task and task.get("teacherGraded") is True:
@@ -1742,6 +1804,9 @@ def api_save_progress(user):
             data["teacher_review_pending"] = True
 
         progress = record_progress(user["id"], data)
+        score = true_false_progress_score(task, progress)
+        if score:
+            progress.update(score)
 
         return jsonify({
             "progress": progress,
@@ -1959,7 +2024,7 @@ def api_parent_create_message():
 @require_auth
 def api_my_progress(user):
     return jsonify({
-        "progress": progress_for_user(user["id"]),
+        "progress": rescore_true_false_progress(progress_for_user(user["id"])),
     })
 
 
@@ -2170,7 +2235,7 @@ def api_parent_progress():
                 "source_id", "file", "task_id", "result", "submitted_answer",
                 "earned_points", "max_points", "hint_used", "created_at",
             ) if key in item}
-            for item in progress_for_user(student["id"])
+            for item in rescore_true_false_progress(progress_for_user(student["id"]))
         ]
         review_tasks = [
             {key: item[key] for key in ("source_id", "file", "task_id", "title") if key in item}

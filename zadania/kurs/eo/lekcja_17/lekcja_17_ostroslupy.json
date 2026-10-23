@@ -139,7 +139,7 @@
       "W każdym ostrosłupie suma liczby ścian i wierzchołków jest o 2 większa od liczby krawędzi.",
       "Dla tego samego wielokąta w podstawie liczba krawędzi ostrosłupa stanowi 3/2 liczby krawędzi graniastosłupa."
     ],
-    "maxPoints": 2
+    "maxPoints": 4
   },
   {
     "file": "7.png",
@@ -315,7 +315,7 @@
       "W ostrosłupie prawidłowym wszystkie ściany boczne są trójkątami przystającymi.",
       "W ostrosłupie prawidłowym wszystkie krawędzie ostrosłupa są równej długości."
     ],
-    "maxPoints": 2
+    "maxPoints": 1
   },
   {
     "file": "zd1.png",
@@ -429,7 +429,7 @@
       "Ostrosłup o podstawie pięciokąta ma dwa razy mniej krawędzi niż ostrosłup o podstawie czworokąta ma wierzchołków.",
       "Suma wszystkich ścian, krawędzi i wierzchołków zwiększa się o 4 przy każdym zwiększeniu liczby wierzchołków podstawy o 1."
     ],
-    "maxPoints": 2
+    "maxPoints": 1
   },
   {
     "file": "12.png",

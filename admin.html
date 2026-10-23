@@ -5511,7 +5511,7 @@ function renderSourceDetail(group){
             : task.topic || "";
         meta.className = "task-date";
         result.innerText = progressItem
-            ? `${teacherPending ? "Do oceny" : task.teacherGraded && progressItem.result === "medium" && !progressItem.video_viewed ? "Częściowo" : resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
+            ? `${teacherPending ? "Do oceny" : progressItem.result === "medium" && score.earned !== null && score.earned < score.max && !progressItem.video_viewed ? "Częściowo" : resultLabel(progressItem.result)}${progressItem.hint_used ? " (w)" : ""}`
             : reviewRequested ? "Do omówienia" : "Nie wykonano";
         if(progressItem?.hint_used) result.title = "Użyto wskazówki";
         pointsCell.innerText = score.earned === null

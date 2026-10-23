@@ -159,6 +159,7 @@ const navContext = vm.createContext({
     attributes:{}, setAttribute(key, value) {this.attributes[key] = value;}
   })},
   getSavedResult:task => task.result, taskThemeClass:() => 'nav-theme-revision',
+  getTaskScore:task => task.score || null, formatPoints:String,
   isTeacherReviewPending:() => false,
   taskUsedHint:task => Boolean(task.hint_used),
   navigatorTaskLabel:() => '12', taskLabel:() => 'Zadanie powtórkowe 12',
@@ -183,6 +184,9 @@ for (const result of ['good', 'bad', 'medium', 'skipped', null]) {
   assert.equal(navContext.opened.task, task);
   assert.equal(navContext.opened.index, buttons.length-1);
 }
+navContext.addNavigatorTaskButton(container, {result:'medium', score:{earnedPoints:2, maxPoints:4}}, 0);
+assert.match(buttons.at(-1).title, /częściowo poprawne \(2 \/ 4 pkt\)/);
+assert(!buttons.at(-1).title.includes('z pomocą'));
 for (const result of ['good', 'bad', 'medium', 'skipped', null]) {
   navContext.addNavigatorTaskButton(container, {key:'lesson:reviewed.png', result}, 0);
   const tile = buttons.at(-1);

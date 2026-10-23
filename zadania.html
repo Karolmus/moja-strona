@@ -8436,12 +8436,16 @@ function addNavigatorTaskButton(container, task, index){
     const result = getSavedResult(task);
     const teacherReviewPending = isTeacherReviewPending(task);
     const themeClass = taskThemeClass(task);
+    const score = result === "medium" ? getTaskScore(task) : null;
+    const statusLabel = score?.earnedPoints != null && score.earnedPoints < score.maxPoints
+        ? `częściowo poprawne (${formatPoints(score.earnedPoints)} / ${formatPoints(score.maxPoints)} pkt)`
+        : resultLabel(result);
 
     button.type = "button";
     button.className = "tile nav-tile";
     if(themeClass) button.classList.add(themeClass);
     button.innerText = navigatorTaskLabel(task);
-    button.title = `${taskLabel(task)} • ${teacherReviewPending ? "oczekuje na ocenę" : resultLabel(result)}`;
+    button.title = `${taskLabel(task)} • ${teacherReviewPending ? "oczekuje na ocenę" : statusLabel}`;
     if(reviewTaskKeys.has(getTaskKey(task))){
         const marker = document.createElement("span");
         marker.className = "nav-review-mark";
@@ -11519,20 +11523,24 @@ function chooseTrueFalse(index, opt, btn){
 
     if(trueFalseSelection.some(answer => !answer)) return;
 
-    const isCorrect = correctAnswers.every((answer, answerIndex) =>
+    const correctCount = correctAnswers.filter((answer, answerIndex) =>
         trueFalseSelection[answerIndex] === answer
-    );
+    ).length;
+    const maxPoints = correctAnswers.length > 2 ? correctAnswers.length : 1;
+    const earnedPoints = correctAnswers.length > 2
+        ? correctCount
+        : Number(correctCount === correctAnswers.length);
+    const result = scoreResultType(earnedPoints, maxPoints);
 
     disableMCQ();
     revealTrueFalseAnswers(correctAnswers);
 
-    if(!isCorrect && isCourseTask()){
+    if(earnedPoints < maxPoints && isCourseTask()){
         showCorrection(correctAnswers);
-        addProgress("bad");
-        return;
     }
 
-    addProgress(isCorrect && !(hintUsed || answerShown) ? "good" : isCorrect ? "medium" : "bad");
+    addProgress(result === "good" && (hintUsed || answerShown) ? "medium" : result,
+        {earnedPoints, maxPoints});
 }
 
 function disableMCQ(){

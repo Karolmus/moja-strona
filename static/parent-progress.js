@@ -236,6 +236,9 @@
         const summary = element("summary");
         const title = element("div", "task-name");
         const status = entry.progress?.result || (entry.review ? "review" : "missing");
+        const score = taskScore(entry);
+        const label = status === "medium" && score.earned !== null && score.earned < score.max
+            ? "Częściowo" : RESULT_LABELS[status] || status;
         title.appendChild(element("strong", "", taskName(entry.task)));
         if (entry.review) title.appendChild(element("small", "review-mark", "Dodano do omówienia"));
         if (entry.progress && (status === "bad" || status === "medium")) {
@@ -243,7 +246,7 @@
             title.appendChild(element("small", "correct-answer", `Poprawna: ${expectedAnswer(entry.task)}`));
         }
         summary.append(title,
-            element("span", `result-chip ${status}`, `${RESULT_LABELS[status] || status}${entry.progress?.hint_used ? " (w)" : ""}`),
+            element("span", `result-chip ${status}`, `${label}${entry.progress?.hint_used ? " (w)" : ""}`),
             element("span", "task-points", taskPoints(entry)));
         const preview = element("div", "task-preview");
         detail.append(summary, preview);

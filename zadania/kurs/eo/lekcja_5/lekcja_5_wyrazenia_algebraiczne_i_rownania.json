@@ -308,7 +308,7 @@
       "prawda/fałsz",
       "typy równań"
     ],
-    "maxPoints": 1
+    "maxPoints": 4
   },
   {
     "difficulty": 2,
@@ -389,7 +389,7 @@
       "prawda/fałsz",
       "typy równań"
     ],
-    "maxPoints": 3
+    "maxPoints": 7
   },
   {
     "difficulty": 1,
