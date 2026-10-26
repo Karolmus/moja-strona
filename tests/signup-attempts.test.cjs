@@ -24,7 +24,7 @@ const context = vm.createContext({
   signupFieldErrors:{contact:{focusTarget:{validity:{valid:true}}}},
   errors:{}
 });
-for (const name of ['validateSignupForm', 'recordFailedSignup']) vm.runInContext(source(name), context);
+for (const name of ['isSignupPhoneValid', 'validateSignupForm', 'recordFailedSignup']) vm.runInContext(source(name), context);
 
 const values = new Map([
   ['course','Matura podstawowa'], ['sessions_per_week','2'],

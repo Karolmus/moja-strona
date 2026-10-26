@@ -475,6 +475,101 @@ h1{
     box-shadow: 0 0 0 3px rgba(214, 93, 93, 0.14);
 }
 
+.signup-contact-fields {
+    gap: 20px;
+}
+
+.signup-field {
+    min-width: 0;
+}
+
+.contact-form .signup-field-frame {
+    min-width: 0;
+    margin: 0;
+    padding: 0 16px 4px;
+    border: 1.5px solid #cbd2dd;
+    border-radius: 6.8px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.signup-field-frame legend {
+    max-width: 100%;
+    padding: 0 6px;
+    margin-left: -4px;
+    line-height: 1.4;
+}
+
+.contact-form .signup-field-label {
+    display: inline;
+    color: #687587;
+    font-size: 14px;
+    font-weight: 400;
+    overflow-wrap: anywhere;
+}
+
+.contact-form .signup-field-frame input,
+.contact-form .signup-field-frame textarea {
+    display: block;
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 2px 12px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #20262d;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.contact-form .signup-field-frame textarea {
+    min-height: 112px;
+}
+
+.contact-form .signup-field-frame:focus-within {
+    border-color: #6788aa;
+    box-shadow: 0 0 0 3px rgba(103, 136, 170, 0.12);
+}
+
+.contact-form .signup-field-frame:has([aria-invalid="true"]) {
+    border-color: #c44338;
+    box-shadow: 0 0 0 3px rgba(196, 67, 56, 0.1);
+}
+
+.signup-field-feedback {
+    min-height: 20px;
+    padding-top: 4px;
+}
+
+.contact-form .form-field-success {
+    display: block;
+    color: #278345;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+.contact-form .form-field-success[hidden] {
+    display: none;
+}
+
+@media (max-width:600px) {
+    .contact-form .signup-field-frame {
+        padding-inline: 12px;
+    }
+
+    .contact-form .signup-field-label {
+        font-size: 13px;
+    }
+
+    .contact-form .signup-field-frame input,
+    .contact-form .signup-field-frame textarea {
+        font-size: 16px;
+    }
+}
+
 .course-options[aria-invalid="true"],
 .weekly-frequency-options[aria-invalid="true"] {
     outline: 1px solid #d65d5d;
@@ -1545,7 +1640,7 @@ h1{
 
     .signup-contact-fields{
         grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:16px 20px;
+        gap:20px;
     }
 
     .signup-field-wide,
@@ -1555,16 +1650,6 @@ h1{
 
     .contact-form label{
         font-size:13px;
-    }
-
-    .contact-form input:not([type="radio"]),
-    .contact-form textarea{
-        border-radius:6.8px;
-        min-height:42px;
-    }
-
-    .contact-form textarea{
-        min-height:90px;
     }
 
     .signup-form-section.is-submitted{
@@ -2176,22 +2261,31 @@ footer{
                             </div>
 
                             <div class="booking-step-content signup-contact-fields">
-                                <label>
-                                    Numer telefonu (pole obowiązkowe)
-                                    <input id="contactInput" name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+(). -]{9,25}" maxlength="25" title="Podaj prawidłowy numer telefonu." aria-describedby="contactError" required>
-                                    <span class="form-field-error" id="contactError" role="status" aria-live="polite"></span>
-                                </label>
+                                <div class="signup-field">
+                                    <fieldset class="signup-field-frame">
+                                        <legend><label class="signup-field-label" for="contactInput">Numer telefonu (wymagany)</label></legend>
+                                        <input id="contactInput" name="contact" type="tel" autocomplete="tel" inputmode="tel" pattern="\+?[0-9\(\).\s\-]{9,25}" maxlength="25" title="Podaj prawidłowy numer telefonu." aria-describedby="contactError contactSuccess" required>
+                                    </fieldset>
+                                    <div class="signup-field-feedback">
+                                        <span class="form-field-error" id="contactError" role="status" aria-live="polite"></span>
+                                        <span class="form-field-success" id="contactSuccess" role="status" aria-live="polite" hidden>Numer telefonu ma poprawny format.</span>
+                                    </div>
+                                </div>
 
-                                <label>
-                                    Nazwa użytkownika Discord ucznia (opcjonalnie)
-                                    <input name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80">
-                                </label>
+                                <div class="signup-field">
+                                    <fieldset class="signup-field-frame">
+                                        <legend><label class="signup-field-label" for="studentDiscordInput">Discord ucznia (opcjonalnie)</label></legend>
+                                        <input id="studentDiscordInput" name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80">
+                                    </fieldset>
+                                </div>
 
-                                <label class="signup-field-wide">
-                                    Preferowany termin (opcjonalnie)
-                                    <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError">
+                                <div class="signup-field signup-field-wide">
+                                    <fieldset class="signup-field-frame">
+                                        <legend><label class="signup-field-label" for="preferredTermInput">Preferowany termin (opcjonalnie)</label></legend>
+                                        <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError">
+                                    </fieldset>
                                     <span class="form-field-error" id="preferredTermError" role="status" aria-live="polite"></span>
-                                </label>
+                                </div>
 
                                 <p class="reservation-note">
                                     Jeśli wybierzesz termin z terminarza, zostanie on zablokowany po wysłaniu zgłoszenia.
@@ -2199,10 +2293,12 @@ footer{
                                     <a href="regulamin-zajec.html">Regulamin korepetycji</a>
                                 </p>
 
-                                <label class="signup-field-wide">
-                                    Dodatkowe informacje.
-                                    <textarea name="message" maxlength="3000"></textarea>
-                                </label>
+                                <div class="signup-field signup-field-wide">
+                                    <fieldset class="signup-field-frame">
+                                        <legend><label class="signup-field-label" for="signupMessageInput">Dodatkowe informacje (opcjonalnie)</label></legend>
+                                        <textarea id="signupMessageInput" name="message" maxlength="3000"></textarea>
+                                    </fieldset>
+                                </div>
                             </div>
                         </div>
 
@@ -2801,6 +2897,29 @@ function focusSignupField(field){
     target.focus({ preventScroll: true });
 }
 
+function isSignupPhoneValid(value){
+    const phone = String(value || "").trim();
+    const digitCount = phone.replace(/\D/g, "").length;
+    return phone.length <= 25
+        && /^\+?[0-9().\s-]+$/.test(phone)
+        && digitCount >= 9
+        && digitCount <= 15;
+}
+
+function updateSignupPhoneFeedback(reportError = false){
+    const input = signupFieldErrors.contact.focusTarget;
+    const valid = isSignupPhoneValid(input.value);
+    document.getElementById("contactSuccess").hidden = !valid;
+
+    if(valid){
+        clearSignupFieldError("contact");
+    } else if(reportError || input.getAttribute("aria-invalid") === "true"){
+        showSignupFieldError("contact", input.value.trim()
+            ? "Podaj prawidłowy numer telefonu."
+            : "Podaj numer telefonu.");
+    }
+}
+
 function validateSignupForm(formData){
     clearSignupFieldErrors();
     let firstInvalidField = "";
@@ -2813,7 +2932,6 @@ function validateSignupForm(formData){
             firstInvalidField = field;
         }
     };
-    const contactInput = signupFieldErrors.contact.focusTarget;
     const contact = String(formData.get("contact") || "").trim();
 
     if(!formData.get("course")){
@@ -2826,7 +2944,7 @@ function validateSignupForm(formData){
 
     if(!contact){
         report("contact", "Podaj numer telefonu.");
-    } else if(!contactInput.validity.valid){
+    } else if(!isSignupPhoneValid(contact)){
         report("contact", "Podaj prawidłowy numer telefonu.", "invalidContact");
     }
 
@@ -2878,11 +2996,17 @@ signupFieldErrors.preferredTerm.focusTarget.addEventListener("input", () => {
     }
 });
 signupFieldErrors.contact.focusTarget.addEventListener("input", () => {
-    const input = signupFieldErrors.contact.focusTarget;
-
-    if(input.value.trim() && input.validity.valid){
-        clearSignupFieldError("contact");
-    }
+    updateSignupPhoneFeedback();
+});
+signupFieldErrors.contact.focusTarget.addEventListener("change", () => {
+    updateSignupPhoneFeedback();
+});
+signupFieldErrors.contact.focusTarget.addEventListener("blur", () => {
+    updateSignupPhoneFeedback(true);
+});
+contactForm.addEventListener("reset", () => {
+    clearSignupFieldErrors();
+    document.getElementById("contactSuccess").hidden = true;
 });
 
 ["input", "change"].forEach(eventName => {
