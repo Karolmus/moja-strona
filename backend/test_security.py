@@ -607,6 +607,23 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(self.contact_count(), 0)
 
+    def test_signup_preserves_optional_full_name_without_changing_phone_contact(self):
+        payload = self.valid_contact_payload()
+        response = self.client.post("/api/contact-messages", json={**payload, "full_name": "  Jan  Kowalski  "})
+        self.assertEqual(response.status_code, 201)
+        message = response.get_json()["message"]
+        self.assertEqual(message["contact"], payload["contact"])
+        self.assertEqual(message["message"], "Imię i nazwisko: Jan Kowalski\n" + payload["message"])
+        with sqlite3.connect(TEST_DB) as connection:
+            stored = connection.execute("SELECT message FROM contact_messages WHERE id = ?", (message["id"],)).fetchone()
+        self.assertEqual(stored[0], message["message"])
+        without_name = self.client.post("/api/contact-messages", json=payload)
+        self.assertEqual(without_name.status_code, 201, "The new field is optional")
+        self.assertEqual(without_name.get_json()["message"]["message"], payload["message"])
+        too_long = self.client.post("/api/contact-messages", json={**payload, "full_name": "A" * 121})
+        self.assertEqual(too_long.status_code, 400)
+        self.assertEqual(self.contact_count(), 2)
+
     def test_incomplete_signup_is_a_separate_admin_category(self):
         payload = {
             "course": "Matura podstawowa",
@@ -614,6 +631,7 @@ class SecurityTests(unittest.TestCase):
             "contact": "",
             "preferred_term": "Wtorek po 16:00",
             "student_discord": "uczen123",
+            "full_name": "Jan Kowalski",
             "selected_terms": ["Wt. 17:00"],
             "missing": ["contact"],
             "form_started_at": int((time.time() - 5) * 1000),
@@ -632,6 +650,7 @@ class SecurityTests(unittest.TestCase):
         self.assertIn("Brakujące lub błędne: numer telefonu", row[3])
         self.assertIn("Liczba zajęć w tygodniu: 2", row[3])
         self.assertIn("Discord ucznia: uczen123", row[3])
+        self.assertIn("Imię i nazwisko: Jan Kowalski", row[3])
         self.assertTrue(row[4])
 
         self.assertEqual(self.client.get("/api/admin/contact-message-counts").status_code, 401)
@@ -1677,6 +1696,97 @@ class SecurityTests(unittest.TestCase):
                 notices = self.client.get("/api/notifications/me", headers=sh).get_json()["notifications"]
                 self.assertEqual(notices[0]["file"], file)
                 self.assertIn("2/2 pkt", notices[0]["message"])
+
+    def test_mp_checkpoint_proofs_are_graded_only_by_the_teacher(self):
+        with app.app_context():
+            student = create_user("mp-checkpoint", "Uczeń MP", "test-password")
+            admin = create_user("mp-checkpoint-admin", "Admin", "test-password", role="admin")
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+        source = "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json"
+        manifest = self.client.get("/api/course-assets/mp/test_lekcje_1_6/test_lekcje_1_6.json", headers=sh)
+        self.assertEqual(manifest.status_code, 200)
+        self.assertEqual([task["file"] for task in manifest.get_json() if task.get("teacherGraded")],
+                         ["9.png", "10.png"])
+        for file, answer in (("9.png", "Reszta z dzielenia: 4"), ("10.png", "Trzeci dzielnik pierwszy: 31")):
+            with self.subTest(file=file):
+                payload = {"source_id": source, "file": file, "task_id": f"{source}:{file}",
+                           "result": "good", "earned_points": 2, "max_points": 999,
+                           "submitted_answer": answer}
+                response = self.client.post("/api/progress", headers=sh, json=payload)
+                self.assertEqual(response.status_code, 201)
+                pending = response.get_json()["progress"]
+                self.assertTrue(pending["teacher_review_pending"])
+                self.assertIsNone(pending["earned_points"])
+                self.assertEqual(pending["max_points"], 2)
+                self.assertEqual(pending["submitted_answer"], answer)
+                endpoint = f"/api/admin/progress/{pending['id']}/score"
+                self.assertEqual(self.client.patch(endpoint, headers=sh, json={"earned_points": 2}).status_code, 403)
+                for invalid in (-1, 0.5, 3):
+                    self.assertEqual(self.client.patch(endpoint, headers=ah, json={"earned_points": invalid}).status_code, 400)
+                for points, result in ((0, "bad"), (1, "medium"), (2, "good")):
+                    graded = self.client.patch(endpoint, headers=ah, json={"earned_points": points})
+                    self.assertEqual(graded.status_code, 200)
+                    item = graded.get_json()["progress"]
+                    self.assertEqual(item["earned_points"], points)
+                    self.assertEqual(item["result"], result)
+                    self.assertFalse(item["teacher_review_pending"])
+                repeated = self.client.post("/api/progress", headers=sh, json={**payload, "earned_points": 0})
+                self.assertEqual(repeated.get_json()["progress"]["earned_points"], 2)
+                notifications = self.client.get("/api/notifications/me", headers=sh).get_json()["notifications"]
+                self.assertEqual(notifications[0]["file"], file)
+                self.assertIn("2/2 pkt", notifications[0]["message"])
+
+    def test_mp_checkpoint_unanswered_proofs_can_be_saved_at_timeout(self):
+        with app.app_context():
+            student = create_user("mp-checkpoint-timeout", "Uczeń MP", "test-password")
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+        source = "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json"
+        for file, submitted in (("9.png", ""), ("10.png", "Trzeci dzielnik pierwszy: ")):
+            payload = {"source_id": source, "file": file, "task_id": f"{source}:{file}",
+                       "result": "bad", "earned_points": 0, "max_points": 2, "submitted_answer": submitted}
+            self.assertEqual(self.client.post("/api/progress", headers=sh,
+                             json={**payload, "earned_points": 2}).status_code, 400)
+            response = self.client.post("/api/progress", headers=sh, json=payload)
+            self.assertEqual(response.status_code, 201)
+            pending = response.get_json()["progress"]
+            self.assertFalse(str(pending["submitted_answer"] or "").split(":", 1)[-1].strip())
+            self.assertIsNone(pending["earned_points"])
+            self.assertTrue(pending["teacher_review_pending"])
+        homework = "zadania/kurs/mp/lekcja_5/lekcja_5_zadania_dowodowe.json"
+        response = self.client.post("/api/progress", headers=sh, json={
+            "source_id": homework, "file": "zd1.png", "task_id": f"{homework}:zd1.png",
+            "result": "bad", "earned_points": 0, "submitted_answer": "",
+        })
+        self.assertEqual(response.status_code, 400, "Normal homework still requires a submission")
+
+    def test_mp_checkpoint_former_automatic_scores_wait_for_teacher_review(self):
+        source = "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json"
+        with app.app_context():
+            student = create_user("mp-checkpoint-legacy", "Uczeń MP", "test-password")
+            admin = create_user("mp-checkpoint-legacy-admin", "Admin", "test-password", role="admin")
+            sh = {"Authorization": "Bearer " + app_module.create_auth_token(student)}
+            ah = {"Authorization": "Bearer " + app_module.create_auth_token(admin)}
+            previous = app_module.record_progress(student["id"], {
+                "source_id": source, "file": "9.png", "task_id": f"{source}:9.png",
+                "level": "matura_podstawowa", "result": "good", "earned_points": 2,
+                "max_points": 2, "submitted_answer": "Reszta z dzielenia: 4",
+            })
+        for endpoint, headers in (("/api/progress/me", sh),
+                                  (f"/api/admin/students/{student['id']}/progress", ah)):
+            progress = self.client.get(endpoint, headers=headers).get_json()["progress"][0]
+            self.assertEqual(progress["id"], previous["id"])
+            self.assertIsNone(progress["earned_points"])
+            self.assertTrue(progress["teacher_review_pending"])
+        with app.app_context():
+            self.assertEqual(app_module.progress_by_id(previous["id"])["earned_points"], 2,
+                             "Reading provisional scores must not rewrite existing records")
+        endpoint = f"/api/admin/progress/{previous['id']}/score"
+        graded = self.client.patch(endpoint, headers=ah, json={"earned_points": 1})
+        self.assertEqual(graded.status_code, 200)
+        progress = self.client.get("/api/progress/me", headers=sh).get_json()["progress"][0]
+        self.assertEqual(progress["earned_points"], 1)
+        self.assertFalse(progress["teacher_review_pending"])
 
     def test_mp6_review_proofs_can_be_graded_without_site_submission(self):
         with app.app_context():

@@ -142,6 +142,7 @@
     "topic": "Reszta z dzielenia",
     "level": "matura_podstawowa",
     "type": "input",
+    "teacherGraded": true,
     "inputs": [
       {
         "label": "Reszta z dzielenia",
@@ -165,6 +166,7 @@
     "topic": "Dzielniki pierwsze",
     "level": "matura_podstawowa",
     "type": "input",
+    "teacherGraded": true,
     "inputs": [
       {
         "label": "Trzeci dzielnik pierwszy",

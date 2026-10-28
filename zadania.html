@@ -774,6 +774,32 @@ body.guest-exam-mode .source-summary-row {
     display: none;
 }
 
+.test-finish-status,
+.test-completion-confirmation {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.test-finish-status {
+    grid-column: 1 / -1;
+}
+
+.test-finish-status.saved,
+.test-completion-confirmation {
+    color: #2f7042;
+}
+
+.test-finish-status.save-error {
+    color: #b42318;
+}
+
+.test-finish-status[hidden],
+.test-completion-confirmation[hidden] {
+    display: none;
+}
+
 .focus-toggle {
     position: fixed;
     right: 16px;
@@ -4279,6 +4305,7 @@ footer {
                     <div class="action-group navigation" role="group" aria-label="Nawigacja po zadaniach">
                         <button class="action-btn nav previous-task-btn" onclick="prevTask()">← Poprzednie zadanie</button>
                         <button class="action-btn nav next-task-btn" onclick="nextTask()">Kolejne zadanie →</button>
+                        <p class="test-finish-status" id="testFinishStatus" role="status" aria-live="polite" hidden></p>
                     </div>
 
                     <div class="action-group check result-buttons" id="resultButtons"></div>
@@ -4422,7 +4449,7 @@ footer {
         <div class="test-summary-result" id="testSummaryResult" hidden>
             <div class="test-summary-values">
                 <div>
-                    <span>Wynik</span>
+                    <span id="testSummaryResultLabel">Wynik</span>
                     <strong class="test-summary-percent" id="testSummaryPercent">0%</strong>
                 </div>
                 <div class="test-summary-time">
@@ -4433,6 +4460,7 @@ footer {
             <div class="test-summary-track" aria-hidden="true">
                 <span class="test-summary-fill" id="testSummaryFill"></span>
             </div>
+            <p class="test-completion-confirmation" id="testCompletionConfirmation" role="status" hidden></p>
         </div>
 
         <div class="homework-summary-stats">
@@ -4547,6 +4575,7 @@ const TEST_DURATION_SECONDS = 60 * 60;
 const testDeadlineFallbacks = new Map();
 const testTimeoutFallbacks = new Set();
 const testFinalizationPromises = new Map();
+const testsAwaitingFinish = new Set();
 const pendingProgressSaveRequests = new Set();
 const failedProgressSaves = new Map();
 let unlockedCourseSourcesPreloadPromise = null;
@@ -4723,6 +4752,8 @@ const TASK_SOURCES = [
         label: "Test 1-6 (A)",
         detail: "60 minut",
         kind: "test",
+        manualTestFinish: true,
+        proofSubmissionNotice: "Pełne rozwiązania zadań dowodowych wyślij na Discordzie.",
         difficultyRating: 5,
         unlocksNextSources: 4
     },
@@ -5232,6 +5263,7 @@ async function finishExpiredTest(sourceId = selectedSource){
             applyCourseAnswerLock();
             renderTaskNavigator();
             updateSourceSummary();
+            testsAwaitingFinish.delete(sourceId);
             completedHomeworkSummarySource = sourceId;
             showHomeworkCompletionSummary(sourceId);
         }
@@ -5243,6 +5275,7 @@ async function finishExpiredTest(sourceId = selectedSource){
         return false;
     }).finally(() => {
         testFinalizationPromises.delete(sourceId);
+        if(currentTask?.manualTestFinish) updateNextTaskButton();
     });
 
     testFinalizationPromises.set(sourceId, finalization);
@@ -5704,6 +5737,7 @@ function loadTaskSource(sourceConfig){
             tags: normalizeTaskTags(task),
             category: sourceMeta.category,
             sourceKind: sourceMeta.kind,
+            manualTestFinish: sourceMeta.manualTestFinish === true,
             coursePart: task.coursePart || task.section || "zadania",
             level: task.level || sourceMeta.level,
             sourceId: sourceMeta.id,
@@ -5968,6 +6002,8 @@ function getSourceMeta(sourceConfig){
         label,
         detail,
         kind: sourceConfig.kind || "",
+        manualTestFinish: sourceConfig.manualTestFinish === true,
+        proofSubmissionNotice: String(sourceConfig.proofSubmissionNotice || ""),
         unlocksNextSources: Math.max(0, Number(sourceConfig.unlocksNextSources) || 0),
         optional: sourceConfig.optional === true,
         difficultyRating: Math.max(0, Math.min(10, Number(sourceConfig.difficultyRating) || 0))
@@ -7434,6 +7470,7 @@ function resetSession(){
 
     completedExamSummarySource = "";
     completedHomeworkSummarySource = "";
+    testsAwaitingFinish.clear();
     seconds = 0;
     updateTimer();
     document.getElementById("progress").innerHTML = "";
@@ -8023,6 +8060,9 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     const overlay = document.getElementById("homeworkSummaryOverlay");
     const dialog = overlay?.querySelector(".homework-summary-dialog");
     const isCheckpoint = getSourceMetaById(sourceId)?.kind === "test";
+    const pendingTeacherReview = isCheckpoint && summary.tasks.some(task =>
+        task.teacherGraded === true && isTeacherReviewPending(task)
+    );
 
     if(!summary.tasks.length) return;
 
@@ -8050,10 +8090,23 @@ function showHomeworkCompletionSummary(sourceId = selectedSource){
     overlay.classList.toggle("test-summary", isCheckpoint);
 
     document.getElementById("testSummaryResult").hidden = !isCheckpoint;
+    const resultLabel = document.getElementById("testSummaryResultLabel");
+    if(resultLabel) resultLabel.textContent = pendingTeacherReview ? "Wynik wstępny" : "Wynik";
     if(isCheckpoint){
         document.getElementById("testSummaryPercent").innerText = `${Math.round(summary.percent)}%`;
         document.getElementById("testSummaryTime").innerText = timerClock(testCompletionDuration(sourceId, summary));
         document.getElementById("testSummaryFill").style.width = `${Math.max(0, Math.min(100, summary.percent))}%`;
+    }
+    const confirmation = document.getElementById("testCompletionConfirmation");
+    if(confirmation){
+        const saved = isCheckpoint && getSourceMetaById(sourceId)?.manualTestFinish === true &&
+            loggedUser?.role === "student" && isHomeworkCompleteOnServer(sourceId);
+        confirmation.hidden = !saved;
+        confirmation.textContent = saved
+            ? ["Wszystkie odpowiedzi zostały zapisane.",
+                pendingTeacherReview ? "Zadania dowodowe oczekują na ocenę nauczyciela." : "",
+                getSourceMetaById(sourceId)?.proofSubmissionNotice].filter(Boolean).join(" ")
+            : "";
     }
 
     document.getElementById("homeworkSummaryGood").innerText = summary.good;
@@ -8132,6 +8185,7 @@ function advanceToHomeworkSummaryIfComplete(){
     }
 
     if(!isHomeworkComplete(currentTask.sourceId)) return false;
+    if(currentTask.manualTestFinish && testsAwaitingFinish.has(currentTask.sourceId)) return false;
     if(currentTask.activityType === "test" && loggedUser?.role === "student" &&
         !isHomeworkCompleteOnServer(currentTask.sourceId)) return false;
     if(completedHomeworkSummarySource === currentTask.sourceId) return false;
@@ -8156,15 +8210,21 @@ function scheduleCompletionSummary(){
 
 function updateNextTaskButton(){
     const button = document.querySelector(".next-task-btn");
+    const lastTestTask = currentTask?.manualTestFinish && isLastTestTask();
+    const finishingTest = currentTask?.manualTestFinish && testFinalizationPromises.has(currentTask.sourceId);
     const shouldShowHomeworkSummary = currentTask?.category === "kurs" &&
+        !currentTask.manualTestFinish &&
         STUDENT_WORK_COURSE_PARTS.includes(currentTask.coursePart) &&
         isHomeworkComplete(currentTask.sourceId) &&
         completedHomeworkSummarySource !== currentTask.sourceId;
 
     if(button){
-        button.innerText = shouldShowHomeworkSummary
+        button.innerText = lastTestTask
+            ? finishingTest ? "Zapisuję odpowiedzi..." : "Zakończ test"
+            : shouldShowHomeworkSummary
             ? "Zobacz podsumowanie →"
             : "Kolejne zadanie →";
+        button.disabled = Boolean(finishingTest);
         const result = currentTaskAnswered && currentTask ? getSavedResult(currentTask) : "";
         const score = result === "medium" ? getTaskScore(currentTask) : null;
         const correct = result === "good" || (
@@ -8177,6 +8237,88 @@ function updateNextTaskButton(){
         );
         button.classList.toggle("ready-next", correct);
     }
+    const status = document.getElementById("testFinishStatus");
+    if(status){
+        status.hidden = !lastTestTask || loggedUser?.role !== "student";
+        if(!status.hidden) updateTestFinishStatus();
+    }
+}
+
+function isLastTestTask(task = currentTask){
+    if(task?.activityType !== "test") return false;
+    const items = getHomeworkSummaryTasks(task.sourceId);
+    return items.length > 0 && getTaskKey(items.at(-1)) === getTaskKey(task);
+}
+
+function updateTestFinishStatus(){
+    const status = document.getElementById("testFinishStatus");
+    if(!status || status.hidden) return;
+    const sourceId = currentTask.sourceId;
+    const failed = [...failedProgressSaves.values()].some(request => request.task.sourceId === sourceId);
+    const pending = pendingProgressSaveRequests.size > 0 || testFinalizationPromises.has(sourceId);
+    const saved = !failed && !pending && isHomeworkCompleteOnServer(sourceId);
+    status.classList.toggle("saved", saved);
+    status.classList.toggle("save-error", failed);
+    status.textContent = failed
+        ? "Nie wszystkie odpowiedzi zostały zapisane. Ponów zapis."
+        : pending
+            ? "Zapisywanie odpowiedzi..."
+            : saved
+                ? "Wszystkie odpowiedzi zostały zapisane."
+                : "Odpowiedz na wszystkie zadania, aby zakończyć test.";
+}
+
+async function finishCurrentTest(){
+    const task = currentTask;
+    if(!task?.manualTestFinish || !isLastTestTask(task) || isTaskLoading) return false;
+    if(!currentTaskAnswered){
+        showMessage("Najpierw zatwierdź odpowiedź na bieżące zadanie.");
+        return false;
+    }
+    const sourceId = task.sourceId;
+    if(testFinalizationPromises.has(sourceId)) return testFinalizationPromises.get(sourceId);
+
+    const finalization = (async () => {
+        await Promise.allSettled([...pendingProgressSaveRequests]);
+        if([...failedProgressSaves.values()].some(request => request.task.sourceId === sourceId)){
+            await retryFailedProgressSaves();
+        }
+        if([...failedProgressSaves.values()].some(request => request.task.sourceId === sourceId)){
+            throw new Error("Nie wszystkie odpowiedzi zostały zapisane. Ponów zapis przed zakończeniem testu.");
+        }
+        const missing = getHomeworkSummaryTasks(sourceId).find(item =>
+            !COURSE_COMPLETION_RESULTS.has(getSavedResult(item))
+        );
+        if(missing){
+            if(selectedSource === sourceId){
+                const index = pool().findIndex(item => getTaskKey(item) === getTaskKey(missing));
+                await drawTask(Math.max(0, index));
+                showMessage("Odpowiedz na wszystkie zadania, aby zakończyć test.");
+            }
+            return false;
+        }
+        if(loggedUser?.role === "student"){
+            await loadStudentProgress({render: false});
+            if(!isHomeworkCompleteOnServer(sourceId)){
+                throw new Error("Nie potwierdzono zapisu wszystkich odpowiedzi. Sprawdź połączenie i spróbuj ponownie.");
+            }
+        }
+        testsAwaitingFinish.delete(sourceId);
+        if(selectedSource === sourceId){
+            completedHomeworkSummarySource = sourceId;
+            showHomeworkCompletionSummary(sourceId);
+        }
+        return true;
+    })().catch(error => {
+        if(selectedSource === sourceId) showMessage(error.message);
+        return false;
+    }).finally(() => {
+        testFinalizationPromises.delete(sourceId);
+        updateNextTaskButton();
+    });
+    testFinalizationPromises.set(sourceId, finalization);
+    updateNextTaskButton();
+    return finalization;
 }
 
 function updateSupportActionHighlights(){
@@ -9766,6 +9908,10 @@ function updateTaskDetails(task, total){
     instruction.hidden = !instructionText;
     instruction.classList?.toggle("external-submission", isExternalSubmission);
     testModeNotice.hidden = !isTest;
+    testModeNotice.textContent = [
+        "Test bez wskazówek, nagrań i omówień.",
+        isTest ? getSourceMetaById(task.sourceId)?.proofSubmissionNotice : ""
+    ].filter(Boolean).join(" ");
     const taskCounter = document.getElementById("taskCounter");
     const metaBox = document.getElementById("metaBox");
     const isHomework = task.coursePart === "praca_domowa";
@@ -9931,6 +10077,10 @@ function nextTask(){
     const p = pool();
 
     if(!p.length) return;
+    if(currentTask?.manualTestFinish && isLastTestTask()){
+        void finishCurrentTest();
+        return;
+    }
     if(advanceToHomeworkSummaryIfComplete()) return;
     if(advanceToNextExamIfComplete()) return;
 
@@ -10084,7 +10234,7 @@ function setupMCQ(){
     } else if(currentTask.teacherGraded === true && currentTask.type === "external_submission"){
         mcq.classList.add("active", "external-submission-task");
         setupExternalTeacherSubmission(mcq);
-    } else if(isProofTask(currentTask)){
+    } else if(isProofTask(currentTask) && !isInputTask(currentTask)){
         mcq.classList.remove("active");
     } else if(isPracticalTask(currentTask)){
         mcq.classList.add("active", "practical-task");
@@ -11789,6 +11939,7 @@ function addProgress(type, scoreData = null){
     }
 
     currentTaskAnswered = true;
+    if(currentTask?.manualTestFinish) testsAwaitingFinish.add(currentTask.sourceId);
 
     const key = getTaskKey(currentTask);
     const taskDuration = getCurrentTaskDurationSeconds();
@@ -11899,6 +12050,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
             })
         });
         pendingProgressSaveRequests.add(request);
+        if(task.manualTestFinish) updateProgressSaveStatus();
         let data;
 
         try {
@@ -11909,7 +12061,6 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
 
         if(!data?.progress) throw new Error("Nie potwierdzono zapisu odpowiedzi.");
         failedProgressSaves.delete(taskKey);
-        updateProgressSaveStatus();
         if(data?.progress){
             savedProgress.unshift(data.progress);
             if(data.progress.result === "video"){
@@ -11922,6 +12073,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
             preloadUnlockedCourseSources();
             scheduleCompletionSummary();
         }
+        updateProgressSaveStatus();
         if(type === "video" && data?.progress?.result !== "video") throw new Error("Nie potwierdzono oznaczenia filmu.");
         return data?.progress;
     } catch(error) {
@@ -11942,6 +12094,7 @@ async function saveProgress(type, scoreData = null, durationSeconds = getCurrent
 function updateProgressSaveStatus(){
     const status = document.getElementById("progressSaveStatus");
     if(status) status.hidden = failedProgressSaves.size === 0;
+    if(currentTask?.manualTestFinish) updateNextTaskButton();
 }
 
 async function retryFailedProgressSaves(){

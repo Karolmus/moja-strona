@@ -51,6 +51,8 @@ assert(!('inputExample' in tasks[8]));
 assert.equal(tasks[9].inputs.length, 1);
 assert.equal(tasks[9].inputs[0].prompt, 'Wpisz trzeci dzielnik pierwszy.');
 assert.equal(tasks[9].inputs[0].answer, '31');
+assert.deepEqual(tasks.filter(task => task.teacherGraded).map(task => task.taskNumber), ['9', '10']);
+assert(tasks.slice(8).every(task => task.type === 'input' && task.maxPoints === 2));
 assert(tasks.slice(6).every(task => !('instruction' in task)), 'Input prompts are not duplicated above the fields');
 
 const answerContext = vm.createContext({});
@@ -196,6 +198,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
     isLoggedInStudent: true,
     loggedUser: {role: 'student'},
     testFinalizationPromises: new Map(),
+    testsAwaitingFinish: new Set([sourcePath]),
     pendingProgressSaveRequests: new Set(),
     failedProgressSaves: new Map(),
     COURSE_COMPLETION_RESULTS: new Set(['good', 'medium', 'bad', 'video']),
@@ -235,6 +238,7 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
   assert.deepEqual(savedAsBad, ['2.png'], 'Only unanswered tasks receive zero points after timeout');
   assert.equal(summaryShown, 1, 'Timeout immediately opens the saved test result');
   assert.equal(expiration.sessionResults.get(`${sourcePath}:2.png`), 'bad');
+  assert.equal(expiration.testsAwaitingFinish.has(sourcePath), false, 'Timeout does not wait for manual confirmation');
 
   assert.match(html, /const TEST_DURATION_SECONDS = 60 \* 60;/);
   assert.match(html, /: `Pozostało \$\{timerClock\(remainingSeconds\)\}`;/);

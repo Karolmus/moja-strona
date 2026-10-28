@@ -5063,15 +5063,18 @@ function renderTestHistory(testGroups, onSelect){
         const date = document.createElement("td");
         const expanded = activeSourceDetailKey === group.key;
         const percent = groupScorePercent(group);
+        const pendingReview = Number(group.pendingReview) || 0;
 
         title.textContent = group.label;
         name.appendChild(title);
-        status.className = `result-pill ${group.completed ? "good" : "missing"}`;
-        status.textContent = group.completed ? "Ukończony" : group.attempted ? `W trakcie · ${group.attempted}/${group.total}` : "Nie rozpoczęto";
+        status.className = `result-pill ${pendingReview ? "teacher-pending" : group.completed ? "good" : "missing"}`;
+        status.textContent = pendingReview ? `Do oceny: ${pendingReview}`
+            : group.completed ? "Ukończony" : group.attempted ? `W trakcie · ${group.attempted}/${group.total}` : "Nie rozpoczęto";
         state.dataset.label = "Status";
         result.dataset.label = "Wynik";
         state.appendChild(status);
         result.textContent = group.attempted && percent !== null ? `${Math.round(percent)}%` : "-";
+        result.title = pendingReview ? "Wynik wstępny - zadania oczekują na ocenę nauczyciela." : "";
         date.appendChild(renderSourceActivity(group));
         row.className = "course-history-row";
         row.dataset.sourceKey = group.key;
@@ -5561,7 +5564,7 @@ function renderSourceDetail(group){
             submitted.className = "answer-comparison teacher-submission";
             submitted.textContent = task.type === "external_submission"
                 ? "Rozwiązanie na Discordzie"
-                : `Uzasadnienie ucznia: ${progressItem?.submitted_answer || "nie zapisano odpowiedzi"}`;
+                : `${task.activityType === "test" ? "Odpowiedź ucznia:" : "Uzasadnienie ucznia:"} ${progressItem?.submitted_answer || "nie zapisano odpowiedzi"}`;
             titleWrap.appendChild(submitted);
             pointsCell.appendChild(teacherScoreControl(progressItem, task));
         } else if(isCourse && progressItem && (progressItem.result === "bad" ||

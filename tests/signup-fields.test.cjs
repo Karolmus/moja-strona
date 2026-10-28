@@ -12,8 +12,8 @@ function source(name) {
 }
 
 test('contact fields have outlined legends and explicit accessible labels', () => {
-  assert.equal([...html.matchAll(/<fieldset class="signup-field-frame">/g)].length, 4);
-  for (const id of ['contactInput', 'studentDiscordInput', 'preferredTermInput', 'signupMessageInput']) {
+  assert.equal([...html.matchAll(/<fieldset class="signup-field-frame">/g)].length, 5);
+  for (const id of ['contactInput', 'signupNameInput', 'studentDiscordInput', 'preferredTermInput', 'signupMessageInput']) {
     assert(html.includes(`class="signup-field-label" for="${id}"`));
     assert(html.includes(`id="${id}"`));
   }
@@ -22,6 +22,36 @@ test('contact fields have outlined legends and explicit accessible labels', () =
   assert.match(html, /\.signup-field-frame:focus-within/);
   assert.match(html, /\.signup-field-frame:has\(\[aria-invalid="true"\]\)/);
   assert.match(html, /@media \(max-width:600px\)[\s\S]*?font-size: 16px;/);
+});
+
+test('the optional full name is beside the phone and sent in completed and incomplete signups', () => {
+  const controls=[...html.matchAll(/<input id="([^"]+)" name="([^"]+)"/g)].map(match=>match[1]);
+  assert.equal(controls[controls.indexOf('contactInput') + 1], 'signupNameInput');
+  const input=html.match(/<input id="signupNameInput"[^>]*>/)[0];
+  assert.match(input,/name="full_name"/);
+  assert.match(input,/autocomplete="name"/);
+  assert.match(input,/maxlength="120"/);
+  assert(!input.includes('required'));
+  assert.equal([...html.matchAll(/full_name: formData\.get\("full_name"\)/g)].length,2);
+});
+
+test('the signup summary shows the entered name and hides the row when empty', () => {
+  const elements={};
+  let fullName='  Jan Kowalski  ';
+  const context=vm.createContext({
+    contactForm:{querySelector:()=>({disabled:false})},
+    FormData:class {get(key){return key==='full_name' ? fullName : null;}},
+    selectedTerms:[],pendingSignupTermsMessage:()=>'',
+    document:{getElementById:id=>elements[id] ||= {textContent:'',hidden:false}}
+  });
+  vm.runInContext(source('updateSignupSummary'),context);
+  context.updateSignupSummary();
+  assert.equal(elements.signupSummaryName.textContent,'Jan Kowalski');
+  assert.equal(elements.signupSummaryNameRow.hidden,false);
+  fullName='';
+  context.updateSignupSummary();
+  assert.equal(elements.signupSummaryName.textContent,'');
+  assert.equal(elements.signupSummaryNameRow.hidden,true);
 });
 
 test('positive phone feedback uses the same number limits as the backend', () => {

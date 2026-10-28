@@ -700,6 +700,15 @@ def true_false_progress_score(task, progress):
     return {"result": result, "earned_points": earned, "max_points": maximum}
 
 
+def pending_teacher_test_score(task, progress):
+    if not task or task.get("teacherGraded") is not True or task.get("activityType") != "test":
+        return None
+    if progress.get("teacher_graded_at"):
+        return None
+    return {"result": "bad", "earned_points": None, "max_points": task.get("maxPoints") or 1,
+            "teacher_review_pending": True}
+
+
 def rescore_true_false_progress(progress):
     manifests = {}
     result = []
@@ -713,7 +722,8 @@ def rescore_true_false_progress(progress):
             tasks = read_course_json(source.removeprefix("zadania/kurs/"))
             manifests[source] = {task.get("file"): task for task in tasks if isinstance(task, dict)} if isinstance(tasks, list) else {}
         task = manifests[source].get(item.get("file"))
-        score = true_false_progress_score(task, item)
+        # A former automatic test score is provisional until a teacher reviews it.
+        score = pending_teacher_test_score(task, item) or true_false_progress_score(task, item)
         result.append({**item, **score} if score else item)
     return result
 
@@ -1795,7 +1805,14 @@ def api_save_progress(user):
                 (int(item.get("minLength") or 1) for item in inputs if isinstance(item, dict)),
                 default=1,
             )
-            if len(submitted_body) < minimum_length:
+            # Save unanswered timed-out proofs without inventing student text.
+            unanswered_test = (
+                task.get("activityType") == "test"
+                and not submitted_body
+                and data["result"] == "bad"
+                and data.get("earned_points") == 0
+            )
+            if len(submitted_body) < minimum_length and not unanswered_test:
                 return api_error("Wpisz pełne uzasadnienie przed wysłaniem odpowiedzi.")
 
             data["result"] = "bad"
@@ -1804,7 +1821,7 @@ def api_save_progress(user):
             data["teacher_review_pending"] = True
 
         progress = record_progress(user["id"], data)
-        score = true_false_progress_score(task, progress)
+        score = pending_teacher_test_score(task, progress) or true_false_progress_score(task, progress)
         if score:
             progress.update(score)
 
@@ -1855,6 +1872,11 @@ def api_create_contact_message():
                 return api_error("Formularz został wysłany zbyt szybko. Spróbuj ponownie.", 429)
 
         data["contact"] = validate_phone_number(data.get("contact"))
+        full_name = " ".join(str(data.get("full_name") or "").split())
+        if len(full_name) > 120:
+            return api_error("Imię i nazwisko może mieć najwyżej 120 znaków.")
+        if full_name:
+            data["message"] = f"Imię i nazwisko: {full_name}\n{str(data.get('message') or '').strip()}".strip()
         reservations = []
         selected_terms = data.get("selected_terms")
 
@@ -1935,6 +1957,7 @@ def api_create_failed_signup_attempt():
             return api_error("Nieprawidłowa próba zgłoszenia.", 400)
 
         fields = {
+            "full_name": ("Imię i nazwisko", 120),
             "course": ("Poziom", 120),
             "sessions_per_week": ("Liczba zajęć w tygodniu", 1),
             "student_discord": ("Discord ucznia", 80),

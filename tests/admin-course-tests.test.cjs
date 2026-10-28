@@ -68,4 +68,10 @@ const expanded=ui.renderTestHistory([test],() => {}).children[1].children[0].tbo
 assert.equal(expanded.length,2);
 assert.equal(expanded[0].attributes['aria-expanded'],'true');
 assert.equal(expanded[1].children[0].children[0].key,test.key,'Details stay directly under the selected test');
+ui.activeSourceDetailKey='';
+const pending=ui.renderTestHistory([{...test,pendingReview:2}],()=>{})
+  .children[1].children[0].tbody.children[0];
+assert.equal(pending.children[1].children[0].textContent,'Do oceny: 2');
+assert(pending.children[1].children[0].className.includes('teacher-pending'));
+assert.match(pending.children[2].title,/Wynik wstępny/);
 console.log('PASS: separate admin test history, unstarted tests, whole percentage results and inline accessible details');

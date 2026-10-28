@@ -2274,12 +2274,19 @@ footer{
 
                                 <div class="signup-field">
                                     <fieldset class="signup-field-frame">
+                                        <legend><label class="signup-field-label" for="signupNameInput">Imię i nazwisko (opcjonalnie)</label></legend>
+                                        <input id="signupNameInput" name="full_name" type="text" autocomplete="name" autocapitalize="words" maxlength="120">
+                                    </fieldset>
+                                </div>
+
+                                <div class="signup-field">
+                                    <fieldset class="signup-field-frame">
                                         <legend><label class="signup-field-label" for="studentDiscordInput">Discord ucznia (opcjonalnie)</label></legend>
                                         <input id="studentDiscordInput" name="student_discord" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80">
                                     </fieldset>
                                 </div>
 
-                                <div class="signup-field signup-field-wide">
+                                <div class="signup-field">
                                     <fieldset class="signup-field-frame">
                                         <legend><label class="signup-field-label" for="preferredTermInput">Preferowany termin (opcjonalnie)</label></legend>
                                         <input id="preferredTermInput" name="preferred_term" maxlength="160" aria-describedby="preferredTermError">
@@ -2317,6 +2324,7 @@ footer{
                                         <div><dt>Liczba zajęć w tygodniu:</dt><dd id="signupSummaryFrequency">Nie wybrano liczby zajęć.</dd></div>
                                         <div><dt>Wybrane terminy</dt><dd id="signupSummaryTerms">Brak wybranych terminów.</dd></div>
                                         <div id="signupSummaryAvailabilityRow" hidden><dt>Preferowany termin</dt><dd id="signupSummaryAvailability"></dd></div>
+                                        <div id="signupSummaryNameRow" hidden><dt>Imię i nazwisko</dt><dd id="signupSummaryName"></dd></div>
                                         <div><dt>Numer telefonu</dt><dd id="signupSummaryPhone">Nie podano numeru.</dd></div>
                                         <div id="signupSummaryDiscordRow" hidden><dt>Discord ucznia</dt><dd id="signupSummaryDiscord"></dd></div>
                                     </dl>
@@ -2834,6 +2842,7 @@ function updateSignupSummary(){
     const sessionsPerWeekCount = Number(frequency);
     const availability = String(formData.get("preferred_term") || "").trim();
     const discord = String(formData.get("student_discord") || "").trim();
+    const fullName = String(formData.get("full_name") || "").trim();
     const pending = pendingSignupTermsMessage(sessionsPerWeekCount, selectedTerms.length);
 
     document.getElementById("signupSummaryCourse").textContent =
@@ -2845,6 +2854,8 @@ function updateSignupSummary(){
         !availability || availability === selectedTerms.join("; ");
     document.getElementById("signupSummaryPhone").textContent =
         String(formData.get("contact") || "").trim() || "Nie podano numeru.";
+    document.getElementById("signupSummaryName").textContent = fullName;
+    document.getElementById("signupSummaryNameRow").hidden = !fullName;
     document.getElementById("signupSummaryDiscord").textContent = discord;
     document.getElementById("signupSummaryDiscordRow").hidden = !discord;
     document.getElementById("signupSummaryPending").textContent = pending;
@@ -2963,6 +2974,7 @@ function recordFailedSignup(formData, missing){
             course: formData.get("course"),
             sessions_per_week: formData.get("sessions_per_week"),
             contact: formData.get("contact"),
+            full_name: formData.get("full_name"),
             preferred_term: formData.get("preferred_term"),
             student_discord: formData.get("student_discord"),
             message: formData.get("message"),
@@ -3058,6 +3070,7 @@ contactForm.addEventListener("submit", async event => {
             method: "POST",
             body: JSON.stringify({
                 contact: formData.get("contact"),
+                full_name: formData.get("full_name"),
                 preferred_term: formData.get("preferred_term"),
                 message: [
                     `Wybrany kurs: ${selectedCourse}`,

@@ -9,7 +9,7 @@ const summary = {tasks: [{file: '1.png'}, {file: '2.png'}], durationSeconds: 123
 const elements = Object.fromEntries([
   'homeworkSummaryTitle', 'homeworkSummaryGood', 'homeworkSummaryBad', 'homeworkSummaryVideo',
   'homeworkSummaryPercent', 'homeworkSummaryOverlay', 'testSummaryResult', 'testSummaryPercent',
-  'testSummaryTime', 'testSummaryFill'
+  'testSummaryTime', 'testSummaryFill', 'testCompletionConfirmation', 'testSummaryResultLabel'
 ].map(id => [id, {innerText: '', hidden: true, dataset: {}, style: {}}]));
 const classes = new Set();
 const overlay = elements.homeworkSummaryOverlay;
@@ -18,11 +18,13 @@ overlay.querySelector = () => ({focus(){}});
 let reviewsLoaded = 0;
 const context = vm.createContext({
   selectedSource: sourceId, TEST_DURATION_SECONDS: 3600,
+  loggedUser: {role:'student'},
+  isHomeworkCompleteOnServer: () => true,
   wasTestTimedOut: () => false,
   storedTestDeadline: () => startedAt + 3600_000,
   getSavedProgressItem: task => ({created_at: task.file === '1.png'
     ? '2026-10-07T10:04:00Z' : '2026-10-07T10:25:17Z'}),
-  getSourceMetaById: () => ({kind: 'test'}),
+  getSourceMetaById: () => ({kind: 'test', manualTestFinish:true, proofSubmissionNotice:'Rozwiązania dowodowe wyślij na Discordzie.'}),
   calculateHomeworkSummary: () => ({...summary, good: 12, bad: 3, video: 0}),
   formatPoints: String,
   updateHomeworkReviewCount: () => reviewsLoaded++,
@@ -50,6 +52,25 @@ assert.equal(elements.testSummaryTime.innerText, '25:17');
 assert.equal(elements.testSummaryFill.style.width, '83.333%');
 assert.equal(reviewsLoaded, 0, 'A test does not load homework review counts');
 assert.equal(overlay.hidden, false);
+assert.equal(elements.testCompletionConfirmation.hidden, false);
+assert.equal(elements.testCompletionConfirmation.textContent,
+  'Wszystkie odpowiedzi zostały zapisane. Rozwiązania dowodowe wyślij na Discordzie.');
+context.isHomeworkCompleteOnServer = () => false;
+context.showHomeworkCompletionSummary(sourceId);
+assert.equal(elements.testCompletionConfirmation.hidden, true, 'Never claim unconfirmed answers were saved');
+context.isHomeworkCompleteOnServer = () => true;
+
+const originalTasks=summary.tasks;
+summary.tasks=[...originalTasks, {file:'9.png',teacherGraded:true}];
+context.isTeacherReviewPending=()=>true;
+context.showHomeworkCompletionSummary(sourceId);
+assert.equal(elements.testSummaryResultLabel.textContent,'Wynik wstępny');
+assert.match(elements.testCompletionConfirmation.textContent,/oczekują na ocenę nauczyciela/);
+context.isTeacherReviewPending=()=>false;
+context.showHomeworkCompletionSummary(sourceId);
+assert.equal(elements.testSummaryResultLabel.textContent,'Wynik');
+assert(!elements.testCompletionConfirmation.textContent.includes('oczekują na ocenę'));
+summary.tasks=originalTasks;
 
 context.calculateHomeworkSummary = () => ({...summary, percent: 100});
 context.showHomeworkCompletionSummary(sourceId);
@@ -81,6 +102,7 @@ context.showHomeworkCompletionSummary(sourceId);
 assert(!classes.has('test-summary'), 'Returning to homework restores its normal summary');
 assert.equal(elements.homeworkSummaryTitle.innerText, 'Podsumowanie zadania domowego');
 assert.equal(elements.testSummaryResult.hidden, true);
+assert.equal(elements.testCompletionConfirmation.hidden, true);
 assert.equal(reviewsLoaded, 1);
 assert.equal(context.sourceScoreLabel({earnedPoints: 5, totalPoints: 8, percent: 62.5}), '5 / 8 pkt');
 

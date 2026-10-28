@@ -29,6 +29,7 @@ for (const name of ['isSignupPhoneValid', 'validateSignupForm', 'recordFailedSig
 const values = new Map([
   ['course','Matura podstawowa'], ['sessions_per_week','2'],
   ['contact',''], ['preferred_term','Wtorek po 16:00'],
+  ['full_name','Jan Kowalski'],
   ['student_discord','uczen123'], ['message','Proszę o kontakt'], ['website','']
 ]);
 const formData = {get:key => values.get(key) || null};
@@ -40,6 +41,7 @@ const payload = JSON.parse(requests[0].options.body);
 assert.equal(payload.course, 'Matura podstawowa');
 assert.equal(payload.sessions_per_week, '2');
 assert.equal(payload.student_discord, 'uczen123');
+assert.equal(payload.full_name, 'Jan Kowalski');
 assert.deepEqual(payload.selected_terms, ['Wt. 17:00']);
 assert.deepEqual(payload.missing, ['contact']);
 assert.equal(payload.form_started_at, 123456789);

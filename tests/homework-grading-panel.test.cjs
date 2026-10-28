@@ -17,7 +17,7 @@ test('only MP5 homework is teacher-graded, with two points and external Discord 
     assert.equal(homework.length, 12);
     assert(homework.every(task => task.teacherGraded === true && task.maxPoints === 2 && task.type === 'external_submission'));
     assert(manifest.filter(task => task.coursePart !== 'praca_domowa').every(task => !task.teacherGraded));
-    assert(student.indexOf('setupExternalTeacherSubmission(mcq);') < student.indexOf('} else if(isProofTask(currentTask))'));
+    assert(student.indexOf('setupExternalTeacherSubmission(mcq);') < student.indexOf('} else if(isProofTask(currentTask) && !isInputTask(currentTask))'));
     assert(student.includes('id="notebookWorkNotice" role="note"'));
     assert(student.includes('Tutaj wprowadź tylko uzyskane odpowiedzi.'));
     assert.match(admin, /@media \(min-width: 901px\)\s*\{\s*\.source-task-table-wrap \{ max-height: none;/);
@@ -137,6 +137,41 @@ test('numeric grading tiles save on one click and prevent duplicate requests whi
     control.listeners.click({stopPropagation(){ stopped++; }});
     control.listeners.keydown({stopPropagation(){ stopped++; }});
     assert.equal(stopped, 2, 'Grading controls do not also open the task preview');
+});
+
+test('MP test proofs expose zero-to-two-point teacher grading for saved answers', async () => {
+    const tasks = JSON.parse(fs.readFileSync('zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json'));
+    const proofs = tasks.filter(task => task.teacherGraded);
+    assert.deepEqual(proofs.map(task => task.file), ['9.png','10.png']);
+    const requests = [];
+    const context = gradingControlContext(async (...args) => requests.push(args));
+    for(const [index, task] of proofs.entries()){
+        const progress = {id:100 + index, teacher_review_pending:true, earned_points:null};
+        const control = context.teacherScoreControl(progress, task);
+        const buttons = control.children.filter(child => child.tag === 'button');
+        assert.deepEqual(buttons.map(button => button.textContent), ['0','1','2']);
+        await buttons[index + 1].listeners.click();
+        assert.equal(requests.at(-1)[0], progress);
+        assert.equal(requests.at(-1)[1], task);
+        assert.equal(requests.at(-1)[2].value, String(index + 1));
+    }
+    const studentContext = vm.createContext({
+        currentTaskAnswered:false, currentTask:null,
+        getInputFields:task => task.inputs, isTeacherGradedTask:()=>true,
+        taskMaxPoints:task => task.maxPoints, disableMCQ(){},
+        addProgress:(result, score)=>{studentContext.submission={result,score};},
+        showMessage:message=>{studentContext.message=message;},
+        isInputFieldAnswerCorrect:()=>{throw new Error('Teacher-reviewed proofs must not be auto-graded');}
+    });
+    vm.runInContext(code(student, 'checkInputAnswer'), studentContext);
+    for(const task of proofs){
+        studentContext.currentTask=task;
+        studentContext.checkInputAnswer({querySelectorAll:()=>[{dataset:{index:'0'},value:task.answer}]});
+        assert.equal(studentContext.submission.result,'bad');
+        assert.equal(studentContext.submission.score.earnedPoints,null);
+        assert.equal(studentContext.submission.score.maxPoints,2);
+        assert.match(studentContext.message,/Oczekuje na ocenę nauczyciela/);
+    }
 });
 
 test('grading tiles recover after a failed save and only offer zero points after watching a solution', async () => {
