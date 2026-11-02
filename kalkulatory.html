@@ -287,8 +287,20 @@ body {
 }
 
 .field {
-    display: grid;
-    gap: 4px;
+    min-width: 0;
+    margin: 0;
+    padding: 0 16px 4px;
+    border: 1.5px solid #cbd2dd;
+    border-radius: 6.8px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field legend {
+    max-width: 100%;
+    padding: 0 6px;
+    margin-left: -4px;
+    line-height: 1.4;
 }
 
 .field.full {
@@ -301,24 +313,44 @@ label {
     font-weight: 600;
 }
 
-.field label { line-height: 1.6; }
+.field label {
+    display: inline-block;
+    color: #687587;
+    font-size: 14px;
+    font-weight: 400;
+    overflow-wrap: anywhere;
+}
 .field-symbol { font-weight: 400; white-space: nowrap; }
 
-input {
+.field input,
+.field select {
+    display: block;
     width: 100%;
-    min-height: 34px;
-    border: 1px solid var(--line);
-    border-radius: 6.8px;
-    padding: 7px 9px;
-    background: white;
-    color: var(--text);
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 2px 12px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #20262d;
+    box-shadow: none;
     font: inherit;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
-input:focus {
-    outline: 3px solid rgba(88, 101, 242, 0.18);
-    outline-offset: 1px;
-    border-color: #b8d3ee;
+.field input:focus,
+.field select:focus { outline: none; }
+
+.field:focus-within {
+    border-color: #6788aa;
+    box-shadow: 0 0 0 3px rgba(103, 136, 170, 0.12);
+}
+
+.field:has([aria-invalid="true"]) {
+    border-color: #c44338;
+    box-shadow: 0 0 0 3px rgba(196, 67, 56, 0.1);
 }
 
 .calc-btn {
@@ -368,6 +400,8 @@ input:focus {
 .calculator-math { font-size: 18px; }
 .calculator-math .katex-display { margin: 4px 0; text-align: left; }
 .result-block { display: grid; align-content: start; gap: 5px; }
+.binomial-result .calculator-math,
+.compound-result .calculator-math { line-height: 2.5; }
 .result-formulas { display: flex; flex-wrap: wrap; gap: 6px 24px; }
 .result-value { margin: 0; }
 .calculator-access { border: 1px solid var(--line); border-radius: 6.8px; padding: 14px; background: white; }
@@ -448,8 +482,8 @@ footer {
     }
 
     .input-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .field { min-width: 0; }
-    input { min-width: 0; min-height: 42px; }
+    .calculator-section[data-category="probability"] .input-grid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .calculator-section[data-category="probability"] .input-grid.three .field:first-child { grid-column: 1 / -1; }
     .calc-btn { min-height: 42px; }
 
     .category-tabs {
@@ -466,6 +500,15 @@ footer {
     .calculator-card {
         padding: 12px;
     }
+}
+
+@media(max-width: 600px) {
+    .field { padding-inline: 12px; }
+    .field label { font-size: 13px; }
+    .field input, .field select { font-size: 16px; }
+    .compound-fields .field:nth-child(-n+2) { grid-column: 1 / -1; }
+    .calculator-section[data-category="geometry"] .input-grid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .calculator-section[data-category="geometry"] .input-grid.three .field:last-child { grid-column: 1 / -1; }
 }
 </style>
 </head>
@@ -504,6 +547,43 @@ footer {
                 <div class="tool-grid">
                     <section class="calculator-card wide">
                         <div class="tool-header">
+                            <h2>Procent składany</h2>
+                            <span class="tool-badge">Procenty</span>
+                        </div>
+                        <p class="tool-description">Oblicza kapitał końcowy i odsetki bez dopłat, podatku oraz opłat.</p>
+
+                        <div class="field-group">
+                            <div class="formula-note calculator-math" data-tex="K=K_0\left(1+\frac{p}{100m}\right)^{mt}"></div>
+                            <div class="input-grid compound-fields">
+                                <fieldset class="field">
+                                    <legend><label for="compoundCapital">Kapitał początkowy (zł) <span class="field-symbol" data-tex="K_0">K<sub>0</sub></span></label></legend>
+                                    <input id="compoundCapital" inputmode="decimal" placeholder="1000">
+                                </fieldset>
+                                <fieldset class="field">
+                                    <legend><label for="compoundRate">Oprocentowanie roczne (%) <span class="field-symbol" data-tex="p">p</span></label></legend>
+                                    <input id="compoundRate" inputmode="decimal" placeholder="5">
+                                </fieldset>
+                                <fieldset class="field">
+                                    <legend><label for="compoundYears">Czas w latach <span class="field-symbol" data-tex="t">t</span></label></legend>
+                                    <input id="compoundYears" inputmode="decimal" placeholder="3">
+                                </fieldset>
+                                <fieldset class="field">
+                                    <legend><label for="compoundFrequency">Kapitalizacja <span class="field-symbol" data-tex="m">m</span></label></legend>
+                                    <select id="compoundFrequency">
+                                        <option value="1">Roczna</option>
+                                        <option value="2">Półroczna</option>
+                                        <option value="4">Kwartalna</option>
+                                        <option value="12">Miesięczna</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <button class="calc-btn" type="button" onclick="calcCompoundInterest()">Oblicz</button>
+                        <div id="res_compound" class="result"></div>
+                    </section>
+                    <section class="calculator-card wide">
+                        <div class="tool-header">
                             <h2>Równanie wielomianowe</h2>
                             <span class="tool-badge">Wielomiany</span>
                         </div>
@@ -513,10 +593,10 @@ footer {
                             <div class="group-title">Postać równania</div>
                             <div class="formula-note calculator-math" data-tex="a_n x^n + \cdots + a_1 x + a_0 = 0"></div>
                             <div class="input-grid single">
-                                <div class="field">
-                                    <label for="coeffs">Współczynniki od najwyższej potęgi, po średniku (stopień do 4)</label>
+                                <fieldset class="field">
+                                    <legend><label for="coeffs">Współczynniki od najwyższej potęgi, po średniku (stopień do 4)</label></legend>
                                     <input id="coeffs" placeholder="1; 0; -1">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -530,6 +610,31 @@ footer {
                 <div class="tool-grid">
                     <section class="calculator-card wide">
                         <div class="tool-header">
+                            <h2>Symbol Newtona</h2>
+                            <span class="tool-badge">Kombinacje</span>
+                        </div>
+                        <p class="tool-description">Oblicza liczbę sposobów wyboru k elementów spośród n, bez uwzględniania kolejności.</p>
+
+                        <div class="field-group">
+                            <div class="group-title">Parametry (liczby całkowite od 0 do 1000)</div>
+                            <div class="formula-note calculator-math" data-tex="\binom{n}{k}=\frac{n!}{k!(n-k)!}"></div>
+                            <div class="input-grid">
+                                <fieldset class="field">
+                                    <legend><label for="binomialN">Liczba elementów <span class="field-symbol" data-tex="n">n</span></label></legend>
+                                    <input id="binomialN" inputmode="numeric" placeholder="10">
+                                </fieldset>
+                                <fieldset class="field">
+                                    <legend><label for="binomialK">Liczba wybieranych <span class="field-symbol" data-tex="k">k</span></label></legend>
+                                    <input id="binomialK" inputmode="numeric" placeholder="3">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <button class="calc-btn" type="button" onclick="calcBinomial()">Oblicz</button>
+                        <div id="res_binomial" class="result"></div>
+                    </section>
+                    <section class="calculator-card wide">
+                        <div class="tool-header">
                             <h2>Schemat Bernoulliego</h2>
                             <span class="tool-badge">Dwumian</span>
                         </div>
@@ -539,20 +644,20 @@ footer {
                             <div class="group-title">Parametry</div>
                             <div class="formula-note calculator-math" data-tex="X \sim B(n,p),\quad P(X\in K)"></div>
                             <div class="input-grid three">
-                                <div class="field">
-                                    <label for="p">Prawdopodobieństwo <span class="field-symbol" data-tex="p">p</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="p">Prawdopodobieństwo <span class="field-symbol" data-tex="p">p</span></label></legend>
                                     <input id="p" inputmode="decimal" placeholder="0,5">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="n">Liczba prób <span class="field-symbol" data-tex="n">n</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="n">Liczba prób <span class="field-symbol" data-tex="n">n</span></label></legend>
                                     <input id="n" inputmode="numeric" placeholder="10">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="k">Liczba sukcesów <span class="field-symbol" data-tex="K">K</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="k">Liczba sukcesów <span class="field-symbol" data-tex="K">K</span></label></legend>
                                     <input id="k" placeholder="1; 2; 3">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -575,15 +680,15 @@ footer {
                             <div class="group-title">Punkt A</div>
                             <div class="formula-note calculator-math" data-tex="A=(x_A,y_A)"></div>
                             <div class="input-grid">
-                                <div class="field">
-                                    <label for="xa">Współrzędna <span class="field-symbol" data-tex="x_A">x<sub>A</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="xa">Współrzędna <span class="field-symbol" data-tex="x_A">x<sub>A</sub></span></label></legend>
                                     <input id="xa" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="ya">Współrzędna <span class="field-symbol" data-tex="y_A">y<sub>A</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="ya">Współrzędna <span class="field-symbol" data-tex="y_A">y<sub>A</sub></span></label></legend>
                                     <input id="ya" inputmode="decimal">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -591,20 +696,20 @@ footer {
                             <div class="group-title">Okrąg</div>
                             <div class="formula-note calculator-math" data-tex="(x-x_S)^2+(y-y_S)^2=r^2"></div>
                             <div class="input-grid three">
-                                <div class="field">
-                                    <label for="xs">Współrzędna <span class="field-symbol" data-tex="x_S">x<sub>S</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="xs">Współrzędna <span class="field-symbol" data-tex="x_S">x<sub>S</sub></span></label></legend>
                                     <input id="xs" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="ys">Współrzędna <span class="field-symbol" data-tex="y_S">y<sub>S</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="ys">Współrzędna <span class="field-symbol" data-tex="y_S">y<sub>S</sub></span></label></legend>
                                     <input id="ys" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="r">Promień <span class="field-symbol" data-tex="r">r</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="r">Promień <span class="field-symbol" data-tex="r">r</span></label></legend>
                                     <input id="r" inputmode="decimal">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -623,20 +728,20 @@ footer {
                             <div class="group-title">Prosta</div>
                             <div class="formula-note calculator-math" data-tex="Ax+By+C=0"></div>
                             <div class="input-grid three">
-                                <div class="field">
-                                    <label for="A">Współczynnik <span class="field-symbol" data-tex="A">A</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="A">Współczynnik <span class="field-symbol" data-tex="A">A</span></label></legend>
                                     <input id="A" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="B">Współczynnik <span class="field-symbol" data-tex="B">B</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="B">Współczynnik <span class="field-symbol" data-tex="B">B</span></label></legend>
                                     <input id="B" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="C">Współczynnik <span class="field-symbol" data-tex="C">C</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="C">Współczynnik <span class="field-symbol" data-tex="C">C</span></label></legend>
                                     <input id="C" inputmode="decimal">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -644,20 +749,20 @@ footer {
                             <div class="group-title">Okrąg</div>
                             <div class="formula-note calculator-math" data-tex="(x-p)^2+(y-q)^2=r^2"></div>
                             <div class="input-grid three">
-                                <div class="field">
-                                    <label for="p1">Środek <span class="field-symbol" data-tex="p">p</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="p1">Środek <span class="field-symbol" data-tex="p">p</span></label></legend>
                                     <input id="p1" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="q1">Środek <span class="field-symbol" data-tex="q">q</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="q1">Środek <span class="field-symbol" data-tex="q">q</span></label></legend>
                                     <input id="q1" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="r1">Promień <span class="field-symbol" data-tex="r">r</span></label>
+                                <fieldset class="field">
+                                    <legend><label for="r1">Promień <span class="field-symbol" data-tex="r">r</span></label></legend>
                                     <input id="r1" inputmode="decimal">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -676,20 +781,20 @@ footer {
                             <div class="group-title">Pierwszy okrąg</div>
                             <div class="formula-note calculator-math" data-tex="(x-x_1)^2+(y-y_1)^2=r_1^2"></div>
                             <div class="input-grid three">
-                                <div class="field">
-                                    <label for="a">Środek <span class="field-symbol" data-tex="x_1">x<sub>1</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="a">Środek <span class="field-symbol" data-tex="x_1">x<sub>1</sub></span></label></legend>
                                     <input id="a" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="b">Środek <span class="field-symbol" data-tex="y_1">y<sub>1</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="b">Środek <span class="field-symbol" data-tex="y_1">y<sub>1</sub></span></label></legend>
                                     <input id="b" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="c">Promień <span class="field-symbol" data-tex="r_1">r<sub>1</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="c">Promień <span class="field-symbol" data-tex="r_1">r<sub>1</sub></span></label></legend>
                                     <input id="c" inputmode="decimal">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -697,20 +802,20 @@ footer {
                             <div class="group-title">Drugi okrąg</div>
                             <div class="formula-note calculator-math" data-tex="(x-x_2)^2+(y-y_2)^2=r_2^2"></div>
                             <div class="input-grid three">
-                                <div class="field">
-                                    <label for="p2">Środek <span class="field-symbol" data-tex="x_2">x<sub>2</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="p2">Środek <span class="field-symbol" data-tex="x_2">x<sub>2</sub></span></label></legend>
                                     <input id="p2" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="q2">Środek <span class="field-symbol" data-tex="y_2">y<sub>2</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="q2">Środek <span class="field-symbol" data-tex="y_2">y<sub>2</sub></span></label></legend>
                                     <input id="q2" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="r2">Promień <span class="field-symbol" data-tex="r_2">r<sub>2</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="r2">Promień <span class="field-symbol" data-tex="r_2">r<sub>2</sub></span></label></legend>
                                     <input id="r2" inputmode="decimal">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -729,15 +834,15 @@ footer {
                             <div class="group-title">Współczynniki kierunkowe</div>
                             <div class="formula-note calculator-math" data-tex="y=a_1x+b_1,\quad y=a_2x+b_2"></div>
                             <div class="input-grid">
-                                <div class="field">
-                                    <label for="a1">Współczynnik <span class="field-symbol" data-tex="a_1">a<sub>1</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="a1">Współczynnik <span class="field-symbol" data-tex="a_1">a<sub>1</sub></span></label></legend>
                                     <input id="a1" inputmode="decimal">
-                                </div>
+                                </fieldset>
 
-                                <div class="field">
-                                    <label for="a2">Współczynnik <span class="field-symbol" data-tex="a_2">a<sub>2</sub></span></label>
+                                <fieldset class="field">
+                                    <legend><label for="a2">Współczynnik <span class="field-symbol" data-tex="a_2">a<sub>2</sub></span></label></legend>
                                     <input id="a2" inputmode="decimal">
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
 
@@ -762,7 +867,7 @@ footer {
 
 <script src="static/auth.js?v=20261020-passive-notices"></script>
 <script src="static/lib/katex/katex.min.js?v=0.16.22"></script>
-<script src="static/script.js?v=20261019-calculators"></script>
+<script src="static/script.js?v=20261102-compound"></script>
 <script>
 function setCalculatorCategory(btn, category){
     document.querySelectorAll(".category-btn")

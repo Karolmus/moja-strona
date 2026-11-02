@@ -77,6 +77,17 @@ function readNumberList(id){
     return values.map(parseUserNumber);
 }
 
+function readBinomialParameter(id){
+    const value = readNumber(id);
+    if(!Number.isInteger(value) || value < 0 || value > 1000){
+        const input = document.getElementById(id);
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        throw new Error("Podaj liczby całkowite od 0 do 1000.");
+    }
+    return value;
+}
+
 function renderPlot(plot){
     if(!plot) return "";
     const parsed = new DOMParser().parseFromString(String(plot), "image/svg+xml");
@@ -132,6 +143,54 @@ async function calculate(targetId, path, readData, output){
 function calcBernoulli(){
     return calculate("res1", "/api/bernoulli", () => ({p: readNumber("p"), n: readNumber("n"), k: readNumberList("k")}),
         result => `<div class="result-block"><b>Prawdopodobieństwo</b>${formula(result.result)}<b>W przybliżeniu</b><span>${escapeCalculatorHTML(String(result.rounded).replace(".", ","))}</span></div>`);
+}
+
+function calcBinomial(){
+    return calculate("res_binomial", "/api/binomial", () => {
+        const n = readBinomialParameter("binomialN");
+        const k = readBinomialParameter("binomialK");
+        if(k > n){
+            const input = document.getElementById("binomialK");
+            input.setAttribute("aria-invalid", "true");
+            input.focus();
+            throw new Error("Liczba k nie może być większa od n.");
+        }
+        return {n, k};
+    }, result => `<div class="result-block binomial-result"><b>Wynik</b>${formula(`\\binom{${result.n}}{${result.k}}=${result.result}`)}</div>`);
+}
+
+function calcCompoundInterest(){
+    return calculate("res_compound", "/api/compound-interest", () => {
+        const fields = [
+            ["compoundCapital", "capital", 1_000_000_000, "Kapitał musi należeć do zakresu od 0 do 1 000 000 000 zł."],
+            ["compoundRate", "annual_rate", 100, "Oprocentowanie musi należeć do zakresu od 0 do 100%."],
+            ["compoundYears", "years", 100, "Czas musi należeć do zakresu od 0 do 100 lat."],
+            ["compoundFrequency", "frequency", 12, "Wybierz częstotliwość kapitalizacji."],
+        ];
+        const data = {};
+        for(const [id, key, maximum, message] of fields){
+            const value = readNumber(id);
+            if(value < 0 || value > maximum || (key === "frequency" && ![1, 2, 4, 12].includes(value))){
+                const input = document.getElementById(id);
+                input.setAttribute("aria-invalid", "true");
+                input.focus();
+                throw new Error(message);
+            }
+            data[key] = value;
+        }
+        const periods = data.years * data.frequency;
+        if(Math.abs(periods - Math.round(periods)) > 1e-10 || (data.years > 0 && Math.round(periods) === 0)){
+            const input = document.getElementById("compoundYears");
+            input.setAttribute("aria-invalid", "true");
+            input.focus();
+            throw new Error("Czas musi obejmować pełną liczbę okresów kapitalizacji.");
+        }
+        return data;
+    }, result => {
+        const tex = value => String(value).replace(".", "{,}");
+        const substitution = `K=${tex(result.capital)}\\left(1+\\frac{${tex(result.annual_rate)}}{100\\cdot ${result.frequency}}\\right)^{${result.periods}}`;
+        return `<div class="result-block compound-result"><b>Kapitał końcowy</b><span>${escapeCalculatorHTML(result.balance.replace(".", ","))} zł</span><b>Odsetki</b><span>${escapeCalculatorHTML(result.interest.replace(".", ","))} zł</span><b>Podstawienie do wzoru</b>${formula(substitution)}</div>`;
+    });
 }
 
 function calcPoly(){

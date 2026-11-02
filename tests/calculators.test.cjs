@@ -120,31 +120,167 @@ test('field variables render as mathematical objects with genuine subscripts and
     p: 'p', n: 'n', k: 'K', xa: 'x_A', ya: 'y_A', xs: 'x_S', ys: 'y_S', r: 'r',
     A: 'A', B: 'B', C: 'C', p1: 'p', q1: 'q', r1: 'r',
     a: 'x_1', b: 'y_1', c: 'r_1', p2: 'x_2', q2: 'y_2', r2: 'r_2', a1: 'a_1', a2: 'a_2',
+    binomialN: 'n', binomialK: 'k',
+    compoundCapital: 'K_0', compoundRate: 'p', compoundYears: 't', compoundFrequency: 'm',
   };
   for (const [id, tex] of Object.entries(symbols)) {
     const label = labels.get(id);
     assert(label, id);
     assert(label.includes(`class="field-symbol" data-tex="${tex}"`), id);
-    assert(page.includes(`<input id="${id}"`), `The label must still focus ${id}`);
+    assert.match(page, new RegExp(`<(?:input|select) id="${id}"`), `The label must still focus ${id}`);
     const rendered = katex.renderToString(tex, {output: 'htmlAndMathml', throwOnError: true, trust: false, strict: 'error'});
     assert.match(rendered, /<math\b/, id);
     if (tex.includes('_')) {
-      assert.match(label, /<sub>[AS12]<\/sub>/, 'Keep real subscripts even before math rendering');
+      assert.match(label, /<sub>[AS012]<\/sub>/, 'Keep real subscripts even before math rendering');
       assert.match(rendered, /<msub>/, id);
       assert(!label.replace(/<[^>]+>/g, '').includes('_'), `No literal underscore should be visible in ${id}`);
     }
   }
 });
 
+test('every calculator input has a signup-style outlined legend without changing field IDs or the plot toggle', () => {
+  const fields = Array.from(page.matchAll(/<fieldset class="field">([\s\S]*?)<\/fieldset>/g), match => match[1]);
+  const inputs = Array.from(page.matchAll(/<(?:input|select) id="([^"]+)"/g), match => match[1]).filter(id => id !== 'includePlots');
+  assert.equal(fields.length, inputs.length);
+  assert.equal(fields.length, 29);
+  for (const field of fields) {
+    const id = field.match(/<(?:input|select) id="([^"]+)"/)[1];
+    assert.match(field, new RegExp(`<legend><label for="${id}">[\\s\\S]+<\\/label><\\/legend>`));
+    assert.equal((field.match(/<(?:input|select)\b/g) || []).length, 1);
+  }
+  assert(!page.includes('<div class="field">'));
+  assert.match(page, /<label class="plot-toggle">\s*<input id="includePlots" type="checkbox">/);
+});
+
+test('outlined calculator fields match signup borders, focus and error feedback while retaining mobile sizing', () => {
+  const signup = fs.readFileSync('zapisy.html', 'utf8');
+  for (const declaration of ['border: 1.5px solid #cbd2dd;', 'padding: 0 16px 4px;',
+    'border-color: #6788aa;', 'box-shadow: 0 0 0 3px rgba(103, 136, 170, 0.12);',
+    'border-color: #c44338;', 'font-size: 18px;', 'font-size: 16px;']) {
+    assert(page.includes(declaration), declaration);
+    assert(signup.includes(declaration), declaration);
+  }
+  assert.match(page, /\.field:focus-within/);
+  assert.match(page, /\.field:has\(\[aria-invalid="true"\]\)/);
+  assert.match(page, /\.field legend \{[^}]*max-width: 100%;/);
+  assert.match(page, /\.field label \{[^}]*overflow-wrap: anywhere;/);
+  assert.match(page, /\.field input:focus,\s*\.field select:focus \{ outline: none; \}/);
+  assert.match(page, /@media\(max-width: 600px\) \{\s*\.field \{ padding-inline: 12px; \}/);
+});
+
 test('each calculator has one short description of its calculation', () => {
   const cards = Array.from(page.matchAll(/<section class="calculator-card(?: wide)?">([\s\S]*?)<\/section>/g), match => match[1]);
-  assert.equal(cards.length, 6);
+  assert.equal(cards.length, 8);
   for (const card of cards) {
     const descriptions = Array.from(card.matchAll(/<p class="tool-description">([^<]+)<\/p>/g), match => match[1]);
     assert.equal(descriptions.length, 1);
     assert(descriptions[0].length < 100, 'Keep the description to a short sentence');
     assert(card.indexOf('tool-description') > card.indexOf('</h2>'));
     assert(card.indexOf('tool-description') < card.indexOf('field-group'));
+  }
+});
+
+test('binomial calculator sends validated integers and renders an exact mathematical result', async () => {
+  const f = calculatorFixture();
+  f.root.apiFetch = async (path, options) => {
+    f.calls.push({path, data:JSON.parse(options.body)});
+    return {n:100, k:50, result:'100891344545564193334812497256', plot:null};
+  };
+  f.node('binomialN').value = '100';
+  f.node('binomialK').value = '50';
+  await f.ctx.calcBinomial();
+  assert.deepEqual(f.calls[0], {path:'/api/binomial', data:{n:100,k:50,include_plot:false}});
+  assert.equal(f.node('res_binomial').dataset.state, 'ready');
+  assert.match(f.node('res_binomial').innerHTML, /\\binom\{100\}\{50\}=100891344545564193334812497256/);
+  assert.equal(f.button.disabled, false);
+  const katex = require('../static/lib/katex/katex.min.js');
+  const tex = String.raw`\binom{100}{50}=100891344545564193334812497256`;
+  assert.match(katex.renderToString(tex, {throwOnError:true,trust:false}), /<math\b/);
+  const section = page.slice(page.indexOf('<section class="calculator-section" data-category="probability"'));
+  assert(section.indexOf('Symbol Newtona') < section.indexOf('Schemat Bernoulliego'));
+  assert.match(section, /onclick="calcBinomial\(\)"/);
+});
+
+test('binomial calculator rejects missing, fractional, negative, too large and reversed arguments before a request', async () => {
+  const f = calculatorFixture();
+  for (const [n, k, field] of [['','2','binomialN'], ['5','', 'binomialK'],
+    ['2.5','1','binomialN'], ['5','1/2','binomialK'], ['-1','0','binomialN'],
+    ['5','-1','binomialK'], ['1001','1','binomialN'], ['5','1001','binomialK'],
+    ['3','4','binomialK'], ['Infinity','0','binomialN']]) {
+    f.node('binomialN').value = n;
+    f.node('binomialK').value = k;
+    await f.ctx.calcBinomial();
+    assert.equal(f.node('res_binomial').dataset.state, 'error', `${n}, ${k}`);
+    assert.equal(f.node(field).attrs['aria-invalid'], 'true');
+    assert.equal(f.button.disabled, false);
+  }
+  assert.equal(f.calls.length, 0);
+  for (const value of ['0', '3,0', '1000']) {
+    f.node('binomialN').value = value;
+    assert.equal(f.ctx.readBinomialParameter('binomialN'), Number(value.replace(',', '.')));
+    assert.equal(f.node('binomialN').attrs['aria-invalid'], undefined);
+  }
+});
+
+test('compound interest accepts decimal commas and shows rounded money with a mathematical substitution', async () => {
+  const f = calculatorFixture();
+  f.root.apiFetch = async (path, options) => {
+    f.calls.push({path, data:JSON.parse(options.body)});
+    return {capital:'1000.5',annual_rate:'5.5',frequency:4,periods:2,balance:'1028.20',interest:'27.70',plot:null};
+  };
+  f.node('compoundCapital').value = '1000,50';
+  f.node('compoundRate').value = '5,5';
+  f.node('compoundYears').value = '0,5';
+  f.node('compoundFrequency').value = '4';
+  await f.ctx.calcCompoundInterest();
+  assert.deepEqual(f.calls[0], {path:'/api/compound-interest',data:{capital:1000.5,annual_rate:5.5,years:0.5,frequency:4,include_plot:false}});
+  const result = f.node('res_compound');
+  assert.equal(result.dataset.state, 'ready');
+  assert.match(result.innerHTML, /1028,20.*zł/);
+  assert.match(result.innerHTML, /27,70.*zł/);
+  assert.match(result.innerHTML, /K=1000\{,\}5\\left/);
+  assert.match(result.innerHTML, /\\right\)\^\{2\}/);
+  const katex = require('../static/lib/katex/katex.min.js');
+  const tex = result.innerHTML.match(/data-tex="([^"]+)"/)[1];
+  assert.match(katex.renderToString(tex,{throwOnError:true,trust:false}), /<math\b/);
+  assert.match(page, /bez dopłat, podatku oraz opłat/);
+  const options = page.match(/<select id="compoundFrequency">([\s\S]*?)<\/select>/)[1];
+  assert.deepEqual(Array.from(options.matchAll(/value="(\d+)"/g), m => Number(m[1])), [1,2,4,12]);
+});
+
+test('compound interest rejects incomplete periods and invalid parameters without sending a request', async () => {
+  const cases = [
+    ['compoundCapital',''], ['compoundCapital','-1'], ['compoundCapital','1000000001'],
+    ['compoundRate','-1'], ['compoundRate','101'], ['compoundRate','abc'],
+    ['compoundYears','-1'], ['compoundYears','101'], ['compoundYears','0.1'],
+    ['compoundYears','0.000000000001'], ['compoundFrequency','0'], ['compoundFrequency','3'],
+  ];
+  for (const [id, value] of cases) {
+    const f = calculatorFixture();
+    for (const [field, valid] of Object.entries({compoundCapital:'1000',compoundRate:'5',compoundYears:'2',compoundFrequency:'12'})) {
+      f.node(field).value = valid;
+    }
+    f.node(id).value = value;
+    await f.ctx.calcCompoundInterest();
+    assert.equal(f.calls.length, 0, `${id}=${value}`);
+    assert.equal(f.node(id).attrs['aria-invalid'], 'true');
+    assert.equal(f.node('res_compound').dataset.state, 'error');
+    assert.equal(f.button.disabled, false);
+  }
+});
+
+test('whole compound periods allow fractions and zero duration without forcing a minimum investment', async () => {
+  for (const [years, frequency] of [['1/3','12'], ['0','1']]) {
+    const f = calculatorFixture();
+    f.root.apiFetch = async (path, options) => {
+      f.calls.push({path, data:JSON.parse(options.body)});
+      return {capital:'0',annual_rate:'0',frequency:Number(frequency),periods:0,balance:'0.00',interest:'0.00',plot:null};
+    };
+    f.node('compoundCapital').value = '0'; f.node('compoundRate').value = '0';
+    f.node('compoundYears').value = years; f.node('compoundFrequency').value = frequency;
+    await f.ctx.calcCompoundInterest();
+    assert.equal(f.calls.length, 1);
+    assert.equal(f.node('res_compound').dataset.state, 'ready');
   }
 });
 

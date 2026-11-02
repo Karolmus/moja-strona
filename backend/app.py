@@ -12,7 +12,7 @@ import threading
 import time
 from collections import defaultdict, deque
 from datetime import datetime, timedelta, timezone
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal, ROUND_HALF_UP, localcontext
 from functools import wraps
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
@@ -2305,6 +2305,69 @@ def api_parent_course_asset(asset_path):
             return api_error("Nie znaleziono materiału kursowego na serwerze.", 404)
         response.headers["Cache-Control"] = "private, no-store"
         return response
+
+    return safe(handler)
+
+
+@app.post("/api/compound-interest")
+@rate_limit(10, 60, "calculator-compound-interest")
+@require_calculators_enabled
+@require_auth
+def api_compound_interest(_user):
+    def handler():
+        data = payload()
+        numbers = {}
+        for field, maximum in (("capital", 1_000_000_000), ("annual_rate", 100), ("years", 100), ("frequency", 12)):
+            if isinstance(data[field], bool):
+                return api_error("Nieprawidłowe dane wejściowe.")
+            numbers[field] = Decimal(str(finite_number(data[field], 0, maximum)))
+        frequency = numbers["frequency"]
+        if frequency not in (1, 2, 4, 12):
+            return api_error("Wybierz częstotliwość kapitalizacji.")
+        raw_periods = numbers["years"] * frequency
+        periods = int(raw_periods.to_integral_value())
+        if abs(raw_periods - periods) > Decimal("1e-10") or (numbers["years"] > 0 and periods == 0):
+            return api_error("Czas musi obejmować pełną liczbę okresów kapitalizacji.")
+
+        with localcontext() as context:
+            context.prec = 80
+            principal, rate = numbers["capital"], numbers["annual_rate"]
+            balance = principal * (1 + rate / (100 * frequency)) ** periods
+            # School compound-interest calculations round only the final amounts.
+            rounded_balance = balance.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+            interest = (balance - principal).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+        return jsonify({
+            "capital": format(principal.normalize(), "f"),
+            "annual_rate": format(rate.normalize(), "f"),
+            "frequency": int(frequency), "periods": periods,
+            "balance": format(rounded_balance, "f"), "interest": format(interest, "f"), "plot": None,
+        })
+
+    return safe(handler)
+
+
+@app.post("/api/binomial")
+@rate_limit(10, 60, "calculator-binomial")
+@require_calculators_enabled
+@require_auth
+def api_binomial(_user):
+    def handler():
+        data = payload()
+        values = []
+        for field in ("n", "k"):
+            raw_value = data[field]
+            if isinstance(raw_value, bool):
+                return api_error("Podaj liczby całkowite od 0 do 1000.")
+            value = finite_number(raw_value, 0, 1000)
+            if not value.is_integer():
+                return api_error("Podaj liczby całkowite od 0 do 1000.")
+            values.append(int(value))
+        n, k = values
+        if k > n:
+            return api_error("Liczba k nie może być większa od n.")
+
+        return jsonify({"n": n, "k": k, "result": str(math.comb(n, k)), "plot": None})
 
     return safe(handler)
 
