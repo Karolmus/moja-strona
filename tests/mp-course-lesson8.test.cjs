@@ -42,6 +42,9 @@ for (const task of tasks) {
   }
   assert(image.readUInt32BE(16) >= 1250, `${task.file}: crop keeps the full task width`);
   assert(image.readUInt32BE(20) >= 100, `${task.file}: crop is not vertically clipped`);
+  if (task.file === 'zd15.png') {
+    assert(image.readUInt32BE(20) >= 360, 'Homework 15 retains the answer row below the prompt');
+  }
   assert.equal(image[25], 2, `${task.file}: image uses RGB color instead of grayscale`);
 }
 
