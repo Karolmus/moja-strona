@@ -3017,6 +3017,20 @@ def delete_contact_message(message_id):
     return item
 
 
+def resolve_review_tasks_for_user(user_id, item_ids):
+    placeholders = ", ".join("?" for _ in item_ids)
+    cursor = execute(
+        f"""
+        UPDATE task_review_items
+        SET is_resolved = ?, resolved_at = ?
+        WHERE user_id = ? AND is_resolved = ? AND id IN ({placeholders})
+        """,
+        (db_bool(True), now_iso(), user_id, db_bool(False), *item_ids),
+    )
+    get_db().commit()
+    return cursor.rowcount
+
+
 def update_review_task_resolution(item_id, is_resolved=True):
     resolved_at = now_iso() if is_resolved else None
     db = get_db()

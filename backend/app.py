@@ -57,6 +57,7 @@ from auth_storage import (
     record_speed_training_result,
     record_progress,
     reset_course_task_records,
+    resolve_review_tasks_for_user,
     release_schedule_reservations,
     register_speed_training_attempt,
     register_auth_db,
@@ -1622,6 +1623,23 @@ def api_admin_student_review_tasks(_admin, user_id):
         "student": student_payload(student),
         "review_tasks": review_tasks_for_user(user_id),
     })
+
+
+@app.patch("/api/admin/students/<int:user_id>/review-tasks")
+@require_admin
+def api_admin_resolve_student_review_tasks(_admin, user_id):
+    student = get_user_by_id(user_id)
+    if not student or student["role"] != "student":
+        return api_error("Nie znaleziono ucznia.", 404)
+
+    data = payload()
+    item_ids = data.get("resolve_ids") if isinstance(data, dict) else None
+    if (not isinstance(item_ids, list) or not 1 <= len(item_ids) <= 1000
+            or any(type(item_id) is not int or not 0 < item_id <= 2**53 - 1 for item_id in item_ids)):
+        return api_error("Podaj prawidłową listę zadań do odznaczenia.")
+
+    resolved = resolve_review_tasks_for_user(user_id, list(dict.fromkeys(item_ids)))
+    return jsonify({"resolved_count": resolved, "review_tasks": review_tasks_for_user(user_id)})
 
 
 @app.delete("/api/admin/students/<int:user_id>/progress")

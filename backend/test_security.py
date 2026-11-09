@@ -1280,6 +1280,52 @@ class SecurityTests(unittest.TestCase):
         review = self.client.get("/api/review-tasks/me", headers=headers).get_json()["review_tasks"]
         self.assertEqual(review[0]["course_part"], "zadania_powtorkowe")
 
+    def test_admin_bulk_review_resolution_preserves_progress_and_other_students(self):
+        with app.app_context():
+            student = create_user("review-bulk@example.test", "Uczeń testowy", "test-password")
+            other = create_user("review-other@example.test", "Inny uczeń", "test-password")
+            admin = create_user("review-admin@example.test", "Admin", "test-password", role="admin")
+            sh, oh, ah = ({"Authorization": "Bearer " + app_module.create_auth_token(user)}
+                          for user in (student, other, admin))
+
+        source = "zadania/kurs/mp/lekcja_3/lekcja_3_wzory_skroconego_mnozenia.json"
+
+        def review(file, headers):
+            task = {"task_id": f"{source}:{file}", "source_id": source, "file": file,
+                    "course_part": "praca_domowa", "result": "good"}
+            response = self.client.post("/api/review-tasks", headers=headers, json=task)
+            self.assertEqual(response.status_code, 201, response.get_json())
+            return response.get_json()["review_task"]["id"], task
+
+        first, task = review("zd5.png", sh)
+        second, _ = review("zd6.png", sh)
+        foreign, _ = review("zd5.png", oh)
+        new, _ = review("zd7.png", sh)
+        self.assertEqual(self.client.post("/api/progress", headers=sh, json=task).status_code, 201)
+        endpoint = f"/api/admin/students/{student['id']}/review-tasks"
+        request_body = {"resolve_ids": [first, first, second, foreign]}
+        self.assertEqual(self.client.patch(endpoint, json=request_body).status_code, 401)
+        self.assertEqual(self.client.patch(endpoint, headers=sh, json=request_body).status_code, 403)
+        for ids in ([], [True], [first, "2"], [-1], [2**63], [first] * 1001):
+            self.assertEqual(self.client.patch(endpoint, headers=ah, json={"resolve_ids": ids}).status_code, 400)
+        self.assertEqual(self.client.patch(f"/api/admin/students/{admin['id']}/review-tasks",
+                                           headers=ah, json=request_body).status_code, 404)
+
+        response = self.client.patch(endpoint, headers=ah, json=request_body)
+        self.assertEqual(response.status_code, 200, response.get_json())
+        self.assertEqual(response.get_json()["resolved_count"], 2)
+        self.assertEqual([item["id"] for item in response.get_json()["review_tasks"]], [new])
+        self.assertEqual(self.client.patch(endpoint, headers=ah, json=request_body).get_json()["resolved_count"], 0)
+        self.assertEqual([item["id"] for item in self.client.get("/api/review-tasks/me", headers=oh)
+                          .get_json()["review_tasks"]], [foreign])
+        self.assertEqual([item["task_id"] for item in self.client.get("/api/progress/me", headers=sh)
+                          .get_json()["progress"]], [task["task_id"]])
+        with sqlite3.connect(TEST_DB) as connection:
+            preserved = connection.execute("SELECT is_resolved, resolved_at FROM task_review_items WHERE id = ?",
+                                           (first,)).fetchone()
+        self.assertEqual(preserved[0], 1)
+        self.assertTrue(preserved[1])
+
     def test_admin_can_reset_only_selected_course_tasks(self):
         with app.app_context():
             student = create_user(

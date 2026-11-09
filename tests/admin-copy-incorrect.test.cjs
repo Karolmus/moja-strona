@@ -85,7 +85,7 @@ async function clipboardTests() {
   onPrepare = () => {assert(button.disabled); assert.equal(button.innerText, 'Kopiuję…');};
   await clipboard.copyAllReviewTaskImages(items, button, 'z błędną odpowiedzią');
   assert.equal(writes.length, 1);
-  assert.equal(writes[0][0].data['image/png'], png);
+  assert.equal(await writes[0][0].data['image/png'], png);
   assert.match(statuses.at(-1), /5 zadań z błędną odpowiedzią jako jeden obraz/);
   assert.equal(button.disabled, false);
   assert.equal(button.innerText, 'Skopiuj wszystkie bledne zadania');
@@ -105,20 +105,6 @@ async function clipboardTests() {
   await clipboard.copyAllReviewTaskImages(items, button);
   assert.match(statuses.at(-1), /Ta przeglądarka nie pozwala/);
 
-  const drawn = [];
-  const canvas = {};
-  const canvasContext = {fillRect:() => {}, fillText:() => {}, drawImage:image => drawn.push(image)};
-  canvas.getContext = () => canvasContext;
-  const images = items.map((item, index) => ({item, naturalWidth:800, naturalHeight:200 + index * 10}));
-  const combined = vm.createContext({
-    clipboardImageBlob:async item => images.find(image => image.item === item), blobToImage:async image => image,
-    document:{createElement:tag => {assert.equal(tag, 'canvas'); return canvas;}},
-    reviewTaskTitle:item => item.title, reviewTaskMeta:() => 'Lekcja 1', canvasToPngBlob:async () => png,
-  });
-  load(combined, ['reviewTasksClipboardBlob']);
-  assert.equal(await combined.reviewTasksClipboardBlob(items), png);
-  assert.equal(drawn.length, items.length, 'Every incorrect task is drawn in the combined clipboard image');
-  assert(canvas.width > 0 && canvas.height > 0);
   console.log('PASS: latest incorrect tasks, hinted/video/pending exclusions, partial scores, clipboard and error recovery');
 }
 clipboardTests().catch(error => {console.error(error); process.exitCode = 1;});

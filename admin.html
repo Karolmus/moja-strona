@@ -1008,8 +1008,30 @@ th {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 10px;
 }
+
+.review-heading-actions,
+.review-confirm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.review-confirm-dialog {
+    width: min(400px, calc(100% - 24px));
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 6.8px;
+    background: var(--surface);
+    color: var(--text);
+}
+
+.review-confirm-dialog::backdrop { background: rgba(22, 32, 44, .35); }
+.review-confirm-dialog h2 { margin: 0 0 8px; font-size: 16px; }
+.review-confirm-dialog p { margin: 0 0 10px; font-size: 13px; overflow-wrap: anywhere; }
+.review-confirm-actions { justify-content: flex-end; margin-top: 12px; }
 
 .review-heading .btn {
     min-height: 30px;
@@ -2558,6 +2580,17 @@ footer {
         </div>
     </section>
 </main>
+<dialog class="review-confirm-dialog" id="reviewResolveDialog" aria-labelledby="reviewResolveTitle" aria-describedby="reviewResolveDetails reviewResolveScope">
+    <form method="dialog">
+        <h2 id="reviewResolveTitle">Odznaczyć wszystkie zadania do omówienia?</h2>
+        <p id="reviewResolveDetails"></p>
+        <p id="reviewResolveScope">Zadania znikną z tej listy. Odpowiedzi, oceny i postępy pozostaną bez zmian.</p>
+        <div class="review-confirm-actions">
+            <button class="btn secondary" value="cancel" autofocus>Anuluj</button>
+            <button class="btn danger" value="resolve">Odznacz wszystkie</button>
+        </div>
+    </form>
+</dialog>
 <footer class="site-footer" aria-label="Dane firmy">
     <div class="footer-business">© <span data-current-year>2026</span> Karol Musioł Delta Sigma</div>
     <div>Karol Musioł Delta Sigma</div>
@@ -5998,70 +6031,150 @@ function prefetchReviewTaskImage(item){
     clipboardImageBlob(item).catch(() => {});
 }
 
+function reviewTaskPrintHeader(item){
+    const task = catalogTaskForProgress(item);
+    const part = task?.coursePart || item.course_part;
+    const level = task?.level || item.level;
+    const isTest = task?.sourceKind === "test";
+    const isCourse = task ? task.category === "kurs" : isProtectedCoursePath(progressSourceId(item));
+    const checkpoint = task?.theme === "checkpoint-blue" || isTest;
+    let title = reviewTaskTitle(item).replace(/praca domowa/gi, "zadanie domowe");
+    const partLabels = {praca_domowa: "zadanie domowe", zadania_powtorkowe: "zadanie powtórkowe"};
+    if(task && partLabels[part] && !isTest){
+        const section = adminCatalogCache.get(task.sourceId)?.filter(candidate => candidate.coursePart === part) || [];
+        const ordinal = section.findIndex(candidate => candidate.file === task.file) + 1;
+        const explicit = String(task.taskNumber || "");
+        const number = /^\d+(?:\.\d+)*$/.test(explicit) ? explicit : ordinal;
+        if(number) title = `${task.sourceLabel} - ${partLabels[part]} ${number}`;
+    }
+    if(task && !isCourse && !task.title && !item.title && task.sourceDetail){
+        title += ` • ${task.sourceDetail.split("/").map(part => part.trim()).join(" • ")}`;
+    }
+    const maxPoints = numberValue(task?.maxPoints ?? item.max_points);
+    const percent = taskCompletionPercent(task);
+    const difficulty = percent !== null ? (percent >= 80 ? 1 : percent >= 60 ? 2 : percent >= 40 ? 3 : percent >= 20 ? 4 : 5)
+        : Math.round(Math.min(5, Math.max(1, Number(task?.difficulty || item.difficulty) || 1)));
+    const homework = part === "praca_domowa" && !checkpoint;
+    const gradient = checkpoint ? [[0, "#49add6"], [.42, "#a8daee"]]
+        : homework ? [[0, "#d99595"], [.36, "#e7b4b4"]]
+        : part === "zadania_powtorkowe" ? [[0, "#ecd0b2"], [.42, "#f6e8d9"]]
+        : part === "zadania_praktyczne" || task?.type === "practical" || task?.practical ? [[0, "#9dbbd4"], [.42, "#d9e8f3"]]
+        : [[0, level === "egzamin_osmoklasisty" ? "#b2d699" : "#d5b8ea"]];
+    return {
+        title, gradient,
+        topic: isTest ? "" : String(task?.topic || item.topic || "").replace(/-/g, " ").replace(/\s+/g, " ").trim(),
+        points: maxPoints > 0 ? `0-${formatPoints(maxPoints)} pkt` : "",
+        stars: isCourse ? "" : "★".repeat(difficulty) + "☆".repeat(5 - difficulty),
+    };
+}
+
+function wrapReviewHeading(context, text, width){
+    const lines = [];
+    let line = "";
+    for(const word of text.split(/\s+/).filter(Boolean)){
+        const next = line ? `${line} ${word}` : word;
+        if(line && context.measureText(next).width > width){
+            lines.push(line);
+            line = word;
+        } else {
+            line = next;
+        }
+    }
+    if(line) lines.push(line);
+    return lines;
+}
+
 async function reviewTasksClipboardBlob(items){
     const blobs = await Promise.all(items.map(clipboardImageBlob));
     const images = await Promise.all(blobs.map(blobToImage));
-    const padding = 24;
-    const gap = 28;
-    const headingHeight = 54;
-    const maxContentWidth = 1400;
-    const entries = images.map((image, index) => {
-        const naturalWidth = image.naturalWidth || image.width;
-        const naturalHeight = image.naturalHeight || image.height;
-        const scale = Math.min(1, maxContentWidth / naturalWidth);
-
-        return {
-            image,
-            item: items[index],
-            width: Math.round(naturalWidth * scale),
-            height: Math.round(naturalHeight * scale)
-        };
-    });
-    const contentWidth = Math.max(...entries.map(entry => entry.width));
-    const width = contentWidth + padding * 2;
-    const height = padding * 2
-        + entries.reduce((sum, entry) => sum + headingHeight + entry.height, 0)
-        + gap * Math.max(0, entries.length - 1);
+    const contentWidth = Math.max(640, ...images.map(image => image.naturalWidth));
+    const scale = Math.max(1, contentWidth / 1000);
+    const padding = Math.round(18 * scale);
+    const inset = Math.round(14 * scale);
+    const gap = Math.round(12 * scale);
+    const rowHeight = Math.round(30 * scale);
+    const square = Math.round(24 * scale);
+    const scratchHeight = 6 * square;
+    const font = `600 ${Math.round(19 * scale)}px Poppins, Arial, sans-serif`;
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
-    let y = padding;
-
+    context.font = font;
+    const innerWidth = contentWidth - inset * 2;
+    const entries = images.map((image, index) => {
+        const header = reviewTaskPrintHeader(items[index]);
+        const pointsWidth = header.points ? Math.ceil(context.measureText(header.points).width) + inset * 2 : 0;
+        const starsWidth = header.stars ? Math.ceil(context.measureText(header.stars).width) : 0;
+        const badgesWidth = (pointsWidth ? pointsWidth + gap : 0) + (starsWidth ? starsWidth + gap : 0);
+        const singleRow = context.measureText(header.title).width + context.measureText(header.topic).width
+            + (header.topic ? gap : 0) + badgesWidth <= innerWidth;
+        const titleLines = wrapReviewHeading(context, header.title, innerWidth);
+        const topicLines = wrapReviewHeading(context, header.topic, innerWidth - badgesWidth);
+        const rows = singleRow ? 1 : titleLines.length + Math.max(topicLines.length, badgesWidth ? 1 : 0);
+        return {image, header, pointsWidth, starsWidth, badgesWidth, singleRow, titleLines, topicLines, height: 2 * inset + rows * rowHeight};
+    });
+    const width = contentWidth + 2 * padding;
+    const height = 2 * padding + entries.reduce((sum, entry) => sum + entry.height + entry.image.naturalHeight
+        + scratchHeight + 2 * gap, 0) + (entries.length - 1) * padding;
+    if(width > 32767 || height > 32767 || width * height > 64_000_000){
+        throw new Error("Zestaw jest za duży do skopiowania w pełnej jakości. Skopiuj zadania lekcjami.");
+    }
     canvas.width = width;
     canvas.height = height;
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, width, height);
+    context.font = font;
+    context.textBaseline = "middle";
+    let y = padding;
 
-    entries.forEach((entry, index) => {
-        const meta = reviewTaskMeta(entry.item);
-
-        context.fillStyle = "#1f2a36";
-        context.font = "700 22px Arial, sans-serif";
-        context.textBaseline = "top";
-        context.fillText(reviewTaskTitle(entry.item), padding, y, contentWidth);
-
-        if(meta){
+    for(const entry of entries){
+        const {image, header, pointsWidth, starsWidth, badgesWidth, singleRow, titleLines, topicLines} = entry;
+        const gradient = context.createLinearGradient(padding, y, padding + contentWidth, y);
+        for(const [stop, color] of header.gradient) gradient.addColorStop(stop, color);
+        gradient.addColorStop(1, "#ffffff");
+        context.beginPath();
+        context.roundRect(padding, y, contentWidth, entry.height, Math.round(7 * scale));
+        context.fillStyle = gradient;
+        context.fill();
+        context.strokeStyle = "#172638";
+        context.lineWidth = Math.max(1, scale);
+        context.stroke();
+        const firstRow = y + inset + rowHeight / 2;
+        const metaRow = singleRow ? firstRow : firstRow + titleLines.length * rowHeight;
+        const left = padding + inset;
+        const right = padding + contentWidth - inset;
+        context.fillStyle = "#172638";
+        titleLines.forEach((line, index) => context.fillText(line, left, firstRow + index * rowHeight, innerWidth));
+        context.fillStyle = "#172638";
+        topicLines.forEach((line, index) => context.fillText(line,
+            singleRow ? right - badgesWidth - context.measureText(line).width : left,
+            metaRow + index * rowHeight, innerWidth - badgesWidth));
+        if(header.points){
+            const x = right - badgesWidth + gap;
+            context.beginPath();
+            context.roundRect(x, metaRow - rowHeight / 2, pointsWidth, rowHeight, rowHeight / 2);
+            context.fillStyle = "rgba(255, 255, 255, 0.78)";
+            context.fill();
+            context.strokeStyle = "#d9e1ea";
+            context.stroke();
             context.fillStyle = "#64748b";
-            context.font = "16px Arial, sans-serif";
-            context.fillText(meta, padding, y + 28, contentWidth);
+            context.fillText(header.points, x + inset, metaRow);
         }
-
-        y += headingHeight;
-        context.drawImage(
-            entry.image,
-            Math.round((width - entry.width) / 2),
-            y,
-            entry.width,
-            entry.height
-        );
-        y += entry.height;
-
-        if(index < entries.length - 1){
-            y += Math.round(gap / 2);
-            context.fillStyle = "#dbe3ec";
-            context.fillRect(padding, y, contentWidth, 1);
-            y += Math.round(gap / 2);
+        if(header.stars){
+            context.fillStyle = "#866522";
+            context.fillText(header.stars, right - starsWidth, metaRow);
         }
-    });
+        y += entry.height + gap;
+        // A three-argument draw keeps each source image at its native resolution.
+        context.drawImage(image, padding + Math.round((contentWidth - image.naturalWidth) / 2), y);
+        y += image.naturalHeight + gap;
+        const columns = Math.floor(contentWidth / square);
+        const gridWidth = columns * square;
+        const gridX = padding + Math.round((contentWidth - gridWidth) / 2);
+        context.fillStyle = "#d9e5ef";
+        for(let row = 0; row <= 6; row++) context.fillRect(gridX, y + row * square, gridWidth, 1);
+        for(let column = 0; column <= columns; column++) context.fillRect(gridX + column * square, y, 1, scratchHeight);
+        y += scratchHeight + padding;
+    }
 
     return canvasToPngBlob(canvas);
 }
@@ -6100,13 +6213,9 @@ async function copyAllReviewTaskImages(items, control, description = "do omówie
     control.innerText = "Kopiuję…";
 
     try {
-        const pngBlob = await reviewTasksClipboardBlob(items);
-
-        await navigator.clipboard.write([
-            new ClipboardItem({
-                "image/png": pngBlob
-            })
-        ]);
+        const pngBlob = reviewTasksClipboardBlob(items);
+        pngBlob.catch(() => {});
+        await Promise.all([navigator.clipboard.write([new ClipboardItem({"image/png": pngBlob})]), pngBlob]);
         showStatus(`Skopiowano ${items.length} ${items.length === 1 ? "zadanie" : "zadań"} ${description} jako jeden obraz.`);
     } catch(error) {
         showStatus(error.message || "Nie udało się skopiować zadań do schowka.");
@@ -6138,9 +6247,18 @@ function renderReviewTasks(items, student){
     }
 
     const copyAll = button("Kopiuj wszystkie", "btn secondary", () => copyAllReviewTaskImages(items, copyAll));
+    const actions = document.createElement("div");
+    const status = document.createElement("div");
+    const resolveAll = button("Odznacz wszystkie", "btn secondary", () => resolveAllReviewTasks(items, student, resolveAll, status));
 
-    copyAll.title = "Skopiuj wszystkie zadania do omówienia jako jeden obraz.";
-    headingRow.appendChild(copyAll);
+    copyAll.title = "Skopiuj wszystkie zadania do omówienia z brudnopisem pod każdym zadaniem.";
+    actions.className = "review-heading-actions";
+    actions.append(copyAll, resolveAll);
+    headingRow.appendChild(actions);
+    status.className = "review-empty";
+    status.setAttribute("role", "status");
+    status.hidden = true;
+    reviewTasks.appendChild(status);
 
     const list = document.createElement("div");
     list.className = "review-task-list";
@@ -6202,6 +6320,43 @@ function loadStudentWork(student){
         studentWorkRequests.set(student.id, pending);
     }
     return studentWorkRequests.get(student.id);
+}
+
+function confirmReviewResolution(student, count){
+    const dialog = document.getElementById("reviewResolveDialog");
+    if(dialog.open) return Promise.resolve(false);
+    document.getElementById("reviewResolveDetails").textContent = `${student.display_name} · Liczba zadań: ${count}`;
+    dialog.returnValue = "";
+    return new Promise(resolve => {
+        dialog.addEventListener("close", () => resolve(dialog.returnValue === "resolve"), {once: true});
+        dialog.showModal();
+    });
+}
+
+async function resolveAllReviewTasks(items, student, control, status){
+    if(!items.length || control.disabled || activeProgressStudentId !== student.id) return;
+    if(!await confirmReviewResolution(student, items.length) || activeProgressStudentId !== student.id) return;
+    control.disabled = true;
+    status.hidden = true;
+    try {
+        const data = await apiFetch(`/api/admin/students/${student.id}/review-tasks`, {
+            method: "PATCH", body: JSON.stringify({resolve_ids: items.map(item => item.id)})
+        });
+        if(activeProgressStudentId === student.id){
+            activeReviewItems = data.review_tasks.filter(isIndependentWorkProgress);
+            renderReviewTasks(activeReviewItems, student);
+            renderSourceProgress(studentProgressCache.get(student.id) || [], student, activeReviewItems);
+        }
+        const currentStudent = students.find(item => item.id === student.id);
+        if(currentStudent) currentStudent.review_count = data.review_tasks.length;
+        renderStudents();
+        showStatus(`Odznaczono zadania: ${data.resolved_count}.`);
+    } catch(error) {
+        status.textContent = error.message || "Nie udało się odznaczyć zadań.";
+        status.hidden = false;
+    } finally {
+        control.disabled = false;
+    }
 }
 
 async function resolveReviewTask(item, student){
