@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
+const vm = require('node:vm');
 
 const sourcePath = 'zadania/kurs/mp/lekcja_8/lekcja_8_funkcja_liniowa.json';
 const sourceDir = path.dirname(sourcePath);
@@ -27,6 +28,26 @@ const translatedDomain = [0, 5].map(endpoint => endpoint - 2);
 assert.deepEqual(translatedDomain, [-2, 3]);
 assert.equal(newReviewTask.answer, 'D');
 assert.equal(tasks.filter(task => task.coursePart !== 'zadania').length, 28);
+
+function courseLessons(file, name) {
+  const text = fs.readFileSync(file, 'utf8');
+  const config = text.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n\\]);`));
+  assert(config, `${file}: source list exists`);
+  return Array.from(vm.runInNewContext(config[1])).filter(source =>
+    source.category === 'kurs' && /^zadania\/kurs\/(?:mp|mr|eo)\/lekcja_\d+\//.test(source.path));
+}
+
+const lessons = courseLessons('zadania.html', 'TASK_SOURCES');
+assert(lessons.some(lesson => lesson.path === sourcePath), 'Lesson 8 is published in the course');
+for (const [file, name] of [['admin.html', 'ADMIN_TASK_SOURCES'], ['profil.html', 'PROFILE_SOURCES']]) {
+  const catalog = courseLessons(file, name);
+  assert.deepEqual(catalog.map(lesson => lesson.path).sort(), lessons.map(lesson => lesson.path).sort(),
+    `${file}: every numbered course lesson must appear in the progress catalog exactly once`);
+  const lesson = catalog.find(source => source.path === sourcePath);
+  assert.equal(lesson.label, 'Lekcja 8');
+  assert.equal(lesson.detail, 'Funkcja liniowa');
+  assert.equal(lesson.level, 'matura_podstawowa');
+}
 
 for (const task of tasks) {
   const imagePath = path.join(sourceDir, task.file);
