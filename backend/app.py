@@ -68,6 +68,7 @@ from auth_storage import (
     revoke_user_auth,
     speed_training_leaderboard,
     speed_training_history,
+    student_speed_training_results,
     site_analytics_summary,
     site_analytics_today,
     sync_admin_user,
@@ -1578,6 +1579,18 @@ def api_admin_student_progress(_admin, user_id):
     return jsonify(data)
 
 
+@app.get("/api/admin/students/<int:user_id>/speed-training")
+@require_admin
+def api_admin_student_speed_training(_admin, user_id):
+    student = get_user_by_id(user_id)
+    if not student or student["role"] != "student":
+        return api_error("Nie znaleziono ucznia.", 404)
+    before = request.args.get("before")
+    if before is not None and (not re.fullmatch(r"[1-9][0-9]{0,18}", before) or int(before) > 2**63 - 1):
+        return api_error("Nieprawidłowa strona wyników.")
+    return jsonify(student_speed_training_results(user_id, int(before) if before is not None else None))
+
+
 @app.post("/api/admin/task-catalog")
 @require_admin
 def api_admin_task_catalog(_admin):
@@ -2408,17 +2421,32 @@ def api_bernoulli(_user):
         if any(not value.is_integer() for value in numbers):
             raise ValueError("Liczba sukcesów musi być całkowita.")
         k_values = sorted({int(value) for value in numbers})
+        if not k_values:
+            raise ValueError("Podaj co najmniej jedną liczbę sukcesów.")
 
         if any(value < 0 or value > n for value in k_values):
             raise ValueError("Wartości k muszą należeć do zakresu 0-n.")
 
         result = bernoulli(p, n, k_values)
+        p_tex = format(Decimal(str(p)).normalize(), "f").replace(".", "{,}")
+        terms = []
+        for k in k_values:
+            factors = [rf"\binom{{{n}}}{{{k}}}"]
+            # Zero exponents contribute 1; omit them to avoid displaying 0^0.
+            if k:
+                factors.append(rf"\left({p_tex}\right)^{{{k}}}")
+            if n - k:
+                factors.append(rf"\left(1-{p_tex}\right)^{{{n-k}}}")
+            terms.append(r"\cdot ".join(factors))
+        event = f"X={k_values[0]}" if len(k_values) == 1 else r"X\in\{" + ",".join(map(str, k_values)) + r"\}"
+        calculation = rf"P({event})=" + "+".join(terms) + "=" + sp.latex(result)
         rounded_result = Decimal(str(sp.N(result, 20))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
         plot = bernoulli_plot(p, n, k_values) if wants_plot(data) else None
 
         return jsonify({
             "result": sp.latex(result),
             "rounded": str(rounded_result),
+            "calculation": calculation,
             "plot": plot,
         })
 

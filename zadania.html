@@ -600,38 +600,70 @@ body.guest-exam-mode .source-summary-row {
     width: fit-content;
 }
 
-.mode-btn {
-    width: auto;
-    min-height: 28px;
-    padding: 4px 9px;
-    border-radius: 5.95px;
-    font-size: 12px;
-}
-
+.mode-btn,
 .tag-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
     width: auto;
-    min-height: 28px;
-    border: 1px solid var(--line);
+    min-width: 96px;
+    min-height: 36px;
+    padding: 7px 12px;
+    border: 1px solid #8aa6c3;
     border-radius: 5.95px;
-    background: white;
-    color: var(--text);
+    background: var(--blue-soft);
+    color: #244c6b;
     cursor: pointer;
     font: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 9px;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 600;
     transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.tag-toggle-btn:hover {
-    background: #f3f6fa;
-    border-color: #b9c6d4;
+.mode-btn::before,
+.tag-toggle-btn::before {
+    content: "";
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    background: currentColor;
 }
 
-.tag-toggle-btn.active {
-    background: var(--navy);
-    border-color: var(--navy);
+.mode-btn::before {
+    -webkit-mask: url("static/icons/shuffle.svg") center / contain no-repeat;
+    mask: url("static/icons/shuffle.svg") center / contain no-repeat;
+}
+
+.tag-toggle-btn::before {
+    -webkit-mask: url("static/icons/tag.svg") center / contain no-repeat;
+    mask: url("static/icons/tag.svg") center / contain no-repeat;
+}
+
+.exam-tools-row .mode-btn:hover:not(:disabled),
+.exam-tools-row .tag-toggle-btn:hover {
+    background: #dbe9f6;
+    border-color: #557a9b;
+}
+
+.exam-tools-row .mode-btn.active,
+.exam-tools-row .tag-toggle-btn.active {
+    background: #244c6b;
+    border-color: #244c6b;
     color: white;
+    box-shadow: none;
+}
+
+.exam-tools-row button:focus-visible,
+.focus-toggle:focus-visible {
+    outline: 2px solid #426c93;
+    outline-offset: 3px;
+}
+
+.exam-tools-row .mode-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .section-toggle {
@@ -801,26 +833,33 @@ body.guest-exam-mode .source-summary-row {
 }
 
 .focus-toggle {
-    position: fixed;
-    right: 16px;
-    top: 82px;
-    z-index: 100;
-    min-height: 42px;
-    border: 1px solid var(--navy);
-    border-radius: 999px;
-    background: var(--navy);
-    color: white;
+    display: inline-grid;
+    place-items: center;
+    position: static;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    border: 1px solid #b5c3d2;
+    border-radius: 5.95px;
+    background: var(--surface-soft);
+    color: var(--text);
     cursor: pointer;
     font: inherit;
-    font-weight: 600;
-    padding: 9px 14px;
-    box-shadow: var(--shadow);
+    padding: 0;
+    box-shadow: none;
+    transition: background 120ms ease, border-color 120ms ease;
 }
 
 .focus-toggle:hover {
-    background: var(--navy-hover);
-    border-color: var(--navy-hover);
+    background: var(--blue-soft);
+    border-color: #718ba6;
 }
+
+.focus-toggle img { width: 16px; height: 16px; }
+.focus-toggle .focus-exit-icon,
+body.focus-mode .focus-toggle .focus-enter-icon { display: none; }
+body.focus-mode .focus-toggle .focus-exit-icon { display: block; }
 
 body.focus-mode {
     min-height: 100vh;
@@ -844,23 +883,9 @@ body.focus-mode .container {
 }
 
 body.focus-mode .focus-toggle {
-    top: 16px;
-    width: 34px;
-    min-height: 34px;
-    padding: 0;
     border-color: #d5dce4;
     background: rgba(255, 255, 255, 0.9);
-    color: #536273;
-    box-shadow: none;
-    font-size: 0;
     opacity: 0.48;
-}
-
-body.focus-mode .focus-toggle::after {
-    content: "×";
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 body.focus-mode .focus-toggle:hover,
@@ -3606,10 +3631,7 @@ footer {
         right: auto;
         bottom: auto;
         z-index: auto;
-        min-height: 34px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        font-size: 12px;
+        padding: 0;
         box-shadow: none;
     }
 
@@ -3994,9 +4016,10 @@ footer {
 
     .focus-toggle {
         position: static;
+        width: 30px;
+        height: 30px;
         min-height: 30px;
-        padding: 4px 8px;
-        font-size: 10px;
+        padding: 0;
         box-shadow: none;
     }
 
@@ -4113,7 +4136,7 @@ footer {
     }
 }
 </style>
-<link rel="stylesheet" href="static/mobile-exams.css?v=20261019">
+<link rel="stylesheet" href="static/mobile-exams.css?v=20261115-controls">
 </head>
 
 <body>
@@ -4128,8 +4151,8 @@ footer {
             <div class="side-section" id="categorySection" style="display:none">
                 <div class="category-toggle">
                     <button class="category-btn active" data-category="kurs" onclick="setCategory(this,'kurs')">Kurs</button>
-                    <button class="category-btn" data-category="testy" onclick="setCategory(this,'testy')">Testy</button>
-                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy</button>
+                    <button class="category-btn" data-category="testy" onclick="setCategory(this,'testy')">Testy ćwiartkowe</button>
+                    <button class="category-btn" data-category="egzaminy" onclick="setCategory(this,'egzaminy')">Egzaminy CKE</button>
                     <a class="category-btn training-card" id="trainingLink" href="trening.html">Trening szybkości</a>
                 </div>
             </div>
@@ -4196,13 +4219,13 @@ footer {
             <div class="exam-tools-row" id="examToolsRow">
                 <div class="side-section" id="modeSection" style="display:none">
                     <div class="mode-toggle">
-                        <button class="mode-btn" data-mode="random" onclick="setMode(this,'random')">Losowo</button>
+                        <button class="mode-btn" data-mode="random" type="button" aria-pressed="false" onclick="setMode(this,'random')">Losowo</button>
                     </div>
                 </div>
 
                 <div class="side-section" id="tagToggleSection" style="display:none">
                     <div class="tag-toggle">
-                        <button class="tag-toggle-btn" id="tagToggleButton" type="button" onclick="toggleTagPanel()">Tagi</button>
+                        <button class="tag-toggle-btn" id="tagToggleButton" type="button" aria-expanded="false" aria-controls="tagSearchSection" onclick="toggleTagPanel()">Tagi</button>
                     </div>
                 </div>
             </div>
@@ -4258,7 +4281,10 @@ footer {
                     <div class="timer hidden" id="timer">00:00</div>
                     <div class="task-counter" id="taskCounter">0 / 0</div>
                     <button class="source-summary-open" id="examSummaryOpen" type="button" hidden>Podsumowanie arkusza</button>
-                    <button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()">Tryb skupienia</button>
+                    <button class="focus-toggle" id="focusToggle" type="button" onclick="toggleFocusMode()" aria-label="Tryb skupienia" title="Tryb skupienia" aria-pressed="false">
+                        <img class="focus-enter-icon" src="static/icons/maximize.svg" width="16" height="16" alt="" aria-hidden="true">
+                        <img class="focus-exit-icon" src="static/icons/x.svg" width="16" height="16" alt="" aria-hidden="true">
+                    </button>
                 </div>
             </div>
 
@@ -4957,8 +4983,8 @@ const SOURCE_LEVELS = {
 
 const CATEGORY_LABELS = {
     kurs: "Kurs",
-    testy: "Testy",
-    egzaminy: "Egzaminy"
+    testy: "Testy ćwiartkowe",
+    egzaminy: "Egzaminy CKE"
 };
 
 const LEVEL_LABELS = {
@@ -5347,9 +5373,9 @@ function toggleFocusMode(){
     if(button){
         const label = focusMode ? "Wyjdź z trybu skupienia" : "Tryb skupienia";
 
-        button.innerText = label;
         button.title = label;
         button.setAttribute("aria-label", label);
+        button.setAttribute("aria-pressed", String(focusMode));
     }
 }
 
@@ -6312,6 +6338,8 @@ function renderTagSearch(){
     toggleSection.style.display = shouldShow ? "grid" : "none";
     section.style.display = shouldShow && tagPanelOpen ? "grid" : "none";
     toggleButton.classList.toggle("active", shouldShow && tagPanelOpen);
+    toggleButton.setAttribute("aria-expanded", String(shouldShow && tagPanelOpen));
+    toggleButton.setAttribute("aria-controls", "tagSearchSection");
 
     const activeCount = selectedTags.size + (tagSearchTerm ? 1 : 0);
     toggleButton.innerText = tagPanelOpen
@@ -6703,6 +6731,7 @@ function updateModeButtons(){
         .forEach(b => {
             b.classList.toggle("active", b.dataset.mode === taskMode);
             b.disabled = tagsRequireOrderedMode;
+            b.setAttribute("aria-pressed", String(b.dataset.mode === taskMode));
             b.title = tagsRequireOrderedMode
                 ? "Tryb losowy jest wyłączony podczas filtrowania po tagach."
                 : "";

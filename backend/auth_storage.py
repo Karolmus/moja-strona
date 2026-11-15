@@ -2471,6 +2471,25 @@ def speed_training_leaderboard(filters=None, limit=10, viewer_user_id=None):
     return leaderboard
 
 
+def student_speed_training_results(user_id, before_id=None):
+    summary = row_to_dict(execute(
+        """SELECT COUNT(*) AS rounds, COALESCE(SUM(correct_count), 0) AS correct,
+                  COALESCE(SUM(mistake_count), 0) AS mistakes, COALESCE(SUM(round_seconds), 0) AS seconds
+           FROM speed_training_results WHERE user_id = ?""", (user_id,),
+    ).fetchone())
+    where = "user_id = ?"
+    values = [user_id]
+    if before_id is not None:
+        where += " AND id < ?"
+        values.append(before_id)
+    rows = execute(
+        f"SELECT * FROM speed_training_results WHERE {where} ORDER BY id DESC LIMIT 21", tuple(values),
+    ).fetchall()
+    history = [speed_training_result_to_dict(row) for row in rows[:20]]
+    return {"summary": {key: int(value) for key, value in summary.items()}, "history": history,
+            "next_cursor": history[-1]["id"] if len(rows) > 20 else None}
+
+
 def speed_training_history(user_id, filters=None, limit=12):
     filters = filters or {}
     where = ["user_id = ?"]

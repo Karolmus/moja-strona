@@ -15,6 +15,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nav.css?v=20261020-passive-notices">
+<link rel="stylesheet" href="static/admin-training.css?v=20261115">
 
 <style>
 :root {
@@ -2400,6 +2401,7 @@ footer {
                     <div class="source-progress" id="sourceProgress"></div>
                     <div class="review-tasks" id="reviewTasks"></div>
                 </div>
+                <div id="studentTraining"></div>
             </div>
             </template>
         </section>
@@ -2604,6 +2606,7 @@ footer {
 
 <script src="static/auth.js?v=20261020-passive-notices"></script>
 <script src="static/course-videos.js?v=20261014-mp6-eq"></script>
+<script src="static/admin-training.js?v=20261115"></script>
 <script>
 const levelLabels = {
     matura_podstawowa: "Matura podstawowa",
@@ -4934,7 +4937,7 @@ function renderExamHistory(examGroups){
     grid.className = "exam-history-grid";
     tableWrap.className = "exam-history-table-wrap";
     table.className = "exam-history-table";
-    heading.innerText = "Egzaminy chronologicznie";
+    heading.innerText = "Egzaminy CKE chronologicznie";
     table.innerHTML = `
         <thead>
             <tr>
@@ -5081,7 +5084,7 @@ function renderTestHistory(testGroups, onSelect){
     const table = document.createElement("table");
 
     section.className = "source-progress-section";
-    heading.innerText = "Testy";
+    heading.innerText = "Testy ćwiartkowe";
     tableWrap.className = "course-history-table-wrap";
     table.className = "course-history-table test-history-table";
     table.innerHTML = "<thead><tr><th>Test</th><th>Status</th><th>Wynik</th><th>Ostatnia aktywność / czas pracy</th></tr></thead><tbody></tbody>";
@@ -6396,6 +6399,7 @@ async function showProgress(student){
     loading.hidden = false;
     loading.textContent = "Wczytywanie postępów…";
     for(const element of [reviewTasks, sourceProgress]) element.replaceChildren();
+    globalThis.DSAdminTraining?.show(student, progressDetail.querySelector("#studentTraining"));
     renderStudents();
     try {
         const data = await loadStudentWork(student);
@@ -6425,6 +6429,7 @@ function closeStudentDetails(){
     progressRequestId++;
     progressDetail.classList.remove("active");
     activeProgressStudentId = null;
+    globalThis.DSAdminTraining?.clear();
     activeReviewItems = [];
     activeIncorrectTaskItems = [];
     copyIncorrectTasksBtn.dataset.taskCount = "0";

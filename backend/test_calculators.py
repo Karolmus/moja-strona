@@ -121,6 +121,21 @@ class CalculatorTests(unittest.TestCase):
         app_module.CALCULATORS_ENABLED = False
         self.assertEqual(self.client.post("/api/compound-interest", headers=self.headers, json=valid).status_code, 404)
 
+    def test_bernoulli_substitution_covers_distinct_success_counts_and_boundary_probabilities(self):
+        for n, p, ks in [(5, .5, [2]), (4, .25, [1, 2, 1]), (0, 0, [0]), (3, 1, [3]), (3, 0, [0])]:
+            with self.subTest(n=n, p=p, ks=ks):
+                response = self.client.post('/api/bernoulli', headers=self.headers, json={'n':n,'p':p,'k':ks})
+                self.assertEqual(response.status_code, 200)
+                result = response.get_json()
+                self.assertTrue(result['calculation'].endswith('=' + result['result']))
+                self.assertEqual(result['calculation'].count(r'\binom'), len(set(ks)))
+                self.assertNotIn('^{0}', result['calculation'])
+                self.assertIn('P(X', result['calculation'])
+        response = self.client.post('/api/bernoulli', headers=self.headers, json={'n':5,'p':.5,'k':[2]})
+        self.assertEqual(response.get_json()['calculation'],
+                         r'P(X=2)=\binom{5}{2}\cdot \left(0{,}5\right)^{2}\cdot \left(1-0{,}5\right)^{3}=\frac{5}{16}')
+        self.assertEqual(self.client.post('/api/bernoulli', headers=self.headers, json={'n':2,'p':.5,'k':[]}).status_code,400)
+
     def test_binomial_is_exact_including_boundaries_and_values_beyond_javascript_precision(self):
         cases = [
             (0, 0, "1"), (5, 0, "1"), (5, 5, "1"), (10, 3, "120"),

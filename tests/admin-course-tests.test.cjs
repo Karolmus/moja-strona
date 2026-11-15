@@ -54,7 +54,7 @@ load(ui,['renderSourceActivity','renderTestHistory']);
 const test = started.find(group => group.kind === 'test');
 const selected=[];
 const section = ui.renderTestHistory([test,groups[0]],(key,focus) => selected.push([key,focus]));
-assert.equal(section.children[0].innerText,'Testy');
+assert.equal(section.children[0].innerText,'Testy ćwiartkowe');
 const rows=section.children[1].children[0].tbody.children;
 assert.equal(rows[0].children[1].children[0].textContent,'Ukończony');
 assert.equal(rows[0].children[2].textContent,'33%');

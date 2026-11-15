@@ -81,6 +81,38 @@ class SecurityTests(unittest.TestCase):
             "website": "",
         }
 
+    def test_admin_reads_only_selected_student_training_with_complete_summary_and_pagination(self):
+        with app.app_context():
+            student = create_user('training-view', 'Uczeń', 'test-password')
+            other = create_user('training-other', 'Inny uczeń', 'test-password')
+            admin = create_user('training-admin', 'Admin', 'test-password',role='admin')
+            sh, ah = ({'Authorization':'Bearer '+app_module.create_auth_token(user)} for user in (student,admin))
+            for index in range(23):
+                app_module.record_speed_training_result(student['id'], {'level':'mp','topic':'formulas-v1-lesson_1',
+                    'round_seconds':60,'correct_count':index,'mistake_count':1,'best_streak':index,'average_time_seconds':2})
+            app_module.record_speed_training_result(other['id'], {'level':'eo','correct_count':999,'round_seconds':60})
+        endpoint=f"/api/admin/students/{student['id']}/speed-training"
+        self.assertEqual(self.client.get(endpoint).status_code,401)
+        self.assertEqual(self.client.get(endpoint,headers=sh).status_code,403)
+        data=self.client.get(endpoint,headers=ah).get_json()
+        self.assertEqual(data['summary'], {'rounds':23,'correct':253,'mistakes':23,'seconds':1380})
+        self.assertEqual(len(data['history']),20)
+        self.assertEqual(data['history'][0]['correct_count'],22)
+        self.assertNotIn('user_id',data['history'][0])
+        older=self.client.get(endpoint+f"?before={data['next_cursor']}",headers=ah).get_json()
+        self.assertEqual(len(older['history']),3)
+        self.assertIsNone(older['next_cursor'])
+        self.assertEqual(older['summary'],data['summary'])
+        self.assertFalse(set(item['id'] for item in data['history']) & set(item['id'] for item in older['history']))
+        for cursor in ('0','-1','abc','1.5','9223372036854775808'):
+            self.assertEqual(self.client.get(endpoint+'?before='+cursor,headers=ah).status_code,400)
+        self.assertEqual(self.client.get(f"/api/admin/students/{admin['id']}/speed-training",headers=ah).status_code,404)
+        with app.app_context():
+            empty = create_user('training-empty', 'Bez treningów', 'test-password')
+        result=self.client.get(f"/api/admin/students/{empty['id']}/speed-training",headers=ah)
+        self.assertEqual(result.get_json()['summary']['rounds'],0)
+        self.assertEqual(result.get_json()['history'],[])
+
     def test_admin_progress_bundles_discussion_tasks_only_on_request(self):
         with app.app_context():
             student = create_user("progress-student", "Uczeń", "test-password")

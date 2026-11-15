@@ -252,7 +252,8 @@ assert.equal(timer.testRemainingSeconds(), 3585, 'Starting again cannot reset th
     'A wrong test input reveals the submitted and correct answers');
   assert.match(html, /className = "input-answer-example"/);
   assert.match(html, /@media \(orientation: landscape\) and \(max-height: 560px\) and \(max-width: 1000px\)/);
-  assert.match(html, /body\.focus-mode \.focus-toggle::after\s*\{[^}]*content: "×";/s);
+  assert.match(html, /class="focus-exit-icon" src="static\/icons\/x\.svg"/);
+  assert.match(html, /body\.focus-mode \.focus-toggle \.focus-exit-icon \{ display: block; \}/);
   const pointsBadgeStyle = html.match(/\.points-badge\s*\{([^}]+)\}/)[1];
   assert.match(pointsBadgeStyle, /align-items: center;/);
   assert.match(pointsBadgeStyle, /justify-content: center;/);

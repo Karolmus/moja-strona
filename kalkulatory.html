@@ -353,6 +353,40 @@ label {
     box-shadow: 0 0 0 3px rgba(196, 67, 56, 0.1);
 }
 
+.binomial-expression {
+    display: inline-grid;
+    grid-template-columns: 36px 104px 36px;
+    align-items: center;
+    gap: 6px;
+    justify-self: start;
+    height: 152px;
+    max-width: 100%;
+}
+.binomial-bracket { display: flex; align-items: center; justify-content: center; font-size: 36px; line-height: 1; }
+.binomial-arguments { display: grid; grid-template-rows: repeat(2, 48px); gap: 10px; }
+.binomial-field { min-width: 0; }
+.binomial-field label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+.binomial-field input {
+    width: 100%;
+    height: 48px;
+    border: 1.5px solid #cbd2dd;
+    border-radius: 6.8px;
+    padding: 4px 8px;
+    background: white;
+    color: #20262d;
+    font: 28px KaTeX_Main, "Cambria Math", serif;
+    text-align: center;
+}
+.binomial-field input:focus { outline: 3px solid rgba(103, 136, 170, .12); border-color: #6788aa; }
+.binomial-field input[aria-invalid="true"] { border-color: #c44338; }
+
 .calc-btn {
     width: 100%;
     min-height: 36px;
@@ -401,6 +435,7 @@ label {
 .calculator-math .katex-display { margin: 4px 0; text-align: left; }
 .result-block { display: grid; align-content: start; gap: 5px; }
 .binomial-result .calculator-math,
+.bernoulli-result .calculator-math,
 .compound-result .calculator-math { line-height: 2.5; }
 .result-formulas { display: flex; flex-wrap: wrap; gap: 6px 24px; }
 .result-value { margin: 0; }
@@ -618,15 +653,19 @@ footer {
                         <div class="field-group">
                             <div class="group-title">Parametry (liczby całkowite od 0 do 1000)</div>
                             <div class="formula-note calculator-math" data-tex="\binom{n}{k}=\frac{n!}{k!(n-k)!}"></div>
-                            <div class="input-grid">
-                                <fieldset class="field">
-                                    <legend><label for="binomialN">Liczba elementów <span class="field-symbol" data-tex="n">n</span></label></legend>
-                                    <input id="binomialN" inputmode="numeric" placeholder="10">
-                                </fieldset>
-                                <fieldset class="field">
-                                    <legend><label for="binomialK">Liczba wybieranych <span class="field-symbol" data-tex="k">k</span></label></legend>
-                                    <input id="binomialK" inputmode="numeric" placeholder="3">
-                                </fieldset>
+                            <div class="binomial-expression" role="group" aria-label="Symbol Newtona: n nad k">
+                                <span class="binomial-bracket" data-tex="\Bigg(" aria-hidden="true">(</span>
+                                <div class="binomial-arguments">
+                                    <div class="binomial-field">
+                                        <label for="binomialN">Liczba elementów <span class="field-symbol" data-tex="n">n</span></label>
+                                        <input id="binomialN" inputmode="numeric" placeholder="n" autocomplete="off">
+                                    </div>
+                                    <div class="binomial-field">
+                                        <label for="binomialK">Liczba wybieranych <span class="field-symbol" data-tex="k">k</span></label>
+                                        <input id="binomialK" inputmode="numeric" placeholder="k" autocomplete="off">
+                                    </div>
+                                </div>
+                                <span class="binomial-bracket" data-tex="\Bigg)" aria-hidden="true">)</span>
                             </div>
                         </div>
 
@@ -867,7 +906,7 @@ footer {
 
 <script src="static/auth.js?v=20261020-passive-notices"></script>
 <script src="static/lib/katex/katex.min.js?v=0.16.22"></script>
-<script src="static/script.js?v=20261102-compound"></script>
+<script src="static/script.js?v=20261115-bernoulli"></script>
 <script>
 function setCalculatorCategory(btn, category){
     document.querySelectorAll(".category-btn")

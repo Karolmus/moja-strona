@@ -142,7 +142,7 @@ async function calculate(targetId, path, readData, output){
 
 function calcBernoulli(){
     return calculate("res1", "/api/bernoulli", () => ({p: readNumber("p"), n: readNumber("n"), k: readNumberList("k")}),
-        result => `<div class="result-block"><b>Prawdopodobieństwo</b>${formula(result.result)}<b>W przybliżeniu</b><span>${escapeCalculatorHTML(String(result.rounded).replace(".", ","))}</span></div>`);
+        result => `<div class="result-block bernoulli-result">${result.calculation ? `<b>Podstawienie do wzoru</b>${formula(result.calculation)}` : ""}<b>Prawdopodobieństwo</b>${formula(result.result)}<b>W przybliżeniu</b><span>${escapeCalculatorHTML(String(result.rounded).replace(".", ","))}</span></div>`);
 }
 
 function calcBinomial(){

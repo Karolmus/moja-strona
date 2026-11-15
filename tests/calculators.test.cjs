@@ -140,9 +140,10 @@ test('field variables render as mathematical objects with genuine subscripts and
 
 test('every calculator input has a signup-style outlined legend without changing field IDs or the plot toggle', () => {
   const fields = Array.from(page.matchAll(/<fieldset class="field">([\s\S]*?)<\/fieldset>/g), match => match[1]);
-  const inputs = Array.from(page.matchAll(/<(?:input|select) id="([^"]+)"/g), match => match[1]).filter(id => id !== 'includePlots');
+  const inputs = Array.from(page.matchAll(/<(?:input|select) id="([^"]+)"/g), match => match[1])
+    .filter(id => !['includePlots','binomialN','binomialK'].includes(id));
   assert.equal(fields.length, inputs.length);
-  assert.equal(fields.length, 29);
+  assert.equal(fields.length, 27);
   for (const field of fields) {
     const id = field.match(/<(?:input|select) id="([^"]+)"/)[1];
     assert.match(field, new RegExp(`<legend><label for="${id}">[\\s\\S]+<\\/label><\\/legend>`));
@@ -150,6 +151,29 @@ test('every calculator input has a signup-style outlined legend without changing
   }
   assert(!page.includes('<div class="field">'));
   assert.match(page, /<label class="plot-toggle">\s*<input id="includePlots" type="checkbox">/);
+});
+
+test('binomial arguments are vertically stacked inside mathematical parentheses with accessible labels', () => {
+  const expression = page.match(/<div class="binomial-expression"[\s\S]+?<\/div>\s*<span class="binomial-bracket"[^>]+data-tex="\\Bigg\)"[\s\S]+?<\/div>/)?.[0];
+  assert(expression);
+  assert(expression.includes('data-tex="\\Bigg("'));
+  assert(expression.includes('id="binomialN"'));
+  assert(expression.includes('id="binomialK"'));
+  assert(expression.indexOf('id="binomialN"') < expression.indexOf('id="binomialK"'));
+  assert.match(page, /\.binomial-arguments \{[^}]*grid-template-rows: repeat\(2, 48px\)/);
+  assert.match(page, /\.binomial-field input \{[^}]*text-align: center;/);
+});
+
+test('Bernoulli results render the complete numeric substitution as safe LaTeX', async () => {
+  const f = calculatorFixture();
+  const calculation = String.raw`P(X=2)=\binom{5}{2}\cdot \left(0{,}5\right)^{2}\cdot \left(1-0{,}5\right)^{3}=\frac{5}{16}`;
+  f.node('n').value='5'; f.node('p').value='0,5'; f.node('k').value='2';
+  f.root.apiFetch = async () => ({calculation,result:String.raw`\frac{5}{16}`,rounded:'0.31',plot:null});
+  await f.ctx.calcBernoulli();
+  assert.equal(f.node('res1').dataset.state,'ready');
+  assert(f.node('res1').innerHTML.includes(calculation));
+  assert(f.node('res1').innerHTML.includes('Podstawienie do wzoru'));
+  assert.match(require('../static/lib/katex/katex.min.js').renderToString(calculation,{throwOnError:true,trust:false}), /<math\b/);
 });
 
 test('outlined calculator fields match signup borders, focus and error feedback while retaining mobile sizing', () => {
