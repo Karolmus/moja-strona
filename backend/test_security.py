@@ -1476,6 +1476,91 @@ class SecurityTests(unittest.TestCase):
         with self.client.get(root + "zd1.png", headers=student_headers) as response:
             self.assertEqual(response.status_code, 200)
 
+    def test_mp_lesson9_assets_access_and_teacher_review(self):
+        with app.app_context():
+            student = create_user("quadratic-student", "MP", "test-password")
+            full = create_user("quadratic-full", "MP full", "test-password")
+            other = create_user("quadratic-eo", "EO", "test-password", level="egzamin_osmoklasisty")
+            admin = create_user("quadratic-admin", "Admin", "test-password", role="admin")
+            app_module.update_student(full["id"], {"full_course_access": True})
+            sh, fh, oh, ah = ({"Authorization": "Bearer " + app_module.create_auth_token(user)}
+                              for user in (student, full, other, admin))
+        root = "/api/course-assets/mp/lekcja_9/"
+        source = "zadania/kurs/mp/lekcja_9/lekcja_9_funkcja_kwadratowa.json"
+        manifest = root + "lekcja_9_funkcja_kwadratowa.json"
+        self.assertEqual(self.client.get(manifest).status_code, 401)
+        self.assertEqual(self.client.get(manifest, headers=oh).status_code, 403)
+        limited = self.client.get(manifest, headers=sh)
+        self.assertEqual(limited.status_code, 200)
+        self.assertEqual(len(limited.get_json()), 34)
+        self.assertTrue(all(task["coursePart"] != "zadania" for task in limited.get_json()))
+        for headers in (fh, ah):
+            self.assertEqual(len(self.client.get(manifest, headers=headers).get_json()), 90)
+        for file in ("1.1.webp", "info_1.webp", "lekcja_9_funkcja_kwadratowa.pdf"):
+            self.assertEqual(self.client.get(root + file, headers=sh).status_code, 403)
+            with self.client.get(root + file, headers=fh) as response:
+                self.assertEqual(response.status_code, 200)
+        for file in ("zd1.webp", "zd4.1.webp", "info_zd4.webp", "zp1.webp", "zd19.4.webp", "info_zd19.webp"):
+            with self.client.get(root + file, headers=sh) as response:
+                self.assertEqual(response.status_code, 200)
+        task = {"source_id": source, "task_id": source + ":zp1.webp", "file": "zp1.webp",
+                "result": "good", "earned_points": 2, "max_points": 2,
+                "submitted_answer": "Rozwiązanie wysłane na Discordzie."}
+        response = self.client.post("/api/progress", headers=sh, json=task)
+        self.assertEqual(response.status_code, 201)
+        pending = response.get_json()["progress"]
+        self.assertTrue(pending["teacher_review_pending"])
+        self.assertIsNone(pending["earned_points"])
+        graded = self.client.patch(f"/api/admin/progress/{pending['id']}/score", headers=ah, json={"earned_points": 2})
+        self.assertEqual(graded.status_code, 200)
+        self.assertEqual(graded.get_json()["progress"]["earned_points"], 2)
+        forbidden = {**task, "task_id": source + ":1.1.webp", "file": "1.1.webp"}
+        self.assertEqual(self.client.post("/api/progress", headers=sh, json=forbidden).status_code, 400)
+
+    def test_mp_lesson10_assets_access_and_teacher_review(self):
+        with app.app_context():
+            student = create_user("optimization-student", "MP", "test-password")
+            full = create_user("optimization-full", "MP full", "test-password")
+            other = create_user("optimization-eo", "EO", "test-password", level="egzamin_osmoklasisty")
+            admin = create_user("optimization-admin", "Admin", "test-password", role="admin")
+            app_module.update_student(full["id"], {"full_course_access": True})
+            sh, fh, oh, ah = ({"Authorization": "Bearer " + app_module.create_auth_token(user)}
+                              for user in (student, full, other, admin))
+        root = "/api/course-assets/mp/lekcja_10/"
+        source = "zadania/kurs/mp/lekcja_10/lekcja_10_optymalizacja.json"
+        manifest = root + "lekcja_10_optymalizacja.json"
+        self.assertEqual(self.client.get(manifest).status_code, 401)
+        self.assertEqual(self.client.get(manifest, headers=oh).status_code, 403)
+        limited = self.client.get(manifest, headers=sh)
+        self.assertEqual(limited.status_code, 200)
+        self.assertEqual(len(limited.get_json()), 16)
+        self.assertTrue(all(task["coursePart"] != "zadania" for task in limited.get_json()))
+        self.assertIn("no-store", limited.headers.get("Cache-Control", ""))
+        for headers in (fh, ah):
+            self.assertEqual(len(self.client.get(manifest, headers=headers).get_json()), 29)
+        for file in ("1.webp", "4.webp", "13.webp", "lekcja_10_optymalizacja.pdf"):
+            self.assertEqual(self.client.get(root + file, headers=sh).status_code, 403)
+            with self.client.get(root + file, headers=fh) as response:
+                self.assertEqual(response.status_code, 200)
+        for file in ("zd1.webp", "zd2.webp", "zd3.webp", "zd10.webp", "zp1.webp", "zp6.webp"):
+            with self.client.get(root + file, headers=sh) as response:
+                self.assertEqual(response.status_code, 200)
+        task = {"source_id": source, "task_id": source + ":13.webp", "file": "13.webp",
+                "result": "good", "earned_points": 3, "max_points": 3,
+                "submitted_answer": "Rozwiązanie wysłane na Discordzie."}
+        self.assertEqual(self.client.post("/api/progress", headers=sh, json=task).status_code, 400)
+        response = self.client.post("/api/progress", headers=fh, json=task)
+        self.assertEqual(response.status_code, 201)
+        pending = response.get_json()["progress"]
+        self.assertTrue(pending["teacher_review_pending"])
+        self.assertIsNone(pending["earned_points"])
+        self.assertEqual(pending["max_points"], 3)
+        self.assertEqual(self.client.patch(f"/api/admin/progress/{pending['id']}/score", headers=ah,
+                         json={"earned_points": 4}).status_code, 400)
+        graded = self.client.patch(f"/api/admin/progress/{pending['id']}/score", headers=ah, json={"earned_points": 3})
+        self.assertEqual(graded.status_code, 200)
+        self.assertEqual(graded.get_json()["progress"]["earned_points"], 3)
+
     def test_solution_video_is_persisted_as_zero_without_a_wrong_answer(self):
         with app.app_context():
             student = create_user("video@example.test", "Video", "bezpieczne-haslo")

@@ -146,7 +146,33 @@ class CalculatorTests(unittest.TestCase):
             with self.subTest(n=n, k=k):
                 response = self.client.post("/api/binomial", headers=self.headers, json={"n": n, "k": k})
                 self.assertEqual(response.status_code, 200, response.get_json())
-                self.assertEqual(response.get_json(), {"n": n, "k": k, "result": expected, "plot": None})
+                result = response.get_json()
+                self.assertEqual({key:result[key] for key in ('n','k','result','plot')},
+                                 {"n": n, "k": k, "result": expected, "plot": None})
+                self.assertTrue(result['steps'][0].startswith(rf'\binom{{{n}}}{{{k}}}='))
+                self.assertTrue(result['steps'][-1].endswith('=' + expected))
+
+    def test_binomial_steps_cancel_the_larger_factorial_and_keep_large_products_compact(self):
+        for k in (3, 7):
+            response = self.client.post('/api/binomial', headers=self.headers, json={'n':10,'k':k})
+            steps = response.get_json()['steps']
+            self.assertEqual(steps, [
+                rf'\binom{{10}}{{{k}}}=\frac{{10!}}{{{k}!\cdot(10-{k})!}}',
+                r'=\frac{10\cdot 9\cdot 8\cdot\cancel{7!}}{3!\cdot\cancel{7!}}',
+                r'=\frac{10\cdot 9\cdot 8}{3\cdot 2\cdot 1}',
+                r'=\frac{720}{6}=120',
+            ])
+        for n, k in [(0,0),(5,0),(5,5),(1,1)]:
+            result, steps = app_module.binomial_calculation(n,k)
+            self.assertEqual(result,'1')
+            self.assertIn(r'0!=1',steps)
+            self.assertNotIn(r'\cdots',''.join(steps))
+        for n, k in [(100,50),(1000,500),(1000,999)]:
+            response = self.client.post('/api/binomial', headers=self.headers, json={'n':n,'k':k})
+            self.assertEqual(response.status_code,200)
+            data = response.get_json()
+            self.assertTrue(data['steps'][-1].endswith('=' + data['result']))
+            self.assertLess(sum(len(step) for step in data['steps']),1200)
 
     def test_binomial_rejects_invalid_inputs_and_remains_feature_gated(self):
         cases = [

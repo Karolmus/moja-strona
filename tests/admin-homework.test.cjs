@@ -187,10 +187,10 @@ assert.deepEqual(Array.from(activity.children, fact => fact.children[0].textCont
 ]);
 assert.equal(activity.children[1].children[1].textContent, '40 s');
 assert(!html.includes('review-copy-hint'), 'Repeated copy instructions no longer inflate every row');
-assert.match(html, /async function reviewTasksClipboardBlob\(items\)/);
+assert.match(html, /async function reviewTasksClipboardBlob\(items, onPages\)/);
 assert.match(html, /const blobs = await Promise\.all\(items\.map\(clipboardImageBlob\)\)/,
   'Every review task image is included in the combined clipboard image');
-assert.match(html, /button\("Kopiuj wszystkie", "btn secondary", \(\) => copyAllReviewTaskImages\(items, copyAll\)\)/);
+assert.match(html, /button\("Kopiuj wszystkie", "btn copy-tasks copy-review", \(\) => copyAllReviewTaskImages\(items, copyAll\)\)/);
 assert.match(html, /description = "do omówienia"/);
 assert.match(html, /Skopiowano \$\{items\.length\} .*\$\{description\} jako jeden obraz/);
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);

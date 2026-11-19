@@ -198,6 +198,36 @@ def _solution_points(result):
     return points
 
 
+def binomial_calculation(n, k):
+    result = str(math.comb(n, k))
+    steps = [rf"\binom{{{n}}}{{{k}}}=\frac{{{n}!}}{{{k}!\cdot({n}-{k})!}}"]
+    count = min(k, n - k)
+    if count == 0:
+        steps.extend([r"0!=1", rf"\binom{{{n}}}{{{k}}}=1"])
+        return result, steps
+
+    def product_tex(values):
+        terms = [str(value) for value in values]
+        if len(terms) > 8:
+            terms = terms[:3] + [r"\cdots"] + terms[-2:]
+        return r"\cdot ".join(terms)
+
+    remainder = n - count
+    numerator_tex = product_tex(range(n, remainder, -1))
+    denominator_tex = product_tex(range(count, 0, -1))
+    steps.append(rf"=\frac{{{numerator_tex}\cdot\cancel{{{remainder}!}}}}"
+                 rf"{{{count}!\cdot\cancel{{{remainder}!}}}}")
+    numerator = str(math.prod(range(remainder + 1, n + 1)))
+    denominator = str(math.factorial(count))
+    if numerator_tex != numerator or denominator_tex != denominator:
+        steps.append(rf"=\frac{{{numerator_tex}}}{{{denominator_tex}}}")
+    if max(len(numerator), len(denominator)) <= 60:
+        steps.append(rf"=\frac{{{numerator}}}{{{denominator}}}={result}")
+    else:
+        steps.append(f"={result}")
+    return result, steps
+
+
 def bernoulli(p, n, k_values):
     p = _as_expr(p)
     q = 1 - p

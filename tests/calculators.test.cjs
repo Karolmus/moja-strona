@@ -164,7 +164,7 @@ test('binomial arguments are vertically stacked inside mathematical parentheses 
   assert.match(page, /\.binomial-field input \{[^}]*text-align: center;/);
 });
 
-test('Bernoulli results render the complete numeric substitution as safe LaTeX', async () => {
+test('Bernoulli joins the exact and approximate results in one LaTeX expression without descriptions', async () => {
   const f = calculatorFixture();
   const calculation = String.raw`P(X=2)=\binom{5}{2}\cdot \left(0{,}5\right)^{2}\cdot \left(1-0{,}5\right)^{3}=\frac{5}{16}`;
   f.node('n').value='5'; f.node('p').value='0,5'; f.node('k').value='2';
@@ -172,8 +172,11 @@ test('Bernoulli results render the complete numeric substitution as safe LaTeX',
   await f.ctx.calcBernoulli();
   assert.equal(f.node('res1').dataset.state,'ready');
   assert(f.node('res1').innerHTML.includes(calculation));
-  assert(f.node('res1').innerHTML.includes('Podstawienie do wzoru'));
-  assert.match(require('../static/lib/katex/katex.min.js').renderToString(calculation,{throwOnError:true,trust:false}), /<math\b/);
+  assert(f.node('res1').innerHTML.includes(calculation + String.raw`\approx 0{,}31`));
+  assert.equal((f.node('res1').innerHTML.match(/data-tex=/g)||[]).length,1);
+  assert(!f.node('res1').innerHTML.includes('<b>'));
+  assert.match(require('../static/lib/katex/katex.min.js').renderToString(calculation + String.raw`\approx 0{,}31`,
+    {throwOnError:true,trust:false}), /<math\b/);
 });
 
 test('outlined calculator fields match signup borders, focus and error feedback while retaining mobile sizing', () => {
@@ -192,16 +195,39 @@ test('outlined calculator fields match signup borders, focus and error feedback 
   assert.match(page, /@media\(max-width: 600px\) \{\s*\.field \{ padding-inline: 12px; \}/);
 });
 
-test('each calculator has one short description of its calculation', () => {
+test('Newton and Bernoulli have no descriptions; the other calculator descriptions stay unchanged', () => {
   const cards = Array.from(page.matchAll(/<section class="calculator-card(?: wide)?">([\s\S]*?)<\/section>/g), match => match[1]);
   assert.equal(cards.length, 8);
   for (const card of cards) {
     const descriptions = Array.from(card.matchAll(/<p class="tool-description">([^<]+)<\/p>/g), match => match[1]);
+    if(/<h2>(Symbol Newtona|Schemat Bernoulliego)<\/h2>/.test(card)) {
+      assert.equal(descriptions.length,0);
+      continue;
+    }
     assert.equal(descriptions.length, 1);
     assert(descriptions[0].length < 100, 'Keep the description to a short sentence');
     assert(card.indexOf('tool-description') > card.indexOf('</h2>'));
     assert(card.indexOf('tool-description') < card.indexOf('field-group'));
   }
+});
+
+test('Newton renders calculation steps as mathematical expressions without added prose', async () => {
+  const f = calculatorFixture();
+  const steps = [String.raw`\binom{10}{3}=\frac{10!}{3!\cdot(10-3)!}`,
+    String.raw`=\frac{10\cdot 9\cdot 8\cdot\cancel{7!}}{3!\cdot\cancel{7!}}`,
+    String.raw`=\frac{10\cdot 9\cdot 8}{3\cdot 2\cdot 1}`, String.raw`=\frac{720}{6}=120`];
+  f.node('binomialN').value='10'; f.node('binomialK').value='3';
+  f.root.apiFetch=async()=>({n:10,k:3,result:'120',steps,plot:null});
+  await f.ctx.calcBinomial();
+  const output=f.node('res_binomial').innerHTML;
+  assert.equal((output.match(/data-tex=/g)||[]).length,steps.length);
+  assert(!output.includes('<b>'));
+  const katex=require('../static/lib/katex/katex.min.js');
+  for(const step of steps) {
+    assert(output.includes(step));
+    assert.match(katex.renderToString(step,{throwOnError:true,trust:false}), /<math\b/);
+  }
+  assert.match(page, /\.binomial-result \.calculator-math \{[^}]*min-width: 0;[^}]*overflow-x: auto;/);
 });
 
 test('binomial calculator sends validated integers and renders an exact mathematical result', async () => {

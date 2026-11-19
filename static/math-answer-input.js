@@ -2,10 +2,17 @@
     "use strict";
     const controls = new WeakMap();
     const templates = [
-        { symbol: "√", title: "Pierwiastek kwadratowy", before: "√(", after: ")" },
-        { symbol: "∛", title: "Pierwiastek sześcienny", before: "∛(", after: ")" },
-        { symbol: "a/b", title: "Ułamek zwykły", before: "(", after: ")/()", fraction: true },
-        { symbol: "x²", title: "Potęga", before: "(", after: ")^()" }
+        { id: "sqrt", symbol: "√", title: "Pierwiastek kwadratowy", before: "√(", after: ")" },
+        { id: "cbrt", symbol: "∛", title: "Pierwiastek sześcienny", before: "∛(", after: ")" },
+        { id: "fraction", symbol: "a/b", title: "Ułamek zwykły", before: "(", after: ")/()", fraction: true },
+        { id: "power", symbol: "x²", title: "Potęga", before: "(", after: ")^()" },
+        { id: "square", symbol: "x²", title: "Do kwadratu", before: "", after: "²", end: true },
+        { id: "paren-left", symbol: "(", title: "Lewy nawias otwarty", before: "(", after: "", literal: true },
+        { id: "paren-right", symbol: ")", title: "Prawy nawias otwarty", before: ")", after: "", literal: true },
+        { id: "bracket-left", symbol: "[", title: "Lewy nawias domknięty", before: "[", after: "", literal: true },
+        { id: "bracket-right", symbol: "]", title: "Prawy nawias domknięty", before: "]", after: "", literal: true },
+        { id: "infinity", symbol: "∞", title: "Nieskończoność", before: "∞", after: "", literal: true },
+        { id: "union", symbol: "∪", title: "Suma przedziałów", before: " ∪ ", after: "", literal: true }
     ];
 
     function splitValues(text) {
@@ -47,7 +54,9 @@
         toolbar.className = "math-input-tools";
         toolbar.setAttribute("role", "group");
         toolbar.setAttribute("aria-label", "Symbole matematyczne");
-        templates.forEach(template => {
+        const selectedTools = Array.isArray(options.tools) ? options.tools : ["sqrt", "cbrt", "fraction", "power"];
+        const selectedTemplates = [...new Set(selectedTools)].map(id => templates.find(item => item.id === id)).filter(Boolean);
+        selectedTemplates.forEach(template => {
             const button = document.createElement("button");
             button.type = "button";
             button.title = template.title;
@@ -62,15 +71,19 @@
                 const start = input.selectionStart ?? input.value.length;
                 const end = input.selectionEnd ?? start;
                 const selection = input.value.slice(start, end);
-                input.setRangeText(template.before + selection + template.after, start, end, "end");
-                const caret = start + template.before.length + selection.length +
-                    (selection && (template.fraction || template.symbol === "x²") ? template.after.length - 1 : 0);
+                const insertion = template.id === "square" && selection
+                    ? `(${selection})²` : template.literal ? template.before : template.before + selection + template.after;
+                input.setRangeText(insertion, start, end, "end");
+                const caret = template.end || template.literal ? start + insertion.length : start + template.before.length + selection.length +
+                    (selection && (template.fraction || template.id === "power") ? template.after.length - 1 : 0);
                 input.focus();
                 input.setSelectionRange(caret, caret);
                 input.dispatchEvent(new Event("input", { bubbles: true }));
             };
             toolbar.appendChild(button);
         });
+        if(selectedTemplates.length) wrapper.appendChild(toolbar);
+        if(options.preview === false) return;
         const preview = document.createElement("div");
         preview.className = "math-input-preview";
         preview.setAttribute("aria-hidden", "true");
@@ -84,7 +97,7 @@
         controls.set(input, { preview, error, multiple: options.multiple === true });
         input.addEventListener("input", () => update(input));
         input.addEventListener("blur", () => { if (input.value.trim()) update(input, true); });
-        wrapper.append(toolbar, preview, error);
+        wrapper.append(preview, error);
     }
 
     window.DeltaSigmaMathInput = {

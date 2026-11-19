@@ -437,6 +437,7 @@ label {
 .binomial-result .calculator-math,
 .bernoulli-result .calculator-math,
 .compound-result .calculator-math { line-height: 2.5; }
+.binomial-result .calculator-math { display: block; min-width: 0; max-width: 100%; overflow-x: auto; }
 .result-formulas { display: flex; flex-wrap: wrap; gap: 6px 24px; }
 .result-value { margin: 0; }
 .calculator-access { border: 1px solid var(--line); border-radius: 6.8px; padding: 14px; background: white; }
@@ -648,7 +649,6 @@ footer {
                             <h2>Symbol Newtona</h2>
                             <span class="tool-badge">Kombinacje</span>
                         </div>
-                        <p class="tool-description">Oblicza liczbę sposobów wyboru k elementów spośród n, bez uwzględniania kolejności.</p>
 
                         <div class="field-group">
                             <div class="group-title">Parametry (liczby całkowite od 0 do 1000)</div>
@@ -677,7 +677,6 @@ footer {
                             <h2>Schemat Bernoulliego</h2>
                             <span class="tool-badge">Dwumian</span>
                         </div>
-                        <p class="tool-description">Oblicza prawdopodobieństwo w serii niezależnych prób.</p>
 
                         <div class="field-group">
                             <div class="group-title">Parametry</div>
@@ -906,7 +905,7 @@ footer {
 
 <script src="static/auth.js?v=20261020-passive-notices"></script>
 <script src="static/lib/katex/katex.min.js?v=0.16.22"></script>
-<script src="static/script.js?v=20261115-bernoulli"></script>
+<script src="static/script.js?v=20261115-calculation-steps"></script>
 <script>
 function setCalculatorCategory(btn, category){
     document.querySelectorAll(".category-btn")

@@ -142,7 +142,7 @@ async function calculate(targetId, path, readData, output){
 
 function calcBernoulli(){
     return calculate("res1", "/api/bernoulli", () => ({p: readNumber("p"), n: readNumber("n"), k: readNumberList("k")}),
-        result => `<div class="result-block bernoulli-result">${result.calculation ? `<b>Podstawienie do wzoru</b>${formula(result.calculation)}` : ""}<b>Prawdopodobieństwo</b>${formula(result.result)}<b>W przybliżeniu</b><span>${escapeCalculatorHTML(String(result.rounded).replace(".", ","))}</span></div>`);
+        result => `<div class="result-block bernoulli-result">${formula(`${result.calculation || result.result}\\approx ${String(result.rounded).replace(".", "{,}")}`)}</div>`);
 }
 
 function calcBinomial(){
@@ -156,7 +156,11 @@ function calcBinomial(){
             throw new Error("Liczba k nie może być większa od n.");
         }
         return {n, k};
-    }, result => `<div class="result-block binomial-result"><b>Wynik</b>${formula(`\\binom{${result.n}}{${result.k}}=${result.result}`)}</div>`);
+    }, result => {
+        const steps = Array.isArray(result.steps) && result.steps.length
+            ? result.steps : [`\\binom{${result.n}}{${result.k}}=${result.result}`];
+        return `<div class="result-block binomial-result">${steps.map(formula).join("")}</div>`;
+    });
 }
 
 function calcCompoundInterest(){

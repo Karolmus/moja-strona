@@ -106,6 +106,27 @@ test('MP6 review proofs use the same zero-to-two-point grading tiles as MP5 home
     assert.equal(requests.length, 2);
 });
 
+test('MP10 proof submission and admin grading both show the actual three-point maximum', async () => {
+    const task = JSON.parse(fs.readFileSync('zadania/kurs/mp/lekcja_10/lekcja_10_optymalizacja.json'))
+        .find(task => task.file === '13.webp');
+    const context = vm.createContext({currentTask:task, document:{createElement:tag => new Element(tag)},
+        getSavedProgressItem:() => null, getSavedResult:() => '', taskMaxPoints:task => task.maxPoints, formatPoints:String});
+    vm.runInContext(code(student, 'setupExternalTeacherSubmission'), context);
+    const children = [], mcq = {append:(...items) => children.push(...items)};
+    context.setupExternalTeacherSubmission(mcq);
+    assert.match(children[0].textContent, /od 0 do 3 pkt/);
+    context.currentTask = {maxPoints:2};
+    context.setupExternalTeacherSubmission(mcq);
+    assert.match(children[2].textContent, /od 0 do 2 pkt/);
+    const requests = [];
+    const grading = gradingControlContext(async (...args) => requests.push(args));
+    const control = grading.teacherScoreControl(null, task);
+    const buttons = control.children.filter(child => child.tag === 'button');
+    assert.deepEqual(buttons.map(button => button.textContent), ['0','1','2','3']);
+    await buttons[3].listeners.click();
+    assert.equal(requests.at(-1)[2].value, '3');
+});
+
 test('numeric grading tiles save on one click and prevent duplicate requests while saving', async () => {
     let finish;
     const pending = new Promise(resolve => {finish=resolve;});

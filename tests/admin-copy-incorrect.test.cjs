@@ -77,10 +77,11 @@ async function clipboardTests() {
   const clipboard = vm.createContext({
     navigator:{clipboard:{write:async entries => {if(fail) throw new Error('Brak dostepu'); writes.push(entries);}}},
     window:{ClipboardItem}, ClipboardItem,
+    setTimeout, clearTimeout,
     showStatus:message => statuses.push(message),
     reviewTasksClipboardBlob:async entries => {assert.equal(entries, items); onPrepare(); return png;},
   });
-  load(clipboard, ['copyAllReviewTaskImages']);
+  load(clipboard, ['writeReviewClipboardPng','copyAllReviewTaskImages']);
   const button = {innerText:'Skopiuj wszystkie bledne zadania', disabled:false, dataset:{taskCount:'5'}};
   onPrepare = () => {assert(button.disabled); assert.equal(button.innerText, 'Kopiuję…');};
   await clipboard.copyAllReviewTaskImages(items, button, 'z błędną odpowiedzią');

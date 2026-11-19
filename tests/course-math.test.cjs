@@ -42,15 +42,20 @@ for (const task of tasks) {
 new vm.Script(fs.readFileSync('static/math-answer-input.js', 'utf8'));
 class FakeElement {
   constructor(tag) {this.tagName = tag; this.children = []; this.value = ''; this.style = {};
-    this.classList = {add() {}};}
+    this.classList = {add() {}}; this.listeners={};}
   appendChild(child) {this.children.push(child);}
   append(...children) {children.forEach(child => this.appendChild(child));}
   replaceChildren() {this.children = []; this.innerHTML = '';}
   setAttribute() {}
-  addEventListener() {}
+  addEventListener(type,listener) {(this.listeners[type] ||= []).push(listener);}
+  dispatchEvent(event) {(this.listeners[event.type] || []).forEach(listener => listener(event));}
+  focus() {}
+  setRangeText(text,start,end) {this.value=this.value.slice(0,start)+text+this.value.slice(end);}
+  setSelectionRange(start,end) {this.selectionStart=start; this.selectionEnd=end;}
 }
 const inputContext = vm.createContext({
-  DeltaSigmaMath:math, window:{}, document:{createElement:tag => new FakeElement(tag)}
+  DeltaSigmaMath:math, window:{}, document:{createElement:tag => new FakeElement(tag)},
+  Event:class {constructor(type) {this.type=type;}}
 });
 vm.runInContext(fs.readFileSync('static/math-answer-input.js', 'utf8'), inputContext);
 const input = new FakeElement('input');
@@ -66,4 +71,30 @@ for(const value of ['−1:20', '−1⁄20', '−1∕20', '7√8']) {
   input.value = value;
   assert(inputContext.window.DeltaSigmaMathInput.validate(input), value);
 }
+const squareInput = new FakeElement('input'), squareWrapper = new FakeElement('div');
+inputContext.window.DeltaSigmaMathInput.attach(squareInput,squareWrapper,{tools:['square'],preview:false});
+assert.equal(squareWrapper.children.length,1,'Tools-only fields have no numeric preview or validation errors');
+assert.equal(squareWrapper.children[0].children.length,1);
+const squareButton = squareWrapper.children[0].children[0];
+assert.equal(squareButton.title,'Do kwadratu');
+squareInput.value='(x+1)'; squareInput.setSelectionRange(5,5); squareButton.onclick();
+assert.equal(squareInput.value,'(x+1)²');
+assert.equal(squareInput.selectionStart,6);
+squareInput.value='x+1'; squareInput.setSelectionRange(0,3); squareButton.onclick();
+assert.equal(squareInput.value,'(x+1)²');
+assert(inputContext.window.DeltaSigmaMathInput.validate(squareInput));
+const intervalInput = new FakeElement('input'), intervalWrapper = new FakeElement('div');
+const intervalTools=['paren-left','paren-right','bracket-left','bracket-right','infinity','union'];
+inputContext.window.DeltaSigmaMathInput.attach(intervalInput,intervalWrapper,{tools:intervalTools,preview:false});
+assert.deepEqual(intervalWrapper.children[0].children.map(button=>button.textContent),['(',')','[',']','∞','∪']);
+intervalInput.value='(0;2)'; intervalInput.setSelectionRange(3,4);
+intervalWrapper.children[0].children.find(button=>button.textContent==='∞').onclick();
+assert.equal(intervalInput.value,'(0;∞)');
+assert.equal(intervalInput.selectionStart,4);
+intervalInput.disabled=true;
+intervalWrapper.children[0].children[0].onclick();
+assert.equal(intervalInput.value,'(0;∞)');
+const plainInput=new FakeElement('input'), plainWrapper=new FakeElement('div');
+inputContext.window.DeltaSigmaMathInput.attach(plainInput,plainWrapper,{tools:[],preview:false});
+assert.equal(plainWrapper.children.length,0,'No empty toolbar is rendered');
 console.log('PASS: all 22 lesson-4 tasks have controls; fractions, roots, equivalent expressions, MathML and unsafe input checks');

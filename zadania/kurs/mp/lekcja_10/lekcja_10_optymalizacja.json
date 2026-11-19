@@ -1,0 +1,1182 @@
+[
+  {
+    "file": "1.webp",
+    "taskNumber": "1",
+    "title": "Lekcja 10 - zadanie 1",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Zapisz iloczyn jako funkcję kwadratową i wyznacz jej wierzchołek.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Największy iloczyn",
+        "prompt": "Największy iloczyn",
+        "answer": "1/6",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      },
+      {
+        "label": "x",
+        "prompt": "x",
+        "answer": "-1/3",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "2.webp",
+    "taskNumber": "2",
+    "title": "Lekcja 10 - zadanie 2",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Z obwodu wyznacz drugi bok prostokąta.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "P(x)",
+        "prompt": "P(x)",
+        "answer": "x*(30-x)",
+        "math": false,
+        "mathTools": [
+          "square"
+        ]
+      },
+      {
+        "label": "Dziedzina",
+        "prompt": "Dziedzina",
+        "answer": "(0;30)",
+        "math": false,
+        "mathTools": [
+          "paren-left",
+          "paren-right",
+          "bracket-left",
+          "bracket-right"
+        ],
+        "control": "interval",
+        "inputMode": "text"
+      },
+      {
+        "label": "Pierwszy bok",
+        "prompt": "Pierwszy bok (centymetry)",
+        "answer": "15",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm"
+      },
+      {
+        "label": "Drugi bok",
+        "prompt": "Drugi bok (centymetry)",
+        "answer": "15",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm"
+      },
+      {
+        "label": "Największe pole",
+        "prompt": "Największe pole (centymetry kwadratowe)",
+        "answer": "225",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm²",
+        "suffixAliases": [
+          "cm2",
+          "cm^2"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "3.webp",
+    "taskNumber": "3",
+    "title": "Lekcja 10 - zadanie 3",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Do długości siatki dolicz szerokość wejścia.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Krótszy bok",
+        "prompt": "Krótszy bok (metry)",
+        "answer": "21/4",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Dłuższy bok",
+        "prompt": "Dłuższy bok (metry)",
+        "answer": "21/2",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Pole na jedną kurę",
+        "prompt": "Pole na jedną kurę (metry kwadratowe)",
+        "answer": "441/80",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m²",
+        "suffixAliases": [
+          "m2",
+          "m^2"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "4.webp",
+    "taskNumber": "4",
+    "title": "Lekcja 10 - zadanie 4",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Policz cztery odcinki długości x i sześć odcinków długości y.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "x",
+        "prompt": "x (metry)",
+        "answer": "9/2",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "y",
+        "prompt": "y (metry)",
+        "answer": "3",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      }
+    ]
+  },
+  {
+    "file": "5.webp",
+    "taskNumber": "5",
+    "title": "Lekcja 10 - zadanie 5",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Policz pięć odcinków długości x i osiem odcinków długości y.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "x",
+        "prompt": "x (metry)",
+        "answer": "6",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "y",
+        "prompt": "y (metry)",
+        "answer": "15/4",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Największe łączne pole",
+        "prompt": "Największe łączne pole (metry kwadratowe)",
+        "answer": "90",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m²",
+        "suffixAliases": [
+          "m2",
+          "m^2"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "6.webp",
+    "taskNumber": "6",
+    "title": "Lekcja 10 - zadanie 6",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Wyznacz współrzędne wierzchołka paraboli opisującej wysokość.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Czas osiągnięcia maksimum",
+        "prompt": "Czas osiągnięcia maksimum (sekundy)",
+        "answer": "3/2",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "s"
+      },
+      {
+        "label": "Największa wysokość",
+        "prompt": "Największa wysokość (metry)",
+        "answer": "441/40",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      }
+    ]
+  },
+  {
+    "file": "7.webp",
+    "taskNumber": "7",
+    "title": "Lekcja 10 - zadanie 7",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Wierzchołek wyznacza największą wysokość, a dodatnie miejsce zerowe czas lotu.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Czas osiągnięcia maksimum",
+        "prompt": "Czas osiągnięcia maksimum (sekundy)",
+        "answer": "2",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "s"
+      },
+      {
+        "label": "Największa wysokość",
+        "prompt": "Największa wysokość (metry)",
+        "answer": "21",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Czas do uderzenia w ziemię",
+        "prompt": "Czas do uderzenia w ziemię (sekundy)",
+        "answer": "4.05",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "s"
+      }
+    ]
+  },
+  {
+    "file": "8.webp",
+    "taskNumber": "8",
+    "title": "Lekcja 10 - zadanie 8",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Wyznacz argument wierzchołka i sprawdź dziedzinę.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Dzień",
+        "prompt": "Dzień",
+        "answer": "11",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      },
+      {
+        "label": "Liczba klientów",
+        "prompt": "Liczba klientów",
+        "answer": "400",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "9.webp",
+    "taskNumber": "9",
+    "title": "Lekcja 10 - zadanie 9",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Porównaj wartości dla dwóch liczb naturalnych najbliższych argumentowi wierzchołka.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Dni",
+        "prompt": "Dni",
+        "answer": "{6;7}",
+        "math": false,
+        "mathTools": [],
+        "control": "set",
+        "inputMode": "text",
+        "placeholder": "{n, m}"
+      },
+      {
+        "label": "Liczba książek",
+        "prompt": "Liczba książek",
+        "answer": "156",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "10.webp",
+    "taskNumber": "10",
+    "title": "Lekcja 10 - zadanie 10",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Wyznacz argument wierzchołka funkcji zysku.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Liczba partii",
+        "prompt": "Liczba partii",
+        "answer": "30",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      },
+      {
+        "label": "Największy zysk",
+        "prompt": "Największy zysk (złote)",
+        "answer": "800",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "zł"
+      }
+    ]
+  },
+  {
+    "file": "11.webp",
+    "taskNumber": "11",
+    "title": "Lekcja 10 - zadanie 11",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Zapisz liczby jako x oraz x + 8.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Liczby",
+        "prompt": "Liczby",
+        "answer": "-4;4",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "control": "values",
+        "placeholder": "a; b"
+      },
+      {
+        "label": "Najmniejszy iloczyn",
+        "prompt": "Najmniejszy iloczyn",
+        "answer": "-16",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "12.webp",
+    "taskNumber": "12",
+    "title": "Lekcja 10 - zadanie 12",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Zapisz liczby jako x oraz 14 - x.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Pierwsza liczba",
+        "prompt": "Pierwsza liczba",
+        "answer": "7",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      },
+      {
+        "label": "Druga liczba",
+        "prompt": "Druga liczba",
+        "answer": "7",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      },
+      {
+        "label": "Największy iloczyn",
+        "prompt": "Największy iloczyn",
+        "answer": "49",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "13.webp",
+    "taskNumber": "13",
+    "title": "Lekcja 10 - zadanie 13",
+    "coursePart": "zadania",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Przy obwodzie L pole jest równe x(L/2 - x), gdzie L > 0 oraz 0 < x < L/2.",
+    "type": "external_submission",
+    "externalSubmission": true,
+    "teacherGraded": true,
+    "isProof": true,
+    "instruction": "Rozwiązanie wyślij na Discordzie."
+  },
+  {
+    "file": "zd1.webp",
+    "taskNumber": "1",
+    "title": "Lekcja 10 - zadanie domowe 1",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Rozwiń iloczyn i wyznacz argument wierzchołka.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Największy iloczyn",
+        "prompt": "Największy iloczyn",
+        "answer": "121/8",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      },
+      {
+        "label": "Argument",
+        "prompt": "Argument",
+        "answer": "17/4",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      }
+    ],
+    "inputColumns": 2
+  },
+  {
+    "file": "zd2.webp",
+    "taskNumber": "2",
+    "title": "Lekcja 10 - zadanie domowe 2",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Długość siatki jest sumą sześciu odcinków x i dziesięciu odcinków y.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Długość x",
+        "prompt": "Długość x",
+        "answer": "5",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Długość y",
+        "prompt": "Długość y",
+        "answer": "3",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Największe łączne pole",
+        "prompt": "Największe łączne pole (metry kwadratowe)",
+        "answer": "75",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m²",
+        "suffixAliases": [
+          "m2",
+          "m^2"
+        ]
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zd3.webp",
+    "taskNumber": "3",
+    "title": "Lekcja 10 - zadanie domowe 3",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Uwzględnij trzy odcinki x, cztery odcinki y i furtkę.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Długość x",
+        "prompt": "Długość x (metry)",
+        "answer": "6",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Długość y",
+        "prompt": "Długość y (metry)",
+        "answer": "9/2",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Największe łączne pole",
+        "prompt": "Największe łączne pole (metry kwadratowe)",
+        "answer": "54",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m²",
+        "suffixAliases": [
+          "m2",
+          "m^2"
+        ]
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zd4.webp",
+    "taskNumber": "4",
+    "title": "Lekcja 10 - zadanie domowe 4",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Nie ogradzasz boku przy murze.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Bok prostopadły do muru",
+        "prompt": "Bok prostopadły do muru (metry)",
+        "answer": "6",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Bok wzdłuż muru",
+        "prompt": "Bok wzdłuż muru (metry)",
+        "answer": "12",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Największe pole",
+        "prompt": "Największe pole (metry kwadratowe)",
+        "answer": "72",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m²",
+        "suffixAliases": [
+          "m2",
+          "m^2"
+        ]
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zd5.webp",
+    "taskNumber": "5",
+    "title": "Lekcja 10 - zadanie domowe 5",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Wyznacz wierzchołek i dodatnie miejsce zerowe funkcji wysokości.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Czas osiągnięcia maksimum",
+        "prompt": "Czas osiągnięcia maksimum (sekundy)",
+        "answer": "3",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "s"
+      },
+      {
+        "label": "Największa wysokość",
+        "prompt": "Największa wysokość (metry)",
+        "answer": "45",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Czas lotu",
+        "prompt": "Czas lotu (sekundy)",
+        "answer": "6",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "s"
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zd6.webp",
+    "taskNumber": "6",
+    "title": "Lekcja 10 - zadanie domowe 6",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Porównaj wartości dla dwóch liczb naturalnych najbliższych argumentowi wierzchołka.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Dni",
+        "prompt": "Dni",
+        "answer": "{8;9}",
+        "math": false,
+        "mathTools": [],
+        "control": "set",
+        "inputMode": "text",
+        "placeholder": "{n, m}"
+      },
+      {
+        "label": "Liczba klientów",
+        "prompt": "Liczba klientów",
+        "answer": "172",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ]
+      }
+    ],
+    "inputColumns": 2
+  },
+  {
+    "file": "zd7.webp",
+    "taskNumber": "7",
+    "title": "Lekcja 10 - zadanie domowe 7",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Przychód jest iloczynem ceny biletu i liczby sprzedanych biletów.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "R(x)",
+        "prompt": "R(x)",
+        "answer": "(40-x)*(100+5*x)",
+        "math": false,
+        "mathTools": [
+          "square"
+        ]
+      },
+      {
+        "label": "Cena biletu",
+        "prompt": "Cena biletu (zł)",
+        "answer": "30",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "zł"
+      },
+      {
+        "label": "Największy przychód",
+        "prompt": "Największy przychód (zł)",
+        "answer": "4500",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "zł"
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zd8.webp",
+    "taskNumber": "8",
+    "title": "Lekcja 10 - zadanie domowe 8",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Uwzględnij trzy ogrodzenia prostopadłe do ściany oraz dwie bramy.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Głębokość jednego wybiegu",
+        "prompt": "Głębokość jednego wybiegu (metry)",
+        "answer": "8",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Szerokość jednego wybiegu wzdłuż ściany",
+        "prompt": "Szerokość jednego wybiegu wzdłuż ściany (metry)",
+        "answer": "12",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m"
+      },
+      {
+        "label": "Największe łączne pole",
+        "prompt": "Największe łączne pole (metry kwadratowe)",
+        "answer": "192",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "m²",
+        "suffixAliases": [
+          "m2",
+          "m^2"
+        ]
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zd9.webp",
+    "taskNumber": "9",
+    "title": "Lekcja 10 - zadanie domowe 9",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Od wymiarów plakatu odejmij marginesy po obu stronach.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Szerokość plakatu",
+        "prompt": "Szerokość plakatu (cm)",
+        "answer": "24",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm"
+      },
+      {
+        "label": "Wysokość plakatu",
+        "prompt": "Wysokość plakatu (cm)",
+        "answer": "26",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm"
+      },
+      {
+        "label": "Największe pole wydruku",
+        "prompt": "Największe pole wydruku (cm²)",
+        "answer": "400",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm²",
+        "suffixAliases": [
+          "cm2",
+          "cm^2"
+        ]
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zd10.webp",
+    "taskNumber": "10",
+    "title": "Lekcja 10 - zadanie domowe 10",
+    "coursePart": "praca_domowa",
+    "level": "matura_podstawowa",
+    "topic": "optymalizacja",
+    "tags": [
+      "optymalizacja",
+      "funkcja kwadratowa"
+    ],
+    "difficulty": 2,
+    "maxPoints": 3,
+    "hint": "Suma krawędzi to 8a + 4h. Pole bez pokrywy to a² + 4ah.",
+    "type": "input",
+    "inputs": [
+      {
+        "label": "Krawędź podstawy",
+        "prompt": "Krawędź podstawy (cm)",
+        "answer": "8",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm"
+      },
+      {
+        "label": "Wysokość pudełka",
+        "prompt": "Wysokość pudełka (cm)",
+        "answer": "12",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm"
+      },
+      {
+        "label": "Największa suma pól",
+        "prompt": "Największa suma pól (cm²)",
+        "answer": "448",
+        "math": true,
+        "mathTools": [
+          "fraction"
+        ],
+        "suffix": "cm²",
+        "suffixAliases": [
+          "cm2",
+          "cm^2"
+        ]
+      }
+    ],
+    "inputColumns": 3
+  },
+  {
+    "file": "zp1.webp",
+    "taskNumber": "1",
+    "title": "Lekcja 10 - zadanie powtórkowe 1",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "własności funkcji",
+    "tags": [
+      "powtórka",
+      "lekcje 7-9"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Wyklucz miejsca zerowe mianownika.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zp2.webp",
+    "taskNumber": "2",
+    "title": "Lekcja 10 - zadanie powtórkowe 2",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "własności funkcji",
+    "tags": [
+      "powtórka",
+      "lekcje 7-9"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Odbicie względem osi Oy oznacza zastąpienie x przez -x.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  },
+  {
+    "file": "zp3.webp",
+    "taskNumber": "3",
+    "title": "Lekcja 10 - zadanie powtórkowe 3",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "własności funkcji",
+    "tags": [
+      "powtórka",
+      "lekcje 7-9"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Przyrównaj wzór funkcji do zera.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C"
+  },
+  {
+    "file": "zp4.webp",
+    "taskNumber": "4",
+    "title": "Lekcja 10 - zadanie powtórkowe 4",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "własności funkcji",
+    "tags": [
+      "powtórka",
+      "lekcje 7-9"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Iloczyn współczynników kierunkowych prostych prostopadłych wynosi -1.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A"
+  },
+  {
+    "file": "zp5.webp",
+    "taskNumber": "5",
+    "title": "Lekcja 10 - zadanie powtórkowe 5",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "własności funkcji",
+    "tags": [
+      "powtórka",
+      "lekcje 7-9"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Przyrównaj każdy czynnik do zera.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "B"
+  },
+  {
+    "file": "zp6.webp",
+    "taskNumber": "6",
+    "title": "Lekcja 10 - zadanie powtórkowe 6",
+    "coursePart": "zadania_powtorkowe",
+    "level": "matura_podstawowa",
+    "topic": "własności funkcji",
+    "tags": [
+      "powtórka",
+      "lekcje 7-9"
+    ],
+    "difficulty": 2,
+    "maxPoints": 1,
+    "hint": "Wyznacz miejsca zerowe i sprawdź znak trójmianu poza nimi.",
+    "type": "closed",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "D"
+  }
+]

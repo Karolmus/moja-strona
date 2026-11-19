@@ -81,6 +81,7 @@ from auth_storage import (
     update_review_task_resolution,
 )
 from calculators.solver import (
+    binomial_calculation,
     bernoulli,
     bernoulli_plot,
     line_and_circle,
@@ -2398,7 +2399,8 @@ def api_binomial(_user):
         if k > n:
             return api_error("Liczba k nie może być większa od n.")
 
-        return jsonify({"n": n, "k": k, "result": str(math.comb(n, k)), "plot": None})
+        result, steps = binomial_calculation(n, k)
+        return jsonify({"n": n, "k": k, "result": result, "steps": steps, "plot": None})
 
     return safe(handler)
 

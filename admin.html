@@ -309,6 +309,38 @@ select:focus,
     color: var(--red-text);
 }
 
+.btn.copy-tasks {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: var(--copy-color);
+    border-color: var(--copy-color);
+    color: white;
+    box-shadow: 0 2px 4px rgba(22, 32, 44, .12);
+}
+
+.btn.copy-incorrect { --copy-color: #ae343b; }
+.btn.copy-review { --copy-color: #945016; }
+
+.btn.copy-tasks::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    background: currentColor;
+    mask: url("static/icons/copy.svg") center / contain no-repeat;
+}
+
+.btn.copy-tasks:hover:not(:disabled) {
+    background: var(--copy-color);
+    border-color: var(--copy-color);
+    filter: brightness(.9);
+}
+
+.btn.copy-tasks:focus-visible { outline: 3px solid #75a7d2; outline-offset: 2px; }
+.btn.copy-tasks:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
 .status-box {
     display: none;
     border-radius: 6.8px;
@@ -1033,6 +1065,19 @@ th {
 .review-confirm-dialog h2 { margin: 0 0 8px; font-size: 16px; }
 .review-confirm-dialog p { margin: 0 0 10px; font-size: 13px; overflow-wrap: anywhere; }
 .review-confirm-actions { justify-content: flex-end; margin-top: 12px; }
+
+.review-copy-dialog { width: min(520px, calc(100% - 24px)); max-height: calc(100% - 32px); overflow-y: auto; }
+.review-copy-heading { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+.review-copy-heading h2 { margin-top: 5px; }
+.review-copy-icon { width: 34px; min-width: 34px; padding: 7px; display: grid; place-items: center; }
+.review-copy-icon img { width: 18px; height: 18px; }
+.review-copy-previous img { transform: rotate(90deg); }
+.review-copy-next img { transform: rotate(-90deg); }
+.review-copy-titles { padding-left: 20px; margin: 12px 0; font-size: 13px; max-height: 180px; overflow-y: auto; }
+.review-copy-titles li { margin: 5px 0; overflow-wrap: anywhere; }
+.review-copy-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.review-copy-controls strong { min-width: 55px; text-align: center; font-size: 13px; }
+.review-copy-controls .copy-tasks { margin-left: auto; }
 
 .review-heading .btn {
     min-height: 30px;
@@ -2391,7 +2436,7 @@ footer {
             <template id="studentProgressTemplate">
             <div class="progress-detail" id="progressDetail" aria-live="polite">
                 <div class="progress-heading">
-                    <button class="btn secondary" type="button" id="copyIncorrectTasksBtn" disabled>Skopiuj wszystkie błędne zadania</button>
+                    <button class="btn copy-tasks copy-incorrect" type="button" id="copyIncorrectTasksBtn" disabled>Skopiuj wszystkie błędne zadania</button>
                     <button class="btn secondary" type="button" id="closeProgressBtn">Zamknij</button>
                 </div>
 
@@ -2593,6 +2638,20 @@ footer {
         </div>
     </form>
 </dialog>
+<dialog class="review-confirm-dialog review-copy-dialog" id="reviewCopyDialog" aria-labelledby="reviewCopyTitle">
+    <div class="review-copy-heading">
+        <h2 id="reviewCopyTitle">Kopiowanie zadań</h2>
+        <button class="btn secondary review-copy-icon" type="button" data-copy-close aria-label="Zamknij" title="Zamknij"><img src="static/icons/x.svg" alt=""></button>
+    </div>
+    <p data-copy-status role="status"></p>
+    <ol class="review-copy-titles" data-copy-titles></ol>
+    <div class="review-copy-controls">
+        <button class="btn secondary review-copy-icon review-copy-previous" type="button" data-copy-previous aria-label="Poprzednia część" title="Poprzednia część"><img src="static/icons/chevron-down.svg" alt=""></button>
+        <strong data-copy-counter></strong>
+        <button class="btn secondary review-copy-icon review-copy-next" type="button" data-copy-next aria-label="Następna część" title="Następna część"><img src="static/icons/chevron-down.svg" alt=""></button>
+        <button class="btn copy-tasks copy-review" type="button" data-copy-part>Kopiuj część</button>
+    </div>
+</dialog>
 <footer class="site-footer" aria-label="Dane firmy">
     <div class="footer-business">© <span data-current-year>2026</span> Karol Musioł Delta Sigma</div>
     <div>Karol Musioł Delta Sigma</div>
@@ -2636,6 +2695,8 @@ const ADMIN_TASK_SOURCES = [
     { path: "zadania/kurs/mp/test_lekcje_1_6/test_lekcje_1_6.json", category: "kurs", level: "matura_podstawowa", label: "Test 1-6 (A)", detail: "Trudność 5/10", kind: "test" },
     { path: "zadania/kurs/mp/lekcja_7/lekcja_7_funkcje.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 7", detail: "Funkcje" },
     { path: "zadania/kurs/mp/lekcja_8/lekcja_8_funkcja_liniowa.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 8", detail: "Funkcja liniowa" },
+    { path: "zadania/kurs/mp/lekcja_9/lekcja_9_funkcja_kwadratowa.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 9", detail: "Funkcja kwadratowa" },
+    { path: "zadania/kurs/mp/lekcja_10/lekcja_10_optymalizacja.json", category: "kurs", level: "matura_podstawowa", label: "Lekcja 10", detail: "Optymalizacja I" },
     { path: "zadania/kurs/mr/zadania_kurs_mr.json", category: "kurs", level: "matura_rozszerzona", label: "Kurs", detail: "Matura rozszerzona" },
     { path: "zadania/kurs/eo/zadania_kurs_eo.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Kurs", detail: "Egzamin ósmoklasisty" },
     { path: "zadania/kurs/eo/lekcja_1/lekcja_1_odczytywanie_danych_i_procenty.json", category: "kurs", level: "egzamin_osmoklasisty", label: "Lekcja 1", detail: "Odczytywanie danych i procenty" },
@@ -5429,7 +5490,7 @@ function renderSourceDetail(group){
     ]){
         const copy = document.createElement("button");
         copy.type = "button";
-        copy.className = "btn secondary";
+        copy.className = `btn copy-tasks ${description === "do omówienia" ? "copy-review" : "copy-incorrect"}`;
         copy.textContent = `${label} (${items.length})`;
         copy.disabled = !items.length;
         copy.dataset.taskCount = String(items.length);
@@ -6088,9 +6149,34 @@ function wrapReviewHeading(context, text, width){
     return lines;
 }
 
-async function reviewTasksClipboardBlob(items){
+function reviewWorksheetPages(layout){
+    const pages = [];
+    let entries = [];
+    const heightFor = list => 2 * layout.padding + list.reduce((sum, entry) => sum + entry.height
+        + entry.image.naturalHeight + layout.scratchHeight + 2 * layout.gap, 0)
+        + (list.length - 1) * layout.padding;
+    for(const entry of layout.entries){
+        const candidate = [...entries, entry];
+        const height = heightFor(candidate);
+        // Bound each clipboard bitmap without resampling any task image.
+        if(entries.length && (height > 4096 || layout.width * height > 12_000_000)){
+            pages.push({...layout, entries, height: heightFor(entries)});
+            entries = [];
+        }
+        entries.push(entry);
+    }
+    if(entries.length) pages.push({...layout, entries, height: heightFor(entries)});
+    return pages;
+}
+
+async function reviewTasksClipboardBlob(items, onPages){
+    if(!items.length) throw new Error("Brak zadań do skopiowania.");
     const blobs = await Promise.all(items.map(clipboardImageBlob));
     const images = await Promise.all(blobs.map(blobToImage));
+    if(images.some(image => !Number.isSafeInteger(image.naturalWidth) || image.naturalWidth <= 0 ||
+        !Number.isSafeInteger(image.naturalHeight) || image.naturalHeight <= 0)){
+        throw new Error("Nie udało się odczytać pełnego obrazu zadania.");
+    }
     const contentWidth = Math.max(640, ...images.map(image => image.naturalWidth));
     const scale = Math.max(1, contentWidth / 1000);
     const padding = Math.round(18 * scale);
@@ -6114,16 +6200,36 @@ async function reviewTasksClipboardBlob(items){
         const titleLines = wrapReviewHeading(context, header.title, innerWidth);
         const topicLines = wrapReviewHeading(context, header.topic, innerWidth - badgesWidth);
         const rows = singleRow ? 1 : titleLines.length + Math.max(topicLines.length, badgesWidth ? 1 : 0);
-        return {image, header, pointsWidth, starsWidth, badgesWidth, singleRow, titleLines, topicLines, height: 2 * inset + rows * rowHeight};
+        return {item: items[index], image, header, pointsWidth, starsWidth, badgesWidth, singleRow, titleLines, topicLines, height: 2 * inset + rows * rowHeight};
     });
     const width = contentWidth + 2 * padding;
-    const height = 2 * padding + entries.reduce((sum, entry) => sum + entry.height + entry.image.naturalHeight
-        + scratchHeight + 2 * gap, 0) + (entries.length - 1) * padding;
+    const pages = reviewWorksheetPages({entries, width, contentWidth, scale, padding, inset, gap, rowHeight, square, scratchHeight, font, innerWidth})
+        .map(layout => {
+            let blob;
+            const page = {
+                blob: null,
+                titles: layout.entries.map(entry => entry.header.title),
+                getBlob: () => blob ||= renderReviewWorksheetPage(layout)
+                    .then(output => { page.blob = output; return output; })
+                    .catch(error => { blob = null; throw error; })
+            };
+            return page;
+        });
+    if(typeof onPages === "function") onPages(pages);
+    return pages[0].getBlob();
+}
+
+async function renderReviewWorksheetPage(layout){
+    const {entries, width, height, contentWidth, scale, padding, inset, gap, rowHeight, square, scratchHeight, font, innerWidth} = layout;
     if(width > 32767 || height > 32767 || width * height > 64_000_000){
         throw new Error("Zestaw jest za duży do skopiowania w pełnej jakości. Skopiuj zadania lekcjami.");
     }
+    const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
+    const context = canvas.getContext("2d");
+    if(!context) throw new Error("Nie udało się przygotować obrazu zadań.");
+    context.imageSmoothingEnabled = false;
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, width, height);
     context.font = font;
@@ -6183,6 +6289,90 @@ async function reviewTasksClipboardBlob(items){
     return canvasToPngBlob(canvas);
 }
 
+function writeReviewClipboardPng(png){
+    const writing = navigator.clipboard.write([new ClipboardItem({"image/png": png})]);
+    let timer;
+    const timeout = new Promise((resolve, reject) => {
+        timer = setTimeout(() => reject(new Error("Przeglądarka nie potwierdziła skopiowania. Spróbuj ponownie.")), 10000);
+    });
+    return Promise.race([writing, timeout])
+        .finally(() => clearTimeout(timer));
+}
+
+function showReviewClipboardPages(pages, description){
+    const dialog = document.getElementById("reviewCopyDialog");
+    const title = document.getElementById("reviewCopyTitle");
+    const status = dialog.querySelector("[data-copy-status]");
+    const titles = dialog.querySelector("[data-copy-titles]");
+    const counter = dialog.querySelector("[data-copy-counter]");
+    const previous = dialog.querySelector("[data-copy-previous]");
+    const next = dialog.querySelector("[data-copy-next]");
+    const copy = dialog.querySelector("[data-copy-part]");
+    const close = dialog.querySelector("[data-copy-close]");
+    const copied = new Set();
+    let index = 0;
+    let copying = false;
+    let disposed = false;
+    title.textContent = description === "do omówienia" ? "Zadania do omówienia" : "Błędne zadania";
+    copy.className = `btn copy-tasks ${description === "do omówienia" ? "copy-review" : "copy-incorrect"}`;
+    const render = () => {
+        counter.textContent = `${index + 1} / ${pages.length}`;
+        previous.disabled = copying || index === 0;
+        next.disabled = copying || index === pages.length - 1;
+        copy.disabled = copying || !pages[index].blob;
+        copy.textContent = copying ? "Kopiuję…" : pages[index].blob ? `Kopiuj część ${index + 1}` : "Przygotowuję…";
+        titles.replaceChildren();
+        for(const text of pages[index].titles){
+            const item = document.createElement("li");
+            item.textContent = text;
+            titles.appendChild(item);
+        }
+    };
+    previous.onclick = () => { if(!copying && index > 0){ index--; render(); } };
+    next.onclick = () => { if(!copying && index < pages.length - 1){ index++; render(); } };
+    close.onclick = () => dialog.close();
+    copy.onclick = async () => {
+        if(copying) return;
+        copying = true;
+        const selected = index;
+        render();
+        try {
+            // The PNG is ready before this click, including on Safari.
+            const png = pages[selected].blob;
+            if(!png) return;
+            await writeReviewClipboardPng(png);
+            copied.add(selected);
+            status.textContent = `Skopiowano ${copied.size} z ${pages.length} części.`;
+            if(index < pages.length - 1) index++;
+        } catch(error) {
+            status.textContent = error.message || "Nie udało się skopiować tej części.";
+        } finally {
+            copying = false;
+            if(!disposed) render();
+        }
+    };
+    dialog.onclose = () => {
+        disposed = true;
+        previous.onclick = next.onclick = copy.onclick = close.onclick = dialog.onclose = null;
+        titles.replaceChildren();
+    };
+    status.textContent = `Gotowe: ${pages.length} ${pages.length === 1 ? "część" : "części"}.`;
+    render();
+    dialog.showModal();
+    copy.focus();
+    (async () => {
+        for(const page of pages){
+            if(disposed) break;
+            try {
+                await page.getBlob();
+                if(!disposed && !copying) render();
+            } catch(error) {
+                if(!disposed) status.textContent = error.message || "Nie udało się przygotować obrazu.";
+            }
+        }
+    })();
+}
+
 async function copyReviewTaskImage(item){
     if(!navigator.clipboard?.write || !window.ClipboardItem){
         showStatus("Ta przeglądarka nie pozwala skopiować obrazu do schowka z poziomu strony.");
@@ -6217,10 +6407,22 @@ async function copyAllReviewTaskImages(items, control, description = "do omówie
     control.innerText = "Kopiuję…";
 
     try {
-        const pngBlob = reviewTasksClipboardBlob(items);
-        pngBlob.catch(() => {});
-        await Promise.all([navigator.clipboard.write([new ClipboardItem({"image/png": pngBlob})]), pngBlob]);
-        showStatus(`Skopiowano ${items.length} ${items.length === 1 ? "zadanie" : "zadań"} ${description} jako jeden obraz.`);
+        let pages = [];
+        const pngBlob = await reviewTasksClipboardBlob(items, prepared => { pages = prepared; });
+        if(pages.length > 1){
+            showReviewClipboardPages(pages, description);
+        } else {
+            try {
+                await writeReviewClipboardPng(pngBlob);
+                showStatus(`Skopiowano ${items.length} ${items.length === 1 ? "zadanie" : "zadań"} ${description} jako jeden obraz.`);
+            } catch(error) {
+                if(error.name === "NotAllowedError" && pages.length){
+                    showReviewClipboardPages(pages, description);
+                } else {
+                    throw error;
+                }
+            }
+        }
     } catch(error) {
         showStatus(error.message || "Nie udało się skopiować zadań do schowka.");
     } finally {
@@ -6250,7 +6452,7 @@ function renderReviewTasks(items, student){
         return;
     }
 
-    const copyAll = button("Kopiuj wszystkie", "btn secondary", () => copyAllReviewTaskImages(items, copyAll));
+    const copyAll = button("Kopiuj wszystkie", "btn copy-tasks copy-review", () => copyAllReviewTaskImages(items, copyAll));
     const actions = document.createElement("div");
     const status = document.createElement("div");
     const resolveAll = button("Odznacz wszystkie", "btn secondary", () => resolveAllReviewTasks(items, student, resolveAll, status));

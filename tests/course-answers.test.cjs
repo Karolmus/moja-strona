@@ -5,13 +5,14 @@ const html = fs.readFileSync('zadania.html', 'utf8');
 const names = ['isEquationSolutionInput', 'getInputFields', 'getInputPrompt', 'normalizeTypedAnswer',
   'normalizeSymbolicExpression', 'normalizeAcceptedMathForm', 'tokenizeSymbolicExpression', 'symbolicExpressionVariables',
   'evaluateSymbolicExpression', 'areSymbolicExpressionsEquivalent',
-  'splitEquationValues',
+  'splitEquationValues', 'splitPointCoordinates', 'parseIntegerAnswerSet', 'parseRealAnswerSet',
   'isTypedAnswerCorrect', 'isEquationSpecialAnswer', 'isInputFieldAnswerCorrect',
   'isComparisonField', 'setupComparisonControl', 'setComparisonControlResult',
   'formatInputAnswer', 'formatSubmittedInputAnswer', 'showInputCorrection',
   'inputAnswerValuesFromText', 'getSubmittedInputAnswerValues', 'restoreInputAnswerState',
   'syncEquationAnswerMode', 'setupEquationAnswerControl', 'isAssignmentInputFields',
   'assignmentFieldLabel', 'syncAssignmentControl', 'chooseAssignmentAnswer', 'setupInputTask',
+  'inlineComparisonParts', 'setupInlineComparisonControl',
   'checkInputAnswer', 'revealInputAnswers', 'disableMCQ', 'isInputTask',
   'isTeacherGradedTask', 'isTeacherReviewPending'];
 function source(name) {
@@ -61,6 +62,7 @@ const result = [];
 const ctx = vm.createContext({
   document: {
     createElement: tag => new Element(tag),
+    createElementNS: (namespace, tag) => new Element(tag),
     getElementById: id => id === 'comparisonOverlay'
       ? comparisonOverlay
       : mcq?.querySelectorAll('input, select, textarea, button, div, label, form').find(element => element.id === id) || null,
@@ -109,6 +111,9 @@ const cases = [
     .filter(task => task.type === 'input' && task.teacherGraded !== true)
     .map(task => [task, task.inputs.map(field => field.answer ?? field.answers?.[0]),
       task.inputs.map(field => field.options ? field.options.find(value => value !== field.answer) : '999')]),
+  ...JSON.parse(fs.readFileSync('zadania/kurs/mp/lekcja_10/lekcja_10_optymalizacja.json'))
+    .filter(task => task.type === 'input')
+    .map(task => [task, task.inputs.map(field => field.answer), task.inputs.map(() => '999999')]),
 ];
 for (const lesson of [5, 6]) {
   const dir = `zadania/kurs/eo/lekcja_${lesson}`;
@@ -124,6 +129,13 @@ function render(task) {
   comparisonOverlay.children = [];
   mcq = new Element('div'); ctx.setupInputTask(mcq);
   const form = mcq.children[0];
+  const grid = form.children[0];
+  if (task.inputColumns) {
+    assert(grid.classes.has('aligned-input-fields'), task.file);
+    assert.equal(grid.style['--input-columns'], String(task.inputColumns), task.file);
+  } else {
+    assert(!grid.classes.has('aligned-input-fields'), task.file);
+  }
   return {form, inputs: form.querySelectorAll('input, select, textarea')};
 }
 for (const [task, good, bad] of cases) {
@@ -365,4 +377,83 @@ assert.deepEqual(restoredAssignment.inputs.map(input => input.value), ['II', 'I'
 assert(restoredAssignment.form.querySelectorAll('.assignment-choice-btn')
   .filter(button => button.classes.has('correct')).length === 3);
 ctx.saved = null;
+const quadratic = JSON.parse(fs.readFileSync('zadania/kurs/mp/lekcja_9/lekcja_9_funkcja_kwadratowa.json'));
+for(const file of ['6.1.webp','6.2.webp','6.3.webp','6.4.webp','zd19.1.webp','zd19.2.webp','zd19.3.webp','zd19.4.webp']){
+  const item = quadratic.find(task => task.file === file);
+  const fields = ctx.getInputFields(item);
+  const values = fields.map(field => field.answers[0]);
+  const inline = render(item);
+  assert(inline.form.children[0].classes.has('inline-comparison-fields'), file);
+  assert(inline.inputs.every(input => input.tagName === 'input' && input.type === 'hidden' && input.required));
+  assert.equal(inline.form.querySelectorAll('.inline-comparison-options').length, fields.length);
+  assert.equal(inline.form.querySelectorAll('.assignment-choice-btn').length, fields.length * 3);
+  const before = result.length;
+  ctx.checkInputAnswer(inline.form);
+  assert.equal(result.length, before, 'Incomplete comparisons do not consume an attempt');
+  const rows = inline.form.querySelectorAll('.inline-comparison-field');
+  rows.forEach((row, index) => {
+    assert(row.classes.has('unanswered'));
+    const buttons = row.querySelectorAll('.assignment-choice-btn');
+    const selected = buttons.find(button => button.dataset.value === values[index]);
+    buttons.find(button => button !== selected).onclick();
+    selected.onclick();
+    assert.equal(buttons.filter(button => button.classes.has('selected')).length, 1);
+    assert.equal(buttons.filter(button => button.attributes['aria-pressed'] === 'true').length, 1);
+    assert(!row.classes.has('unanswered'));
+  });
+  assert.deepEqual(inline.inputs.map(input => input.value), values);
+  ctx.checkInputAnswer(inline.form);
+  assert.equal(result.at(-1).status, 'good', file);
+  assert.equal(result.at(-1).score.earnedPoints, 1);
+  assert(inline.form.querySelectorAll('.assignment-choice-btn').every(button => button.disabled));
+  ctx.saved = {submitted_answer: fields.map((field, index) => `${field.label}: ${values[index]}`).join('\n')};
+  const restored = render(item);
+  ctx.restoreInputAnswerState('good');
+  assert.deepEqual(restored.inputs.map(input => input.value), values, file);
+  assert.equal(restored.form.querySelectorAll('.assignment-choice-btn')
+    .filter(button => button.classes.has('correct')).length, values.length);
+  assert.equal(restored.form.querySelectorAll('msub').length, fields.filter(field => /[₁₂]/.test(field.label)).length);
+  ctx.saved = null;
+}
+assert.equal(ctx.inlineComparisonParts(comparisonFields[0]), null, 'Existing image overlays are unchanged');
+assert.equal(ctx.inlineComparisonParts({label:'A',options:['I','II','III']}), null);
+assert.equal(ctx.inlineComparisonParts({label:'x',options:['<','<','>']}), null);
+const attachedTools = [];
+ctx.DeltaSigmaMathInput = {attach:(input, wrapper, options) => attachedTools.push({input, options}),
+  refresh:() => {}, validate:() => true};
+for(const file of ['zd4.1.webp','zd4.2.webp','zd6.webp','zd7.1.webp','zd7.2.webp',
+  'zd8.webp','zd9.3.webp','zd16.webp','zd17.1.webp','zd17.2.webp','zd18.webp','zp7.webp']){
+  attachedTools.length = 0;
+  const item = quadratic.find(task => task.file === file);
+  const built = render(item);
+  const fields = ctx.getInputFields(item);
+  fields.forEach((field,index) => {
+    const attached = attachedTools.find(entry => entry.input === built.inputs[index]);
+    if(field.mathTools?.length) {
+      assert(attached, `${file}: ${field.label} toolbar exists`);
+      assert.deepEqual(Array.from(attached.options.tools), Array.from(field.mathTools));
+      if(!field.math) assert.equal(attached.options.preview, false, 'Symbolic and interval tools do not use numeric-only validation');
+    }
+    if(file === 'zd6.webp') assert(!attached);
+    if(field.control === 'values') {
+      assert.equal(built.form.querySelectorAll('.equation-mode-btn').length,0);
+      assert.equal(attached.options.multiple,true);
+      assert.equal(built.inputs[index].placeholder,'x₁; x₂');
+    }
+  });
+  if(file === 'zp7.webp'){
+    assert.equal(built.inputs.length,1);
+    assert.equal(built.inputs[0].placeholder,'(x, y)');
+    built.inputs[0].value='(6/2; 5,0)';
+    ctx.checkInputAnswer(built.form);
+    assert.equal(result.at(-1).status,'good');
+    assert.equal(result.at(-1).score.earnedPoints,2);
+    ctx.saved={submitted_answer:'Punkt przecięcia: (6/2; 5,0)'};
+    const restored = render(item);
+    ctx.restoreInputAnswerState('good');
+    assert.equal(restored.inputs[0].value,'(6/2; 5,0)');
+    assert(restored.inputs[0].classes.has('correct'));
+    ctx.saved=null;
+  }
+}
 console.log(`PASS: ${cases.length} tasks, selectors, math input, validation, locking, decimal separators and strict rounding`);
